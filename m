@@ -2,76 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E61E160639D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E732660629F
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbiJTO4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 10:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42516 "EHLO
+        id S230043AbiJTOOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 10:14:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbiJTO4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:56:14 -0400
-X-Greylist: delayed 2654 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 20 Oct 2022 07:56:12 PDT
-Received: from vps0.lunn.ch (unknown [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E3A491E7;
-        Thu, 20 Oct 2022 07:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=iYZGKo2r/D10Kc3WGxW6zEism6QXYhH2VU1htaM1CLQ=; b=ix7CQyJHDT6ecZglnVPBW+pahc
-        DRvjeNPfsSKMN012azIjvTGtyR+Y/PtRVCTYwiiAr5yEXT2Wi0lcnCO78P2oZdP27dR9BehPEN3cW
-        ePbMcxdMizVi2o5QB0VIV0y8D9eP+N0JSCfkohXyYStG7doTt2KEqIXqfC39rNTtK6C0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1olWGq-000Cfo-Ri; Thu, 20 Oct 2022 16:11:40 +0200
-Date:   Thu, 20 Oct 2022 16:11:40 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Vladimir Oltean <olteanv@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
-Message-ID: <Y1FXHDHxD4w7v3d1@lunn.ch>
-References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
- <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
- <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
+        with ESMTP id S230077AbiJTOOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:14:39 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FA91A9914
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:14:10 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1olWJ0-0002IF-Qs; Thu, 20 Oct 2022 16:13:54 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1olWJ0-0006xn-2h; Thu, 20 Oct 2022 16:13:54 +0200
+Date:   Thu, 20 Oct 2022 16:13:54 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        linux-kernel@vger.kernel.org, Haibo Chen <haibo.chen@nxp.com>,
+        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 14/15] arm64: dts: imx8m[m, p]-evk: change to use
+ off-on-delay-us in regulator
+Message-ID: <20221020141354.jxyycnt3nzm7frcr@pengutronix.de>
+References: <20221020095934.1659449-1-peng.fan@oss.nxp.com>
+ <20221020095934.1659449-15-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NEUTRAL,SPF_NEUTRAL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20221020095934.1659449-15-peng.fan@oss.nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 07:23:26PM -0700, Florian Fainelli wrote:
+On 22-10-20, Peng Fan (OSS) wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> After commit f7907e57aea2 ("regulator: fixed: add off-on-delay"), user
+> can use "off-on-delay-us" to define the regulator off-delay time.
+> 
+> For SD card, according to the spec requirement, for sd card power reset
+> operation, it need sd card supply voltage to be lower than 0.5v and keep
+> over 1ms, otherwise, next time power back the sd card supply voltage to
+> 3.3v, sd card can't support SD3.0 mode again.
+> 
+> This patch add the off-on-delay-us to each board, make sure the sd power
+> reset behavior is align with the specification. Without this patch, when
+> do quick system suspend/resume test, some sd card can't work at SD3.0 mode
+> after system resume back.
+
+Please mention that the real issue which is a capicity which gets
+unloaded to slow. Please see the u-boot commit for this which explains
+it better IMHO.
+
+Regards,
+  Marco
+
+
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dts  | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 1 +
+>  arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 1 +
+>  3 files changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> index c93387fcd498..898735965ac9 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> @@ -22,7 +22,7 @@ reg_sd1_vmmc: sd1_regulator {
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+>  		gpio = <&gpio2 10 GPIO_ACTIVE_HIGH>;
+> -		off-on-delay = <20000>;
+> +		off-on-delay-us = <20000>;
+>  		startup-delay-us = <100>;
+>  		enable-active-high;
+>  	};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index ce450965e837..fdbcd2483efc 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -56,6 +56,7 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+>  		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		off-on-delay-us = <20000>;
+>  		enable-active-high;
+>  	};
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> index 82387b9cb800..07d9fb2aacf8 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+> @@ -46,6 +46,7 @@ reg_usdhc2_vmmc: regulator-vsd-3v3 {
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+>  		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> +		off-on-delay-us = <20000>;
+>  		enable-active-high;
+>  	};
+>  
+> -- 
+> 2.37.1
 > 
 > 
-> On 10/19/2022 1:35 AM, Yoshihiro Shimoda wrote:
-> > Add Renesas Ethernet Switch driver for R-Car S4-8 to be used as an
-> > ethernet controller.
-> > 
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > 
-> How can this be a switch driver when it does not include any switchdev
-> header files nor does it attempt to be using the DSA framework? You are
-> certainly duplicating a lot of things that DSA would do for you like
-> managing PHYs and registering per-port nework devices. Why?
-
-Hi Florian
-
-It is not clear yet if this is actually a DSA switch. I asked these
-questions a few revisions ago and it actually looks like it is a pure
-switchdev switch. It might be possible to make it a DSA switch. It is
-a bit fuzzy, since it is all internal and integrated.
-
-  Andrew
