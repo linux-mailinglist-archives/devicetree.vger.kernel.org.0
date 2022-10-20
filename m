@@ -2,176 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA54606307
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D081860630E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:32:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiJTO2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 10:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51808 "EHLO
+        id S229658AbiJTOcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 10:32:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230059AbiJTO2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:28:12 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B601ABA15
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:28:09 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id r17so47798756eja.7
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 07:28:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7QR1IqMPTQfafYMBcRZyO6+upzIaAEmghcFFaL+GXdY=;
-        b=vegGHfEDzAlS0VlymlKs1Ypplgljzlzyspn1r1KOwHstsAMU9QtfZ18RgALUIIPhrZ
-         yWprS/+oaZXitf5/ng9chHACmDYZusFYBdjlCm+SRcGUd6aBvlX+yCE1Qr0bzstWM9QF
-         0hOYwp5OOlmp4LNb8BEsmOWfMzexAfIjoEwuAXtK7vXZIjrj62Cqdm1dOTwrWeovIpnI
-         qLQzmLeAjdcbjJ7GMQEGdXmPZIyraOUd26r9u53Mq7uolJggmiH0L+A3Xn86t9Mqn2tR
-         XJReD5jrMuqINxnVCjQwZdyqKXhzmUq2kSSq24z6EJgyttB23Fi+INruZJw+dEQbHDRx
-         i6mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7QR1IqMPTQfafYMBcRZyO6+upzIaAEmghcFFaL+GXdY=;
-        b=SfzD++6f2pXHN8UIPJ5y78f+mwFlELvfZf2DGPDefPyRxlzhB6lzNE90FSJ6l0mFnK
-         aNJ/uTYSB0LHuXHsgUrfPTTtmoWp5dnrX90zpJUXGEplRxWCCDId+Vdbr0NGsVtq9GuR
-         hE1SrXTBPfPDL8PjtCx1H9D+0YMtLZM3qiOndUoMbg5j3NANRZsYSBngMXHEIrUQRYKG
-         UjNLRPj4PbfCU1NHtW7ft9Dvg/6wKqb8ah29QMuZigKItDUv7GFqZl8g5Wk7xK1TJFyx
-         g3ZMmaDQ5Zd5pODrZBsnOBwxByJPEF51sbIwcwzc4guGs5Y0gydYb1ufs4H2GSDqY5Ak
-         edyw==
-X-Gm-Message-State: ACrzQf3s6W/8qlTD/aRcUCQ4xNROjjv+jEFvxfWvL3K+jWCtPAlk6yHJ
-        K4PqueXp6H6bCYvTU3VBaxlWuQ==
-X-Google-Smtp-Source: AMsMyM6c3vjC3h2UKyDABM7/Zth6iJYEdeiBBn9C/o6MJ8pVRnDGnQgdHus11l/HJYKNgBqDaxsozQ==
-X-Received: by 2002:a17:907:2e01:b0:78d:f24b:7330 with SMTP id ig1-20020a1709072e0100b0078df24b7330mr11097959ejc.604.1666276088208;
-        Thu, 20 Oct 2022 07:28:08 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id v1-20020a170906292100b0078116c361d9sm10614246ejd.10.2022.10.20.07.28.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 07:28:07 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 20 Oct 2022 16:28:07 +0200
-Message-Id: <CNQTKQWNZIH9.61TJWGH1K44F@otso>
-Cc:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: pm6350: add temp sensor and thermal
- zone config
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Matthias Kaehlcke" <mka@chromium.org>
-X-Mailer: aerc 0.12.0
-References: <20220812114421.1195044-1-luca.weiss@fairphone.com>
- <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
- <CM43WTWNP8MM.3145TGVN4208B@otso> <YvaErMmLIQaDolKR@google.com>
-In-Reply-To: <YvaErMmLIQaDolKR@google.com>
+        with ESMTP id S229535AbiJTOcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:32:01 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F04EAA;
+        Thu, 20 Oct 2022 07:32:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=xFmjSHPX73AcikU1mQLkkvYG12kXurGPaydIf61YTSU=; b=Kvzple/+RYe96lGPBTm7RzQ99h
+        GAe8YDfHWclKBh5uhFWtKaUhT+fZa+WWIBCP2UHljFkKUHJ6Gtb8wK1PV87bRwMUAmPDXPXsmeuek
+        qQb9l0gJY8/Af6rPOkjPgEfOP7eAXegIkBMpsmsMcdEgqLtfQV4K0pJkgqK80RxdSsIEdwRByDkZz
+        7+wzAT6ON4a+qiarNfThlutvYXhQ8apCAEWDyRWeTuBVw/ZX3LeEuZO+ScN24bf6C5uaiv7epRzwd
+        G4m57ZEReynEqEiaUX6UHuPRpyMl2kPQzfL1vlPJiDy/Dd1fqs1nY3D3bY7Vaayf/5Ha09Ag5E2RN
+        tR8T4VpQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34824)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1olWaP-0007Jm-Bz; Thu, 20 Oct 2022 15:31:53 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1olWaN-0003EJ-I6; Thu, 20 Oct 2022 15:31:51 +0100
+Date:   Thu, 20 Oct 2022 15:31:51 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
+Message-ID: <Y1Fb14s5pTcQa53V@shell.armlinux.org.uk>
+References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
+ <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
+ <166622204824.13053.10147527260423850821.robh@kernel.org>
+ <Y1EGqR6IEhPfx7gd@shell.armlinux.org.uk>
+ <20221020141923.GA1252205-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221020141923.GA1252205-robh@kernel.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
-
-sorry for the delay in getting back to you.
-
-On Fri Aug 12, 2022 at 6:49 PM CEST, Matthias Kaehlcke wrote:
-> On Fri, Aug 12, 2022 at 04:06:47PM +0200, Luca Weiss wrote:
-> > Hi Krzysztof,
-> >=20
-> > +CC Matthias Kaehlcke (author of patch mentioned further below)
-> >=20
-> > On Fri Aug 12, 2022 at 3:36 PM CEST, Krzysztof Kozlowski wrote:
-> > > On 12/08/2022 14:44, Luca Weiss wrote:
-> > > > Add temp-alarm device tree node and a default configuration for the
-> > > > corresponding thermal zone for this PMIC. Temperatures are based on
-> > > > downstream values.
-> > > >=20
-> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On Thu, Oct 20, 2022 at 09:19:23AM -0500, Rob Herring wrote:
+> On Thu, Oct 20, 2022 at 09:28:25AM +0100, Russell King (Oracle) wrote:
+> > On Wed, Oct 19, 2022 at 06:31:53PM -0500, Rob Herring wrote:
+> > > On Wed, 19 Oct 2022 14:28:46 +0100, Russell King (Oracle) wrote:
+> > > > Add a minimum and default for the maximum-power-milliwatt option;
+> > > > module power levels were originally up to 1W, so this is the default
+> > > > and the minimum power level we can have for a functional SFP cage.
+> > > > 
+> > > > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > > > > ---
-> > > > With this config I'm getting this in dmesg, not sure if it's a warn=
-ing
-> > > > that should be solved or just an informative warning.
-> > > >=20
-> > > > [    0.268256] spmi-temp-alarm c440000.spmi:pmic@0:temp-alarm@2400:=
- No ADC is configured and critical temperature is above the maximum stage 2=
- threshold of 140 C! Configuring stage 2 shutdown at 140 C.
-> > > >=20
-> > > > As far as I can tell, based on downstream dts this PMIC doesn't hav=
-e an
-> > > > ADC.
->
-> I don't seem to have access to the datasheet, in any case that the ADC is=
-n't
-> configured in the downstream dts doesn't necessarily mean the PMIC doesn'=
-t
-> have one. The PM6150 has one, and it is probably relatively close to the
-> PM6350.
+> > > >  Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > > 
+> > > 
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > 
+> > > yamllint warnings/errors:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.yaml: properties:maximum-power-milliwatt: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+> > > 	hint: Scalar and array keywords cannot be mixed
+> > > 	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+> > 
+> > I'm reading that error message and it means absolutely nothing to me.
+> > Please can you explain it (and also re-word it to be clearer)?
+> 
+> 'maxItems' is a constraint for arrays. 'maximum' is a constraint for 
+> scalar values. Mixing them does not make sense.
+> 
+> I have little control over the 1st line as that comes from jsonschema 
+> package. 'hint' is what I've added to explain things a bit more.
 
-Too bad :(
+Given that maximum-power-milliwatt is a single value and has never been
+an array, it seems then that the original conversion to yaml was wrong.
+What should it have been?
 
->
-> > > You configure 145 and driver believes 140 is the limit, so it seems
-> > > warning should be addressed.
-> >=20
-> > Hm...
-> >=20
-> > >
-> > > From where did you get 145 degrees as limit? Downstream DTS?
-> >=20
-> > Yes, downstream dts[0].
-> >=20
-> > From what I can see in the downstream driver, it always disabled this
-> > "software override of stage 2 and 3 shutdowns"[1]
-> >=20
-> > In mainline only since f1599f9e4cd6 ("thermal: qcom-spmi: Use PMIC
-> > thermal stage 2 for critical trip points") this check exists, which is
-> > not part of downstream (wasn't in 4.19 yet), where this software
-> > override tries to get enabled so that thermal core can handle this.
-> >=20
-> > Any suggestion what I can do here? Maybe looking at msm-5.4 sources (an=
-d
-> > associated dts) might reveal something..?
->
-> I wouldn't necessarily consider QC downstream code as a reliable source o=
-f
-> truth ...
->
-> > Maybe newer SoCs/PMICs have a different config?
->
-> Commit aa92b3310c55 ("thermal/drivers/qcom-spmi-temp-alarm: Add support
-> for GEN2 rev 1 PMIC peripherals") added support for gen2 PMICs, which
-> actually have lower thresholds than gen1. From the log it seems that the
-> PM6350 is identified as gen1 device (max stage 2 threshold =3D 140 degC).
+(I'm clueless what the difference is between an array and scalar in
+this yaml stuff.)
 
-PM6350 is detected as QPNP_TM_SUBTYPE_GEN2 so gen2 actually. Just the
-log message is hardcoded to 140 degC, the if above actually has
-stage2_threshold_max =3D 125000 (125degC) and stage2_threshold_min =3D
-110000 (110degC) so lower than 140 (basically like you said).
-
->
-> It seems setting the limit to 140 degC or one of the other stage 2
-> thresholds would be a reasonable course of action. stage 2 is the
-> threshold at which the PMIC is so hot that the system should shut
-> down, and 140 degC is the highest of the stage 2 thresholds. Even
-> if it was possible, what would be gained from setting the trip
-> point 5 degC higher?
-
-Based on this, do you think it's reasonable to just set the limit to
-125 degC and be done with it? Or some other way to resolve this? I'd of
-course mention in the commit message that I've decreased the value from
-145 (msm-4.19) to 125.
-
-Regards
-Luca
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
