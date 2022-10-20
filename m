@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 005BE606827
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 20:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E0860683B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 20:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbiJTSYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 14:24:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44316 "EHLO
+        id S229456AbiJTSfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 14:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229731AbiJTSYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 14:24:04 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD231E8B99
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:24:02 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id h24so147620qta.7
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:24:02 -0700 (PDT)
+        with ESMTP id S229460AbiJTSfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 14:35:01 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A22A5A8EA
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:34:56 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id o22so500190qkl.8
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:34:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cbX/juujWC6ueA+dF64S7G5Ta7cBZWyKR6zbSd0h7YY=;
-        b=AaABUfwRmy6Nfus8levvOmejLM3AdKQQPLMs+8C7Atk5/AiuCuCWT3QFxTCDgb89Br
-         16M62FbFmBpKm0IJrw5ItxSNam9IBr6CrQsRGYaoQxSy/wBc+rHE2pEysHRiqf6fr4nF
-         L5nc9tpgaamvXYaGuCaKnoY+V+b/TiVNnZNiP8qT1+mcBw9XjA/4UybFnd1olfzWnJH6
-         dpbdGkTlqdLk57Z3yvB09nNLDrcbSfjzmUzeX5pfhMiV54UgeuV+WwT+nm7w0XRzxocU
-         kOlPHCXBnv12pukrYyqavXi8XnLw3kOXX8ZL7igpuWV/iZICmrQj7NpKBPR6mXD+M8+v
-         ulFQ==
+        bh=HY9CsyVy0myxvaLITwUS3Qt0lBRKhpdzPVxX3EBA/CY=;
+        b=pipBb0x+cr2R0D3fuF6NLkbPQDO0qI5bzzvLkE1sgy/MUEA7P6YiYSeCFkzr45wkyp
+         76YJPkPeQNs/Kg3itSirub4zm2GEh2NYUWsqKOHai15PQ1N6jFWHPXhRbw7VC60dsT2K
+         myD8HBZtN6L34bwnOnLzTYgH7EjRrxaPyvPHfQWf8g+pmsWPY5jGVtu6COzIOnYVFih3
+         YJU+geOvXw+G2zx/9MLP55wKP1I9dAPZPzb1NWdnww8gC5kkY7ZMeoBuDMbTK1t132k0
+         XzSKbAUg2qjY6iMTgJ8t4W2MgiYfFj0KZDte+9Xj3zgI3pOj5ICnGJLkhxaqfx9rYbfz
+         yRww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cbX/juujWC6ueA+dF64S7G5Ta7cBZWyKR6zbSd0h7YY=;
-        b=XzEktIJ7FpNQBcijeZc6OUkKnVdEh/GcHPtRPvh8QkZ3brmDTS9SaJOmHvyDifDnpR
-         mUxrwVx4+3eG3t/Mm0q51BkWOBhT8ZRm/JSy2nhLsAY1A149kMbryuHj9F9EIxesdCH6
-         MkP6hektSloLpUq1+yQ0eAJGhUPB1tufJjkGkzNGXhLsZ1pvFTPh1ZMmrs+6RZbfoAgM
-         NHSImt7jaJfTnbazCZ4FSbSA3XChllFVTjwQMyOiXVo1HGB4mT8BAa+e4IlXWlDTO+eG
-         bRs9aTLxm7WadSxcZGeWsY8sxuHi2xFMYL9ouoTxb4+gmrU2PgTvcWIlk6bLJyEcjJbC
-         vdZA==
-X-Gm-Message-State: ACrzQf04adQENP44lIzU3HtbSevAAQwA+NX0cI3Cm6JbuJGMrYFT/eBv
-        8m1Qc35tX1NL2yx6hnW+BNDfFA==
-X-Google-Smtp-Source: AMsMyM7D0BGgC1BtJnpb+bfxSiU74ftu8bSbR3bVqXlel9eqWedUYhS8sohMpV9TYWuUBSCYl+c2LA==
-X-Received: by 2002:ac8:58c5:0:b0:39c:c710:f58c with SMTP id u5-20020ac858c5000000b0039cc710f58cmr12105164qta.295.1666290242072;
-        Thu, 20 Oct 2022 11:24:02 -0700 (PDT)
+        bh=HY9CsyVy0myxvaLITwUS3Qt0lBRKhpdzPVxX3EBA/CY=;
+        b=Tq4qSNEpaJoh0oP0LSb7Nvn1PapQZH5EWJ2EaoqfzSLA3hyXA+H8i7VSFTXW74er9l
+         4q4e0ciSKihXq8VXYF07Pdg9ZragjED5hcO17Q59DWNaEaooKbQvpo8ttyt1YrnHsx5D
+         HROzquITCqmE5kBK8N9C8LMiVmq6whJXsajsxMSeyuGkBAyiS5gIMB6ZkWy+0j4Og8iW
+         M/ntvZPFiIzVnWVBhNsuniKouVB+bBgrYfa6ZZSFPhZPu25w2wqnY6JQKgFQ66oX9Wkc
+         FCHc5c3GMe/xKow7GsV0I1ZuJRYZwo68t/eSybNAWBXO8tNa9HbAvnbUVhKFnRrMwwx/
+         xagw==
+X-Gm-Message-State: ACrzQf1j6tqVbdIhtz4pWq0K8xWiTjMZaeoqT8NZSeik4wGI/ZCy3ZNA
+        XQuGOw5I6EgK2sF9z/d1Bj7pew==
+X-Google-Smtp-Source: AMsMyM6/i6uGqja8uWjQHRC3kvF+iBiGDVTF7QSKqI8YynKmQZGi7xBdrUtDnUCwkHk0gZiKfL3PQA==
+X-Received: by 2002:a37:5d2:0:b0:6ee:7931:825a with SMTP id 201-20020a3705d2000000b006ee7931825amr10334659qkf.591.1666290895303;
+        Thu, 20 Oct 2022 11:34:55 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id p7-20020a05620a132700b006b61b2cb1d2sm7684779qkj.46.2022.10.20.11.24.00
+        by smtp.gmail.com with ESMTPSA id s7-20020a05620a254700b006ec59941acasm7980520qko.11.2022.10.20.11.34.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 11:24:01 -0700 (PDT)
-Message-ID: <f8435311-42fa-4858-4623-8088d644f6c6@linaro.org>
-Date:   Thu, 20 Oct 2022 14:23:59 -0400
+        Thu, 20 Oct 2022 11:34:54 -0700 (PDT)
+Message-ID: <77087a4a-ac21-c622-59ec-1b308c37cc2c@linaro.org>
+Date:   Thu, 20 Oct 2022 14:34:52 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
- wait mode
+Subject: Re: [PATCH v3] dt-bindings: soundwire: Convert text bindings to DT
+ Schema
 Content-Language: en-US
-To:     Andrej Picej <andrej.picej@norik.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, robh+dt@kernel.org
-References: <20221019111714.1953262-1-andrej.picej@norik.com>
- <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
- <143f1466-e34a-254d-4e6e-fefa17ad1390@norik.com>
- <24401572.EfDdHjke4D@steina-w>
- <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+References: <1666271160-22424-1-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
+In-Reply-To: <1666271160-22424-1-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,127 +82,215 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 09:05, Andrej Picej wrote:
+On 20/10/2022 09:06, Srinivasa Rao Mandadapu wrote:
+> Convert soundwire text bindings to DT Schema format.
 > 
+> Update interrupt property items as per device tree,
+> as it is not appropriately described in text file.
 > 
-> On 20. 10. 22 14:41, Alexander Stein wrote:
->> Am Donnerstag, 20. Oktober 2022, 14:36:10 CEST schrieb Andrej Picej:
->>> On 20. 10. 22 14:18, Krzysztof Kozlowski wrote:
->>>> On 20/10/2022 02:23, Andrej Picej wrote:
->>>>> Hi Alexander and Krzysztof,
->>>>>
->>>>> hope I can reply to both questions here.
->>>>>
->>>>> On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
->>>>>> On 19/10/2022 09:00, Alexander Stein wrote:
->>>>>>> Hello Andrej,
->>>>>>
->>>>>>> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
->>>>>> Missing commit msg.
->>>>>>
->>>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->>>>>>>> ---
->>>>>>>>
->>>>>>>>     Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5
->>>>>>>>     +++++
->>>>>>>>     1 file changed, 5 insertions(+)
->>>>>>>>
->>>>>>>> diff --git
->>>>>>>> a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>>>>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
->>>>>>>> fb7695515be1..01b3e04e7e65 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>>>>>
->>>>>>>> @@ -55,6 +55,11 @@ properties:
->>>>>>>>           If present, the watchdog device is configured to assert its
->>>>>>>>           external reset (WDOG_B) instead of issuing a software reset.
->>>>>>>>
->>>>>>>> +  fsl,suspend-in-wait:
->>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>>>>>> +    description: |
->>>>>>>> +      If present, the watchdog device is suspended in WAIT mode.
->>>>>>>> +
->>>>>>>>
->>>>>>>>     required:
->>>>>>>>       - compatible
->>>>>>>>       - interrupts
->>>>>>>
->>>>>>> What is the condition the watchdog is suspended in WAIT mode? Is this
->>>>>>> specific to SoC or platform or something else?
->>>>>
->>>>> Sorry, what exactly do you mean by condition?
->>>>
->>>> Ugh, I also cannot parse it now...
->>
->> Sorry, Krzysztof already asked the right question: When does one want to
->> enable/disable this feature?
->>
->>>>> When the property
->>>>> "fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so
->>>>> this is defined by the user. Didn't want to apply it for all the
->>>>> supported machines since there could be devices which depend on watchdog
->>>>> triggering in WAIT mode. We stumbled on this problem on imx6 devices,
->>>>> but the same bit (with the same description) is found on imx25, imx35,
->>>>> imx50/51/53, imx7 and imx8.
->>>>
->>>> I meant, what is expected to happen if you do not enable this bit and
->>>> watchdog triggers in WAIT mode? IOW, why someone might want to enable or
->>>> disable this property?
->>>
->>> If this is not enabled and you put the device into the Suspend-to-idle
->>> mode the device resets after 128 seconds. If not, the device can be left
->>> in that state for infinite time. I'm guessing you want me to better
->>> explain the property in device tree docs right?
->>> I can do that in v2.
->>>
->>>>>> And what happens else? When it is not suspended in WAIT mode?
->>>>>
->>>>> When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the
->>>>> watchdog keeps running and triggers a reset after 128 seconds. So the
->>>>> maximum length the device can stay in this mode is limited to 128
->>>>> seconds.
->>>>
->>>> And who wakes up the system before 128 seconds? IOW is there a use case
->>>> of not enabling this property?
->>>
->>> Well I can think of one, system can be woken up by some other interrupt.
->>> Like RTC which triggers interrupt (for example every 10s). So if this
->>> property is left disabled the watchdog can handle errors where other
->>> wakeup sources don't trigger interrupt or if the system is unable to
->>> wake from low-power state. In that case the watchdog will do a hard
->>> reset of the device.
->>>
->>> But I'm not really sure if anybody uses this, just wanted to make sure
->>> that we keep the default behaviour as it is, since this driver is used
->>> by many devices and for quite some time.
->>
->> This sounds more like (application) configuration. If so this should not be
->> configured in device tree, IMHO.
->>
-> 
-> Do you have an idea where should it be configured? Just keep in mind 
-> that this can not be configured at runtime, since this is write-once bit 
-> so any configuration changes regarding this functionality can not be done.
-> 
-> Basically if I can sum up the problem:
-> 
-> Without this property enabled, the WDW bit is left unset:
-> $ echo freeze > /sys/power/state
-> #device enters Suspend-to-idle, watchdog is left running and the device 
-> resets after 128 seconds in this state
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+> Signed-off-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+> ---
 
-I still wonder (and still did not receive) about such use case. When
-would you like to have such behavior?
+Thank you for your patch. There is something to discuss/improve.
 
-> 
-> With this property set, the WDW bit is set at watchdog initialization:
-> $ echo freeze > /sys/power/state
-> #device enters Suspend-to-idle, watchdog is suspended and the device can 
-> be left in this state until some other wakeup source triggers interrupt.
+> -};
+> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> new file mode 100644
+> index 0000000..12cd3c1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+> @@ -0,0 +1,184 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soundwire/qcom,soundwire.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SoundWire Controller
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +  - Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> +
+> +description:
+> +  The Qualcomm SoundWire controller along with its board specific bus parameters.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,soundwire-v1.3.0
+> +      - qcom,soundwire-v1.5.0
+> +      - qcom,soundwire-v1.5.1
+> +      - qcom,soundwire-v1.6.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: specify the SoundWire controller core.
+> +      - description: specify the Soundwire controller wake IRQ.
 
-Assuming there is such use case, for keeping watchdog running even
-though system sleeps (and cannot poke watchdog), it's fine.
+The second property was optional. You need to test DTS before sending
+the bindings. Please run `make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+IOW, you need here:
+  minItems: 1
+
+> +
+> +  interrupt-names:
+
+  minItems: 1
+
+> +    items:
+> +      - const: wakeup
+> +      - const: core
+
+That's definitely wrong order and should not pass any tests...
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: iface clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: iface
+> +
+> +  resets:
+> +    items:
+> +      - description: SWR_AUDIO_CGCR RESET
+> +
+> +  reset-names:
+> +    items:
+> +      - const: swr_audio_cgcr
+> +
+> +  '#sound-dai-cells':
+> +    const: 1
+> +
+> +  '#address-cells':
+> +    const: 2
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  wakeup-source: true
+> +
+> +  qcom,din-ports:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: count of data in ports
+> +
+> +  qcom,dout-ports:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: count of data out ports
+> +
+> +  qcom,ports-word-length:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: size of payload channel sample.
+> +    maxItems: 5
+> +
+> +  qcom,ports-sinterval-low:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: sample interval low of each data port.
+> +    maxItems: 5
+> +
+> +  qcom,ports-offset1:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: payload transport window offset1 of each data port.
+
+You miss here some pieces of original description,
+
+> +    maxItems: 5
+> +
+> +  qcom,ports-offset2:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: payload transport window offset2 of each data port.
+
+Ditto - and in other places.
+
+> +    maxItems: 5
+> +
+> +  qcom,ports-lane-control:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: identify which data lane the data port uses.
+> +    maxItems: 5
+> +
+> +  qcom,ports-block-pack-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: indicate the block packing mode.
+> +    maxItems: 5
+> +
+> +  qcom,ports-hstart:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: identifying lowerst numbered coloum in SoundWire frame.
+> +    maxItems: 5
+> +
+> +  qcom,ports-hstop:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: identifying highest numbered coloum in SoundWire frame.
+> +    maxItems: 5
+> +
+> +  qcom,ports-block-group-count:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: indicate how many sample intervals are combined into a payload.
+> +    maxItems: 5
+> +
+> +  codec@4:
+
+It's too specific. What if different device uses different address?
+
+You need patternProperties "^codec@[0-9a-f]+$"
+
+
+> +    $ref: ../sound/qcom,wcd938x-sdw.yaml#
+
+Full path, so /schemas/sound/qcom,wcd.....
+
+Cannot we have other codecs attached? For example check SC7280 IDP,
+SM8250 MTP, RB5.
+
+
+> +    description:
+> +      Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC.
+> +      It has RX and TX Soundwire slave devices. This bindings is for the
+> +      slave devices.
+> +    type: object
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - '#sound-dai-cells'
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - qcom,dout-ports
+> +  - qcom,din-ports
+> +  - qcom,ports-sinterval-low
+> +  - qcom,ports-offset1
+> +  - qcom,ports-offset2
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
+> +
+> +    soundwire@3210000 {
+> +        compatible = "qcom,soundwire-v1.6.0";
+> +        reg = <0x03210000 0x2000>;
+> +
+> +        interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <&pdc 130 IRQ_TYPE_LEVEL_HIGH>;
+> +
+
+Missing interrupt names.
 
 Best regards,
 Krzysztof
