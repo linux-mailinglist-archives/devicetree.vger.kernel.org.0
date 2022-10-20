@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 972FA606B97
+	by mail.lfdr.de (Postfix) with ESMTP id EC7A1606B98
 	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 00:51:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbiJTWvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 18:51:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
+        id S230046AbiJTWvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 18:51:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbiJTWvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 18:51:40 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB7D22C838
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 15:51:39 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id o8so706011qvw.5
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 15:51:39 -0700 (PDT)
+        with ESMTP id S230004AbiJTWvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 18:51:41 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45FF522C83F
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 15:51:40 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id o8so706038qvw.5
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 15:51:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vJ2fnMwkzzcUrlt3Fw/NVeA9nUJ+nnr2Hha7CQJiOpk=;
-        b=ZzAmKewB3lrlF+suASqb5cFqR/atkwrjJFQRxTN4nzItV+jc0Meo3S/6l75CXfFzmd
-         FCQtLKuMiWgoQQRTFg8m5P5x+S2W+Wh2nLcRyY6CIRT7V2abqPuk6FMDox/dZOJJYyi5
-         fa9ro91xjm6anHGz/ZvT/+D6TMc9HMmiFv6H2By0fj9fYjkvD0skvWmAKT+Q2tyYvqTa
-         xiS0n7QOjWJuf0XujxGGmtAGtLJgRXdCEPDlIQ4uc9RgKoI30wcgFdgahNScWSEDrVCI
-         LWq6RC8C21UogkntMcp1n7zM5K655+xJHYG6Ll2LgF03x84nGtzks2eGN3JCpKPD7wKB
-         3sEw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ArlJ/v0OoUZQ/Kd5LoDRNejf0AwgsLsMBPFeV0K0yT8=;
+        b=s2muhp2jpEdajgL8hbdN5bSwuOkDtcTnc7UcjWCdWmQsZ1QXZcYKYhGAnFyrtl0ZGT
+         Ytucu2QvomjartNXcMa+7X+GwSKNhxcTpHyN/Rmzg5YgBWYsNk6OrYOFbQEVAoxN/WPv
+         B5OHfLErjEmGzBEsKmNba4FRyflq6nOYtUaVRAAZBIQ2JHw8p0JFSYGttQ4qo7SNOIY7
+         pwgmuDy7qsgEERgpcht3gyjZzOL0ALgw9DQkfEPSHVUZ4zfrYUab8tbgAA+2pNdTI1mL
+         bLQrOtqdXzzZqlf5T+ekk9Wc1YX99KFm5DIgEqRg2B7CJkj1q7xiGdPmvLxAPwSju6pb
+         DgqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vJ2fnMwkzzcUrlt3Fw/NVeA9nUJ+nnr2Hha7CQJiOpk=;
-        b=QNpKgwyeBmE41xN+fRkhbnl17yfutdJRHY0+coLfCp0GykTKpx4EHJSI49yI5+i0Fv
-         0JQCH3ijPK5iRdPfe8saS0Xp2cd9l+0TBpG9fHdat4eAP++PNzu8ADviKkBEHL5JW60W
-         rq+fIqFtJto8sG19WeIPMJMRreTqNfaa/+k6+PSifipLfsH7XKlfSfTqbqgzJiAz0WeW
-         8hUE6J+CDmfUpbu7E3quPctT78roafjfCRZJyHUOtMgMzKgeqHfhUSVL+pNbaXFDAw2w
-         bJQpUyhi9jBgd5VN8fX2SDUSsyeD6w5XytOuu7RnVg5Omr/ilHtVIb585QLvJNM5xO+H
-         bsOw==
-X-Gm-Message-State: ACrzQf3UXmlWJi8zX7KDllfAMUokhDRNy9l44JSeuehOw60Z6laKw04t
-        +vAiI2oXo3F1eH731pwLL6YDkw==
-X-Google-Smtp-Source: AMsMyM6ZYp4ANf+l94jK/CL+Z2C9Vn6alVFc/ybjhWwM7RIuQ96aJgsBD3Ry1CQBtcj56dvINeQfBw==
-X-Received: by 2002:a05:6214:4015:b0:4b1:78f2:8dfd with SMTP id kd21-20020a056214401500b004b178f28dfdmr14120578qvb.81.1666306298222;
-        Thu, 20 Oct 2022 15:51:38 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ArlJ/v0OoUZQ/Kd5LoDRNejf0AwgsLsMBPFeV0K0yT8=;
+        b=GLTkAS/OYvMrmyDv+uLbR9i0fNAFJ7fX9QsugiNAY+hzgO6Nk5Pvp1lDZ0mKOtGd5Y
+         j6NFgO1LVLXJ1M/PoQl2nJB8BlrmknwJCP4QtAGORbpNM0YpGjIWnvNnSqGqKDQG1FPm
+         9Wi6thGUgd4h7ie/Sr9EaPCszfmMui4K9Ka91Q9TKuBIDKaGs0ZKl+Ywj6noQVEivsp6
+         PpsNxPlPL7A/afm6CzTQndWKezhioSwvoASuVnD8xqD3Ur2pPRhXC700fGa/KNaEhjUG
+         fl7gB1u/mfHg9OGtc6BqrfhkqercDN+pe4yL2LVi1if+70CAQIl+ToYwFUt0xRntIVAJ
+         +/zg==
+X-Gm-Message-State: ACrzQf3wSJCDTp9u4FVSP4Ayp91H9sj0t0+/twOP8UcWHmGAuhpJCC9e
+        PwwzRvDE5frN/mk/2PX1oIBgHQ==
+X-Google-Smtp-Source: AMsMyM6r0WgMrzmuORUynOrL21SYXuqhkpq5t0qpOW6nEbsnb+C4TSEB8TJCCG90Hv1D9SRiqBOu/Q==
+X-Received: by 2002:ad4:5fc8:0:b0:4b7:6ca0:adb7 with SMTP id jq8-20020ad45fc8000000b004b76ca0adb7mr6592615qvb.111.1666306299444;
+        Thu, 20 Oct 2022 15:51:39 -0700 (PDT)
 Received: from krzk-bin.MSRM (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id ew5-20020a05622a514500b0039cc9d24843sm6903479qtb.66.2022.10.20.15.51.37
+        by smtp.gmail.com with ESMTPSA id ew5-20020a05622a514500b0039cc9d24843sm6903479qtb.66.2022.10.20.15.51.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 15:51:37 -0700 (PDT)
+        Thu, 20 Oct 2022 15:51:38 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,68 +61,71 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 0/3] arm64/pinctrl: dt-bindings: qcom: sc7180: convert to dtschema
-Date:   Thu, 20 Oct 2022 18:51:32 -0400
-Message-Id: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/3] arm64: dts: qcom: sc7180-trogdor-homestar: fully configure secondary I2S pins
+Date:   Thu, 20 Oct 2022 18:51:33 -0400
+Message-Id: <20221020225135.31750-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org>
+References: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The Trogdor Homestar DTSI adds additional GPIO52 pin to secondary I2S pins
+("sec_mi2s_active") and configures it to "mi2s_1" function.
 
-Changes since v3
-================
-1. Drop bindings patch: applied.
-2. Rebase.
-3. Add tags.
+The Trogdor DTSI (which is included by Homestar) configures drive
+strength and bias for all "sec_mi2s_active" pins, thus the intention was
+to apply this configuration also to GPIO52 on Homestar.
 
-Changes since v2
-================
-1. New patch: revert of glitch SPI CS workaround
-2. dt-bindings: Drop entire drive-strength (not needed, brought by common TLMM
-   schema).
-3. Add tags.
-v2: https://lore.kernel.org/all/20221013184700.87260-1-krzysztof.kozlowski@linaro.org/
+Reported-by: Doug Anderson <dianders@chromium.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fixes: be0416a3f917 ("arm64: dts: qcom: Add sc7180-trogdor-homestar")
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-Best regards,
-Krzysztof
+---
 
-Krzysztof Kozlowski (3):
-  arm64: dts: qcom: sc7180-trogdor-homestar: fully configure secondary
-    I2S pins
-  arm64: dts: qcom: sc7180: revert "arm64: dts: qcom: sc7180: Avoid
-    glitching SPI CS at bootup on trogdor"
-  arm64: dts: qcom: sc7180: align TLMM pin configuration with DT schema
+Changes since v3:
+1. None
 
- arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 236 +++----
- .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  36 +-
- .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  41 +-
- .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  16 +-
- .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   |   8 +-
- .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  16 +-
- .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  25 +-
- .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi |  72 +-
- .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  32 +-
- .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |   8 +-
- .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  14 +-
- .../qcom/sc7180-trogdor-quackingstick.dtsi    |  56 +-
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |   8 +-
- .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  16 +-
- .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  25 +-
- .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  72 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 650 +++++++-----------
- arch/arm64/boot/dts/qcom/sc7180.dtsi          | 597 ++++++++--------
- 18 files changed, 776 insertions(+), 1152 deletions(-)
+Changes since v2:
+1. Add tags.
 
+Changes since v1:
+1. New patch
+
+Not tested on hardware.
+
+Cc: Doug Anderson <dianders@chromium.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+index 7fcff4eddd3a..8264b8d5e778 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
+@@ -194,6 +194,12 @@ pinmux {
+ 		pins = "gpio49", "gpio50", "gpio51", "gpio52";
+ 		function = "mi2s_1";
+ 	};
++
++	pinconf {
++		pins = "gpio49", "gpio50", "gpio51", "gpio52";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
+ };
+ 
+ &ts_reset_l {
 -- 
 2.34.1
 
