@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A5760620C
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:45:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E68D160621B
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiJTNpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 09:45:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53636 "EHLO
+        id S229767AbiJTNqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 09:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbiJTNpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:45:02 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841ED50FA6
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:44:56 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id bb5so13667380qtb.11
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:44:56 -0700 (PDT)
+        with ESMTP id S230122AbiJTNq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:46:29 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1795B17EF37
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:46:24 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id j21so12753795qkk.9
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:46:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KhTsVyCoCN9J7vHV3+LHFRl6DSDyjLgInh88Ha3AdYw=;
-        b=OkCy9t+DuyOUp1kiX5G08YdPsnAID9mOcGUnLsZZvP9ZRA05L15c+Bzopd4KOm6Sij
-         y0ZMRB8Y/VyqckwpCV3PuSuFtEDFPEIHqWTli+mmJvlDD7eECDLcAfyvScT+DBiPmiOn
-         SnZMm2Dl1WK8q88NJ1BKdLC5kdQC2147wMFzd/G70bOrPOCnjyNkOdQ0i8WDjLZM4lPO
-         JKeRnFnGQaj64DuO8FI77AF9NWyPmvcpuQrmsS1k1x6JyHo/8IJWoQlnEP9cfGgRW9UK
-         Jt3eOCR2/gULg173vgz8nHy0MESqEqmkZ8ylz4jH87o/cNiS1yhZQj4qZnREco+ORivR
-         Qq2g==
+        bh=By6WmlApYPTCO07NNuBolUybiimy99uuNIZmRqG4EOw=;
+        b=Powru50NsTbMBrvE1tRNci3OFelg8KUKrZSn9uOoQgaCdWOxIumMRhzH8vTVwQ0zRw
+         qL7IjrdB7+PlPBrsn+6hqfdi1y3Q0uRU8K6Z8V/3JNT8IDcQRRlsH8R2KlMdvipMD7KK
+         ibOhZ0ak1yhaqrS+eerNbaweAHhGj0FyfQDllvvCnrtr7QOqaRU/i891vRTFaCt+S9ii
+         FXSQn0Ydq9XgtigjDUqpE7gC9LX/ewb0idHMl3wtkaKzYs0IkbPA3HPQYQoN/AvEAynL
+         7BpZpoXrkQodXrH09o9nVx2ylEwOs5E3eKL9IumY7UNT6tef3wblIWdd0FQ2JPphnQp6
+         qGNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KhTsVyCoCN9J7vHV3+LHFRl6DSDyjLgInh88Ha3AdYw=;
-        b=0MtiXAK6qGrk5yf8oeO+A8/iuCIupOvU9/w0jDRqGXSmm0gzIo1C4KPa8aJTS6Yk/s
-         AUSf2b6xR9LM2bdrcTaq0YTXkFbiLe5F1QAJH6LlfgTbAuhb4z/+sn1Bf4m1FCUr2KVU
-         1rC3ONvvWlo1a+Dk/NFOuIDYQ17kPu0x6r1ndLiHVWP+OaArXqRJXi+ltwdwlBt/Ld//
-         d2g+7ZUiedcrvRsV7Eb2AYxtTj8ZSw0E4/SCK9qHJEW9CQd9YnE+83EelshO/oPiAhpi
-         Rjr74R31zjU4wb8vNvPi1Zpk3FXSkKJQKOoVBJf0dhDCixQpZvz+4f93EYReu+7sk6Ba
-         t/vQ==
-X-Gm-Message-State: ACrzQf1xXhI/0PurHSrjpzOIRJxclp0/FoAt3pWKDVh0YKnfzaSDdzM8
-        wjLQZbQTgJNalW7ckR5P3pMuew==
-X-Google-Smtp-Source: AMsMyM6CrCDIzx17WZZfhiU5puqnAFNmO9pYHBMUjZkl4+2nl+iNtz8Fg0sMmgmCN95ATx8iULHI8Q==
-X-Received: by 2002:ac8:5c41:0:b0:39c:d768:128c with SMTP id j1-20020ac85c41000000b0039cd768128cmr11031602qtj.269.1666273495413;
-        Thu, 20 Oct 2022 06:44:55 -0700 (PDT)
+        bh=By6WmlApYPTCO07NNuBolUybiimy99uuNIZmRqG4EOw=;
+        b=DFcawODjgb7kQRo2xDC+4CxMYUF2rfljyMx1OjcNZNEh7Byus2VNa596JmhWldxm3p
+         A2T/4I/76YZArso8KnZhiTDK42a4Kb37NAYNXjwwFjfucfsjm8sXNy7AYvgmEnam6doO
+         q0RkNU27ruCNizOhS6QSseKZzlCzJhv7ppUpIzv9c5+Tg7e97Bu+nYSmS8L4qkTQ0mzv
+         yT6Y7C22YAKICPIy7UhRebQi7YzVF+JS09PvSohu0eW6+h0jsSfwNS5s8EEwS997bMYN
+         hMaNJJ+mE91YrXHx8vrMbHZXMn7wznp2FvqXqNnv5h+JFIhcykUnjJuG+r+uczBEDiK1
+         a32Q==
+X-Gm-Message-State: ACrzQf0R9kr+s0egTjUl2olvNizwJrYdudLD5zJDBH15I/5JYa0mm/aE
+        /tW5fKNOqZ3ahSqU5VIPeUduBA==
+X-Google-Smtp-Source: AMsMyM7XKCA71jHlsnrhFSdFi+dLazxSeT0yz2bHQDtNqZLLi6zwnSL6wBJUsW29B9kjgFunCOqiRw==
+X-Received: by 2002:ae9:eb56:0:b0:6ea:894f:6d21 with SMTP id b83-20020ae9eb56000000b006ea894f6d21mr9204249qkg.301.1666273583582;
+        Thu, 20 Oct 2022 06:46:23 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id az13-20020a05620a170d00b006eea461177csm7521184qkb.29.2022.10.20.06.44.54
+        by smtp.gmail.com with ESMTPSA id v20-20020a05620a441400b006ce813bb306sm7247045qkp.125.2022.10.20.06.46.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 06:44:54 -0700 (PDT)
-Message-ID: <6f5465d7-a16a-6f07-98c3-526d3e16bc27@linaro.org>
-Date:   Thu, 20 Oct 2022 09:44:53 -0400
+        Thu, 20 Oct 2022 06:46:22 -0700 (PDT)
+Message-ID: <4daa3d61-e157-0947-9d19-50a49f26cc37@linaro.org>
+Date:   Thu, 20 Oct 2022 09:46:21 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: Add KX022A accelerometer
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1666263249.git.mazziesaccount@gmail.com>
- <aaf22c800b90f4eed1986782c8549bec5c9c72f5.1666263249.git.mazziesaccount@gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: qcom: Document additional
+ sa8540p device
 Content-Language: en-US
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        Brian Masney <bmasney@redhat.com>,
+        Johan Hovold <johan@kernel.org>
+References: <20221020073036.16656-1-quic_ppareek@quicinc.com>
+ <20221020073036.16656-2-quic_ppareek@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <aaf22c800b90f4eed1986782c8549bec5c9c72f5.1666263249.git.mazziesaccount@gmail.com>
+In-Reply-To: <20221020073036.16656-2-quic_ppareek@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,20 +84,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 07:36, Matti Vaittinen wrote:
-> KX022A is a 3-axis Accelerometer from ROHM/Kionix. The sensor features
-> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
-> tap/motion detection, wake-up & back-to-sleep events, four acceleration
-> ranges (2, 4, 8 and 16g) and probably some other cool features.
+On 20/10/2022 03:30, Parikshit Pareek wrote:
+> Add the qdrive3 ride device to the valid device compatibles found on the
+> sa8540p platform.
 > 
-> Add the basic device tree description for the accelerometer. Only basic
-> accelerometer features are considered as of now - new properties may or
-> may not be needed in the future when rest of the features are supported.
-> 
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
