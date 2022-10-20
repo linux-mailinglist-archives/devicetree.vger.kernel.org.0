@@ -2,174 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC0F605EF3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 185E2605F00
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231339AbiJTLfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 07:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33724 "EHLO
+        id S230177AbiJTLgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 07:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231360AbiJTLfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:35:18 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC848836C8;
-        Thu, 20 Oct 2022 04:35:12 -0700 (PDT)
+        with ESMTP id S230228AbiJTLgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:36:36 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2BB19B67A;
+        Thu, 20 Oct 2022 04:36:32 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id l22so29461835edj.5;
+        Thu, 20 Oct 2022 04:36:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666265715; x=1697801715;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=tbxr2V7JYwCA3mhaiBgOpd4JKYyc01i3DlNbArOXhME=;
-  b=T2UI2wkWdP1H/ATuWaPTZKM6OEgLHnit2rWMnMnkclD+FDgG+RBF6ym4
-   isC2RYMhJNscqI2CHHePPE0iJYqTpN57hLsQKlXcItrNDdX0BPP6+LtPE
-   cVUNX91+bbQoVxY4+idQiSWBHNhaOtzeGvY0KzoIsIRydZHex5JpjY6Gu
-   5DvV1pdScAuGLLGDSDML7N8Yv0Tn4PA/KNNAGNpeEmV5UkKl2mnH4nSME
-   hiuGoQS2gm98PDqDR9nz2wCcOj21Ts3U7Z2LH6E6g6QveweMkJTl11ANc
-   pDz2ufmIXuAz+zKDxhZKfX61ZqbwaeDYlk86lSvm0VGutPt3qAPe5t8Lt
-   w==;
-X-IronPort-AV: E=Sophos;i="5.95,198,1661810400"; 
-   d="scan'208";a="26872140"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Oct 2022 13:35:10 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 20 Oct 2022 13:35:10 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 20 Oct 2022 13:35:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666265710; x=1697801710;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=tbxr2V7JYwCA3mhaiBgOpd4JKYyc01i3DlNbArOXhME=;
-  b=mxBQNx/8xNFuofsGzY8dvPEvKDmyC0HHJhybQtBWIRfE8FRhUtVkLy+J
-   YBXBIjDgENTksqwh5qs+vM0uWBZ9SI1JNurX23ec1qGgRVRha4OH9t+GE
-   izB7zXRHIIvIO2a6+HrvCgRsuEZKEOLyplyyIGb8OLNE0I60xi5QSzdN4
-   giRB4TEIz10llmH5KDFxcVp1dV9Dg/RfDt9mqklp6Y0FGirKv8S70aRLM
-   QT4zSiNMPXOSlGKxvpMdX4D6HO8ClhNpz44KfOLvL/tr8P9INOXvFu4mt
-   MFy7L2rrWmHIleBLcCXywpFuf8vS8nOyqX2FVxl9tmTskAWaYi64xsxws
-   g==;
-X-IronPort-AV: E=Sophos;i="5.95,198,1661810400"; 
-   d="scan'208";a="26872139"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Oct 2022 13:35:10 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 4EB6B280072;
-        Thu, 20 Oct 2022 13:35:10 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Andy Chiu <andy.chiu@sifive.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
-        radhey.shyam.pandey@xilinx.com, netdev@vger.kernel.org,
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2hBzpuTfcLKm/gHU0j1Rb5iDzN0jpTw27RMtS7S6QiY=;
+        b=LvS7i/tU9BiRY+bnSEBZx2dHBwo+AeR3GLscVXRJPEgvwLRi0gmXL7Y0hcbVsCXxdh
+         GNpDRQjbUKZdTqjAn1gn9SbWj65eppSj30Gm0uUzaE1ijQYGhBN6GOce/D0Jn8SZTaVf
+         zWUxff7rS68KU/SKGxDQnSl5yPYCYsmQ7lYWyl10VS0/qpS+zeEYE0c2UB6H++W3zTTz
+         I4Qo/dlwvqgllRwT46z0hCtGhIT14yM83rpxBBqLAEVyrrx/oHn6Co5q/4xD50a1SZt8
+         sh785bCyqPAHEDs0ZFGJ1VPgcJ6zK54ZGw8cj78YQNfRm/+AudEZSSjdzONlVTlyRBgP
+         wqcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2hBzpuTfcLKm/gHU0j1Rb5iDzN0jpTw27RMtS7S6QiY=;
+        b=z6nLix1ZrqCrkYawsC0nTTrtyJKOKi7jPQ3ymkxLuOkfwqVHp/b7s7zhKHZVFu3Vir
+         /ZdaYcWKmIjkXldf7c567sJ8qFdNDT/BU4hNtwc2d/Wf+Al6kH3sgwI6jmsBjfbXXJMr
+         P737TuV4vIOUwy6udWyogckBcfxcrNcLwqc7mEMMS9akCRhSZeolHlr6REEwnCixdobh
+         aXX3lBf5nvRXsMeeglsyJWgiA1WfeNc9fcGQG2rrAUaITXHsgEFpWaIhJU20oDmAdb6R
+         LFPhvvru1nQTf1g+YPdmVv4l/mOkObRjy8wLN7jizMiGmGWyrkhxcz+kuJ8L+CY3Tr/F
+         ff9A==
+X-Gm-Message-State: ACrzQf1gV9q9MGIUs7TL6oHOYqIdZmIbGbOW0p/IRRfb4Nz5bv9pZp6V
+        9dhCc0nOGG+COPfLSt6cWr6F9YrHJqXqgA==
+X-Google-Smtp-Source: AMsMyM642cRbJkWRb0REHkacf8Zt0nE8dOnuVHN/e2FpIG0h/B96y1K0ZYrvtgKxLuw2QF0YLHrl6A==
+X-Received: by 2002:a17:907:da7:b0:791:8f57:6860 with SMTP id go39-20020a1709070da700b007918f576860mr10947353ejc.509.1666265779656;
+        Thu, 20 Oct 2022 04:36:19 -0700 (PDT)
+Received: from [10.32.3.204] ([95.183.227.98])
+        by smtp.gmail.com with ESMTPSA id bd13-20020a056402206d00b004590b29d8afsm12108770edb.84.2022.10.20.04.36.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Oct 2022 04:36:18 -0700 (PDT)
+Date:   Thu, 20 Oct 2022 14:36:08 +0300
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+Subject: Re: [PATCH v3 06/10] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
+ Add MT6795
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
-        greentime.hu@sifive.com
-Subject: Re: [PATCH net-next 1/2] net:xilinx_axi: set mdio frequency according to DT
-Date:   Thu, 20 Oct 2022 13:35:06 +0200
-Message-ID: <5953785.aeNJFYEL58@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20221020094106.559266-2-andy.chiu@sifive.com>
-References: <20221020094106.559266-1-andy.chiu@sifive.com> <20221020094106.559266-2-andy.chiu@sifive.com>
+        linux-kernel@vger.kernel.org
+Message-Id: <8WU1KR.065JU8WYUX9C3@gmail.com>
+In-Reply-To: <0f078a85-056a-c11e-377b-27764a34485d@linaro.org>
+References: <20221007125904.55371-1-y.oudjana@protonmail.com>
+        <20221007125904.55371-7-y.oudjana@protonmail.com>
+        <0f078a85-056a-c11e-377b-27764a34485d@linaro.org>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Am Donnerstag, 20. Oktober 2022, 11:41:05 CEST schrieb Andy Chiu:
-> Some FPGA platforms has 80KHz MDIO bus frequency constraint when
-> conecting Ethernet to its on-board external Marvell PHY. Thus, we may
-> have to set MDIO clock according to the DT. Otherwise, use the default
-> 2.5 MHz, as specified by 802.3, if the entry is not present.
+On Mon, Oct 10 2022 at 07:24:59 -04:00:00, Krzysztof Kozlowski 
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 07/10/2022 08:59, Yassine Oudjana wrote:
+>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>> 
+>>  Combine MT6795 pin controller document into MT6779 one. In the
+>>  process, replace the current interrupts property description with
+>>  the one from the MT6795 document since it makes more sense. Also
+>>  amend property descriptions and examples with more detailed
+>>  information that was available in the MT6795 document, and replace
+>>  the current pinmux node name patterns with ones from it since they
+>>  are more common across mediatek pin controller bindings.
+>> 
+>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>  ---
+>>   .../pinctrl/mediatek,mt6779-pinctrl.yaml      |  94 ++++++--
+>>   .../pinctrl/mediatek,pinctrl-mt6795.yaml      | 227 
+>> ------------------
+>>   2 files changed, 77 insertions(+), 244 deletions(-)
+>>   delete mode 100644 
+>> Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+>> 
+>>  diff --git 
+>> a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml 
+>> b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+>>  index a2141eb0854e..cada3530dd0a 100644
+>>  --- 
+>> a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+>>  +++ 
+>> b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
+>>  @@ -8,6 +8,7 @@ title: Mediatek MT6779 Pin Controller
+>> 
+>>   maintainers:
+>>     - Andy Teng <andy.teng@mediatek.com>
+>>  +  - AngeloGioacchino Del Regno 
+>> <angelogioacchino.delregno@collabora.com>
+>>     - Sean Wang <sean.wang@kernel.org>
+>> 
+>>   description:
+>>  @@ -18,6 +19,7 @@ properties:
+>>     compatible:
+>>       enum:
+>>         - mediatek,mt6779-pinctrl
+>>  +      - mediatek,mt6795-pinctrl
+>>         - mediatek,mt6797-pinctrl
+>> 
+>>     reg:
+>>  @@ -43,9 +45,10 @@ properties:
+>>     interrupt-controller: true
+>> 
+>>     interrupts:
+>>  -    maxItems: 1
+>>  +    minItems: 1
+>>  +    maxItems: 2
+>>       description: |
+>>  -      Specifies the summary IRQ.
+>>  +      The interrupt outputs to sysirq.
 > 
-> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-> Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
-> ---
->  .../net/ethernet/xilinx/xilinx_axienet_mdio.c | 25 ++++++++++++++++---
->  1 file changed, 21 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
-> b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c index
-> 0b3b6935c558..d07c39d3bcf0 100644
-> --- a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
-> +++ b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
-> @@ -18,6 +18,7 @@
->  #include "xilinx_axienet.h"
-> 
->  #define MAX_MDIO_FREQ		2500000 /* 2.5 MHz */
-> +#define MDIO_CLK_DIV_MASK	0x3f /* bits[5:0] */
->  #define DEFAULT_HOST_CLOCK	150000000 /* 150 MHz */
-> 
->  /* Wait till MDIO interface is ready to accept a new transaction.*/
-> @@ -155,7 +156,9 @@ static int axienet_mdio_write(struct mii_bus *bus, int
-> phy_id, int reg, **/
->  int axienet_mdio_enable(struct axienet_local *lp)
->  {
-> +	u32 clk_div;
->  	u32 host_clock;
-> +	u32 mdio_freq;
-> 
->  	lp->mii_clk_div = 0;
-> 
-> @@ -184,6 +187,13 @@ int axienet_mdio_enable(struct axienet_local *lp)
->  			    host_clock);
->  	}
-> 
-> +	if (of_property_read_u32(lp->dev->of_node, "xlnx,mdio-freq",
-> +				 &mdio_freq)) {
-> +		mdio_freq = MAX_MDIO_FREQ;
-> +		netdev_info(lp->ndev, "Setting default mdio clock to 
-%u\n",
-> +			    mdio_freq);
+> I am not sure if description is relevant now for all variants... what 
+> is
+> the sysirq? You have two interrupts so both go to one sysirq?
 
-I would opt to print this message only if using non-default frequency.
+It's the system interrupt controller and it has several inputs. Both 
+interrupts go to it.
 
-Best regards,
-Alexander
-
-> +	}
-> +
->  	/* clk_div can be calculated by deriving it from the equation:
->  	 * fMDIO = fHOST / ((1 + clk_div) * 2)
->  	 *
-> @@ -209,13 +219,20 @@ int axienet_mdio_enable(struct axienet_local *lp)
->  	 * "clock-frequency" from the CPU
->  	 */
 > 
-> -	lp->mii_clk_div = (host_clock / (MAX_MDIO_FREQ * 2)) - 1;
-> +	clk_div = (host_clock / (mdio_freq * 2)) - 1;
->  	/* If there is any remainder from the division of
-> -	 * fHOST / (MAX_MDIO_FREQ * 2), then we need to add
-> +	 * fHOST / (mdio_freq * 2), then we need to add
->  	 * 1 to the clock divisor or we will surely be above 2.5 MHz
->  	 */
-> -	if (host_clock % (MAX_MDIO_FREQ * 2))
-> -		lp->mii_clk_div++;
-> +	if (host_clock % (mdio_freq * 2))
-> +		clk_div++;
-> +
-> +	/* Check for overflow of mii_clk_div */
-> +	if (clk_div & ~MDIO_CLK_DIV_MASK) {
-> +		netdev_dbg(lp->ndev, "MDIO clock divisor overflow, 
-setting to maximum
-> value\n"); +		clk_div = MDIO_CLK_DIV_MASK;
-> +	}
-> +	lp->mii_clk_div = (u8)clk_div;
+>> 
+>>     "#interrupt-cells":
+>>       const: 2
+>>  @@ -81,6 +84,30 @@ allOf:
+>>               - const: iocfg_lt
+>>               - const: iocfg_tl
+>>               - const: eint
+>>  +
+>>  +        interrupts:
+>>  +          items:
+>>  +            - description: EINT interrupt
+>>  +
+>>  +  - if:
+>>  +      properties:
+>>  +        compatible:
+>>  +          contains:
+>>  +            const: mediatek,mt6795-pinctrl
+>>  +    then:
+>>  +      properties:
+>>  +        reg:
+>>  +          minItems: 2
 > 
->  	netdev_dbg(lp->ndev,
->  		   "Setting MDIO clock divisor to %u/%u Hz host clock.
-\n",
+> What's the maxItems? You declared reg and reg-names in top-level
+> properties as accepting anything, therefore you cannot have loose
+> constraints here.
 
+That was an oversight. I'll fix it.
+> 
+>>  +
+>>  +        reg-names:
+>>  +          items:
+>>  +            - const: base
+>>  +            - const: eint
+>>  +
+>>  +        interrupts:
+>>  +          items:
+>>  +            - description: EINT interrupt
+>>  +            - description: EINT event_b interrupt
+> 
+> Blank line
+> 
+>>     - if:
+>>         properties:
+>>           compatible:
+>>  @@ -111,32 +138,50 @@ allOf:
+>>           - "#interrupt-cells"
+>> 
+>>   patternProperties:
+>>  -  '-[0-9]*$':
+>>  +  '-pins$':
+>>       type: object
+>>       additionalProperties: false
+>> 
+>>       patternProperties:
+>>  -      '-pins*$':
+>>  +      '^pins':
+>>           type: object
+>>           description: |
+>>             A pinctrl node should contain at least one subnodes 
+>> representing the
+>>             pinctrl groups available on the machine. Each subnode 
+>> will list the
+>>             pins it needs, and how they should be configured, with 
+>> regard to muxer
+>>  -          configuration, pullups, drive strength, input 
+>> enable/disable and input schmitt.
+>>  -        $ref: "/schemas/pinctrl/pincfg-node.yaml"
+>>  +          configuration, pullups, drive strength, input 
+>> enable/disable and
+>>  +          input schmitt.
+>>  +        $ref: "pinmux-node.yaml"
+> 
+> Drop quotes
+> 
+> Why this one is not pincfg-node anymore? All your properties are not
+> valid then? You mix here so many changes it is a bit difficult to
+> understand the concept.
 
+Seems like I didn't pay enough attention to that. This node actually 
+takes both pinmux-node (pinmux specifically) and pincfg-node 
+properties, so would it make sense to add ref for both?
+
+> 
+>> 
+>>           properties:
+>>             pinmux:
+>>               description:
+>>  -              integer array, represents gpio pin number and mux 
+>> setting.
+>>  -              Supported pin number and mux varies for different 
+>> SoCs, and are defined
+>>  -              as macros in boot/dts/<soc>-pinfunc.h directly.
+>>  +              Integer array, represents gpio pin number and mux 
+>> setting.
+>>  +              Supported pin number and mux varies for different 
+>> SoCs, and are
+>>  +              defined as macros in 
+>> dt-bindings/pinctrl/<soc>-pinfunc.h
+>>  +              directly.
+>> 
+>>             bias-disable: true
+>> 
+>>  -          bias-pull-up: true
+>>  -
+>>  -          bias-pull-down: true
+>>  +          bias-pull-up:
+>>  +            oneOf:
+>>  +              - type: boolean
+>>  +              - enum: [100, 101, 102, 103]
+> 
+> Missing ref
+> 
+>>  +                description: Pull up PUPD/R0/R1 type define value.
+>>  +            description: |
+>>  +               For normal pull up type, it is not necessary to 
+>> specify R1R0
+>>  +               values; When pull up type is PUPD/R0/R1, adding 
+>> R1R0 defines
+>>  +               will set different resistance values.
+>>  +
+>>  +          bias-pull-down:
+>>  +            oneOf:
+>>  +              - type: boolean
+>>  +              - enum: [100, 101, 102, 103]
+> 
+> Missing ref
+> 
+>>  +                description: Pull down PUPD/R0/R1 type define 
+>> value.
+>>  +            description: |
+>>  +               For normal pull down type, it is not necessary to 
+>> specify R1R0
+>>  +               values; When pull down type is PUPD/R0/R1, adding 
+>> R1R0 defines
+>>  +               will set different resistance values.
+>> 
+>>             input-enable: true
+>> 
+>>  @@ -151,7 +196,7 @@ patternProperties:
+>>             input-schmitt-disable: true
+>> 
+>>             drive-strength:
+>>  -            enum: [2, 4, 8, 12, 16]
+>>  +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> 
+> Now you are missing ref - you do not have a type now, because you
+> removed pincfg-node. Split the merging of different pinctrl bindings 
+> and
+> reorganization.
+
+Will do.
+
+> 
+> The drive strengths are also not valid for the other variant...
+
+Actually the supported drive strengths vary between pins of a single 
+variant, so technically they have never been described completely 
+accurately. The old drive strenghs are a superset of strengths 
+supported by pins on the MT6779 pin controller, and this change expands 
+the superset with values supported by some pins in MT6795. Would it be 
+better to move this to the conditionals to have it defined per variant?
+
+>> 
+>>             slew-rate:
+>>               enum: [0, 1]
+>>  @@ -218,8 +263,9 @@ examples:
+>>               #interrupt-cells = <2>;
+>>               interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>;
+>> 
+>>  -            mmc0_pins_default: mmc0-0 {
+>>  -                cmd-dat-pins {
+>>  +            /* GPIOs 167-174, 176-178 set as multifunction MSDC0 */
+>>  +            mmc0_pins_default: mmc0-pins {
+>>  +                pins-cmd-dat {
+>>                       pinmux = <PINMUX_GPIO168__FUNC_MSDC0_DAT0>,
+>>                           <PINMUX_GPIO172__FUNC_MSDC0_DAT1>,
+>>                           <PINMUX_GPIO169__FUNC_MSDC0_DAT2>,
+>>  @@ -232,15 +278,29 @@ examples:
+>>                       input-enable;
+>>                       mediatek,pull-up-adv = <1>;
+>>                   };
+>>  -                clk-pins {
+>>  +                pins-clk {
+>>                       pinmux = <PINMUX_GPIO176__FUNC_MSDC0_CLK>;
+>>                       mediatek,pull-down-adv = <2>;
+>>                   };
+>>  -                rst-pins {
+>>  +                pins-rst {
+>>                       pinmux = <PINMUX_GPIO178__FUNC_MSDC0_RSTB>;
+>>                       mediatek,pull-up-adv = <0>;
+>>                   };
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
