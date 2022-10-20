@@ -2,174 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F2DB6064A2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DFB16064AA
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 17:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbiJTPdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 11:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36452 "EHLO
+        id S230217AbiJTPek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 11:34:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbiJTPdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:33:53 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB5D1B65F0
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:33:51 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id w196so23248576oiw.8
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 08:33:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sb7wkJsdodj13ALcLKizHm+uIzlavrlwr63btmQUUWM=;
-        b=LDpJmRNtfTZTl6bPThW6qW0OA8mlAT1aEHTzGk3+MB9awjN1+LlNL/89KiuCD2V+Cv
-         /yyOq+68qRg1091rqP8oHkDUsyLUzH8vANUfuXndSJdVXyYbamlBOtW7Q6m7/dJQPKcM
-         ID4j0vUTfiv6S/3TDK3IaDmErf2h5E0Ho3bWRBXmuZmiIow25y2ocSSsAwrUeO5v10Et
-         w1U7aBaePb0d7511zpzHPUh1oQ3zoYuSIjPyZFx3Vt4PujCywB6mwYkugO9N8qsVu8kZ
-         Zq/YceOk5CB8IY8EBpounD7s47R7k/dqgHDAjEiRqpF2pE3Eb8jsUEXNKmNR1j0PpVHL
-         wPzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Sb7wkJsdodj13ALcLKizHm+uIzlavrlwr63btmQUUWM=;
-        b=tGerNv/WlcCg1beY2x2o4tzT4Hwz5pxiU4NWI/foBo6CUJLA9sgPWtaBmAbwDH5VeT
-         zV0kYl3Kf3ZmYNe/l8OqzZ0oJWOc4Q6RmD/T0oA0JT865lJ+DflQ1CXMmdJL/JBiNSmz
-         4qCyk3ctLB3xp+7cWkbkMIk18EpIfQQ9ULh6qPCBnz1x/Fwig/ncO3KvgMpz4gLX+z0H
-         ifA47W7JWtnWfFzPO9wfVu3hDqraoCx4uS4f+Odd0dGz//pP+Sv+g2r1qC8RCRQkxxMa
-         1QunPjR7rPvN9YXCGQmf3oOb3hR6Wfeqwm/qIWv/ktW32V548k7M8vApX8wskoQ8t0l8
-         +nAA==
-X-Gm-Message-State: ACrzQf0q0TAT1dqaITBXH4lXIRDVl/I0Zwv3j8V3JKcHXhxrawmiiGVC
-        eoDFcPK7XDN5BLPoMeUuDWzsqGqANBfp2x+1m7PHHg==
-X-Google-Smtp-Source: AMsMyM4OVA68IQCay0CdDe0+XNd+vxHWXh/Z106bovGEWGu4Z6EQOF56pVhT9SYEYgCPjDY5RhnWuUJlJlJF+DpomH8=
-X-Received: by 2002:a05:6808:3097:b0:355:347e:2df6 with SMTP id
- bl23-20020a056808309700b00355347e2df6mr11804023oib.44.1666280030766; Thu, 20
- Oct 2022 08:33:50 -0700 (PDT)
+        with ESMTP id S230353AbiJTPei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 11:34:38 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBECF2A423;
+        Thu, 20 Oct 2022 08:34:30 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29KERMVB021524;
+        Thu, 20 Oct 2022 17:34:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=IqHKS/vCDR7EQlr9WEEoFigCoOnxdq42cEM/JJjFv8E=;
+ b=XgdhoTwM8cSZiLtXHGRVFaiqo8PgGfMqCNqy8CmE9MyBoGla2uvR3tLSNksAJRBeRHCh
+ F2PchDrgZb2ljEVsGAwjvIuVtMPEpASsqgUAyT1fnXW74jkPymsQD5CRbonbGq+KBKpC
+ NCMNa/82N4BLH56okQUANbjKSKx1GfLDvdTRJ40QH6hAUmYHCtym/ZWeW+oA2CRQS0F4
+ //WoFvpR3lCzKadk7YbhpAD84ob+zP5mLd2WsDwM974DUBigr1bT0kLzfbi5XtaXqrLF
+ bABnfhMof2Ql2BEgKChJhgJrGmkB3VYDL4dM4EBp2idqfqhzL5mHxZ7pgk88rIIC/5ou Wg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3k7j9nc1b9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Oct 2022 17:34:14 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6EF1F10002A;
+        Thu, 20 Oct 2022 17:34:08 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6A727237D8A;
+        Thu, 20 Oct 2022 17:34:08 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 20 Oct
+ 2022 17:34:08 +0200
+Message-ID: <54d0a3cb-3a48-1336-ddda-4fb0e1a20df6@foss.st.com>
+Date:   Thu, 20 Oct 2022 17:34:07 +0200
 MIME-Version: 1.0
-References: <20221018145348.4051809-1-amit.pundir@linaro.org>
- <CAPDyKFoBMB9OMUrcoPCV0of1fj2dimEwPyHGW=ydjJ2M0ubM8Q@mail.gmail.com>
- <20221020093057.zrrvxlgghn27bpes@bogus> <CAMi1Hd05PkEJcHqHpQX-X6B2oR4250_pHPjkd2-54JWgKsYx0Q@mail.gmail.com>
- <CAPDyKFo=w-ET62c-B6=qSpkZm-V9LmBuVRy38GzX_UAjQhX6oA@mail.gmail.com>
-In-Reply-To: <CAPDyKFo=w-ET62c-B6=qSpkZm-V9LmBuVRy38GzX_UAjQhX6oA@mail.gmail.com>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Thu, 20 Oct 2022 21:03:14 +0530
-Message-ID: <CAMi1Hd3SeN56a7oRC0RYBTPx0PwWSP4dM=9tHFMa0P4OckXjiA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: Disable cpuidle states
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] ARM: dts: stm32: add sdmmc cd-gpios for STM32MP135F-DK
+Content-Language: en-US
+To:     Yann Gautier <yann.gautier@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220921160334.3227138-1-yann.gautier@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220921160334.3227138-1-yann.gautier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-20_07,2022-10-20_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Oct 2022 at 20:10, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Thu, 20 Oct 2022 at 16:09, Amit Pundir <amit.pundir@linaro.org> wrote:
-> >
-> > On Thu, 20 Oct 2022 at 15:01, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > On Wed, Oct 19, 2022 at 01:57:34PM +0200, Ulf Hansson wrote:
-> > > > On Tue, 18 Oct 2022 at 16:53, Amit Pundir <amit.pundir@linaro.org> wrote:
-> > > > >
-> > > > > Disable cpuidle states for RB5. These cpuidle states
-> > > > > made the device highly unstable and it runs into the
-> > > > > following crash frequently:
-> > > > >
-> > > > > [    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
-> > > > > [    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
-> > > > > [    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
-> > > > >
-> > > > > Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
-> > > > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 8 ++++++++
-> > > > >  1 file changed, 8 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > > > index cc003535a3c5..f936c41bfbea 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > > > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> > > > > @@ -251,6 +251,14 @@ qca639x: qca639x {
-> > > > >
-> > > > >  };
-> > > > >
-> > > > > +&LITTLE_CPU_SLEEP_0 {
-> > > > > +       status = "disabled";
-> > > > > +};
-> > > > > +
-> > > > > +&BIG_CPU_SLEEP_0 {
-> > > > > +       status = "disabled";
-> > > > > +};
-> > > > > +
-> > > > >  &adsp {
-> > > > >         status = "okay";
-> > > > >         firmware-name = "qcom/sm8250/adsp.mbn";
-> > > > > --
-> > > > > 2.25.1
-> > > >
-> > > > Disabling the CPU idlestates, will revert us back to using only the WFI state.
-> > > >
-> > > > An option that probably works too is to just drop the idlestate for
-> > > > the CPU cluster. Would you mind trying the below and see if that works
-> > > > too?
-> > > >
-> > >
-> > > Indeed this is was I suggested to check initially. But I was surprised to
-> > > see IIUC, Amit just disabled CPU states with above change and got it working.
-> > > So it is not cluster state alone causing the issue, is it somehow presence
-> > > of both cpu and cluster states ? Am I missing something here.
-> > >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > index c32227ea40f9..c707a49e8001 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > @@ -700,7 +700,6 @@ CPU_PD7: cpu7 {
-> > > >
-> > > >                 CLUSTER_PD: cpu-cluster0 {
-> > > >                         #power-domain-cells = <0>;
-> > > > -                       domain-idle-states = <&CLUSTER_SLEEP_0>;
-> > >
-> > > How about just marking CLUSTER_SLEEP_0 state disabled ? That looks cleaner
-> > > than deleting this domain-idle-states property here. Also not sure if DTS
-> > > warnings will appear if you delete this ?
-> >
-> > Hi, I did try disabling CLUSTER_SLEEP_0: cluster-sleep-0 {} in
-> > domain-idle-states {} but that didn't help. That's why I end up
-> > disabling individual cpu states in idle-states {}.
->
-> Yep, this boils down to the fact that genpd doesn't check whether the
-> domain-idle-state is disabled by using of_device_is_available(). See
-> genpd_iterate_idle_states().
->
-> That said, I suggest we go with the above one-line change. It may not
-> be as clean as it could be, but certainly easy to revert when the
-> support for it has been added in a newer kernel.
->
-> Amit, do you want me to post a new patch or do you prefer to re-spin
-> your patch? It doesn't matter to me.
+Hi Yann
 
-Sent. Thanks.
+On 9/21/22 18:03, Yann Gautier wrote:
+> On STM32MP135F-DK, the SD card detect GPIO is GPIOH4.
+> 
+> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+> ---
+>   arch/arm/boot/dts/stm32mp135f-dk.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp135f-dk.dts b/arch/arm/boot/dts/stm32mp135f-dk.dts
+> index e6b8ffd332c7..52f86596ce12 100644
+> --- a/arch/arm/boot/dts/stm32mp135f-dk.dts
+> +++ b/arch/arm/boot/dts/stm32mp135f-dk.dts
+> @@ -82,7 +82,7 @@ &sdmmc1 {
+>   	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_clk_pins_a>;
+>   	pinctrl-1 = <&sdmmc1_b4_od_pins_a &sdmmc1_clk_pins_a>;
+>   	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> -	broken-cd;
+> +	cd-gpios = <&gpioh 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+>   	disable-wp;
+>   	st,neg-edge;
+>   	bus-width = <4>;
 
-Regards,
-Amit Pundir
+Applied on stm32-next.
 
->
-> Kind regards
-> Uffe
+Thanks.
+Alex
