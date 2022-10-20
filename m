@@ -2,110 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB03D6061BD
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A5760620C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:45:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbiJTNfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 09:35:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
+        id S229615AbiJTNpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 09:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbiJTNfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:35:36 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 057E7153805;
-        Thu, 20 Oct 2022 06:35:33 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id pq16so19791946pjb.2;
-        Thu, 20 Oct 2022 06:35:33 -0700 (PDT)
+        with ESMTP id S229498AbiJTNpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:45:02 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841ED50FA6
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:44:56 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id bb5so13667380qtb.11
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 06:44:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IDDImz2rsoo4UtZtPdwMftLLZrVfqbqY4KCmjbbdHXY=;
-        b=i8vZcs+k0jmouKy/fTKgLB1LoR+zELNtS04vonxIiX1NVX8ToNPdbZnONWpty1Rcbe
-         pc51YqnqUgMD7ydfjBDsHzjWs+X6NYBjv+2GHsK2Hv6vk+Y49c7yTIxut+eJjlayGBb/
-         Mp4HeJZ1zN5BUJwzgdsKAH6kt3pmjotQe7vVc1TrGLcJxwr2pGqDcB8N3I3tb+9eCjKU
-         ITgaAUUErOHKXfbCgVaURGnQ55KmQQbZ2GqKPvIfESd5sNZrfELwFTB07h6alkpzdCNC
-         p2W6SouEwULZdzwUk7ub9lOU7P0kELhTLDMVMrFLU0ozhnSuULejZnSMiG+/hO/mKBSz
-         Nwbg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KhTsVyCoCN9J7vHV3+LHFRl6DSDyjLgInh88Ha3AdYw=;
+        b=OkCy9t+DuyOUp1kiX5G08YdPsnAID9mOcGUnLsZZvP9ZRA05L15c+Bzopd4KOm6Sij
+         y0ZMRB8Y/VyqckwpCV3PuSuFtEDFPEIHqWTli+mmJvlDD7eECDLcAfyvScT+DBiPmiOn
+         SnZMm2Dl1WK8q88NJ1BKdLC5kdQC2147wMFzd/G70bOrPOCnjyNkOdQ0i8WDjLZM4lPO
+         JKeRnFnGQaj64DuO8FI77AF9NWyPmvcpuQrmsS1k1x6JyHo/8IJWoQlnEP9cfGgRW9UK
+         Jt3eOCR2/gULg173vgz8nHy0MESqEqmkZ8ylz4jH87o/cNiS1yhZQj4qZnREco+ORivR
+         Qq2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IDDImz2rsoo4UtZtPdwMftLLZrVfqbqY4KCmjbbdHXY=;
-        b=x8Uleb6WNH9uNDAnqmFYrrJ5IeAZKF2fmhflx4A4/eLdihBcN+hQes6f15wBJbLaz9
-         z6NGM8a3PlKieeTFY7BCYMEZpUg2hnSdjAx3z6kHgHt6vNW3yixOK/osZej+w9QLvzXx
-         lHrdy70dYKnOmdN0hHh9NpxQ77PlzPnvNUE7a5kZQMimIYG6nf/cMzIe4Qg5cGMjWvL5
-         teit3WumJ9u2XFfNDkswazG2w9n0gxGTgUk3Nqb0QxLaccXieqQlfHU8o+/hZvVF7nUx
-         a0c9fR/uqhbPN+XNj8a+6dSOtD/hMJd2eyt/mVjIy5//1+xllIwWdeCvh6N7TelasVTQ
-         cdjg==
-X-Gm-Message-State: ACrzQf3s0BsiM3g6T8/A6VkzkY5qqnjLFC86PBiKCb0oXMcJMSkasovX
-        U/ptHwQuCaYJwJvGswObY0I=
-X-Google-Smtp-Source: AMsMyM7m40THty99keXaBvUqJAddHs4vdXkL+iu9uaB7zFuCW2ms4DXuOyDJ+SXg9wvnt+4YH/tSdw==
-X-Received: by 2002:a17:90b:4ac5:b0:20a:de32:366b with SMTP id mh5-20020a17090b4ac500b0020ade32366bmr15811968pjb.197.1666272932133;
-        Thu, 20 Oct 2022 06:35:32 -0700 (PDT)
-Received: from debian.me (subs28-116-206-12-50.three.co.id. [116.206.12.50])
-        by smtp.gmail.com with ESMTPSA id s16-20020a17090a075000b002005fcd2cb4sm1887133pje.2.2022.10.20.06.35.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 06:35:31 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id F22341041A9; Thu, 20 Oct 2022 20:35:28 +0700 (WIB)
-Date:   Thu, 20 Oct 2022 20:35:28 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     Jilin Yuan <yuanjilin@cdjrlc.com>, robh+dt@kernel.org,
-        frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: fix repeated words in comments
-Message-ID: <Y1FOoJh3e32zS8x7@debian.me>
-References: <20221019130200.60460-1-yuanjilin@cdjrlc.com>
- <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KhTsVyCoCN9J7vHV3+LHFRl6DSDyjLgInh88Ha3AdYw=;
+        b=0MtiXAK6qGrk5yf8oeO+A8/iuCIupOvU9/w0jDRqGXSmm0gzIo1C4KPa8aJTS6Yk/s
+         AUSf2b6xR9LM2bdrcTaq0YTXkFbiLe5F1QAJH6LlfgTbAuhb4z/+sn1Bf4m1FCUr2KVU
+         1rC3ONvvWlo1a+Dk/NFOuIDYQ17kPu0x6r1ndLiHVWP+OaArXqRJXi+ltwdwlBt/Ld//
+         d2g+7ZUiedcrvRsV7Eb2AYxtTj8ZSw0E4/SCK9qHJEW9CQd9YnE+83EelshO/oPiAhpi
+         Rjr74R31zjU4wb8vNvPi1Zpk3FXSkKJQKOoVBJf0dhDCixQpZvz+4f93EYReu+7sk6Ba
+         t/vQ==
+X-Gm-Message-State: ACrzQf1xXhI/0PurHSrjpzOIRJxclp0/FoAt3pWKDVh0YKnfzaSDdzM8
+        wjLQZbQTgJNalW7ckR5P3pMuew==
+X-Google-Smtp-Source: AMsMyM6CrCDIzx17WZZfhiU5puqnAFNmO9pYHBMUjZkl4+2nl+iNtz8Fg0sMmgmCN95ATx8iULHI8Q==
+X-Received: by 2002:ac8:5c41:0:b0:39c:d768:128c with SMTP id j1-20020ac85c41000000b0039cd768128cmr11031602qtj.269.1666273495413;
+        Thu, 20 Oct 2022 06:44:55 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id az13-20020a05620a170d00b006eea461177csm7521184qkb.29.2022.10.20.06.44.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 06:44:54 -0700 (PDT)
+Message-ID: <6f5465d7-a16a-6f07-98c3-526d3e16bc27@linaro.org>
+Date:   Thu, 20 Oct 2022 09:44:53 -0400
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3NmMATSo5+wZXRpk"
-Content-Disposition: inline
-In-Reply-To: <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: Add KX022A accelerometer
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1666263249.git.mazziesaccount@gmail.com>
+ <aaf22c800b90f4eed1986782c8549bec5c9c72f5.1666263249.git.mazziesaccount@gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <aaf22c800b90f4eed1986782c8549bec5c9c72f5.1666263249.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/10/2022 07:36, Matti Vaittinen wrote:
+> KX022A is a 3-axis Accelerometer from ROHM/Kionix. The sensor features
+> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+> ranges (2, 4, 8 and 16g) and probably some other cool features.
+> 
+> Add the basic device tree description for the accelerometer. Only basic
+> accelerometer features are considered as of now - new properties may or
+> may not be needed in the future when rest of the features are supported.
+> 
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
---3NmMATSo5+wZXRpk
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 19, 2022 at 11:53:54AM -0700, Randy Dunlap wrote:
-> >  /**
-> >   * of_match_device - Tell if a struct device matches an of_device_id l=
-ist
-> > - * @matches: array of of device match structures to search in
-> > + * @matches: array of device match structures to search in
->=20
-> Hi,
-> Rob has already explained this at least 2 times.
->=20
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On what?
+Best regards,
+Krzysztof
 
---=20
-An old man doll... just what I always wanted! - Clara
-
---3NmMATSo5+wZXRpk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY1FOoAAKCRD2uYlJVVFO
-oxtlAP42AqNdTIS4JDG0vvNRIIGBO2lHDD3G4/pk1WewW2Y9QwD/bpAcr38jzdNO
-BtsupHxqOVhpPlbBlJGu2fKbbgIb5gk=
-=TFUC
------END PGP SIGNATURE-----
-
---3NmMATSo5+wZXRpk--
