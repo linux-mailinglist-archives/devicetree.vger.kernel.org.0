@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67483606815
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 20:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 005BE606827
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 20:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbiJTSUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 14:20:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38448 "EHLO
+        id S229944AbiJTSYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 14:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiJTSUV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 14:20:21 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62F8CEE095
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:20:18 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id z30so452696qkz.13
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:20:18 -0700 (PDT)
+        with ESMTP id S229731AbiJTSYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 14:24:04 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD231E8B99
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:24:02 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id h24so147620qta.7
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 11:24:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vfRqvICwFOrLHDo6+IXFWjGDmS/WdT8jBtA79yR0Wyc=;
-        b=RnpwSu+KDOp0ZqfM1F6m8caLR9vvpt4m+OzCNdCSddvc4eP3GbifY0n0thFN/VBRKB
-         h3OI4VAUhvKoEmnNENnGlbaE6Sz19B5ITzgbvpXT61u4nw5pNlWrZACa9C4gWjWVjVEg
-         VZ83c0aSRjm9HB6k4n7M8DR5JeMBys96HXLRvnJMD79Sgi4js8z9yXbaeeOS97FzOC47
-         mkMjVYYWQFbOSqzRzO3mJL7nwwXPD/8et1quMd2oSZDxTcrcxrUh0arU5L0D7KH0Xor9
-         RXF/1BO1WA/qLt6vfwCYRY4GEFG5jWnCxKXXhggi7JmN4aS6PyrWbDw8SAsETJgQ2K3v
-         qNJg==
+        bh=cbX/juujWC6ueA+dF64S7G5Ta7cBZWyKR6zbSd0h7YY=;
+        b=AaABUfwRmy6Nfus8levvOmejLM3AdKQQPLMs+8C7Atk5/AiuCuCWT3QFxTCDgb89Br
+         16M62FbFmBpKm0IJrw5ItxSNam9IBr6CrQsRGYaoQxSy/wBc+rHE2pEysHRiqf6fr4nF
+         L5nc9tpgaamvXYaGuCaKnoY+V+b/TiVNnZNiP8qT1+mcBw9XjA/4UybFnd1olfzWnJH6
+         dpbdGkTlqdLk57Z3yvB09nNLDrcbSfjzmUzeX5pfhMiV54UgeuV+WwT+nm7w0XRzxocU
+         kOlPHCXBnv12pukrYyqavXi8XnLw3kOXX8ZL7igpuWV/iZICmrQj7NpKBPR6mXD+M8+v
+         ulFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vfRqvICwFOrLHDo6+IXFWjGDmS/WdT8jBtA79yR0Wyc=;
-        b=xRBtKFADBCty6LcvAxjKS3j7r6MYwXsiSySb6yfnc37o2G+fXjiaYhpZ2zzZqy2v/7
-         aBJq4HDkdhrL5e+cF1jJzFcCKZf7R4BVXZ+PwR46ZTovML06dpwyTJJ4EqqR6c/7Ujpa
-         NrpMeDPUoks2Lep9ZOocnYNEP6Fkccg21D/cgBiUztRkGx956NfhUbmSEVNdpkQ/47vn
-         9PhtBFabP5sbQUDomTsF05EeCTpZoWb0YeunoPFelMeBmq+zmYdwT3ZUBE0o5qfoUTMz
-         VAr0fPRZdefYGa7daS6S0iFEKgUK+yL+n/3OEFD9VpJJuPGwos9yz4AODYD7zwHiOnlc
-         fJpw==
-X-Gm-Message-State: ACrzQf0L1lPXP+VAGFVEcj9Lo1OSFv0waeBjgeaR5we0SM6B5obDcBXA
-        kU1P+Vxsshov9h+dY/WyBYedaw==
-X-Google-Smtp-Source: AMsMyM4PlzDbHD1dIL5dUIXCQJz0wfI6IwENSHLqeWgeyo6sB2dd5Ccvzmp43BYMOwtZyFPcxznJbw==
-X-Received: by 2002:a05:620a:254e:b0:6c9:cc85:c41a with SMTP id s14-20020a05620a254e00b006c9cc85c41amr10515136qko.260.1666290017554;
-        Thu, 20 Oct 2022 11:20:17 -0700 (PDT)
+        bh=cbX/juujWC6ueA+dF64S7G5Ta7cBZWyKR6zbSd0h7YY=;
+        b=XzEktIJ7FpNQBcijeZc6OUkKnVdEh/GcHPtRPvh8QkZ3brmDTS9SaJOmHvyDifDnpR
+         mUxrwVx4+3eG3t/Mm0q51BkWOBhT8ZRm/JSy2nhLsAY1A149kMbryuHj9F9EIxesdCH6
+         MkP6hektSloLpUq1+yQ0eAJGhUPB1tufJjkGkzNGXhLsZ1pvFTPh1ZMmrs+6RZbfoAgM
+         NHSImt7jaJfTnbazCZ4FSbSA3XChllFVTjwQMyOiXVo1HGB4mT8BAa+e4IlXWlDTO+eG
+         bRs9aTLxm7WadSxcZGeWsY8sxuHi2xFMYL9ouoTxb4+gmrU2PgTvcWIlk6bLJyEcjJbC
+         vdZA==
+X-Gm-Message-State: ACrzQf04adQENP44lIzU3HtbSevAAQwA+NX0cI3Cm6JbuJGMrYFT/eBv
+        8m1Qc35tX1NL2yx6hnW+BNDfFA==
+X-Google-Smtp-Source: AMsMyM7D0BGgC1BtJnpb+bfxSiU74ftu8bSbR3bVqXlel9eqWedUYhS8sohMpV9TYWuUBSCYl+c2LA==
+X-Received: by 2002:ac8:58c5:0:b0:39c:c710:f58c with SMTP id u5-20020ac858c5000000b0039cc710f58cmr12105164qta.295.1666290242072;
+        Thu, 20 Oct 2022 11:24:02 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id h24-20020ac85158000000b00304fe5247bfsm6443656qtn.36.2022.10.20.11.20.15
+        by smtp.gmail.com with ESMTPSA id p7-20020a05620a132700b006b61b2cb1d2sm7684779qkj.46.2022.10.20.11.24.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 11:20:16 -0700 (PDT)
-Message-ID: <bc0a9297-7adb-7cdb-e5ee-1d6e80eddb04@linaro.org>
-Date:   Thu, 20 Oct 2022 14:20:07 -0400
+        Thu, 20 Oct 2022 11:24:01 -0700 (PDT)
+Message-ID: <f8435311-42fa-4858-4623-8088d644f6c6@linaro.org>
+Date:   Thu, 20 Oct 2022 14:23:59 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCHv5 1/6] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
+ wait mode
 Content-Language: en-US
-To:     Dinh Nguyen <dinguyen@kernel.org>, jh80.chung@samsung.com
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221019170657.68014-1-dinguyen@kernel.org>
- <20221019170657.68014-2-dinguyen@kernel.org>
+To:     Andrej Picej <andrej.picej@norik.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
+        linux@roeck-us.net, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
+        kernel@pengutronix.de, s.hauer@pengutronix.de,
+        wim@linux-watchdog.org, robh+dt@kernel.org
+References: <20221019111714.1953262-1-andrej.picej@norik.com>
+ <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
+ <143f1466-e34a-254d-4e6e-fefa17ad1390@norik.com>
+ <24401572.EfDdHjke4D@steina-w>
+ <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019170657.68014-2-dinguyen@kernel.org>
+In-Reply-To: <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,40 +84,127 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 13:06, Dinh Nguyen wrote:
+On 20/10/2022 09:05, Andrej Picej wrote:
+> 
+> 
+> On 20. 10. 22 14:41, Alexander Stein wrote:
+>> Am Donnerstag, 20. Oktober 2022, 14:36:10 CEST schrieb Andrej Picej:
+>>> On 20. 10. 22 14:18, Krzysztof Kozlowski wrote:
+>>>> On 20/10/2022 02:23, Andrej Picej wrote:
+>>>>> Hi Alexander and Krzysztof,
+>>>>>
+>>>>> hope I can reply to both questions here.
+>>>>>
+>>>>> On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
+>>>>>> On 19/10/2022 09:00, Alexander Stein wrote:
+>>>>>>> Hello Andrej,
+>>>>>>
+>>>>>>> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
+>>>>>> Missing commit msg.
+>>>>>>
+>>>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>>>>>> ---
+>>>>>>>>
+>>>>>>>>     Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5
+>>>>>>>>     +++++
+>>>>>>>>     1 file changed, 5 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git
+>>>>>>>> a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
+>>>>>>>> fb7695515be1..01b3e04e7e65 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>>
+>>>>>>>> @@ -55,6 +55,11 @@ properties:
+>>>>>>>>           If present, the watchdog device is configured to assert its
+>>>>>>>>           external reset (WDOG_B) instead of issuing a software reset.
+>>>>>>>>
+>>>>>>>> +  fsl,suspend-in-wait:
+>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>>> +    description: |
+>>>>>>>> +      If present, the watchdog device is suspended in WAIT mode.
+>>>>>>>> +
+>>>>>>>>
+>>>>>>>>     required:
+>>>>>>>>       - compatible
+>>>>>>>>       - interrupts
+>>>>>>>
+>>>>>>> What is the condition the watchdog is suspended in WAIT mode? Is this
+>>>>>>> specific to SoC or platform or something else?
+>>>>>
+>>>>> Sorry, what exactly do you mean by condition?
+>>>>
+>>>> Ugh, I also cannot parse it now...
+>>
+>> Sorry, Krzysztof already asked the right question: When does one want to
+>> enable/disable this feature?
+>>
+>>>>> When the property
+>>>>> "fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so
+>>>>> this is defined by the user. Didn't want to apply it for all the
+>>>>> supported machines since there could be devices which depend on watchdog
+>>>>> triggering in WAIT mode. We stumbled on this problem on imx6 devices,
+>>>>> but the same bit (with the same description) is found on imx25, imx35,
+>>>>> imx50/51/53, imx7 and imx8.
+>>>>
+>>>> I meant, what is expected to happen if you do not enable this bit and
+>>>> watchdog triggers in WAIT mode? IOW, why someone might want to enable or
+>>>> disable this property?
+>>>
+>>> If this is not enabled and you put the device into the Suspend-to-idle
+>>> mode the device resets after 128 seconds. If not, the device can be left
+>>> in that state for infinite time. I'm guessing you want me to better
+>>> explain the property in device tree docs right?
+>>> I can do that in v2.
+>>>
+>>>>>> And what happens else? When it is not suspended in WAIT mode?
+>>>>>
+>>>>> When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the
+>>>>> watchdog keeps running and triggers a reset after 128 seconds. So the
+>>>>> maximum length the device can stay in this mode is limited to 128
+>>>>> seconds.
+>>>>
+>>>> And who wakes up the system before 128 seconds? IOW is there a use case
+>>>> of not enabling this property?
+>>>
+>>> Well I can think of one, system can be woken up by some other interrupt.
+>>> Like RTC which triggers interrupt (for example every 10s). So if this
+>>> property is left disabled the watchdog can handle errors where other
+>>> wakeup sources don't trigger interrupt or if the system is unable to
+>>> wake from low-power state. In that case the watchdog will do a hard
+>>> reset of the device.
+>>>
+>>> But I'm not really sure if anybody uses this, just wanted to make sure
+>>> that we keep the default behaviour as it is, since this driver is used
+>>> by many devices and for quite some time.
+>>
+>> This sounds more like (application) configuration. If so this should not be
+>> configured in device tree, IMHO.
+>>
+> 
+> Do you have an idea where should it be configured? Just keep in mind 
+> that this can not be configured at runtime, since this is write-once bit 
+> so any configuration changes regarding this functionality can not be done.
+> 
+> Basically if I can sum up the problem:
+> 
+> Without this property enabled, the WDW bit is left unset:
+> $ echo freeze > /sys/power/state
+> #device enters Suspend-to-idle, watchdog is left running and the device 
+> resets after 128 seconds in this state
 
-Thank you for your patch. There is something to discuss/improve.
+I still wonder (and still did not receive) about such use case. When
+would you like to have such behavior?
 
-> -allOf:
-> -  - $ref: "synopsys-dw-mshc-common.yaml#"
-> -
->  maintainers:
->    - Ulf Hansson <ulf.hansson@linaro.org>
->  
-> @@ -38,6 +35,35 @@ properties:
->        - const: biu
->        - const: ciu
->  
-> +  altr,sysmgr-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to the sysmgr node
-> +          - description: register offset that controls the SDMMC clock phase
-> +          - description: register shift for the smplsel(drive in) setting
-> +    description:
-> +      Contains the phandle to System Manager block that contains
-> +      the SDMMC clock-phase control register. The first value is the pointer
-> +      to the sysmgr, the 2nd value is the register offset for the SDMMC
-> +      clock phase register, and the 3rd value is the bit shift for the
-> +      smplsel(drive in) setting.
-> +
-> +allOf:
-> +  - $ref: "synopsys-dw-mshc-common.yaml#"
+> 
+> With this property set, the WDW bit is set at watchdog initialization:
+> $ echo freeze > /sys/power/state
+> #device enters Suspend-to-idle, watchdog is suspended and the device can 
+> be left in this state until some other wakeup source triggers interrupt.
 
-If there is going to be resend, please drop quotes here.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Assuming there is such use case, for keeping watchdog running even
+though system sleeps (and cannot poke watchdog), it's fine.
 
 Best regards,
 Krzysztof
