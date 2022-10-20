@@ -2,171 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 818CF605925
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 09:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B462605956
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:09:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230489AbiJTH51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 03:57:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48956 "EHLO
+        id S229675AbiJTIJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 04:09:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231145AbiJTH5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 03:57:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848E517D872;
-        Thu, 20 Oct 2022 00:57:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230256AbiJTIJu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:09:50 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8DCB26E3;
+        Thu, 20 Oct 2022 01:09:47 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B295E61A5E;
-        Thu, 20 Oct 2022 07:57:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B678C433C1;
-        Thu, 20 Oct 2022 07:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666252643;
-        bh=/25+cqbt4mdOvWwj1tRncSUFWAEXYfCK1XMU8Ih3Wfo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qKMTB3PbxAYXjK4E3aFxRztZxLImdaTVL1YtLp13eOaypLl8hvvPkKgLZmK2lViBt
-         uANJOFraxhoCIEscKFklvRz+IIccDdGEnIvwP4EFcHchLgrQZHuo0vaHAeVhf+u1fK
-         kjryITDXpSbhtK7LVbYUv13GxO/1mJ5EnQTUlacmIQ3eDW4L2cUqhk1hNTNOXt++AV
-         f17Na3PdsiwN+LK0HEsCAA+goNpWKOf3i+ADUskSAAhpAeb1DZEWN4lVmWC8INUqK/
-         BDXnImdJjUicuPYUroC2d/DX4t7Y+sfRgWBk7w1hChOFd3p/CNLd8vnJ7z58VM+GUP
-         BDWDx4Sr66nQw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1olQQP-0000NY-6O; Thu, 20 Oct 2022 09:57:09 +0200
-Date:   Thu, 20 Oct 2022 09:57:09 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 826A166023A0;
+        Thu, 20 Oct 2022 09:09:44 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666253385;
+        bh=UiiNQ2JiXdeVnmENk3ISE8BLEL6+wyAdDcJy+rlcvFQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=dlWOH/BgcuFtG2NoTSkj2ozcSRqMC6EXyppaBDywsbEulv94OVNDucnxDhJq7/wnn
+         uyBN0SdLkKMSPfdVbohaY4bLk9L9P4QH/G9lQ5Bp1OJj4ftlA17o59Bhkoqe0Egymy
+         hdZdwNCQU/UJnRhEmJaozlBO0pW4hW5HK2xBSWA1ABn3N5CUq/VruEz+HSm8DwbN7D
+         3U6MoWR+p7eCxoEfyrsAv/0faI4/ZP46Ei+ZXuGIXh/x5Ys5EXyn/feOeyUG+tfaUR
+         AeZedg6xaxKhK+AavXn4I1LSvydgTEKs4FgxDrpFo/vPFWAQVMSlOD19FQ5EAEk0f5
+         09vu4Q1rPwr/w==
+Message-ID: <0fb91a39-e356-4785-3ab1-11cbc3e78877@collabora.com>
+Date:   Thu, 20 Oct 2022 10:09:42 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3] arm64: dts: mt8195: Add Ethernet controller
+To:     Biao Huang <biao.huang@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: qcom: Add SC8280XP/SA8540P
- interconnects
-Message-ID: <Y1D/Vaa/3zKP4Cxj@hovoldconsulting.com>
-References: <20221017112449.2146-1-johan+linaro@kernel.org>
- <20221017112449.2146-2-johan+linaro@kernel.org>
- <010b6de2-5df6-77c9-2f04-43f2edc89ff2@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <010b6de2-5df6-77c9-2f04-43f2edc89ff2@linaro.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        macpaul.lin@mediatek.com
+References: <20221020024155.24520-1-biao.huang@mediatek.com>
+ <20221020024155.24520-2-biao.huang@mediatek.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221020024155.24520-2-biao.huang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 10:37:31AM -0400, Krzysztof Kozlowski wrote:
-> On 17/10/2022 07:24, Johan Hovold wrote:
-> > Add the missing SC8280XP/SA8540P "pcie-mem" and "cpu-pcie" interconnect
-> > paths to the bindings.
-> > 
-> > Fixes: 76d777ae045e ("dt-bindings: PCI: qcom: Add SC8280XP to binding")
-> > Fixes: 76c4207f4085 ("dt-bindings: PCI: qcom: Add SA8540P to binding")
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 25 +++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > index 22a2aac4c23f..a55434f95edd 100644
-> > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > @@ -62,6 +62,12 @@ properties:
-> >      minItems: 3
-> >      maxItems: 12
-> >  
-> > +  interconnects:
-> > +    maxItems: 2
-> > +
-> > +  interconnect-names:
-> > +    maxItems: 2
-> > +
-> >    resets:
-> >      minItems: 1
-> >      maxItems: 12
-> > @@ -629,6 +635,25 @@ allOf:
-> >            items:
-> >              - const: pci # PCIe core reset
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,pcie-sa8540p
-> > +              - qcom,pcie-sc8280xp
-> > +    then:
-> > +      properties:
-> > +        interconnects:
-> > +          maxItems: 2
+Il 20/10/22 04:41, Biao Huang ha scritto:
+> Add Ethernet controller node for mt8195.
 > 
-> No need for this.
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 88 ++++++++++++++++++++
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi     | 88 ++++++++++++++++++++
+>   2 files changed, 176 insertions(+)
 > 
-> > +        interconnect-names:
-> > +          items:
-> > +            - const: pcie-mem
-> > +            - const: cpu-pcie
-> > +      required:
-> > +        - interconnects
-> > +        - interconnect-names
-> 
-> else:
->   ??
-> 
-> Otherwise, you allow any names for other variants.
 
-Are you suggesting something like moving the names to the common
-constraints for now:
+..snip..
 
-  interconnects:
-    maxItems: 2
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 905d1a90b406..7efaf92c5ff3 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1042,6 +1042,94 @@ spis1: spi@1101e000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		eth: ethernet@11021000 {
+> +			compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
 
-  interconnect-names:
-    items:
-      - const: pcie-mem
-      - const: cpu-pcie
+..snip..
 
-and then in the allOf:
+> +			#address-cells = <0>;
+> +			#size-cells = <0>;
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - qcom,pcie-sa8540p
-              - qcom,pcie-sc8280xp
-    then:
-      required:
-        - interconnects
-        - interconnect-names
-    else:
-      properties:
-        interconnects: false
-        interconnect-names: false
+I'm truly sorry for a partial bad suggestion, you don't need to specify address nor
+size cells = <0>; in the ethernet node, or you get a warning:
 
-This way we'd catch anyone adding interconnects to a DTS without first
-updating the bindings, but it also seems to go against the idea of
-bindings fully describing the hardware by saying that no other platforms
-have interconnects (when they actually do even if we don't describe it
-just yet).
+arch/arm64/boot/dts/mediatek/mt8195.dtsi:1174.26-1260.5: Warning 
+(avoid_unnecessary_addr_size): /soc/ethernet@11021000: unnecessary 
+#address-cells/#size-cells without "ranges" or child "reg" property
 
-Or should we do the above but without the else clause to have some
-constraints in place on the names at least?
+So please remove these two.
 
-Johan
+After which...
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+
