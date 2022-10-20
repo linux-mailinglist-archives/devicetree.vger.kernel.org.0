@@ -2,101 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C88BD605B5D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 11:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83CC8605B81
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 11:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiJTJl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 05:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58084 "EHLO
+        id S229670AbiJTJuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 05:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbiJTJl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 05:41:26 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 381BA1905D9
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 02:41:19 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id 10so19850714pli.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 02:41:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lu/Q+My0d0ZJp0MXkrJy5vys7anyhTLA0nDtYHB/OvM=;
-        b=MiQBa8dSIOH7lGMIZBxpa/IvxMnz2uilvJw1Kj18eKcdSUsIWkBVa/lrpjUqS0Y8DM
-         1uI5PcezLwNguOyeofuwoTBlMhNH2MsNh4YkOyYkO9EPls54jmHXADSZ4pa7nwQvMas0
-         WKGlyFbjrsIDfFUKOrN6Tz8cSZBO7pE+c1GCcxkO++9NCN2AcpezGwB6ZnEs7rfDEyBt
-         cxiEIE1MC8w5qaGkt5kIsvmqNBrDDCv1LYiF7HjmAHYggCkJfuG9sLphm+6QJj51Hxb2
-         aaIFxNYDxECx94C7eTRy5dWr0QdjTvt5pNkECQy8hRor8ARz8SbT2UML0Tlb+/rXYz0/
-         DNmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lu/Q+My0d0ZJp0MXkrJy5vys7anyhTLA0nDtYHB/OvM=;
-        b=kSWxZXr3ETHssEcTKVd0qDbIynsFR3y2JJ3HOpuLtmD8A4hFih5XW9+QZ0ih7YNS/L
-         zFJ4ZOoy6ftSd/ZE/EZ86FAlxGNZiI38ZUmfT/f+T3lQhCy58994yP4Z5Bkl8z0a0EHE
-         lacEPAWgxFWuXQn/5xVMXZcOvkEqav92TaxG2OQTZoN7nHKMNN6/H6UekcihZ1Kfng5t
-         FUKhYMYnUbyr09m20TDJ9CxEimjrZSkZWkA+9Ti81O5ycv1CKKOrpNzDjRPzW0bO0EZL
-         iFrwmrCti0fpsLVYo1ofMjJmaJtH0RVTLGBzD7ZIgf3Sq3DpsmadCkADtZzEI7ocWcAo
-         ZfeA==
-X-Gm-Message-State: ACrzQf03jeXvVPKPHIBIyEGHTCV50GnePHea17EMEKmYCsfF+IWYCz75
-        bBjlrH9Q5LzxO1lJ9I/19/YZ4w==
-X-Google-Smtp-Source: AMsMyM5yclQegyW9oOtG584tPYotVoNT59Ds9iM06q8wifMIcgH0xMo6fym+G8TEFKV/xTR+zIOlGg==
-X-Received: by 2002:a17:90a:e548:b0:211:2c0c:cb74 with SMTP id ei8-20020a17090ae54800b002112c0ccb74mr4631912pjb.69.1666258878720;
-        Thu, 20 Oct 2022 02:41:18 -0700 (PDT)
-Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id o12-20020a170902d4cc00b0016d9d6d05f7sm12425675plg.273.2022.10.20.02.41.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 02:41:18 -0700 (PDT)
-From:   Andy Chiu <andy.chiu@sifive.com>
-To:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
-        radhey.shyam.pandey@xilinx.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S229718AbiJTJuC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 05:50:02 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50E95600D;
+        Thu, 20 Oct 2022 02:49:54 -0700 (PDT)
+Received: from p57b7734d.dip0.t-ipconnect.de ([87.183.115.77] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1olSBM-0005RY-FO; Thu, 20 Oct 2022 11:49:44 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Quentin Schulz <foss+kernel@0leil.net>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
-        greentime.hu@sifive.com
-Subject: [PATCH net-next 2/2] dt-bindings: add mdio frequency description
-Date:   Thu, 20 Oct 2022 17:41:06 +0800
-Message-Id: <20221020094106.559266-3-andy.chiu@sifive.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20221020094106.559266-1-andy.chiu@sifive.com>
-References: <20221020094106.559266-1-andy.chiu@sifive.com>
+        Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
+        devicetree@vger.kernel.org,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        stable@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: lower rk3399-puma-haikou SD controller clock frequency
+Date:   Thu, 20 Oct 2022 11:49:42 +0200
+Message-Id: <166625937155.645772.13090619800244842653.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221019-upstream-puma-sd-40mhz-v1-0-754a76421518@theobroma-systems.com>
+References: <20221019-upstream-puma-sd-40mhz-v1-0-754a76421518@theobroma-systems.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a property to set mdio bus frequency at runtime by DT.
+On Wed, 19 Oct 2022 16:27:27 +0200, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> 
+> From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+> 
+> CRC errors (code -84 EILSEQ) have been observed for some SanDisk
+> Ultra A1 cards when running at 50MHz.
+> 
+> [...]
 
-Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
----
- Documentation/devicetree/bindings/net/xilinx_axienet.txt | 3 +++
- 1 file changed, 3 insertions(+)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-index 1aa4c6006cd0..d78cf402aa2a 100644
---- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-+++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-@@ -43,6 +43,9 @@ Optional properties:
- 		  support both 1000BaseX and SGMII modes. If set, the phy-mode
- 		  should be set to match the mode selected on core reset (i.e.
- 		  by the basex_or_sgmii core input line).
-+- xlnx,mdio-freq: Define the clock frequency of the MDIO bus. If the property
-+		  does not pressent on the DT, then the mdio driver would use
-+		  the default 2.5 MHz clock, as mentioned on 802.3 spc.
- - clock-names: 	  Tuple listing input clock names. Possible clocks:
- 		  s_axi_lite_clk: Clock for AXI register slave interface
- 		  axis_clk: AXI4-Stream clock for TXD RXD TXC and RXS interfaces
+[1/1] arm64: dts: rockchip: lower rk3399-puma-haikou SD controller clock frequency
+      commit: 91e8b74fe6381e083f8aa55217bb0562785ab398
+
+Best regards,
 -- 
-2.36.0
-
+Heiko Stuebner <heiko@sntech.de>
