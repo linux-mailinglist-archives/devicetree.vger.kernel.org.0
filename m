@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2944C606592
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EE0E606595
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230188AbiJTQTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:19:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41932 "EHLO
+        id S230495AbiJTQTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230478AbiJTQTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:19:13 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C6D180AFC
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:19:12 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id z8so14012048qtv.5
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:19:12 -0700 (PDT)
+        with ESMTP id S230517AbiJTQTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:19:36 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF0E2AE1E
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:19:35 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id j8so2467287qvo.6
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:19:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3nmjFBEeD9ZP/eQLwAKtGJ8tL9wL4OpdvH58XZgElX0=;
-        b=Ew3XbGq/ADOFDDQULys1w5f0CUfRk2TBhCZqASgyGf36zV7VrScYztVOw8PmvpPlIB
-         HYGwtPKOluSR6DSzzIvr24JeJ0YYWoedtS8MzVoC5I74C3fbl78BwL4tOR0KcydB2KSb
-         /V2CzhHyrKES9ZLC827HHJDu0gp7CJm6ybgYZrtdqvPzZMmoCUXj/HWvUXMmWbIG1pmn
-         T1bsNTHO9qQzwZZnkI0HRDhTTPZ9azKvLazcaXqn1eFLd1J/GxU3DtrwmOLyVeSlsYvg
-         bG461MfFxyncmwL3rNmwLUZIHwqKECSrwdyKE4M5VeHTEJ9bCVZBJz3/LEdk03MCSnR0
-         Cw8A==
+        bh=JcnPN6pOymsF6TuFZ7F3+kHPVPEANExbnJVMCV93EB8=;
+        b=wtMyoidNDlc6CXkOIF48tG23OkrzjobXGaBGAeQxYLoX+/YrniIr8r8CuA4naE0ggr
+         egJI4JwS3HR/Z1zTs8DGA2jpvUXFJ3Pa3Gn0ScUdUBakgCjcAQohQ6iI3f5C2nnZLGzn
+         vH6TgDpcxcnqfFceAI+pdV2U4VDRbWogolEQY+R6tOEM9Imx7fBeRZjLd94CMcvNnkwJ
+         /Blt2ZZd5flcx11b+MFkYd/vCewUXmTqpA9NGS6/iJYKySlX27cyst93kh8GxViPaQBP
+         V4+VD4aw6rnQw+q8IXonQnSKgEFTjkTm71OJ1n9DMGWaHZPlGoMeXVrVuQE9Y80TR+g8
+         j4bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3nmjFBEeD9ZP/eQLwAKtGJ8tL9wL4OpdvH58XZgElX0=;
-        b=BEpakDxfUaYL8YkzJsewrvWobZ6N7zapYhbDCgXXaME9qRNqhrgWWQmvhorFQECnGU
-         O3TFoYlq3qbgBUJnCKQDiCdCDcO2Ue6wgLs8QS9c8dMeu1eFH2qYAQ3LZg4fNxiaS0bu
-         litrvGkZMkbCXOWt+rom4yUsyVuMvYgNj9wIlyhXOvOYL2wyBv5o2uMVE+ug73Bq+0L5
-         8XEhWcCPah3cx3qC7LtZHipltdlFbBEyZTx8Cop7I6AnVp2FMlE2UxilEZDZAm5EuCvX
-         a1wmtWOx+h2lL3h4qHIa2raguym6v3pQaO9VBF9i4/Pv8RZ62sNgWQo6ScupMp7xP6kq
-         003w==
-X-Gm-Message-State: ACrzQf26M8l06lw0R9sy+pil1y4WfzgKuikbQj95+Y0jRZJYTVvIMUZb
-        +zGdB3T+6RWLkyUyts0Q+g71Ug==
-X-Google-Smtp-Source: AMsMyM7XjZb4dPpbk62kCztyoDByKSy+hibNQg8o9nkkhr20RuX1MAdCla2yOjzYa0GvSTYvZIsm+g==
-X-Received: by 2002:ac8:7c44:0:b0:39c:cbe1:2787 with SMTP id o4-20020ac87c44000000b0039ccbe12787mr11764085qtv.214.1666282750048;
-        Thu, 20 Oct 2022 09:19:10 -0700 (PDT)
+        bh=JcnPN6pOymsF6TuFZ7F3+kHPVPEANExbnJVMCV93EB8=;
+        b=gUwGrXiGysW3z5vRHZfUyrIZ/R62PyCNrcSw9vv3IU0hfRRZZe/8BzdS1Flso89nC3
+         pu9A4lQ01L3HZL4gG+hi9KV+gNgr1Y0ocZVRvmV7oe9UEF3D2P1wQVOBnKOGIHdjq8FL
+         mGBV+yz52ZAuwrm7QCD4ejO+PDBG9iTxQlcYK1opemR+y8ISbnpHrDdpt8fmddQzQVKU
+         uAFPRdqw1z/L13QD/gDZ8Ne5Y1XDhqF70d+kq0sctyNjvO2vrfli0/5yG/32qCGZD7i5
+         Y2No2hjN6/jJxSLhP6c75n1AZuOyG2G9FgwzJYP4E7v6yKkqq9tycp7e3aTbIZG/rt0s
+         VgRg==
+X-Gm-Message-State: ACrzQf2bl/Kc5XR2nM7qCKl4FnagafP13kCZDaPa6omnHzPGqtN8Xf7H
+        ahBSHUgrBBZPvAStJvv50+oIqQD638w37A==
+X-Google-Smtp-Source: AMsMyM6mw4at8h/UUnFkUKaYGcNXsz9P2DbQdh3eDc++FhkVB22bdeyzYFFEjleWs4HEZBCi4MI2bw==
+X-Received: by 2002:a0c:e552:0:b0:4b1:86f0:89d5 with SMTP id n18-20020a0ce552000000b004b186f089d5mr11896504qvm.97.1666282774259;
+        Thu, 20 Oct 2022 09:19:34 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id r17-20020ac87951000000b0039cb9ef50b5sm6277185qtt.26.2022.10.20.09.19.08
+        by smtp.gmail.com with ESMTPSA id r17-20020ac87951000000b0039cb9ef50b5sm6277793qtt.26.2022.10.20.09.19.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 09:19:09 -0700 (PDT)
-Message-ID: <aaf7d4a9-c767-6a63-691d-e3ae00b206fc@linaro.org>
-Date:   Thu, 20 Oct 2022 12:19:07 -0400
+        Thu, 20 Oct 2022 09:19:33 -0700 (PDT)
+Message-ID: <972de6c1-c844-7581-efed-cb6c4d826c33@linaro.org>
+Date:   Thu, 20 Oct 2022 12:19:32 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
@@ -94,8 +94,7 @@ On 20/10/2022 09:09, fchiby@baylibre.com wrote:
 > Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > Acked-by: Rob Herring <robh@kernel.org>
 
-This is not exactly v1 then. Please use patch versioning and add
-changelog (to cover letter or to individual patches).
+Ah, and one more issue - your SoB is missing in all patches.
 
 Best regards,
 Krzysztof
