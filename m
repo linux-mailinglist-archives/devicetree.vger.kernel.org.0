@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8127460659A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 708EE60659E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:21:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbiJTQVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:21:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50700 "EHLO
+        id S230500AbiJTQVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:21:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230501AbiJTQVO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:21:14 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 708861BB949
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:21:12 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id l16-20020a05600c4f1000b003c6c0d2a445so2586072wmq.4
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:21:12 -0700 (PDT)
+        with ESMTP id S230519AbiJTQVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:21:19 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4271BA1D6
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:21:13 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id bp11so35454148wrb.9
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:21:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GaS744uQPmWBXBI6ZqLder+xi41I4zdp+0x6pn9qEpI=;
-        b=BiWAgX/Qr8Rtaa1n4HaNEsXokIi2t7akCjokMnnVo9izFmTT3d1OYSv7Wls0Jw0TVG
-         wnHniUa/aJWLtVFhMN4C6h7OqT0SEHs/I+Qz/Nek5lUoSxieBitDj95Gs8p4//CxDAPM
-         EFtIovz6/Bg77YsQPiSiA79FgW2uMp/5ohlF5p1VrVItPrkwOkQpSQyk+C2FBhrxPtpu
-         WqHTyElGaawjZEW7CwY272Dm9Opr7cMu7GWpP8Gi3IC1zm1YeBT5C+6EaFZRp5B8iJVV
-         XoU4pX9m689/ASxVf317uv+VaYvXCGtxT0p5pjOMgBO02+pg3ktPsiK5Q//EzxGOOZeA
-         HReQ==
+        bh=4Ggl5GnJW5r8zpcno8Bg7VatgVa63OuBazQq9en4f4Q=;
+        b=vLTlwUnpIWIwuvgi0iyBzDgogj1smwA6hhFgkNvK1JQ5gnNPG3XeP5FaxtLrguiiUI
+         yuymHez2yeU703/Gjhglf/3/sijnGdCsN+WIyQt514KEm3HfrfDOnmUt2Evo0ez2pt3V
+         BXp/ighRuejFCYjQiAT05SPZiV+7IrxKHh96ZFXjRzhohOAOcPpHi/scyWj0Iyp365+0
+         jKxiPxuoFGS1Z/g0d9sCsq5M2fObmFAD+CFgiK2uJ0p+elwWT8P2+ECMzQxeclCPkuyd
+         w8GDrWTdqzpFkBBguosfVea6TmJ8aNiuiG3WFo5fSAzdp/+EVdDo7GkaCYQRZ013tg7T
+         1piA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GaS744uQPmWBXBI6ZqLder+xi41I4zdp+0x6pn9qEpI=;
-        b=uj3CI4NEGrr8eXq3IY4FE0vH1XZmY7QPQKUvwNSoe2obAqKqKkyQpJTSlPpH6acLsS
-         sYPAcGn2k+2As3BtN84Fpj1bQLlw1XUiIVk4jQjW5QE1u59QI73irj7PaCUb5bXDSumZ
-         IVQqx4FvdIFWBPRHizbnvnLpSeDNJqcScPC6V8jHoBsi+so5D89Z9BdC2z772lmOMa6d
-         CqCLIq7Ga/vEjlAQWHcK4e0L79jRoetqdByd1jzRTkyvqtqKn2gNBXr5KT+sB1J+5z4q
-         qUhD/bd+T68bGYOGp/AiuVlFabZwaIKvJbXpQDc1cFXwNDu6T9fqnkmKLF4wvxPdN17H
-         btyg==
-X-Gm-Message-State: ACrzQf3k4pnV8d72ClF59cABic2FmC349GiN2pUWR2OpJ6LCMeMcHWFm
-        NDVW4hXv4a4PNoKWFeNKdNF9ww==
-X-Google-Smtp-Source: AMsMyM4zHtUzyycG6m90vzzUecGOcjVx/uHTBFmgXqMhKmqeWtCLahlCPFtUo1o9TPVoTLPotl4Wkw==
-X-Received: by 2002:a05:600c:502c:b0:3c6:f5ff:e089 with SMTP id n44-20020a05600c502c00b003c6f5ffe089mr9915804wmr.108.1666282870743;
-        Thu, 20 Oct 2022 09:21:10 -0700 (PDT)
+        bh=4Ggl5GnJW5r8zpcno8Bg7VatgVa63OuBazQq9en4f4Q=;
+        b=wDnDgLiOgOrjUaFSIt/EnITyL2InD9q9t6Jx6EKcl3O3RrEcYJKBV3pSj3TppqfnVm
+         t4YIdeBNNZIJcPi7D/GW1FEm1ddUIVZ6v4+B74wkq7ym0wRUl9VKn0PLKDfx1/Uq7yY1
+         SNZ2icOgbrLDIWpksoIkho1dWgk8hrH/1v7DlxDsls3ifiQjAtMSxjYUQfLI13mE4faf
+         x0aUMxgRUkEhbDYw3PgpINjjV7awmAqPj2lPzixThjXNsZ6H1NTc95/k8swtZBY7fXQk
+         MqRwirJk65EZ4GiBEPzNxgrwSAgMRHfqYZeY7elucWB6iCoJ/RUZsaQwpnUEDLe1JdIG
+         gd8Q==
+X-Gm-Message-State: ACrzQf2o5UFjyW/oY6wSiGd5OYGVkXMaNqW03LHQiLngrW9Wzo4eNLrm
+        5UBueizJ+6D5VfZSdQkU5xLgTA==
+X-Google-Smtp-Source: AMsMyM4LQ/lxoEIrH4UMCDFt1jKZSgIbbOISLRtCxbzdlIaBowCjGyQBQrDj/m1gYIMGc+i23FCohw==
+X-Received: by 2002:a5d:5084:0:b0:22e:2f15:b521 with SMTP id a4-20020a5d5084000000b0022e2f15b521mr9753215wrt.271.1666282871926;
+        Thu, 20 Oct 2022 09:21:11 -0700 (PDT)
 Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id m14-20020a05600c3b0e00b003b4fe03c881sm208028wms.48.2022.10.20.09.21.09
+        by smtp.googlemail.com with ESMTPSA id m14-20020a05600c3b0e00b003b4fe03c881sm208028wms.48.2022.10.20.09.21.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 09:21:10 -0700 (PDT)
+        Thu, 20 Oct 2022 09:21:11 -0700 (PDT)
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 20 Oct 2022 18:20:45 +0200
-Subject: [PATCH v3 1/5] dt-bindings: mfd: mt6397: add binding for MT6357
+Date:   Thu, 20 Oct 2022 18:20:46 +0200
+Subject: [PATCH v3 2/5] dt-bindings: input: mtk-pmic-keys: add binding for MT6357
+ PMIC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mt6357-support-v3-1-7e0bd7c315b2@baylibre.com>
+Message-Id: <20221005-mt6357-support-v3-2-7e0bd7c315b2@baylibre.com>
 References: <20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com>
 In-Reply-To: <20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
@@ -77,24 +78,24 @@ Cc:     AngeloGioacchino Del Regno
         devicetree@vger.kernel.org, linux-input@vger.kernel.org,
         Alexandre Mergnat <amergnat@baylibre.com>
 X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=882; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=uiI/lTRtppBO+0nDIciFuabIoTVXVizM4YxyzOA2AfE=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjUXV0FVtsiYSeZAnNVIPphZdWfF4LyDG6G1xUR+hY
- qezaStqJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY1F1dAAKCRArRkmdfjHURcbQD/
- 9ZsaHlwgCKvcsyUDObkfQQjeMSZYlAX2q5PSCyCwS4vicU+djfUIZZZ4DYVVJLEeV/1jw8S8COwjtM
- /gQ+FT2Ud6no8KNQ9XvvXNS8/hES8mEFwnz+Ne25aHAw794Z+9oMYem49sSNY8rkVyfTfI8A2A3188
- TywOl73c/t1RNnLqrvQYq226VrdewLgd6AaHvOzejK+BHwUOI8OL71k7zIlkoW2fyPnZLYsqIS+66/
- KAp7FWzWXpfO+51hnaMIJRo6fGvXcn73LVUR+oExo3xIbwE9opKu8tv93irqLjzDjIE5+egOrBNIdf
- BWqI55Ib2NORmzfa05bH7l3MjErS7A0gRDAufHenjyV6xVQEc+xkzLx9a0X0QYq8PjGi5fOUKa9+ca
- jdFrhMs+jsCV3iyMbXa2xOXfqUtCVKor4TOPUO6o/lc4CYCIUfIfZRTysxAfyB2hp7mn6h5lab49RK
- pCeX/Tn1Mk1MvBRtd3TJR2UzE+/2hSaY8lh2Pi0Zxa2jzz1Q0P+pc0+QQAPNnB9ZZWDjZ0m51DgJ3X
- fkDmw8gqjpK+T6LiT/8GVLpdJ5PhHdDi+MfmlooHMayfI2t9Li85L9RDDKILZCR9aUO9t5RsxCVu8N
- HYmyzxXKz5+e7+YyEyWhJ03Xc1tLbKhpCIMTILDwPt5wFF+tNOifJI3+w83w==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=923; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=ZkZQij7/0Z3X4e9uF6B+oZckE7xcogOJfck3q8uBCAI=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjUXV0ZNXXgbhkdAz1a55MOKc3KBoIZOBnUZ+E6y1y
+ JpYKd/SJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY1F1dAAKCRArRkmdfjHURcv3EA
+ CycWh0zpHUbo0QCMDsyag2SfUDfWm7eNlPNHiLaKRoRrhUeE+UqeevDHVNlTozvLo0kXuCbRjEP2hy
+ ZUNh5+mCUEdLGEDOMprZ7XGAd/+K7t2bxtDY3FIWvGb8YH3AXaGl8G3/PFUf7iKKtQlcRoCCa91gmu
+ bVHu0Wf5ldEGvH351G2QGfvAr3PDibh+11F1Vf8v9f8r1tpBAVQr+N3PhQ4oo73rL3Et1d4BIuhuv6
+ qZXnNERdqshdBWa20jHiLrTwNWPcEp2cD4n+O3ThRJ0QBLkg0eUupn+RzwkoGJxABAvKQA/NdDQcG2
+ VrM+CEUIvJDE6F8PdJ1T4nXVflxMVj7auEXljbGNmbIii2ZEFBIf8mV7OMJOdd3sW+MLyhMIk3jFI9
+ HvEKE2gny3luDvml5/Xiku7YydL3dxMY9aYW33LQhsrXQi4E+kCIREhSp2V4P787KCshWfwOABQtRt
+ D3ZXVgSpcv37zt6NUIFhrlF+rpjdmudKWkGmzQ/YoUoCj03FESVcllQIti11iAHW+z8TRJyEBRXL1N
+ h0eBNbYo+C5SvCDFQJNp2MohOakK8eCFPM8SxJofKIoijZmr/UlicMkewYYERvs/CVbW/QSJLSdm5P
+ 9UWhvEfjmn/4m4G4nCOgJjHgjFB58R1kaG1iqdro4xI+6xN4jAoMXlmoxMvg==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -103,27 +104,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabien Parent <fparent@baylibre.com>
 
-Add binding documentation for the MT6357 PMIC.
+Add binding documentation for the PMIC keys on MT6357.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- Documentation/devicetree/bindings/mfd/mt6397.txt | 1 +
+ Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-index 0088442efca1..518986c44880 100644
---- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-+++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-@@ -21,6 +21,7 @@ Required properties:
- compatible:
- 	"mediatek,mt6323" for PMIC MT6323
- 	"mediatek,mt6331" for PMIC MT6331 and MT6332
-+	"mediatek,mt6357" for PMIC MT6357
- 	"mediatek,mt6358" for PMIC MT6358 and MT6366
- 	"mediatek,mt6359" for PMIC MT6359
- 	"mediatek,mt6397" for PMIC MT6397
+diff --git a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
+index 2f72ec418415..037c3ae9f1c3 100644
+--- a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
++++ b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
+@@ -26,6 +26,7 @@ properties:
+     enum:
+       - mediatek,mt6323-keys
+       - mediatek,mt6331-keys
++      - mediatek,mt6357-keys
+       - mediatek,mt6358-keys
+       - mediatek,mt6397-keys
+ 
 
 -- 
 b4 0.10.1
