@@ -2,93 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FA046059BA
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 519DE6059C8
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 10:31:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229974AbiJTI2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 04:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51608 "EHLO
+        id S230129AbiJTIbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 04:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbiJTI2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:28:42 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDEEC18B4A4;
-        Thu, 20 Oct 2022 01:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=lbsZ/YW7ZnIezwA4BRfrow1LCllF86bNZlcUisWMgkY=; b=0RNLUrzBGOpPkxhVKlJw1XP1dt
-        7yQ5SsKHRlKyD3skl5phrZiBJoPInAdZbvlrGNDSpq+pP1w1UMtuUMYcclPDwc/tRbNS7MyFB/A+3
-        7BimswlwrF9gfnESIs5s+LpUGfcXJmXKYSUd+rY5dsOJsyR3Rp9UCkYJMm2+WGAo0DFmxm9H60wLn
-        mrFA/MC+RTbx9j2/EAt6o13O609mCl0+un6MBBfHDkpFe6DG6wl4tz6euxlqHVZiH3XJjMqD6iFZJ
-        Z47Pxaf51r16Bef5RprJFUf1kUS9pt6b03cLG2lsAhF+1sVdFv+P87tZarXRWkBOu2+wNSCoTCmPr
-        RJVWgqZg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34816)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1olQuh-0006ie-NW; Thu, 20 Oct 2022 09:28:27 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1olQuf-000311-Qb; Thu, 20 Oct 2022 09:28:25 +0100
-Date:   Thu, 20 Oct 2022 09:28:25 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH net-next 1/7] dt-bindings: net: sff,sfp: update binding
-Message-ID: <Y1EGqR6IEhPfx7gd@shell.armlinux.org.uk>
-References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
- <E1ol97m-00EDSR-46@rmk-PC.armlinux.org.uk>
- <166622204824.13053.10147527260423850821.robh@kernel.org>
+        with ESMTP id S230082AbiJTIbk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 04:31:40 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9307E165C93
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:31:38 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id be13so16647827lfb.4
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 01:31:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KgDK8YFBcYlO96C3KJm7NrQCSaicS4eCQwBe4/7dKC8=;
+        b=FI6eR3DYXht8+m9UalT4gkpR82tvRlAezR/K/yaB8vkJH28jtBAkdGh2XY/CykH9mj
+         KYZvIT98Yoyr1KycI4HGdn/JzFWGOQ5UZEqfKDGfFavS9jHlHNlLuy67jOmEN1K8xUqj
+         k4mrBaMSrb1UYIWVWz/8DZXLT3JV3JpkjwzePnKwpIYJA8Vr/qwOMsPLikI/xdfgJA2p
+         3J9P/BMI0AcxZZUQnO0GdYDnJAietkBkHVzeBhv/u9q4FBzJRcRhN825M/mnEEJBS6Tx
+         zPPYp8ZrrgvhdxFH5J0JRK8uGVsy6VIghNPcowfVTZhQsiyGsUmM78LrHCsPOjxmqChq
+         smjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:from:references:cc:to:content-language:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KgDK8YFBcYlO96C3KJm7NrQCSaicS4eCQwBe4/7dKC8=;
+        b=TpwUI65Ol5DFfVH74x/aswbAzilU1/Im0e5fM9NwevpLA1fUfG49WNBJXn1400dr+R
+         9WM9TSeWDx9AJT8FWKn7iF+f/NVePqbC8umUcHq9RLothfg6HDr2jPqH1cPuQJ7hfQJS
+         Xr6dLNXf233jLHRH7hx9iuwtaSZbf7E5eLATeHrksiMqTG5+4zvLMOuH86HGfuj9AHS/
+         n56QF+6UG+DEwgiGvGagtPVI4gwQBogT8u8o7nfLU2Bbs/C2Jubjy+XemZwy4d9S+axd
+         iDOL2OcEVXmwbk/XNY8Zlptpq32osbEKDMIIKETFmH3u+U42nq3iEpbGeLasGN9cCRPF
+         VGKA==
+X-Gm-Message-State: ACrzQf3CbJWRlTCh7MVDmdGw0AYskqCDWwdMCzDO8aDfO8FGpNPVB9uG
+        R6jW67wzhqLGohMQuxiFxr2RpA==
+X-Google-Smtp-Source: AMsMyM5dvXV0bqmHga039wlUAXgeHaA+4elOpcHo3ft59KpTFvuA4ianAGx8LKDVRpd78p2nJPUkwg==
+X-Received: by 2002:a19:f71a:0:b0:4a2:4fdb:5037 with SMTP id z26-20020a19f71a000000b004a24fdb5037mr4773857lfe.535.1666254696819;
+        Thu, 20 Oct 2022 01:31:36 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id v14-20020a2ea44e000000b0026c35c4720esm2834569ljn.24.2022.10.20.01.31.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 01:31:36 -0700 (PDT)
+Content-Type: multipart/mixed; boundary="------------i082W3S8x1RX9AUAq7cYn8mr"
+Message-ID: <325d6c7b-ca96-df73-a792-4d156a710267@linaro.org>
+Date:   Thu, 20 Oct 2022 11:31:35 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <166622204824.13053.10147527260423850821.robh@kernel.org>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 13/15] phy: qcom-qmp-pcie: add support for pipediv2
+ clock
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221019113552.22353-1-johan+linaro@kernel.org>
+ <20221019113552.22353-14-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221019113552.22353-14-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 06:31:53PM -0500, Rob Herring wrote:
-> On Wed, 19 Oct 2022 14:28:46 +0100, Russell King (Oracle) wrote:
-> > Add a minimum and default for the maximum-power-milliwatt option;
-> > module power levels were originally up to 1W, so this is the default
-> > and the minimum power level we can have for a functional SFP cage.
-> > 
-> > Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> > ---
-> >  Documentation/devicetree/bindings/net/sff,sfp.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/sff,sfp.yaml: properties:maximum-power-milliwatt: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-> 	hint: Scalar and array keywords cannot be mixed
-> 	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+This is a multi-part message in MIME format.
+--------------i082W3S8x1RX9AUAq7cYn8mr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'm reading that error message and it means absolutely nothing to me.
-Please can you explain it (and also re-word it to be clearer)?
+On 19/10/2022 14:35, Johan Hovold wrote:
+> Some QMP PHYs have a second fixed-divider pipe clock that needs to be
+> enabled along with the pipe clock.
+> 
+> Add support for an optional "pipediv2" clock.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 42 ++++++++++++++++++++----
+>   1 file changed, 36 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index 9c8e009033f1..c1d74c06fad1 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -1379,7 +1379,9 @@ struct qmp_pcie {
+>   	void __iomem *rx2;
+>   
+>   	struct clk *pipe_clk;
+> +	struct clk *pipediv2_clk;
+>   	struct clk_bulk_data *clks;
+> +
+>   	struct reset_control_bulk_data *resets;
+>   	struct regulator_bulk_data *vregs;
+>   
+> @@ -1902,6 +1904,36 @@ static int qmp_pcie_exit(struct phy *phy)
+>   	return 0;
+>   }
+>   
+> +static int pipe_clk_enable(struct qmp_pcie *qmp)
+> +{
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(qmp->pipe_clk);
+> +	if (ret) {
+> +		dev_err(qmp->dev, "failed to enable pipe clock: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(qmp->pipediv2_clk);
+> +	if (ret) {
+> +		dev_err(qmp->dev, "failed to enable pipediv2 clock: %d\n", ret);
+> +		goto err_disable_pipe_clk;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_disable_pipe_clk:
+> +	clk_disable_unprepare(qmp->pipe_clk);
+> +
+> +	return ret;
+> +}
+> +
+> +static void pipe_clk_disable(struct qmp_pcie *qmp)
+> +{
+> +	clk_disable_unprepare(qmp->pipediv2_clk);
+> +	clk_disable_unprepare(qmp->pipe_clk);
+> +}
+> +
+>   static int qmp_pcie_power_on(struct phy *phy)
+>   {
+>   	struct qmp_pcie *qmp = phy_get_drvdata(phy);
+> @@ -1923,11 +1955,9 @@ static int qmp_pcie_power_on(struct phy *phy)
+>   	qmp_pcie_init_registers(qmp, &cfg->tables);
+>   	qmp_pcie_init_registers(qmp, mode_tables);
+>   
+> -	ret = clk_prepare_enable(qmp->pipe_clk);
+> -	if (ret) {
+> -		dev_err(qmp->dev, "pipe_clk enable failed err=%d\n", ret);
+> +	ret = pipe_clk_enable(qmp);
+> +	if (ret)
+>   		return ret;
+> -	}
+>   
+>   	/* Pull PHY out of reset state */
+>   	qphy_clrbits(pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
+> @@ -1950,7 +1980,7 @@ static int qmp_pcie_power_on(struct phy *phy)
+>   	return 0;
+>   
+>   err_disable_pipe_clk:
+> -	clk_disable_unprepare(qmp->pipe_clk);
+> +	pipe_clk_disable(qmp);
+>   
+>   	return ret;
+>   }
+> @@ -1960,7 +1990,7 @@ static int qmp_pcie_power_off(struct phy *phy)
+>   	struct qmp_pcie *qmp = phy_get_drvdata(phy);
+>   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+>   
+> -	clk_disable_unprepare(qmp->pipe_clk);
+> +	pipe_clk_disable(qmp);
+>   
+>   	/* PHY reset */
+>   	qphy_setbits(qmp->pcs, cfg->regs[QPHY_SW_RESET], SW_RESET);
 
-Thanks.
+I still think that the attached patch is somewhat simpler. Diffstat 
+supports that idea:
+
+$ diffstat /tmp/pipe.diff
+  phy-qcom-qmp-pcie.c |   26 ++++++++++++++++----------
+  1 file changed, 16 insertions(+), 10 deletions(-)
+
+Yes, I'm speaking this after having cleaned up several open-coded 
+versions of clk_bulk_foo from the drm/msm code. It typically starts with 
+the 'just another clock' story, and then suddenly they are all over the 
+code.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+With best wishes
+Dmitry
+
+--------------i082W3S8x1RX9AUAq7cYn8mr
+Content-Type: text/x-patch; charset=UTF-8; name="pipe.diff"
+Content-Disposition: attachment; filename="pipe.diff"
+Content-Transfer-Encoding: base64
+
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGh5L3F1YWxjb21tL3BoeS1xY29tLXFtcC1wY2llLmMg
+Yi9kcml2ZXJzL3BoeS9xdWFsY29tbS9waHktcWNvbS1xbXAtcGNpZS5jCmluZGV4IDljOGUw
+MDkwMzNmMS4uYTE0OGIxNDNkZDkwIDEwMDY0NAotLS0gYS9kcml2ZXJzL3BoeS9xdWFsY29t
+bS9waHktcWNvbS1xbXAtcGNpZS5jCisrKyBiL2RyaXZlcnMvcGh5L3F1YWxjb21tL3BoeS1x
+Y29tLXFtcC1wY2llLmMKQEAgLTEzNzgsOCArMTM3OCwxMCBAQCBzdHJ1Y3QgcW1wX3BjaWUg
+ewogCXZvaWQgX19pb21lbSAqdHgyOwogCXZvaWQgX19pb21lbSAqcngyOwogCi0Jc3RydWN0
+IGNsayAqcGlwZV9jbGs7CisJc3RydWN0IGNsa19idWxrX2RhdGEgKnBpcGVfY2xrczsKKwlp
+bnQgbnVtX3BpcGVfY2xrczsKIAlzdHJ1Y3QgY2xrX2J1bGtfZGF0YSAqY2xrczsKKwogCXN0
+cnVjdCByZXNldF9jb250cm9sX2J1bGtfZGF0YSAqcmVzZXRzOwogCXN0cnVjdCByZWd1bGF0
+b3JfYnVsa19kYXRhICp2cmVnczsKIApAQCAtMTkyMywxMSArMTkyNSw5IEBAIHN0YXRpYyBp
+bnQgcW1wX3BjaWVfcG93ZXJfb24oc3RydWN0IHBoeSAqcGh5KQogCXFtcF9wY2llX2luaXRf
+cmVnaXN0ZXJzKHFtcCwgJmNmZy0+dGFibGVzKTsKIAlxbXBfcGNpZV9pbml0X3JlZ2lzdGVy
+cyhxbXAsIG1vZGVfdGFibGVzKTsKIAotCXJldCA9IGNsa19wcmVwYXJlX2VuYWJsZShxbXAt
+PnBpcGVfY2xrKTsKLQlpZiAocmV0KSB7Ci0JCWRldl9lcnIocW1wLT5kZXYsICJwaXBlX2Ns
+ayBlbmFibGUgZmFpbGVkIGVycj0lZFxuIiwgcmV0KTsKKwlyZXQgPSBjbGtfYnVsa19wcmVw
+YXJlX2VuYWJsZShxbXAtPm51bV9waXBlX2Nsa3MsIHFtcC0+cGlwZV9jbGtzKTsKKwlpZiAo
+cmV0KQogCQlyZXR1cm4gcmV0OwotCX0KIAogCS8qIFB1bGwgUEhZIG91dCBvZiByZXNldCBz
+dGF0ZSAqLwogCXFwaHlfY2xyYml0cyhwY3MsIGNmZy0+cmVnc1tRUEhZX1NXX1JFU0VUXSwg
+U1dfUkVTRVQpOwpAQCAtMTk1MCw3ICsxOTUwLDcgQEAgc3RhdGljIGludCBxbXBfcGNpZV9w
+b3dlcl9vbihzdHJ1Y3QgcGh5ICpwaHkpCiAJcmV0dXJuIDA7CiAKIGVycl9kaXNhYmxlX3Bp
+cGVfY2xrOgotCWNsa19kaXNhYmxlX3VucHJlcGFyZShxbXAtPnBpcGVfY2xrKTsKKwljbGtf
+YnVsa19kaXNhYmxlX3VucHJlcGFyZShxbXAtPm51bV9waXBlX2Nsa3MsIHFtcC0+cGlwZV9j
+bGtzKTsKIAogCXJldHVybiByZXQ7CiB9CkBAIC0xOTYwLDcgKzE5NjAsNyBAQCBzdGF0aWMg
+aW50IHFtcF9wY2llX3Bvd2VyX29mZihzdHJ1Y3QgcGh5ICpwaHkpCiAJc3RydWN0IHFtcF9w
+Y2llICpxbXAgPSBwaHlfZ2V0X2RydmRhdGEocGh5KTsKIAljb25zdCBzdHJ1Y3QgcW1wX3Bo
+eV9jZmcgKmNmZyA9IHFtcC0+Y2ZnOwogCi0JY2xrX2Rpc2FibGVfdW5wcmVwYXJlKHFtcC0+
+cGlwZV9jbGspOworCWNsa19idWxrX2Rpc2FibGVfdW5wcmVwYXJlKHFtcC0+bnVtX3BpcGVf
+Y2xrcywgcW1wLT5waXBlX2Nsa3MpOwogCiAJLyogUEhZIHJlc2V0ICovCiAJcXBoeV9zZXRi
+aXRzKHFtcC0+cGNzLCBjZmctPnJlZ3NbUVBIWV9TV19SRVNFVF0sIFNXX1JFU0VUKTsKQEAg
+LTIxNTQsNiArMjE1NCw3IEBAIHN0YXRpYyBpbnQgcW1wX3BjaWVfcGFyc2VfZHRfbGVnYWN5
+KHN0cnVjdCBxbXBfcGNpZSAqcW1wLCBzdHJ1Y3QgZGV2aWNlX25vZGUgKm5wCiAJc3RydWN0
+IHBsYXRmb3JtX2RldmljZSAqcGRldiA9IHRvX3BsYXRmb3JtX2RldmljZShxbXAtPmRldik7
+CiAJY29uc3Qgc3RydWN0IHFtcF9waHlfY2ZnICpjZmcgPSBxbXAtPmNmZzsKIAlzdHJ1Y3Qg
+ZGV2aWNlICpkZXYgPSBxbXAtPmRldjsKKwlzdHJ1Y3QgY2xrICpjbGs7CiAKIAlxbXAtPnNl
+cmRlcyA9IGRldm1fcGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZShwZGV2LCAwKTsKIAlpZiAo
+SVNfRVJSKHFtcC0+c2VyZGVzKSkKQEAgLTIyMDYsMTIgKzIyMDcsMTcgQEAgc3RhdGljIGlu
+dCBxbXBfcGNpZV9wYXJzZV9kdF9sZWdhY3koc3RydWN0IHFtcF9wY2llICpxbXAsIHN0cnVj
+dCBkZXZpY2Vfbm9kZSAqbnAKIAkJfQogCX0KIAotCXFtcC0+cGlwZV9jbGsgPSBkZXZtX2dl
+dF9jbGtfZnJvbV9jaGlsZChkZXYsIG5wLCBOVUxMKTsKLQlpZiAoSVNfRVJSKHFtcC0+cGlw
+ZV9jbGspKSB7Ci0JCXJldHVybiBkZXZfZXJyX3Byb2JlKGRldiwgUFRSX0VSUihxbXAtPnBp
+cGVfY2xrKSwKKwljbGsgPSBkZXZtX2dldF9jbGtfZnJvbV9jaGlsZChkZXYsIG5wLCBOVUxM
+KTsKKwlpZiAoSVNfRVJSKGNsaykpIHsKKwkJcmV0dXJuIGRldl9lcnJfcHJvYmUoZGV2LCBQ
+VFJfRVJSKGNsayksCiAJCQkJICAgICAiZmFpbGVkIHRvIGdldCBwaXBlIGNsb2NrXG4iKTsK
+IAl9CiAKKwlxbXAtPm51bV9waXBlX2Nsa3MgPSAxOworCXFtcC0+cGlwZV9jbGtzID0gZGV2
+bV9rY2FsbG9jKGRldiwgcW1wLT5udW1fcGlwZV9jbGtzLAorCQkJCSAgICAgIHNpemVvZigq
+cW1wLT5waXBlX2Nsa3MpLCBHRlBfS0VSTkVMKTsKKwlxbXAtPnBpcGVfY2xrc1swXS5jbGsg
+PSBjbGs7CisKIAlyZXR1cm4gMDsKIH0KIAo=
+
+--------------i082W3S8x1RX9AUAq7cYn8mr--
