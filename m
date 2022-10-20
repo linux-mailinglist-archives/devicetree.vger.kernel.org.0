@@ -2,131 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84047606BE6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 01:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41751606BF9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 01:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230203AbiJTXCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 19:02:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40390 "EHLO
+        id S229987AbiJTXN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 19:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbiJTXCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 19:02:15 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CABD22EC8A;
-        Thu, 20 Oct 2022 16:01:52 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id y72so1346668oia.3;
-        Thu, 20 Oct 2022 16:01:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9vKR6Ubf6NLut4evrO2911luI/V0iLPIfihaRv6pSUQ=;
-        b=jc9+o5pVBuKvVqiqzSgmYKFFr3A4zp8et/1CVYxJJm10EOe3bcAUR15UFAqJ158VMG
-         tfqMEkZCvjbx54Eb0iTuOt5jKHH/jy2MCPsyf7MA3MohIXZ9BtUPTaEmFbyCtaf834UO
-         YkfRkBstU1AvPDSJ5yd6twohGYQ5ikDk8Glm0FqAe9NNepWDuJSsThoIuJ8q42cX86Li
-         SfYDIsG2+Z/5IMHCTp8TRzZG2wfX+YotvmbaAY9TAir+QlSeM+3dw3xKIoygZ420MGQ/
-         X7bI+4mDu7tkZt6a9BEE25kjthL0fpZ3lbsze+yaGyzN7b59ZDbAaUUT1eFXiw9qORcI
-         XBaw==
-X-Gm-Message-State: ACrzQf0OuEa9H/4Ygwna3X190cFewlST1DnSm0EEWqBvvQ1/SMjfpFGS
-        lvTgYnByLXqbkNmCA5iL8A==
-X-Google-Smtp-Source: AMsMyM6WL6nqyQzSAS6vpGVeeJq/qC6laTr8Ta6Umw0ZOh8KuscLrjdmPHtIMgkBeB2488ZYBELfLw==
-X-Received: by 2002:a05:6808:1986:b0:355:3525:8fb with SMTP id bj6-20020a056808198600b00355352508fbmr8630049oib.3.1666306911273;
-        Thu, 20 Oct 2022 16:01:51 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x3-20020a4ac583000000b00476989d42ebsm8050817oop.8.2022.10.20.16.01.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 16:01:50 -0700 (PDT)
-Received: (nullmailer pid 1969510 invoked by uid 1000);
-        Thu, 20 Oct 2022 23:01:51 -0000
-Date:   Thu, 20 Oct 2022 18:01:51 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, jh80.chung@samsung.com,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCHv5 1/6] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
-Message-ID: <20221020230151.GA1957503-robh@kernel.org>
-References: <20221019170657.68014-1-dinguyen@kernel.org>
- <20221019170657.68014-2-dinguyen@kernel.org>
- <166622207591.14373.6525811988033372211.robh@kernel.org>
+        with ESMTP id S229915AbiJTXN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 19:13:58 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976C922E0EA
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 16:13:56 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id DC8A12C048F;
+        Fri, 21 Oct 2022 12:13:50 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1666307630;
+        bh=fgJ7uD7kfNF0O9FMoUEaassWIRXGLCe8NVSu130vzYo=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=1tskjm5ljMlMykF+QD5hQ2Pbg3TRTrKXDKW/VeVerWy3UJWaH0VvaRYzPfGS5osbG
+         /IK2Q8rBizvgysWc/0Rq+gsHhjMUw92AW04EbHRjgqHyQsXZYOS7bka1wq2X/JVbIB
+         nOsHfbXC/oh6RXpgl4My+JCWnGRcj/3PgiL9kf+T07gJ+UQedyD8LnYWiUSh0v/Qn0
+         UhpTIct5FMVUPO1+LTUNH1rQN+vxeB9XZ5QvSbypOB1l9gdluVVsONbXakMPl95kMg
+         d94AVb7fR+8CN+4CvB71cBA9oQkhV6H1fgZF37fyxjrmN9osiCwdbqBpqNb0Tpzt0u
+         AAp8kCedzPa0Q==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B6351d62e0001>; Fri, 21 Oct 2022 12:13:50 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 21 Oct 2022 12:13:50 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.042; Fri, 21 Oct 2022 12:13:50 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+CC:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Elad Nachman <enachman@marvell.com>,
+        "Aviram Dali" <aviramd@marvell.com>
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add AC5 specific binding
+Thread-Topic: [PATCH 2/3] dt-bindings: mtd: Add AC5 specific binding
+Thread-Index: AQHY45PZG1Eksg8lkEuM7xSMI1VNl64UjZcAgAKEjQA=
+Date:   Thu, 20 Oct 2022 23:13:50 +0000
+Message-ID: <e13c3b91-c092-7756-3969-f1822e04cfdf@alliedtelesis.co.nz>
+References: <20221019082046.30160-1-vadym.kochan@plvision.eu>
+ <20221019082046.30160-3-vadym.kochan@plvision.eu>
+ <20221019104654.7ee35744@xps-13>
+In-Reply-To: <20221019104654.7ee35744@xps-13>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DE745B3BA81DA041852ACC5DF8D4D834@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <166622207591.14373.6525811988033372211.robh@kernel.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=YrxxuLQX c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=Qawa6l4ZSaYA:10 a=g8kJ_gb0AAAA:8 a=M5GUcnROAAAA:8 a=2f4N3uraW7I7RusRnqYA:9 a=QEXdDO2ut3YA:10 a=ecSNLfPMzbq-p5zXJZOg:22 a=OBjm3rFKGHvpk9ecZwUJ:22
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 19, 2022 at 06:31:53PM -0500, Rob Herring wrote:
-> On Wed, 19 Oct 2022 12:06:52 -0500, Dinh Nguyen wrote:
-> > Document the optional "altr,sysmgr-syscon" binding that is used to
-> > access the System Manager register that controls the SDMMC clock
-> > phase.
-> > 
-> > Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> > ---
-> > v5: document reg shift
-> > v4: add else statement
-> > v3: document that the "altr,sysmgr-syscon" binding is only applicable to
-> >     "altr,socfpga-dw-mshc"
-> > v2: document "altr,sysmgr-syscon" in the MMC section
-> > ---
-> >  .../bindings/mmc/synopsys-dw-mshc.yaml        | 32 +++++++++++++++++--
-> >  1 file changed, 29 insertions(+), 3 deletions(-)
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/
-> 
-> 
-> dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
-
-Not necessary for this series, but it would be nice if existing warnings 
-were fixed before adding new things. Especially since most of the  
-warnings on this common bindings are all socfpga. It may become 
-required at some point, not just nice.
-
-The node name is the cause of most/all the unevaluated property 
-warnings.
-
-> 	arch/arm/boot/dts/socfpga_arria5_socdk.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dtb
-> 	arch/arm/boot/dts/socfpga_vt.dtb
-> 
-> dwmmc0@ff704000: 'altr,sysmgr-syscon' is a required property
-> 	arch/arm/boot/dts/socfpga_arria5_socdk.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_socdk.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_sockit.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_socrates.dtb
-> 	arch/arm/boot/dts/socfpga_cyclone5_sodia.dtb
-
-I thought it was optional? New required properties are a possible ABI 
-break.
-
-Rob
+SGkgVmFkeW0sDQoNCk9uIDE5LzEwLzIyIDIxOjQ2LCBNaXF1ZWwgUmF5bmFsIHdyb3RlOg0KPiBI
+aSBWYWR5bSwNCj4NCj4gdmFkeW0ua29jaGFuQHBsdmlzaW9uLmV1IHdyb3RlIG9uIFdlZCwgMTkg
+T2N0IDIwMjIgMTE6MjA6MzkgKzAzMDA6DQo+DQo+PiBGcm9tOiBBdmlyYW0gRGFsaSA8YXZpcmFt
+ZEBtYXJ2ZWxsLmNvbT4NCj4+DQo+PiBBZGQgYmluZGluZyBmb3IgQUM1IFNvQyB3aGljaCBoYXZl
+IGl0cyBzcGVjaWFsIHdheSBvZiBoYW5kaW5nDQo+PiBOQU5EIGxheW91dC4NCj4+DQo+PiBTaWdu
+ZWQtb2ZmLWJ5OiBBdmlyYW0gRGFsaSA8YXZpcmFtZEBtYXJ2ZWxsLmNvbT4NCj4+IFNpZ25lZC1v
+ZmYtYnk6IFZhZHltIEtvY2hhbiA8dmFkeW0ua29jaGFuQHBsdmlzaW9uLmV1Pg0KPj4gLS0tDQo+
+PiAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvbWFydmVsbC1uYW5kLnR4
+dCB8IDEgKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4+DQo+PiBkaWZm
+IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tYXJ2ZWxsLW5h
+bmQudHh0IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tYXJ2ZWxsLW5h
+bmQudHh0DQo+PiBpbmRleCBhMmQ5YTBmMmI2ODMuLjI5MzU1MWVjNzM1MCAxMDA2NDQNCj4+IC0t
+LSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvbWFydmVsbC1uYW5kLnR4
+dA0KPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL210ZC9tYXJ2ZWxs
+LW5hbmQudHh0DQo+PiBAQCAtMiw2ICsyLDcgQEAgTWFydmVsbCBOQU5EIEZsYXNoIENvbnRyb2xs
+ZXIgKE5GQykNCj4+ICAgDQo+PiAgIFJlcXVpcmVkIHByb3BlcnRpZXM6DQo+PiAgIC0gY29tcGF0
+aWJsZTogY2FuIGJlIG9uZSBvZiB0aGUgZm9sbG93aW5nOg0KPj4gKyAgICAqICJtYXJ2ZWxsLGFj
+NS1uYW5kLWNvbnRyb2xsZXIiDQo+PiAgICAgICAqICJtYXJ2ZWxsLGFybWFkYS04ay1uYW5kLWNv
+bnRyb2xsZXIiDQo+PiAgICAgICAqICJtYXJ2ZWxsLGFybWFkYTM3MC1uYW5kLWNvbnRyb2xsZXIi
+DQo+PiAgICAgICAqICJtYXJ2ZWxsLHB4YTN4eC1uYW5kLWNvbnRyb2xsZXIiDQo+IENvdWxkIHlv
+dSBwbGVhc2UgZG8gdGhlIHlhbWwgY29udmVyc2lvbiBmaXJzdD8NCklmIGl0IGhlbHBzIEkndmUg
+ZG9uZSBhIGZldyBvZiB0aGVzZSBjb252ZXJzaW9ucyBpbiB0aGUgcGFzdC4gSSdkIGJlIA0KaGFw
+cHkgdG8gaGVscCB5b3Ugb3V0IHdpdGggZG9pbmcgdGhlIGNvbnZlcnNpb24gaWYgaXQgaGVscHMg
+eW91IG1vdmUgdGhlIA0KcmVzdCBvZiB0aGUgc2VyaWVzIGZvcndhcmQuDQo+DQo+IFRoYW5rcywN
+Cj4gTWlxdcOobA==
