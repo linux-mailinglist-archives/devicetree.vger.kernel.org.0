@@ -2,108 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E08E86065F4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB75C606609
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 18:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbiJTQjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 12:39:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
+        id S230089AbiJTQmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 12:42:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbiJTQjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:39:20 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4AC91BB970
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1666283958;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=omwjaJqVpRMhtOWiFbngTkAQCb38UHG2LtZ5YNjxAtA=;
-        b=it2FiodO3cBbOs4KN7TDM0lzIURYuXMffN0znUiVV6r/6ORjxZOxmdC7Jm3J6cxd9G0Cl0
-        rp5+9nSK5MvGUHbiQlNaSMduPBi/pIbHjRKhlzBoAKXedkhUes1DkRXO5F5fcOEn1hXe3/
-        6PhlaASx8TizmYTSaVl5zARB7sMqQeY=
-Received: from mail-il1-f199.google.com (mail-il1-f199.google.com
- [209.85.166.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-29-Obeb9MIcNkCgcrqiyqLM_Q-1; Thu, 20 Oct 2022 12:39:16 -0400
-X-MC-Unique: Obeb9MIcNkCgcrqiyqLM_Q-1
-Received: by mail-il1-f199.google.com with SMTP id i8-20020a056e0212c800b002f9a4c75658so342747ilm.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:39:16 -0700 (PDT)
+        with ESMTP id S229919AbiJTQmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 12:42:07 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570A118D809
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:42:05 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id f22so14064087qto.3
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 09:42:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cGAAR2BMfaAANWL2R8YcIVSEZh0G1rs0+++u0ybOJWQ=;
+        b=n9XO8dfIA6PtGSlMXzxeoH5vZLkJN/qPgV+9tdRknUZG9vkEbK+vAr02Hje6yei4YG
+         WqFrxGj8dglk1yNeyhUhkGK2nnlp7t1KTi6BqKbtRDDIsWayM0Pris8nlEorXXLQXfkq
+         GKQfpFwTu7EKpyQ02ojTPzNq9mWTw1Gmd0zNpqmIYJevGw1Owa+VXYqqEyVOiLvgPYb1
+         8Ap1gf/q6OFbelFhFyQUnS46Vj5IR0j+7uEK3XCdaI48VlVQfLEUyDjSP0X+BXPPoxaM
+         SPFL/YxjgVxxaEUz6ZfAfoX0ZymwnTJiAQL7Vd5vZMFvNn/0w1/isSUIGKljQtqmhvuq
+         ATcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=omwjaJqVpRMhtOWiFbngTkAQCb38UHG2LtZ5YNjxAtA=;
-        b=Eo/r3FOKguQUQ9sjYF+hl9RRSGbqYWCmNIguKo4iQNChZVsy3gFZ2Zh0nVaBgHyxYV
-         big2Bx2SnCu7ja8gxPi1y7tUlU7Oh1zI0T50ivSn/F6x8h+McQqAmS5KsjyWTnLW/zgf
-         y9FMpWVitStGRZGxnELIjasZpTeVxkRSJC5kmOOKBCE3GEByeCwBt8aZlN7AysBhgWcL
-         rFLuSen3Jev42YvFBKz4Y9pWMIAT1kXpzgjx5sBRqRaF7bpHk7k5+91mqji63ynHOk+/
-         BvS7tEmMLpWa6T7hCtwqrPD0M7wcMkJI7CLUl6+IRTouSHFxneIZv3ZsDdLFbLwV8pFP
-         cIog==
-X-Gm-Message-State: ACrzQf1XMsoxMWi0uZCuvecrVTS3tgOGk0pwsMxqfb/6jl6r2TMeLOjW
-        nPQ8xPqDbhWlL13xGqjOrYxppAW1fdyS3toMxbEIfJ2AX0iivtOT8cfPET/rqD3vATu7N9ok04O
-        7GP2r41XiQXytGdre2Ld7Hg==
-X-Received: by 2002:a92:504:0:b0:2fb:43d:2271 with SMTP id q4-20020a920504000000b002fb043d2271mr11064391ile.256.1666283955750;
-        Thu, 20 Oct 2022 09:39:15 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6EE4aSqztMreyOxctnSgCWKuz27gi8pWFZs+RXHi18gS6e9oWB11AExqXJVPnhQwLF3k/ykg==
-X-Received: by 2002:a92:504:0:b0:2fb:43d:2271 with SMTP id q4-20020a920504000000b002fb043d2271mr11064372ile.256.1666283955516;
-        Thu, 20 Oct 2022 09:39:15 -0700 (PDT)
-Received: from x1 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id o10-20020a056e02068a00b002de7ceafb4esm3247837ils.20.2022.10.20.09.39.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 09:39:15 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 12:39:13 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
-Message-ID: <Y1F5sY4ETqNiRVdP@x1>
-References: <20221020073036.16656-1-quic_ppareek@quicinc.com>
- <20221020073036.16656-3-quic_ppareek@quicinc.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cGAAR2BMfaAANWL2R8YcIVSEZh0G1rs0+++u0ybOJWQ=;
+        b=nDdHrgMlJwJRlqUznpduX+tMGtWIqCusBO6y6K7svcr0tGbeArO50uv13e+GveWgTx
+         dhAnvsn2DemHPfjaNnyXQ1KWzBR9lBrBMIkP+QBGrWaAcfpoIsY2w4azON0Tsw4G13So
+         4/Ns996MUdzx/dJVHKPJUKJkCM7O103LuDA8KZHV68rD9fscvzbnCnkToa7kruQ3iyn6
+         6zjOC5BJ20LVofXmvYXr89Eb+ZQAH9hvY+FJmYt0/6cwIy4ZYCMwk8vq+68OP7Zxr92z
+         p8CEu3Uu8JoghYKlxVGDsgb/WJ45d8AE9GjFaN6Hil/iLfPBtc93ccChHn+nDxgXSCa8
+         z4bw==
+X-Gm-Message-State: ACrzQf0nExV/QleO1dgM1qFclaMmZmb69lP9WiXkfR2wCe5yywqGW2N/
+        LJvPMqRYGqHyDIXL/TSv5Yf+dg==
+X-Google-Smtp-Source: AMsMyM5IomthQmzdC4Dq9NmLfyL4YqW1be9IT8LtgUzuYA0I8nVmUicKpJz0j8BzM1Xg/OxBPyArow==
+X-Received: by 2002:ac8:5d88:0:b0:39d:804:90a5 with SMTP id d8-20020ac85d88000000b0039d080490a5mr5811848qtx.20.1666284124103;
+        Thu, 20 Oct 2022 09:42:04 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id w28-20020a05622a191c00b0039bfe8acff6sm6249223qtc.58.2022.10.20.09.42.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 09:42:03 -0700 (PDT)
+Message-ID: <3cf2801c-9be5-c012-606e-d8fb7c4a218f@linaro.org>
+Date:   Thu, 20 Oct 2022 12:42:01 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221020073036.16656-3-quic_ppareek@quicinc.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 3/5] dt-bindings: regulator: Add binding schema for
+ mt6357 regulators
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+References: <20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com>
+ <20221005-mt6357-support-v3-3-7e0bd7c315b2@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221005-mt6357-support-v3-3-7e0bd7c315b2@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 01:00:36PM +0530, Parikshit Pareek wrote:
-> Introduce the Qualcomm SA8540P ride automotive platform, also known as
-> Qdrive-3 development board.
+On 20/10/2022 12:20, Alexandre Mergnat wrote:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
-> regulators, debug UART, PMICs, remoteprocs and USB.
+> Add YAML schema for the MediaTek MT6357 regulators.
 > 
-> The SA8540P ride contains four PM8450 PMICs.
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  .../regulator/mediatek,mt6357-regulator.yaml       | 292 +++++++++++++++++++++
+>  1 file changed, 292 insertions(+)
 > 
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
+> new file mode 100644
+> index 000000000000..8dc1245304be
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
+> @@ -0,0 +1,292 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6357-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT6357 Regulators
+> +
+> +maintainers:
+> +  - Fabien Parent <fabien.parent@linaro.org>
+> +  - Alexandre Mergnat <amergnat@baylibre.com>
+> +
 
-With Konrad's requested changes:
+The binding looks ok, but to be sure: you are aware that this schema is
+not effective, does nothing without being referenced somewhere? And that
+we do not see this reference neither in the patchset nor in cover letter?
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
-Tested-by: Brian Masney <bmasney@redhat.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-After more research, I've verified that the board reboot issue that
-I brought up in v5 is unrelated to the DTS, so no need to block merging
-this. I'll post some more findings soon about the issue.
-
-Brian
+Best regards,
+Krzysztof
 
