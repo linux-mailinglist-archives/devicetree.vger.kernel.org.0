@@ -2,398 +2,429 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED5160632D
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E9F606330
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 16:35:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbiJTOeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 10:34:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
+        id S229727AbiJTOe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 10:34:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbiJTOeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:34:23 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1C2102D;
-        Thu, 20 Oct 2022 07:34:21 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id sc25so47832785ejc.12;
-        Thu, 20 Oct 2022 07:34:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8dZpl7PAKnUHG/bo7IiH7C/vg2bw1JjzUYKFeB9b92M=;
-        b=Aep/KhxbdLJAmRUS4CIyUdTz/GhaPghFBF/BevU6OQZJyev4OtgYZiubXXEb/LJV4m
-         eEdtJK3B9s5VnrBBlPHHrkNikc/ZCPx4oe1m6s1rTvXOFIKR/ZyQjzOn/P16BpdWqJak
-         idC4v4dKtzPj9WH42McDhPIOOr8CESHjqis3h35eWskf+Fp02KbtZ8uTZF7gmxmsAP9h
-         kdw/gh+SUM0DktdP9AvaIwUCjcjo1CfKMAMqYs4AOgANVSy4IBvc0bN3dcJkTDDOoqRF
-         U84n1iKj0ykZyAH1FmTXl3UOxB0rLWFi5uzeBqO/75ZNk59mhtVshn0qmjUBd+Ozsntg
-         Uglg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8dZpl7PAKnUHG/bo7IiH7C/vg2bw1JjzUYKFeB9b92M=;
-        b=jr6V+nZnQc0JoNV5fLosAxVjh4zGvEAcE3Vh2VIY0LltB/rsRkK+4QiwAXvP8C22sC
-         PopU2yn28KrDz1hJfg7vaqSqAxCNQHg8fKVVh3vpzoVFYVtLpRmHgo+BEJfCi4tZZT7v
-         KzhzE/DJTvcx/akgjuL2+gDq1Z8wRPofnXX7EMdk3zot0VqxV+9tfvFVnIBC7gzX4oyi
-         91q0eYtpO5/y82IxaoEj8QkuXKZaa1ZPtmyDGkVo3Yrrw1eRQGZVpM/YXgigIzl3kRgn
-         TDfs6v5O4dCB6bWgt8I+4VvT0dvmDOQjYX9XdNv6ijBxH46U8q1NymL3O+MZcN2k1QCn
-         eqhQ==
-X-Gm-Message-State: ACrzQf3lzl5hTf6dK6q1+Lc5KhBwP+hiZEW5zODXpCNP40dfa/Owj/K2
-        ttr282STrTmOXLhm8xi+yKdfy4dsosI=
-X-Google-Smtp-Source: AMsMyM6JGkn3KoS/CA7gZW3htSpXsnS9e2iqYS3fUSSbYdKdIKBdbxQ/6lcFMrCaEpkoRsONWT7BMw==
-X-Received: by 2002:a17:907:a48:b0:77c:51b0:5aeb with SMTP id be8-20020a1709070a4800b0077c51b05aebmr11517724ejc.61.1666276459223;
-        Thu, 20 Oct 2022 07:34:19 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 21-20020a170906329500b00730b3bdd8d7sm10442755ejw.179.2022.10.20.07.34.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 07:34:18 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 16:34:16 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 2/5] iommu: Implement of_iommu_get_resv_regions()
-Message-ID: <Y1FcaNgVXYsfm77f@orome>
-References: <20220923123557.866972-1-thierry.reding@gmail.com>
- <20220923123557.866972-3-thierry.reding@gmail.com>
- <Y1A78xWWJTCfsdGL@orome>
+        with ESMTP id S230052AbiJTOe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 10:34:56 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F2CD5A2F9;
+        Thu, 20 Oct 2022 07:34:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666276492; x=1697812492;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zFTFNiV92NX50PnQOqzwKZWlpo7k25DwAW2u5qQ5P9Y=;
+  b=OY5D08iaPL1qmz7dsIf/21IYAYL9vBeH1gaSSGFcfFcGgzLad0eh3a4m
+   LP+y2RIbem9WCWbeU6hBr8KE6vXNGQJfrCQjO49w3K2mzK9d2qvMYZYtV
+   VPp+ymfZ0wFjXh5LUQnZdQ9rIG5v0j2QEQtWpOsB/4ICCPxUX0VHa9TpL
+   fJmRF4Q2Ce+6fC+0BPHw1xPYm7LbcBuRFgV8pz6RPOi+Au+Rl21eJhxKC
+   BvCsCaEBYAKpcUmNfxwsXzf+vMBlRzw1TBarNWI9HWFut8Z8s8tGBMntw
+   q2mB+LBaW6deINpo/RGEz5V+7U5YkLdxZjFZhwqpOZgEeap1FuSTa98pA
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="370935723"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; 
+   d="scan'208";a="370935723"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2022 07:34:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="580938420"
+X-IronPort-AV: E=Sophos;i="5.95,198,1661842800"; 
+   d="scan'208";a="580938420"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003.jf.intel.com with ESMTP; 20 Oct 2022 07:34:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1olWd4-00AadZ-2V;
+        Thu, 20 Oct 2022 17:34:38 +0300
+Date:   Thu, 20 Oct 2022 17:34:38 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Message-ID: <Y1FcftQKimmvcOej@smile.fi.intel.com>
+References: <cover.1666263249.git.mazziesaccount@gmail.com>
+ <5000bd61650554658d13619c8244f02cedbc182a.1666263249.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="C8KFzC3JLrgNSjam"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y1A78xWWJTCfsdGL@orome>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <5000bd61650554658d13619c8244f02cedbc182a.1666263249.git.mazziesaccount@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Oct 20, 2022 at 02:37:15PM +0300, Matti Vaittinen wrote:
+> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+> ranges (2, 4, 8 and 16g) and probably some other cool features.
+> 
+> Add support for the basic accelerometer features such as getting the
+> acceleration data via IIO. (raw reads, triggered buffer [data-ready] or
+> using the WMI IRQ).
+> 
+> Important things to be added include the double-tap, motion
+> detection and wake-up as well as the runtime power management.
 
---C8KFzC3JLrgNSjam
-Content-Type: multipart/mixed; boundary="dCBbHJqO6VA9aoz5"
-Content-Disposition: inline
+...
 
+> +	if (!i2c->irq) {
+> +		dev_err(dev, "No IRQ configured\n");
+> +		return -EINVAL;
 
---dCBbHJqO6VA9aoz5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+At least
 
-On Wed, Oct 19, 2022 at 08:03:31PM +0200, Thierry Reding wrote:
-> On Fri, Sep 23, 2022 at 02:35:54PM +0200, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > This is an implementation that IOMMU drivers can use to obtain reserved
-> > memory regions from a device tree node. It uses the reserved-memory DT
-> > bindings to find the regions associated with a given device. If these
-> > regions are marked accordingly, identity mappings will be created for
-> > them in the IOMMU domain that the devices will be attached to.
-> >=20
-> > Cc: Frank Rowand <frowand.list@gmail.com>
-> > Cc: devicetree@vger.kernel.org
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> > Changes in v9:
-> > - address review comments by Robin Murphy:
-> >   - warn about non-direct mappings since they are not supported yet
-> >   - cleanup code to require less indentation
-> >   - narrow scope of variables
-> >=20
-> > Changes in v8:
-> > - cleanup set-but-unused variables
-> >=20
-> > Changes in v6:
-> > - remove reference to now unused dt-bindings/reserved-memory.h include
-> >=20
-> > Changes in v5:
-> > - update for new "iommu-addresses" device tree bindings
-> >=20
-> > Changes in v4:
-> > - fix build failure on !CONFIG_OF_ADDRESS
-> >=20
-> > Changes in v3:
-> > - change "active" property to identity mapping flag that is part of the
-> >   memory region specifier (as defined by #memory-region-cells) to allow
-> >   per-reference flags to be used
-> >=20
-> > Changes in v2:
-> > - use "active" property to determine whether direct mappings are needed
-> >=20
-> >  drivers/iommu/of_iommu.c | 104 +++++++++++++++++++++++++++++++++++++++
-> >  include/linux/of_iommu.h |   8 +++
-> >  2 files changed, 112 insertions(+)
-> >=20
-> > diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> > index 5696314ae69e..0bf2b08bca0a 100644
-> > --- a/drivers/iommu/of_iommu.c
-> > +++ b/drivers/iommu/of_iommu.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/msi.h>
-> >  #include <linux/of.h>
-> > +#include <linux/of_address.h>
-> >  #include <linux/of_iommu.h>
-> >  #include <linux/of_pci.h>
-> >  #include <linux/pci.h>
-> > @@ -172,3 +173,106 @@ const struct iommu_ops *of_iommu_configure(struct=
- device *dev,
-> > =20
-> >  	return ops;
-> >  }
-> > +
-> > +static inline bool check_direct_mapping(struct device *dev, struct res=
-ource *phys,
-> > +					phys_addr_t start, phys_addr_t end)
-> > +{
-> > +	if (start !=3D phys->start || end !=3D phys->end) {
-> > +		dev_warn(dev, "treating non-direct mapping [%pr] -> [%pap-%pap] as r=
-eservation\n",
-> > +			 &phys, &start, &end);
-> > +		return false;
-> > +	}
-> > +
-> > +	return true;
-> > +}
-> > +
-> > +/**
-> > + * of_iommu_get_resv_regions - reserved region driver helper for devic=
-e tree
-> > + * @dev: device for which to get reserved regions
-> > + * @list: reserved region list
-> > + *
-> > + * IOMMU drivers can use this to implement their .get_resv_regions() c=
-allback
-> > + * for memory regions attached to a device tree node. See the reserved=
--memory
-> > + * device tree bindings on how to use these:
-> > + *
-> > + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory=
-=2Etxt
-> > + */
-> > +void of_iommu_get_resv_regions(struct device *dev, struct list_head *l=
-ist)
-> > +{
-> > +#if IS_ENABLED(CONFIG_OF_ADDRESS)
-> > +	struct of_phandle_iterator it;
-> > +	int err;
-> > +
-> > +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0)=
- {
-> > +		const __be32 *maps, *end;
-> > +		struct resource res;
-> > +		int size;
-> > +
-> > +		memset(&res, 0, sizeof(res));
-> > +
-> > +		/*
-> > +		 * The "reg" property is optional and can be omitted by reserved-mem=
-ory regions
-> > +		 * that represent reservations in the IOVA space, which are regions =
-that should
-> > +		 * not be mapped.
-> > +		 */
-> > +		if (of_find_property(it.node, "reg", NULL)) {
-> > +			err =3D of_address_to_resource(it.node, 0, &res);
-> > +			if (err < 0) {
-> > +				dev_err(dev, "failed to parse memory region %pOF: %d\n",
-> > +					it.node, err);
-> > +				continue;
-> > +			}
-> > +		}
-> > +
-> > +		maps =3D of_get_property(it.node, "iommu-addresses", &size);
-> > +		if (!maps)
-> > +			continue;
-> > +
-> > +		end =3D maps + size / sizeof(__be32);
-> > +
-> > +		while (maps < end) {
-> > +			struct device_node *np;
-> > +			u32 phandle;
-> > +			int na, ns;
-> > +
-> > +			phandle =3D be32_to_cpup(maps++);
-> > +			np =3D of_find_node_by_phandle(phandle);
-> > +			na =3D of_n_addr_cells(np);
-> > +			ns =3D of_n_size_cells(np);
-> > +
-> > +			if (np =3D=3D dev->of_node) {
-> > +				int prot =3D IOMMU_READ | IOMMU_WRITE;
-> > +				struct iommu_resv_region *region;
-> > +				enum iommu_resv_type type;
-> > +				phys_addr_t start;
-> > +				size_t length;
-> > +
-> > +				start =3D of_translate_dma_address(np, maps);
->=20
-> I just came across an issue when extending the testing from simple-
-> framebuffer to the full display engine, with the main difference being
-> that the fill display engine is hooked up both to the IOMMU and to the
-> memory controller via the interconnects property ("dma-mem").
->=20
-> The latter seems to throw off the of_translate_dma_address() because we
-> have a top-level bus@0 node that sets #address-cells =3D <1> and #size-
-> cells =3D <1>, which is sufficient to represent the "reg" entries for the
-> devices. However, for the reserved-memory node needs #address-cells =3D
-> <2> and #size-cells =3D <2> to make sure we can describe memory regions
-> above the 4 GiB boundary (and potentially larger than 4 GiB, too).
->=20
-> What happens now is that of_translate_dma_address() will find the DMA
-> parent for the display engine, which is the memory controller, which
-> also has #address-cells =3D <2> and #size-cells =3D <2> for the same reas=
-on
-> as the reserved-memory node. In other words, what this tries to model is
-> that for DMA accesses, we span more than the 4 GiB range that is
-> sufficient to address registers for IP blocks.
->=20
-> However, of_translate_dma_address() then ends up getting #address-cells
-> and #size-cells from the *parent* of the DMA parent. And then everything
-> falls apart during translation.
->=20
-> Any idea if I'm doing something wrong? Or is the code wrong and it's not
-> actually using the right cell counts? Should it be using the cell counts
-> from the DMA parent rather than its parent bus?
+	return dev_err_probe(...);
 
-I came up with the attached patch. This works for my case, but will
-abort the DMA parent traversal early on some devices. I'm not sure how
-much this would matter in practice.
+for know error codes (or when we know that there won't be EPROBE_DEFER), takes
+less LoCs in the source file.
 
-A safer way would be to create a new variant of __of_get_dma_parent()
-that doesn't have the of_get_parent() fallback. That's assuming that we
-agree on the concept of having potentially different cell counts, and
-effectively DMA busses that are separate from the traditional control
-busses in DT.
+> +	}
 
-Do we also need separate DMA cell counts so that one node can be a DMA
-bus and a control bus at the same time? Or is this overcomplicating
-things and a simpler approach would be to propagate the cell counts all
-the way to the top level? I think this all might work with the existing
-code if I make bus@0's cell count 2 & 2 for Tegra SoC DTSI files. It's a
-lot of churn and seems more like a workaround rather than a correct
-model of the busses.
+...
 
-Thierry
+> +	regmap = devm_regmap_init_i2c(i2c, &kx022a_regmap);
+> +	if (IS_ERR(regmap)) {
+> +		dev_err(dev, "Failed to initialize Regmap\n");
+> +		return PTR_ERR(regmap);
 
---dCBbHJqO6VA9aoz5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline;
-	filename="0001-of-Stop-DMA-translation-at-last-DMA-parent.patch"
-Content-Transfer-Encoding: quoted-printable
+Ditto here and anywhere else for the similar cases.
 
-=46rom 7f63e7c86fa43f6c7d9254323606daeeb442cf48 Mon Sep 17 00:00:00 2001
-=46rom: Thierry Reding <treding@nvidia.com>
-Date: Thu, 20 Oct 2022 15:21:10 +0200
-Subject: [PATCH] of: Stop DMA translation at last DMA parent
+> +	}
 
-DMA parent devices can define separate DMA busses via the "dma-ranges"
-and "#address-cells" and "#size-cells" properties. If the DMA bus has
-different cell counts than its parent, this can cause the translation
-of DMA address to fails (e.g. truncation from 2 to 1 address cells).
+...
 
-Avoid this by stopping to search for DMA parents when a parent without
-a "dma-ranges" property is encountered. Also, since it is the DMA parent
-that defines the DMA bus, use the bus' cell counts instead of its parent
-cell counts.
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		*vals = (const int *)kx022a_accel_samp_freq_table;
+> +		*length = ARRAY_SIZE(kx022a_accel_samp_freq_table) * 2;
+> +		*type = IIO_VAL_INT_PLUS_MICRO;
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*vals = (const int *)kx022a_scale_table;
+> +		*length = ARRAY_SIZE(kx022a_scale_table) * 2;
+> +		*type = IIO_VAL_INT_PLUS_MICRO;
+> +		return IIO_AVAIL_LIST;
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/of/address.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+These  ' * 2' can be replaced with respective ARRAY_SIZE() of nested element
+for robustness, but I don't think it worth it. What we need is to provide
+IIO specific type for these tables and use it.
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 14f137a21b0c..e2f45bdbc41a 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -475,6 +475,7 @@ static u64 __of_translate_address(struct device_node *d=
-ev,
- 				  const __be32 *in_addr, const char *rprop,
- 				  struct device_node **host)
- {
-+	bool dma =3D rprop && !strcmp(rprop, "dma-ranges");
- 	struct device_node *parent =3D NULL;
- 	struct of_bus *bus, *pbus;
- 	__be32 addr[OF_MAX_ADDR_CELLS];
-@@ -494,7 +495,12 @@ static u64 __of_translate_address(struct device_node *=
-dev,
- 	bus =3D of_match_bus(parent);
-=20
- 	/* Count address cells & copy address locally */
--	bus->count_cells(dev, &na, &ns);
-+	if (dma) {
-+		na =3D of_bus_n_addr_cells(parent);
-+		ns =3D of_bus_n_size_cells(parent);
-+	} else {
-+		bus->count_cells(dev, &na, &ns);
-+	}
- 	if (!OF_CHECK_COUNTS(na, ns)) {
- 		pr_debug("Bad cell count for %pOF\n", dev);
- 		goto bail;
-@@ -515,7 +521,7 @@ static u64 __of_translate_address(struct device_node *d=
-ev,
- 		parent =3D get_parent(dev);
-=20
- 		/* If root, we have finished */
--		if (parent =3D=3D NULL) {
-+		if (parent =3D=3D NULL || (dma && !of_get_property(parent, "dma-ranges",=
- NULL))) {
- 			pr_debug("reached root node\n");
- 			result =3D of_read_number(addr, na);
- 			break;
-@@ -536,7 +542,12 @@ static u64 __of_translate_address(struct device_node *=
-dev,
-=20
- 		/* Get new parent bus and counts */
- 		pbus =3D of_match_bus(parent);
--		pbus->count_cells(dev, &pna, &pns);
-+		if (dma) {
-+			pna =3D of_bus_n_addr_cells(parent);
-+			pns =3D of_bus_n_size_cells(parent);
-+		} else {
-+			pbus->count_cells(dev, &pna, &pns);
-+		}
- 		if (!OF_CHECK_COUNTS(pna, pns)) {
- 			pr_err("Bad cell count for %pOF\n", dev);
- 			break;
---=20
-2.37.3
+...
+
+> +static int kx022a_turn_on_off_unlocked(struct kx022a_data *data, bool on)
+> +{
+> +	int ret;
+> +
+> +	if (on)
+> +		ret = regmap_set_bits(data->regmap, KX022A_REG_CNTL,
+> +				      KX022A_MASK_PC1);
+> +	else
+> +		ret = regmap_clear_bits(data->regmap, KX022A_REG_CNTL,
+> +					KX022A_MASK_PC1);
+> +
+> +	if (ret)
+> +		dev_err(data->dev, "Turn %s fail %d\n", (on) ? "ON" : "OFF",
+> +			ret);
+
+str_on_off() ?
+
+> +	return ret;
+> +
+> +}
+
+...
+
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		n = ARRAY_SIZE(kx022a_accel_samp_freq_table);
+> +
+> +		while (n--)
+> +			if (val == kx022a_accel_samp_freq_table[n][0] &&
+> +			    kx022a_accel_samp_freq_table[n][1] == val2)
+
+Why not to use the same kind of l and r arguments in == lines?
+In current form it's a bit harder to see what the catch here.
+
+> +				break;
+> +		if (n < 0) {
+> +			ret = -EINVAL;
+> +			goto unlock_out;
+> +		}
+> +		ret = kx022a_turn_off_lock(data);
+> +		if (ret)
+> +			break;
+> +
+> +		ret = regmap_update_bits(data->regmap,
+> +					 KX022A_REG_ODCNTL,
+> +					 KX022A_MASK_ODR, n);
+> +		data->odr_ns = kx022a_odrs[n];
+> +		kx022a_turn_on_unlock(data);
+> +		break;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		n = ARRAY_SIZE(kx022a_scale_table);
+> +
+> +		while (n-- > 0)
+> +			if (val == kx022a_scale_table[n][0] &&
+> +			    kx022a_scale_table[n][1] == val2)
+
+Ditto.
+
+> +				break;
+> +		if (n < 0) {
+> +			ret = -EINVAL;
+> +			goto unlock_out;
+> +		}
+> +
+> +		ret = kx022a_turn_off_lock(data);
+> +		if (ret)
+> +			break;
+> +
+> +		ret = regmap_update_bits(data->regmap, KX022A_REG_CNTL,
+> +					 KX022A_MASK_GSEL,
+> +					 n << KX022A_GSEL_SHIFT);
+> +		kx022a_turn_on_unlock(data);
+> +		break;
+> +	default:
+> +		ret = -EINVAL;
+> +		break;
+> +	}
+
+...
+
+> +static int kx022a_get_axis(struct kx022a_data *data,
+> +			   struct iio_chan_spec const *chan,
+> +			   int *val)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
+> +			       sizeof(__le16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = le16_to_cpu(data->buffer[0]);
+
+'p'-variant of the above would look better
+
+	*val = le16_to_cpup(data->buffer);
+
+since it will be the same as above address without any additional arithmetics.
+
+> +	return IIO_VAL_INT;
+> +}
 
 
---dCBbHJqO6VA9aoz5--
+...
 
---C8KFzC3JLrgNSjam
-Content-Type: application/pgp-signature; name="signature.asc"
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		ret = regmap_read(data->regmap, KX022A_REG_ODCNTL, &regval);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if ((regval & KX022A_MASK_ODR) >
+> +		    ARRAY_SIZE(kx022a_accel_samp_freq_table)) {
+> +			dev_err(data->dev, "Invalid ODR\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		kx022a_reg2freq(regval, val, val2);
 
------BEGIN PGP SIGNATURE-----
+> +		ret = IIO_VAL_INT_PLUS_MICRO;
+> +
+> +		break;
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNRXGUACgkQ3SOs138+
-s6HDlg/+I1R2a7WXzRmfGuzmKMXBXVfnhHUqLPiNnT7raUMzjn8W8Iv3q3sGhoiM
-zEg2f5jyYrJpyiEeGqHpLsntFnppIJjfCDgaZXiJcqmeQFV+Lf01UMewnFEYQ6/N
-ED7U8SDeOUQzAyiXQHNHi8RsJfZNj5+L3L7IsQFlJzp2s1U3V7l5N6FiNRHdRpqa
-sZOmjx4DtEGv4A6fuhun27Dkufh6MB1dP4vay7pkgnxvUKzB82px7odS2occn0+3
-IlgsoJ+2cpsmMl8z40OSENQCSo19bocoKcD1h5uQap8P5GEk/mI04YHobwGHiVV9
-w+6jPsCFBbcFvlIvxY5XvJhKhOfnRfQ9B3nmQiIBgThUZZQWVnuxHxNQQwbqNa7I
-ylMCHidZUk5703rZT2K0Pj837X4e1xBTdOUeLbBBLuuFGdgmVOU3WQfQDhVb08jE
-npzahkvpT0tlCoNVGZLztUwriTMd8jsCpUqyIdshzhbLawt03yYg1sLReYyc5L0B
-2O4WDdtFZeRzXFDgcGpof1bFI8kzlvM/pL1NCCpgBx5kEfHS8vXhOQrVvk07Sc35
-tehVWVooPXDAmBeFyg6+N6acz96472SviaIrJIzdHAHjx0eWQ6VJthXrhZM0eljH
-SgEFcKCI69nnXYoXMANf/irsLMHLHSTzW8ZGgLFzFuwUZRrfhIo=
-=vCci
------END PGP SIGNATURE-----
+return IIO_VAL_INT_PLUS_MICRO;
 
---C8KFzC3JLrgNSjam--
+> +
+> +	case IIO_CHAN_INFO_SCALE:
+> +		ret = regmap_read(data->regmap, KX022A_REG_CNTL, &regval);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		kx022a_reg2scale(regval, val, val2);
+> +
+> +		ret = IIO_VAL_INT_PLUS_MICRO;
+> +		break;
+
+Ditto.
+
+...
+
+> +	return regmap_write(data->regmap, KX022A_REG_BUF_CLEAR, 0x0);
+
+Would simple '0' suffice?
+
+...
+
+> +	for (i = 0; i < count; i++) {
+> +		int bit;
+> +		u16 *samples = &buffer[i * 3];
+
+I would put it as
+
+		u16 *samples = &buffer[i * 3];
+		int bit;
+
+> +		for_each_set_bit(bit, idev->active_scan_mask, AXIS_MAX)
+> +			memcpy(&data->scan.channels[bit], &samples[bit],
+> +			       sizeof(data->scan.channels[0]));
+
+Why not use bit instead of 0 for the sake of consistency?
+
+Also might be good to have a temporary for channels:
+
+		... *chs = data->scan.channels;
+
+
+		for_each_set_bit(bit, idev->active_scan_mask, AXIS_MAX)
+			memcpy(&chs[bit], &samples[bit], sizeof(chs[bit]));
+
+> +		iio_push_to_buffers_with_timestamp(idev, &data->scan, tstamp);
+> +
+> +		tstamp += sample_period;
+> +	}
+
+...
+
+> +	ret = regmap_clear_bits(data->regmap, data->ien_reg,
+> +				KX022A_MASK_WMI);
+
+I don't see why it's not on a single line. Even if you are a conservative
+adept of 80.
+
+Maybe other lines also need to be revised?
+
+> +	if (ret)
+> +		goto unlock_out;
+
+...
+
+> +	int ret = IRQ_NONE;
+> +
+> +	mutex_lock(&data->mutex);
+> +
+> +	if (data->trigger_enabled) {
+> +		iio_trigger_poll_chained(data->trig);
+> +		ret = IRQ_HANDLED;
+> +	}
+> +
+> +	if (data->state & KX022A_STATE_FIFO) {
+
+> +		ret = __kx022a_fifo_flush(idev, KX022A_FIFO_LENGTH, true);
+> +		if (ret > 0)
+> +			ret = IRQ_HANDLED;
+
+I don't like it. Perhaps
+
+	bool handled = false;
+	int ret;
+
+	...
+		ret = ...
+		if (ret > 0)
+			handled = true;
+	...
+
+	return IRQ_RETVAL(handled);
+
+> +	}
+> +
+> +	mutex_unlock(&data->mutex);
+> +
+> +	return ret;
+
+...
+
+> +	if (!dev)
+> +		return -ENODEV;
+
+Do you really need this check?
+
+...
+
+> +	fw = dev_fwnode(dev);
+> +	if (!fw)
+> +		return -ENODEV;
+
+You may combine these two in one.
+
+	struct fwnode_handle *fwnode;
+
+
+	fwnode = dev ? dev_fwnode(dev) : NULL;
+	if (!fwnode)
+		return -ENODEV;
+
+And please, call it fwnode.
+
+...
+
+> +	irq = fwnode_irq_get_byname(fw, "INT1");
+> +	if (irq > 0) {
+> +		data->inc_reg = KX022A_REG_INC1;
+> +		data->ien_reg = KX022A_REG_INC4;
+> +
+> +		if (fwnode_irq_get_byname(dev_fwnode(dev), "INT2") > 0)
+
+Why not use fwnode again
+
+> +			dev_warn(dev, "Only one IRQ supported\n");
+> +	} else {
+> +		irq = fwnode_irq_get_byname(dev_fwnode(dev), "INT2");
+
+Ditto.
+
+> +		if (irq <= 0)
+> +			return dev_err_probe(dev, irq, "No suitable IRQ\n");
+> +
+> +		data->inc_reg = KX022A_REG_INC5;
+> +		data->ien_reg = KX022A_REG_INC6;
+> +	}
+
+...
+
+> +	if (ret)
+> +		return dev_err_probe(data->dev, ret,
+> +				     "iio_triggered_buffer_setup_ext FAIL %d\n",
+> +				     ret);
+
+Drop dup ret at the end, dev_err_probe() has been adding it to each message.
+
+...
+
+> +	/*
+> +	 * No need to check for NULL. request_threadedI_irq() defaults to
+> +	 * dev_name() should the alloc fail.
+> +	 */
+> +	name = devm_kasprintf(data->dev, GFP_KERNEL, "%s-kx022a",
+> +			      dev_name(data->dev));
+
+It's not clear why do you need a suffix here.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
