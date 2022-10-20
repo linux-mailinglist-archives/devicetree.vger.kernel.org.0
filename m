@@ -2,79 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFFB7605F8E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D5B1606066
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbiJTMAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 08:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58134 "EHLO
+        id S229997AbiJTMkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 08:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbiJTMAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:00:33 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2E0F6C3E
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:00:31 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id f22so13497457qto.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A29LATjKRu0eJyZf1li9gtTtcrd9vRWs2MhC8cVGWxA=;
-        b=zdXq2ZWOf+kBQAJ50NbogZcfiG0qZPePutWtHEhKeegdtOWL1wTmCHgw23EJp425+c
-         Td5S4yCvuYmGHcOLZ8p4mkKYX64yDjk25aZs/f3qAdvWQXz9gfLVRsIMg/imY2DM2Ld5
-         /ccleL9a37cuOaIdkZHK2wTXvmzdEZ6PZzUQzDG3ZhTTYTVrCtfHWqbWfBamI1vHFxoF
-         ULLYcjA76tqAwvmw2j5J1+ubn3fWVabtXxoySbAr7bXlBvK+Bqca0rnVYOL/7nnnIxq4
-         Oot108r5U7+S9oatZi8YvONoChoeoixOSz9/oOv6Vz8gv3KLYNui3BJ0evFo7R65nG3W
-         1SEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A29LATjKRu0eJyZf1li9gtTtcrd9vRWs2MhC8cVGWxA=;
-        b=lOj8U7VqLueJ0UzNM5VHITGbr12QjW6jsxer+8j1H1bueAKMYNFEtsQ+dWdxBVwFTH
-         Y644YwN4tWTlefE8SiDC42I9kF5KUmiR16ekdmZg7gcxX75dplGcVqMvatyoEhtFzkj3
-         i8PpEgfMAuNGykFG+G5WUSZSqGN0oCGRU+cXeQOLY3AQXaGZNu3C0mG5d4JRc5Hb/uek
-         KiBc7eJS8iTNLLC2so5zo3T9V9cX0kEFvZmvDQBcEqD0sA/fxdBILwSMMSvzmHo0dt4a
-         YEmpKB9X6XPr00+HFlz4VmN8OQ97O74XSwGl9D1EAu+Bs0V0M+KweVOuGmEJji/s8a+T
-         pA6w==
-X-Gm-Message-State: ACrzQf2ANEA67g+KYPQE3IxbZhw1Ii6WWWfqm7+YKGnVMcNSX68AZzsd
-        oioeQRuu1mJpih8/hRW5Gs4x1Q==
-X-Google-Smtp-Source: AMsMyM6eVViG4LXv1H82MSpp3Hhgprwb3+orqfs74ID/Coou2aSueOhKs1MTstIJbBBjLCoS0NGi7A==
-X-Received: by 2002:ac8:7dc4:0:b0:39c:f95f:57fe with SMTP id c4-20020ac87dc4000000b0039cf95f57femr8723185qte.612.1666267230880;
-        Thu, 20 Oct 2022 05:00:30 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id a10-20020ac85b8a000000b00397b1c60780sm6092213qta.61.2022.10.20.05.00.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 05:00:29 -0700 (PDT)
-Message-ID: <b682cf05-2d96-d7e4-6f86-b1776d16b132@linaro.org>
-Date:   Thu, 20 Oct 2022 08:00:28 -0400
+        with ESMTP id S230085AbiJTMj7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:39:59 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449D1B4886;
+        Thu, 20 Oct 2022 05:39:56 -0700 (PDT)
+X-UUID: 53666ed9e88a421f833b2971633315cf-20221020
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=u+Pcg0UW3/VpSmufABE9WQF/YkxxJySEHksD2l7TwL8=;
+        b=nKIKVnxUkwO5X/qgMzVkjSmzKzv2Nh8TcMz/y1CtJaxwURXpL05VD/7jmG0BNGTToi9KiGpgTL5lpCoiO2QUoDeuB9p3jvEzyGTIjt2SCTNy5jCre0YK3ZNlws/PDjGgqXjnJuta2Y3QdAQC8bGVl6zHtRtT10l5+ewdBa17fOg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:4539903e-0b65-49a4-8a41-355429a017f0,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:62cd327,CLOUDID:51456ea4-ebb2-41a8-a87c-97702aaf2e20,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 53666ed9e88a421f833b2971633315cf-20221020
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+        (envelope-from <xinlei.lee@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1521877680; Thu, 20 Oct 2022 20:39:53 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Thu, 20 Oct 2022 12:39:44 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 20 Oct 2022 19:45:56 +0800
+Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 20 Oct 2022 19:45:55 +0800
+From:   <xinlei.lee@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <ck.hu@mediatek.com>, <jitao.shi@mediatek.com>
+CC:     <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        xinlei lee <xinlei.lee@mediatek.com>
+Subject: [PATCH v2,0/2] Add dpi compatibles and platform data for MT8188
+Date:   Thu, 20 Oct 2022 19:45:51 +0800
+Message-ID: <1666266353-16670-1-git-send-email-xinlei.lee@mediatek.com>
+X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 3/3] doc: iio: pressure: ms5611: added max SPI frequency
- setting to the example
-To:     =?UTF-8?Q?Mitja_=c5=a0pes?= <mitja@lxnav.com>
-Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221019125254.952588-1-mitja@lxnav.com>
- <20221019125254.952588-3-mitja@lxnav.com>
- <a44cadfe-5e9d-8c6a-b111-abd550a909bf@linaro.org>
- <CACbQKWdyE2Q7wya4JwAv2+9-1M3oSrB3YfR+qfM3M7TiHjukew@mail.gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CACbQKWdyE2Q7wya4JwAv2+9-1M3oSrB3YfR+qfM3M7TiHjukew@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,25 +68,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 01:40, Mitja Špes wrote:
-> On Wed, Oct 19, 2022 at 5:49 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> Use subject prefixes matching the subsystem (git log --oneline -- ...).
-> 
-> Will do.
-> 
->> Whether it is honored by driver it matters less. More important is how
->> hardware can handle it. This should be included in the bindings/properties.
-> 
-> The hardware handles frequencies up to 20MHz. That constraint is already
-> written in meas,ms5611.yaml.
-> What my patch 2 does is allow the user to set a lower frequency and the patch
-> 3 just emphasises that in the example.
+From: xinlei lee <xinlei.lee@mediatek.com>
 
-Then I am not sure whether it is worth changing. This is just an
-example. Old value is correct.
+Rebase on linus/master v6.1-rc1.
 
-Best regards,
-Krzysztof
+change note:
+
+v1: Modify variable name.
+
+xinlei lee (2):
+  dt-bindings: display: mediatek: dpi: Add compatible for MediaTek
+    MT8188
+  drm: mediatek: Add mt8188 dpi compatibles and platform data
+
+ .../bindings/display/mediatek/mediatek,dpi.yaml         |  1 +
+ drivers/gpu/drm/mediatek/mtk_dpi.c                      | 17 +++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c                  |  2 ++
+ 3 files changed, 20 insertions(+)
+
+-- 
+2.6.4
 
