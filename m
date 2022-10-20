@@ -2,343 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7F96060B4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6C96060EC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 15:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbiJTM40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 08:56:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45886 "EHLO
+        id S230285AbiJTNFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 09:05:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbiJTM4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:56:25 -0400
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE3A147D12;
-        Thu, 20 Oct 2022 05:56:24 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id j188so22731305oih.4;
-        Thu, 20 Oct 2022 05:56:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NEMOcZmNs8RQ67kXErCppy6OhsBrnXpckQEXUmNr7I4=;
-        b=l0tgNyJztYzWINVNEw3yr2MIte465annmZnJ3dEJ2JF3OhnvKJEYlSZTpekbwd+kra
-         oMJMAVSThQS3Xmp/jrlm/5NufaZ47lFY4f2jmXX/iM4Jg+BQ0pixUb0kllAx9loHB3Q5
-         3jJM2tw7wQQuYqo/IcAOBRJ6G/eQ0ieFhbIl42ag5A/oSQysoKTg7TaEjJdyntKx0eWe
-         2S7zOFAROBXXchqt71vojmmn4O0PHdLhORlGAfaScMRPYb9t2jk/lyDvdkaDLbc3WjQs
-         SyyFjHiCqwAuXEE+9AJNt7d2k/jRonJuhhOgqv7aYyBgce6zvvBdcgg0zvre9zCJZjXb
-         oN2A==
-X-Gm-Message-State: ACrzQf0axccpT7nrEk5dJ0uQcVlMJIXEU9Rd3nwf9JJE/NImZlN8Uwj5
-        o663wSPxn5Gna3mflxuiwA==
-X-Google-Smtp-Source: AMsMyM6w1xk4tPAvBpUUEH4Ey72ivyy31TkXSLBRpnZzvfiDeaH9BZr77tOs+w+kQQLYF5rvuIZJtg==
-X-Received: by 2002:a05:6808:1c0f:b0:355:4433:d3ee with SMTP id ch15-20020a0568081c0f00b003554433d3eemr8205757oib.96.1666270583375;
-        Thu, 20 Oct 2022 05:56:23 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y13-20020a544d8d000000b0035437f4deefsm7736457oix.26.2022.10.20.05.56.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 05:56:22 -0700 (PDT)
-Received: (nullmailer pid 1111921 invoked by uid 1000);
-        Thu, 20 Oct 2022 12:56:23 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Peng Fan <peng.fan@nxp.com>, krzysztof.kozlowski+dt@linaro.org,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        shawnguo@kernel.org, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-spi@vger.kernel.org, s.hauer@pengutronix.de,
-        robh+dt@kernel.org
-In-Reply-To: <20221020103158.2273874-2-peng.fan@oss.nxp.com>
-References: <20221020103158.2273874-1-peng.fan@oss.nxp.com> <20221020103158.2273874-2-peng.fan@oss.nxp.com>
-Message-Id: <166626975547.1096642.8539184924637719626.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: spi: fsl-imx-cspi: update i.MX8MP binding
-Date:   Thu, 20 Oct 2022 07:56:23 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229822AbiJTNFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 09:05:30 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33487B7F4F;
+        Thu, 20 Oct 2022 06:05:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=zBfRLPHN7pD803Ec207ScFoVXllUCYrqmPtJ5RGSCFA=; b=QsSl+Ef1C+rut7w+c7b0dct0SD
+        atVHCLVro1DJl6G9te22fJy+DzsDP+Xfe23qfrrOixaPRk/rH+I8KZVtbpLzag7pQJYiMaFUuf+sg
+        +MVFx/Nd98mBVzOVJhXvDhSqeRlSbi0LaSTtaKIv+ARSw2JfbSmZXDPgouiu2hpk1GoWx5pxMy4se
+        qgmR9wvExF51hUCFZIkOc0x5+Nle803rE+FaBcUzNbf9jpHdoL1p1sv6/wSWiqQWx+09avawGTlXW
+        QJpxZI37YeN/LcXwSwsCscGuC07wOfdfYN/jCT1utdxXzF00mMX2ZZHu0w5GSp42AWmcic4T98FNv
+        2nBR5lUQ==;
+Received: from [89.212.21.243] (port=52854 helo=[192.168.69.85])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1olVEb-00DwvZ-3d;
+        Thu, 20 Oct 2022 15:05:17 +0200
+Message-ID: <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
+Date:   Thu, 20 Oct 2022 15:05:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
+ wait mode
+Content-Language: en-GB
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
+        linux@roeck-us.net, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
+        kernel@pengutronix.de, s.hauer@pengutronix.de,
+        wim@linux-watchdog.org, robh+dt@kernel.org
+References: <20221019111714.1953262-1-andrej.picej@norik.com>
+ <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
+ <143f1466-e34a-254d-4e6e-fefa17ad1390@norik.com>
+ <24401572.EfDdHjke4D@steina-w>
+From:   Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <24401572.EfDdHjke4D@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Oct 2022 18:31:57 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+
+
+On 20. 10. 22 14:41, Alexander Stein wrote:
+> Am Donnerstag, 20. Oktober 2022, 14:36:10 CEST schrieb Andrej Picej:
+>> On 20. 10. 22 14:18, Krzysztof Kozlowski wrote:
+>>> On 20/10/2022 02:23, Andrej Picej wrote:
+>>>> Hi Alexander and Krzysztof,
+>>>>
+>>>> hope I can reply to both questions here.
+>>>>
+>>>> On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
+>>>>> On 19/10/2022 09:00, Alexander Stein wrote:
+>>>>>> Hello Andrej,
+>>>>>
+>>>>>> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
+>>>>> Missing commit msg.
+>>>>>
+>>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>>>>> ---
+>>>>>>>
+>>>>>>>     Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5
+>>>>>>>     +++++
+>>>>>>>     1 file changed, 5 insertions(+)
+>>>>>>>
+>>>>>>> diff --git
+>>>>>>> a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
+>>>>>>> fb7695515be1..01b3e04e7e65 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>
+>>>>>>> @@ -55,6 +55,11 @@ properties:
+>>>>>>>           If present, the watchdog device is configured to assert its
+>>>>>>>           external reset (WDOG_B) instead of issuing a software reset.
+>>>>>>>
+>>>>>>> +  fsl,suspend-in-wait:
+>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>> +    description: |
+>>>>>>> +      If present, the watchdog device is suspended in WAIT mode.
+>>>>>>> +
+>>>>>>>
+>>>>>>>     required:
+>>>>>>>       - compatible
+>>>>>>>       - interrupts
+>>>>>>
+>>>>>> What is the condition the watchdog is suspended in WAIT mode? Is this
+>>>>>> specific to SoC or platform or something else?
+>>>>
+>>>> Sorry, what exactly do you mean by condition?
+>>>
+>>> Ugh, I also cannot parse it now...
 > 
-> i.MX8MP ECSPI is derived from i.MX6UL, so update the binding.
+> Sorry, Krzysztof already asked the right question: When does one want to
+> enable/disable this feature?
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>>>> When the property
+>>>> "fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so
+>>>> this is defined by the user. Didn't want to apply it for all the
+>>>> supported machines since there could be devices which depend on watchdog
+>>>> triggering in WAIT mode. We stumbled on this problem on imx6 devices,
+>>>> but the same bit (with the same description) is found on imx25, imx35,
+>>>> imx50/51/53, imx7 and imx8.
+>>>
+>>> I meant, what is expected to happen if you do not enable this bit and
+>>> watchdog triggers in WAIT mode? IOW, why someone might want to enable or
+>>> disable this property?
+>>
+>> If this is not enabled and you put the device into the Suspend-to-idle
+>> mode the device resets after 128 seconds. If not, the device can be left
+>> in that state for infinite time. I'm guessing you want me to better
+>> explain the property in device tree docs right?
+>> I can do that in v2.
+>>
+>>>>> And what happens else? When it is not suspended in WAIT mode?
+>>>>
+>>>> When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the
+>>>> watchdog keeps running and triggers a reset after 128 seconds. So the
+>>>> maximum length the device can stay in this mode is limited to 128
+>>>> seconds.
+>>>
+>>> And who wakes up the system before 128 seconds? IOW is there a use case
+>>> of not enabling this property?
+>>
+>> Well I can think of one, system can be woken up by some other interrupt.
+>> Like RTC which triggers interrupt (for example every 10s). So if this
+>> property is left disabled the watchdog can handle errors where other
+>> wakeup sources don't trigger interrupt or if the system is unable to
+>> wake from low-power state. In that case the watchdog will do a hard
+>> reset of the device.
+>>
+>> But I'm not really sure if anybody uses this, just wanted to make sure
+>> that we keep the default behaviour as it is, since this driver is used
+>> by many devices and for quite some time.
+> 
+> This sounds more like (application) configuration. If so this should not be
+> configured in device tree, IMHO.
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Do you have an idea where should it be configured? Just keep in mind 
+that this can not be configured at runtime, since this is write-once bit 
+so any configuration changes regarding this functionality can not be done.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+Basically if I can sum up the problem:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+Without this property enabled, the WDW bit is left unset:
+$ echo freeze > /sys/power/state
+#device enters Suspend-to-idle, watchdog is left running and the device 
+resets after 128 seconds in this state
 
+With this property set, the WDW bit is set at watchdog initialization:
+$ echo freeze > /sys/power/state
+#device enters Suspend-to-idle, watchdog is suspended and the device can 
+be left in this state until some other wakeup source triggers interrupt.
 
-spi@30630000: Unevaluated properties are not allowed ('num-chipselects' was unexpected)
-	arch/arm/boot/dts/imx7d-flex-concentrator.dtb
-	arch/arm/boot/dts/imx7d-flex-concentrator-mfg.dtb
-
-spi@30820000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
-
-spi@30820000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
-
-spi@30830000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
-
-spi@30830000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
-
-spi@30830000: Unevaluated properties are not allowed ('num-chipselects' was unexpected)
-	arch/arm/boot/dts/imx7d-flex-concentrator.dtb
-	arch/arm/boot/dts/imx7d-flex-concentrator-mfg.dtb
-
-spi@30840000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
-
-spi@30840000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-edimm2.2.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
-
-spi@43fa4000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-svga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-vga.dtb
-	arch/arm/boot/dts/imx25-karo-tx25.dtb
-	arch/arm/boot/dts/imx25-pdk.dtb
-
-spi@43fa4000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-svga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-vga.dtb
-	arch/arm/boot/dts/imx25-karo-tx25.dtb
-	arch/arm/boot/dts/imx25-pdk.dtb
-
-spi@50004000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-svga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-vga.dtb
-	arch/arm/boot/dts/imx25-karo-tx25.dtb
-	arch/arm/boot/dts/imx25-pdk.dtb
-
-spi@50004000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-svga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-vga.dtb
-	arch/arm/boot/dts/imx25-karo-tx25.dtb
-	arch/arm/boot/dts/imx25-pdk.dtb
-
-spi@50010000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-svga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-vga.dtb
-	arch/arm/boot/dts/imx25-karo-tx25.dtb
-	arch/arm/boot/dts/imx25-pdk.dtb
-	arch/arm/boot/dts/imx53-ard.dtb
-	arch/arm/boot/dts/imx53-cx9020.dtb
-	arch/arm/boot/dts/imx53-kp-ddc.dtb
-	arch/arm/boot/dts/imx53-kp-hsc.dtb
-	arch/arm/boot/dts/imx53-m53evk.dtb
-	arch/arm/boot/dts/imx53-m53menlo.dtb
-	arch/arm/boot/dts/imx53-mba53.dtb
-	arch/arm/boot/dts/imx53-ppd.dtb
-	arch/arm/boot/dts/imx53-qsb.dtb
-	arch/arm/boot/dts/imx53-qsrb.dtb
-	arch/arm/boot/dts/imx53-smd.dtb
-	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-	arch/arm/boot/dts/imx53-usbarmory.dtb
-	arch/arm/boot/dts/imx53-voipac-bsb.dtb
-
-spi@50010000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-qvga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-svga.dtb
-	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-vga.dtb
-	arch/arm/boot/dts/imx25-karo-tx25.dtb
-	arch/arm/boot/dts/imx25-pdk.dtb
-	arch/arm/boot/dts/imx53-ard.dtb
-	arch/arm/boot/dts/imx53-cx9020.dtb
-	arch/arm/boot/dts/imx53-kp-ddc.dtb
-	arch/arm/boot/dts/imx53-kp-hsc.dtb
-	arch/arm/boot/dts/imx53-m53evk.dtb
-	arch/arm/boot/dts/imx53-m53menlo.dtb
-	arch/arm/boot/dts/imx53-mba53.dtb
-	arch/arm/boot/dts/imx53-ppd.dtb
-	arch/arm/boot/dts/imx53-qsb.dtb
-	arch/arm/boot/dts/imx53-qsrb.dtb
-	arch/arm/boot/dts/imx53-smd.dtb
-	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-	arch/arm/boot/dts/imx53-usbarmory.dtb
-	arch/arm/boot/dts/imx53-voipac-bsb.dtb
-
-spi@63fac000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/imx53-ard.dtb
-	arch/arm/boot/dts/imx53-cx9020.dtb
-	arch/arm/boot/dts/imx53-kp-ddc.dtb
-	arch/arm/boot/dts/imx53-kp-hsc.dtb
-	arch/arm/boot/dts/imx53-m53evk.dtb
-	arch/arm/boot/dts/imx53-m53menlo.dtb
-	arch/arm/boot/dts/imx53-mba53.dtb
-	arch/arm/boot/dts/imx53-ppd.dtb
-	arch/arm/boot/dts/imx53-qsb.dtb
-	arch/arm/boot/dts/imx53-qsrb.dtb
-	arch/arm/boot/dts/imx53-smd.dtb
-	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-	arch/arm/boot/dts/imx53-usbarmory.dtb
-	arch/arm/boot/dts/imx53-voipac-bsb.dtb
-
-spi@63fac000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm/boot/dts/imx53-ard.dtb
-	arch/arm/boot/dts/imx53-cx9020.dtb
-	arch/arm/boot/dts/imx53-kp-ddc.dtb
-	arch/arm/boot/dts/imx53-kp-hsc.dtb
-	arch/arm/boot/dts/imx53-m53evk.dtb
-	arch/arm/boot/dts/imx53-m53menlo.dtb
-	arch/arm/boot/dts/imx53-mba53.dtb
-	arch/arm/boot/dts/imx53-ppd.dtb
-	arch/arm/boot/dts/imx53-qsb.dtb
-	arch/arm/boot/dts/imx53-qsrb.dtb
-	arch/arm/boot/dts/imx53-smd.dtb
-	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-	arch/arm/boot/dts/imx53-usbarmory.dtb
-	arch/arm/boot/dts/imx53-voipac-bsb.dtb
-
-spi@63fc0000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/imx50-evk.dtb
-	arch/arm/boot/dts/imx50-kobo-aura.dtb
-	arch/arm/boot/dts/imx53-ard.dtb
-	arch/arm/boot/dts/imx53-cx9020.dtb
-	arch/arm/boot/dts/imx53-kp-ddc.dtb
-	arch/arm/boot/dts/imx53-kp-hsc.dtb
-	arch/arm/boot/dts/imx53-m53evk.dtb
-	arch/arm/boot/dts/imx53-m53menlo.dtb
-	arch/arm/boot/dts/imx53-mba53.dtb
-	arch/arm/boot/dts/imx53-ppd.dtb
-	arch/arm/boot/dts/imx53-qsb.dtb
-	arch/arm/boot/dts/imx53-qsrb.dtb
-	arch/arm/boot/dts/imx53-smd.dtb
-	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-	arch/arm/boot/dts/imx53-usbarmory.dtb
-	arch/arm/boot/dts/imx53-voipac-bsb.dtb
-
-spi@63fc0000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm/boot/dts/imx50-evk.dtb
-	arch/arm/boot/dts/imx50-kobo-aura.dtb
-	arch/arm/boot/dts/imx53-ard.dtb
-	arch/arm/boot/dts/imx53-cx9020.dtb
-	arch/arm/boot/dts/imx53-kp-ddc.dtb
-	arch/arm/boot/dts/imx53-kp-hsc.dtb
-	arch/arm/boot/dts/imx53-m53evk.dtb
-	arch/arm/boot/dts/imx53-m53menlo.dtb
-	arch/arm/boot/dts/imx53-mba53.dtb
-	arch/arm/boot/dts/imx53-ppd.dtb
-	arch/arm/boot/dts/imx53-qsb.dtb
-	arch/arm/boot/dts/imx53-qsrb.dtb
-	arch/arm/boot/dts/imx53-smd.dtb
-	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-	arch/arm/boot/dts/imx53-usbarmory.dtb
-	arch/arm/boot/dts/imx53-voipac-bsb.dtb
-
-spi@83fc0000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm/boot/dts/imx51-apf51dev.dtb
-	arch/arm/boot/dts/imx51-apf51.dtb
-	arch/arm/boot/dts/imx51-babbage.dtb
-	arch/arm/boot/dts/imx51-digi-connectcore-jsk.dtb
-	arch/arm/boot/dts/imx51-eukrea-mbimxsd51-baseboard.dtb
-	arch/arm/boot/dts/imx51-ts4800.dtb
-	arch/arm/boot/dts/imx51-zii-rdu1.dtb
-	arch/arm/boot/dts/imx51-zii-scu2-mezz.dtb
-	arch/arm/boot/dts/imx51-zii-scu3-esb.dtb
-
-spi@83fc0000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm/boot/dts/imx51-apf51dev.dtb
-	arch/arm/boot/dts/imx51-apf51.dtb
-	arch/arm/boot/dts/imx51-babbage.dtb
-	arch/arm/boot/dts/imx51-digi-connectcore-jsk.dtb
-	arch/arm/boot/dts/imx51-eukrea-mbimxsd51-baseboard.dtb
-	arch/arm/boot/dts/imx51-ts4800.dtb
-	arch/arm/boot/dts/imx51-zii-rdu1.dtb
-	arch/arm/boot/dts/imx51-zii-scu2-mezz.dtb
-	arch/arm/boot/dts/imx51-zii-scu3-esb.dtb
-
+Thanks,
+Andrej
