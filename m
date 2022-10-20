@@ -2,441 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E59C60589F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 09:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA306058BC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 09:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbiJTHcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 03:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59170 "EHLO
+        id S230248AbiJTHgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 03:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbiJTHcE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 03:32:04 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDF4136438;
-        Thu, 20 Oct 2022 00:31:58 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29K73QY0028744;
-        Thu, 20 Oct 2022 07:31:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=inmKdIlu/5lnw8llbBPR1WreN1wNRslms5yqZql5yAY=;
- b=NFdo8ONrSlz5ZQUyHj/wLSpOJDnDVuplDEAcRBrhYwfVhXzaslcWfNtAKsSiP9jVNVeG
- uIJXlrMDJMiPsYyiJgE8yl1CF+9MS2zxoOxvcHcQi5gXtqWFryOcY06Rf8uJGgaFF9Ze
- DCtJrmq004wHrz53ru7HEqUxUwFZIZz/C6zHPxKpFMcVSfgeIL/IAKM8B6rs4AoH1IMX
- f1RbVfavFhiK8YBPNhCT8YLdWFu6pVnPhTZ0CZt7pbeiSVE9Sbvoq0x4JS/mfAQucq9p
- cWaPZ4GaPb0OARSrC9jktlOv8S0fmSfvE7THGc1kzl3HROhDdQ39usUu67rsh2NUJICm yQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ka6bruq8y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Oct 2022 07:31:51 +0000
-Received: from pps.filterd (NALASPPMTA01.qualcomm.com [127.0.0.1])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 29K7Owun007091;
-        Thu, 20 Oct 2022 07:31:50 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by NALASPPMTA01.qualcomm.com (PPS) with ESMTPS id 3kam15u9tu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Oct 2022 07:31:50 +0000
-Received: from NALASPPMTA01.qualcomm.com (NALASPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 29K7QhuC009455;
-        Thu, 20 Oct 2022 07:31:50 GMT
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (PPS) with ESMTPS id 29K7VnaK016781
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Oct 2022 07:31:50 +0000
-Received: from hu-ppareek-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 20 Oct 2022 00:31:45 -0700
-From:   Parikshit Pareek <quic_ppareek@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Andrew Halaney <ahalaney@redhat.com>,
-        "Shazad Hussain" <quic_shazhuss@quicinc.com>,
-        Brian Masney <bmasney@redhat.com>,
-        "Johan Hovold" <johan@kernel.org>,
-        Parikshit Pareek <quic_ppareek@quicinc.com>
-Subject: [PATCH v6 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
-Date:   Thu, 20 Oct 2022 13:00:36 +0530
-Message-ID: <20221020073036.16656-3-quic_ppareek@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221020073036.16656-1-quic_ppareek@quicinc.com>
-References: <20221020073036.16656-1-quic_ppareek@quicinc.com>
+        with ESMTP id S229928AbiJTHgG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 03:36:06 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2122.outbound.protection.outlook.com [40.107.113.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86982166572;
+        Thu, 20 Oct 2022 00:36:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F2n4nAKK8RrqejrnDTzsZbbIB13IG/WJZEyrPN3WiDUOv08wQVXZOura1PXMHeVIeFGXltcjp68Kif5xTJp29m0Yn27GNNU2TwHrTN1YKsCcpR0iSnvAjHr+BrBQfJcMn0ohvTrNGOSdoRkFzkYMNioK5C0URHzFTk06jpC+Wdn61k5teeL9TICEN6VskzfLYf6bwpmzb4wmJYZBMm+0jwWrWvipeCsjRAY9p6QP7jHltOzH7yTOkKomET65U9KWYP92+fsc2OHWmjcpryxGBiD83qJJbcHRFxLHNHidmuM4BdG7pSKO2Qm0kZ/CZPxL6o6gz+HCTAqJqOfcvlnVKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9cu4IcvDw3yDTatQvDx4wIeT5EsjfbAMHYK/Ad9bsSE=;
+ b=l/j4KRK+ON+EBHZdOn4WuskajU+ds5S7eowbidW38OmyikRMsH/yc/daonA7vikCn9Qs4GcdAqmaB4OUytmwLXb1mvx6KSgsA8f1CEI6cyjGGqf05D6Xg0hldJQcN+B1L0urlBYuOdMb8ZXF70v5GUSr6rhinuTKKK00jI7AC0v+qv9q/ngA97eGS0VdHSd73z7U7Ks8mL6Wks6XHJMTAYgBWnymRTmKtassuW1mkfSjx0Z1aHHfwzyENIn+CPfe8f/dOo8D7opn5RLqeBxEM+Nm3sCu/C7OcP/mee/6jbhGekDSCEWOsAuy9nfhNuSLc7W0rs6ESfT9pRCiTghPOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9cu4IcvDw3yDTatQvDx4wIeT5EsjfbAMHYK/Ad9bsSE=;
+ b=StdUc/I7Lr1VKzcIQpqkjfEN0BM1QeBXmDxRa3wbocMYwSieZcPgl0GpuF49bhnHdJLb9/cilaSMYXHFBQEvR+v+XcXyvRc7kznDdx+C4oaVsFkzgTlD+kuVqeutLsAcD8k28t4vj2C2maVPryo/f4c2YXd0hD1fwzyu333sFds=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by OS3PR01MB9463.jpnprd01.prod.outlook.com
+ (2603:1096:604:1c7::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Thu, 20 Oct
+ 2022 07:35:59 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::51b0:c391:5c63:4af4]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::51b0:c391:5c63:4af4%3]) with mapi id 15.20.5723.034; Thu, 20 Oct 2022
+ 07:35:59 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>
+CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+Thread-Topic: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch
+ driver
+Thread-Index: AQHY45W84OTfYE+kgU+A+iXKytdlb64WjrIAgABMRaA=
+Date:   Thu, 20 Oct 2022 07:35:59 +0000
+Message-ID: <TYBPR01MB5341BFDA86EE48F07DBC9882D82A9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20221019083518.933070-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
+ <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
+In-Reply-To: <ccd7f1fc-b2e2-7acf-d7fd-85191564603a@gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB9463:EE_
+x-ms-office365-filtering-correlation-id: 2dafb0ee-951a-494e-72e3-08dab26dbbca
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: reg/OvlmlpI8BubbJ604H0LifJUblWUuSG1zCJX3G06/BTaZK1hpQN70fXGmYGz4p06E/1vXkzd+5dz4ONTb+XljY0fbYb9y8x/wdZJ9CsJxlBx4GqIwqUgtZYkB2/Pkm1KoIrhSlu38Izna94XdVZIkaBhZu4ZG6Rpfh/oyWxtppTdYt9KbDsgdNn1UMpp3QZlaw7JuYGGnXIAsMqcQ4h2Sz8crJstV+/iLRAJBcdyH3MmdF7coQr0m7yD6NWOfa273n2AFmtOFe5L3Zu+uSmii4/VDu/eSDOBA5YRcnWOZ5s7+FD7LM4wOzETQziIuy9Liq7fHYfYg82Ugtz2lWetsx1fuOAVRUL6VvmGW9SXLJMX23EfDWTGjvVmF3mGWqQ/2Mr13UM7MDbb897o6agcQq070ksHOdiaQzjWd2+Y0K9Ifbv+14IyHSg+OmScGTaUoqVsIthJSJnJNchihDWEr4phJwqFdMQoxpDqTUe+2UlMpi+TtY3bZMyjuZI08DUgGcd0c3ssLDNrk9YMUHm3L9ZohBvrvFUxy9qqQ0IGxphte8u3BHi2FNduHA4xo41FYmteKQZkuZEzcga51d1UnHCjyLEEGEt3yXfmdsDy4HPg3wtCLZ4NgJo5sEWF519KrIhP7Ph0QPuo0k2BWUvi13RZy4Fiq30LFCUUfVq2DKGGteigiPxxju/T4gyH6sncKvnmVCyY75lCam6SPGjoCD06cy5ZB8wcppV8uYG6vJrmClW7ske4UbJOe+CiFugwHHO8Hnhj8jokfH0d23Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(346002)(366004)(136003)(39860400002)(451199015)(55016003)(2906002)(41300700001)(66946007)(66556008)(8936002)(52536014)(66446008)(66476007)(4326008)(64756008)(8676002)(5660300002)(7416002)(6506007)(54906003)(186003)(33656002)(71200400001)(316002)(110136005)(86362001)(38100700002)(76116006)(38070700005)(9686003)(478600001)(7696005)(53546011)(122000001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eXVhVk5YU2dZcnJsb3pQNGxPQVFzMS9HY09BN0hzVzdFRXQ0dERQem1TS1Vl?=
+ =?utf-8?B?cm9HWDVtRmpHYlhGSWpBSHBrRmNwSVdQdzB2TnRTeEZCekpiVkdyVzdscXJ4?=
+ =?utf-8?B?NkpRYmpuWmZPd1VwVFBIR0xNdTdPeFozNFVGOWE2WUdjRDQrQVR6elkxU2Ru?=
+ =?utf-8?B?UzdNZmVTNlJ5azFkb2paRkN0VVB0b2tWR2dtbzFOV1RRb1BBN1dtRUFKREg3?=
+ =?utf-8?B?dm1hcTQ0WllzdGFjYkJaaDBVcHcyR0pjTTBVVlVnTG51eUNQcVl3VjNCWUdI?=
+ =?utf-8?B?SmZ3TkhaTkFaNWRGZU9zamJpSHFBSkRiV3RjeWMwaE9sS3V4aUVvNkMzS1Yr?=
+ =?utf-8?B?NGxQeWtRWVh2SVJSRkRHcllIM2tUU1NFUlBLSEpMWTB6YjAxbEt3MmFVd2NF?=
+ =?utf-8?B?dXdTcWczV1dJa1Nzb1NkeVVsdExkS0ViMW5rb1RwRjFzamdvdlo2WGVnQWpF?=
+ =?utf-8?B?ZDRueUxpRlUvWWF4NmY0R1djWVpFZzdkUE9CdHRuU0hRTFFTUzlpTmlRcWFk?=
+ =?utf-8?B?S2Z3VkJBNnByTHAzbFYxaW5ocWZ0UlNXZGFydzMybmh6L0Ria0duWm9iOCtH?=
+ =?utf-8?B?bjE0Mk5ZdE1ZNGpkUCtMMjNRaGNvUlRPRDJOcys0ZWhCT3hMRlJ3M1dMWklt?=
+ =?utf-8?B?NFRDUFFSbUxPZVVRcXQzZlowL2ZHM0lvbjZaQ3RGdE9kMFBZaFFvajdoaTNm?=
+ =?utf-8?B?RGwrL0R2TzdCbnZQSDBVYWtycWo1WHJTbG5QVzc4b284NmFxOGtxZTZ0WWRk?=
+ =?utf-8?B?V1N3Y1Fvc3BOeUYzS3VIZkJUTXpQRG1QZkkxZjZSS05YbExPekNpblU5cFJM?=
+ =?utf-8?B?eTAvNUJHcUNGM0gwaDRmS0dxaEp5Wk9mSVpaZmNqMFlGakpyV3FtTjRNRmpY?=
+ =?utf-8?B?UUpIQ1VEcFZMNkU3Y2RWZktlRm4vQmNET2Q0dDVuZlliSGwrTlVGYWVzQXRm?=
+ =?utf-8?B?c1pQei9wWEpMRTZ1MFRKUEhhWWlQNVBHOU0wNFJMTWlGMllYQmY5R3E0bzFO?=
+ =?utf-8?B?MWE1Q2ZrNTdmanNvWm5KbUpZVzlTQTBQSnFsNTlNOVlkYkEwckovaGNSeXA4?=
+ =?utf-8?B?WExQOTFvQlNKZ0pCa3lGQmVuNHhrd2FKMkV1K0RpSW5GUzU5VzJ4ZXdXeWxT?=
+ =?utf-8?B?SEJhQndnbXVWVVllV00zTExuWDRWdjBFY2cvcFBGR05sY1k2SE5Zd0lUeG1U?=
+ =?utf-8?B?Z1RZcDlaUlYwclI5ZnJzK0IwQTRmU0NaM2F2bGIwcGNGelpIOVkzSllvOE5w?=
+ =?utf-8?B?elVMcUlibzBLV0hvOWJBUXh1Yk11RXFEcVJWTFJ1bnE4U0hJZloyRkpkZldT?=
+ =?utf-8?B?b28vYmpYeExxcksxZ3JINnExb3UxMGVTR09SMWY3T3NkQ0NLWHVGTkNVK3pq?=
+ =?utf-8?B?KytYOFczZ3VWaHppYm8xZTZQcHBtRjhhMkNRa1ZUZEZwZms5LzQ1ZFFvLzkx?=
+ =?utf-8?B?TlVLckVFS1hrNGY1WmZQRWh4K1FjSkkzbHA3d1p0TWUzN2VQTTBKKzF0N0RW?=
+ =?utf-8?B?enVTSGU0YUV2bnIzUFEzOG9mbU13NUFtZC9XTGxia0dLWUQrWThZejFveWtq?=
+ =?utf-8?B?eXRxTHdpV0VuR3JpdlVJclRaaVRhcmNxUmdJNWI4MWx2Q2pYclBoNXRaOXVn?=
+ =?utf-8?B?T1kyR0IrcFk4Ynd1VXRQb2hxQ3VzNHFzRm02STJyNjB2akp3anlJMzN1WGFm?=
+ =?utf-8?B?eE9oQ3VId0dwWlpBMkd6MHNLSW00cXYrSHBtNHBqeXp1OHFFTUJ6em5yaVRM?=
+ =?utf-8?B?WU0vbmlFZEdOQVhWM0FDWlpTTVZQNHRNUGFwVDZWWVBuRU8rSDRkVG9IMzQw?=
+ =?utf-8?B?VnVic3J4SVRkbFVRV3hIbEJudGcyQkNMWTZQcnJ0ZTFxWllaL2NxaC9veld6?=
+ =?utf-8?B?SWZhaXgxajJEejFXeTdjaHN6aFFEdGsrT2pQSkRPWFV2Sk5MYng4aTM2Tzlt?=
+ =?utf-8?B?cnRkcDRDSmsrQ2ZLNjI3Mm0vVUNWbE5KdDkrQnMxT1J5YnMvMktDczNHSFhO?=
+ =?utf-8?B?azhMSUozZDBZZEdBSFhJSFA4Yko3aGVBOFRmcE9YQnpIWHdWVDBGQ3dvTDJa?=
+ =?utf-8?B?T2FVZG10RTFIUDRaYjVRNGE4cTBTRUh5T001NFd4N09NcTJIc1RLLytoV3hh?=
+ =?utf-8?B?end3TWFIUlluUFBNSXNqY3N1VmZnam50Y2p5bFRGdXJxbTFBV1cyWnZuTjFW?=
+ =?utf-8?B?eXpQQ05INlNYMG9yOWVVNG5MbWVLSmFtOGtxa2RGejZOeDJSWlVWeHZIRU1I?=
+ =?utf-8?B?ckxHUkVzTUFUMS8rbTBqQ1I4dHpBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: b-KbwKJkLGfuaz5FD7ihAV7qlTabGAvk
-X-Proofpoint-GUID: b-KbwKJkLGfuaz5FD7ihAV7qlTabGAvk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-20_02,2022-10-19_04,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 mlxscore=0 spamscore=0
- suspectscore=0 clxscore=1015 mlxlogscore=999 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210200043
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2dafb0ee-951a-494e-72e3-08dab26dbbca
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2022 07:35:59.7820
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4hHI6+8zVcc/Wb8mwzTP0mpe4QeS9pV1zjxoNMXYlbPW/1NPA4caK2Ex7Oele3Djumr7rTNu3X/D6SroRzSsLcOCMZ3K4LvHwW0PK4/91vOILly5jx5nwo/01PTnuaFe
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9463
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce the Qualcomm SA8540P ride automotive platform, also known as
-Qdrive-3 development board.
-
-This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
-regulators, debug UART, PMICs, remoteprocs and USB.
-
-The SA8540P ride contains four PM8450 PMICs.
-
-Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile         |   1 +
- arch/arm64/boot/dts/qcom/sa8540p-ride.dts | 309 ++++++++++++++++++++++
- 2 files changed, 310 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index b0558d3389e5..c89d44756791 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sa8540p-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p-ride.dts b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-new file mode 100644
-index 000000000000..0faf06625b05
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sa8540p-ride.dts
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+#include "sa8540p.dtsi"
-+
-+/ {
-+	model = "Qualcomm SA8540P Ride";
-+	compatible = "qcom,sa8540p-ride", "qcom,sa8540p";
-+
-+	aliases {
-+		serial0 = &qup2_uart17;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&apps_rsc {
-+	pmm8540-a-regulators {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_l3a: ldo3 {
-+			regulator-name = "vreg_l3a";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5a: ldo5 {
-+			regulator-name = "vreg_l5a";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a: ldo7 {
-+			regulator-name = "vreg_l7a";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13a: ldo13 {
-+			regulator-name = "vreg_l13a";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	pmm8540-c-regulators {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_l1c: ldo1 {
-+			regulator-name = "vreg_l1c";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2c: ldo2 {
-+			regulator-name = "vreg_l2c";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3c: ldo3 {
-+			regulator-name = "vreg_l3c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l4c: ldo4 {
-+			regulator-name = "vreg_l4c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6c: ldo6 {
-+			regulator-name = "vreg_l6c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l7c: ldo7 {
-+			regulator-name = "vreg_l7c";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10c: ldo10 {
-+			regulator-name = "vreg_l10c";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l17c: ldo17 {
-+			regulator-name = "vreg_l17c";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+
-+	pmm8540-g-regulators {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "g";
-+
-+		vreg_l3g: ldo3 {
-+			regulator-name = "vreg_l3g";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7g: ldo7 {
-+			regulator-name = "vreg_l7g";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8g: ldo8 {
-+			regulator-name = "vreg_l8g";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+};
-+
-+&qup2 {
-+	status = "okay";
-+};
-+
-+&qup2_uart17 {
-+	compatible = "qcom,geni-debug-uart";
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	firmware-name = "qcom/sa8540p/adsp.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_nsp0 {
-+	firmware-name = "qcom/sa8540p/cdsp.mbn";
-+	status = "okay";
-+};
-+
-+&remoteproc_nsp1 {
-+	firmware-name = "qcom/sa8540p/cdsp1.mbn";
-+	status = "okay";
-+};
-+
-+&spmi_bus {
-+	pm8450a: pmic@0 {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0x0 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450a_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			gpio-ranges = <&pm8450a_gpios 0 0 10>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pm8450c: pmic@4 {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0x4 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450c_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			gpio-ranges = <&pm8450c_gpios 0 0 10>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pm8450e: pmic@8 {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0x8 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450e_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			gpio-ranges = <&pm8450e_gpios 0 0 10>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pm8450g: pmic@c {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0xc SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450g_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio", "qcom,spmi-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			gpio-ranges = <&pm8450g_gpios 0 0 10>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l17c>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l6c>;
-+	vccq-max-microamp = <900000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l8g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+
-+	status = "okay";
-+};
-+
-+&usb_0 {
-+	status = "okay";
-+};
-+
-+&usb_0_dwc3 {
-+	/* TODO: Define USB-C connector properly */
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_0_hsphy {
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7a>;
-+	vdda33-supply = <&vreg_l13a>;
-+
-+	status = "okay";
-+};
-+
-+&usb_0_qmpphy {
-+	vdda-phy-supply = <&vreg_l3a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+};
-+
-+&usb_2_hsphy0 {
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7g>;
-+	vdda33-supply = <&vreg_l13a>;
-+
-+	status = "okay";
-+};
-+
-+&usb_2_qmpphy0 {
-+	vdda-phy-supply = <&vreg_l3a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+
-+	status = "okay";
-+};
-+
-+&xo_board_clk {
-+	clock-frequency = <38400000>;
-+};
-+
-+/* PINCTRL */
--- 
-2.17.1
-
+SGkgRmxvcmlhbiwNCg0KPiBGcm9tOiBGbG9yaWFuIEZhaW5lbGxpLCBTZW50OiBUaHVyc2RheSwg
+T2N0b2JlciAyMCwgMjAyMiAxMToyMyBBTQ0KPiANCj4gT24gMTAvMTkvMjAyMiAxOjM1IEFNLCBZ
+b3NoaWhpcm8gU2hpbW9kYSB3cm90ZToNCj4gPiBBZGQgUmVuZXNhcyBFdGhlcm5ldCBTd2l0Y2gg
+ZHJpdmVyIGZvciBSLUNhciBTNC04IHRvIGJlIHVzZWQgYXMgYW4NCj4gPiBldGhlcm5ldCBjb250
+cm9sbGVyLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogWW9zaGloaXJvIFNoaW1vZGEgPHlvc2hp
+aGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPg0KPiANCj4gSG93IGNhbiB0aGlzIGJlIGEgc3dp
+dGNoIGRyaXZlciB3aGVuIGl0IGRvZXMgbm90IGluY2x1ZGUgYW55IHN3aXRjaGRldg0KPiBoZWFk
+ZXIgZmlsZXMgbm9yIGRvZXMgaXQgYXR0ZW1wdCB0byBiZSB1c2luZyB0aGUgRFNBIGZyYW1ld29y
+az8gWW91IGFyZQ0KPiBjZXJ0YWlubHkgZHVwbGljYXRpbmcgYSBsb3Qgb2YgdGhpbmdzIHRoYXQg
+RFNBIHdvdWxkIGRvIGZvciB5b3UgbGlrZQ0KPiBtYW5hZ2luZyBQSFlzIGFuZCByZWdpc3Rlcmlu
+ZyBwZXItcG9ydCBuZXdvcmsgZGV2aWNlcy4gV2h5Pw0KDQpUaGUgY3VycmVudCBkcml2ZXIgZG9l
+c24ndCBzdXBwb3J0IGFueSBmb3J3YXJkaW5nIG9mZmxvYWQuIEFuZCwgYXQgdGhlIGZpcnN0DQpz
+dGVwIG9mIHN1cHBvcnRpbmcgdGhpcyBoYXJkd2FyZSwgSSdkIGxpa2UgdG8gdXNlIHRoZSBoYXJk
+d2FyZSBhcyBhbiBldGhlcm5ldA0KY29udHJvbGxlciBmb3Igc2VuZGluZy9yZWNlaXZpbmcgZnJh
+bWVzLiBTbywgSSBkaWRuJ3QgdXNlIHRoZSBzd2l0Y2hkZXYgYW5kDQp0aGUgRFNBIGZyYW1ld29y
+a3MuDQoNCkJ5IHRoZSB3YXksIHRoZSBoYXJkd2FyZSBuYW1lIGlzICJFdGhlcm5ldCBTd2l0Y2gi
+IHNvIHRoYXQgSSB3cm90ZQ0KdGhlIHN1YmplY3QgYXMgIkFkZCBFdGhlcm5ldCBTd2l0Y2ggZHJp
+dmVyIi4gQnV0LCBJJ20gdGhpbmtpbmcgdGhhdA0KdGhpcyBzdWJqZWN0L2NvbW1pdCBkZXNjcmlw
+dGlvbiBzaG91bGQgYmUgY2hhbmdlZCBsaWtlIGJlbG93Og0KLS0tDQpTdWJqZWN0OiBuZXQ6IGV0
+aGVybmV0OiByZW5lc2FzOiBBZGQgc3VwcG9ydCBmb3IgIkV0aGVybmV0IFN3aXRjaCINCg0KQWRk
+IGluaXRpYWwgc3VwcG9ydCBmb3IgUmVuZXNhcyBFdGhlcm5ldCBTd2l0Y2ggb2YgUi1DYXIgUzQt
+OC4NClRoZSBoYXJkd2FyZSBoYXMgZmVhdHVyZXMgYWJvdXQgZm9yd2FyZGluZyBmb3IgYW4gZXRo
+ZXJuZXQgc3dpdGNoDQpkZXZpY2UuIEJ1dCwgZm9yIG5vdywgaXQgYWN0cyBhcyBhbiBldGhlcm5l
+dCBjb250cm9sbGVyIHNvIHRoYXQgYW55DQpmb3J3YXJkaW5nIG9mZmxvYWQgZmVhdHVyZXMgYXJl
+IG5vdCBzdXBwb3J0ZWQuDQotLS0NCg0KQmVzdCByZWdhcmRzLA0KWW9zaGloaXJvIFNoaW1vZGEN
+Cg0KPiAtLQ0KPiBGbG9yaWFuDQo=
