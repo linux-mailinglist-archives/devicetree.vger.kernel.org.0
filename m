@@ -2,167 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A171606051
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFECB606064
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 14:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230108AbiJTMgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 08:36:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55302 "EHLO
+        id S229494AbiJTMje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 08:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbiJTMgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:36:38 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD401138B90;
-        Thu, 20 Oct 2022 05:36:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=7/ZgXSXfAruyRBQ/wf7X+NHYLbU7w4Eo0HVH3oTexDs=; b=G+coIPUZ9edxuGgGjPZxI3MsFq
-        vtd87UMpAqjHYWCt3aVakSFB9vzSjQpRHzbcCd2EG9mk2WS/2d5rhodPhqYUlFUFUs+5NEDey1jcv
-        DquwV75KgBLhlxuReQ9ovgWm6kxnn0h6SJhLMM1GfkQTR1VA3XpFzLYETePvCcXIjACCBKzx29lK1
-        MBwdxXJXcGugWas8jbkPhdwko8vrLEmmTGMXWYNtcVnsymumINpmNK8qsl0obTpi9AGV8LfsFkWRu
-        LuSOnKWXrVBrn+jseKOL3fVGZJnwBazv8PGQI8LLyVwpanvyLbpHLCWZO+YM+ww7NZdS+riYguwj7
-        Uo1FQ7bA==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:39200 helo=[192.168.69.85])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.95)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1olUmM-00DrcV-Va;
-        Thu, 20 Oct 2022 14:36:06 +0200
-Message-ID: <143f1466-e34a-254d-4e6e-fefa17ad1390@norik.com>
-Date:   Thu, 20 Oct 2022 14:36:10 +0200
+        with ESMTP id S229886AbiJTMjd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 08:39:33 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46CEF178AA
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:39:30 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id u7so1498760qvn.13
+        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 05:39:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZfIr1cCYntMcg38k43BwnqiTczM7YPUsQyV6bjQhYTE=;
+        b=r6pXAkWN6tuBqy2WHCpX2Ylh5q4vUvyV6IgZRJl/uORfAKdVhV2Cyv2lNZpHNSwgst
+         jmu5yBPSoH3m/ift8eXLd3igqXilv+xG6ilL27uG3jP4ZvZYhEw5geRXQrvJev3Ds7vY
+         +8s3fAkg4RxL/U9m2By1Ghn+jH2n3S+SSjjuxEQgrobBpwlSs8cY9XE0Ae33UkO27CJu
+         XBa5vMMSDjq3dIr971x5v5yr1WnPWb9JRL6j6on3YE0AnbLRN6f/35FNpWAcuxdyauPE
+         bn+4yfDD5CnhZ0eL3PEeTsQ8ohiAoN4CzWvppN5wLM9mxpnHJxuJLZmhsuCkjumczFHQ
+         NMzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZfIr1cCYntMcg38k43BwnqiTczM7YPUsQyV6bjQhYTE=;
+        b=02H0Z8ET90PsyU5SOXgkA79UplTCzGLq6s/pv+/bdZ33Nx6r8eJCJYN67vT/KI79+4
+         k9oplMNlGcSucTzNwvDN8MKR1kVyx4oQOnsGBjRZzyOmcUkYIzehqtP0tHYjP8vspiDL
+         KO9DrsfkQ/WvmsPzk2UjIs8hocnuI4df3t01oUNb/DfTV9y9kMTAu/6+lEeE7cRLysYx
+         UxX6cs59qZPuzEt59WXd9By0sbW0Y/Wdamg1SwDWRiwZKMJko0t2RRq4NZbkqMmwu4tk
+         U11N7Eqj0yb5ufNQAfBU5F55qLjPb2ayVVXmfJRt584LyqxV1kDYpS5WWZYAcEOu2dqk
+         MGiA==
+X-Gm-Message-State: ACrzQf1HtsozgVX1srBuA7ZH2M4oMck8o071wOYgenho0zSq7bnYxB+U
+        Eobv7E2xooeAdrPVZRngbrWCJw==
+X-Google-Smtp-Source: AMsMyM5NvWIvyhkngdLjT+yTVpGAEH8tXDpGUA1sQOU5Jx9NKqwwLg3kIaFQl5e+SfbTuUcFSD6gHA==
+X-Received: by 2002:ad4:5d68:0:b0:4af:af07:580b with SMTP id fn8-20020ad45d68000000b004afaf07580bmr10575811qvb.14.1666269569384;
+        Thu, 20 Oct 2022 05:39:29 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id x6-20020ac86b46000000b0035ba48c032asm5869363qts.25.2022.10.20.05.39.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Oct 2022 05:39:28 -0700 (PDT)
+Message-ID: <1b164c8a-1ace-125a-62ac-47dd77399f74@linaro.org>
+Date:   Thu, 20 Oct 2022 08:39:27 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
- wait mode
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, robh+dt@kernel.org
-References: <20221019111714.1953262-1-andrej.picej@norik.com>
- <20221019111714.1953262-3-andrej.picej@norik.com>
- <7508670.GXAFRqVoOG@steina-w>
- <56118d35-dfe6-f46b-9fc7-28aca6530fb5@linaro.org>
- <d93503b7-fa65-d2ae-461f-56d68bf312e0@norik.com>
- <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221014221138.7552-1-quic_molvera@quicinc.com>
+ <20221014221138.7552-4-quic_molvera@quicinc.com>
+ <e94d9029-e0aa-574f-62d2-632e2c5d70d2@linaro.org>
+ <65f95226-f464-2e14-1f89-930ed26e0f38@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <65f95226-f464-2e14-1f89-930ed26e0f38@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/10/2022 17:16, Melody Olvera wrote:
+> 
+> 
+> On 10/15/2022 6:29 AM, Krzysztof Kozlowski wrote:
+>> On 14/10/2022 18:11, Melody Olvera wrote:
+>>> Add DTs for Qualcomm IDP platforms using the QDU1000 and QRU1000
+>>> SoCs.
+>>>
+>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/Makefile        |   2 +
+>>>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 230 +++++++++++++++++++++++
+>>>  arch/arm64/boot/dts/qcom/qru1000-idp.dts | 230 +++++++++++++++++++++++
+>>>  3 files changed, 462 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/qru1000-idp.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index d7669a7cee9f..8417295adfeb 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -51,7 +51,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-maple.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-sony-xperia-yoshino-poplar.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= qru1000-idp.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+>>>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>>> new file mode 100644
+>>> index 000000000000..47a8eaf4fda2
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>>> @@ -0,0 +1,230 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>> +#include "qdu1000.dtsi"
+>>> +#include "pm8150.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Qualcomm Technologies, Inc. QDU1000 IDP";
+>>> +	compatible = "qcom,qdu1000-idp", "qcom,qdu1000";
+>>> +
+>>> +	aliases {
+>>> +		serial0 = &uart7;
+>>> +	};
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = "serial0:115200n8";
+>>> +	};
+>>> +
+>>> +	ppvar_sys: ppvar-sys-regulator {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "ppvar_sys";
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +	};
+>>> +
+>>> +	vph_pwr: vph-pwr-regulator {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "vph_pwr";
+>>> +		regulator-min-microvolt = <3700000>;
+>>> +		regulator-max-microvolt = <3700000>;
+>>> +
+>>> +		regulator-always-on;
+>>> +		regulator-boot-on;
+>>> +
+>>> +		vin-supply = <&ppvar_sys>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&apps_rsc {
+>>> +	pm8150-regulators {
+>> regulators
+> Just 'regulators' as the node name isn't compliant with the bindings for rpmh-rsc devices.
+> Do the bindings need to be updated or should I leave this as is?
 
-
-On 20. 10. 22 14:18, Krzysztof Kozlowski wrote:
-> On 20/10/2022 02:23, Andrej Picej wrote:
->> Hi Alexander and Krzysztof,
->>
->> hope I can reply to both questions here.
->>
->> On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
->>> On 19/10/2022 09:00, Alexander Stein wrote:
->>>> Hello Andrej,
->>>>
->>>> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
->>>
->>> Missing commit msg.
->>>
->>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->>>>> ---
->>>>>    Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5 +++++
->>>>>    1 file changed, 5 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
->>>>> fb7695515be1..01b3e04e7e65 100644
->>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>> @@ -55,6 +55,11 @@ properties:
->>>>>          If present, the watchdog device is configured to assert its
->>>>>          external reset (WDOG_B) instead of issuing a software reset.
->>>>>
->>>>> +  fsl,suspend-in-wait:
->>>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>>> +    description: |
->>>>> +      If present, the watchdog device is suspended in WAIT mode.
->>>>> +
->>>>>    required:
->>>>>      - compatible
->>>>>      - interrupts
->>>>
->>>> What is the condition the watchdog is suspended in WAIT mode? Is this specific
->>>> to SoC or platform or something else?
->>>>
->>>
->>
->> Sorry, what exactly do you mean by condition?
-> 
-> Ugh, I also cannot parse it now...
-> 
->> When the property
->> "fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so
->> this is defined by the user. Didn't want to apply it for all the
->> supported machines since there could be devices which depend on watchdog
->> triggering in WAIT mode. We stumbled on this problem on imx6 devices,
->> but the same bit (with the same description) is found on imx25, imx35,
->> imx50/51/53, imx7 and imx8.
-> 
-> I meant, what is expected to happen if you do not enable this bit and
-> watchdog triggers in WAIT mode? IOW, why someone might want to enable or
-> disable this property?
-If this is not enabled and you put the device into the Suspend-to-idle 
-mode the device resets after 128 seconds. If not, the device can be left 
-in that state for infinite time. I'm guessing you want me to better 
-explain the property in device tree docs right?
-I can do that in v2.
-> 
->>
->>> And what happens else? When it is not suspended in WAIT mode?
->>>
->>
->> When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the
->> watchdog keeps running and triggers a reset after 128 seconds. So the
->> maximum length the device can stay in this mode is limited to 128 seconds.
-> 
-> And who wakes up the system before 128 seconds? IOW is there a use case
-> of not enabling this property?
-> 
-Well I can think of one, system can be woken up by some other interrupt. 
-Like RTC which triggers interrupt (for example every 10s). So if this 
-property is left disabled the watchdog can handle errors where other 
-wakeup sources don't trigger interrupt or if the system is unable to 
-wake from low-power state. In that case the watchdog will do a hard 
-reset of the device.
-
-But I'm not really sure if anybody uses this, just wanted to make sure 
-that we keep the default behaviour as it is, since this driver is used 
-by many devices and for quite some time.
+If bindings expect this, I propose to change them. Which schema is
+expecting this? I already fixed SMD RPM:
+https://lore.kernel.org/all/20220926092104.111449-1-krzysztof.kozlowski@linaro.org/
 
 Best regards,
-Andrej
+Krzysztof
+
