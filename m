@@ -2,168 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D86605537
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 03:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6200560553E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 03:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbiJTBxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 21:53:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
+        id S230506AbiJTBzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 21:55:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231522AbiJTBxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 21:53:05 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523F91958F5;
-        Wed, 19 Oct 2022 18:53:03 -0700 (PDT)
-Received: from canpemm500009.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Mt9VH5KL9zVj0L;
-        Thu, 20 Oct 2022 09:48:23 +0800 (CST)
-Received: from [10.67.102.169] (10.67.102.169) by
- canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 20 Oct 2022 09:52:30 +0800
-CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <yangyicong@hisilicon.com>,
-        <wsa@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
-        <xuwei5@huawei.com>
-Subject: Re: [PATCH next v6 2/2] dt-bindings: i2c: add entry for
- hisilicon,i2c-ascend910
-To:     Weilong Chen <chenweilong@huawei.com>
-References: <20221018073012.309355-1-chenweilong@huawei.com>
- <20221018073012.309355-2-chenweilong@huawei.com>
-From:   Yicong Yang <yangyicong@huawei.com>
-Message-ID: <7520818b-de40-7f2a-1b03-b1dcd29a2023@huawei.com>
-Date:   Thu, 20 Oct 2022 09:52:30 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        with ESMTP id S229683AbiJTBzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 21:55:09 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0411F148F53;
+        Wed, 19 Oct 2022 18:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=2WkjNmweiW5UWvFDyTIcZUK41JmBY3NIJ3WWOjzemz4=; b=yix4Du8TvUlpQtqptrK+MKkL3z
+        /ET3kalM77hPT3l6cx/BkcbjUVKBkwSwplYfuXRgJ9WOQ6FButJSZbMP+5V6MB7P/Ryg33i28lEP4
+        +oCjfTdMsXUhKarpfrdoliN5qeym6d0ygAMgpVWD6rrk7WtUK8uswQdkzG04mNwtpurpG6fQe1udT
+        Se2/1kfXz3Ct3emBhO80iKRfrL3NWFgHpGq/yT87KnL7F8fKCvNQcwAE5Tj/80CMuIx+YlrvGhBk6
+        nDfyBbT0d/YKYDny9orz7JkmlFfc0/jiau2GCVzD8xoelbrh/CKvDdtYIGtb3NGidbIAhp4OGjk4b
+        pIUiSmOA==;
+Received: from [2601:1c2:d80:3110::a2e7]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1olKlu-009Dnn-Qc; Thu, 20 Oct 2022 01:54:58 +0000
+Message-ID: <d5a7c385-4155-af0c-ed51-865f274fa030@infradead.org>
+Date:   Wed, 19 Oct 2022 18:54:57 -0700
 MIME-Version: 1.0
-In-Reply-To: <20221018073012.309355-2-chenweilong@huawei.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH] of: fix repeated words in comments
+Content-Language: en-US
+To:     Theodore Ts'o <tytso@mit.edu>
+Cc:     Jilin Yuan <yuanjilin@cdjrlc.com>, robh+dt@kernel.org,
+        frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221019130200.60460-1-yuanjilin@cdjrlc.com>
+ <9fb4c010-b465-e908-6868-d9e493a9688f@infradead.org>
+ <Y1Cm2Hvf7W7NxVzk@mit.edu>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <Y1Cm2Hvf7W7NxVzk@mit.edu>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.169]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- canpemm500009.china.huawei.com (7.192.105.203)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/10/18 15:30, Weilong Chen wrote:
-> Add the new compatible for HiSilicon i2c.
-> 
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
-> ---
-> Change since v5:
-> - Use hisilicon,i2c-ascend910 as compatible string. For more information about
->   the SoC at https://e.huawei.com/en/products/cloud-computing-dc/atlas/ascend-910
-> - Alphabetic order the MAINTAINERS
-> 
-> Change since v4:
-> - Add description for SoC specific compatibles.
-> - Use the clock binding.
-> - Fix decimal, space, case, unused labels.
-> Link: https://lore.kernel.org/lkml/20220909074842.281232-1-chenweilong@huawei.com/T/#m4e1c915ead04f4e2e48d69131053a966801625db
-> 
->  .../bindings/i2c/hisilicon,i2c-xxx.yaml       | 70 +++++++++++++++++++
 
-The file name may look a bit strange, but anyway the doc itself looks good to me.
 
-Reviewed-by: Yicong Yang <yangyicong@hisilicon.com>
+On 10/19/22 18:39, Theodore Ts'o wrote:
+> On Wed, Oct 19, 2022 at 11:53:54AM -0700, Randy Dunlap wrote:
+>>
+>> On 10/19/22 06:02, Jilin Yuan wrote:
+>>> Delete the redundant word 'of'.
+>>>
+>>> Signed-off-by: Jilin Yuan <yuanjilin@cdjrlc.com>
+>>> ---
+>>>  drivers/of/device.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/of/device.c b/drivers/of/device.c
+>>> index 8cefe5a7d04e..16c7e5a2a868 100644
+>>> --- a/drivers/of/device.c
+>>> +++ b/drivers/of/device.c
+>>> @@ -19,7 +19,7 @@
+>>>  
+>>>  /**
+>>>   * of_match_device - Tell if a struct device matches an of_device_id list
+>>> - * @matches: array of of device match structures to search in
+>>> + * @matches: array of device match structures to search in
+>>
+>> Hi,
+>> Rob has already explained this at least 2 times.
+>>
+>> The second "of" is "open firmware".
+>> I would write it
+>>               array of OF device match structures to search in
+>> :)
+> 
+> Actually, I'd probably do something like
+> 
+>     	     array of Open Firmware (OF) device match structures...
 
->  MAINTAINERS                                   |  1 +
->  2 files changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
+Sure, that's good.
+
+> This is the first place in that file (at least in a comment) where OF
+> gets used, and I've always been a big fan of using the fully expanded
+> acronym before using the acronym form.  Remember, PCMCIA stands for
+> People Can't Memorize Computer Industry Acronyms.  :-)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
-> new file mode 100644
-> index 000000000000..a7285ddc260d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/i2c/hisilicon,i2c-xxx.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: HiSilicon common IIC controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - yangyicong@huawei.com
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: hisilicon,i2c-ascend910
-> +    description:
-> +      The HiSilicon common IIC controller can be used for many different
-> +      types of SoC such as Huawei Ascend AI series chips.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-frequency:
-> +    default: 400000
-> +
-> +  i2c-sda-falling-time-ns:
-> +    default: 343
-> +
-> +  i2c-scl-falling-time-ns:
-> +    default: 203
-> +
-> +  i2c-sda-hold-time-ns:
-> +    default: 830
-> +
-> +  i2c-scl-rising-time-ns:
-> +    default: 365
-> +
-> +  i2c-digital-filter-width-ns:
-> +    default: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c@5038b0000 {
-> +      compatible = "hisilicon,i2c-ascend910";
-> +      reg = <0x38b0000 0x10000>;
-> +      interrupts = <0x0 120 0x4>;
-> +      i2c-sda-falling-time-ns = <56>;
-> +      i2c-scl-falling-time-ns = <56>;
-> +      i2c-sda-hold-time-ns = <56>;
-> +      i2c-scl-rising-time-ns = <56>;
-> +      i2c-digital-filter;
-> +      i2c-digital-filter-width-ns = <0x0>;
-> +      clocks = <&alg_clk>;
-> +      clock-frequency = <400000>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ad32dc9c4822..961e4442fb08 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9211,6 +9211,7 @@ M:	Yicong Yang <yangyicong@hisilicon.com>
->  L:	linux-i2c@vger.kernel.org
->  S:	Maintained
->  W:	https://www.hisilicon.com
-> +F:	Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
->  F:	drivers/i2c/busses/i2c-hisi.c
->  
->  HISILICON LPC BUS DRIVER
-> 
+> (Actually, it's Personal Computer Memory Chip Industry Association,
+
+                                           Card International Association :)
+
+> but most people don't know that, because using acronyms without
+> defining them first makes you feel like you're an "insider".  :-)
+
+
+-- 
+~Randy
