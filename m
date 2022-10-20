@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0866055F4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 05:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0881E605610
+	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 05:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229509AbiJTD2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Oct 2022 23:28:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54492 "EHLO
+        id S229691AbiJTDnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Oct 2022 23:43:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbiJTD2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 23:28:54 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7181DC4D6
-        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 20:28:53 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29K3SUIc081643;
-        Wed, 19 Oct 2022 22:28:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666236510;
-        bh=r5DWePghI8fCtIYdy6BD5IFcH0Ykyaz99Zro6k3jc9o=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=p+rMwiI1ToiqEWv5vMTDyKaFU04DhOCXLgD/oDM4x4i7bdn4BVt2iKzEM8+6m6pd3
-         bDTVk7MthiPfAFtZa56RpcyXFuPJkIGAOrQGBKGwYTgD2xWtZRbK+5FAOrdNptOWIa
-         KIK7k6icuJWdJH+DL7mDYukQRR7ITVYZk6L/B8IA=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29K3SUZ0120152
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 19 Oct 2022 22:28:30 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 19
- Oct 2022 22:28:29 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 19 Oct 2022 22:28:29 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29K3SQ4N013171;
-        Wed, 19 Oct 2022 22:28:28 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Matt Ranostay <mranostay@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: k3-j72*: correct compatible for syscon entries
-Date:   Wed, 19 Oct 2022 20:28:02 -0700
-Message-ID: <20221020032802.308545-3-mranostay@ti.com>
-X-Mailer: git-send-email 2.38.GIT
-In-Reply-To: <20221020032802.308545-1-mranostay@ti.com>
-References: <20221020032802.308545-1-mranostay@ti.com>
+        with ESMTP id S229565AbiJTDnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Oct 2022 23:43:52 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678D31A20B2
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 20:43:50 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id b2so31416957lfp.6
+        for <devicetree@vger.kernel.org>; Wed, 19 Oct 2022 20:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Mbb+ms7dDLns10UB111selnMgeoJrimy+PQGWTgS8os=;
+        b=GRtyKqUh+xv5psvLq7nIc/uv5P0r3/660TF9/kxeZxN52qyJUhRib44NzMiYTxaTEr
+         gt0lMlGyjzA2fjCTFjSW50BtLm0XQH2pKDal/noPsgy7J3PDU64LVzMWZpucBvLQho6M
+         zHAzs1fhiXK0EJH+/SYu13RkaENktAnPyvrHPHJ5XA5Lg85aDFJNuqc6MGxXU5yki90H
+         8fLy/lFuZNXgd+iJFajRLxxb0BpzC/EhocRwnh+WBeqX4yVD4kviu6GNaIivVLuHslp+
+         fM9/aVVU2yvR4xHnLv20NA8DnJfnCUEkTDSMO3XxFAUW50cU0CmyAloZtVExGDq1S6hF
+         97lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mbb+ms7dDLns10UB111selnMgeoJrimy+PQGWTgS8os=;
+        b=N/vnsfZuMlygJXdDGUPGZQEbEk5vI995mHGKfMCPta7GQLaPcH9mtrJXRUQG3dJDzM
+         KYSAHaVhnOWy7ssHAKjJURNLrfnuW2GmO7jsY+t9fG/eQJ7GN5VY80qrJMQwcqFYZh8f
+         eox74gdArWkR4EBujJ6dENj3MdU4D8c4H73WdRoDNdIPgwLeR/FbNDCnrC3o6XNf8Y6t
+         Einsh4YM3feTpFjxwItR1wgloqgxpaXkwGViZyYjLc1Ht6ltzx+Uuu/60XyIXE2ZKefW
+         iOX3xRkEOwVpKuGNhVHSGlpcj+hKsIVZaFMsZWF3t516MiY/DR2mbc+2AVojwggCo0Ho
+         aT0w==
+X-Gm-Message-State: ACrzQf0GUR8OIfEE+qHWlbf7fFs24E0ftoK8qzS2jKWcsPFOXXkKe2tn
+        Q6QiG0QeqzW+8ngHaumrtGeMQA==
+X-Google-Smtp-Source: AMsMyM6MKUT7PHDVARV6rvHpxydEsT1vycmI5y9FVGzscxrHq1b3OZzmwF1HsCbazGeU+aREwzCNOQ==
+X-Received: by 2002:ac2:443a:0:b0:4a2:623d:6022 with SMTP id w26-20020ac2443a000000b004a2623d6022mr4379478lfl.372.1666237428674;
+        Wed, 19 Oct 2022 20:43:48 -0700 (PDT)
+Received: from [10.27.10.248] ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id k3-20020a2eb743000000b0026fd3d906d7sm2725364ljo.133.2022.10.19.20.43.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Oct 2022 20:43:48 -0700 (PDT)
+Message-ID: <2902e7e8-eddf-149c-06fd-86b85d8af326@linaro.org>
+Date:   Thu, 20 Oct 2022 06:43:47 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 15/15] phy: qcom-qmp-pcie: add support for sc8280xp
+ 4-lane PHYs
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221019113552.22353-1-johan+linaro@kernel.org>
+ <20221019113552.22353-16-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221019113552.22353-16-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,57 +82,272 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing ti,j7*-system-controller compatible to bus defines in mcu/wakeup
-domains to avoid the following similar warnings from dt-schema checks:
+On 19/10/2022 14:35, Johan Hovold wrote:
+> The PCIe2 and PCIe3 controllers and PHYs on SC8280XP can be used in
+> 4-lane mode or as separate controllers and PHYs in 2-lane mode (e.g. as
+> PCIe2A and PCIe2B).
+> 
+> Add support for fetching the 4-lane configuration from the TCSR and
+> programming the lane registers of the second port when in 4-lane mode.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/Kconfig             |   1 +
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 118 +++++++++++++++++++++++
+>   2 files changed, 119 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/Kconfig b/drivers/phy/qualcomm/Kconfig
+> index 5c98850f5a36..eb9ddc685b38 100644
+> --- a/drivers/phy/qualcomm/Kconfig
+> +++ b/drivers/phy/qualcomm/Kconfig
+> @@ -54,6 +54,7 @@ config PHY_QCOM_QMP
+>   	tristate "Qualcomm QMP PHY Driver"
+>   	depends on OF && COMMON_CLK && (ARCH_QCOM || COMPILE_TEST)
+>   	select GENERIC_PHY
+> +	select MFD_SYSCON
+>   	help
+>   	  Enable this to support the QMP PHY transceiver that is used
+>   	  with controllers such as PCIe, UFS, and USB on Qualcomm chips.
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index ea5228bd9ecc..e5bce4810bb5 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/io.h>
+>   #include <linux/iopoll.h>
+>   #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/of_device.h>
+> @@ -17,6 +18,7 @@
+>   #include <linux/phy/pcie.h>
+>   #include <linux/phy/phy.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/reset.h>
+>   #include <linux/slab.h>
+> @@ -886,6 +888,10 @@ static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl[] =
+>   	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIAS_EN_CLKBUFLR_EN, 0x14),
+>   };
+>   
+> +static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_V5_COM_BIAS_EN_CLKBUFLR_EN, 0x1c),
+> +};
+> +
+>   static const struct qmp_phy_init_tbl sc8280xp_qmp_gen3x1_pcie_tx_tbl[] = {
+>   	QMP_PHY_INIT_CFG(QSERDES_V5_TX_PI_QEC_CTRL, 0x20),
+>   	QMP_PHY_INIT_CFG(QSERDES_V5_TX_LANE_MODE_1, 0x75),
+> @@ -1491,6 +1497,9 @@ struct qmp_phy_cfg {
+>   	const struct qmp_phy_cfg_tables *tables_rc;
+>   	const struct qmp_phy_cfg_tables *tables_ep;
+>   
+> +	const struct qmp_phy_init_tbl *serdes_4ln_tbl;
+> +	int serdes_4ln_num;
 
-arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@40f00000: compatible: ['syscon', 'simple-mfd'] is too short'
+Would it make more sense to change this into the proper 
+qmp_phy_cfg_tables entry and then use the existing API for programming 
+the table?
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+> +
+>   	/* clock ids to be requested */
+>   	const char * const *clk_list;
+>   	int num_clks;
+> @@ -1518,6 +1527,7 @@ struct qmp_pcie {
+>   	struct device *dev;
+>   
+>   	const struct qmp_phy_cfg *cfg;
+> +	bool tcsr_4ln_config;
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index e5be78a58682..2025aab4b66f 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -35,7 +35,7 @@ k3_reset: reset-controller {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j7200-system-controller", "syscon", "simple-mfd";
- 		reg = <0x00 0x40f00000 0x00 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index df08724bbf1c..5d9ec221fa34 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -35,7 +35,7 @@ k3_reset: reset-controller {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 4d1bfabd1313..dfd40369b931 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -69,7 +69,7 @@ wkup_gpio_intr: interrupt-controller@42200000 {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721s2-system-controller", "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+As a matter of preference, this seems too specific. I'd rename it to 
+split_config or split_4ln_config.
+
+>   
+>   	void __iomem *serdes;
+>   	void __iomem *pcs;
+> @@ -1527,6 +1537,8 @@ struct qmp_pcie {
+>   	void __iomem *tx2;
+>   	void __iomem *rx2;
+>   
+> +	void __iomem *port_b;
+> +
+>   	struct clk *pipe_clk;
+>   	struct clk *pipediv2_clk;
+>   	struct clk_bulk_data *clks;
+> @@ -1932,6 +1944,44 @@ static const struct qmp_phy_cfg sc8280xp_qmp_gen3x2_pciephy_cfg = {
+>   	.phy_status		= PHYSTATUS,
+>   };
+>   
+> +static const struct qmp_phy_cfg sc8280xp_qmp_gen3x4_pciephy_cfg = {
+> +	.lanes			= 4,
+> +
+> +	.offsets		= &qmp_pcie_offsets_v5,
+> +
+> +	.tables = {
+> +		.serdes		= sc8280xp_qmp_pcie_serdes_tbl,
+> +		.serdes_num	= ARRAY_SIZE(sc8280xp_qmp_pcie_serdes_tbl),
+> +		.tx		= sc8280xp_qmp_gen3x2_pcie_tx_tbl,
+> +		.tx_num		= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_tx_tbl),
+> +		.rx		= sc8280xp_qmp_gen3x2_pcie_rx_tbl,
+> +		.rx_num		= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_rx_tbl),
+> +		.pcs		= sc8280xp_qmp_gen3x2_pcie_pcs_tbl,
+> +		.pcs_num	= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_pcs_tbl),
+> +		.pcs_misc	= sc8280xp_qmp_gen3x2_pcie_pcs_misc_tbl,
+> +		.pcs_misc_num	= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_pcs_misc_tbl),
+> +	},
+> +
+> +	.tables_rc = &(const struct qmp_phy_cfg_tables) {
+> +		.serdes		= sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl,
+> +		.serdes_num	= ARRAY_SIZE(sc8280xp_qmp_gen3x2_pcie_rc_serdes_tbl),
+> +	},
+> +
+> +	.serdes_4ln_tbl		= sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl,
+> +	.serdes_4ln_num		= ARRAY_SIZE(sc8280xp_qmp_gen3x4_pcie_serdes_4ln_tbl),
+> +
+> +	.clk_list		= sc8280xp_pciephy_clk_l,
+> +	.num_clks		= ARRAY_SIZE(sc8280xp_pciephy_clk_l),
+> +	.reset_list		= sdm845_pciephy_reset_l,
+> +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
+> +	.vreg_list		= qmp_phy_vreg_l,
+> +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
+> +	.regs			= sm8250_pcie_regs_layout,
+> +
+> +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
+> +	.phy_status		= PHYSTATUS,
+> +};
+> +
+>   static const struct qmp_phy_cfg sdx55_qmp_pciephy_cfg = {
+>   	.lanes			= 2,
+>   
+> @@ -2054,6 +2104,24 @@ static void qmp_pcie_configure(void __iomem *base,
+>   	qmp_pcie_configure_lane(base, tbl, num, 0xff);
+>   }
+>   
+> +static void qmp_pcie_init_port_b(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
+> +{
+> +	const struct qmp_phy_cfg *cfg = qmp->cfg;
+> +	const struct qmp_pcie_offsets *offs = cfg->offsets;
+> +	void __iomem *tx3, *rx3, *tx4, *rx4;
+> +
+> +	tx3 = qmp->port_b + offs->tx;
+> +	rx3 = qmp->port_b + offs->rx;
+> +	tx4 = qmp->port_b + offs->tx2;
+> +	rx4 = qmp->port_b + offs->rx2;
+> +
+> +	qmp_pcie_configure_lane(tx3, tbls->tx, tbls->tx_num, 1);
+> +	qmp_pcie_configure_lane(rx3, tbls->rx, tbls->rx_num, 1);
+> +
+> +	qmp_pcie_configure_lane(tx4, tbls->tx, tbls->tx_num, 2);
+> +	qmp_pcie_configure_lane(rx4, tbls->rx, tbls->rx_num, 2);
+
+I'd use BIT(2) and BIT(3) here. This would allow one to make a 
+difference between programming first pair of lanes and second pair of 
+lanes if necessary.
+
+
+> +}
+> +
+>   static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
+>   {
+>   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+> @@ -2080,6 +2148,11 @@ static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_c
+>   
+>   	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
+>   	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+> +
+> +	if (cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
+> +		qmp_pcie_configure(serdes, cfg->serdes_4ln_tbl, cfg->serdes_4ln_num);
+> +		qmp_pcie_init_port_b(qmp, tbls);
+> +	}
+
+As you have been refactoring this piece of code, maybe it would make 
+more sense to change qmp->tx/tx2 into an array of two elements? Then we 
+can extend it to 4 in this patch, and just always write the whole array 
+in a loop?
+
+>   }
+>   
+>   static int qmp_pcie_init(struct phy *phy)
+> @@ -2477,6 +2550,37 @@ static int qmp_pcie_parse_dt_legacy(struct qmp_pcie *qmp, struct device_node *np
+>   	return 0;
+>   }
+>   
+> +static int qmp_pcie_get_4ln_config(struct qmp_pcie *qmp)
+> +{
+> +	struct regmap *tcsr;
+> +	unsigned int args[2];
+> +	int ret;
+> +
+> +	tcsr = syscon_regmap_lookup_by_phandle_args(qmp->dev->of_node,
+> +						    "qcom,4ln-config-sel",
+> +						    ARRAY_SIZE(args), args);
+> +	if (IS_ERR(tcsr)) {
+> +		ret = PTR_ERR(tcsr);
+> +		if (ret == -ENOENT)
+> +			return 0;
+> +
+> +		dev_err(qmp->dev, "failed to lookup syscon: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_test_bits(tcsr, args[0], BIT(args[1]));
+> +	if (ret < 0) {
+> +		dev_err(qmp->dev, "failed to read tcsr: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	qmp->tcsr_4ln_config = ret;
+> +
+> +	dev_dbg(qmp->dev, "4ln_config_sel = %d\n", qmp->tcsr_4ln_config);
+> +
+> +	return 0;
+> +}
+> +
+>   static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
+>   {
+>   	struct platform_device *pdev = to_platform_device(qmp->dev);
+> @@ -2484,10 +2588,15 @@ static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
+>   	const struct qmp_pcie_offsets *offs = cfg->offsets;
+>   	struct device *dev = qmp->dev;
+>   	void __iomem *base;
+> +	int ret;
+>   
+>   	if (!offs)
+>   		return -EINVAL;
+>   
+> +	ret = qmp_pcie_get_4ln_config(qmp);
+> +	if (ret)
+> +		return ret;
+> +
+>   	base = devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(base))
+>   		return PTR_ERR(base);
+> @@ -2503,6 +2612,12 @@ static int qmp_pcie_parse_dt(struct qmp_pcie *qmp)
+>   		qmp->rx2 = base + offs->rx2;
+>   	}
+>   
+> +	if (qmp->cfg->lanes >= 4 && qmp->tcsr_4ln_config) {
+> +		qmp->port_b = devm_platform_ioremap_resource(pdev, 1);
+> +		if (IS_ERR(qmp->port_b))
+> +			return PTR_ERR(qmp->port_b);
+> +	}
+> +
+>   	qmp->pipe_clk = devm_clk_get(dev, "pipe");
+>   	if (IS_ERR(qmp->pipe_clk)) {
+>   		return dev_err_probe(dev, PTR_ERR(qmp->pipe_clk),
+> @@ -2610,6 +2725,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
+>   	}, {
+>   		.compatible = "qcom,sc8280xp-qmp-gen3x2-pcie-phy",
+>   		.data = &sc8280xp_qmp_gen3x2_pciephy_cfg,
+> +	}, {
+> +		.compatible = "qcom,sc8280xp-qmp-gen3x4-pcie-phy",
+> +		.data = &sc8280xp_qmp_gen3x4_pciephy_cfg,
+>   	}, {
+>   		.compatible = "qcom,sdm845-qhp-pcie-phy",
+>   		.data = &sdm845_qhp_pciephy_cfg,
+
 -- 
-2.38.GIT
+With best wishes
+Dmitry
 
