@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 185E2605F00
+	by mail.lfdr.de (Postfix) with ESMTP id 73B3C605F01
 	for <lists+devicetree@lfdr.de>; Thu, 20 Oct 2022 13:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiJTLgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 07:36:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38444 "EHLO
+        id S230406AbiJTLgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 07:36:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbiJTLgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:36:36 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2BB19B67A;
-        Thu, 20 Oct 2022 04:36:32 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id l22so29461835edj.5;
-        Thu, 20 Oct 2022 04:36:32 -0700 (PDT)
+        with ESMTP id S231381AbiJTLge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 07:36:34 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93EE617651C;
+        Thu, 20 Oct 2022 04:36:31 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id i17so24967193lja.3;
+        Thu, 20 Oct 2022 04:36:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2hBzpuTfcLKm/gHU0j1Rb5iDzN0jpTw27RMtS7S6QiY=;
-        b=LvS7i/tU9BiRY+bnSEBZx2dHBwo+AeR3GLscVXRJPEgvwLRi0gmXL7Y0hcbVsCXxdh
-         GNpDRQjbUKZdTqjAn1gn9SbWj65eppSj30Gm0uUzaE1ijQYGhBN6GOce/D0Jn8SZTaVf
-         zWUxff7rS68KU/SKGxDQnSl5yPYCYsmQ7lYWyl10VS0/qpS+zeEYE0c2UB6H++W3zTTz
-         I4Qo/dlwvqgllRwT46z0hCtGhIT14yM83rpxBBqLAEVyrrx/oHn6Co5q/4xD50a1SZt8
-         sh785bCyqPAHEDs0ZFGJ1VPgcJ6zK54ZGw8cj78YQNfRm/+AudEZSSjdzONlVTlyRBgP
-         wqcw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gZoVF05Q2xZgx3y72bMOuq/IRllwtgg80T41Y5gIALE=;
+        b=FWJgVvXqzr0lJCjJx+U29KrVBkJXspt70ojqE/VRcwueis8vNY41xu0FT0AII4rHz9
+         Ndf5FsIuLdDg1aJGYuuS7bpvhLdgZZDyoLiDI0EP97/6nLz44y6HzS5NjlMuEZnsar8R
+         fnTO2MQTnb+oNH2MD0J9CnTZeNTDLTMEjBJnKCVhC9LOdN5HFoqBarH7na4OOmrs7cQ6
+         eGBMUg53DwMZ6BWHgoZa+jiOw8Co2Yo585iFVwy0NKidfzWFKdUZg7cI6/x3xROjqgiy
+         Y0y9HwOKcsmzVN0MCIODFirN05i0q67A7zcE2q7a5sPUWzjXmvNbHqbxCoxmUSNb4c0I
+         TwKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2hBzpuTfcLKm/gHU0j1Rb5iDzN0jpTw27RMtS7S6QiY=;
-        b=z6nLix1ZrqCrkYawsC0nTTrtyJKOKi7jPQ3ymkxLuOkfwqVHp/b7s7zhKHZVFu3Vir
-         /ZdaYcWKmIjkXldf7c567sJ8qFdNDT/BU4hNtwc2d/Wf+Al6kH3sgwI6jmsBjfbXXJMr
-         P737TuV4vIOUwy6udWyogckBcfxcrNcLwqc7mEMMS9akCRhSZeolHlr6REEwnCixdobh
-         aXX3lBf5nvRXsMeeglsyJWgiA1WfeNc9fcGQG2rrAUaITXHsgEFpWaIhJU20oDmAdb6R
-         LFPhvvru1nQTf1g+YPdmVv4l/mOkObRjy8wLN7jizMiGmGWyrkhxcz+kuJ8L+CY3Tr/F
-         ff9A==
-X-Gm-Message-State: ACrzQf1gV9q9MGIUs7TL6oHOYqIdZmIbGbOW0p/IRRfb4Nz5bv9pZp6V
-        9dhCc0nOGG+COPfLSt6cWr6F9YrHJqXqgA==
-X-Google-Smtp-Source: AMsMyM642cRbJkWRb0REHkacf8Zt0nE8dOnuVHN/e2FpIG0h/B96y1K0ZYrvtgKxLuw2QF0YLHrl6A==
-X-Received: by 2002:a17:907:da7:b0:791:8f57:6860 with SMTP id go39-20020a1709070da700b007918f576860mr10947353ejc.509.1666265779656;
-        Thu, 20 Oct 2022 04:36:19 -0700 (PDT)
-Received: from [10.32.3.204] ([95.183.227.98])
-        by smtp.gmail.com with ESMTPSA id bd13-20020a056402206d00b004590b29d8afsm12108770edb.84.2022.10.20.04.36.15
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gZoVF05Q2xZgx3y72bMOuq/IRllwtgg80T41Y5gIALE=;
+        b=L2sd2l7NLm+zTs2odaVpMmwqQCfpyS6FalUy494FN23CqYjo9w8q9JwOCXoYYxanbt
+         t50RCm/svUwy7Q4XmxMeYTpIfoDiAfqqojGu+5F6g2X7B/eW8NaCcWrs/DlnyiJ/pvmi
+         Mzk0Zm+s1y+opvq/c0ncZdI/3ZgFyVFukWWx3XD6tzcjSKIjRRbhk4VrdAxkP9ROeBkk
+         W88g4E6oQEe4Q0svZgmY9lTDkDC/jnPyvjR5HCaLNVS87LWeEhoN9GJWd+D786dp0dy0
+         bDfMH1dO9oy1/tFjt+/lhuYveeSr7REjDRHXPAlak6BEAp7EKtjcOyoDdlgZELiTBpbQ
+         WvGQ==
+X-Gm-Message-State: ACrzQf0AC0I2SDf0FdaxyprckCOzoGgmD3mt4t3K+uNu/Q0Sar73rskl
+        5wRShAf10cJd7qafioz6m80zXAh8pKo=
+X-Google-Smtp-Source: AMsMyM7pfv+3U0D2awTUfxF/YUO/sMrsauOdaDwhoycBtXutWfHjh5uLFC5DssfiugZvfKGZTMp6KQ==
+X-Received: by 2002:a2e:b989:0:b0:26f:b595:d428 with SMTP id p9-20020a2eb989000000b0026fb595d428mr4529036ljp.169.1666265789012;
+        Thu, 20 Oct 2022 04:36:29 -0700 (PDT)
+Received: from dc75zzyyyyyyyyyyyyycy-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::4])
+        by smtp.gmail.com with ESMTPSA id 11-20020a05651c128b00b0026fa9e19197sm2874548ljc.36.2022.10.20.04.36.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 04:36:18 -0700 (PDT)
-Date:   Thu, 20 Oct 2022 14:36:08 +0300
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH v3 06/10] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
- Add MT6795
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Thu, 20 Oct 2022 04:36:28 -0700 (PDT)
+Date:   Thu, 20 Oct 2022 14:36:23 +0300
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Message-Id: <8WU1KR.065JU8WYUX9C3@gmail.com>
-In-Reply-To: <0f078a85-056a-c11e-377b-27764a34485d@linaro.org>
-References: <20221007125904.55371-1-y.oudjana@protonmail.com>
-        <20221007125904.55371-7-y.oudjana@protonmail.com>
-        <0f078a85-056a-c11e-377b-27764a34485d@linaro.org>
-X-Mailer: geary/40.0
+Subject: [PATCH v3 1/3] dt-bindings: iio: Add KX022A accelerometer
+Message-ID: <aaf22c800b90f4eed1986782c8549bec5c9c72f5.1666263249.git.mazziesaccount@gmail.com>
+References: <cover.1666263249.git.mazziesaccount@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="XLJOO2dPuPGVM4/U"
+Content-Disposition: inline
+In-Reply-To: <cover.1666263249.git.mazziesaccount@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,266 +83,144 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, Oct 10 2022 at 07:24:59 -04:00:00, Krzysztof Kozlowski 
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 07/10/2022 08:59, Yassine Oudjana wrote:
->>  From: Yassine Oudjana <y.oudjana@protonmail.com>
->> 
->>  Combine MT6795 pin controller document into MT6779 one. In the
->>  process, replace the current interrupts property description with
->>  the one from the MT6795 document since it makes more sense. Also
->>  amend property descriptions and examples with more detailed
->>  information that was available in the MT6795 document, and replace
->>  the current pinmux node name patterns with ones from it since they
->>  are more common across mediatek pin controller bindings.
->> 
->>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
->>  ---
->>   .../pinctrl/mediatek,mt6779-pinctrl.yaml      |  94 ++++++--
->>   .../pinctrl/mediatek,pinctrl-mt6795.yaml      | 227 
->> ------------------
->>   2 files changed, 77 insertions(+), 244 deletions(-)
->>   delete mode 100644 
->> Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml 
->> b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
->>  index a2141eb0854e..cada3530dd0a 100644
->>  --- 
->> a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
->>  +++ 
->> b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
->>  @@ -8,6 +8,7 @@ title: Mediatek MT6779 Pin Controller
->> 
->>   maintainers:
->>     - Andy Teng <andy.teng@mediatek.com>
->>  +  - AngeloGioacchino Del Regno 
->> <angelogioacchino.delregno@collabora.com>
->>     - Sean Wang <sean.wang@kernel.org>
->> 
->>   description:
->>  @@ -18,6 +19,7 @@ properties:
->>     compatible:
->>       enum:
->>         - mediatek,mt6779-pinctrl
->>  +      - mediatek,mt6795-pinctrl
->>         - mediatek,mt6797-pinctrl
->> 
->>     reg:
->>  @@ -43,9 +45,10 @@ properties:
->>     interrupt-controller: true
->> 
->>     interrupts:
->>  -    maxItems: 1
->>  +    minItems: 1
->>  +    maxItems: 2
->>       description: |
->>  -      Specifies the summary IRQ.
->>  +      The interrupt outputs to sysirq.
-> 
-> I am not sure if description is relevant now for all variants... what 
-> is
-> the sysirq? You have two interrupts so both go to one sysirq?
+--XLJOO2dPuPGVM4/U
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It's the system interrupt controller and it has several inputs. Both 
-interrupts go to it.
+KX022A is a 3-axis Accelerometer from ROHM/Kionix. The sensor features
+include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+tap/motion detection, wake-up & back-to-sleep events, four acceleration
+ranges (2, 4, 8 and 16g) and probably some other cool features.
 
-> 
->> 
->>     "#interrupt-cells":
->>       const: 2
->>  @@ -81,6 +84,30 @@ allOf:
->>               - const: iocfg_lt
->>               - const: iocfg_tl
->>               - const: eint
->>  +
->>  +        interrupts:
->>  +          items:
->>  +            - description: EINT interrupt
->>  +
->>  +  - if:
->>  +      properties:
->>  +        compatible:
->>  +          contains:
->>  +            const: mediatek,mt6795-pinctrl
->>  +    then:
->>  +      properties:
->>  +        reg:
->>  +          minItems: 2
-> 
-> What's the maxItems? You declared reg and reg-names in top-level
-> properties as accepting anything, therefore you cannot have loose
-> constraints here.
+Add the basic device tree description for the accelerometer. Only basic
+accelerometer features are considered as of now - new properties may or
+may not be needed in the future when rest of the features are supported.
 
-That was an oversight. I'll fix it.
-> 
->>  +
->>  +        reg-names:
->>  +          items:
->>  +            - const: base
->>  +            - const: eint
->>  +
->>  +        interrupts:
->>  +          items:
->>  +            - description: EINT interrupt
->>  +            - description: EINT event_b interrupt
-> 
-> Blank line
-> 
->>     - if:
->>         properties:
->>           compatible:
->>  @@ -111,32 +138,50 @@ allOf:
->>           - "#interrupt-cells"
->> 
->>   patternProperties:
->>  -  '-[0-9]*$':
->>  +  '-pins$':
->>       type: object
->>       additionalProperties: false
->> 
->>       patternProperties:
->>  -      '-pins*$':
->>  +      '^pins':
->>           type: object
->>           description: |
->>             A pinctrl node should contain at least one subnodes 
->> representing the
->>             pinctrl groups available on the machine. Each subnode 
->> will list the
->>             pins it needs, and how they should be configured, with 
->> regard to muxer
->>  -          configuration, pullups, drive strength, input 
->> enable/disable and input schmitt.
->>  -        $ref: "/schemas/pinctrl/pincfg-node.yaml"
->>  +          configuration, pullups, drive strength, input 
->> enable/disable and
->>  +          input schmitt.
->>  +        $ref: "pinmux-node.yaml"
-> 
-> Drop quotes
-> 
-> Why this one is not pincfg-node anymore? All your properties are not
-> valid then? You mix here so many changes it is a bit difficult to
-> understand the concept.
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Seems like I didn't pay enough attention to that. This node actually 
-takes both pinmux-node (pinmux specifically) and pincfg-node 
-properties, so would it make sense to add ref for both?
+---
+v2 =3D> v3 as suggested by Krzysztof:
+- better check interrupt-names
 
-> 
->> 
->>           properties:
->>             pinmux:
->>               description:
->>  -              integer array, represents gpio pin number and mux 
->> setting.
->>  -              Supported pin number and mux varies for different 
->> SoCs, and are defined
->>  -              as macros in boot/dts/<soc>-pinfunc.h directly.
->>  +              Integer array, represents gpio pin number and mux 
->> setting.
->>  +              Supported pin number and mux varies for different 
->> SoCs, and are
->>  +              defined as macros in 
->> dt-bindings/pinctrl/<soc>-pinfunc.h
->>  +              directly.
->> 
->>             bias-disable: true
->> 
->>  -          bias-pull-up: true
->>  -
->>  -          bias-pull-down: true
->>  +          bias-pull-up:
->>  +            oneOf:
->>  +              - type: boolean
->>  +              - enum: [100, 101, 102, 103]
-> 
-> Missing ref
-> 
->>  +                description: Pull up PUPD/R0/R1 type define value.
->>  +            description: |
->>  +               For normal pull up type, it is not necessary to 
->> specify R1R0
->>  +               values; When pull up type is PUPD/R0/R1, adding 
->> R1R0 defines
->>  +               will set different resistance values.
->>  +
->>  +          bias-pull-down:
->>  +            oneOf:
->>  +              - type: boolean
->>  +              - enum: [100, 101, 102, 103]
-> 
-> Missing ref
-> 
->>  +                description: Pull down PUPD/R0/R1 type define 
->> value.
->>  +            description: |
->>  +               For normal pull down type, it is not necessary to 
->> specify R1R0
->>  +               values; When pull down type is PUPD/R0/R1, adding 
->> R1R0 defines
->>  +               will set different resistance values.
->> 
->>             input-enable: true
->> 
->>  @@ -151,7 +196,7 @@ patternProperties:
->>             input-schmitt-disable: true
->> 
->>             drive-strength:
->>  -            enum: [2, 4, 8, 12, 16]
->>  +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> 
-> Now you are missing ref - you do not have a type now, because you
-> removed pincfg-node. Split the merging of different pinctrl bindings 
-> and
-> reorganization.
+RFCv1 =3D> v2:
+Based on a review by Krzysztof:
+- fix a typo from commit message
+- const compatible
+- drop unnecessary descriptions/words
+- io_vdd-supply =3D> io-vdd-supply
+- fix the binding example indentiation
+Also,
+- change my email address
+- support both INT pins
+---
+ .../bindings/iio/accel/kionix,kx022a.yaml     | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/kionix,kx02=
+2a.yaml
 
-Will do.
-
-> 
-> The drive strengths are also not valid for the other variant...
-
-Actually the supported drive strengths vary between pins of a single 
-variant, so technically they have never been described completely 
-accurately. The old drive strenghs are a superset of strengths 
-supported by pins on the MT6779 pin controller, and this change expands 
-the superset with values supported by some pins in MT6795. Would it be 
-better to move this to the conditionals to have it defined per variant?
-
->> 
->>             slew-rate:
->>               enum: [0, 1]
->>  @@ -218,8 +263,9 @@ examples:
->>               #interrupt-cells = <2>;
->>               interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>;
->> 
->>  -            mmc0_pins_default: mmc0-0 {
->>  -                cmd-dat-pins {
->>  +            /* GPIOs 167-174, 176-178 set as multifunction MSDC0 */
->>  +            mmc0_pins_default: mmc0-pins {
->>  +                pins-cmd-dat {
->>                       pinmux = <PINMUX_GPIO168__FUNC_MSDC0_DAT0>,
->>                           <PINMUX_GPIO172__FUNC_MSDC0_DAT1>,
->>                           <PINMUX_GPIO169__FUNC_MSDC0_DAT2>,
->>  @@ -232,15 +278,29 @@ examples:
->>                       input-enable;
->>                       mediatek,pull-up-adv = <1>;
->>                   };
->>  -                clk-pins {
->>  +                pins-clk {
->>                       pinmux = <PINMUX_GPIO176__FUNC_MSDC0_CLK>;
->>                       mediatek,pull-down-adv = <2>;
->>                   };
->>  -                rst-pins {
->>  +                pins-rst {
->>                       pinmux = <PINMUX_GPIO178__FUNC_MSDC0_RSTB>;
->>                       mediatek,pull-up-adv = <0>;
->>                   };
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml=
+ b/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
+new file mode 100644
+index 000000000000..986df1a6ff0a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/accel/kionix,kx022a.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ROHM/Kionix KX022A Accelerometer
++
++maintainers:
++  - Matti Vaittinen <mazziesaccount@gmail.com>
++
++description: |
++  KX022A is a 3-axis accelerometer supporting +/- 2G, 4G, 8G and 16G range=
+s,
++  output data-rates from 0.78Hz to 1600Hz and a hardware-fifo buffering.
++  KX022A can be accessed either via I2C or SPI.
++
++properties:
++  compatible:
++    const: kionix,kx022a
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - enum: [INT1, INT2]
++      - const: INT2
++
++  vdd-supply: true
++  io-vdd-supply: true
++
++  mount-matrix:
++    description: |
++      an optional 3x3 mounting rotation matrix.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++        accel@1f {
++            compatible =3D "kionix,kx022a";
++            reg =3D <0x1f>;
++
++            interrupt-parent =3D <&gpio1>;
++            interrupts =3D <29 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-names =3D "INT1";
++
++            io-vdd-supply =3D <&iovdd>;
++            vdd-supply =3D <&vdd>;
++        };
++    };
+--=20
+2.37.3
 
 
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--XLJOO2dPuPGVM4/U
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmNRMrcACgkQeFA3/03a
+ocXpFQf+I04E2yKJdnbmjnJ5fA2gyOf93BBGvKDqsTDS7MxiDlRJrBl6KZN5iw39
+VxTzp77wSaH6NE+l0K+FNp6uCm2mZ7gWm71kltPqZvsE6JeOZr6u6O/mgmd06khV
+2Q+CwmtvfdJsNp/6+4tmfeP535+IlfYrnLyytIvdzi1f+qGIoafjiaFEys3lAnIV
+hqHC9kwxAOwmfrR1UKNHFQwlqHAHUC5eorYOIbnXT/BE7gLCouQbHqzwCXa44z/h
+eeoJSP/e0sbW9ISXngAstoLtZUVQ9zRS27k/86zLSkT/P/xW11qk/X0x3+yN17cU
+O32xZIPqmrazLIk4ObQm14IDGvhCLQ==
+=Kxy0
+-----END PGP SIGNATURE-----
+
+--XLJOO2dPuPGVM4/U--
