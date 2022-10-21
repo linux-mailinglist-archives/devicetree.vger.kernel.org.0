@@ -2,151 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E1360755F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 12:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 491EB60757D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 12:56:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbiJUKuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 06:50:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49278 "EHLO
+        id S230048AbiJUK4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 06:56:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiJUKtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 06:49:41 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E73FCBDE;
-        Fri, 21 Oct 2022 03:49:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666349361; x=1697885361;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=w0a33PigWSTiQkXsbRap1wdMtX5M30vWOtN5yDWKwAk=;
-  b=a5P3ItN1PE4ZxpTrwEnRlk4OKdTZiiNfH/3JYqmqsdzIDgL58H9F6iHn
-   JhqTqTjndFgEJhHJhAAM+EbP9x1J70ClKUdsS2nE8jScRMzaQjVdYLG0g
-   ZuIXRhbmT+I01cbBEnAN21T7lV8O+AggLcnpAExrMfxUc1BCN9Qj++ecc
-   /RnxvGOzC29H2wsOczg9EQ/xcD5GiyR2ef9btyPyWf8w4YgFo+bJZ+uHj
-   oh9vFoIm6GBKPzofUPtoRLv8M9p0V3deyvHR/Os2d4rJPoT32L8R5+BEk
-   UV8RrlXCeep47fWGCfygL7KCvW6qLIGgMVCmIaBbPc/XNhBy1k2gewY5p
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="308070032"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; 
-   d="scan'208";a="308070032"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Oct 2022 03:49:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10506"; a="632863745"
-X-IronPort-AV: E=Sophos;i="5.95,200,1661842800"; 
-   d="scan'208";a="632863745"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 21 Oct 2022 03:49:17 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1olpaV-00B6rD-0Q;
-        Fri, 21 Oct 2022 13:49:15 +0300
-Date:   Fri, 21 Oct 2022 13:49:14 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229956AbiJUK4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 06:56:36 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81BB2465EF
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 03:56:34 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id f9so1981695plb.13
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 03:56:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vU/DuE4Eaix7qc9Mg5crIANCPOJ8DuGZdNrlRQlDA6Y=;
+        b=qxIn1W5NmANH7TeIMGXyAtAlsJ9NjN4LbjmXSJ2+EKA/58ExYKFL2JmNU/ZSTtV55M
+         mYctrLur9xYsiI6wVSuQENUMJJebFKR3boIHoRP7vrzVatxTv0R/e5IApHVOzyHxlcr+
+         /Ot5UhT+CmavNXPpnKczC0PhaTKazUfudi7ThAZk5c4PDfreiCeQSIbfLp3nR9PNEHlN
+         Mwj2D3e8y6yUZFzURka8WilktNWLOrNcYKICoxV7KQTchZd0qHpmQz/d57gre/BIC2BS
+         4daIwYssaLwcc+Q4p3sI82GPZoQ1H62oyUQHzF3va1tMXzuFXC0uV6JOlSlizi65MEYx
+         uGKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vU/DuE4Eaix7qc9Mg5crIANCPOJ8DuGZdNrlRQlDA6Y=;
+        b=8Ry3kgg6460EuxYOUc/E/Qv3zaO1DoFCSdSsz9ae4cFNct0HPOqRYmwEhXDZDQeElD
+         TX330O8gKS5Y4bZH/tMrdt/Rt2MABmdu/Wy5tFJUg5QREqLhvnvvMwBg11VEbiwaDCpD
+         YcUqGicO0TqyXRdo3LLbepI1PV42aWM37darscHhhGZu+UOri4dGdf6DIjzCVM0uLWn6
+         HpoCwWvp1KjVXF0RZPWXpdxtLMbbbl1YOoUVripezH6710kdC0W3ci8y89accSWM/Bfr
+         AkEaEtLD60FiUr4UXen/2qvLuqYES8DzM3EDGWyOwNBSzBAH+8+VgTwfWzNV135MbIc6
+         1T1A==
+X-Gm-Message-State: ACrzQf0aT1OKqs2lrI8c4c+85d/qQHeCBddvj1Ne2p8+8YMMSWbu+VlM
+        NSH6cWRihTm43ctH5ZBhIXPQOg==
+X-Google-Smtp-Source: AMsMyM4AF1epMQ0gklAfq/TEi+5qRQfJJqFcac8hRczaFe30IChFzJF2ovDQaCCwPze6LTtYP+YbRA==
+X-Received: by 2002:a17:90b:4d8c:b0:20d:2935:7058 with SMTP id oj12-20020a17090b4d8c00b0020d29357058mr56803462pjb.86.1666349794362;
+        Fri, 21 Oct 2022 03:56:34 -0700 (PDT)
+Received: from liang-Predator-PH517-52.. (2001-b400-e339-bb7d-a809-3af0-ee98-4fc4.emome-ip6.hinet.net. [2001:b400:e339:bb7d:a809:3af0:ee98:4fc4])
+        by smtp.gmail.com with ESMTPSA id 2-20020a620602000000b0052d4cb47339sm14822957pfg.151.2022.10.21.03.56.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Oct 2022 03:56:33 -0700 (PDT)
+From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org,
+        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-Message-ID: <Y1J5KiH6IJLmrWH4@smile.fi.intel.com>
-References: <cover.1666263249.git.mazziesaccount@gmail.com>
- <5000bd61650554658d13619c8244f02cedbc182a.1666263249.git.mazziesaccount@gmail.com>
- <Y1FcftQKimmvcOej@smile.fi.intel.com>
- <2cad533d-32d1-5ca1-74e6-e2debcbdad81@gmail.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org
+Subject: [PATCH v8 0/4] Add LTE SKU for sc7280-evoker family
+Date:   Fri, 21 Oct 2022 18:56:19 +0800
+Message-Id: <20221021105623.3520859-1-sheng-liang.pan@quanta.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2cad533d-32d1-5ca1-74e6-e2debcbdad81@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 10:10:08AM +0300, Matti Vaittinen wrote:
-> On 10/20/22 17:34, Andy Shevchenko wrote:
-> > On Thu, Oct 20, 2022 at 02:37:15PM +0300, Matti Vaittinen wrote:
+This patch add common dtsi and WIFI/LTE dts for evoker.
 
-...
+Changes in v8:
+- updated patch subjects
 
-> > > +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
-> > > +			       sizeof(__le16));
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	*val = le16_to_cpu(data->buffer[0]);
-> > 
-> > 'p'-variant of the above would look better
-> > 
-> > 	*val = le16_to_cpup(data->buffer);
-> > 
-> > since it will be the same as above address without any additional arithmetics.
-> > 
-> 
-> I guess there is no significant performance difference? To my eye the
-> le16_to_cpu(data->buffer[0]) is much more clear. I see right from the call
-> that we have an array here and use the first member. If there is no obvious
-> technical merit for using le16_to_cpup(data->buffer) over
-> le16_to_cpu(data->buffer[0]), then I do really prefer the latter for
-> clarity.
+Changes in v7:
+- goodix gt7986 dt bindings added in v7
+- add compiatable for gt7986
 
-Then you probably wanted to have &data->buffer[0] as a parameter to
-regmap_bulk_read()?
+Changes in v6:
+- add removed pinctrl and align touchscreen label with herobrine board
 
-...
+Changes in v5:
+- recover whitespace change
+- new patch for Touchscreen/trackpad in v5
 
-> > > +	if (data->trigger_enabled) {
-> > > +		iio_trigger_poll_chained(data->trig);
-> > > +		ret = IRQ_HANDLED;
-> > > +	}
-> > > +
-> > > +	if (data->state & KX022A_STATE_FIFO) {
-> > 
-> > > +		ret = __kx022a_fifo_flush(idev, KX022A_FIFO_LENGTH, true);
-> > > +		if (ret > 0)
-> > > +			ret = IRQ_HANDLED;
-> > 
-> > I don't like it. Perhaps
-> > 
-> > 	bool handled = false;
-> > 	int ret;
-> > 
-> > 	...
-> > 		ret = ...
-> > 		if (ret > 0)
-> > 			handled = true;
-> > 	...
-> > 
-> > 	return IRQ_RETVAL(handled);
-> 
-> I don't see the benefit of adding another variable 'handled'.
-> If I understand correctly, it just introduces one extra 'if' in IRQ thread
-> handling while hiding the return value in IRQ_RETVAL() - macro.
-> 
-> I do like seeing the IRQ_NONE being returned by default and IRQ_HANDLED only
-> when "handlers" are successfully executed. Adding extra variable just
-> obfuscates this (from my eyes) while adding also the additional 'if'.
+Changes in v4:
+- fix typo in tittle and commit
+- recover change for trackpad and touchscreen
 
-You assigning semantically different values to the same variable inside the
-function.
+Changes in v3:
+- none
+
+Changes in v2:
+- none
+
+Sheng-Liang Pan (4):
+  dt-bindings: arm: qcom: Separate LTE/WIFI SKU for sc7280-evoker
+  arm64: dts: qcom: sc7280: Add LTE SKU for sc7280-evoker family
+  dt-bindings: input: touchscreen: Add goodix GT7986U touchscreen chip
+  arm64: dts: qcom: sc7280: Add touchscreen and touchpad support for
+    evoker
+
+ .../devicetree/bindings/arm/qcom.yaml         |  5 +++++
+ .../bindings/input/goodix,gt7375p.yaml        |  5 ++++-
+ arch/arm64/boot/dts/qcom/Makefile             |  3 ++-
+ .../dts/qcom/sc7280-herobrine-evoker-lte.dts  | 14 ++++++++++++
+ .../boot/dts/qcom/sc7280-herobrine-evoker.dts | 15 +++++++++++++
+ ...er-r0.dts => sc7280-herobrine-evoker.dtsi} | 22 ++++++-------------
+ 6 files changed, 47 insertions(+), 17 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
+ rename arch/arm64/boot/dts/qcom/{sc7280-herobrine-evoker-r0.dts => sc7280-herobrine-evoker.dtsi} (95%)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.34.1
 
