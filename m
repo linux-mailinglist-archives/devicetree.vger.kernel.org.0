@@ -2,209 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8BCF60705B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D79960706A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:48:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbiJUGr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 02:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59340 "EHLO
+        id S230251AbiJUGsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 02:48:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbiJUGrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:47:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2283242C9A;
-        Thu, 20 Oct 2022 23:47:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230252AbiJUGsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:48:17 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674F2245EA8;
+        Thu, 20 Oct 2022 23:48:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666334890; x=1697870890;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7NHLIHYEH91h9b/qKvocjJYdpKbOw1GLI0C4WgI2NME=;
+  b=kujZHNVPDKCYepQoEuMbQnZ1SGget8ixboPrzHgkSBYrD7neUVdnb5fX
+   Fzu0ZaDcawgVpV/z23aOuW8D3+xhlTjqH5ddvzVkZlkF+Vqi+XnoAhPKa
+   siUl6fZilILH7fsf5l4fPC0FWmqsm5A1b6378riKPFTdzMHB+oEqtcC4R
+   E94dOCVc5VHd+2Lr0hjH03BYmYuS8h1xHufi+FjXbXg0QpLijeunvP6ys
+   j6pSMw+dFzBYaJlYFQ0iWn2bveTasAvC0QSHl76Z9lne3p/pNj96Xrf0F
+   nabnHHPl+zVihOu/tffgN+BZ5OOqfrmm1YVtFLZVGAPuj4azUo+f/m8pR
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.95,200,1661810400"; 
+   d="scan'208";a="26887648"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 21 Oct 2022 08:48:07 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 21 Oct 2022 08:48:07 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 21 Oct 2022 08:48:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666334887; x=1697870887;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=7NHLIHYEH91h9b/qKvocjJYdpKbOw1GLI0C4WgI2NME=;
+  b=C4RivNkS94Mq9s9vZdxsFUkgUMWsb6tJIu6F+oaCvHP4P14LAh3qU4tw
+   4X1OcvOBszEO5OnvS6t38FpbctZUwwEi7Tl6FowT4G9EUOjrUSQgmdNZb
+   dTlcCJip+6n5K/fj4unxKQo+dIgox1n8GhrccEbLoUOMQp7ojHCllb2im
+   616s3NVAiYv1tCYy+60x1s+VYK6Q0n1tUWtgOXQpFXenzHLDEyUW1qGfV
+   b5lRvLyuuPHp/m23gJLdvKWmWipCGyJpM5kT4wfzHoqbnIXM7nAY3BUSC
+   5FHn6iem/XKvHXW3vCxDKybj68SSxVuRUR4gspBAI4wP8G7ogvfiDbJXR
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.95,200,1661810400"; 
+   d="scan'208";a="26887647"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Oct 2022 08:48:07 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 75E2D601D2;
-        Fri, 21 Oct 2022 06:47:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3732C433B5;
-        Fri, 21 Oct 2022 06:47:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666334867;
-        bh=eTZxC1jB3/0V0Rfdced1bkYKZ1MT7sUu1FOTOt8PolQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rRPlIRnOPhzMeB6r2V5WpRI38L/sUcuGWNXwbuxeqVmZJUJJGEDr8OwqSSrW9fkLG
-         EHPqh79YREql28uu+U4qACvVhcUmShrYVch1nLLjMZnrGJvlwyToAOp2ChtnrfYy0T
-         QjXqbD4rIHjAWC8V7pVCiELsG/RQC8ayfStX1k2tUuEy3VK86c3Ej1YtRESwyXXE1m
-         7pZU9zLSMqGtQk7fD1xQndAa9SiMkjZm7+0l8U8bMeofhe87iMzg4GkwzQ59XK5ANB
-         YcWlJegft5yoUFUt2CoASsvH4DBybXMwtTkOH7A1eK6vGJyL+RLoVaqmqmW7+oFHeK
-         AHx/XtL8g4Tjw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1olloc-0001fW-GM; Fri, 21 Oct 2022 08:47:34 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2798A280056;
+        Fri, 21 Oct 2022 08:48:07 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        quic_vbadigan@quicinc.com, Brian Masney <bmasney@redhat.com>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH v2 2/2] PCI: qcom: Add basic interconnect support
-Date:   Fri, 21 Oct 2022 08:46:16 +0200
-Message-Id: <20221021064616.6380-3-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221021064616.6380-1-johan+linaro@kernel.org>
-References: <20221021064616.6380-1-johan+linaro@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/1] dt-bindings: clock: ti,cdce925: Convert to DT schema
+Date:   Fri, 21 Oct 2022 08:47:57 +0200
+Message-Id: <20221021064757.379558-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Qualcomm platforms like SC8280XP and SA8540P, interconnect bandwidth
-must be requested before enabling interconnect clocks.
+Convert the TI CDCE925 clock binding to DT schema format.
+Including a small fix: Add the missing 'ti' prefix in the example
+compatible.
 
-Add basic support for managing an optional "pcie-mem" interconnect path
-by setting a low constraint before enabling clocks and updating it after
-the link is up.
-
-Note that it is not possible for a controller driver to set anything but
-a maximum peak bandwidth as expected average bandwidth will vary with
-use case and actual use (and power policy?). This very much remains an
-unresolved problem with the interconnect framework.
-
-Also note that no constraint is set for the SC8280XP/SA8540P "cpu-pcie"
-path for now as it is not clear what an appropriate constraint would be
-(and the system does not crash when left unspecified).
-
-Fixes: 70574511f3fc ("PCI: qcom: Add support for SC8280XP")
-Reviewed-by: Brian Masney <bmasney@redhat.com>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- drivers/pci/controller/dwc/pcie-qcom.c | 76 ++++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+I have to admit I only have one specific addon platform for this
+hardware, which is actually a CECD813 tbh.
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 7db94a22238d..0c13f976626f 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -12,6 +12,7 @@
- #include <linux/crc8.h>
- #include <linux/delay.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/interconnect.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
-@@ -224,6 +225,7 @@ struct qcom_pcie {
- 	union qcom_pcie_resources res;
- 	struct phy *phy;
- 	struct gpio_desc *reset;
-+	struct icc_path *icc_mem;
- 	const struct qcom_pcie_cfg *cfg;
- };
- 
-@@ -1644,6 +1646,74 @@ static const struct dw_pcie_ops dw_pcie_ops = {
- 	.start_link = qcom_pcie_start_link,
- };
- 
-+static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
-+{
-+	struct dw_pcie *pci = pcie->pci;
-+	int ret;
+Changes in v2:
+* Fix bindings title
+* Removed nodename pattern
+* Add 'additionalProperties: false' for PLL subnodes
+* Fix typo in required list
+* I added myself as maintainer
+
+ .../devicetree/bindings/clock/ti,cdce925.txt  |  53 ---------
+ .../devicetree/bindings/clock/ti,cdce925.yaml | 103 ++++++++++++++++++
+ 2 files changed, 103 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+
+diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.txt b/Documentation/devicetree/bindings/clock/ti,cdce925.txt
+deleted file mode 100644
+index df42ab72718f..000000000000
+--- a/Documentation/devicetree/bindings/clock/ti,cdce925.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-Binding for TI CDCE913/925/937/949 programmable I2C clock synthesizers.
+-
+-Reference
+-This binding uses the common clock binding[1].
+-
+-[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] https://www.ti.com/product/cdce913
+-[3] https://www.ti.com/product/cdce925
+-[4] https://www.ti.com/product/cdce937
+-[5] https://www.ti.com/product/cdce949
+-
+-The driver provides clock sources for each output Y1 through Y5.
+-
+-Required properties:
+- - compatible: Shall be one of the following:
+-	- "ti,cdce913": 1-PLL, 3 Outputs
+-	- "ti,cdce925": 2-PLL, 5 Outputs
+-	- "ti,cdce937": 3-PLL, 7 Outputs
+-	- "ti,cdce949": 4-PLL, 9 Outputs
+- - reg: I2C device address.
+- - clocks: Points to a fixed parent clock that provides the input frequency.
+- - #clock-cells: From common clock bindings: Shall be 1.
+-
+-Optional properties:
+- - xtal-load-pf: Crystal load-capacitor value to fine-tune performance on a
+-                 board, or to compensate for external influences.
+-- vdd-supply: A regulator node for Vdd
+-- vddout-supply: A regulator node for Vddout
+-
+-For all PLL1, PLL2, ... an optional child node can be used to specify spread
+-spectrum clocking parameters for a board.
+-  - spread-spectrum: SSC mode as defined in the data sheet.
+-  - spread-spectrum-center: Use "centered" mode instead of "max" mode. When
+-    present, the clock runs at the requested frequency on average. Otherwise
+-    the requested frequency is the maximum value of the SCC range.
+-
+-
+-Example:
+-
+-	clockgen: cdce925pw@64 {
+-		compatible = "cdce925";
+-		reg = <0x64>;
+-		clocks = <&xtal_27Mhz>;
+-		#clock-cells = <1>;
+-		xtal-load-pf = <5>;
+-		vdd-supply = <&1v8-reg>;
+-		vddout-supply = <&3v3-reg>;
+-		/* PLL options to get SSC 1% centered */
+-		PLL2 {
+-			spread-spectrum = <4>;
+-			spread-spectrum-center;
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+new file mode 100644
+index 000000000000..a4ec8dd5ddf1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	pcie->icc_mem = devm_of_icc_get(pci->dev, "pcie-mem");
-+	if (IS_ERR(pcie->icc_mem)) {
-+		ret = PTR_ERR(pcie->icc_mem);
-+		return ret;
-+	}
++title: TI CDCE913/925/937/949 programmable I2C clock synthesizers
 +
-+	/*
-+	 * Some Qualcomm platforms require interconnect bandwidth constraints
-+	 * to be set before enabling interconnect clocks.
-+	 *
-+	 * Set an initial peak bandwidth corresponding to single-lane Gen 1
-+	 * for the pcie-mem path.
-+	 */
-+	ret = icc_set_bw(pcie->icc_mem, 0, MBps_to_icc(250));
-+	if (ret) {
-+		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
-+			ret);
-+		return ret;
-+	}
++maintainers:
++  - Alexander Stein <alexander.stein@ew.tq-group.com>
 +
-+	return 0;
-+}
++description: |
++  Flexible Low Power LVCMOS Clock Generator with SSC Support for EMI Reduction
 +
-+static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-+{
-+	struct dw_pcie *pci = pcie->pci;
-+	u32 offset, status, bw;
-+	int speed, width;
-+	int ret;
++  - CDCE(L)913: 1-PLL, 3 Outputs https://www.ti.com/product/cdce913
++  - CDCE(L)925: 2-PLL, 5 Outputs https://www.ti.com/product/cdce925
++  - CDCE(L)937: 3-PLL, 7 Outputs https://www.ti.com/product/cdce937
++  - CDCE(L)949: 4-PLL, 9 Outputs https://www.ti.com/product/cdce949
 +
-+	if (!pcie->icc_mem)
-+		return;
++properties:
++  compatible:
++    enum:
++      - ti,cdce913
++      - ti,cdce925
++      - ti,cdce937
++      - ti,cdce949
 +
-+	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-+	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
++  reg:
++    maxItems: 1
 +
-+	/* Only update constraints if link is up. */
-+	if (!(status & PCI_EXP_LNKSTA_DLLLA))
-+		return;
++  clocks:
++    items:
++      - description: fixed parent clock
 +
-+	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
-+	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
++  "#clock-cells":
++    const: 1
 +
-+	switch (speed) {
-+	case 1:
-+		bw = MBps_to_icc(250);
-+		break;
-+	case 2:
-+		bw = MBps_to_icc(500);
-+		break;
-+	default:
-+	case 3:
-+		bw = MBps_to_icc(985);
-+		break;
-+	}
++  vdd-supply:
++    description: Regulator that provides 1.8V Vdd power supply
 +
-+	ret = icc_set_bw(pcie->icc_mem, 0, width * bw);
-+	if (ret) {
-+		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
-+			ret);
-+	}
-+}
++  vddout-supply:
++    description: |
++      Regulator that provides Vddout power supply.
++      non-L variant: 2.5V or 3.3V for
++      L variant: 1.8V for
 +
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -1704,6 +1774,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_pm_runtime_put;
- 	}
- 
-+	ret = qcom_pcie_icc_init(pcie);
-+	if (ret)
-+		goto err_pm_runtime_put;
++  xtal-load-pf:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      Crystal load-capacitor value to fine-tune performance on a
++      board, or to compensate for external influences.
 +
- 	ret = pcie->cfg->ops->get_resources(pcie);
- 	if (ret)
- 		goto err_pm_runtime_put;
-@@ -1722,6 +1796,8 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_phy_exit;
- 	}
- 
-+	qcom_pcie_icc_update(pcie);
++patternProperties:
++  "^PLL[1-4]$":
++    type: object
++    description: |
++      optional child node can be used to specify spread
++      spectrum clocking parameters for a board
 +
- 	return 0;
- 
- err_phy_exit:
++    additionalProperties: false
++
++    properties:
++      spread-spectrum:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: SSC mode as defined in the data sheet
++
++      spread-spectrum-center:
++        type: boolean
++        description: |
++          Use "centered" mode instead of "max" mode. When
++          present, the clock runs at the requested frequency on average.
++          Otherwise the requested frequency is the maximum value of the
++          SCC range.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        cdce925: clock-controller@64 {
++            compatible = "ti,cdce925";
++            reg = <0x64>;
++            clocks = <&xtal_27Mhz>;
++            #clock-cells = <1>;
++            xtal-load-pf = <5>;
++            vdd-supply = <&reg_1v8>;
++            vddout-supply = <&reg_3v3>;
++            /* PLL options to get SSC 1% centered */
++            PLL2 {
++                spread-spectrum = <4>;
++                spread-spectrum-center;
++            };
++        };
++    };
 -- 
-2.37.3
+2.25.1
 
