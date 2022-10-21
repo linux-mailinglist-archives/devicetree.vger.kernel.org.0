@@ -2,209 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41577607C0F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:20:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A647E607CAA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbiJUQUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 12:20:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55642 "EHLO
+        id S229501AbiJUQsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 12:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbiJUQTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:19:54 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D71A748C84;
-        Fri, 21 Oct 2022 09:19:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id C432FCE2B2E;
-        Fri, 21 Oct 2022 16:19:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF7C0C433D6;
-        Fri, 21 Oct 2022 16:19:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666369174;
-        bh=qXT4GPzDeP9IpTekE6kjrT6VMQoqce0Ms6UpGOHy2nk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZR8r9yjYUOErfzFZjbKYliEB6G0CWhEdE86roAA2ixpSF6HKWxaBhAL1LLPy3f5J+
-         qDe6zRxqGywbnEkTgkJBeGkd04AV/3+chi3DhIWIYT82/U/tsj8spD+lJvGlz7s3z9
-         H+L2UssekGHzy3/AyU1gD40XlNn8rAuSBphXPwdbXjPLpceKLe9sLsc6AG+LpyI4P0
-         0dRO+bc+m7zLVzekDSpj5N0F0lQ/f3JdmBuaiKX4R79WlanecZbigdKGE1gc55dVW7
-         426gl1RctB9Irr9zWHXLOK8ad65Wom/pLFe1LEWnKRihjhT1Gj3YqwgB8PuAOl7jST
-         1zJRp4T6AC6KQ==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     netdev@vger.kernel.org
-Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org, robh@kernel.org, daniel@makrotopia.org
-Subject: [PATCH net-next 6/6] net: ethernet: mtk_wed: add rx mib counters
-Date:   Fri, 21 Oct 2022 18:18:36 +0200
-Message-Id: <5909a53b0b37b9409b74335919d0a0efb307d1d5.1666368566.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <cover.1666368566.git.lorenzo@kernel.org>
-References: <cover.1666368566.git.lorenzo@kernel.org>
+        with ESMTP id S230473AbiJUQsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:48:33 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A4100BE6;
+        Fri, 21 Oct 2022 09:48:28 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso5509653wma.1;
+        Fri, 21 Oct 2022 09:48:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XbPvSXhOFP986gsXwgJkoWhk6VMKEDH9VysMFA4exvU=;
+        b=I3PLxPuc2tV4wZKG9QH1dxt6KVSHYn4tUeqoMo7D1YkEwEWRqEqj30vZIfAaWSSq5C
+         gsgA/KjAeXIVc47AAOdFcimD0GwGpL15rAMwbY5utUNOf1aTfVHri9HYZCxF5c+choLo
+         ua/Y2AhmzXrIq1vDLskNd6C8d6MYQbw0uyBg7Ou5Pmb5lWMkn1VnzE0MkReOBJED8O0I
+         Khwz/aGMUrJyQyFQnA/xdcs5dEIlpT47mJu1oQShXjI1ruwjrsNsOExGp3OMSbSeZrqq
+         zzsRaGYow5CXpG1EUOUNNs9pUV7VVZ7/QQacIfexqVvw0Zm+TFtKaUFbqrsfooS3o+u9
+         9Tfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XbPvSXhOFP986gsXwgJkoWhk6VMKEDH9VysMFA4exvU=;
+        b=0HMpGtPCJuzStiQKmr6Dnj8/0mU+0twy6GoPedIy+sTbkk6Hu7lH4YxlhZ1qNmkHNJ
+         pV0PXdSW/YyxBE4Am+QFL/K8Wjs73b5z6JI24f0/UBVlSYltNILR0vb7DuUUctKQ7wcK
+         m4bi55uS++NE2j//NmXqRFZz7a78M+keRonVTi9NqE2ErmiUWfX3hjD/eHQroPG9jjSm
+         ahzHUR3m5ylUE40Tn/MD/x5SL/3GGHu96BsAoy8RR+goQ/GFW9Xmf8zYbR5TR6gM2ZHq
+         HXaCiJT/4Q9OSi+F5NGmNeAZxuQYKUURslzkIrbzOH83VwZZc0g0t37uLSeHTs42mvYB
+         vcJA==
+X-Gm-Message-State: ACrzQf1K+y/DiYWUNiq/WQoKtlZzHB81IBAs87SuF15E/PYWysI2GKN1
+        fyS0gGzPJkMf4UA3dPiFoZnPolnM7UUIbVp6XR4=
+X-Google-Smtp-Source: AMsMyM6kdlYPtik0hBPcElvkVtBLOUl4VQ2V+hrKmnXSe6JHzGq2jHZKtAJrwAW+3HP4dw+SR+MGiRqRn85wdeVCmIE=
+X-Received: by 2002:a05:600c:6885:b0:3bd:d782:623c with SMTP id
+ fn5-20020a05600c688500b003bdd782623cmr13697576wmb.102.1666370906852; Fri, 21
+ Oct 2022 09:48:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221005085439.740992-1-megi@xff.cz> <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
+ <20221005220812.4psu6kckej63yo2z@core> <4679102.Wku2Vz74k6@phil>
+ <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com> <20221021153913.l5ry6v4mcnzcmj2v@core>
+In-Reply-To: <20221021153913.l5ry6v4mcnzcmj2v@core>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Fri, 21 Oct 2022 12:48:15 -0400
+Message-ID: <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
+ and ranges
+To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce WED RX MIB counters support available on MT7986a SoC.
+On Fri, Oct 21, 2022 at 11:39 AM Ond=C5=99ej Jirman <megi@xff.cz> wrote:
+>
+> On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
+> > Good Morning Heiko,
+> >
+> > Apologies for just getting to this, I'm still in the middle of moving
+> > and just got my lab set back up.
+> >
+> > I've tested this patch series and it leads to the same regression with
+> > NVMe drives. A loop of md5sum on two identical 4GB random files
+> > produces the following results:
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > fad97e91da8d4fd554c895cafa89809b  test-rand2.img
+> > 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
+> > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+> > 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
+> > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+> > b9637505bf88ed725f6d03deb7065dab  test-rand.img
+> > f7437e88d524ea92e097db51dce1c60d  test-rand2.img
+> >
+> > Before this patch series:
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> >
+> > Though I do love where this patch is going and would like to see if it
+> > can be made to work, in its current form it does not.
+>
+> Thanks for the test. Can you please also test v1? Also please share lspci=
+ -vvv
+> of your nvme drive, so that we can see allocated address ranges, etc.
 
-Tested-by: Daniel Golle <daniel@makrotopia.org>
-Co-developed-by: Sujuan Chen <sujuan.chen@mediatek.com>
-Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- .../net/ethernet/mediatek/mtk_wed_debugfs.c   | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
+Good catch, with your patch as is, the following issue crops up:
+Region 0: Memory at 300000000 (64-bit, non-prefetchable) [size=3D16K]
+Region 2: I/O ports at 1000 [disabled] [size=3D256]
 
-diff --git a/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c b/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c
-index f420f187e837..56f663439721 100644
---- a/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c
-+++ b/drivers/net/ethernet/mediatek/mtk_wed_debugfs.c
-@@ -2,6 +2,7 @@
- /* Copyright (C) 2021 Felix Fietkau <nbd@nbd.name> */
- 
- #include <linux/seq_file.h>
-+#include <linux/soc/mediatek/mtk_wed.h>
- #include "mtk_wed.h"
- #include "mtk_wed_regs.h"
- 
-@@ -18,6 +19,8 @@ enum {
- 	DUMP_TYPE_WDMA,
- 	DUMP_TYPE_WPDMA_TX,
- 	DUMP_TYPE_WPDMA_TXFREE,
-+	DUMP_TYPE_WPDMA_RX,
-+	DUMP_TYPE_WED_RRO,
- };
- 
- #define DUMP_STR(_str) { _str, 0, DUMP_TYPE_STRING }
-@@ -36,6 +39,9 @@ enum {
- 
- #define DUMP_WPDMA_TX_RING(_n) DUMP_RING("WPDMA_TX" #_n, 0, DUMP_TYPE_WPDMA_TX, _n)
- #define DUMP_WPDMA_TXFREE_RING DUMP_RING("WPDMA_RX1", 0, DUMP_TYPE_WPDMA_TXFREE)
-+#define DUMP_WPDMA_RX_RING(_n)	DUMP_RING("WPDMA_RX" #_n, 0, DUMP_TYPE_WPDMA_RX, _n)
-+#define DUMP_WED_RRO_RING(_base)DUMP_RING("WED_RRO_MIOD", MTK_##_base, DUMP_TYPE_WED_RRO)
-+#define DUMP_WED_RRO_FDBK(_base)DUMP_RING("WED_RRO_FDBK", MTK_##_base, DUMP_TYPE_WED_RRO)
- 
- static void
- print_reg_val(struct seq_file *s, const char *name, u32 val)
-@@ -57,6 +63,7 @@ dump_wed_regs(struct seq_file *s, struct mtk_wed_device *dev,
- 				   cur > regs ? "\n" : "",
- 				   cur->name);
- 			continue;
-+		case DUMP_TYPE_WED_RRO:
- 		case DUMP_TYPE_WED:
- 			val = wed_r32(dev, cur->offset);
- 			break;
-@@ -69,6 +76,9 @@ dump_wed_regs(struct seq_file *s, struct mtk_wed_device *dev,
- 		case DUMP_TYPE_WPDMA_TXFREE:
- 			val = wpdma_txfree_r32(dev, cur->offset);
- 			break;
-+		case DUMP_TYPE_WPDMA_RX:
-+			val = wpdma_rx_r32(dev, cur->base, cur->offset);
-+			break;
- 		}
- 		print_reg_val(s, cur->name, val);
- 	}
-@@ -132,6 +142,80 @@ wed_txinfo_show(struct seq_file *s, void *data)
- }
- DEFINE_SHOW_ATTRIBUTE(wed_txinfo);
- 
-+static int
-+wed_rxinfo_show(struct seq_file *s, void *data)
-+{
-+	static const struct reg_dump regs[] = {
-+		DUMP_STR("WPDMA RX"),
-+		DUMP_WPDMA_RX_RING(0),
-+		DUMP_WPDMA_RX_RING(1),
-+
-+		DUMP_STR("WPDMA RX"),
-+		DUMP_WED(WED_WPDMA_RX_D_MIB(0)),
-+		DUMP_WED_RING(WED_WPDMA_RING_RX_DATA(0)),
-+		DUMP_WED(WED_WPDMA_RX_D_PROCESSED_MIB(0)),
-+		DUMP_WED(WED_WPDMA_RX_D_MIB(1)),
-+		DUMP_WED_RING(WED_WPDMA_RING_RX_DATA(1)),
-+		DUMP_WED(WED_WPDMA_RX_D_PROCESSED_MIB(1)),
-+		DUMP_WED(WED_WPDMA_RX_D_COHERENT_MIB),
-+
-+		DUMP_STR("WED RX"),
-+		DUMP_WED_RING(WED_RING_RX_DATA(0)),
-+		DUMP_WED_RING(WED_RING_RX_DATA(1)),
-+
-+		DUMP_STR("WED RRO"),
-+		DUMP_WED_RRO_RING(WED_RROQM_MIOD_CTRL0),
-+		DUMP_WED(WED_RROQM_MID_MIB),
-+		DUMP_WED(WED_RROQM_MOD_MIB),
-+		DUMP_WED(WED_RROQM_MOD_COHERENT_MIB),
-+		DUMP_WED_RRO_FDBK(WED_RROQM_FDBK_CTRL0),
-+		DUMP_WED(WED_RROQM_FDBK_IND_MIB),
-+		DUMP_WED(WED_RROQM_FDBK_ENQ_MIB),
-+		DUMP_WED(WED_RROQM_FDBK_ANC_MIB),
-+		DUMP_WED(WED_RROQM_FDBK_ANC2H_MIB),
-+
-+		DUMP_STR("WED Route QM"),
-+		DUMP_WED(WED_RTQM_R2H_MIB(0)),
-+		DUMP_WED(WED_RTQM_R2Q_MIB(0)),
-+		DUMP_WED(WED_RTQM_Q2H_MIB(0)),
-+		DUMP_WED(WED_RTQM_R2H_MIB(1)),
-+		DUMP_WED(WED_RTQM_R2Q_MIB(1)),
-+		DUMP_WED(WED_RTQM_Q2H_MIB(1)),
-+		DUMP_WED(WED_RTQM_Q2N_MIB),
-+		DUMP_WED(WED_RTQM_Q2B_MIB),
-+		DUMP_WED(WED_RTQM_PFDBK_MIB),
-+
-+		DUMP_STR("WED WDMA TX"),
-+		DUMP_WED(WED_WDMA_TX_MIB),
-+		DUMP_WED_RING(WED_WDMA_RING_TX),
-+
-+		DUMP_STR("WDMA TX"),
-+		DUMP_WDMA(WDMA_GLO_CFG),
-+		DUMP_WDMA_RING(WDMA_RING_TX(0)),
-+		DUMP_WDMA_RING(WDMA_RING_TX(1)),
-+
-+		DUMP_STR("WED RX BM"),
-+		DUMP_WED(WED_RX_BM_BASE),
-+		DUMP_WED(WED_RX_BM_RX_DMAD),
-+		DUMP_WED(WED_RX_BM_PTR),
-+		DUMP_WED(WED_RX_BM_TKID_MIB),
-+		DUMP_WED(WED_RX_BM_BLEN),
-+		DUMP_WED(WED_RX_BM_STS),
-+		DUMP_WED(WED_RX_BM_INTF2),
-+		DUMP_WED(WED_RX_BM_INTF),
-+		DUMP_WED(WED_RX_BM_ERR_STS),
-+	};
-+	struct mtk_wed_hw *hw = s->private;
-+	struct mtk_wed_device *dev = hw->wed_dev;
-+
-+	if (!dev)
-+		return 0;
-+
-+	dump_wed_regs(s, dev, regs, ARRAY_SIZE(regs));
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(wed_rxinfo);
- 
- static int
- mtk_wed_reg_set(void *data, u64 val)
-@@ -175,4 +259,7 @@ void mtk_wed_hw_add_debugfs(struct mtk_wed_hw *hw)
- 	debugfs_create_u32("regidx", 0600, dir, &hw->debugfs_reg);
- 	debugfs_create_file_unsafe("regval", 0600, dir, hw, &fops_regval);
- 	debugfs_create_file_unsafe("txinfo", 0400, dir, hw, &wed_txinfo_fops);
-+	if (hw->version != 1)
-+		debugfs_create_file_unsafe("rxinfo", 0400, dir, hw,
-+					   &wed_rxinfo_fops);
- }
--- 
-2.37.3
+However, with a simple fix, we can get this:
+Region 0: Memory at 300000000 (64-bit, non-prefetchable) [virtual] [size=3D=
+16K]
+Region 2: I/O ports at 1000 [virtual] [size=3D256]
 
+and with it a working NVMe drive.
+
+Change the following range:
+0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+to
+0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x40000000>;
+
+I still haven't tested this with other cards yet, and another patch
+that does similar work I've tested successfully as well with NVMe
+drives. I'll have to get back to you on the results of greater
+testing.
+
+Very Respectfully,
+Peter Geis
+
+>
+> kind regards,
+>         o.
+>
+> > Very Respectfully,
+> > Peter Geis
