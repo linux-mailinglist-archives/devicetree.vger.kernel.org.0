@@ -2,190 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4697960737E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 11:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 182B460738F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 11:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231140AbiJUJJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 05:09:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35584 "EHLO
+        id S231284AbiJUJKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 05:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230503AbiJUJJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 05:09:04 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1473A1A3E00
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 02:08:59 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id a14so989334wru.5
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 02:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z8zoiO3HcCMOhvwnFbJarwF7HI12ZyCQT2wJzcSF7bw=;
-        b=Uz6ED8+AFKkavxx4Z4rUSZ49p6KCGe3ktPcOBHN6WexT7SyHWpM6TnwFv/A3y1Sd5x
-         WE9Nuf4iKsjXPtEkH6zp+umlRZCRh37PLcXAZy6nqmiWmRBE+mTivIKi0MpiGhHSi/pn
-         xNeRFpiKCEDcj38NIp+sNtJSP96sQYyygQH2rMvZ/X4SrKR7vCvSUF/AnE8vqs55l6Od
-         XkeRrMcVjzW95YqcF1/os/jOLZI/6FJdMOKjlDXWCj2FVYV45DwL2DdLgU3tCJohi9sA
-         VUna4rGH+A01zmT9mJtRtT1LuDZbp2Bq8wT5zxMPuIQchB//v9g1u7GiCyMWeeEIsjkt
-         lv5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z8zoiO3HcCMOhvwnFbJarwF7HI12ZyCQT2wJzcSF7bw=;
-        b=ejSyl48lIZni30FYaGY1lbfwzrtObcLZW4D+hJWgTxOhwQ5V/mEW/fx4j4ryXU7tYH
-         /goekO4OT6CQqXG+sJuES0cuj/TkUR03TYVmmTYkYyPynqUwdlhh6MaCXdie5iCLIDkI
-         c4Vo4fyBpG+q9lY8Zt85q8vh0AgjM/7yIdLqVRMgTcMR6MfybUXvAtXeOkNV56rGjM+V
-         DxFbFHnaStoUyFV/YMSo0r1BCMo4ak+bVyFOgZROCp6tDEuaStzS7Jb/KQTeQxIiEiR+
-         bnSDUdcvaaqYoXGYeE1ZMaih3bBFwfaicdw3Gb2jCAEwhsFlhMiLc9+XRhn5TnGYlC9j
-         O0iQ==
-X-Gm-Message-State: ACrzQf3SUpGpkoi3xt91c9WMMr841cmE+jKcBrEbrhPfj1hZMDHiowCZ
-        l/mByl9hUBLhy6+javJxY+IDaw==
-X-Google-Smtp-Source: AMsMyM6jIh9zbKsc1vnvwPsF6zzTaHqTxKuVbiY7pDHJlXhCrSir/VQF9R12RHVdtYEqxXhm2nHf2Q==
-X-Received: by 2002:adf:d0c5:0:b0:22d:e73a:a4c9 with SMTP id z5-20020adfd0c5000000b0022de73aa4c9mr11224682wrh.315.1666343339285;
-        Fri, 21 Oct 2022 02:08:59 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v10-20020a05600c444a00b003c6f27d275dsm2230286wmn.33.2022.10.21.02.08.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 02:08:58 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 21 Oct 2022 11:06:47 +0200
-Subject: [PATCH v4 11/11] arm: dts: qcom: mdm9615: remove useless amba subnode
+        with ESMTP id S231206AbiJUJKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 05:10:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F8FE1D675
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 02:09:19 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1olo1f-00031B-Cg; Fri, 21 Oct 2022 11:09:11 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1olo1e-0002Kv-N3; Fri, 21 Oct 2022 11:09:10 +0200
+Date:   Fri, 21 Oct 2022 11:09:10 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Peng Fan <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 05/15] arm64: dts: imx8mp-evk: enable uart1/3 ports
+Message-ID: <20221021090910.zkijqqt6mpukzqdp@pengutronix.de>
+References: <20221020095934.1659449-1-peng.fan@oss.nxp.com>
+ <20221020095934.1659449-6-peng.fan@oss.nxp.com>
+ <20221020110723.udftsfrfdnghudto@pengutronix.de>
+ <7ede9de4-75ba-6ebf-60a3-fee98e050ea9@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20220928-mdm9615-dt-schema-fixes-v4-11-dac2dfaac703@linaro.org>
-References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
-In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Gross <agross@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh@kernel.org>, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Mailer: b4 0.10.1
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7ede9de4-75ba-6ebf-60a3-fee98e050ea9@oss.nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The separate amba device node doesn't add anything significant to the
-DT. The OF parsing code already creates amba_device or platform_device
-depending on the compatibility lists.
+On 22-10-21, Peng Fan wrote:
+> Hi Marco,
+> 
+> On 10/20/2022 7:07 PM, Marco Felsch wrote:
+> > Hi Peng,
+> > 
+> > On 22-10-20, Peng Fan (OSS) wrote:
+> > > From: Peng Fan <peng.fan@nxp.com>
+> > > 
+> > > Enable uart1/3 ports for evk board.
+> > > 
+> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > ---
+> > >   arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 36 ++++++++++++++++++++
+> > >   1 file changed, 36 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > > index 2e29bb3c041c..366f709f8790 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > > @@ -428,6 +428,15 @@ &snvs_pwrkey {
+> > >   	status = "okay";
+> > >   };
+> > > +&uart1 { /* BT */
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&pinctrl_uart1>;
+> > > +	assigned-clocks = <&clk IMX8MP_CLK_UART1>;
+> > > +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
+> > 
+> > I'm curious, what is the default parent and why is this wrong? For the
+> > already exisiting uart2 we don't do that. Same applies for uart3.
+> 
+> The default parent is OSC_24M. The uart2 is for console, so 24M is ok.
+> As I recall, we met issue 24M not able to get higher baudrate.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm/boot/dts/qcom-mdm9615.dtsi | 78 +++++++++++++++++--------------------
- 1 file changed, 36 insertions(+), 42 deletions(-)
+What did you mean by higher baudrate, is it everything > 115200? When
+the console baudrates can be fullfilled with the PLL1_80M as well
+wouldn't it be worth to fix the imx8mp.dtsi instead?
 
-diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-index 9d950f96280d..482fd246321c 100644
---- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-+++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-@@ -314,49 +314,43 @@ sdcc2bam: dma-controller@12142000{
- 			qcom,ee = <0>;
- 		};
- 
--		amba {
--			compatible = "simple-bus";
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges;
--			sdcc1: mmc@12180000 {
--				status = "disabled";
--				compatible = "arm,pl18x", "arm,primecell";
--				arm,primecell-periphid = <0x00051180>;
--				reg = <0x12180000 0x2000>;
--				interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&gcc SDC1_CLK>, <&gcc SDC1_H_CLK>;
--				clock-names = "mclk", "apb_pclk";
--				bus-width = <8>;
--				max-frequency = <48000000>;
--				cap-sd-highspeed;
--				cap-mmc-highspeed;
--				vmmc-supply = <&vsdcc_fixed>;
--				dmas = <&sdcc1bam 2>, <&sdcc1bam 1>;
--				dma-names = "tx", "rx";
--				assigned-clocks = <&gcc SDC1_CLK>;
--				assigned-clock-rates = <400000>;
--			};
-+		sdcc1: mmc@12180000 {
-+			status = "disabled";
-+			compatible = "arm,pl18x", "arm,primecell";
-+			arm,primecell-periphid = <0x00051180>;
-+			reg = <0x12180000 0x2000>;
-+			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc SDC1_CLK>, <&gcc SDC1_H_CLK>;
-+			clock-names = "mclk", "apb_pclk";
-+			bus-width = <8>;
-+			max-frequency = <48000000>;
-+			cap-sd-highspeed;
-+			cap-mmc-highspeed;
-+			vmmc-supply = <&vsdcc_fixed>;
-+			dmas = <&sdcc1bam 2>, <&sdcc1bam 1>;
-+			dma-names = "tx", "rx";
-+			assigned-clocks = <&gcc SDC1_CLK>;
-+			assigned-clock-rates = <400000>;
-+		};
- 
--			sdcc2: mmc@12140000 {
--				compatible = "arm,pl18x", "arm,primecell";
--				arm,primecell-periphid = <0x00051180>;
--				status = "disabled";
--				reg = <0x12140000 0x2000>;
--				interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
--				clocks = <&gcc SDC2_CLK>, <&gcc SDC2_H_CLK>;
--				clock-names = "mclk", "apb_pclk";
--				bus-width = <4>;
--				cap-sd-highspeed;
--				cap-mmc-highspeed;
--				max-frequency = <48000000>;
--				no-1-8-v;
--				vmmc-supply = <&vsdcc_fixed>;
--				dmas = <&sdcc2bam 2>, <&sdcc2bam 1>;
--				dma-names = "tx", "rx";
--				assigned-clocks = <&gcc SDC2_CLK>;
--				assigned-clock-rates = <400000>;
--			};
-+		sdcc2: mmc@12140000 {
-+			compatible = "arm,pl18x", "arm,primecell";
-+			arm,primecell-periphid = <0x00051180>;
-+			status = "disabled";
-+			reg = <0x12140000 0x2000>;
-+			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&gcc SDC2_CLK>, <&gcc SDC2_H_CLK>;
-+			clock-names = "mclk", "apb_pclk";
-+			bus-width = <4>;
-+			cap-sd-highspeed;
-+			cap-mmc-highspeed;
-+			max-frequency = <48000000>;
-+			no-1-8-v;
-+			vmmc-supply = <&vsdcc_fixed>;
-+			dmas = <&sdcc2bam 2>, <&sdcc2bam 1>;
-+			dma-names = "tx", "rx";
-+			assigned-clocks = <&gcc SDC2_CLK>;
-+			assigned-clock-rates = <400000>;
- 		};
- 
- 		tcsr: syscon@1a400000 {
-
--- 
-b4 0.10.1
+Regards,
+  Marco
