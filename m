@@ -2,619 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A033606DE6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 04:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC5CC606E51
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 05:28:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbiJUClO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 22:41:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58258 "EHLO
+        id S230018AbiJUD1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 23:27:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiJUClN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 22:41:13 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 985D21B2333;
-        Thu, 20 Oct 2022 19:41:11 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id h12so1223568pjk.0;
-        Thu, 20 Oct 2022 19:41:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tdwtzHR+xQdJbDyYyz1o5nHG0wEHYVT1LmuGtsV2+G8=;
-        b=AIj89l8hB/UEivEc5ndGL3hkToljAhZdcSwqJ6G9FUDRP1aK7KR2Bo+RJ4Zzm1zBwi
-         qfUm8xKxLwTmMkL6nN5Ym4G/eXAPfMKsxLI6hRWYeL4jztidE9QS1HSh9E14dm9GFe1c
-         lHn/dJhRxiJmh53CldI/vY2JqxlwQt+TVp9V5H+g7fllhNQjL0EK2uysotqp31ltYsRD
-         IEcCCaQcuHa/LFbS9x3BJ1QfDsgxG7U/5Mk+i98L/h/SKyGugEL+6OolN6Sa7F8In1CJ
-         rp3UsXtbXNHUB36bjgxC+brXSj6xqZdcWbF/5dHcDCaqLaqKRtEJmt/k3NFmFESmVX6h
-         07Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tdwtzHR+xQdJbDyYyz1o5nHG0wEHYVT1LmuGtsV2+G8=;
-        b=hrZUyDKyV1VmLuEmcdToXlFiL5e9xG2+I2r9VKPnkgRbsrYxnrzHjfiOtt0GYjOkG5
-         LEN2IZDqHuqEiUuXaTt4ZgrgFduFLh5BY6csr+1vXKMYboPutYKg2RmkGG2Qkl6Y3F4t
-         ERbhzuVfm/+Rf0FxpA/+OS/bwC7HIZI040Ev22K/8iL5Chx6pwlH0WsoR/Aid+bzg7tx
-         /+/rYlCodSNV+Zo1x/nzoHbWunWSVBTu0vJ8LXlHUuwf2H1KRZyzuB67+rZtvCu403vd
-         WrH7xv8KDoHiLWQLa0BchwY2o7FzRoEL4m9lFNig7hTR5qR98O0cCa0DaQ93jUUjTsGX
-         ic8w==
-X-Gm-Message-State: ACrzQf1Nbk0lXQOZGpnJeth1DLBXwV0RKJyuNM3EWi2IDDsn2l28igJZ
-        8FMBML18wTg92vw+3h/mDJY=
-X-Google-Smtp-Source: AMsMyM6axG8b38IMIwgkL5BUOtaBK2jJz7MLUAsa9EvlTcBRE5H34M7JkPSOTna8QxWuYzSieoEVnw==
-X-Received: by 2002:a17:902:e74e:b0:181:b25e:e7b8 with SMTP id p14-20020a170902e74e00b00181b25ee7b8mr16919939plf.10.1666320070847;
-        Thu, 20 Oct 2022 19:41:10 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:577:b022:150a:a87e:ab3a:9736])
-        by smtp.gmail.com with ESMTPSA id a19-20020aa794b3000000b0053e42167a33sm14033023pfl.53.2022.10.20.19.41.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 20 Oct 2022 19:41:10 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        broonie@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] regulator: rt6190: Add support for Richtek RT6190 regulator
-Date:   Fri, 21 Oct 2022 10:40:59 +0800
-Message-Id: <1666320059-17544-3-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1666320059-17544-1-git-send-email-u0084500@gmail.com>
-References: <1666320059-17544-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230000AbiJUD1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 23:27:52 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C006B1EEA16;
+        Thu, 20 Oct 2022 20:27:45 -0700 (PDT)
+X-UUID: b0300b9995a94ef0ae0a5f763a699ed1-20221021
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=liRN+HmxoIKuY83k0B956REc4h3T4bcOVKQySzS8Z7g=;
+        b=TtpGlCVMq3Zes+NBDYyLEj22qgKyjATJni/4fRyQ/e6MjRcLUhLFEd3QoDNG/uf7oquQMHuWiVFeIFsuDFeztOrhVW0jnMzi4x91elDV6+lYwWfY1YD3Y7MeeZ6ZmmQo8DTKu+fsCj2WPSf5TLbavBtc/TSiWcAoQ8p3UoKd7QY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:c26f921f-6ab4-4340-9133-22503ddb52dc,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:51
+X-CID-INFO: VERSION:1.1.12,REQID:c26f921f-6ab4-4340-9133-22503ddb52dc,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:51
+X-CID-META: VersionHash:62cd327,CLOUDID:fbb839c8-03ab-4171-989e-341ab5339257,B
+        ulkID:2210211026516FV6XUSA,BulkQuantity:8,Recheck:0,SF:38|28|17|19|48|102,
+        TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,CO
+        L:0
+X-UUID: b0300b9995a94ef0ae0a5f763a699ed1-20221021
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 104753269; Fri, 21 Oct 2022 11:27:37 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 21 Oct 2022 11:27:35 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 21 Oct 2022 11:27:34 +0800
+Message-ID: <20a87e771e4bcce4e9c9f0a1db13e20f75ce3b72.camel@mediatek.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: mediatek-gen3: Support mt8195
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+CC:     Ryder Lee <ryder.lee@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 21 Oct 2022 11:27:33 +0800
+In-Reply-To: <20221021022647.GA2195154-robh@kernel.org>
+References: <20221020111925.30002-1-tinghan.shen@mediatek.com>
+         <20221020111925.30002-2-tinghan.shen@mediatek.com>
+         <20221021022647.GA2195154-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi Rob,
 
-Add support for Richtek RT6190 4-Switch BuckBoost controller.
+Thanks for your review.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- drivers/regulator/Kconfig            |  11 +
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/rt6190-regulator.c | 495 +++++++++++++++++++++++++++++++++++
- 3 files changed, 507 insertions(+)
- create mode 100644 drivers/regulator/rt6190-regulator.c
+On Thu, 2022-10-20 at 21:26 -0500, Rob Herring wrote:
+> On Thu, Oct 20, 2022 at 07:19:23PM +0800, Tinghan Shen wrote:
+> > From: Jianjun Wang <jianjun.wang@mediatek.com>
+> > 
+> > In order to support mt8195 pcie node, update the yaml to support
+> > new
+> > properties of iommu and power-domain, and update the reset-names
+> > property to allow only one 'mac' name.
+> > 
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > Signed-off-by: TingHan Shen <tinghan.shen@mediatek.com>
+> > ---
+> >  .../bindings/pci/mediatek-pcie-gen3.yaml         | 16
+> > +++++++++++++---
+> >  1 file changed, 13 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> > gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> > gen3.yaml
+> > index c00be39af64e..af271018b134 100644
+> > --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > @@ -70,14 +70,21 @@ properties:
+> >      minItems: 1
+> >      maxItems: 8
+> >  
+> > +  iommu-map:
+> > +    maxItems: 1
+> > +
+> > +  iommu-map-mask:
+> > +    maxItems: 1
+> 
+> This is not a array. It needs a value. Must be 0 if iommu-map only
+> has 1 
+> entry? Or you only support 1 downstream device?
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 070e440..4e4614d 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1124,6 +1124,17 @@ config REGULATOR_RT6160
- 	  The wide output range is from 2025mV to 5200mV and can be used on most
- 	  common application scenario.
- 
-+config REGULATOR_RT6190
-+	tristate "Richtek RT6190 4-Switch BuckBoost controller"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  The RT6190 is a 4-Switch BuckBoost controller designed for converting
-+	  input voltage to output voltage that can be equal to, higher or lower
-+	  than input voltage. It operates with wide input voltage range from
-+	  4.5V to 36V, and the output voltage can be set from 3V to 36V by
-+	  external FB pin.
-+
- config REGULATOR_RT6245
- 	tristate "Richtek RT6245 voltage regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 5962307..c3b5cf6 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -134,6 +134,7 @@ obj-$(CONFIG_REGULATOR_RT5120)	+= rt5120-regulator.o
- obj-$(CONFIG_REGULATOR_RT5190A) += rt5190a-regulator.o
- obj-$(CONFIG_REGULATOR_RT5759)	+= rt5759-regulator.o
- obj-$(CONFIG_REGULATOR_RT6160)	+= rt6160-regulator.o
-+obj-$(CONFIG_REGULATOR_RT6190)	+= rt6190-regulator.o
- obj-$(CONFIG_REGULATOR_RT6245)	+= rt6245-regulator.o
- obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
- obj-$(CONFIG_REGULATOR_RTQ2134) += rtq2134-regulator.o
-diff --git a/drivers/regulator/rt6190-regulator.c b/drivers/regulator/rt6190-regulator.c
-new file mode 100644
-index 00000000..995e028
---- /dev/null
-+++ b/drivers/regulator/rt6190-regulator.c
-@@ -0,0 +1,495 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 Richtek Technology Corp.
-+ *
-+ * Author: ChiYuan Huang <cy_huang@richtek.com>
-+ *
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+#define RT6190_REG_VID		0x00
-+#define RT6190_REG_OUTV		0x01
-+#define RT6190_REG_OUTC		0x03
-+#define RT6190_REG_SET1		0x0D
-+#define RT6190_REG_SET2		0x0E
-+#define RT6190_REG_SET4		0x10
-+#define RT6190_REG_RATIO	0x11
-+#define RT6190_REG_OUT_VOLT_L	0x12
-+#define RT6190_REG_TEMP_H	0x1B
-+#define RT6190_REG_STAT1	0x1C
-+#define RT6190_REG_ALERT1	0x1E
-+#define RT6190_REG_ALERT2	0x1F
-+#define RT6190_REG_MASK2	0x21
-+#define RT6190_REG_OCPEN	0x28
-+#define RT6190_REG_SET5		0x29
-+#define RT6190_REG_VBUSC_ADC	0x32
-+#define RT6190_REG_BUSC_VOLT_L	0x33
-+#define RT6190_REG_BUSC_VOLT_H	0x34
-+#define RT6190_REG_STAT3	0x37
-+#define RT6190_REG_ALERT3	0x38
-+#define RT6190_REG_MASK3	0x39
-+
-+#define RT6190_ENPWM_MASK	BIT(7)
-+#define RT6190_ENDCHG_MASK	BIT(4)
-+#define RT6190_ALERT_OTPEVT	BIT(6)
-+#define RT6190_ALERT_UVPEVT	BIT(5)
-+#define RT6190_ALERT_OVPEVT	BIT(4)
-+#define RT6190_ENGCP_MASK	BIT(1)
-+#define RT6190_FCCM_MASK	BIT(7)
-+
-+#define RICHTEK_VID		0x82
-+#define RT6190_OUT_MIN_UV	3000000
-+#define RT6190_OUT_MAX_UV	32000000
-+#define RT6190_OUT_STEP_UV	20000
-+#define RT6190_OUT_N_VOLT	(RT6190_OUT_MAX_UV / RT6190_OUT_STEP_UV + 1)
-+#define RT6190_OUTV_MINSEL	150
-+#define RT6190_OUT_MIN_UA	306000
-+#define RT6190_OUT_MAX_UA	12114000
-+#define RT6190_OUT_STEP_UA	24000
-+#define RT6190_OUTC_MINSEL	19
-+#define RT6190_EN_TIME_US	500
-+
-+#define RT6190_PSM_MODE		0
-+#define RT6190_FCCM_MODE	1
-+
-+struct rt6190_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct gpio_desc *enable_gpio;
-+	unsigned int cached_alert_evt;
-+};
-+
-+static int rt6190_out_set_voltage_sel(struct regulator_dev *rdev,
-+				      unsigned int selector)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	__le16 le_sel = cpu_to_le16(selector);
-+
-+	return regmap_raw_write(regmap, RT6190_REG_OUTV, &le_sel,
-+				sizeof(le_sel));
-+}
-+
-+static int rt6190_out_get_voltage_sel(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	__le16 le_sel;
-+	int ret;
-+
-+	ret = regmap_raw_read(regmap, RT6190_REG_OUTV, &le_sel, sizeof(le_sel));
-+
-+	return ret ?: le16_to_cpu(le_sel);
-+}
-+
-+static int rt6190_out_enable(struct regulator_dev *rdev)
-+{
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	u8 out_cfg[4];
-+	int ret;
-+
-+	pm_runtime_get_sync(data->dev);
-+
-+	/*
-+	 * From off to on, vout config will restore to IC default.
-+	 * Read vout configs before enable, and restore them after enable
-+	 */
-+	ret = regmap_raw_read(regmap, RT6190_REG_OUTV, out_cfg,
-+			      sizeof(out_cfg));
-+	if (ret)
-+		return ret;
-+
-+	ret = regulator_enable_regmap(rdev);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_raw_write(regmap, RT6190_REG_OUTV, out_cfg,
-+			       sizeof(out_cfg));
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(regmap, RT6190_REG_SET5, RT6190_ENGCP_MASK,
-+				  RT6190_ENGCP_MASK);
-+}
-+
-+static int rt6190_out_disable(struct regulator_dev *rdev)
-+{
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	int ret;
-+
-+	ret = regmap_update_bits(regmap, RT6190_REG_SET5, RT6190_ENGCP_MASK, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = regulator_disable_regmap(rdev);
-+	if (ret)
-+		return ret;
-+
-+	/* cleared cached alert event */
-+	data->cached_alert_evt = 0;
-+
-+	pm_runtime_put(data->dev);
-+
-+	return 0;
-+}
-+
-+static int rt6190_out_set_current_limit(struct regulator_dev *rdev, int min_uA,
-+					int max_uA)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	int csel, clim;
-+	__le16 le_csel;
-+
-+	if (min_uA < RT6190_OUT_MIN_UA || max_uA > RT6190_OUT_MAX_UA)
-+		return -EINVAL;
-+
-+	csel = DIV_ROUND_UP(min_uA - RT6190_OUT_MIN_UA, RT6190_OUT_STEP_UA);
-+
-+	clim = RT6190_OUT_MIN_UA + RT6190_OUT_STEP_UA * csel;
-+	if (clim > max_uA)
-+		return -EINVAL;
-+
-+	csel += RT6190_OUTC_MINSEL;
-+	le_csel = cpu_to_le16(csel);
-+
-+	return regmap_raw_write(regmap, RT6190_REG_OUTC, &le_csel,
-+				sizeof(le_csel));
-+}
-+
-+static int rt6190_out_get_current_limit(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	__le16 le_csel;
-+	int csel, ret;
-+
-+	ret = regmap_raw_read(regmap, RT6190_REG_OUTC, &le_csel,
-+			      sizeof(le_csel));
-+	if (ret)
-+		return ret;
-+
-+	csel = le16_to_cpu(le_csel);
-+	csel -= RT6190_OUTC_MINSEL;
-+
-+	return RT6190_OUT_MIN_UA + RT6190_OUT_STEP_UA * csel;
-+}
-+
-+static int rt6190_out_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int val;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		val = RT6190_FCCM_MASK;
-+		break;
-+	case REGULATOR_MODE_NORMAL:
-+		val = 0;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, RT6190_REG_SET1, RT6190_FCCM_MASK,
-+				  val);
-+}
-+
-+static unsigned int rt6190_out_get_mode(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int config;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT6190_REG_SET1, &config);
-+	if (ret)
-+		return REGULATOR_MODE_INVALID;
-+
-+	if (config & RT6190_FCCM_MASK)
-+		return REGULATOR_MODE_FAST;
-+
-+	return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rt6190_out_get_error_flags(struct regulator_dev *rdev,
-+				      unsigned int *flags)
-+{
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	unsigned int state, rpt_flags = 0;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, RT6190_REG_STAT1, &state);
-+	if (ret)
-+		return ret;
-+
-+	state |= data->cached_alert_evt;
-+
-+	if (state & RT6190_ALERT_OTPEVT)
-+		rpt_flags |= REGULATOR_ERROR_OVER_TEMP;
-+
-+	if (state & RT6190_ALERT_UVPEVT)
-+		rpt_flags |= REGULATOR_ERROR_UNDER_VOLTAGE;
-+
-+	if (state & RT6190_ALERT_OVPEVT)
-+		rpt_flags |= REGULATOR_ERROR_REGULATION_OUT;
-+
-+	*flags = rpt_flags;
-+
-+	return 0;
-+}
-+
-+static unsigned int rt6190_out_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case RT6190_PSM_MODE:
-+		return REGULATOR_MODE_NORMAL;
-+	case RT6190_FCCM_MODE:
-+		return REGULATOR_MODE_FAST;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static const struct regulator_ops rt6190_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.set_voltage_sel = rt6190_out_set_voltage_sel,
-+	.get_voltage_sel = rt6190_out_get_voltage_sel,
-+	.enable = rt6190_out_enable,
-+	.disable = rt6190_out_disable,
-+	.is_enabled = regulator_is_enabled_regmap,
-+	.set_current_limit = rt6190_out_set_current_limit,
-+	.get_current_limit = rt6190_out_get_current_limit,
-+	.set_active_discharge = regulator_set_active_discharge_regmap,
-+	.set_mode = rt6190_out_set_mode,
-+	.get_mode = rt6190_out_get_mode,
-+	.get_error_flags = rt6190_out_get_error_flags,
-+};
-+
-+static const struct regulator_desc rt6190_regulator_desc = {
-+	.name = "rt6190-regulator",
-+	.type = REGULATOR_VOLTAGE,
-+	.owner = THIS_MODULE,
-+	.ops = &rt6190_regulator_ops,
-+	.min_uV = RT6190_OUT_MIN_UV,
-+	.uV_step = RT6190_OUT_STEP_UV,
-+	.n_voltages = RT6190_OUT_N_VOLT,
-+	.linear_min_sel = RT6190_OUTV_MINSEL,
-+	.enable_reg = RT6190_REG_SET2,
-+	.enable_mask = RT6190_ENPWM_MASK,
-+	.active_discharge_reg = RT6190_REG_SET2,
-+	.active_discharge_mask = RT6190_ENDCHG_MASK,
-+	.active_discharge_on = RT6190_ENDCHG_MASK,
-+	.of_map_mode = rt6190_out_of_map_mode,
-+};
-+
-+static bool rt6190_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case RT6190_REG_OUT_VOLT_L ... RT6190_REG_ALERT2:
-+	case RT6190_REG_BUSC_VOLT_L ... RT6190_REG_BUSC_VOLT_H:
-+	case RT6190_REG_STAT3 ... RT6190_REG_ALERT3:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct regmap_config rt6190_regmap_config = {
-+	.name = "rt6190",
-+	.cache_type = REGCACHE_FLAT,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT6190_REG_MASK3,
-+	.num_reg_defaults_raw = RT6190_REG_MASK3 + 1,
-+	.volatile_reg = rt6190_is_volatile_reg,
-+};
-+
-+static irqreturn_t rt6190_irq_handler(int irq, void *devid)
-+{
-+	struct regulator_dev *rdev = devid;
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	unsigned int alert;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, RT6190_REG_ALERT1, &alert);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	/* Write clear alert events */
-+	ret = regmap_write(data->regmap, RT6190_REG_ALERT1, alert);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	data->cached_alert_evt |= alert;
-+
-+	if (alert & RT6190_ALERT_OTPEVT)
-+		regulator_notifier_call_chain(rdev, REGULATOR_EVENT_OVER_TEMP, NULL);
-+
-+	if (alert & RT6190_ALERT_UVPEVT)
-+		regulator_notifier_call_chain(rdev, REGULATOR_EVENT_UNDER_VOLTAGE, NULL);
-+
-+	if (alert & RT6190_ALERT_OVPEVT)
-+		regulator_notifier_call_chain(rdev, REGULATOR_EVENT_REGULATION_OUT, NULL);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rt6190_init_registers(struct regmap *regmap)
-+{
-+	int ret;
-+
-+	/* Enable_ADC = 1 */
-+	ret = regmap_write(regmap, RT6190_REG_SET4, 0x82);
-+	if (ret)
-+		return ret;
-+
-+	/* Config default VOUT ratio to be higher */
-+	ret = regmap_write(regmap, RT6190_REG_RATIO, 0x20);
-+
-+	/* Mask unused alert */
-+	ret = regmap_write(regmap, RT6190_REG_MASK2, 0);
-+	if (ret)
-+		return ret;
-+
-+	/* OCP config */
-+	ret = regmap_write(regmap, RT6190_REG_OCPEN, 0);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable VBUSC ADC */
-+	return regmap_write(regmap, RT6190_REG_VBUSC_ADC, 0x02);
-+}
-+
-+static int rt6190_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct rt6190_data *data;
-+	struct gpio_desc *enable_gpio;
-+	struct regmap *regmap;
-+	struct regulator_dev *rdev;
-+	struct regulator_config cfg = {};
-+	unsigned int vid;
-+	int ret;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(enable_gpio))
-+		return dev_err_probe(dev, PTR_ERR(enable_gpio), "Failed to get 'enable' gpio\n");
-+	else if (enable_gpio)
-+		usleep_range(RT6190_EN_TIME_US, RT6190_EN_TIME_US * 2);
-+
-+	regmap = devm_regmap_init_i2c(i2c, &rt6190_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
-+
-+	data->dev = dev;
-+	data->enable_gpio = enable_gpio;
-+	data->regmap = regmap;
-+	i2c_set_clientdata(i2c, data);
-+
-+	ret = regmap_read(regmap, RT6190_REG_VID, &vid);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read VID\n");
-+
-+	if (vid != RICHTEK_VID)
-+		return dev_err_probe(dev, -ENODEV, "Incorrect VID 0x%02x\n", vid);
-+
-+	ret = rt6190_init_registers(regmap);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to init registers\n");
-+
-+	pm_runtime_set_active(dev);
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to set pm_runtime enable\n");
-+
-+	cfg.dev = dev;
-+	cfg.of_node = dev->of_node;
-+	cfg.driver_data = data;
-+	cfg.init_data = of_get_regulator_init_data(dev, dev->of_node,
-+						   &rt6190_regulator_desc);
-+
-+	rdev = devm_regulator_register(dev, &rt6190_regulator_desc, &cfg);
-+	if (IS_ERR(rdev))
-+		return dev_err_probe(dev, PTR_ERR(rdev), "Failed to register regulator\n");
-+
-+	if (i2c->irq) {
-+		ret = devm_request_threaded_irq(dev, i2c->irq, NULL,
-+						rt6190_irq_handler,
-+						IRQF_ONESHOT, dev_name(dev),
-+						rdev);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to register interrupt\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt6190_runtime_suspend(struct device *dev)
-+{
-+	struct rt6190_data *data = dev_get_drvdata(dev);
-+	struct regmap *regmap = data->regmap;
-+
-+	if (!data->enable_gpio)
-+		return 0;
-+
-+	regcache_cache_only(regmap, true);
-+	regcache_mark_dirty(regmap);
-+
-+	gpiod_set_value(data->enable_gpio, 0);
-+
-+	return 0;
-+}
-+
-+static int rt6190_runtime_resume(struct device *dev)
-+{
-+	struct rt6190_data *data = dev_get_drvdata(dev);
-+	struct regmap *regmap = data->regmap;
-+
-+	if (!data->enable_gpio)
-+		return 0;
-+
-+	gpiod_set_value(data->enable_gpio, 1);
-+	usleep_range(RT6190_EN_TIME_US, RT6190_EN_TIME_US * 2);
-+
-+	regcache_cache_only(regmap, false);
-+	return regcache_sync(regmap);
-+}
-+
-+static const struct dev_pm_ops __maybe_unused rt6190_dev_pm = {
-+	RUNTIME_PM_OPS(rt6190_runtime_suspend, rt6190_runtime_resume, NULL)
-+};
-+
-+static const struct of_device_id rt6190_of_dev_table[] = {
-+	{ .compatible = "richtek,rt6190" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt6190_of_dev_table);
-+
-+static struct i2c_driver rt6190_driver = {
-+	.driver = {
-+		.name = "rt6190",
-+		.of_match_table = rt6190_of_dev_table,
-+		.pm = pm_ptr(&rt6190_dev_pm),
-+	},
-+	.probe_new = rt6190_probe,
-+};
-+module_i2c_driver(rt6190_driver);
-+
-+MODULE_DESCRIPTION("Richtek RT6190 regulator driver");
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.7.4
+We only has 1 entry for iommu-map, we'll change it to 0 in the next
+version.
+
+Thanks.
+
+> 
+> > +
+> >    resets:
+> >      minItems: 1
+> >      maxItems: 2
+> >  
+> >    reset-names:
+> > -    minItems: 1
+> > -    items:
+> > -      - const: phy
+> > +    oneOf:
+> > +      - items:
+> > +          - const: phy
+> > +          - const: mac
+> >        - const: mac
+> >  
+> >    clocks:
+> > @@ -107,6 +114,9 @@ properties:
+> >      items:
+> >        - const: pcie-phy
+> >  
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> >    '#interrupt-cells':
+> >      const: 1
+> >  
+> > -- 
+> > 2.18.0
+> > 
+> > 
 
