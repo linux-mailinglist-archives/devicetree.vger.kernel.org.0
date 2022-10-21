@@ -2,149 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44B47607589
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 12:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4332C607594
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 13:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbiJUK5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 06:57:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42044 "EHLO
+        id S229695AbiJULCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 07:02:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230227AbiJUK5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 06:57:13 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2813A2582FC
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 03:57:12 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id u71so2254699pgd.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 03:57:12 -0700 (PDT)
+        with ESMTP id S229521AbiJULCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 07:02:12 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EC725CD9D;
+        Fri, 21 Oct 2022 04:02:11 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bu25so4503019lfb.3;
+        Fri, 21 Oct 2022 04:02:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XwU1VZF8+6iJFAuGjdLVREmySRqI+EDvo5yioZX/3UI=;
-        b=r5gBS2fsD1++YH1wNtzJF0AfDCDUK8gEMTDVom6HPOh/pvqX5sUCNbZ1HyZlqe+6MM
-         apUZcZjl7ZtVfiaB1t6hMXBuT0lAKGxk825LQobHHEPJ3AFS9IIUL6Hn6W5ivEh7EqFw
-         mVDGMXStqzjE86yuuih8gxFp+/fek+ErLAh1JQtmAkYPY3AkCW2MlcBEGZ4vA/Zzn+af
-         7oCISJaln5kHqnMsNqhMKdbNmXnNxjutQHVWNo5l0iidgauh2j5eUEMCc7VV+f3h/1Kf
-         3PIwFl5quethxgr7OOQ8XHDjqwNsBjPC6N2LqYqpjgtFL/hOz75m3lq339CHqbaqE6Pb
-         CWdw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SFdV7NP8C6yU75td1dUeGU+HXX+EEy+aRc6V3zFsqbQ=;
+        b=TbrKe9Qg0GPwKzMi3kwTM4dL5RNZV1TQ5V11/AQn2rXbqCq4oBbY0SSCJPub7j+C73
+         jWdO5tOoH6ji0OOtj4jwOpsmZbhta54THzLL00sHw6F1SP55asX4yHfgsO4gWslOISiA
+         U6b2Ome03rzJjYqNZot8UjOHnClqQXxa4O6Vx9dO/e/0l6JrCA8TOyp/GrJEF1XeX+hK
+         ChYX9++MUSiyCmk+BaC4YitsXyooNPNaq5BH+ymjseOBUs8MFG91V/hC5S2UB6WbbKUB
+         dP4vD7szodW+LiEN4HsiYeEWEIlHVe4mNQUj014q262hTaV53KDdwzbpDCCuh6Ch4mb2
+         GrcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XwU1VZF8+6iJFAuGjdLVREmySRqI+EDvo5yioZX/3UI=;
-        b=RegbB6Ie+h6QijEfbW43zkP+6SL/A8Ia9ij7Oem+ukFoTtlL7l5y4fVk/I3/ImD2Uc
-         uraB+X+1HVdMoPt8x0x7A3NH1a5ARt7bf+OKpFGPEXVpnXN1bn9KkDlqogFWXC3vaIe5
-         Lfi0miuuJKEwP7nQGDbK8C/T9qaYXl6wqK6XznMdCGX8ASOverq4xquEqu/AKFBE03yg
-         3LoKPdzkabp9f2i2TBrxlIhEcms/0JuL5ZVax1Esz3y1XlpHqjEp8w9yq0jl+u7QU/zX
-         Uzz0nXjb0p7MFrjDT4JVP59lYeB4pK3XanM2oUxd7kbimB6dJgTlP3vPAX7Nybo66nIt
-         PksQ==
-X-Gm-Message-State: ACrzQf3HLp7JzwZL7VR6jqed0R1BFPdHH/IxTJJx1+lmh7qr3BkWu9wi
-        R7kipq2vwpxhajfoNxL5QeQtkw==
-X-Google-Smtp-Source: AMsMyM7zq0aOY+XkV/Cu34hN7J81Ec6TfMM4pUZSyDrHgcSBRtQsInt2EprzBx8nsAJqT6FDjEZC5A==
-X-Received: by 2002:a62:5252:0:b0:562:eef6:402f with SMTP id g79-20020a625252000000b00562eef6402fmr18739943pfb.79.1666349831597;
-        Fri, 21 Oct 2022 03:57:11 -0700 (PDT)
-Received: from liang-Predator-PH517-52.. (2001-b400-e339-bb7d-a809-3af0-ee98-4fc4.emome-ip6.hinet.net. [2001:b400:e339:bb7d:a809:3af0:ee98:4fc4])
-        by smtp.gmail.com with ESMTPSA id 2-20020a620602000000b0052d4cb47339sm14822957pfg.151.2022.10.21.03.57.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 03:57:11 -0700 (PDT)
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org,
-        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v8 4/4] arm64: dts: qcom: sc7280: Add touchscreen and touchpad support for evoker
-Date:   Fri, 21 Oct 2022 18:56:23 +0800
-Message-Id: <20221021185331.v8.4.I3ac715e729f6f9b5a3e3001b155df4f9d14e6186@changeid>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221021105623.3520859-1-sheng-liang.pan@quanta.corp-partner.google.com>
-References: <20221021105623.3520859-1-sheng-liang.pan@quanta.corp-partner.google.com>
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SFdV7NP8C6yU75td1dUeGU+HXX+EEy+aRc6V3zFsqbQ=;
+        b=tylJ2ImkStjRM/TjULMQh7zwCftG+mY7kIz5T84trhr2N9PJumilSUk2hBZp/ueo24
+         UNtbz5bhxQyp5Ye+J3vk2/MacANh3xMeBACbPt9mQMYYOzBt2Yl8CSy5Qy+4mobFRGz1
+         tO7bkpkG2KT29+FgcJ9SZ56zeWwHJdXDZ4ymSg0vmId2s2GQYVm0hg4cYnynAIAFZUqT
+         G4i/M+9DhUjBaJel+8oXOPOHIqPtwiCMBwELlqjy8cGk5UfezzW/FVaIW5d52I5ZbOi2
+         2pOmZ7DFoyDUN7kI4Qvb0gNvt+BeEgE0SmBCwd5uy8RmUNzJEMnXuVbzWqL0BzuElM/5
+         26tw==
+X-Gm-Message-State: ACrzQf2t0x9Gt9tUd/tGhAXGJXtZ0c0XZepdd7EMl56raFnsF5K9BsHP
+        BbVovuEPd6fZJq88hNWTAFw=
+X-Google-Smtp-Source: AMsMyM6raGi5Vpme27/W16RYIuLjDxlRW179PQnGARfzxkMCjNe7hSQg5MdweULaZGPyLHtmHjBZ6A==
+X-Received: by 2002:a19:8c5e:0:b0:4a2:2d7b:eef with SMTP id i30-20020a198c5e000000b004a22d7b0eefmr6294463lfj.206.1666350129577;
+        Fri, 21 Oct 2022 04:02:09 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::2? (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
+        by smtp.gmail.com with ESMTPSA id q2-20020a2eb4a2000000b00275aeff36dbsm379738ljm.110.2022.10.21.04.02.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Oct 2022 04:02:08 -0700 (PDT)
+Message-ID: <eb6ce47a-ab87-8a98-7ffe-b8cc50f8a549@gmail.com>
+Date:   Fri, 21 Oct 2022 14:02:08 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1666263249.git.mazziesaccount@gmail.com>
+ <5000bd61650554658d13619c8244f02cedbc182a.1666263249.git.mazziesaccount@gmail.com>
+ <Y1FcftQKimmvcOej@smile.fi.intel.com>
+ <2cad533d-32d1-5ca1-74e6-e2debcbdad81@gmail.com>
+ <Y1J5KiH6IJLmrWH4@smile.fi.intel.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v3 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+In-Reply-To: <Y1J5KiH6IJLmrWH4@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change touchpad and touchscreen node for evoker
-Touchpad: SA461D-1011
-Touchscreen: GT7986U
+On 10/21/22 13:49, Andy Shevchenko wrote:
+> On Fri, Oct 21, 2022 at 10:10:08AM +0300, Matti Vaittinen wrote:
+>> On 10/20/22 17:34, Andy Shevchenko wrote:
+>>> On Thu, Oct 20, 2022 at 02:37:15PM +0300, Matti Vaittinen wrote:
+> 
+> ...
+> 
+>>>> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
+>>>> +			       sizeof(__le16));
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	*val = le16_to_cpu(data->buffer[0]);
+>>>
+>>> 'p'-variant of the above would look better
+>>>
+>>> 	*val = le16_to_cpup(data->buffer);
+>>>
+>>> since it will be the same as above address without any additional arithmetics.
+>>>
+>>
+>> I guess there is no significant performance difference? To my eye the
+>> le16_to_cpu(data->buffer[0]) is much more clear. I see right from the call
+>> that we have an array here and use the first member. If there is no obvious
+>> technical merit for using le16_to_cpup(data->buffer) over
+>> le16_to_cpu(data->buffer[0]), then I do really prefer the latter for
+>> clarity.
+> 
+> Then you probably wanted to have &data->buffer[0] as a parameter to
+> regmap_bulk_read()?
 
-Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
+Yes! Thanks.
 
-Changes in v8:
-- updated patch subjects
+> 
+> ...
+> 
+>>>> +	if (data->trigger_enabled) {
+>>>> +		iio_trigger_poll_chained(data->trig);
+>>>> +		ret = IRQ_HANDLED;
+>>>> +	}
+>>>> +
+>>>> +	if (data->state & KX022A_STATE_FIFO) {
+>>>
+>>>> +		ret = __kx022a_fifo_flush(idev, KX022A_FIFO_LENGTH, true);
+>>>> +		if (ret > 0)
+>>>> +			ret = IRQ_HANDLED;
+>>>
+>>> I don't like it. Perhaps
+>>>
+>>> 	bool handled = false;
+>>> 	int ret;
+>>>
+>>> 	...
+>>> 		ret = ...
+>>> 		if (ret > 0)
+>>> 			handled = true;
+>>> 	...
+>>>
+>>> 	return IRQ_RETVAL(handled);
+>>
+>> I don't see the benefit of adding another variable 'handled'.
+>> If I understand correctly, it just introduces one extra 'if' in IRQ thread
+>> handling while hiding the return value in IRQ_RETVAL() - macro.
+>>
+>> I do like seeing the IRQ_NONE being returned by default and IRQ_HANDLED only
+>> when "handlers" are successfully executed. Adding extra variable just
+>> obfuscates this (from my eyes) while adding also the additional 'if'.
+> 
+> You assigning semantically different values to the same variable inside the
+> function.
 
-Changes in v7:
-- add compiatable for gt7986
+Ah, yes! This was really a bug making it way in. I guess you may just 
+have saved me from some not-that-funny debugging session... Well spotted!
 
-Changes in v6:
-- add removed pinctrl and align touchscreen label with herobrine board
+I still don't like hiding the IRQ_HANDLED / IRQ_NONE. I'll just go for
 
-Changes in v5:
-- new patch for Touchscreen/trackpad in v5
+         if (data->state & KX022A_STATE_FIFO) { 
 
- .../boot/dts/qcom/sc7280-herobrine-evoker.dtsi    | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+                 int ok; 
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-index a6015491c6082..706dd82a70138 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-@@ -23,16 +23,15 @@ ap_tp_i2c: &i2c0 {
- 	status = "okay";
- 	clock-frequency = <400000>;
  
--	trackpad: trackpad@2c {
--		compatible = "hid-over-i2c";
--		reg = <0x2c>;
-+	trackpad: trackpad@15 {
-+		compatible = "elan,ekth3000";
-+		reg = <0x15>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&tp_int_odl>;
- 
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 
--		hid-descr-addr = <0x20>;
- 		vcc-supply = <&pp3300_z1>;
- 
- 		wakeup-source;
-@@ -43,9 +42,9 @@ ts_i2c: &i2c13 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- 
--	ap_ts: touchscreen@10 {
--		compatible = "elan,ekth6915";
--		reg = <0x10>;
-+	ap_ts: touchscreen@5d {
-+		compatible = "goodix,gt7986u", "goodix,gt7375p";
-+		reg = <0x5d>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
- 
-@@ -54,7 +53,7 @@ ap_ts: touchscreen@10 {
- 
- 		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
- 
--		vcc33-supply = <&ts_avdd>;
-+		vdd-supply = <&ts_avdd>;
- 	};
- };
- 
+
+                 ok = __kx022a_fifo_flush(idev, KX022A_FIFO_LENGTH, 
+true);
+                 if (ok > 0) 
+
+                         ret = IRQ_HANDLED; 
+
+         }
+
+for v4. (Which I try to send still today before my memory is flushed by 
+the weekend :])
+
+Thanks a lot!
+
+Yours
+	-- Matti
+
 -- 
-2.34.1
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
