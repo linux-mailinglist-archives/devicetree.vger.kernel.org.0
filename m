@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87BD3606FE3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A41C6606FFF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:26:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbiJUGPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 02:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55162 "EHLO
+        id S229645AbiJUG0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 02:26:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbiJUGPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:15:15 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952135B107;
-        Thu, 20 Oct 2022 23:15:12 -0700 (PDT)
-X-UUID: 77a61b48e71f48e2ab7ad39378d2f05d-20221021
+        with ESMTP id S229489AbiJUG0E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:26:04 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552A21373B1;
+        Thu, 20 Oct 2022 23:26:02 -0700 (PDT)
+X-UUID: fb972c37d2134745aff88d03b8978f5e-20221021
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ExRKeO+TK0hJ0ZPupJS/yMOY5pv1f1TbfMj7UR2BrL0=;
-        b=YdprMySo6ZdI9cBJd5yH06FPis4ElBPvUVWhJ3uDVFnoU6NMnKq3I/LQhwgPUZlFlizqH6vDB27ytg5X3fOdtl7VSWDCWLUgf3L2WSYnh5CRaR+RPY6rbTYO4OohndrGcqY1/BtDS8WoMWcyxh4T81uSWKIuLVKKh8gBgnA2Jf8=;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=yQQ5dcOP01lW+CR5DSVRsuTLttECvIhe0xnkTBZzjFU=;
+        b=uiVsS1pNLueO2/Ac6m7oB1RK8Zyv/zh/W1CI6TIxi0fipsSoWQBhGEf5LXLB4syOtfQC/OJscKaxYUl4H9gKpPJK2bXO/VZG3Sz5o6DtoaDCyNKkEF89oW/t9a3DXZeXu/Cr+WGW3ODfTizVSrHtQ86KAczxom62PdOLRKhHugg=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:5d1a073c-e50e-4bdb-bc51-d6bd9e086b01,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:40
-X-CID-INFO: VERSION:1.1.12,REQID:5d1a073c-e50e-4bdb-bc51-d6bd9e086b01,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:40
-X-CID-META: VersionHash:62cd327,CLOUDID:4e29a86c-89d3-4bfa-baad-dc632a24bca3,B
-        ulkID:221021095633ASB2EHFK,BulkQuantity:7,Recheck:0,SF:38|28|17|19|48|102,
-        TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
-X-UUID: 77a61b48e71f48e2ab7ad39378d2f05d-20221021
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+X-CID-O-INFO: VERSION:1.1.12,REQID:79bde120-94ff-47d6-a011-654be3a38eb2,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:51
+X-CID-INFO: VERSION:1.1.12,REQID:79bde120-94ff-47d6-a011-654be3a38eb2,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+        elease,TS:51
+X-CID-META: VersionHash:62cd327,CLOUDID:69fa3ae4-e572-4957-be22-d8f73f3158f9,B
+        ulkID:221021142557YZQZOZPR,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48|102,
+        TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:
+        0
+X-UUID: fb972c37d2134745aff88d03b8978f5e-20221021
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
         (envelope-from <chunfeng.yun@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1255428266; Fri, 21 Oct 2022 14:15:06 +0800
+        with ESMTP id 858624205; Fri, 21 Oct 2022 14:25:54 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 21 Oct 2022 14:14:59 +0800
+ 15.2.792.15; Fri, 21 Oct 2022 14:25:53 +0800
 Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 21 Oct 2022 14:14:58 +0800
-Message-ID: <a24326d0a454082ab532025ae52462757d4d6bab.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] dt-bindings: phy: mediatek: tphy: add compatible
- for tphy-v4
+ Transport; Fri, 21 Oct 2022 14:25:52 +0800
+Message-ID: <616a128698656e71a4e28d59bbced17443c5cebc.camel@mediatek.com>
+Subject: Re: [PATCH 6/8] arm64: dts: mt2712-evb: Fix usb vbus regulators
+ unit names
 From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Daniel Golle <daniel@makrotopia.org>,
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <matthias.bgg@gmail.com>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <sam.shih@mediatek.com>, <hanks.chen@mediatek.com>,
+        <weiyi.lu@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <andrew-sh.cheng@mediatek.com>, <viresh.kumar@linaro.org>,
+        <fparent@baylibre.com>, <mars.cheng@mediatek.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, "Vinod Koul" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date:   Fri, 21 Oct 2022 14:14:58 +0800
-In-Reply-To: <07c5d962515c4f675f076bb91d69eaf651b187c6.1666193782.git.daniel@makrotopia.org>
-References: <df51b63add2830d91b527db64fba6ffdb7765f5d.1666193782.git.daniel@makrotopia.org>
-         <07c5d962515c4f675f076bb91d69eaf651b187c6.1666193782.git.daniel@makrotopia.org>
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Fri, 21 Oct 2022 14:25:52 +0800
+In-Reply-To: <96ab6836-4650-ee53-a0c9-54b8328b8667@collabora.com>
+References: <20221013152212.416661-1-angelogioacchino.delregno@collabora.com>
+         <20221013152212.416661-7-angelogioacchino.delregno@collabora.com>
+         <3b7fc7414f282ca044c24dae280f9bc9533a5b7b.camel@mediatek.com>
+         <96ab6836-4650-ee53-a0c9-54b8328b8667@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,47 +76,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-10-19 at 16:38 +0100, Daniel Golle wrote:
-> V4 can be found in MT7986 and MT7981 SoCs, it supports PCIe with two
-> lanes.
-NAK.
+On Fri, 2022-10-14 at 09:35 +0200, AngeloGioacchino Del Regno wrote:
+> Il 14/10/22 04:43, Chunfeng Yun ha scritto:
+> > On Thu, 2022-10-13 at 17:22 +0200, AngeloGioacchino Del Regno
+> > wrote:
+> > > Update the names to regulator-usb-p{0-3}-vbus to fix
+> > > unit_address_vs_reg
+> > > warnings for those.
+> > > 
+> > > Fixes: 1724f4cc5133 ("arm64: dts: Add USB3 related nodes for
+> > > MT2712")
+> > > Signed-off-by: AngeloGioacchino Del Regno <
+> > > angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >   arch/arm64/boot/dts/mediatek/mt2712-evb.dts | 8 ++++----
+> > >   1 file changed, 4 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+> > > b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+> > > index 638908773706..d31a194124c9 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+> > > @@ -50,7 +50,7 @@ extcon_usb1: extcon_iddig1 {
+> > >   		id-gpio = <&pio 14 GPIO_ACTIVE_HIGH>;
+> > >   	};
+> > >   
+> > > -	usb_p0_vbus: regulator@2 {
+> > > +	usb_p0_vbus: regulator-usb-p0-vbus {
+> > 
+> > Can we modify dt-binding of fixed regulator instead of changing the
+> > node name,
+> > since all nodes using fixed regulator may need be changed.
+> > 
+> 
+> These regulators have no MMIO, nor need any index, so it would be
+> simply
+> wrong to change the binding and leave them as they are here in the
+> devicetree.
+You are right, then many files need be modified?
 
-mt7981/mt7986 shall use "mediatek,generic-tphy-v2" instead.
-
-Thanks a lot
+Thanks
 
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> index 5613cc5106e32f..851e3dda7b638b 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-> @@ -89,6 +89,11 @@ properties:
->                - mediatek,mt8188-tphy
->                - mediatek,mt8195-tphy
->            - const: mediatek,generic-tphy-v3
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7981-tphy
-> +              - mediatek,mt7986-tphy
-> +          - const: mediatek,generic-tphy-v4
->        - const: mediatek,mt2701-u3phy
->          deprecated: true
->        - const: mediatek,mt2712-u3phy
-> @@ -99,7 +104,7 @@ properties:
->      description:
->        Register shared by multiple ports, exclude port's private
-> register.
->        It is needed for T-PHY V1, such as mt2701 and mt8173, but not
-> for
-> -      T-PHY V2/V3, such as mt2712.
-> +      T-PHY V2/V3/V4, such as mt2712.
->      maxItems: 1
->  
->    "#address-cells":
+> Regards,
+> Angelo
 
