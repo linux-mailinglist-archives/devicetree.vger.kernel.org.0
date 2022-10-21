@@ -2,144 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 424C4607611
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 13:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E7CD607639
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 13:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbiJULX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 07:23:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37214 "EHLO
+        id S230462AbiJULdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 07:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229604AbiJULX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 07:23:28 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2BB1263093;
-        Fri, 21 Oct 2022 04:23:21 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id g7so4550943lfv.5;
-        Fri, 21 Oct 2022 04:23:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Aqpdzxh11piHyrsdYH/hMiJ+aTKND0zUJe+5TRJCoCA=;
-        b=Z0bH4IF8UY8KyFRVfg89Ce9qfemn10tWWyc9UKPS5DUGTeX+mCHfG1Rl9Akl6r/MCx
-         YeLIDU5fEhR1wlP2osDsN8bXKglWOOBIj7dL+Il5+JKJc8pD0poBJZUgXi9n4JrxcLqo
-         IRtelBKZIP0czN0m0WulZbOhzyRuTIsnZTChhBVu7NRDtpj76wqDx9WsIL5lYVsT9W/m
-         40njxh8s1iO91waXHneCSNnRvnkYaW+Q0HS8p/VcTLMDWdv82I5iBkNNWxSDVbOg9IYe
-         cJ5pUj4QCBKAWbUp3AeizEpFR3ikXcAkMowHS+/o8N7Df1mmduCtAG6x5Tto04Hu0sp0
-         KurQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Aqpdzxh11piHyrsdYH/hMiJ+aTKND0zUJe+5TRJCoCA=;
-        b=39n9HEWBtPCQM3gQT9g/ojO/H97uaT01E10LwkwSGX25iI/3pakwQMnp9EDp22cy/j
-         wRFc/I+RPg2wqhEaXO8PhrKt1YanDFTmqHgnQeC7/pOMANGSFbCWwF0/slaeEnl6VV7o
-         moKDsifkYAyv9ityGIX0XtZYoKwlGj5eWUwl4QpFNesEuie5YAeBAs/NMMTBmZZqcXpz
-         J2mX2WXONNnmPTg4qhJejasXRsanxL7w/AIf4InHYg+REJImRQQ3nWNdBOfc/01CGgzN
-         xrveznXfwu8at31yt/CX96DG0FG17p6utP9KzVxVlwC30slLLp4wLYBMIV6uNn/daGLb
-         FT2Q==
-X-Gm-Message-State: ACrzQf3LIlgAaGAtZRevbZZhz9WT8IxHOnCE/lIf361SfY2FCH5RYdkK
-        VXjRKD3R9veB/OOX9Lmf450=
-X-Google-Smtp-Source: AMsMyM5o5dWYAn/8FS+pHRs7ka8TDtNjya43of5VK6oNagezPOdvuy5HO5EVbsUKFJI+n+5l9iDTcA==
-X-Received: by 2002:a19:6558:0:b0:4a4:7fc2:7927 with SMTP id c24-20020a196558000000b004a47fc27927mr7038375lfj.674.1666351399998;
-        Fri, 21 Oct 2022 04:23:19 -0700 (PDT)
-Received: from dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
-        by smtp.gmail.com with ESMTPSA id l2-20020a2e3e02000000b0026be1de1500sm3341009lja.79.2022.10.21.04.23.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 04:23:18 -0700 (PDT)
-Date:   Fri, 21 Oct 2022 14:23:13 +0300
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S230310AbiJULdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 07:33:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF9D261AC8;
+        Fri, 21 Oct 2022 04:33:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 44E7661E6E;
+        Fri, 21 Oct 2022 11:32:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9957EC433B5;
+        Fri, 21 Oct 2022 11:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666351978;
+        bh=bHuZR4rMM1qL/TW8wsRxJhDlERNua01QySV3U+fIvv8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eZeNVZz3JoAcPEPpF+F5AsNEFUw3zhaSpNwhImh2d3/5yg5RIN6VUDLJwWGuUFrGi
+         2FQ+bPJpzuQJE+t1NeQA679l5iRQJLYn2M28Db72OK+92h3ZqNBYYobUVuvskx1OR4
+         vGZCdwkmjqcHMrugTD8qnBqAXm4KesaTBVvpv+5FruHd0Zj+Amc6H/tnk4fyR+XWjw
+         Y97sR+w8c/+IbnV/wfw1dF8MG9KhwXMCkGIgNuojnvkQTeAHmuzJf1nZZUGLlb84Y5
+         EirV2qFDReemL+mDuJ+o6cKZQR+GH26D1UP55H7g2jC20FMDhl9C3Tw+ZiMY7sdmcl
+         Co4E0vDEHSQww==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1olqGa-00011A-QY; Fri, 21 Oct 2022 13:32:45 +0200
+Date:   Fri, 21 Oct 2022 13:32:44 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] MAINTAINERS: Add KX022A maintainer entry
-Message-ID: <db45c0ee76c3205b9253cb2200a79119c2f2b946.1666350457.git.mazziesaccount@gmail.com>
-References: <cover.1666350457.git.mazziesaccount@gmail.com>
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 08/15] phy: qcom-qmp-pcie: add register init helper
+Message-ID: <Y1KDXD9n0cCqjTGy@hovoldconsulting.com>
+References: <20221021110947.28103-1-johan+linaro@kernel.org>
+ <20221021110947.28103-9-johan+linaro@kernel.org>
+ <932765e0-ecbc-8c9b-69c5-ce0bb0c8de68@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="T137bSOkmQEtsLas"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cover.1666350457.git.mazziesaccount@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <932765e0-ecbc-8c9b-69c5-ce0bb0c8de68@linaro.org>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 21, 2022 at 02:18:49PM +0300, Dmitry Baryshkov wrote:
+> On 21/10/2022 14:09, Johan Hovold wrote:
+> > Generalise the serdes initialisation helper so that it can be used to
+> > initialise all the PHY registers (e.g. serdes, tx, rx, pcs).
+> > 
+> > Note that this defers the ungating of the PIPE clock somewhat, which is
+> > fine as it isn't needed until starting the PHY.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 51 +++++++-----------------
+> >   1 file changed, 15 insertions(+), 36 deletions(-)
+> > 
+> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > index dd7e72424fc0..f57d10f20277 100644
+> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > @@ -1820,46 +1820,32 @@ static void qmp_pcie_configure(void __iomem *base,
+> >   	qmp_pcie_configure_lane(base, tbl, num, 0xff);
+> >   }
+> >   
+> > -static void qmp_pcie_serdes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
+> > -{
+> > -	void __iomem *serdes = qmp->serdes;
+> > -
+> > -	if (!tables)
+> > -		return;
+> > -
+> > -	qmp_pcie_configure(serdes, tables->serdes, tables->serdes_num);
+> > -}
+> > -
+> > -static void qmp_pcie_lanes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
+> > +static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
+> >   {
+> >   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+> > +	void __iomem *serdes = qmp->serdes;
+> >   	void __iomem *tx = qmp->tx;
+> >   	void __iomem *rx = qmp->rx;
+> >   	void __iomem *tx2 = qmp->tx2;
+> >   	void __iomem *rx2 = qmp->rx2;
+> > +	void __iomem *pcs = qmp->pcs;
+> > +	void __iomem *pcs_misc = qmp->pcs_misc;
+> >   
+> > -	if (!tables)
+> > +	if (!tbls)
+> >   		return;
+> >   
+> > -	qmp_pcie_configure_lane(tx, tables->tx, tables->tx_num, 1);
+> > -	qmp_pcie_configure_lane(rx, tables->rx, tables->rx_num, 1);
+> > +	qmp_pcie_configure(serdes, tbls->serdes, tbls->serdes_num);
+> > +
+> > +	qmp_pcie_configure_lane(tx, tbls->tx, tbls->tx_num, 1);
+> > +	qmp_pcie_configure_lane(rx, tbls->rx, tbls->rx_num, 1);
+> >   
+> >   	if (cfg->lanes >= 2) {
+> > -		qmp_pcie_configure_lane(tx2, tables->tx, tables->tx_num, 2);
+> > -		qmp_pcie_configure_lane(rx2, tables->rx, tables->rx_num, 2);
+> > +		qmp_pcie_configure_lane(tx2, tbls->tx, tbls->tx_num, 2);
+> > +		qmp_pcie_configure_lane(rx2, tbls->rx, tbls->rx_num, 2);
+> >   	}
+> > -}
+> > -
+> > -static void qmp_pcie_pcs_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
+> > -{
+> > -	void __iomem *pcs = qmp->pcs;
+> > -	void __iomem *pcs_misc = qmp->pcs_misc;
+> > -
+> > -	if (!tables)
+> > -		return;
+> >   
+> > -	qmp_pcie_configure(pcs, tables->pcs, tables->pcs_num);
+> > -	qmp_pcie_configure(pcs_misc, tables->pcs_misc, tables->pcs_misc_num);
+> > +	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
+> > +	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+> 
+> As seem above, if nothing else, tables -> tbls rename generates 
+> unnecessary diff.
 
---T137bSOkmQEtsLas
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Can you please stop with the bikeshedding. This is not about keeping the
+diff small, this is about readability of the new helper function as I
+already told you.
 
-Add maintainer entry for ROHM/Kionix KX022A accelerometer sensor driver.
+And this is a *local* identifier, not some state member that needs a
+super descriptive name. And the rest of the driver used "tbl"
+consistently until your EP/RC mode patches for that matter.
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+> Other than that LGTM.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cf0f18502372..3ab9c5f97dfe 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11435,6 +11435,11 @@ F:	drivers/mfd/khadas-mcu.c
- F:	include/linux/mfd/khadas-mcu.h
- F:	drivers/thermal/khadas_mcu_fan.c
-=20
-+KIONIX/ROHM KX022A ACCELEROMETER
-+R:	Matti Vaittinen <mazziesaccount@gmail.com>
-+S:	Supported
-+F:	drivers/iio/accel/kionix-kx022a*
-+
- KMEMLEAK
- M:	Catalin Marinas <catalin.marinas@arm.com>
- S:	Maintained
---=20
-2.37.3
-
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---T137bSOkmQEtsLas
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmNSgSEACgkQeFA3/03a
-ocUp0AgAmJzPCSyJryGc0AplYi/SZHhLE6YmLR4uVa2187xwviNdIPY40G47bRcg
-+Au2IT6ckmurn5UWX6a3wvsN8tWvjnfSSVcXAuu2HVNRExVCAuSvXgP2GQcmlNyh
-q1baK+3n5itvJvf1mz8EbvqEXeTzZUZ5iux7VT0uXiAcyf3Zve2J8QlwSZUtnvGT
-axuvQ2XW/KXnB3ifNFDiDkO5VS0S4buzNOUyrYPRH8VXq48vIawydM0gvwl8oBFK
-mFRaDCUnukmo7gOCfL6Ts+Yt4JqpI9QL8t1ueOZ4YQL2UbUf3bBmPJ1FgTm3H8vU
-cNa7g4qIJNubuZn3NpFLCKrAizbFQQ==
-=Muhs
------END PGP SIGNATURE-----
-
---T137bSOkmQEtsLas--
+Johan
