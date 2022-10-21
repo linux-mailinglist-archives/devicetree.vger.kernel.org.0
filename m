@@ -2,115 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCCBF607466
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 11:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 682AE60747C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 11:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230162AbiJUJqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 05:46:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39150 "EHLO
+        id S229872AbiJUJxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 05:53:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230459AbiJUJqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 05:46:08 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F989AC2B
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 02:46:02 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id t16so3728853edd.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 02:46:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=P0AQ9jlIG0ZlvzZh3L6x6ssa+d2wthNDGpp7sZigdE0=;
-        b=cG4KlR0WMgI8n0RL9tPbQKHpLmpWAy4o2IAPJd8z9JPATgL6wkGWn1syeb41X7r/Pv
-         yzVQorDXy0VFPWSjH4a4bdVp027IK/n2Xc16MEYT6sLb6txOLoObjDPnirfmf9Jf+viY
-         psyaYkhqNzPuIxnahH4HJTNrxECNzZkflw4wBM/Bwcb7qpgc2o9+hH5o1xo+ELEQ90V8
-         EgIrikhasfiFC/VAz7m5Ah0e8Y93ujtecy4t/MNqttY+PKhlLUF1vJfsm23h5h/4cJaM
-         MP8vjsF9u0NLT5ZpVdvTvkwV9TyrH4zI+Q0lTzef1RuZ16RZgtsl/ROREzQILVoPRFdA
-         MBAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P0AQ9jlIG0ZlvzZh3L6x6ssa+d2wthNDGpp7sZigdE0=;
-        b=ebHMxLI9xS1vHnMvU1n6GekoFKurGh9GOBjrZ29p1zD76Utuzh1Am/Mw5kHXXkPuki
-         cLqddYINFqTeCjdhTLoeWWYK++9YoVdKqb5EWe9g4HZV1JSEO0gIPpl3ymp0AXQe7K5w
-         LqSYaV3Unu9RsP3AVJJS+OrB26b4Qgz/Wy5kW6PRB666scchl7MrTAC7Oxbe7QE3/JFn
-         b84Q3XlMhKQLDdW3ToqHZh3LAXcnv2nw/eo4GjqeG/hp/dX3f7EIpsu27Q7/ANxHbTEy
-         G95JxC6HWx7KkEvBEJ260oQpaiNoFv5ykOSXYooRbxYi6cTLWQhBXZfrlfFldEBBPnIo
-         gFEw==
-X-Gm-Message-State: ACrzQf3yAfBwDNM/B/3fY5kjt9NVqnJCFrxT3Vof4Z+ZctZ5TWxGEzG2
-        wArqC08Wiu7XnrW8Ef5/xR96ykabLwHUvJgO2teSaQ==
-X-Google-Smtp-Source: AMsMyM5t02ffZNLPF+/SKV0t2zSPdKi04tT1VyQMGwlcqH6o8oaHN9NJPnaobBhqe+u0XBPphswad6nycmwYjCaoaLw=
-X-Received: by 2002:a17:907:7606:b0:78e:61d:757e with SMTP id
- jx6-20020a170907760600b0078e061d757emr13887723ejc.690.1666345560588; Fri, 21
- Oct 2022 02:46:00 -0700 (PDT)
+        with ESMTP id S230175AbiJUJxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 05:53:42 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0AE24E3A1
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 02:53:41 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oloib-0000Vq-MO; Fri, 21 Oct 2022 11:53:33 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oloib-0004Hm-3Z; Fri, 21 Oct 2022 11:53:33 +0200
+Date:   Fri, 21 Oct 2022 11:53:33 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Peng Fan <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 05/15] arm64: dts: imx8mp-evk: enable uart1/3 ports
+Message-ID: <20221021095333.3qdqtdstgcjhp76s@pengutronix.de>
+References: <20221020095934.1659449-1-peng.fan@oss.nxp.com>
+ <20221020095934.1659449-6-peng.fan@oss.nxp.com>
+ <20221020110723.udftsfrfdnghudto@pengutronix.de>
+ <7ede9de4-75ba-6ebf-60a3-fee98e050ea9@oss.nxp.com>
+ <20221021090910.zkijqqt6mpukzqdp@pengutronix.de>
+ <5ddc1dac-b6ee-34c4-63eb-63c9a254d984@oss.nxp.com>
 MIME-Version: 1.0
-References: <20221021012728.22373-1-zhuyinbo@loongson.cn>
-In-Reply-To: <20221021012728.22373-1-zhuyinbo@loongson.cn>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 21 Oct 2022 11:45:49 +0200
-Message-ID: <CACRpkdbBW1YNGfec2jEPsUGwqosc8TwwSP9ft+he5KWPf0otvw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] pinctrl: pinctrl-loongson2: add pinctrl driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5ddc1dac-b6ee-34c4-63eb-63c9a254d984@oss.nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yinbo,
+On 22-10-21, Peng Fan wrote:
+> Hi Marco,
+> 
+> On 10/21/2022 5:09 PM, Marco Felsch wrote:
+> > On 22-10-21, Peng Fan wrote:
+> > > Hi Marco,
+> > > 
+> > > On 10/20/2022 7:07 PM, Marco Felsch wrote:
+> > > > Hi Peng,
+> > > > 
+> > > > On 22-10-20, Peng Fan (OSS) wrote:
+> > > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > > 
+> > > > > Enable uart1/3 ports for evk board.
+> > > > > 
+> > > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > > ---
+> > > > >    arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 36 ++++++++++++++++++++
+> > > > >    1 file changed, 36 insertions(+)
+> > > > > 
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > > > > index 2e29bb3c041c..366f709f8790 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+> > > > > @@ -428,6 +428,15 @@ &snvs_pwrkey {
+> > > > >    	status = "okay";
+> > > > >    };
+> > > > > +&uart1 { /* BT */
+> > > > > +	pinctrl-names = "default";
+> > > > > +	pinctrl-0 = <&pinctrl_uart1>;
+> > > > > +	assigned-clocks = <&clk IMX8MP_CLK_UART1>;
+> > > > > +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
+> > > > 
+> > > > I'm curious, what is the default parent and why is this wrong? For the
+> > > > already exisiting uart2 we don't do that. Same applies for uart3.
+> > > 
+> > > The default parent is OSC_24M. The uart2 is for console, so 24M is ok.
+> > > As I recall, we met issue 24M not able to get higher baudrate.
+> > 
+> > What did you mean by higher baudrate, is it everything > 115200? When
+> > the console baudrates can be fullfilled with the PLL1_80M as well
+> > wouldn't it be worth to fix the imx8mp.dtsi instead?
+> 
+> To console, we use 115200, 24M could fullfill it.
+> 
+> BaudRate = (clk / ref_clk_div) / (16 * (ubmr + 1) / (ubir + 1))
+> 
+> If you have 24M ref_clk, the max baudrate is 1.5M, with setting
+> ubmr, ubir to 0, and ref clk divider to 1.
+> 
+> So more higher baudrate, 24M could not fulfill.
 
-thanks for your patch!
+Okay, thanks for clarification. In that case eveything is fine.
 
-On Fri, Oct 21, 2022 at 3:27 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
-
-> The loongson2 SoC has a few pins that can be used as GPIOs or take
-> multiple other functions. Add a driver for the pinmuxing.
->
-> There is currently no support for GPIO pin pull-up and pull-down.
->
-> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-
-(...)
-
-> +static int loongson2_pmx_set_mux(struct pinctrl_dev *pcdev, unsigned int func_num,
-> +                             unsigned int group_num)
-> +{
-> +       struct loongson2_pinctrl *pctrl = pinctrl_dev_get_drvdata(pcdev);
-> +       unsigned long reg = (unsigned long)pctrl->reg_base +
-> +                               loongson2_pmx_groups[group_num].reg;
-> +       unsigned int mux_bit = loongson2_pmx_groups[group_num].bit;
-> +       unsigned int val;
-> +       unsigned long flags;
-> +
-> +       raw_spin_lock_irqsave(&pctrl->lock, flags);
-> +       val = readl((void *)reg);
-> +       if (func_num == 0)
-> +               val &= ~(1<<mux_bit);
-> +       else
-> +               val |= (1<<mux_bit);
-> +       writel(val, (void *)reg);
-> +       raw_spin_unlock_irqrestore(&pctrl->lock, flags);
-
-Can you explain in the commit message or with a comment in the code
-why you have to use a raw spinlock for this?
-
-We usually only use raw spinlocks for things like low level
-interrupt handlers...
-
-My guess is that you can replace this with an ordinary spinlock.
-
-Yours,
-Linus Walleij
+Regards,
+  Marco
