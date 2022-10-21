@@ -2,118 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F27B6607A30
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 17:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B826F607A47
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 17:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbiJUPKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 11:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47936 "EHLO
+        id S230198AbiJUPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 11:16:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbiJUPKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 11:10:16 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A79D57E4;
-        Fri, 21 Oct 2022 08:10:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:References:
-        In-Reply-To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=FrqeS3VJw+FPcz82Z8ZW8s1SnKOZDXvq0uXtD4FCNRo=; b=dMqKwHMcH0f+rymxcxYZGyiBYQ
-        9Rv61ktnInDexzmbXEOWXU9wDcpddIrs474JEz7HNuBzJRS5Zm+jWQssPPNocrhU+c6OCjvCDqaM7
-        KDbogLfepujVWEvhv8CxypmCA55pgk3UsLpseCc3Igatuh64roHATZlDkkSDxvZ4PzsHrV1C0v3Dp
-        D98IxkbNhcCHrrFBdTdul4JgFxo60Gl+PPEetCqr3V0Hq43BoRhOuFg5iZDoAmvj6moBaIolXVnOp
-        zj3WBdivYTfHp/ipGThBmWHtV9nl7epfSwMFLH5GDTpO7WINl47TQr3Q4GlolmMG66abDAz70lSxj
-        /3uJgC4Q==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:42526 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1oltf0-0000NO-CS; Fri, 21 Oct 2022 16:10:10 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-        id 1oltez-00FwxN-Nn; Fri, 21 Oct 2022 16:10:09 +0100
-In-Reply-To: <Y1K17UtfFopACIi2@shell.armlinux.org.uk>
-References: <Y1K17UtfFopACIi2@shell.armlinux.org.uk>
-From:   "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        Eric Dumazet <edumazet@google.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH net-next 7/7] net: sfp: get rid of DM7052 hack when enabling
- high power
+        with ESMTP id S230119AbiJUPQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 11:16:33 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6A926B6E6;
+        Fri, 21 Oct 2022 08:16:32 -0700 (PDT)
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29LEreeZ018146;
+        Fri, 21 Oct 2022 15:16:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=Ef6LKQX/JIvvfxAKPolHgGyhRjCChbGHT3p+eMM2Vqs=;
+ b=mB/sPyw7sxINk3xkRTUQ8znNu6sXoOvk3eq9PUsuRtgpqOaV6IQ+qBtVKRdjlEmLEqAX
+ ULpR0Im28oHkck8bvIABhWYciSBTaFPFfb/bxVL8pYLMBb6gTPCYN9fKqg6Tx/o2pTdL
+ 49O6MZ+kpw00KSnffys1VjDtCxvo9n3iZ2h88PHdcrh9MNMBPMRGgmkxsy0B33Mxh2bA
+ XSvj+Bry4itJwr7dU/8uByW+JZP1OpIBWKbZPP5ToO3vqPV2FPuKFQnVNAjWsF5Gfxui
+ b9d3QYX+cNDqdKzcV1tGjcKv8dQ7g9kHXkFQlxT8Dy0USJDvdFXJdQI+tCr9DDNREi60 qQ== 
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3kbwkch2ac-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Oct 2022 15:16:07 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 29LF5X16005260;
+        Fri, 21 Oct 2022 15:16:06 GMT
+Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
+        by ppma03dal.us.ibm.com with ESMTP id 3kapd5k1yd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Oct 2022 15:16:06 +0000
+Received: from smtpav04.wdc07v.mail.ibm.com ([9.208.128.116])
+        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 29LFG4Ul53608930
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 21 Oct 2022 15:16:05 GMT
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id B282058061;
+        Fri, 21 Oct 2022 15:16:04 +0000 (GMT)
+Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id E4B0D58060;
+        Fri, 21 Oct 2022 15:16:02 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.163.86])
+        by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+        Fri, 21 Oct 2022 15:16:02 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-watchdog@vger.kernel.org
+Cc:     linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        wim@linux-watchdog.org, linux@roeck-us.net, andrew@aj.id.au,
+        joel@jms.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 0/2] watchdog: aspeed: Add pre-timeout interrupt support
+Date:   Fri, 21 Oct 2022 10:15:57 -0500
+Message-Id: <20221021151559.781983-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1oltez-00FwxN-Nn@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Fri, 21 Oct 2022 16:10:09 +0100
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: MU2WAMRpGcP35ziyzqYqOl3ikXu_gv7o
+X-Proofpoint-ORIG-GUID: MU2WAMRpGcP35ziyzqYqOl3ikXu_gv7o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-21_04,2022-10-21_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=915 bulkscore=0
+ mlxscore=0 clxscore=1011 spamscore=0 priorityscore=1501 suspectscore=0
+ malwarescore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210210090
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since we no longer mis-detect high-power mode with the DM7052 module,
-we no longer need the hack in sfp_module_enable_high_power(), and can
-now switch this to use sfp_modify_u8().
+Enable the pre-timeout interrupt if requested by device property, and
+document that property.
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- drivers/net/phy/sfp.c | 29 ++++++-----------------------
- 1 file changed, 6 insertions(+), 23 deletions(-)
+Eddie James (2):
+  watchdog: aspeed: Add pre-timeout interrupt support
+  dt-bindings: watchdog: aspeed: Document aspeed,pre-timeout-irq-us
 
-diff --git a/drivers/net/phy/sfp.c b/drivers/net/phy/sfp.c
-index 921bbedd9b22..39fd1811375c 100644
---- a/drivers/net/phy/sfp.c
-+++ b/drivers/net/phy/sfp.c
-@@ -1837,31 +1837,14 @@ static int sfp_module_parse_power(struct sfp *sfp)
- 
- static int sfp_sm_mod_hpower(struct sfp *sfp, bool enable)
- {
--	u8 val;
- 	int err;
- 
--	err = sfp_read(sfp, true, SFP_EXT_STATUS, &val, sizeof(val));
--	if (err != sizeof(val)) {
--		dev_err(sfp->dev, "Failed to read EEPROM: %pe\n", ERR_PTR(err));
--		return -EAGAIN;
--	}
--
--	/* DM7052 reports as a high power module, responds to reads (with
--	 * all bytes 0xff) at 0x51 but does not accept writes.  In any case,
--	 * if the bit is already set, we're already in high power mode.
--	 */
--	if (!!(val & SFP_EXT_STATUS_PWRLVL_SELECT) == enable)
--		return 0;
--
--	if (enable)
--		val |= SFP_EXT_STATUS_PWRLVL_SELECT;
--	else
--		val &= ~SFP_EXT_STATUS_PWRLVL_SELECT;
--
--	err = sfp_write(sfp, true, SFP_EXT_STATUS, &val, sizeof(val));
--	if (err != sizeof(val)) {
--		dev_err(sfp->dev, "Failed to write EEPROM: %pe\n",
--			ERR_PTR(err));
-+	err = sfp_modify_u8(sfp, true, SFP_EXT_STATUS,
-+			    SFP_EXT_STATUS_PWRLVL_SELECT,
-+			    enable ? SFP_EXT_STATUS_PWRLVL_SELECT : 0);
-+	if (err != sizeof(u8)) {
-+		dev_err(sfp->dev, "failed to %sable high power: %pe\n",
-+			enable ? "en" : "dis", ERR_PTR(err));
- 		return -EAGAIN;
- 	}
- 
+ .../bindings/watchdog/aspeed-wdt.txt          |  7 ++-
+ drivers/watchdog/aspeed_wdt.c                 | 53 ++++++++++++++++++-
+ 2 files changed, 57 insertions(+), 3 deletions(-)
+
 -- 
-2.30.2
+2.31.1
 
