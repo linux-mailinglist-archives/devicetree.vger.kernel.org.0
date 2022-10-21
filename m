@@ -2,178 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B6060728D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 10:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B676607298
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 10:41:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbiJUIjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 04:39:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50960 "EHLO
+        id S230267AbiJUIl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 04:41:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbiJUIjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 04:39:08 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 890BE21B3
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 01:38:52 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id a10so3225359wrm.12
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 01:38:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=sbUO6Dk9wacjXHXZ2vzksSa8OSWDNuLkK+4lOLdOmPc=;
-        b=NP/wWIdsBuvCI4fur1IEWKky461bIFRG7op7qLKecW2XkT8gvMZ2E0XgDk876FN01H
-         lxSBW4R2JRWQLFq2AZwXQyQMSu53ExurT5Ye+oIQSdX3Nxa9ZC3haROrivTZVDSzcUq2
-         TGF0AoTS+QXdfkmofuvn/CkNn6Kxs/xeiCDBLUDXMKOKlLS9dqtnqNmZIAtWjYdRW6WO
-         PL0QwIA3BgtRNED6BpJunhlO8VwL7GB0J5q0kfElsbDqVrstIklgg2k9Ahdlo2hTvf61
-         DhZb5IXpiBBEsnBu3cQuvJ2BJwXMrpSKANyDnxa3NZsolu6QgV6YhAlomRgIb1LNbJxd
-         gKkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sbUO6Dk9wacjXHXZ2vzksSa8OSWDNuLkK+4lOLdOmPc=;
-        b=OkRjBeMtScpyyIs5oxRKfmzi+ld+SwxxVzbLhKPvqK8iYuyARzyNPCid3h0A9gs40G
-         KnmGffCbkARgOrbrEGU13TA/ODqNwht+Yod5ZXS9vzp9WMa4Tqo0sdEIYJO+7ZB7C50T
-         k+bBfKNGaYQP0MLrPaH3pPXE9tjnVm5gCl0M6CDQ+AdprhmbVXYXrQ42wNI+ZB8Aey86
-         Uz93GuTLQ7QTA/b9KJOCumszRzbXjK7VnFHV7qyX21R1DV+sXQUv6+rckKH+4AF4zM3v
-         LV7jcuWPpFoIDLkCB+J0XU6TpZ6GUcovIyp6b5GPShapKKOMVu2ok1GW0M56qPI1x3KL
-         f64A==
-X-Gm-Message-State: ACrzQf3Tp/hF7taKg5J18UdvSju+MZVUMOVkAPXPgEoKVwHO7uVtWIv2
-        RJqQDWaSkK4NkY9g3dSpgOZ6Gw==
-X-Google-Smtp-Source: AMsMyM7k1nPOKOFdlc7vwxPWLFbFhF4RxUJr5xqjxVc0GYiDzbCYzF2K9vcTPnLs/uYo92+HPlMnzg==
-X-Received: by 2002:adf:d0c3:0:b0:22e:6ce8:f7a1 with SMTP id z3-20020adfd0c3000000b0022e6ce8f7a1mr11353672wrh.287.1666341529694;
-        Fri, 21 Oct 2022 01:38:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8104:adb4:5d77:2050? ([2a01:e0a:982:cbb0:8104:adb4:5d77:2050])
-        by smtp.gmail.com with ESMTPSA id i18-20020a5d5232000000b00236576c8eddsm329556wra.12.2022.10.21.01.38.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 01:38:49 -0700 (PDT)
-Message-ID: <fcdbf59d-0512-1e35-b4fd-3317782c6e34@linaro.org>
-Date:   Fri, 21 Oct 2022 10:38:48 +0200
+        with ESMTP id S230265AbiJUIlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 04:41:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E85D24CCA0;
+        Fri, 21 Oct 2022 01:41:21 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 831446602534;
+        Fri, 21 Oct 2022 09:41:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666341680;
+        bh=N4UNINvJZ31lYbQPW+hEaoBxdTyA4gRTjPK7OCidDpE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BGBNH2aFKmpGlLLm0NeLj4/RQcaL0VbfbvpSNvBiB/PxBSbYHaM5/Lch/3U24Rw9U
+         uBZt588RTaMjkK7GBYsGpQFswiZrKuhQTsihqg5euRXUk3k1DRRp73bWSHn8+2Dcf7
+         npCXXGE5bShXnQSd0w5C21N8HzPyFDTFHEuzM9mzryNEoDSixKO2lrum+NfMAIq470
+         uiVTspvctLUxnaFk8ZonDdlNOrp4dcFtsKxC8zHfNWpnRfUbf1LeHgIQb0dpb7mAr1
+         D6OwKw70VLEMuR6S8j2IJLPCY4iu2bohuPAtyXlj89MsLDbC/Vu3TNFLLH7UOLhuiF
+         n6J35jOoBuXnQ==
+Message-ID: <51e54a52-17a7-e71d-27ee-d4754fcc8514@collabora.com>
+Date:   Fri, 21 Oct 2022 10:41:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
- Odroid N2/N2+
-To:     Anand Moon <linux.amoon@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221018195122.8877-1-linux.amoon@gmail.com>
- <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
- <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
- <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
- <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org>
- <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
- <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
- <CANAwSgQ9gJvtdr_r1K0xxrDxQ6aBh5v=pR9aJSxRytia2PSbrg@mail.gmail.com>
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 04/12] ASoC: mediatek: mt8188: support adda in platform
+ driver
 Content-Language: en-US
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgQ9gJvtdr_r1K0xxrDxQ6aBh5v=pR9aJSxRytia2PSbrg@mail.gmail.com>
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221021082719.18325-1-trevor.wu@mediatek.com>
+ <20221021082719.18325-5-trevor.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221021082719.18325-5-trevor.wu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 07:07, Anand Moon wrote:
-> Hi Martin / Neil,
+Il 21/10/22 10:27, Trevor Wu ha scritto:
+> Add mt8188 adda dai driver support.
 > 
-> On Thu, 20 Oct 2022 at 02:10, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->>
->> Hi Anand,
->>
->> On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
->> [...]
->>>>> +&pwm_AO_ab {
->>>>
->>>> &pwm_AO_cd not _ab
->>>>
->>> No it has a conflict with CPU_B (vddcpu_b) PWM
->> Uh, you're right. That's probably why the Hardkernel team uses a
->> software based PWM implementation: [0]
->> In hindsight they should have used a different pad either for VDDCPU_B
->> or the fan.
->>
->> I think the most pragmatic approach (since the "GPIO PWM" driver is
->> not upstream and I don't know if something like that would be accepted
->> upstream) is to use a GPIO based fan as you did in your initial patch.
->> Not sure what others think though.
->>
-> 
-> When I use gpio-fan  I get the following output with gpioinfo
-> Feature it woks as expected.
-> 
-> $ .sudo gpioinfo
-> ....
-> gpiochip1 - 15 lines:
->          line   0:      unnamed       unused   input  active-high
->          line   1:      unnamed       unused   input  active-high
->          line   2:      unnamed     "enable"  output  active-high [used]
->          line   3:      unnamed       unused   input  active-high
->          line   4:      unnamed       unused  output  active-high
->          line   5:      unnamed       unused   input  active-high
->          line   6:      unnamed       unused   input  active-high
->          line   7:      unnamed       unused   input  active-high
->          line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
->          line   9:      unnamed      "TF_IO"  output  active-high [used]
->          line  10:      unnamed   "gpio-fan"  output  active-high [used]
->          line  11:      unnamed    "n2:blue"  output  active-high [used]
->          line  12:      unnamed       unused   input  active-high
->          line  13:      unnamed       unused   input  active-high
->          line  14:      unnamed       unused   input  active-high
-> 
-> When I am using pwm-fan using *pwm_ao_d_10_pins* pin is not getting
-> registered below hence it is not working on my end.
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
 
-It's expected because it's not used as a GPIO but another function, you should look
-in the pinctrl debugfs files to see it.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> 
-> $ .sudo gpioinfo
-> ....
-> gpiochip1 - 15 lines:
->          line   0:      unnamed       unused   input  active-high
->          line   1:      unnamed       unused   input  active-high
->          line   2:      unnamed     "enable"  output  active-high [used]
->          line   3:      unnamed       unused   input  active-high
->          line   4:      unnamed       unused  output  active-high
->          line   5:      unnamed       unused   input  active-high
->          line   6:      unnamed       unused   input  active-high
->          line   7:      unnamed       unused   input  active-high
->          line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
->          line   9:      unnamed      "TF_IO"  output  active-high [used]
->          line  10:      unnamed       unused  output  active-high
->          line  11:      unnamed    "n2:blue"  output  active-high [used]
->          line  12:      unnamed       unused   input  active-high
->          line  13:      unnamed       unused   input  active-high
->          line  14:      unnamed       unused   input  active-high
-> 
-> Thanks
-> -Anand
-> 
-> 
-> 
-> 
->>
->> Best regards,
->> Martin
->>
->>
->> [0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
 
