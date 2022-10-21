@@ -2,117 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A2C607B72
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 17:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7DC4607C2B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbiJUPtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 11:49:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45570 "EHLO
+        id S230037AbiJUQ0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 12:26:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbiJUPsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 11:48:50 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DE8222F00;
-        Fri, 21 Oct 2022 08:48:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1666366753; bh=CMrmPvkFy9Rnj6R3j7QT0enTO4XoE0Vw26Epmtis0+g=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=AOEvKLBb8mH5u5eqhb3ggdx4wGRkJSHhVMZlbDA6lj7TZ23qsX+M5kXwKbXYSA7zL
-         dm61z2GB1I3COTwrpB0emSpvNhhxGFJJY9AzPLkoIQO9CvBW+OTXGJrXefYDfdhOCF
-         GZoHMuRtRf2OZMAAscspxS669F9IH1l5GhgTp+5I=
-Date:   Fri, 21 Oct 2022 17:39:13 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229872AbiJUQ03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:26:29 -0400
+Received: from vps0.lunn.ch (unknown [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2FDE2764D2;
+        Fri, 21 Oct 2022 09:26:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=iq1eYfHdRkn3kCl6a44vE/x3fUxXovvRR4vp6IbnJdg=; b=Ap0GIMnfBBlNRXdHy7XSru8ijN
+        lN5XXWP0RyKhQ7s4p7vP9JrsBk8TiKeMH8DBKP7/Y4CRfLIJYzXd1IsMpg4QBzbRhiyacOHEL3Bmr
+        ZNuU8ED6Ohs6CmCDofagncJLq6/p1wJGwwnIL9/5SJ0LJRy0fI397ror/6yZADXZhnks=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oluAC-000FKg-Ca; Fri, 21 Oct 2022 17:42:24 +0200
+Date:   Fri, 21 Oct 2022 17:42:24 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+        Eric Dumazet <edumazet@google.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
- and ranges
-Message-ID: <20221021153913.l5ry6v4mcnzcmj2v@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Peter Geis <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20221005085439.740992-1-megi@xff.cz>
- <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
- <20221005220812.4psu6kckej63yo2z@core>
- <4679102.Wku2Vz74k6@phil>
- <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
+        netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next 0/7] net: sfp: improve high power module
+ implementation
+Message-ID: <Y1K94ImMTITNaYE/@lunn.ch>
+References: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Y0/7dAB8OU3jrbz6@shell.armlinux.org.uk>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NEUTRAL,SPF_NEUTRAL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
-> Good Morning Heiko,
+On Wed, Oct 19, 2022 at 02:28:20PM +0100, Russell King (Oracle) wrote:
+> Hi,
 > 
-> Apologies for just getting to this, I'm still in the middle of moving
-> and just got my lab set back up.
+> This series aims to improve the power level switching between standard
+> level 1 and the higher power levels.
 > 
-> I've tested this patch series and it leads to the same regression with
-> NVMe drives. A loop of md5sum on two identical 4GB random files
-> produces the following results:
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> fad97e91da8d4fd554c895cafa89809b  test-rand2.img
-> 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
-> 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
-> 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
-> 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
-> b9637505bf88ed725f6d03deb7065dab  test-rand.img
-> f7437e88d524ea92e097db51dce1c60d  test-rand2.img
+> The first patch updates the DT binding documentation to include the
+> minimum and default of 1W, which is the base level that every SFP cage
+> must support. Hence, it makes sense to document this in the binding.
 > 
-> Before this patch series:
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> The second patch enforces a minimum of 1W when parsing the firmware
+> description, and optimises the code for that case; there's no need to
+> check for SFF8472 compliance since we will not need to touch the
+> A2h registers.
 > 
-> Though I do love where this patch is going and would like to see if it
-> can be made to work, in its current form it does not.
+> Patch 3 validates that the module supports SFF-8472 rev 10.2 before
+> checking for power level 2 - rev 10.2 is where support for power
+> levels was introduced, so if the module doesn't support this revision,
+> it doesn't support power levels. Setting the power level 2 declaration
+> bit is likely to be spurious.
 
-Thanks for the test. Can you please also test v1? Also please share lspci -vvv
-of your nvme drive, so that we can see allocated address ranges, etc.
+Or it is yet another case of violating the standard. The bit is valid,
+the revision is wrong in the EEPROM. How long do you think it will be
+before we see a quirk like this?
 
-kind regards,
-	o.
+> Patch 4 does the same for power level 3, except this was introduced in
+> SFF-8472 rev 11.9. The revision code was never updated, so we use the
+> rev 11.4 to signify this.
 
-> Very Respectfully,
-> Peter Geis
+Great, the standard itself is broken.
+
+       Andrew
