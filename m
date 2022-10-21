@@ -2,147 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5991606EC4
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 06:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A49FB606F20
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 07:07:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229995AbiJUEPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 00:15:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45172 "EHLO
+        id S229732AbiJUFHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 01:07:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229980AbiJUEPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 00:15:01 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2056.outbound.protection.outlook.com [40.107.247.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A009578BC;
-        Thu, 20 Oct 2022 21:14:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GeJD3V0fvjqHt3bBpYokmjYBZNWA7n9vr9OViAFrQPoFiSVDqm39eGHzCC9B2DI0Eli2atpRXCwYI8FiG5hG4/ApxMXb0Tqv6YZLrhNApop/PCzwxKigZa29zO7eqQnbebkCc9cprlvZJcJHkt/APfNrvMxR9Z95yM3zn/piwvyaapbHoJq2tWkKEvml1fe/Nf5yFHirKBtUFq8CX10PH42VRIb5DOrPiZTsn4se4AlpRqQg9Eiwcrth0COfVuY+u6+QM+Z+fTkYM1ySqHwcABJwIC1xSHZ+OmsT5DqQHukyL9SftVD+ZA18YK8Ae9Zc/VECww6T9WMfMHrslfyDIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5lmd7U3HA5UYUtnW7yd0cOy+Wpwv4BP/NsvISeSF++Y=;
- b=cp+UxGruUYs4Qsb9Kd2KgMvqqZG78pWWelgopTl+M2zvJIeALUYmJX3IjPoT8L5QhuWISDi2tQuawEM1ylwEDtyl/AROWJ/rChtfBNsHbMPCmAwgFqkCEa1t7qDni2nuXJhAZSpTGPYTHx9EaRSrLIe35IfxpYMmUAtmzt1hqW4cYdd/HdtKh2YPQ/1UT6tY633Wcx90Ze+AnfKtKFwGLJGAgAPKqu3CdT9mu48hT7+mRtJ/sCo7gFsE/cvpxePkT5Fbi0fwcLLxb3leB2RqnelVSqh7iEDEZUe3BhcgDSAtaBKzDU1zcTmIW2ba/G05oRBwtPzJhAbSAwr91+q4+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5lmd7U3HA5UYUtnW7yd0cOy+Wpwv4BP/NsvISeSF++Y=;
- b=Qe+4g7yIXc88ti3jIOebOqYC4BYPfEwdJ3FsTak1vSbSaTHxYbPLAP0of1y5mglbBRA7Gdoy+inN9Vlg9AlayiGHLHGLs0hBdB9rsBwIMXynwZxFrOD5QkUoDfgqTdzmcM58GYF64yEzYoKIFJjznlj1AuSMLlg2zrjvZXCrO3w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by VE1PR04MB7294.eurprd04.prod.outlook.com (2603:10a6:800:1a3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Fri, 21 Oct
- 2022 04:14:34 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::a5ff:3d28:4bbc:e1ed]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::a5ff:3d28:4bbc:e1ed%6]) with mapi id 15.20.5723.032; Fri, 21 Oct 2022
- 04:14:34 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     bjorn.andersson@kernel.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V8 7/7] remoteproc: imx_rproc: Enable attach recovery for i.MX8QM/QXP
-Date:   Fri, 21 Oct 2022 12:15:26 +0800
-Message-Id: <20221021041526.3696483-8-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221021041526.3696483-1-peng.fan@oss.nxp.com>
-References: <20221021041526.3696483-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR06CA0018.apcprd06.prod.outlook.com
- (2603:1096:4:186::8) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S229734AbiJUFH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 01:07:29 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC472187DF3;
+        Thu, 20 Oct 2022 22:07:27 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id l127so1390264iof.12;
+        Thu, 20 Oct 2022 22:07:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MEwZHem6XE7/ekLP3cDVQiDet0qLNX4/5trFWKq/TK4=;
+        b=MhfhmXR8De3QaEZs1GgnopnDHQU/TldUkkJLZfKo8RH91E3wimNUV609GsUonZMXkL
+         tOriKFtKty8u0HT3H/hbnzT4Pxr4xp6d2Q4PDgVtULnkAlptMcSngaeqVa3Q/UrMMhpO
+         IQZeN0ar8S7WYAkf6HFjP8pacsnxEhBCJypQmyY8Tv22rdlXBSEynIJOlflWSFUN4jNH
+         flt31456ja5+HTaQwx9cRyIvmBXJKrk1ncgt9FwND7xVM8TE9aTsfQd72QqProHWSA2d
+         qzPq0jbftOVsKmFzYUBufu9KN09YcFD6h7BSmsVcOFCHspzNXBchYSqH8lKTtVbAlUA3
+         6PYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MEwZHem6XE7/ekLP3cDVQiDet0qLNX4/5trFWKq/TK4=;
+        b=kyoCnYMuoSOpSN/6T5QNV6JGKrxlFmwFePE770yDFo9LYhGaSKlbwI5sa7H+rWEGV7
+         VbeLj4748lTDU7AzV9aUXLT561jl1pArOVLhf54ebf2bKfVcnExr432DpAKDzC6+zHkp
+         07Xe7fKvlSgVTm/SjcaiSEDE7/WGgRG790x9+DF+gM/Q2mMQo6fQfhR625aOBjYkurmf
+         J0mZaFm7c7IV1M2l8MCc6RIvzHLZcphvrJldHyWE0v8VvlOP0CeAOKi4JZUMCf/doRjU
+         glT3Q4Kvt+9v9Bdd1pX8iXavfxOH9lJtDBR/bJWLPohbTlMnOsm5qZdC7/m9j1khd/HM
+         PpRA==
+X-Gm-Message-State: ACrzQf0eKMsu+RUVV58YpX/PRSvuJV+5M4QL/SGX8DVKG3cHsWRgBdgn
+        bbOlenKHqEOakvuTY9kSHSIa1+6nbnQfj2olZho=
+X-Google-Smtp-Source: AMsMyM6U2t/J1APaVQvh2XiaYqqrQH23meYzMdt+B6vkVCvpey5BQkHlr4XgLl/VZwV7wx93EPq7cUKl2q/VRyvhQwA=
+X-Received: by 2002:a05:6602:2742:b0:6bb:a95d:7e3a with SMTP id
+ b2-20020a056602274200b006bba95d7e3amr11993607ioe.16.1666328847336; Thu, 20
+ Oct 2022 22:07:27 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|VE1PR04MB7294:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ed24a3c-f0ec-4c60-ffd8-08dab31ac27b
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eTbq2VLkYN3mnpf6+zyvzNz8QEwEGutcdkASMnGkrgpjSIT7ay06+UXU8z30Po9myYTS1qP6R5JXDF2sXa554tzQlJKr3V1tmjpfI8mGMbZy6C5BFENItR/NbJbH1gOGOFQQkJknN5zsfYHUZv35y27Usnp578d1D+1sZylNTtAdYvdCGIzdGcoQae/VC2sGnSus7x7b0zM3eLSsWHDPywwnBGzd2dSqLxs6YLv90IpHytymSdZhWEu0Ij82PT6MltT6IaCplFqxc/hDpi1yv521wJxynRYu6r8ANug1GCcce/dn8COlS5rf12n3PRyWZJVS814UlQfwgQQC+Cz1BFjg5cyv/xGkcuMvbcskkNKS8iDdPI4U/G9+K4gb1flZjPglUswOQMNIlDoebWhhbaNeKtGhGDIY1/bsgsGQDmcKuHJ2Or1IwgpQ/UXrtlfP1nOOipX23/Hq50aObPRWhZb2pqE76ja1c7eKi2Wi0y0Ut/9lvRzwdNnPGchHMYX45S9kAPMATQaRA6Ue2aR49FOPUjxIISlLK1JKkJ4yA7ipURY7+17hLofBvm/zTii37EvhYmIqjYIv3zsPn6flZ5qD9W4U+knBEWsiGxXgmt67lBaPfKdKdxUcxBX3qTkZilToMN88KP3tPYRQUEBr36RuKjKtpSUIEk28cAty0qbwb3GKM/VtQAN/ru8BcMFVO6u66Q5Pxxodf+bL0bEU0Jk2iYeL+NYi4gbHBhMbY3woovMEqvaz1NJh1Kzu2SBrpiV/CzxfnehNjC6fuQNh7w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(396003)(366004)(39860400002)(376002)(451199015)(38350700002)(186003)(2616005)(38100700002)(6486002)(2906002)(1076003)(478600001)(4744005)(66476007)(66556008)(8676002)(66946007)(86362001)(6666004)(8936002)(316002)(4326008)(6512007)(6506007)(26005)(41300700001)(52116002)(7416002)(83380400001)(5660300002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VM5rKKQgSevwgqJLxR8KdcOwVQLZmZ5JogWDdAQTZN+vhu4LZpAqwIqXMjQO?=
- =?us-ascii?Q?2xIwdV7WCVQiUXcbgCfJmj0auXLvgNKMms0uWLb/bpW4Xb02wBesLFYWs+je?=
- =?us-ascii?Q?6QCzNoOi3s95HJkD7mmZ0/dzVdIpRjbkX+dmzH5DdAIpX903AyUUdd5/6Lco?=
- =?us-ascii?Q?Yv4C5YuesQqDRYDcd8BkcusN8CtJb8k4+Qjz6aq4hv2U/a5uR/1n2HbIEPAZ?=
- =?us-ascii?Q?UwCyS/PaVNm84xSerjZl/TrjnNrRcmLyqf4nAbBW+1kTH0FEG4XAxrCFDH3l?=
- =?us-ascii?Q?CK1LLjpxDT+0Y5mBxDCiWVRg6jvHaODgGMLjYDCtrKf+2sigI919U91BJAGo?=
- =?us-ascii?Q?3RnalNcDYuQln849VcYjWfefKQ4rZTVleVCQVCKbNKZczviY7DE4b0cP5/Mb?=
- =?us-ascii?Q?ZCkbJWYkz7iuUByy9b21z5EQ4EdeZeb9GQkmDPoWgS1Pqbv5QEQC/I4c1q9k?=
- =?us-ascii?Q?3LR1RWlithGRg6ZoWO4gLUD0GwK0JVp/efYID5f8pTCbKC2ZItVbWnRR/M4W?=
- =?us-ascii?Q?VFls82MJwhrMsaP9JW874PN7+5EnwC7Rhlb2SG7LmSIq9nYrkalP8pKCy/pc?=
- =?us-ascii?Q?fvajcToxwXvLspgQ6CUsaClODH0c1E6wMXQ1EvxglbbFTW8GWaxdIo07q0Aa?=
- =?us-ascii?Q?bt9pDse7wSy5IYd0zt8RmvWl0G/ToBVFJvP8T8vcniHesT6fYmjElcadX/uW?=
- =?us-ascii?Q?ZhuZ3H8NYggm8qnNq5PFY0thLszn0SvjAImDTes7ZPS8Mw3UOTgKYTRAQg1B?=
- =?us-ascii?Q?voqFZucxuyff8Km4dOqRvDPJbRyBtKwym+2iRUkC9PueUmDKAQwjuwp21dpO?=
- =?us-ascii?Q?XmzsoFbsB56Bd/r2BLDMJrIDC54jCRPV7+aKfY2Zq8lG1zdexOUTwhPJ6c5I?=
- =?us-ascii?Q?V00Pws7MUHSlUNfX1QiWFWFGb7+eFli112v5I0MHrzK+mC32VMl+v17+7Rnr?=
- =?us-ascii?Q?rjBuEqljyorbuVyCjZPI/lE+6OxxeMz/TwBIMLl4QgZGM3UKmRtPCAyoQTxX?=
- =?us-ascii?Q?ZS1N0n9ZByFK/xjtYNblzeoyhn8fGWNZ6z/fxwLW02rH8MG7f6cqA4mGPhCP?=
- =?us-ascii?Q?7iXUI0kSw+Q6E5yox6wOO/1RCtAua9AXFEQkNNWkCLBOKzAn4wcsRrgIK23v?=
- =?us-ascii?Q?RBOqFyHdQLjDPz09zg99XWiIllCqZ8Yc7g0+cKLh0d8vb7S/DOqt8XnJTuM7?=
- =?us-ascii?Q?CS/kVjamZMq+nus2gma96zyZ4unup6cKIGzmZkQpu2JPhAMptRKkWpch1vGV?=
- =?us-ascii?Q?FPo94gTaMALQt3rAW4rJJfkxWD/D33KcrtWZ4/06h0KougeRAqRP+nWpB7YS?=
- =?us-ascii?Q?yRIUVTgNgAtKVAs54Q+Xqsifun21MQaHggF01RisI2u4VNamzxBFC2z6mQhb?=
- =?us-ascii?Q?FkeewD8cJScBfKvgKV2Nf5OTG6bibnXBFVhBuQRw3IFYYGLr6kGNbYAPYn2j?=
- =?us-ascii?Q?wzvhH2XrYa3OJ3NuxAiceatGSOFipkg7orj3l6ie32sCBNl/+1EMpjys1/O4?=
- =?us-ascii?Q?m5emtUURFpAvoxPzEPzPUijs0X/Jf9LLuIWBAU8exRcdPrDyO8B0aBeXCbuQ?=
- =?us-ascii?Q?rIMv5vBGjx6Nahqm+fybweioQnTtWtqQlSKLvDLx?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ed24a3c-f0ec-4c60-ffd8-08dab31ac27b
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2022 04:14:34.2731
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KQMg2D16rEjg1QZnB9ySo6D5W6kzMpFGh+Ozg5BufQ8MZCGDGkrIrUT363SWbefagnAWilZIG3jPbirC5Rva2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7294
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221018195122.8877-1-linux.amoon@gmail.com> <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
+ <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
+ <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
+ <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org> <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
+ <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
+In-Reply-To: <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Fri, 21 Oct 2022 10:37:11 +0530
+Message-ID: <CANAwSgQ9gJvtdr_r1K0xxrDxQ6aBh5v=pR9aJSxRytia2PSbrg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
+ Odroid N2/N2+
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi Martin / Neil,
 
-i.MX8QM/QXP M4 could recover without help from Linux, so to support it:
- - enable feature RPROC_FEAT_ATTACH_ON_RECOVERY
- - set recovery_disabled as false
+On Thu, 20 Oct 2022 at 02:10, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > > > +&pwm_AO_ab {
+> > >
+> > > &pwm_AO_cd not _ab
+> > >
+> > No it has a conflict with CPU_B (vddcpu_b) PWM
+> Uh, you're right. That's probably why the Hardkernel team uses a
+> software based PWM implementation: [0]
+> In hindsight they should have used a different pad either for VDDCPU_B
+> or the fan.
+>
+> I think the most pragmatic approach (since the "GPIO PWM" driver is
+> not upstream and I don't know if something like that would be accepted
+> upstream) is to use a GPIO based fan as you did in your initial patch.
+> Not sure what others think though.
+>
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/remoteproc/imx_rproc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+When I use gpio-fan  I get the following output with gpioinfo
+Feature it woks as expected.
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index dda4e8a12adf..2c471e46f4ca 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -948,7 +948,8 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 		}
- 
- 		priv->rproc->state = RPROC_DETACHED;
--		priv->rproc->recovery_disabled = true;
-+		priv->rproc->recovery_disabled = false;
-+		rproc_set_feature(priv->rproc, RPROC_FEAT_ATTACH_ON_RECOVERY);
- 
- 		/* Get partition id and enable irq in SCFW */
- 		ret = imx_sc_rm_get_resource_owner(priv->ipc_handle, priv->rsrc_id, &pt);
--- 
-2.37.1
+$ .sudo gpioinfo
+....
+gpiochip1 - 15 lines:
+        line   0:      unnamed       unused   input  active-high
+        line   1:      unnamed       unused   input  active-high
+        line   2:      unnamed     "enable"  output  active-high [used]
+        line   3:      unnamed       unused   input  active-high
+        line   4:      unnamed       unused  output  active-high
+        line   5:      unnamed       unused   input  active-high
+        line   6:      unnamed       unused   input  active-high
+        line   7:      unnamed       unused   input  active-high
+        line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
+        line   9:      unnamed      "TF_IO"  output  active-high [used]
+        line  10:      unnamed   "gpio-fan"  output  active-high [used]
+        line  11:      unnamed    "n2:blue"  output  active-high [used]
+        line  12:      unnamed       unused   input  active-high
+        line  13:      unnamed       unused   input  active-high
+        line  14:      unnamed       unused   input  active-high
 
+When I am using pwm-fan using *pwm_ao_d_10_pins* pin is not getting
+registered below hence it is not working on my end.
+
+$ .sudo gpioinfo
+....
+gpiochip1 - 15 lines:
+        line   0:      unnamed       unused   input  active-high
+        line   1:      unnamed       unused   input  active-high
+        line   2:      unnamed     "enable"  output  active-high [used]
+        line   3:      unnamed       unused   input  active-high
+        line   4:      unnamed       unused  output  active-high
+        line   5:      unnamed       unused   input  active-high
+        line   6:      unnamed       unused   input  active-high
+        line   7:      unnamed       unused   input  active-high
+        line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
+        line   9:      unnamed      "TF_IO"  output  active-high [used]
+        line  10:      unnamed       unused  output  active-high
+        line  11:      unnamed    "n2:blue"  output  active-high [used]
+        line  12:      unnamed       unused   input  active-high
+        line  13:      unnamed       unused   input  active-high
+        line  14:      unnamed       unused   input  active-high
+
+Thanks
+-Anand
+
+
+
+
+>
+> Best regards,
+> Martin
+>
+>
+> [0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
