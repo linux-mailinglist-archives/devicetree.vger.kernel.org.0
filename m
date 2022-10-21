@@ -2,146 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAFB26078A0
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F0026078A9
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231144AbiJUNii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 09:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37430 "EHLO
+        id S230339AbiJUNko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 09:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229909AbiJUNie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:38:34 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4400C2764CA
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:38:26 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id o8so1817372qvw.5
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:38:26 -0700 (PDT)
+        with ESMTP id S230265AbiJUNkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:40:42 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54C9913A7C3
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:40:33 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id a24so1605625qto.10
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:40:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KSzkkxJmt+63RR1lkwGlnOxYt96Hz8plGKgcG5hGf78=;
-        b=WC1/Vaw070/6Nnw2/72p0FXGDvkc/9JDDi/PrPjA/nbPPFkSpNofj5eiWG2HegS1Iu
-         EZxINnRgbYWJPxzi6N3Htly+fhPZlnnIsk/dvkpvMSci1X7chIX34vE694cH3gNODt84
-         8sQNDQjRhWpYHsP3/+PnBQh41HYUwuuBCF1M0kbH5adOC8e+Ze0/smvQLB5BwQUmotee
-         lBeGupjIoJYlCiKTMgF1bZGxotJWPOG5LEgfWRNe9NmW4KCPcGYrgyR3Mc5i0JOWQahy
-         8el//Z5s/Axsfk14aGPP4YsVWB+V+kgBQ8bAY07hiuQKmp7nzm57YuIi0fcftOEB9WK/
-         L4rA==
+        bh=5QMp8FGpCYqy7C5D/DoAxUrW6V4QqPBDuAozCo1MMcE=;
+        b=YRY1YySQT2HK+oLGZ9eUk0FtMU27bcgVFrQl+bADHHMv0T/Dz+X3JQ6C0tjrTkfE9p
+         A1U+D5bq3mvVd+mbCelTwMLG9tAATiViVHeYpSqTXXspbbg2BI1ZNhmBwONxN7SAM7Ww
+         P1w6Hdg0zvh9csKSlOM6s/jPD4PfbVf7JmUQekpgCldlE8gn7GzCJGapdooHEXETR7c6
+         Tkwo99L6ns8NHqDtxFaNjs6UgIY3e1OQYxEFBvCKpOPZkxhZ8kFD+FoM/iyQAD8q+1aP
+         CNVdLvWCGqGO7lRV7POS5oyDBm92zzVefONg7mMpkuD6qBVf91aEHKBg6US34KGo4AWW
+         gnCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KSzkkxJmt+63RR1lkwGlnOxYt96Hz8plGKgcG5hGf78=;
-        b=05YFE5xLQLtt6y7P/blyCaSVyUzfQn2blUEepa5+mvYefdCGN3WaqOfJwL9wzi6bF4
-         M+Cjnxti5g5rJmHn/7ppG9KYqrH6R65S70yyMuokE8KKKfVdVQFh6c6e2kSF5XtFaEbE
-         XFlbX6X+H/+zBq5Op3hRHRWCqfGbSUMQ/U7X7Rw4x0ke2pfCrMjPUuLJogjzhLLxvffy
-         zDTXhGOtnhsIYBulSW6c62XIeRVaBfMQ5cikc8VCHxnX+t6JKnXg7A+wNOCoZqvndYN3
-         xwdlaMAD/5oUsbYO/SLTgF/Q19zPtx4KJGloEG2t9CaRYo1HgMxFGF1XfUxz52b6lmwM
-         7+Dw==
-X-Gm-Message-State: ACrzQf2pL1zLdnmAx7CNWUbbJLivb70A1fps0G5NrttK75Hm3mbEF9Jx
-        acaeOAjqieIQoyifpH/2tMqU4w==
-X-Google-Smtp-Source: AMsMyM4FZ01IGdKeTxmwj5pLpoUJHwEmgn6/Mp8bmAqg3DRg9Qw431uomUeIF2iTpThwFCvOjuXusg==
-X-Received: by 2002:a0c:ac02:0:b0:4af:a3b1:3167 with SMTP id l2-20020a0cac02000000b004afa3b13167mr16441073qvb.66.1666359505693;
-        Fri, 21 Oct 2022 06:38:25 -0700 (PDT)
+        bh=5QMp8FGpCYqy7C5D/DoAxUrW6V4QqPBDuAozCo1MMcE=;
+        b=AhO/9cMJVRkzWg/wf5h7Bfs0cQ9mjDdBYXltf6THKaLjHcreDJEw1L54WN7YVs5qHx
+         exs41wd0kani2+lIhw5Y/tPfSAMPR05wokN3UyrjuI3tNr6X8qM7MlUzM01/xO/rr4fS
+         xRSc5yYVP3tLqj+wWkK6sfmv6KUmXFCeZFVVKPin83OElDVO7bibJA6Pkv4dUKVSVUli
+         W9XyzSzHa3bMzb7s3TX1JKzkC88JNv1gDQfbmKbZLQiaUiE1aft9y+NkmoE7ufwus7ko
+         qeEWoR08TI3lb3w1WUIjDhcfxV2Rq54t7/SZkGvKhTqGSO2hCqVX5AzqcrS7fWh1hCiQ
+         12cA==
+X-Gm-Message-State: ACrzQf1o+5092+bHcRrZ4INAvcReH/aD6nhFBzxxsIrjS4D53+Qsl8qU
+        kn/mGmpkuPoIlGcZYzY/3dFWdw==
+X-Google-Smtp-Source: AMsMyM7r4+4YgmjJL7JF3UZzz460BgvvSOBo/XR8/3L/LuJBL98u1q3HfEM/3ebADAsjAx7Bkbwpeg==
+X-Received: by 2002:a05:622a:190b:b0:39c:f9a0:b31c with SMTP id w11-20020a05622a190b00b0039cf9a0b31cmr13959161qtc.445.1666359632647;
+        Fri, 21 Oct 2022 06:40:32 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id br32-20020a05620a462000b006e9b3096482sm9522021qkb.64.2022.10.21.06.38.24
+        by smtp.gmail.com with ESMTPSA id bl9-20020a05620a1a8900b006cf38fd659asm9268770qkb.103.2022.10.21.06.40.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 06:38:25 -0700 (PDT)
-Message-ID: <a0353e85-8604-a268-5776-2f28b092e57b@linaro.org>
-Date:   Fri, 21 Oct 2022 09:38:23 -0400
+        Fri, 21 Oct 2022 06:40:31 -0700 (PDT)
+Message-ID: <c573ae8d-f2ee-403f-e096-eec4b31c682f@linaro.org>
+Date:   Fri, 21 Oct 2022 09:40:30 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH net-next v5 2/5] net: ipqess: introduce the Qualcomm
- IPQESS driver
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: add bindings for max313xx RTCs
 Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-References: <20221021124556.100445-1-maxime.chevallier@bootlin.com>
- <20221021124556.100445-3-maxime.chevallier@bootlin.com>
+To:     "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
+References: <20221019133910.282-1-Ibrahim.Tilki@analog.com>
+ <20221019133910.282-2-Ibrahim.Tilki@analog.com> <Y1G6FIvS6WD57GXW@mail.local>
+ <DM8PR03MB62477670C186E6CC5308B600962D9@DM8PR03MB6247.namprd03.prod.outlook.com>
+ <Y1KQvPAwh7NC0wbA@mail.local>
+ <DM8PR03MB6247691C7AD890FA486A5955962D9@DM8PR03MB6247.namprd03.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021124556.100445-3-maxime.chevallier@bootlin.com>
+In-Reply-To: <DM8PR03MB6247691C7AD890FA486A5955962D9@DM8PR03MB6247.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 08:45, Maxime Chevallier wrote:
-> The Qualcomm IPQESS controller is a simple 1G Ethernet controller found
-> on the IPQ4019 chip. This controller has some specificities, in that the
-> IPQ4019 platform that includes that controller also has an internal
-> switch, based on the QCA8K IP.
+On 21/10/2022 09:05, Tilki, Ibrahim wrote:
+>> On 21/10/2022 11:44:12+0000, Tilki, Ibrahim wrote:
+>>>>> +  interrupt-names:
+>>>>> +    description: |
+>>>>> +      Name of the interrupt pin of the RTC used for IRQ. Not required for
+>>>>> +      RTCs that only have single interrupt pin available. Some of the RTCs
+>>>>> +      share interrupt pins with clock input/output pins.
+>>>>> +    minItems: 1
+>>>>> +    items:
+>>>>> +      - enum: [INTA, INTB]
+>>>>> +      - enum: [INTA, INTB]
+>>>>> +
+>>>>
+>>>> I don't think this is right, what this is doing is essentially pinmuxing
+>>>> interrupts versus clocks. What happens if you want INTB but this goes
+>>>> directly to a PMIC instead of the SoC?
+>>>> It is not something you can express with your current bindings.
+>>>>
+>>>
+>>> Why would a user want INTB when it is not connected to SoC?
+>>> User can specify none, either one or both of the interrupt pins.
+>>> I don't see what the problem here is.
+>>>
+>>
+>> the interrupt pin may be connected to a PMIC that is able to start or
+>> wake up the platform. In that case, the user would not have any
+>> interrupt-names and your driver will fail to mux the interrupt on INTB.
+>> Please fix.
+> 
+> Interrupt muxing depends on the clock configuration, not the interrupt-names property.
+> Devices don't support muxing the alarm interrupt independently.
+> 
+> For example in the case of max31329, alarm interrupt is muxed into INTA by default.
+> Alarm interrupt is muxed into INTB pin if and only if clkin is enabled.\
 
-Thank you for your patch. There is something to discuss/improve.
+Just to be sure: are you now describing hardware or Linux driver behavior?
 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5c6ce094e55e..46fdd3c523c5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17037,6 +17037,12 @@ L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	drivers/net/ethernet/qualcomm/emac/
->  
-> +QUALCOMM IPQESS ETHERNET DRIVER
-> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
-> +L:	netdev@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/net/ethernet/qualcomm/ipqess/
-
-Add also bindings.
-
-> +
->  QUALCOMM ETHQOS ETHERNET DRIVER
->  M:	Vinod Koul <vkoul@kernel.org>
->  R:	Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> diff --git a/drivers/net/ethernet/qualcomm/Kconfig b/drivers/net/ethernet/qualcomm/Kconfig
-> index a4434eb38950..a723ddbea248 100644
-> --- a/drivers/net/ethernet/qualcomm/Kconfig
-> +++ b/drivers/net/ethernet/qualcomm/Kconfig
-> @@ -60,6 +60,17 @@ config QCOM_EMAC
->  	  low power, Receive-Side Scaling (RSS), and IEEE 1588-2008
->  	  Precision Clock Synchronization Protocol.
->  
-> +config QCOM_IPQ4019_ESS_EDMA
-> +	tristate "Qualcomm Atheros IPQ4019 ESS EDMA support"
-> +	depends on OF
-
-I think this is present only on systems where Qualcomm IPQ4019 SoCs is
-the main SoC (AP)? If so, I propose not to offer this to non-Qualcomm
-SoC builds, because they cannot use it and it makes life of
-distro-vendors configurators difficult:
-
-	depends on ARCH_QCOM || COMPILE_TEST
-
-> +	select PHYLINK
-> +	help
-> +	  This driver supports the Qualcomm Atheros IPQ40xx built-in
-> +	  ESS EDMA ethernet controller.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called ipqess.
-> +
->  source "drivers/net/ethernet/qualcomm/rmnet/Kconfig"
-
+> 
+> This means that if a user wants the alarm interrupt on INTB pin, they have to
+> provide a clock input through "clocks" property. If that is the case, they can provide
+> an interrupt for INTB pin, otherwise the alarm feature of the rtc gets disabled.
+> 
+> Side note: Some devices have 2 Alarms but Alarm2 does not have a register for
+> matching "seconds" so only Alarm1 is used by the driver.
 
 Best regards,
 Krzysztof
