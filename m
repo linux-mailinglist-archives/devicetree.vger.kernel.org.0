@@ -2,194 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4332C607594
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 13:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B885F6075A5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 13:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiJULCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 07:02:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54394 "EHLO
+        id S229866AbiJULKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 07:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbiJULCM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 07:02:12 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EC725CD9D;
-        Fri, 21 Oct 2022 04:02:11 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id bu25so4503019lfb.3;
-        Fri, 21 Oct 2022 04:02:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SFdV7NP8C6yU75td1dUeGU+HXX+EEy+aRc6V3zFsqbQ=;
-        b=TbrKe9Qg0GPwKzMi3kwTM4dL5RNZV1TQ5V11/AQn2rXbqCq4oBbY0SSCJPub7j+C73
-         jWdO5tOoH6ji0OOtj4jwOpsmZbhta54THzLL00sHw6F1SP55asX4yHfgsO4gWslOISiA
-         U6b2Ome03rzJjYqNZot8UjOHnClqQXxa4O6Vx9dO/e/0l6JrCA8TOyp/GrJEF1XeX+hK
-         ChYX9++MUSiyCmk+BaC4YitsXyooNPNaq5BH+ymjseOBUs8MFG91V/hC5S2UB6WbbKUB
-         dP4vD7szodW+LiEN4HsiYeEWEIlHVe4mNQUj014q262hTaV53KDdwzbpDCCuh6Ch4mb2
-         GrcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SFdV7NP8C6yU75td1dUeGU+HXX+EEy+aRc6V3zFsqbQ=;
-        b=tylJ2ImkStjRM/TjULMQh7zwCftG+mY7kIz5T84trhr2N9PJumilSUk2hBZp/ueo24
-         UNtbz5bhxQyp5Ye+J3vk2/MacANh3xMeBACbPt9mQMYYOzBt2Yl8CSy5Qy+4mobFRGz1
-         tO7bkpkG2KT29+FgcJ9SZ56zeWwHJdXDZ4ymSg0vmId2s2GQYVm0hg4cYnynAIAFZUqT
-         G4i/M+9DhUjBaJel+8oXOPOHIqPtwiCMBwELlqjy8cGk5UfezzW/FVaIW5d52I5ZbOi2
-         2pOmZ7DFoyDUN7kI4Qvb0gNvt+BeEgE0SmBCwd5uy8RmUNzJEMnXuVbzWqL0BzuElM/5
-         26tw==
-X-Gm-Message-State: ACrzQf2t0x9Gt9tUd/tGhAXGJXtZ0c0XZepdd7EMl56raFnsF5K9BsHP
-        BbVovuEPd6fZJq88hNWTAFw=
-X-Google-Smtp-Source: AMsMyM6raGi5Vpme27/W16RYIuLjDxlRW179PQnGARfzxkMCjNe7hSQg5MdweULaZGPyLHtmHjBZ6A==
-X-Received: by 2002:a19:8c5e:0:b0:4a2:2d7b:eef with SMTP id i30-20020a198c5e000000b004a22d7b0eefmr6294463lfj.206.1666350129577;
-        Fri, 21 Oct 2022 04:02:09 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:16f3:4a00::2? (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
-        by smtp.gmail.com with ESMTPSA id q2-20020a2eb4a2000000b00275aeff36dbsm379738ljm.110.2022.10.21.04.02.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 04:02:08 -0700 (PDT)
-Message-ID: <eb6ce47a-ab87-8a98-7ffe-b8cc50f8a549@gmail.com>
-Date:   Fri, 21 Oct 2022 14:02:08 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229574AbiJULKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 07:10:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B4E172509;
+        Fri, 21 Oct 2022 04:10:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 24BA761E63;
+        Fri, 21 Oct 2022 11:10:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC07C433D7;
+        Fri, 21 Oct 2022 11:10:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666350643;
+        bh=DWAifErFWoOZm3KXJ7C5WfdvDrTHXU8ehmXjnEMpk9c=;
+        h=From:To:Cc:Subject:Date:From;
+        b=QgNFhYv8G/Asx+lSdBReO86jSAJEjxgSWMogrbsT6YOtT6jUHTfv5oVl2O/0+Qo+m
+         /tNVIUygthIrO1Rdq6ngwc29Lr0kCwuddqQdtTimhDrBNucgtQ1EiW9JZUrdVoma6t
+         pSKABao6T6G603SZRiWqeBwVotIv+Wigh938lM3pXqTzqQsWBNLeVokv/jYPy5mXte
+         XjvX87LGEOaPDQWzP1+TLnH3ydtU4Rdsd3NNolNaOhR1J813G/UeDNlymg2y/1QoXQ
+         ovGuLVSNz1NFOFivgJFsAeM/hwWru1HD/d1XGMgmZzpa7Kc3GXFygRSTa50Ht1sYQw
+         MsFdyPhc8Algg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1olpv4-0007KS-9d; Fri, 21 Oct 2022 13:10:30 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1666263249.git.mazziesaccount@gmail.com>
- <5000bd61650554658d13619c8244f02cedbc182a.1666263249.git.mazziesaccount@gmail.com>
- <Y1FcftQKimmvcOej@smile.fi.intel.com>
- <2cad533d-32d1-5ca1-74e6-e2debcbdad81@gmail.com>
- <Y1J5KiH6IJLmrWH4@smile.fi.intel.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v3 2/3] iio: accel: Support Kionix/ROHM KX022A
- accelerometer
-In-Reply-To: <Y1J5KiH6IJLmrWH4@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH v3 00/15] phy: qcom-qmp-pcie: add support for sc8280xp
+Date:   Fri, 21 Oct 2022 13:09:32 +0200
+Message-Id: <20221021110947.28103-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/21/22 13:49, Andy Shevchenko wrote:
-> On Fri, Oct 21, 2022 at 10:10:08AM +0300, Matti Vaittinen wrote:
->> On 10/20/22 17:34, Andy Shevchenko wrote:
->>> On Thu, Oct 20, 2022 at 02:37:15PM +0300, Matti Vaittinen wrote:
-> 
-> ...
-> 
->>>> +	ret = regmap_bulk_read(data->regmap, chan->address, &data->buffer,
->>>> +			       sizeof(__le16));
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	*val = le16_to_cpu(data->buffer[0]);
->>>
->>> 'p'-variant of the above would look better
->>>
->>> 	*val = le16_to_cpup(data->buffer);
->>>
->>> since it will be the same as above address without any additional arithmetics.
->>>
->>
->> I guess there is no significant performance difference? To my eye the
->> le16_to_cpu(data->buffer[0]) is much more clear. I see right from the call
->> that we have an array here and use the first member. If there is no obvious
->> technical merit for using le16_to_cpup(data->buffer) over
->> le16_to_cpu(data->buffer[0]), then I do really prefer the latter for
->> clarity.
-> 
-> Then you probably wanted to have &data->buffer[0] as a parameter to
-> regmap_bulk_read()?
+This series adds support for the PCIe PHYs on SC8280XP including its
+four-lane PHYs.
 
-Yes! Thanks.
+The first half of the series clean up the driver in preparation for
+supporting SC8280XP and its new devicetree bindings that drops the
+legacy child node and the (incomplete) description of register
+subregions.
 
-> 
-> ...
-> 
->>>> +	if (data->trigger_enabled) {
->>>> +		iio_trigger_poll_chained(data->trig);
->>>> +		ret = IRQ_HANDLED;
->>>> +	}
->>>> +
->>>> +	if (data->state & KX022A_STATE_FIFO) {
->>>
->>>> +		ret = __kx022a_fifo_flush(idev, KX022A_FIFO_LENGTH, true);
->>>> +		if (ret > 0)
->>>> +			ret = IRQ_HANDLED;
->>>
->>> I don't like it. Perhaps
->>>
->>> 	bool handled = false;
->>> 	int ret;
->>>
->>> 	...
->>> 		ret = ...
->>> 		if (ret > 0)
->>> 			handled = true;
->>> 	...
->>>
->>> 	return IRQ_RETVAL(handled);
->>
->> I don't see the benefit of adding another variable 'handled'.
->> If I understand correctly, it just introduces one extra 'if' in IRQ thread
->> handling while hiding the return value in IRQ_RETVAL() - macro.
->>
->> I do like seeing the IRQ_NONE being returned by default and IRQ_HANDLED only
->> when "handlers" are successfully executed. Adding extra variable just
->> obfuscates this (from my eyes) while adding also the additional 'if'.
-> 
-> You assigning semantically different values to the same variable inside the
-> function.
+The other QMP bindings suffer from similar problems and follow-on series
+will do corresponding changes to the UFS, USB and combo QMP bindings and
+drivers.
 
-Ah, yes! This was really a bug making it way in. I guess you may just 
-have saved me from some not-that-funny debugging session... Well spotted!
+Note that these patches depend on the linux-phy next branch of today and
+the following two series:
 
-I still don't like hiding the IRQ_HANDLED / IRQ_NONE. I'll just go for
+ 1. [PATCH v2 00/14] phy: qcom-qmp: further prep cleanups
 
-         if (data->state & KX022A_STATE_FIFO) { 
+    https://lore.kernel.org/lkml/20221012081241.18273-1-johan+linaro@kernel.org
 
-                 int ok; 
+ 2. [PATCH 00/20] phy: qcom-qmp: further prep fixes and cleanups (set 3)
 
- 
+    https://lore.kernel.org/lkml/20221012084846.24003-1-johan+linaro@kernel.org
 
-                 ok = __kx022a_fifo_flush(idev, KX022A_FIFO_LENGTH, 
-true);
-                 if (ok > 0) 
+Johan
 
-                         ret = IRQ_HANDLED; 
 
-         }
+Changes in v3
+ - use bulk clk API for pipe clocks (Dmitry)
 
-for v4. (Which I try to send still today before my memory is flushed by 
-the weekend :])
+Changes in v2
+ - rename current DT schema after first SoC added to the original
+   bindings (IPQ8074) and add a reference to the new SC8280XP bindings
+   instead of marking the current bindings as "legacy" (Krzysztof)
 
-Thanks a lot!
+ - add "sc8280xp" infix to the new DT schema filename (Krzysztof)
 
-Yours
-	-- Matti
+ - tighten description of the 'qcom,4ln-config-sel' phandle array
+   (Krzysztof)
+
+
+Johan Hovold (15):
+  phy: qcom-qmp-pcie: sort device-id table
+  phy: qcom-qmp-pcie: move device-id table
+  phy: qcom-qmp-pcie: merge driver data
+  phy: qcom-qmp-pcie: clean up device-tree parsing
+  phy: qcom-qmp-pcie: clean up probe initialisation
+  phy: qcom-qmp-pcie: rename PHY ops structure
+  phy: qcom-qmp-pcie: clean up PHY lane init
+  phy: qcom-qmp-pcie: add register init helper
+  dt-bindings: phy: qcom,qmp-pcie: rename current bindings
+  dt-bindings: phy: qcom,qmp-pcie: add sc8280xp bindings
+  phy: qcom-qmp-pcie: restructure PHY creation
+  phy: qcom-qmp-pcie: fix initialisation reset
+  phy: qcom-qmp-pcie: add support for pipediv2 clock
+  phy: qcom-qmp-pcie: add support for sc8280xp
+  phy: qcom-qmp-pcie: add support for sc8280xp 4-lane PHYs
+
+ ...hy.yaml => qcom,ipq8074-qmp-pcie-phy.yaml} |   7 +-
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       | 165 ++++
+ drivers/phy/qualcomm/Kconfig                  |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 824 ++++++++++++------
+ .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |   2 +
+ 5 files changed, 745 insertions(+), 254 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{qcom,qmp-pcie-phy.yaml => qcom,ipq8074-qmp-pcie-phy.yaml} (96%)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
 
 -- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
+2.37.3
 
