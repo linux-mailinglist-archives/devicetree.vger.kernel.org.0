@@ -2,214 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 990D76070D2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 09:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87BD3606FE3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiJUHR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 03:17:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56242 "EHLO
+        id S229652AbiJUGPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 02:15:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbiJUHRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 03:17:25 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB2981F9A34;
-        Fri, 21 Oct 2022 00:17:15 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8DxvreJ9VFjH0YBAA--.991S3;
-        Fri, 21 Oct 2022 09:27:37 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxLeCC9VFjxFUCAA--.9496S3;
-        Fri, 21 Oct 2022 09:27:35 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v1 2/2] dt-bindings: pinctrl: add loongson2 pinctrl
-Date:   Fri, 21 Oct 2022 09:27:28 +0800
-Message-Id: <20221021012728.22373-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221021012728.22373-1-zhuyinbo@loongson.cn>
-References: <20221021012728.22373-1-zhuyinbo@loongson.cn>
+        with ESMTP id S229763AbiJUGPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:15:15 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952135B107;
+        Thu, 20 Oct 2022 23:15:12 -0700 (PDT)
+X-UUID: 77a61b48e71f48e2ab7ad39378d2f05d-20221021
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ExRKeO+TK0hJ0ZPupJS/yMOY5pv1f1TbfMj7UR2BrL0=;
+        b=YdprMySo6ZdI9cBJd5yH06FPis4ElBPvUVWhJ3uDVFnoU6NMnKq3I/LQhwgPUZlFlizqH6vDB27ytg5X3fOdtl7VSWDCWLUgf3L2WSYnh5CRaR+RPY6rbTYO4OohndrGcqY1/BtDS8WoMWcyxh4T81uSWKIuLVKKh8gBgnA2Jf8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:5d1a073c-e50e-4bdb-bc51-d6bd9e086b01,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:40
+X-CID-INFO: VERSION:1.1.12,REQID:5d1a073c-e50e-4bdb-bc51-d6bd9e086b01,IP:0,URL
+        :0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:40
+X-CID-META: VersionHash:62cd327,CLOUDID:4e29a86c-89d3-4bfa-baad-dc632a24bca3,B
+        ulkID:221021095633ASB2EHFK,BulkQuantity:7,Recheck:0,SF:38|28|17|19|48|102,
+        TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
+X-UUID: 77a61b48e71f48e2ab7ad39378d2f05d-20221021
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1255428266; Fri, 21 Oct 2022 14:15:06 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 21 Oct 2022 14:14:59 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 21 Oct 2022 14:14:58 +0800
+Message-ID: <a24326d0a454082ab532025ae52462757d4d6bab.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: mediatek: tphy: add compatible
+ for tphy-v4
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Daniel Golle <daniel@makrotopia.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Date:   Fri, 21 Oct 2022 14:14:58 +0800
+In-Reply-To: <07c5d962515c4f675f076bb91d69eaf651b187c6.1666193782.git.daniel@makrotopia.org>
+References: <df51b63add2830d91b527db64fba6ffdb7765f5d.1666193782.git.daniel@makrotopia.org>
+         <07c5d962515c4f675f076bb91d69eaf651b187c6.1666193782.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxLeCC9VFjxFUCAA--.9496S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tFy8Kr4fJF43AFW8JFb_yoW5urW8pF
-        4fC3sxGF1xtF4xX39xCa40vw1fGan7AF9rCasFv34jqr4Dta4vvay5Krn0q3yDCF43ArW5
-        WFy5u342qF1UAw7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        b78Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUGVWUXwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l
-        57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-        vE14v26r126r1DMcIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-        r2IYc2Ij64vIr41l42xK82IYc2Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026x
-        CaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_
-        JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r
-        1I6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_
-        Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8Jr
-        UvcSsGvfC2KfnxnUUI43ZEXa7IU8cBMtUUUUU==
-X-Gw-Check: 27be656114213f6f
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the loongson2 pinctrl binding with DT schema format using
-json-schema.
+On Wed, 2022-10-19 at 16:38 +0100, Daniel Golle wrote:
+> V4 can be found in MT7986 and MT7981 SoCs, it supports PCIe with two
+> lanes.
+NAK.
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
- .../pinctrl/loongson,ls2k-pinctrl.yaml        | 118 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 119 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
+mt7981/mt7986 shall use "mediatek,generic-tphy-v2" instead.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-new file mode 100644
-index 000000000000..038d38ad1785
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/loongson,ls2k-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson2 SoC Pinctrl Controller
-+
-+maintainers:
-+  - zhanghongchen <zhanghongchen@loongson.cn>
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-pinctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    patternProperties:
-+      'pinmux$':
-+        type: object
-+        description: node for pinctrl.
-+        $ref: pinmux-node.yaml#
-+
-+    properties:
-+      groups:
-+        description:
-+          One or more groups of pins to mux to a certain function
-+        items:
-+          enum: [gpio, sdio, can1, can0, pwm3, pwm2, pwm1, pwm0, i2c1, i2c0,
-+                 nand, sata_led, lio, i2s, hda, uart2, uart1, camera, dv01,
-+                 dvo0]
-+      function:
-+        description:
-+          The function that a group of pins is muxed to
-+        items:
-+          enum: [gpio, sdio, can1, can0, pwm3, pwm2, pwm1, pwm0, i2c1, i2c0,
-+                 nand, sata_led, lio, i2s, hda, uart2, uart1, camera, dv01,
-+                 dvo0]
-+
-+    dependencies:
-+      groups: [function]
-+      function: [groups]
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pctrl: pinctrl@1fe00420 {
-+           compatible = "loongson,ls2k-pinctrl";
-+           reg = <0x1fe00420 0x18>;
-+           sdio_pins_default: sdio-pins {
-+                sdio-pinmux {
-+                        groups ="sdio";
-+                        function ="sdio";
-+                };
-+
-+                sdio-det-pinmux {
-+                        groups ="pwm2";
-+                        function ="gpio";
-+                };
-+           };
-+
-+           pwm1_pins_default: pwm1-pins {
-+                        pinmux {
-+                                groups ="pwm1";
-+                                function ="pwm1";
-+                        };
-+           };
-+
-+           pwm0_pins_default: pwm0-pins {
-+                        pinmux {
-+                                groups ="pwm0";
-+                                function ="pwm0";
-+                        };
-+           };
-+
-+           i2c1_pins_default: i2c1-pins {
-+                        pinmux {
-+                                groups ="i2c1";
-+                                function ="i2c1";
-+                        };
-+           };
-+
-+           i2c0_pins_default: i2c0-pins {
-+                        pinmux {
-+                                groups ="i2c0";
-+                                function ="i2c0";
-+                        };
-+           };
-+
-+           nand_pins_default: nand-pins {
-+                        pinmux {
-+                                groups ="nand";
-+                                function ="nand";
-+                        };
-+           };
-+
-+           hda_pins_default: hda-pins {
-+                        grp0-pinmux {
-+                                groups ="hda";
-+                                function ="hda";
-+                        };
-+
-+                        grp1-pinmux {
-+                                groups ="i2s";
-+                                function ="gpio";
-+                        };
-+           };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c9883f145acb..2d002509fc65 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11927,6 +11927,7 @@ M:	zhanghongchen <zhanghongchen@loongson.cn>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-gpio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
- F:	drivers/pinctrl/pinctrl-loongson2.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.20.1
+Thanks a lot
+
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  Documentation/devicetree/bindings/phy/mediatek,tphy.yaml | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> index 5613cc5106e32f..851e3dda7b638b 100644
+> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+> @@ -89,6 +89,11 @@ properties:
+>                - mediatek,mt8188-tphy
+>                - mediatek,mt8195-tphy
+>            - const: mediatek,generic-tphy-v3
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt7981-tphy
+> +              - mediatek,mt7986-tphy
+> +          - const: mediatek,generic-tphy-v4
+>        - const: mediatek,mt2701-u3phy
+>          deprecated: true
+>        - const: mediatek,mt2712-u3phy
+> @@ -99,7 +104,7 @@ properties:
+>      description:
+>        Register shared by multiple ports, exclude port's private
+> register.
+>        It is needed for T-PHY V1, such as mt2701 and mt8173, but not
+> for
+> -      T-PHY V2/V3, such as mt2712.
+> +      T-PHY V2/V3/V4, such as mt2712.
+>      maxItems: 1
+>  
+>    "#address-cells":
 
