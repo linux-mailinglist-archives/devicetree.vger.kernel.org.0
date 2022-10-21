@@ -2,102 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7392C607868
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:30:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809CB60787C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:31:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230489AbiJUNaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 09:30:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
+        id S230488AbiJUNbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 09:31:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbiJUNaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:30:06 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2AB7537F5
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:29:48 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id o2so1959342qkk.10
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:29:48 -0700 (PDT)
+        with ESMTP id S230117AbiJUNbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:31:42 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F44E2639DE
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:31:38 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id bv10so4880807wrb.4
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:31:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lgmt7nX6KnPzXNdpGQ1k+hkZnzm82SWjZ6hn9mW6e3c=;
-        b=xr+TMhCKaZJAadtHo5DyF6AA9DgxE3djgXCTUSuVRQVI99HB05PRFlUK7JbxsDdB9U
-         KWOGNVGcw/Aam6KS0Ozgrike/GSKkTvE5HAlwusw/kP2BuzaY4HUm0jmRMDnY0Poaab0
-         a8HC756E50eZYCC5Vozd6ptbzZ9HjvebIZB3nloY20qNVskfJ9v54c1t5eX/PZrVNiI/
-         Wspo+nzsVyDKmTZ7KkymlIW27d5rWGFonjmyN7AgnX/q8TScevKtJIM71k0L5L+759uY
-         k87KqkidWvfogd1eNR9aeYfHeFSoR/u900Trg+ZXidttiBRSI3V57z8+tMkKh/izeSb6
-         7l/Q==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=i1C8rgUAGHf+jLqpE/CuMvEaAQwxa6V5+hxBqPwgUl4=;
+        b=VT5D5asWne9UXufhJlAhGa0EmSt5P0Hw6devsJJzR8+iofV3cA2BWJNKGMuFsN4Fqm
+         IcxrUgNFDdlniCIrLtHcj2X/aWeccarjVBhWGNRF3+ZiX7UCWzjuHQyC02aq8LPYOsjf
+         ZGE5hxa5G71mBHwZUBvVV25OqgTXv3Yl7zKW1SvuSkCQkS8PDUL2OHPIPe0rSDBHGiPW
+         O1dVAsqXIH9brG0AsAHQtaPtvqepSVJIynaIH37rTakT/6U2fYRn8zm/EVqYCqt5dvsy
+         siz+j4NbG8YUcKTzJjdaKZy4VDS/2VZdm7wyi+JVA7TSqXvRln6ioq+sJKYjgN+DqxRi
+         h3bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lgmt7nX6KnPzXNdpGQ1k+hkZnzm82SWjZ6hn9mW6e3c=;
-        b=b+Lh62K7qVelXSSA23U7u/y9vwbQya/haaZpoHgJCruhIGzJ9gFI/VsOP+V/P9KP4G
-         JlHDHCo9+JqjPBC2mRr+Ok34AX8Ak/IA9DaJlXUJsKiQlIoMobOpcOfb1qfcd8pxruou
-         oSV9m7bf6GdjZ1SZiN7Bm4wHUiFvt0bkvGA40S5mnoufrnqWgFWrZs4YN573otP4iVil
-         nD/YM2t+DJWWSWywBoul34lx3cbCIbx2+Nxd+dDh7tJrYY7ERArRHpqEDzTqeqSOtTcx
-         ojGyyt4AXxZ0wwPoRldbQ0pXaiaDFpKi1Hf5ynGzAAKd10N2xBKSnFtcVaNEop6PyLuk
-         +4rQ==
-X-Gm-Message-State: ACrzQf2m3Th589v6GtLRq5CakE8NNWFdxQGMYpO4IqGLXQ6fIVjqa867
-        O9Ii4AvnWfXNyux/ZJthkN76NQ==
-X-Google-Smtp-Source: AMsMyM4+fNbWa8PnJwC+vhPTrYPkrSEaC9qcEkdYKxP2CS6JIj+Y1IzK+0h04dZ17WcWzPrz0ZR7hg==
-X-Received: by 2002:a05:620a:12fb:b0:6ee:79f2:3716 with SMTP id f27-20020a05620a12fb00b006ee79f23716mr13688432qkl.348.1666358986973;
-        Fri, 21 Oct 2022 06:29:46 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id hf8-20020a05622a608800b0039cbbcc7da8sm7837080qtb.7.2022.10.21.06.29.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 06:29:46 -0700 (PDT)
-Message-ID: <e13c5fc4-c631-fbb5-f3cf-a8e569fbd752@linaro.org>
-Date:   Fri, 21 Oct 2022 09:29:45 -0400
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=i1C8rgUAGHf+jLqpE/CuMvEaAQwxa6V5+hxBqPwgUl4=;
+        b=PhtdnMpL0VESFArm1bJj/hpVbx7lLrluS5VbUL6Vlo5PDaUu2Hry95kQRz8DgiRjfO
+         4GX2HGn74KTUO7eSG6V8ijvH5WJQA+mqClFsiaINpq9zp2TobICj42rqfFSvKUvYx+/1
+         lrdYHjB0zHbLgkuO/H/iniyIZC0OburusK9DmZoCZ5bPrKSFNXSxx0vzQcjdTHHLEZzl
+         E/wOQpJfZWv963Dx6cCA0fOvRcqIKBI85teJhY9IXCfbZRGlDehcSP68eTpGdMUhwMAW
+         gSAe6VQEw3IEARgDSD5XUA/Yr7NsO6knmonXLnPQqaZqRJlg0CAya85G2uqYeenExEmO
+         daxA==
+X-Gm-Message-State: ACrzQf1Vhh6Ts8y230OA6Lar7O8ZV/Ct3QCiTMVRNx22D50oBP3RA3ij
+        80NeaKzLvj76aZpWW/PMLfJYaA==
+X-Google-Smtp-Source: AMsMyM5qyI1cW3ggb8lP2/pXLZo9ZzZ8Tvd5w+92XYdbvWvWBG5C05J0jgsWEpZL+/L7Tqi/pOTWvA==
+X-Received: by 2002:a5d:5983:0:b0:22e:bb12:7041 with SMTP id n3-20020a5d5983000000b0022ebb127041mr12385502wri.645.1666359096510;
+        Fri, 21 Oct 2022 06:31:36 -0700 (PDT)
+Received: from [127.0.1.1] (210.145.15.109.rev.sfr.net. [109.15.145.210])
+        by smtp.googlemail.com with ESMTPSA id j8-20020a05600c1c0800b003c6b7f5567csm10325280wms.0.2022.10.21.06.31.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Oct 2022 06:31:35 -0700 (PDT)
+Subject: [PATCH v4 0/4] spi: amlogic: meson-spicc: Use pinctrl to drive CLK line when idle
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,ipq6018: replace maintainer
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIACyfUmMC/33NTQrCMBAF4KuUrB1JJrU/rryHuEjSqR2IbUlssJTe3eBS0NXwHrxvNhEpMEVxLj
+ YRKHHkacyhPBTCDWa8E3CXs0CJqKQsYZnBPDz0/II4Mzi0tqa6oUpqkUfWRAIbzOiGPBsX73M5cHxO
+ Yf08SZjP9aeXECRoagy1yqgWTxdrVs820NFND3HLWtL/BZ2Fpu1IYdV3qtJfwr7vb0sgc/P2AAAA
+From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Date:   Fri, 21 Oct 2022 15:31:24 +0200
+Message-Id: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220924081312.15068-1-krzysztof.kozlowski@linaro.org>
- <CACRpkdbvo5vyqpfP3EJvFRhK1hzq4uH=vzoq-H6q6hwJ0Bkc4w@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CACRpkdbvo5vyqpfP3EJvFRhK1hzq4uH=vzoq-H6q6hwJ0Bkc4w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-amlogic@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Da Xue <da@libre.computer>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.10.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1666359095; l=1850;
+ i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
+ bh=uh9b1V5lppXzVxalMWZveFXtfZNKXVHWr9osZJQJmd8=;
+ b=0swTXrE+WS10AzArr7fM6CGstAbhVRX7nQSIOVPrQrbIfFk9podLHQ5iJt+C/00Nj7XVBVPwvjaG
+ BSHMkaSkDAQUMKq8yDVgWMXnURoaBsPi/EI1jLcB/9/tmwrPLfas
+X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
+ pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 04:09, Linus Walleij wrote:
-> On Sat, Sep 24, 2022 at 10:13 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> 
->>  maintainers:
->> -  - Sricharan R <sricharan@codeaurora.org>
->> +  - Bjorn Andersson <andersson@kernel.org>
-> 
-> This is fine, but what about adding yourself as co-maintainer on *all*
-> Qualcomm bindings? I think it would offload Bjorn a bit. Just a suggestion.
+Between SPI transactions, all SPI pins are in HiZ state. When using the SS
+signal from the SPICC controller it's not an issue because when the
+transaction resumes all pins come back to the right state at the same time
+as SS.
 
-It's up to Bjorn, if he wants to make it more official. I just added
-myself to Qualcomm pinctrl ones, because I spent some time to understand
-them. Actually I could do the same for the Qualcomm remote-proc bindings
-(SMD, Glink) as some days ago I was refactoring them as well.
+The problem is when we use CS as a GPIO. In fact, between the GPIO CS
+state change and SPI pins state change from idle, you can have a missing or
+spurious clock transition.
 
-I am anyway getting all such patches as a DT bindings maintainer.
+Set a bias on the clock depending on the clock polarity requested before CS
+goes active, by passing a special "idle-low" and "idle-high" pinctrl state
+and setting the right state at a start of a message.
+
+Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+---
+Changes in v4:
+- Fixed documentation by defining pinctrl-x.
+- Link to v3: https://lore.kernel.org/r/20221004-up-aml-fix-spi-v3-0-89de126fd163@baylibre.com
+
+Changes in v3:
+- Fixed documentation by removing pinctrl states as they are not mandatory.
+- Link to v2: https://lore.kernel.org/r/20221004-up-aml-fix-spi-v2-0-3e8ae91a1925@baylibre.com
+
+---
+Amjad Ouled-Ameur (4):
+      spi: dt-bindings: amlogic, meson-gx-spicc: Add pinctrl names for SPI signal states
+      spi: meson-spicc: Use pinctrl to drive CLK line when idle
+      arm64: dts: meson-gxl: add SPI pinctrl nodes for CLK
+      arm64: dts: meson-gxbb: add SPI pinctrl nodes for CLK
+
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml       | 75 ++++++++++++++--------
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi        | 14 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi         | 14 ++++
+ drivers/spi/spi-meson-spicc.c                      | 39 ++++++++++-
+ 4 files changed, 113 insertions(+), 29 deletions(-)
+---
+base-commit: e35184f321518acadb681928a016da21a9a20c13
+change-id: 20221004-up-aml-fix-spi-c2bb7e78e603
 
 Best regards,
-Krzysztof
-
+-- 
+Amjad Ouled-Ameur <aouledameur@baylibre.com>
