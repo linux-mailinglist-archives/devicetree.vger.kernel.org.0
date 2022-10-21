@@ -2,922 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82544607158
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 09:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9135C6071F7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 10:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbiJUHoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 03:44:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39110 "EHLO
+        id S229760AbiJUIUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 04:20:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229911AbiJUHom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 03:44:42 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48F8BFAF2;
-        Fri, 21 Oct 2022 00:44:24 -0700 (PDT)
-X-UUID: cd712e62ae16470483e3223ffb8d3a55-20221021
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=R88STjV2x4kVBClww8WI+ERbz1bdrjGZLPnsC3Jcyc4=;
-        b=Z88KmgZQ2NNc+w6A0a6Ac7dIYAQryqvgPijwhawgrsER77PapFiVlBxIYph3YKXqmeKL+sje+geUYTn+Gh/5LTd3ac0NiA1mL9wo9pm+bgMS4DRb51CblrNOVEg8q9eyEfNaMtnPDaT/BZ4jGDiu7OX4dD9cx2FCTdkP2lxwX7c=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:c3369d2d-f115-4cd8-ad7d-90d9388fceca,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:45
-X-CID-INFO: VERSION:1.1.12,REQID:c3369d2d-f115-4cd8-ad7d-90d9388fceca,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-        elease,TS:45
-X-CID-META: VersionHash:62cd327,CLOUDID:ac6541c8-03ab-4171-989e-341ab5339257,B
-        ulkID:221021154421PI5OUSC3,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48|102,
-        TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:
-        0
-X-UUID: cd712e62ae16470483e3223ffb8d3a55-20221021
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 664297538; Fri, 21 Oct 2022 15:44:18 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 21 Oct 2022 15:44:17 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 21 Oct 2022 15:44:16 +0800
-Message-ID: <e2c12b2210403d483f607c79b45f32c512e4f394.camel@mediatek.com>
-Subject: Re: [PATCH v2 10/12] phy: mediatek: add support for
- phy-mtk-hdmi-mt8195
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        David Airlie <airlied@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jitao shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     <stuart.lee@mediatek.com>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <mac.shen@mediatek.com>, <linux-mediatek@lists.infradead.org>,
-        <dri-devel@lists.freedesktop.org>
-Date:   Fri, 21 Oct 2022 15:44:16 +0800
-In-Reply-To: <20220919-v2-10-8419dcf4f09d@baylibre.com>
-References: <20220919-v2-0-8419dcf4f09d@baylibre.com>
-         <20220919-v2-10-8419dcf4f09d@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229574AbiJUIUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 04:20:12 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8B98D235
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 01:20:08 -0700 (PDT)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221021082006epoutp0260e9c58ed29928b2758d326a570030d7~gB8Vfd3-h1244412444epoutp02_
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 08:20:06 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221021082006epoutp0260e9c58ed29928b2758d326a570030d7~gB8Vfd3-h1244412444epoutp02_
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1666340406;
+        bh=EteXN5leB+XmcJHL0sfrcjm4GMBmC3l2AK/BOkWFMJM=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=Pljbaf3NyNUfgxEap+TYtq9TpeKDYGI7K+BnhaZfEU6CeyZsH56freOXywo9HJCDx
+         NqNBt3WhPZ03a2UUeCxEHiQfx38q9qQTGVi8biM6TTODzMAX4FIF/m703uMRlRBwo7
+         wwLR+p8+xa2Z1BlzrExS/DP/fsBBXHG6g9Ut4/Bc=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20221021082005epcas5p274f7ed038bb09b24040de2a620bb4e30~gB8UsIVCv2087820878epcas5p2C;
+        Fri, 21 Oct 2022 08:20:05 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.176]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4Mty7l54JGz4x9Px; Fri, 21 Oct
+        2022 08:20:03 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B3.26.56352.33652536; Fri, 21 Oct 2022 17:20:03 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20221021080031epcas5p10588e8f7ebe3b7b79efa340c9f9a7f36~gBrO7TFLO1629516295epcas5p1x;
+        Fri, 21 Oct 2022 08:00:31 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221021080031epsmtrp19daf2cfe19f4fe2b41627bd8684dee10~gBrO5-jnS2862728627epsmtrp1N;
+        Fri, 21 Oct 2022 08:00:31 +0000 (GMT)
+X-AuditID: b6c32a4b-383ff7000001dc20-de-635256335d4f
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        99.5F.18644.E9152536; Fri, 21 Oct 2022 17:00:31 +0900 (KST)
+Received: from FDSFTE070 (unknown [107.116.189.86]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221021080027epsmtip150a7815cebd9b4c4ca9c3bf6c12073e7~gBrLl28A90171101711epsmtip1m;
+        Fri, 21 Oct 2022 08:00:27 +0000 (GMT)
+From:   "Padmanabhan Rajanbabu" <p.rajanbabu@samsung.com>
+To:     "'Mark Brown'" <broonie@kernel.org>
+Cc:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s.nawrocki@samsung.com>,
+        <perex@perex.cz>, <tiwai@suse.com>, <pankaj.dubey@samsung.com>,
+        <alim.akhtar@samsung.com>, <rcsekar@samsung.com>,
+        <aswani.reddy@samsung.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <Y0lPz91gbovAub9D@sirena.org.uk>
+Subject: RE: [PATCH 2/6] ASoC: samsung: i2s: configure PSR from sound card
+Date:   Fri, 21 Oct 2022 13:30:25 +0530
+Message-ID: <04a101d8e523$30804b80$9180e280$@samsung.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKFI9qd/qMOsyXBjKz4d8Q6MS4QvwJEXTuNARMAzQMCgN8f5qyRLLvA
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrMJsWRmVeSWpSXmKPExsWy7bCmhq5xWFCyQftSFYsH87axWVy5eIjJ
+        4tDmrewWUx8+YbOYf+Qcq0Xfi4fMFt+udDBZXN41h81ixvl9TBaLtn5ht+jc1c9qMevCDlaL
+        1r1H2C0Ov2lntdjwfS2jA7/Hhs9NbB47Z91l99i0qpPN4861PWwe+94uY/Po27KK0WP9lqss
+        Hp83yQVwRGXbZKQmpqQWKaTmJeenZOal2yp5B8c7x5uaGRjqGlpamCsp5CXmptoqufgE6Lpl
+        5gBdr6RQlphTChQKSCwuVtK3synKLy1JVcjILy6xVUotSMkpMCnQK07MLS7NS9fLSy2xMjQw
+        MDIFKkzIzni/5wpjQbd8xfWdW1kbGP9IdDFyckgImEjsX7+CsYuRi0NIYDejxKQDfawQzidG
+        iQuvdrNAOJ8ZJfb+WMgK07Lo4xsmiMQuRokNTbvZIJwXjBIT1m5lAaliEzCXWLR3KSOILSKg
+        LnF000awucwCXcwSG468AyviFNCVeHn7AjuILSzgJXGmZx0ziM0ioCqx5UM/2DpeAUuJ9ydO
+        MELYghInZz4B62UWkJfY/nYOM8RJChI/ny4DqucAWuYmcX6HCUSJuMTRnz3MIHslBN5wSPxs
+        X8UEUe8i8WfCH6h3hCVeHd/CDmFLSbzsb4Oy8yWmfWxmg7ArJNo+boDqtZc4cGUOC8guZgFN
+        ifW79CHCshJTT61jgtjLJ9H7+wlUOa/EjnkwtqrE+uWbGCFsaYl91/cyTmBUmoXks1lIPpuF
+        5IVZCNsWMLKsYpRMLSjOTU8tNi0wzksth8d4cn7uJkZw6tby3sH46MEHvUOMTByMhxglOJiV
+        RHgL3gUkC/GmJFZWpRblxxeV5qQWH2I0BQb3RGYp0eR8YPbIK4k3NLE0MDEzMzOxNDYzVBLn
+        XTxDK1lIID2xJDU7NbUgtQimj4mDU6qB6eXyCcIPpx3pK/9g+sNSUEvl849vR7MOBl/4fDN0
+        2sKirOOPe/vMTXbtPujUmfTHXk8w4hIfj8pvm2u3XrCvX2vo6BlepSAxYXOv1mujkkcTtk2W
+        v1k895nZ96p/Ryc+m5UuWvvkgNGmp01Ljk5xmHupJdauKvi99vLHGo2n/oQffb/PrTZaRd3/
+        4rHU43oqU90+spj43Z2s3f/pDZfgLd7WC5KVwh8DOyXLItqXM/Zsb826/0/3/xsuph/BDizx
+        Vam6VRv1nN7s2nCT78lH8VKThXkGkw5rf0lr/rB8D6P9Co4rpwN3RGm+dHnENCE/eUb+ncl2
+        O5cXaiYtd440i9Kw2mRxbr/LEx6XgiW8e5RYijMSDbWYi4oTATpEPHtmBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJIsWRmVeSWpSXmKPExsWy7bCSnO78wKBkg6dzmS0ezNvGZnHl4iEm
+        i0Obt7JbTH34hM1i/pFzrBZ9Lx4yW3y70sFkcXnXHDaLGef3MVks2vqF3aJzVz+rxawLO1gt
+        WvceYbc4/Kad1WLD97WMDvweGz43sXnsnHWX3WPTqk42jzvX9rB57Hu7jM2jb8sqRo/1W66y
+        eHzeJBfAEcVlk5Kak1mWWqRvl8CV8X7PFcaCbvmK6zu3sjYw/pHoYuTkkBAwkVj08Q1TFyMX
+        h5DADkaJxgXv2SAS0hLT+/dA2cISK/89Z4coesYosWFxFxNIgk3AXGLR3qWMILaIgLrE0U0b
+        WUGKmAVmMEscunWJFaLjEaPErYXzwUZxCuhKvLx9gR3EFhbwkjjTs44ZxGYRUJXY8qGfFcTm
+        FbCUeH/iBCOELShxcuYTli5GDqCpehJtG8HCzALyEtvfzmGGuE5B4ufTZawgJSICbhLnd5hA
+        lIhLHP3ZwzyBUXgWkkGzEAbNQjJoFpKOBYwsqxglUwuKc9Nziw0LjPJSy/WKE3OLS/PS9ZLz
+        czcxgmNXS2sH455VH/QOMTJxMB5ilOBgVhLhLXgXkCzEm5JYWZValB9fVJqTWnyIUZqDRUmc
+        90LXyXghgfTEktTs1NSC1CKYLBMHp1QDk5lnLaNLkJvm2ZnzTRnUhTeJlF141tm8Tli2747j
+        heLDgjtyrN5WtfqenvBddkN+n2hQ+cF9MpvWnfMP2LP4ceistPDyopO/KjfLTdW+zhVxzbfP
+        Y6r4zKh/9+ZIXFsRyDIrSsBAza1uholdy7q0pZde/WHy1Db1ns5q9nhNdUTjui3OFzd+c7zq
+        GaWrfmb/TNnkj/kK8hw1869WfZ+flsnrcGzB7vBfb3dHcR2M9P0bYrIq8jC/S/2XhzERzAk/
+        BOd8ya0Wlzqtu5Vf6BXLzbX8dz4sarorVqcW8/z+pPXaHALPXNh/ahxw2CD+Ri3NJv9xod2B
+        28dOVq+U4d6d5aXVtaHIe5bFOpFTbn1TlFiKMxINtZiLihMB4TkzLUwDAAA=
+X-CMS-MailID: 20221021080031epcas5p10588e8f7ebe3b7b79efa340c9f9a7f36
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221014104857epcas5p2a275a1d606ca066227228d13bcf5b120
+References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+        <CGME20221014104857epcas5p2a275a1d606ca066227228d13bcf5b120@epcas5p2.samsung.com>
+        <20221014102151.108539-3-p.rajanbabu@samsung.com>
+        <Y0lPz91gbovAub9D@sirena.org.uk>
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-10-14 at 17:16 +0200, Guillaume Ranquet wrote:
-> Add basic support for the mediatek hdmi phy on MT8195 SoC
+
+
+> -----Original Message-----
+> From: Mark Brown [mailto:broonie@kernel.org]
+> Sent: 14 October 2022 05:32 PM
+> To: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+> Cc: lgirdwood@gmail.com; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; s.nawrocki@samsung.com;
+> perex@perex.cz; tiwai@suse.com; pankaj.dubey@samsung.com;
+> alim.akhtar@samsung.com; rcsekar@samsung.com;
+> aswani.reddy@samsung.com; alsa-devel@alsa-project.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-samsung-
+> soc@vger.kernel.org
+> Subject: Re: [PATCH 2/6] ASoC: samsung: i2s: configure PSR from sound card
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> ---
->  drivers/phy/mediatek/Makefile              |   1 +
->  drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c | 546
-> +++++++++++++++++++++++++++++
->  drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h | 131 +++++++
->  drivers/phy/mediatek/phy-mtk-hdmi.c        |   3 +
->  drivers/phy/mediatek/phy-mtk-hdmi.h        |   1 +
->  5 files changed, 682 insertions(+)
+> On Fri, Oct 14, 2022 at 03:51:47PM +0530, Padmanabhan Rajanbabu wrote:
+> > Currently the prescaler value in samsung I2S dai is calculated by
+> > dividing the peripheral input clock frequency with frame clock
+> > frequency and root clock frequency divider. This prescaler value is
+> > used to divide the input clock to generate root clock (RCLK) from
+> > which frame clock is generated for I2S communication.
+> >
+> > However for the platforms which does not have a dedicated audio PLL as
+> > an input clock source, the prescaler divider will not generate
+> > accurate root clock frequency, which inturn affects sampling frequency
+> also.
+> >
+> > To overcome this scenario, support has been added to let the sound
+> > card identify right prescaler divider value and configure the
+> > prescaler (PSR) divider directly the from the sound card to achieve
+> > near accurate sample frequencies
 > 
-> diff --git a/drivers/phy/mediatek/Makefile
-> b/drivers/phy/mediatek/Makefile
-> index fb1f8edaffa7..c9a50395533e 100644
-> --- a/drivers/phy/mediatek/Makefile
-> +++ b/drivers/phy/mediatek/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_PHY_MTK_XSPHY)		+= phy-mtk-
-> xsphy.o
->  phy-mtk-hdmi-drv-y			:= phy-mtk-hdmi.o
->  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt2701.o
->  phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt8173.o
-> +phy-mtk-hdmi-drv-y			+= phy-mtk-hdmi-mt8195.o
->  obj-$(CONFIG_PHY_MTK_HDMI)		+= phy-mtk-hdmi-drv.o
->  
->  phy-mtk-mipi-dsi-drv-y			:= phy-mtk-mipi-dsi.o
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> new file mode 100644
-> index 000000000000..6433e002cfdc
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c
-> @@ -0,0 +1,546 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Copyright (c) 2021 BayLibre, SAS
-2022?
+> It's not clear to me why the solution here is to move the configuration to
+the
+> sound card rather than to improve the I2S driver to be able to cope with
+> whatever the restrictions are on the PSR in these systems - it seems more
+> cumbersome for system integrators, especially since you've not documented
+> the issues or how to configure it.  Could you expand on what the
+constraints
+> are here and why it's not possible for the driver to figure things out
+(given
+> some quirk information)?
 
-> + */
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/types.h>
-> +#include <linux/nvmem-consumer.h>
-> +
-> +#include "phy-mtk-io.h"
-> +#include "phy-mtk-hdmi.h"
-> +#include "phy-mtk-hdmi-mt8195.h"
-> +
-> +static void mtk_hdmi_ana_fifo_en(struct mtk_hdmi_phy *hdmi_phy)
-> +{
-> +	/* make data fifo writable for hdmi2.0 */
-> +	mtk_phy_set_bits(hdmi_phy->regs + HDMI_ANA_CTL,
-> REG_ANA_HDMI20_FIFO_EN);
-> +}
-> +
-> +static void
-> +mtk_mt8195_phy_tmds_high_bit_clk_ratio(struct mtk_hdmi_phy
-> *hdmi_phy,
-> +				       bool enable)
-> +{
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	mtk_hdmi_ana_fifo_en(hdmi_phy);
-> +
-> +	/* HDMI 2.0 specification, 3.4Gbps <= TMDS Bit Rate <= 6G,
-> +	 * clock bit ratio 1:40, under 3.4Gbps, clock bit ratio 1:10
-> +	 */
-> +	if (enable)
-> +		mtk_phy_update_field(regs + HDMI20_CLK_CFG,
-> REG_TXC_DIV, REG_TXC_DIV);
-> +	else
-> +		mtk_phy_clear_bits(regs + HDMI20_CLK_CFG, REG_TXC_DIV);
-> +}
-> +
-> +static void mtk_hdmi_pll_select_source(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	mtk_phy_clear_bits(regs + HDMI_CTL_3, REG_HDMITX_REF_XTAL_SEL);
-> +	mtk_phy_clear_bits(regs + HDMI_CTL_3,
-> REG_HDMITX_REF_RESPLL_SEL);
-> +
-> +	/* DA_HDMITX21_REF_CK for TXPLL input source */
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_10,
-> RG_HDMITXPLL_REF_CK_SEL);
-> +}
-> +
-> +static int mtk_hdmi_pll_performance_setting(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	/* BP2 */
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_BP2);
-> +
-> +	/* BC */
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_BC);
-> +
-> +	/* IC */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_IC,
-> 0x1);
-> +
-> +	/* BR */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_BR,
-> 0x2);
-> +
-> +	/* IR */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_IR,
-> 0x2);
-> +
-> +	/* BP */
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_BP);
-> +
-> +	/* IBAND_FIX_EN, RESERVE[14] */
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_0,
-> RG_HDMITXPLL_IBAND_FIX_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_1,
-> RG_HDMITXPLL_RESERVE_BIT14);
-> +
-> +	/* HIKVCO */
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_2,
-> RG_HDMITXPLL_HIKVCO);
-> +
-> +	/* HREN */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_0,
-> RG_HDMITXPLL_HREN, 0x1);
-> +
-> +	/* LVR_SEL */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_0,
-> RG_HDMITXPLL_LVR_SEL, 0x1);
-> +
-> +	/* RG_HDMITXPLL_RESERVE[12:11] */
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_1,
-> RG_HDMITXPLL_RESERVE_BIT12_11);
-> +
-> +	/* TCL_EN */
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_0, RG_HDMITXPLL_TCL_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_hdmi_pll_set_hw(struct clk_hw *hw, unsigned char
-> prediv,
-> +			       unsigned char fbkdiv_high,
-> +			       unsigned long fbkdiv_low,
-> +			       unsigned char fbkdiv_hs3, unsigned char
-> posdiv1,
-> +			       unsigned char posdiv2, unsigned char
-> txprediv,
-> +			       unsigned char txposdiv,
-> +			       unsigned char digital_div)
-> +{
-> +	unsigned char txposdiv_value = 0;
-> +	unsigned char div3_ctrl_value = 0;
-> +	unsigned char posdiv_vallue = 0;
-> +	unsigned char div_ctrl_value = 0;
-> +	unsigned char reserve_3_2_value = 0;
-> +	unsigned char prediv_value = 0;
-> +	unsigned char reserve13_value = 0;
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	mtk_hdmi_pll_select_source(hw);
-> +
-> +	mtk_hdmi_pll_performance_setting(hw);
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_10,
-> RG_HDMITX21_BIAS_PE_BG_VREF_SEL, 0x2);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_VREF_SEL);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_9,
-> RG_HDMITX21_SLDO_VREF_SEL, 0x2);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_10,
-> RG_HDMITX21_BIAS_PE_VREF_SELB);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_SLDOLPF_EN);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_6, RG_HDMITX21_INTR_CAL,
-> 0x11);
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_PWD);
-> +
-> +	/* TXPOSDIV */
-> +	txposdiv_value = ilog2(txposdiv);
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_TX_POSDIV, txposdiv_value);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_TX_POSDIV_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_EN);
-> +
-> +	/* TXPREDIV */
-> +	switch (txprediv) {
-> +		case 2:
-'case' is aligned with 'switch'
+Thank you for reviewing the patch.
 
-> +			div3_ctrl_value = 0x0;
-> +			posdiv_vallue = 0x0;
-> +			break;
-> +		case 4:
-> +			div3_ctrl_value = 0x0;
-> +			posdiv_vallue = 0x1;
-> +			break;
-> +		case 6:
-> +			div3_ctrl_value = 0x1;
-> +			posdiv_vallue = 0x0;
-> +			break;
-> +		case 12:
-> +			div3_ctrl_value = 0x1;
-> +			posdiv_vallue = 0x1;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +	}
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4,
-> RG_HDMITXPLL_POSDIV_DIV3_CTRL, div3_ctrl_value);
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4,
-> RG_HDMITXPLL_POSDIV, posdiv_vallue );
-> +
-> +	/* POSDIV1 */
-> +	switch (posdiv1) {
-> +		case 5:
-> +			div_ctrl_value = 0x0;
-> +			break;
-> +		case 10:
-> +			div_ctrl_value = 0x1;
-> +			break;
-> +		case 12:
-> +			div_ctrl_value = 0x2;
-> +			break;
-> +		case 15:
-> +			div_ctrl_value = 0x3;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +	}
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4,
-> RG_HDMITXPLL_DIV_CTRL, div_ctrl_value);
-> +
-> +	/* DE add new setting */
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_1,
-> RG_HDMITXPLL_RESERVE_BIT14);
-> +
-> +	/* POSDIV2 */
-> +	switch (posdiv2) {
-> +		case 1:
-> +			reserve_3_2_value = 0x0;
-> +			break;
-> +		case 2:
-> +			reserve_3_2_value = 0x1;
-> +			break;
-> +		case 4:
-> +			reserve_3_2_value = 0x2;
-> +			break;
-> +		case 6:
-> +			reserve_3_2_value = 0x3;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +	}
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_1,
-> RG_HDMITXPLL_RESERVE_BIT3_2, reserve_3_2_value);
-> +
-> +	/* DE add new setting */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_1,
-> RG_HDMITXPLL_RESERVE_BIT1_0, 0x2);
-> +
-> +	/* PREDIV */
-> +	prediv_value = ilog2(prediv);
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4,
-> RG_HDMITXPLL_PREDIV, prediv_value);
-> +
-> +	/* FBKDIV_HS3 */
-> +	reserve13_value = ilog2(fbkdiv_hs3);
-> +
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_1,
-> RG_HDMITXPLL_RESERVE_BIT13, reserve13_value);
-> +
-> +	/* FBDIV */
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_4,
-> RG_HDMITXPLL_FBKDIV_HIGH, fbkdiv_high);
-> +	mtk_phy_update_field(regs + HDMI_1_PLL_CFG_3,
-> RG_HDMITXPLL_FBKDIV_LOW, fbkdiv_low);
-> +
-> +
-> +	/* Digital DIVIDER */
-> +	mtk_phy_clear_bits(regs + HDMI_CTL_3, REG_PIXEL_CLOCK_SEL);
-> +
-> +	if (digital_div == 1) {
-> +		mtk_phy_clear_bits(regs + HDMI_CTL_3,
-> REG_HDMITX_PIXEL_CLOCK);
-> +	} else {
-> +		mtk_phy_set_bits(regs + HDMI_CTL_3,
-> REG_HDMITX_PIXEL_CLOCK);
-> +		mtk_phy_update_field(regs + HDMI_CTL_3,
-> REG_HDMITXPLL_DIV, digital_div - 1);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +#define PCW_DECIMAL_WIDTH 24
-> +
-> +static int mtk_hdmi_pll_calculate_params(struct clk_hw *hw, unsigned
-> long rate,
-> +					 unsigned long parent_rate)
-> +{
-> +	int ret;
-> +	unsigned long long tmds_clk = 0;
-> +	unsigned long long pixel_clk = 0;
-> +	//pll input source frequency
-prefer to use '/* */' instead '//'
+In Samsung I2S CPU controller, to derive the frame clock, we are supposed to
+configure the PSR and RFS internal dividers. i.e.
 
-> +	unsigned long long da_hdmitx21_ref_ck = 0;
-> +	unsigned long long ns_hdmipll_ck = 0; //ICO output clk
-> +	//source clk for Display digital
-> +	unsigned long long ad_hdmipll_pixel_ck = 0;
-> +	unsigned char digital_div = 0;
-> +	unsigned long long pcw = 0; //FBDIV
-> +	unsigned char txprediv = 0;
-> +	unsigned char txposdiv = 0;
-> +	unsigned char fbkdiv_high = 0;
-> +	unsigned long fbkdiv_low = 0;
-> +	unsigned char posdiv1 = 0;
-> +	unsigned char posdiv2 = 0;
-> +	unsigned char prediv = 1; //prediv is always 1
-> +	unsigned char fbkdiv_hs3 = 1; //fbkdiv_hs3 is always 1
-> +	int i = 0;
-> +	unsigned char txpredivs[4] = { 2, 4, 6, 12 };
-> +
-> +	pixel_clk = rate;
-> +	tmds_clk = pixel_clk;
-> +
-> +	if (tmds_clk < 25000000 || tmds_clk > 594000000)
-> +		return -EINVAL;
-> +
-> +	da_hdmitx21_ref_ck = 26000000UL; //in HZ
-> +
-> +	/*  TXPOSDIV stage treatment:
-> +	 *	0M  <  TMDS clk  < 54M		  /8
-> +	 *	54M <= TMDS clk  < 148.35M    /4
-> +	 *	148.35M <=TMDS clk < 296.7M   /2
-> +	 *	296.7 <=TMDS clk <= 594M	  /1
-> +	 */
-> +	if (tmds_clk < 54000000UL)
-> +		txposdiv = 8;
-> +	else if (tmds_clk >= 54000000UL && tmds_clk < 148350000UL)
-> +		txposdiv = 4;
-> +	else if (tmds_clk >= 148350000UL && tmds_clk < 296700000UL)
-> +		txposdiv = 2;
-> +	else if (tmds_clk >= 296700000UL && tmds_clk <= 594000000UL)
-> +		txposdiv = 1;
-> +	else
-> +		return -EINVAL;
-> +
-> +	/* calculate txprediv: can be 2, 4, 6, 12
-> +	 * ICO clk = 5*TMDS_CLK*TXPOSDIV*TXPREDIV
-> +	 * ICO clk constraint: 5G =< ICO clk <= 12G
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(txpredivs); i++) {
-> +		ns_hdmipll_ck = 5 * tmds_clk * txposdiv * txpredivs[i];
-> +		if (ns_hdmipll_ck >= 5000000000UL &&
-> +		    ns_hdmipll_ck <= 12000000000UL)
-> +			break;
-> +	}
-> +	if (i == (ARRAY_SIZE(txpredivs) - 1) &&
-> +	    (ns_hdmipll_ck < 5000000000UL || ns_hdmipll_ck >
-> 12000000000UL)) {
-> +		return -EINVAL;
-> +	}
-> +	if (i == ARRAY_SIZE(txpredivs))
-> +		return -EINVAL;
-> +
-> +	txprediv = txpredivs[i];
-> +
-> +	/* PCW calculation: FBKDIV
-> +	 * formula: pcw=(frequency_out*2^pcw_bit) / frequency_in /
-> FBKDIV_HS3;
-> +	 * RG_HDMITXPLL_FBKDIV[32:0]:
-> +	 * [32,24] 9bit integer, [23,0]:24bit fraction
-> +	 */
-> +	pcw = ns_hdmipll_ck;
-> +	pcw = pcw << PCW_DECIMAL_WIDTH;
-> +	pcw = pcw / da_hdmitx21_ref_ck;
-> +	pcw = pcw / fbkdiv_hs3;
-> +
-> +	if ((pcw / BIT(32)) > 1) {
-> +		return -EINVAL;
-> +	} else if ((pcw / BIT(32)) == 1) {
-> +		fbkdiv_high = 1;
-> +		fbkdiv_low = pcw % BIT(32);
-> +	} else {
-> +		fbkdiv_high = 0;
-> +		fbkdiv_low = pcw;
-> +	}
-> +
-> +	/* posdiv1:
-> +	 * posdiv1 stage treatment according to color_depth:
-> +	 * 24bit -> posdiv1 /10, 30bit -> posdiv1 /12.5,
-> +	 * 36bit -> posdiv1 /15, 48bit -> posdiv1 /10
-> +	 */
-> +	posdiv1 = 10; // div 10
-> +	posdiv2 = 1;
-> +	ad_hdmipll_pixel_ck = (ns_hdmipll_ck / 10) / 1;
-> +
-> +	/* Digital clk divider, max /32 */
-> +	digital_div = ad_hdmipll_pixel_ck / pixel_clk;
-> +	if (!(digital_div <= 32 && digital_div >= 1))
-> +		return -EINVAL;
-> +
-> +	ret = mtk_hdmi_pll_set_hw(hw, prediv, fbkdiv_high, fbkdiv_low,
-> +				  fbkdiv_hs3, posdiv1, posdiv2,
-> txprediv,
-> +				  txposdiv, digital_div);
-> +	if (ret)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_hdmi_pll_drv_setting(struct clk_hw *hw)
-> +{
-> +	unsigned char data_channel_bias, clk_channel_bias;
-> +	unsigned char impedance, impedance_en;
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	unsigned long tmds_clk;
-> +	unsigned long pixel_clk = hdmi_phy->pll_rate;
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	tmds_clk = pixel_clk;
-> +
-> +	/* bias & impedance setting:
-> +	 * 3G < data rate <= 6G: enable impedance 100ohm,
-> +	 *      data channel bias 24mA, clock channel bias 20mA
-> +	 * pixel clk >= HD,  74.175MHZ <= pixel clk <= 300MHZ:
-> +	 *      enalbe impedance 100ohm
-> +	 *      data channel 20mA, clock channel 16mA
-> +	 * 27M =< pixel clk < 74.175: disable impedance
-> +	 *      data channel & clock channel bias 10mA
-> +	 */
-> +
-> +	/* 3G < data rate <= 6G, 300M < tmds rate <= 594M */
-> +	if (tmds_clk > 300000000UL && tmds_clk <= 594000000UL) {
-> +		data_channel_bias = 0x3c; //24mA
-> +		clk_channel_bias = 0x34; //20mA
-> +		impedance_en = 0xf;
-> +		impedance = 0x36; //100ohm
-> +	} else if (pixel_clk >= 74175000UL && pixel_clk <= 300000000UL)
-> {
-> +		data_channel_bias = 0x34; //20mA
-> +		clk_channel_bias = 0x2c; //16mA
-> +		impedance_en = 0xf;
-> +		impedance = 0x36; //100ohm
-> +	} else if (pixel_clk >= 27000000UL && pixel_clk < 74175000UL) {
-> +		data_channel_bias = 0x14; //10mA
-> +		clk_channel_bias = 0x14; //10mA
-> +		impedance_en = 0x0;
-> +		impedance = 0x0;
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* bias */
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_1,
-> RG_HDMITX21_DRV_IBIAS_D0, data_channel_bias);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_1,
-> RG_HDMITX21_DRV_IBIAS_D1, data_channel_bias);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_1,
-> RG_HDMITX21_DRV_IBIAS_D2, data_channel_bias);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_0,
-> RG_HDMITX21_DRV_IBIAS_CLK, clk_channel_bias);
-> +
-> +	/* impedance */
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_0,
-> RG_HDMITX21_DRV_IMP_EN, impedance_en);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_2,
-> RG_HDMITX21_DRV_IMP_D0_EN1, impedance);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_2,
-> RG_HDMITX21_DRV_IMP_D1_EN1, impedance);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_2,
-> RG_HDMITX21_DRV_IMP_D2_EN1, impedance);
-> +	mtk_phy_update_field(regs + HDMI_1_CFG_2,
-> RG_HDMITX21_DRV_IMP_CLK_EN1, impedance);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_hdmi_pll_prepare(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_TX_POSDIV_EN);
-> +
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_0, RG_HDMITX21_SER_EN);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_D0_DRV_OP_EN);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_D1_DRV_OP_EN);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_D2_DRV_OP_EN);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6,
-> RG_HDMITX21_CK_DRV_OP_EN);
-> +
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_D0_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_D1_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_D2_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_FRL_CK_EN);
-> +
-> +	mtk_hdmi_pll_drv_setting(hw);
-> +
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_BG_PWD);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_BIAS_EN);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_CKLDO_EN);
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_SLDO_EN);
-> +
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_4, DA_HDMITXPLL_PWR_ON);
-> +	usleep_range(5, 10);
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_4,
-> DA_HDMITXPLL_ISO_EN);
-> +	usleep_range(5, 10);
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_PWD);
-> +	usleep_range(30, 50);
-> +	return 0;
-> +}
-> +
-> +static void mtk_hdmi_pll_unprepare(struct clk_hw *hw)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	mtk_phy_set_bits(regs + HDMI_1_CFG_10, RG_HDMITX21_BG_PWD);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_6, RG_HDMITX21_BIAS_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_CKLDO_EN);
-> +	mtk_phy_clear_bits(regs + HDMI_1_CFG_3, RG_HDMITX21_SLDO_EN);
-> +
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_2, RG_HDMITXPLL_PWD);
-> +	usleep_range(10, 20);
-> +	mtk_phy_set_bits(regs + HDMI_1_PLL_CFG_4, DA_HDMITXPLL_ISO_EN);
-> +	usleep_range(10, 20);
-> +	mtk_phy_clear_bits(regs + HDMI_1_PLL_CFG_4,
-> DA_HDMITXPLL_PWR_ON);
-> +}
-> +
-> +static int mtk_hdmi_pll_set_rate(struct clk_hw *hw, unsigned long
-> rate,
-> +				 unsigned long parent_rate)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +	int ret;
-> +
-> +	dev_dbg(hdmi_phy->dev, "%s: %lu Hz, parent: %lu Hz\n",
-> __func__, rate,
-> +		parent_rate);
-> +
-> +	ret = mtk_hdmi_pll_calculate_params(hw, rate, parent_rate);
-> +	if (ret != 0)
-> +		return -EINVAL;
-> +
-> +	return 0;
+OPCLK -> PSR -> RCLK -> RFS -> Frame clock
 
-return mtk_hdmi_pll_calculate_params(hw, rate, parent_rate);
+Where:
+OPCLK - Operational clock
+PSR - Operational clock prescaler
+RCLK - Root Clock (derived from OPCLK based on PSR)
+RFS - Root frequency selection (divider)
+Frame clock - Sample frequency (derived from RCLK based on RFS)
 
-> +}
-> +
-> +static long mtk_hdmi_pll_round_rate(struct clk_hw *hw, unsigned long
-> rate,
-> +				    unsigned long *parent_rate)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	hdmi_phy->pll_rate = rate;
-> +	return rate;
-> +}
-> +
-> +static unsigned long mtk_hdmi_pll_recalc_rate(struct clk_hw *hw,
-> +					      unsigned long
-> parent_rate)
-> +{
-> +	struct mtk_hdmi_phy *hdmi_phy = to_mtk_hdmi_phy(hw);
-> +
-> +	return hdmi_phy->pll_rate;
-> +}
-> +
-> +static const struct clk_ops mtk_hdmi_pll_ops = {
-> +	.prepare = mtk_hdmi_pll_prepare,
-> +	.unprepare = mtk_hdmi_pll_unprepare,
-> +	.set_rate = mtk_hdmi_pll_set_rate,
-> +	.round_rate = mtk_hdmi_pll_round_rate,
-> +	.recalc_rate = mtk_hdmi_pll_recalc_rate,
-> +};
-> +
-> +static void vtx_signal_en(struct mtk_hdmi_phy *hdmi_phy, bool on)
-> +{
-> +	void __iomem *regs = hdmi_phy->regs;
-> +
-> +	if (on)
-> +		mtk_phy_set_bits(regs + HDMI_1_CFG_0,
-> RG_HDMITX21_DRV_EN);
-> +	else
-> +		mtk_phy_clear_bits(regs + HDMI_1_CFG_0,
-> RG_HDMITX21_DRV_EN);
-> +}
-> +
-> +static void mtk_hdmi_phy_enable_tmds(struct mtk_hdmi_phy *hdmi_phy)
-> +{
-> +	vtx_signal_en(hdmi_phy, true);
-> +	usleep_range(100, 150);
-> +}
-> +
-> +static void mtk_hdmi_phy_disable_tmds(struct mtk_hdmi_phy *hdmi_phy)
-> +{
-> +	vtx_signal_en(hdmi_phy, false);
-> +}
-> +
-> +static int mtk_hdmi_phy_configure(struct phy *phy, union
-> phy_configure_opts *opts)
-> +{
-> +	struct phy_configure_opts_dp *dp_opts = &opts->dp;
-> +	struct mtk_hdmi_phy *hdmi_phy = phy_get_drvdata(phy);
-> +	int ret = 0;
-> +	bool enable = 0;
-Seems no need local variable "enable"
-> +
-> +	ret = clk_set_rate(hdmi_phy->pll, dp_opts->link_rate);
-> +
-> +	if (ret)
-> +		goto out;
-return ret directly?
+Ultimately,
 
-> +
-> +	mtk_mt8195_phy_tmds_high_bit_clk_ratio(hdmi_phy, enable);
-> +
-> +out:
-> +	return ret;
-> +}
-> +
-> +struct mtk_hdmi_phy_conf mtk_hdmi_phy_8195_conf = {
-> +	.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
-> +	.hdmi_phy_clk_ops = &mtk_hdmi_pll_ops,
-> +	.hdmi_phy_enable_tmds = mtk_hdmi_phy_enable_tmds,
-> +	.hdmi_phy_disable_tmds = mtk_hdmi_phy_disable_tmds,
-> +	.hdmi_phy_configure = mtk_hdmi_phy_configure,
-> +};
-> +
-> +MODULE_AUTHOR("Can Zeng <can.zeng@mediatek.com>");
-> +MODULE_DESCRIPTION("MediaTek MT8195 HDMI PHY Driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-> b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-> new file mode 100644
-> index 000000000000..a8202bcc01ca
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h
-> @@ -0,0 +1,131 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Copyright (c) 2021 BayLibre, SAS
-2022?
+PSR = OPCLK / Frame clock / RFS
 
-> + */
-> +
-> +#ifndef _MTK_HDMI_PHY_8195_H
-> +#define _MTK_HDMI_PHY_8195_H
-> +
-> +#include <linux/types.h>
-move it after <linux/clk-provider.h>?
+Unlike other platforms utilizing Samsung CPU DAI, FSD SoC has a limitation
+on
+operational clock, where the clock frequency is fixed (66 MHz) and cannot be
+modified. 
 
-> +#include <linux/clk.h>
-> +#include <linux/clk-provider.h>
-> +
-> +#define DA_HDMITXPLL_ISO_EN BIT(1)
-> +#define DA_HDMITXPLL_PWR_ON BIT(2)
-> +
-> +#define HDMI20_CLK_CFG 0x70
-> +
-> +#define HDMI_1_CFG_0 0x00
-> +#define HDMI_1_CFG_1 0x04
-> +#define HDMI_1_CFG_10 0x40
-> +#define HDMI_1_CFG_2 0x08
-> +#define HDMI_1_CFG_21 0x84
-> +#define HDMI_1_CFG_22 0x88
-> +#define HDMI_1_CFG_3 0x0c
-> +#define HDMI_1_CFG_6 0x18
-> +#define HDMI_1_CFG_9 0x24
-> +#define HDMI_1_PLL_CFG_0 0x44
-> +#define HDMI_1_PLL_CFG_1 0x48
-> +#define HDMI_1_PLL_CFG_2 0x4c
-> +#define HDMI_1_PLL_CFG_3 0x50
-> +#define HDMI_1_PLL_CFG_4 0x54
-> +
-> +#define HDMI_ANA_CTL 0x7c
-> +
-> +#define HDMI_CTL_1 0xc4
-> +#define HDMI_CTL_3 0xcc
-> +
-> +#define REG_ANA_HDMI20_FIFO_EN BIT(16)
-> +
-> +#define REG_HDMITXPLL_DIV GENMASK(4, 0)
-> +#define REG_HDMITX_PIXEL_CLOCK BIT(23)
-> +#define REG_HDMITX_REF_RESPLL_SEL BIT(9)
-> +#define REG_HDMITX_REF_XTAL_SEL BIT(7)
-> +
-> +#define REG_PIXEL_CLOCK_SEL BIT(10)
-> +
-> +#define REG_TXC_DIV GENMASK(31, 30)
-> +
-> +#define RG_HDMITX21_BG_PWD BIT(20)
-> +
-> +#define RG_HDMITX21_BIAS_EN BIT(29)
-> +#define RG_HDMITX21_BIAS_PE_BG_VREF_SEL GENMASK(16, 15)
-> +#define RG_HDMITX21_BIAS_PE_VREF_SELB BIT(10)
-> +
-> +#define RG_HDMITX21_CKLDO_EN BIT(3)
-> +
-> +#define RG_HDMITX21_CK_DRV_OP_EN BIT(11)
-> +
-> +#define RG_HDMITX21_D0_DRV_OP_EN BIT(10)
-> +
-> +#define RG_HDMITX21_D1_DRV_OP_EN BIT(9)
-> +
-> +#define RG_HDMITX21_D2_DRV_OP_EN BIT(8)
-> +
-> +#define RG_HDMITX21_DRV_EN GENMASK(27, 24)
-> +#define RG_HDMITX21_DRV_IBIAS_CLK GENMASK(10, 5)
-> +#define RG_HDMITX21_DRV_IBIAS_D0 GENMASK(19, 14)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_FFE1 GENMASK(21, 17)
-> +#define RG_HDMITX21_DRV_IBIAS_D0_FFE2 GENMASK(23, 20)
-> +#define RG_HDMITX21_DRV_IBIAS_D1 GENMASK(25, 20)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_FFE1 GENMASK(26, 22)
-> +#define RG_HDMITX21_DRV_IBIAS_D1_FFE2 GENMASK(27, 24)
-> +#define RG_HDMITX21_DRV_IBIAS_D2 GENMASK(31, 26)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_FFE1 GENMASK(31, 27)
-> +#define RG_HDMITX21_DRV_IBIAS_D2_FFE2 GENMASK(31, 28)
-> +#define RG_HDMITX21_DRV_IMP_CLK_EN1 GENMASK(31, 26)
-> +#define RG_HDMITX21_DRV_IMP_D0_EN1 GENMASK(13, 8)
-> +#define RG_HDMITX21_DRV_IMP_D1_EN1 GENMASK(19, 14)
-> +#define RG_HDMITX21_DRV_IMP_D2_EN1 GENMASK(25, 20)
-> +#define RG_HDMITX21_DRV_IMP_EN GENMASK(23, 20)
-> +
-> +#define RG_HDMITX21_FRL_CK_EN BIT(13)
-> +#define RG_HDMITX21_FRL_D0_EN BIT(14)
-> +#define RG_HDMITX21_FRL_D1_EN BIT(15)
-> +#define RG_HDMITX21_FRL_D2_EN BIT(16)
-> +#define RG_HDMITX21_FRL_EN BIT(12)
-> +
-> +#define RG_HDMITX21_INTR_CAL GENMASK(22, 18)
-> +#define RG_HDMITX21_INTR_CAL_READOUT GENMASK(22, 18)
-> +
-> +#define RG_HDMITX21_SER_EN GENMASK(31, 28)
-> +
-> +#define RG_HDMITX21_SLDOLPF_EN BIT(7)
-> +#define RG_HDMITX21_SLDO_EN GENMASK(11, 8)
-> +#define RG_HDMITX21_SLDO_VREF_SEL GENMASK(5, 4)
-> +
-> +#define RG_HDMITX21_TX_POSDIV GENMASK(27, 26)
-> +#define RG_HDMITX21_TX_POSDIV_EN BIT(28)
-> +
-> +#define RG_HDMITX21_VREF_SEL BIT(4)
-> +
-> +#define RG_HDMITXPLL_BC GENMASK(28, 27)
-> +#define RG_HDMITXPLL_BP GENMASK(13, 10)
-> +#define RG_HDMITXPLL_BP2 BIT(30)
-> +#define RG_HDMITXPLL_BR GENMASK(21, 19)
-> +#define RG_HDMITXPLL_DIV_CTRL GENMASK(25, 24)
-> +#define RG_HDMITXPLL_FBKDIV_HIGH BIT(31)
-> +#define RG_HDMITXPLL_FBKDIV_LOW (0xffffffff)
-make sure it includes bit 31? use GENMASK()?
+Assuming that an userspace application wants perform playback @44100 Hz
+and assuming that RFS divider value is configured as 256, the PSR value will
+yield to
 
-> +#define RG_HDMITXPLL_HIKVCO BIT(29)
-> +#define RG_HDMITXPLL_HREN GENMASK(13, 12)
-> +#define RG_HDMITXPLL_IBAND_FIX_EN BIT(24)
-> +#define RG_HDMITXPLL_IC GENMASK(26, 22)
-> +#define RG_HDMITXPLL_IR GENMASK(18, 14)
-> +#define RG_HDMITXPLL_LVR_SEL GENMASK(27, 26)
-> +#define RG_HDMITXPLL_POSDIV GENMASK(23, 22)
-> +#define RG_HDMITXPLL_POSDIV_DIV3_CTRL BIT(21)
-> +#define RG_HDMITXPLL_PREDIV GENMASK(29, 28)
-> +#define RG_HDMITXPLL_PWD BIT(31)
-> +#define RG_HDMITXPLL_REF_CK_SEL GENMASK(2, 1)
-> +#define RG_HDMITXPLL_RESERVE GENMASK(15, 0)
-> +#define RG_HDMITXPLL_RESERVE_BIT12_11 GENMASK(12, 11)
-> +#define RG_HDMITXPLL_RESERVE_BIT13 BIT(13)
-> +#define RG_HDMITXPLL_RESERVE_BIT14 BIT(14)
-> +#define RG_HDMITXPLL_RESERVE_BIT1_0 GENMASK(1, 0)
-> +#define RG_HDMITXPLL_RESERVE_BIT3_2 GENMASK(3, 2)
-> +#define RG_HDMITXPLL_TCL_EN BIT(31)
-> +
-> +#define RG_INTR_IMP_RG_MODE GENMASK(7, 3)
-It's difficult to distinguish the bits/mask which the register it
-belongs to.
+66 MHz / 44.1 KHz / 256 = 5
 
-Do you define it according to the bits sequence in register?
+However if HW uses PSR = 5 to derive the frame clock from operational clock,
+then
 
-Thanks
+RCLK = OPCLK / PSR = 66 MHz / 5 = 13.2 MHz
+Frame clock = RCLK / RFS = 13.2 MHz / 256 = 51562 Hz
 
-> +
-> +#endif /* MTK_HDMI_PHY_8195_H */
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c
-> b/drivers/phy/mediatek/phy-mtk-hdmi.c
-> index 32f713301768..d2e824771f9d 100644
-> --- a/drivers/phy/mediatek/phy-mtk-hdmi.c
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
-> @@ -161,6 +161,9 @@ static const struct of_device_id
-> mtk_hdmi_phy_match[] = {
->  	{ .compatible = "mediatek,mt8173-hdmi-phy",
->  	  .data = &mtk_hdmi_phy_8173_conf,
->  	},
-> +	{ .compatible = "mediatek,mt8195-hdmi-phy",
-> +	  .data = &mtk_hdmi_phy_8195_conf,
-> +	},
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_hdmi_phy_match);
-> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.h
-> b/drivers/phy/mediatek/phy-mtk-hdmi.h
-> index f5aac9d352d8..9dfb725fc57f 100644
-> --- a/drivers/phy/mediatek/phy-mtk-hdmi.h
-> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.h
-> @@ -44,6 +44,7 @@ struct mtk_hdmi_phy {
->  
->  struct mtk_hdmi_phy *to_mtk_hdmi_phy(struct clk_hw *hw);
->  
-> +extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_8195_conf;
->  extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_8173_conf;
->  extern struct mtk_hdmi_phy_conf mtk_hdmi_phy_2701_conf;
->  
-> 
+The actual frame clock derived based on PSR is now different from what user
+application has intended. The situation did not improve even if the RFS is
+swept throughout the entire valid range.
+
+We can overcome this scenario to an extent if we can get a flexibility to
+Configure both PSR as well as RFS.
+
+i.e. to achieve frame clock of 44100 Hz, if PSR  = 23 and RFS = 64
+then frame clock = 66 MHz / 23 / 64 = 44836 Hz 
+
+Although the sample frequency is not precise, it is very much closer to the
+Intended frequency, when compared to that of the existing solution. Since
+this
+scenario is specific to FSD SoC and has no changes in the Samsung I2S CPU
+DAI,
+the configuration is being done from the sound card of FSD SoC during
+hw_params.
+
+Please let me know if you think this scenario can be approached in any other
+way possible, rather than configuring from sound card.
 
