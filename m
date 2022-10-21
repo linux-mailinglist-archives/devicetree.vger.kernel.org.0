@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5B2607AA6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 17:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35407607AC3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 17:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229568AbiJUP3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 11:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46106 "EHLO
+        id S230369AbiJUPc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 11:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbiJUP2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 11:28:48 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0751527A892
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 08:28:01 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id a14so2573873wru.5
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 08:28:01 -0700 (PDT)
+        with ESMTP id S229817AbiJUPcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 11:32:08 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 491EA25E8BD;
+        Fri, 21 Oct 2022 08:31:59 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id bs14so4162579ljb.9;
+        Fri, 21 Oct 2022 08:31:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZMvv/9EZgWOQakQsn6xrZ9z1b0ZA4IEi0wTJMnNSZUE=;
-        b=FpfMDBOPa4ysB4TJzV9Xloy6cQKQmPKwhHx8zbpa5ngdvDMc/iy9AZSDunJFRWcv8d
-         fxIdaMWEvlulbrXyyubNUXL+qdfSxW22yXwWvpzwmj9RT9LG9/tS3V5Jd17ixrqgitKi
-         MDKHQJwlemtSGbmwmGTmg25zu1oq6Z5c0Jtof58Bfpd9YUJ369xqvKm2lSJOr4SmQ/5u
-         gyLBJnLKqsAMWFibGl0AeBu0l8tyOUJeuzFRDsMUCIG9Q/sFgtKwNSOPNRlwxkmrEfPE
-         kjrJRrQm9puc2eLpKjMkBvrphwro9D353Npx+oHZ0Rh7z7v4nlhAkqLajtHJaXmSi83G
-         WJkA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=B+p99hO3JZsR3seDJh1ppmG0TxM1BLGHE9A9k9GaJDs=;
+        b=BcTN4zri20y46WsjqEfUjS5FU+fZeCOVKrwpNqQxB7BbjtnOGV4eIgVh5PktzREHx1
+         1vvM+zqgn8rLOcueR338/w5rKClqs7BOXESRRhfgMzyalI5r9y+M+w7Rrt7v9WDS6o8m
+         4aEuDr1TBr+EkQnwdGqGBFfa0qLJDcic49rSFu0wOk9VLbb4tIy/nl5xU6yW9xqRsCBe
+         biw2n+MrI00XXYFJ+zIgxSvaegs1LTuUsKsOVG+rf6qA5NRMgu7KN68Zk3Z61c6e6EEx
+         y12uJHvEFfT3ybVwgH68WzEMl03/umEbC5TFGNvlrQCWU6VWUD7hKZoUx80bm3nZdWND
+         v1YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZMvv/9EZgWOQakQsn6xrZ9z1b0ZA4IEi0wTJMnNSZUE=;
-        b=CTWY9tcAM0fNmHUCFKQyKIJ/g+F04E9IXMrpZScjMQ+ZJQSi6G2pnQpEiqiODmDjCe
-         wdTxNtzqy6EAPwshI8i0RgQSVNyKGAF/7Y3xZKn165diEaSIHLTxc+zTzKApe29JvYM1
-         8ahrh5xQZ4JlTsXJpgVAa7LP7WW92Y8kMXgE2z4T8KYxVykBXjw4PxIDZsQ436vHnDjM
-         sv6lG1J54OeBaih/AqZIg6wC3FGvNAjSuDAgdH0QJEBUZuRJf84t1HERMTg3fadnzpIo
-         E3ptqGxcEppz0bI34zCgn6gdEYbsnP4vDGig95NO0C9q5On0J24j+2hIYiuwPJ55AtGz
-         nv/Q==
-X-Gm-Message-State: ACrzQf3EAYNyUt5S4GikjetmRbiIdK9z5yAh4VwCloiyRKSfOSTJYTVx
-        xILWZCzqNbFwkxf821bd6MxgBg==
-X-Google-Smtp-Source: AMsMyM5nHh/hh6ZpLi4L0jbWxv9dMiTSmN2yBVSlo1Pp9Xv8lBvtrWl4ih7SSkNj6obFU2UI7BFYiA==
-X-Received: by 2002:a05:6000:2a7:b0:22f:bb40:83f8 with SMTP id l7-20020a05600002a700b0022fbb4083f8mr12728324wry.288.1666366080288;
-        Fri, 21 Oct 2022 08:28:00 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05600c1c0800b003c6b7f5567csm10706169wms.0.2022.10.21.08.27.59
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B+p99hO3JZsR3seDJh1ppmG0TxM1BLGHE9A9k9GaJDs=;
+        b=CUHFLEjxp7P0ExiW6M/WArkLj0M5bI1V+IvpZ6xnoSZftZcNjj9EYhz3gGDg32svRz
+         IAfkFCc319sy5XXo+2wlRQlctfYv0G5zYQaYrmDGnyhIn9DD2zSMjTewQ/H8zCZpmAQh
+         wZlJPT83Typ7uAcB7nN2lfzA4MisiiUBVVWeNk/z6sGZPuZSngNy1tIHR42/9/66JUMq
+         obhg1Vlu1zebt8jUOwohWuh8aLkzDlratT6e5mh9nNk1hdKt58RB3ap0yFLkufG1j07V
+         doo+hvzDymR+kf0cq3L+/4ZsL+6ODVzxz9qBGaij4R03HRZEksXsjvqP0yq0B7hJedvI
+         BL6Q==
+X-Gm-Message-State: ACrzQf1Tis46zN9U+L3kqIWggcf13Hr57bGn/LJKJPOOwcFwtOM5+Fq6
+        AStBSHpTrMuRIkXJKzopTqSRfxJu56SdZQ==
+X-Google-Smtp-Source: AMsMyM7Xac7NFe3v49LtkmSLbfyCv1+e8q8cfcpBfkJG/xly/TehfvdFn9GUNIPfFYzFN6fC1AjDtQ==
+X-Received: by 2002:a2e:9dd3:0:b0:26f:b69f:289a with SMTP id x19-20020a2e9dd3000000b0026fb69f289amr6699446ljj.53.1666366317476;
+        Fri, 21 Oct 2022 08:31:57 -0700 (PDT)
+Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id n24-20020a195518000000b00492c663bba2sm3200062lfe.124.2022.10.21.08.31.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 08:27:59 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 21 Oct 2022 17:27:57 +0200
-Subject: [PATCH v3 5/5] arm: dts: qcom-msm8660: align RPM regulators node name with
- bindings
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221005-mdm9615-pinctrl-yaml-v3-5-e5e045644971@linaro.org>
-References: <20221005-mdm9615-pinctrl-yaml-v3-0-e5e045644971@linaro.org>
-In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v3-0-e5e045644971@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Fri, 21 Oct 2022 08:31:56 -0700 (PDT)
+Date:   Fri, 21 Oct 2022 17:32:21 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Mitja Spes <mitja@lxnav.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-X-Mailer: b4 0.10.1
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Tomasz Duszynski <tduszyns@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: pressure: ms5611: changed hardcoded SPI
+ speed to value limited
+Message-ID: <Y1K7hWKl0siEtaAl@gmail.com>
+References: <20221021135827.1444793-1-mitja@lxnav.com>
+ <20221021135827.1444793-3-mitja@lxnav.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="v0Xw8fmF8ByqwP89"
+Content-Disposition: inline
+In-Reply-To: <20221021135827.1444793-3-mitja@lxnav.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,36 +83,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node names should be generic and new DT schema expects RPM regulators
-node to be just "regulators".
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm/boot/dts/qcom-msm8660.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+--v0Xw8fmF8ByqwP89
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
-index ddce7d64ba99..432bea52bfe9 100644
---- a/arch/arm/boot/dts/qcom-msm8660.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
-@@ -471,7 +471,7 @@ rpmcc: clock-controller {
- 				clock-names = "pxo";
- 			};
- 
--			pm8901-regulators {
-+			regulators-0 {
- 				compatible = "qcom,rpm-pm8901-regulators";
- 
- 				pm8901_l0: l0 {};
-@@ -495,7 +495,7 @@ pm8901-regulators {
- 				pm8901_mvs: mvs {};
- 			};
- 
--			pm8058-regulators {
-+			regulators-1 {
- 				compatible = "qcom,rpm-pm8058-regulators";
- 
- 				pm8058_l0: l0 {};
+Hi Mitja,
 
--- 
-b4 0.10.1
+On Fri, Oct 21, 2022 at 03:58:21PM +0200, Mitja Spes wrote:
+> Don't hardcode the ms5611 SPI speed, limit it instead.
+>=20
+> Signed-off-by: Mitja Spes <mitja@lxnav.com>
+> ---
+>  drivers/iio/pressure/ms5611_spi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/iio/pressure/ms5611_spi.c b/drivers/iio/pressure/ms5=
+611_spi.c
+> index 432e912096f4..a0a7205c9c3a 100644
+> --- a/drivers/iio/pressure/ms5611_spi.c
+> +++ b/drivers/iio/pressure/ms5611_spi.c
+> @@ -91,7 +91,7 @@ static int ms5611_spi_probe(struct spi_device *spi)
+>  	spi_set_drvdata(spi, indio_dev);
+> =20
+>  	spi->mode =3D SPI_MODE_0;
+> -	spi->max_speed_hz =3D 20000000;
+> +	spi->max_speed_hz =3D min(spi->max_speed_hz, 20000000U);
+
+max_speed_hz is a limit, and the max frequency the ms5611 support is
+20MHz.
+
+Best regards,
+Marcus Folkesson
+
+--v0Xw8fmF8ByqwP89
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmNSu4EACgkQiIBOb1ld
+UjK1VQ/9Fr5fWh7p566FC/TtB0AR3vyoNNvzkF/tnqTagW0bJ4+uelZqyFYxn8Iw
+kS97p1YUm7zHYGWMAL2UCD8+BnGmSJBgtqxEMoa/Ew5ULHCvEVRfpVUFoM//e5EJ
+fNFP65loD41VTggRSNTOcNUbdBMrHpzo5L/ENecV4fWQrwc1xKd4DDCu/dL0GlAd
+2uQrKcOJbBJh4wR3n7SslOqsL4cQgZWPi89S/xvVf5VPJNjoUAmf0Lic4ZVT1FJn
+ZffsTT+oTrkfUnddb26djSp+KxMg9mqaK3OPOFyWebxe4Cp9Ot+4I3uIGguSA9JP
+byvoQsg17ds/EalPufTcVl11+YVqrBQ7qnUM/zlXirTzeSbm4NkEQagHkVrwgi3H
+dHoF+bURYV23enpF7FQjCm/XsFHXYuiop7NzFtYTZbC9O4+g2C7i806fit0XhbY+
+AJ7irSOgVTMat+UUi8M0irAVbI+GHl8U9ww/ptrghm2hUnQmmvlrI1BLYu8LOZ9P
+tdtUq0a+YYFlX+1fwDUIYdLV9ELZlJOIfmvlX5skBge8C8H0qWPLTOdxISra8pP4
+QIFWPQYkx4PPOcNEppCc0fX576aiYyY9RLZany6vRKspgIJwNton90OqjmOzO0RG
+2V6zmX7NGPtalh1Nz1t8RRtT1UvaOqBd4hfZG+KF4yoxgO/5QwU=
+=92FB
+-----END PGP SIGNATURE-----
+
+--v0Xw8fmF8ByqwP89--
