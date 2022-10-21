@@ -2,151 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E176A60773D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 14:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8E8607743
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 14:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbiJUMqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 08:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41748 "EHLO
+        id S229794AbiJUMsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 08:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229994AbiJUMqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 08:46:15 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89430262DE2;
-        Fri, 21 Oct 2022 05:46:10 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9576360015;
-        Fri, 21 Oct 2022 12:46:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666356368;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZPwF2UjPl7y7IX+Y6gImoAKgcTPqVNQNiaKw7TX3r9Y=;
-        b=TfaArumbxEPSY0Qw9NyxCw2g2/FYgtpNZRDflJa7HtsUGcxM8h7F00UwNr9YEJ7Vh7r5Rl
-        cnT5yHDfAo/JoWYff4mfi4TGm/blNVJRtTCfiC36cOg887vRO1yaOu1PrZtXuE2O4xCbZk
-        EVZfPJzM40CcMXyWK09rRta2QX8rAdGJUTBW6JEDtYq8PcjQpOOhkhqh92aNR0uBsZbxig
-        eqpmKwy2nOwNhT9gAjfUrZiZMFR5YHmsmeuLGc4q30nx//jKKSnhpxxwmWuvV2KLPIDcb3
-        zEnMlOEP4Q5tPhI2ymWbiI/r/uFvIo/yrPdY+4NwnnIKAL6XAQDg+f+ikkrdqQ==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH net-next v5 5/5] ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet controller
-Date:   Fri, 21 Oct 2022 14:45:56 +0200
-Message-Id: <20221021124556.100445-6-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221021124556.100445-1-maxime.chevallier@bootlin.com>
-References: <20221021124556.100445-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S229911AbiJUMrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 08:47:52 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD81F2681D8;
+        Fri, 21 Oct 2022 05:47:26 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id j4so5023738lfk.0;
+        Fri, 21 Oct 2022 05:47:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bR/IhUckEHa0IuDp4LpofYq5xrM/m2D7Ojkw4Y/+w3U=;
+        b=TLM+JtUNdSTDgYochS4bQIpw/lUzMOmCYgxgRZCX0Ul1bbmUk4FG/vnbEmLgH7hdWz
+         2x7dlQropn+4X7pJeyQIB9Tc2AZ2/ojxRIyZ4KchxtnR8JHfNlFny/A18Anl4JjVp13k
+         +gurWy6lzRogPbwNIJnOiMVIsBP9VOj84wMIXXdkyUXb8HFA9B4gkBw89Hck1BL0P4dZ
+         QrrfnErkVO0WwfOR8GToORjbJ+agqUF/PLKnA0HfFBvYdwtZ0/lx7025ehOMrTS03XsL
+         MRfCx0laknxasZ5uOFPGe7h7IvDrTkwBaPxVh7KW4Y+kmcHVW9bSUYZPCbXhmi+SzkyF
+         YmcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bR/IhUckEHa0IuDp4LpofYq5xrM/m2D7Ojkw4Y/+w3U=;
+        b=5zInzImfg3kfkwQ6s0R4mGH5PBuqV0/GeGDciLW9fWyZoZMEtxzsp7qNQBcP6jKBhi
+         funO1IYTsFOPpcwLh0WwKZJYka3GsHV9vyWmO87qqxOciv1srmCjgMLuXvaucAsseBqO
+         jm/MH81PJa4m/RL5sgyDl6840xS+bOBdy0tyZ1f/zCuwlJYKXcUmFbIVb1wXhp+/JK6u
+         kf2Le1VhtSWeZaSj+bqejoA5u2hOkrTN0lLKMIrRgWLf6/BKJubpSWyx1GZy1emOgDEx
+         hHPqhGK0HDyk2EDREHunuJHzT5WeZ2FrJkbQyRnlyqti+N2y8OauN9JcciQgn1O3Y0IZ
+         /P+Q==
+X-Gm-Message-State: ACrzQf0lMp6VojRoDLMwyOaWRYkZiRHxA02j5GS0MhYeJLU0V3Ed7ZGm
+        V109EyooLiAjikJppBn73n8=
+X-Google-Smtp-Source: AMsMyM6Y0EJ9fKVz8wvZSCc6WuQtwmnn//WLkH4s1Kd1TwrsGcVuo+mXNhDHLhIurlPR+3TjhPdzSQ==
+X-Received: by 2002:ac2:4db8:0:b0:4a4:5e0e:b75e with SMTP id h24-20020ac24db8000000b004a45e0eb75emr6343437lfe.64.1666356443312;
+        Fri, 21 Oct 2022 05:47:23 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::2? (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
+        by smtp.gmail.com with ESMTPSA id 6-20020ac25f46000000b00492d064e8f8sm3136967lfz.263.2022.10.21.05.47.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Oct 2022 05:47:22 -0700 (PDT)
+Message-ID: <82dcb300-5cf9-db86-2264-ba3b04a50ed0@gmail.com>
+Date:   Fri, 21 Oct 2022 15:47:21 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v4 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1666350457.git.mazziesaccount@gmail.com>
+ <7baf3dd482ab1db0d8a3676d6d5d3e4ab7f3cf9d.1666350457.git.mazziesaccount@gmail.com>
+ <Y1KTibIKKz/KdJDj@smile.fi.intel.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Y1KTibIKKz/KdJDj@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
-connected to the CPU through the internal IPQESS Ethernet controller.
+On 10/21/22 15:41, Andy Shevchenko wrote:
+> On Fri, Oct 21, 2022 at 02:22:49PM +0300, Matti Vaittinen wrote:
+>> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+>> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+>> ranges (2, 4, 8 and 16g), and probably some other cool features.
+>>
+>> Add support for the basic accelerometer features such as getting the
+>> acceleration data via IIO. (raw reads, triggered buffer [data-ready] or
+>> using the WMI IRQ).
+>>
+>> Important things to be added include the double-tap, motion
+>> detection and wake-up as well as the runtime power management.
+> 
+> While I have some disagreements on some code
+> pieces, this version is okay to go I think.
+> 
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Add support for this internal interface, which is internally connected to a
-modified version of the QCA8K Ethernet switch.
+Thanks for the thorough review Andy.
 
-This Ethernet controller only support a specific internal interface mode
-for connection to the switch.
+> Below a few nit-picks in case it needs to be a v5.
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-V4->V5:
- - Reword the commit log
-V3->V4:
- - No Changes
-V2->V3:
- - No Changes
-V1->V2:
- - Added clock and resets
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 46 +++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Just a note that I do agree with these 'nits'. I'll fix them if I need 
+to respin the series.
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index b23591110bd2..0092a881dbf4 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -38,6 +38,7 @@ aliases {
- 		spi1 = &blsp1_spi2;
- 		i2c0 = &blsp1_i2c3;
- 		i2c1 = &blsp1_i2c4;
-+		ethernet0 = &gmac;
- 	};
- 
- 	cpus {
-@@ -591,6 +592,51 @@ wifi1: wifi@a800000 {
- 			status = "disabled";
- 		};
- 
-+		gmac: ethernet@c080000 {
-+			compatible = "qcom,ipq4019-ess-edma";
-+			reg = <0xc080000 0x8000>;
-+			resets = <&gcc ESS_RESET>;
-+			reset-names = "ess";
-+			clocks = <&gcc GCC_ESS_CLK>;
-+			clock-names = "ess";
-+			interrupts = <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
-+
-+			status = "disabled";
-+
-+			phy-mode = "internal";
-+		};
-+
- 		mdio: mdio@90000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
 -- 
-2.37.3
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
