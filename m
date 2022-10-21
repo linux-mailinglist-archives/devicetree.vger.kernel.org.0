@@ -2,84 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79A0C6076CE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 14:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C6776076EA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 14:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbiJUMU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 08:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48830 "EHLO
+        id S229913AbiJUM34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 08:29:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbiJUMUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 08:20:41 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4AF156256;
-        Fri, 21 Oct 2022 05:20:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C1BD1B82B1D;
-        Fri, 21 Oct 2022 12:20:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 782B9C4314A;
-        Fri, 21 Oct 2022 12:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666354817;
-        bh=9pNkSkMMCnf1Zj3uCFEWZgDnzpKGb6MzKEJOnVtIXFA=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=h0Y0IR2ShKUBpWs5TtyeT6FMRynpAN81rI8/XYBMSigqrZrrz990KWlOvGqL2ytzU
-         Z42Y78Ei0TVldtInyip+OofBGggmAHb9tZbb5WRkBTeP2WF6mWxVzLGEVN3m3YVc1L
-         f6a+VspzOg2AfXWTYYb2RkbpUG+flMz09tsQsbfqMmKVC50kZU1E2aJzKxpin9j5Ye
-         qnmrs3y+fw6aROkM/zKP/GE8v+ymW2CrSSldrA3joGMyMfS3ZidgsnbGtrYShvwcDO
-         eHR8pMzcAQ6617tmTyRJXGvw6234Tgi0rY+YpqNa71hmkG9+eGtZ5IQ6mT/ISlJMG+
-         f6ZUBxau5NoEw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 56B40E270E2;
-        Fri, 21 Oct 2022 12:20:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229510AbiJUM3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 08:29:55 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10A15806F;
+        Fri, 21 Oct 2022 05:29:51 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 120F724000F;
+        Fri, 21 Oct 2022 12:29:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666355390;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=f8JhSCsc0VPJJFxWJqi6lXg1VFcKEqMx4JafSN8dRwc=;
+        b=PPYGKJqlyoSe2ReNc/ywYJuUZA6K8KevIZhATbt/WsOjPCH6ZlFOYynN+ujHcbuTP8UlAW
+        16z9NMp7+Ik6PS9ALEqTkfV1D9i6EMwGmw5CUoj1jIVLohaFehBmAiuYYs1LrMbALCFDZi
+        I4kRjyfPb3hteYukHnDrLotrrVqsrFCIsSRIkTFIXVzRYohsnahn/zLEBNdgB9AjS60jEP
+        EoJ0FFmXCtvAmPr2v0Kg+phZ1McBLOjtDaTlAqM15Qh6gxP1UwJtmwkhrYJVZnUFSQ/n2K
+        iP/XulJYW8C9utf0+UH0w7SLw51qUJVW2g4pEY7pUGAWTV6opMugDzDuTFhjAA==
+Date:   Fri, 21 Oct 2022 14:29:48 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>
+Cc:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Arslanbenzer, Zeynep" <Zeynep.Arslanbenzer@analog.com>
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: add bindings for max313xx RTCs
+Message-ID: <Y1KQvPAwh7NC0wbA@mail.local>
+References: <20221019133910.282-1-Ibrahim.Tilki@analog.com>
+ <20221019133910.282-2-Ibrahim.Tilki@analog.com>
+ <Y1G6FIvS6WD57GXW@mail.local>
+ <DM8PR03MB62477670C186E6CC5308B600962D9@DM8PR03MB6247.namprd03.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [net-next 1/2] net: ethernet: adi: adin1110: add reset GPIO
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166635481734.23176.5663242061307242113.git-patchwork-notify@kernel.org>
-Date:   Fri, 21 Oct 2022 12:20:17 +0000
-References: <20221019171314.86325-1-alexandru.tachici@analog.com>
-In-Reply-To: <20221019171314.86325-1-alexandru.tachici@analog.com>
-To:     Alexandru Tachici <alexandru.tachici@analog.com>
-Cc:     linux-kernel@vger.kernel.org, andrew@lunn.ch,
-        linux@armlinux.org.uk, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM8PR03MB62477670C186E6CC5308B600962D9@DM8PR03MB6247.namprd03.prod.outlook.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Wed, 19 Oct 2022 20:13:13 +0300 you wrote:
-> Add an optional GPIO to be used for a hardware reset of the IC.
+On 21/10/2022 11:44:12+0000, Tilki, Ibrahim wrote:
+> > > +  interrupt-names:
+> > > +    description: |
+> > > +      Name of the interrupt pin of the RTC used for IRQ. Not required for
+> > > +      RTCs that only have single interrupt pin available. Some of the RTCs
+> > > +      share interrupt pins with clock input/output pins.
+> > > +    minItems: 1
+> > > +    items:
+> > > +      - enum: [INTA, INTB]
+> > > +      - enum: [INTA, INTB]
+> > > +
+> > 
+> > I don't think this is right, what this is doing is essentially pinmuxing
+> > interrupts versus clocks. What happens if you want INTB but this goes
+> > directly to a PMIC instead of the SoC?
+> > It is not something you can express with your current bindings.
+> > 
 > 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> ---
->  drivers/net/ethernet/adi/adin1110.c | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
+> Why would a user want INTB when it is not connected to SoC?
+> User can specify none, either one or both of the interrupt pins.
+> I don't see what the problem here is.
+> 
 
-Here is the summary with links:
-  - [net-next,1/2] net: ethernet: adi: adin1110: add reset GPIO
-    https://git.kernel.org/netdev/net-next/c/36934cac7aaf
-  - [net-next,2/2] dt-bindings: net: adin1110: Document reset
-    https://git.kernel.org/netdev/net-next/c/3bd5549bd479
+the interrupt pin may be connected to a PMIC that is able to start or
+wake up the platform. In that case, the user would not have any
+interrupt-names and your driver will fail to mux the interrupt on INTB.
+Please fix.
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
