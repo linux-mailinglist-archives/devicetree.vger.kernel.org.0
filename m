@@ -2,113 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62953607D18
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE4A607D2A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 19:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229679AbiJUQ7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 12:59:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48370 "EHLO
+        id S229795AbiJURGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 13:06:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiJUQ7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:59:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6C9205E2;
-        Fri, 21 Oct 2022 09:59:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229565AbiJURGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 13:06:44 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59FDB17A9D;
+        Fri, 21 Oct 2022 10:06:41 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-037-138-189-087.ewe-ip-backbone.de [37.138.189.87])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B538FB82CA0;
-        Fri, 21 Oct 2022 16:59:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BD09C433D7;
-        Fri, 21 Oct 2022 16:59:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666371573;
-        bh=zXoZSLRo6mqWQl+SqpCeUt7n3oIRJaBB02GCsl97pmw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MeulAqGnfa12piC1q/uSWkvw9NL3Xxa/WHR5NjvPhL87bxDnzFp69/bmitWr959WB
-         K5lZyg7okV8RxMAk54qR1LbC35T2UEFperAHPqTvBP5Qw+VxcWmCxmXgfcpKc5i3C5
-         5BlDGtu3S17VYNYoQejRzLFO0O5P6e/6FcifnCyQmeT6tCz740iwx8e3R7Um0fm7ye
-         Fvn6gP9+uDUAOuEyB3FNkPwdMh41Zu9nkxoQxvn2/sEyAUeK+1JDCnVo8zVvnLxYHI
-         UkvXp2XrhF2uxyMB+4T1a5u6FChqX4SDdSoCMSe3u2YpvTAfCiEy2naw1VhwH+6ETC
-         Pd2MqFNI4Evjw==
-Received: by mail-vk1-f181.google.com with SMTP id l8so1466449vko.11;
-        Fri, 21 Oct 2022 09:59:33 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2rsbMHBaSjjzjLQcpcp0FCKAfJTrNgRPnISl6v86wmSBNW9q46
-        eaDMqrdGkbeTNdi89Ut/R7DgTZzSP4Iiap1Lyw==
-X-Google-Smtp-Source: AMsMyM7bsRf7NAYJbwdShF/eQg9O/rEcc0Bmc19ET2w4pWsB3bnX0kUtnl1ALuyMiuToFS0ma0pesPnAhqk2kMhcnN4=
-X-Received: by 2002:a1f:1442:0:b0:3ab:857c:cd8d with SMTP id
- 63-20020a1f1442000000b003ab857ccd8dmr13079994vku.35.1666371572144; Fri, 21
- Oct 2022 09:59:32 -0700 (PDT)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C3A8C6602379;
+        Fri, 21 Oct 2022 18:06:39 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666371999;
+        bh=sw1g18/yluc+d5C+pFtuJQ2w1P1wFFgeoQWxi4j7g18=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JyJVvVvIxHtP5Mbeqt8SLO3+c+P9j7Qg0/sS8HVUMW+x0hZr48N01/w/kR70CRBzb
+         gfbWHOKXsuL2vNFYu7ULTvqFq0RJm4xcBklA2pWpJfqbWQwhJSJWt5/qlhgIBWlQ5z
+         L5+8ofW1UWUZB14XiCGzxM5jQ0D/ewq1xs8onqw2Tz0lN1iXFXFEP+dWc7kPERX1e7
+         kOKrAgKzWO43thKIAYdC2F8j2bZuCLUOU6bNFvty+to2XJMbmMM89vAspVE674w9UH
+         Q6Ii9eWefZ94tJvHpgVAsV9ALV4Q6fMZj96o5jLAOilzYlhmU/NVxYCLF/9nQeMLqW
+         9vsAhouisNNTA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id AEECF48082E; Fri, 21 Oct 2022 19:06:37 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH 1/1] dt-bindings: rtc: convert hym8563 bindings to json-schema
+Date:   Fri, 21 Oct 2022 19:06:05 +0200
+Message-Id: <20221021170605.85163-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20221014151302.27641-1-afd@ti.com> <CAL_Jsq+O0_i3k_3S=W6C-n+ZE7GRKKhOQ7HR54QutmMJq54a_Q@mail.gmail.com>
- <CAMuHMdV2euzPQL35AqBsyeQTkMbkeFz4rk48wtyX7Hd6Lz5d-g@mail.gmail.com> <f8b2a45e-cb6c-60ec-047e-6934dd4c4e1d@ti.com>
-In-Reply-To: <f8b2a45e-cb6c-60ec-047e-6934dd4c4e1d@ti.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 21 Oct 2022 11:59:22 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL0zG9_sthMLKMEWjYzBdSDwjJ1D6SsZr3CDe3w8mKE+g@mail.gmail.com>
-Message-ID: <CAL_JsqL0zG9_sthMLKMEWjYzBdSDwjJ1D6SsZr3CDe3w8mKE+g@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: Allow DTB overlays to built from .dtso named
- source files
-To:     Andrew Davis <afd@ti.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 9:44 AM Andrew Davis <afd@ti.com> wrote:
->
-> On 10/21/22 1:52 AM, Geert Uytterhoeven wrote:
-> > Hi Rob,
-> >
-> > On Fri, Oct 21, 2022 at 12:47 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >> On Fri, Oct 14, 2022 at 10:13 AM Andrew Davis <afd@ti.com> wrote:
-> >>> Currently DTB Overlays (.dtbo) are build from source files with the same
-> >>> extension (.dts) as the base DTs (.dtb). This may become confusing and
-> >>> even lead to wrong results. For example, a composite DTB (created from a
-> >>> base DTB and a set of overlays) might have the same name as one of the
-> >>> overlays that create it.
-> >>>
-> >>> Different files should be generated from differently named sources.
-> >>>   .dtb  <-> .dts
-> >>>   .dtbo <-> .dtso
-> >>>
-> >>> We do not remove the ability to compile DTBO files from .dts files here,
-> >>> only add a new rule allowing the .dtso file name. The current .dts named
-> >>> overlays can be renamed with time. After all have been renamed we can
-> >>> remove the other rule.
-> >>
-> >> There was a patch from Geert converting everything. I'd rather not
-> >> support both ways.
-> >
-> > Actually that was a patch from Frank?
-> >
->
-> That series looks to have stalled?
+Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
+Schema format.
 
-Feel free to resurrect it if Frank is not going to.
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+---
+ .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+ .../bindings/rtc/haoyu,hym8563.yaml           | 55 +++++++++++++++++++
+ 2 files changed, 55 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
 
->
-> It won't be easy to convert all the files in one go, especially with series
-> in-flight with both names, not sure how we avoid having both extensions for
-> at least one cycle. Plus having both allowed lets rename the existing files
-> in a more granular/bisectable way.
+diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+deleted file mode 100644
+index a8934fe2ab4c..000000000000
+--- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Haoyu Microelectronics HYM8563 Real Time Clock
+-
+-The HYM8563 provides basic rtc and alarm functionality
+-as well as a clock output of up to 32kHz.
+-
+-Required properties:
+-- compatible: should be: "haoyu,hym8563"
+-- reg: i2c address
+-- #clock-cells: the value should be 0
+-
+-Optional properties:
+-- clock-output-names: From common clock binding
+-- interrupts: rtc alarm/event interrupt
+-
+-Example:
+-
+-hym8563: hym8563@51 {
+-	compatible = "haoyu,hym8563";
+-	reg = <0x51>;
+-
+-	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+-
+-	#clock-cells = <0>;
+-};
+-
+-device {
+-...
+-	clocks = <&hym8563>;
+-...
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+new file mode 100644
+index 000000000000..b0b6126b12dd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Haoyu Microelectronics HYM8563 RTC
++
++maintainers:
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++
++properties:
++  compatible:
++    const: haoyu,hym8563
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 0
++
++  clock-output-names:
++    description: From common clock binding to override the default output clock name.
++
++  wakeup-source:
++    description: Enables wake up of host system on alarm.
++
++allOf:
++  - $ref: rtc.yaml
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - "#clock-cells"
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@51 {
++            compatible = "haoyu,hym8563";
++            reg = <0x51>;
++            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++            #clock-cells = <0>;
++        };
++    };
+-- 
+2.35.1
 
-Fair enough. I'd propose a series adding the build support and
-converting the unittest. Then I can provide a branch for arm-soc and
-the dts conversions.
-
-Rob
