@@ -2,93 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A452060783F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7392C607868
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbiJUNVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 09:21:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
+        id S230489AbiJUNaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 09:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbiJUNVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:21:02 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06DB25F8D2
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:20:59 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id c7-20020a05600c0ac700b003c6cad86f38so4831993wmr.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:20:59 -0700 (PDT)
+        with ESMTP id S230370AbiJUNaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:30:06 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2AB7537F5
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:29:48 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id o2so1959342qkk.10
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:29:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=i4JniJFO6Hdg6kNwzrb/PJxlNwEXD1oSoB9sUXNG4AA=;
-        b=KRlIyg/u0tYE5oXblsqDn0dKMd0L7zGHX6PBqE0FCsXsswAwYwco4EFIifQX1ONRW7
-         7SaxqLXoSX6mu1Nh7ZFBbvmyXI2zg460zs6nvIAzibw99XZD5uOSyJeIKhOB72YFyDgg
-         3T83bJoFOthQsg53QXGuHLHDoMzER0ebn5zLuxpbZDeCHq+H0KPoig72NBZrimtkxYpq
-         b5eafxr1uEdcRgvlELg8MnV1TgbO4LZTQEqMQuZttox39NTLfsx8LcDBrDYfCjafaAWe
-         Bdv3Yorx+J/XB99YCmhkDaU/qsOy3bnicMiZjV6mqZbIe2KUqJ4/1QLDu3qhTOvNf2fv
-         TYHA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lgmt7nX6KnPzXNdpGQ1k+hkZnzm82SWjZ6hn9mW6e3c=;
+        b=xr+TMhCKaZJAadtHo5DyF6AA9DgxE3djgXCTUSuVRQVI99HB05PRFlUK7JbxsDdB9U
+         KWOGNVGcw/Aam6KS0Ozgrike/GSKkTvE5HAlwusw/kP2BuzaY4HUm0jmRMDnY0Poaab0
+         a8HC756E50eZYCC5Vozd6ptbzZ9HjvebIZB3nloY20qNVskfJ9v54c1t5eX/PZrVNiI/
+         Wspo+nzsVyDKmTZ7KkymlIW27d5rWGFonjmyN7AgnX/q8TScevKtJIM71k0L5L+759uY
+         k87KqkidWvfogd1eNR9aeYfHeFSoR/u900Trg+ZXidttiBRSI3V57z8+tMkKh/izeSb6
+         7l/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i4JniJFO6Hdg6kNwzrb/PJxlNwEXD1oSoB9sUXNG4AA=;
-        b=1TZrpvjnDPyKtpe2KFu6QgpEPZDDP70MjDZWX0y/SGerXniqHEo+nPBAUe4v02P87V
-         Mj9QOGJoy5n9P4HvaCyodrJlMezh4j+cqhRB/ug6HeYMlzi4shg/gZFD23iG3lnAn1Op
-         X4PxNtx3+DXiQ6mmRqGeRntlwr8aDz7EcRPl3C8Bd2gU5tzhLZ4NokkMBH0qHd+ZDYA6
-         mmCMgv0I3M/dEQr0KhXtwC/ibalQmxmkr9UHwVJNfdwOPAqTrktM1as8v5PnEHXh8oXq
-         vVJgakpcV+fvlsQioKaXHfswkKH+iRXntkTq7IXWoqioJX2b5wslCicdHssoLsAubN6N
-         LkIQ==
-X-Gm-Message-State: ACrzQf2jfA+74S16A09FfE3VjS5X8QRYvDPpZpwOsUDSBaEU0MxkjPXP
-        7mn/otyzIZoGMT37aTJ0qcFccg==
-X-Google-Smtp-Source: AMsMyM5J4fLco6qzthaoFkH7ErTin58+NxkdGFINMqMFdhJr2i4VdFMQGgMTPWCWXWc+HK19vznoiQ==
-X-Received: by 2002:a05:600c:354d:b0:3c8:4b2d:f3fb with SMTP id i13-20020a05600c354d00b003c84b2df3fbmr310079wmq.188.1666358457786;
-        Fri, 21 Oct 2022 06:20:57 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
-        by smtp.googlemail.com with ESMTPSA id g5-20020a5d4885000000b0022e55f40bc7sm18738768wrq.82.2022.10.21.06.20.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 06:20:57 -0700 (PDT)
-Date:   Fri, 21 Oct 2022 15:20:53 +0200
-From:   Corentin LABBE <clabbe@baylibre.com>
-To:     heiko@sntech.de, ardb@kernel.org, davem@davemloft.net,
-        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v10 00/33] crypto: rockchip: permit to pass self-tests
-Message-ID: <Y1KctXMZ1+c5uQqd@Red>
-References: <20220927075511.3147847-1-clabbe@baylibre.com>
+        bh=lgmt7nX6KnPzXNdpGQ1k+hkZnzm82SWjZ6hn9mW6e3c=;
+        b=b+Lh62K7qVelXSSA23U7u/y9vwbQya/haaZpoHgJCruhIGzJ9gFI/VsOP+V/P9KP4G
+         JlHDHCo9+JqjPBC2mRr+Ok34AX8Ak/IA9DaJlXUJsKiQlIoMobOpcOfb1qfcd8pxruou
+         oSV9m7bf6GdjZ1SZiN7Bm4wHUiFvt0bkvGA40S5mnoufrnqWgFWrZs4YN573otP4iVil
+         nD/YM2t+DJWWSWywBoul34lx3cbCIbx2+Nxd+dDh7tJrYY7ERArRHpqEDzTqeqSOtTcx
+         ojGyyt4AXxZ0wwPoRldbQ0pXaiaDFpKi1Hf5ynGzAAKd10N2xBKSnFtcVaNEop6PyLuk
+         +4rQ==
+X-Gm-Message-State: ACrzQf2m3Th589v6GtLRq5CakE8NNWFdxQGMYpO4IqGLXQ6fIVjqa867
+        O9Ii4AvnWfXNyux/ZJthkN76NQ==
+X-Google-Smtp-Source: AMsMyM4+fNbWa8PnJwC+vhPTrYPkrSEaC9qcEkdYKxP2CS6JIj+Y1IzK+0h04dZ17WcWzPrz0ZR7hg==
+X-Received: by 2002:a05:620a:12fb:b0:6ee:79f2:3716 with SMTP id f27-20020a05620a12fb00b006ee79f23716mr13688432qkl.348.1666358986973;
+        Fri, 21 Oct 2022 06:29:46 -0700 (PDT)
+Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
+        by smtp.gmail.com with ESMTPSA id hf8-20020a05622a608800b0039cbbcc7da8sm7837080qtb.7.2022.10.21.06.29.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Oct 2022 06:29:46 -0700 (PDT)
+Message-ID: <e13c5fc4-c631-fbb5-f3cf-a8e569fbd752@linaro.org>
+Date:   Fri, 21 Oct 2022 09:29:45 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220927075511.3147847-1-clabbe@baylibre.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,ipq6018: replace maintainer
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220924081312.15068-1-krzysztof.kozlowski@linaro.org>
+ <CACRpkdbvo5vyqpfP3EJvFRhK1hzq4uH=vzoq-H6q6hwJ0Bkc4w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CACRpkdbvo5vyqpfP3EJvFRhK1hzq4uH=vzoq-H6q6hwJ0Bkc4w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, Sep 27, 2022 at 07:54:38AM +0000, Corentin Labbe a écrit :
-> Hello
+On 21/10/2022 04:09, Linus Walleij wrote:
+> On Sat, Sep 24, 2022 at 10:13 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> The rockchip crypto driver is broken and do not pass self-tests.
-> This serie's goal is to permit to become usable and pass self-tests.
+>>  maintainers:
+>> -  - Sricharan R <sricharan@codeaurora.org>
+>> +  - Bjorn Andersson <andersson@kernel.org>
 > 
-> This whole serie is tested on a rk3328-rock64, rk3288-miqi and
-> rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
-> 
-> Regards
-> 
+> This is fine, but what about adding yourself as co-maintainer on *all*
+> Qualcomm bindings? I think it would offload Bjorn a bit. Just a suggestion.
 
-Hello
+It's up to Bjorn, if he wants to make it more official. I just added
+myself to Qualcomm pinctrl ones, because I spent some time to understand
+them. Actually I could do the same for the Qualcomm remote-proc bindings
+(SMD, Glink) as some days ago I was refactoring them as well.
 
-Gentle ping since it is a month since this serie was sent and no comment was made (except some reviewed-by).
-So I think it is ready to be merged, probably thought the crypto tree.
+I am anyway getting all such patches as a DT bindings maintainer.
 
-Regards
+Best regards,
+Krzysztof
+
