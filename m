@@ -2,216 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E71607954
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 16:14:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A895607961
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 16:21:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbiJUOOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 10:14:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36462 "EHLO
+        id S230378AbiJUOVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 10:21:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231329AbiJUOOk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 10:14:40 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C42321243;
-        Fri, 21 Oct 2022 07:14:32 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id AAD0F40005;
-        Fri, 21 Oct 2022 14:14:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666361671;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=D1ajsY8pZfc8bFaZEztL4M52XOdc6x7Su0C40vNEpBE=;
-        b=UVBc+7G3S1Tm8p4Wf2nV81f4SM/fxgXOgdidSTOBMaH2p/nym5CJKGuXj3Kqp8xUoxd2wd
-        kgMhdSK1aCxY5EI8/3zb4u/4pUgwZ3LdZCKSTF1tIF4imEQkJq/M57IhqCpqG9SEkFlf9N
-        cApfPDGZgUqLQLtZE4k3S9g49wbPk1L3T9pw6VfwH88I+LCWfKpkXMLVm1vdFxhvuwjc5i
-        uDFF4m3UMVmamB0p/MJvgXK9YsDyJgeViWO4NyQ1bc384yG91CwjsslQcs6qWist2loLpq
-        n1aX574lsLOhjZ+rnAKVXNJ6Ea+JTrLYQ0+VgR7a8GromJ+BIwfaDfNfV35E+A==
-Date:   Fri, 21 Oct 2022 16:14:26 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230184AbiJUOVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 10:21:01 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2086.outbound.protection.outlook.com [40.107.22.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1A8A265C69;
+        Fri, 21 Oct 2022 07:21:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CfRAbdvUutVKD/nb8SpZrUHC+KTkEm5Q2zBtYcqmoaVUdEZPjN0e6wq1+0bXsuf5aHAFVqc6zkT39eP50oKGyv6ov/Xxkbnxdj8GocCkbF5M2i5bH6yKvqZVsIRaAHbrrfzMzYtjC33Bf+hV33kngnFESui14iwCSh0NMLOF5BInBtX/a0YAnoP188TeB7MFMDP8aNsJd7Y88ERXBiSBvuh2ovFeHSjsLBRvsDAXCfmUPNZWrmqq4C5RSSGq0E3GMUgF3reLnL2vGwNysrMv2pCGmYexV3vozcaeS8BZTs9tYa+QTBSMq68AXp3HNnDfTbJoKLdiV+v86ARGxXr6Vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jXaFyJIQS2DJD6eoMegLZnDjvisITtqz741sMDc/3Qo=;
+ b=DlUkAg4g92O2g7fZugRRuWh280uQN6hHBAoDFZfcEoBwim0lV2br7LT1drq48jZgD7dEv5eL8BT8TBaeLuV/MomwzdLPh9m4i9K9SQXKvRt8GyT2++L4wSEAP7LX6At494B2I5N7B3of3KBrivI96KPLkLxP6dKbNfjtPdE0yWna/cvmKcrmzL7M6YN79hXZo+6qMKQJd71XUrL02AXmAfNNxddbgqHcjuDcatz4qBZWoL469qyJwlgI1sTb73VD9qP55BpVCNRPdp5i6LAOwXukoV3MEsnJlSi53A8k5tW2theQ65RHybsFkYQrIOd6YuNLyvFkfR5oTX7PcxTyxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jXaFyJIQS2DJD6eoMegLZnDjvisITtqz741sMDc/3Qo=;
+ b=M/p5TPBgKuWsHlLs3nCnf7vNi55cMrNBVSP3MnXAfCvrwS6SzsDpE5/Q+FzYlrRynbpe3ApcHWDPYEttKmOsZC0LXyg46rq55YRj7L8NpAs2ZxxW/Ec/i/tBKrOQj1qidqK2pHXkrz1EdqcHLULW25eJmN4docymavNQLGOP/QU=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by PA4PR04MB9488.eurprd04.prod.outlook.com (2603:10a6:102:2af::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Fri, 21 Oct
+ 2022 14:20:58 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::a67a:849c:aeff:cad1]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::a67a:849c:aeff:cad1%7]) with mapi id 15.20.5723.035; Fri, 21 Oct 2022
+ 14:20:58 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v7 0/6] Allwinner A31/A83T MIPI CSI-2 and A31 ISP / ISP
- Driver
-Message-ID: <Y1KpQl5Nlhd0kKId@aptenodytes>
-References: <20220924153304.77598-1-paul.kocialkowski@bootlin.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: Re: [PATCH net-next v5 5/5] ARM: dts: qcom: ipq4019: Add description
+ for the IPQESS Ethernet controller
+Thread-Topic: [PATCH net-next v5 5/5] ARM: dts: qcom: ipq4019: Add description
+ for the IPQESS Ethernet controller
+Thread-Index: AQHY5UsZufLiXBWDx0irerpeDpuMhw==
+Date:   Fri, 21 Oct 2022 14:20:58 +0000
+Message-ID: <20221021142057.zbc3xfny4hfdshei@skbuf>
+References: <20221021124556.100445-1-maxime.chevallier@bootlin.com>
+ <20221021124556.100445-1-maxime.chevallier@bootlin.com>
+ <20221021124556.100445-6-maxime.chevallier@bootlin.com>
+ <20221021124556.100445-6-maxime.chevallier@bootlin.com>
+In-Reply-To: <20221021124556.100445-6-maxime.chevallier@bootlin.com>
+ <20221021124556.100445-6-maxime.chevallier@bootlin.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|PA4PR04MB9488:EE_
+x-ms-office365-filtering-correlation-id: 0ff54a62-3b2d-40a1-1a2e-08dab36f792d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: mh4X/tVOIpNiEmIafNDs9j2jBJD4T1Lu5Yh6Podb0bX4kH/6tX7E2BMWMZR4iD0fcHSBorwY2CUnuHoB80y5SCEgEV3IPzevbA1rTY4hKGME8TeEY3RCRqcbyrpjTOIgfNTSbYrZ4UcQN7aCdrKqxhXy8tHo1iLRm72di8sUcj24BtwuUdpEJziVfIbOIJ9C8pQR5+oshpwR+PNDS5J9JDSb0VbvxA7ppJXsWw2B/P0K2UepgShAmeVFxKhzpHBvq28sCj1ejRvdxCJHr53OlrhXRXaxNjGX0EIQbP+q7k4HkRJmF5y9IR4CRi+03ulZy8ZCQP2rwwj9fWolpz64CS9Aydfv1DxqxQHE/qFKJZj6JRAVS+ANpf1A5P4vS/DK14uDoVzI36zGITXFqJmoPzeEIRHW0GDVsYQDQzWjXXqOGLBdCCb7lro8JSP6DZhasIF8KPnh1ld/ctb8xY2pZOwqXBIdBx3Xw1utZqC46nJp1p5r0llDq7zfsG6tD+KhTomxT72I7yzl8gw1ul8vNfS+c/o+5FGlAG7AnenwbddeR+eHRf1KZWrPimfGmFFz2/IaqhLQ7ISldNUHlU6E0zbwwk1FgAsnj5KinPs8IqiEXzbUerDSP+pDNYIvBUCIdEx3PMog1Tqr2ZlksRiP7s1v/flXCKIPP4wA977g3XdiggP76gAYK4I89SyVNvWSuTz5Kla8LnAR6NSdPVZ/F2qe8hNjMUFTHzYkp2AY8TYBXSTTYgeD/WqAraALJPvq1qISjKbiTfMr1D/rfdc6Mg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(7916004)(376002)(346002)(39860400002)(366004)(136003)(396003)(451199015)(122000001)(86362001)(38070700005)(38100700002)(2906002)(5660300002)(4744005)(6506007)(7416002)(26005)(6916009)(44832011)(1076003)(186003)(316002)(9686003)(6512007)(6486002)(54906003)(83380400001)(66476007)(478600001)(64756008)(66946007)(66556008)(66446008)(4326008)(8676002)(41300700001)(71200400001)(8936002)(33716001)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yD803O0s5jAfnU+BWQQWWP3Xjwx6MAOEpuGlMbuS8pzBENl147Kd7K4cAyXK?=
+ =?us-ascii?Q?M8o0TT+tAH+fR/VQv9iMhNuggrzpwj433+n/VUqV6Kxov5lyTQ+vXGYTmW4k?=
+ =?us-ascii?Q?NjEysgIJod8XwF5Yf1ZUizIqNxNPjSZBqKoV+/+5Tq5BpJphygu9n7t/eEfq?=
+ =?us-ascii?Q?dfwydo+t/mYofBFK29Zl8HVNNfVAXVbMpz9NIzX006YfouEF48ptT7rfFYED?=
+ =?us-ascii?Q?Makwr7aHZ3DJa5lx1gbImHUAB9xWEkUxRM+mf9DY2dJYXQLFBN4aSanC+fCl?=
+ =?us-ascii?Q?BYaTrVME+C6IvYY2+skrBt7wK2L2C6twt5P92mBzAjcKARch1UAR9RoRRXUm?=
+ =?us-ascii?Q?FSpTLen6luuLqBx/7Dk3f5C4BB6FazCvGMEgCObEVqOGLKGw47JupoMM3ZfW?=
+ =?us-ascii?Q?bINZDjgxi/dBZr6RCQdmicU9BFaHM6qGEIJt06vMxuoWFOmUTT94tK0JMa5F?=
+ =?us-ascii?Q?SHT5Hwn1QxWHLKjKGsKjzSCzo4z33jjs8wLbKTdnwqbzfbeZ8w++x1xGdYYj?=
+ =?us-ascii?Q?O62uZzZoG9JeaKAGAVcCDzIEsqiXOux4rCAvPBLTXm0SGfEwRlzYbgzaT+WB?=
+ =?us-ascii?Q?Xakvnwyd3wOugv/YcHQoXIY/G4P9HvJ2N0OOq63E+7Wvr/XJLxSi7RFq85SX?=
+ =?us-ascii?Q?VVItx1kG2YfMu1foHtXjTa+/00xiDP3Jmnvi7oXrgZnOTUT2rDYggaw1WZ1m?=
+ =?us-ascii?Q?qSATIK3vpcbkDgIDCI0FvWL7HkxGxQfzuExGxJY+h2g9xjuCVRDv8O9zkx0y?=
+ =?us-ascii?Q?yNRPMw3TZuSBG9405Ta57f4anY7cx6ziPAqMshYEcHmben5Y19QmGzhPWUjQ?=
+ =?us-ascii?Q?EfjMNZXrRO027lPliL4zrAn9izoy0Tfjy/UBdAlNB6aiVaAabHfTR7MlJ5hU?=
+ =?us-ascii?Q?i84XK9e/oOzgyiDFYQCt7wprlsOoHfiv2IQ6hxusEpn8oVqLjHmhvfBnspJB?=
+ =?us-ascii?Q?fBGAbxbkO5yewpkZqCPQvSNC3MF/+svg8G+U2Ao26h1G7Zo3LhkOjH9QQPqL?=
+ =?us-ascii?Q?5jUFhnFz8JDz0KXxIXz2MeZ+Pn7+TmBW/Kil13QgGh+WPdsE5zx2ocDRn78E?=
+ =?us-ascii?Q?pvmqNII+iipCqHU/+EkdQogk9yOMhY+KEqxG6dwWXqFfKDfsVMS8NnZnAmKy?=
+ =?us-ascii?Q?4TUE9THfm2wKnYXzLjjIGLTghiLrqIOZbw8uDy4IMjbOnQXbpzmRia2lUlMZ?=
+ =?us-ascii?Q?Nuk3TlwBe+02Fc0ikMsKxLv8837/P7Gbjcd6F7NUnOmYH6yCUTrq26Ir8ZC0?=
+ =?us-ascii?Q?VXJxgl8+4ccFcDUS5Frn7MgmG1FNfCCd9hi6VJ7Nj+zw3omiG7kCt6bSaXdD?=
+ =?us-ascii?Q?V5i7FQdtoZpdV1Pae+JRuesla2G1HFDNXuT8sgIyKF+XlmHTNuQjGVFY0E1x?=
+ =?us-ascii?Q?P9J0anp1pYNd0tt5IMAs5YV0VC4Yr5RBTZTlSvwqouYT26B+KJFuhDhxrjh1?=
+ =?us-ascii?Q?EikXG/6d293B3zkRB+V7Q2yGzbZ4uk5xEOpLJ3hGk7W0t45qvEpqhrZKBfJx?=
+ =?us-ascii?Q?8nweUfovFvntv38/xJOpcxyOhJZaY9Op20sVarMc5aM5Gv8IhEjv1Lbwly3/?=
+ =?us-ascii?Q?Wmen4i1qzaEaGo3hq2jGYHMZGEYgwHaAp1rjYH/20zDeEtadTrBar41ipVkw?=
+ =?us-ascii?Q?lg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <27A1C4204E45554489665B36E3A728DF@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="+76NLuqt2Dz00PeX"
-Content-Disposition: inline
-In-Reply-To: <20220924153304.77598-1-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ff54a62-3b2d-40a1-1a2e-08dab36f792d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2022 14:20:58.1462
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wZYeO7SwvSInKt6HieYA5tAxgdwn5swOv9PUDelARpOttu9Y5EzsgDJR15aGvsweyHjF9Sje5v7ki9t3+sspLw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9488
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UPPERCASE_50_75,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 21, 2022 at 02:45:56PM +0200, Maxime Chevallier wrote:
+> @@ -591,6 +592,51 @@ wifi1: wifi@a800000 {
+>  			status =3D "disabled";
+>  		};
+> =20
+> +		gmac: ethernet@c080000 {
 
---+76NLuqt2Dz00PeX
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Pretty random ordering in this dts, you'd expect nodes are sorted by
+address...
 
-Hi,
+> +			compatible =3D "qcom,ipq4019-ess-edma";
+> +			reg =3D <0xc080000 0x8000>;
+> +			resets =3D <&gcc ESS_RESET>;
+> +			reset-names =3D "ess";
+> +			clocks =3D <&gcc GCC_ESS_CLK>;
+> +			clock-names =3D "ess";
+> +			interrupts =3D <GIC_SPI  65 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  66 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  67 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  68 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  69 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  70 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  71 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  72 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  73 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  74 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  75 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  76 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  77 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  78 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  79 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI  80 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 241 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 242 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 243 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 254 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 255 IRQ_TYPE_EDGE_RISING>;
 
-On Sat 24 Sep 22, 17:32, Paul Kocialkowski wrote:
-> This part only concerns the introduction of the new ISP driver and related
-> adaptation of the CSI driver.
+32 interrupts, and no interrupt-names? :)
 
-I don't think there is any significant issue preventing this series from
-being merged in Linux 6.2 at this point.
+> +
+> +			status =3D "disabled";
+> +
 
-Could we move forward on it? It's been around for quite some time now.
+Could you drop these 2 blank lines? They aren't generally added between
+properties.
 
-Thanks!
+> +			phy-mode =3D "internal";
 
-Paul
+And the fixed-link from the schema example no?
 
-> Most non-dt patches still need reviewing but should be pretty straightfor=
-ward.=20
-> Since this multi-part series has been going on for a while, it would be g=
-reat
-> to see it merged soon!
->=20
-> Changes since v6:
-> - Added a per-compatible check for the required port in dt binding;
-> - Reworded ISP output port description in dt binding;
-> - Reversed ISP detection order to have fwnode first;
-> - Removed info print when ISP link is detected;
-> - Added warn print when ISP is linked but not enabled in config;
-> - Fixed sun6i_csi_isp_detect return type;
-> - Removed useless initialization in sun6i_csi_isp_detect;
-> - Fixed typo in sun6i_csi_isp_detect;
-> - Added collected tags;
->=20
-> Changes since v5:
-> - Rebased on latest media tree;
-> - Added collected tag;
-> - Switched to using media_pad_remote_pad_first;
-> - Switched to using media_pad_remote_pad_unique.
->=20
-> Changes since v4:
-> - Fixed device-tree binding indent-align;
-> - Added collected tag;
-> - Rebased on latest media tree;
->=20
-> Changes since v3:
-> - Removed the v4l2 controls handler from the driver;
-> - Added variant structure for table sizes;
-> - Removed the info message about video device registration;
-> - Removed comments in uAPI header;
-> - Used '/schemas/graph.yaml#/properties/port' whenever possible in bindin=
-gs;
-> - Added CSI patches dependent on the ISP driver;
-> - Rebased on the latest media tree;
->=20
-> Changes since all-in-one v2:
-> - Updated Kconfig to follow the latest media-wide changes;
-> - Reworked async subdev handling with a dedicated structure holding the
->   corresponding source to avoid matching in the driver;
-> - Switched to clock-managed regmap mmio;
-> - Used helper to get a single enabled link for an entity's pad, to replace
->   source selection at link_validate time and select the remote source at
->   stream on time instead;
-> - Added mutex for mbus format serialization;
-> - Used endpoint-base instead of video-interface for "internal" endpoints
->   in device-tree schema;
-> - Added TODO with unstaging requirements;
-> - Various cosmetic cleanups;
-> - Updated copyright years;
->=20
-> Paul Kocialkowski (6):
->   dt-bindings: media: Add Allwinner A31 ISP bindings documentation
->   dt-bindings: media: sun6i-a31-csi: Add internal output port to the ISP
->   staging: media: Add support for the Allwinner A31 ISP
->   MAINTAINERS: Add entry for the Allwinner A31 ISP driver
->   media: sun6i-csi: Detect the availability of the ISP
->   media: sun6i-csi: Add support for hooking to the isp devices
->=20
->  .../media/allwinner,sun6i-a31-csi.yaml        |   4 +
->  .../media/allwinner,sun6i-a31-isp.yaml        | 101 +++
->  MAINTAINERS                                   |   9 +
->  .../platform/sunxi/sun6i-csi/sun6i_csi.c      |  75 +-
->  .../platform/sunxi/sun6i-csi/sun6i_csi.h      |  10 +
->  .../sunxi/sun6i-csi/sun6i_csi_bridge.c        |  32 +-
->  .../sunxi/sun6i-csi/sun6i_csi_capture.c       |  19 +-
->  .../sunxi/sun6i-csi/sun6i_csi_capture.h       |   1 +
->  drivers/staging/media/sunxi/Kconfig           |   1 +
->  drivers/staging/media/sunxi/Makefile          |   1 +
->  drivers/staging/media/sunxi/sun6i-isp/Kconfig |  15 +
->  .../staging/media/sunxi/sun6i-isp/Makefile    |   4 +
->  .../staging/media/sunxi/sun6i-isp/TODO.txt    |   6 +
->  .../staging/media/sunxi/sun6i-isp/sun6i_isp.c | 555 +++++++++++++
->  .../staging/media/sunxi/sun6i-isp/sun6i_isp.h |  90 +++
->  .../media/sunxi/sun6i-isp/sun6i_isp_capture.c | 742 ++++++++++++++++++
->  .../media/sunxi/sun6i-isp/sun6i_isp_capture.h |  78 ++
->  .../media/sunxi/sun6i-isp/sun6i_isp_params.c  | 566 +++++++++++++
->  .../media/sunxi/sun6i-isp/sun6i_isp_params.h  |  52 ++
->  .../media/sunxi/sun6i-isp/sun6i_isp_proc.c    | 577 ++++++++++++++
->  .../media/sunxi/sun6i-isp/sun6i_isp_proc.h    |  66 ++
->  .../media/sunxi/sun6i-isp/sun6i_isp_reg.h     | 275 +++++++
->  .../sunxi/sun6i-isp/uapi/sun6i-isp-config.h   |  43 +
->  23 files changed, 3309 insertions(+), 13 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun=
-6i-a31-isp.yaml
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/Kconfig
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/Makefile
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/TODO.txt
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp.c
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp.h
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_captu=
-re.c
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_captu=
-re.h
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_param=
-s.c
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_param=
-s.h
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.h
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_reg.h
->  create mode 100644 drivers/staging/media/sunxi/sun6i-isp/uapi/sun6i-isp-=
-config.h
->=20
+> +		};
+> +
+>  		mdio: mdio@90000 {
+>  			#address-cells =3D <1>;
+>  			#size-cells =3D <0>;
 > --=20
 > 2.37.3
->=20
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---+76NLuqt2Dz00PeX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmNSqUIACgkQ3cLmz3+f
-v9E9qQf/e6CZP3vspGNFsSTlpYbKP0gLTcBx4CWwJ810BzPsvBiAFWWPLDsbeNXG
-SDdtAoTfjFF0g2wR/xzgL4NdH0uxBTQk+XoPTHwguJKJTzSXtCdAkyr0M6ilGlpe
-Bz/95TZ2Za4SswSPhHtcd23lixzrpG3xg7It/7itWeARX/vd1U/AZgiIIc6yyPix
-bjEJHJWg0y77fmhtZ4lds9er4kesL7xirmDGyLIBOU1hlWl2q+lKNC4BE09j43pJ
-ofrRUmhgI6cjr0T6NDcrlArFndpj6IyAVSLX0MWa4HHyDtjrPpBHWN8X5mQDlHo8
-7MvX1B2sht4qKu1E69ZG9yI2yPDCGw==
-=BoRq
------END PGP SIGNATURE-----
-
---+76NLuqt2Dz00PeX--
+>=
