@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29EBA606D83
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 04:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA137606D87
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 04:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbiJUCS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 22:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52782 "EHLO
+        id S229597AbiJUCU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 22:20:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbiJUCS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 22:18:28 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3945232E4B;
-        Thu, 20 Oct 2022 19:18:26 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id v40-20020a056830092800b00661e37421c2so1011988ott.3;
-        Thu, 20 Oct 2022 19:18:26 -0700 (PDT)
+        with ESMTP id S229583AbiJUCU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 22:20:58 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D0A71EA562;
+        Thu, 20 Oct 2022 19:20:58 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-1364357a691so1886327fac.7;
+        Thu, 20 Oct 2022 19:20:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hmYPJ/7wJsxmApIlLpTd6X/vTi/8H9pkgr7hxwMxZ+4=;
-        b=SjL7zQTXPKYBm6nLGaZ5JBik8hImuGyXnxjzFV/J/tcLQAkSOoddbar+kvzJMnk3qZ
-         maDAEjxnj8e2Ps8QTea6FeGRzv1rHzUgSK9uZObiAsTIM93z1AZb9naD/zHeyK1QaUZs
-         j0K2v18IgrY9VF3pP6mJRztKvFti5gFXCqT+LYMdf4ywgL2gSUe1BvVi0+SflT+2awJR
-         HqQh4sqgll5IntSkHEeunaEVMIUrLxQFfesEhbwn9BpOYz4E6CFeoUPKPY3TXEM4U/cc
-         TYoN5rRMktEYC13oktQkbU3W8PocNpQdYWuwSFDQ7ygy6OY727axuUq3MAARE/ltJoxy
-         OPag==
-X-Gm-Message-State: ACrzQf3ejnnkFyP1SRZgw1MwimLqg64piGSwqCdqkqURT5R1+aWT9uOk
-        OiXjL5OyjZ7415zz0mZ0iw==
-X-Google-Smtp-Source: AMsMyM6AAtXEtrNEbF8O/YJHsAHyYPvt7kFYUS0tw5D6Zyse7ySN3oQkDlgUB5X8jlqFJFTwDFNL4A==
-X-Received: by 2002:a9d:6a98:0:b0:662:1427:f55b with SMTP id l24-20020a9d6a98000000b006621427f55bmr2634021otq.381.1666318704819;
-        Thu, 20 Oct 2022 19:18:24 -0700 (PDT)
+        bh=9WCJTRSJ650T37gl1fy1TLSM1yvaFdecsLly4ZCAwt0=;
+        b=HcPAFm82Per3d4CnKS5bPFNhXCDTKDrKsrCqnciiXQ3E45M6xbMcm4YpJaTP0sy7LV
+         iI+6IcT+bPxayi8857fdRpysnzdbG7gUC4Wv2JH/Wu+FdUcb5XYHCwZNStLxestP3YfJ
+         uRiYHDd54IGAXWZBL8PrBVBXpbrYC6jUaJ0WocC1PArltHtCpHIDCCDuMuY48/w6EjZa
+         NIOPTHcl6XuCUlsEsQWfxGsLyvyEHPHdub+HPTwC+cDHALcazcRkKHlJ/vFnPdjpsTiX
+         /WjFhC9BXJiFFQyZY/1UigfZtG+vWg/fUXRithbt1wYEq/1OrAAsK7S0oPX2nwLh8jKV
+         pK2w==
+X-Gm-Message-State: ACrzQf1x6/fCxFXD+KSPybEZ+Me+KQa8sBIHl1M4n9uYW3sgoYqE9vvn
+        719Z956EzGLNeiiFQtiNGw==
+X-Google-Smtp-Source: AMsMyM6gGWhuay0oXF9v3Bb7JNcNpcEv0REpfUvEIvxylDjtTOuL31vwGs7GIBhDgT7LTqjQRM6F7Q==
+X-Received: by 2002:a05:6870:d7a4:b0:136:ddff:40c2 with SMTP id bd36-20020a056870d7a400b00136ddff40c2mr11147732oab.134.1666318857234;
+        Thu, 20 Oct 2022 19:20:57 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d13-20020a9d5e0d000000b00661a30ea0d4sm595460oti.2.2022.10.20.19.18.23
+        by smtp.gmail.com with ESMTPSA id p21-20020a0568301d5500b0063695ad0cbesm560555oth.66.2022.10.20.19.20.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 19:18:24 -0700 (PDT)
-Received: (nullmailer pid 2189482 invoked by uid 1000);
-        Fri, 21 Oct 2022 02:18:25 -0000
-Date:   Thu, 20 Oct 2022 21:18:25 -0500
+        Thu, 20 Oct 2022 19:20:56 -0700 (PDT)
+Received: (nullmailer pid 2192274 invoked by uid 1000);
+        Fri, 21 Oct 2022 02:20:58 -0000
+Date:   Thu, 20 Oct 2022 21:20:58 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Akhil R <akhilrajeev@nvidia.com>
-Cc:     ldewangan@nvidia.com, jonathanh@nvidia.com, vkoul@kernel.org,
-        thierry.reding@gmail.com, p.zabel@pengutronix.de,
-        dmaengine@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sfr@canb.auug.org.au
-Subject: Re: [PATCH RESEND v2 2/3] arm64: tegra: Add dma-channel-mask in
- GPCDMA node
-Message-ID: <20221021021825.GB2181729-robh@kernel.org>
-References: <20221020083322.36431-1-akhilrajeev@nvidia.com>
- <20221020083322.36431-3-akhilrajeev@nvidia.com>
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     Andy Chiu <andy.chiu@sifive.com>, davem@davemloft.net,
+        kuba@kernel.org, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, pabeni@redhat.com,
+        edumazet@google.com, greentime.hu@sifive.com
+Subject: Re: [PATCH net-next 2/2] dt-bindings: add mdio frequency description
+Message-ID: <20221021022058.GA2191302-robh@kernel.org>
+References: <20221020094106.559266-1-andy.chiu@sifive.com>
+ <20221020094106.559266-3-andy.chiu@sifive.com>
+ <495eb398-bec4-5d68-ef5d-4f02d0122a7c@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221020083322.36431-3-akhilrajeev@nvidia.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <495eb398-bec4-5d68-ef5d-4f02d0122a7c@amd.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 02:03:21PM +0530, Akhil R wrote:
-> Add dma-channel-mask property in Tegra GPCDMA device tree node.
+On Thu, Oct 20, 2022 at 12:39:46PM +0200, Michal Simek wrote:
 > 
-> The property would help to specify the channels to be used in
-> kernel and reserve few for the firmware. This was previously
-> achieved by limiting the channel number to 31 in the driver.
-> Now since we can list all 32 channels, update the interrupts
-> property as well to list all 32 interrupts.
 > 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 4 +++-
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 4 +++-
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 4 +++-
->  3 files changed, 9 insertions(+), 3 deletions(-)
+> On 10/20/22 11:41, Andy Chiu wrote:
+> > CAUTION: This message has originated from an External Source. Please use proper judgment and caution when opening attachments, clicking links, or responding to this email.
+> > 
+> > 
+> > Add a property to set mdio bus frequency at runtime by DT.
+> > 
+> > Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> > Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
+> > ---
+> >   Documentation/devicetree/bindings/net/xilinx_axienet.txt | 3 +++
+> >   1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> > index 1aa4c6006cd0..d78cf402aa2a 100644
+> > --- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> > +++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
+> > @@ -43,6 +43,9 @@ Optional properties:
+> >                    support both 1000BaseX and SGMII modes. If set, the phy-mode
+> >                    should be set to match the mode selected on core reset (i.e.
+> >                    by the basex_or_sgmii core input line).
+> > +- xlnx,mdio-freq: Define the clock frequency of the MDIO bus. If the property
+> > +                 does not pressent on the DT, then the mdio driver would use
+> > +                 the default 2.5 MHz clock, as mentioned on 802.3 spc.
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> index 6602fe421ee8..db479064ff72 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> @@ -78,7 +78,8 @@
->  		reg = <0x0 0x2600000 0x0 0x210000>;
->  		resets = <&bpmp TEGRA186_RESET_GPCDMA>;
->  		reset-names = "gpcdma";
-> -		interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
-> +		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
+> Isn't it better to specify it based on ccf description. It means &clk and
+> used clock framework to find value?
 
-Adding an interrupt onto the beginning? Also an ABI issue.
-
-If you want to break the ABI, you have to explain that you are and why 
-it is okay on that platform.
+Or use 'bus-frequency' which IIRC is defined for MDIO.
 
 Rob
