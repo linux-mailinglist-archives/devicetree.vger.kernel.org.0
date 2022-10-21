@@ -2,134 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4408E606CB7
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 02:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9685606CD3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 03:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbiJUA5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 20:57:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54724 "EHLO
+        id S229742AbiJUBFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 21:05:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiJUA5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 20:57:39 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C691C2F37
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 17:57:38 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id u7so841336qvn.13
-        for <devicetree@vger.kernel.org>; Thu, 20 Oct 2022 17:57:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X0SdjGX93SoUfgDNcPGyqCsKajZovtPz4VDBIQaEbUw=;
-        b=K2GsRTG+bSqoKbLmErsIpN4EL1UTxTrjiH5LtCpkVWp8ZKQJ3BP7leJ8aTCinICyFB
-         F76jiPG1g5sb9CBh92ZbvlDB9CdqJd0zYtkW3KdkTOSs8xekNf+wqpu9nDZCaK27heET
-         agVbeQ97cNPvr8f91bT3FXLrUD2hhr5kCuPPejQ+1IhJYRXgsL7P+qkL8tVEaHsOSH3P
-         39mH1CKTA9MtHDRqMu+vv+c8JB6k4V0UJncn7D0aK0slUrywNsOk0J8AdFGHEykfhWYJ
-         Iy7aBYBz0Jtiiyvm4MKOTPnOS8o5J2Ov9p4NYdIGLtFpOnuE8aoHGzcTALTBOZ2pfP7h
-         akRw==
+        with ESMTP id S229541AbiJUBFR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 21:05:17 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AAE7C06BD;
+        Thu, 20 Oct 2022 18:05:12 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id t4-20020a9d7f84000000b00661c3d864f9so910268otp.10;
+        Thu, 20 Oct 2022 18:05:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X0SdjGX93SoUfgDNcPGyqCsKajZovtPz4VDBIQaEbUw=;
-        b=8POPnVZb4/VHlC8zwixDfeK8570ItCQ9rBk9CePOgXV3mt2tevy4cE6lIX74beSTfb
-         4hGKoksb+Jeqe3RZKL2rzHSp8gJ6z1tE926nhvkZ+YY0f0DM0TqMjwsVno8VWmMqztbl
-         DtSK6mqp4g09yw1nXrxSUsQA/O1+i739JL9NNvo/tbbu3jwQs2s+JE4l6lKYcDmrVlAF
-         KOU+s4ndt8VQivp4bsniwRWTjsaKifOvEXWrGQ85ksAvSKjvK1tBQ6Iusoj5uS+ahWPr
-         sLjxKR7XB/w2HE6La7s0rKWLMTU1vuokfNSVXDpp871nU7VN/PAkX8JLBMmxRrMcgkMg
-         v5Tw==
-X-Gm-Message-State: ACrzQf0ox0g5MbcOG5vh6PQ9o6yJfC1tYvDq/JFvfMWuzmdpAbhdWJUr
-        V42pRvxFotnkA/m94arXs4XMMo2eSzHt6g==
-X-Google-Smtp-Source: AMsMyM4RPti2boCODgoqSWyPSib8gDX4SUzNZkPomNOm7OB5OU0HG8iKXhT6X7ezvTMPKyb11m+LFw==
-X-Received: by 2002:a05:6214:29cb:b0:4b1:7991:e844 with SMTP id gh11-20020a05621429cb00b004b17991e844mr14426856qvb.72.1666313857373;
-        Thu, 20 Oct 2022 17:57:37 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id k11-20020a05620a414b00b006e99290e83fsm8678550qko.107.2022.10.20.17.57.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Oct 2022 17:57:36 -0700 (PDT)
-Message-ID: <2458332d-5a55-a74d-d6f0-c1457fbda282@linaro.org>
-Date:   Thu, 20 Oct 2022 20:57:29 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ecocDdlY9HD0dckWSi58lakyiwrmabIaEHlrxIT6WH0=;
+        b=OPVrwIQWo1WfGYF/ZiSMdmCHZ6Pf0kEEVvbRGSx5p0G+IispvY/Ec3KYJt1rj0NLq1
+         1HFWtIGgUm0wHlmDlm0bbkh5PbEdgAZVj3MX+TvNXlJKzHg6kFzJgYrN2AIx8G0kfGTz
+         fezVS/vfsQiMdjzhr7wu0GF3zXcwqdGNBjFulXWX8wWOcMoNr1PxdLy1ed5h5hS1n4Zb
+         Esu297TMxX8ysCuJDL7I+9I2luAUvoj9ndcXlZFUmYBIEGJ9X6BbH/DflEzP6s0wSEba
+         9xV0Gzxd4iJHRY9dHvAr87sf3Jy8Y9HJICI34OQ8reh8esLhyhot2TGNf8akZWb99Nsw
+         wsDQ==
+X-Gm-Message-State: ACrzQf1iB7WdokcGhxCcFS70kDZSuYXZu1zZ0y1bw0WGaPwRIvvCbCNo
+        QFHPZmTb/EkspAYyS134BMEdrKXAXg==
+X-Google-Smtp-Source: AMsMyM6tI/gHEPMEf2U2laKjn7zNaO032RwU8qbztdEvs2i2nyjTJbwEI06MkMtaR9Ee3w9ADVSNZg==
+X-Received: by 2002:a05:6830:1644:b0:661:8b9f:16c3 with SMTP id h4-20020a056830164400b006618b9f16c3mr8477769otr.235.1666314311664;
+        Thu, 20 Oct 2022 18:05:11 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s64-20020acaa943000000b00353fe4fb4casm550566oie.48.2022.10.20.18.05.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Oct 2022 18:05:11 -0700 (PDT)
+Received: (nullmailer pid 2100343 invoked by uid 1000);
+        Fri, 21 Oct 2022 01:05:12 -0000
+Date:   Thu, 20 Oct 2022 20:05:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Chen Zhong <chen.zhong@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fabien Parent <fabien.parent@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] dt-bindings: regulator: Add binding schema for
+ mt6357 regulators
+Message-ID: <20221021010512.GA1974104-robh@kernel.org>
+References: <20221005-mt6357-support-v3-0-7e0bd7c315b2@baylibre.com>
+ <20221005-mt6357-support-v3-3-7e0bd7c315b2@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT6190 regulator
-Content-Language: en-US
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1666249033-12219-1-git-send-email-u0084500@gmail.com>
- <1666249033-12219-2-git-send-email-u0084500@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1666249033-12219-2-git-send-email-u0084500@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221005-mt6357-support-v3-3-7e0bd7c315b2@baylibre.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 02:57, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On Thu, Oct 20, 2022 at 06:20:47PM +0200, Alexandre Mergnat wrote:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> Add devicetree binding for Richtek RT6190 4-Switch buckboost controller.
+> Add YAML schema for the MediaTek MT6357 regulators.
 > 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->  .../regulator/richtek,rt6190-regulator.yaml        | 77 ++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6190-regulator.yaml
+>  .../regulator/mediatek,mt6357-regulator.yaml       | 292 +++++++++++++++++++++
+>  1 file changed, 292 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6190-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6190-regulator.yaml
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
 > new file mode 100644
-> index 00000000..be0fa7f
+> index 000000000000..8dc1245304be
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt6190-regulator.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6357-regulator.yaml
+> @@ -0,0 +1,292 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/regulator/richtek,rt6190-regulator.yaml#
-
-Filename based on compatible, so just richtek,rt6190.yaml
-
-Unless it is a part of some MFD-like device, but then compatibles needs
-fixes.
-
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6357-regulator.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Richtek RT6190 4-Switch BuckBoost controller
+> +title: MediaTek MT6357 Regulators
 > +
 > +maintainers:
-> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +  - Fabien Parent <fabien.parent@linaro.org>
+> +  - Alexandre Mergnat <amergnat@baylibre.com>
 > +
 > +description: |
-> +  The RT6190 is 4-Switch BuckBoost controller designed for converting input
-> +  voltage to output voltage that can be equal to, higher or lower than input
-> +  voltage. It operates with wide input voltage range from 4.5V to 36V, and
-> +  the output voltage can be set from 3V to 36V by external FB pin. It's commonly
-> +  used for the application like as BuckBoost bus upply, docking station and USB
-> +  power delivery product.
+> +  The MT6357 PMIC provides 5 BUCK and 29 LDO.
+> +  Regulators and nodes are named according to the regulator type:
+> +  buck-<name> and ldo-<name>.
+> +  MT6357 regulators node should be sub node of the MT6397 MFD node.
 > +
-> +  Datasheet is available at
-> +  https://www.richtek.com/assets/product_file/RT6190/DS6190-02.pdf
+> +patternProperties:
+> +  "^buck-v(core|modem|pa|proc|s1)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +    description:
+> +      Properties for single BUCK regulator.
 > +
-> +allOf:
-> +  - $ref: regulator.yaml#
+> +    required:
+> +      - regulator-name
+> +      - regulator-min-microvolt
+> +      - regulator-max-microvolt
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - richtek,rt6190
+> +  "^ldo-v(aud28|aux18|cama|camd|cn18|cn28|cn33-bt|cn33-wifi|dram)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +    description:
+> +      Properties for single LDO regulator.
+> +
+> +    required:
+> +      - regulator-name
+> +      - regulator-min-microvolt
+> +      - regulator-max-microvolt
+> +
+> +  "^ldo-v(efuse|emc|ibr|io18|io28|ldo28|mch|rf12|rf18)$":
 
-Best regards,
-Krzysztof
+vf12 and rf18 are covered by regulator-fixed binding.
 
+
+
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +    description:
+> +      Properties for single LDO regulator.
+> +
+> +    required:
+> +      - regulator-name
+> +      - regulator-min-microvolt
+> +      - regulator-max-microvolt
+> +
+> +  "^ldo-v(xo22|sim1,sim2|sram-others|sram-proc|usb33|xo22)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +    description:
+> +      Properties for single LDO regulator.
+> +
+> +    required:
+> +      - regulator-name
+> +      - regulator-min-microvolt
+> +      - regulator-max-microvolt
+> +
+> +additionalProperties: false
+
+vfe28 is not listed, and this would cause an error if the schema was 
+applied, but it is not as Krzysztof pointed out.
+
+
+The MFD binding really needs to be converted so it can reference this 
+schema. Otherwise, when it is, then all the issues have to be fixed.
+
+Rob
