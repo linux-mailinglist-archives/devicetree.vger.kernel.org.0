@@ -2,159 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4972B607EEF
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 21:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 676CE607F11
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 21:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiJUTSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 15:18:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
+        id S229604AbiJUTc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 15:32:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbiJUTR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 15:17:59 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B392920CA;
-        Fri, 21 Oct 2022 12:17:54 -0700 (PDT)
-Received: from [10.0.0.163] (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: david.heidelberg)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C58B066025FA;
-        Fri, 21 Oct 2022 20:17:51 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666379872;
-        bh=5JoqpvIeIVnbkgZEA0L2xNRd9xGh1NYvaRQdmk73hpA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=k6SoNyV6QY1zZ+StUQYv2+IHEtSM6JxTuxNVwMPL2eBg7iLnw2Fm83DK4aRiB/A6g
-         047caoIrXZ/mW8tWLa7Dp3RLXan5KvZBNeLA3hyrQTIEEd19zcsdHZSHSwey9BN0Q3
-         /EelXBGFXlVSSap8IUWMVMHOE0Nv845OLUIm67z8OA7Xhl3Wz754v0c8Xtd0uYT5kW
-         QW5PpV6JMjsfTjjMXPS2Wr0Gq95Ve9fIbCFhksbCSI61XHiENTcirBfvlolyyupDHZ
-         iulkNMJeM01jnRSE8JevDftfrg6hObczJVWvn66hWl9ClV8FBg3bZ662dTei56OnSq
-         UPrSsXSOVNz5Q==
-Message-ID: <aedd2f30-3f27-757f-6d2b-d34067b9e6d6@collabora.com>
-Date:   Fri, 21 Oct 2022 21:17:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:104.0) Gecko/20100101
- Thunderbird/104.0
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
- MICVDD supplies
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Derek Fang <derek.fang@realtek.com>,
+        with ESMTP id S229875AbiJUTcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 15:32:55 -0400
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 164BD2505C3;
+        Fri, 21 Oct 2022 12:32:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1666380768; bh=iOjw4y7HyVQfS/8t6MNRacekJ0y7x8kJRV6uNTkBJP0=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=skRno2TLIS5tzhoN0iDFf8oexHduUUk8zEsykGbBsArZyzIUvFLy9zHy2T8EQySCa
+         YDZPX/DVV9wdf0FupcqvLZkw/h37sXIuU+VD7n0yqvMtbC206xPnsZWdDUQPltBPYn
+         ePHp0WY+OB8R+YynJQrr+atNQtYJlQM+2a0D/Vk8=
+Date:   Fri, 21 Oct 2022 21:32:48 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-References: <20221021190908.1502026-1-nfraprado@collabora.com>
- <20221021190908.1502026-3-nfraprado@collabora.com>
-From:   David Heidelberg <david.heidelberg@collabora.com>
-Autocrypt: addr=david.heidelberg@collabora.com; keydata=
- xjMEYlvLOxYJKwYBBAHaRw8BAQdA5CoWEzz4igpwK4h6lK6ZformRk84+ymcfkGNPwqEeILN
- MURhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFib3JhLmNvbT7ClgQT
- FggAPhYhBEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsDBQkFo5qABQsJCAcCBhUKCQgL
- AgQWAgMBAh4BAheAAAoJEGn1Z4YcHsAU84kBAK5YqSWAOuIumAqgWvke6BEsaIGWGQzXSuKj
- er/TXuFuAQCwc9ITSVXWWTSpdFt2+4z7Wch8tIGlbIFcS9dCFddwCc44BGJbyzsSCisGAQQB
- l1UBBQEBB0AEk7jXEwDApGOwMH/X0UAPBH8Y3isjxhNMjpyRcnl2CwMBCAfCfgQYFggAJhYh
- BEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsMBQkFo5qAAAoJEGn1Z4YcHsAU0PEA/j0Y
- uAOKJCnnwrkf3ozPP0sutA5bojoARwcIaZKO/zvIAP9PwTC9DGLg+8LJm7m2Lyf0LxLA8FXD
- wueLHBdwHg6zAQ==
-In-Reply-To: <20221021190908.1502026-3-nfraprado@collabora.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------7IDW3YrPnWNDMBG09VTeo65l"
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
+ and ranges
+Message-ID: <20221021193248.2he6amnj7knk4biu@core>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+        Peter Geis <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20221005085439.740992-1-megi@xff.cz>
+ <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
+ <20221005220812.4psu6kckej63yo2z@core>
+ <4679102.Wku2Vz74k6@phil>
+ <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
+ <20221021153913.l5ry6v4mcnzcmj2v@core>
+ <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------7IDW3YrPnWNDMBG09VTeo65l
-Content-Type: multipart/mixed; boundary="------------Lp0HUlG1cLU189d74g2Urm8D";
- protected-headers="v1"
-From: David Heidelberg <david.heidelberg@collabora.com>
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- kernel@collabora.com, Derek Fang <derek.fang@realtek.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>
-Message-ID: <aedd2f30-3f27-757f-6d2b-d34067b9e6d6@collabora.com>
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
- MICVDD supplies
-References: <20221021190908.1502026-1-nfraprado@collabora.com>
- <20221021190908.1502026-3-nfraprado@collabora.com>
-In-Reply-To: <20221021190908.1502026-3-nfraprado@collabora.com>
+On Fri, Oct 21, 2022 at 12:48:15PM -0400, Peter Geis wrote:
+> On Fri, Oct 21, 2022 at 11:39 AM Ondřej Jirman <megi@xff.cz> wrote:
+> >
+> > On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
+> > > Good Morning Heiko,
+> > >
+> > > Apologies for just getting to this, I'm still in the middle of moving
+> > > and just got my lab set back up.
+> > >
+> > > I've tested this patch series and it leads to the same regression with
+> > > NVMe drives. A loop of md5sum on two identical 4GB random files
+> > > produces the following results:
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > fad97e91da8d4fd554c895cafa89809b  test-rand2.img
+> > > 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
+> > > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+> > > 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
+> > > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+> > > b9637505bf88ed725f6d03deb7065dab  test-rand.img
+> > > f7437e88d524ea92e097db51dce1c60d  test-rand2.img
+> > >
+> > > Before this patch series:
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > >
+> > > Though I do love where this patch is going and would like to see if it
+> > > can be made to work, in its current form it does not.
+> >
+> > Thanks for the test. Can you please also test v1? Also please share lspci -vvv
+> > of your nvme drive, so that we can see allocated address ranges, etc.
+> 
+> Good catch, with your patch as is, the following issue crops up:
+> Region 0: Memory at 300000000 (64-bit, non-prefetchable) [size=16K]
+> Region 2: I/O ports at 1000 [disabled] [size=256]
+> 
+> However, with a simple fix, we can get this:
+> Region 0: Memory at 300000000 (64-bit, non-prefetchable) [virtual] [size=16K]
+> Region 2: I/O ports at 1000 [virtual] [size=256]
+> 
+> and with it a working NVMe drive.
+> 
+> Change the following range:
+> 0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+> to
+> 0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x40000000>;
 
---------------Lp0HUlG1cLU189d74g2Urm8D
-Content-Type: multipart/mixed; boundary="------------J2fwV7r1wXG0m4q6aeHfxIlj"
+I've already tried this, but this unfrotunately breaks the wifi cards.
+(those only use the I/O space) Maybe because I/O and memory address spaces
+now overlap, I don't know. That's why I used the 1GiB offset for memory
+space.
 
---------------J2fwV7r1wXG0m4q6aeHfxIlj
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+kind regards,
+	o.
 
-UmV2aWV3ZWQtYnk6IERhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFi
-b3JhLmNvbT4NCg0KT24gMjEvMTAvMjAyMiAyMTowOSwgTsOtY29sYXMgRi4gUi4gQS4gUHJh
-ZG8gd3JvdGU6DQo+IFRoZSBydDU2ODJzIGNvZGVjIGNhbiBoYXZlIHR3byBzdXBwbGllczog
-QVZERCBhbmQgTUlDVkRELiBBZGQgcHJvcGVydGllcw0KPiBmb3IgdGhlbS4NCj4NCj4gU2ln
-bmVkLW9mZi1ieTogTsOtY29sYXMgRi4gUi4gQS4gUHJhZG8gPG5mcmFwcmFkb0Bjb2xsYWJv
-cmEuY29tPg0KPiAtLS0NCj4NCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3Mvc291bmQvcmVhbHRlayxydDU2ODJzLnlhbWwgfCA0ICsrKysNCj4gICAxIGZpbGUgY2hh
-bmdlZCwgNCBpbnNlcnRpb25zKCspDQo+DQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvcmVhbHRlayxydDU2ODJzLnlhbWwgYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvcmVhbHRlayxydDU2ODJzLnlh
-bWwNCj4gaW5kZXggZWE1M2E1NTAxNWM0Li5jYTEwMzdlNzZmOTYgMTAwNjQ0DQo+IC0tLSBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9yZWFsdGVrLHJ0NTY4
-MnMueWFtbA0KPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291
-bmQvcmVhbHRlayxydDU2ODJzLnlhbWwNCj4gQEAgLTkwLDYgKzkwLDEwIEBAIHByb3BlcnRp
-ZXM6DQo+ICAgICAiI3NvdW5kLWRhaS1jZWxscyI6DQo+ICAgICAgIGNvbnN0OiAwDQo+ICAg
-DQo+ICsgIEFWREQtc3VwcGx5OiB0cnVlDQo+ICsNCj4gKyAgTUlDVkRELXN1cHBseTogdHJ1
-ZQ0KPiArDQo+ICAgYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ICAgDQo+ICAgcmVx
-dWlyZWQ6DQo=
---------------J2fwV7r1wXG0m4q6aeHfxIlj
-Content-Type: application/pgp-keys; name="OpenPGP_0x69F567861C1EC014.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x69F567861C1EC014.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xjMEYlvLOxYJKwYBBAHaRw8BAQdA5CoWEzz4igpwK4h6lK6ZformRk84+ymcfkGN
-PwqEeILNMURhdmlkIEhlaWRlbGJlcmcgPGRhdmlkLmhlaWRlbGJlcmdAY29sbGFi
-b3JhLmNvbT7ClgQTFggAPhYhBEo7kSl22BK0F1Np/mn1Z4YcHsAUBQJiW8s7AhsD
-BQkFo5qABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEGn1Z4YcHsAU84kBAK5Y
-qSWAOuIumAqgWvke6BEsaIGWGQzXSuKjer/TXuFuAQCwc9ITSVXWWTSpdFt2+4z7
-Wch8tIGlbIFcS9dCFddwCc44BGJbyzsSCisGAQQBl1UBBQEBB0AEk7jXEwDApGOw
-MH/X0UAPBH8Y3isjxhNMjpyRcnl2CwMBCAfCfgQYFggAJhYhBEo7kSl22BK0F1Np
-/mn1Z4YcHsAUBQJiW8s7AhsMBQkFo5qAAAoJEGn1Z4YcHsAU0PEA/j0YuAOKJCnn
-wrkf3ozPP0sutA5bojoARwcIaZKO/zvIAP9PwTC9DGLg+8LJm7m2Lyf0LxLA8FXD
-wueLHBdwHg6zAQ=3D=3D
-=3DOQS+
------END PGP PUBLIC KEY BLOCK-----
-
---------------J2fwV7r1wXG0m4q6aeHfxIlj--
-
---------------Lp0HUlG1cLU189d74g2Urm8D--
-
---------------7IDW3YrPnWNDMBG09VTeo65l
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEARYIAB0WIQRKO5EpdtgStBdTaf5p9WeGHB7AFAUCY1LwXQAKCRBp9WeGHB7A
-FO9pAP9zwthSYYt9lC+meBeHS4DNmDJlPdVDLfrzj7KcwatqwgEA02fTCaJRzCSS
-fzPRIZBbpaXBnfP5RvDu4QZoTynFBAQ=
-=Yczf
------END PGP SIGNATURE-----
-
---------------7IDW3YrPnWNDMBG09VTeo65l--
+> I still haven't tested this with other cards yet, and another patch
+> that does similar work I've tested successfully as well with NVMe
+> drives. I'll have to get back to you on the results of greater
+> testing.
+> 
+> Very Respectfully,
+> Peter Geis
+> 
+> >
+> > kind regards,
+> >         o.
+> >
+> > > Very Respectfully,
+> > > Peter Geis
