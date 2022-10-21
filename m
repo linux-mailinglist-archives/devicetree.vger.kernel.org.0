@@ -2,108 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F263607017
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E99607030
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:40:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbiJUGaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 02:30:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35384 "EHLO
+        id S230153AbiJUGk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 02:40:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbiJUG37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:29:59 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4180780EB8;
-        Thu, 20 Oct 2022 23:29:53 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 533275C010C;
-        Fri, 21 Oct 2022 02:29:51 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Fri, 21 Oct 2022 02:29:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1666333791; x=1666420191; bh=Rn1eX5IwwA
-        BXIrU09kZH5BdxkV4UW1YOrtnq2G9DfbY=; b=mmSmV0DXVzk8OVu96d2xHTh8e0
-        A6i+11BnCy2f+YotS5vGpH3/L/iDL4i89lA7f9Qe9/gJEWQ5mGacenpFxwQsaD9B
-        L/2OwYEY+QnOvHrTxqZGfqKsNKNtzw2OXlfsfkhK+AItsHZLrzQYRSIzbmn7aoym
-        NwMVZJMKrsZAz6sHvR4+ype6zoK5SVlHlyl5hOtTj8UXSpJLVxazHX/wcE84Frbt
-        29xtruRTXgYKcnaTrHxRxj/lQfr2pvk5BuOMsM+rKmoFaqD6enZXCU7DmntIGzt7
-        rNKHu2A+3w3Kot0R+I0pLBDSnTHHX4tA6MZN2BCyVrs4URI62VWB9eKf2rfQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1666333791; x=1666420191; bh=Rn1eX5IwwABXIrU09kZH5BdxkV4U
-        W1YOrtnq2G9DfbY=; b=I6cwMgX9/lSFo0DLXdx8R8vZxDSWjEf3zsTwQHtE36K1
-        hNX4Ic9yDGtwUly5ms9gCBKNq3YN3PrNXNVR++wC/0w02yExQbwhwb8CLW2NyUfq
-        qZ49HFIHQNQYcsdH4HD+ooMbBWEVj1wj5D4IbH9IinkPCm+bxVsvbWUIujqUc1N4
-        zIdMpo0Wh27C6RhG5LFthZ2rGUhywVfL7yW7TOmSVDla6tgN7LuDVhAwiH15AX5m
-        JM/389fFWjWFF0dOI5Tru8WPVSXPRWdouymbULKH4H8LKDfQnSX2KgpruR0jkNHs
-        p7zPN5ztp+EJBLHegcR/aj8mDJjcZWjz744OlzUvlg==
-X-ME-Sender: <xms:XjxSY74h3Dn_BjLjPajCrmZJlf45cUbDWkNo9lUi8Kd35USdz_vj7A>
-    <xme:XjxSYw4uKZCmh9pdiiA8DXkmg55SDejbMFJFC-RsqhYVCANrkU5w3nOmY7Z5XfN2y
-    wwquLR4YwCH-hrJ1yU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrfeeljedguddutdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:XjxSYyeIMfG0krjy3yUsR6tBqyEfuVOXaNrotPNjqnB3WP-G00DQdQ>
-    <xmx:XjxSY8JuQc2kk98F1LTUkyplhAT0PkSQJAZk1piLjpbZAwxV0t310Q>
-    <xmx:XjxSY_I4esGsW6w09xUZx95hFaRum_sFxDVWY6haYm0_-s3ky56L1g>
-    <xmx:XzxSY1hEixc5i1jFRynHaw3fD9qSUQNzyFk-2nWBzPTlKRb2SAjB2Q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id A0365B60086; Fri, 21 Oct 2022 02:29:50 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
-Mime-Version: 1.0
-Message-Id: <cc2cef78-52e1-4da5-8739-375dd7bfe499@app.fastmail.com>
-In-Reply-To: <20221017112315.GA23442@duo.ucw.cz>
-References: <20221011145358.1624959-1-sashal@kernel.org>
- <20221011145358.1624959-10-sashal@kernel.org>
- <20221017112315.GA23442@duo.ucw.cz>
-Date:   Fri, 21 Oct 2022 08:29:30 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Pavel Machek" <pavel@denx.de>, "Sasha Levin" <sashal@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        "Kunihiko Hayashi" <hayashi.kunihiko@socionext.com>,
-        "Rob Herring" <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH AUTOSEL 4.19 10/11] arm64: dts: uniphier: Add USB-device support
- for PXs3 reference board
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229515AbiJUGkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:40:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A070112A96;
+        Thu, 20 Oct 2022 23:40:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E688EB82ADA;
+        Fri, 21 Oct 2022 06:40:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B59C433D6;
+        Fri, 21 Oct 2022 06:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666334419;
+        bh=sSDsv8sNrV4MWlFb62YOB+RVifnK0tCFSxdozhi2KE4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aksXMaxXMeRvPuoZU14QDKDiGuGGTwPIhJul2Z60muawg8b7ekV6ZDVQQeeJ9+9cq
+         9R1szce+/cZdhvcZx9xGVe2M2/qKnpBPIy02FrsDgUVNxkqeiU+/yoAgTxITqBhbNz
+         N1FOsikN0SJHBXA4OrLaFSQyGl48X1X2whKpKnGrTO5vj4dnUe/jr4Z7tpbos4L3Lo
+         UpYBe483uJYXHFYQXFVD2YE2J5Mm3nbPnTYEuP9nNoKLFdEKxyf5xwfZegEfkmJi73
+         m92DLrkkhhk2/SQT+Hoe7aWlqUhnNvcvbD+dreLWEfwXP5gPFldV0fsEQzYsYnWcGT
+         YiurHGZvac48Q==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1ollhN-0001Z7-Ju; Fri, 21 Oct 2022 08:40:05 +0200
+Date:   Fri, 21 Oct 2022 08:40:05 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        quic_vbadigan@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: qcom: Add SC8280XP/SA8540P
+ interconnects
+Message-ID: <Y1I+xQDpvedLXNHf@hovoldconsulting.com>
+References: <20221017112449.2146-1-johan+linaro@kernel.org>
+ <20221017112449.2146-2-johan+linaro@kernel.org>
+ <010b6de2-5df6-77c9-2f04-43f2edc89ff2@linaro.org>
+ <Y1D/Vaa/3zKP4Cxj@hovoldconsulting.com>
+ <972db8bd-e45a-47b1-c2c4-008c279c6b59@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <972db8bd-e45a-47b1-c2c4-008c279c6b59@linaro.org>
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 17, 2022, at 13:23, Pavel Machek wrote:
-> Hi!
->
->> From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> 
->> [ Upstream commit 19fee1a1096d21ab1f1e712148b5417bda2939a2 ]
->> 
->> PXs3 reference board can change each USB port 0 and 1 to device mode
->> with jumpers. Prepare devicetree sources for USB port 0 and 1.
->> 
->> This specifies dr_mode, pinctrl, and some quirks and removes nodes for
->> unused phys and vbus-supply properties.
->
-> Why was this autoselected? It is a new feature, not a bugfix.
+On Thu, Oct 20, 2022 at 08:29:02AM -0400, Krzysztof Kozlowski wrote:
+> On 20/10/2022 03:57, Johan Hovold wrote:
+> > On Wed, Oct 19, 2022 at 10:37:31AM -0400, Krzysztof Kozlowski wrote:
+> >> On 17/10/2022 07:24, Johan Hovold wrote:
+> >>> Add the missing SC8280XP/SA8540P "pcie-mem" and "cpu-pcie" interconnect
+> >>> paths to the bindings.
+> >>>
+> >>> Fixes: 76d777ae045e ("dt-bindings: PCI: qcom: Add SC8280XP to binding")
+> >>> Fixes: 76c4207f4085 ("dt-bindings: PCI: qcom: Add SA8540P to binding")
+> >>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> >>> ---
+> >>>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 25 +++++++++++++++++++
+> >>>  1 file changed, 25 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> >>> index 22a2aac4c23f..a55434f95edd 100644
+> >>> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> >>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
 
-It also caused a regression now according to the build bots. I 
-have not checked, but I assume there are some other patches that
-this depends on.
+> > Are you suggesting something like moving the names to the common
+> > constraints for now:
+> > 
+> >   interconnects:
+> >     maxItems: 2
+> > 
+> >   interconnect-names:
+> >     items:
+> >       - const: pcie-mem
+> >       - const: cpu-pcie
+> > 
+> > and then in the allOf:
+> > 
+> >   - if:
+> >       properties:
+> >         compatible:
+> >           contains:
+> >             enum:
+> >               - qcom,pcie-sa8540p
+> >               - qcom,pcie-sc8280xp
+> >     then:
+> >       required:
+> >         - interconnects
+> >         - interconnect-names
+> >     else:
+> >       properties:
+> >         interconnects: false
+> >         interconnect-names: false
+> > 
+> > This way we'd catch anyone adding interconnects to a DTS without first
+> > updating the bindings, but it also seems to go against the idea of
+> > bindings fully describing the hardware by saying that no other platforms
+> > have interconnects (when they actually do even if we don't describe it
+> > just yet).
+> 
+> You can add a comment to the else like "TODO: Not described yet". I
+> would prefer to have specific but incomplete bindings, instead of loose
+> one which later might cause people adding whatever names they like.
+> 
+> > Or should we do the above but without the else clause to have some
+> > constraints in place on the names at least?
+> 
+> This would work as well if you think the names are applicable for other
+> devices.
 
-     Arnd
+I think that's a reasonable assumption so I'll go with this alternative.
+
+Thanks!
+
+Johan
