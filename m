@@ -2,154 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A647E607CAA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:48:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08753607CBF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbiJUQsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 12:48:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
+        id S231137AbiJUQwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 12:52:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230473AbiJUQsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:48:33 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E5A4100BE6;
-        Fri, 21 Oct 2022 09:48:28 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso5509653wma.1;
-        Fri, 21 Oct 2022 09:48:28 -0700 (PDT)
+        with ESMTP id S229866AbiJUQwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:52:10 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E0AE285B5C
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 09:52:06 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id e18so8133343edj.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 09:52:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XbPvSXhOFP986gsXwgJkoWhk6VMKEDH9VysMFA4exvU=;
-        b=I3PLxPuc2tV4wZKG9QH1dxt6KVSHYn4tUeqoMo7D1YkEwEWRqEqj30vZIfAaWSSq5C
-         gsgA/KjAeXIVc47AAOdFcimD0GwGpL15rAMwbY5utUNOf1aTfVHri9HYZCxF5c+choLo
-         ua/Y2AhmzXrIq1vDLskNd6C8d6MYQbw0uyBg7Ou5Pmb5lWMkn1VnzE0MkReOBJED8O0I
-         Khwz/aGMUrJyQyFQnA/xdcs5dEIlpT47mJu1oQShXjI1ruwjrsNsOExGp3OMSbSeZrqq
-         zzsRaGYow5CXpG1EUOUNNs9pUV7VVZ7/QQacIfexqVvw0Zm+TFtKaUFbqrsfooS3o+u9
-         9Tfg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jQh5FP9DB3wc1fQfh9jbPYlKU5VqWNTkcSZuo9ThymE=;
+        b=CS3R3gSGufMKQGWnx9OeJ32OUq+LgqWSxg7OPFjztxMRmETVreIE1s3In/omRFI+A8
+         thoe6T5fw3TJloHTLBrd+wcQfK/dzSXR8TXqsWUIre9/Ccp+Jr0H8GVILQIJKG7pzQpw
+         /g1N6I+iKJsY92e8W/5p6VhTXqRDr0AOvE8fjIO7Pu1bZyde/AVYgAuDhZRDwTu2KU2k
+         UdOgO0jtXqmwAW9VzaX884CDxCa0Rpq+EKRp4/Xiwd/7Re1xUMYdsinLSqIIhRnnfK/y
+         huZX52FBUl63PvqMfUgziuvLhsp3ePJ/62tvyqk1597O3s3Yfw5NjFgcSNusSn94y2i5
+         9b6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XbPvSXhOFP986gsXwgJkoWhk6VMKEDH9VysMFA4exvU=;
-        b=0HMpGtPCJuzStiQKmr6Dnj8/0mU+0twy6GoPedIy+sTbkk6Hu7lH4YxlhZ1qNmkHNJ
-         pV0PXdSW/YyxBE4Am+QFL/K8Wjs73b5z6JI24f0/UBVlSYltNILR0vb7DuUUctKQ7wcK
-         m4bi55uS++NE2j//NmXqRFZz7a78M+keRonVTi9NqE2ErmiUWfX3hjD/eHQroPG9jjSm
-         ahzHUR3m5ylUE40Tn/MD/x5SL/3GGHu96BsAoy8RR+goQ/GFW9Xmf8zYbR5TR6gM2ZHq
-         HXaCiJT/4Q9OSi+F5NGmNeAZxuQYKUURslzkIrbzOH83VwZZc0g0t37uLSeHTs42mvYB
-         vcJA==
-X-Gm-Message-State: ACrzQf1K+y/DiYWUNiq/WQoKtlZzHB81IBAs87SuF15E/PYWysI2GKN1
-        fyS0gGzPJkMf4UA3dPiFoZnPolnM7UUIbVp6XR4=
-X-Google-Smtp-Source: AMsMyM6kdlYPtik0hBPcElvkVtBLOUl4VQ2V+hrKmnXSe6JHzGq2jHZKtAJrwAW+3HP4dw+SR+MGiRqRn85wdeVCmIE=
-X-Received: by 2002:a05:600c:6885:b0:3bd:d782:623c with SMTP id
- fn5-20020a05600c688500b003bdd782623cmr13697576wmb.102.1666370906852; Fri, 21
- Oct 2022 09:48:26 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jQh5FP9DB3wc1fQfh9jbPYlKU5VqWNTkcSZuo9ThymE=;
+        b=y+bUKBKl9ibHuwzFmb2HSzlZFz8NhlaDA6mo4ZSo+nZLlOtG/6QRWgNa9s3n0BuUVo
+         d4hc4ljPJtdGEogq6J0e6C7wCVFecOmrYQ6+lM6hFKSDQqR+h1Ct42a8n5P6NFFznAwb
+         0J1jVU/eoR50eTBzD21lhNAGYcexxSXYZO/Dxmiv/X3N0i3tVOBZ0GUnUMpE8E1/+35L
+         O22Eiuzcdiem6Y8HQpvH42tScTiP4nNJymvqJZX7nbf6IhoTUumGKGahurGjJ0mYK2ln
+         VM9axlIK8ILISOdh7gpT7v9eb67nzw5miwxUrRLEslsepcQRwjBYRLo3kM1tM7EjrYov
+         7ahw==
+X-Gm-Message-State: ACrzQf1zCnOyvIGVXiZQoPiARlvS1Ek/iAW0DIvcXk3ukFSizGaHwQUw
+        p93O4veVVPAx3N62LICORPiOMA==
+X-Google-Smtp-Source: AMsMyM59+pyQYWTtqgV0nUm3pf/fVmJ0UyOB4e7WmuRDL7NRA28WJUbF/0H9nYeWMQJaZFr8DKdqOw==
+X-Received: by 2002:a17:907:a065:b0:78d:c5dd:45cf with SMTP id ia5-20020a170907a06500b0078dc5dd45cfmr16640572ejc.117.1666371124856;
+        Fri, 21 Oct 2022 09:52:04 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:25b:e73e:85eb:ae6e? ([2a05:6e02:1041:c10:25b:e73e:85eb:ae6e])
+        by smtp.googlemail.com with ESMTPSA id r11-20020a170906704b00b0073d9630cbafsm11865311ejj.126.2022.10.21.09.52.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Oct 2022 09:52:04 -0700 (PDT)
+Message-ID: <22cf2e5c-6633-986e-6add-f579408f6c68@linaro.org>
+Date:   Fri, 21 Oct 2022 18:52:02 +0200
 MIME-Version: 1.0
-References: <20221005085439.740992-1-megi@xff.cz> <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
- <20221005220812.4psu6kckej63yo2z@core> <4679102.Wku2Vz74k6@phil>
- <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com> <20221021153913.l5ry6v4mcnzcmj2v@core>
-In-Reply-To: <20221021153913.l5ry6v4mcnzcmj2v@core>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 21 Oct 2022 12:48:15 -0400
-Message-ID: <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
- and ranges
-To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v7 2/5] drivers: thermal: tsens: Add support for combined
+ interrupt
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Robert Marko <robimarko@gmail.com>
+Cc:     amitk@kernel.org, thara.gopinath@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        rafael@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220818220245.338396-1-robimarko@gmail.com>
+ <20220818220245.338396-2-robimarko@gmail.com>
+ <20221017190143.7fjwrlud6hamu3yr@builder.lan>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20221017190143.7fjwrlud6hamu3yr@builder.lan>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 11:39 AM Ond=C5=99ej Jirman <megi@xff.cz> wrote:
->
-> On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
-> > Good Morning Heiko,
-> >
-> > Apologies for just getting to this, I'm still in the middle of moving
-> > and just got my lab set back up.
-> >
-> > I've tested this patch series and it leads to the same regression with
-> > NVMe drives. A loop of md5sum on two identical 4GB random files
-> > produces the following results:
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> > fad97e91da8d4fd554c895cafa89809b  test-rand2.img
-> > 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
-> > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
-> > 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
-> > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
-> > b9637505bf88ed725f6d03deb7065dab  test-rand.img
-> > f7437e88d524ea92e097db51dce1c60d  test-rand2.img
-> >
-> > Before this patch series:
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
-> > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
-> >
-> > Though I do love where this patch is going and would like to see if it
-> > can be made to work, in its current form it does not.
->
-> Thanks for the test. Can you please also test v1? Also please share lspci=
- -vvv
-> of your nvme drive, so that we can see allocated address ranges, etc.
+On 17/10/2022 21:01, Bjorn Andersson wrote:
 
-Good catch, with your patch as is, the following issue crops up:
-Region 0: Memory at 300000000 (64-bit, non-prefetchable) [size=3D16K]
-Region 2: I/O ports at 1000 [disabled] [size=3D256]
+[ ... ]
 
-However, with a simple fix, we can get this:
-Region 0: Memory at 300000000 (64-bit, non-prefetchable) [virtual] [size=3D=
-16K]
-Region 2: I/O ports at 1000 [virtual] [size=3D256]
+> 
+> This should have () after the function name. Perhaps Daniel could add
+> that as he picks the patch?
 
-and with it a working NVMe drive.
+Applied and parenthesis added
 
-Change the following range:
-0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
-to
-0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x40000000>;
+> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> 
+> Regards,
+> Bjorn
+[ ... ]
 
-I still haven't tested this with other cards yet, and another patch
-that does similar work I've tested successfully as well with NVMe
-drives. I'll have to get back to you on the results of greater
-testing.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Very Respectfully,
-Peter Geis
-
->
-> kind regards,
->         o.
->
-> > Very Respectfully,
-> > Peter Geis
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
