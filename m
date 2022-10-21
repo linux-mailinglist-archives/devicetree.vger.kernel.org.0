@@ -2,81 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C480F606DB3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 04:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64EF8606DBD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 04:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiJUCYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 22:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39032 "EHLO
+        id S229515AbiJUC0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 22:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230159AbiJUCYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 22:24:07 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C30F6822;
-        Thu, 20 Oct 2022 19:23:39 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-1322fa1cf6fso1896407fac.6;
-        Thu, 20 Oct 2022 19:23:39 -0700 (PDT)
+        with ESMTP id S229765AbiJUC0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 22:26:48 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6200B2A425;
+        Thu, 20 Oct 2022 19:26:47 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id t4-20020a9d7f84000000b00661c3d864f9so998078otp.10;
+        Thu, 20 Oct 2022 19:26:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hNQ3vjGcEPcvHyjvRPTWPsOp3CT58XeJ0LewLJ1miuY=;
-        b=bu2tEhGG1ihTGBv3BnAapeTKZ87BSJQAVwGklDtmcgwqx6bk5HZwIH1CZrN1IZGfR7
-         GJ7U/ts6VllKMu9Ksn+/5WadgY5RvZyxiICgE143cMrq1Pai6ODkP8it/euXehcSp/IX
-         1XKoZYUwxE8NU+L+HWZecrpeaquLdRBn66HbVKkd0gxxdTsrQR1C2w36W+ZqQ+qYWAkG
-         pkpOGPqFoqUWPnLtNbPhmZx98wul9RlD6KVWXpT6VO3H5NbUTvjpcvnWG9vGn41OspOE
-         uKLIIgzEz8nY7ktGPusCfukHqYauOKMD0j7YU53twTqI8SccyNIinOhhGbOg7R7F9iDv
-         eFQw==
-X-Gm-Message-State: ACrzQf0ADpsZBMNIb+3T9SbwOfTzCWvoSTjpjj5rA3iJYlVweioCZGzi
-        bAiULM9Y01gkD4CqhHYlWA==
-X-Google-Smtp-Source: AMsMyM4PgS70DhbiAIylCYUqrYmb1aRUHMtCGwr1nTpf2yCVehqo0R6PUxPgxcxX19uBZjcmtWurzA==
-X-Received: by 2002:a05:6870:d28a:b0:12b:7ed3:cf38 with SMTP id d10-20020a056870d28a00b0012b7ed3cf38mr11205835oae.138.1666319005906;
-        Thu, 20 Oct 2022 19:23:25 -0700 (PDT)
+        bh=YDqNridPu4b3DWNOWE26l4CoQc8TEaUuVi755eJfbfM=;
+        b=IRTocwp/mttHVqL5sFfWq95c+C28h9pB4EW/h3eEZTtUGoAbQ7b8mBw/8PN5N63LFT
+         8+LG+H5wkW2lnJH/4KDaAxYyNfhP1WpYjuxoRw8Tn1otiO+W5bwDRQIEIkfYLGk1+7Qk
+         4vuAESCE4iBp4ZBncRFF9EQ5DpOnZNmnBW268279hqLcGaZxOQ/KyZFH5KplOXUJZoA1
+         vWMv6nf4PBJ6IJ5f6/PX1I6/kDk3KcN3aP/WajQtXLYhsXXEFJ7BNdZbyToVmdbSZGgt
+         OIQ0/YR5QlayYBvxP2zPIyb8o9ZaYuBYrU6e2dRxGlB2TVF+h0J7UcuoVBY+Y7tuhp89
+         MjFA==
+X-Gm-Message-State: ACrzQf1TrKvVYskStQGsY7fSWIYExCJAVFj5nONFEd1hUWVx/iI4Yq/f
+        jnaYFuelhgOk+syPOBRhKg==
+X-Google-Smtp-Source: AMsMyM5OG4SV586ygEDXiK/8qNiWP4nSMoSliVuOWl6DkOZEHBeJLUj3wFt/tL+Svde26yJzL0U3aw==
+X-Received: by 2002:a05:6830:6611:b0:662:2725:d309 with SMTP id cp17-20020a056830661100b006622725d309mr136812otb.293.1666319206599;
+        Thu, 20 Oct 2022 19:26:46 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l14-20020a4ac60e000000b004805cfab0ffsm8009161ooq.31.2022.10.20.19.23.24
+        by smtp.gmail.com with ESMTPSA id x7-20020a056870e38700b0013297705e5dsm9487908oad.28.2022.10.20.19.26.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Oct 2022 19:23:25 -0700 (PDT)
-Received: (nullmailer pid 2195079 invoked by uid 1000);
-        Fri, 21 Oct 2022 02:23:26 -0000
-Date:   Thu, 20 Oct 2022 21:23:26 -0500
+        Thu, 20 Oct 2022 19:26:46 -0700 (PDT)
+Received: (nullmailer pid 2198615 invoked by uid 1000);
+        Fri, 21 Oct 2022 02:26:47 -0000
+Date:   Thu, 20 Oct 2022 21:26:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Peng Fan <peng.fan@nxp.com>, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, broonie@kernel.org,
-        shawnguo@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, festevam@gmail.com,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: spi: fsl-imx-cspi: update i.MX8MP
- binding
-Message-ID: <166631900602.2195025.11954037790952809560.robh@kernel.org>
-References: <20221020103158.2273874-1-peng.fan@oss.nxp.com>
- <20221020103158.2273874-2-peng.fan@oss.nxp.com>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: mediatek-gen3: Support mt8195
+Message-ID: <20221021022647.GA2195154-robh@kernel.org>
+References: <20221020111925.30002-1-tinghan.shen@mediatek.com>
+ <20221020111925.30002-2-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221020103158.2273874-2-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20221020111925.30002-2-tinghan.shen@mediatek.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Oct 2022 18:31:57 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Thu, Oct 20, 2022 at 07:19:23PM +0800, Tinghan Shen wrote:
+> From: Jianjun Wang <jianjun.wang@mediatek.com>
 > 
-> i.MX8MP ECSPI is derived from i.MX6UL, so update the binding.
+> In order to support mt8195 pcie node, update the yaml to support new
+> properties of iommu and power-domain, and update the reset-names
+> property to allow only one 'mac' name.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> Signed-off-by: TingHan Shen <tinghan.shen@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  .../bindings/pci/mediatek-pcie-gen3.yaml         | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> index c00be39af64e..af271018b134 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> @@ -70,14 +70,21 @@ properties:
+>      minItems: 1
+>      maxItems: 8
+>  
+> +  iommu-map:
+> +    maxItems: 1
+> +
+> +  iommu-map-mask:
+> +    maxItems: 1
 
-Acked-by: Rob Herring <robh@kernel.org>
+This is not a array. It needs a value. Must be 0 if iommu-map only has 1 
+entry? Or you only support 1 downstream device?
+
+> +
+>    resets:
+>      minItems: 1
+>      maxItems: 2
+>  
+>    reset-names:
+> -    minItems: 1
+> -    items:
+> -      - const: phy
+> +    oneOf:
+> +      - items:
+> +          - const: phy
+> +          - const: mac
+>        - const: mac
+>  
+>    clocks:
+> @@ -107,6 +114,9 @@ properties:
+>      items:
+>        - const: pcie-phy
+>  
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    '#interrupt-cells':
+>      const: 1
+>  
+> -- 
+> 2.18.0
+> 
+> 
