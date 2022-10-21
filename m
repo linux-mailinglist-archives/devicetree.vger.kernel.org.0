@@ -2,101 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 408DA6077E1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A452060783F
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbiJUNJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 09:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52102 "EHLO
+        id S230471AbiJUNVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 09:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230263AbiJUNJg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:09:36 -0400
-Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D05026DB37;
-        Fri, 21 Oct 2022 06:09:10 -0700 (PDT)
-Received: by mail-oo1-xc31.google.com with SMTP id g15-20020a4a894f000000b0047f8e899623so428985ooi.5;
-        Fri, 21 Oct 2022 06:09:10 -0700 (PDT)
+        with ESMTP id S230435AbiJUNVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:21:02 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06DB25F8D2
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:20:59 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id c7-20020a05600c0ac700b003c6cad86f38so4831993wmr.2
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:20:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=i4JniJFO6Hdg6kNwzrb/PJxlNwEXD1oSoB9sUXNG4AA=;
+        b=KRlIyg/u0tYE5oXblsqDn0dKMd0L7zGHX6PBqE0FCsXsswAwYwco4EFIifQX1ONRW7
+         7SaxqLXoSX6mu1Nh7ZFBbvmyXI2zg460zs6nvIAzibw99XZD5uOSyJeIKhOB72YFyDgg
+         3T83bJoFOthQsg53QXGuHLHDoMzER0ebn5zLuxpbZDeCHq+H0KPoig72NBZrimtkxYpq
+         b5eafxr1uEdcRgvlELg8MnV1TgbO4LZTQEqMQuZttox39NTLfsx8LcDBrDYfCjafaAWe
+         Bdv3Yorx+J/XB99YCmhkDaU/qsOy3bnicMiZjV6mqZbIe2KUqJ4/1QLDu3qhTOvNf2fv
+         TYHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o2uVwyIoK/AO9QLWJP4nXjuyQPSRjlUdQQs2JXJIPI4=;
-        b=g/a7JamEGe6V9eWt6DVvT9TYEZydcVOzY/+6IrsiB9ejhjnZNCMxgUB3b44+aH8u34
-         9vWHj4TWw5gRqPLT83AUrpWHgl4DTlkgIJqa/1vPpSanyMCFJPbCez76KvhrChuaYLwX
-         KPLd2iUBIbS3fTSBw6Xdvy/RED2kZPtrKH+Ttk/aNXGWJMuNIAG0V3OaHRjYgnuJeqzK
-         RWhZi1x+bB9KIDOwxfEGG4OmX0wsL0HVP5OfzvigrmxLkj1MPZTRPbNBWLeb3alzwjLI
-         1z4rM/qkSEOSZVtHAIqi4KmijtenwwIkS3deIbCh4hCamFtfcyU9oJWXCtNCNh7JrqR/
-         Fu8w==
-X-Gm-Message-State: ACrzQf34qG+5n0JvlLlEI7QyhX2a2kAg5bcoFhMaeuJ7ohZdasOtITGD
-        vrGwgmVS5W9Ty0KZTDtfH/PvB8kl7w==
-X-Google-Smtp-Source: AMsMyM5rD+V8DIgJpEQ2jWbOLvTPZ8HN/VAs7V552hBTr2YMWRiQKqGemUR6xfxsxlIVPH6Y9JO9Yw==
-X-Received: by 2002:a05:6820:168b:b0:476:2e4c:6cf1 with SMTP id bc11-20020a056820168b00b004762e4c6cf1mr9026657oob.69.1666357671392;
-        Fri, 21 Oct 2022 06:07:51 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f80-20020a4a5853000000b0044afc1ba91asm8884377oob.44.2022.10.21.06.07.49
+        bh=i4JniJFO6Hdg6kNwzrb/PJxlNwEXD1oSoB9sUXNG4AA=;
+        b=1TZrpvjnDPyKtpe2KFu6QgpEPZDDP70MjDZWX0y/SGerXniqHEo+nPBAUe4v02P87V
+         Mj9QOGJoy5n9P4HvaCyodrJlMezh4j+cqhRB/ug6HeYMlzi4shg/gZFD23iG3lnAn1Op
+         X4PxNtx3+DXiQ6mmRqGeRntlwr8aDz7EcRPl3C8Bd2gU5tzhLZ4NokkMBH0qHd+ZDYA6
+         mmCMgv0I3M/dEQr0KhXtwC/ibalQmxmkr9UHwVJNfdwOPAqTrktM1as8v5PnEHXh8oXq
+         vVJgakpcV+fvlsQioKaXHfswkKH+iRXntkTq7IXWoqioJX2b5wslCicdHssoLsAubN6N
+         LkIQ==
+X-Gm-Message-State: ACrzQf2jfA+74S16A09FfE3VjS5X8QRYvDPpZpwOsUDSBaEU0MxkjPXP
+        7mn/otyzIZoGMT37aTJ0qcFccg==
+X-Google-Smtp-Source: AMsMyM5J4fLco6qzthaoFkH7ErTin58+NxkdGFINMqMFdhJr2i4VdFMQGgMTPWCWXWc+HK19vznoiQ==
+X-Received: by 2002:a05:600c:354d:b0:3c8:4b2d:f3fb with SMTP id i13-20020a05600c354d00b003c84b2df3fbmr310079wmq.188.1666358457786;
+        Fri, 21 Oct 2022 06:20:57 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:4a02:2aff:fe07:1efc])
+        by smtp.googlemail.com with ESMTPSA id g5-20020a5d4885000000b0022e55f40bc7sm18738768wrq.82.2022.10.21.06.20.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 06:07:50 -0700 (PDT)
-Received: (nullmailer pid 3431622 invoked by uid 1000);
-        Fri, 21 Oct 2022 13:07:51 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Weilong Chen <chenweilong@huawei.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        xuwei5@huawei.com, yangyicong@hisilicon.com,
-        linux-i2c@vger.kernel.org, robh+dt@kernel.org, wsa@kernel.org
-In-Reply-To: <20221021035638.203929-2-chenweilong@huawei.com>
-References: <20221021035638.203929-1-chenweilong@huawei.com> <20221021035638.203929-2-chenweilong@huawei.com>
-Message-Id: <166635752527.3428089.707277745439761591.robh@kernel.org>
-Subject: Re: [PATCH next v7 2/2] dt-bindings: i2c: add entry for hisilicon,i2c-ascend910
-Date:   Fri, 21 Oct 2022 08:07:51 -0500
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        Fri, 21 Oct 2022 06:20:57 -0700 (PDT)
+Date:   Fri, 21 Oct 2022 15:20:53 +0200
+From:   Corentin LABBE <clabbe@baylibre.com>
+To:     heiko@sntech.de, ardb@kernel.org, davem@davemloft.net,
+        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, sboyd@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v10 00/33] crypto: rockchip: permit to pass self-tests
+Message-ID: <Y1KctXMZ1+c5uQqd@Red>
+References: <20220927075511.3147847-1-clabbe@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220927075511.3147847-1-clabbe@baylibre.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Oct 2022 11:56:38 +0800, Weilong Chen wrote:
-> Add the new compatible for HiSilicon i2c.
+Le Tue, Sep 27, 2022 at 07:54:38AM +0000, Corentin Labbe a écrit :
+> Hello
 > 
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
-> ---
-> Change since v6:
-> - Rename to hisilicon,i2c-ascend910.yaml
-> - Change all IIC to I2C
-> - Add maintainer name
-> Link: https://lore.kernel.org/lkml/7520818b-de40-7f2a-1b03-b1dcd29a2023@huawei.com/T/#ma89d78cef45e7ac6f2c6251ed958e8658e5c1eb5
+> The rockchip crypto driver is broken and do not pass self-tests.
+> This serie's goal is to permit to become usable and pass self-tests.
 > 
->  .../bindings/i2c/hisilicon,i2c-ascend910.yaml | 70 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
+> This whole serie is tested on a rk3328-rock64, rk3288-miqi and
+> rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+> 
+> Regards
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hello
 
-yamllint warnings/errors:
+Gentle ping since it is a month since this serie was sent and no comment was made (except some reviewed-by).
+So I think it is ready to be merged, probably thought the crypto tree.
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/i2c/hisilicon,i2c-ascend910.yaml#
-
-doc reference errors (make refcheckdocs):
-MAINTAINERS: Documentation/devicetree/bindings/i2c/hisilicon,i2c-xxx.yaml
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Regards
