@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8EB607879
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4378607874
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230408AbiJUNbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 09:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45044 "EHLO
+        id S229959AbiJUNbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 09:31:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbiJUNbo (ORCPT
+        with ESMTP id S230504AbiJUNbo (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:31:44 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6816263F0B
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:31:40 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id a14so2015443wru.5
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:31:40 -0700 (PDT)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9B6264788
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:31:41 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id e18so2176824wmq.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hO6u+TED5AV65kw0TGqwDPOYy64CaLI0AQeOAz3rUlg=;
-        b=XftffleNs/SDrTzvj3RL404tfe0D0G94sEfSTAx+QPOAohy66BrA3nLxjU7UBRSg+L
-         gfwH3Kg/EPEWnUV6yu5A6aJzBRkJ2G+B0caF+hO6BQCJrIfCFapTv0ml5zFpNXKCgJEW
-         yyERdl5dasuMNJfSUbMQP7KoV3hlbSlH0wak5wYTFVX0qLRnHbLXPNDuinolw2dy4LLm
-         qKsqqGvQ6ttxt8/zaSiuGtoSs4N1akd8GHGfosn4mtrnPZ3MbIncc7sN/3nR6v+q6sxZ
-         JS4YlOEIHnNJgvL3jF7KbjgEUGjc5E0uQxdW4oxbfxqmV6L+GHDYZ18TVL5SiG99Utpe
-         9rqQ==
+        bh=H7Qoz9jeBcfdzL9iyekJH2YPQjo48jyM8jlQ41M6YtQ=;
+        b=J8v+969UzU9Y9w/SR7VUhM/aEcbhclODwWuAxD/2d3jJUKqh+EMU5hI0TGmOVQxIQA
+         lYzdLAgH9Epw38urAuGMdecmgz8rRRgI6eqr3YA804isCcnKNSaTQsqntIVuaXkAZFVk
+         4fYlMQORa8yVEOeIfgVLEewvRKR9p4kf26uJN+hCvkmpgzxgkIHv1KQW3g60H5Vy9VAF
+         nlgq+EpW9yRisAMhpzDniP0fSWgLqcl1k0K+J1OEHFXH01QrM9J64woxI00TTdZsX87P
+         m7LfLYndbJiQSP0I4a+6goeJN9afeibn43oy8f45JbpTmNh7ezVzjjuoYzSLuG4cDrT+
+         PqTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hO6u+TED5AV65kw0TGqwDPOYy64CaLI0AQeOAz3rUlg=;
-        b=QwzJ9ATibhoFVNGwr8ncnuzP42TX+uoRR93obJKz57dEhdqYhkQGq6pXReTcBD+3o4
-         qBP2adblvWY0sE2gRUQvBmMDGEXQvMJt7f3Rir+0xS3LXR6vFdAPYmTpHrXvCyDBujn4
-         nG6qLjYSev7CCr7iOUT8PUEicpNIO2Psrt7PQYDPvs+yB5RnbozPquney60NETecUlAL
-         WGl3qphCsWwfFCpC9k/VaibDn9gk8tz71rODJ+CMk45u2TMCN16HkQGzOjQWINx7cKj4
-         /M1LmTVmsVrK0T5FU7C6jbHRmIKNrMQPN7RghWQK8msVvGbz8qLVWbjRn7cOpj50hMKZ
-         v5WQ==
-X-Gm-Message-State: ACrzQf3ZNFU4gcDpmxu6XwNiNSkTU6d1EpKITbtdyYYbRjzB18iqlna2
-        i9AlhlLcx3Ua0mfCcTpdfXQPqg==
-X-Google-Smtp-Source: AMsMyM7RDGlYUmFt+uk/UpjANtp7mSMOjFGUDLhcbDkDXV658mYnUAxfeyAQlis0jr3+rAPgnUVoNw==
-X-Received: by 2002:adf:8bc5:0:b0:22e:3873:276d with SMTP id w5-20020adf8bc5000000b0022e3873276dmr11869184wra.402.1666359099122;
-        Fri, 21 Oct 2022 06:31:39 -0700 (PDT)
+        bh=H7Qoz9jeBcfdzL9iyekJH2YPQjo48jyM8jlQ41M6YtQ=;
+        b=4Tl3SOg2pACE94irptQlZ5E+xzvl7LIhJ+/ELQvup7VcRfY3wEM8qnfd6hqmR2gClo
+         YNbFlZ9VZ/Q7nFS2zYtWDcRLqFLXzGwzdhPrzRbR7Zknoq/8LoKfiNA/wjIsbbgsXpr1
+         qQL7pHoLuhtfG0zcQ7CAKcDlj5uspQxVSLdg7uDFsTKqREBMzJEsWQuiiCZO1mwRSq0P
+         JsIAT8yxoCymfElFeEPxc3jObPbqAKZYy7WQ97pNNAfMxXiHjT/jhcy1HZ4ynFYOWOzg
+         d1rUrn4bfFpjZBKH7WBlYU7ImVinm5SlAd4lI3UDlLuaCHn2SInOjVK+/C7tqeEKf5UN
+         Yydg==
+X-Gm-Message-State: ACrzQf0HuvMpmUayn4HhiQ/AWOGFz8MH6DrQVg92y2gTkMhWsa745V4k
+        vtKCVtgUy6NxK21yFHVC9ORFeg==
+X-Google-Smtp-Source: AMsMyM7vhBSUx8oFPqKPxgekjBSxnpKkMenQ/luY5NA8wvs3PPhn5weMl3uUeZtAfwwfplq+OXGouQ==
+X-Received: by 2002:a05:600c:5119:b0:3c6:cae1:1512 with SMTP id o25-20020a05600c511900b003c6cae11512mr34727154wms.80.1666359100026;
+        Fri, 21 Oct 2022 06:31:40 -0700 (PDT)
 Received: from [127.0.1.1] (210.145.15.109.rev.sfr.net. [109.15.145.210])
-        by smtp.googlemail.com with ESMTPSA id j8-20020a05600c1c0800b003c6b7f5567csm10325280wms.0.2022.10.21.06.31.38
+        by smtp.googlemail.com with ESMTPSA id j8-20020a05600c1c0800b003c6b7f5567csm10325280wms.0.2022.10.21.06.31.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 06:31:38 -0700 (PDT)
+        Fri, 21 Oct 2022 06:31:39 -0700 (PDT)
 From:   Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Date:   Fri, 21 Oct 2022 15:31:27 +0200
-Subject: [PATCH v4 3/4] arm64: dts: meson-gxl: add SPI pinctrl nodes for CLK
+Date:   Fri, 21 Oct 2022 15:31:28 +0200
+Subject: [PATCH v4 4/4] arm64: dts: meson-gxbb: add SPI pinctrl nodes for CLK
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20221004-up-aml-fix-spi-v4-3-0342d8e10c49@baylibre.com>
+Message-Id: <20221004-up-aml-fix-spi-v4-4-0342d8e10c49@baylibre.com>
 References: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com>
 In-Reply-To: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>,
@@ -72,11 +72,11 @@ Cc:     linux-amlogic@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1666359095; l=919;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1666359095; l=868;
  i=aouledameur@baylibre.com; s=20220920; h=from:subject:message-id;
- bh=1L7zyfIVhCZJcKzTBVkOA0R/6Ewhoh6l/GXCUMDjLaM=;
- b=Zp/yYenSqGlzVa6vYtQoBdDUo5nHcdIjN9FTC6qkrBjM8QJTMaNWtHta1JjorcWWKM9T6PQnIONB
- FK+jff8nD3d+Gq6IuPYIEKx63QSIxJe2nU2ZEj6BX+F4KwZCX2Ma
+ bh=ak0c2C3voqy+PYUNmJZvTOe1B4YCFcIjwb3vM78gKV4=;
+ b=U08rR1DqiuMN+ZjEAxpTF5BvPqmpkiWEm+VeI5J7vmNpVuKEJ4/g+EhvlrAaKQ90o0QaPnwGQnN5
+ bJ4hBA7zAGFQklbeHPuuVocBB1bNTOcICPKDHttTwFahly1iqCha
 X-Developer-Key: i=aouledameur@baylibre.com; a=ed25519;
  pk=HgYWawSL4qLGPx+RzJ+Cuu+V8Pi/KQnDDm1wjWPMOFE=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,20 +88,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SPICC Controller pin nodes for CLK line when idle for Amlogic GXL
+Add SPICC Controller pin nodes for CLK line when idle for Amlogic GXBB
 SoCs.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 14 ++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 14 ++++++++++++++
  1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index c3ac531c4f84..04e9d0f1bde0 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -429,6 +429,20 @@ mux {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 7c029f552a23..923d2d8bbb9c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -427,6 +427,20 @@ mux {
  			};
  		};
  
