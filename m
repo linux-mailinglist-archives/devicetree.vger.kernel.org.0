@@ -2,86 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C85DE6071D6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 10:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62DC96071D2
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 10:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230046AbiJUIOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 04:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35012 "EHLO
+        id S230100AbiJUIOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 04:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbiJUIOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 04:14:33 -0400
-X-Greylist: delayed 63 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 21 Oct 2022 01:14:22 PDT
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 298C4D2E6
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 01:14:20 -0700 (PDT)
-Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 21 Oct 2022 17:13:16 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id A9D992059027;
-        Fri, 21 Oct 2022 17:13:16 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 21 Oct 2022 17:13:16 +0900
-Received: from [10.212.242.61] (unknown [10.212.242.61])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 1063DB62A4;
-        Fri, 21 Oct 2022 17:13:16 +0900 (JST)
-Subject: Re: [PATCH AUTOSEL 4.19 10/11] arm64: dts: uniphier: Add USB-device
- support for PXs3 reference board
-To:     Greg KH <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     Pavel Machek <pavel@denx.de>, Sasha Levin <sashal@kernel.org>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221011145358.1624959-1-sashal@kernel.org>
- <20221011145358.1624959-10-sashal@kernel.org>
- <20221017112315.GA23442@duo.ucw.cz>
- <cc2cef78-52e1-4da5-8739-375dd7bfe499@app.fastmail.com>
- <Y1JCPp4yW43/eGhH@kroah.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <405af811-4113-45ad-d380-6b73d5bd0cf1@socionext.com>
-Date:   Fri, 21 Oct 2022 17:13:16 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S230094AbiJUIOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 04:14:04 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C6D224AAE4;
+        Fri, 21 Oct 2022 01:14:02 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 15288660252D;
+        Fri, 21 Oct 2022 09:14:00 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666340041;
+        bh=C5fhU6Bgv3bCUz3Llyic5ABqZ5cYvuR764ThhvuGkiQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=K/xUneU4RGgtP+eNwsviIlPLkiYs7DAZX7HoYSaBiqyLqlxfwxcSJ1fSBUU4SaYWd
+         sxw4A3qpi17wjVv0k7VKK0Fa7r18A0qDU8sWFkg/IWhd3lBdW3RAYCM+/fY8tAxFLw
+         b1O+wMZUKG2L/4cF5eby0idvdK1DLImAukrFXCZclFYedHyYWtLMjMpM9SG5b//iwu
+         FfUDpKj3yVl2Taql1hPMcREnj8a3UxS/Mr0MpP/z8wejQGbkKBiQS/Nz0YEX7AB4Lv
+         UXCcD6Qny5H6GmKvxVmISPDYSC5vLnpg6KohB9uHOsO9xo57WSFUT6d1h0EOVLJgDa
+         zMelP1w+1snnw==
+Message-ID: <185de97b-4cf5-3b3a-e7a4-2967dc54db1f@collabora.com>
+Date:   Fri, 21 Oct 2022 10:13:57 +0200
 MIME-Version: 1.0
-In-Reply-To: <Y1JCPp4yW43/eGhH@kroah.com>
-Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 6/8] arm64: dts: mt2712-evb: Fix usb vbus regulators unit
+ names
 Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>, matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sam.shih@mediatek.com, hanks.chen@mediatek.com,
+        weiyi.lu@mediatek.com, zhiyong.tao@mediatek.com,
+        andrew-sh.cheng@mediatek.com, viresh.kumar@linaro.org,
+        fparent@baylibre.com, mars.cheng@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221013152212.416661-1-angelogioacchino.delregno@collabora.com>
+ <20221013152212.416661-7-angelogioacchino.delregno@collabora.com>
+ <3b7fc7414f282ca044c24dae280f9bc9533a5b7b.camel@mediatek.com>
+ <96ab6836-4650-ee53-a0c9-54b8328b8667@collabora.com>
+ <616a128698656e71a4e28d59bbced17443c5cebc.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <616a128698656e71a4e28d59bbced17443c5cebc.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/10/21 15:54, Greg KH wrote:
-> On Fri, Oct 21, 2022 at 08:29:30AM +0200, Arnd Bergmann wrote:
->> On Mon, Oct 17, 2022, at 13:23, Pavel Machek wrote:
->>> Hi!
+Il 21/10/22 08:25, Chunfeng Yun ha scritto:
+> On Fri, 2022-10-14 at 09:35 +0200, AngeloGioacchino Del Regno wrote:
+>> Il 14/10/22 04:43, Chunfeng Yun ha scritto:
+>>> On Thu, 2022-10-13 at 17:22 +0200, AngeloGioacchino Del Regno
+>>> wrote:
+>>>> Update the names to regulator-usb-p{0-3}-vbus to fix
+>>>> unit_address_vs_reg
+>>>> warnings for those.
+>>>>
+>>>> Fixes: 1724f4cc5133 ("arm64: dts: Add USB3 related nodes for
+>>>> MT2712")
+>>>> Signed-off-by: AngeloGioacchino Del Regno <
+>>>> angelogioacchino.delregno@collabora.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/mediatek/mt2712-evb.dts | 8 ++++----
+>>>>    1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>>>> b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>>>> index 638908773706..d31a194124c9 100644
+>>>> --- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>>>> +++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>>>> @@ -50,7 +50,7 @@ extcon_usb1: extcon_iddig1 {
+>>>>    		id-gpio = <&pio 14 GPIO_ACTIVE_HIGH>;
+>>>>    	};
+>>>>    
+>>>> -	usb_p0_vbus: regulator@2 {
+>>>> +	usb_p0_vbus: regulator-usb-p0-vbus {
 >>>
->>>> From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>>>
->>>> [ Upstream commit 19fee1a1096d21ab1f1e712148b5417bda2939a2 ]
->>>>
->>>> PXs3 reference board can change each USB port 0 and 1 to device mode
->>>> with jumpers. Prepare devicetree sources for USB port 0 and 1.
->>>>
->>>> This specifies dr_mode, pinctrl, and some quirks and removes nodes
-> for
->>>> unused phys and vbus-supply properties.
+>>> Can we modify dt-binding of fixed regulator instead of changing the
+>>> node name,
+>>> since all nodes using fixed regulator may need be changed.
 >>>
->>> Why was this autoselected? It is a new feature, not a bugfix.
 >>
->> It also caused a regression now according to the build bots. I
->> have not checked, but I assume there are some other patches that
->> this depends on.
+>> These regulators have no MMIO, nor need any index, so it would be
+>> simply
+>> wrong to change the binding and leave them as they are here in the
+>> devicetree.
+> You are right, then many files need be modified?
 > 
-> Ok, let me go drop this from all trees now, thanks.
-Sorry for late.
-Right, this is not a "fixes" patch, so please drop it from stable.
 
-Thank you,
+Yes Chunfeng, many files need to be modified due to mistakes made in the past.
 
----
-Best Regards
-Kunihiko Hayashi
+No big deal though: as long as we're all aware of what needs to happen, it's fine!
+
+Cheers,
+Angelo
+
