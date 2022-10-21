@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 527EE6080C1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 23:28:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80702608150
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 00:06:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbiJUV2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 17:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40014 "EHLO
+        id S229484AbiJUWGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 18:06:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbiJUV2S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 17:28:18 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C1229E9A0
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 14:28:16 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id a67so10521111edf.12
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 14:28:16 -0700 (PDT)
+        with ESMTP id S229755AbiJUWGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 18:06:09 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998FB29069E;
+        Fri, 21 Oct 2022 15:06:08 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id q19so10797968edd.10;
+        Fri, 21 Oct 2022 15:06:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ifa8OePoL8OFfz7fugnjWWKBehwaOwZQ8Bn+7xviucQ=;
-        b=qcRR009HWUtK+ingPLHkgUWXSphSZfgNhjzoOOLWY1U5U0lKyGFLFZ7YLpIkqygSWw
-         edzsFrykFmsjpWwMCOLNbUNzREkh26ols/7wWSSfaGaqSu02lK9z/z4JF52phV4uF1wG
-         BfHAlOYXxmnhjVdz9pwInp89m3Cl3eIQ3zGqgkNExpE9zPeNGxLX7lTZWvcl8O5rZiZo
-         dn7/Gim683xNaA2EbvamwjIc1A5gUxxrxjcjo2WBjoCk8Dg73jBdpNU611Dsbw4FInVW
-         /2bmN0F6QulMDRTe2MgELktdBek+D6VpDhxU6yMl/2mQLIDyxkjw0SY9CjG2M1oKhgGr
-         UvcQ==
+        bh=Fj7H4f9/5FF7rrceAwSF1Et0E+FnHCVLEl47OTB4zRg=;
+        b=bPYdKSl/QFk4+7B9Vbu1X/0B2vv8cB1DscwjVj38aHPN31PuxeaWgZKKZM9rJmJ3jd
+         piN0i+6Y3oxINgh/TgpUH5ZOlKU2NqqgR3S3tAjghte+yQc9nLk98fwzRJyXi19NOz4a
+         iq8vvB+9cvdwR5RtDhYDDvsc5t8DKvlR2mMjvIOhKVwKFEwZ37Kqx3ZIsbf2rL35De6Z
+         eJi1Cf7Es++jPy2OC05a+O4TaUmAOnl/Id/qDi483kzmVveHWGHhijsRXebX2FVPmqO9
+         /J9t+qxjEvx3RK5O6RwX0cPkoC+D3Yqk+fNj0nN85dq2hwAmnCpFbPLnvAgZV38TMSVF
+         Qwpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ifa8OePoL8OFfz7fugnjWWKBehwaOwZQ8Bn+7xviucQ=;
-        b=TOUvX4NCsZ4mmAmv/jOQh5VwZmcT+5WjDlWGPH98pyApFskXt6ELlqUUb51z6Z7Crx
-         5rnyQQKQGi/IHo/IaXCJ9qjX6hCB01zNP8L3TWp41m+KcO2ax6kjox661o+ZfjiuN9e3
-         rzAGaixYHEDfQxFbtHlNwFKK4lEwj4Gf5eUosiT1i4EZmFdqDFQbdZZ9jAuzztW+2K8Q
-         9hMfEhiyqZNSGhsyyWSnTeuKIq6bwIiDmt37Es8YcxqitGq/lEPz7pt+47MG7BBd/t2K
-         F4oVvCgS7Mk4W6ceE2FbgiSWnHBMC/Gr4AqZf/PLo1WDR2G+5Zd/1rxwdoP8BUtlStdw
-         a1cw==
-X-Gm-Message-State: ACrzQf3B1JZ6DKUyEtj7C+WzTrRtdt0BXtXkhs+R0rsoBzwxECMZ0dzD
-        6Z21dZeLjEZ7cfRahMUT4J1O9cH5WlGR+QECz5U0zA==
-X-Google-Smtp-Source: AMsMyM6gsEkY96s2gJlVgjECF9k23V6FjAkazwMYXDpnHhRPiukqw86REJe9dt98k8yuQBX/1Z2zncZqHyBuqS10FmU=
-X-Received: by 2002:a17:906:5d04:b0:77f:ca9f:33d1 with SMTP id
- g4-20020a1709065d0400b0077fca9f33d1mr17376351ejt.526.1666387695072; Fri, 21
- Oct 2022 14:28:15 -0700 (PDT)
+        bh=Fj7H4f9/5FF7rrceAwSF1Et0E+FnHCVLEl47OTB4zRg=;
+        b=7D68ius/Eh21q3/qz5nyVWOmhHKM+C2IbNQcuAe8FhwkOCcf8OCCK6ZQk1oR/yKIni
+         evAJNdz9uOo70kgpw6fJdCk/kT4G38jXmrmCbCN9E3yn1hjYps3rHBq5P7YnBcGNuDGf
+         1E0g4TjjO/q6Ck4qon7vAc+QWBn2eFII4kEZPh+6jiwE9ftijbcs591IAOfw5P5iUsni
+         Cs3KijXRS0VxV35FXp7s3q1a1jeBv89hD9dLRXiywjWlRJAxryuF7evKXuJmMyMYEJId
+         3kYPhPq6OzYCvmOqy1NatiT95GaWQxXPWXSH8dwMhjtysUSby/eqnQ2zAj7FcUR+Ffaf
+         8HbA==
+X-Gm-Message-State: ACrzQf3MV9VQyl4cli7uq/BO9cCHPbnwMeFoBtc8Iwm5VPKfAt2ahYXV
+        gPHjS7Ln9/h/ZW1XuKRTJhgRIbpAQEdCSYq+Uoc=
+X-Google-Smtp-Source: AMsMyM4458QUG6GWHFAK4wMhwxdindPP7SYutQGi351xOhy+v9IlgGW7zV7L2Edpw9VRuQ1QxVmkz8bk+429zT1FGNs=
+X-Received: by 2002:a17:906:5a4b:b0:78d:4e5a:d101 with SMTP id
+ my11-20020a1709065a4b00b0078d4e5ad101mr16940953ejc.196.1666389967011; Fri, 21
+ Oct 2022 15:06:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221005-mdm9615-pinctrl-yaml-v3-0-e5e045644971@linaro.org> <20221005-mdm9615-pinctrl-yaml-v3-5-e5e045644971@linaro.org>
-In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v3-5-e5e045644971@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 21 Oct 2022 23:28:03 +0200
-Message-ID: <CACRpkdYb_wxhewHSM6bonKB0syciyX0ufRLXDH2gt0vW3efQTA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] arm: dts: qcom-msm8660: align RPM regulators node
- name with bindings
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221019220242.4746-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221019220242.4746-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221021020500.GA2157489-robh@kernel.org>
+In-Reply-To: <20221021020500.GA2157489-robh@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 21 Oct 2022 23:05:40 +0100
+Message-ID: <CA+V-a8v0jEFj+XKAtyAaTBFmX3bObBZgGd6n1LB3OnTU_W002w@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,15 +84,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 5:28 PM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
+Hi Rob,
 
-> Node names should be generic and new DT schema expects RPM regulators
-> node to be just "regulators".
+Thank you for the review.
+
+On Fri, Oct 21, 2022 at 3:05 AM Rob Herring <robh@kernel.org> wrote:
 >
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> On Wed, Oct 19, 2022 at 11:02:42PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > On the AX45MP core, cache coherency is a specification option so it may
+> > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > allocate a global dma coherent pool from which DMA allocations are taken
+> > and marked as non-cacheable + bufferable using the PMA region as specified
+> > in the device tree. Synchronization callbacks are implemented to
+> > synchronize when doing DMA transactions.
+> >
+> > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > block that allows dynamic adjustment of memory attributes in the runtime.
+> > It contains a configurable amount of PMA entries implemented as CSR
+> > registers to control the attributes of memory locations in interest.
+> >
+> > Below are the memory attributes supported:
+> > * Device, Non-bufferable
+> > * Device, bufferable
+> > * Memory, Non-cacheable, Non-bufferable
+> > * Memory, Non-cacheable, Bufferable
+> > * Memory, Write-back, No-allocate
+> > * Memory, Write-back, Read-allocate
+> > * Memory, Write-back, Write-allocate
+> > * Memory, Write-back, Read and Write-allocate
+> >
+> > This patch adds support to configure the memory attributes of the memory
+> > regions as passed from the l2 cache node and exposes the cache management
+> > ops.
+> >
+> > More info about PMA (section 10.3):
+> > http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
+> >
+> > This feature is based on the work posted [0] by Vincent Chen
+> > <vincentc@andestech.com> for the Andes AndeStart RISC-V CPU.
+> >
+> > [0] https://lore.kernel.org/lkml/1540982130-28248-1-git-send-email-vincentc@andestech.com/
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  arch/riscv/include/asm/cacheflush.h    |   8 +
+> >  arch/riscv/include/asm/errata_list.h   |   2 +
+> >  arch/riscv/mm/dma-noncoherent.c        |  20 ++
+> >  drivers/soc/renesas/Kconfig            |   5 +
+> >  drivers/soc/renesas/Makefile           |   4 +
+> >  drivers/soc/renesas/rzf/Kconfig        |   6 +
+> >  drivers/soc/renesas/rzf/Makefile       |   3 +
+> >  drivers/soc/renesas/rzf/ax45mp_cache.c | 431 +++++++++++++++++++++++++
+>
+> How many cache drivers do we have around now? I've seen a few bindings
+> go by. I'm guessing it is time to stop putting the drivers in the
+> drivers/soc/ dumping ground.
+>
+The main reason this driver is not in arch/riscv is that it has vendor
+specific extensions. Due to this reason it was agreed during the LPC
+that vendor specific extension should be maintained by SoC vendors and
+was agreed that this can go into drivers/soc/renesas folder instead.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> >  drivers/soc/renesas/rzf/ax45mp_sbi.h   |  29 ++
+> >  9 files changed, 508 insertions(+)
+> >  create mode 100644 drivers/soc/renesas/rzf/Kconfig
+> >  create mode 100644 drivers/soc/renesas/rzf/Makefile
+> >  create mode 100644 drivers/soc/renesas/rzf/ax45mp_cache.c
+> >  create mode 100644 drivers/soc/renesas/rzf/ax45mp_sbi.h
+> >
+> > diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm/cacheflush.h
+> > index 8a5c246b0a21..40aa790be9a3 100644
+> > --- a/arch/riscv/include/asm/cacheflush.h
+> > +++ b/arch/riscv/include/asm/cacheflush.h
+> > @@ -65,6 +65,14 @@ static inline void riscv_noncoherent_supported(void) {}
+> >  #define SYS_RISCV_FLUSH_ICACHE_LOCAL 1UL
+> >  #define SYS_RISCV_FLUSH_ICACHE_ALL   (SYS_RISCV_FLUSH_ICACHE_LOCAL)
+> >
+> > +#ifdef CONFIG_AX45MP_L2_CACHE
+> > +void ax45mp_cpu_dma_inval_range(void *vaddr, size_t end);
+> > +void ax45mp_cpu_dma_wb_range(void *vaddr, size_t end);
+> > +
+> > +#define ALT_CMO_OP(_op, _start, _size, _cachesize)   \
+> > +                _op(_start, _size)
+> > +#endif
+> > +
+> >  #include <asm-generic/cacheflush.h>
+> >
+> >  #endif /* _ASM_RISCV_CACHEFLUSH_H */
+> > diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
+> > index 19a771085781..d9cbf60c3b65 100644
+> > --- a/arch/riscv/include/asm/errata_list.h
+> > +++ b/arch/riscv/include/asm/errata_list.h
+> > @@ -89,6 +89,7 @@ asm volatile(ALTERNATIVE(                                           \
+> >  #define ALT_THEAD_PMA(_val)
+> >  #endif
+> >
+> > +#ifdef CONFIG_ERRATA_THEAD_CMO
+> >  /*
+> >   * dcache.ipa rs1 (invalidate, physical address)
+> >   * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
+> > @@ -143,5 +144,6 @@ asm volatile(ALTERNATIVE_2(                                               \
+> >       : "a0")
+> >
+> >  #endif /* __ASSEMBLY__ */
+> > +#endif
+> >
+> >  #endif
+> > diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
+> > index b0add983530a..5270acca6766 100644
+> > --- a/arch/riscv/mm/dma-noncoherent.c
+> > +++ b/arch/riscv/mm/dma-noncoherent.c
+> > @@ -24,13 +24,25 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+> >
+> >       switch (dir) {
+> >       case DMA_TO_DEVICE:
+> > +#ifdef CONFIG_ERRATA_THEAD_CMO
+> >               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+> > +#elif CONFIG_AX45MP_L2_CACHE
+> > +             ALT_CMO_OP(ax45mp_cpu_dma_wb_range, vaddr, size, 0x0);
+> > +#endif
+>
+> How do you support more than one platform in a build?
+>
+Yes, that's one concern which I have mentioned in the cover letter too
+(At that moment it's just a single platform). Suggestions welcome!
 
-Yours,
-Linus Walleij
+Cheers,
+Prabhakar
