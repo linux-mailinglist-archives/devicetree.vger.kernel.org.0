@@ -2,169 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B812E606F87
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 07:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05F8D606FAD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 07:56:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbiJUFlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 01:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55838 "EHLO
+        id S229968AbiJUF4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 01:56:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiJUFlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 01:41:21 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F301D93D6;
-        Thu, 20 Oct 2022 22:41:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ka8Sw/8IKbm4rh9oWThw073MU+kSbXMud3JAypGZM8k2+Qgj9JAdw/kQtFxUz2AzMD80lZRCHk9jr+9ltAOvTxcmNmbZQTh+m+YVte9tOMkifyhDMrhgrSu4S1Bi5EQm18QqLLAISio2ptcXD6jQASaPyRHmQFrdp1cQabxpZOYxV0h0QvBKCJBTKzQm16mewCrc46sU7+WYFLEZhU6CgIwty26Hux3R4juNMIdS0gn8DWO5LCPyqQhdnPojonXmCOXrddRXhDPXD0Bp1p1H6PFCKbarCrlnU2jfzCdNethTMKDd8oj+JJOAGmtL7G1WGQ4WQMweIT9owL9fvC3QIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=N0cYYs1TKbLRxbPxeCGvBUp8VK5ipygXGkgTebj9Oro=;
- b=G3TbGcHnpByiws0+TXw8F9ZnJ9EMEaG25Q/DseZ2OvcvLHMiCXRnavoFk8F+pMCqJG6lt9WTwxuKNIZHtLbmc1edboYi80dlfZM6QmhYJbSvIWSrUG6WFP+EFQnUnhNX71SGixm3zx5uk4IrqsrnJZWanSK2Y+SckiL7bCC7CNzhCUf7rElfep6OGw4Rl2yJ5xOYuGO6TsHXEJ8CvR2i6VFMO1854kqEAUERpfdZfYM/5XEJuqDJ7fCq56TZerAID8+RFv6Ps10ftvPH8YTyyVtsWew+uRX0mFuhYglThLLiCRw0gqAATYiEmriy1IPqX+h61vJJ3R9NtT//vBTevw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=davemloft.net smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N0cYYs1TKbLRxbPxeCGvBUp8VK5ipygXGkgTebj9Oro=;
- b=p+XxgQwacbdSZydXuTormEERfySTE/TSVfmQFEZhX1CW9DmikHS6DRGquMUsKUMr8JLzuEVzqHtl8B8BNqjqkZlN7jxJoEn1Fber2JzTl9GbbCsQ9U4O+YTN0ttJin0VCaO6/ReWKTv8ok11vR8f1Y8OPSWIs+L6UaLaHQhrQZ0=
-Received: from DS7PR06CA0041.namprd06.prod.outlook.com (2603:10b6:8:54::10) by
- SN7PR12MB7369.namprd12.prod.outlook.com (2603:10b6:806:298::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Fri, 21 Oct
- 2022 05:41:17 +0000
-Received: from DM6NAM11FT092.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:54:cafe::45) by DS7PR06CA0041.outlook.office365.com
- (2603:10b6:8:54::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.35 via Frontend
- Transport; Fri, 21 Oct 2022 05:41:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT092.mail.protection.outlook.com (10.13.173.44) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5746.16 via Frontend Transport; Fri, 21 Oct 2022 05:41:16 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 21 Oct
- 2022 00:41:15 -0500
-Received: from xhdpranavis40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
- Transport; Fri, 21 Oct 2022 00:41:11 -0500
-From:   Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <richardcochran@gmail.com>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <yangbo.lu@nxp.com>, <radhey.shyam.pandey@amd.com>,
-        <anirudha.sarangi@amd.com>, <harini.katakam@amd.com>,
-        <sarath.babu.naidu.gaddam@amd.com>, <git@amd.com>
-Subject: [PATCH net-next V2] dt-bindings: net: ethernet-controller: Add ptp-hardware-clock
-Date:   Thu, 20 Oct 2022 23:41:10 -0600
-Message-ID: <20221021054111.25852-1-sarath.babu.naidu.gaddam@amd.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S229925AbiJUF4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 01:56:17 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679EE1AA251;
+        Thu, 20 Oct 2022 22:56:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=WwEOW9UNLcS8nsd2aSBapizmkmLE2U0qOFg8vtqEoZ8=; b=VJq0lyXROIw370sXXxOb2+ndrM
+        Q6InkMEwLQpheSIM3aMq1x21KB4a7Qj2y95I9cv3+mHSXrytEirbRjFl6K49M//vt19imi9HYpbgT
+        OY/NSMDI1nAlw1ghC4seVj+9LKTDcnSjYisvTK+5E8xqjf7lhP5pbYl7QIay/BzVzk+inf1diLpan
+        Bel+4mm2ceThmkOFChV/q3vk3S3lP6wKCR9X8oKwz0XeEyansJF8L0Vty9IemBx2rxvDCbACygR9t
+        /WVjuYQylchiKwfL4kbraCfqbMRhp4sM9qH6gNSKB6NqbYuShthHWCV0pgY06+MESr5Dl0E0zYx4/
+        y1yWJMuw==;
+Received: from [89.212.21.243] (port=52262 helo=[192.168.69.85])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1oll0h-0012oZ-VJ;
+        Fri, 21 Oct 2022 07:56:07 +0200
+Message-ID: <ceb604bf-9773-d617-18e7-8f1400fd2cf9@norik.com>
+Date:   Fri, 21 Oct 2022 07:56:08 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT092:EE_|SN7PR12MB7369:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7237ce4c-209e-4b0b-1696-08dab326df9b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BdBJ5MiS+5YvnplbRD/tsVsJEP9p5crNmPyVxb79zvri7gIW/ODzDGd3TkEXnbSPV8sXL+KktX184B6VL9JOH1N/QOdZG02vt22JZ3YqB5YPSFnFYAhDGHXzH/sergOEg8II0eIAYdCfqc0LBztDiOjdBQ7IIkODzlSVHAaWGmDbknxNr+8txXs9bii6Hnzbb+fFgKmq52VealfsJPlzE3+pWW3kOX4vVdCBV19uIy87IMlaRTJ4cUqi7kOyVAPknLlY0Vz7cBNhkpc0adhQjGVM9+CGnCgOpevaRAdJH4pOJfE9/FrkCcIJdSzx0s+HxdaPDFb081/dgT44ck8RW1yvol5CHZ1ev2nbP3481Vt+zhJPM4nyZJL/i/eFx+elOYifrshSSPWIK1/RuSaKl61yBXQsLUDtH4xyxCK1qgn6iHXy1eQeKTOJ0nNSmb7no2G5Qg8s561kBubFBmfFiR8uRsWUf7qiBwOFmp7cPzGUyTjEnEGe5E8Y5GSUXPH7/XHhV5EMacN9R1nvAQ0ntiwSpF51hsB4esnOmJAvL7HMoO4iK8iQYBoHF7tlxHMLmjab+ZMQRMttV75LDTTDoOyi4P6p1a3PRCs8zg/ts5pM66Z3bRPGooxVP5i5GqCv8nZGb01xlUT9utYFOj1tz6Q+FfkIlCFbdZYkuUCugA70lYfc6M0EBSTCYTpJ38qjeAmAabsx1TCYe9nCrbx9oaW4p8AQFjiK5ecNceR0XLp2PclAsswNkWT9DO98avroEluGb4iBa7SDGw8jlgDL4OVwhaNVRu+Pek9gODe5g+U6fjtv2C3EH0a0OZVusDGnT7i6HxCbgJWSkYF9Xy8xzmlos/zo2v09WNUuTGOWYyE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(39860400002)(346002)(376002)(451199015)(40470700004)(36840700001)(46966006)(82740400003)(186003)(2616005)(1076003)(426003)(36860700001)(316002)(47076005)(336012)(26005)(40460700003)(83380400001)(2906002)(7416002)(40480700001)(5660300002)(8936002)(110136005)(478600001)(41300700001)(82310400005)(54906003)(70206006)(8676002)(70586007)(4326008)(966005)(103116003)(36756003)(86362001)(356005)(81166007)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2022 05:41:16.7177
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7237ce4c-209e-4b0b-1696-08dab326df9b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT092.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7369
-X-Spam-Status: No, score=0.6 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
+ wait mode
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
+        linux@roeck-us.net, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
+        kernel@pengutronix.de, s.hauer@pengutronix.de,
+        wim@linux-watchdog.org, robh+dt@kernel.org
+References: <20221019111714.1953262-1-andrej.picej@norik.com>
+ <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
+ <143f1466-e34a-254d-4e6e-fefa17ad1390@norik.com>
+ <24401572.EfDdHjke4D@steina-w>
+ <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
+ <f8435311-42fa-4858-4623-8088d644f6c6@linaro.org>
+From:   Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <f8435311-42fa-4858-4623-8088d644f6c6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is currently no standard property to pass PTP device index
-information to ethernet driver when they are independent.
 
-ptp-hardware-clock property will contain phandle to PTP clock node.
 
-Freescale driver currently has this implementation but it will be
-good to agree on a generic (optional) property name to link to PTP
-phandle to Ethernet node. In future or any current ethernet driver
-wants to use this method of reading the PHC index,they can simply use
-this generic name and point their own PTP clock node, instead of
-creating separate property names in each ethernet driver DT node.
+On 20. 10. 22 20:23, Krzysztof Kozlowski wrote:
+> On 20/10/2022 09:05, Andrej Picej wrote:
+>>
+>>
+>> On 20. 10. 22 14:41, Alexander Stein wrote:
+>>> Am Donnerstag, 20. Oktober 2022, 14:36:10 CEST schrieb Andrej Picej:
+>>>> On 20. 10. 22 14:18, Krzysztof Kozlowski wrote:
+>>>>> On 20/10/2022 02:23, Andrej Picej wrote:
+>>>>>> Hi Alexander and Krzysztof,
+>>>>>>
+>>>>>> hope I can reply to both questions here.
+>>>>>>
+>>>>>> On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
+>>>>>>> On 19/10/2022 09:00, Alexander Stein wrote:
+>>>>>>>> Hello Andrej,
+>>>>>>>
+>>>>>>>> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
+>>>>>>> Missing commit msg.
+>>>>>>>
+>>>>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>>>>>>> ---
+>>>>>>>>>
+>>>>>>>>>      Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5
+>>>>>>>>>      +++++
+>>>>>>>>>      1 file changed, 5 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git
+>>>>>>>>> a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
+>>>>>>>>> fb7695515be1..01b3e04e7e65 100644
+>>>>>>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>>>>>>>
+>>>>>>>>> @@ -55,6 +55,11 @@ properties:
+>>>>>>>>>            If present, the watchdog device is configured to assert its
+>>>>>>>>>            external reset (WDOG_B) instead of issuing a software reset.
+>>>>>>>>>
+>>>>>>>>> +  fsl,suspend-in-wait:
+>>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>>>>>> +    description: |
+>>>>>>>>> +      If present, the watchdog device is suspended in WAIT mode.
+>>>>>>>>> +
+>>>>>>>>>
+>>>>>>>>>      required:
+>>>>>>>>>        - compatible
+>>>>>>>>>        - interrupts
+>>>>>>>>
+>>>>>>>> What is the condition the watchdog is suspended in WAIT mode? Is this
+>>>>>>>> specific to SoC or platform or something else?
+>>>>>>
+>>>>>> Sorry, what exactly do you mean by condition?
+>>>>>
+>>>>> Ugh, I also cannot parse it now...
+>>>
+>>> Sorry, Krzysztof already asked the right question: When does one want to
+>>> enable/disable this feature?
+>>>
+>>>>>> When the property
+>>>>>> "fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so
+>>>>>> this is defined by the user. Didn't want to apply it for all the
+>>>>>> supported machines since there could be devices which depend on watchdog
+>>>>>> triggering in WAIT mode. We stumbled on this problem on imx6 devices,
+>>>>>> but the same bit (with the same description) is found on imx25, imx35,
+>>>>>> imx50/51/53, imx7 and imx8.
+>>>>>
+>>>>> I meant, what is expected to happen if you do not enable this bit and
+>>>>> watchdog triggers in WAIT mode? IOW, why someone might want to enable or
+>>>>> disable this property?
+>>>>
+>>>> If this is not enabled and you put the device into the Suspend-to-idle
+>>>> mode the device resets after 128 seconds. If not, the device can be left
+>>>> in that state for infinite time. I'm guessing you want me to better
+>>>> explain the property in device tree docs right?
+>>>> I can do that in v2.
+>>>>
+>>>>>>> And what happens else? When it is not suspended in WAIT mode?
+>>>>>>
+>>>>>> When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the
+>>>>>> watchdog keeps running and triggers a reset after 128 seconds. So the
+>>>>>> maximum length the device can stay in this mode is limited to 128
+>>>>>> seconds.
+>>>>>
+>>>>> And who wakes up the system before 128 seconds? IOW is there a use case
+>>>>> of not enabling this property?
+>>>>
+>>>> Well I can think of one, system can be woken up by some other interrupt.
+>>>> Like RTC which triggers interrupt (for example every 10s). So if this
+>>>> property is left disabled the watchdog can handle errors where other
+>>>> wakeup sources don't trigger interrupt or if the system is unable to
+>>>> wake from low-power state. In that case the watchdog will do a hard
+>>>> reset of the device.
+>>>>
+>>>> But I'm not really sure if anybody uses this, just wanted to make sure
+>>>> that we keep the default behaviour as it is, since this driver is used
+>>>> by many devices and for quite some time.
+>>>
+>>> This sounds more like (application) configuration. If so this should not be
+>>> configured in device tree, IMHO.
+>>>
+>>
+>> Do you have an idea where should it be configured? Just keep in mind
+>> that this can not be configured at runtime, since this is write-once bit
+>> so any configuration changes regarding this functionality can not be done.
+>>
+>> Basically if I can sum up the problem:
+>>
+>> Without this property enabled, the WDW bit is left unset:
+>> $ echo freeze > /sys/power/state
+>> #device enters Suspend-to-idle, watchdog is left running and the device
+>> resets after 128 seconds in this state
+> 
+> I still wonder (and still did not receive) about such use case. When
+> would you like to have such behavior?
+> 
 
-axiethernet driver uses this method when PTP support is integrated.
+Is this not a valid one?:
+>>>>> Well I can think of one, system can be woken up by some other interrupt.
+>>>>> Like RTC which triggers interrupt (for example every 10s). So if this
+>>>>> property is left disabled the watchdog can handle errors where other
+>>>>> wakeup sources don't trigger interrupt or if the system is unable to
+>>>>> wake from low-power state. In that case the watchdog will do a hard
+>>>>> reset of the device.
+>>>>>
+>>>>> But I'm not really sure if anybody uses this, just wanted to make sure
+>>>>> that we keep the default behaviour as it is, since this driver is used
+>>>>> by many devices and for quite some time.
 
-Example:
-	fman0: fman@1a00000 {
-		ptp-hardware-clock = <&ptp_timer0>;
-	}
+Basically watchdog acting as a supervisor for suspend states.
 
-	ptp_timer0: ptp-timer@1afe000 {
-		compatible = "fsl,fman-ptp-timer";
-		reg = <0x0 0x1afe000 0x0 0x1000>;
-	}
+>>
+>> With this property set, the WDW bit is set at watchdog initialization:
+>> $ echo freeze > /sys/power/state
+>> #device enters Suspend-to-idle, watchdog is suspended and the device can
+>> be left in this state until some other wakeup source triggers interrupt.
+> 
+> Assuming there is such use case, for keeping watchdog running even
+> though system sleeps (and cannot poke watchdog), it's fine.
+> 
 
-Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
----
-We want binding to be reviewed/accepted and then make changes in freescale
-binding documentation to use this generic binding.
-
-DT information:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi#n23
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/Documentation/devicetree/bindings/net/fsl-fman.txt#n320
-
-Freescale driver:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-tree/drivers/net/ethernet/freescale/dpaa/dpaa_ethtool.c#n467
-
-Changes in V2:
-1) Changed the ptimer-handle to ptp-hardware-clock based on
-   Richard Cochran's comment.
-2) Updated commit description.
----
- .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index 3aef506fa158..d2863c1dd585 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -161,6 +161,11 @@ properties:
-       - auto
-       - in-band-status
- 
-+  ptp-hardware-clock:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Specifies a reference to a node representing a IEEE1588 timer.
-+
-   fixed-link:
-     oneOf:
-       - $ref: /schemas/types.yaml#/definitions/uint32-array
--- 
-2.25.1
-
+Best regards,
+Andrej
