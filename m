@@ -2,169 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DE4A607D2A
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 19:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B336607D35
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 19:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbiJURGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 13:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46620 "EHLO
+        id S230286AbiJURKK convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 21 Oct 2022 13:10:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbiJURGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 13:06:44 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59FDB17A9D;
-        Fri, 21 Oct 2022 10:06:41 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-037-138-189-087.ewe-ip-backbone.de [37.138.189.87])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C3A8C6602379;
-        Fri, 21 Oct 2022 18:06:39 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666371999;
-        bh=sw1g18/yluc+d5C+pFtuJQ2w1P1wFFgeoQWxi4j7g18=;
-        h=From:To:Cc:Subject:Date:From;
-        b=JyJVvVvIxHtP5Mbeqt8SLO3+c+P9j7Qg0/sS8HVUMW+x0hZr48N01/w/kR70CRBzb
-         gfbWHOKXsuL2vNFYu7ULTvqFq0RJm4xcBklA2pWpJfqbWQwhJSJWt5/qlhgIBWlQ5z
-         L5+8ofW1UWUZB14XiCGzxM5jQ0D/ewq1xs8onqw2Tz0lN1iXFXFEP+dWc7kPERX1e7
-         kOKrAgKzWO43thKIAYdC2F8j2bZuCLUOU6bNFvty+to2XJMbmMM89vAspVE674w9UH
-         Q6Ii9eWefZ94tJvHpgVAsV9ALV4Q6fMZj96o5jLAOilzYlhmU/NVxYCLF/9nQeMLqW
-         9vsAhouisNNTA==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id AEECF48082E; Fri, 21 Oct 2022 19:06:37 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: [PATCH 1/1] dt-bindings: rtc: convert hym8563 bindings to json-schema
-Date:   Fri, 21 Oct 2022 19:06:05 +0200
-Message-Id: <20221021170605.85163-1-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S230261AbiJURKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 13:10:09 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8DB095E7B;
+        Fri, 21 Oct 2022 10:10:05 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1olvWv-0007gs-Dp; Fri, 21 Oct 2022 19:09:57 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     ardb@kernel.org, davem@davemloft.net, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, sboyd@kernel.org,
+        Corentin LABBE <clabbe@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v10 00/33] crypto: rockchip: permit to pass self-tests
+Date:   Fri, 21 Oct 2022 19:09:53 +0200
+Message-ID: <4780296.31r3eYUQgx@diego>
+In-Reply-To: <Y1KctXMZ1+c5uQqd@Red>
+References: <20220927075511.3147847-1-clabbe@baylibre.com> <Y1KctXMZ1+c5uQqd@Red>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
-Schema format.
+Am Freitag, 21. Oktober 2022, 15:20:53 CEST schrieb Corentin LABBE:
+> Le Tue, Sep 27, 2022 at 07:54:38AM +0000, Corentin Labbe a écrit :
+> > Hello
+> > 
+> > The rockchip crypto driver is broken and do not pass self-tests.
+> > This serie's goal is to permit to become usable and pass self-tests.
+> > 
+> > This whole serie is tested on a rk3328-rock64, rk3288-miqi and
+> > rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+> > 
+> > Regards
+> > 
+> 
+> Hello
+> 
+> Gentle ping since it is a month since this serie was sent and no comment was made (except some reviewed-by).
+> So I think it is ready to be merged, probably thought the crypto tree.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
- .../bindings/rtc/haoyu,hym8563.yaml           | 55 +++++++++++++++++++
- 2 files changed, 55 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
- create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+ideally everything _except_ patches
+ 26 +27+28
+would go through the crypto tree.
 
-diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-deleted file mode 100644
-index a8934fe2ab4c..000000000000
---- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Haoyu Microelectronics HYM8563 Real Time Clock
--
--The HYM8563 provides basic rtc and alarm functionality
--as well as a clock output of up to 32kHz.
--
--Required properties:
--- compatible: should be: "haoyu,hym8563"
--- reg: i2c address
--- #clock-cells: the value should be 0
--
--Optional properties:
--- clock-output-names: From common clock binding
--- interrupts: rtc alarm/event interrupt
--
--Example:
--
--hym8563: hym8563@51 {
--	compatible = "haoyu,hym8563";
--	reg = <0x51>;
--
--	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
--
--	#clock-cells = <0>;
--};
--
--device {
--...
--	clocks = <&hym8563>;
--...
--};
-diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-new file mode 100644
-index 000000000000..b0b6126b12dd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Haoyu Microelectronics HYM8563 RTC
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: haoyu,hym8563
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 0
-+
-+  clock-output-names:
-+    description: From common clock binding to override the default output clock name.
-+
-+  wakeup-source:
-+    description: Enables wake up of host system on alarm.
-+
-+allOf:
-+  - $ref: rtc.yaml
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#clock-cells"
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@51 {
-+            compatible = "haoyu,hym8563";
-+            reg = <0x51>;
-+            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+            #clock-cells = <0>;
-+        };
-+    };
--- 
-2.35.1
+So if possible I'd like to pick up those (clock + arm64-dts patches)
+after the crypto people are satisfied with the driver changes.
+
+
+Thanks
+Heiko
+
 
