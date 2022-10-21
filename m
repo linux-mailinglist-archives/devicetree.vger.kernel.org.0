@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A49FB606F20
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 07:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48E05606F25
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 07:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbiJUFHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 01:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49322 "EHLO
+        id S229734AbiJUFJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 01:09:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbiJUFH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 01:07:29 -0400
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC472187DF3;
-        Thu, 20 Oct 2022 22:07:27 -0700 (PDT)
-Received: by mail-io1-xd29.google.com with SMTP id l127so1390264iof.12;
-        Thu, 20 Oct 2022 22:07:27 -0700 (PDT)
+        with ESMTP id S229740AbiJUFJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 01:09:32 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A0555A9;
+        Thu, 20 Oct 2022 22:09:26 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id y191so1587761pfb.2;
+        Thu, 20 Oct 2022 22:09:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MEwZHem6XE7/ekLP3cDVQiDet0qLNX4/5trFWKq/TK4=;
-        b=MhfhmXR8De3QaEZs1GgnopnDHQU/TldUkkJLZfKo8RH91E3wimNUV609GsUonZMXkL
-         tOriKFtKty8u0HT3H/hbnzT4Pxr4xp6d2Q4PDgVtULnkAlptMcSngaeqVa3Q/UrMMhpO
-         IQZeN0ar8S7WYAkf6HFjP8pacsnxEhBCJypQmyY8Tv22rdlXBSEynIJOlflWSFUN4jNH
-         flt31456ja5+HTaQwx9cRyIvmBXJKrk1ncgt9FwND7xVM8TE9aTsfQd72QqProHWSA2d
-         qzPq0jbftOVsKmFzYUBufu9KN09YcFD6h7BSmsVcOFCHspzNXBchYSqH8lKTtVbAlUA3
-         6PYA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ba9dLdgOZBOgG+Y/zhEkRy4LHyrM2NTx3VqdcRa7tz8=;
+        b=JO5pUJWXDe6yMAmpZGe9HeFCZjsqKRSnxnoFGevEUfDgzex5fnqR4h4RB/YGKnbgpw
+         vHWKzdcTs0BGsdyYklukTlJkeA3QmP92h83HAAQWoV1dW0Ew5xg9LLPwPyr5+/lk38+s
+         eGFP5bJhd9g8vw0FEzafKvXmlwddS8gn5I9mRCwgdiWuaQQGvB6PTn7kF4D3q2cZHzcq
+         BfyBCUPbcSxTD8wPxxe2gKlOZtejX1y/wkK/wknSr14WRN6cnOmzIxNfEs7x5OxpV0Yz
+         7bgtnDHXrkxpXu/Xga6XCzgYSXIbrV4If/HA/XT3hh/cpOIe6eUkJ8sarB4szRWAtG+c
+         RE2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MEwZHem6XE7/ekLP3cDVQiDet0qLNX4/5trFWKq/TK4=;
-        b=kyoCnYMuoSOpSN/6T5QNV6JGKrxlFmwFePE770yDFo9LYhGaSKlbwI5sa7H+rWEGV7
-         VbeLj4748lTDU7AzV9aUXLT561jl1pArOVLhf54ebf2bKfVcnExr432DpAKDzC6+zHkp
-         07Xe7fKvlSgVTm/SjcaiSEDE7/WGgRG790x9+DF+gM/Q2mMQo6fQfhR625aOBjYkurmf
-         J0mZaFm7c7IV1M2l8MCc6RIvzHLZcphvrJldHyWE0v8VvlOP0CeAOKi4JZUMCf/doRjU
-         glT3Q4Kvt+9v9Bdd1pX8iXavfxOH9lJtDBR/bJWLPohbTlMnOsm5qZdC7/m9j1khd/HM
-         PpRA==
-X-Gm-Message-State: ACrzQf0eKMsu+RUVV58YpX/PRSvuJV+5M4QL/SGX8DVKG3cHsWRgBdgn
-        bbOlenKHqEOakvuTY9kSHSIa1+6nbnQfj2olZho=
-X-Google-Smtp-Source: AMsMyM6U2t/J1APaVQvh2XiaYqqrQH23meYzMdt+B6vkVCvpey5BQkHlr4XgLl/VZwV7wx93EPq7cUKl2q/VRyvhQwA=
-X-Received: by 2002:a05:6602:2742:b0:6bb:a95d:7e3a with SMTP id
- b2-20020a056602274200b006bba95d7e3amr11993607ioe.16.1666328847336; Thu, 20
- Oct 2022 22:07:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221018195122.8877-1-linux.amoon@gmail.com> <CAFBinCCqXBk9Xq0k=NA3zGi8spwyPQN7dMVWcjE+pXkXYf+FKQ@mail.gmail.com>
- <CANAwSgSR6jHRQR6QgzUop_B4gcOsQnfc6LoUXrP0CSTasZkVfQ@mail.gmail.com>
- <CANAwSgRLZfon5qUFeKW9U9AbHvSa=uKVaVgqghVk554-H1LVKw@mail.gmail.com>
- <402500e8-b4fe-9b8f-d634-e329191af1b8@linaro.org> <CANAwSgQhWrzeRcpQSSAmfp+i3966dUQdtCLbcWwifQk=1ce=og@mail.gmail.com>
- <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
-In-Reply-To: <CAFBinCCyEVbc4N7TUEi=sbLFv7Rc-L=y-h8xBuZK446x1oLc2g@mail.gmail.com>
+        bh=ba9dLdgOZBOgG+Y/zhEkRy4LHyrM2NTx3VqdcRa7tz8=;
+        b=RnDwVa31xM+K/+rEpmS3TqICSprT1arPOVkciyK8Ou/Wm/914CfOAeBoezekFjdOLa
+         9IHEL6ascqgDb3oTl66JLPyb+JkSgNsgWzWeYxP50fDQxWs/x8kT3oPXhgRxIjVlVrDo
+         JgH9c/pTWFhh7B8Dtkch8a9cCW/F3EfB4u4i/uGXj64zkFrYLSOBFzV6PkFQ7rJ2rySW
+         IprfGKWyKkh7IHLQ5dZKSO2yM+VuqWwCBs2gAEIoSGi7BFv9vafvK97hC5IX7wYh0och
+         n4WTAo9FQH6S4DIPYqEQY88tsqJb0/m/50DESz5pR9D6IvkEb7jlKUCw1Ck44LESOXeD
+         D9JA==
+X-Gm-Message-State: ACrzQf2AKq6BZs1zcii/h9X7Ua78N38xqxSkeCAE75uRlKzI/BT0IMFv
+        KLovlMXdiAevf4ZwKuzr1lr/h6Uki6A=
+X-Google-Smtp-Source: AMsMyM59WgmWh7/zaSdlePpeiOjBk6mOvLdnDVwax23Fa9VVLugMGyWLWkUYZEEAcovwo69V/hk9mQ==
+X-Received: by 2002:a65:56cb:0:b0:460:442e:b293 with SMTP id w11-20020a6556cb000000b00460442eb293mr14621854pgs.49.1666328966431;
+        Thu, 20 Oct 2022 22:09:26 -0700 (PDT)
+Received: from localhost.localdomain ([103.51.72.20])
+        by smtp.gmail.com with ESMTPSA id ik3-20020a170902ab0300b00170d34cf7f3sm13520770plb.257.2022.10.20.22.09.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Oct 2022 22:09:25 -0700 (PDT)
 From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Fri, 21 Oct 2022 10:37:11 +0530
-Message-ID: <CANAwSgQ9gJvtdr_r1K0xxrDxQ6aBh5v=pR9aJSxRytia2PSbrg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: Enable active coling using gpio-fan on
- Odroid N2/N2+
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     neil.armstrong@linaro.org, Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCHv2] arm64: dts: meson: Enable active coling using gpio-fan on Odroid N2/N2+
+Date:   Fri, 21 Oct 2022 05:09:03 +0000
+Message-Id: <20221021050906.1158-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.38.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -75,84 +75,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin / Neil,
+Odroid N2/N2+ support active cooling via gpio-fan controller.
+Add fan controls and tip point for cpu and ddr thermal sensor
+on this boards.
 
-On Thu, 20 Oct 2022 at 02:10, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Wed, Oct 19, 2022 at 7:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > > > +&pwm_AO_ab {
-> > >
-> > > &pwm_AO_cd not _ab
-> > >
-> > No it has a conflict with CPU_B (vddcpu_b) PWM
-> Uh, you're right. That's probably why the Hardkernel team uses a
-> software based PWM implementation: [0]
-> In hindsight they should have used a different pad either for VDDCPU_B
-> or the fan.
->
-> I think the most pragmatic approach (since the "GPIO PWM" driver is
-> not upstream and I don't know if something like that would be accepted
-> upstream) is to use a GPIO based fan as you did in your initial patch.
-> Not sure what others think though.
->
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+v2: changes tip name cpu-active --> ddr-active
+---
+ .../dts/amlogic/meson-g12b-odroid-n2.dtsi     | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-When I use gpio-fan  I get the following output with gpioinfo
-Feature it woks as expected.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index fd3fa82e4c33..667d2b774924 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
+ 		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
+ 	};
+ 
++	fan: gpio-fan {
++		compatible = "gpio-fan";
++		gpios = <&gpio_ao GPIOAO_10 GPIO_ACTIVE_HIGH>;
++		/* Using Dummy Speed */
++		gpio-fan,speed-map = <0 0>, <1 1>;
++		#cooling-cells = <2>;
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -410,6 +418,40 @@ &cpu103 {
+ 	clock-latency = <50000>;
+ };
+ 
++&cpu_thermal {
++	trips {
++		cpu_active: cpu-active {
++			temperature = <60000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map {
++			trip = <&cpu_active>;
++			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
++&ddr_thermal {
++	trips {
++		ddr_active: ddr-active {
++			temperature = <60000>; /* millicelsius */
++			hysteresis = <2000>; /* millicelsius */
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map {
++			trip = <&ddr_active>;
++			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++		};
++	};
++};
++
+ &ext_mdio {
+ 	external_phy: ethernet-phy@0 {
+ 		/* Realtek RTL8211F (0x001cc916) */
 
-$ .sudo gpioinfo
-....
-gpiochip1 - 15 lines:
-        line   0:      unnamed       unused   input  active-high
-        line   1:      unnamed       unused   input  active-high
-        line   2:      unnamed     "enable"  output  active-high [used]
-        line   3:      unnamed       unused   input  active-high
-        line   4:      unnamed       unused  output  active-high
-        line   5:      unnamed       unused   input  active-high
-        line   6:      unnamed       unused   input  active-high
-        line   7:      unnamed       unused   input  active-high
-        line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
-        line   9:      unnamed      "TF_IO"  output  active-high [used]
-        line  10:      unnamed   "gpio-fan"  output  active-high [used]
-        line  11:      unnamed    "n2:blue"  output  active-high [used]
-        line  12:      unnamed       unused   input  active-high
-        line  13:      unnamed       unused   input  active-high
-        line  14:      unnamed       unused   input  active-high
+base-commit: aae703b02f92bde9264366c545e87cec451de471
+-- 
+2.38.0
 
-When I am using pwm-fan using *pwm_ao_d_10_pins* pin is not getting
-registered below hence it is not working on my end.
-
-$ .sudo gpioinfo
-....
-gpiochip1 - 15 lines:
-        line   0:      unnamed       unused   input  active-high
-        line   1:      unnamed       unused   input  active-high
-        line   2:      unnamed     "enable"  output  active-high [used]
-        line   3:      unnamed       unused   input  active-high
-        line   4:      unnamed       unused  output  active-high
-        line   5:      unnamed       unused   input  active-high
-        line   6:      unnamed       unused   input  active-high
-        line   7:      unnamed       unused   input  active-high
-        line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
-        line   9:      unnamed      "TF_IO"  output  active-high [used]
-        line  10:      unnamed       unused  output  active-high
-        line  11:      unnamed    "n2:blue"  output  active-high [used]
-        line  12:      unnamed       unused   input  active-high
-        line  13:      unnamed       unused   input  active-high
-        line  14:      unnamed       unused   input  active-high
-
-Thanks
--Anand
-
-
-
-
->
-> Best regards,
-> Martin
->
->
-> [0] https://github.com/hardkernel/linux/blob/c109dec94e7e819554830acfac4b6ed96e230179/arch/arm64/boot/dts/amlogic/meson64_odroidn2.dtsi#L356-L359
