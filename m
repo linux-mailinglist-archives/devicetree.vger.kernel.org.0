@@ -2,221 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05F8D606FAD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 07:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B04E5606FBF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 08:01:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229968AbiJUF4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 01:56:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37452 "EHLO
+        id S229476AbiJUGBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 02:01:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbiJUF4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 01:56:17 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679EE1AA251;
-        Thu, 20 Oct 2022 22:56:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=WwEOW9UNLcS8nsd2aSBapizmkmLE2U0qOFg8vtqEoZ8=; b=VJq0lyXROIw370sXXxOb2+ndrM
-        Q6InkMEwLQpheSIM3aMq1x21KB4a7Qj2y95I9cv3+mHSXrytEirbRjFl6K49M//vt19imi9HYpbgT
-        OY/NSMDI1nAlw1ghC4seVj+9LKTDcnSjYisvTK+5E8xqjf7lhP5pbYl7QIay/BzVzk+inf1diLpan
-        Bel+4mm2ceThmkOFChV/q3vk3S3lP6wKCR9X8oKwz0XeEyansJF8L0Vty9IemBx2rxvDCbACygR9t
-        /WVjuYQylchiKwfL4kbraCfqbMRhp4sM9qH6gNSKB6NqbYuShthHWCV0pgY06+MESr5Dl0E0zYx4/
-        y1yWJMuw==;
-Received: from [89.212.21.243] (port=52262 helo=[192.168.69.85])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.95)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1oll0h-0012oZ-VJ;
-        Fri, 21 Oct 2022 07:56:07 +0200
-Message-ID: <ceb604bf-9773-d617-18e7-8f1400fd2cf9@norik.com>
-Date:   Fri, 21 Oct 2022 07:56:08 +0200
+        with ESMTP id S229604AbiJUGBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 02:01:02 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1279A1A4003;
+        Thu, 20 Oct 2022 23:00:58 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id g1so3272959lfu.12;
+        Thu, 20 Oct 2022 23:00:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C5hHs2S/RQl/JXIwHudGm/5mav5RsuOJ5skKbHJaT7M=;
+        b=OYP1l1n6nvRFKN66YMNkW/ZD0biklmoqW7/GKmlBQ/5ENQhPpcHwgnW/rNIUjRoyeq
+         mUi4KXWRSDufdZ1cvTW+/XnGUEaYLFilpxFrjNlzxEDxCFeoa4hoLVhGgnokrL4GUPet
+         uKYNILHU9QWMrCKkaYtUezb0B7qpROKi1T0G3/hNigGE37igbdbYuW2uvo4prBisHInc
+         RUEzuiYlVyFbUVo4KlAGbb6R/AWWoEOYu7HdZU0ekJPUOU2oH4HXT/NQl7KkNx7KZB/t
+         L3IccSVZ1ulaB+TjsnFK+9dkyAMqV/YBwlFRErIyCwwNXGnUijQlIUCwJg60u7yjz9E8
+         xS7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C5hHs2S/RQl/JXIwHudGm/5mav5RsuOJ5skKbHJaT7M=;
+        b=7EMsyztakmfRRe2zr23yF2ft/z26d8HOGVOVvypa0C4Dq8QhD2SYIK6tT69rLjMGN4
+         ZkHhCeMQZ/IVrcO4Xz1hJYdobO3vKpFT1FMYk5x18IqUhWQo7y8ZRVvmkNGcjgD47ts9
+         BZy5UqWdASpXXTa1+5jFjumuSUEkZHQoaVCdaE9i8UJUR7/P7TE/Vgm2ZDPHO7j/AT/x
+         ZNmb2CaARC4stxeOY8wgt5uSKZHASGJra9mD7BqpSDdGmy75tGjtOuppYq1guBA+8ZuR
+         jhKHEr66OT/zv0u6crgYtpQXn8sZtT0zT+XkIXgazPK8TupnzorB8sqc5QaDpB5W4KIz
+         DC8g==
+X-Gm-Message-State: ACrzQf3RVbqEA+W05gbsA6J3sSkEQrDaclWs8pkl9XhyEV85OU/ktDV+
+        eTAIZ5x5v06+GshQ2YNjMXE=
+X-Google-Smtp-Source: AMsMyM6WDH7wq1u5kd3U+odFfEpgQ30j9+6ajofiuy78KRWiVD1E3qXL80lU1+kvXFHzYz3QOVAQIg==
+X-Received: by 2002:ac2:5321:0:b0:4a4:3c25:dbd with SMTP id f1-20020ac25321000000b004a43c250dbdmr5837748lfh.406.1666332056154;
+        Thu, 20 Oct 2022 23:00:56 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id p6-20020ac246c6000000b0049e9122bd0esm3021950lfo.114.2022.10.20.23.00.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Oct 2022 23:00:55 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/2] dt-bindings: mtd: partitions: support marking rootfs partition
+Date:   Fri, 21 Oct 2022 08:00:50 +0200
+Message-Id: <20221021060051.2508-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 2/3] dt-bindings: watchdog: fsl-imx: document suspend in
- wait mode
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
-        linux@roeck-us.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-imx@nxp.com, festevam@gmail.com,
-        kernel@pengutronix.de, s.hauer@pengutronix.de,
-        wim@linux-watchdog.org, robh+dt@kernel.org
-References: <20221019111714.1953262-1-andrej.picej@norik.com>
- <ea6893f6-be39-697c-4493-7f1c0ed6708d@linaro.org>
- <143f1466-e34a-254d-4e6e-fefa17ad1390@norik.com>
- <24401572.EfDdHjke4D@steina-w>
- <1a3a1c8c-8baf-ef70-9e5b-e817bb14cfad@norik.com>
- <f8435311-42fa-4858-4623-8088d644f6c6@linaro.org>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <f8435311-42fa-4858-4623-8088d644f6c6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Linux needs to know what to use as root device. On embedded devices with
+flash the only common way to specify that is cmdline & root= parameter.
 
-On 20. 10. 22 20:23, Krzysztof Kozlowski wrote:
-> On 20/10/2022 09:05, Andrej Picej wrote:
->>
->>
->> On 20. 10. 22 14:41, Alexander Stein wrote:
->>> Am Donnerstag, 20. Oktober 2022, 14:36:10 CEST schrieb Andrej Picej:
->>>> On 20. 10. 22 14:18, Krzysztof Kozlowski wrote:
->>>>> On 20/10/2022 02:23, Andrej Picej wrote:
->>>>>> Hi Alexander and Krzysztof,
->>>>>>
->>>>>> hope I can reply to both questions here.
->>>>>>
->>>>>> On 19. 10. 22 17:51, Krzysztof Kozlowski wrote:
->>>>>>> On 19/10/2022 09:00, Alexander Stein wrote:
->>>>>>>> Hello Andrej,
->>>>>>>
->>>>>>>> Am Mittwoch, 19. Oktober 2022, 13:17:13 CEST schrieb Andrej Picej:
->>>>>>> Missing commit msg.
->>>>>>>
->>>>>>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->>>>>>>>> ---
->>>>>>>>>
->>>>>>>>>      Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml | 5
->>>>>>>>>      +++++
->>>>>>>>>      1 file changed, 5 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git
->>>>>>>>> a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>>>>>> b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml index
->>>>>>>>> fb7695515be1..01b3e04e7e65 100644
->>>>>>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>>>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->>>>>>>>>
->>>>>>>>> @@ -55,6 +55,11 @@ properties:
->>>>>>>>>            If present, the watchdog device is configured to assert its
->>>>>>>>>            external reset (WDOG_B) instead of issuing a software reset.
->>>>>>>>>
->>>>>>>>> +  fsl,suspend-in-wait:
->>>>>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
->>>>>>>>> +    description: |
->>>>>>>>> +      If present, the watchdog device is suspended in WAIT mode.
->>>>>>>>> +
->>>>>>>>>
->>>>>>>>>      required:
->>>>>>>>>        - compatible
->>>>>>>>>        - interrupts
->>>>>>>>
->>>>>>>> What is the condition the watchdog is suspended in WAIT mode? Is this
->>>>>>>> specific to SoC or platform or something else?
->>>>>>
->>>>>> Sorry, what exactly do you mean by condition?
->>>>>
->>>>> Ugh, I also cannot parse it now...
->>>
->>> Sorry, Krzysztof already asked the right question: When does one want to
->>> enable/disable this feature?
->>>
->>>>>> When the property
->>>>>> "fsl,suspend-in-wait" is set the watchdog is suspended in WAIT mode, so
->>>>>> this is defined by the user. Didn't want to apply it for all the
->>>>>> supported machines since there could be devices which depend on watchdog
->>>>>> triggering in WAIT mode. We stumbled on this problem on imx6 devices,
->>>>>> but the same bit (with the same description) is found on imx25, imx35,
->>>>>> imx50/51/53, imx7 and imx8.
->>>>>
->>>>> I meant, what is expected to happen if you do not enable this bit and
->>>>> watchdog triggers in WAIT mode? IOW, why someone might want to enable or
->>>>> disable this property?
->>>>
->>>> If this is not enabled and you put the device into the Suspend-to-idle
->>>> mode the device resets after 128 seconds. If not, the device can be left
->>>> in that state for infinite time. I'm guessing you want me to better
->>>> explain the property in device tree docs right?
->>>> I can do that in v2.
->>>>
->>>>>>> And what happens else? When it is not suspended in WAIT mode?
->>>>>>
->>>>>> When you put the device in "freeze"/"Suspend-To-Idle" low-power mode the
->>>>>> watchdog keeps running and triggers a reset after 128 seconds. So the
->>>>>> maximum length the device can stay in this mode is limited to 128
->>>>>> seconds.
->>>>>
->>>>> And who wakes up the system before 128 seconds? IOW is there a use case
->>>>> of not enabling this property?
->>>>
->>>> Well I can think of one, system can be woken up by some other interrupt.
->>>> Like RTC which triggers interrupt (for example every 10s). So if this
->>>> property is left disabled the watchdog can handle errors where other
->>>> wakeup sources don't trigger interrupt or if the system is unable to
->>>> wake from low-power state. In that case the watchdog will do a hard
->>>> reset of the device.
->>>>
->>>> But I'm not really sure if anybody uses this, just wanted to make sure
->>>> that we keep the default behaviour as it is, since this driver is used
->>>> by many devices and for quite some time.
->>>
->>> This sounds more like (application) configuration. If so this should not be
->>> configured in device tree, IMHO.
->>>
->>
->> Do you have an idea where should it be configured? Just keep in mind
->> that this can not be configured at runtime, since this is write-once bit
->> so any configuration changes regarding this functionality can not be done.
->>
->> Basically if I can sum up the problem:
->>
->> Without this property enabled, the WDW bit is left unset:
->> $ echo freeze > /sys/power/state
->> #device enters Suspend-to-idle, watchdog is left running and the device
->> resets after 128 seconds in this state
-> 
-> I still wonder (and still did not receive) about such use case. When
-> would you like to have such behavior?
-> 
+That solution works with U-Boot which is Linux & cmdline aware but isn't
+available with all market bootloaders. Also that method is fragile:
+1. Requires specific probing order on multi-flash devices
+2. Uses hardcoded partitions indexes
 
-Is this not a valid one?:
->>>>> Well I can think of one, system can be woken up by some other interrupt.
->>>>> Like RTC which triggers interrupt (for example every 10s). So if this
->>>>> property is left disabled the watchdog can handle errors where other
->>>>> wakeup sources don't trigger interrupt or if the system is unable to
->>>>> wake from low-power state. In that case the watchdog will do a hard
->>>>> reset of the device.
->>>>>
->>>>> But I'm not really sure if anybody uses this, just wanted to make sure
->>>>> that we keep the default behaviour as it is, since this driver is used
->>>>> by many devices and for quite some time.
+A lot of devices use different partitioning methods. It may be
+"fixed-partitions" or some dynamic partitioning (e.g. based on parts
+table). For such cases allow "linux,rootfs" property to mark correct
+flash partition.
 
-Basically watchdog acting as a supervisor for suspend states.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Use "linux,rootfs" as more accurate. Thanks Rob.
+---
+ .../devicetree/bindings/mtd/partitions/fixed-partitions.yaml  | 1 +
+ .../devicetree/bindings/mtd/partitions/partition.yaml         | 4 ++++
+ 2 files changed, 5 insertions(+)
 
->>
->> With this property set, the WDW bit is set at watchdog initialization:
->> $ echo freeze > /sys/power/state
->> #device enters Suspend-to-idle, watchdog is suspended and the device can
->> be left in this state until some other wakeup source triggers interrupt.
-> 
-> Assuming there is such use case, for keeping watchdog running even
-> though system sleeps (and cannot poke watchdog), it's fine.
-> 
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index ad3ccd250802..d66a6e3bcb56 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -84,6 +84,7 @@ examples:
+         partition@0 {
+             label = "filesystem";
+             reg = <0x00000000 0x1 0x00000000>;
++            linux,rootfs;
+         };
+     };
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+index f1a02d840b12..a25cd23a34c0 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+@@ -52,6 +52,10 @@ properties:
+       immune to paired-pages corruptions
+     type: boolean
+ 
++  linux,rootfs:
++    description: Marks partition that contains root filesystem to mount and boot
++      user space from
++
+ if:
+   not:
+     required: [ reg ]
+-- 
+2.34.1
 
-Best regards,
-Andrej
