@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C7DE607887
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF1E60788D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 15:33:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231130AbiJUNdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 09:33:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45766 "EHLO
+        id S229843AbiJUNdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 09:33:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231145AbiJUNcg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:32:36 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77191272118
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:32:22 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id z30so1954936qkz.13
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:32:22 -0700 (PDT)
+        with ESMTP id S230196AbiJUNdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 09:33:31 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B6E27212B
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:33:24 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id s17so1955526qkj.12
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 06:33:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5+e3tfZKD8wPLq+xcmy+Hq7e5zoVdL8VVcXpDbD3Ib4=;
-        b=Yx8xloWDhbEQ67y0pJkRiQj2ByUZYLHTkUmjgXvkWGU/moYFskJONIRkSscwkXJuKl
-         7RSpTwuxzRQhww/X3kFwMir6d0xDIAwHLFDpaPpShmyrrrh3dvf+wLup6XNfeG+hgrYY
-         MMdOUkLsv/m9pSrImhvsnUUeWLn/3lyk78qiq4fhkZn7sso9wygWmffE/9B2E9U4zaqu
-         2KI6roiiVu+XhxlVNWv7WQ4Vql2wJ+91YP3jejvsL9cxAhBtU8iiIFdxBvAbv9uFnLCd
-         NV6qtkS//cq2mEUw7E1JJWEsebbN2i+T+DLSeeSCHl40e9ODk871N2jg+j5D+ASwq9EA
-         /K/Q==
+        bh=A72BE+IY0ZrHLTBIHgimMdusQVYAjUJuQP7S8i5Lgzg=;
+        b=NSMmHp4D72Xj1JgY7/qmYBJ84+8CoWjIgZn+LlXfl5MOa/ypvZGuIOMc0zqIRgSiuA
+         W7KinC3ipcNrUAOHnMjwM9ImAH4Z0622rc3FiQa/rRHO0tDAwjrlBI32Ts+z7yP0kILA
+         A4SOg22jgqdJKf7i9HSlvvwbjee9SmmKWgajtWSJlbIGre6kFnT2QmUB3g6aYAv1IT+x
+         skWsg5X/BgtB5/NkFmfwno16ZNTUpp1AyLXZBJ5zuy+C3GmgRMvYXjF041rcmzkmIq+3
+         96/rRo+9PsHQAfcAm5ZCudDnpc9XKX8CcXckUaVOw03P6UT+T/WCCxIJti2HA13rrYB+
+         +BuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5+e3tfZKD8wPLq+xcmy+Hq7e5zoVdL8VVcXpDbD3Ib4=;
-        b=Yey93sMb4bDcOY8ajezUu8FJyhar/E1nsAwS3SKelY3vEl4LWfD/pa4UhDERJl7gLU
-         cla9vNNo14vVhNbE6Q4XWiMwGcnkHmDVkJJCXWVTNHKfapkocanYSeRrpX+Kl6JF7Cpg
-         SF0HqtVZirVzYTk+j15mvTYb5h0xR9aX0AGYpetMHc//Rhyl6zCxiAC4Jnn7zUBVWEdz
-         tZOsH76Gv5UdFzZcVu6bCJ+IMe0SUYIQVxBFqX1JfnWnxlpgixbdvhTeAD6ZGPdtY5Yo
-         NBvi0Y+Kan5nLHoileHSbQmHxDqTGVKzeHDAzhcdz7fxtCWkFRsYe/nZqIcz624hE/dP
-         4Dzg==
-X-Gm-Message-State: ACrzQf1xvV09Zlc75qU4y50ngk+MEygyVS4/nTCA0bPkucMic6CzTroa
-        0R04T/T6FqVaTvBPJbcrmJfM2g==
-X-Google-Smtp-Source: AMsMyM6u87pLEnDFK4teTs0zAB89izZ7kLNHzzpukigPaqu6PxsLer0iBEt8sYL/DMFxF9c/ggx3Tg==
-X-Received: by 2002:ae9:ef4e:0:b0:6ee:80b6:2ee4 with SMTP id d75-20020ae9ef4e000000b006ee80b62ee4mr13415282qkg.126.1666359140868;
-        Fri, 21 Oct 2022 06:32:20 -0700 (PDT)
+        bh=A72BE+IY0ZrHLTBIHgimMdusQVYAjUJuQP7S8i5Lgzg=;
+        b=lcxCzWynUEsiRZG6J/ZUEfXgiow8GjnM6Hqq7L0ICiBhuMTmpY6/AKzAOCSk7agTO1
+         Q7jyjFk9gKSYz0FBc3PG/sPwcsb92kJpX74PxDB/ZliITKd2AYyypwBy7MXgK5KUw5YN
+         +ycUmgT1wjBgYtHyO4ig3A7rMazfgl6vFdu21mhWCCLtGrvBy2324VBQ9MqNycgIBO8X
+         SOjV8w6CcbO30tepJ34m2F72Kbzfva5LQ7AG/Gp4EwnKPPS0cmKVVNQL5KjLNGebmuyg
+         ev6JPZZm82km50s5W4PJlCM7dlnuHSJQ46lbCRjzevYKnSvtWrZhGKhZH0pmmetuUR3P
+         I56A==
+X-Gm-Message-State: ACrzQf12+VUYsGUGw4cgY7UHdK3BGm9Wm7Cr1DrRVp0rSlKdiuWYzBwi
+        RX8Mh/o7zMzRysGWBJGNZ4NqZw==
+X-Google-Smtp-Source: AMsMyM5qZak5lIY8DroovbcZWF2ESpxujwqRcUN1jNE81aHgGbe/231Ljtl9XkXmUws8ZJyuf658jg==
+X-Received: by 2002:a05:620a:304:b0:6ee:77f1:ecf9 with SMTP id s4-20020a05620a030400b006ee77f1ecf9mr13922921qkm.94.1666359203197;
+        Fri, 21 Oct 2022 06:33:23 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id l3-20020a37f903000000b006ee2953fac4sm9387945qkj.136.2022.10.21.06.32.19
+        by smtp.gmail.com with ESMTPSA id r2-20020ae9d602000000b006ceb933a9fesm9459881qkk.81.2022.10.21.06.33.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 06:32:20 -0700 (PDT)
-Message-ID: <b74f37ba-d2e3-ab73-a035-739ffb2b0334@linaro.org>
-Date:   Fri, 21 Oct 2022 09:32:19 -0400
+        Fri, 21 Oct 2022 06:33:22 -0700 (PDT)
+Message-ID: <3b1e28f4-c057-670f-af36-d332e3afb61e@linaro.org>
+Date:   Fri, 21 Oct 2022 09:33:20 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCHv5 4/6] mmc: dw_mmc-pltfm: socfpga: add method to configure
- clk-phase
+Subject: Re: [PATCH net-next v5 1/5] net: dt-bindings: Introduce the Qualcomm
+ IPQESS Ethernet controller
 Content-Language: en-US
-To:     Dinh Nguyen <dinguyen@kernel.org>, jh80.chung@samsung.com
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20221019170657.68014-1-dinguyen@kernel.org>
- <20221019170657.68014-5-dinguyen@kernel.org>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+References: <20221021124556.100445-1-maxime.chevallier@bootlin.com>
+ <20221021124556.100445-2-maxime.chevallier@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221019170657.68014-5-dinguyen@kernel.org>
+In-Reply-To: <20221021124556.100445-2-maxime.chevallier@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,66 +85,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 13:06, Dinh Nguyen wrote:
-> The clock-phase settings for the SDMMC controller in the SoCFPGA
-> platforms reside in a register in the System Manager. Add a method
-> to access that register through the syscon interface.
+On 21/10/2022 08:45, Maxime Chevallier wrote:
+> Add the DT binding for the IPQESS Ethernet Controller. This is a simple
+> controller, only requiring the phy-mode, interrupts, clocks, and
+> possibly a MAC address setting.
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 > ---
-> v5: change error handling from of_property_read_variable_u32_array()
->     support arm32 by reading the reg_shift
-> v4: no change
-> v3: add space before &socfpga_drv_data
-> v2: simplify clk-phase calculations
-> ---
->  drivers/mmc/host/dw_mmc-pltfm.c | 43 ++++++++++++++++++++++++++++++++-
->  1 file changed, 42 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mmc/host/dw_mmc-pltfm.c b/drivers/mmc/host/dw_mmc-pltfm.c
-> index 9901208be797..74421d13f466 100644
-> --- a/drivers/mmc/host/dw_mmc-pltfm.c
-> +++ b/drivers/mmc/host/dw_mmc-pltfm.c
-> @@ -17,10 +17,16 @@
->  #include <linux/mmc/host.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/of.h>
-> +#include <linux/mfd/altera-sysmgr.h>
-> +#include <linux/regmap.h>
->  
->  #include "dw_mmc.h"
->  #include "dw_mmc-pltfm.h"
->  
-> +#define SOCFPGA_DW_MMC_CLK_PHASE_STEP	45
-> +#define SYSMGR_SDMMC_CTRL_SET(smplsel, drvsel, reg_shift) \
-> +	((((smplsel) & 0x7) << reg_shift) | (((drvsel) & 0x7) << 0))
-> +
->  int dw_mci_pltfm_register(struct platform_device *pdev,
->  			  const struct dw_mci_drv_data *drv_data)
->  {
-> @@ -62,9 +68,44 @@ const struct dev_pm_ops dw_mci_pltfm_pmops = {
->  };
->  EXPORT_SYMBOL_GPL(dw_mci_pltfm_pmops);
->  
-> +static int dw_mci_socfpga_priv_init(struct dw_mci *host)
-> +{
-> +	struct device_node *np = host->dev->of_node;
-> +	struct regmap *sys_mgr_base_addr;
-> +	u32 clk_phase[2] = {0}, reg_offset, reg_shift;
-> +	int i, rc, hs_timing;
-> +
-> +	rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs", &clk_phase[0], 2, 0);
-> +	if (rc < 0) {
-> +		dev_err(host->dev, "clk-phase-sd-hs not found!\n");
-> +		return rc;
-> +	}
-> +
-> +	sys_mgr_base_addr = altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
-> +	if (IS_ERR(sys_mgr_base_addr)) {
-> +		dev_err(host->dev, "failed to find altr,sys-mgr regmap!\n");
-> +		return -ENODEV;
+> V4->V5:
+>  - Remove stray quotes arount the ref property
+>  - Rename the binding to match the compatible string
 
-Isn't this now an ABI break? I have an impression we talked about this...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
