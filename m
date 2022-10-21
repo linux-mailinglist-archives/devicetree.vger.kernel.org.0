@@ -2,472 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15ADC606D24
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 03:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2055A606D27
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 03:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiJUBqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Oct 2022 21:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58438 "EHLO
+        id S229795AbiJUBrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Oct 2022 21:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbiJUBqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 21:46:51 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on20628.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1a::628])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2155A226592;
-        Thu, 20 Oct 2022 18:46:50 -0700 (PDT)
+        with ESMTP id S229731AbiJUBrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Oct 2022 21:47:39 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on20714.outbound.protection.outlook.com [IPv6:2a01:111:f403:7010::714])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F05E3F1DF;
+        Thu, 20 Oct 2022 18:47:37 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fX6//82JSx9ke2gCriBVz06UgXMJqQ7uwUe6lOUwX+Asyyp6z65W/1f7iYG6M0kigVsIKU9wnPbJemWGa7H4D/bkKW9QpCjr/OMQr1M12WEuj0l4kcTx/sh3zcTo2sMvAG+N/1LX6WOZlWVem8m/Qcq53TxH42+crWvNTWiDYIIoztMwvZW8mu6qMUTX+rrpXq1voSIZVXwWqQ2OEytns97sqWUSrk4CzCgojQjix1VoDICSKW0YmPH0Gd/raH7x2KwW+YlI0cMR/WpghXGRkP6gM1NFgk9XBI6jqJLAvouGVMNYIxOMDMfGR0elnwTLHevfqxaQkK0y4CLU7MK93w==
+ b=IOAyoYRCmi9ntJsE1BvNAIa5td3NZ5vhzfCNrJNsy2EPqgCEMqnMiX5pVOXDHyqrfLpiaLDLzdkDFFi5d4mT3Od+SPP0cZ4yybI7TQEVxBpuUsG+Y5kLTCQiZTwCRJKT8vYJSPeEMZe78j1j7YOxhIpmBRRNeMWJf+UL893PimH7Nx8H8HuSySEVUFi9QQz6BLFF6Jyh//uVBGsvurpNmYKXKpMYkA/PCRyYtw4LB/2d/d6WEm70FiEHWW+AuDXB6UhMxrWFvYpJJCgKyKM9Az4Jt4y3GRJYqzvAdsjPww/Sga4nMLdHSOa+ZVHbWuzh8yMQmc6QpzgLy05vFpj6Tg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x9tZ9jV93bQ9P9GBUbOfVpkA07fCJFi6T2R1LeP6Nag=;
- b=Tpw/PSYqwNy3UsUd82QcOeptH63mTO0qunsMjBqR9fq2iPQsTaCu4WVAWwY5x3O0NkVqrqyiLVPHBJLFkfT1j7uT8l2HTd6oEH3pSOSsfxMWXWvG0pNyal38KrcGWhFH3IrQBpMfQNhwk8EP8gwEMEADPOjOnyACr+Sb+SuXC5QOQ/Wn9cqJB6qZV8DMNJXYDtA9gX40t4B13cS0Rj0fs5xe4hWq0wsSrYSNqiWPuj74uTKpzLQyIV64BrRT+1Uq/+wePr7oFiDXThMLH+P0ONmB8DEPSXjw0Owg45LamLnIBoZmlVAzcqP+KoX55l4oJ/jkP83xpUkqrMW9EbetNw==
+ bh=VsBtdr0zWPrwwUaULXQKGvg4jl48c9V7J4rXjkbgJJU=;
+ b=EIjeNqA5S3nqSxCY3Y41LnPQ9qBIu4/guKO8NL/FId9ktGbwLIwpMQyq96N+zk/Av9nknox3HFvnije1tMU77I/s40jdJB6cl/VKG55pxthPfezzwmX3y395mQWu3xh0CkAT/8F4rLKb3jtcAP2snBznYjdmOCm0m4ZgB3+7jdEYcOs3fNvspf5gedJhydU1aQCFYYb8NrUah63yMiFU0CeyT7mouiD3fTv6ofKhpBRxnjWLbzfqn643keAzsKwedX0Nnrc09EY7jAyHr9WWycA/P46x02Dg/4b56tt/A/UXR7ik7VCpzM2KiLqCgD9ygWu1qKF9JQFFrBuFSnub/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x9tZ9jV93bQ9P9GBUbOfVpkA07fCJFi6T2R1LeP6Nag=;
- b=sw2vze73NQvionva4V0hqez5Kqkn+NPD28kWR4vwOAMVEpOqJ/Q6VWTsiBJUTsTfvqG2bq4d/+cb+vMkTusPdTn2NAdtoj5AfycWN5uXDTGDE03TiJtaxIwfYd46vJ2ycRiz0ovm2pOCnmFQlbI/0SCYraeJP8gOPRQkQgs7RjM=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB9PR04MB8204.eurprd04.prod.outlook.com (2603:10a6:10:240::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.29; Fri, 21 Oct
- 2022 01:46:46 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::a5ff:3d28:4bbc:e1ed]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::a5ff:3d28:4bbc:e1ed%6]) with mapi id 15.20.5723.032; Fri, 21 Oct 2022
- 01:46:46 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Rob Herring <robh@kernel.org>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-CC:     "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
+ bh=VsBtdr0zWPrwwUaULXQKGvg4jl48c9V7J4rXjkbgJJU=;
+ b=lwggn1Hu5Q9fJTkS0CV2/g7JXhiLd1ZJuAnABHVZemRS6tJYwaw8C8pHgqVXM29UaPB9tdCPWCVqU7zfgfvikRMX3BaAFu71dSYk7UVy4OxYlIbawQ8GlXT82e22+naIegg744pV7bWRLAGwuww6HKhrw5/mA03PqI6CA9rW5Xk=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TY1PR01MB10723.jpnprd01.prod.outlook.com
+ (2603:1096:400:31c::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.36; Fri, 21 Oct
+ 2022 01:47:34 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::cc96:57cc:13f2:a939]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::cc96:57cc:13f2:a939%3]) with mapi id 15.20.5746.021; Fri, 21 Oct 2022
+ 01:47:34 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: spi: fsl-imx-cspi: update i.MX8MP
- binding
-Thread-Topic: [PATCH 1/2] dt-bindings: spi: fsl-imx-cspi: update i.MX8MP
- binding
-Thread-Index: AQHY5G78ayDcx+I0EU6hKLmDPIgYmq4XPdiAgADW+vA=
-Date:   Fri, 21 Oct 2022 01:46:46 +0000
-Message-ID: <DU0PR04MB9417FFB2605B8026312EE831882D9@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20221020103158.2273874-1-peng.fan@oss.nxp.com>
- <20221020103158.2273874-2-peng.fan@oss.nxp.com>
- <166626975547.1096642.8539184924637719626.robh@kernel.org>
-In-Reply-To: <166626975547.1096642.8539184924637719626.robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 1/2] dt-bindings: phy: renesas: Document Renesas
+ Ethernet SERDES
+Thread-Topic: [PATCH v2 1/2] dt-bindings: phy: renesas: Document Renesas
+ Ethernet SERDES
+Thread-Index: AQHY45WqmGXDS0XxlEeTCuZp9JLL2q4YBu8AgAAPVfA=
+Date:   Fri, 21 Oct 2022 01:47:34 +0000
+Message-ID: <TYBPR01MB53410F9EF50837AF8B87DC2AD82D9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <20221019083449.933005-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221019083449.933005-2-yoshihiro.shimoda.uh@renesas.com>
+ <2694afda-fe53-8f6c-85dd-390b42a39d93@linaro.org>
+In-Reply-To: <2694afda-fe53-8f6c-85dd-390b42a39d93@linaro.org>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
+ header.d=none;dmarc=none action=none header.from=renesas.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|DB9PR04MB8204:EE_
-x-ms-office365-filtering-correlation-id: abe2e4da-3dbc-4a12-c813-08dab3061cf9
+x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|TY1PR01MB10723:EE_
+x-ms-office365-filtering-correlation-id: 206b7ba8-4989-41a6-f1da-08dab306396c
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sikapDkWUA3+kwCkd9gMYv7CvFWQIgtSgdzNFverH3xU9tqjpexiehRCSzN8uRevQVN3pYTL6M5VQuCt2Gzi1ra0DsDlhPVxdCCKdps8xvrOx2rMoczOWirccCxnHwR718dVD2PFSW8GqELwPKeyvKAR16PXtP6blHJ/u6vUVXLzOJ9iS5scepQdp3euZIvrmVN+sJ0eYPs1/hwiSVTeGpAQox8RjVjMRHD8TSEFx5UBraj1VqNFuMfz03cbLwBgLjGg8aRwZmX/X9+b6z+0qEtlaYBsQMI1LZxZwaSLlRfwGqxYnUCyXTciO55u4M/zenJl5gaJk1chTWwyjYDFYBI3J70y4kLF+7v/nNRIkOQrAbhjA/UGXvVYHGiOhmlm8tODziZ3l0VUtLAL+dTWMAfmV9T1jR7tz9fbQgGXApNNb17YNrhwjrezlFgpz+f9P2MBidxHE5FAQVxZMEQd8g8cITXZvjL56dU7Hocb41VOHzzgPdoT0DAlwbaWAMS2iFhPnxormNY0nulkYXPwkTFZFkSoUJmsjX1SY1M9YbS4UPMU8aTp2obZtKVewGmLohqSAWYqtmDGf2N8TUxiUbJ0aXvmfyVg0oAsSEtKjjwVGkEUN/9DHP+GiubqfxL1ZXBbKa1O3POTUDkm9bj+YbUyXOOpXKJwHsI2T9YI6ym4QEYTUA5ugqimry8QqriGIpKtLTYjP8qra4+07GvbW6kbTIa2+TKsejwZw3so7UvrMYDxzfznkn0I0BcU44BAwVf+Mpm1f+1sEgOp3heUy0zxXIUbV+CvLZhTy7eo2fs=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(39860400002)(366004)(136003)(376002)(451199015)(38070700005)(122000001)(38100700002)(86362001)(33656002)(55016003)(2906002)(71200400001)(30864003)(45080400002)(15650500001)(44832011)(478600001)(966005)(66446008)(316002)(41300700001)(64756008)(4326008)(8676002)(66556008)(76116006)(66476007)(8936002)(66946007)(7416002)(52536014)(54906003)(5660300002)(110136005)(83380400001)(9686003)(26005)(7696005)(6506007)(186003);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: y/5/Bxdns41+U2dfXDJXxbPwAP0xtyber4bSVaNMptf0hCSKtIS+VSHfZPCzXEiDABjfuS/b4Ws6ASr2fYFZZZGk2ZstxWO8frwKrnP+9rWql5ntOCFEpMbWsTXdo626t2eZuau8feei+Ud5xzXv8wW3cAMnTLG/oZBfRmsYONXDjjpzA6LZmfq4U2jXElHSNaly9gcOWHIk5EQ5jYtVKAvg4tk/nXDtx6mycmK+KMIeDCTHv6nZUf3h38phmXoCu6dvZbFBs2HoMku5MPDbVIm3bftM0PPSgzQ9MQt051Oy7Kvswh1S5Oiq2zTeZIfzhOlEJq/qfXZjej2xztdB/v0D+CwpzQ1aytvsQ7MuZxgttNqAwv8a1Ec0QCRzVp5qRw0cgKqBzgn13laWiWdbuqeUHnYpXms3vIpPaq/w4gWXuP2Xd5llcmqVW4wPjgHOFmOLdET+XudEav/Cq61Ogi5K4QAj3IdiJO5DYK5c3kD8TFthHe00NLVkOD1joIL41rVk4mq3p4FI62fTEe5Uv/LUbL9yXI24I+3KmQJ5kNZ7Rnv3NOYXwjbyKEVOcPgw+bMJ/TvvDv4j9RdV1Bz5uQJu1lPya3Z3jAsosnG5eVvW5vtceerwTeH5ecLGaIykJ+y1mdvWS/EajbCdN4LhWu0MpCcLN86TAT8k9L6nncI4pPAva94+N7pnk0C5u8ykKGg/YieWSq+GDfnIkkHzYKlwoFNX9UjR0uw4RIF+P5Hg1FrZeCD76/dVykL2j3xd+lr+YX1nHCiiMbqjezCJNw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(376002)(346002)(396003)(39860400002)(451199015)(5660300002)(52536014)(8936002)(2906002)(54906003)(316002)(76116006)(41300700001)(66946007)(33656002)(110136005)(66476007)(66446008)(64756008)(8676002)(4326008)(66556008)(86362001)(478600001)(186003)(83380400001)(7696005)(6506007)(53546011)(9686003)(38070700005)(55016003)(71200400001)(122000001)(38100700002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YR5ETb6Q9CZvXpjA/CTwsGfGMleB9yA+KOG8J6hIFY2Bam8Xw4yWuxIM8ONW?=
- =?us-ascii?Q?Wj9M9st1dx/Yv4HW7h4JZztHdIEJRLOvfjzkNmbB4VIhQyZLCNP63zOH+kIi?=
- =?us-ascii?Q?Ev3QeghUUQ/Xcw5bEQeZPeolyeDTTtYEe61I/6m+p7WHqUvBx2RXOtIvkpz6?=
- =?us-ascii?Q?zVt0tDIPVwtLb2OuX1iUt9bFf7H9hGOaXx6uTewggW9JY5B1VGz+E3cpR9Zo?=
- =?us-ascii?Q?IE0iz/9udV/AHB0xumTplRw0UkIbDRueXJLwLK+7BYanWYBs5rK2CdwoarfB?=
- =?us-ascii?Q?q8eV+S8seJNCeDmSLtIBDLSfe/h5lOTjGOtw1FNUKvcXaXTS0kmOM/7YW353?=
- =?us-ascii?Q?sFDslJ3F1hT/RmngMZac7WWcTaH2jd/NLd9ZKvxylixs/51Kzl9LRvreS41a?=
- =?us-ascii?Q?GlA0S4h4j5geSKUm7F9GICuTaPbr8Rx2ahCIS0iPY+qHkLXFXvbEoOe+ZOZz?=
- =?us-ascii?Q?tCfHCOBXIchgUK9SkFF2240ynI6D77s1YTm5lW4yZ6Nf2U45QuhR5y0bh2pr?=
- =?us-ascii?Q?jSD6JnwXKPwAacIFY8KP1vFw9le/D1QjUYkKInrhjPlJOzEkAS002ZPTzMBZ?=
- =?us-ascii?Q?2BuZarXv+33NTeVCgnL/1LEJv9hxOlPcQEuFE6DL3sLL65Vev1jmpZKM/rIu?=
- =?us-ascii?Q?evKMMfDvIUcBvis/oa+sxWm9YK3U1XwND8+fQvpIittD+E4/EMGMjgnV8AYo?=
- =?us-ascii?Q?hx+a/ygmh/uQXw3lp0HE0JFeEGci8cKeoMOhkHH4/q5y8rL/z+HZAduIv4ux?=
- =?us-ascii?Q?t07qMlc+HsCymaIopfWxPkJlbODw1N5iXddzHHFF1KxrI+nvqOjHUs4nSr+J?=
- =?us-ascii?Q?omrEMDVEkfVdMwuZRgkUfz9YuosgLhhKHtfWUZe3MOkfaFsAmJ5Y599UDZp/?=
- =?us-ascii?Q?FPYlGGbn/Bzcl1ScvwM00SF8//OyiKSZMLozOQijie6kqEhLe0GNNR6lqz4Q?=
- =?us-ascii?Q?06Yb0s/u2+hnDQTenB16CJ2sBFjJdBuknEJoBEDLExbRaPl6ZHVY7DpP3bc5?=
- =?us-ascii?Q?mVls/fEN++4W1LoSVbATru/cQR//foCTOVYtYe3KmI9AX6V/urAZLCT/ShZi?=
- =?us-ascii?Q?Es1EaNaoR9MSLc6JuVNpUkYo56llYQl3Fk4Z24mXC0mayRoJ/0q0brLiV8s2?=
- =?us-ascii?Q?eqN7XgNRoDWGZMUSyVpPDiGDkjmxEegsS15fgeNf4xXT3fppFhrHtuLNeQ0m?=
- =?us-ascii?Q?sRIryrw9LNeXoeliP7jTxSZoEBuClNvlGZO3deROAvviB7XstaXqa0UAPxJP?=
- =?us-ascii?Q?fCdvkJsXYt5S9zXgyhzFFBOKIIKct8JSqche3FRVFcrvB5yx34f5B4kLoIsw?=
- =?us-ascii?Q?sbwI7zocARTBVm/41+l2t5TofDVFxe2mtV203eIDbudfLDi3A0nFJHOUDyXA?=
- =?us-ascii?Q?/5DmIFxBltty5IoliqhGW5mUv32myYlRZOOOjKMTakjs9oUkA1VdOJqsI/e8?=
- =?us-ascii?Q?V5dRt+YHqi3jCccoArSZMmTuLW4VZsWQ7uAfePPH+y2NAJCuZwHrf4feeeWX?=
- =?us-ascii?Q?kRrmxQIpCwUHUo3tDgnUNMe1lCznqdYV6cwo9ivTyS1DtsgpsCrDSoEfuO/8?=
- =?us-ascii?Q?t04f/qKfVyncHxRbXCo=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?DiTEM9PdI0Uhx3MJaGWNQvzeDkeUo5e6L0QuNTet24I2vyrbm5Aez7hppTyN?=
+ =?us-ascii?Q?mDTUwVM1ebBaX4WdTJWBFluLh9pRYvRAzZtPwVmS4HZkPAqUHhApwEU2/4Z+?=
+ =?us-ascii?Q?0T9XQ14evYewfUplL1ht2RXWB2l6lBVbKxPgWrDPe65okcLcW/UGCysoPAv9?=
+ =?us-ascii?Q?1gr+4jQSokFf61BFcXszaXIumaNLsi69VIcFCxlWLvsv1mhhuP2ACCfreQI0?=
+ =?us-ascii?Q?lwd5y7JANW3mJB1rYg/Y03IzNTSQyTvu0soQ22dqh3aqfljPaLmCAEdowOOL?=
+ =?us-ascii?Q?ORe1NPjD+wqjIOfpn5rhGHi2/9cmb5go5Jp3SNqHx5hyd8+UuPt1jrsEiZyJ?=
+ =?us-ascii?Q?odudSl4lX7JfqLwn10yg8uWgzuvm/dXFa8VvSSVVc+e3LeRdr4i+UUWvvAZH?=
+ =?us-ascii?Q?v99Vkz9dJPrhrXr6IGpwRmMCLzha16qkdMtin8tAcFU+BuYDb27tlHBbI2oF?=
+ =?us-ascii?Q?trLSbWpj0XJqoYIVJCrOS/kbZ1ns3u8LdgOUtZbhZkfvYs6vMhx5/nQboxgm?=
+ =?us-ascii?Q?BSaZx3DV1rjC8GnVAJkZ2wMSUqqFzs0OETHHwOvk62EWJ0fgl5aNyGbiyzJY?=
+ =?us-ascii?Q?pSd8zhucuTFeWyA/k/Uc2rfJYOT4qw0EQWmMMPMuZmSU8cK++cp0wVnzgKsf?=
+ =?us-ascii?Q?P73F2mcsLCSWY1yO8ilsP5AaWvjQ4yAk9EGl4+pDCneebrfT/hrgHquxGjKE?=
+ =?us-ascii?Q?D0/LbH94QlScI/UXgocDuEorYyNEY7OrlCgFTIuKy98QS1h2fJI5EjDUC2Bs?=
+ =?us-ascii?Q?QAXmT7U3AMqiGEZCTHNCZf+xh12DPCbJBZtGTkQXqsBjwF53Ty1M9T0T2FxZ?=
+ =?us-ascii?Q?MleYEyODpOSBYneuBuGzYu6ciNzQ7R2VRzBYnUOaTvO/m1xqHcFmAwEQTmmF?=
+ =?us-ascii?Q?09nh1prLIIXrXWP4Boi7aC8gb5mCzT6f2guIahMGXNIbb0QAnQCdLced0HtE?=
+ =?us-ascii?Q?uoJqid9zsvkDioww7ICQch8LawvCaNZkbwuYZ7ym1arLVhD2lE7sDj/UXLyJ?=
+ =?us-ascii?Q?PKo5U2mz2FMmDjE+OJp1/kIi1Mt7ulaFCRBpJZKeJFGK1Vw3jgXEmdeTX7KQ?=
+ =?us-ascii?Q?Vyj0Tf8aJ9CvB0xlQmMPO2140ebHFVQWjR413zUixGDAS2FMjkwnnIglHyiD?=
+ =?us-ascii?Q?S0uf0TCuLpZ0ZRCtrWNOPoEO6lmYdLzQm5KNoSmnfPXnEv0GA7WM8RlhxeaB?=
+ =?us-ascii?Q?ZInTUbRTh4LRVNWys9Y+dZ+AkXm2Tb4QXC0hIxEfZ+a24orLNg5mhudu3wqi?=
+ =?us-ascii?Q?hZ3gwqMCdyW8PGIrKIsE0WG46xWpfjETdrPX5URDV91x3b2/HG5LKA2dcVPE?=
+ =?us-ascii?Q?ajRkn8Ffa7VSWaRpKzG8RkAbhQLQco7lpQCqIM3OCjLpwu+A8fGr1AbgyqUi?=
+ =?us-ascii?Q?vnErRCJ+HLXSbZufJumXowZRb/PXoE4ZuFBLxnbKbK6/wn2pO8QWyVy1wG0o?=
+ =?us-ascii?Q?xc/jDtODXMFnmMAzFk35DLK29i6zSZBpP0cuTWJaVdgrhv+aCk37Km6+Bydg?=
+ =?us-ascii?Q?Qn2S5q45BqYIX4XydzWZyAyydfKNiRlFDT7tG5MczUM+4g0Oe3uF5+WZ5G3i?=
+ =?us-ascii?Q?lq4ONliDGnvX+QDBqgUe//Naxxcd4R5nhx1D7vALISo/pPGkk6IgESTYiTj7?=
+ =?us-ascii?Q?fcPDZunAPTKbgoluuCc0IPSC/ask4RIjgp8IRmrm/F9Gz5gD9mNeznWGRvE1?=
+ =?us-ascii?Q?Altu+w=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-OriginatorOrg: renesas.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: abe2e4da-3dbc-4a12-c813-08dab3061cf9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2022 01:46:46.3497
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 206b7ba8-4989-41a6-f1da-08dab306396c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2022 01:47:34.0650
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KgBqd/g+2ztndfcqo0ZMKEnwj49ZUMpjUiobWqchaQqVzjWEzA4DnZn9DjtYDHZIMaAkX58RmxdBpvNW1TGgTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8204
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,T_SPF_PERMERROR,URIBL_BLOCKED
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: xUeD2E07MYM87gXV7lCeA/xnH1oJydQMPJN5doTo5sduN5wiXUi2lJqplVzbUzBq2oSXsy75OosFFd0+V13mAzNJKCZ3JU4XsuvwV/jSCbJl55/d9OMERyXyuL+1bBAJ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB10723
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Krzysztof,
 
-> Subject: Re: [PATCH 1/2] dt-bindings: spi: fsl-imx-cspi: update i.MX8MP
-> binding
+> From: Krzysztof Kozlowski, Sent: Friday, October 21, 2022 9:50 AM
 >=20
-> On Thu, 20 Oct 2022 18:31:57 +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
+> On 19/10/2022 04:34, Yoshihiro Shimoda wrote:
+> > Document Renesas Etherent SERDES for R-Car S4-8 (r8a779f0).
 > >
-> > i.MX8MP ECSPI is derived from i.MX6UL, so update the binding.
-> >
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > > ---
-> >  Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >  .../phy/renesas,r8a779f0-ether-serdes.yaml    | 54 +++++++++++++++++++
+> >  1 file changed, 54 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/renesas,r8a77=
+9f0-ether-serdes.yaml
 > >
+> > diff --git a/Documentation/devicetree/bindings/phy/renesas,r8a779f0-eth=
+er-serdes.yaml
+> b/Documentation/devicetree/bindings/phy/renesas,r8a779f0-ether-serdes.yam=
+l
+> > new file mode 100644
+> > index 000000000000..ea392cd6e947
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/renesas,r8a779f0-ether-serd=
+es.yaml
+> > @@ -0,0 +1,54 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id:
+<snip>
+> > +$schema:
+<snip>
+> > +
+> > +title: Renesas Ethernet SERDES
+> > +
+> > +maintainers:
+> > +  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: renesas,r8a779f0-ether-serdes
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  '#phy-cells':
+> > +    description: Port number of SERDES.
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - resets
+> > +  - power-domains
+> > +  - '#phy-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/r8a779f0-cpg-mssr.h>
+> > +    #include <dt-bindings/power/r8a779f0-sysc.h>
+> > +
+> > +    serdes@e6444000 {
 >=20
-> Running 'make dtbs_check' with the schema in this patch gives the followi=
-ng
-> warnings. Consider if they are expected or the schema is incorrect. These
-> may not be new warnings.
+> Phy devices are usually named "phy" and you use it as a phy device. As
+> serdes I guess you refer to actual hardware implementation, but still
+> the role is phy, isn't it?
 
-Patch 2/2 updates the compatible string which could resolved the dtbs_check
-failure for i.MX8MP boards.
+You're correct. I'll fix the name.
 
-Thanks,
-Peng.
+> > +            compatible =3D "renesas,r8a779f0-ether-serdes";
+>=20
+> Use 4 spaces for example indentation.
 
+Oops! I'll fix the indentation.
+
+Best regards,
+Yoshihiro Shimoda
+
+> > +            reg =3D <0xe6444000 0xc00>;
+> > +            clocks =3D <&cpg CPG_MOD 1506>;
+> > +            power-domains =3D <&sysc R8A779F0_PD_ALWAYS_ON>;
+> > +            resets =3D <&cpg 1506>;
+> > +            #phy-cells =3D <1>;
+> > +    };
 >=20
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->=20
-> Full log is available here:
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatc
-> hwork.ozlabs.org%2Fpatch%2F&amp;data=3D05%7C01%7Cpeng.fan%40nxp.c
-> om%7Cbd5f3e7566774254285308dab29a7eb5%7C686ea1d3bc2b4c6fa92cd
-> 99c5c301635%7C0%7C1%7C638018673864797750%7CUnknown%7CTWFpb
-> GZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI
-> 6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DZawGt%2BSCPrZkiNU3WYRy%
-> 2F2JqCVY%2FtRWfVC%2BCTRcC0Fs%3D&amp;reserved=3D0
->=20
->=20
-> spi@30630000: Unevaluated properties are not allowed ('num-chipselects'
-> was unexpected)
-> 	arch/arm/boot/dts/imx7d-flex-concentrator.dtb
-> 	arch/arm/boot/dts/imx7d-flex-concentrator-mfg.dtb
->=20
-> spi@30820000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-
-> edimm2.2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-
-> mba8mpxl.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
->=20
-> spi@30820000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-
-> edimm2.2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-
-> mba8mpxl.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
->=20
-> spi@30830000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-
-> edimm2.2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-
-> mba8mpxl.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
->=20
-> spi@30830000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-
-> edimm2.2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-
-> mba8mpxl.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
->=20
-> spi@30830000: Unevaluated properties are not allowed ('num-chipselects'
-> was unexpected)
-> 	arch/arm/boot/dts/imx7d-flex-concentrator.dtb
-> 	arch/arm/boot/dts/imx7d-flex-concentrator-mfg.dtb
->=20
-> spi@30840000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-
-> edimm2.2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-
-> mba8mpxl.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
->=20
-> spi@30840000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-evk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-icore-mx8mp-
-> edimm2.2.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-
-> mba8mpxl.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-nonwifi-dev.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dahlia.dtb
-> 	arch/arm64/boot/dts/freescale/imx8mp-verdin-wifi-dev.dtb
->=20
-> spi@43fa4000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-
-> qvga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> svga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> vga.dtb
-> 	arch/arm/boot/dts/imx25-karo-tx25.dtb
-> 	arch/arm/boot/dts/imx25-pdk.dtb
->=20
-> spi@43fa4000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-
-> qvga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> svga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> vga.dtb
-> 	arch/arm/boot/dts/imx25-karo-tx25.dtb
-> 	arch/arm/boot/dts/imx25-pdk.dtb
->=20
-> spi@50004000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-
-> qvga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> svga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> vga.dtb
-> 	arch/arm/boot/dts/imx25-karo-tx25.dtb
-> 	arch/arm/boot/dts/imx25-pdk.dtb
->=20
-> spi@50004000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-
-> qvga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> svga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> vga.dtb
-> 	arch/arm/boot/dts/imx25-karo-tx25.dtb
-> 	arch/arm/boot/dts/imx25-pdk.dtb
->=20
-> spi@50010000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-
-> qvga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> svga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> vga.dtb
-> 	arch/arm/boot/dts/imx25-karo-tx25.dtb
-> 	arch/arm/boot/dts/imx25-pdk.dtb
-> 	arch/arm/boot/dts/imx53-ard.dtb
-> 	arch/arm/boot/dts/imx53-cx9020.dtb
-> 	arch/arm/boot/dts/imx53-kp-ddc.dtb
-> 	arch/arm/boot/dts/imx53-kp-hsc.dtb
-> 	arch/arm/boot/dts/imx53-m53evk.dtb
-> 	arch/arm/boot/dts/imx53-m53menlo.dtb
-> 	arch/arm/boot/dts/imx53-mba53.dtb
-> 	arch/arm/boot/dts/imx53-ppd.dtb
-> 	arch/arm/boot/dts/imx53-qsb.dtb
-> 	arch/arm/boot/dts/imx53-qsrb.dtb
-> 	arch/arm/boot/dts/imx53-smd.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-> 	arch/arm/boot/dts/imx53-usbarmory.dtb
-> 	arch/arm/boot/dts/imx53-voipac-bsb.dtb
->=20
-> spi@50010000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-cmo-
-> qvga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> svga.dtb
-> 	arch/arm/boot/dts/imx25-eukrea-mbimxsd25-baseboard-dvi-
-> vga.dtb
-> 	arch/arm/boot/dts/imx25-karo-tx25.dtb
-> 	arch/arm/boot/dts/imx25-pdk.dtb
-> 	arch/arm/boot/dts/imx53-ard.dtb
-> 	arch/arm/boot/dts/imx53-cx9020.dtb
-> 	arch/arm/boot/dts/imx53-kp-ddc.dtb
-> 	arch/arm/boot/dts/imx53-kp-hsc.dtb
-> 	arch/arm/boot/dts/imx53-m53evk.dtb
-> 	arch/arm/boot/dts/imx53-m53menlo.dtb
-> 	arch/arm/boot/dts/imx53-mba53.dtb
-> 	arch/arm/boot/dts/imx53-ppd.dtb
-> 	arch/arm/boot/dts/imx53-qsb.dtb
-> 	arch/arm/boot/dts/imx53-qsrb.dtb
-> 	arch/arm/boot/dts/imx53-smd.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-> 	arch/arm/boot/dts/imx53-usbarmory.dtb
-> 	arch/arm/boot/dts/imx53-voipac-bsb.dtb
->=20
-> spi@63fac000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm/boot/dts/imx53-ard.dtb
-> 	arch/arm/boot/dts/imx53-cx9020.dtb
-> 	arch/arm/boot/dts/imx53-kp-ddc.dtb
-> 	arch/arm/boot/dts/imx53-kp-hsc.dtb
-> 	arch/arm/boot/dts/imx53-m53evk.dtb
-> 	arch/arm/boot/dts/imx53-m53menlo.dtb
-> 	arch/arm/boot/dts/imx53-mba53.dtb
-> 	arch/arm/boot/dts/imx53-ppd.dtb
-> 	arch/arm/boot/dts/imx53-qsb.dtb
-> 	arch/arm/boot/dts/imx53-qsrb.dtb
-> 	arch/arm/boot/dts/imx53-smd.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-> 	arch/arm/boot/dts/imx53-usbarmory.dtb
-> 	arch/arm/boot/dts/imx53-voipac-bsb.dtb
->=20
-> spi@63fac000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm/boot/dts/imx53-ard.dtb
-> 	arch/arm/boot/dts/imx53-cx9020.dtb
-> 	arch/arm/boot/dts/imx53-kp-ddc.dtb
-> 	arch/arm/boot/dts/imx53-kp-hsc.dtb
-> 	arch/arm/boot/dts/imx53-m53evk.dtb
-> 	arch/arm/boot/dts/imx53-m53menlo.dtb
-> 	arch/arm/boot/dts/imx53-mba53.dtb
-> 	arch/arm/boot/dts/imx53-ppd.dtb
-> 	arch/arm/boot/dts/imx53-qsb.dtb
-> 	arch/arm/boot/dts/imx53-qsrb.dtb
-> 	arch/arm/boot/dts/imx53-smd.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-> 	arch/arm/boot/dts/imx53-usbarmory.dtb
-> 	arch/arm/boot/dts/imx53-voipac-bsb.dtb
->=20
-> spi@63fc0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm/boot/dts/imx50-evk.dtb
-> 	arch/arm/boot/dts/imx50-kobo-aura.dtb
-> 	arch/arm/boot/dts/imx53-ard.dtb
-> 	arch/arm/boot/dts/imx53-cx9020.dtb
-> 	arch/arm/boot/dts/imx53-kp-ddc.dtb
-> 	arch/arm/boot/dts/imx53-kp-hsc.dtb
-> 	arch/arm/boot/dts/imx53-m53evk.dtb
-> 	arch/arm/boot/dts/imx53-m53menlo.dtb
-> 	arch/arm/boot/dts/imx53-mba53.dtb
-> 	arch/arm/boot/dts/imx53-ppd.dtb
-> 	arch/arm/boot/dts/imx53-qsb.dtb
-> 	arch/arm/boot/dts/imx53-qsrb.dtb
-> 	arch/arm/boot/dts/imx53-smd.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-> 	arch/arm/boot/dts/imx53-usbarmory.dtb
-> 	arch/arm/boot/dts/imx53-voipac-bsb.dtb
->=20
-> spi@63fc0000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm/boot/dts/imx50-evk.dtb
-> 	arch/arm/boot/dts/imx50-kobo-aura.dtb
-> 	arch/arm/boot/dts/imx53-ard.dtb
-> 	arch/arm/boot/dts/imx53-cx9020.dtb
-> 	arch/arm/boot/dts/imx53-kp-ddc.dtb
-> 	arch/arm/boot/dts/imx53-kp-hsc.dtb
-> 	arch/arm/boot/dts/imx53-m53evk.dtb
-> 	arch/arm/boot/dts/imx53-m53menlo.dtb
-> 	arch/arm/boot/dts/imx53-mba53.dtb
-> 	arch/arm/boot/dts/imx53-ppd.dtb
-> 	arch/arm/boot/dts/imx53-qsb.dtb
-> 	arch/arm/boot/dts/imx53-qsrb.dtb
-> 	arch/arm/boot/dts/imx53-smd.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x03x.dtb
-> 	arch/arm/boot/dts/imx53-tx53-x13x.dtb
-> 	arch/arm/boot/dts/imx53-usbarmory.dtb
-> 	arch/arm/boot/dts/imx53-voipac-bsb.dtb
->=20
-> spi@83fc0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm/boot/dts/imx51-apf51dev.dtb
-> 	arch/arm/boot/dts/imx51-apf51.dtb
-> 	arch/arm/boot/dts/imx51-babbage.dtb
-> 	arch/arm/boot/dts/imx51-digi-connectcore-jsk.dtb
-> 	arch/arm/boot/dts/imx51-eukrea-mbimxsd51-baseboard.dtb
-> 	arch/arm/boot/dts/imx51-ts4800.dtb
-> 	arch/arm/boot/dts/imx51-zii-rdu1.dtb
-> 	arch/arm/boot/dts/imx51-zii-scu2-mezz.dtb
-> 	arch/arm/boot/dts/imx51-zii-scu3-esb.dtb
->=20
-> spi@83fc0000: Unevaluated properties are not allowed ('compatible' was
-> unexpected)
-> 	arch/arm/boot/dts/imx51-apf51dev.dtb
-> 	arch/arm/boot/dts/imx51-apf51.dtb
-> 	arch/arm/boot/dts/imx51-babbage.dtb
-> 	arch/arm/boot/dts/imx51-digi-connectcore-jsk.dtb
-> 	arch/arm/boot/dts/imx51-eukrea-mbimxsd51-baseboard.dtb
-> 	arch/arm/boot/dts/imx51-ts4800.dtb
-> 	arch/arm/boot/dts/imx51-zii-rdu1.dtb
-> 	arch/arm/boot/dts/imx51-zii-scu2-mezz.dtb
-> 	arch/arm/boot/dts/imx51-zii-scu3-esb.dtb
+> Best regards,
+> Krzysztof
 
