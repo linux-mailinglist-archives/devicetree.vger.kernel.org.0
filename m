@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF42607D0C
-	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24DA3607D14
+	for <lists+devicetree@lfdr.de>; Fri, 21 Oct 2022 18:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbiJUQ4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 12:56:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55410 "EHLO
+        id S230016AbiJUQ50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 12:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbiJUQ40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:56:26 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A0051290B8
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 09:56:01 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id c20so4515212ljj.7
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 09:56:01 -0700 (PDT)
+        with ESMTP id S230254AbiJUQ5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 12:57:08 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3CBB290E1A;
+        Fri, 21 Oct 2022 09:56:54 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-1364357a691so4261876fac.7;
+        Fri, 21 Oct 2022 09:56:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZT9p+O8jS1617W9ayV/G2VKwq2HucMY9DBAQPNerHK4=;
-        b=rJ0DwSGCkEIE25pd95phrfcMNfbybXvcvh4bDPLhBClsVFB1kJpdbY9ZXdeqI79FaF
-         Mji8bX6GF893adMySxKCv20TEpdIH+G1UbtWU48em/BNNZ/GZAZoT5QG72X6+zIDo8lY
-         sdc4jWx06elCJfG/o6UMB4Dyk+1+5i2QTvWx4L4j58QEDHZU3ExKddPnXhoJigwHkSpK
-         wPSVgBpj8Dp2pZutXokdwh7d5VCOoiSWCOjIZmUR4pnfKTkI0JOACnpeuF/frwI1vveG
-         Po6ZGlFKoSKU7CMLJgqZTMjUawtVPzcgMD4lBOr5G9gWBpZUjrVZqNQWwlRaxlWyVssW
-         PRMA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zo7dyrvMcPcl4NiHW+MnUrTQJVTlfdJVx4mAsdOPepk=;
+        b=CLFsr7rjk4KmpDAj9et7MXXutVkJocGiMMXh9xK7iCSXjESDIntSjLuvtzHZO1vHt3
+         WVy64/E4Bh/qAXrhMDyBw8QYTEULYWubdfOqqeiX/fE0jkSqYw3ogw8e7mqnuE20XvB5
+         xV+oEwXujJKc+uUWrwstm93aI3Fp64coAHuTegFwBvuSgqXl32By5tTkImM3oUw8Hj/V
+         FIhVWYYsyCOqaJ5HxCaB1JyCB+NxbusZjPp3N0g7scR2jfMtCXtUa5WgfDvKKNRpbSDK
+         zQDe8qbAILdoj64LttcbwMj/M2UYnVbMTYh5o+lBOzd/gsjPbecnwFFS6b2s4fTaNSTg
+         1Seg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZT9p+O8jS1617W9ayV/G2VKwq2HucMY9DBAQPNerHK4=;
-        b=ahbxn5x03BjSgf/AlK6SNhYhXbXuHbzX77cxQ0hvPKlrdTQXztUFynJDFrgQigjnXR
-         vjDXi7O6/5rH/QAXr3B5gbEYIjxkdDPHBAyuSwwSUTImm13gy2HwM/odTUWv6hvT+QYj
-         RdcdkkhEWyzkxOKJTyTAlwQld616i+G5KwjmyuTrFFYpp9sUUZ+0k4zJvYzXaA/QcTBR
-         gX/2eh879nrl/PzqnYi4CVVZy6rUMFgZjBAV2WQKUxVE5/RgBVztz2NQTRYdAGOg0Orc
-         WXHx7BsC2iNHE8prXBXMlnaGnd/pPhXmYxjg1iJAquZ2vuKgx5LAjTLP0Sh6UlOEyRp7
-         wCxA==
-X-Gm-Message-State: ACrzQf12eE1DUQQNte7fbo5qt7GbygocoxAOHGmuuBGS2SgpSbVq3GgX
-        POGG7dj5AKLT1BLDj+DG6jj4ew==
-X-Google-Smtp-Source: AMsMyM5DmLJ5rXTRgNdC7K58SnCb2aZlbYqY0kpaUJgU2Dzp2Oflwl8kkPrI4UQ6QWTOn0THOh0ktg==
-X-Received: by 2002:a2e:549:0:b0:26d:ff5f:53c1 with SMTP id 70-20020a2e0549000000b0026dff5f53c1mr7415424ljf.450.1666371349092;
-        Fri, 21 Oct 2022 09:55:49 -0700 (PDT)
-Received: from eriador.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id x4-20020a056512078400b004946e72711bsm3218532lfr.76.2022.10.21.09.55.48
+        bh=Zo7dyrvMcPcl4NiHW+MnUrTQJVTlfdJVx4mAsdOPepk=;
+        b=s6p0YmJFgVOxzssQqLSKwpnSmERlVbvh9BspijCkYQ8pd1gYCjc+CnBAQF7HAF4RY6
+         R4enpJ0O4K+PiA0rKWUrUMilbSqWnn5Ve0WNEgOcwZ5obUPvx3jV/dWwPFkJIzaXIYhx
+         drM4Rj7r46LdEk8TDTWCxE3cmBo55mFVT1nm1FwbuwfOOWX0aMm/KVt9HQFNnZmBzbWj
+         m4A2s0tgjmxcfihR9sdXSzzMDOU/r0hxRm1ubahU4oO5jpvbHI4t6ybyD4YnDbXUM57D
+         BOXenr3oMAqhjDsV0o27SPAlbMNeK8+Ije0qFHbmEm7xmRORF8yl9G+dtJgwLxXot9xS
+         JfMw==
+X-Gm-Message-State: ACrzQf2f1l6Oi0a2mcNo57AOhReZz+i3IQ6/I9k9mLE3Qc8NcmM1SgMN
+        pisbPcj6hhqvK7l5zZ/cluM=
+X-Google-Smtp-Source: AMsMyM5/BK/sbLQBlXVzk5HF2eMhMeYeMbv0zFMLgzeR44gvXmpwZliT5lhOZsrwOYZQshsR01h2CQ==
+X-Received: by 2002:a05:6870:5804:b0:12b:10f5:da57 with SMTP id r4-20020a056870580400b0012b10f5da57mr29042551oap.135.1666371413395;
+        Fri, 21 Oct 2022 09:56:53 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id ca11-20020a056830610b00b0063696cbb6bdsm1272624otb.62.2022.10.21.09.56.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Oct 2022 09:55:48 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [RFC PATCH 9/9] iommu/arm-smmu-qcom: Add generic qcom,smmu-500 match entry
-Date:   Fri, 21 Oct 2022 19:55:34 +0300
-Message-Id: <20221021165534.2334329-10-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221021165534.2334329-1-dmitry.baryshkov@linaro.org>
-References: <20221021165534.2334329-1-dmitry.baryshkov@linaro.org>
+        Fri, 21 Oct 2022 09:56:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 21 Oct 2022 09:56:50 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-watchdog@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, wim@linux-watchdog.org,
+        andrew@aj.id.au, joel@jms.id.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] watchdog: aspeed: Add pre-timeout interrupt support
+Message-ID: <20221021165650.GA1888515@roeck-us.net>
+References: <20221021151559.781983-1-eajames@linux.ibm.com>
+ <20221021151559.781983-2-eajames@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221021151559.781983-2-eajames@linux.ibm.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,37 +76,146 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add generic qcom,smmu-500 compatibility string. Newer platforms should
-use this generic entry rather than declaring per-SoC entries.
+On Fri, Oct 21, 2022 at 10:15:58AM -0500, Eddie James wrote:
+> Enable the pre-timeout interrupt if requested by device property.
+> 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 5 +++++
- 1 file changed, 5 insertions(+)
+I am not inclined to accept this patch without detailed explanation.
+Why would it make sense and/or be desirable to completely bypass the
+watchdog core with this pretimeout support ?
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index 9abc40c00f3e..3be81338a25b 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -493,6 +493,10 @@ static const struct qcom_smmu_match_data qcom_smmu_500_impl0_data = {
- 	.cfg = &qcom_smmu_impl0_cfg,
- };
- 
-+/*
-+ * Do not add any more qcom,SOC-smmu-500 entries to this list, unless they need
-+ * special handling and can not be covered by the qcom,smmu-500 entry.
-+ */
- static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,msm8996-smmu-v2", .data = &msm8996_smmu_data },
- 	{ .compatible = "qcom,msm8998-smmu-v2", .data = &qcom_smmu_v2_data },
-@@ -511,6 +515,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,sm8250-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sm8350-smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ .compatible = "qcom,sm8450-smmu-500", .data = &qcom_smmu_500_impl0_data },
-+	{ .compatible = "qcom,smmu-500", .data = &qcom_smmu_500_impl0_data },
- 	{ }
- };
- 
--- 
-2.35.1
+Thanks,
+Guenter
 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> ---
+>  drivers/watchdog/aspeed_wdt.c | 53 +++++++++++++++++++++++++++++++++--
+>  1 file changed, 51 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
+> index 0cff2adfbfc9..8e12181a827e 100644
+> --- a/drivers/watchdog/aspeed_wdt.c
+> +++ b/drivers/watchdog/aspeed_wdt.c
+> @@ -5,11 +5,14 @@
+>   * Joel Stanley <joel@jms.id.au>
+>   */
+>  
+> +#include <linux/bits.h>
+>  #include <linux/delay.h>
+> +#include <linux/interrupt.h>
+>  #include <linux/io.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/watchdog.h>
+>  
+> @@ -26,20 +29,32 @@ struct aspeed_wdt {
+>  
+>  struct aspeed_wdt_config {
+>  	u32 ext_pulse_width_mask;
+> +	u32 irq_shift;
+> +	u32 irq_mask;
+>  };
+>  
+>  static const struct aspeed_wdt_config ast2400_config = {
+>  	.ext_pulse_width_mask = 0xff,
+> +	.irq_shift = 0,
+> +	.irq_mask = 0,
+>  };
+>  
+>  static const struct aspeed_wdt_config ast2500_config = {
+>  	.ext_pulse_width_mask = 0xfffff,
+> +	.irq_shift = 12,
+> +	.irq_mask = GENMASK(31, 12),
+> +};
+> +
+> +static const struct aspeed_wdt_config ast2600_config = {
+> +	.ext_pulse_width_mask = 0xfffff,
+> +	.irq_shift = 0,
+> +	.irq_mask = GENMASK(31, 10),
+>  };
+>  
+>  static const struct of_device_id aspeed_wdt_of_table[] = {
+>  	{ .compatible = "aspeed,ast2400-wdt", .data = &ast2400_config },
+>  	{ .compatible = "aspeed,ast2500-wdt", .data = &ast2500_config },
+> -	{ .compatible = "aspeed,ast2600-wdt", .data = &ast2500_config },
+> +	{ .compatible = "aspeed,ast2600-wdt", .data = &ast2600_config },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
+> @@ -58,6 +73,7 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
+>  #define   WDT_CTRL_RESET_SYSTEM		BIT(1)
+>  #define   WDT_CTRL_ENABLE		BIT(0)
+>  #define WDT_TIMEOUT_STATUS	0x10
+> +#define   WDT_TIMEOUT_STATUS_IRQ		BIT(2)
+>  #define   WDT_TIMEOUT_STATUS_BOOT_SECONDARY	BIT(1)
+>  #define WDT_CLEAR_TIMEOUT_STATUS	0x14
+>  #define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION	BIT(0)
+> @@ -243,6 +259,17 @@ static const struct watchdog_info aspeed_wdt_info = {
+>  	.identity	= KBUILD_MODNAME,
+>  };
+>  
+> +static irqreturn_t aspeed_wdt_irq(int irq, void *arg)
+> +{
+> +	struct aspeed_wdt *wdt = arg;
+> +	u32 status = readl(wdt->base + WDT_TIMEOUT_STATUS);
+> +
+> +	if (status & WDT_TIMEOUT_STATUS_IRQ)
+> +		panic("Watchdog pre-timeout IRQ");
+> +
+> +	return IRQ_NONE;
+> +}
+> +
+>  static int aspeed_wdt_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -253,6 +280,7 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>  	const char *reset_type;
+>  	u32 duration;
+>  	u32 status;
+> +	u32 timeout = 0;
+>  	int ret;
+>  
+>  	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
+> @@ -291,6 +319,27 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>  	if (of_device_is_compatible(np, "aspeed,ast2400-wdt"))
+>  		wdt->ctrl = WDT_CTRL_1MHZ_CLK;
+>  
+> +	if (config->irq_mask) {
+> +		if (!of_property_read_u32(np, "aspeed,pre-timeout-irq-us", &timeout) && timeout) {
+> +			int irq =  platform_get_irq(pdev, 0);
+> +
+> +			if (irq < 0) {
+> +				dev_warn(dev, "Couldn't find IRQ: %d\n", irq);
+> +				timeout = 0;
+> +			} else {
+> +				ret = devm_request_irq(dev, irq, aspeed_wdt_irq, IRQF_SHARED,
+> +						       dev_name(dev), wdt);
+> +				if (ret) {
+> +					dev_warn(dev, "Couldn't request IRQ:%d\n", ret);
+> +					timeout = 0;
+> +				} else {
+> +					wdt->ctrl |= ((timeout << config->irq_shift) &
+> +						      config->irq_mask) | WDT_CTRL_WDT_INTR;
+> +				}
+> +			}
+> +		}
+> +	}
+> +
+>  	/*
+>  	 * Control reset on a per-device basis to ensure the
+>  	 * host is not affected by a BMC reboot
+> @@ -308,7 +357,7 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>  		else if (!strcmp(reset_type, "system"))
+>  			wdt->ctrl |= WDT_CTRL_RESET_MODE_FULL_CHIP |
+>  				     WDT_CTRL_RESET_SYSTEM;
+> -		else if (strcmp(reset_type, "none"))
+> +		else if (strcmp(reset_type, "none") && !timeout)
+>  			return -EINVAL;
+>  	}
+>  	if (of_property_read_bool(np, "aspeed,external-signal"))
+> -- 
+> 2.31.1
+> 
