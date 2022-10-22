@@ -2,318 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD97608EBD
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 19:03:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E34608ECA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 19:24:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbiJVRDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 13:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35566 "EHLO
+        id S229690AbiJVRYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 13:24:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbiJVRDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 13:03:23 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34DF1AE294
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 10:03:21 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id a13so16864583edj.0
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 10:03:21 -0700 (PDT)
+        with ESMTP id S229519AbiJVRYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 13:24:07 -0400
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4286EF35
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 10:24:04 -0700 (PDT)
+X-KPN-MessageId: 45002d7b-522e-11ed-a5a6-005056abbe64
+Received: from smtp.kpnmail.nl (unknown [10.31.155.37])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id 45002d7b-522e-11ed-a5a6-005056abbe64;
+        Sat, 22 Oct 2022 19:23:39 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iMEJOs8rsFhAhsZPWWaHcq3vp7VFtPBUd+l2pbsoxiA=;
-        b=dvYlFOdRg/4NTlEfV63r1JuX+xJP6eNfzEbgTQK9tLjyXuJAf/t8SDzr3z5jP96MJq
-         qOrHGM4J4kUHeYA4PRuEyT1+IC09dKcItl7r36iivs1bz0vlpxc6H+z9gCwQjS7Yz9Dg
-         rjRutVP4IqRzxp8ZTWK7BbnOAXm02oMvUoJrP5mjBmrpd8CpLJpdTSHik059DVqCLuyf
-         iCPzUlb5QRGUGWl8Lp4LKe1VvASDnm7OMiD2zze15ryHt96x4fG+3WKUARPC+NQ/ma2W
-         iYLszJ4XBgPefFhNQEB1HxxADZGYrJM6nL+zlzOnex6RDZZ0ZJ/Gjm0IPj4Nwm0XkxBQ
-         CoFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iMEJOs8rsFhAhsZPWWaHcq3vp7VFtPBUd+l2pbsoxiA=;
-        b=IWzYEF23xgkS+Vs1wY4fSISn7nKPWxKECri+E9yWOBLCY8mkS5GPeS6FTkmN/HbrDi
-         H9EFQLpeHKXDmouEEC+jIO+DcSHjoc9Ffdu1oWX0M1vTIhZWo/EnjRlCHPYm7QUuTOBO
-         o3kENxYGjBsc7rwOZTbSL4YNvXJyYQAdfp5wkYOjkFP1OX3WdYrCyNJ98ct7qN6qq9+X
-         wksOVRtsu11fUsPnR33MTrJ3BweowmWPa5JMqVfO0iGkv5jZjO8kr//3aOt/VheKFQrx
-         /owxN4k+067Uvj3REm4+3eKNqrnv3ywf3+RcBaNTlRozRe6FA+uQ0MuZQHknfmw4f+Id
-         ZCPQ==
-X-Gm-Message-State: ACrzQf3KUEXEe6bmYjK0h/uGq3u2NFQizuUCNUGjfLu8oB5plsH8br5u
-        7U7zbdVXJBAsh74OtgKr0eByyw==
-X-Google-Smtp-Source: AMsMyM4DmmgF16YuIV2sQhfY7/ByyCdcFHvL3XCoNKIWCxdQZ5rojnPTvFMcvIzvbB2CSVdBIBdvYA==
-X-Received: by 2002:a05:6402:3215:b0:45c:97de:b438 with SMTP id g21-20020a056402321500b0045c97deb438mr22748644eda.7.1666458200377;
-        Sat, 22 Oct 2022 10:03:20 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:7b1d:c5f2:c85:8976? ([2a05:6e02:1041:c10:7b1d:c5f2:c85:8976])
-        by smtp.googlemail.com with ESMTPSA id i18-20020a170906699200b007812ba2a360sm13306136ejr.149.2022.10.22.10.03.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Oct 2022 10:03:19 -0700 (PDT)
-Message-ID: <904faa39-9435-b8a8-fa6f-1ade8d5b61f4@linaro.org>
-Date:   Sat, 22 Oct 2022 19:03:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v6 4/4] thermal: mediatek: add another get_temp ops for
- thermal sensors
-Content-Language: en-US
-To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        linux-mediatek@lists.infradead.org, Rob Herring <robh@kernel.org>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Michael Kao <michael.kao@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-References: <20221018-up-i350-thermal-bringup-v6-0-c87b9f75550b@baylibre.com>
- <20221018-up-i350-thermal-bringup-v6-4-c87b9f75550b@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20221018-up-i350-thermal-bringup-v6-4-c87b9f75550b@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        d=xs4all.nl; s=xs4all01;
+        h=content-type:mime-version:subject:to:from:message-id:date;
+        bh=Yk3WUwgEXK/ftbG/+TOQNLtsRfxptaKVoLAodR6ZxAU=;
+        b=G5BsWBd5kIf4L4Hdxgrq+qNrg7jGOsbxyVWMMD0WQ7qbuQsrIWkCBMMT/9wu/ERcC3eXeCDULcMsH
+         qvOsgELiG1eyPhrRldSAd1KaW5ADwmGZIPBfX74GcOid+yTuYLV8V8p3nsC2YDJo7JLcwMhIm2wOWI
+         CiVEgbXgxvZ4E5gxoSu/WvQY9Rs6QYkvUXCY9injNRB3sgxrnr+UNWTclvKWrUgijz/Ak+2B2B84XW
+         xXB6xYmmI3ejNDP42PErPPkud6Zb1GS6BcWpwO9h3D2MflMFhroiUw1e5JHiFYB08Ds39/emUUMqBZ
+         RNdQSbK0Fj9uhDr8i+MIbbmb3lifc7A==
+X-KPN-MID: 33|vG+2ueq/oE9yyoa89hwPsV6b5YeYfdQhP8lmv9lDeIx321BK/u4DhJJX9OXQrzt
+ 2xHMNdJfp+IciCIFHKvXD96G5/K3c5Imwge+xZHhPOqM=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|p3JDS1kRY3wRJANn5/DaZ5R6BHUf3ejl+FOnZaZVslPu7+FIf1QxMxSrM6R90X0
+ hsdPB7WZ0j20BgjINqAVPiQ==
+X-Originating-IP: 80.61.163.207
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id 5193f0b2-522e-11ed-929c-005056ab1411;
+        Sat, 22 Oct 2022 19:24:01 +0200 (CEST)
+Date:   Sat, 22 Oct 2022 19:24:00 +0200
+Message-Id: <875ygbsrf3.fsf@bloch.sibelius.xs4all.nl>
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     megi@xff.cz, heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michael.riesch@wolfvision.net, frattaroli.nicolas@gmail.com,
+        s.hauer@pengutronix.de, frank-w@public-files.de,
+        ezequiel@vanguardiasur.com.ar, yifeng.zhao@rock-chips.com,
+        jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
+        (message from Peter Geis on Sat, 22 Oct 2022 08:19:57 -0400)
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
+ and ranges
+References: <20221005085439.740992-1-megi@xff.cz> <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
+ <20221005220812.4psu6kckej63yo2z@core> <4679102.Wku2Vz74k6@phil>
+ <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
+ <20221021153913.l5ry6v4mcnzcmj2v@core> <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
+ <20221021193248.2he6amnj7knk4biu@core> <87edv0sxup.fsf@bloch.sibelius.xs4all.nl> <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
+MIME-version: 1.0
+Content-type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2022 16:17, Amjad Ouled-Ameur wrote:
-> Provide thermal zone to read thermal sensor in the SoC. We can read all the
-> thermal sensors value in the SoC by the node /sys/class/thermal/
+> From: Peter Geis <pgwipeout@gmail.com>
+> Date: Sat, 22 Oct 2022 08:19:57 -0400
+
+Hello Peter,
+
+> On Fri, Oct 21, 2022 at 4:52 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+> >
+> > > Date: Fri, 21 Oct 2022 21:32:48 +0200
+> > > From: Ondřej Jirman <megi@xff.cz>
+> > >
+> > > On Fri, Oct 21, 2022 at 12:48:15PM -0400, Peter Geis wrote:
+> > > > On Fri, Oct 21, 2022 at 11:39 AM Ondřej Jirman <megi@xff.cz> wrote:
+> > > > >
+> > > > > On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
+> > > > > > Good Morning Heiko,
+> > > > > >
+> > > > > > Apologies for just getting to this, I'm still in the middle of moving
+> > > > > > and just got my lab set back up.
+> > > > > >
+> > > > > > I've tested this patch series and it leads to the same regression with
+> > > > > > NVMe drives. A loop of md5sum on two identical 4GB random files
+> > > > > > produces the following results:
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > > > > fad97e91da8d4fd554c895cafa89809b  test-rand2.img
+> > > > > > 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
+> > > > > > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+> > > > > > 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
+> > > > > > 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+> > > > > > b9637505bf88ed725f6d03deb7065dab  test-rand.img
+> > > > > > f7437e88d524ea92e097db51dce1c60d  test-rand2.img
+> > > > > >
+> > > > > > Before this patch series:
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+> > > > > > d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+> > > > > >
+> > > > > > Though I do love where this patch is going and would like to see if it
+> > > > > > can be made to work, in its current form it does not.
+> > > > >
+> > > > > Thanks for the test. Can you please also test v1? Also please share lspci -vvv
+> > > > > of your nvme drive, so that we can see allocated address ranges, etc.
+> > > >
+> > > > Good catch, with your patch as is, the following issue crops up:
+> > > > Region 0: Memory at 300000000 (64-bit, non-prefetchable) [size=16K]
+> > > > Region 2: I/O ports at 1000 [disabled] [size=256]
+> > > >
+> > > > However, with a simple fix, we can get this:
+> > > > Region 0: Memory at 300000000 (64-bit, non-prefetchable) [virtual] [size=16K]
+> > > > Region 2: I/O ports at 1000 [virtual] [size=256]
+> > > >
+> > > > and with it a working NVMe drive.
+> > > >
+> > > > Change the following range:
+> > > > 0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+> > > > to
+> > > > 0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x40000000>;
+> > >
+> > > I've already tried this, but this unfrotunately breaks the wifi cards.
+> > > (those only use the I/O space) Maybe because I/O and memory address spaces
+> > > now overlap, I don't know. That's why I used the 1GiB offset for memory
+> > > space.
+> >
+> > Meanwhile, I have an NVMe drive that only works if mmio is completely
+> > untranslated.  This is an ADATA SX8000NP drive, which uses a Silicon
+> > Motion SM2260 controller.
+> >
+> > So for me, a working configuration has the following "ranges":
+> >
+> > ranges = <0x01000000 0x0 0x00000000 0x3 0x3fff0000 0x0 0x00010000>,
+> >          <0x02000000 0x0 0xf4000000 0x0 0xf4000000 0x0 0x02000000>,
+> >          <0x03000000 0x3 0x10000000 0x3 0x10000000 0x0 0x2fff0000>;
+> >
+> > This also needs changes to the "reg" propery:
+> >
+> > reg = <0x3 0xc0000000 0x0 0x00400000>,
+> >       <0x0 0xfe260000 0x0 0x00010000>,
+> >       <0x3 0x00000000 0x0 0x10000000>;
 > 
-> In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
-> on the first read of sensor that often are bogus values.
-> This can avoid following warning on boot:
+> Now this is interesting. I've been reading up on PCIe ranges and what
+> is necessary for things to work properly, and I found this interesting
+> article from ARM:
+> https://developer.arm.com/documentation/102337/0000/Programmers-model/Memory-maps/AP-system-memory-map/PCIe-MMIO-and-ECAM-memory-regions
 > 
->    thermal thermal_zone6: failed to read out thermal zone (-13)
+> TLDR: We need a low region (below 4g) and a high region.
+
+Well, that description applies to a specific ARM reference design.
+And it appears that the PCIe-RC used in that reference design does not
+support address translation.
+
+The Synopsys DesignWare PCIe-RC implementation used on the RockChip
+RK35xx SoCs does support address translation.  But some of the results
+we're seeing suggests that this feature is subtly broken for the
+RockChip implementation.
+
+> >From other articles I've gleaned that the config / io should probably
+> also be in the low range. As such I believe the other patch that was
+> sent to me may be the correct way to go. If both of you would try the
+> following reg / ranges:
 > 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Overall the series looks good to me, however there is a couple of things 
-to fix. See below
-
-> ---
->   drivers/thermal/mtk_thermal.c | 104 ++++++++++++++++++++++++++++++++----------
->   1 file changed, 79 insertions(+), 25 deletions(-)
+> reg = <0x3 0xc0000000 0x0 0x00400000>,
+>       <0x0 0xfe260000 0x0 0x00010000>,
+>       <0x0 0xf4000000 0x0 0x00100000>;
 > 
-> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> index 3a5df1440822..311ad611fdab 100644
-> --- a/drivers/thermal/mtk_thermal.c
-> +++ b/drivers/thermal/mtk_thermal.c
-> @@ -259,6 +259,11 @@ enum mtk_thermal_version {
->   
->   struct mtk_thermal;
->   
-> +struct mtk_thermal_zone {
-> +	struct mtk_thermal *mt;
-> +	int id;
-> +};
+> ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
+> <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
+> <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
 
-Do you really need to create a new structure for that ?
+So that matches the configuration used by RockChip in their downstream
+kernel and u-boot:
 
->   struct thermal_bank_cfg {
->   	unsigned int num_sensors;
->   	const int *sensors;
-> @@ -307,6 +312,8 @@ struct mtk_thermal {
->   
->   	const struct mtk_thermal_data *conf;
->   	struct mtk_thermal_bank banks[MAX_NUM_ZONES];
-> +
-> +	int (*raw_to_mcelsius)(struct mtk_thermal *mt, int sensno, s32 raw);
->   };
->   
->   /* MT8183 thermal sensor data */
-> @@ -709,6 +716,29 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
->   		mutex_unlock(&mt->lock);
->   }
->   
-> +static int _get_sensor_temp(struct mtk_thermal *mt, int id)
-> +{
-> +	u32 raw;
-> +	int temp;
-> +
-> +	const struct mtk_thermal_data *conf = mt->conf;
-> +
-> +	raw = readl(mt->thermal_base + conf->msr[id]);
-> +
-> +	temp = mt->raw_to_mcelsius(mt, id, raw);
-> +
-> +	/*
-> +	 * The first read of a sensor often contains very high bogus
-> +	 * temperature value. Filter these out so that the system does
-> +	 * not immediately shut down.
-> +	 */
-> +
-> +	if (temp > 200000)
-> +		return -EAGAIN;
-> +	else
-> +		return temp;
-> +}
-> +
->   /**
->    * mtk_thermal_bank_temperature - get the temperature of a bank
->    * @bank:	The bank
-> @@ -721,26 +751,9 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->   	struct mtk_thermal *mt = bank->mt;
->   	const struct mtk_thermal_data *conf = mt->conf;
->   	int i, temp = INT_MIN, max = INT_MIN;
-> -	u32 raw;
->   
->   	for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
-> -		raw = readl(mt->thermal_base + conf->msr[i]);
-> -
-> -		if (mt->conf->version == MTK_THERMAL_V1) {
-> -			temp = raw_to_mcelsius_v1(
-> -				mt, conf->bank_data[bank->id].sensors[i], raw);
-> -		} else {
-> -			temp = raw_to_mcelsius_v2(
-> -				mt, conf->bank_data[bank->id].sensors[i], raw);
-> -		}
-> -
-> -		/*
-> -		 * The first read of a sensor often contains very high bogus
-> -		 * temperature value. Filter these out so that the system does
-> -		 * not immediately shut down.
-> -		 */
-> -		if (temp > 200000)
-> -			temp = 0;
-> +		temp = _get_sensor_temp(mt, i);
->   
->   		if (temp > max)
->   			max = temp;
-> @@ -749,9 +762,10 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->   	return max;
->   }
->   
-> -static int mtk_read_temp(struct thermal_zone_device *tz, int *temperature)
-> +static int mtk_read_temp(struct thermal_zone_device *tzdev, int *temperature)
->   {
-> -	struct mtk_thermal *mt = tz->devdata;
-> +	struct mtk_thermal_zone *tz = tzdev->devdata;
-> +	struct mtk_thermal *mt = tz->mt;
->   	int i;
->   	int tempmax = INT_MIN;
->   
-> @@ -770,10 +784,28 @@ static int mtk_read_temp(struct thermal_zone_device *tz, int *temperature)
->   	return 0;
->   }
->   
-> +static int mtk_read_sensor_temp(struct thermal_zone_device *tzdev, int *temperature)
-> +{
-> +	struct mtk_thermal_zone *tz = tzdev->devdata;
-> +	struct mtk_thermal *mt = tz->mt;
-> +	int id = tz->id - 1;
-> +
-> +	if (id < 0)
-> +		return -EACCES;
-> +
-> +	*temperature = _get_sensor_temp(mt, id);
-> +
-> +	return 0;
-> +}
-> +
->   static const struct thermal_zone_device_ops mtk_thermal_ops = {
->   	.get_temp = mtk_read_temp,
->   };
->   
-> +static const struct thermal_zone_device_ops mtk_thermal_sensor_ops = {
-> +	.get_temp = mtk_read_sensor_temp,
-> +};
-> +
->   static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
->   				  u32 apmixed_phys_base, u32 auxadc_phys_base,
->   				  int ctrl_id)
-> @@ -1072,6 +1104,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->   	u64 auxadc_phys_base, apmixed_phys_base;
->   	struct thermal_zone_device *tzdev;
->   	void __iomem *apmixed_base, *auxadc_base;
-> +	struct mtk_thermal_zone *tz;
->   
->   	mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
->   	if (!mt)
-> @@ -1150,6 +1183,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->   
->   	mtk_thermal_turn_on_buffer(mt, apmixed_base);
->   
-> +	mt->raw_to_mcelsius = (mt->conf->version == MTK_THERMAL_V1) ?
-> +				raw_to_mcelsius_v1 : raw_to_mcelsius_v2;
-> +
->   	if (mt->conf->version == MTK_THERMAL_V2) {
->   		mtk_thermal_release_periodic_ts(mt, auxadc_base);
->   	}
-> @@ -1161,11 +1197,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->   
->   	platform_set_drvdata(pdev, mt);
->   
-> -	tzdev = devm_thermal_of_zone_register(&pdev->dev, 0, mt,
-> -					      &mtk_thermal_ops);
-> -	if (IS_ERR(tzdev)) {
-> -		ret = PTR_ERR(tzdev);
-> -		goto err_disable_clk_peri_therm;
-> +	for (i = 0; i < mt->conf->num_sensors + 1; i++) {
-> +		tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
-> +		if (!tz)
-> +			return -ENOMEM;
-> +
-> +		tz->mt = mt;
-> +		tz->id = i;
-> +
-> +		tzdev = devm_thermal_of_zone_register(&pdev->dev, i, tz, (i == 0) ?
-> +							     &mtk_thermal_ops :
-> +							     &mtk_thermal_sensor_ops);
+  https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2382
 
-We want to prevent the aggregation from the different sensors within a 
-driver. I know there is already a function doing that for the previous 
-sensor version but that is something we don't want to continue.
+That probably means this config has received testing in the wild.
 
-Using mtk_thermal_ops tries to overcome this.
+I tried this configuration on my board during my earlier experiments,
+and it works.
 
-Also, the userspace needs to know to which device a thermal zone is 
-related to. Here all the thermal zones have the same name so the 
-userspace does not know if it is the GPU, the CPU, the chassis, the NPU, ...
+One downside of this configuration is that it uses 32-bit IO
+addresses.  Support for 32-bit IO address is not universal since the
+x86 INB and OUTB instructions only support a 16-bit address space.
+But if translation is indeed broken for IO in the same way as MMIO,
+that might be the best you can do.
 
-
-> +
-> +		if (IS_ERR(tzdev)) {
-> +			if (PTR_ERR(tzdev) == -ENODEV) {
-> +				dev_warn(&pdev->dev,
-> +					 "sensor %d not registered in thermal zone in dt\n", i);
-
-ENODEV is not considered an error, so the warning can be removed
-
-> +				continue;
-> +			}
-> +			if (PTR_ERR(tzdev) == -EACCES) {
-
-When devm_thermal_of_zone_register() returns -EACCES ?
-
-> +				ret = PTR_ERR(tzdev);
-> +				goto err_disable_clk_peri_therm;
-> +			}
-> +		}
->   	}
->   
->   	ret = devm_thermal_add_hwmon_sysfs(tzdev);
+> > Now admittedly, this is with OpenBSD running on EDK2 UEFI firmware
+> > from
+> >
+> >   https://github.com/jaredmcneill/quartz64_uefi
+> >
+> > that I modified to pass through the device tree and modify the ranges
+> > as above.  But the way my OpenBSD driver sets up the address
+> > translation windows matches what the mainline Linux driver does.
+> >
+> > I picked the ranges above to match the EDK2 configuration.  But it is
+> > a setup that maximizes the 32-bit mmio window.
+> >
+> > Cheers,
+> >
+> > Mark
+> >
+> > > > I still haven't tested this with other cards yet, and another patch
+> > > > that does similar work I've tested successfully as well with NVMe
+> > > > drives. I'll have to get back to you on the results of greater
+> > > > testing.
+> > > >
+> > > > Very Respectfully,
+> > > > Peter Geis
+> > > >
+> > > > >
+> > > > > kind regards,
+> > > > >         o.
+> > > > >
+> > > > > > Very Respectfully,
+> > > > > > Peter Geis
+> > >
+> > > _______________________________________________
+> > > linux-arm-kernel mailing list
+> > > linux-arm-kernel@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 > 
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
