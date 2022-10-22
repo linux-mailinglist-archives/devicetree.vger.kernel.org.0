@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9677A608E8A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE92A608E8D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:35:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbiJVQdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 12:33:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41578 "EHLO
+        id S229476AbiJVQfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 12:35:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiJVQdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:33:36 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51771AFA9B
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:33:34 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-1322fa1cf6fso7229185fac.6
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:33:34 -0700 (PDT)
+        with ESMTP id S229690AbiJVQfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:35:30 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D45E14D1FC
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:35:29 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-13ae8117023so7222981fac.9
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:35:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0eWt7RNkEO1k0Vy71F3m9QFvlipPWRxYBl0GDBgLXxQ=;
-        b=HPM7TBSPn6XyRzba2y61Argt2pfR9SnLyOrcJ1uN25igs/q49TLBm9Ls1v8NQ/ej5d
-         HR7elhujfgfudOhnU8HP+KHqX++/4/ycS9s8jj4Pqh+dPtj7gvPKjEmFMEWhA4PjfvEe
-         6t4uKmc2aQ+9FeftUrTJvpAUhAbcSa/IdnMOZ37yNiyDmDRBpIe94m/XBkYotqZO+VeY
-         n+a9Vvt+vryKO5gkPvqH3UgaqmdklTULjaZHq155K7LG+CiCF7klsGz8q1k9N0rmoQOd
-         LeR2M7kTBqE3MrQ+lW229LdEx6Z69Et6XsS47GMmveVFdDkHaO17A4XeyJgC+jvpweRg
-         6MMg==
+        bh=GBm0P3FPX2F4B7EXDqIEp1ZB1xk9MTQmB4rl3mZnXIY=;
+        b=f8pvx7q1zwdMngBbP7ZEUPfZkrFHxQxA48Ai3+mygs/GLpdKI7VUvGM9oYNvRDbn7Z
+         wN6FxU3NQy5sPMsOsv9WTOWxhSIjy/2yUBxTdnSvOGLlcC0e13wS4G9ESzgnU4eiawhs
+         GIZSfDlMmqkgJB/SeIPZ00hAXb0qbYUtM8jzuEb0oUrzg1e6Bt0vZOgCMd40Puy9dPDq
+         k4bSgofMU1/EBkgKSo8CboheihaEoNiSe6lAQYuvJOBq50v+aFqQHJL51JL/7VqabJj1
+         dTXTdzZ4/eSOnTVpQHuqjFafZ+aruePF6z/neyN5p/quTJuiJTeaHzsHiXMdyqzxA7eH
+         CNsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0eWt7RNkEO1k0Vy71F3m9QFvlipPWRxYBl0GDBgLXxQ=;
-        b=SJZJp2xkFzQRxj4QoqjOQi5yysvGGUya7fyTrrmPTZvD3ZJbaGkr/7xJafjaQHJM6x
-         GYwzMRkBiDreJojhb0lJ1c5w5r378P9l0kDUKL/l+Ziu8WpUFOBaHDAVV9G0MFq5yyr0
-         7ES6DAmmvdPbunb5zhjLsbOibNU9LqisObSTpmUSHkvoS0HYDtA4qm2elaH4WLO9SNQW
-         Xa7N/baLCERkFAirTDKcanXHLdnm3wg3kmuFXKOKJP3YhkfjAXiYouJbRcNp2H1OBUxl
-         opdAvLItXHy9nTMBEQGoi0hfoVkJoYQYBp1RkJI143Xw72uUoDYKm6E6C0DdCL9ox5qO
-         fyTw==
-X-Gm-Message-State: ACrzQf0E6t8Drvj7C8FqTL6nLw8aiSAykHLQ7Q1fEaq9AAcLYgoG8gJi
-        VODN2I8UTxeQ132/DDNrjYU4Kg==
-X-Google-Smtp-Source: AMsMyM7cmmw4Q4tbF+hKNHlAHcWM8zZ7Ek2n4AmlIPDBF5GhC+nGoV2ULzfNrUm7BbQB5KP/Jv+gWw==
-X-Received: by 2002:a05:6871:1d5:b0:12b:239:ef00 with SMTP id q21-20020a05687101d500b0012b0239ef00mr15917193oad.85.1666456414055;
-        Sat, 22 Oct 2022 09:33:34 -0700 (PDT)
+        bh=GBm0P3FPX2F4B7EXDqIEp1ZB1xk9MTQmB4rl3mZnXIY=;
+        b=3rLuQ3q8qAHAUMaQDKsvbgb6+XlK1bRDEYZsqGhxSRBbnUf4UcQasMOiqu6KDnRTXR
+         makeG18kkey/7gu/byR19rs5uoF0T3wRvi3bwVNv0dy6LMDe0X7gbWWt9mjMxvJPlYmA
+         3znuiJXtqqJleuJKDbUGDznT9RVBSWd01fi3V1sU3q33HkKTJsGulueYQKjELN6AcjFm
+         4RO86XeYf/vaQh8W4031gcY6oPY8YDqPirO5RbPZIRKRqFMEnJbyz6Ety2gmmjyIMln0
+         ojT5pDn1DM+zZaO/oZv3Z3YRy/mlAD0x4bAp/KOiH/7mk50LoL5prYA+h2h4xqhGtlXr
+         yC5A==
+X-Gm-Message-State: ACrzQf0FZksBYWbKsUaNJkZr6bmQSRJ3W1xbWsAtsQPLfvkiBuuM8U85
+        pBnRHPvL2vsdVC/WtJqESgGAMQ==
+X-Google-Smtp-Source: AMsMyM76MhMoHP1Wv+m5Kd8A1kqDnYPXtPFcM3+UoKXjBStkyLbBUXCXUx5uQ9P3gSSkMeyo69lA6g==
+X-Received: by 2002:a05:6870:8193:b0:13a:e465:ad18 with SMTP id k19-20020a056870819300b0013ae465ad18mr9607934oae.30.1666456528592;
+        Sat, 22 Oct 2022 09:35:28 -0700 (PDT)
 Received: from [10.203.8.70] ([205.153.95.177])
-        by smtp.gmail.com with ESMTPSA id f20-20020a4aeb14000000b004805b00b2cdsm9740972ooj.28.2022.10.22.09.33.31
+        by smtp.gmail.com with ESMTPSA id k14-20020a9d7dce000000b0066210467fb1sm2443640otn.41.2022.10.22.09.35.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Oct 2022 09:33:33 -0700 (PDT)
-Message-ID: <88863ec4-be36-cd47-f727-3452075b15bf@linaro.org>
-Date:   Sat, 22 Oct 2022 12:33:30 -0400
+        Sat, 22 Oct 2022 09:35:27 -0700 (PDT)
+Message-ID: <5182e3c4-9e5e-2c36-408b-9029c65c8803@linaro.org>
+Date:   Sat, 22 Oct 2022 12:35:25 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: pinctrl: add loongson2 pinctrl
+Subject: Re: [PATCH 2/2] dt-bindings: pwm: mediatek: Add compatible string for
+ MT7986
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Daniel Golle <daniel@makrotopia.org>, Rob Herring <robh@kernel.org>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>
-References: <20221022020927.25485-1-zhuyinbo@loongson.cn>
- <20221022020927.25485-2-zhuyinbo@loongson.cn>
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <Y1K53n7LnjoMoIfj@makrotopia.org>
+ <20221021222338.GA565200-robh@kernel.org> <Y1MkIdFXrBrrv958@makrotopia.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221022020927.25485-2-zhuyinbo@loongson.cn>
+In-Reply-To: <Y1MkIdFXrBrrv958@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,101 +83,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 22:09, Yinbo Zhu wrote:
-> Add the loongson2 pinctrl binding with DT schema format using
-> json-schema.
+On 21/10/2022 18:58, Daniel Golle wrote:
+> On Fri, Oct 21, 2022 at 05:23:38PM -0500, Rob Herring wrote:
+>> On Fri, Oct 21, 2022 at 04:25:18PM +0100, Daniel Golle wrote:
+>>> Add new compatible string for MT7986 PWM.
+>>>
+>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>> ---
+>>>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>> index 554c96b6d0c3e0..6f4e60c9e18b81 100644
+>>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>> @@ -8,6 +8,7 @@ Required properties:
+>>>     - "mediatek,mt7623-pwm": found on mt7623 SoC.
+>>>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
+>>>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
+>>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
+>>
+>> This version of the PWM h/w is not compatible with any of the existing 
+>> chips? If it is, it should have a fallback compatible.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-> Change in v2: 
->                 1. Add "$ref to pinctrl.yaml".
->                 2. Put required after patternProperties.
->                 3. Add "additionalProperties: false" after '-pins$'
->                 4. Add "unevaluatedProperties: false" after 'pinmux$'
->                 5. Fixup the broken indentation in patternProperties node.
->                 6. Use 4 spaces for example indentation. 
-> 
->  .../pinctrl/loongson,ls2k-pinctrl.yaml        | 126 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 127 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..bb511e103a4b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/loongson,ls2k-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson2 SoC Pinctrl Controller
-> +
-> +maintainers:
-> +  - zhanghongchen <zhanghongchen@loongson.cn>
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +allOf:
-> +  - $ref: "pinctrl.yaml#"
+> No, it is unique because it comes with just 2 PWM channels.
+> Otherwise the driver behaves just like for MT8183 (4 channels) or
+> MT8365 (3 channels) which also got distinct compatible strings.
 
-Drop the quotes.
+Then something would be here compatible. E.g. If you bound MT8183 with
+mt7986-pwm compatible, would you get working device with two channels?
 
-> +
-> +properties:
-> +  compatible:
-> +    const: loongson,ls2k-pinctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +
-> +    additionalProperties: false
-> +
-> +    patternProperties:
-> +      'pinmux$':
-> +        type: object
-> +        description: node for pinctrl.
-> +        $ref: pinmux-node.yaml#
-> +
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          groups:
-> +            description:
-> +              One or more groups of pins to mux to a certain function
-> +            items:
-> +              enum: [gpio, sdio, can1, can0, pwm3, pwm2, pwm1, pwm0, i2c1, i2c0,
-> +                     nand, sata_led, lio, i2s, hda, uart2, uart1, camera, dv01,
-> +                     dvo0]
-> +          function:
-> +            description:
-> +              The function that a group of pins is muxed to
-> +            items:
-
-Function is one string, so no items.
-
-> +              enum: [gpio, sdio, can1, can0, pwm3, pwm2, pwm1, pwm0, i2c1, i2c0,
-> +                     nand, sata_led, lio, i2s, hda, uart2, uart1, camera, dv01,
-> +                     dvo0]
-> +
-> +        dependencies:
-> +          groups: [function]
-> +          function: [groups]
-
-If you wanted to say they are both required, add "required:" here.
-Otherwise you allow a pinmux without groups and function. Is it desired?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
+If so, they are compatible.
 
 Best regards,
 Krzysztof
