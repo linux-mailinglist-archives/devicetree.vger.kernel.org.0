@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E51608E95
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD8B5608E98
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiJVQik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 12:38:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55076 "EHLO
+        id S229683AbiJVQkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 12:40:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbiJVQii (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:38:38 -0400
+        with ESMTP id S229585AbiJVQkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:40:04 -0400
 Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 080551C905A
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:38:38 -0700 (PDT)
-Received: by mail-oo1-xc32.google.com with SMTP id c187-20020a4a4fc4000000b004808e2f7affso855482oob.13
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:38:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C2B3BC62
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:40:02 -0700 (PDT)
+Received: by mail-oo1-xc32.google.com with SMTP id x6-20020a4ac586000000b0047f8cc6dbe4so867642oop.3
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:40:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=09dbn703reA4FCdhJjPzfu9sNeDX/0oS18Pqv+rPa0w=;
-        b=upLrr8MtWn1K4A18M2nSQc6qJHAz97rbXyAxel0+KJetCPPyqMUZ5qEKqddgdFhDtJ
-         UmBuISjXjVWoybefbtD82JqmgaTi9dROiKXIwg5bkyqBDlyosUvK2eeiAxeVwIHePGlD
-         1IVzlUcoINGe8vRdRkaG7v27NgFgM8BD7g0QK3SZ03PUtZBSKb9l2VbUdSeHyrxvxnPQ
-         01tcUQC0yS1wR98MX9kt/KRm1tw99PEkKE4QuH0OTdOK4+LmgCGv0IOZGlzyTwsmo0Da
-         BNQ7S5TsNOyg8oEyrXzEVQ8cAx7YAfGyavZ/yahyG54wzfEhrpbeGmKaYjLmSsqjEzp/
-         Nzag==
+        bh=545rw8ScXkRjDM5w17g+rHUKHirulTTV6OR0mlcZkMs=;
+        b=p+u1HMt1MNKQryUWQThPkAqfoWTsH6KmsVL86mKRXhiNbd4KYLYPNB0hITHRvsRwHd
+         IzyR+zs/k4J1jE3/73NH7BNwkqjMeqBkbUwUWNeX3r0x9AhIYFWRT18rQ8egR+JYtQlm
+         CYZtZNpi2/fY0NRcNBaXILQT++KyzeZOC1hSAZJbEOILAN05eCqvX8VPU7VJwqow+RNF
+         n6C7bRH8NrUgu18S0Co7xxLWzfbLaDKYbfIZlIxs/fxHa+SBYh2Alj0L3CE0TjZ5IQ1a
+         c+7CuO8asdutbJ/33v8k6WhBNNYbe2ZEF42iqdFl7tUVH2f/Nv8NhWT0RSgBsMAdjX2c
+         Fa3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=09dbn703reA4FCdhJjPzfu9sNeDX/0oS18Pqv+rPa0w=;
-        b=HzmMLc34K9Dz5GWlXMCykh+/CFk5YxK8xO9rdsV8hs09DQ/o23RCfXbLp9Si3WWxEe
-         wOoUmRyFWRunGVKWLWrwDi93CcQ7Shr2FeEHP6DZq7DqTGfU2Vw8SbRriO9BXEzsHgdm
-         y7mGV5YBVdx5JCYIfLF1Deo4SQ8JnjY5M6aKr8uAOUJkITif4He51SBhGhLwlDp+isJ1
-         qKu+14N9RUzcFr9mQtXbzY5XqxdwJE9+8YPuK5kp+Pccw+6+qKjAK8EfFOvM4QoEP/Vz
-         uW/LXih68G7wJ8vLzWVFBcWPazASu0sck7PAWfzXQfaglbaZCoVtKOGlDmKgPToeyoqH
-         PkvA==
-X-Gm-Message-State: ACrzQf0NU5dar3ec/HpGv9V2EuJYwvf70hAazwtoKTZbJbj4KCAyJiXh
-        4zrPGBOKmeY8WFnPMDwqfB/W/g==
-X-Google-Smtp-Source: AMsMyM4CrlinlMC3BiAcQkMfneJkSC/EWBL2SxP1mHGHVTR0/oyQ/QmNi7CVRjlifL1HcHg+JqbKvQ==
-X-Received: by 2002:a4a:4847:0:b0:443:347d:6617 with SMTP id p68-20020a4a4847000000b00443347d6617mr11403064ooa.94.1666456717312;
-        Sat, 22 Oct 2022 09:38:37 -0700 (PDT)
+        bh=545rw8ScXkRjDM5w17g+rHUKHirulTTV6OR0mlcZkMs=;
+        b=58kVFmAhZUPglQIXpbqNVjY9EfxOBurfGdxfJS7zCRj/GsV+kMcWaomJTDxjMF54Nz
+         dI+3xMUeigOHWmQRUWs4sh/zcXi+wB7I6ure7tbr1lav3aI56jfwLg/VOeORx2aUfwj4
+         q0oz71yToVA2EQyFDYLp+vU6VpcvDy06oKslwIaVv4b0sK9GS30xBEFaWynyOX+NtXjc
+         2clDM03H2lgwMs1cYsnSNNCT6b0Iei85QU978YlYU+6VvkNs+CQyy8qcKn/9/5oFCnGU
+         G12qLeWxBoGGNU5749Py0LqNNZK73ko/94DEFIxAo9kHS4v4tmOhumqKi+N0UL3PPEXg
+         +AWQ==
+X-Gm-Message-State: ACrzQf02h3wHVvq3rdwSs8CfzF0GYz+01CJrO81CY1nvKTNVwK8sP6Ht
+        +utYz0eo3E50orfnq8X3lJgLptTHk5OS7g==
+X-Google-Smtp-Source: AMsMyM6eeoBGEQ7JBoltsek43vEM0SoXcCAlJEyNNtk9IE/VktMJh0yypxZafDKXkKPpq5EWdnbosQ==
+X-Received: by 2002:a05:6820:1608:b0:480:fa39:568b with SMTP id bb8-20020a056820160800b00480fa39568bmr5753643oob.43.1666456802183;
+        Sat, 22 Oct 2022 09:40:02 -0700 (PDT)
 Received: from [10.203.8.70] ([205.153.95.177])
-        by smtp.gmail.com with ESMTPSA id o206-20020acabed7000000b00344a22e71a9sm2287712oif.9.2022.10.22.09.38.35
+        by smtp.gmail.com with ESMTPSA id d6-20020aca3606000000b0034d14c6ce3dsm2306957oia.16.2022.10.22.09.39.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Oct 2022 09:38:36 -0700 (PDT)
-Message-ID: <de1a7fd5-e701-8741-b327-ad47d6b00f26@linaro.org>
-Date:   Sat, 22 Oct 2022 12:38:34 -0400
+        Sat, 22 Oct 2022 09:40:00 -0700 (PDT)
+Message-ID: <ae460461-5c20-9180-456c-8c01a4b1a7f1@linaro.org>
+Date:   Sat, 22 Oct 2022 12:39:56 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: realtek,rt5682s: Add
- #sound-dai-cells
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
+ MICVDD supplies
 Content-Language: en-US
 To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
         <nfraprado@collabora.com>, Mark Brown <broonie@kernel.org>
@@ -67,9 +67,9 @@ Cc:     AngeloGioacchino Del Regno
         Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221021190908.1502026-1-nfraprado@collabora.com>
- <20221021190908.1502026-2-nfraprado@collabora.com>
+ <20221021190908.1502026-3-nfraprado@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021190908.1502026-2-nfraprado@collabora.com>
+In-Reply-To: <20221021190908.1502026-3-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,18 +84,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/10/2022 15:09, Nícolas F. R. A. Prado wrote:
-> The rt5682s codec can be pointed to through a sound-dai property to be
-> used as part of a machine sound driver. dtc expects #sound-dai-cells to
-> be defined in the codec's node in those cases, so add it in the
-> dt-binding and set it to 0.
+> The rt5682s codec can have two supplies: AVDD and MICVDD. Add properties
+> for them.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+> 
+>  Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+> index ea53a55015c4..ca1037e76f96 100644
+> --- a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+> @@ -90,6 +90,10 @@ properties:
+>    "#sound-dai-cells":
+>      const: 0
+>  
+> +  AVDD-supply: true
+> +
+> +  MICVDD-supply: true
+> +
 
-Drop the entire last sentence, it's not really relevant to the problem.
-What if we name compiler not dtc, but ctd? It's redundant and actually
-forces reader to read unrelated stuff, instead of focusing on the root
-problem - this is a DAI provider.
+How about keeping some order in the list of properties?
+
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
