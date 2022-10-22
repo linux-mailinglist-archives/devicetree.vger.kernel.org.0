@@ -2,207 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7119A608EA0
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4607A608EA9
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229847AbiJVQmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 12:42:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38142 "EHLO
+        id S229497AbiJVQtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 12:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiJVQmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:42:00 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF7801C7D67;
-        Sat, 22 Oct 2022 09:41:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1666456915; bh=easYh1vEZAlN+URHpmcYGDfF+UB13mI51xyxD8/sAOA=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=TdsAG375XGmOwEjBEOBQ2rIGfS7ENvyVGW025PSCO//+eDyW/BCTaZ0suRHtw08Hr
-         XJV1tzYa8Swfln9LLnFirOxi7XsSp2Fo9iBYAHEXHKFZbcJskWj1tTEXIcYDWO87/g
-         VdCo1FO7D1MUCKA9CIEgAnme1FoHba5ULfXZRaKU=
-Date:   Sat, 22 Oct 2022 18:41:54 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michael.riesch@wolfvision.net,
-        frattaroli.nicolas@gmail.com, s.hauer@pengutronix.de,
-        frank-w@public-files.de, ezequiel@vanguardiasur.com.ar,
-        yifeng.zhao@rock-chips.com, jbx6244@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
- and ranges
-Message-ID: <20221022164154.kxcqsx5izr5yx5wj@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michael.riesch@wolfvision.net,
-        frattaroli.nicolas@gmail.com, s.hauer@pengutronix.de,
-        frank-w@public-files.de, ezequiel@vanguardiasur.com.ar,
-        yifeng.zhao@rock-chips.com, jbx6244@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20221005085439.740992-1-megi@xff.cz>
- <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
- <20221005220812.4psu6kckej63yo2z@core>
- <4679102.Wku2Vz74k6@phil>
- <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
- <20221021153913.l5ry6v4mcnzcmj2v@core>
- <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
- <20221021193248.2he6amnj7knk4biu@core>
- <87edv0sxup.fsf@bloch.sibelius.xs4all.nl>
- <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
+        with ESMTP id S229871AbiJVQtQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:49:16 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E455136692
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:49:00 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id w3so3450022qtv.9
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:49:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MWHwWqM3BXKlqAbT6QrzFF/UUpibvbLYi2O5amk60U4=;
+        b=ogCxatazZKWZRhhAUwP+5F6AJ8YlAWU+ohtbMidz6OXm1yNePCRATsxZp5oRVpW+A0
+         p9NYEDjH83TE8PMVPOfIkhT6CS6HDkxOGBdeUU/Sl4GpxX/p+bOp+TQ2TviTAGPYfEN7
+         Fg5gOOGp+oH8bXUlwYJ6688yOFmDGYpQbO3wjVusgiWYagHvCkKeywXEojgiHQ3WH0k4
+         mEi9Y0KzuyjiANtaGM2LmBWL4021SGDvEyZdzGZS/3PWXsSDtZFm0KM8apP73oACp0Nf
+         QN1tePmnF5nWKZJUcm8X0JoAeAJOKcdwwdlMY7prETHOllDQoTyKZ9YmXZRR0F2eQm+3
+         f6DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MWHwWqM3BXKlqAbT6QrzFF/UUpibvbLYi2O5amk60U4=;
+        b=UIeJHDpsSOHZre5/8oZs5Jq874EvLDfgR1uIPTVfafB+1/LZotVuQhzbkgGKwuHgwF
+         u1gcmHNmXXYKKsc6eBmAFpR5C8xq08way0H4aB4VOVnQyIyk3kvg9Iu1KcOy2yym2P5H
+         IbHrOIBp3SFaX1ObHbk8meuO3Pp3wQUi3RvIPWoMsK1ddcJIJMBKCsbIlc7ukrnPjfPC
+         DX24KMKhng04BonDcTlCNENj1qcUcWdga0qHY7GvPR20ROmeQJKG53vxOLTM1z69/xOV
+         FnpLkHdBvyNNQ6/tKNT0/OONsKnWKZTq/+0zP1ewdOpwr/oU+NjmMuEuKpflezrM/qsu
+         F86w==
+X-Gm-Message-State: ACrzQf0wQRUsYE2P/EPzjKkIeYhLfHsC85c8ymjIM6cKuaCH0CaKJV9x
+        TiGyv1LmzAVN/y59yxYtZuhjgQ==
+X-Google-Smtp-Source: AMsMyM7MX1BEUs2JSI2Qn3PmiNnVDugW3rD+1D64oX5nMvP/6Fj64lJHcVW1yUkBKT8ar+TIesapXw==
+X-Received: by 2002:ac8:5b10:0:b0:39c:d63a:d88 with SMTP id m16-20020ac85b10000000b0039cd63a0d88mr20932702qtw.682.1666457339565;
+        Sat, 22 Oct 2022 09:48:59 -0700 (PDT)
+Received: from [10.203.8.70] ([205.153.95.177])
+        by smtp.gmail.com with ESMTPSA id c25-20020ac81119000000b003996aa171b9sm9752605qtj.97.2022.10.22.09.48.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Oct 2022 09:48:58 -0700 (PDT)
+Message-ID: <253fc459-c3dc-7710-6f34-0466d5301482@linaro.org>
+Date:   Sat, 22 Oct 2022 12:48:56 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 3/6] dt-bindings: sound: Add sound card bindings for Tesla
+ FSD
+Content-Language: en-US
+To:     Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>,
+        'Rob Herring' <robh@kernel.org>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, s.nawrocki@samsung.com,
+        perex@perex.cz, tiwai@suse.com, pankaj.dubey@samsung.com,
+        alim.akhtar@samsung.com, rcsekar@samsung.com,
+        aswani.reddy@samsung.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20221014102151.108539-1-p.rajanbabu@samsung.com>
+ <CGME20221014104901epcas5p1a61ea81c3b1640bd8a064633c0b1e40d@epcas5p1.samsung.com>
+ <20221014102151.108539-4-p.rajanbabu@samsung.com>
+ <20221014151325.GA1940481-robh@kernel.org>
+ <04b901d8e529$573b17e0$05b147a0$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <04b901d8e529$573b17e0$05b147a0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 22, 2022 at 08:19:57AM -0400, Peter Geis wrote:
->
-> [...]
+On 21/10/2022 04:44, Padmanabhan Rajanbabu wrote:
+>> On Fri, Oct 14, 2022 at 03:51:48PM +0530, Padmanabhan Rajanbabu wrote:
+>>> Add dt-binding reference document to configure the DAI link for Tesla
+>>> FSD sound card driver.
+>>
+>> The simple-card or graph-card bindings don't work for you?
+> Thank you for reviewing the patch.
 > 
-> reg = <0x3 0xc0000000 0x0 0x00400000>,
->       <0x0 0xfe260000 0x0 0x00010000>,
->       <0x0 0xf4000000 0x0 0x00100000>;
+> The actual reason for having a custom sound card driver lies in the fact
+> that the Samsung i2s cpu dai requires configuration of some Samsung
+> specific properties like rfs, bfs, codec clock direction and root clock
+> source. We do not have flexibility of configuring the same in simple card
+> driver (sound/soc/generic/simple-card.c) or audio graph card driver 
+> (sound/soc/generic/audio-graph-card.c). The binding has been added to
+> support the custom sound card driver.
 > 
-> ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
-> <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
-> <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+> I understand from your query that the newly added card has device tree
+> nodes and properties which are used in simple card as well, but having a
+> different or new prefixes. I believe to address that, we can restructure
+> the string names to generic ones. 
 
-... more data:
+You must use generic, existing properties where applicable.
 
-Diff of my v2 vs the above ranges for my 2xwifi card + nvme setup:
+> But I would like to understand, to reuse
+> the simple card or audio graph card bindings, can we add secondary
+> compatible strings in the simple card dt-binding for the custom sound card
+> to probe ?
 
---- switch.lspciv	2022-10-05 10:36:33.924838688 +0200
-+++ switch-pg.lspciv	2022-10-22 18:30:33.412025097 +0200
-@@ -5 +5 @@
--	Memory behind bridge: 00000000-002fffff [size=3M] [32-bit]
-+	Memory behind bridge: f4200000-f44fffff [size=3M] [32-bit]
-@@ -7 +7 @@
--	Expansion ROM at 300300000 [virtual] [disabled] [size=64K]
-+	Expansion ROM at f4500000 [virtual] [disabled] [size=64K]
-@@ -22 +22 @@
--	Memory behind bridge: 00000000-002fffff [size=3M] [32-bit]
-+	Memory behind bridge: f4200000-f44fffff [size=3M] [32-bit]
-@@ -38 +38 @@
--	Memory behind bridge: 00000000-000fffff [size=1M] [32-bit]
-+	Memory behind bridge: f4200000-f42fffff [size=1M] [32-bit]
-@@ -53 +53 @@
--	Memory behind bridge: 00100000-001fffff [size=1M] [32-bit]
-+	Memory behind bridge: f4300000-f43fffff [size=1M] [32-bit]
-@@ -83 +83 @@
--	Memory behind bridge: 00200000-002fffff [size=1M] [32-bit]
-+	Memory behind bridge: f4400000-f44fffff [size=1M] [32-bit]
-@@ -96 +96 @@
--	Memory at 300000000 (64-bit, non-prefetchable) [size=16K]
-+	Memory at f4200000 (64-bit, non-prefetchable) [size=16K]
-@@ -111 +111 @@
--	Memory at 300100000 (64-bit, non-prefetchable) [size=64K]
-+	Memory at f4300000 (64-bit, non-prefetchable) [size=64K]
-@@ -123 +123 @@
--	Flags: bus master, fast devsel, latency 0, IRQ 80
-+	Flags: bus master, fast devsel, latency 0, IRQ 76
-@@ -125 +125 @@
--	Memory at 300200000 (64-bit, non-prefetchable) [size=1M]
-+	Memory at f4400000 (64-bit, non-prefetchable) [size=1M]
+If you see other vendor compatibles there, then yes... But there aren't
+any, right?
 
-(not so dramatic differences)
+>>
+>>>
+>>> Signed-off-by: Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+>>> ---
+>>>  .../bindings/sound/tesla,fsd-card.yaml        | 158 ++++++++++++++++++
+>>>  1 file changed, 158 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/sound/tesla,fsd-card.yaml
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/sound/tesla,fsd-card.yaml
+>>> b/Documentation/devicetree/bindings/sound/tesla,fsd-card.yaml
+>>> new file mode 100644
+>>> index 000000000000..4bd590f4ee27
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/tesla,fsd-card.yaml
+>>> @@ -0,0 +1,158 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # Copyright
+>>> +2022 Samsung Electronics Co. Ltd.
+>>> +%YAML 1.2
+>>> +---
+>>> +$id:
+>>> +https://protect2.fireeye.com/v1/url?k=4ae54403-157e7d1c-4ae4cf4c-
+>> 000b
+>>> +abdfecba-9eb398ea304f8ae8&q=1&e=4935bed0-ce62-47dd-8faf-
+>> 4750b01e22d3&
+>>>
+>> +u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fsound%2Ftesla%2Cfsd-
+>> card.ya
+>>> +ml%23
+>>> +$schema:
+>>> +https://protect2.fireeye.com/v1/url?k=8c72226e-d3e91b71-8c73a921-
+>> 000b
+>>> +abdfecba-3ce999f6c052255b&q=1&e=4935bed0-ce62-47dd-8faf-
+>> 4750b01e22d3&
+>>> +u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
+>>> +
+>>> +title: Tesla FSD ASoC sound card driver
+>>> +
+>>> +maintainers:
+>>> +  - Padmanabhan Rajanbabu <p.rajanbabu@samsung.com>
+>>> +
+>>> +description: |
+>>> +  This binding describes the node properties and essential DT entries
+>>> +of FSD
+>>> +  SoC sound card node
+>>> +
+>>> +select: false
+>>
+>> Never apply this schema. Why?
+> Sorry about it, let me change the select property to true in the next
+> patchset
 
-But for SATA card + USB card + 2-port intel ethernet card, it's
-massively better:
+No, just drop it. Look at other bindings or at example-schema
 
---- fullpci-my.lspciv	2022-10-15 17:16:55.002000065 +0200
-+++ fullpci-pg.lspciv	2022-10-15 17:15:09.837000015 +0200
-@@ -5 +5 @@
--	Memory behind bridge: [disabled] [32-bit]
-+	Memory behind bridge: f4200000-f55fffff [size=20M] [32-bit]
-@@ -7 +7 @@
--	Expansion ROM at 300000000 [virtual] [disabled] [size=64K]
-+	Expansion ROM at f5600000 [virtual] [disabled] [size=64K]
-@@ -22 +22 @@
--	Memory behind bridge: [disabled] [32-bit]
-+	Memory behind bridge: f4200000-f55fffff [size=20M] [32-bit]
-@@ -38 +38 @@
--	Memory behind bridge: [disabled] [32-bit]
-+	Memory behind bridge: f5400000-f54fffff [size=1M] [32-bit]
-@@ -53 +53 @@
--	Memory behind bridge: [disabled] [32-bit]
-+	Memory behind bridge: f5500000-f55fffff [size=1M] [32-bit]
-@@ -83 +83 @@
--	Memory behind bridge: [disabled] [32-bit]
-+	Memory behind bridge: f4200000-f53fffff [size=18M] [32-bit]
-@@ -95 +95,4 @@
--	Flags: fast devsel
-+	Flags: bus master, fast devsel, latency 0, IRQ 74
-+	Memory at f5480000 (32-bit, non-prefetchable) [size=8K]
-+	Memory at f5482000 (32-bit, non-prefetchable) [size=8K]
-+	Expansion ROM at f5400000 [virtual] [disabled] [size=512K]
-@@ -97 +100 @@
--	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-+	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-@@ -100,0 +104 @@
-+	Kernel driver in use: ahci
-@@ -104 +108,2 @@
--	Flags: fast devsel
-+	Flags: bus master, fast devsel, latency 0, IRQ 75
-+	Memory at f5500000 (64-bit, non-prefetchable) [size=4K]
-@@ -106 +111 @@
--	Capabilities: [90] MSI: Enable- Count=1/4 Maskable- 64bit+
-+	Capabilities: [90] MSI: Enable+ Count=1/4 Maskable- 64bit+
-@@ -108,0 +114 @@
-+	Kernel driver in use: xhci_hcd
-@@ -112 +118,3 @@
--	Flags: fast devsel
-+	Flags: bus master, fast devsel, latency 0
-+	Memory at f4200000 (32-bit, non-prefetchable) [size=128K]
-+	Memory at f4400000 (32-bit, non-prefetchable) [size=4M]
-@@ -113,0 +122,2 @@
-+	Memory at f4240000 (32-bit, non-prefetchable) [size=16K]
-+	Expansion ROM at f4800000 [virtual] [disabled] [size=4M]
-@@ -116 +126 @@
--	Capabilities: [70] MSI-X: Enable- Count=10 Masked-
-+	Capabilities: [70] MSI-X: Enable+ Count=10 Masked-
-@@ -121,0 +132 @@
-+	Kernel driver in use: igb
-@@ -125,2 +136,6 @@
--	Flags: fast devsel
--	I/O ports at 1020 [disabled] [size=32]
-+	Flags: bus master, fast devsel, latency 0, IRQ 85
-+	Memory at f4220000 (32-bit, non-prefetchable) [size=128K]
-+	Memory at f4c00000 (32-bit, non-prefetchable) [size=4M]
-+	I/O ports at 1020 [size=32]
-+	Memory at f4284000 (32-bit, non-prefetchable) [size=16K]
-+	Expansion ROM at f5000000 [virtual] [disabled] [size=4M]
-@@ -128 +143 @@
--	Capabilities: [50] MSI: Enable- Count=1/1 Maskable+ 64bit+
-+	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable+ 64bit+
-@@ -134,0 +150 @@
-+	Kernel driver in use: igb
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - tesla,fsd-sndcard
+>>> +
+>>> +  model:
+>>> +    description: Describes the Name of the sound card
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +
+>>> +  widgets:
+>>> +    description: A list of DAPM widgets in the sound card. Each entry
+> is a pair
+>>> +      of strings, the first being the widget name and the second being
+> the
+>>> +      widget alias
+>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>> +
+>>> +  audio-routing:
+>>> +    description: A list of the connections between audio components.
+> Each entry
+>>> +      is a pair of strings, the first being the connection's sink, the
+> second
+>>> +      being the connection's source
+>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>> +
+>>> +  dai-tdm-slot-num:
+>>> +    description: Enables TDM mode and specifies the number of TDM slots
+> to be
+>>> +      enabled
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+>>
+>> maximum: 8
+> Okay
+>>
+>>> +    default: 2
+>>> +
+>>> +  dai-tdm-slot-width:
+>>> +    description: Specifies the slot width of each TDm slot enabled
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [8, 16, 24]
+>>> +    default: 16
+>>
+>> All the above have types defined. You should not be redefining the types.
+> Okay
+>>
+>>> +
+>>> +  dai-link:
+>>> +    description: Holds the DAI link data between CPU, Codec and
+> Platform
+>>> +    type: object
+>>
+>>        additionalProperties: false
+> okay
+>>
+>>> +    properties:
+>>> +      link-name:
+>>> +        description: Specifies the name of the DAI link
+>>> +        $ref: /schemas/types.yaml#/definitions/string
+>>> +
+>>> +      dai-format:
+>>> +        description: Specifies the serial data format of CPU DAI
+>>> +        $ref: /schemas/types.yaml#/definitions/string
+>>> +
+>>> +      tesla,bitclock-master:
+>>> +        description: Specifies the phandle of bitclock master DAI
+>>> +        $ref: /schemas/types.yaml#/definitions/phandle
+>>> +
+>>> +      tesla,frame-master:
+>>> +        description: Specifies the phandle of frameclock master DAI
+>>> +        $ref: /schemas/types.yaml#/definitions/phandle
+>>
+>> These are common properties. Drop 'tesla'.
+> Okay
+>>
+>>> +
+>>> +      cpu:
+>>> +        description: Holds the CPU DAI node and instance
+>>> +        type: object
+>>
+>>            additionalProperties: false
+> Okay
+>>
+>>> +        properties:
+>>> +          sound-dai:
+>>> +            description: Specifies the phandle of CPU DAI node
+>>> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +
+>>> +        required:
+>>> +          - sound-dai
+>>> +
+>>> +      codec:
+>>> +        description: Holds the Codec DAI node and instance
+>>> +        type: object
+>>
+>>            additionalProperties: false
+> Okay
+>>
+>>> +        properties:
+>>> +          sound-dai:
+>>> +            description: Specifies the phandle of Codec DAI node
+>>> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+>>
+>> Already has a type. Need to define how many entries (maxItems: 1 ?).
+> Okay. I'll update in the upcoming patch set
+>>
+>>> +
+>>> +        required:
+>>> +          - sound-dai
+>>> +
+>>> +    required:
+>>> +      - link-name
+>>> +      - dai-format
+>>> +      - tesla,bitclock-master
+>>> +      - tesla,frame-master
+>>> +      - cpu
+>>> +
+>>> +dependencies:
+>>> +  dai-tdm-slot-width: [ 'dai-tdm-slot-num' ]
+>>
+>> This should be captured with tdm-slot.txt converted to schema.
+> Okay
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - model
+>>> +  - dai-link
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    sound {
+>>> +        compatible = "tesla,fsd-sndcard";
+>>> +        status = "disabled";
+>>
+>> Why have a disabled example? Other than your example won't pass your
+>> schema.
+> Thanks for noticing, I'll double check and change the example keeping the
+> status 
+> as enabled
 
-(Full output https://megous.com/dl/tmp/fullpci-pg.lspciv)
+No, just drop. Start with example-schema instead.
 
-So it's still not testing the 0x3_0000_0000 range, but as far as I'm
-concerned, it works with whatever I can throw at it (7 different
-pcie devices I have and combining them behind a 4-port pcie switch).
+Best regards,
+Krzysztof
 
-The best reg/ranges combination so far. ;)
-
-Tested-by: Ondrej Jirman <megi@xff.cz>
-
-kind regards,
-	o.
-
-> Very Respectfully,
-> Peter Geis
