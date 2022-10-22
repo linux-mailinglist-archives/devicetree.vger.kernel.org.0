@@ -2,287 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD1F608DAE
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 16:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD36C608DE5
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 17:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbiJVOg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 10:36:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53592 "EHLO
+        id S229802AbiJVPNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 11:13:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiJVOg1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 10:36:27 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C3F865556;
-        Sat, 22 Oct 2022 07:36:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1666449381; bh=QHnisue+a4NbTS3VD29KWTu7jusrGBVQbF4NMY/LeQM=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=Y76hjUf2L+vq1MWgVF83JKOnMeQiwpvGbQV6c66Uq4ayI6/eR154WfLFabS+bQVfM
-         C4HDNXVn49PLhac3y2Vyj6CDfj4D3V3u5kn97+bUEXWDaLA7ZXNxvN7VJ6KJkTYW5D
-         ZO00ypl+SQXelrb92hU55f92hOUkMmpM0+fElPmQ=
-Date:   Sat, 22 Oct 2022 16:36:20 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michael.riesch@wolfvision.net,
-        frattaroli.nicolas@gmail.com, s.hauer@pengutronix.de,
-        frank-w@public-files.de, ezequiel@vanguardiasur.com.ar,
-        yifeng.zhao@rock-chips.com, jbx6244@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
- and ranges
-Message-ID: <20221022143620.nolfuw7bnztgy5ju@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, heiko@sntech.de,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michael.riesch@wolfvision.net,
-        frattaroli.nicolas@gmail.com, s.hauer@pengutronix.de,
-        frank-w@public-files.de, ezequiel@vanguardiasur.com.ar,
-        yifeng.zhao@rock-chips.com, jbx6244@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20221005085439.740992-1-megi@xff.cz>
- <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
- <20221005220812.4psu6kckej63yo2z@core>
- <4679102.Wku2Vz74k6@phil>
- <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
- <20221021153913.l5ry6v4mcnzcmj2v@core>
- <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
- <20221021193248.2he6amnj7knk4biu@core>
- <87edv0sxup.fsf@bloch.sibelius.xs4all.nl>
- <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
+        with ESMTP id S229501AbiJVPNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 11:13:02 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150D8136421;
+        Sat, 22 Oct 2022 08:13:01 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id bu30so9138600wrb.8;
+        Sat, 22 Oct 2022 08:13:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/hsAXJnvDhdGEYHdFVs6ZsPQJBxXOr6Vkrm8tN3jfKA=;
+        b=Tc+9bReccTVcBJtXvSY5mXWo22AMO3N8kNZU9IGYfInuNngCZLGFa+77IyML9bvQap
+         8EbYh6StnB4lQNlNFkXwboIWTGEYJUN+XRd37H4mZvzm8mNjHfhZAP3dzx68H+Ruhtoh
+         To5rioRaL08Mf1VEWMRF6CVw7fHwiJ2VtK8qmnY1wBiYD1vwDaKkvXPULo3j+Bpum0CD
+         /GTmhyScpq+yLip7FgWN+TuGHItcdRtIK55JQLBMS1F7x0yHw6eJDQKlqdduUMq6QQq8
+         ru1ny0Sc/pKdkCXhm6PF7A35Z5CgqbnKBHNbIT3Z8P4dvfVb2wc4K73IeK7N1NhoUFDq
+         uR/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/hsAXJnvDhdGEYHdFVs6ZsPQJBxXOr6Vkrm8tN3jfKA=;
+        b=22fN4QZtYoLxPlZ3ofXD8lLhyT+fjmLbIYjqQl6SRlBI6rwkx/QiApawJ6t8Jc9ScS
+         P4hX3lCeKtoBB5dFm+0DX97GT8xXop93OUCaWbmGrKd8kFehfqtZprYdrD3tswD7zW06
+         4Oqe1dLMAbQ7pM1KLPkEgTV4c3T5Mlq24jF33oiNP2q7adUGSzT0zcuHe8dNWa3ej7ma
+         Jjew0+oYwWgXnuyXQRupAknvSD3euRRFav425MK1a1dzsP2VZds6/vKgo3f5bQqsc41n
+         zcdfgQYRrYb0q/G0PqZdBKOnicCY/jACqJxqBiVtav4lPgWGD9Ilty/JwvyAY4ZLDJH+
+         1ylg==
+X-Gm-Message-State: ACrzQf2V4otrOJtgMO5cs3Mk1DJzt46m7k4fw4sus2b4bVX7f4Hw+Ouc
+        8zeTQCzpdUt+b2hy9SoWalZfzCU/v+RA8w==
+X-Google-Smtp-Source: AMsMyM4qRLdYWNzPMwjl8hrKdsHi/Oaq15mHY7N4nVs1JJZEkRpfPIotfOL1ELU3HhrVpOqcLmT/lw==
+X-Received: by 2002:adf:e5c3:0:b0:236:5092:7cfc with SMTP id a3-20020adfe5c3000000b0023650927cfcmr6507269wrn.285.1666451579537;
+        Sat, 22 Oct 2022 08:12:59 -0700 (PDT)
+Received: from hp-power-15.localdomain (mm-133-18-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.18.133])
+        by smtp.gmail.com with ESMTPSA id u11-20020adff88b000000b0022e2eaa2bdcsm21310581wrp.98.2022.10.22.08.12.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Oct 2022 08:12:59 -0700 (PDT)
+From:   Siarhei Volkau <lis8215@gmail.com>
+Cc:     Siarhei Volkau <lis8215@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: [PATCH v2 0/2] serial: 8250/ingenic: Add support for the JZ4750
+Date:   Sat, 22 Oct 2022 18:12:22 +0300
+Message-Id: <20221022151224.4000238-1-lis8215@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 22, 2022 at 08:19:57AM -0400, Peter Geis wrote:
-> On Fri, Oct 21, 2022 at 4:52 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
->
-> [...]
-> 
-> Now this is interesting. I've been reading up on PCIe ranges and what
-> is necessary for things to work properly, and I found this interesting
-> article from ARM:
-> https://developer.arm.com/documentation/102337/0000/Programmers-model/Memory-maps/AP-system-memory-map/PCIe-MMIO-and-ECAM-memory-regions
+JZ4750 and JZ4755 have an extra clock divisor in CGU called CPCCR.ECS.
+It needs to be handled properly in the early console driver.
 
-Thanks for the research and the link. :)
+V1 diff:
+ - splitted into separate patchset
+ - code refactored to avoid peek in CGU register
+ - Krzysztof's ack picked
 
-> TLDR: We need a low region (below 4g) and a high region.
-> 
-> From other articles I've gleaned that the config / io should probably
-> also be in the low range. As such I believe the other patch that was
-> sent to me may be the correct way to go. If both of you would try the
-> following reg / ranges:
-> 
-> reg = <0x3 0xc0000000 0x0 0x00400000>,
->       <0x0 0xfe260000 0x0 0x00010000>,
->       <0x0 0xf4000000 0x0 0x00100000>;
-> 
-> ranges = <0x01000000 0x0 0xf4100000 0x0 0xf4100000 0x0 0x00100000>,
-> <0x02000000 0x0 0xf4200000 0x0 0xf4200000 0x0 0x01e00000>,
-> <0x03000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+Siarhei Volkau (2):
+  dt-bindings: serial: ingenic: Add support for the JZ4750/55 SoCs
+  serial: 8250/ingenic: Add support for the JZ4750/JZ4755
 
-Tested, and it works. 
+ .../bindings/serial/ingenic,uart.yaml         |  4 ++
+ drivers/tty/serial/8250/8250_ingenic.c        | 50 ++++++++++++++++---
+ 2 files changed, 47 insertions(+), 7 deletions(-)
 
-One thing to note though is that this results in Linux allocating address space
-for all my devices in the 32-bit range, so while it works for me, the address
-space above 0x3_0000_0000 was not tested in my experiments, yet.
+-- 
+2.36.1
 
-I'll try this with some other pcie devices, too, after I get my other quartz64
-+ pcie bridge setup to work. Hopefully some combo of them will hit the 64-bit
-MEM range.
-
-See:
-
-00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3568 Remote Signal Processor (rev 01) (prog-if 00 [Normal decode])
-	Flags: bus master, fast devsel, latency 0
-	Bus: primary=00, secondary=01, subordinate=ff, sec-latency=0
-	I/O behind bridge: 1000-2fff [size=8K] [16-bit]
-	Memory behind bridge: f4200000-f44fffff [size=3M] [32-bit]
-	Prefetchable memory behind bridge: [disabled] [64-bit]
-	Expansion ROM at f4500000 [virtual] [disabled] [size=64K]
-	Capabilities: [40] Power Management version 3
-	Capabilities: [50] MSI: Enable- Count=1/32 Maskable- 64bit+
-	Capabilities: [70] Express Root Port (Slot-), MSI 00
-	Capabilities: [b0] MSI-X: Enable- Count=1 Masked-
-	Capabilities: [100] Advanced Error Reporting
-	Capabilities: [148] Secondary PCI Express
-	Capabilities: [160] L1 PM Substates
-	Capabilities: [170] Vendor Specific Information: ID=0002 Rev=4 Len=100 <?>
-lspci: Unable to load libkmod resources: error -2
-
-01:00.0 PCI bridge: ASMedia Technology Inc. ASM1184e 4-Port PCIe x1 Gen2 Packet Switch (prog-if 00 [Normal decode])
-	Subsystem: ASMedia Technology Inc. Device 118f
-	Flags: bus master, fast devsel, latency 0, IRQ 69
-	Bus: primary=01, secondary=02, subordinate=06, sec-latency=0
-	I/O behind bridge: 1000-2fff [size=8K] [16-bit]
-	Memory behind bridge: f4200000-f44fffff [size=3M] [32-bit]
-	Prefetchable memory behind bridge: [disabled] [64-bit]
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [78] Power Management version 3
-	Capabilities: [80] Express Upstream Port, MSI 00
-	Capabilities: [c0] Subsystem: ASMedia Technology Inc. Device 118f
-	Capabilities: [100] Virtual Channel
-	Capabilities: [200] Advanced Error Reporting
-	Capabilities: [300] Vendor Specific Information: ID=0000 Rev=0 Len=c00 <?>
-	Kernel driver in use: pcieport
-
-02:01.0 PCI bridge: ASMedia Technology Inc. ASM1184e 4-Port PCIe x1 Gen2 Packet Switch (prog-if 00 [Normal decode])
-	Subsystem: ASMedia Technology Inc. Device 118f
-	Flags: bus master, fast devsel, latency 0, IRQ 70
-	Bus: primary=02, secondary=03, subordinate=03, sec-latency=0
-	I/O behind bridge: [disabled] [32-bit]
-	Memory behind bridge: f4200000-f42fffff [size=1M] [32-bit]
-	Prefetchable memory behind bridge: [disabled] [64-bit]
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [78] Power Management version 3
-	Capabilities: [80] Express Downstream Port (Slot+), MSI 00
-	Capabilities: [c0] Subsystem: ASMedia Technology Inc. Device 118f
-	Capabilities: [100] Virtual Channel
-	Capabilities: [200] Advanced Error Reporting
-	Kernel driver in use: pcieport
-
-02:03.0 PCI bridge: ASMedia Technology Inc. ASM1184e 4-Port PCIe x1 Gen2 Packet Switch (prog-if 00 [Normal decode])
-	Subsystem: ASMedia Technology Inc. Device 118f
-	Flags: bus master, fast devsel, latency 0, IRQ 71
-	Bus: primary=02, secondary=04, subordinate=04, sec-latency=0
-	I/O behind bridge: 1000-1fff [size=4K] [16-bit]
-	Memory behind bridge: f4300000-f43fffff [size=1M] [32-bit]
-	Prefetchable memory behind bridge: [disabled] [64-bit]
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [78] Power Management version 3
-	Capabilities: [80] Express Downstream Port (Slot+), MSI 00
-	Capabilities: [c0] Subsystem: ASMedia Technology Inc. Device 118f
-	Capabilities: [100] Virtual Channel
-	Capabilities: [200] Advanced Error Reporting
-	Kernel driver in use: pcieport
-
-02:05.0 PCI bridge: ASMedia Technology Inc. ASM1184e 4-Port PCIe x1 Gen2 Packet Switch (prog-if 00 [Normal decode])
-	Subsystem: ASMedia Technology Inc. Device 118f
-	Flags: bus master, fast devsel, latency 0, IRQ 72
-	Bus: primary=02, secondary=05, subordinate=05, sec-latency=0
-	I/O behind bridge: [disabled] [32-bit]
-	Memory behind bridge: [disabled] [32-bit]
-	Prefetchable memory behind bridge: [disabled] [64-bit]
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [78] Power Management version 3
-	Capabilities: [80] Express Downstream Port (Slot+), MSI 00
-	Capabilities: [c0] Subsystem: ASMedia Technology Inc. Device 118f
-	Capabilities: [100] Virtual Channel
-	Capabilities: [200] Advanced Error Reporting
-	Kernel driver in use: pcieport
-
-02:07.0 PCI bridge: ASMedia Technology Inc. ASM1184e 4-Port PCIe x1 Gen2 Packet Switch (prog-if 00 [Normal decode])
-	Subsystem: ASMedia Technology Inc. Device 118f
-	Flags: bus master, fast devsel, latency 0, IRQ 73
-	Bus: primary=02, secondary=06, subordinate=06, sec-latency=0
-	I/O behind bridge: 2000-2fff [size=4K] [16-bit]
-	Memory behind bridge: f4400000-f44fffff [size=1M] [32-bit]
-	Prefetchable memory behind bridge: [disabled] [64-bit]
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [78] Power Management version 3
-	Capabilities: [80] Express Downstream Port (Slot+), MSI 00
-	Capabilities: [c0] Subsystem: ASMedia Technology Inc. Device 118f
-	Capabilities: [100] Virtual Channel
-	Capabilities: [200] Advanced Error Reporting
-	Kernel driver in use: pcieport
-
-03:00.0 Non-Volatile memory controller: Phison Electronics Corporation PS5013 E13 NVMe Controller (rev 01) (prog-if 02 [NVM Express])
-	Subsystem: Phison Electronics Corporation PS5013 E13 NVMe Controller
-	Flags: bus master, fast devsel, latency 0, NUMA node 0
-	Memory at f4200000 (64-bit, non-prefetchable) [size=16K]
-	Capabilities: [80] Express Endpoint, MSI 00
-	Capabilities: [d0] MSI-X: Enable+ Count=9 Masked-
-	Capabilities: [e0] MSI: Enable- Count=1/8 Maskable+ 64bit+
-	Capabilities: [f8] Power Management version 3
-	Capabilities: [100] Latency Tolerance Reporting
-	Capabilities: [110] L1 PM Substates
-	Capabilities: [200] Advanced Error Reporting
-	Capabilities: [300] Secondary PCI Express
-	Kernel driver in use: nvme
-
-04:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8822CE 802.11ac PCIe Wireless Network Adapter
-	Subsystem: Hewlett-Packard Company Device 85f7
-	Flags: bus master, fast devsel, latency 0, IRQ 75
-	I/O ports at 1000 [size=256]
-	Memory at f4300000 (64-bit, non-prefetchable) [size=64K]
-	Capabilities: [40] Power Management version 3
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [70] Express Endpoint, MSI 00
-	Capabilities: [100] Advanced Error Reporting
-	Capabilities: [148] Device Serial Number 00-e0-4c-ff-fe-c8-22-01
-	Capabilities: [158] Latency Tolerance Reporting
-	Capabilities: [160] L1 PM Substates
-	Kernel driver in use: rtw_8822ce
-
-06:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852AE 802.11ax PCIe Wireless Network Adapter
-	Subsystem: Hewlett-Packard Company Device 88e1
-	Flags: bus master, fast devsel, latency 0, IRQ 76
-	I/O ports at 2000 [size=256]
-	Memory at f4400000 (64-bit, non-prefetchable) [size=1M]
-	Capabilities: [40] Power Management version 3
-	Capabilities: [50] MSI: Enable+ Count=1/1 Maskable- 64bit+
-	Capabilities: [70] Express Endpoint, MSI 00
-	Capabilities: [100] Advanced Error Reporting
-	Capabilities: [148] Device Serial Number 00-e0-4c-ff-fe-88-52-01
-	Capabilities: [158] Latency Tolerance Reporting
-	Capabilities: [160] L1 PM Substates
-	Kernel driver in use: rtw89_8852ae
-
-kind regards,
-	o.
-
-
-> Very Respectfully,
-> Peter Geis
-> 
-> >
-> > Now admittedly, this is with OpenBSD running on EDK2 UEFI firmware
-> > from
-> >
-> >   https://github.com/jaredmcneill/quartz64_uefi
-> >
-> > that I modified to pass through the device tree and modify the ranges
-> > as above.  But the way my OpenBSD driver sets up the address
-> > translation windows matches what the mainline Linux driver does.
-> >
-> > I picked the ranges above to match the EDK2 configuration.  But it is
-> > a setup that maximizes the 32-bit mmio window.
-> >
-> > Cheers,
-> >
-> > Mark
-> >
-> > > > I still haven't tested this with other cards yet, and another patch
-> > > > that does similar work I've tested successfully as well with NVMe
-> > > > drives. I'll have to get back to you on the results of greater
-> > > > testing.
-> > > >
-> > > > Very Respectfully,
-> > > > Peter Geis
-> > > >
-> > > > >
-> > > > > kind regards,
-> > > > >         o.
-> > > > >
-> > > > > > Very Respectfully,
-> > > > > > Peter Geis
-> > >
-> > > _______________________________________________
-> > > linux-arm-kernel mailing list
-> > > linux-arm-kernel@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
