@@ -2,143 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A5E8608306
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 03:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D21C608371
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 03:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbiJVA76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 20:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
+        id S229633AbiJVBz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 21:55:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbiJVA75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 20:59:57 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7645FDF4
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:59:54 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id s17so3086554qkj.12
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:59:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zLWMEaldl7mwAfibkMQ7f9QF8cCYwWsptPAXuW24IaM=;
-        b=GQWsjBoGJUcqsoAAKfGshd5eISh/AnwduwW5D8aypRX7KEwXJ3w0D6o0OgT+l0RRXr
-         GAAgtG5CUkJGI8fPQTQJiXbSO5cvaYoHOB+pshLdvXMezLl4y2enQTFHnGTAywwHljKj
-         OjDsBu1AxLK1MUqf77CFy0sXBrlK8oRg11+QpsDkXshX+NBYr8M8Rodc3RNeeQexSBKN
-         SPKAwpNgsl9Z0k9aaWLtpH/1H88dGThafvAGPC76HOpA6F7wQnazqxMti59Z2E1W+uDB
-         0pl8XwQj8qtiHEu5mTxYuuyUgok5l4D1JvlxVzuXlkjIhSLp4pa2Tuq2XCwK+/n/+Spi
-         eG3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zLWMEaldl7mwAfibkMQ7f9QF8cCYwWsptPAXuW24IaM=;
-        b=V9ObB8E06Fvuj6TEBpGJRDgqxeKjT+Gc5gTh4gsKbZgdHQMpCG4QxAqYtu8xnYIfG4
-         AS/c4Ma9dLUD1zozBjFshyFulYjP9CyfvCuPMRSFRkM5eCRn6X7oWwz2yKb3ZE7KOAxy
-         KZZh9Y0m7kvKoj4izV2U3r9Wj8hJAMXYKx6RKN6awMBKxunGpLk+/aqxdmNaG4Y6rNCD
-         OsWLIS3DXXPmLPX+ircymmld3WqkHOCphUzi0qkCy7xCWe7hM+o9MEoASL1REzUbCg0b
-         eHV7WXcLoqG3P7tiroFYitI59aLLsDHiWkojdqFMGgnCXSjOx3MFqMwF1+FqLfrZTTum
-         FzIg==
-X-Gm-Message-State: ACrzQf3htF3RcvbQ4i3bNniZik9XsBpS8jzK19X7ecKpG1w6fes2oXuV
-        vSSrg4tI+jhtPTePJ7PI1bW8MA==
-X-Google-Smtp-Source: AMsMyM5ePAEqT1CxZUNaI9lUZ9Iw9tWpO3mKZVYrsZfLArowIXhAP+1rILHZiBcFibxg3mzf8FbaaA==
-X-Received: by 2002:a37:b86:0:b0:6ea:3ec9:7994 with SMTP id 128-20020a370b86000000b006ea3ec97994mr15758286qkl.199.1666400393864;
-        Fri, 21 Oct 2022 17:59:53 -0700 (PDT)
-Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id l20-20020a05620a28d400b006b8e8c657ccsm10801547qkp.117.2022.10.21.17.59.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 17:59:53 -0700 (PDT)
-Message-ID: <a36ca97e-5e64-54a8-a571-e9b7f6da76e5@linaro.org>
-Date:   Fri, 21 Oct 2022 20:59:50 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [RFC PATCH 1/9] dt-bindings: arm-smmu: Add missing Qualcomm SMMU
- compatibles
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230041AbiJVBzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 21:55:16 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EA0ADB03E0;
+        Fri, 21 Oct 2022 18:55:10 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8Cxbbd9TVNjdJEBAA--.1931S3;
+        Sat, 22 Oct 2022 09:55:09 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxXuB8TVNj9SYDAA--.12586S2;
+        Sat, 22 Oct 2022 09:55:09 +0800 (CST)
+Subject: Re: [PATCH v1 1/2] pinctrl: pinctrl-loongson2: add pinctrl driver
+ support
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-References: <20221021165534.2334329-1-dmitry.baryshkov@linaro.org>
- <20221021165534.2334329-2-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021165534.2334329-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        zhuyinbo@loongson.cn, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20221021012728.22373-1-zhuyinbo@loongson.cn>
+ <CACRpkdbBW1YNGfec2jEPsUGwqosc8TwwSP9ft+he5KWPf0otvw@mail.gmail.com>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <ad677eaa-60e1-c72c-a4e3-f28c92e12942@loongson.cn>
+Date:   Sat, 22 Oct 2022 09:55:08 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <CACRpkdbBW1YNGfec2jEPsUGwqosc8TwwSP9ft+he5KWPf0otvw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxXuB8TVNj9SYDAA--.12586S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7KF4DCr1fZryfXFW3ZrW3GFg_yoW8WF18pF
+        W3Cwn8KFWkGr4Ivw45JrZYqFWkCr97X3ZrCFsIk3s7WF9xX3Z3Gw4fKFn8C3ykuFy8J3ZF
+        vFW5A3sruF1DK3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        b4kFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84
+        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc80
+        4VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67
+        AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48I
+        cVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x8Erc
+        xFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2Iq
+        xVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42
+        IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY
+        6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aV
+        CY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUOyCJDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 12:55, Dmitry Baryshkov wrote:
-> Add missing compatibles used for Adreno SMMU on sc7280 and sm8450
-> platforms and for the Qualcomm v2 SMMU used on SDM630 platform.
+
+
+在 2022/10/21 下午5:45, Linus Walleij 写道:
+> Hi Yinbo,
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> thanks for your patch!
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> index 9066e6df1ba1..34ee33a62ba5 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-> @@ -28,6 +28,7 @@ properties:
->            - enum:
->                - qcom,msm8996-smmu-v2
->                - qcom,msm8998-smmu-v2
-> +              - qcom,sdm630-smmu-v2
+> On Fri, Oct 21, 2022 at 3:27 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+> 
+>> The loongson2 SoC has a few pins that can be used as GPIOs or take
+>> multiple other functions. Add a driver for the pinmuxing.
+>>
+>> There is currently no support for GPIO pin pull-up and pull-down.
+>>
+>> Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> 
+> (...)
+> 
+>> +static int loongson2_pmx_set_mux(struct pinctrl_dev *pcdev, unsigned int func_num,
+>> +                             unsigned int group_num)
+>> +{
+>> +       struct loongson2_pinctrl *pctrl = pinctrl_dev_get_drvdata(pcdev);
+>> +       unsigned long reg = (unsigned long)pctrl->reg_base +
+>> +                               loongson2_pmx_groups[group_num].reg;
+>> +       unsigned int mux_bit = loongson2_pmx_groups[group_num].bit;
+>> +       unsigned int val;
+>> +       unsigned long flags;
+>> +
+>> +       raw_spin_lock_irqsave(&pctrl->lock, flags);
+>> +       val = readl((void *)reg);
+>> +       if (func_num == 0)
+>> +               val &= ~(1<<mux_bit);
+>> +       else
+>> +               val |= (1<<mux_bit);
+>> +       writel(val, (void *)reg);
+>> +       raw_spin_unlock_irqrestore(&pctrl->lock, flags);
+> 
+> Can you explain in the commit message or with a comment in the code
+> why you have to use a raw spinlock for this?
+> 
+> We usually only use raw spinlocks for things like low level
+> interrupt handlers...
+> 
+> My guess is that you can replace this with an ordinary spinlock.
+I was refer other platform, eg. pinctrl-amd.c, if the ordinary spinlock 
+was more appropriate I will use the ordinary spinlock.
 
-So qcom,adreno-smmu is not compatible with Adreno? See below.
-
->            - const: qcom,smmu-v2
->  
->        - description: Qcom SoCs implementing "arm,mmu-500"
-> @@ -48,10 +49,20 @@ properties:
->                - qcom,sm8350-smmu-500
->                - qcom,sm8450-smmu-500
->            - const: arm,mmu-500
-> +
-> +      - description: Qcom Adreno GPUs implementing "arm,smmu-500"
-> +        items:
-> +          - enum:
-> +              - qcom,sc7280-smmu-500
-> +              - qcom,sm8250-smmu-500
-> +          - const: qcom,adreno-smmu
-> +          - const: arm,mmu-500
->        - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
->          items:
->            - enum:
-> +              - qcom,msm8996-smmu-v2
->                - qcom,sc7180-smmu-v2
-> +              - qcom,sdm630-smmu-v2
-
-This does not look correct. The same compatible should not be present in
-two different setups.
-
-If qcom,msm8996-smmu-v2 is compatible with qcom,adreno-smmu, then your
-first hunk is not correct.
-
->                - qcom,sdm845-smmu-v2
->            - const: qcom,adreno-smmu
->            - const: qcom,smmu-v2
-
-Best regards,
-Krzysztof
+TKs
+Yinbo.
+> 
+> Yours,
+> Linus Walleij
+> 
 
