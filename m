@@ -2,141 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C651608CB2
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 13:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 444FB608CCA
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 13:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiJVLdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 07:33:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50662 "EHLO
+        id S229943AbiJVLib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 07:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbiJVLco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 07:32:44 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AF045074
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 04:12:26 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id q19so14749876edd.10
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 04:12:26 -0700 (PDT)
+        with ESMTP id S229993AbiJVLiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 07:38:12 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2163A1CD680;
+        Sat, 22 Oct 2022 04:27:24 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id x16so435263ilm.5;
+        Sat, 22 Oct 2022 04:27:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XkHBPe8kKp/EBO1kgCVV44yINTVx9+9WMF/ZWQU88KM=;
-        b=hrLNxiuD7rGcoYoDFEG4FYJ/zZHCXK1tR2mH+JEjkDCh6yA6QjUPp6hoaTbZGI5xwI
-         S0wosoyTQLKJZteniGi1EOiIC27IGNkYXTMMocUfW5VMrtxE6dN2ItO5DXXhvN+8j9gS
-         H5urh1Mh8cAZU6X0H7Qk0CFxWioOf6qULmay65o9qqInJjxwFtI0329CssSoNf7bvXdv
-         DGSy76oaDRXXtkJwyDKOdxWyVIXAOFDJVOdPJ22X1EPpoTGyOKXh1e3dV1UNWIv8Av3y
-         9bfLKPDbpgWhV2bwmi+1h8ozn/pGs6jcFMH+3dRFmi3u3yI4CgmQ3FpOjrQCXg9ARbEA
-         1ilA==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HY5GO8di75U1CCASt41qiLyc6F6QvdKPrg08NoOHj/w=;
+        b=UNFQHvpbqLns18T7KH5EwVBhZQGXV2kNOC3gM6qxcMbeiHBIf0NngUXUEdPXXg1H/o
+         G1tZ6diuM3NyqXBkvNlA/14Afwu8CoEZTyOLe6s19s52fBs16eXMjwqo1QLUrqEic/7G
+         VI7ciHJrusXudYvzVwEgMMJ5Qs0XaVlglYFC/kpN9MW6C9V9cYEXodlvHiDvkFpAwiif
+         kNwqcDFUEbJCWyGRAUIHc+9fEkZapYNRiJs+t1g0BYKLRnkWcaL/JJswVy5kXmA5kiag
+         J05uoj0zSAQOV+uVm1AsQXVDHYrdlk4CwWbibpqLwLa6bqzWqfl+WHFktRjkYhOAS2yL
+         rwpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XkHBPe8kKp/EBO1kgCVV44yINTVx9+9WMF/ZWQU88KM=;
-        b=KLCRUoBr+z8OUywOhwsGQpN8ZIAg8859qehPIjdT1YnwSjaUVBAtWJqALhO8/xWNo9
-         Of4jHPZPC8lp62vObrUCjax3OCmqzJAE6Ks2OKo8xLwntUIWjeV0XdEojnZjPGnHm2u8
-         FofdUN0FnkI0zdwfmCXIXTuNZgjKzS5Yt+zQj1ehhu5WN8avVcEIcucQPUZV44CvGwcP
-         JfZPi7YZDJ2w4UyVgaigYF5aeSrgZGoGcJDFRm+Q+eniJjndte9Qfyxf93wEr2senHEF
-         o8eV8Uoqx3rCPTsjYrE/hgDyOD2e/1e46RrY2Q/KBjEAU8Oc/VW7yJocp2/dHlQ8bYft
-         dNgg==
-X-Gm-Message-State: ACrzQf3jb3j1cl+ZRuvlRvAced+Z03J8NTzAhPaKQxwaZWtPaKV0jcY5
-        bdhH/He3Z82ZweBixwkACY0Vxg==
-X-Google-Smtp-Source: AMsMyM5sbHVdjq9chPJBv2v73OaTQ6ZtNtFRPn38AtlSsWcq8cx5eu0OlB4Dk1p4BQXHMJFueZyYOg==
-X-Received: by 2002:a05:6402:1911:b0:45c:be41:a879 with SMTP id e17-20020a056402191100b0045cbe41a879mr21645066edz.322.1666437144931;
-        Sat, 22 Oct 2022 04:12:24 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:25b:e73e:85eb:ae6e? ([2a05:6e02:1041:c10:25b:e73e:85eb:ae6e])
-        by smtp.googlemail.com with ESMTPSA id hp21-20020a1709073e1500b0079800b8173asm3338667ejc.158.2022.10.22.04.12.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Oct 2022 04:12:24 -0700 (PDT)
-Message-ID: <2b0fe8c2-674a-3b44-16aa-d3008b1271c3@linaro.org>
-Date:   Sat, 22 Oct 2022 13:12:22 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HY5GO8di75U1CCASt41qiLyc6F6QvdKPrg08NoOHj/w=;
+        b=sZb97VnlU9TxDHykqHMDn/m41BXQaPh7WDPA2eceGO9mW0qbW3WJYcUzU+6xU6+kBy
+         xyXj1N4v6aB+iPJwGXSDNgQdKL6BNRBbbdqdNfPcJIQmwRz5iOf6wwMlyufYupEYwdG8
+         TDksxVol2cE0cbXWIxj+Bhc0XbSvU+rz1F4Wk+pbMV7sLGgtmLWIruLOqdebY9WqzqbE
+         KggrYVJxIrNKk5Y4ssox7y8020EyFqTivYrAmcQYU7vqQb9ThTvF6DvLHSAYv0QCfSRA
+         eKobniO4/nHuWn3N4a/vk0Cs0wTAgQx3T2DOeGjKMRuRt26jGgzlQoxjMmyN5BRU97Vl
+         msNQ==
+X-Gm-Message-State: ACrzQf0iMCm5LQSjqNgYdZvpAwqXNaAcJFnJuESBC4BlrwbMfu6lylfD
+        HPNVIdtjl1D5i1P1dQO9EYlQUWIDvO2vNEcnCgc/kiXQ0ZE=
+X-Google-Smtp-Source: AMsMyM6e9lch0ampIcrmMSSo6HI4nFbDoCNZk74CpXEmGNLqAOT70PmJZTsxlDOknphx0BLulVXPQB1tvGcDuVdHicA=
+X-Received: by 2002:a92:da4a:0:b0:2f8:fa94:9dae with SMTP id
+ p10-20020a92da4a000000b002f8fa949daemr16162088ilq.80.1666438043011; Sat, 22
+ Oct 2022 04:27:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] thermal: rockchip: Support RK3588 SoC in the thermal
- driver
-Content-Language: en-US
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-rockchip@lists.infradead.org
+References: <20221022084737.1028-1-linux.amoon@gmail.com> <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
+In-Reply-To: <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Sat, 22 Oct 2022 16:57:07 +0530
+Message-ID: <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
+Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
+ on Odroid N2/N2+
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
-References: <20221021174721.92468-1-sebastian.reichel@collabora.com>
- <20221021174721.92468-2-sebastian.reichel@collabora.com>
- <2aafa6cc-a7de-0b7a-571f-04593ad53787@linaro.org>
- <7276280.TLKafQO6qx@archbook>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <7276280.TLKafQO6qx@archbook>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URI_HEX autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/10/2022 10:43, Nicolas Frattaroli wrote:
+Hi Martin,
 
-[ ... ]
+Thanks for your review comments..
 
->> What is TOP and CENTER ?
->>
->> There are 4 Bigs on this platform but two sensors ?
-> 
-> As far as I know, the four big cores in the SoC are arranged in two
-> clusters of two cores each, so one temperature sensor for each
-> cluster. As far as I can tell each CPU in a cluster shares its voltage
-> with its partner CPU core in its cluster.
+On Sat, 22 Oct 2022 at 15:47, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Sat, Oct 22, 2022 at 10:48 AM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > Odroid N2/N2+ support active cooling via gpio-fan controller.
+> > Add fan controls and tip point for cpu and ddr thermal sensor
+> > on this boards. Drop bias-disable from set pwm_ao_d_10 the pin
+> either use "on these boards" or "on this board"
+>
+> [...]
+> > @@ -1982,7 +1982,6 @@ pwm_ao_d_10_pins: pwm-ao-d-10 {
+> >                                                 mux {
+> >                                                         groups = "pwm_ao_d_10";
+> >                                                         function = "pwm_ao_d";
+> > -                                                       bias-disable;
+> &pwm_ao_d_10_pins is not referenced anywhere so it seems that this
+> change has no impact on controlling the fan on Odroid-N2(+).
+> How did you test this change?
+>
+Ok I felt these changes affect the behavior of the pinctrl
 
-Ok, I found some more details on the datasheet, page 7-8.
+  * @PIN_CONFIG_BIAS_DISABLE: disable any pin bias on the pin, a
+ *  transition from say pull-up to pull-down implies that you disable
+ *  pull-up in the process, this setting disables all biasing.
 
-So it is a big "Cluster" with the 4 Big cores. They share the same cache.
+I mapped this is linked in pinctrl driver, pwm_ao_d_10_pins GPIOAO_10 see below
 
-There is one power domain per core (cpuidle)
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pinctrl/meson/pinctrl-meson-g12a.c?h=v6.1-rc1#n825
 
-There are two performance domains (cpufreq x 2)
+For testing, I tried to libgpio command to verify shown below, with
+this patch applied.
+$ gpioinfo
+....
+gpiochip1 - 15 lines:
+        line   0:      unnamed       unused   input  active-high
+        line   1:      unnamed       unused   input  active-high
+        line   2:      unnamed     "enable"  output  active-high [used]
+        line   3:      unnamed       unused   input  active-high
+        line   4:      unnamed       unused  output  active-high
+        line   5:      unnamed       unused   input  active-high
+        line   6:      unnamed       unused   input  active-high
+        line   7:      unnamed       unused   input  active-high
+        line   8:      unnamed "regulator-tflash_vdd" output active-high [used]
+        line   9:      unnamed      "TF_IO"  output  active-high [used]
+        line  10:      unnamed   "gpio-fan"  output  active-high [used]
+        line  11:      unnamed    "n2:blue"  output  active-high [used]
+        line  12:      unnamed       unused   input  active-high
+        line  13:      unnamed       unused   input  active-high
+        line  14:      unnamed       unused   input  active-high
 
-So it makes sense to have one sensor per performance domain to mitigate 
-the temperature.
+$ cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinmux-pins
+Pinmux settings per pin
+Format: pin (name): mux_owner gpio_owner hog?
+pin 0 (GPIOAO_0): ff803000.serial (GPIO UNCLAIMED) function uart_ao_a
+group uart_ao_a_tx
+pin 1 (GPIOAO_1): ff803000.serial (GPIO UNCLAIMED) function uart_ao_a
+group uart_ao_a_rx
+pin 2 (GPIOAO_2): (MUX UNCLAIMED) aobus-banks:1950
+pin 3 (GPIOAO_3): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 4 (GPIOAO_4): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 5 (GPIOAO_5): ff808000.ir (GPIO UNCLAIMED) function
+remote_ao_input group remote_ao_input
+pin 6 (GPIOAO_6): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 7 (GPIOAO_7): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 8 (GPIOAO_8): (MUX UNCLAIMED) aobus-banks:1956
+pin 9 (GPIOAO_9): (MUX UNCLAIMED) aobus-banks:1957
+pin 10 (GPIOAO_10): (MUX UNCLAIMED) aobus-banks:1958
+pin 11 (GPIOAO_11): (MUX UNCLAIMED) aobus-banks:1959
+pin 12 (GPIOE_0): (MUX UNCLAIMED) (GPIO UNCLAIMED)
+pin 13 (GPIOE_1): ff802000.pwm (GPIO UNCLAIMED) function pwm_ao_d
+group pwm_ao_d_e
+pin 14 (GPIOE_2): ffd1b000.pwm (GPIO UNCLAIMED) function pwm_a_e group pwm_a_e
 
-> If you have access to the TRM, it contains the following line in
-> part 1 on page 1372:
+$ sudo gpiomon  gpiochip1 10
+gpiomon: error waiting for events: Device or resource busy
 
-Unfortunately no, I don't have access to the TRM. But I'll be happy if I 
-can ;)
+$ sudo gpioget  gpiochip1 10
+gpioget: error reading GPIO values: Device or resource busy
 
-> 	Support to 7 channel TS-ADC (near chip center, A76_0/1, A76_2/3,
-> 	DSU and A55_0/1/2/3, PD_CENTER, NPU, GPU)
-> 
-> I assume one of "TOP" and "CENTER" is "near chip center", the other is
-> PD_CENTER, whatever that means (PD = power domain maybe?)
+If I am wrong I have previously sent it with a typo correction below.
 
-Yes certainly.
+[1] https://lore.kernel.org/all/20221021050906.1158-1-linux.amoon@gmail.com/
 
-I take the opportunity to let you know there is a new tool in the linux 
-tools directory called 'thermometer'. You can capture the temperature 
-and use the data to create graphics.
-
-> I agree these could be named more descriptively.
-> 
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Thanks
+-Anand
+>
+> Best regards,
+> Martin
