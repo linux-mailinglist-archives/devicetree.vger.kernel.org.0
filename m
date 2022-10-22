@@ -2,114 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A412608D03
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 13:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 444C6608D20
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 14:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbiJVLw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 07:52:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
+        id S229649AbiJVMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 08:13:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiJVLwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 07:52:54 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 656AEE027;
-        Sat, 22 Oct 2022 04:52:45 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id a13so15079895edj.0;
-        Sat, 22 Oct 2022 04:52:45 -0700 (PDT)
+        with ESMTP id S229576AbiJVMNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 08:13:55 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 962C24AD5B
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 05:13:54 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id g7so9461451lfv.5
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 05:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jrvz3xnxmWMFBldQvzy2ZgmI4h77t/gPKZnFb0toqjg=;
-        b=IkNUMBBK3F7G2PHSg4UUbh50Ru31YT5iLaRe+eXiX/kgyEVFRWM+EOsx8fOhmmHZYB
-         mpbIbh4q3vvwnGYurdPN4A+6370j/lx2BQ8nIWwsFsKx7Y9z3Heey5CL1lY0jPs9BmQs
-         phlDwix2DMjgdaGZx7K06usQjnaAJXxond0AzlVST6lU+BhY3YDU08cxFgsQ/dUXc2c7
-         LdYPI7IFyVT/b62MgoKyx+X6xWA8M1MoAde1RLXhSz1IYm4Xjv5RErUgw3uEISZC4QYx
-         hjKz433tB6OeY3mXTLp49KN3S9Tg+E2Z2NqOFJVPn3sVHkt0h8isq2wF9OnV5ADNL+8a
-         l+Vg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3YVf0JwT5dFglEkAzFYBOn94gjH1FcmeZUI6KevHi6M=;
+        b=kwJfBEDx3ZLIwFvyEUteKjBCRI4Zy9zlbipx30WTJU+ubezDGJ4a4VOAn+u07F+9C0
+         uexMg/xpiaVI0FOc0E33xh+OYNcQPBwjjlBS8MVh5bmQLCFvkj4+PY70T0Uu6DqhDiya
+         rNvnb5wwNd55yMCnJTuvtLMc7rZ1WUDuoPA6zQnwx0RyxoR9PGGJG/wNgjXO/4d3sVeB
+         LezaMpycVcAFsI/4ApeD5ig+a/LM4m0Ku7xJltWSvq3/CSgZwhTCdjWWaOPG9WucAE7o
+         7EzXltCleFpUittLKGYTRKWPf+DNdRMXS0yCYaXhhwMAhqMwKKjpq34ooCr+of+k17Hz
+         l2tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jrvz3xnxmWMFBldQvzy2ZgmI4h77t/gPKZnFb0toqjg=;
-        b=76DF1DKUd1O9c0pGluAJxetk/BCt+lYOAlNlJfzBPYbnY3Xus5rZszjxqZQq99BBiz
-         LRnsRsRbgSxjT39YzI4uLP0zRqbOV2Gy8fCg6UJI5QsAf9CZf3Tp3lWMicD5xi5pjfi+
-         PHyFrTUVNcho/BWTWnDC9m4nbtQJUiPxSS7lsjxmMaRvlqcihdDUkgdkwB44bhRGDcea
-         cAv/kfJ+YHc2FogtEfCelzF7gvS3gYpIlc8LV/jxyp7J42FZXsPEmejYpaKNd+gwPknS
-         R4CH3+ftsZ3Fu0dMdv5HP2HktFYyCelkpMXeC9c9799Rc6IGRyVzP3m2Dno1e2Uy3Ij1
-         1NTQ==
-X-Gm-Message-State: ACrzQf3FeTBvBHQHJNuThcwUGgecjmkb/5/nbpsb9hF+3VhfZcMsc8et
-        BOMdeYQ1LhHbEUBVDCLhavgU37QOc7H+CGNh6lc=
-X-Google-Smtp-Source: AMsMyM6muR/RwsipWgBLxIPXio2nN5ILA/phMy0wSCb+hRGOvh2zvm54UfTCsw2MojaPvDmu/D2VNn3FDSPF1kaXgew=
-X-Received: by 2002:a17:907:7f92:b0:78d:ed9c:d86f with SMTP id
- qk18-20020a1709077f9200b0078ded9cd86fmr19695128ejc.251.1666439563373; Sat, 22
- Oct 2022 04:52:43 -0700 (PDT)
+        bh=3YVf0JwT5dFglEkAzFYBOn94gjH1FcmeZUI6KevHi6M=;
+        b=gi6QuMk3qVJ2z46wPasul4ClyMun4qjtVaZ1nCub1H3xr35DlGRaddQ0COwcTRcOBu
+         GTtbQ/CCaHwMJpxyXOCft67amWydq9UjN6pmEpqfTi/QVoYmBYUueiudaQlhbTPUyfY9
+         77lI8x0VwxhO66jJyS/kzRMEb1B6lZ48fXDnF+4R5WdOw1yHLuHtR3okzMsYhxJ+wsrx
+         3fUHrav8pLPBjWE0orjXvcYH6rOFPrXdR0X35h6Gk/72x4cHZsVsDpMiRAo1ykEsUzPO
+         YXKtwwz00p/jdK9C36PvVEBJTFWBIlcum6MNqumTePenmLuLqHnfdmQ0HOspc2Iw0jJN
+         wcQg==
+X-Gm-Message-State: ACrzQf3BXMWZCYmre3h4sVSdvG1mqzNjJXAX/RfqD9g7WrqEGEf+Lhuv
+        e3HgkaMjuhihNP4W+DI3PCE51Q==
+X-Google-Smtp-Source: AMsMyM4AxJ+YkbcoF/+7t7oQ0WPbJmikhIZtVUUccnBwShFh9+5e5GmpHIwtkVxe93c8/j8z8Xp/TQ==
+X-Received: by 2002:ac2:5183:0:b0:4a1:e99d:e7b6 with SMTP id u3-20020ac25183000000b004a1e99de7b6mr8803895lfi.676.1666440832882;
+        Sat, 22 Oct 2022 05:13:52 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id q1-20020a2e2a01000000b0026dcfc2bf4csm3799013ljq.57.2022.10.22.05.13.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Oct 2022 05:13:52 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linux-usb@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v1] usb: phy: phy-gpio-vbus-usb: Add devicetree bindings
+Date:   Sat, 22 Oct 2022 14:11:48 +0200
+Message-Id: <20221022121149.3329641-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-References: <20221022084737.1028-1-linux.amoon@gmail.com> <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
- <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
-In-Reply-To: <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 22 Oct 2022 13:52:32 +0200
-Message-ID: <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
-Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
- on Odroid N2/N2+
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+This adds a simple device tree binding for a GPIO-based
+VBUS detection PHY.
 
-On Sat, Oct 22, 2022 at 1:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> > > @@ -1982,7 +1982,6 @@ pwm_ao_d_10_pins: pwm-ao-d-10 {
-> > >                                                 mux {
-> > >                                                         groups = "pwm_ao_d_10";
-> > >                                                         function = "pwm_ao_d";
-> > > -                                                       bias-disable;
-> > &pwm_ao_d_10_pins is not referenced anywhere so it seems that this
-> > change has no impact on controlling the fan on Odroid-N2(+).
-> > How did you test this change?
-> >
-> Ok I felt these changes affect the behavior of the pinctrl
->
->   * @PIN_CONFIG_BIAS_DISABLE: disable any pin bias on the pin, a
->  *  transition from say pull-up to pull-down implies that you disable
->  *  pull-up in the process, this setting disables all biasing.
->
-> I mapped this is linked in pinctrl driver, pwm_ao_d_10_pins GPIOAO_10 see below
-Yes, I understand this part.
-My concern is: &pwm_ao_d_10_pins settings only become active when this
-node is actively referenced. You can even see it in your output
-below...
+Cc: Felipe Balbi <balbi@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/phy/phy-usb-vbus-gpio.yaml       | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
 
-[...]
-> pin 10 (GPIOAO_10): (MUX UNCLAIMED) aobus-banks:1958
-This shows that it's used as a GPIO. If the &pwm_ao_d_10_pins setting
-was used then it would show "function pwm_ao_d group pwm_ao_d_10"
-(similar to what GPIOE_1 shows in your output)
+diff --git a/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml b/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
+new file mode 100644
+index 000000000000..4e10b58f8235
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/phy-usb-vbus-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO-based VBUS detection USB PHY
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: A VBUS event occurs when a USB plug is attached to
++  a USB host and peripheral, the voltage (VBUS) is exposed from the
++  host to the peripheral when the last of the two ends of the
++  cable is plugged in. This can be either on the host side or on
++  the peripheral side, whichever comes last. It is possible to
++  provide a very simple USB VBUS detection mechanism by using a
++  GPIO line that will trigger on an edge event on the VBUS
++  pin.
++
++properties:
++  compatible:
++    const: phy-usb-vbus-gpio
++
++  "#phy-cells":
++    const: 0
++
++  vbus-gpios:
++    maxItems: 1
++    description: The GPIO line connected to VBUS
++
++required:
++  - compatible
++  - "#phy-cells"
++  - vbus-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    usb1_phy: phy {
++        compatible = "phy-usb-vbus-gpio";
++        #phy-cells = <0>;
++        vbus-gpios = <&gpio0 18 GPIO_ACTIVE_LOW>;
++    };
+-- 
+2.37.3
 
-If you want to know if a pull-up/down is enabled you can look at the output of:
-$ cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinconf-pins
-(I'm sure this can also be retrieved from some userspace tools, but I
-don't know how)
-
-
-Best regards,
-Martin
