@@ -2,239 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A84C608C66
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 13:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C651608CB2
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 13:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230363AbiJVLQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 07:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54936 "EHLO
+        id S230272AbiJVLdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 07:33:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbiJVLPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 07:15:43 -0400
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B521F034D;
-        Sat, 22 Oct 2022 03:39:02 -0700 (PDT)
-Date:   Sat, 22 Oct 2022 10:38:53 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1666435138; x=1666694338;
-        bh=FSMHblkq3aMPppIFi+ouRLxXT2wvIHP2QO5iAeoXj84=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=tLwhdNXIkkoB5XezU8PTKELoe/kZWk5P+9jMdvXrhE6QvhkfHUg6mGU02qv6myBdg
-         W8sWPWFqHoTOcmDCxUK5HAS0MWOfZCNTvUxiMUH0i81dsuh8Ce5B8Xc9PkH6O2SjaN
-         zGoH9NkLBdgLAMFSrcACLfaLWn2n7R1ISKEpVHEr+PnfD4euK9HpBqB4KK7/GLk3p0
-         oZyCuJ4bfbdExdb/cTVlsAw2Am5EVhBLsCXe0cqF9m2smibJC0C3p+/BswGFQMQrKy
-         8PWZqcLIXFOqRjgbtAN5aSuiHR7MCHlGouB/LR5orc75UbwqDMmBnODyBvEztnt4Te
-         W/A6bnd4k2r8w==
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-From:   Harry Austen <hpausten@protonmail.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: msm8996: add support for oneplus3(t)
-Message-ID: <wqHFrd3UmaUsRa21931VRDSHnIiusqzv3AIu7nynQkRhvAloHPmNaDvpCCGkdZoeKtZBDI_Rl9As8ehNW4EwpN47yhFJnY3-6hQkurhWy48=@protonmail.com>
-In-Reply-To: <78a117d5-b4be-8389-c909-9f8525b151d8@linaro.org>
-References: <20221021142242.129276-1-hpausten@protonmail.com> <20221021142242.129276-5-hpausten@protonmail.com> <78a117d5-b4be-8389-c909-9f8525b151d8@linaro.org>
-Feedback-ID: 53116287:user:proton
+        with ESMTP id S230175AbiJVLco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 07:32:44 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AF045074
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 04:12:26 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id q19so14749876edd.10
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 04:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XkHBPe8kKp/EBO1kgCVV44yINTVx9+9WMF/ZWQU88KM=;
+        b=hrLNxiuD7rGcoYoDFEG4FYJ/zZHCXK1tR2mH+JEjkDCh6yA6QjUPp6hoaTbZGI5xwI
+         S0wosoyTQLKJZteniGi1EOiIC27IGNkYXTMMocUfW5VMrtxE6dN2ItO5DXXhvN+8j9gS
+         H5urh1Mh8cAZU6X0H7Qk0CFxWioOf6qULmay65o9qqInJjxwFtI0329CssSoNf7bvXdv
+         DGSy76oaDRXXtkJwyDKOdxWyVIXAOFDJVOdPJ22X1EPpoTGyOKXh1e3dV1UNWIv8Av3y
+         9bfLKPDbpgWhV2bwmi+1h8ozn/pGs6jcFMH+3dRFmi3u3yI4CgmQ3FpOjrQCXg9ARbEA
+         1ilA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XkHBPe8kKp/EBO1kgCVV44yINTVx9+9WMF/ZWQU88KM=;
+        b=KLCRUoBr+z8OUywOhwsGQpN8ZIAg8859qehPIjdT1YnwSjaUVBAtWJqALhO8/xWNo9
+         Of4jHPZPC8lp62vObrUCjax3OCmqzJAE6Ks2OKo8xLwntUIWjeV0XdEojnZjPGnHm2u8
+         FofdUN0FnkI0zdwfmCXIXTuNZgjKzS5Yt+zQj1ehhu5WN8avVcEIcucQPUZV44CvGwcP
+         JfZPi7YZDJ2w4UyVgaigYF5aeSrgZGoGcJDFRm+Q+eniJjndte9Qfyxf93wEr2senHEF
+         o8eV8Uoqx3rCPTsjYrE/hgDyOD2e/1e46RrY2Q/KBjEAU8Oc/VW7yJocp2/dHlQ8bYft
+         dNgg==
+X-Gm-Message-State: ACrzQf3jb3j1cl+ZRuvlRvAced+Z03J8NTzAhPaKQxwaZWtPaKV0jcY5
+        bdhH/He3Z82ZweBixwkACY0Vxg==
+X-Google-Smtp-Source: AMsMyM5sbHVdjq9chPJBv2v73OaTQ6ZtNtFRPn38AtlSsWcq8cx5eu0OlB4Dk1p4BQXHMJFueZyYOg==
+X-Received: by 2002:a05:6402:1911:b0:45c:be41:a879 with SMTP id e17-20020a056402191100b0045cbe41a879mr21645066edz.322.1666437144931;
+        Sat, 22 Oct 2022 04:12:24 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:25b:e73e:85eb:ae6e? ([2a05:6e02:1041:c10:25b:e73e:85eb:ae6e])
+        by smtp.googlemail.com with ESMTPSA id hp21-20020a1709073e1500b0079800b8173asm3338667ejc.158.2022.10.22.04.12.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Oct 2022 04:12:24 -0700 (PDT)
+Message-ID: <2b0fe8c2-674a-3b44-16aa-d3008b1271c3@linaro.org>
+Date:   Sat, 22 Oct 2022 13:12:22 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] thermal: rockchip: Support RK3588 SoC in the thermal
+ driver
+Content-Language: en-US
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Finley Xiao <finley.xiao@rock-chips.com>, kernel@collabora.com
+References: <20221021174721.92468-1-sebastian.reichel@collabora.com>
+ <20221021174721.92468-2-sebastian.reichel@collabora.com>
+ <2aafa6cc-a7de-0b7a-571f-04593ad53787@linaro.org>
+ <7276280.TLKafQO6qx@archbook>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <7276280.TLKafQO6qx@archbook>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday, October 21st, 2022 at 3:44 PM, Krzysztof Kozlowski <krzysztof.ko=
-zlowski@linaro.org> wrote:
-[...]
-> > +++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
-> > @@ -0,0 +1,794 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
->=20
->=20
-> Are you sure this is GPL-2.0 only? Didn't you derive it from downstream
-> OnePlus DTS?
+On 22/10/2022 10:43, Nicolas Frattaroli wrote:
 
-Yes development of these devicetrees was aided by downstream DTS, all of wh=
-ich appear to have
-GPL-2.0 only headers, e.g. see msm8996-mtp.dts [1].
+[ ... ]
 
->=20
-> > +/*
-> > + * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-> > + */
-> > +
-> > +#include "msm8996.dtsi"
-> > +#include "pm8994.dtsi"
-> > +#include "pmi8994.dtsi"
-> > +#include "pmi8996.dtsi"
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> > +#include <dt-bindings/sound/qcom,q6afe.h>
-> > +#include <dt-bindings/sound/qcom,q6asm.h>
-> > +#include <dt-bindings/sound/qcom,wcd9335.h>
-> > +
-> > +/ {
-> > + aliases {
-> > + serial0 =3D &blsp1_uart2;
-> > + serial1 =3D &blsp2_uart2;
-> > + };
-> > +
-> > + battery: battery {
-> > + compatible =3D "simple-battery";
-> > +
-> > + constant-charge-current-max-microamp =3D <3000000>;
-> > + voltage-min-design-microvolt =3D <3400000>;
-> > + };
-> > +
-> > + chosen {
-> > + stdout-path =3D "serial1:115200n8";
-> > + };
-> > +
-> > + clocks {
-> > + compatible =3D "simple-bus";
->=20
->=20
-> This is not a bus of clocks...
+>> What is TOP and CENTER ?
+>>
+>> There are 4 Bigs on this platform but two sensors ?
+> 
+> As far as I know, the four big cores in the SoC are arranged in two
+> clusters of two cores each, so one temperature sensor for each
+> cluster. As far as I can tell each CPU in a cluster shares its voltage
+> with its partner CPU core in its cluster.
 
-Will remove in v2.
+Ok, I found some more details on the datasheet, page 7-8.
 
->=20
-> > +
-> > + divclk4: divclk4 {
->=20
->=20
-> Use common suffix or prefix for node names and generic name.
->=20
-> This clock is anyway a bit weird - same frequency as sleep clk.
->=20
-> > + compatible =3D "fixed-clock";
-> > + pinctrl-names =3D "default";
-> > + pinctrl-0 =3D <&divclk4_pin_a>;
->=20
->=20
-> This is a PMIC pin? So is it a PMIC clk?
+So it is a big "Cluster" with the 4 Big cores. They share the same cache.
 
-These two clocks are described in the same way as other current MSM8996 DTs=
- (e.g. apq8096-db820c.dts
-and msm8996-xiaomi-common.dtsi). Happy to change if you think there is a be=
-tter way to describe them?
-Yes, these clocks originate from within the PM8994 PMIC as per the datashee=
-t [2]. GPIO_15 is
-configured with the DIV_CLK1 alt function and routes to the MCLK pin of the=
- WCD9225 audio codec.
-GPIO_18 is configured with the SLEEP_CLK5 alt function and provides the SUS=
-CLK_32KHZ input to the
-Atheros QCA6174 WiFi/BT chip.
+There is one power domain per core (cpuidle)
 
->=20
-> > + #clock-cells =3D <0>;
-> > + clock-frequency =3D <32768>;
-> > + clock-output-names =3D "divclk4";
-> > + };
-> > +
-> > + div1_mclk: divclk1 {
-> > + compatible =3D "gpio-gate-clock";
-> > + pinctrl-names =3D "default";
-> > + pinctrl-0 =3D <&audio_mclk>;
-> > + #clock-cells =3D <0>;
-> > + clocks =3D <&rpmcc RPM_SMD_DIV_CLK1>;
-> > + enable-gpios =3D <&pm8994_gpios 15 GPIO_ACTIVE_HIGH>;
-> > + };
-> > + };
-> > +
-> > + reserved-memory {
-> > + ramoops@ac000000 {
-> > + compatible =3D "ramoops";
-> > + reg =3D <0 0xac000000 0 0x200000>;
-> > + record-size =3D <0x20000>;
-> > + console-size =3D <0x100000>;
-> > + pmsg-size =3D <0x80000>;
-> > + };
-> > + };
-> > +
-> > + vph_pwr: vph-pwr-regulator {
-> > + compatible =3D "regulator-fixed";
-> > + regulator-name =3D "vph_pwr";
-> > + regulator-min-microvolt =3D <3700000>;
-> > + regulator-max-microvolt =3D <3700000>;
-> > + regulator-always-on;
-> > + regulator-boot-on;
-> > + };
-> > +
-> > + wlan_en: wlan-en-1-8v {
->=20
->=20
-> Use common suffix or prefix. You already used "-regulator" suffix before.
+There are two performance domains (cpufreq x 2)
 
-Will fix in v2.
+So it makes sense to have one sensor per performance domain to mitigate 
+the temperature.
 
->=20
-> > + compatible =3D "regulator-fixed";
-> > + pinctrl-names =3D "default";
-> > + pinctrl-0 =3D <&wlan_en_gpios>;
-> > + regulator-name =3D "wlan-en-regulator";
-> > + regulator-min-microvolt =3D <1800000>;
-> > + regulator-max-microvolt =3D <1800000>;
-> > +
-> > + gpio =3D <&pm8994_gpios 8 GPIO_ACTIVE_HIGH>;
-> > +
-> > + /* WLAN card specific delay */
-> > + startup-delay-us =3D <70000>;
-> > + enable-active-high;
-> > + };
-> > +};
-> > +
-> > +&adsp_pil {
-> > + status =3D "okay";
-> > +};
-> > +
-> > +&blsp1_i2c3 {
-> > + status =3D "okay";
-> > +
-> > + tfa9890_amp: audio-codec@36 {
-> > + compatible =3D "nxp,tfa9890";
-> > + reg =3D <0x36>;
-> > + #sound-dai-cells =3D <0>;
-> > + };
-> > +};
-> > +
-> > +&blsp1_i2c6 {
-> > + status =3D "okay";
-> > +
-> > + bq27541: fuel-gauge@55 {
-> > + compatible =3D "ti,bq27541";
-> > + reg =3D <0x55>;
-> > + };
-> > +};
-> > +
-> > +&blsp1_uart2 {
-> > + label =3D "BT-UART";
-> > + status =3D "okay";
->=20
->=20
-> Status is a last property.
+> If you have access to the TRM, it contains the following line in
+> part 1 on page 1372:
 
-Will fix all of these in v2.
+Unfortunately no, I don't have access to the TRM. But I'll be happy if I 
+can ;)
 
->=20
-> Best regards,
-> Krzysztof
+> 	Support to 7 channel TS-ADC (near chip center, A76_0/1, A76_2/3,
+> 	DSU and A55_0/1/2/3, PD_CENTER, NPU, GPU)
+> 
+> I assume one of "TOP" and "CENTER" is "near chip center", the other is
+> PD_CENTER, whatever that means (PD = power domain maybe?)
 
-Thanks for the review!
-Harry
+Yes certainly.
 
-[1]: https://github.com/OnePlusOSS/android_kernel_oneplus_msm8996/blob/onep=
-lus3/6.0.1/arch/arm/boot/dts/qcom/msm8996-mtp.dtsi
-[2]: https://developer.qualcomm.com/qfile/35466/lm80-p2751-5_c.pdf
+I take the opportunity to let you know there is a new tool in the linux 
+tools directory called 'thermometer'. You can capture the temperature 
+and use the data to create graphics.
+
+> I agree these could be named more descriptively.
+> 
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
