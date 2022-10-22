@@ -2,79 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F3F6608BCE
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 12:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5FFB608BFD
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 12:56:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230390AbiJVKnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 06:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41920 "EHLO
+        id S230392AbiJVKz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 06:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229944AbiJVKmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 06:42:33 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D674D49B62;
-        Sat, 22 Oct 2022 02:59:46 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 983D31C09E5; Sat, 22 Oct 2022 11:58:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1666432711;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=KpPCRvQJgXDGyb4glxKUpw4uaIOMm328LUpioHS06b4=;
-        b=P6Ku5VcPksDLiXOABOexev1hqvQKRo2VO92jzkU7/2sEBonRVRo7LsVzokTpj/c0vrc5Ze
-        appbndtcn4NuAhPYsibq2/r/tUcLTSBnB8kU+BoL0yRgiR2d2+6NfTAc4gWJKt8BCto8Yr
-        Ru7UYLfzPlKgsHBuz2sywz2q8vBiPBk=
-Date:   Sat, 22 Oct 2022 11:58:31 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: Add 'cpuX' to 'linux,default-trigger'
-Message-ID: <20221022095831.GC10427@duo.ucw.cz>
-References: <20221021205428.304422-1-robh@kernel.org>
+        with ESMTP id S230336AbiJVKzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 06:55:37 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CE332D296;
+        Sat, 22 Oct 2022 03:13:32 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id m15so14387489edb.13;
+        Sat, 22 Oct 2022 03:13:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WlXvlEg6bctP44b/au/15ReetHC08Q5PP32gg18o8Ok=;
+        b=WbjY0+tOWZdm90+Ro9ychyoYTBQ5k08JBaJAi4TzgcG8ebuY5wT6Rk2qJmmg8Se7QI
+         V8GCccdnEAK2Sj8K78LRVn+dPikhaT0X909X4PIsrClXKM+V3ZmE/Zi/knzyRMdrJl6+
+         lK0f7eqTF+DnNY/MQKIAWmVV0F1agtxTodB/7gpgDAXFsmZq18kFv5tvUdupybwKIi2M
+         2Cw5Bom8/XkFJJqhOO3SW5QkT3A3YFq7LHOi6BEao01ZDSQkjPtNhL4ho/icP3E1qKWo
+         ItleBOK3iayo/LLswsITa1oHP2O1qjOaBewGJoXEQ2qGFT/4srYlyI/39zOzOtYg97v8
+         EvcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WlXvlEg6bctP44b/au/15ReetHC08Q5PP32gg18o8Ok=;
+        b=FHGwjNs0e9bn1uhU+k5if/mzxyivZro081eL8JDx+nCt2evIoyAD3PNhnh40glckHD
+         AK8KM9j/2p/UKgIAzNMHXLn5ljxeSYRB6hfEMNxOveoo0HC7rfDyh4m9mbZAAi/SLaPd
+         ca3gt+AuItj+xnA3LXdkwiAmOPFtjQTpmsaVLTc47a93zDieFEMP3sPakCk1dAAbUJQV
+         38Ggjrn68frFDLsJO5u1j3HN1a5Wt7duNMdnTqVAa9kfCUKrFWX8EC3Sqyg/y5j8/Os7
+         DPx5lk5FqefxAd2YamtTVzy2tJezk3w0gN9CcisfBkgoaZuStdOy8Og6VnBdCD+DBfQB
+         cwKw==
+X-Gm-Message-State: ACrzQf1TWXLncrYx6AQvoK3B7xCYtsLrH328ITaYwwHVvXNI/Ia4Vh+H
+        Mc0xgTWXsfzm3HHFWz2YyjvAKq9tBtqYuVa3DTyQ3O3US/A=
+X-Google-Smtp-Source: AMsMyM7hlcd+YDE/ZivoAfafimij3dBh6J+XlO9QT3sdw0BO/po/2UHGunU8QkJwyQeS4hfV0tD+CQPk8Dg/ApP5pUI=
+X-Received: by 2002:a17:906:401:b0:73d:af73:b78 with SMTP id
+ d1-20020a170906040100b0073daf730b78mr19829562eja.122.1666433600362; Sat, 22
+ Oct 2022 03:13:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="CblX+4bnyfN0pR09"
-Content-Disposition: inline
-In-Reply-To: <20221021205428.304422-1-robh@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20221004-up-aml-fix-spi-v4-0-0342d8e10c49@baylibre.com> <20221004-up-aml-fix-spi-v4-1-0342d8e10c49@baylibre.com>
+In-Reply-To: <20221004-up-aml-fix-spi-v4-1-0342d8e10c49@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 22 Oct 2022 12:13:09 +0200
+Message-ID: <CAFBinCB8j+1EpB4f2wNL4Bmmd4H-Oaeo5KHnjFbVFLtpqVXm=g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] spi: dt-bindings: amlogic, meson-gx-spicc: Add
+ pinctrl names for SPI signal states
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        linux-amlogic@lists.infradead.org, Da Xue <da@libre.computer>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Oct 21, 2022 at 3:31 PM Amjad Ouled-Ameur
+<aouledameur@baylibre.com> wrote:
+>
+> SPI pins of the SPICC Controller in Meson-GX needs to be controlled by
+> pin biais when idle. Therefore define three pinctrl names:
+s/biais/bias/
+> - default: SPI pins are controlled by spi function.
+> - idle-high: SCLK pin is pulled-up, but MOSI/MISO are still controlled
+> by spi function.
+> - idle-low: SCLK pin is pulled-down, but MOSI/MISO are still controlled
+> by spi function.
+>
+> Reported-by: Da Xue <da@libre.computer>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Other than the typo:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
---CblX+4bnyfN0pR09
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri 2022-10-21 15:54:28, Rob Herring wrote:
-> Add 'cpu' and 'cpuN' to possible values for 'linux,default-trigger'.
-> There's 45 cases of them in upstream dts files.
-
-Thanks, applied.
 
 Best regards,
-								Pavel
---=20
-People of Russia, stop Putin before his war on Ukraine escalates.
-
---CblX+4bnyfN0pR09
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCY1O+xwAKCRAw5/Bqldv6
-8mvlAJ0eDhIdUncPO7XaO2IwkqDMs6fcCQCfVKnaVUblsT9moEDEbKkPF1uCxXs=
-=NDwL
------END PGP SIGNATURE-----
-
---CblX+4bnyfN0pR09--
+Martin
