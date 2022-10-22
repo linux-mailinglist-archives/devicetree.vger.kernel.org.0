@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC12608302
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 02:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A5E8608306
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 03:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbiJVA4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 20:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58826 "EHLO
+        id S229800AbiJVA76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 20:59:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230046AbiJVA4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 20:56:50 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3842AE6FF
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:56:48 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id o8so2965544qvw.5
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:56:48 -0700 (PDT)
+        with ESMTP id S229695AbiJVA75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 20:59:57 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7645FDF4
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:59:54 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id s17so3086554qkj.12
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:59:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rFpIzpIwgjuZIMXJiBfrrEfT6Hz5p7X9gD7zlqNfnbA=;
-        b=aR2sH423g/FNEnomin/v+RK1B90ppCX8kpK4nXnKvCovSs9pJ64zMhoJoDVZH7jTp/
-         kyGTvbBp8PPxqAaZ3BluNZFpGF/HvTi7eqDMp2lfzzLz0yheHYgyRLI4je6a6swGGBss
-         XYuNFJQSVfCYvZ/FLTh2xp9LfK7nDMffawWBneabi0tFN+cXflsb3krFurrk4nvC9w9u
-         U//jDOj8wisFw4+pFVKzWRiFBSVMdNBZvjR5yKaj548C2obS76/8IBxFTFMHbPuvAwEr
-         26ZFwPrqQKEOsmUMQTzQdC7JTZ2NEKTB3eiE5JBl1hr3ixsTYK4KI3n0jKwkO5W/eVSU
-         R05w==
+        bh=zLWMEaldl7mwAfibkMQ7f9QF8cCYwWsptPAXuW24IaM=;
+        b=GQWsjBoGJUcqsoAAKfGshd5eISh/AnwduwW5D8aypRX7KEwXJ3w0D6o0OgT+l0RRXr
+         GAAgtG5CUkJGI8fPQTQJiXbSO5cvaYoHOB+pshLdvXMezLl4y2enQTFHnGTAywwHljKj
+         OjDsBu1AxLK1MUqf77CFy0sXBrlK8oRg11+QpsDkXshX+NBYr8M8Rodc3RNeeQexSBKN
+         SPKAwpNgsl9Z0k9aaWLtpH/1H88dGThafvAGPC76HOpA6F7wQnazqxMti59Z2E1W+uDB
+         0pl8XwQj8qtiHEu5mTxYuuyUgok5l4D1JvlxVzuXlkjIhSLp4pa2Tuq2XCwK+/n/+Spi
+         eG3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rFpIzpIwgjuZIMXJiBfrrEfT6Hz5p7X9gD7zlqNfnbA=;
-        b=5xRHSEBir1ojEoKplbTNUNfdgSkwvvsEnV5njItxrp+oK5/MoYEmnrdNHd28tJDODx
-         p+e6mtW40+DPCEdCu+Ic0zD87IiSxxOGCXIkkzjAzHHmNylYbmJc4W6MXYSLLy/SoNoB
-         HyKi9ESg1UhHfCSupsf/wv2e3FdXUbp3OUaU0qIv6lN9cFD3V6YoSmV8Hs/zNm2GLAqX
-         c2b6xKZDL8KSVBC8GpxEFo+nL6esFHpldJxK4vwsDYSqYlEA0Dsty3qG/tarXzvjeD6u
-         2jQolbPdSnzP/G2vHQN6AjcAYvje1ju/O3YfFwQCQwOKqkmA7aN5NIWebDtWKVxx2kyP
-         Nmvg==
-X-Gm-Message-State: ACrzQf0A2SPRQkrnqllCJhnrYGdDF8uR6J8tINgYMqIe6HHQPXy8j4W8
-        Rw61jyEU0xOcLJkhRDROCKEt6Q==
-X-Google-Smtp-Source: AMsMyM7deIHgoRkR5AV441jdJc6NbHPCIuhVKS8qUIPyZpwKB2+r+V1b726Izf33aSQSx3x1w3VklA==
-X-Received: by 2002:ad4:5cc2:0:b0:4b1:9631:3f01 with SMTP id iu2-20020ad45cc2000000b004b196313f01mr19178222qvb.82.1666400207983;
-        Fri, 21 Oct 2022 17:56:47 -0700 (PDT)
+        bh=zLWMEaldl7mwAfibkMQ7f9QF8cCYwWsptPAXuW24IaM=;
+        b=V9ObB8E06Fvuj6TEBpGJRDgqxeKjT+Gc5gTh4gsKbZgdHQMpCG4QxAqYtu8xnYIfG4
+         AS/c4Ma9dLUD1zozBjFshyFulYjP9CyfvCuPMRSFRkM5eCRn6X7oWwz2yKb3ZE7KOAxy
+         KZZh9Y0m7kvKoj4izV2U3r9Wj8hJAMXYKx6RKN6awMBKxunGpLk+/aqxdmNaG4Y6rNCD
+         OsWLIS3DXXPmLPX+ircymmld3WqkHOCphUzi0qkCy7xCWe7hM+o9MEoASL1REzUbCg0b
+         eHV7WXcLoqG3P7tiroFYitI59aLLsDHiWkojdqFMGgnCXSjOx3MFqMwF1+FqLfrZTTum
+         FzIg==
+X-Gm-Message-State: ACrzQf3htF3RcvbQ4i3bNniZik9XsBpS8jzK19X7ecKpG1w6fes2oXuV
+        vSSrg4tI+jhtPTePJ7PI1bW8MA==
+X-Google-Smtp-Source: AMsMyM5ePAEqT1CxZUNaI9lUZ9Iw9tWpO3mKZVYrsZfLArowIXhAP+1rILHZiBcFibxg3mzf8FbaaA==
+X-Received: by 2002:a37:b86:0:b0:6ea:3ec9:7994 with SMTP id 128-20020a370b86000000b006ea3ec97994mr15758286qkl.199.1666400393864;
+        Fri, 21 Oct 2022 17:59:53 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id bm2-20020a05620a198200b006ce7d9dea7asm10863961qkb.13.2022.10.21.17.56.46
+        by smtp.gmail.com with ESMTPSA id l20-20020a05620a28d400b006b8e8c657ccsm10801547qkp.117.2022.10.21.17.59.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 17:56:47 -0700 (PDT)
-Message-ID: <16e7e524-a6f6-9b43-6a64-489f61216ae4@linaro.org>
-Date:   Fri, 21 Oct 2022 20:56:46 -0400
+        Fri, 21 Oct 2022 17:59:53 -0700 (PDT)
+Message-ID: <a36ca97e-5e64-54a8-a571-e9b7f6da76e5@linaro.org>
+Date:   Fri, 21 Oct 2022 20:59:50 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH] arm: dts: socfpga: align mmc node names with dtschema
+Subject: Re: [RFC PATCH 1/9] dt-bindings: arm-smmu: Add missing Qualcomm SMMU
+ compatibles
 Content-Language: en-US
-To:     Dinh Nguyen <dinguyen@kernel.org>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20221021153223.159030-1-dinguyen@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+References: <20221021165534.2334329-1-dmitry.baryshkov@linaro.org>
+ <20221021165534.2334329-2-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021153223.159030-1-dinguyen@kernel.org>
+In-Reply-To: <20221021165534.2334329-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,104 +86,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 11:32, Dinh Nguyen wrote:
-> dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
+On 21/10/2022 12:55, Dmitry Baryshkov wrote:
+> Add missing compatibles used for Adreno SMMU on sc7280 and sm8450
+> platforms and for the Qualcomm v2 SMMU used on SDM630 platform.
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm/boot/dts/socfpga.dtsi                      | 2 +-
->  arch/arm/boot/dts/socfpga_arria10.dtsi              | 2 +-
->  arch/arm/boot/dts/socfpga_arria5.dtsi               | 2 +-
->  arch/arm/boot/dts/socfpga_arria5_socdk.dts          | 2 +-
->  arch/arm/boot/dts/socfpga_cyclone5.dtsi             | 2 +-
->  arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts  | 4 ++--
->  arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts | 2 +-
->  arch/arm/boot/dts/socfpga_cyclone5_mcv.dtsi         | 2 +-
->  arch/arm/boot/dts/socfpga_cyclone5_socdk.dts        | 2 +-
->  arch/arm/boot/dts/socfpga_cyclone5_sockit.dts       | 2 +-
->  arch/arm/boot/dts/socfpga_cyclone5_sodia.dts        | 2 +-
->  arch/arm/boot/dts/socfpga_vt.dts                    | 2 +-
->  12 files changed, 13 insertions(+), 13 deletions(-)
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
-> index a2419a5c6c26..6eda6fdc101b 100644
-> --- a/arch/arm/boot/dts/socfpga.dtsi
-> +++ b/arch/arm/boot/dts/socfpga.dtsi
-> @@ -754,7 +754,7 @@ l3regs@0xff800000 {
->  			reg = <0xff800000 0x1000>;
->  		};
->  
-> -		mmc: dwmmc0@ff704000 {
-> +		mmc: mmc@ff704000 {
->  			compatible = "altr,socfpga-dw-mshc";
->  			reg = <0xff704000 0x1000>;
->  			interrupts = <0 139 4>;
-> diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
-> index eb528c103d70..3b2a2c9c6547 100644
-> --- a/arch/arm/boot/dts/socfpga_arria10.dtsi
-> +++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
-> @@ -655,7 +655,7 @@ L2: cache-controller@fffff000 {
->  			arm,shared-override;
->  		};
->  
-> -		mmc: dwmmc0@ff808000 {
-> +		mmc: mmc@ff808000 {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
->  			compatible = "altr,socfpga-dw-mshc";
-> diff --git a/arch/arm/boot/dts/socfpga_arria5.dtsi b/arch/arm/boot/dts/socfpga_arria5.dtsi
-> index b531639ce7dc..c20a1f04f29a 100644
-> --- a/arch/arm/boot/dts/socfpga_arria5.dtsi
-> +++ b/arch/arm/boot/dts/socfpga_arria5.dtsi
-> @@ -18,7 +18,7 @@ osc1 {
->  			};
->  		};
->  
-> -		mmc0: dwmmc0@ff704000 {
-> +		mmc: mmc@ff704000 {
->  			broken-cd;
->  			bus-width = <4>;
->  			cap-mmc-highspeed;
-> diff --git a/arch/arm/boot/dts/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-> index 7f5458d8fccc..40f12232c150 100644
-> --- a/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-> +++ b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-> @@ -107,7 +107,7 @@ rtc@68 {
->  	};
->  };
->  
-> -&mmc0 {
-> +&mmc {
->  	vmmc-supply = <&regulator_3_3v>;
->  	vqmmc-supply = <&regulator_3_3v>;
->  	status = "okay";
-> diff --git a/arch/arm/boot/dts/socfpga_cyclone5.dtsi b/arch/arm/boot/dts/socfpga_cyclone5.dtsi
-> index a9d1ba66f1ff..1d08d48559e5 100644
-> --- a/arch/arm/boot/dts/socfpga_cyclone5.dtsi
-> +++ b/arch/arm/boot/dts/socfpga_cyclone5.dtsi
-> @@ -18,7 +18,7 @@ osc1 {
->  			};
->  		};
->  
-> -		mmc0: dwmmc0@ff704000 {
-> +		mmc: mmc@ff704000 {
->  			broken-cd;
->  			bus-width = <4>;
->  			cap-mmc-highspeed;
-> diff --git a/arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts b/arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts
-> index 76262f1e5e03..f3e7169bc93a 100644
-> --- a/arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts
-> +++ b/arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts
-> @@ -43,7 +43,7 @@ user_led1 {
->  		user_led2 {
->  			label = "green:user2";
->  			gpios = <&porta 22 GPIO_ACTIVE_LOW>;
-> -			linux,default-trigger = "mmc0";
-> +			linux,default-trigger = "mmc";
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> index 9066e6df1ba1..34ee33a62ba5 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> @@ -28,6 +28,7 @@ properties:
+>            - enum:
+>                - qcom,msm8996-smmu-v2
+>                - qcom,msm8998-smmu-v2
+> +              - qcom,sdm630-smmu-v2
 
-I think this is not correct... or at least not really related to this
-commit.
+So qcom,adreno-smmu is not compatible with Adreno? See below.
 
+>            - const: qcom,smmu-v2
+>  
+>        - description: Qcom SoCs implementing "arm,mmu-500"
+> @@ -48,10 +49,20 @@ properties:
+>                - qcom,sm8350-smmu-500
+>                - qcom,sm8450-smmu-500
+>            - const: arm,mmu-500
+> +
+> +      - description: Qcom Adreno GPUs implementing "arm,smmu-500"
+> +        items:
+> +          - enum:
+> +              - qcom,sc7280-smmu-500
+> +              - qcom,sm8250-smmu-500
+> +          - const: qcom,adreno-smmu
+> +          - const: arm,mmu-500
+>        - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
+>          items:
+>            - enum:
+> +              - qcom,msm8996-smmu-v2
+>                - qcom,sc7180-smmu-v2
+> +              - qcom,sdm630-smmu-v2
+
+This does not look correct. The same compatible should not be present in
+two different setups.
+
+If qcom,msm8996-smmu-v2 is compatible with qcom,adreno-smmu, then your
+first hunk is not correct.
+
+>                - qcom,sdm845-smmu-v2
+>            - const: qcom,adreno-smmu
+>            - const: qcom,smmu-v2
 
 Best regards,
 Krzysztof
