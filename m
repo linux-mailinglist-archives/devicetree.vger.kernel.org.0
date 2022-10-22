@@ -2,189 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1805C608EB4
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FD97608EBD
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 19:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229923AbiJVQvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 12:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34250 "EHLO
+        id S229779AbiJVRDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 13:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229908AbiJVQvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:51:04 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8BF9196342;
-        Sat, 22 Oct 2022 09:51:01 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id l14so2366084wrw.2;
-        Sat, 22 Oct 2022 09:51:01 -0700 (PDT)
+        with ESMTP id S229514AbiJVRDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 13:03:23 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34DF1AE294
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 10:03:21 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id a13so16864583edj.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 10:03:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W9cJA/mlkjauolOlXzYfHnCzwud4m1S/AxeoQy1cW6k=;
-        b=N4fQoqfCmUImIBzGw5sWs02pmODNpEDlNS1IFSZHANlCiDPOF+lUr3And/jgxvsE3A
-         cq3Qh4lqH1xZixBWKfJ9BavQMBbwVlNNmG2x8Fd2VmsuopFFELZHOc0PQ0Jh+UeLmiBV
-         YSRfpPJQeTc9SVJCjhVSlKmtZ33LRvxdROpTeLKfYlzvHngM3T7kQAuU2ehzkdaIVDf5
-         k1Dv8CLcGaQS2oPcIl094tHGe+zdWh9a0UiWVe5Y59WWTXOQM7C7sOHCaxIJ056JdUW4
-         Vp7Cq1Uih10LtvkBXs3izaZeFryFf8qVfXmFPXBq+H1DB7GQ6FlBLy/nbYLgQxA2UHPY
-         QSPQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iMEJOs8rsFhAhsZPWWaHcq3vp7VFtPBUd+l2pbsoxiA=;
+        b=dvYlFOdRg/4NTlEfV63r1JuX+xJP6eNfzEbgTQK9tLjyXuJAf/t8SDzr3z5jP96MJq
+         qOrHGM4J4kUHeYA4PRuEyT1+IC09dKcItl7r36iivs1bz0vlpxc6H+z9gCwQjS7Yz9Dg
+         rjRutVP4IqRzxp8ZTWK7BbnOAXm02oMvUoJrP5mjBmrpd8CpLJpdTSHik059DVqCLuyf
+         iCPzUlb5QRGUGWl8Lp4LKe1VvASDnm7OMiD2zze15ryHt96x4fG+3WKUARPC+NQ/ma2W
+         iYLszJ4XBgPefFhNQEB1HxxADZGYrJM6nL+zlzOnex6RDZZ0ZJ/Gjm0IPj4Nwm0XkxBQ
+         CoFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W9cJA/mlkjauolOlXzYfHnCzwud4m1S/AxeoQy1cW6k=;
-        b=a+60Bln8rPu7UPWgiXsgrZvjPSVHWY/PF7xHclwTv76QGgtN0e0BWvKzkRoAUxz56z
-         ZL3N8yUBzZPQUBf1sD+NbSEHlCK0AX2IRZYpWbeZzFrVYNZbV7rFfYC47ghJdnxJfOzc
-         7BIbQjcl2XvCjDv6A8psO6F7hPk4asXwCvesY2ZEJvUMtaS85b7yiR64ce8fVTUYvEXe
-         +tPSMhSvEuds+f6GQarI1OW8LgGUZoA5UfzRyi4F17UQuf0+fHH1i2TexNWqA17QGGf+
-         Qv52qFzzs4fQ5UEyw6DEHEM4WcDQKtCYF/hYerEtQqXGrO/SDhnkNrU/ssPpoW1ew8uw
-         /wOg==
-X-Gm-Message-State: ACrzQf2wKphj0g/4jzMjg2B+O4jJXSRqWOA0l0uJUYpOuLCSK7PujFle
-        BZq4Pazp/7aJWl3CwE3SOXY=
-X-Google-Smtp-Source: AMsMyM5tEeTAo1qq3PawaoSpMU8QQwXa5mXvMyVDQ5rYf+rLn2w8J78WgxjLs79lt2vSj3oYS8Pe+A==
-X-Received: by 2002:a05:6000:10c6:b0:236:6613:a7bd with SMTP id b6-20020a05600010c600b002366613a7bdmr552874wrx.570.1666457460408;
-        Sat, 22 Oct 2022 09:51:00 -0700 (PDT)
-Received: from hp-power-15.localdomain (mm-133-18-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.18.133])
-        by smtp.gmail.com with ESMTPSA id h22-20020a05600c351600b003c7084d072csm3196787wmq.28.2022.10.22.09.50.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Oct 2022 09:50:59 -0700 (PDT)
-From:   Siarhei Volkau <lis8215@gmail.com>
-Cc:     Siarhei Volkau <lis8215@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: [PATCH v3 2/2] serial: 8250/ingenic: Add support for the JZ4750/JZ4755
-Date:   Sat, 22 Oct 2022 19:50:47 +0300
-Message-Id: <20221022165047.4020785-3-lis8215@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20221022165047.4020785-1-lis8215@gmail.com>
-References: <20221022165047.4020785-1-lis8215@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iMEJOs8rsFhAhsZPWWaHcq3vp7VFtPBUd+l2pbsoxiA=;
+        b=IWzYEF23xgkS+Vs1wY4fSISn7nKPWxKECri+E9yWOBLCY8mkS5GPeS6FTkmN/HbrDi
+         H9EFQLpeHKXDmouEEC+jIO+DcSHjoc9Ffdu1oWX0M1vTIhZWo/EnjRlCHPYm7QUuTOBO
+         o3kENxYGjBsc7rwOZTbSL4YNvXJyYQAdfp5wkYOjkFP1OX3WdYrCyNJ98ct7qN6qq9+X
+         wksOVRtsu11fUsPnR33MTrJ3BweowmWPa5JMqVfO0iGkv5jZjO8kr//3aOt/VheKFQrx
+         /owxN4k+067Uvj3REm4+3eKNqrnv3ywf3+RcBaNTlRozRe6FA+uQ0MuZQHknfmw4f+Id
+         ZCPQ==
+X-Gm-Message-State: ACrzQf3KUEXEe6bmYjK0h/uGq3u2NFQizuUCNUGjfLu8oB5plsH8br5u
+        7U7zbdVXJBAsh74OtgKr0eByyw==
+X-Google-Smtp-Source: AMsMyM4DmmgF16YuIV2sQhfY7/ByyCdcFHvL3XCoNKIWCxdQZ5rojnPTvFMcvIzvbB2CSVdBIBdvYA==
+X-Received: by 2002:a05:6402:3215:b0:45c:97de:b438 with SMTP id g21-20020a056402321500b0045c97deb438mr22748644eda.7.1666458200377;
+        Sat, 22 Oct 2022 10:03:20 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:7b1d:c5f2:c85:8976? ([2a05:6e02:1041:c10:7b1d:c5f2:c85:8976])
+        by smtp.googlemail.com with ESMTPSA id i18-20020a170906699200b007812ba2a360sm13306136ejr.149.2022.10.22.10.03.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Oct 2022 10:03:19 -0700 (PDT)
+Message-ID: <904faa39-9435-b8a8-fa6f-1ade8d5b61f4@linaro.org>
+Date:   Sat, 22 Oct 2022 19:03:16 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v6 4/4] thermal: mediatek: add another get_temp ops for
+ thermal sensors
+Content-Language: en-US
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        linux-mediatek@lists.infradead.org, Rob Herring <robh@kernel.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Michael Kao <michael.kao@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+References: <20221018-up-i350-thermal-bringup-v6-0-c87b9f75550b@baylibre.com>
+ <20221018-up-i350-thermal-bringup-v6-4-c87b9f75550b@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20221018-up-i350-thermal-bringup-v6-4-c87b9f75550b@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JZ4750/55/60 (but not JZ4760b) have an extra divisor in between extclk
-and peripheral clock, called CPCCR.ECS, the driver can't figure out the
-real state of the divisor without dirty hack - peek CGU CPCCR register.
-However, we can rely on a vendor's bootloader (u-boot 1.1.6) behavior:
-if (extclk > 16MHz)
-    the divisor is enabled, so the UART driving clock is extclk/2.
+On 19/10/2022 16:17, Amjad Ouled-Ameur wrote:
+> Provide thermal zone to read thermal sensor in the SoC. We can read all the
+> thermal sensors value in the SoC by the node /sys/class/thermal/
+> 
+> In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
+> on the first read of sensor that often are bogus values.
+> This can avoid following warning on boot:
+> 
+>    thermal thermal_zone6: failed to read out thermal zone (-13)
+> 
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-This behavior relies on hardware differences: most boards (if not all)
-with those SoCs have 12 or 24 MHz oscillators but many peripherals want
-12Mhz to operate properly (AIC and USB-PHY at least).
+Overall the series looks good to me, however there is a couple of things 
+to fix. See below
 
-The patch doesn't affect JZ4760's behavior as it is subject for another
-patchset with re-classification of all supported ingenic UARTs.
+> ---
+>   drivers/thermal/mtk_thermal.c | 104 ++++++++++++++++++++++++++++++++----------
+>   1 file changed, 79 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
+> index 3a5df1440822..311ad611fdab 100644
+> --- a/drivers/thermal/mtk_thermal.c
+> +++ b/drivers/thermal/mtk_thermal.c
+> @@ -259,6 +259,11 @@ enum mtk_thermal_version {
+>   
+>   struct mtk_thermal;
+>   
+> +struct mtk_thermal_zone {
+> +	struct mtk_thermal *mt;
+> +	int id;
+> +};
 
-Link: https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_serial.c#L158
-Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
----
- drivers/tty/serial/8250/8250_ingenic.c | 48 ++++++++++++++++++++++----
- 1 file changed, 42 insertions(+), 6 deletions(-)
+Do you really need to create a new structure for that ?
 
-diff --git a/drivers/tty/serial/8250/8250_ingenic.c b/drivers/tty/serial/8250/8250_ingenic.c
-index 2b2f5d8d2..744705467 100644
---- a/drivers/tty/serial/8250/8250_ingenic.c
-+++ b/drivers/tty/serial/8250/8250_ingenic.c
-@@ -87,24 +87,19 @@ static void __init ingenic_early_console_setup_clock(struct earlycon_device *dev
- 	dev->port.uartclk = be32_to_cpup(prop);
- }
- 
--static int __init ingenic_early_console_setup(struct earlycon_device *dev,
-+static int __init ingenic_earlycon_setup_tail(struct earlycon_device *dev,
- 					      const char *opt)
- {
- 	struct uart_port *port = &dev->port;
- 	unsigned int divisor;
- 	int baud = 115200;
- 
--	if (!dev->port.membase)
--		return -ENODEV;
--
- 	if (opt) {
- 		unsigned int parity, bits, flow; /* unused for now */
- 
- 		uart_parse_options(opt, &baud, &parity, &bits, &flow);
- 	}
- 
--	ingenic_early_console_setup_clock(dev);
--
- 	if (dev->baud)
- 		baud = dev->baud;
- 	divisor = DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
-@@ -129,9 +124,49 @@ static int __init ingenic_early_console_setup(struct earlycon_device *dev,
- 	return 0;
- }
- 
-+static int __init ingenic_early_console_setup(struct earlycon_device *dev,
-+					      const char *opt)
-+{
-+	if (!dev->port.membase)
-+		return -ENODEV;
-+
-+	ingenic_early_console_setup_clock(dev);
-+
-+	return ingenic_earlycon_setup_tail(dev, opt);
-+}
-+
-+static int __init jz4750_early_console_setup(struct earlycon_device *dev,
-+					     const char *opt)
-+{
-+	if (!dev->port.membase)
-+		return -ENODEV;
-+
-+	/*
-+	 * JZ4750/55/60 (not JZ4760b) have an extra divisor
-+	 * between extclk and peripheral clock, the
-+	 * driver can't figure out the real state of the
-+	 * divisor without dirty hacks (peek CGU register).
-+	 * However, we can rely on a vendor's behavior:
-+	 * if (extclk > 16MHz)
-+	 *   the divisor is enabled.
-+	 * This behavior relies on hardware differences:
-+	 * most boards with those SoCs have 12 or 24 MHz
-+	 * oscillators but many peripherals want 12Mhz
-+	 * to operate properly (AIC and USB-phy at least).
-+	 */
-+	ingenic_early_console_setup_clock(dev);
-+	if (dev->port.uartclk > 16000000)
-+		dev->port.uartclk /= 2;
-+
-+	return ingenic_earlycon_setup_tail(dev, opt);
-+}
-+
- OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
- 		    ingenic_early_console_setup);
- 
-+OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
-+		    jz4750_early_console_setup);
-+
- OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
- 		    ingenic_early_console_setup);
- 
-@@ -328,6 +363,7 @@ static const struct ingenic_uart_config x1000_uart_config = {
- 
- static const struct of_device_id of_match[] = {
- 	{ .compatible = "ingenic,jz4740-uart", .data = &jz4740_uart_config },
-+	{ .compatible = "ingenic,jz4750-uart", .data = &jz4760_uart_config },
- 	{ .compatible = "ingenic,jz4760-uart", .data = &jz4760_uart_config },
- 	{ .compatible = "ingenic,jz4770-uart", .data = &jz4760_uart_config },
- 	{ .compatible = "ingenic,jz4775-uart", .data = &jz4760_uart_config },
+>   struct thermal_bank_cfg {
+>   	unsigned int num_sensors;
+>   	const int *sensors;
+> @@ -307,6 +312,8 @@ struct mtk_thermal {
+>   
+>   	const struct mtk_thermal_data *conf;
+>   	struct mtk_thermal_bank banks[MAX_NUM_ZONES];
+> +
+> +	int (*raw_to_mcelsius)(struct mtk_thermal *mt, int sensno, s32 raw);
+>   };
+>   
+>   /* MT8183 thermal sensor data */
+> @@ -709,6 +716,29 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
+>   		mutex_unlock(&mt->lock);
+>   }
+>   
+> +static int _get_sensor_temp(struct mtk_thermal *mt, int id)
+> +{
+> +	u32 raw;
+> +	int temp;
+> +
+> +	const struct mtk_thermal_data *conf = mt->conf;
+> +
+> +	raw = readl(mt->thermal_base + conf->msr[id]);
+> +
+> +	temp = mt->raw_to_mcelsius(mt, id, raw);
+> +
+> +	/*
+> +	 * The first read of a sensor often contains very high bogus
+> +	 * temperature value. Filter these out so that the system does
+> +	 * not immediately shut down.
+> +	 */
+> +
+> +	if (temp > 200000)
+> +		return -EAGAIN;
+> +	else
+> +		return temp;
+> +}
+> +
+>   /**
+>    * mtk_thermal_bank_temperature - get the temperature of a bank
+>    * @bank:	The bank
+> @@ -721,26 +751,9 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
+>   	struct mtk_thermal *mt = bank->mt;
+>   	const struct mtk_thermal_data *conf = mt->conf;
+>   	int i, temp = INT_MIN, max = INT_MIN;
+> -	u32 raw;
+>   
+>   	for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
+> -		raw = readl(mt->thermal_base + conf->msr[i]);
+> -
+> -		if (mt->conf->version == MTK_THERMAL_V1) {
+> -			temp = raw_to_mcelsius_v1(
+> -				mt, conf->bank_data[bank->id].sensors[i], raw);
+> -		} else {
+> -			temp = raw_to_mcelsius_v2(
+> -				mt, conf->bank_data[bank->id].sensors[i], raw);
+> -		}
+> -
+> -		/*
+> -		 * The first read of a sensor often contains very high bogus
+> -		 * temperature value. Filter these out so that the system does
+> -		 * not immediately shut down.
+> -		 */
+> -		if (temp > 200000)
+> -			temp = 0;
+> +		temp = _get_sensor_temp(mt, i);
+>   
+>   		if (temp > max)
+>   			max = temp;
+> @@ -749,9 +762,10 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
+>   	return max;
+>   }
+>   
+> -static int mtk_read_temp(struct thermal_zone_device *tz, int *temperature)
+> +static int mtk_read_temp(struct thermal_zone_device *tzdev, int *temperature)
+>   {
+> -	struct mtk_thermal *mt = tz->devdata;
+> +	struct mtk_thermal_zone *tz = tzdev->devdata;
+> +	struct mtk_thermal *mt = tz->mt;
+>   	int i;
+>   	int tempmax = INT_MIN;
+>   
+> @@ -770,10 +784,28 @@ static int mtk_read_temp(struct thermal_zone_device *tz, int *temperature)
+>   	return 0;
+>   }
+>   
+> +static int mtk_read_sensor_temp(struct thermal_zone_device *tzdev, int *temperature)
+> +{
+> +	struct mtk_thermal_zone *tz = tzdev->devdata;
+> +	struct mtk_thermal *mt = tz->mt;
+> +	int id = tz->id - 1;
+> +
+> +	if (id < 0)
+> +		return -EACCES;
+> +
+> +	*temperature = _get_sensor_temp(mt, id);
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct thermal_zone_device_ops mtk_thermal_ops = {
+>   	.get_temp = mtk_read_temp,
+>   };
+>   
+> +static const struct thermal_zone_device_ops mtk_thermal_sensor_ops = {
+> +	.get_temp = mtk_read_sensor_temp,
+> +};
+> +
+>   static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
+>   				  u32 apmixed_phys_base, u32 auxadc_phys_base,
+>   				  int ctrl_id)
+> @@ -1072,6 +1104,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>   	u64 auxadc_phys_base, apmixed_phys_base;
+>   	struct thermal_zone_device *tzdev;
+>   	void __iomem *apmixed_base, *auxadc_base;
+> +	struct mtk_thermal_zone *tz;
+>   
+>   	mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
+>   	if (!mt)
+> @@ -1150,6 +1183,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>   
+>   	mtk_thermal_turn_on_buffer(mt, apmixed_base);
+>   
+> +	mt->raw_to_mcelsius = (mt->conf->version == MTK_THERMAL_V1) ?
+> +				raw_to_mcelsius_v1 : raw_to_mcelsius_v2;
+> +
+>   	if (mt->conf->version == MTK_THERMAL_V2) {
+>   		mtk_thermal_release_periodic_ts(mt, auxadc_base);
+>   	}
+> @@ -1161,11 +1197,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>   
+>   	platform_set_drvdata(pdev, mt);
+>   
+> -	tzdev = devm_thermal_of_zone_register(&pdev->dev, 0, mt,
+> -					      &mtk_thermal_ops);
+> -	if (IS_ERR(tzdev)) {
+> -		ret = PTR_ERR(tzdev);
+> -		goto err_disable_clk_peri_therm;
+> +	for (i = 0; i < mt->conf->num_sensors + 1; i++) {
+> +		tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
+> +		if (!tz)
+> +			return -ENOMEM;
+> +
+> +		tz->mt = mt;
+> +		tz->id = i;
+> +
+> +		tzdev = devm_thermal_of_zone_register(&pdev->dev, i, tz, (i == 0) ?
+> +							     &mtk_thermal_ops :
+> +							     &mtk_thermal_sensor_ops);
+
+We want to prevent the aggregation from the different sensors within a 
+driver. I know there is already a function doing that for the previous 
+sensor version but that is something we don't want to continue.
+
+Using mtk_thermal_ops tries to overcome this.
+
+Also, the userspace needs to know to which device a thermal zone is 
+related to. Here all the thermal zones have the same name so the 
+userspace does not know if it is the GPU, the CPU, the chassis, the NPU, ...
+
+
+> +
+> +		if (IS_ERR(tzdev)) {
+> +			if (PTR_ERR(tzdev) == -ENODEV) {
+> +				dev_warn(&pdev->dev,
+> +					 "sensor %d not registered in thermal zone in dt\n", i);
+
+ENODEV is not considered an error, so the warning can be removed
+
+> +				continue;
+> +			}
+> +			if (PTR_ERR(tzdev) == -EACCES) {
+
+When devm_thermal_of_zone_register() returns -EACCES ?
+
+> +				ret = PTR_ERR(tzdev);
+> +				goto err_disable_clk_peri_therm;
+> +			}
+> +		}
+>   	}
+>   
+>   	ret = devm_thermal_add_hwmon_sysfs(tzdev);
+> 
+
+
 -- 
-2.36.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
