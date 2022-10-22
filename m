@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8B5608E98
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A99C608E9A
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:41:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbiJVQkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 12:40:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58908 "EHLO
+        id S229604AbiJVQk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 12:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiJVQkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:40:04 -0400
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C2B3BC62
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:40:02 -0700 (PDT)
-Received: by mail-oo1-xc32.google.com with SMTP id x6-20020a4ac586000000b0047f8cc6dbe4so867642oop.3
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:40:02 -0700 (PDT)
+        with ESMTP id S229515AbiJVQk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:40:58 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBF413FDC4
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:40:55 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-1322fa1cf6fso7241963fac.6
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=545rw8ScXkRjDM5w17g+rHUKHirulTTV6OR0mlcZkMs=;
-        b=p+u1HMt1MNKQryUWQThPkAqfoWTsH6KmsVL86mKRXhiNbd4KYLYPNB0hITHRvsRwHd
-         IzyR+zs/k4J1jE3/73NH7BNwkqjMeqBkbUwUWNeX3r0x9AhIYFWRT18rQ8egR+JYtQlm
-         CYZtZNpi2/fY0NRcNBaXILQT++KyzeZOC1hSAZJbEOILAN05eCqvX8VPU7VJwqow+RNF
-         n6C7bRH8NrUgu18S0Co7xxLWzfbLaDKYbfIZlIxs/fxHa+SBYh2Alj0L3CE0TjZ5IQ1a
-         c+7CuO8asdutbJ/33v8k6WhBNNYbe2ZEF42iqdFl7tUVH2f/Nv8NhWT0RSgBsMAdjX2c
-         Fa3A==
+        bh=QimVpA/xM2p/9j3XXOHUnzRFMhzXweEIX7clrlOcGUQ=;
+        b=o+6YQHDqxfQ77fvo5cXuuxEeb5dlFfOxXjR6kMONmcT19bbfftY0EdoCunrFd3IiL5
+         S++EQZf212jX8dkzq4URwqiy7j676j3qJXZIqqUTaxCT55a+c0JRLA7Awz2A3YKqLJJa
+         G1rCq0Ixlvg4uCi/zDh0yGuFw5YivJRA+EwOIENc1Er8SQbJJIRqYEZPFNb6gW68TPl2
+         IlIVHNg3eg/l4A1SixjNDgDWxRAOZv3PKTuzkvBWtZ1UF+cYSUivpiPtrix4Lr3qsIlY
+         pMMe0sQukUMff4mJBuv3M9forRPewkx3LARIRXhHWZqqyvYLOJHBkKnbdpT1m0dsQG7R
+         2u9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=545rw8ScXkRjDM5w17g+rHUKHirulTTV6OR0mlcZkMs=;
-        b=58kVFmAhZUPglQIXpbqNVjY9EfxOBurfGdxfJS7zCRj/GsV+kMcWaomJTDxjMF54Nz
-         dI+3xMUeigOHWmQRUWs4sh/zcXi+wB7I6ure7tbr1lav3aI56jfwLg/VOeORx2aUfwj4
-         q0oz71yToVA2EQyFDYLp+vU6VpcvDy06oKslwIaVv4b0sK9GS30xBEFaWynyOX+NtXjc
-         2clDM03H2lgwMs1cYsnSNNCT6b0Iei85QU978YlYU+6VvkNs+CQyy8qcKn/9/5oFCnGU
-         G12qLeWxBoGGNU5749Py0LqNNZK73ko/94DEFIxAo9kHS4v4tmOhumqKi+N0UL3PPEXg
-         +AWQ==
-X-Gm-Message-State: ACrzQf02h3wHVvq3rdwSs8CfzF0GYz+01CJrO81CY1nvKTNVwK8sP6Ht
-        +utYz0eo3E50orfnq8X3lJgLptTHk5OS7g==
-X-Google-Smtp-Source: AMsMyM6eeoBGEQ7JBoltsek43vEM0SoXcCAlJEyNNtk9IE/VktMJh0yypxZafDKXkKPpq5EWdnbosQ==
-X-Received: by 2002:a05:6820:1608:b0:480:fa39:568b with SMTP id bb8-20020a056820160800b00480fa39568bmr5753643oob.43.1666456802183;
-        Sat, 22 Oct 2022 09:40:02 -0700 (PDT)
+        bh=QimVpA/xM2p/9j3XXOHUnzRFMhzXweEIX7clrlOcGUQ=;
+        b=pONuIT9EDyqciBJeTrbzKNWQLQ1BXZgSTdRnbTRg4BnJg3EItbNKtZB9XXVlhHvLxz
+         Cgjng810BMbIxyCfDL/pvOTM3e/YNU5qMUV3Fx08C1uli/ns+Qeq8EtJQnXbsUYFGiWK
+         xcgJD57ZVfW0l+ZIFNDu70FmavmRjTOv34ILWYabzQEP9rrZhBOEV5o6FNaU/g5bvIO6
+         Me3Nk4cFu1S8Xt8l+3TZnf0tZz+yCShitYuWHz2DgTElflbIrqdS4kl/m/+JdxDSnICU
+         Ig3GH47IPlM1FczYIrQvK7WxEg9HmyU7hymY2hrERzIolgstQhzo2f5oL5iV+SG5vtlM
+         hCVA==
+X-Gm-Message-State: ACrzQf26z9K/S2kj2jwdIZI93n6Q0A6CoYAP9s1Q2ds6GtiXD/cfZ9/j
+        bCgRYEKW5t36jyhqQezVHbO7IA==
+X-Google-Smtp-Source: AMsMyM7uIMiMDP9LIvFuHmFBJXp+2jG1Qk2DYO4TCJxIdkO8uJ5uHD/aqmm/eNbNn/XxFS6AjiXvrA==
+X-Received: by 2002:a05:6870:d29f:b0:132:bd27:825d with SMTP id d31-20020a056870d29f00b00132bd27825dmr16079326oae.99.1666456854450;
+        Sat, 22 Oct 2022 09:40:54 -0700 (PDT)
 Received: from [10.203.8.70] ([205.153.95.177])
-        by smtp.gmail.com with ESMTPSA id d6-20020aca3606000000b0034d14c6ce3dsm2306957oia.16.2022.10.22.09.39.58
+        by smtp.gmail.com with ESMTPSA id h24-20020a4abb98000000b00480816a5b8csm9723350oop.18.2022.10.22.09.40.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Oct 2022 09:40:00 -0700 (PDT)
-Message-ID: <ae460461-5c20-9180-456c-8c01a4b1a7f1@linaro.org>
-Date:   Sat, 22 Oct 2022 12:39:56 -0400
+        Sat, 22 Oct 2022 09:40:53 -0700 (PDT)
+Message-ID: <168e88f0-4e9c-36c6-6862-207a10239533@linaro.org>
+Date:   Sat, 22 Oct 2022 12:40:48 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
@@ -104,12 +104,8 @@ On 21/10/2022 15:09, Nícolas F. R. A. Prado wrote:
 > +  AVDD-supply: true
 > +
 > +  MICVDD-supply: true
-> +
 
-How about keeping some order in the list of properties?
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Ach, unacked. Please use lowercase names.
 
 Best regards,
 Krzysztof
