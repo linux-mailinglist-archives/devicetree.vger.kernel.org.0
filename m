@@ -2,242 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D214760840D
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 06:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A64260842C
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 06:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229515AbiJVEAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 00:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49074 "EHLO
+        id S229633AbiJVEKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 00:10:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiJVEA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 00:00:29 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F3CB7F72;
-        Fri, 21 Oct 2022 21:00:25 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id v40-20020a056830092800b00661e37421c2so2953038ott.3;
-        Fri, 21 Oct 2022 21:00:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=20L4EctgpcreWPnaAcAxm8gZbB5uiC3QiKEacbqhxTM=;
-        b=o7EAYMMwP6ZaxHfdBsXv8JJkEPe1Rh/oyzCpP1GU4U7zcRQpNTjgqw5uvtJ9vah98l
-         2145rhiD/FhUTiyybAHbvrP1yVNU4pJKR4/ULEstdmrRFHUzBHFGrYx1Uh9kuluMnzgK
-         EWnVCtQv5QIOA01DxDXnK/nkArR2sbnCmW43m/93qQ8TSE3pCDvSy2cdP04U51xVfKjh
-         PTUTAdKiqpvwqO9lYXDiL6O+deBD3Jh1/Vo1WVxBXWrkxfhwUDvklRN//PL31R7jH1XR
-         BnL8a84pR4JUgNzpgxQNMRimKh+DvhnJBRb7XZRCldd3qhwEz/GtqwVSpcl7W1485Tzu
-         7vfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=20L4EctgpcreWPnaAcAxm8gZbB5uiC3QiKEacbqhxTM=;
-        b=4//uIFsRNUtL+2hOJTgCJP+VL+DsZKw3wsXfDm3ljR4KoEAgyrwZA4YuIE5AMbsF4e
-         GiFrXJ0fFLM33h47KhZ4V0U1bQcJIPF0/8zC8rA/FRHrpCTtx7Jsknw1JD95s14tIFAx
-         Fm1nd03UhepRnDGPBOtfrkqsdjT2VO/tQzP7clAaEuznhWzxaGnHllmMjJuPKiFEFi6g
-         i+U5dXZCcCcYGKjDD9OCVel6eewGzZRmR9jndAyCWBaUlQ2EbBr6ZxaHTQF5XnZMLl8U
-         PIW9FwHIxQbh/8JorlTuc/74VVS8rnX/OcFr7o0QIGhD6BG3cTFH+pm8eB/kw3Redu2g
-         L99Q==
-X-Gm-Message-State: ACrzQf01QHCVyNdSrcaXCB+QUWXxmMr/opyHlpJE6t3i7CaDhkQ81S42
-        oFsxP8D4uGlvPZiaRmSus61HKVItNpc=
-X-Google-Smtp-Source: AMsMyM4a4vfPiXS4ensjO2jmNJL39Q1r0EY2hIwVvjzV2EXjqH84qsTv5jiTjT5zBf8bmYFsnlhJHg==
-X-Received: by 2002:a9d:3642:0:b0:655:f25f:be55 with SMTP id w60-20020a9d3642000000b00655f25fbe55mr11516791otb.13.1666411224826;
-        Fri, 21 Oct 2022 21:00:24 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y3-20020a056870418300b0011f400edb17sm11187297oac.4.2022.10.21.21.00.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 21:00:24 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <00d859b0-f766-4322-fe58-095d4f84e954@roeck-us.net>
-Date:   Fri, 21 Oct 2022 21:00:22 -0700
+        with ESMTP id S229448AbiJVEKL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 00:10:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 524C153D16;
+        Fri, 21 Oct 2022 21:10:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DFC8E60EAA;
+        Sat, 22 Oct 2022 04:10:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82600C43470;
+        Sat, 22 Oct 2022 04:10:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666411808;
+        bh=Pt3RmxMP1J8VX/N8ZW4rQfZLUHkvjBeGZ6atiNrbHPo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=iIvT2PSR02rHyFk8ucy0JIUTq69sgCa6kJYR3l+B+7EqHdPszqRMh9nMpTeAol2Cy
+         uec4WC+3J4adlOeQat9J38VT51jPC/2jrfLlz0+OACFqZQbzMPq/sKHpqVR8WkPaoc
+         6dra2tHCZqN10w/nWx13jc4zKGaixZKfPYE3jsQ0nvtLaMdqkB4jB5S2tTz9/71RJf
+         YccK8PeUK5pA0Z+QWpt7qCeWj81hjEFdRkY1c4EtbCgH9mYBpFAh2oseRlwqFgpNKy
+         nZIB6LWiYYz0dYKv9VsOtkNxcm7RR9h8z2Tpyg+kzmAmPenGtDFxtu1MHjBHtmZcFJ
+         fug9RVZedAJlA==
+Date:   Fri, 21 Oct 2022 21:10:06 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
+        lorenzo.bianconi@redhat.com, Bo.Jiao@mediatek.com,
+        sujuan.chen@mediatek.com, ryder.Lee@mediatek.com,
+        evelyn.tsai@mediatek.com, devicetree@vger.kernel.org,
+        robh@kernel.org, daniel@makrotopia.org
+Subject: Re: [PATCH net-next 0/6] introduce WED RX support to MT7986 SoC
+Message-ID: <20221021211006.3c9b7f29@kernel.org>
+In-Reply-To: <cover.1666368566.git.lorenzo@kernel.org>
+References: <cover.1666368566.git.lorenzo@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/2] watchdog: aspeed: Add pre-timeout interrupt support
-Content-Language: en-US
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     linux-watchdog@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, wim@linux-watchdog.org,
-        andrew@aj.id.au, joel@jms.id.au, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20221021151559.781983-1-eajames@linux.ibm.com>
- <20221021151559.781983-2-eajames@linux.ibm.com>
- <20221021165650.GA1888515@roeck-us.net>
- <56929483-56d1-f2b8-9b7e-3fd6388e5f87@linux.ibm.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <56929483-56d1-f2b8-9b7e-3fd6388e5f87@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/21/22 12:39, Eddie James wrote:
-> 
-> On 10/21/22 11:56, Guenter Roeck wrote:
->> On Fri, Oct 21, 2022 at 10:15:58AM -0500, Eddie James wrote:
->>> Enable the pre-timeout interrupt if requested by device property.
->>>
->> I am not inclined to accept this patch without detailed explanation.
->> Why would it make sense and/or be desirable to completely bypass the
->> watchdog core with this pretimeout support ?
-> 
-> 
-> Sorry, I should add more detail.
-> 
-> It doesn't necessarily bypass the watchdog core. It can, if you specify reset-type="none". But if not, the watchdog will still fire at the appropriate time.
-> 
-> The purpose is to get a stack dump from a kernel panic rather than a hard reset from the watchdog. The interrupt will fire a certain number of microseconds (configurable by dts property) before the watchdog does. The interrupt handler then panics, and all the CPU stacks are dumped, so hopefully you can catch where another processor was stuck.
-> 
-> 
-> I can submit v2 with this information in the commit message and/or comments.
-> 
+On Fri, 21 Oct 2022 18:18:30 +0200 Lorenzo Bianconi wrote:
+> Similar to TX counterpart available on MT7622 and MT7986, introduce
+> RX Wireless Ethernet Dispatch available on MT7986 SoC in order to
+> offload traffic received by wlan nic to the wired interfaces (lan/wan).
 
-You did not answer the question why you do not use the pretimeout functionality
-supported by the watchdog core.
-
-Guenter
-
-> Thanks,
-> 
-> Eddie
-> 
-> 
->>
->> Thanks,
->> Guenter
->>
->>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->>> ---
->>>   drivers/watchdog/aspeed_wdt.c | 53 +++++++++++++++++++++++++++++++++--
->>>   1 file changed, 51 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
->>> index 0cff2adfbfc9..8e12181a827e 100644
->>> --- a/drivers/watchdog/aspeed_wdt.c
->>> +++ b/drivers/watchdog/aspeed_wdt.c
->>> @@ -5,11 +5,14 @@
->>>    * Joel Stanley <joel@jms.id.au>
->>>    */
->>> +#include <linux/bits.h>
->>>   #include <linux/delay.h>
->>> +#include <linux/interrupt.h>
->>>   #include <linux/io.h>
->>>   #include <linux/kernel.h>
->>>   #include <linux/module.h>
->>>   #include <linux/of.h>
->>> +#include <linux/of_irq.h>
->>>   #include <linux/platform_device.h>
->>>   #include <linux/watchdog.h>
->>> @@ -26,20 +29,32 @@ struct aspeed_wdt {
->>>   struct aspeed_wdt_config {
->>>       u32 ext_pulse_width_mask;
->>> +    u32 irq_shift;
->>> +    u32 irq_mask;
->>>   };
->>>   static const struct aspeed_wdt_config ast2400_config = {
->>>       .ext_pulse_width_mask = 0xff,
->>> +    .irq_shift = 0,
->>> +    .irq_mask = 0,
->>>   };
->>>   static const struct aspeed_wdt_config ast2500_config = {
->>>       .ext_pulse_width_mask = 0xfffff,
->>> +    .irq_shift = 12,
->>> +    .irq_mask = GENMASK(31, 12),
->>> +};
->>> +
->>> +static const struct aspeed_wdt_config ast2600_config = {
->>> +    .ext_pulse_width_mask = 0xfffff,
->>> +    .irq_shift = 0,
->>> +    .irq_mask = GENMASK(31, 10),
->>>   };
->>>   static const struct of_device_id aspeed_wdt_of_table[] = {
->>>       { .compatible = "aspeed,ast2400-wdt", .data = &ast2400_config },
->>>       { .compatible = "aspeed,ast2500-wdt", .data = &ast2500_config },
->>> -    { .compatible = "aspeed,ast2600-wdt", .data = &ast2500_config },
->>> +    { .compatible = "aspeed,ast2600-wdt", .data = &ast2600_config },
->>>       { },
->>>   };
->>>   MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
->>> @@ -58,6 +73,7 @@ MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
->>>   #define   WDT_CTRL_RESET_SYSTEM        BIT(1)
->>>   #define   WDT_CTRL_ENABLE        BIT(0)
->>>   #define WDT_TIMEOUT_STATUS    0x10
->>> +#define   WDT_TIMEOUT_STATUS_IRQ        BIT(2)
->>>   #define   WDT_TIMEOUT_STATUS_BOOT_SECONDARY    BIT(1)
->>>   #define WDT_CLEAR_TIMEOUT_STATUS    0x14
->>>   #define   WDT_CLEAR_TIMEOUT_AND_BOOT_CODE_SELECTION    BIT(0)
->>> @@ -243,6 +259,17 @@ static const struct watchdog_info aspeed_wdt_info = {
->>>       .identity    = KBUILD_MODNAME,
->>>   };
->>> +static irqreturn_t aspeed_wdt_irq(int irq, void *arg)
->>> +{
->>> +    struct aspeed_wdt *wdt = arg;
->>> +    u32 status = readl(wdt->base + WDT_TIMEOUT_STATUS);
->>> +
->>> +    if (status & WDT_TIMEOUT_STATUS_IRQ)
->>> +        panic("Watchdog pre-timeout IRQ");
->>> +
->>> +    return IRQ_NONE;
->>> +}
->>> +
->>>   static int aspeed_wdt_probe(struct platform_device *pdev)
->>>   {
->>>       struct device *dev = &pdev->dev;
->>> @@ -253,6 +280,7 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
->>>       const char *reset_type;
->>>       u32 duration;
->>>       u32 status;
->>> +    u32 timeout = 0;
->>>       int ret;
->>>       wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
->>> @@ -291,6 +319,27 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
->>>       if (of_device_is_compatible(np, "aspeed,ast2400-wdt"))
->>>           wdt->ctrl = WDT_CTRL_1MHZ_CLK;
->>> +    if (config->irq_mask) {
->>> +        if (!of_property_read_u32(np, "aspeed,pre-timeout-irq-us", &timeout) && timeout) {
->>> +            int irq =  platform_get_irq(pdev, 0);
->>> +
->>> +            if (irq < 0) {
->>> +                dev_warn(dev, "Couldn't find IRQ: %d\n", irq);
->>> +                timeout = 0;
->>> +            } else {
->>> +                ret = devm_request_irq(dev, irq, aspeed_wdt_irq, IRQF_SHARED,
->>> +                               dev_name(dev), wdt);
->>> +                if (ret) {
->>> +                    dev_warn(dev, "Couldn't request IRQ:%d\n", ret);
->>> +                    timeout = 0;
->>> +                } else {
->>> +                    wdt->ctrl |= ((timeout << config->irq_shift) &
->>> +                              config->irq_mask) | WDT_CTRL_WDT_INTR;
->>> +                }
->>> +            }
->>> +        }
->>> +    }
->>> +
->>>       /*
->>>        * Control reset on a per-device basis to ensure the
->>>        * host is not affected by a BMC reboot
->>> @@ -308,7 +357,7 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
->>>           else if (!strcmp(reset_type, "system"))
->>>               wdt->ctrl |= WDT_CTRL_RESET_MODE_FULL_CHIP |
->>>                        WDT_CTRL_RESET_SYSTEM;
->>> -        else if (strcmp(reset_type, "none"))
->>> +        else if (strcmp(reset_type, "none") && !timeout)
->>>               return -EINVAL;
->>>       }
->>>       if (of_property_read_bool(np, "aspeed,external-signal"))
->>> -- 
->>> 2.31.1
->>>
-
+Run sparse over these, please. There's warnings in them thar patches.
