@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02719608265
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 02:01:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F1C16082F4
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 02:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229975AbiJVABf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Oct 2022 20:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51348 "EHLO
+        id S230031AbiJVAlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Oct 2022 20:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229961AbiJVABe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 20:01:34 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5C353DBF8
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:01:32 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id t25so3075142qkm.2
-        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:01:32 -0700 (PDT)
+        with ESMTP id S230010AbiJVAlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Oct 2022 20:41:09 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1421FFAA42
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:41:05 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id z17so444408qkj.8
+        for <devicetree@vger.kernel.org>; Fri, 21 Oct 2022 17:41:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GXvPkVCw8FRFmA8ySfXC7nejZPHHphE93ffpATw2tRY=;
-        b=TfXedZrCGFSna9xyPTV/xvgw7TKxSngElCFlu4JbD3CLtC6IdwAYHrQoBpqvKV00sA
-         JvPIs5jyXU11AGgXgY3a7dEH5r6/IJP1hMYcjpd/Pac4mvcHpCMo0fdUmKGLfbjeEZ2u
-         Qd6lnaxRDQLfq0zPrkcybd6qJ4KF8sMcyfXGsACxl5lP9ZR59tFHzTn13l61cMqHd4W0
-         kqTCRiE3X8aM/JpY7XCf7ahCcbLpj8ju6WvC935Lk8dCaiqFQ16zICG/S/XDGhyHeQ55
-         h+cskEIfg6nuSL9XLMhcJJiJ3Z1soe2mCEKpUQq03/T5+Rn0FAEuaUFb52V/f/OH3W1U
-         bPlw==
+        bh=RrPjIQcXUTVTQbLthehjSdVtJ5wsCBFGwdqvbET3Nv4=;
+        b=uT4tEVDvrXXsIXLYLHC/+JilwU8FMbcbfjqAEp/aD4vUyde7trCRpCmJ40r2iekff+
+         E/1KOxu5YgexrykOsTc4YeQzEGCMJMkfzVzMnT5zPzbMyLc10EO3OdT6pPKQ24kR8KI5
+         ++LqaKPkR356Wwf4gX/48JgCN2mOAhrx1ImM5imLBxeJeT0qyAMXSY6fKfFItKKy+t+A
+         eBP358K1vY6Tr8PrveFnyqpdec2Y8ws/UvrnCaP/li7xvG3CPm7dZ4dYEkEPN7tZDX1c
+         MkWOWV7kBsXOoW9NSeFYG0tysE4RDZuqepX+ApjEMHI77lud9YXGL/Bfw18oh796Ws07
+         Xifg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GXvPkVCw8FRFmA8ySfXC7nejZPHHphE93ffpATw2tRY=;
-        b=fNv283a+5b/glJgMgcQNVmBcG9icFiZwwQj0dPQyeBi7dzTPKLYYMGST8332TKOFvE
-         qZiWkCoRzD4tZ4AmjLn0LS/H45n7jD/epieTBMkX8XxpBqXJhzLsIcA8SiUf5J2JhVl0
-         khdkGpll/uVj+h1Xaj+YBQ6qE7lhJEZIAPF22vEzbg9X560qRuR7qAdxFtkSOdtjnkes
-         FZ3gKa4iosZ7dWgnu+BoMUfIFFgUgH7xnA9PMk62Se7/3fUMW72CoRdYDHuwvwSoPJHm
-         FmehXBLNIKoiy9u9dQymSdrmpJAyYGP8DHIESjcfWumioWD6S65VgdjLlpKLol7EEkGf
-         mN/Q==
-X-Gm-Message-State: ACrzQf0FMrqPUx/wQ2wRDUaYSFIgmhQNlFk9AZFkVNcucCNRIYVSoy+C
-        pcpRPgb75ypSOf41vLx3fvxunw==
-X-Google-Smtp-Source: AMsMyM6J4oBE7EMIcpdcRXotHEo1gC0gFNjHI7KVnii0fQSaj2GCJBXKMqu/I44iaEs6U500Ld379w==
-X-Received: by 2002:a37:a42:0:b0:6ea:f8ec:1648 with SMTP id 63-20020a370a42000000b006eaf8ec1648mr15741126qkk.231.1666396891836;
-        Fri, 21 Oct 2022 17:01:31 -0700 (PDT)
+        bh=RrPjIQcXUTVTQbLthehjSdVtJ5wsCBFGwdqvbET3Nv4=;
+        b=Mzk3MqB8AH76doEAss5vg59Brrkz8kx6PYKKHLcRcbSGovqoFjtkMWwWTNKujOfvbp
+         dN0VA3T2cXnFVTdNt2fEK5jqq4yvIiMZdZFHdA7XikGgwuHLDtqEqMEeUfcHPT6AdxQA
+         D1ZwC2KSg5D7sh22xIoYmi1XJkVtyAOpRcdSvL55IYCNqEr6dQkA16suxfKaFcTCg08n
+         nClQVhx3BHdztSQVSyoaSMUr60ie8ktfhaY7zdfGlx2QUmqzTFCM0Wt2xEWKceGUXbVL
+         Vzm/J4TFVh1w33AQSf+yGyuFmQmvZocE1TQ2GoGlZ1iMVAbWUK1mxfARn+u/W+5R3d6G
+         /NeQ==
+X-Gm-Message-State: ACrzQf2gXfhbvlX0YCXwxzU6n1p6pbpkBiyfg334rP08SOr1uAfUUq+V
+        y5T3T4UbFW71c7fghY1Z0u47oPjLYVi1ww==
+X-Google-Smtp-Source: AMsMyM7ykfJjUZmYjeyoc8pHNbxFeVP6AU7RqpZSlor378l+nEizeZzw9rnBwLc5aiiGfYCyYMAA4g==
+X-Received: by 2002:ae9:ef4e:0:b0:6ee:80b6:2ee4 with SMTP id d75-20020ae9ef4e000000b006ee80b62ee4mr15503825qkg.126.1666399264741;
+        Fri, 21 Oct 2022 17:41:04 -0700 (PDT)
 Received: from [192.168.10.124] (pool-72-83-177-149.washdc.east.verizon.net. [72.83.177.149])
-        by smtp.gmail.com with ESMTPSA id m10-20020ac8444a000000b0039b03ac2f72sm8870882qtn.46.2022.10.21.17.01.30
+        by smtp.gmail.com with ESMTPSA id br44-20020a05620a462c00b006bbb07ebd83sm10201344qkb.108.2022.10.21.17.41.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 17:01:31 -0700 (PDT)
-Message-ID: <f732a81a-3dad-8519-9830-57a602bb8c9f@linaro.org>
-Date:   Fri, 21 Oct 2022 20:01:30 -0400
+        Fri, 21 Oct 2022 17:41:04 -0700 (PDT)
+Message-ID: <977ecc3e-c5d8-dae9-149e-5ff4e7f30130@linaro.org>
+Date:   Fri, 21 Oct 2022 20:41:02 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v3 5/5] arm: dts: qcom-msm8660: align RPM regulators node
- name with bindings
+Subject: Re: [PATCH v2 1/1] dt-bindings: clock: ti,cdce925: Convert to DT
+ schema
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee@kernel.org>, Mark Brown <broonie@kernel.org>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20221005-mdm9615-pinctrl-yaml-v3-0-e5e045644971@linaro.org>
- <20221005-mdm9615-pinctrl-yaml-v3-5-e5e045644971@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20221021064757.379558-1-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221005-mdm9615-pinctrl-yaml-v3-5-e5e045644971@linaro.org>
+In-Reply-To: <20221021064757.379558-1-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 11:27, Neil Armstrong wrote:
-> Node names should be generic and new DT schema expects RPM regulators
-> node to be just "regulators".
+On 21/10/2022 02:47, Alexander Stein wrote:
+> Convert the TI CDCE925 clock binding to DT schema format.
+> Including a small fix: Add the missing 'ti' prefix in the example
+> compatible.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> I have to admit I only have one specific addon platform for this
+> hardware, which is actually a CECD813 tbh.
+> 
+> Changes in v2:
+> * Fix bindings title
+> * Removed nodename pattern
+> * Add 'additionalProperties: false' for PLL subnodes
+> * Fix typo in required list
+> * I added myself as maintainer
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
