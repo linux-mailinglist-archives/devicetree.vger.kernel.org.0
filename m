@@ -2,120 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AAF608BD7
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 12:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366F9608B4D
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 12:11:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbiJVKog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 06:44:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41878 "EHLO
+        id S229894AbiJVKLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 06:11:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbiJVKoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 06:44:18 -0400
-Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA22F31BF49;
-        Sat, 22 Oct 2022 03:01:50 -0700 (PDT)
-Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
-        by mxout1.routing.net (Postfix) with ESMTP id 8AA8A41A25;
-        Sat, 22 Oct 2022 09:05:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1666429540;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=uwE9fx2tS9oduVfTIs9Hd6/Fb9a+3JIsjdgPxEZuCWk=;
-        b=G1xnd0RAP2vFdUQcNsw9U+lz+xRBas2yonC7dKl/xdx4sQpNoL0h2wCEjl4zSw/hjbN97h
-        XqXubJCBuU3O8GVbLOnfbLZ8regoUcyCtf/Iinridt3NAixHPzUNZHPfCHH4313o5u5VVv
-        IXlpKKROuQzbWa7VeD+offVODzc0hm8=
-Received: from frank-G5.. (fttx-pool-80.245.73.148.bambit.de [80.245.73.148])
-        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id CB46C40690;
-        Sat, 22 Oct 2022 09:05:39 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S229992AbiJVKL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 06:11:28 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE7C6FC46
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 02:28:50 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id m16so14091416edc.4
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 02:28:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KV5T4Ds36Pn5JJ9LvcyOc5p1G5ob4lljxOKtNSKGmMI=;
+        b=SmS4Dp2bjzHIDfgevSzTDT8N9t7g25MnT2uUBAQ9QLZiE7y7RAxBRrrD+QrDp/8OcE
+         1qLojZGCYk1TmHD47+QZ5QRxKUVFsiFhryvAiY0PLrcWWZ7b3S9CvUD66igkBINAElc8
+         XE8g10/JjAnoDJ8pvM2eWg8yPQ6rE35JA5K2GE46lb7Hn6aome44rrwg6ZVf3A6F01on
+         DYIzONRkjyTmEmo3rWTUnItfFRilXcz0ZEJvIxDfJyIGnP68pxNEa/0Hv27AkZpCZH1z
+         BF2AIxyfuC+3pMTC6vIDAzBpP+Fp7ZZVVe7VkEonK4Z5vM4wACjQljpaWU3Ig+FbsKui
+         3nMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KV5T4Ds36Pn5JJ9LvcyOc5p1G5ob4lljxOKtNSKGmMI=;
+        b=5wHBfc2IyISU9ZF2mt1NFU7x2lYhTbuNYp63HybaWpk9ydC4i/sSSATw6xAToesKKW
+         Gd24bVz5m/ZcTCMO9qKpJog8rJ66ceDxobUsXcDtjZe6+fVw7gmlOW/Alu1lKRDaCx4B
+         IvVQhHZP5m4EURMqMa05S81LZxP0+HrCRRusX1lQwu0N9kRnEE+BesJZjWHiM1haOV32
+         +f6lYn8vr2zvJB3G1WO6DDL1Xf4nhtpJf3E7wGSTKnvERO9FSgYfxRZmGkOJiY0nwAsN
+         7OMKWa2Rm+Wy0u6Mn7//I+IC3/JMOpA9QGoPj1jzeNqqYliG9gJnUbIHsvn/m2rJVKCW
+         n3Rw==
+X-Gm-Message-State: ACrzQf3WyLxvk6wT7uSnXRxMbYyC1H1qnloOquYHKN66U/uOxz/0CwBn
+        fxtsOVYLQe00nkc7+efR8k9A/xekftaLgkz3
+X-Google-Smtp-Source: AMsMyM6gqIWCG3vTlrW4YgHYo9wuugLZiy0KoowKh2MbcU1t+un3BouhWEM72DvnvW3vQf9yB/0rtA==
+X-Received: by 2002:a05:651c:883:b0:26d:d4ce:befa with SMTP id d3-20020a05651c088300b0026dd4cebefamr8091211ljq.180.1666430256014;
+        Sat, 22 Oct 2022 02:17:36 -0700 (PDT)
+Received: from [10.27.10.248] ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id f28-20020a05651c03dc00b0026dced9840dsm3669537ljp.61.2022.10.22.02.17.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Oct 2022 02:17:35 -0700 (PDT)
+Message-ID: <48e13203-2588-618b-4fde-3004b2472783@linaro.org>
+Date:   Sat, 22 Oct 2022 12:17:34 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [RFC PATCH 1/9] dt-bindings: arm-smmu: Add missing Qualcomm SMMU
+ compatibles
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/5] dt-bindings: mmc: mtk-sd: add mt7986
-Date:   Sat, 22 Oct 2022 11:05:30 +0200
-Message-Id: <20221022090530.16265-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221022090530.16265-1-linux@fw-web.de>
-References: <20221022090530.16265-1-linux@fw-web.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 2ff8b4a6-6a4a-400a-8436-ce86973b8370
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+References: <20221021165534.2334329-1-dmitry.baryshkov@linaro.org>
+ <20221021165534.2334329-2-dmitry.baryshkov@linaro.org>
+ <a36ca97e-5e64-54a8-a571-e9b7f6da76e5@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <a36ca97e-5e64-54a8-a571-e9b7f6da76e5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On 22/10/2022 03:59, Krzysztof Kozlowski wrote:
+> On 21/10/2022 12:55, Dmitry Baryshkov wrote:
+>> Add missing compatibles used for Adreno SMMU on sc7280 and sm8450
+>> platforms and for the Qualcomm v2 SMMU used on SDM630 platform.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> index 9066e6df1ba1..34ee33a62ba5 100644
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -28,6 +28,7 @@ properties:
+>>             - enum:
+>>                 - qcom,msm8996-smmu-v2
+>>                 - qcom,msm8998-smmu-v2
+>> +              - qcom,sdm630-smmu-v2
+> 
+> So qcom,adreno-smmu is not compatible with Adreno? See below.
+> 
+>>             - const: qcom,smmu-v2
+>>   
+>>         - description: Qcom SoCs implementing "arm,mmu-500"
+>> @@ -48,10 +49,20 @@ properties:
+>>                 - qcom,sm8350-smmu-500
+>>                 - qcom,sm8450-smmu-500
+>>             - const: arm,mmu-500
+>> +
+>> +      - description: Qcom Adreno GPUs implementing "arm,smmu-500"
+>> +        items:
+>> +          - enum:
+>> +              - qcom,sc7280-smmu-500
+>> +              - qcom,sm8250-smmu-500
+>> +          - const: qcom,adreno-smmu
+>> +          - const: arm,mmu-500
+>>         - description: Qcom Adreno GPUs implementing "arm,smmu-v2"
+>>           items:
+>>             - enum:
+>> +              - qcom,msm8996-smmu-v2
+>>                 - qcom,sc7180-smmu-v2
+>> +              - qcom,sdm630-smmu-v2
+> 
+> This does not look correct. The same compatible should not be present in
+> two different setups.
+> 
+> If qcom,msm8996-smmu-v2 is compatible with qcom,adreno-smmu, then your
+> first hunk is not correct.
 
-Add SoC specific section for defining clock configuration.
+Currently the qcom,adreno-smmu compat string is used as a flag, telling 
+the kernel that this SMMU instance needs some special setup to work with 
+Adreno GPU driver
 
-Add compatible in "not" section to avoid override the settings again.
+For example, we have the following compat lists in the existing DT files:
+- "qcom,msm8996-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2"
+- "qcom,msm8996-smmu-v2", "qcom,smmu-v2" // not handled by arm-qcom-smmu
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- .../devicetree/bindings/mmc/mtk-sd.yaml       | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+- "qcom,sdm630-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2"
+- "qcom,sdm630-smmu-v2", "qcom,smmu-v2"
 
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index c7bcf0c3dd5d..9df63c461f1f 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -229,6 +229,33 @@ allOf:
-             - const: hclk
-             - const: source_cg
-             - const: bus_clk
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - mediatek,mt7986-mmc
-+    then:
-+      properties:
-+        assigned-clock-parents:
-+          maxItems: 2
-+        assigned-clocks:
-+          maxItems: 2
-+        clocks:
-+          minItems: 3
-+          items:
-+            - description: source clock
-+            - description: HCLK which used for host
-+            - description: independent source clock gate
-+            - description: bus clock used for internal register access
-+            - description: msdc subsys clock gate
-+        clock-names:
-+          minItems: 3
-+          items:
-+            - const: source
-+            - const: hclk
-+            - const: axi_cg
-+            - const: ahb_cg
-   - if:
-       not:
-         properties:
-@@ -237,6 +264,7 @@ allOf:
-               enum:
-                 - mediatek,mt2712-mmc
-                 - mediatek,mt8192-mmc
-+                - mediatek,mt7986-mmc
-     then:
-       properties:
-         clocks:
+- "qcom,sdm845-smmu-v2", "qcom,adreno-smmu", "qcom,smmu-v2"
+- "qcom,sdm845-smmu-500", "arm,mmu-500"
+- "qcom,sdm845-smmu-v2", "qcom,smmu-v2" // special setup used on Cheza
+
+- "qcom,sm8250-smmu-500", "qcom,adreno-smmu", "arm,mmu-500"
+- "qcom,sm8250-smmu-500", "arm,mmu-500"
+
+
+As we are trying to refactor the IOMMU bindings, what would be your 
+recommendation?
+
+To introduce minimal changes, I wanted to have the following lists:
+- "qcom,SOC-smmu-500", "qcom,adreno-smmu", "qcom,smmu-500", "arm,mmu-500"
+
+- "qcom,SOC-smmu-500", "qcom,smmu-500", "arm,mmu-500"
+
+However maybe you would prefer the following model:
+
+- "qcom,SOC-adreno-smmu-500", "qcom,adreno-smmu-500", "arm,mmu-500"
+- "qcom,SOC-smmu-500", "qcom,smmu-500", "arm,mmu-500"
+
+
+Or:
+- "qcom,SOC-smmu-500", "qcom,smmu-500", "arm,mmu-500" + 
+'qcom,adreno-smmu' flag/property?
+
+
+> 
+>>                 - qcom,sdm845-smmu-v2
+>>             - const: qcom,adreno-smmu
+>>             - const: qcom,smmu-v2
+> 
+> Best regards,
+> Krzysztof
+> 
+
 -- 
-2.34.1
+With best wishes
+Dmitry
 
