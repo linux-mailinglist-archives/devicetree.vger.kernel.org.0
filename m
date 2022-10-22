@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 975A1608E57
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3FD9608E5B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 18:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbiJVQFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 12:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50060 "EHLO
+        id S229501AbiJVQGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 12:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbiJVQFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:05:22 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F034857E3A
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:05:19 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id e15so3746509qvo.4
-        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:05:19 -0700 (PDT)
+        with ESMTP id S229583AbiJVQGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 12:06:47 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B0AB15A15
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:06:44 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id hh9so3394550qtb.13
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 09:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5lbMIM7nqIxTYy2koXXs7MyMh9wpyXwtXg0X2VOHXFc=;
-        b=F5E+liIdea+OsqP4JP+Hx95UC7IQ2arOq/S8Kze1a25DhYuO5GTIedOvNktocdNLSH
-         sRKTDmu7vDhILLOBLz2l4ZaWfiXR4QMynCvXUXPWnp/U9SR9gR0kvQoo4cX3YRo+iSS3
-         0oNFyfABKnrOMfMoVGPkMO+gbKa2uaPI0lniRWTbuuzCCnplmgWaxH+1qPwldhe94xrI
-         HJsaLf1pc6oxudB6ErUyp/aOq3onWh7LbL8hIwG8deI/ZlWx4HikMVzsyPsvxKyW8+ai
-         AqxT7hi0o+0DkgvY7P069kE4ZhsQw0BYRK048YVJM3TK26aJBU5wUuysKv1vA3PulR3f
-         cNsg==
+        bh=nzT+VEmkUStYx/oFKUyBVeLL6CJC5Ebv5tGgGJ3EThk=;
+        b=Rd1hH2t7awphQ+KCcp28rqZhH0W/+YoolhPWBzFlzaVzem1NtFymXj9IbmcfKrtxOE
+         mwluJy+ONLIEOOcEUVz1AsVeeUW81r2nLNrSZo2PTZKuA70eC6DU7ZtWFVCvQaN0n2EJ
+         XNawpYjH23MoC/f/ID18S7MILGG2aRc3N+Ln0ZdChio7g1VfWZV3i1493pydGFb7Ut91
+         j76UklR5tmvzbORApFcZj2pfhhCWBoSlDrcYkHj8kmJAjm5MuyA/IS0CHVaU15KekWV5
+         EM87cLIapgiTHD4InSBhCrine1p64V7/4jWqpAGOwpoj3u7sGi5KiQ+dnnR1DgL4KGVp
+         abgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5lbMIM7nqIxTYy2koXXs7MyMh9wpyXwtXg0X2VOHXFc=;
-        b=vUaNHlvCLFnD/5ztYPH1bvH2tsarbsM3C8dDSVeX+EHEBpeuhhh6YQlB546ndZ2bci
-         5xdJKRETP4JS1yqQmkUnP9TeQazgxkHyKkZ3gNhCihdQLtAvNC7CLrpsyMOka+WyIIhz
-         P5G0L6q3nnqmhKT5+20nXolJi9ZhZo+mWYp+bKOU3sacMfM9oRacSSXWphg+StkhysW7
-         UDDs1IInLeWo8RfPuy9Ybn49ywFl3a8P6b0Sj3xFcFNmZTAVcozNfTQhHIPAkHpTrrBB
-         o9i+5vKGPLIbZIbTmXD/hrfGI0o6ejlH5JY4/z19zHSBVcrZs7LhPrR/4oomiZ9onrSo
-         MJzg==
-X-Gm-Message-State: ACrzQf07OuchmQ2J0XaeN6Dz0hSHIrHr0td/GofAafqZ9DQXkX0yKRa5
-        LV4UPy4Fda+BYyYehQqCLHfuHw==
-X-Google-Smtp-Source: AMsMyM4L8SOoJcHWB9Q0dIN94Hk87oL/EEsykY5C9qsUdGXYtJTn3+Vuax6HmhZeJmRpEnPnR5NCww==
-X-Received: by 2002:a05:6214:226f:b0:4bb:6579:5a2 with SMTP id gs15-20020a056214226f00b004bb657905a2mr882005qvb.32.1666454719053;
-        Sat, 22 Oct 2022 09:05:19 -0700 (PDT)
+        bh=nzT+VEmkUStYx/oFKUyBVeLL6CJC5Ebv5tGgGJ3EThk=;
+        b=lqj5cXp0Pj3ryzth2VYMgJm/3/kiySfwHyEPTy9WwFl898gZXHdYDciP8YnbXRMZtw
+         HB4NLHqvHbqIfkv1Vd2dfE28Hf/7UxvA72MfFlW1eTjhgZ0emvFPK8oGrWXbsv6IW7kd
+         I7dfpeBKAgeFLzokgaEnJoXFGldhb5KedK2Q4gIKZhm1xEGaZFRpV7tS/6mRznom6+Vx
+         ATju1EJKBcj8MwPI3d8qSS6Z+lKrEPFGWJ+HN5fNVV7MX93CbOguKpzYIVxsLfGs4k0C
+         0uDHhTAsxB59c1ENyl8cybnVI8nsGpYqsE4JuQyfkwRsAKV2yJF23YhxWMhv7/1JSaVM
+         3PZg==
+X-Gm-Message-State: ACrzQf2zQQ0EMI5SKFWeikrUO5uVQAMVAyrOmMVMFvPiFNDRzpQW9dfs
+        zPE1qGimjWSC9u1AkV1j8tBWYg==
+X-Google-Smtp-Source: AMsMyM4ZO0osqdPxtj3efWReeGdbuhf5GKNX407YtHct5K3PumdbLfs8ZZUzCHhQOMpPIkHQE1x2jg==
+X-Received: by 2002:ac8:5b44:0:b0:39c:d6ad:cce6 with SMTP id n4-20020ac85b44000000b0039cd6adcce6mr20939846qtw.113.1666454803298;
+        Sat, 22 Oct 2022 09:06:43 -0700 (PDT)
 Received: from [10.203.8.70] ([205.153.95.177])
-        by smtp.gmail.com with ESMTPSA id t12-20020ac8530c000000b0039a55f78792sm9677424qtn.89.2022.10.22.09.05.17
+        by smtp.gmail.com with ESMTPSA id bm34-20020a05620a19a200b006ce1bfbd603sm11410372qkb.124.2022.10.22.09.06.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 22 Oct 2022 09:05:18 -0700 (PDT)
-Message-ID: <761d6ae2-e779-2a4b-a735-960c716c3024@linaro.org>
-Date:   Sat, 22 Oct 2022 12:05:15 -0400
+        Sat, 22 Oct 2022 09:06:42 -0700 (PDT)
+Message-ID: <df256d16-e0c6-4e9a-9579-f7d9d1436670@linaro.org>
+Date:   Sat, 22 Oct 2022 12:06:40 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
- subnodes
+Subject: Re: [PATCH 1/1] dt-bindings: mmc: sdhci-of-dwcmhsc: Add reset support
 Content-Language: en-US
 To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+Cc:     Jisheng Zhang <jszhang@kernel.org>, linux-mmc@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         kernel@collabora.com
-References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
+References: <20221021171654.87071-1-sebastian.reichel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021171055.85888-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20221021171654.87071-1-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,213 +79,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 13:10, Sebastian Reichel wrote:
-> The queue configuration is referenced by snps,mtl-rx-config and
-> snps,mtl-tx-config. Most in-tree DTs put the referenced object
-> as child node of the dwmac node.
-> 
-> This adds proper description for this setup, which has the
-> advantage of properly making sure only known properties are
-> used.
+On 21/10/2022 13:16, Sebastian Reichel wrote:
+> Properly describe reset related properties in the binding.
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 154 ++++++++++++------
->  1 file changed, 108 insertions(+), 46 deletions(-)
+>  .../devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml  | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 13b984076af5..0bf6112cec2f 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -167,56 +167,118 @@ properties:
->    snps,mtl-rx-config:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> -      Multiple RX Queues parameters. Phandle to a node that can
-> -      contain the following properties
-> -        * snps,rx-queues-to-use, number of RX queues to be used in the
-> -          driver
-> -        * Choose one of these RX scheduling algorithms
-> -          * snps,rx-sched-sp, Strict priority
-> -          * snps,rx-sched-wsp, Weighted Strict priority
-> -        * For each RX queue
-> -          * Choose one of these modes
-> -            * snps,dcb-algorithm, Queue to be enabled as DCB
-> -            * snps,avb-algorithm, Queue to be enabled as AVB
-> -          * snps,map-to-dma-channel, Channel to map
-> -          * Specifiy specific packet routing
-> -            * snps,route-avcp, AV Untagged Control packets
-> -            * snps,route-ptp, PTP Packets
-> -            * snps,route-dcbcp, DCB Control Packets
-> -            * snps,route-up, Untagged Packets
-> -            * snps,route-multi-broad, Multicast & Broadcast Packets
-> -          * snps,priority, bitmask of the tagged frames priorities assigned to
-> -            the queue
-> +      Multiple RX Queues parameters. Phandle to a node that
-> +      implements the 'rx-queues-config' object described in
-> +      this binding.
-> +
-> +  rx-queues-config:
-
-If this field is specific to this device, then you need vendor prefix:
-snps,rq-queues-config
-
-> +    type: object
-> +    properties:
-> +      snps,rx-queues-to-use:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: number of RX queues to be used in the driver
-> +      snps,rx-sched-sp:
-> +        type: boolean
-> +        description: Strict priority
-> +      snps,rx-sched-wsp:
-> +        type: boolean
-> +        description: Weighted Strict priority
-> +    patternProperties:
-> +      "^queue[0-9]$":
-> +        description: Each subnode represents a queue.
-> +        type: object
-> +        properties:
-> +          snps,dcb-algorithm:
-> +            type: boolean
-> +            description: Queue to be enabled as DCB
-> +          snps,avb-algorithm:
-> +            type: boolean
-> +            description: Queue to be enabled as AVB
-> +          snps,map-to-dma-channel:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: DMA channel id to map
-> +          snps,route-avcp:
-> +            type: boolean
-> +            description: AV Untagged Control packets
-> +          snps,route-ptp:
-> +            type: boolean
-> +            description: PTP Packets
-> +          snps,route-dcbcp:
-> +            type: boolean
-> +            description: DCB Control Packets
-> +          snps,route-up:
-> +            type: boolean
-> +            description: Untagged Packets
-> +          snps,route-multi-broad:
-> +            type: boolean
-> +            description: Multicast & Broadcast Packets
-> +          snps,priority:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: Bitmask of the tagged frames priorities assigned to the queue
-> +    additionalProperties: false
-
-Please update the DTS example with all this.
-
+> diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> index 71f8e726d641..162c1a4abf3c 100644
+> --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> @@ -45,6 +45,18 @@ properties:
+>        - const: block
+>        - const: timer
 >  
->    snps,mtl-tx-config:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> -      Multiple TX Queues parameters. Phandle to a node that can
-> -      contain the following properties
-> -        * snps,tx-queues-to-use, number of TX queues to be used in the
-> -          driver
-> -        * Choose one of these TX scheduling algorithms
-> -          * snps,tx-sched-wrr, Weighted Round Robin
-> -          * snps,tx-sched-wfq, Weighted Fair Queuing
-> -          * snps,tx-sched-dwrr, Deficit Weighted Round Robin
-> -          * snps,tx-sched-sp, Strict priority
-> -        * For each TX queue
-> -          * snps,weight, TX queue weight (if using a DCB weight
-> -            algorithm)
-> -          * Choose one of these modes
-> -            * snps,dcb-algorithm, TX queue will be working in DCB
-> -            * snps,avb-algorithm, TX queue will be working in AVB
-> -              [Attention] Queue 0 is reserved for legacy traffic
-> -                          and so no AVB is available in this queue.
-> -          * Configure Credit Base Shaper (if AVB Mode selected)
-> -            * snps,send_slope, enable Low Power Interface
-> -            * snps,idle_slope, unlock on WoL
-> -            * snps,high_credit, max write outstanding req. limit
-> -            * snps,low_credit, max read outstanding req. limit
-> -          * snps,priority, bitmask of the priorities assigned to the queue.
-> -            When a PFC frame is received with priorities matching the bitmask,
-> -            the queue is blocked from transmitting for the pause time specified
-> -            in the PFC frame.
-> +      Multiple TX Queues parameters. Phandle to a node that
-> +      implements the 'tx-queues-config' object described in
-> +      this binding.
+> +  resets:
+> +    minItems: 5
+
+No need for minItems, drop.
+
+> +    maxItems: 5
 > +
-> +  tx-queues-config:
-> +    type: object
-> +    properties:
-> +      snps,tx-queues-to-use:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: number of TX queues to be used in the driver
-> +      snps,tx-sched-wrr:
-> +        type: boolean
-> +        description: Weighted Round Robin
-> +      snps,tx-sched-wfq:
-> +        type: boolean
-> +        description: Weighted Fair Queuing
-> +      snps,tx-sched-dwrr:
-> +        type: boolean
-> +        description: Deficit Weighted Round Robin
-> +      snps,tx-sched-sp:
-> +        type: boolean
-> +        description: Strict priority
-> +    patternProperties:
-> +      "^queue[0-9]$":
-> +        description: Each subnode represents a queue.
-> +        type: object
-> +        properties:
-> +          snps,weight:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: TX queue weight (if using a DCB weight algorithm)
-> +          snps,dcb-algorithm:
-> +            type: boolean
-> +            description: TX queue will be working in DCB
-> +          snps,avb-algorithm:
+> +  reset-names:
+> +    items:
+> +      - const: core
+> +      - const: bus
+> +      - const: axi
+> +      - const: block
+> +      - const: timer
+> +
 
-Is DCB and AVB compatible with each other? If not, then this should be
-rather enum (with a string for algorithm name).
-
-This applies also to other fields which are mutually exclusive.
-
-> +            type: boolean
-> +            description:
-> +              TX queue will be working in AVB.
-> +              Queue 0 is reserved for legacy traffic and so no AVB is
-> +              available in this queue.
-> +          snps,send_slope:
-
-Use hyphens, no underscores.
-(This is already an incompatible change in bindings, so we can fix up
-the naming)
-
-> +            type: boolean
-> +            description: enable Low Power Interface
-> +          snps,idle_slope:
-> +            type: boolean
-> +            description: unlock on WoL
-> +          snps,high_credit:
-> +            type: boolean
-> +            description: max write outstanding req. limit
-
-Is it really a boolean?
-
-> +          snps,low_credit:
-> +            type: boolean
-> +            description: max read outstanding req. limit
-
-Same question
-
-> +          snps,priority:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description:
-> +              Bitmask of the tagged frames priorities assigned to the queue.
-> +              When a PFC frame is received with priorities matching the bitmask,
-> +              the queue is blocked from transmitting for the pause time specified
-> +              in the PFC frame.
-> +    additionalProperties: false
->  
->    snps,reset-gpio:
->      deprecated: true
+The reset names have exactly the same names as clocks. Are these
+responsible for some blocks on the device? Seems so... but I want to be
+sure it wasn't copy-paste :)
 
 Best regards,
 Krzysztof
