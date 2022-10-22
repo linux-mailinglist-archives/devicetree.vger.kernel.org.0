@@ -2,196 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73463608F83
-	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 22:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ED54608FAC
+	for <lists+devicetree@lfdr.de>; Sat, 22 Oct 2022 23:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbiJVUHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Oct 2022 16:07:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
+        id S229782AbiJVVN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Oct 2022 17:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbiJVUHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 16:07:33 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1033D1581D;
-        Sat, 22 Oct 2022 13:07:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1666469251; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=I4lDdl2R33Rw3FJFjgrKMP7JH5wxfoEkDuahx5BR0co=;
-        b=afQVdLCmOBgCi8h/em20G7kMEf3Yp1+pF3SrRZRXDez3Zd7pgv78v1yvtNotxzpICEz34a
-        gPnvMEvJe4Vvbyudvt3USgVGsv2H0kaj9VVvoO+j/uTHDkMrTjZycUahkgEeYn58n9tGlK
-        DRoMPymei7Eaag0pF2nXOfn8OKdjsRY=
-Date:   Sat, 22 Oct 2022 21:07:21 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v3 2/2] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S229610AbiJVVN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Oct 2022 17:13:28 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57FBC7FF9A;
+        Sat, 22 Oct 2022 14:13:25 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id u21so18125343edi.9;
+        Sat, 22 Oct 2022 14:13:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C5hHs2S/RQl/JXIwHudGm/5mav5RsuOJ5skKbHJaT7M=;
+        b=NmBEE6eFFqAk065UYolm1o7PT0D3spxPjIpTB1GN4doSOzS/VyF0MqEGtviFaTzcZc
+         kkyskhusTgRHUEXA+SUJWNZZZMtBpySOqUoLqvRB5ZBLRjhEc9KjhLe9c5jK8ry4uTV2
+         Nk789OK4t4+qNfxNc4QY99Syb9ofJ5Ow89nccso5G+zA4tp0VGicKZTAp9x+JY0nIJAz
+         F+e7O3kIGx94sm6tXjxLuCdaD+lqhx63E8T/5sM8hYbr3w3szKdM8Thn11CAbYOPpln1
+         t8lbqWF+RU+6NYlfHw/1fmuOYBoXOLkZUGM3TezeU14AoBjoAJHSGDkc9AdSC9EA9b48
+         y46Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C5hHs2S/RQl/JXIwHudGm/5mav5RsuOJ5skKbHJaT7M=;
+        b=mCVrS0wvWRyrbI4uwJMat0y8A+hV0Qo4FncYjVra9n6IZRI08gR2dhjsgPeD4mW0RN
+         IGu9putT6zFaJGgkWwM72sBxrWh1k5tyQOe/1vwXjqtZlfPzR1StnC3W96pMWKx8ueMZ
+         AtUZii6TxNR7Yerg1Ec/zXwrOsH5Ns7/isTLvnRmULg6cVx7r+1rOlmJr3p0s9bFeE65
+         cI0pbGBl3N4o2QxKtvo8l++XRd9A8aBqWpwSJjvULDZhOhauc+XLmv1AGdDtfSPnACxJ
+         EzNL1h4UHF74/v0Pb0CxusB0ReJ8r4+5wE5+Uu549mKJAb8Plfn+QOmUn5qDWQubY3tQ
+         XPag==
+X-Gm-Message-State: ACrzQf2u5hf2EAQYk02M//TkbooW2wThRO+dsYGUP5o4JYi9WdOTQ+rN
+        IYIyBSEYhAVsnkIzrHEzKVc=
+X-Google-Smtp-Source: AMsMyM4qRAuTX9xAg5+SVeocMaPvY8/QocSpU2ifwAaPqw2Fu6Q4Lo5wOHKB6Sq6ABNXP+Eq+DcSMg==
+X-Received: by 2002:a17:907:3f23:b0:78e:260a:fc33 with SMTP id hq35-20020a1709073f2300b0078e260afc33mr21579377ejc.152.1666473203739;
+        Sat, 22 Oct 2022 14:13:23 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id la5-20020a170907780500b0077f20a722dfsm13382584ejc.165.2022.10.22.14.13.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Oct 2022 14:13:23 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <9W76KR.NVDSVG4IWZ3A3@crapouillou.net>
-In-Reply-To: <20221022165047.4020785-3-lis8215@gmail.com>
-References: <20221022165047.4020785-1-lis8215@gmail.com>
-        <20221022165047.4020785-3-lis8215@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Mikhail Zhilkin <csharper2005@gmail.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chaitanya Kulkarni <kch@nvidia.com>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V3 1/2] dt-bindings: mtd: partitions: support marking rootfs partition
+Date:   Sat, 22 Oct 2022 23:13:17 +0200
+Message-Id: <20221022211318.32009-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siarhei,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Le sam. 22 oct. 2022 =E0 19:50:47 +0300, Siarhei Volkau=20
-<lis8215@gmail.com> a =E9crit :
-> JZ4750/55/60 (but not JZ4760b) have an extra divisor in between extclk
-> and peripheral clock, called CPCCR.ECS, the driver can't figure out=20
-> the
-> real state of the divisor without dirty hack - peek CGU CPCCR=20
-> register.
-> However, we can rely on a vendor's bootloader (u-boot 1.1.6) behavior:
-> if (extclk > 16MHz)
->     the divisor is enabled, so the UART driving clock is extclk/2.
->=20
-> This behavior relies on hardware differences: most boards (if not all)
-> with those SoCs have 12 or 24 MHz oscillators but many peripherals=20
-> want
-> 12Mhz to operate properly (AIC and USB-PHY at least).
->=20
-> The patch doesn't affect JZ4760's behavior as it is subject for=20
-> another
-> patchset with re-classification of all supported ingenic UARTs.
->=20
-> Link:=20
-> https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_seria=
-l.c#L158
-> Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
-> ---
->  drivers/tty/serial/8250/8250_ingenic.c | 48=20
-> ++++++++++++++++++++++----
->  1 file changed, 42 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/tty/serial/8250/8250_ingenic.c=20
-> b/drivers/tty/serial/8250/8250_ingenic.c
-> index 2b2f5d8d2..744705467 100644
-> --- a/drivers/tty/serial/8250/8250_ingenic.c
-> +++ b/drivers/tty/serial/8250/8250_ingenic.c
-> @@ -87,24 +87,19 @@ static void __init=20
-> ingenic_early_console_setup_clock(struct earlycon_device *dev
->  	dev->port.uartclk =3D be32_to_cpup(prop);
->  }
->=20
-> -static int __init ingenic_early_console_setup(struct earlycon_device=20
-> *dev,
-> +static int __init ingenic_earlycon_setup_tail(struct earlycon_device=20
-> *dev,
->  					      const char *opt)
->  {
->  	struct uart_port *port =3D &dev->port;
->  	unsigned int divisor;
->  	int baud =3D 115200;
->=20
-> -	if (!dev->port.membase)
-> -		return -ENODEV;
-> -
->  	if (opt) {
->  		unsigned int parity, bits, flow; /* unused for now */
->=20
->  		uart_parse_options(opt, &baud, &parity, &bits, &flow);
->  	}
->=20
-> -	ingenic_early_console_setup_clock(dev);
-> -
->  	if (dev->baud)
->  		baud =3D dev->baud;
->  	divisor =3D DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
-> @@ -129,9 +124,49 @@ static int __init=20
-> ingenic_early_console_setup(struct earlycon_device *dev,
->  	return 0;
->  }
->=20
-> +static int __init ingenic_early_console_setup(struct earlycon_device=20
-> *dev,
-> +					      const char *opt)
-> +{
-> +	if (!dev->port.membase)
-> +		return -ENODEV;
-> +
-> +	ingenic_early_console_setup_clock(dev);
-> +
-> +	return ingenic_earlycon_setup_tail(dev, opt);
-> +}
-> +
-> +static int __init jz4750_early_console_setup(struct earlycon_device=20
-> *dev,
-> +					     const char *opt)
-> +{
-> +	if (!dev->port.membase)
-> +		return -ENODEV;
-> +
-> +	/*
-> +	 * JZ4750/55/60 (not JZ4760b) have an extra divisor
-> +	 * between extclk and peripheral clock, the
-> +	 * driver can't figure out the real state of the
-> +	 * divisor without dirty hacks (peek CGU register).
-> +	 * However, we can rely on a vendor's behavior:
-> +	 * if (extclk > 16MHz)
-> +	 *   the divisor is enabled.
-> +	 * This behavior relies on hardware differences:
-> +	 * most boards with those SoCs have 12 or 24 MHz
-> +	 * oscillators but many peripherals want 12Mhz
-> +	 * to operate properly (AIC and USB-phy at least).
-> +	 */
-> +	ingenic_early_console_setup_clock(dev);
-> +	if (dev->port.uartclk > 16000000)
-> +		dev->port.uartclk /=3D 2;
+Linux needs to know what to use as root device. On embedded devices with
+flash the only common way to specify that is cmdline & root= parameter.
 
-I don't understand, didn't we came up to the conclusion in your V1 that=20
-it was better to force-enable the EXT/2 divider in the ingenic init=20
-code?
+That solution works with U-Boot which is Linux & cmdline aware but isn't
+available with all market bootloaders. Also that method is fragile:
+1. Requires specific probing order on multi-flash devices
+2. Uses hardcoded partitions indexes
 
--Paul
+A lot of devices use different partitioning methods. It may be
+"fixed-partitions" or some dynamic partitioning (e.g. based on parts
+table). For such cases allow "linux,rootfs" property to mark correct
+flash partition.
 
-> +
-> +	return ingenic_earlycon_setup_tail(dev, opt);
-> +}
-> +
->  OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
->  		    ingenic_early_console_setup);
->=20
-> +OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
-> +		    jz4750_early_console_setup);
-> +
->  OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
->  		    ingenic_early_console_setup);
->=20
-> @@ -328,6 +363,7 @@ static const struct ingenic_uart_config=20
-> x1000_uart_config =3D {
->=20
->  static const struct of_device_id of_match[] =3D {
->  	{ .compatible =3D "ingenic,jz4740-uart", .data =3D &jz4740_uart_config=20
-> },
-> +	{ .compatible =3D "ingenic,jz4750-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4760-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4770-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4775-uart", .data =3D &jz4760_uart_config=20
-> },
-> --
-> 2.36.1
->=20
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+V2: Use "linux,rootfs" as more accurate. Thanks Rob.
+---
+ .../devicetree/bindings/mtd/partitions/fixed-partitions.yaml  | 1 +
+ .../devicetree/bindings/mtd/partitions/partition.yaml         | 4 ++++
+ 2 files changed, 5 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+index ad3ccd250802..d66a6e3bcb56 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.yaml
+@@ -84,6 +84,7 @@ examples:
+         partition@0 {
+             label = "filesystem";
+             reg = <0x00000000 0x1 0x00000000>;
++            linux,rootfs;
+         };
+     };
+ 
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+index f1a02d840b12..a25cd23a34c0 100644
+--- a/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
++++ b/Documentation/devicetree/bindings/mtd/partitions/partition.yaml
+@@ -52,6 +52,10 @@ properties:
+       immune to paired-pages corruptions
+     type: boolean
+ 
++  linux,rootfs:
++    description: Marks partition that contains root filesystem to mount and boot
++      user space from
++
+ if:
+   not:
+     required: [ reg ]
+-- 
+2.34.1
 
