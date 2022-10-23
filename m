@@ -2,71 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8B9660957E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 20:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9111560958E
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 20:28:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbiJWSZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 14:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
+        id S230248AbiJWS2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 14:28:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbiJWSZV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 14:25:21 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97899481FA;
-        Sun, 23 Oct 2022 11:25:17 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29NIOiY1031002;
-        Sun, 23 Oct 2022 13:24:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666549484;
-        bh=9st99SOgqqJ97K4IHxXw4rse3SOpMoT1XJwiOcRMdnA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=WW7lvUjehxsNPQSr5FaxNfwuJokggGP/iaF2FTQvKBVFQpuPn2AywnvxVlJE56kAH
-         +kS8i9E4hZk/kBEzE2g0710fyIUvd8q9kHAm3ufBIuu1xuzakyoKoPGiuWYDVEUake
-         lAJYHLBxoSsGtQ1862Rgx/fuCPNMVB0Iu4ovz8r4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29NIOiDC021588
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 23 Oct 2022 13:24:44 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Sun, 23
- Oct 2022 13:24:44 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Sun, 23 Oct 2022 13:24:44 -0500
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29NIObVd042708;
-        Sun, 23 Oct 2022 13:24:43 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 6/6] arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
-Date:   Sun, 23 Oct 2022 13:24:37 -0500
-Message-ID: <20221023182437.15263-7-afd@ti.com>
+        with ESMTP id S230226AbiJWS2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 14:28:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB2DE5247A;
+        Sun, 23 Oct 2022 11:28:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ABFD660F3C;
+        Sun, 23 Oct 2022 18:28:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A1D4C433D6;
+        Sun, 23 Oct 2022 18:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666549702;
+        bh=wkdAvPA8Pnc0jF12FSsd05dlVyH8gvyil6OYR7WwYcU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=f0Ds0AHZjDZcVPc3tT6C665O4qlBfFr1PCUOw2anA8I5yQzxi9hzhN5F75we7LfVi
+         ojAyCmPxenQA2aS6KFUPqU4a/UQQbsyWrGTAvAxESFXebRbO6qg2zSkSEitEwWTWKL
+         mlXzPoIilV5Ddxr7lJ6D3WSomaAQmOUMRNVChwZFy50UXtYNm+zVbpwf8Edn2tzqJY
+         ZPMSAuUzmp0aNR1ZL9NcKg4nzD6OFhckGGeeKdRegzKKgffgmr11Z5h2kR4CjU56no
+         /c83ic05+YGC6FmA5pUgfKQ0l4XUbNl1LrH9R+jzU5LcpjFdGGBWoP39luiNb4eC08
+         GT3KMla+apxMA==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     netdev@vger.kernel.org
+Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
+        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, robh@kernel.org, daniel@makrotopia.org
+Subject: [PATCH v2 net-next 0/6] introduce WED RX support to MT7986 SoC
+Date:   Sun, 23 Oct 2022 20:28:04 +0200
+Message-Id: <cover.1666549145.git.lorenzo@kernel.org>
 X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221023182437.15263-1-afd@ti.com>
-References: <20221023182437.15263-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,28 +55,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DTB Overlays (.dtbo) can now be built from source files with the
-extension (.dtso). This makes it clear the content of the file
-and differentiates them from base DTB source files.
+Similar to TX counterpart available on MT7622 and MT7986, introduce
+RX Wireless Ethernet Dispatch available on MT7986 SoC in order to
+offload traffic received by wlan nic to the wired interfaces (lan/wan).
 
-Convert the DTB overlay source files in the arm64/xilinx directory.
+Changes since v1:
+- fix sparse warnings
+- rely on memory-region property in mt7622-wed.yaml
+- some more binding fixes
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- .../{zynqmp-sck-kv-g-revA.dts => zynqmp-sck-kv-g-revA.dtso}       | 0
- .../{zynqmp-sck-kv-g-revB.dts => zynqmp-sck-kv-g-revB.dtso}       | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename arch/arm64/boot/dts/xilinx/{zynqmp-sck-kv-g-revA.dts => zynqmp-sck-kv-g-revA.dtso} (100%)
- rename arch/arm64/boot/dts/xilinx/{zynqmp-sck-kv-g-revB.dts => zynqmp-sck-kv-g-revB.dtso} (100%)
+Lorenzo Bianconi (6):
+  arm64: dts: mediatek: mt7986: add support for RX Wireless Ethernet
+    Dispatch
+  dt-bindings: net: mediatek: add WED RX binding for MT7986 eth driver
+  net: ethernet: mtk_wed: introduce wed mcu support
+  net: ethernet: mtk_wed: introduce wed wo support
+  net: ethernet: mtk_wed: add configure wed wo support
+  net: ethernet: mtk_wed: add rx mib counters
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-similarity index 100%
-rename from arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
-rename to arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-similarity index 100%
-rename from arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
-rename to arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+ .../arm/mediatek/mediatek,mt7622-wed.yaml     |  91 +++
+ .../arm/mediatek/mediatek,mt7986-wo-boot.yaml |  46 ++
+ .../arm/mediatek/mediatek,mt7986-wo-ccif.yaml |  49 ++
+ .../arm/mediatek/mediatek,mt7986-wo-dlm.yaml  |  50 ++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  73 +++
+ drivers/net/ethernet/mediatek/Makefile        |   2 +-
+ drivers/net/ethernet/mediatek/mtk_wed.c       | 577 ++++++++++++++++--
+ drivers/net/ethernet/mediatek/mtk_wed.h       |  21 +
+ .../net/ethernet/mediatek/mtk_wed_debugfs.c   |  87 +++
+ drivers/net/ethernet/mediatek/mtk_wed_mcu.c   | 390 ++++++++++++
+ drivers/net/ethernet/mediatek/mtk_wed_regs.h  | 129 +++-
+ drivers/net/ethernet/mediatek/mtk_wed_wo.c    | 545 +++++++++++++++++
+ drivers/net/ethernet/mediatek/mtk_wed_wo.h    | 287 +++++++++
+ include/linux/soc/mediatek/mtk_wed.h          | 104 +++-
+ 14 files changed, 2407 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml
+ create mode 100644 drivers/net/ethernet/mediatek/mtk_wed_mcu.c
+ create mode 100644 drivers/net/ethernet/mediatek/mtk_wed_wo.c
+ create mode 100644 drivers/net/ethernet/mediatek/mtk_wed_wo.h
+
 -- 
 2.37.3
 
