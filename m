@@ -2,58 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 077F86094B0
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 18:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA57D6094B5
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 18:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbiJWQVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 12:21:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58468 "EHLO
+        id S230018AbiJWQbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 12:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230018AbiJWQVI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 12:21:08 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B972C5B9FA;
-        Sun, 23 Oct 2022 09:21:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=iTvQ2cWB+6XWNFX3zk4Auk9RwK12kn68XHvnKVvYeIU=; b=OGBR4feeWffQUhNajVMj1osao1
-        bbXJNZtpEk7wHN8vAYkuJvGHtqMJxuYYmYCrLXA3/CU0G6VNxEWg8DL0S+1quagLailQHNnbdQihr
-        LOyVtzOphlaUcztOauPh5pOB3Y5Bb7RLaEjDeHw6TLWmjfXBWBQNCXepUnjnCIksIxnwxGi/jwTnH
-        e401yO+MqpbUPb8TO+IPti9FDtC4JRfEErt+3CiLCoQ77FYzXMpLMwJwcGhEmnMzzfutmkelXEz2j
-        Op3bnPo7QScQR4FZoAZVNOvBEOpRGb/UVap49VxOOLGp/6McjA3aiavsWjx8jG29hcztzspgDhAFe
-        +VTBRz7A==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34910)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1omdiY-00027Q-UQ; Sun, 23 Oct 2022 17:20:54 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1omdiS-0006DU-On; Sun, 23 Oct 2022 17:20:48 +0100
-Date:   Sun, 23 Oct 2022 17:20:48 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Marcin Wojtas <mw@semihalf.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hch@lst.de, kabel@kernel.org,
-        jaz@semihalf.com
-Subject: Re: [PATCH] ARM: dts: armada-38x: Mark devices as dma-coherent
-Message-ID: <Y1Vp4BdC50o9roKe@shell.armlinux.org.uk>
-References: <20221022234024.87475-1-mw@semihalf.com>
- <Y1VX4RtzKQZHe/oO@lunn.ch>
+        with ESMTP id S229618AbiJWQbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 12:31:24 -0400
+Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [91.198.250.236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B9D4F6BD;
+        Sun, 23 Oct 2022 09:31:23 -0700 (PDT)
+Received: from smtp102.mailbox.org (unknown [91.198.250.119])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4MwNxg2NDkz9sl2;
+        Sun, 23 Oct 2022 18:31:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noorman.info;
+        s=MBO0001; t=1666542679;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=L+Uu5fNN1Fu4LDg47Qgq7aw/zK13Z4KSJrDen1AI+eY=;
+        b=kfzHDgQQoAexT2MbOdTVEnjZfDXMGUB1Tfa2m05iz/3MvlUYD8GIcPhlfQ2DPzxLhiqBrH
+        d3y32fDfQGjxln1G+lumoSf0IdxP2ul0VuXdqMhSAvgUt7rGeneeuVcL2xSUej1IO5KviP
+        zTJn4JCLGe9h5DcPqIR4su+JzgV/kFSoeIV1l9OxzRhGng5IN+Ax4f7vUWZpmmFPM6Dw1V
+        4Y6reDuHBzA6aJr3Lq9JVS1zOIOVu5kGV+xDwQuvXxcpqstFO84FsjMAP6MhIROAGG8/Dv
+        Ju1VSfz8ieFsBEQBvSOZ5wNYsud1OecUg2lBdk9q9AcNcjMd3gmh2TY3NyRZvw==
+From:   Job Noorman <job@noorman.info>
+To:     Job Noorman <job@noorman.info>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Henrik Rydberg <rydberg@bitmath.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v5 0/3] Add Himax hx83112b touchscreen driver
+Date:   Sun, 23 Oct 2022 18:30:28 +0200
+Message-Id: <20221023163032.144150-1-job@noorman.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y1VX4RtzKQZHe/oO@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4MwNxg2NDkz9sl2
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,35 +58,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 23, 2022 at 05:04:01PM +0200, Andrew Lunn wrote:
-> On Sun, Oct 23, 2022 at 01:40:24AM +0200, Marcin Wojtas wrote:
-> > Armada 38x platforms marks all devices as coherent via
-> > mvebu_hwcc_notifier(), whereas the standard way to determine
-> > this is by of_dma_is_coherent(). Reflect the hardware
-> > capabilities by adding 'dma-coherent' properties to the device tree.
-> 
-> Hi Marcin
-> 
-> Does this need to go to -rc for 6.0? The DMA issues being reported?
-> If so, please add a Fixed: tag.
+Hi all,
 
-Are we absolutely sure this makes sense?
+This series adds support for the Himax hx83112b. The hx83112b supports 10
+point multitouch with hardware tracking of touch points. It is the
+touchschreen used by the Fairphone 3.
 
-Looking at atch/arm/mach-mvebu/coherency.c, there are dependencies
-on stuff such as whether the kernel is in SMP mode or not (because
-the page tables need to be appropriately marked as shared for
-coherency with IO to work). We only enable the shared bit if we're
-in SMP mode because (a) its difficult to do at runtime due to TLB
-conflicts (requires switching the MMU off, rewriting the page tables
-and switching the MMU back on), and (b) setting the shared bit for
-CPUs that don't need it _can_ result in the CPUs basically bypassing
-their caches and thus kill system performance.
+Note that a datasheet was unavailable for this device, so it was built
+based on the Android driver that was tagged as GPLv2. This series is a
+complete rewrite, though, and the code bears no resemblence to the original
+implementation.
 
-So, if we have Armada 38x platforms that are operated in uniprocessor
-mode, this patch can cause havoc on such a setup.
+It is expected that this driver can be made to work on other hx83xxx
+devices, especially the hx83112a used in the Fairphone 4. However, since we
+have been unable to verify this, this driver only declares compatibility
+with the hx83112b and uses very specific file names.
 
-I would suggest utmost caution with this approach.
+Changes since v4 (based on Jeff LaBundy's 2nd round of comments):
+- Kconfig: depend on I2C and select REGMAP_I2C
+- Don't suppress dev_err() on EPROBE_DEFER
+- Some minor coding style updates
 
+Changes since v3 (based on Dmitry Torokhov's comments):
+- Use gpiod_set_value_cansleep (instead of gpiod_set_value) during probe
+- Inline some small helper functions
+- Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()
+- Use PTR_ERR_OR_ZERO instead of IS_ERR+PTR_ERR
+- Some minor coding style updates (e.g., use C-style comments)
+
+Changes since v2 (based on Jeff LaBundy's comments):
+- Kconfig: depend on REGMAP_I2C instead of I2C
+- Don't use dev_err_probe()
+- Return IRQ_NONE on failed register reads to prevent possible interrupt
+  storm
+- Add small delay after de-asserting reset pin
+- Some minor coding style updates
+- dt-bindings: make touchscreen-size-{x,y} required
+
+Changes since v1:
+- Fix sparse warnings. Reported-by: kernel test robot <lkp@intel.com>.
+- Fix dt_binding_check.
+
+Best regards,
+Job
+
+Previous versions:
+- v4: https://lore.kernel.org/lkml/20221017100409.189293-1-job@noorman.info/
+- v3: https://lore.kernel.org/lkml/20221016102756.40345-1-job@noorman.info/
+- v2: https://lore.kernel.org/lkml/20221012202341.295351-1-job@noorman.info/
+- v1: https://lore.kernel.org/lkml/20221011190729.14747-1-job@noorman.info/
+
+Job Noorman (3):
+  dt-bindings: touchscreen: add Himax hx83112b bindings
+  Input: add driver for Himax hx83112b touchscreen devices
+  arm64: dts: qcom: sdm632: fairphone-fp3: add touchscreen
+
+ .../input/touchscreen/himax,hx83112b.yaml     |  63 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sdm632-fairphone-fp3.dts    |  14 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/himax_hx83112b.c    | 364 ++++++++++++++++++
+ 6 files changed, 461 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+ create mode 100644 drivers/input/touchscreen/himax_hx83112b.c
+
+
+base-commit: d4a596eddb90114f5f5f32a440057a175517b090
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.38.1
+
