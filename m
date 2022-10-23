@@ -2,72 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4006092A2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 14:25:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D4286092AF
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 14:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230108AbiJWMY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 08:24:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37994 "EHLO
+        id S230113AbiJWMjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 08:39:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230112AbiJWMYx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 08:24:53 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C788319009;
-        Sun, 23 Oct 2022 05:24:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 415FDB80D6B;
-        Sun, 23 Oct 2022 12:24:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8217AC433C1;
-        Sun, 23 Oct 2022 12:24:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666527886;
-        bh=KRxc30fHjTzv+sKWd7/X4dO/++yO0svmpvqVOief22o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D3uQs6URR8wr7BUQkCGuoMdlxDQlyRvn9NBY9KTHyeH5+rcZnGGb6ekiFA3ax70Mt
-         YSkX6Has89Nu/YtFzhlDEwdFmpYp1jF8HkRUKUwQRykA9j4E7pmG5lJE2MJar9AQ5Y
-         F+tQRUwtd5egJXtjbuOKahM9GPVdwlsg7BwmG7/G9rGXu2/ZB84hfrUXeruRKG2+6F
-         AdiWdYiIcC9M2M7AcctZ35FMc6s2HhGgXi20g0A5+zji02yEnCoVU32ymQShpsa2qX
-         wYEVRoKOFBUzY6B78VzR8USoYCl9LMNvbdmR+nqEFud75KHEV4cOa/kaiFEPKxApGE
-         YD5kZBy7IlkTg==
-Date:   Sun, 23 Oct 2022 20:24:39 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: firmware: imx: sync with SCFW kit v1.13.0
-Message-ID: <20221023122439.GF125525@dragon>
-References: <20220921143603.175195-1-viorel.suman@oss.nxp.com>
+        with ESMTP id S230108AbiJWMjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 08:39:40 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513531AF2A
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 05:39:37 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id s3so4301871qtn.12
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 05:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WtMX72KLBH/oqLRTjw6ZoQ9HphAQ86EWlsGtUM1biLY=;
+        b=rR/rt3NVFszMvYLvpbh47uWTrABK35J57rG52zoILjoYOQHkbtYIQh00iQYClie0y3
+         sCYb3qtKGZKKMRBPmgZo7I11CTY9vQzNiVCsddF+NJZOCexBdZTDuaF8C6m6MeDWGz2O
+         84EyKhN+R+tiDg6ry5Zdvs1k+t+MXLVaym1rOFvDqXWrcWGnmUJq66oAo/+lFVTGDDMF
+         spjhWPgr0OSF5/bsWCOb6rye4DPS2NfoUmaAx1gMD9nI4erOCP2ngTq0bCkfJk765ytn
+         Iewy/sCoyf6ANJUcQL/6zxpYlfx24FeRknl5AUVm3MfO92mZ/01G0gFEuI71TSFYPAqw
+         rVKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WtMX72KLBH/oqLRTjw6ZoQ9HphAQ86EWlsGtUM1biLY=;
+        b=ToVNskN6KUo+ZOoOHniac9/7mxIxIBk9lLfNRh0wg5YU50+gRv+TYPixYKxOkSi7eg
+         PbCaH5Ub1GAODk/msi1QWjGQTNH76/KMeT8Srlf/aHUT+BT5QQrSn2yZMMCmB15bjKe7
+         bjvk9IRIVgBslymmjKZUJaMncpaFYv/Mlu7gJvN1JZbfgyrBiGO9dAR6HKDoWVlBImRm
+         1fQDzmaNik3VVynNrej/OpOoAlEFuXS9FN/PMY+GJPFMQW8G/vk5Itf/solxe6W/u9zW
+         K2DzeYB5hiYxELj5/A8nDEQMAPOUkzPV8v6dHTQHVaheUePgOTk9I6soB+33Lc3S6+qn
+         MvJg==
+X-Gm-Message-State: ACrzQf25vYSzDoEf9XsEKqTA4qjoO1P2Ub++7P5eZe8PX3okaEGR+AsL
+        BVSXhqTju5MnnJsYtopbsN/HAQ==
+X-Google-Smtp-Source: AMsMyM5ARqNAYBYplnOqSjtUrbcf4MWsV3uP/gieV6dYA025Qv5ID/SBR6x37ttDQse4hV7lX8FXIg==
+X-Received: by 2002:a05:622a:138b:b0:39c:eb5a:5c33 with SMTP id o11-20020a05622a138b00b0039ceb5a5c33mr24003935qtk.412.1666528776446;
+        Sun, 23 Oct 2022 05:39:36 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id u30-20020a37ab1e000000b006ef0350db8asm7299556qke.128.2022.10.23.05.39.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Oct 2022 05:39:35 -0700 (PDT)
+Message-ID: <eab019f7-f801-848e-80a3-5bb526d95d53@linaro.org>
+Date:   Sun, 23 Oct 2022 08:39:34 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220921143603.175195-1-viorel.suman@oss.nxp.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 2/2] dt-bindings: pwm: mediatek: Add compatible string for
+ MT7986
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <Y1K53n7LnjoMoIfj@makrotopia.org>
+ <20221021222338.GA565200-robh@kernel.org> <Y1MkIdFXrBrrv958@makrotopia.org>
+ <5182e3c4-9e5e-2c36-408b-9029c65c8803@linaro.org>
+ <Y1UycU0JvwyAv0x2@makrotopia.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y1UycU0JvwyAv0x2@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 05:36:03PM +0300, Viorel Suman (OSS) wrote:
-> From: Viorel Suman <viorel.suman@nxp.com>
+On 23/10/2022 08:24, Daniel Golle wrote:
+> Hi Krzysztof,
 > 
-> Sync defines with the latest available SCFW kit version 1.13.0,
-> may be found at the address below:
+> On Sat, Oct 22, 2022 at 12:35:25PM -0400, Krzysztof Kozlowski wrote:
+>> On 21/10/2022 18:58, Daniel Golle wrote:
+>>> On Fri, Oct 21, 2022 at 05:23:38PM -0500, Rob Herring wrote:
+>>>> On Fri, Oct 21, 2022 at 04:25:18PM +0100, Daniel Golle wrote:
+>>>>> Add new compatible string for MT7986 PWM.
+>>>>>
+>>>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
+>>>>>  1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>>>> index 554c96b6d0c3e0..6f4e60c9e18b81 100644
+>>>>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+>>>>> @@ -8,6 +8,7 @@ Required properties:
+>>>>>     - "mediatek,mt7623-pwm": found on mt7623 SoC.
+>>>>>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
+>>>>>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
+>>>>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
+>>>>
+>>>> This version of the PWM h/w is not compatible with any of the existing 
+>>>> chips? If it is, it should have a fallback compatible.
+>>>
+>>> No, it is unique because it comes with just 2 PWM channels.
+>>> Otherwise the driver behaves just like for MT8183 (4 channels) or
+>>> MT8365 (3 channels) which also got distinct compatible strings.
+>>
+>> Then something would be here compatible. E.g. If you bound MT8183 with
+>> mt7986-pwm compatible, would you get working device with two channels?
 > 
-> https://www.nxp.com/webapp/Download?colCode=L5.15.32_2.0.0_SCFWKIT-1.13.0&appType=license
-> 
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
+> Yes, but I'd see another 2 channels which do not work, accessing them
+> may even cause problems (I haven't tried that) as it means accessing
+> an undocumented memory range of the SoC which we in general we
+> shouldn't be messing around with.
 
-Applied, thanks!
+Why on MT8183 there would be undocumented memory? Where is undocumented
+memory?
+
+> 
+> Also note that this case is the same as MT8183 vs. MT8365, they got
+> distinct compatible strings and also for those two the only difference
+> is the number of channels.
+
+So why they are not made compatible?
+
+> 
+>>
+>> If so, they are compatible.
+> 
+> By that definition you should remove the additional compatible for
+> MT8365 or rather, it should have been rejected for the same argument.
+> 
+> I'm talking about
+> commit fe00faee8060402a3d85aed95775e16838a6dad2
+> commit 394b517585da9fbb2eea2f2103ff47d37321e976
+
+This is a pattern spreading in several Mediatek bindings and we already
+commented on new patches. I don't know why people working on Mediatek do
+not mark pieces compatible.
+
+Best regards,
+Krzysztof
+
