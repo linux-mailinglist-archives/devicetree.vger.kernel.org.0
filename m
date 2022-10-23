@@ -2,62 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86BB1609435
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 17:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7D8609438
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 17:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiJWPEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 11:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
+        id S229728AbiJWPEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 11:04:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbiJWPEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 11:04:24 -0400
-Received: from vps0.lunn.ch (unknown [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A68DDD2;
-        Sun, 23 Oct 2022 08:04:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=zD1/O95Ipbj62gpaq/sH2Kd/rzbC4LwRUNP3m1EDqpY=; b=z31RuW5fMiibdWjPzlL1ZgqS3O
-        3qc5gImKpvsh0vNVBbMxS9SGptDkqKxWmcQzkt7sk0EaKs+sfIypIMs22TuVpePBR7KbpPvjH5ttn
-        DVJQVw3ZuVx64LCV7/B68BIoNvxuq+ZUyJ0MtVpRGyyxd8dXZSwtXwbe7zp+ZdzSaBUA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1omcW9-000KId-8y; Sun, 23 Oct 2022 17:04:01 +0200
-Date:   Sun, 23 Oct 2022 17:04:01 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marcin Wojtas <mw@semihalf.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hch@lst.de, kabel@kernel.org,
-        jaz@semihalf.com
-Subject: Re: [PATCH] ARM: dts: armada-38x: Mark devices as dma-coherent
-Message-ID: <Y1VX4RtzKQZHe/oO@lunn.ch>
-References: <20221022234024.87475-1-mw@semihalf.com>
+        with ESMTP id S230171AbiJWPE2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 11:04:28 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22241B84C
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 08:04:26 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1322fa1cf6fso9313522fac.6
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 08:04:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=A6yRufizX+sJOw9PwTba9rH6bgoIJN2K17tk3nl03P4=;
+        b=O6RVOCLroMjlj9fZLcZPuWWVdcDJai2Yb1j4xpcBYq6Mzom6LpEiLlAv5zgeLtQt8m
+         ryiCUwYjiU8ilgYemdd3Iy2Fl9qbRF/S2blFUEReWdacqRbsycnPuLsjhG1zZNWWe/rh
+         f4mfQWQNbnSYE1SrSrS58/GCobsDgpyA8/eQdHeT2j9gWR+YKwYnELrA4tYmwRFST+Ps
+         EbvIzhZ+rSc+XQiv444kj14RZC+xkPEVYG/GH/DJFl7KXnWaMQBWmApLYzIR0t73+Es8
+         vycJ72MccEI7NN/rTCtwZfprOqn6v7VWut15IqN4hLashDEIN4aatyD/0El1M4aISJv9
+         7+fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A6yRufizX+sJOw9PwTba9rH6bgoIJN2K17tk3nl03P4=;
+        b=tqj58ML5sm9DS99ajFXo35e1fYBdpzwpD46pe60LEe9rC+ADT3asfesx8gILDQT0/n
+         STkhdkRkv17Zme89+rwY7z82EDnmkjA8nWsR3XYlPV4drai+z9EzvxzgjL3CRvm4eEV6
+         1NtFEkjD89xrwdnUbPDY6Mi/Wtm8OF9oDC8FnHOJ/7Tv3n39hhNvbiqk8z5C4LeaYzuh
+         HtmM+yszrgxGnTwQTTbftjYcwKaz/0QALxTEBZFiuOiBwiVNXV93NmQEBc1gBiPGuPNw
+         +lhqbreiOq0Ub6SExudFEF8d/HNlWKqVMrDlByTNlTphbmmNaUOqEcR0vtbt0N0mkvR+
+         UV5Q==
+X-Gm-Message-State: ACrzQf0L5vdCENbiBA7hfCwliUTADJTcmcoBc/tMujC7F4v8nXHdfcaU
+        0TkBxCpEABOlFendEhyU2yfOwNOkNJjCuyc7oJsQGw==
+X-Google-Smtp-Source: AMsMyM439AW6P9IaP2apO1Mdlg3gm2c/a4wPzbpLN/az/ZKKAp6G4BubqWiavTKTjegvXS+TIMLRzw70bq9vTJkeQsk=
+X-Received: by 2002:a05:6870:a414:b0:131:25e5:df0e with SMTP id
+ m20-20020a056870a41400b0013125e5df0emr17702847oal.285.1666537465256; Sun, 23
+ Oct 2022 08:04:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221022234024.87475-1-mw@semihalf.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NEUTRAL,SPF_NEUTRAL
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20221020094106.559266-1-andy.chiu@sifive.com> <20221020094106.559266-3-andy.chiu@sifive.com>
+ <495eb398-bec4-5d68-ef5d-4f02d0122a7c@amd.com> <20221021022058.GA2191302-robh@kernel.org>
+In-Reply-To: <20221021022058.GA2191302-robh@kernel.org>
+From:   Andy Chiu <andy.chiu@sifive.com>
+Date:   Sun, 23 Oct 2022 23:04:14 +0800
+Message-ID: <CABgGipWHztqv=8qNNWSc1srcy0tyKg9tUcD-1qKBO-FzGFfR8w@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] dt-bindings: add mdio frequency description
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michal Simek <michal.simek@amd.com>, davem@davemloft.net,
+        kuba@kernel.org, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, pabeni@redhat.com,
+        edumazet@google.com, greentime.hu@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 23, 2022 at 01:40:24AM +0200, Marcin Wojtas wrote:
-> Armada 38x platforms marks all devices as coherent via
-> mvebu_hwcc_notifier(), whereas the standard way to determine
-> this is by of_dma_is_coherent(). Reflect the hardware
-> capabilities by adding 'dma-coherent' properties to the device tree.
+> > > +- xlnx,mdio-freq: Define the clock frequency of the MDIO bus. If the property
+> > > +                 does not pressent on the DT, then the mdio driver would use
+> > > +                 the default 2.5 MHz clock, as mentioned on 802.3 spc.
+> >
+> > Isn't it better to specify it based on ccf description. It means &clk and
+> > used clock framework to find value?
+>
+Maybe I missed something, but I'd prefer using a number to define the
+frequency of the bus rather than basing on the ccf description for our
+use case. First, it is more straightforward because ccf requires us to
+define a separate DT node and point to it. And currently we don't need
+to do extra management that would benefit from using ccf. All we need
+to do with the clock is to get its frequency.
 
-Hi Marcin
+> Or use 'bus-frequency' which IIRC is defined for MDIO.
+>
+I found that "bus-frequency" first appeared in fsl driver but was
+replaced later by the standard one, which is "clock-frequency" as
+defined in mdio.yaml. We will submit a v2 patch to configure
+non-convention MDIO bus frequency with that DT entry.
 
-Does this need to go to -rc for 6.0? The DMA issues being reported?
-If so, please add a Fixed: tag.
-
-   Andrew
+Thanks and regards,
+Andy
