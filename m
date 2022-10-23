@@ -2,210 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC065609470
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 17:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E06D9609477
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 17:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbiJWPfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 11:35:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36852 "EHLO
+        id S229867AbiJWPlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 11:41:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbiJWPfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 11:35:14 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BBEF2981A;
-        Sun, 23 Oct 2022 08:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1666539308; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1Jivb1GiQTg1GHvq4OafqU6HklinZswkG0b9+Dw4jUE=;
-        b=docbR5fulR37C2JGn19iGiT1TTFB+mYm/hUHmQcpCCBrGaca14OXqakZy6A4XXdjD1hHdo
-        Z4tagc8Wc2eaN/8CbgT1dAwRasc4KU206jut7Jl7cASXWtGdNwZMIVf+LyLs9qsIVxtO8a
-        85YdU59VvVGcleVM0KisUCiiDEFsCpI=
-Date:   Sun, 23 Oct 2022 16:34:58 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v1 5/5] clk: ingenic: Add X1000 audio clocks
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, zhouyu@wanyeetech.com,
-        linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <AYP7KR.ZQW0GW51WJAG@crapouillou.net>
-In-Reply-To: <20221023145653.177234-6-aidanmacdonald.0x0@gmail.com>
-References: <20221023145653.177234-1-aidanmacdonald.0x0@gmail.com>
-        <20221023145653.177234-6-aidanmacdonald.0x0@gmail.com>
+        with ESMTP id S229649AbiJWPlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 11:41:47 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F083861777
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 08:41:45 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id o2so4865835qkk.10
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 08:41:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qKm/ygaUyu+mdWLzI2FaUp8bVXs/rUKlSlQewbnTSq8=;
+        b=xUlQPVd8BdW0EXinGs6JbgeWbbRb2E6nEjF1e5QxlsKvOVdLWCspZXCn8DwMXH2x4f
+         f5zlNt+073Q+45PJK+1+JHUoQ9MLd8wNMz/GTu7f3ocBYFvm7HpA3Yaz+K6ZGhGe0NuX
+         w+LUQZiCAcb4c2nM1DZEpkFRDs53bJ4N8vBNVS7tiGxYxv9tcDhNDMhJpDIX3YTFUB6H
+         SMfGMfNT8e/AhAbs+4UWmeIprDihwsEIWlupxny8DtiVxuUwLSryDX2iDdeb/Ar7a4ew
+         DP1u2OJ0NqVF1Vk0rOMMmU/faRWev8bYdTTr9+fuIvphaP70XCRTaFZhek6k6hB0bVV7
+         oOXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qKm/ygaUyu+mdWLzI2FaUp8bVXs/rUKlSlQewbnTSq8=;
+        b=Io36XDdbH3+AQ8c7Oj3dpU01CeddolbdcG3afSkkJbtC0qnu1ILlQA+fOX+eL6XfCh
+         F5tE63kMFyPDlzJqbPZ5XXB8X9rWPRGUBFc1PMYumt2vizRkoSYNgXxRMjQolSVA65J+
+         2myHUFIVANMbdJGs/A/MbSSev9SgIdsVoi2EKzxKFCy+GWd45JEOvZfXeFZYzKe8YtDK
+         ihhuW+NfIIpJ9kDoq7RX8PJUOhcP7dPloqRat2p4v7PbsXCIVtyHo5uGRRQmrlG1H4UZ
+         RkBMMsosetzp7Pwaop5+oJKIUqctr9T1XY8cCVz5eNwUtbdqMoHCzxj3v2//JEDxrh5u
+         PQtg==
+X-Gm-Message-State: ACrzQf2JZ51OLXGgz/lR5mMJxXMFvk5udL4ZWrgxcl6QOmK7qM2W/Xc9
+        SNq55Bopwl4UNC9VLZHRj7COQw==
+X-Google-Smtp-Source: AMsMyM40jB2uE9+zox0fYZalOOrH463HyfYcXRKYcp7jTFsC68pShoY7wPXpWxYf2EZXiQN0Lx4w3w==
+X-Received: by 2002:a05:620a:2683:b0:6cf:3a7e:e006 with SMTP id c3-20020a05620a268300b006cf3a7ee006mr20082344qkp.474.1666539705070;
+        Sun, 23 Oct 2022 08:41:45 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id cg15-20020a05622a408f00b0039c37a7914csm11229206qtb.23.2022.10.23.08.41.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Oct 2022 08:41:44 -0700 (PDT)
+Message-ID: <cfbde0da-9939-e976-52c1-88577de7d4cb@linaro.org>
+Date:   Sun, 23 Oct 2022 11:41:42 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH net-next V2] dt-bindings: net: ethernet-controller: Add
+ ptp-hardware-clock
+Content-Language: en-US
+To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org, richardcochran@gmail.com
+Cc:     krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        yangbo.lu@nxp.com, radhey.shyam.pandey@amd.com,
+        anirudha.sarangi@amd.com, harini.katakam@amd.com, git@amd.com
+References: <20221021054111.25852-1-sarath.babu.naidu.gaddam@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221021054111.25852-1-sarath.babu.naidu.gaddam@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aidan,
-
-Le dim. 23 oct. 2022 =E0 15:56:53 +0100, Aidan MacDonald=20
-<aidanmacdonald.0x0@gmail.com> a =E9crit :
-> The X1000's CGU supplies the I2S system clock to the AIC module
-> and ultimately the audio codec, represented by the "i2s" clock.
-> It is a simple mux which can either pass through EXCLK or a PLL
-> multiplied by a fractional divider (the "i2s_pll" clock).
->=20
-> The AIC contains a separate 1/N divider controlled by the I2S
-> driver, which generates the bit clock from the system clock.
-> The frame clock is always fixed to 1/64th of the bit clock.
->=20
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+On 21/10/2022 01:41, Sarath Babu Naidu Gaddam wrote:
+> There is currently no standard property to pass PTP device index
+> information to ethernet driver when they are independent.
+> 
+> ptp-hardware-clock property will contain phandle to PTP clock node.
+> 
+> Freescale driver currently has this implementation but it will be
+> good to agree on a generic (optional) property name to link to PTP
+> phandle to Ethernet node. In future or any current ethernet driver
+> wants to use this method of reading the PHC index,they can simply use
+> this generic name and point their own PTP clock node, instead of
+> creating separate property names in each ethernet driver DT node.
+> 
+> axiethernet driver uses this method when PTP support is integrated.
+> 
+> Example:
+> 	fman0: fman@1a00000 {
+> 		ptp-hardware-clock = <&ptp_timer0>;
+> 	}
+> 
+> 	ptp_timer0: ptp-timer@1afe000 {
+> 		compatible = "fsl,fman-ptp-timer";
+> 		reg = <0x0 0x1afe000 0x0 0x1000>;
+> 	}
+> 
+> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
 > ---
->  drivers/clk/ingenic/x1000-cgu.c | 69=20
-> +++++++++++++++++++++++++++++++++
->  1 file changed, 69 insertions(+)
->=20
-> diff --git a/drivers/clk/ingenic/x1000-cgu.c=20
-> b/drivers/clk/ingenic/x1000-cgu.c
-> index b2ce3fb83f54..341276e5e1ef 100644
-> --- a/drivers/clk/ingenic/x1000-cgu.c
-> +++ b/drivers/clk/ingenic/x1000-cgu.c
-> @@ -8,6 +8,7 @@
->  #include <linux/delay.h>
->  #include <linux/io.h>
->  #include <linux/of.h>
-> +#include <linux/rational.h>
->=20
->  #include <dt-bindings/clock/ingenic,x1000-cgu.h>
->=20
-> @@ -168,6 +169,37 @@ static const struct clk_ops x1000_otg_phy_ops =3D {
->  	.is_enabled	=3D x1000_usb_phy_is_enabled,
->  };
->=20
-> +static void
-> +x1000_i2spll_calc_m_n_od(const struct ingenic_cgu_pll_info *pll_info,
-> +			 unsigned long rate, unsigned long parent_rate,
-> +			 unsigned int *pm, unsigned int *pn, unsigned int *pod)
-> +{
-> +	const unsigned long m_max =3D GENMASK(pll_info->m_bits - 1, 0);
-> +	const unsigned long n_max =3D GENMASK(pll_info->n_bits - 1, 0);
-> +	unsigned long m, n;
-> +
-> +	rational_best_approximation(rate, parent_rate, m_max, n_max, &m,=20
-> &n);
-> +
-> +	/* n should not be less than 2*m */
-> +	if (n < 2 * m)
-> +		n =3D 2 * m;
-> +
-> +	*pm =3D m;
-> +	*pn =3D n;
-> +	*pod =3D 1;
-> +}
-> +
-> +static void
-> +x1000_i2spll_set_rate_hook(const struct ingenic_cgu_pll_info=20
-> *pll_info,
-> +			   unsigned long rate, unsigned long parent_rate)
-> +{
-> +	/*
-> +	 * For some reason, the I2S divider doesn't work properly after
-> +	 * updating I2SCDR unless I2SCDR1 is read & written back.
-> +	 */
-> +	writel(readl(cgu->base + CGU_REG_I2SCDR1), cgu->base +=20
-> CGU_REG_I2SCDR1);
+> We want binding to be reviewed/accepted and then make changes in freescale
+> binding documentation to use this generic binding.
 
-Not fond of the nesting here, just use a variable.
+No, send entire set. We need to see the users of it.
 
-Besides... According to the documentation, bits 31 and 30 of this=20
-register are misconnected: writing to bit 31 will be reflected in bit=20
-30, and vice-versa. So this would work only if the bits 30 and 31 have=20
-the same value.
+> 
+> DT information:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> tree/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi#n23
 
-And worse than that, where do you actually set the register's value?=20
-Because bits 30/31, if cleared, will automatically compute the M/N=20
-values to the I2SCDR fields, overriding what the driver's .set_rate()=20
-callback is doing.
+Don't wrap links. It's not possible to click them...
 
-Either we want that, and in that case the I2S clock should be a custom=20
-clock (since it wouldn't need to compute or write M/N), or we don't,=20
-and in this case bits 30/31 of this register should be set.
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> tree/Documentation/devicetree/bindings/net/fsl-fman.txt#n320
+> 
+> Freescale driver:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> tree/drivers/net/ethernet/freescale/dpaa/dpaa_ethtool.c#n467
+> 
+> Changes in V2:
+> 1) Changed the ptimer-handle to ptp-hardware-clock based on
+>    Richard Cochran's comment.
+> 2) Updated commit description.
+> ---
+>  .../devicetree/bindings/net/ethernet-controller.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index 3aef506fa158..d2863c1dd585 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -161,6 +161,11 @@ properties:
+>        - auto
+>        - in-band-status
+>  
+> +  ptp-hardware-clock:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Specifies a reference to a node representing a IEEE1588 timer.
 
-> +}
-> +
->  static const s8 pll_od_encoding[8] =3D {
->  	0x0, 0x1, -1, 0x2, -1, -1, -1, 0x3,
->  };
-> @@ -319,6 +351,37 @@ static const struct ingenic_cgu_clk_info=20
-> x1000_cgu_clocks[] =3D {
->  		.gate =3D { CGU_REG_CLKGR, 25 },
->  	},
->=20
-> +	[X1000_CLK_I2SPLLMUX] =3D {
-> +		"i2s_pll_mux", CGU_CLK_MUX,
-> +		.parents =3D { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
+Drop "Specifies a reference to". It's obvious from the schema.
 
-If you have only 1 bit you can only have two parents, so you can remove=20
-the -1s.
+Aren't you expecting here some specific Devicetree node of IEEE1588
+timer? IOW, you expect to point to timer, but what this timer must
+provide? How is this generic?
 
-> +		.mux =3D { CGU_REG_I2SCDR, 31, 1 },
-> +	},
-> +
-> +	[X1000_CLK_I2SPLL] =3D {
-> +		"i2s_pll", CGU_CLK_PLL,
-> +		.parents =3D { X1000_CLK_I2SPLLMUX, -1, -1, -1 },
+In your commit msg you use multiple times "driver", so are you adding it
+only to satisfy Linux driver requirements? What about other drivers,
+e.g. on BSD or U-Boot?
 
-.parents =3D { X1000_CLK_I2SPLLMUX, },
-
-> +		.pll =3D {
-> +			.reg =3D CGU_REG_I2SCDR,
-> +			.rate_multiplier =3D 1,
-> +			.m_shift =3D 13,
-> +			.m_bits =3D 9,
-> +			.n_shift =3D 0,
-> +			.n_bits =3D 13,
-> +			.calc_m_n_od =3D x1000_i2spll_calc_m_n_od,
-> +			.set_rate_hook =3D x1000_i2spll_set_rate_hook,
-> +		},
-> +	},
-> +
-> +	[X1000_CLK_I2S] =3D {
-> +		"i2s", CGU_CLK_MUX,
-> +		.parents =3D { X1000_CLK_EXCLK, -1, -1, X1000_CLK_I2SPLL },
-> +		/*
-> +		 * NOTE: the mux is at bit 30; bit 29 enables the M/N divider.
-> +		 * Therefore, the divider is disabled when EXCLK is selected.
-> +		 */
-> +		.mux =3D { CGU_REG_I2SCDR, 29, 2 },
-> +	},
-> +
->  	[X1000_CLK_LCD] =3D {
->  		"lcd", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
->  		.parents =3D { X1000_CLK_SCLKA, X1000_CLK_MPLL },
-> @@ -426,6 +489,12 @@ static const struct ingenic_cgu_clk_info=20
-> x1000_cgu_clocks[] =3D {
->  		.gate =3D { CGU_REG_CLKGR, 9 },
->  	},
->=20
-> +	[X1000_CLK_AIC] =3D {
-> +		"aic", CGU_CLK_GATE,
-> +		.parents =3D { X1000_CLK_EXCLK, -1, -1, -1 },
-
-.parents =3D { X1000_CLK_EXCLK, },
-
-Cheers,
--Paul
-
-> +		.gate =3D { CGU_REG_CLKGR, 11 },
-> +	},
-> +
->  	[X1000_CLK_UART0] =3D {
->  		"uart0", CGU_CLK_GATE,
->  		.parents =3D { X1000_CLK_EXCLK, -1, -1, -1 },
-> --
-> 2.38.1
->=20
-
+Best regards,
+Krzysztof
 
