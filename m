@@ -2,207 +2,501 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBCA860947C
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 17:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2132C609485
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 17:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbiJWPpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 11:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58332 "EHLO
+        id S230161AbiJWPsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 11:48:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbiJWPpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 11:45:09 -0400
-Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C3B3FD4E;
-        Sun, 23 Oct 2022 08:45:08 -0700 (PDT)
-Received: from local
-        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.94.2)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1omd9s-00009i-PB; Sun, 23 Oct 2022 17:45:04 +0200
-Date:   Sun, 23 Oct 2022 16:45:02 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-bindings: pwm: mediatek: Add compatible string
- for MT7986
-Message-ID: <Y1VhfqBqshkM7mNR@makrotopia.org>
-References: <Y1K53n7LnjoMoIfj@makrotopia.org>
- <20221021222338.GA565200-robh@kernel.org>
- <Y1MkIdFXrBrrv958@makrotopia.org>
- <5182e3c4-9e5e-2c36-408b-9029c65c8803@linaro.org>
- <Y1UycU0JvwyAv0x2@makrotopia.org>
- <eab019f7-f801-848e-80a3-5bb526d95d53@linaro.org>
- <Y1VXTlQ1dCSoE8N2@makrotopia.org>
- <261cd2fb-05dc-3772-dcc7-3ab1f3c0222c@linaro.org>
+        with ESMTP id S230374AbiJWPsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 11:48:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF6178BD1;
+        Sun, 23 Oct 2022 08:48:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CBB6EB80DAE;
+        Sun, 23 Oct 2022 15:48:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 113EDC433C1;
+        Sun, 23 Oct 2022 15:48:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666540097;
+        bh=yJn8OavakVOxQGW6g4JiudjKcYIPmwarJ89dSQSXsHg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kIiNsa1TaTdjM0LttYcAqnmMZ1P5SOkERVC1zWfaiyooK9vk8lt2KqjgoQ6qWzAsl
+         xo6rB+peXWozLO5mwWxMgmvB5sBYTDg+Y/Lnl5s9o5BaBM0Dz2zWYIlKqK/xWAeYCv
+         JseeGk5eiT9K5XxyzJZUkR3EUcqC2Gdr+1l+e3cE0x+6qJIQTpkoQYJvystUT6yy+v
+         1uTmXPjOYj9v+FaoPS0DgkSIfNj0OXHKIG9uvJthfj77Lz+dJId6E58IyAVci9GRgK
+         wGymDbOXqfx7eT7Iy+fxVc+B5YCAHgu1SlN3xpe40NzAAOiOGzze4Lbb/2Ej2PgkAa
+         gvZAaWiooqpaw==
+Date:   Sun, 23 Oct 2022 17:48:13 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, daniel@makrotopia.org
+Subject: Re: [PATCH net-next 2/6] dt-bindings: net: mediatek: add WED RX
+ binding for MT7986 eth driver
+Message-ID: <Y1ViPY8QIOeejxNh@lore-desk>
+References: <cover.1666368566.git.lorenzo@kernel.org>
+ <7a454984f0001a71964114b71f353cb47af95ee6.1666368566.git.lorenzo@kernel.org>
+ <20221021224140.GA574155-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="1DSfyrdVsyuHoMuf"
 Content-Disposition: inline
-In-Reply-To: <261cd2fb-05dc-3772-dcc7-3ab1f3c0222c@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221021224140.GA574155-robh@kernel.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 23, 2022 at 11:29:45AM -0400, Krzysztof Kozlowski wrote:
-> On 23/10/2022 11:01, Daniel Golle wrote:
-> > On Sun, Oct 23, 2022 at 08:39:34AM -0400, Krzysztof Kozlowski wrote:
-> >> On 23/10/2022 08:24, Daniel Golle wrote:
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Sat, Oct 22, 2022 at 12:35:25PM -0400, Krzysztof Kozlowski wrote:
-> >>>> On 21/10/2022 18:58, Daniel Golle wrote:
-> >>>>> On Fri, Oct 21, 2022 at 05:23:38PM -0500, Rob Herring wrote:
-> >>>>>> On Fri, Oct 21, 2022 at 04:25:18PM +0100, Daniel Golle wrote:
-> >>>>>>> Add new compatible string for MT7986 PWM.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> >>>>>>> ---
-> >>>>>>>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
-> >>>>>>>  1 file changed, 1 insertion(+)
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> >>>>>>> index 554c96b6d0c3e0..6f4e60c9e18b81 100644
-> >>>>>>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> >>>>>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> >>>>>>> @@ -8,6 +8,7 @@ Required properties:
-> >>>>>>>     - "mediatek,mt7623-pwm": found on mt7623 SoC.
-> >>>>>>>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
-> >>>>>>>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
-> >>>>>>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
-> >>>>>>
-> >>>>>> This version of the PWM h/w is not compatible with any of the existing 
-> >>>>>> chips? If it is, it should have a fallback compatible.
-> >>>>>
-> >>>>> No, it is unique because it comes with just 2 PWM channels.
-> >>>>> Otherwise the driver behaves just like for MT8183 (4 channels) or
-> >>>>> MT8365 (3 channels) which also got distinct compatible strings.
-> >>>>
-> >>>> Then something would be here compatible. E.g. If you bound MT8183 with
-> >>>> mt7986-pwm compatible, would you get working device with two channels?
-> >>>
-> >>> Yes, but I'd see another 2 channels which do not work, accessing them
-> >>> may even cause problems (I haven't tried that) as it means accessing
-> >>> an undocumented memory range of the SoC which we in general we
-> >>> shouldn't be messing around with.
-> >>
-> >> Why on MT8183 there would be undocumented memory? Where is undocumented
-> >> memory?
-> > 
-> > So we were talking about using the MT8183 compatible for MT7986 SoC, as
-> > the PWM units are identical apart from the number of channels they
-> > offer:
-> 
-> No, we talk about MT8183 with mt7986-pwm compatible. Read again my message.
 
-Ok, that was not clear to me. I understood the other way around, to use
-`mediatek,mt8183-pwm` on MT7986 (and not even introduce an additional
-compatible for MT7986 in the driver, but only list it as compatibly with
-existing MT8183 in binding docs).
+--1DSfyrdVsyuHoMuf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-So: The to-be newly introduced `mediatek,mt7986-pwm` should work on
-MT8183 as well, but in that case only two of the four channels would be
-accessible.
+> On Fri, Oct 21, 2022 at 06:18:32PM +0200, Lorenzo Bianconi wrote:
+> > Document the binding for the RX Wireless Ethernet Dispatch core on the
+> > MT7986 ethernet driver used to offload traffic received by WLAN NIC and
+> > forwarded to LAN/WAN one.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  .../arm/mediatek/mediatek,mt7622-wed.yaml     | 126 ++++++++++++++++++
+> >  .../arm/mediatek/mediatek,mt7986-wo-boot.yaml |  45 +++++++
+> >  .../arm/mediatek/mediatek,mt7986-wo-ccif.yaml |  49 +++++++
+> >  .../arm/mediatek/mediatek,mt7986-wo-dlm.yaml  |  66 +++++++++
+> >  4 files changed, 286 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/medi=
+atek,mt7986-wo-boot.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/medi=
+atek,mt7986-wo-ccif.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/medi=
+atek,mt7986-wo-dlm.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt=
+7622-wed.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7=
+622-wed.yaml
+> > index 84fb0a146b6e..623f11df5545 100644
+> > --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-we=
+d.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-we=
+d.yaml
+> > @@ -29,6 +29,59 @@ properties:
+> >    interrupts:
+> >      maxItems: 1
+> > =20
+> > +  mediatek,wocpu_emi:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to a node describing reserved memory used by mtk wed fir=
+mware
+> > +      (see bindings/reserved-memory/reserved-memory.txt)
+>=20
+> What does that file contain?
+>=20
+> There's a standard property to refer to reserved-memory nodes, use it.
 
-> 
-> > 
-> > MT7986 got 2 PWM channels. The MMIO registers used for those two
-> > channels start at offsets 0x10 (pwm0) and 0x50 (pwm1)
-> > 
-> > MT8183 got 4 PWM channels. The MMIO registers used for those four
-> > channels start of offsets 0x10 (pwm0), 0x50 (pwm1), 0x90 (pwm2) and
-> > 0xd0 (pwm3).
-> > 
-> > Hence, when using the MT8183 compatible with MT7986, the driver will
-> > access offsets 0x90 and 0xd0 in case the users enables the (bogus)
-> > outputs pwm2 and pwm3. These offsets, however, are not mentioned in the
-> > datasheet, so it has to be considered that writing things to these
-> > undocumented offsets could cause unknown behavior.
-> > 
-> > I hope it's more clear now what I mean.
-> 
-> But even your case is not correct. On MT7986 the device would still have
-> 2 channels, how the heck he would get 4? Driver binds to ,t7986-pwm
-> compatible, which defines 2 channels.
+ack, I will fix it in v2.
 
-If we do introduce that new compatible, then yes.
-I understood you were suggesting to use `mediatek,mt8183` on MT7986
-hardware which would have resulted in such behavior.
+>=20
+> > +
+> > +  mediatek,wocpu_data:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to a node describing reserved memory used by mtk wed fir=
+mware
+> > +      (see bindings/reserved-memory/reserved-memory.txt)
+> > +
+> > +  mediatek,wocpu_ilm:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to a node describing memory used by mtk wed firmware
+> > +
+> > +  mediatek,ap2woccif:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to the mediatek wed-wo controller.
+> > +
+> > +  mediatek,wocpu_boot:
+>=20
+> s/_/-/
 
-> 
-> > 
-> >>
-> >>>
-> >>> Also note that this case is the same as MT8183 vs. MT8365, they got
-> >>> distinct compatible strings and also for those two the only difference
-> >>> is the number of channels.
-> >>
-> >> So why they are not made compatible?
-> > 
-> > My guess is that it's for this very reason:
-> > To correctly communicate the capabilities (in this case: number of
-> > channels) to the driver and not have bogus pwmX show up in the OS
-> > which then causes undocumented MMIO register access in case anyone
-> > tries to actually use them.
-> 
-> No, that's not correct reason. There would be no wrong MMIO access and
-> capabilities would be still correctly communicated.
+ack, I will fix it in v2.
 
-So what exactly do you mean by "made compatible"?
-In the driver? In DTS files? In DT-bindings?
+>=20
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to the mediatek wed-wo boot interface.
+> > +
+> > +  mediatek,wocpu_dlm:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    maxItems: 1
+> > +    description:
+> > +      Phandle to the mediatek wed-wo rx hw ring.
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: mediatek,mt7986-wed
+> > +    then:
+> > +      properties:
+> > +        mediatek,wocpu_data: true
+> > +        mediatek,wocpu_boot: true
+> > +        mediatek,wocpu_emi: true
+> > +        mediatek,wocpu_ilm: true
+> > +        mediatek,ap2woccif: true
+> > +        mediatek,wocpu_dlm: true
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -49,3 +102,76 @@ examples:
+> >          interrupts =3D <GIC_SPI 214 IRQ_TYPE_LEVEL_LOW>;
+> >        };
+> >      };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/reset/ti-syscon.h>
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +      reserved-memory {
+> > +        #address-cells =3D <2>;
+> > +        #size-cells =3D <2>;
+> > +        wocpu0_emi: wocpu0_emi@4fd00000 {
+> > +          reg =3D <0 0x4fd00000 0 0x40000>;
+> > +          no-map;
+> > +        };
+> > +
+> > +        wocpu_data: wocpu_data@4fd80000 {
+> > +          reg =3D <0 0x4fd80000 0 0x240000>;
+> > +          no-map;
+> > +        };
+> > +      };
+> > +
+> > +      ethsys: syscon@15000000 {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <1>;
+> > +        compatible =3D "mediatek,mt7986-ethsys", "syscon";
+> > +        reg =3D <0 0x15000000 0 0x1000>;
+> > +
+> > +        #clock-cells =3D <1>;
+> > +        #reset-cells =3D <1>;
+> > +        ethsysrst: reset-controller {
+> > +          compatible =3D "ti,syscon-reset";
+> > +          #reset-cells =3D <1>;
+> > +          ti,reset-bits =3D <0x34 4 0x34 4 0x34 4 (ASSERT_SET | DEASSE=
+RT_CLEAR | STATUS_SET)>;
+> > +        };
+>=20
+> You don't need to show providers in examples. Presumably we already have=
+=20
+> an example of them in their binding.
 
-> 
-> > 
-> >>
-> >>>
-> >>>>
-> >>>> If so, they are compatible.
-> >>>
-> >>> By that definition you should remove the additional compatible for
-> >>> MT8365 or rather, it should have been rejected for the same argument.
-> >>>
-> >>> I'm talking about
-> >>> commit fe00faee8060402a3d85aed95775e16838a6dad2
-> >>> commit 394b517585da9fbb2eea2f2103ff47d37321e976
-> >>
-> >> This is a pattern spreading in several Mediatek bindings and we already
-> >> commented on new patches. I don't know why people working on Mediatek do
-> >> not mark pieces compatible.
-> > 
-> > Others will have to answer that for you.
-> > 
-> > To me this looks a bit like a structural shortcoming of the PWM controller
-> > bindings: if there was a way to tell the driver "hey, this is like MT8183,
-> > but it got only two channels" that would solve it nicely.
-> > This could either be done using child-nodes for each PWM channel or by
-> > simply adding a 'nr-pwms' property.
-> 
-> No, it's rather someone did not think about Devicetree compatibles or
-> did not care to design the Mediatek bindings and just copy-paste
-> existing pattern...
+ack, I will fix it in v2.
+>=20
+> > +      };
+> > +
+> > +      wocpu0_ilm: wocpu0_ilm@151e0000 {
+> > +        compatible =3D "mediatek,wocpu0_ilm";
+> > +        reg =3D <0 0x151e0000 0 0x8000>;
+> > +      };
+> > +
+> > +      cpu_boot: wocpu_boot@15194000 {
+> > +        compatible =3D "mediatek,wocpu_boot", "syscon";
+> > +        reg =3D <0 0x15194000 0 0x1000>;
+> > +      };
+> > +
+> > +      ap2woccif0: ap2woccif@151a5000 {
+> > +        compatible =3D "mediatek,ap2woccif", "syscon";
+> > +        reg =3D <0 0x151a5000 0 0x1000>;
+> > +        interrupts =3D <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
+> > +      };
+> > +
+> > +      wocpu0_dlm: wocpu_dlm@151e8000 {
+> > +        compatible =3D "mediatek,wocpu_dlm";
+> > +        reg =3D <0 0x151e8000 0 0x2000>;
+> > +        resets =3D <&ethsysrst 0>;
+> > +        reset-names =3D "wocpu_rst";
+> > +      };
+> > +
+> > +      wed1: wed@1020a000 {
+> > +        compatible =3D "mediatek,mt7986-wed","syscon";
+> > +        reg =3D <0 0x15010000 0 0x1000>;
+> > +        interrupts =3D <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +        mediatek,wocpu_data =3D <&wocpu_data>;
+> > +        mediatek,ap2woccif =3D <&ap2woccif0>;
+> > +        mediatek,wocpu_ilm =3D <&wocpu0_ilm>;
+> > +        mediatek,wocpu_dlm =3D <&wocpu0_dlm>;
+> > +        mediatek,wocpu_emi =3D <&wocpu_emi>;
+> > +        mediatek,wocpu_boot =3D <&cpu_boot>;
+> > +      };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt=
+7986-wo-boot.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek=
+,mt7986-wo-boot.yaml
+> > new file mode 100644
+> > index 000000000000..dc8fdb706960
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo=
+-boot.yaml
+> > @@ -0,0 +1,45 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-bo=
+ot.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: MediaTek WED WO boot controller interface for MT7986
+>=20
+> What is 'WED'?
 
-So in that case, maybe those existing patterns should be cleaned up?
-Can you suggest a change? (even informal, I can wrap it up as patch).
+Wireless Ethernet Dispatch. I will fix it in v2.
 
-To me, code is almost always better documentation than actual
-documentation, which is usually time consuming to read, hard to
-understand (compared to reading code or existing examples), and it's
-commonly full of errors. I hardly waste my time with it, if there is
-code or existing examples, I will always prefer do read and understand
-that.
+>=20
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +  - Felix Fietkau <nbd@nbd.name>
+> > +
+> > +description:
+> > +  The mediatek wo-boot provides a configuration interface for WED WO
+> > +  boot controller on MT7986 soc.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - mediatek,wocpu_boot
+>=20
+> This needs to be SoC specific.
+>=20
+> And s/_/-/
 
+ack, I will fix it in v2.
 
-Cheers
+>=20
+> > +      - const: syscon
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +      cpu_boot: wocpu_boot@15194000 {
+> > +        compatible =3D "mediatek,wocpu_boot", "syscon";
+> > +        reg =3D <0 0x15194000 0 0x1000>;
+> > +      };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt=
+7986-wo-ccif.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek=
+,mt7986-wo-ccif.yaml
+> > new file mode 100644
+> > index 000000000000..8fea86425983
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo=
+-ccif.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-cc=
+if.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: MediaTek WED WO Controller for MT7986
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +  - Felix Fietkau <nbd@nbd.name>
+> > +
+> > +description:
+> > +  The mediatek WO-ccif provides a configuration interface for WED WO
+> > +  controller on MT7986 soc.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - mediatek,ap2woccif
+>=20
+> SoC specific.
 
+ack, I will fix it in v2.
 
-Daniel
+>=20
+> > +      - const: syscon
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +      ap2woccif0: ap2woccif@151a5000 {
+> > +        compatible =3D "mediatek,ap2woccif", "syscon";
+> > +        reg =3D <0 0x151a5000 0 0x1000>;
+> > +        interrupts =3D <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> > +      };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt=
+7986-wo-dlm.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,=
+mt7986-wo-dlm.yaml
+> > new file mode 100644
+> > index 000000000000..529343c57e4b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo=
+-dlm.yaml
+> > @@ -0,0 +1,66 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-dl=
+m.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: MediaTek WED WO hw rx ring interface for MT7986
+> > +
+> > +maintainers:
+> > +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> > +  - Felix Fietkau <nbd@nbd.name>
+> > +
+> > +description:
+> > +  The mediatek WO-dlm provides a configuration interface for WED WO
+> > +  rx ring on MT7986 soc.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,wocpu_dlm
+>=20
+> Soc specific
+>=20
+> s/_/-/
+
+ack, I will fix it in v2.
+>=20
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  reset-names:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - resets
+> > +  - reset-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/reset/ti-syscon.h>
+> > +    soc {
+> > +      #address-cells =3D <2>;
+> > +      #size-cells =3D <2>;
+> > +
+> > +      ethsys: syscon@15000000 {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <1>;
+> > +        compatible =3D "mediatek,mt7986-ethsys", "syscon";
+> > +        reg =3D <0 0x15000000 0 0x1000>;
+> > +
+> > +        #clock-cells =3D <1>;
+> > +        #reset-cells =3D <1>;
+> > +        ethsysrst: reset-controller {
+> > +          compatible =3D "ti,syscon-reset";
+> > +          #reset-cells =3D <1>;
+> > +          ti,reset-bits =3D <0x34 4 0x34 4 0x34 4 (ASSERT_SET | DEASSE=
+RT_CLEAR | STATUS_SET)>;
+> > +        };
+> > +      };
+>=20
+> Again, don't need the provider here.
+
+ack, I will fix it in v2.
+
+Regards,
+Lorenzo
+
+>=20
+> > +
+> > +      wocpu0_dlm: wocpu_dlm@151e8000 {
+> > +        compatible =3D "mediatek,wocpu_dlm";
+> > +        reg =3D <0 0x151e8000 0 0x2000>;
+> > +        resets =3D <&ethsysrst 0>;
+> > +        reset-names =3D "wocpu_rst";
+> > +      };
+> > +    };
+> > --=20
+> > 2.37.3
+> >=20
+> >=20
+
+--1DSfyrdVsyuHoMuf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCY1ViPQAKCRA6cBh0uS2t
+rD2HAQCFDDC5z7hFAZN/CdFsQfy/0G73kE8rU6n3vN3jnAGfuwEAx85XrRLYcaWu
+iQGNLEZqtLc73hY+oXvaAHAZIAY+Yg4=
+=oKL4
+-----END PGP SIGNATURE-----
+
+--1DSfyrdVsyuHoMuf--
