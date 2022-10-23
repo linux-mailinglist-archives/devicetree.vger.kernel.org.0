@@ -2,58 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8CA6092B2
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 14:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0FEE6092CD
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 14:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbiJWMkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 08:40:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44284 "EHLO
+        id S230200AbiJWMm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 08:42:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229728AbiJWMkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 08:40:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDAC4558E3;
-        Sun, 23 Oct 2022 05:40:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1809FB80D94;
-        Sun, 23 Oct 2022 12:40:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72B35C433D6;
-        Sun, 23 Oct 2022 12:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666528814;
-        bh=ZEiIzMSDpIkZt7/SPHRln4v4bjyPf/a+k7QaV+LPBFM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Nynx9eZWNn/hKOx1JDTdE41rYub+ZHZRKQ2AOro5ymdPlhfmRVMI3In521M9ndeIE
-         y18Fs+5jzHiSV9JbzVl91u5oFC/oWwG8B7XIG1RYbAK7WULnj7cm1y98/qFnGfgkoo
-         iE93ISEbaiBkEZWNkcelYX8MJ+S1oiHqQBlsWp/mwk7UxNH6CxcFE/PgTcDS0RrBF6
-         1GBqca+PWiwX6xZrughhmUoexEjNLlVTmK2CR8ITDjMdvUI+VhtLADY5/iBQzE8r0P
-         C3Bfcsh3jBMtPkmDiPxQqBoqjWADI2kDj8X9VzbPulXVOGZCoCc3h/faPz2FQfsYj5
-         6is9x+78D3WYw==
-Date:   Sun, 23 Oct 2022 13:40:48 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
+        with ESMTP id S229515AbiJWMm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 08:42:26 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803F371BD1
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 05:42:24 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id f14so5011729qvo.3
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 05:42:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+dNqRQRAFugjczsB3YU3yguRA5GGcr0CHWzup1MXaDM=;
+        b=rJIgRZFSSqPE8eX3ph8ysh5ft6tckLdjjSGWzPe0QOCpnkhF3a0g3hF8F8VF2EbSvj
+         LrPb1u0Rfu2l0AOjp80eeAaq+7SUeYMmXNE6Bzpf36u0U3G1hwtHyQqgT/V4fCDpBpmd
+         FIYwWfOE7J9A7JXNwVYpKORVEcX4xXo+GGwEOMhc3nGT9xcgDiQIkjA1TkMUiDgYElf6
+         lcUynFRHCC758w8BEjfeUz/d2YJ77aDdAErBP9vUhazovLIReszmEyeJjHamLH4asJzm
+         ypuZyDDsEIxl0ErqU7t86+dUUS1uyjgP+20Gw0oceOK27IAOI0x4cNGBnTFkY0gIUVp2
+         KKRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+dNqRQRAFugjczsB3YU3yguRA5GGcr0CHWzup1MXaDM=;
+        b=e8okvZVGQ39yoaprDLXHGQFJfPClp3gZ/Y7wL/pwdsAvImPDe+By9vk6IM5yvikuPb
+         5v5PWnqPgrS3eBbzRcoR1zVjDsCwxy+DwePGfQmRAyy16IP8380/ugTYGkRjJqYH0gUx
+         dLHd1usbaJW8onpK8f56DRBg9xgSULko4lVBxsI4efnMlMyQ1Htr+z4FkI4DoO+XAPo7
+         G0otIqKT8Zn2fDwY8OQTFzShfYaiBzLc5d1Xp2BeZwqLtXXq/q8I8jCXpbbAqpovQjSg
+         bcSnexKpuyt3OXXn/JzRjvgpojJyvu5Cte51wZd2Fu8Gz88FTe24veXVuRsck6aZbJYQ
+         cq7A==
+X-Gm-Message-State: ACrzQf3/ko5zNUMdh2jivv5A1q0Ii1sRGUhSPJSy2LUWC6K3CIlYGFj8
+        g3p8TYudxo+AmdE46SGkjWDKOA==
+X-Google-Smtp-Source: AMsMyM5bMYWoMRh4iQ1zK0qQlEgSZPq1CjqbrpF05xYkS8RNTfLOPbi5ypowUTLT/tdJv+z4pP+3SA==
+X-Received: by 2002:a05:6214:23cc:b0:4b4:9d7e:6b86 with SMTP id hr12-20020a05621423cc00b004b49d7e6b86mr23398969qvb.66.1666528942746;
+        Sun, 23 Oct 2022 05:42:22 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id v20-20020a05620a441400b006ce813bb306sm13036948qkp.125.2022.10.23.05.42.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Oct 2022 05:42:22 -0700 (PDT)
+Message-ID: <652809f4-caf8-cb01-3d79-530f4288b00a@linaro.org>
+Date:   Sun, 23 Oct 2022 08:42:20 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: ingenic: Add support for the JZ4755
+ CGU
+Content-Language: en-US
+To:     Siarhei Volkau <lis8215@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>
-Subject: Re: [PATCH v2 1/5] iio: temperature: ltc2983: allocate iio channels
- once
-Message-ID: <20221023134048.5a1dd6d9@jic23-huawei>
-In-Reply-To: <20221020090257.1717053-2-demonsingur@gmail.com>
-References: <20221020090257.1717053-1-demonsingur@gmail.com>
-        <20221020090257.1717053-2-demonsingur@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        Paul Cercueil <paul@crapouillou.net>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20221023123944.4103876-1-lis8215@gmail.com>
+ <20221023123944.4103876-2-lis8215@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221023123944.4103876-2-lis8215@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,58 +80,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Oct 2022 12:02:53 +0300
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
+On 23/10/2022 08:39, Siarhei Volkau wrote:
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> 
-> Currently, every time the device wakes up from sleep, the
-> iio_chan array is reallocated, leaking the previous one
-> until the device is removed (basically never).
-> 
-> Move the allocation to the probe function to avoid this.
-> 
-> Fixes: f110f3188e56 ("iio: temperature: Add support for LTC2983")
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-Note I already have this queued as a fix and I've sent the pull request to Greg this
-morning.  For future versions of this series, maybe just put a note in the cover
-letter to cover the dependency.
+Unack. You still do not have commit msg.
 
-Jonathan
+This is a friendly reminder during the review process.
 
-> ---
->  drivers/iio/temperature/ltc2983.c | 13 ++++++-------
->  1 file changed, 6 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/iio/temperature/ltc2983.c b/drivers/iio/temperature/ltc2983.c
-> index b652d2b39bcf..a60ccf183687 100644
-> --- a/drivers/iio/temperature/ltc2983.c
-> +++ b/drivers/iio/temperature/ltc2983.c
-> @@ -1385,13 +1385,6 @@ static int ltc2983_setup(struct ltc2983_data *st, bool assign_iio)
->  		return ret;
->  	}
->  
-> -	st->iio_chan = devm_kzalloc(&st->spi->dev,
-> -				    st->iio_channels * sizeof(*st->iio_chan),
-> -				    GFP_KERNEL);
-> -
-> -	if (!st->iio_chan)
-> -		return -ENOMEM;
-> -
->  	ret = regmap_update_bits(st->regmap, LTC2983_GLOBAL_CONFIG_REG,
->  				 LTC2983_NOTCH_FREQ_MASK,
->  				 LTC2983_NOTCH_FREQ(st->filter_notch_freq));
-> @@ -1514,6 +1507,12 @@ static int ltc2983_probe(struct spi_device *spi)
->  		gpiod_set_value_cansleep(gpio, 0);
->  	}
->  
-> +	st->iio_chan = devm_kzalloc(&spi->dev,
-> +				    st->iio_channels * sizeof(*st->iio_chan),
-> +				    GFP_KERNEL);
-> +	if (!st->iio_chan)
-> +		return -ENOMEM;
-> +
->  	ret = ltc2983_setup(st, true);
->  	if (ret)
->  		return ret;
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+Best regards,
+Krzysztof
 
