@@ -2,243 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 397E66091F8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 11:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5375A609202
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 11:30:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229956AbiJWJQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 05:16:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48648 "EHLO
+        id S230055AbiJWJa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 05:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229847AbiJWJQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 05:16:36 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE53974DE4;
-        Sun, 23 Oct 2022 02:16:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1666516580; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=H7RtD++1u5fevcptE9TXwCT0AimO9ZvWvbekTS/uCbE=;
-        b=oUXmfxcwPCLfN0I+Ng6Nc9Hy6xMGMcrMvu1yGSiiv4jCf1fL2WzeOZOiBCU2Na1PT5oC4Z
-        ztcTqE13tr7tZbF7VFrajGZOKAHUX9U6/Gep6ruUc6X5CRfxfBm97HTX/nM5uoA2sdZ1Mr
-        myYoO0eezCUzbSsX8u7Uh4gPY5ho5Y8=
-Date:   Sun, 23 Oct 2022 10:16:10 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v3 2/2] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229783AbiJWJa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 05:30:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5944060E9D;
+        Sun, 23 Oct 2022 02:30:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 69A5A60AF7;
+        Sun, 23 Oct 2022 09:30:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3444FC433D6;
+        Sun, 23 Oct 2022 09:30:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666517422;
+        bh=SvZU34knkzTksbDV9/R1UQaBdQ4Vp+P93Kb6ii8rmFI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IdS3KcbBazezxh9b26kfs977M6yjyqN0x7jvtpV3Q5ywMUbCdObrVuPS0OEKBg6Up
+         AUbvS3j2LuHGFqAvJMcaHQaOpw26+XGcU328Q4qn9Jg9EfQohWWl7Cl21AcBj8sF3z
+         vbyTl8JsU+nEBOS49rJMLoQk67n/0NUUGT+CLpZU4ZNYqgu79QgzbPhIAs6TmWqWkS
+         V5SyNz6DTXrvgtVqrAPVxeWnU5q9pGsokJSGRSMfu5s1IDTTac76H+C9kV65xs90bL
+         HxOkVbw/nqYM9QSy9hTkL1a8XdqxMc5qCyUl9cnw6d+6xKW6EjF8iaG5qpi60GXnfH
+         AHwXX9o8pr9Vg==
+Date:   Sun, 23 Oct 2022 17:30:16 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, linux-input@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <YE87KR.VC65A15U1PH41@crapouillou.net>
-In-Reply-To: <CAKNVLfZmUpFzKsdzY1e_mUTVsM-jnL65Fi6EXYcF80-oNV+DGQ@mail.gmail.com>
-References: <20221022165047.4020785-1-lis8215@gmail.com>
-        <20221022165047.4020785-3-lis8215@gmail.com>
-        <9W76KR.NVDSVG4IWZ3A3@crapouillou.net>
-        <CAKNVLfZmUpFzKsdzY1e_mUTVsM-jnL65Fi6EXYcF80-oNV+DGQ@mail.gmail.com>
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ARM: dts: imx6qdl-sabre*: fix Egalax touchscreen
+ properties
+Message-ID: <20221023093016.GC125525@dragon>
+References: <20220920042608.1865560-1-dmitry.torokhov@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220920042608.1865560-1-dmitry.torokhov@gmail.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Sep 19, 2022 at 09:26:05PM -0700, Dmitry Torokhov wrote:
+> This patch fixes interrupt trigger (should be level low as that is what the
+> driver is always using), the GPIO that is the interrupt source that is also
+> used to wake up chip by driving the line low.
+> 
+> The proper polarity is be needed for converting the driver to gpiod API.
+> 
+> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-Le dim. 23 oct. 2022 =C3=A0 08:29:45 +0300, Siarhei Volkau=20
-<lis8215@gmail.com> a =C3=A9crit :
-> =D1=81=D0=B1, 22 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 23:07, Paul Cerc=
-ueil=20
-> <paul@crapouillou.net>:
->>=20
->>  Hi Siarhei,
->>=20
->>  Le sam. 22 oct. 2022 =C3=A0 19:50:47 +0300, Siarhei Volkau
->>  <lis8215@gmail.com> a =C3=A9crit :
->>  > JZ4750/55/60 (but not JZ4760b) have an extra divisor in between=20
->> extclk
->>  > and peripheral clock, called CPCCR.ECS, the driver can't figure=20
->> out
->>  > the
->>  > real state of the divisor without dirty hack - peek CGU CPCCR
->>  > register.
->>  > However, we can rely on a vendor's bootloader (u-boot 1.1.6)=20
->> behavior:
->>  > if (extclk > 16MHz)
->>  >     the divisor is enabled, so the UART driving clock is extclk/2.
->>  >
->>  > This behavior relies on hardware differences: most boards (if not=20
->> all)
->>  > with those SoCs have 12 or 24 MHz oscillators but many peripherals
->>  > want
->>  > 12Mhz to operate properly (AIC and USB-PHY at least).
->>  >
->>  > The patch doesn't affect JZ4760's behavior as it is subject for
->>  > another
->>  > patchset with re-classification of all supported ingenic UARTs.
->>  >
->>  > Link:
->>  >=20
->> https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_seri=
-al.c#L158
->>  > Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
->>  > ---
->>  >  drivers/tty/serial/8250/8250_ingenic.c | 48
->>  > ++++++++++++++++++++++----
->>  >  1 file changed, 42 insertions(+), 6 deletions(-)
->>  >
->>  > diff --git a/drivers/tty/serial/8250/8250_ingenic.c
->>  > b/drivers/tty/serial/8250/8250_ingenic.c
->>  > index 2b2f5d8d2..744705467 100644
->>  > --- a/drivers/tty/serial/8250/8250_ingenic.c
->>  > +++ b/drivers/tty/serial/8250/8250_ingenic.c
->>  > @@ -87,24 +87,19 @@ static void __init
->>  > ingenic_early_console_setup_clock(struct earlycon_device *dev
->>  >       dev->port.uartclk =3D be32_to_cpup(prop);
->>  >  }
->>  >
->>  > -static int __init ingenic_early_console_setup(struct=20
->> earlycon_device
->>  > *dev,
->>  > +static int __init ingenic_earlycon_setup_tail(struct=20
->> earlycon_device
->>  > *dev,
->>  >                                             const char *opt)
->>  >  {
->>  >       struct uart_port *port =3D &dev->port;
->>  >       unsigned int divisor;
->>  >       int baud =3D 115200;
->>  >
->>  > -     if (!dev->port.membase)
->>  > -             return -ENODEV;
->>  > -
->>  >       if (opt) {
->>  >               unsigned int parity, bits, flow; /* unused for now=20
->> */
->>  >
->>  >               uart_parse_options(opt, &baud, &parity, &bits,=20
->> &flow);
->>  >       }
->>  >
->>  > -     ingenic_early_console_setup_clock(dev);
->>  > -
->>  >       if (dev->baud)
->>  >               baud =3D dev->baud;
->>  >       divisor =3D DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
->>  > @@ -129,9 +124,49 @@ static int __init
->>  > ingenic_early_console_setup(struct earlycon_device *dev,
->>  >       return 0;
->>  >  }
->>  >
->>  > +static int __init ingenic_early_console_setup(struct=20
->> earlycon_device
->>  > *dev,
->>  > +                                           const char *opt)
->>  > +{
->>  > +     if (!dev->port.membase)
->>  > +             return -ENODEV;
->>  > +
->>  > +     ingenic_early_console_setup_clock(dev);
->>  > +
->>  > +     return ingenic_earlycon_setup_tail(dev, opt);
->>  > +}
->>  > +
->>  > +static int __init jz4750_early_console_setup(struct=20
->> earlycon_device
->>  > *dev,
->>  > +                                          const char *opt)
->>  > +{
->>  > +     if (!dev->port.membase)
->>  > +             return -ENODEV;
->>  > +
->>  > +     /*
->>  > +      * JZ4750/55/60 (not JZ4760b) have an extra divisor
->>  > +      * between extclk and peripheral clock, the
->>  > +      * driver can't figure out the real state of the
->>  > +      * divisor without dirty hacks (peek CGU register).
->>  > +      * However, we can rely on a vendor's behavior:
->>  > +      * if (extclk > 16MHz)
->>  > +      *   the divisor is enabled.
->>  > +      * This behavior relies on hardware differences:
->>  > +      * most boards with those SoCs have 12 or 24 MHz
->>  > +      * oscillators but many peripherals want 12Mhz
->>  > +      * to operate properly (AIC and USB-phy at least).
->>  > +      */
->>  > +     ingenic_early_console_setup_clock(dev);
->>  > +     if (dev->port.uartclk > 16000000)
->>  > +             dev->port.uartclk /=3D 2;
->>=20
->>  I don't understand, didn't we came up to the conclusion in your V1=20
->> that
->>  it was better to force-enable the EXT/2 divider in the ingenic init
->>  code?
->>=20
->>  -Paul
->>=20
->=20
-> That was better at that moment. I dived deeper in the situation and=20
-> found
-> a more simple and universal solution, as I think.
-> Your proposal doesn't cover following situations:
->  - JZ475x with 12MHz crystal
->  - JZ4760 with 24MHz crystal
-> which are legal and might appear in some hardware.
+Looks good to me.  Let me know if you want me to pick it up.  Otherwise,
 
-Do you have such hardware?
+Acked-by: Shawn Guo <shawnguo@kernel.org>
 
-Don't add support for cases you can't test.
+Shawn
 
-For what we know - all JZ475x use a 24 MHz crystal and all JZ4760(B)=20
-use a 12 MHz crystal, until proven otherwise.
-
--Paul
-
->>  > +
->>  > +     return ingenic_earlycon_setup_tail(dev, opt);
->>  > +}
->>  > +
->>  >  OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
->>  >                   ingenic_early_console_setup);
->>  >
->>  > +OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
->>  > +                 jz4750_early_console_setup);
->>  > +
->>  >  OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
->>  >                   ingenic_early_console_setup);
->>  >
->>  > @@ -328,6 +363,7 @@ static const struct ingenic_uart_config
->>  > x1000_uart_config =3D {
->>  >
->>  >  static const struct of_device_id of_match[] =3D {
->>  >       { .compatible =3D "ingenic,jz4740-uart", .data =3D=20
->> &jz4740_uart_config
->>  > },
->>  > +     { .compatible =3D "ingenic,jz4750-uart", .data =3D=20
->> &jz4760_uart_config
->>  > },
->>  >       { .compatible =3D "ingenic,jz4760-uart", .data =3D=20
->> &jz4760_uart_config
->>  > },
->>  >       { .compatible =3D "ingenic,jz4770-uart", .data =3D=20
->> &jz4760_uart_config
->>  > },
->>  >       { .compatible =3D "ingenic,jz4775-uart", .data =3D=20
->> &jz4760_uart_config
->>  > },
->>  > --
->>  > 2.36.1
->>  >
->>=20
->>=20
-
-
+> ---
+>  arch/arm/boot/dts/imx6qdl-sabreauto.dtsi | 4 ++--
+>  arch/arm/boot/dts/imx6qdl-sabresd.dtsi   | 8 ++++----
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi b/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi
+> index 1368a4762037..1883350d004e 100644
+> --- a/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-sabreauto.dtsi
+> @@ -451,8 +451,8 @@ touchscreen@4 {
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&pinctrl_egalax_int>;
+>  		interrupt-parent = <&gpio2>;
+> -		interrupts = <28 IRQ_TYPE_EDGE_FALLING>;
+> -		wakeup-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>;
+> +		interrupts = <28 IRQ_TYPE_LEVEL_LOW>;
+> +		wakeup-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
+>  	};
+>  };
+>  
+> diff --git a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+> index 37482a9023fc..09f4c2fa3ad6 100644
+> --- a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
+> @@ -311,8 +311,8 @@ touchscreen@4 {
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&pinctrl_i2c2_egalax_int>;
+>  		interrupt-parent = <&gpio6>;
+> -		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
+> -		wakeup-gpios = <&gpio6 8 GPIO_ACTIVE_HIGH>;
+> +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+> +		wakeup-gpios = <&gpio6 8 GPIO_ACTIVE_LOW>;
+>  	};
+>  
+>  	ov5640: camera@3c {
+> @@ -450,8 +450,8 @@ egalax_ts@4 {
+>  		compatible = "eeti,egalax_ts";
+>  		reg = <0x04>;
+>  		interrupt-parent = <&gpio6>;
+> -		interrupts = <7 2>;
+> -		wakeup-gpios = <&gpio6 7 0>;
+> +		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+> +		wakeup-gpios = <&gpio6 7 GPIO_ACTIVE_LOW>;
+>  	};
+>  
+>  	magnetometer@e {
+> -- 
+> 2.37.3.968.ga6b4b080e4-goog
+> 
