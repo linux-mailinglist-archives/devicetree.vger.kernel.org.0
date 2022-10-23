@@ -2,990 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1301960964C
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 22:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B42D609681
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 23:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbiJWUqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 16:46:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41230 "EHLO
+        id S229610AbiJWV1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 17:27:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbiJWUqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 16:46:19 -0400
-Received: from mail-0301.mail-europe.com (mail-0301.mail-europe.com [188.165.51.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0BC6B665;
-        Sun, 23 Oct 2022 13:46:06 -0700 (PDT)
-Date:   Sun, 23 Oct 2022 20:46:00 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1666557962; x=1666817162;
-        bh=SmpW3eFDwybh3aPlX5b8GYFlbzxEioP6eZkX0RVw8Q4=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID;
-        b=Qkua8KQ/seA6o4k/Ib+o8HkE5anjaP8xj7+X5MUb5a4B3LGxlTGDwJ6+XHKMykyiW
-         aEY6RQFeKPvUK6GOMKO61Wy4vrn7C4ud9l/SFziFJXWvoXevjkNh235q8m5fKUQJt/
-         1b2Vq6GKD4WJBqT27P+GUMFsif00/eRGyo0pVJa2MNsxjkPvfuXUfwp7J8uneyqQ0r
-         sgM2DWKdVjWLv+R+WXZr1YbH23XxXmZzSCtC5Xov76FbBJpAL1rF/F/4R5OLehjBAn
-         ZKjS4JE3xmKDGSp0NDUI+usuUPYAmlK4zOms9GFSaf4pivyYLH5jiAzBeGl8CQq+OY
-         TlZRSuk8Z8uEw==
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-From:   Harry Austen <hpausten@protonmail.com>
-Cc:     Harry Austen <hpausten@protonmail.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: qcom: msm8996: add support for oneplus3(t)
-Message-ID: <20221023204505.115141-5-hpausten@protonmail.com>
-In-Reply-To: <20221023204505.115141-1-hpausten@protonmail.com>
-References: <20221023204505.115141-1-hpausten@protonmail.com>
-Feedback-ID: 53116287:user:proton
+        with ESMTP id S229449AbiJWV1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 17:27:22 -0400
+Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D563566872
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 14:27:20 -0700 (PDT)
+Received: from CHE01-GV0-obe.outbound.protection.outlook.com
+ (mail-gv0che01lp2047.outbound.protection.outlook.com [104.47.22.47]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ de-mta-28-3a2WCR6DNna4B4JR5mElEA-2; Sun, 23 Oct 2022 23:27:18 +0200
+X-MC-Unique: 3a2WCR6DNna4B4JR5mElEA-2
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
+ GV0P278MB0903.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:52::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5746.23; Sun, 23 Oct 2022 21:27:16 +0000
+Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::3c38:efa9:5eff:4caa]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::3c38:efa9:5eff:4caa%4]) with mapi id 15.20.5746.023; Sun, 23 Oct 2022
+ 21:27:16 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 2/8] arm64: dts: verdin-imx8mm: verdin-imx8mp: improve
+ include notation
+Thread-Topic: [PATCH v1 2/8] arm64: dts: verdin-imx8mm: verdin-imx8mp: improve
+ include notation
+Thread-Index: AQHYzqE+I/phM+AqSEyEC+imRWjmYK4cry6A
+Date:   Sun, 23 Oct 2022 21:27:16 +0000
+Message-ID: <69449ded99d51315e0a8133239dcdaa4d1547168.camel@toradex.com>
+References: <20220922162925.2368577-1-marcel@ziswiler.com>
+         <20220922162925.2368577-3-marcel@ziswiler.com>
+In-Reply-To: <20220922162925.2368577-3-marcel@ziswiler.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|GV0P278MB0903:EE_
+x-ms-office365-filtering-correlation-id: 97430b46-e513-4724-44fb-08dab53d5bb3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: Jt29tLhcNX3Nlt7IWu2CjBC6c4gU5fjpNTVbl+tIyL02FD+LRfI26f1DS1V+y9NPoGUWUeoXp3Ud9QSs8gKOSUOtAM7QceorR/UKT/Wc7hDvUhnJELdsnWKP01Rp8hhTarRXIRrozeWdAoAqV7z8iENhmysVqBoscfei/Y+H+b/KauysWdtChXjjofTUnMAPLuja/KOnTOCoJJhPUnG8LrmhW6fyUQGPJu1AL5G6m/lq+X/BdKS1DNiPsrtMqUFxie703UXqNAPOnnvmbokK5A6vlWV7A7xhfCpuKgqnQ6v2z5o6bZ9GT2XXAb6cM2WFU6d8bihNgIaUr+vDE677Vci3hZ5ISReKsN/aD8pK+oqr2NweVU0Yz9qUMeNRP0TCOEi8vaQ4Qe2tX8LrUL4IvRTN09xt5iNKs+Evt64MpJpLsoZU6ymR3j1r4EmDBKKkNQUxgEC+aySMuGNapshTtW6qJMunlrQ07l7KlOTnlPzRlV2079Jt9inY9OnOtqQVeodzINUTCl6MWtRUwR19QQ79nu9LmdILLIm4po4vJ/HeOO7cKd7wx164z63+h8YpQ/Cu6aFvNlqWpQmGuyL40HAgl0ADKuD2vQIHsYyKnmCESQif40HWzdQNC/yq+UuCDESGRyTbl1qWL/yCEXVGCf4kI3eqknVToEv7E8TlAAQBwpfKr27q1i/VYf0Z5P7+Bp7eGsiDImTuCwZvcDEaJDGh+5Cr9HZm8hqKj5sZkde9PY9W3NbMlyHfPHeYW2g+WwF5jU4qQv1Fi78mXmb1pQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(136003)(376002)(346002)(366004)(39830400003)(451199015)(36756003)(38100700002)(41300700001)(122000001)(38070700005)(83380400001)(66946007)(86362001)(186003)(6512007)(2616005)(6506007)(2906002)(478600001)(44832011)(71200400001)(5660300002)(8936002)(7416002)(6486002)(6916009)(54906003)(316002)(4326008)(8676002)(66476007)(66446008)(64756008)(66556008)(76116006);DIR:OUT;SFP:1102
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b2NlTDRvM2dhd1J5K1YrdkJoNFdRUFYvV3hINHFKNzVZQytPc1BLenVGOWRN?=
+ =?utf-8?B?WHZJSzBzU3hjVGt5SjFhRUpFU2pmQ2hLQlRyNWtkRFdkdXMvVEh4YmRxYVpH?=
+ =?utf-8?B?RzhXcVN2YWZ4WTlpaXl1TE83WldFOFNSdU10cC8wbXlJWkcybzl1M0NNKzV0?=
+ =?utf-8?B?TkF4b200WWFFTlhVaEpTTS81U2t5WnpBMGUzYm5tQmRzS09wZGtFc3FMSG9r?=
+ =?utf-8?B?MEV2TE1MWU96UjR6d2p6R2JCRXdUMUp2aW93em5KbkF6VnNxUjVIRGlHNWUw?=
+ =?utf-8?B?aTd4V0JCTjNnaUZHZEVwVXRsbWtqaWZGbTBIK0o0bXJJQlkwS2pvMmRBMStu?=
+ =?utf-8?B?TEZSLzNlTmUzQ2ovdnpEcW9Id1BaTC9FRFg0d3kyYnZ6NEFNSDl2Q1d2N0o2?=
+ =?utf-8?B?a2t1YnNoT0s5NGxxSmdzaEZUVXJUNHE2NXh2RXptUXdHd3hUT0ZmdVA0VWNC?=
+ =?utf-8?B?RDBjOEI1N3hIUGtsV0hTd0IrUTZ5TjNVT1p5V0M1azlsYjE1K1FPRXhZaFJ1?=
+ =?utf-8?B?aGNWUWV4Yit6Y2VvNi9YRlQrUGZmUGdxRW1jZGo5bnVwZVZxR09lbnpCNHJi?=
+ =?utf-8?B?Zy9rcFJEeG5KanN2eVBiREJMY2JzTk9LbE5IdS9NNzAvcmVNZWp1MVhMVU04?=
+ =?utf-8?B?eVJZRi90bWM5T2tCS0RJWjdYWU5jVW1WdDI5UHFRRmJSeHR0M3VvTjZRdFVj?=
+ =?utf-8?B?V2NzRWZSYjRWV0JSSFZhMUE2V2kzWnBxZkRJUFAvUU5iMk9MVlp1Yk53YlNx?=
+ =?utf-8?B?N3VrektGZG9iMEZZK3VWMDYyckFyOW5nRDNiWktnRVZ6aWdRcktiR3h6aHlY?=
+ =?utf-8?B?eDJDWW9icktSVU56Sit6ZlY1dHB6MkIzblN2c1ZFRlgySnpmZzdFR1FqVW5I?=
+ =?utf-8?B?Z2gvanZQbGJmaDFlazdRVEg2azRYSEZsNWJiQVJmOGZ4cnFBbXNuZFg1Tjlu?=
+ =?utf-8?B?T0Jac3ZCLzNwVnR5cXFZcWZ3SEJ2U1pCRlcrcUkrN1Nuc251cm9kaXhzUFFq?=
+ =?utf-8?B?K2J4R0srQ0xaSFJGUnJxUEZrMWVUdDFPVURsZGZCbzhrc21SQlFOaHZBYUtP?=
+ =?utf-8?B?QzI0U1J0d2VwS09TZUVtUFlIVVBHT1NET3diMHMxV0FJamhiRDJjakx5ZWM3?=
+ =?utf-8?B?WWhYTkdJMGV5aHIyYjdHWnZ4VDJOR2pvQTllRnY1SWVzbG5abmZJU2RmdndV?=
+ =?utf-8?B?bHVRbVRMVXZ3b3gxUkFkWlNTRVhoc2RjemQwVzN5cUNCYW5iRnVzYzdjSWZG?=
+ =?utf-8?B?V1pLaWIvWkJwTFFHS2RRUjRDdVM4eW1KWEFaLzFBd0I1RmVHVjZxR1QrQmk1?=
+ =?utf-8?B?ZWZFMkEvQmFsZFlSbEtVazQxSkJTSlVURWpmeG1rbVgzV1RQVmcwd2dQTVJ5?=
+ =?utf-8?B?MnU0T0IvWUVkQnlVRmVoWTNOSmUwelFsZmsxVXdRUldvaEk3V1FkRDBCUk1m?=
+ =?utf-8?B?YkMraEZwQ0xYdUY5QUEvSW14SEJCSkJMdExYWVViWm9Rc0Z6a0ExbTdLVC9z?=
+ =?utf-8?B?V1h2RVdaS3lLb3kvR0hXd1VMVWRJdUIzQ3hWcEFSb0F0UVIrL0RkdHRnZUdw?=
+ =?utf-8?B?azRLSWVOZnFBRk40UmtEendLc0NZSWhPV0Z3N3BlNWVXWGNwdmdycUdCajJy?=
+ =?utf-8?B?aFNhSnBod3ovWkZwZEZVVXFua3R3Ri91NFg5N0pOTHU3RUcvNWpJSUtBbHI2?=
+ =?utf-8?B?VFVBYi8zaUFkYkFQamxFZFZZWk9tZHdXTVFCTVhaWUdKMXpJMnpEdmVKSUYz?=
+ =?utf-8?B?Qm1vZWNhYU15Qlo0QVFiSDNCUitmSDVFTmVzQ0hBS3NzbXNCYXlzNFpueTdt?=
+ =?utf-8?B?WTNzSVRXOUx5N1BlOXY2UExPN2I2U1BSMjk0NlBqZVMxd3h6ejVDYVlQUVlu?=
+ =?utf-8?B?ME5oNG5WWGU1clJqbE81a1MrYVNEdUdCdnByOW94cGI2UG5hR1RhNkVvcGxY?=
+ =?utf-8?B?OHZ2cGFsUzhWRGM5d25lTStpMFAxU0d5YzFLQVZzRDVGc3AzRlpRZ1FKeko5?=
+ =?utf-8?B?UGRKKzVMMVlONzVZS25SVzgxelRGd0RQR2hKbGlKY25xZ280RG1uQ2dHcmFH?=
+ =?utf-8?B?Z0dRWm5PT2tqc0N6cFVwa0dYTGVONE5FZ0tvWnBlbXhONWNicFY4REJqWVNJ?=
+ =?utf-8?B?L2R1b1ZzQ1hobDV4VWN0andVVzhockFBM2pscGtHR1FYcHN4V1hmQzZDUDNU?=
+ =?utf-8?Q?v4T3P79mVzl6sWb2a5BpGnmqNL6vVmPZuv/zt3ZC663n?=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97430b46-e513-4724-44fb-08dab53d5bb3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2022 21:27:16.2141
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZuMAVatKB6mcgCO+ocI4JmxDDIz2QltW5OkVolwVAlx4jXitDRl/NSvNdA2LOYEgzhIKpAiLtfwlJH8xXSTgFuh2pRnWyylmpfWDEy7rbBA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV0P278MB0903
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: toradex.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-ID: <85A72BE46BD69C41A1AF13F71A1E1916@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for OnePlus 3 and 3T mobile phones. They are based
-on the MSM8996 SoC.
-
-Co-developed-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Signed-off-by: Harry Austen <hpausten@protonmail.com>
----
-v1 -> v2: address Krzysztof's review comments
-
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../boot/dts/qcom/msm8996-oneplus-common.dtsi | 787 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/msm8996-oneplus3.dts |  44 +
- .../arm64/boot/dts/qcom/msm8996-oneplus3t.dts |  45 +
- 4 files changed, 878 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/msm8996-oneplus3.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/M=
-akefile
-index b0558d3389e5..bc0d93a0dad3 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -33,6 +33,8 @@ dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8994-sony-xperia-kitaka=
-mi-satsuki.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8994-sony-xperia-kitakami-sumire.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8994-sony-xperia-kitakami-suzuran.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-oneplus3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-oneplus3t.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-sony-xperia-tone-dora.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-sony-xperia-tone-kagura.dtb
- dtb-$(CONFIG_ARCH_QCOM)=09+=3D msm8996-sony-xperia-tone-keyaki.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi b/arch/ar=
-m64/boot/dts/qcom/msm8996-oneplus-common.dtsi
-new file mode 100644
-index 000000000000..20f5c103c63b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi
-@@ -0,0 +1,787 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2022, Harry Austen <hpausten@protonmail.com>
-+ */
-+
-+#include "msm8996.dtsi"
-+#include "pm8994.dtsi"
-+#include "pmi8994.dtsi"
-+#include "pmi8996.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd9335.h>
-+
-+/ {
-+=09aliases {
-+=09=09serial0 =3D &blsp1_uart2;
-+=09=09serial1 =3D &blsp2_uart2;
-+=09};
-+
-+=09battery: battery {
-+=09=09compatible =3D "simple-battery";
-+
-+=09=09constant-charge-current-max-microamp =3D <3000000>;
-+=09=09voltage-min-design-microvolt =3D <3400000>;
-+=09};
-+
-+=09chosen {
-+=09=09stdout-path =3D "serial1:115200n8";
-+=09};
-+
-+=09clocks {
-+=09=09div1_mclk: div1-clk {
-+=09=09=09compatible =3D "gpio-gate-clock";
-+=09=09=09pinctrl-names =3D "default";
-+=09=09=09pinctrl-0 =3D <&audio_mclk>;
-+=09=09=09#clock-cells =3D <0>;
-+=09=09=09clocks =3D <&rpmcc RPM_SMD_DIV_CLK1>;
-+=09=09=09enable-gpios =3D <&pm8994_gpios 15 GPIO_ACTIVE_HIGH>;
-+=09=09};
-+
-+=09=09divclk4: div4-clk {
-+=09=09=09compatible =3D "fixed-clock";
-+=09=09=09pinctrl-names =3D "default";
-+=09=09=09pinctrl-0 =3D <&divclk4_pin_a>;
-+=09=09=09#clock-cells =3D <0>;
-+=09=09=09clock-frequency =3D <32768>;
-+=09=09=09clock-output-names =3D "divclk4";
-+=09=09};
-+=09};
-+
-+=09reserved-memory {
-+=09=09ramoops@ac000000 {
-+=09=09=09compatible =3D "ramoops";
-+=09=09=09reg =3D <0 0xac000000 0 0x200000>;
-+=09=09=09record-size =3D <0x20000>;
-+=09=09=09console-size =3D <0x100000>;
-+=09=09=09pmsg-size =3D <0x80000>;
-+=09=09};
-+=09};
-+
-+=09vph_pwr: vph-pwr-regulator {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09regulator-name =3D "vph_pwr";
-+=09=09regulator-min-microvolt =3D <3700000>;
-+=09=09regulator-max-microvolt =3D <3700000>;
-+=09=09regulator-always-on;
-+=09=09regulator-boot-on;
-+=09};
-+
-+=09wlan_en: wlan-en-regulator {
-+=09=09compatible =3D "regulator-fixed";
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&wlan_en_gpios>;
-+=09=09regulator-name =3D "wlan-en-regulator";
-+=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09regulator-max-microvolt =3D <1800000>;
-+
-+=09=09gpio =3D <&pm8994_gpios 8 GPIO_ACTIVE_HIGH>;
-+
-+=09=09/* WLAN card specific delay */
-+=09=09startup-delay-us =3D <70000>;
-+=09=09enable-active-high;
-+=09};
-+};
-+
-+&adsp_pil {
-+=09status =3D "okay";
-+};
-+
-+&blsp1_i2c3 {
-+=09status =3D "okay";
-+
-+=09tfa9890_amp: audio-codec@36 {
-+=09=09compatible =3D "nxp,tfa9890";
-+=09=09reg =3D <0x36>;
-+=09=09#sound-dai-cells =3D <0>;
-+=09};
-+};
-+
-+&blsp1_i2c6 {
-+=09status =3D "okay";
-+
-+=09bq27541: fuel-gauge@55 {
-+=09=09compatible =3D "ti,bq27541";
-+=09=09reg =3D <0x55>;
-+=09};
-+};
-+
-+&blsp1_uart2 {
-+=09label =3D "BT-UART";
-+=09uart-has-rtscts;
-+=09status =3D "okay";
-+
-+=09bluetooth {
-+=09=09compatible =3D "qcom,qca6174-bt";
-+=09=09pinctrl-names =3D "default";
-+=09=09pinctrl-0 =3D <&bt_en_gpios>;
-+=09=09enable-gpios =3D <&pm8994_gpios 19 GPIO_ACTIVE_HIGH>;
-+=09=09clocks =3D <&divclk4>;
-+=09};
-+};
-+
-+&blsp2_i2c1 {
-+=09status =3D "okay";
-+};
-+
-+&blsp2_i2c6 {
-+=09status =3D "okay";
-+
-+=09synaptics_rmi4_i2c: touchscreen@20 {
-+=09=09compatible =3D "syna,rmi4-i2c";
-+=09=09reg =3D <0x20>;
-+=09=09#address-cells =3D <1>;
-+=09=09#size-cells =3D <0>;
-+=09=09interrupts-extended =3D <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
-+=09=09pinctrl-names =3D "default", "sleep";
-+=09=09pinctrl-0 =3D <&touch_default>;
-+=09=09pinctrl-1 =3D <&touch_suspend>;
-+=09=09vdd-supply =3D <&vreg_l22a_3p0>;
-+=09=09vio-supply =3D <&vreg_s4a_1p8>;
-+=09=09syna,reset-delay-ms =3D <200>;
-+=09=09syna,startup-delay-ms =3D <200>;
-+
-+=09=09rmi4-f01@1 {
-+=09=09=09reg =3D <0x1>;
-+=09=09=09syna,nosleep-mode =3D <1>;
-+=09=09};
-+
-+=09=09rmi4-f12@12 {
-+=09=09=09reg =3D <0x12>;
-+=09=09=09syna,sensor-type =3D <1>;
-+=09=09=09touchscreen-x-mm =3D <68>;
-+=09=09=09touchscreen-y-mm =3D <122>;
-+=09=09};
-+=09};
-+};
-+
-+&blsp2_uart2 {
-+=09pinctrl-names =3D "default", "sleep";
-+=09pinctrl-0 =3D <&blsp2_uart2_2pins_default>;
-+=09pinctrl-1 =3D <&blsp2_uart2_2pins_sleep>;
-+=09status =3D "okay";
-+};
-+
-+&camss {
-+=09vdda-supply =3D <&vreg_l2a_1p25>;
-+};
-+
-+&dsi0 {
-+=09vdda-supply =3D <&vreg_l2a_1p25>;
-+=09vcca-supply =3D <&vreg_l22a_3p0>;
-+=09status =3D "okay";
-+};
-+
-+&dsi0_out {
-+=09data-lanes =3D <0 1 2 3>;
-+};
-+
-+&dsi0_phy {
-+=09vdda-supply =3D <&vreg_l2a_1p25>;
-+=09vcca-supply =3D <&vreg_l28a_0p925>;
-+=09status =3D "okay";
-+};
-+
-+&gpu {
-+=09status =3D "okay";
-+};
-+
-+&hsusb_phy1 {
-+=09vdd-supply =3D <&vreg_l28a_0p925>;
-+=09vdda-pll-supply =3D <&vreg_l12a_1p8>;
-+=09vdda-phy-dpdm-supply =3D <&vreg_l24a_3p075>;
-+=09status =3D "okay";
-+};
-+
-+&hsusb_phy2 {
-+=09vdd-supply =3D <&vreg_l28a_0p925>;
-+=09vdda-pll-supply =3D <&vreg_l12a_1p8>;
-+=09vdda-phy-dpdm-supply =3D <&vreg_l24a_3p075>;
-+=09status =3D "okay";
-+};
-+
-+&mdp {
-+=09status =3D "okay";
-+};
-+
-+&mdss {
-+=09status =3D "okay";
-+};
-+
-+&mmcc {
-+=09vdd-gfx-supply =3D <&vdd_gfx>;
-+};
-+
-+&mss_pil {
-+=09pll-supply =3D <&vreg_l12a_1p8>;
-+=09status =3D "okay";
-+};
-+
-+&pcie0 {
-+=09perst-gpios =3D <&tlmm 35 GPIO_ACTIVE_LOW>;
-+=09vddpe-3v3-supply =3D <&wlan_en>;
-+=09vdda-supply =3D <&vreg_l28a_0p925>;
-+=09status =3D "okay";
-+};
-+
-+&pcie_phy {
-+=09vdda-phy-supply =3D <&vreg_l28a_0p925>;
-+=09vdda-pll-supply =3D <&vreg_l12a_1p8>;
-+=09status =3D "okay";
-+};
-+
-+&pm8994_gpios {
-+=09bt_en_gpios: bt-en-gpios-state {
-+=09=09pins =3D "gpio19";
-+=09=09function =3D PMIC_GPIO_FUNC_NORMAL;
-+=09=09output-low;
-+=09=09power-source =3D <PM8994_GPIO_S4>;
-+=09=09qcom,drive-strength =3D <PMIC_GPIO_STRENGTH_LOW>;
-+=09=09bias-pull-down;
-+=09};
-+
-+=09wlan_en_gpios: wlan-en-gpios-state {
-+=09=09pins =3D "gpio8";
-+=09=09function =3D PMIC_GPIO_FUNC_NORMAL;
-+=09=09output-low;
-+=09=09power-source =3D <PM8994_GPIO_S4>;
-+=09=09qcom,drive-strength =3D <PMIC_GPIO_STRENGTH_LOW>;
-+=09=09bias-pull-down;
-+=09};
-+
-+=09audio_mclk: divclk1-state {
-+=09=09pins =3D "gpio15";
-+=09=09function =3D PMIC_GPIO_FUNC_FUNC1;
-+=09=09power-source =3D <PM8994_GPIO_S4>;
-+=09};
-+
-+=09divclk4_pin_a: divclk4-state {
-+=09=09pins =3D "gpio18";
-+=09=09function =3D PMIC_GPIO_FUNC_FUNC2;
-+=09=09bias-disable;
-+=09=09power-source =3D <PM8994_GPIO_S4>;
-+=09};
-+};
-+
-+&pm8994_spmi_regulators {
-+=09qcom,saw-reg =3D <&saw3>;
-+
-+=09s9 {
-+=09=09qcom,saw-slave;
-+=09};
-+
-+=09s10 {
-+=09=09qcom,saw-slave;
-+=09};
-+
-+=09s11 {
-+=09=09qcom,saw-leader;
-+=09=09regulator-min-microvolt =3D <1140000>;
-+=09=09regulator-max-microvolt =3D <1140000>;
-+=09=09regulator-max-step-microvolt =3D <150000>;
-+=09=09regulator-always-on;
-+=09};
-+};
-+
-+&pmi8994_spmi_regulators {
-+=09vdd_gfx: s2 {
-+=09=09regulator-name =3D "vdd-gfx";
-+=09=09regulator-min-microvolt =3D <980000>;
-+=09=09regulator-max-microvolt =3D <1230000>;
-+=09};
-+};
-+
-+&q6asmdai {
-+=09#address-cells =3D <1>;
-+=09#size-cells =3D <0>;
-+
-+=09dai@0 {
-+=09=09reg =3D <0>;
-+=09};
-+
-+=09dai@1 {
-+=09=09reg =3D <1>;
-+=09};
-+
-+=09dai@2 {
-+=09=09reg =3D <2>;
-+=09};
-+};
-+
-+&rpm_requests {
-+=09regulators {
-+=09=09compatible =3D "qcom,rpm-pm8994-regulators";
-+
-+=09=09vreg_s3a_1p3: s3 {
-+=09=09=09regulator-name =3D "vreg_s3a_1p3";
-+=09=09=09regulator-min-microvolt =3D <1300000>;
-+=09=09=09regulator-max-microvolt =3D <1300000>;
-+=09=09};
-+
-+=09=09vreg_s4a_1p8: s4 {
-+=09=09=09regulator-name =3D "vreg_s4a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09=09regulator-always-on;
-+=09=09};
-+
-+=09=09vreg_s5a_2p15: s5 {
-+=09=09=09regulator-name =3D "vreg_s5a_2p15";
-+=09=09=09regulator-min-microvolt =3D <2150000>;
-+=09=09=09regulator-max-microvolt =3D <2150000>;
-+=09=09};
-+
-+=09=09vreg_s7a_0p8: s7 {
-+=09=09=09regulator-name =3D "vreg_s7a_0p8";
-+=09=09=09regulator-min-microvolt =3D <800000>;
-+=09=09=09regulator-max-microvolt =3D <800000>;
-+=09=09};
-+
-+=09=09vreg_l1a_1p0: l1 {
-+=09=09=09regulator-name =3D "vreg_l1a_1p0";
-+=09=09=09regulator-min-microvolt =3D <1000000>;
-+=09=09=09regulator-max-microvolt =3D <1000000>;
-+=09=09};
-+
-+=09=09vreg_l2a_1p25: l2 {
-+=09=09=09regulator-name =3D "vreg_l2a_1p25";
-+=09=09=09regulator-min-microvolt =3D <1250000>;
-+=09=09=09regulator-max-microvolt =3D <1250000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09};
-+
-+=09=09vreg_l3a_1p1: l3 {
-+=09=09=09regulator-name =3D "vreg_l3a_1p1";
-+=09=09=09regulator-min-microvolt =3D <1100000>;
-+=09=09=09regulator-max-microvolt =3D <1100000>;
-+=09=09};
-+
-+=09=09vreg_l4a_1p225: l4 {
-+=09=09=09regulator-name =3D "vreg_l4a_1p225";
-+=09=09=09regulator-min-microvolt =3D <1225000>;
-+=09=09=09regulator-max-microvolt =3D <1225000>;
-+=09=09};
-+
-+=09=09vreg_l6a_1p2: l6 {
-+=09=09=09regulator-name =3D "vreg_l6a_1p2";
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1200000>;
-+=09=09};
-+
-+=09=09vreg_l7a_1p8: l7 {
-+=09=09=09regulator-name =3D "vreg_l7a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09vreg_l9a_1p8: l9 {
-+=09=09=09regulator-name =3D "vreg_l9a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09vreg_l10a_1p8: l10 {
-+=09=09=09regulator-name =3D "vreg_l10a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09vreg_l11a_1p15: l11 {
-+=09=09=09regulator-name =3D "vreg_l11a_1p15";
-+=09=09=09regulator-min-microvolt =3D <1150000>;
-+=09=09=09regulator-max-microvolt =3D <1150000>;
-+=09=09};
-+
-+=09=09vreg_l12a_1p8: l12 {
-+=09=09=09regulator-name =3D "vreg_l12a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09};
-+
-+=09=09vreg_l13a_2p95: l13 {
-+=09=09=09regulator-name =3D "vreg_l13a_2p95";
-+=09=09=09regulator-min-microvolt =3D <2950000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+=09=09};
-+
-+=09=09vreg_l16a_2p7: l16 {
-+=09=09=09regulator-name =3D "vreg_l16a_2p7";
-+=09=09=09regulator-min-microvolt =3D <2700000>;
-+=09=09=09regulator-max-microvolt =3D <2700000>;
-+=09=09};
-+
-+=09=09vreg_l17a_2p6: l17 {
-+=09=09=09regulator-name =3D "vreg_l17a_2p6";
-+=09=09=09regulator-min-microvolt =3D <2600000>;
-+=09=09=09regulator-max-microvolt =3D <2600000>;
-+=09=09};
-+
-+=09=09vreg_l18a_3p3: l18 {
-+=09=09=09regulator-name =3D "vreg_l18a_3p3";
-+=09=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09=09regulator-max-microvolt =3D <3300000>;
-+=09=09};
-+
-+=09=09vreg_l19a_3p0: l19 {
-+=09=09=09regulator-name =3D "vreg_l19a_3p0";
-+=09=09=09regulator-min-microvolt =3D <3000000>;
-+=09=09=09regulator-max-microvolt =3D <3000000>;
-+=09=09};
-+
-+=09=09vreg_l20a_2p95: l20 {
-+=09=09=09regulator-name =3D "vreg_l20a_2p95";
-+=09=09=09regulator-min-microvolt =3D <2950000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09};
-+
-+=09=09vreg_l21a_2p95: l21 {
-+=09=09=09regulator-name =3D "vreg_l21a_2p95";
-+=09=09=09regulator-min-microvolt =3D <2950000>;
-+=09=09=09regulator-max-microvolt =3D <2950000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09=09regulator-system-load =3D <200000>;
-+=09=09};
-+
-+=09=09vreg_l22a_3p0: l22 {
-+=09=09=09regulator-name =3D "vreg_l22a_3p0";
-+=09=09=09regulator-min-microvolt =3D <3000000>;
-+=09=09=09regulator-max-microvolt =3D <3300000>;
-+=09=09};
-+
-+=09=09vreg_l23a_2p8: l23 {
-+=09=09=09regulator-name =3D "vreg_l23a_2p8";
-+=09=09=09regulator-min-microvolt =3D <2800000>;
-+=09=09=09regulator-max-microvolt =3D <2800000>;
-+=09=09};
-+
-+=09=09vreg_l24a_3p075: l24 {
-+=09=09=09regulator-name =3D "vreg_l24a_3p075";
-+=09=09=09regulator-min-microvolt =3D <3075000>;
-+=09=09=09regulator-max-microvolt =3D <3075000>;
-+=09=09};
-+
-+=09=09vreg_l25a_1p2: l25 {
-+=09=09=09regulator-name =3D "vreg_l25a_1p2";
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1200000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09=09regulator-always-on;
-+=09=09};
-+
-+=09=09vreg_l27a_1p2: l27 {
-+=09=09=09regulator-name =3D "vreg_l27a_1p2";
-+=09=09=09regulator-min-microvolt =3D <1200000>;
-+=09=09=09regulator-max-microvolt =3D <1200000>;
-+=09=09};
-+
-+=09=09vreg_l28a_0p925: l28 {
-+=09=09=09regulator-name =3D "vreg_l28a_0p925";
-+=09=09=09regulator-min-microvolt =3D <925000>;
-+=09=09=09regulator-max-microvolt =3D <925000>;
-+=09=09=09regulator-allow-set-load;
-+=09=09};
-+
-+=09=09vreg_l29a_2p8: l29 {
-+=09=09=09regulator-name =3D "vreg_l29a_2p8";
-+=09=09=09regulator-min-microvolt =3D <2800000>;
-+=09=09=09regulator-max-microvolt =3D <2800000>;
-+=09=09};
-+
-+=09=09vreg_l30a_1p8: l30 {
-+=09=09=09regulator-name =3D "vreg_l30a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+
-+=09=09vreg_l32a_1p8: l32 {
-+=09=09=09regulator-name =3D "vreg_l32a_1p8";
-+=09=09=09regulator-min-microvolt =3D <1800000>;
-+=09=09=09regulator-max-microvolt =3D <1800000>;
-+=09=09};
-+=09};
-+};
-+
-+&slpi_pil {
-+=09status =3D "okay";
-+};
-+
-+&sound {
-+=09compatible =3D "qcom,apq8096-sndcard";
-+=09model =3D "OnePlus3";
-+=09audio-routing =3D "RX_BIAS", "MCLK",
-+=09=09=09"AMIC2", "MIC BIAS2",
-+=09=09=09"MIC BIAS2", "Headset Mic",
-+=09=09=09"AMIC4", "MIC BIAS1",
-+=09=09=09"MIC BIAS1", "Primary Mic",
-+=09=09=09"AMIC5", "MIC BIAS3",
-+=09=09=09"MIC BIAS3", "Noise Mic";
-+
-+=09mm1-dai-link {
-+=09=09link-name =3D "MultiMedia1";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+=09=09};
-+=09};
-+
-+=09mm2-dai-link {
-+=09=09link-name =3D "MultiMedia2";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
-+=09=09};
-+=09};
-+
-+=09mm3-dai-link {
-+=09=09link-name =3D "MultiMedia3";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+=09=09};
-+=09};
-+
-+=09mm4-dai-link {
-+=09=09link-name =3D "MultiMedia4";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA4>;
-+=09=09};
-+=09};
-+
-+=09mm5-dai-link {
-+=09=09link-name =3D "MultiMedia5";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA5>;
-+=09=09};
-+=09};
-+
-+=09mm6-dai-link {
-+=09=09link-name =3D "MultiMedia6";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA6>;
-+=09=09};
-+=09};
-+
-+=09mm7-dai-link {
-+=09=09link-name =3D "MultiMedia7";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA7>;
-+=09=09};
-+=09};
-+
-+=09mm8-dai-link {
-+=09=09link-name =3D "MultiMedia8";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA8>;
-+=09=09};
-+=09};
-+
-+=09mm9-dai-link {
-+=09=09link-name =3D "MultiMedia9";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA9>;
-+=09=09};
-+=09};
-+
-+=09mm10-dai-link {
-+=09=09link-name =3D "MultiMedia10";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA10>;
-+=09=09};
-+=09};
-+
-+=09mm11-dai-link {
-+=09=09link-name =3D "MultiMedia11";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA11>;
-+=09=09};
-+=09};
-+
-+=09mm12-dai-link {
-+=09=09link-name =3D "MultiMedia12";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA12>;
-+=09=09};
-+=09};
-+
-+=09mm13-dai-link {
-+=09=09link-name =3D "MultiMedia13";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA13>;
-+=09=09};
-+=09};
-+
-+=09mm14-dai-link {
-+=09=09link-name =3D "MultiMedia14";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA14>;
-+=09=09};
-+=09};
-+
-+=09mm15-dai-link {
-+=09=09link-name =3D "MultiMedia15";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA15>;
-+=09=09};
-+=09};
-+
-+=09mm16-dai-link {
-+=09=09link-name =3D "MultiMedia16";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA16>;
-+=09=09};
-+=09};
-+
-+=09slim-dai-link {
-+=09=09link-name =3D "SLIM Playback";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6afedai SLIMBUS_6_RX>;
-+=09=09};
-+
-+=09=09platform {
-+=09=09=09sound-dai =3D <&q6routing>;
-+=09=09};
-+
-+=09=09codec {
-+=09=09=09sound-dai =3D <&wcd9335 AIF4_PB>;
-+=09=09};
-+=09};
-+
-+=09slimcap-dai-link {
-+=09=09link-name =3D "SLIM Capture";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6afedai SLIMBUS_0_TX>;
-+=09=09};
-+
-+=09=09platform {
-+=09=09=09sound-dai =3D <&q6routing>;
-+=09=09};
-+
-+=09=09codec {
-+=09=09=09sound-dai =3D <&wcd9335 AIF1_CAP>;
-+=09=09};
-+=09};
-+
-+=09speaker-dai-link {
-+=09=09link-name =3D "Speaker";
-+
-+=09=09cpu {
-+=09=09=09sound-dai =3D <&q6afedai QUATERNARY_MI2S_RX>;
-+=09=09};
-+
-+=09=09codec {
-+=09=09=09sound-dai =3D <&tfa9890_amp>;
-+=09=09};
-+=09};
-+};
-+
-+&tlmm {
-+=09gpio-reserved-ranges =3D <81 4>;
-+
-+=09mdss_dsi_active: mdss-dsi-active-state {
-+=09=09pins =3D "gpio8";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <8>;
-+=09=09bias-disable;
-+=09};
-+
-+=09mdss_dsi_suspend: mdss-dsi-suspend-state {
-+=09=09pins =3D "gpio8";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-pull-down;
-+=09};
-+
-+=09mdss_te_active: mdss-te-active-state {
-+=09=09pins =3D "gpio10";
-+=09=09function =3D "mdp_vsync";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-pull-down;
-+=09};
-+
-+=09mdss_te_suspend: mdss-te-suspend-state {
-+=09=09pins =3D "gpio10";
-+=09=09function =3D "mdp_vsync";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-pull-down;
-+=09};
-+
-+=09touch_default: touch-default-state {
-+=09=09pins =3D "gpio89", "gpio125", "gpio49";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <16>;
-+=09=09bias-pull-up;
-+=09};
-+
-+=09touch_suspend: touch-suspend-state {
-+=09=09pins =3D "gpio89", "gpio125", "gpio49";
-+=09=09function =3D "gpio";
-+=09=09drive-strength =3D <2>;
-+=09=09bias-disable;
-+=09};
-+};
-+
-+&ufsphy {
-+=09vdda-phy-supply =3D <&vreg_l28a_0p925>;
-+=09vdda-pll-supply =3D <&vreg_l12a_1p8>;
-+=09vddp-ref-clk-supply =3D <&vreg_l25a_1p2>;
-+
-+=09status =3D "okay";
-+};
-+
-+&ufshc {
-+=09vcc-supply =3D <&vreg_l20a_2p95>;
-+=09vccq-supply =3D <&vreg_l25a_1p2>;
-+=09vccq2-supply =3D <&vreg_s4a_1p8>;
-+
-+=09vcc-max-microamp =3D <600000>;
-+=09vccq-max-microamp =3D <450000>;
-+=09vccq2-max-microamp =3D <450000>;
-+
-+=09status =3D "okay";
-+};
-+
-+&usb3 {
-+=09status =3D "okay";
-+};
-+
-+&usb3_dwc3 {
-+=09phys =3D <&hsusb_phy1>;
-+=09phy-names =3D "usb2-phy";
-+
-+=09maximum-speed =3D "high-speed";
-+};
-+
-+&venus {
-+=09status =3D "okay";
-+};
-+
-+&wcd9335 {
-+=09clock-names =3D "mclk", "slimbus";
-+=09clocks =3D <&div1_mclk>,
-+=09=09 <&rpmcc RPM_SMD_BB_CLK1>;
-+
-+=09vdd-buck-supply =3D <&vreg_s4a_1p8>;
-+=09vdd-buck-sido-supply =3D <&vreg_s4a_1p8>;
-+=09vdd-tx-supply =3D <&vreg_s4a_1p8>;
-+=09vdd-rx-supply =3D <&vreg_s4a_1p8>;
-+=09vdd-io-supply =3D <&vreg_s4a_1p8>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus3.dts b/arch/arm64/boo=
-t/dts/qcom/msm8996-oneplus3.dts
-new file mode 100644
-index 000000000000..1bdc1b134305
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus3.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2022, Harry Austen <hpausten@protonmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8996-oneplus-common.dtsi"
-+
-+/ {
-+=09model =3D "OnePlus 3";
-+=09compatible =3D "oneplus,oneplus3", "qcom,msm8996";
-+=09chassis-type =3D "handset";
-+=09qcom,board-id =3D <8 0 15801 15>, <8 0 15801 16>;
-+=09qcom,msm-id =3D <246 0x30001>;
-+};
-+
-+&adsp_pil {
-+=09firmware-name =3D "qcom/msm8996/oneplus3/adsp.mbn";
-+};
-+
-+&battery {
-+=09charge-full-design-microamp-hours =3D <3000000>;
-+=09voltage-max-design-microvolt =3D <4350000>;
-+};
-+
-+&gpu {
-+=09zap-shader {
-+=09=09firmware-name =3D "qcom/msm8996/oneplus3/a530_zap.mbn";
-+=09};
-+};
-+
-+&mss_pil {
-+=09firmware-name =3D "qcom/msm8996/oneplus3/mba.mbn",
-+=09=09=09"qcom/msm8996/oneplus3/modem.mbn";
-+};
-+
-+&slpi_pil {
-+=09firmware-name =3D "qcom/msm8996/oneplus3/slpi.mbn";
-+};
-+
-+&venus {
-+=09firmware-name =3D "qcom/msm8996/oneplus3/venus.mbn";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts b/arch/arm64/bo=
-ot/dts/qcom/msm8996-oneplus3t.dts
-new file mode 100644
-index 000000000000..34f837dd0c12
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8996-oneplus3t.dts
-@@ -0,0 +1,45 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2022, Harry Austen <hpausten@protonmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8996-oneplus-common.dtsi"
-+
-+/ {
-+=09model =3D "OnePlus 3T";
-+=09compatible =3D "oneplus,oneplus3t", "qcom,msm8996";
-+=09chassis-type =3D "handset";
-+=09qcom,board-id =3D <8 0 15811 26>,
-+=09=09=09<8 0 15811 27>,
-+=09=09=09<8 0 15811 28>;
-+};
-+
-+&adsp_pil {
-+=09firmware-name =3D "qcom/msm8996/oneplus3t/adsp.mbn";
-+};
-+
-+&battery {
-+=09charge-full-design-microamp-hours =3D <3400000>;
-+=09voltage-max-design-microvolt =3D <4400000>;
-+};
-+
-+&gpu {
-+=09zap-shader {
-+=09=09firmware-name =3D "qcom/msm8996/oneplus3t/a530_zap.mbn";
-+=09};
-+};
-+
-+&mss_pil {
-+=09firmware-name =3D "qcom/msm8996/oneplus3t/mba.mbn",
-+=09=09=09"qcom/msm8996/oneplus3t/modem.mbn";
-+};
-+
-+&slpi_pil {
-+=09firmware-name =3D "qcom/msm8996/oneplus3t/slpi.mbn";
-+};
-+
-+&venus {
-+=09firmware-name =3D "qcom/msm8996/oneplus3t/venus.mbn";
-+};
---
-2.38.1
-
+SGkgU2hhd24NCg0KT24gVGh1LCAyMDIyLTA5LTIyIGF0IDE4OjI5ICswMjAwLCBNYXJjZWwgWmlz
+d2lsZXIgd3JvdGU6DQo+IEZyb206IE1hcmNlbCBaaXN3aWxlciA8bWFyY2VsLnppc3dpbGVyQHRv
+cmFkZXguY29tPg0KPiANCj4gSW1wcm92ZSBpbmNsdWRlIG5vdGF0aW9uLiBVc3VhbGx5IG9ubHkg
+ZHRzaSBmaWxlcyBmcm9tIHRoZSBzYW1lIGxvY2F0aW9uDQo+IGFyZSBpbmNsdWRlZCB3aXRoIGFu
+IGFic29sdXRlIHBhdGggaW4gcXVvdGVzLiBPdGhlcnMgc2hvdWxkIHVzZSBhDQo+IHJlbGF0aXZl
+IHBhdGggZW5jbG9zZWQgaW4gYW5nbGUgYnJhY2tldHMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBN
+YXJjZWwgWmlzd2lsZXIgPG1hcmNlbC56aXN3aWxlckB0b3JhZGV4LmNvbT4NCj4gLS0tDQo+IA0K
+PiDCoGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS12ZXJkaW4uZHRzaSB8IDQg
+KystLQ0KPiDCoGFyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC12ZXJkaW4uZHRz
+aSB8IDMgKystDQo+IMKgMiBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDMgZGVsZXRp
+b25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUv
+aW14OG1tLXZlcmRpbi5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1t
+LQ0KPiB2ZXJkaW4uZHRzaQ0KPiBpbmRleCBiMzc5YzQ2MWFhMTMuLmE3NDlkMDYzYzM2NyAxMDA2
+NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLXZlcmRpbi5k
+dHNpDQo+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS12ZXJkaW4u
+ZHRzaQ0KPiBAQCAtMyw4ICszLDggQEANCj4gwqAgKiBDb3B5cmlnaHQgMjAyMiBUb3JhZGV4DQo+
+IMKgICovDQo+IMKgDQo+IC0jaW5jbHVkZSAiZHQtYmluZGluZ3MvcGh5L3BoeS1pbXg4LXBjaWUu
+aCINCj4gLSNpbmNsdWRlICJkdC1iaW5kaW5ncy9wd20vcHdtLmgiDQo+ICsjaW5jbHVkZSA8ZHQt
+YmluZGluZ3MvcGh5L3BoeS1pbXg4LXBjaWUuaD4NCj4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9w
+d20vcHdtLmg+DQo+IMKgI2luY2x1ZGUgImlteDhtbS5kdHNpIg0KPiDCoA0KPiDCoC8gew0KPiBk
+aWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXZlcmRpbi5k
+dHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLQ0KPiB2ZXJkaW4uZHRz
+aQ0KPiBpbmRleCAzNjBiZTUxYTM1MjcuLmVlNDIzMWQxMzhmZSAxMDA2NDQNCj4gLS0tIGEvYXJj
+aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1wLXZlcmRpbi5kdHNpDQo+ICsrKyBiL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDhtcC12ZXJkaW4uZHRzaQ0KPiBAQCAtMyw3
+ICszLDggQEANCj4gwqAgKiBDb3B5cmlnaHQgMjAyMiBUb3JhZGV4DQo+IMKgICovDQo+IMKgDQo+
+IC0jaW5jbHVkZSAiZHQtYmluZGluZ3MvcHdtL3B3bS5oIg0KPiArI2luY2x1ZGUgPGR0LWJpbmRp
+bmdzL3BoeS9waHktaW14OC1wY2llLmg+DQoNClNvcnJ5LCBJIGp1c3Qgbm90aWNlZCB0aGF0IGFi
+b3ZlIGxpbmUgc2xpcHBlZCBpbiBmcm9tIHBhdGNoIDYuIEhvd2V2ZXIsIGF0IGxlYXN0IGl0IHNo
+b3VsZCBub3QgaHVydCBhcyB0aGF0DQpoZWFkZXIgZmlsZSBkb2VzIGluZGVlZCBleGlzdCBzaW5j
+ZSBxdWl0ZSBhIHdoaWxlIHdoZW4gUENJZSBzdXBwb3J0IGdvdCBtZXJnZWQgZm9yIHRoZSBNaW5p
+Lg0KDQo+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcHdtL3B3bS5oPg0KPiDCoCNpbmNsdWRlICJp
+bXg4bXAuZHRzaSINCj4gwqANCj4gwqAvIHsNCg0KQ2hlZXJzDQoNCk1hcmNlbA0K
 
