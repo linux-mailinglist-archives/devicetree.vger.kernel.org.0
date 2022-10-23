@@ -2,234 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7490360914E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 07:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C49AF609161
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 07:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbiJWFaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 01:30:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40520 "EHLO
+        id S230008AbiJWFx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 01:53:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiJWF36 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 01:29:58 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052833B958;
-        Sat, 22 Oct 2022 22:29:57 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id p16so5442248iod.6;
-        Sat, 22 Oct 2022 22:29:56 -0700 (PDT)
+        with ESMTP id S229793AbiJWFxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 01:53:55 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58D746A4B4
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 22:53:54 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id a5so7177370edb.11
+        for <devicetree@vger.kernel.org>; Sat, 22 Oct 2022 22:53:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=9elements.com; s=google;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ajr4b2M1NseOmrgXuO1WvhLor3nIr3hL7MajP70+3S4=;
-        b=MvwxpN42UqqM+GW440gJil1Wm5UBvV757kK6aKzIE0B15zWaHAtNAq1qeCX6cWbzJN
-         mM15wopWC7YT0pLvpKcmoyymdt3VqYS88igCUCYqnFzllPzNgxamybnXMafrdeZk6mpZ
-         g7d/kRaPETgykdmaGC0+oS4nl3SJIYywCTFUykpU7CTrjH+VY7VkveuecrCD/O0xKwzi
-         XIwPJX21lYqqyrGqWYRSjrEEqdeaGVHHoWR/NWK/jC5cd1NkZJPyyRGhO2Oq0To+dfA0
-         C8yacmpmwVqXChFtofdp+DVR2WD7tbUsWHgdlMKYmdNC8x1yPl1huTmg7WCRqsm5fgpa
-         LBZw==
+        bh=My7nuE1BYCE2MBazvCjecOzY7KXfxj02Yl/o6hpzQHQ=;
+        b=C2nTtrIiTK16s3ooQ9vBQioJHuUXFAVzLkYsLXB1TkfTj3IC+bMNdpZSBOftL9Lm5D
+         zDdlLoNEOOLmMk4d8TAl58ZD91gWHTxX8yX32vExEn2zKagm44cdeVYnTgSEja0bjoTS
+         8FSidrhX809LGi/j28fP75kf5meUrcB3b4DlhQo5mpb+8TpeMNqKwzqj27shGbo/HRyY
+         RhnUcMtTi2cq25xqESYO6+6fOEo6oCjiUBwuMCnloF3fBTB4+r0TY90EzF0ZLzBJfKJH
+         +dl+2N8/SGVlb6YjQKD1ej9kseyqjSVZrRXgR6HdEUQH28qz8vLECdStbOuiMVHqzNkL
+         57tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ajr4b2M1NseOmrgXuO1WvhLor3nIr3hL7MajP70+3S4=;
-        b=3ukblYryGRRXCo7/8B+9HAq+HCwgCcOZImXR2w3D84rP+iTPrSJjMj7Cnf8qgM1qzV
-         m0AH/s15sNELQfvcCszZbPwgvdKIMSk11Zer2m+s5j8GyFf4oMpF8N6BtHiRQ8nRNhOo
-         malmP75xZ1m2UVBIumZfxeoNSP/sVctNVHi+zmOrZcj87VbdfcLT+OkgbU6zUR1x4yZO
-         vrMTDVJqeVhXV8UPtUrMlZeP/tc7F8Cbfsh73QaU6P7utFAYePYVzcJrmT6qyf6mRWMp
-         MzZhQgamUUA4EtFAU5yXncFSRIvv4qKyyp2VBavn7Wyh1GEbMsO3HvEm9Dp/M5Vr2ad1
-         rFyg==
-X-Gm-Message-State: ACrzQf0UXZUSDhPzi1Ii2DEafS196buDpLCasIvdk89Pa8XAZUEwlztQ
-        uzWHptZ+zIQulbmGrvE4Oif9XgC6JGUczQA3BNgoEChdhOznukAu
-X-Google-Smtp-Source: AMsMyM5TJWUEMWOLbHL1SXvjGe6NmehHzeD7rlzJ7E9o/9XQNoX6RSEd7lNjLN5Pb2S5l9UUPusH7WGwpmnoZLd6btc=
-X-Received: by 2002:a05:6602:1648:b0:6bc:e8b6:8cc9 with SMTP id
- y8-20020a056602164800b006bce8b68cc9mr16877726iow.77.1666502996379; Sat, 22
- Oct 2022 22:29:56 -0700 (PDT)
+        bh=My7nuE1BYCE2MBazvCjecOzY7KXfxj02Yl/o6hpzQHQ=;
+        b=fUPIu9pzqe/hjTDrEqOk/Fu6s+QYtj9OoUAQBaGxQvAGvWbQG2iYNkcigowz20L+93
+         8bzBnml9RMwVuVktRfKKtlTdVgysO/ShcSAoCY8ePulQcVvz01za5Vh15k5Mb4n2CkTt
+         sUjvXkSeLzvZh8tFrhD7kzKK0gqlwZkpGYCYF9ShjTfCmBBsJwjLnEXPlnwKrh47MNrO
+         zxoWP+SLxgucRT+ogDV/cyr5xTi23I37Swevx8no8RCAbBA5Nbp30/lo9+8rOsgwQIKO
+         bFivxITz5imOxcvUlSz5JCz1xWvysTiOUCCFwEY2yx3E53rqfpjSEVzaua8tqcY/TeBO
+         uuLg==
+X-Gm-Message-State: ACrzQf2Zco7GEVg9xC1t1EJFJ00qtcd/EnPjy+0y9zW40vx0XOJjhH1s
+        t+AQbPq4gVrqJZDKOoBg2OjQ3IRE/+b7Qu4AeGg8UHuBGVc=
+X-Google-Smtp-Source: AMsMyM71Mirfx+iLpJmgp5w4ZBRQtkFF2/qgKz0rQTgI1pdyQfDr4yXrJKBxMUU67lb00LeaEE0GjI9LtttFDFxxGBg=
+X-Received: by 2002:a05:6402:90c:b0:457:b5ce:5f18 with SMTP id
+ g12-20020a056402090c00b00457b5ce5f18mr25418729edz.309.1666504432720; Sat, 22
+ Oct 2022 22:53:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221022165047.4020785-1-lis8215@gmail.com> <20221022165047.4020785-3-lis8215@gmail.com>
- <9W76KR.NVDSVG4IWZ3A3@crapouillou.net>
-In-Reply-To: <9W76KR.NVDSVG4IWZ3A3@crapouillou.net>
-From:   Siarhei Volkau <lis8215@gmail.com>
-Date:   Sun, 23 Oct 2022 08:29:45 +0300
-Message-ID: <CAKNVLfZmUpFzKsdzY1e_mUTVsM-jnL65Fi6EXYcF80-oNV+DGQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] serial: 8250/ingenic: Add support for the JZ4750/JZ4755
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
+In-Reply-To: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+Date:   Sun, 23 Oct 2022 11:23:42 +0530
+Message-ID: <CABqG17gYexJkzLou1HVP7n4CGyXq70oq68E+nCOwvf=OMFhqTA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/3] Add devicetree support for max6639
+To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D1=81=D0=B1, 22 =D0=BE=D0=BA=D1=82. 2022 =D0=B3. =D0=B2 23:07, Paul Cercue=
-il <paul@crapouillou.net>:
->
-> Hi Siarhei,
->
-> Le sam. 22 oct. 2022 =C3=A0 19:50:47 +0300, Siarhei Volkau
-> <lis8215@gmail.com> a =C3=A9crit :
-> > JZ4750/55/60 (but not JZ4760b) have an extra divisor in between extclk
-> > and peripheral clock, called CPCCR.ECS, the driver can't figure out
-> > the
-> > real state of the divisor without dirty hack - peek CGU CPCCR
-> > register.
-> > However, we can rely on a vendor's bootloader (u-boot 1.1.6) behavior:
-> > if (extclk > 16MHz)
-> >     the divisor is enabled, so the UART driving clock is extclk/2.
-> >
-> > This behavior relies on hardware differences: most boards (if not all)
-> > with those SoCs have 12 or 24 MHz oscillators but many peripherals
-> > want
-> > 12Mhz to operate properly (AIC and USB-PHY at least).
-> >
-> > The patch doesn't affect JZ4760's behavior as it is subject for
-> > another
-> > patchset with re-classification of all supported ingenic UARTs.
-> >
-> > Link:
-> > https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_ser=
-ial.c#L158
-> > Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
-> > ---
-> >  drivers/tty/serial/8250/8250_ingenic.c | 48
-> > ++++++++++++++++++++++----
-> >  1 file changed, 42 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/tty/serial/8250/8250_ingenic.c
-> > b/drivers/tty/serial/8250/8250_ingenic.c
-> > index 2b2f5d8d2..744705467 100644
-> > --- a/drivers/tty/serial/8250/8250_ingenic.c
-> > +++ b/drivers/tty/serial/8250/8250_ingenic.c
-> > @@ -87,24 +87,19 @@ static void __init
-> > ingenic_early_console_setup_clock(struct earlycon_device *dev
-> >       dev->port.uartclk =3D be32_to_cpup(prop);
-> >  }
-> >
-> > -static int __init ingenic_early_console_setup(struct earlycon_device
-> > *dev,
-> > +static int __init ingenic_earlycon_setup_tail(struct earlycon_device
-> > *dev,
-> >                                             const char *opt)
-> >  {
-> >       struct uart_port *port =3D &dev->port;
-> >       unsigned int divisor;
-> >       int baud =3D 115200;
-> >
-> > -     if (!dev->port.membase)
-> > -             return -ENODEV;
-> > -
-> >       if (opt) {
-> >               unsigned int parity, bits, flow; /* unused for now */
-> >
-> >               uart_parse_options(opt, &baud, &parity, &bits, &flow);
-> >       }
-> >
-> > -     ingenic_early_console_setup_clock(dev);
-> > -
-> >       if (dev->baud)
-> >               baud =3D dev->baud;
-> >       divisor =3D DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
-> > @@ -129,9 +124,49 @@ static int __init
-> > ingenic_early_console_setup(struct earlycon_device *dev,
-> >       return 0;
-> >  }
-> >
-> > +static int __init ingenic_early_console_setup(struct earlycon_device
-> > *dev,
-> > +                                           const char *opt)
-> > +{
-> > +     if (!dev->port.membase)
-> > +             return -ENODEV;
-> > +
-> > +     ingenic_early_console_setup_clock(dev);
-> > +
-> > +     return ingenic_earlycon_setup_tail(dev, opt);
-> > +}
-> > +
-> > +static int __init jz4750_early_console_setup(struct earlycon_device
-> > *dev,
-> > +                                          const char *opt)
-> > +{
-> > +     if (!dev->port.membase)
-> > +             return -ENODEV;
-> > +
-> > +     /*
-> > +      * JZ4750/55/60 (not JZ4760b) have an extra divisor
-> > +      * between extclk and peripheral clock, the
-> > +      * driver can't figure out the real state of the
-> > +      * divisor without dirty hacks (peek CGU register).
-> > +      * However, we can rely on a vendor's behavior:
-> > +      * if (extclk > 16MHz)
-> > +      *   the divisor is enabled.
-> > +      * This behavior relies on hardware differences:
-> > +      * most boards with those SoCs have 12 or 24 MHz
-> > +      * oscillators but many peripherals want 12Mhz
-> > +      * to operate properly (AIC and USB-phy at least).
-> > +      */
-> > +     ingenic_early_console_setup_clock(dev);
-> > +     if (dev->port.uartclk > 16000000)
-> > +             dev->port.uartclk /=3D 2;
->
-> I don't understand, didn't we came up to the conclusion in your V1 that
-> it was better to force-enable the EXT/2 divider in the ingenic init
-> code?
->
-> -Paul
->
+In this latest patch series V4 , I've addressed the comments of V3.
+Since this is merely an upgrade of driver from platform driver to dt
+support, can we get this in.
 
-That was better at that moment. I dived deeper in the situation and found
-a more simple and universal solution, as I think.
-Your proposal doesn't cover following situations:
- - JZ475x with 12MHz crystal
- - JZ4760 with 24MHz crystal
-which are legal and might appear in some hardware.
+Thanks,
+Naresh
 
-> > +
-> > +     return ingenic_earlycon_setup_tail(dev, opt);
-> > +}
-> > +
-> >  OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
-> >                   ingenic_early_console_setup);
-> >
-> > +OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
-> > +                 jz4750_early_console_setup);
-> > +
-> >  OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
-> >                   ingenic_early_console_setup);
-> >
-> > @@ -328,6 +363,7 @@ static const struct ingenic_uart_config
-> > x1000_uart_config =3D {
-> >
-> >  static const struct of_device_id of_match[] =3D {
-> >       { .compatible =3D "ingenic,jz4740-uart", .data =3D &jz4740_uart_c=
-onfig
-> > },
-> > +     { .compatible =3D "ingenic,jz4750-uart", .data =3D &jz4760_uart_c=
-onfig
-> > },
-> >       { .compatible =3D "ingenic,jz4760-uart", .data =3D &jz4760_uart_c=
-onfig
-> > },
-> >       { .compatible =3D "ingenic,jz4770-uart", .data =3D &jz4760_uart_c=
-onfig
-> > },
-> >       { .compatible =3D "ingenic,jz4775-uart", .data =3D &jz4760_uart_c=
-onfig
-> > },
-> > --
-> > 2.36.1
-> >
+Regards,
+Naresh Solanki
+
+
+
+9elements GmbH, Kortumstra=C3=9Fe 19-21, 44787 Bochum, Germany
+Email:  naresh.solanki@9elements.com
+Mobile:  +91 9538631477
+
+Sitz der Gesellschaft: Bochum
+Handelsregister: Amtsgericht Bochum, HRB 17519
+Gesch=C3=A4ftsf=C3=BChrung: Sebastian Deutsch, Eray Basar
+
+Datenschutzhinweise nach Art. 13 DSGVO
+
+
+On Thu, 13 Oct 2022 at 15:18, Naresh Solanki
+<naresh.solanki@9elements.com> wrote:
 >
+> These patches adds devicetree support for MAX6639.
+>
+> Changes V4:
+> - Fix dt error
+> - update comment
+> Changes V3:
+> - correct fan dt property name
+> - remove unrelevent changes
+> Changes V2:
+> - Fix dt schema error.
+> Changes:
+> - Add fan-common dt schema.
+> - add dt-binding support for max6639
+> - add max6639 specific property
+>
+> Marcello Sylvester Bauer (1):
+>   dt-bindings: hwmon: Add binding for max6639
+>
+> Naresh Solanki (2):
+>   dt-bindings: hwmon: fan: Add fan binding to schema
+>   hwmon: (max6639) Change from pdata to dt configuration
+>
+>  .../devicetree/bindings/hwmon/fan-common.yaml |  48 ++++
+>  .../bindings/hwmon/maxim,max6639.yaml         |  86 ++++++++
+>  drivers/hwmon/max6639.c                       | 206 +++++++++++++-----
+>  3 files changed, 287 insertions(+), 53 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.ya=
+ml
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639=
+.yaml
+>
+>
+> base-commit: 0cf46a653bdae56683fece68dc50340f7520e6c4
+> --
+> 2.37.3
 >
