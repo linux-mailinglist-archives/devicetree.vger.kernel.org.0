@@ -2,68 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4771960929E
-	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 14:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A7406092A0
+	for <lists+devicetree@lfdr.de>; Sun, 23 Oct 2022 14:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbiJWMVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 08:21:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35432 "EHLO
+        id S229568AbiJWMYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 08:24:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiJWMVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 08:21:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40324688AD
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 05:21:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D32DF601C0
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 12:21:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A860C433D6;
-        Sun, 23 Oct 2022 12:21:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666527707;
-        bh=N3vGfo5jW9SpRORvUqYRIQrPFEcNR89XXTiACO9e9Uk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TEWy2MoH8QZQRg8Kx5VyUx1RTNCKUleXXgQYAI/w48np8bJeiFtjPivvUJLENCndt
-         JDlHueKv7ZMpGmuur1uswabvpjXnzEegxvwGt91kdcz0gl84o9COeFK9zyGpzOhTdU
-         3uXWEAqprrf5VhhEFKz6pkdgjtoEVQdGw1cVE7p+U5S34AqQwsJZCzhmqFswoSMWyc
-         +5meR91OohCw6CCquq37J84aFqSxeBzdsbwGoEB1YfHo/66EHf1d+bwbzuy0ED1Dbn
-         zspdXGd1hfjwMzR7UIDLF9dxtIaoORUEDQU1GpZdCgsifZ0WDVrgSbE0ji31S+c5Nb
-         adInUnSJ1+/ZA==
-Date:   Sun, 23 Oct 2022 20:21:40 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229663AbiJWMYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 08:24:31 -0400
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAE6389F;
+        Sun, 23 Oct 2022 05:24:26 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1oma1d-0007v3-0x; Sun, 23 Oct 2022 14:24:21 +0200
+Date:   Sun, 23 Oct 2022 13:24:17 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-mediatek@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] arm64: dts: tqma8mq-mba8mx: Add vcc supply to i2c
- eeproms
-Message-ID: <20221023122140.GE125525@dragon>
-References: <20220921070833.3106592-1-alexander.stein@ew.tq-group.com>
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] dt-bindings: pwm: mediatek: Add compatible string
+ for MT7986
+Message-ID: <Y1UycU0JvwyAv0x2@makrotopia.org>
+References: <Y1K53n7LnjoMoIfj@makrotopia.org>
+ <20221021222338.GA565200-robh@kernel.org>
+ <Y1MkIdFXrBrrv958@makrotopia.org>
+ <5182e3c4-9e5e-2c36-408b-9029c65c8803@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220921070833.3106592-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <5182e3c4-9e5e-2c36-408b-9029c65c8803@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 09:08:33AM +0200, Alexander Stein wrote:
-> Fixes the warnings:
-> at24 0-0053: supply vcc not found, using dummy regulator
-> at24 0-0057: supply vcc not found, using dummy regulator
-> at24 1-0057: supply vcc not found, using dummy regulator
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Hi Krzysztof,
 
-Applied, thanks!
+On Sat, Oct 22, 2022 at 12:35:25PM -0400, Krzysztof Kozlowski wrote:
+> On 21/10/2022 18:58, Daniel Golle wrote:
+> > On Fri, Oct 21, 2022 at 05:23:38PM -0500, Rob Herring wrote:
+> >> On Fri, Oct 21, 2022 at 04:25:18PM +0100, Daniel Golle wrote:
+> >>> Add new compatible string for MT7986 PWM.
+> >>>
+> >>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> >>> index 554c96b6d0c3e0..6f4e60c9e18b81 100644
+> >>> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> >>> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> >>> @@ -8,6 +8,7 @@ Required properties:
+> >>>     - "mediatek,mt7623-pwm": found on mt7623 SoC.
+> >>>     - "mediatek,mt7628-pwm": found on mt7628 SoC.
+> >>>     - "mediatek,mt7629-pwm": found on mt7629 SoC.
+> >>> +   - "mediatek,mt7986-pwm": found on mt7986 SoC.
+> >>
+> >> This version of the PWM h/w is not compatible with any of the existing 
+> >> chips? If it is, it should have a fallback compatible.
+> > 
+> > No, it is unique because it comes with just 2 PWM channels.
+> > Otherwise the driver behaves just like for MT8183 (4 channels) or
+> > MT8365 (3 channels) which also got distinct compatible strings.
+> 
+> Then something would be here compatible. E.g. If you bound MT8183 with
+> mt7986-pwm compatible, would you get working device with two channels?
+
+Yes, but I'd see another 2 channels which do not work, accessing them
+may even cause problems (I haven't tried that) as it means accessing
+an undocumented memory range of the SoC which we in general we
+shouldn't be messing around with.
+
+Also note that this case is the same as MT8183 vs. MT8365, they got
+distinct compatible strings and also for those two the only difference
+is the number of channels.
+
+> 
+> If so, they are compatible.
+
+By that definition you should remove the additional compatible for
+MT8365 or rather, it should have been rejected for the same argument.
+
+I'm talking about
+commit fe00faee8060402a3d85aed95775e16838a6dad2
+commit 394b517585da9fbb2eea2f2103ff47d37321e976
+
+
+Cheers
+
+
+Daniel
