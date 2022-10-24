@@ -2,110 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA214609C79
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57037609C9F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230385AbiJXI1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:27:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
+        id S230520AbiJXI2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:28:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230342AbiJXI0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:26:36 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014B64DB3F;
-        Mon, 24 Oct 2022 01:26:16 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29O7MCXA030959;
-        Mon, 24 Oct 2022 10:26:03 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=dOzDY6/9nKLDPhrGpoUZqyh/A75KkyrWIBiqANqXlLI=;
- b=yDd8MeudAA7/XHYPG/0y8Qnfpv1UsVRDlGctc8tI0mQb3Js/i7xRusjoKOmsr8/VCwaZ
- r6o3BXPp5axTiKuLdM1Dtrf2QVXuG3HpjxM74IXoQWmX3mORPgPPmnoUn7HA1WdlVrjH
- COkQtqWHTFef+kkpIIDs6LFjlCw55o9m7ca8Hw/mliHx8EkbLsgXLkjnWpb4U5qWk9Iz
- mm+kUErhfEaSaOjJcNfYJ/pJsfo6IQJQwhDGGS0DS+q1De1sIFYSlV04qT676H+V/ijy
- dD02/lZx86nv5983WqRAgGYeDwp+0RVoi4xRj929Paq93hP71cKKeCohCEAKEmzYvdIR vQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kc5xksucj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Oct 2022 10:26:03 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1FC6510002A;
-        Mon, 24 Oct 2022 10:25:55 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1AC22216839;
-        Mon, 24 Oct 2022 10:25:55 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
- 2022 10:25:54 +0200
-Message-ID: <651d7bae-1674-4040-e3b9-6a93839d7906@foss.st.com>
-Date:   Mon, 24 Oct 2022 10:25:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] ARM: dts: stm32: update vbus-supply of usbphyc_port0 on
- stm32mp157c-ev1
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <amelie.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20220930150232.249573-1-fabrice.gasnier@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220930150232.249573-1-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-24_02,2022-10-21_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230336AbiJXI2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:28:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 207AF645F9;
+        Mon, 24 Oct 2022 01:28:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 48CCE60B47;
+        Mon, 24 Oct 2022 08:27:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96F31C433D6;
+        Mon, 24 Oct 2022 08:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666600057;
+        bh=ysnt+Y6t1FMRzHAEEL6QxFMl6KRfQ8Smz2P0BWUTlFs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=pmbef9SJDQK3+et4z6SVFeBoNmRtPQm5LBLxdzkgLUEDz6z+wVGn2cUUK5TCA9K2i
+         k7KoAS6Rn4ie14xWdPBhUguCdlT4ZZ0wvcCB9Z3ATiGLhHl+04pO5ELZbgPMuLpTZ/
+         8YSg3v1wRDGMjHJ+77Y/KFtNul2W1qNO2oBPMHHPEWlE8pMpdOhDAO+0CH2cuhlVif
+         bCA9QyKF4l2SYGe3WZU0+5iksVrZRroVmmFLyBBXeZ62RPGzQAOYuaWjeHofcYwFcq
+         FWhAPlcbFl29DPw6NOVyMawkj8JRf9lcQOuXkcyGvxQoRcfZy2fhj1CnW/Q05PN86L
+         +OBW3rh88n+mQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1omso3-001630-E9;
+        Mon, 24 Oct 2022 09:27:35 +0100
+Date:   Mon, 24 Oct 2022 09:27:35 +0100
+Message-ID: <8635bdocco.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] cpufreq: apple-soc: Add new driver to control Apple SoC CPU P-states
+In-Reply-To: <20221024043925.25379-5-marcan@marcan.st>
+References: <20221024043925.25379-1-marcan@marcan.st>
+        <20221024043925.25379-5-marcan@marcan.st>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: marcan@marcan.st, rafael@kernel.org, viresh.kumar@linaro.org, matthias.bgg@gmail.com, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org, ulf.hansson@linaro.org, mark.kettenis@xs4all.nl, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
-
-On 9/30/22 17:02, Fabrice Gasnier wrote:
-> From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+On Mon, 24 Oct 2022 05:39:24 +0100,
+Hector Martin <marcan@marcan.st> wrote:
 > 
-> phy-stm32-usbphyc bindings uses a connector node with vbus-supply
-> property.
+> This driver implements CPU frequency scaling for Apple Silicon SoCs,
+> including M1 (t8103), M1 Max/Pro/Ultra (t600x), and M2 (t8112).
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Each CPU cluster has its own register set, and frequency management is
+> fully automated by the hardware; the driver only has to write one
+> register. There is boost frequency support, but the hardware will only
+> allow their use if only a subset of cores in a cluster are in
+> non-deep-idle. Since we don't support deep idle yet, these frequencies
+> are not achievable, but the driver supports them. They will remain
+> disabled in the device tree until deep idle is implemented, to avoid
+> confusing users.
+> 
+> This driver does not yet implement the memory controller performance
+> state tuning that usually accompanies higher CPU p-states. This will be
+> done in a future patch.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->   arch/arm/boot/dts/stm32mp157c-ev1.dts | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> index d142dd30e16b..e22e394832a8 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> @@ -385,6 +385,11 @@ &usbphyc_port0 {
->   	st,tune-squelch-level = <3>;
->   	st,tune-hs-rx-offset = <2>;
->   	st,no-lsfs-sc;
-> +
-> +	connector {
-> +		compatible = "usb-a-connector";
-> +		vbus-supply = <&vbus_sw>;
-> +	};
->   };
->   
->   &usbphyc_port1 {
+>  drivers/cpufreq/Kconfig.arm          |   9 +
+>  drivers/cpufreq/Makefile             |   1 +
+>  drivers/cpufreq/apple-soc-cpufreq.c  | 352 +++++++++++++++++++++++++++
+>  drivers/cpufreq/cpufreq-dt-platdev.c |   2 +
+>  4 files changed, 364 insertions(+)
+>  create mode 100644 drivers/cpufreq/apple-soc-cpufreq.c
+>
 
-Applied on stm32-next.
+[...]
 
-Thanks
-Alex
+> +static struct freq_attr *apple_soc_cpufreq_hw_attr[] = {
+> +	&cpufreq_freq_attr_scaling_available_freqs,
+> +	NULL,
+> +	NULL,
+
+nit: extra NULL?
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
