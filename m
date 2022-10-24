@@ -2,43 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF43609CA3
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34307609C11
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:07:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230342AbiJXI2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55820 "EHLO
+        id S230107AbiJXIHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:07:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230337AbiJXI2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:28:20 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3DEB1CFF6;
-        Mon, 24 Oct 2022 01:28:13 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 40DBB220E61;
-        Mon, 24 Oct 2022 10:27:24 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D9604220E93;
-        Mon, 24 Oct 2022 10:27:23 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 21D631820F58;
-        Mon, 24 Oct 2022 16:27:22 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
-        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, kishon@ti.com,
-        kw@linux.com, frank.li@nxp.com
-Cc:     hongxing.zhu@nxp.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: [RESEND v4 14/14] PCI: imx6: Add i.MX8MP PCIe EP support
-Date:   Mon, 24 Oct 2022 16:06:43 +0800
-Message-Id: <1666598803-1912-15-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1666598803-1912-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1666598803-1912-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        with ESMTP id S230166AbiJXIHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:07:50 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11531625CF
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 01:07:46 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id n14so1826349wmq.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 01:07:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=N1VDqtl3vnv+ST8kbtEniqsZC1oLb+z2ds9xQmLxmS4=;
+        b=gMVmbYfW/UB/h09+QcUH5Gagql2ebppbZ8JhumRALj+6aoM0fgNk4RC+XfcsBq8D8v
+         M19QmLGesRewwy2+MenuWRJ6jLSHd5ponsMhXpfiZcIm8aQamMXcQu9JYhS2W/YfXtgP
+         8cYBXEOyYYIisaJLkeIRnCxdZ64dOBLBYuKFdpBKVwyo2gPVpk1NymoVJZs2sfJ6ktv4
+         5S7DwwBJvuXSk/127ICGK6r6rWTzE5q1WyDoq5/ALui8PqDPRaZOqM9VEektUivT5AF3
+         Xwr43jXIAEiL791GUcJlr0LX0h/M6GR+J9nVSY5HmlIjLvqOxEbGmTFlWfuBBN+l0kYF
+         NeVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N1VDqtl3vnv+ST8kbtEniqsZC1oLb+z2ds9xQmLxmS4=;
+        b=SDKgJE0kaHPwF1eS7b8izbzgd+N8joQYMA89MN7UYvL/SWeV1q6VOUh+hfyNdCcLBS
+         GyZm4OJp3/MT/Ixv9Wdgbymu59ppoMcg5EN/WqYxp7EjXjsqowp9qPUSwBQoS/9/cJG+
+         /uUhi9ID8n5zd0MVdJNaKlQzFNCNIHryP6LINK811s0GDRo0oEm2kyLEPJSLMcnfLAL+
+         zHT4hGruY/yTXByDngHsJwgbKy8JhdSnSt7MVCbV+ZQPO80B6MntpyOrr4qFo9EUHrNP
+         tuIDYZvKS15yHKwc/plZDWb5Lfo3Vjo6n2+t2MX08tjaz+4x2Xn2WS6XWp8N4IXYO6Jw
+         RdDw==
+X-Gm-Message-State: ACrzQf1jCtnZKYOFakxRnnV8IC1LyKFsqqsKukJpcB4ySv1LYLtlOmNs
+        /uVZzdnMso9mqYMORapPLLk6tg==
+X-Google-Smtp-Source: AMsMyM7J4KHskw3szJmZmmvck7UO/jaQFyNAuw9wdES5q9aV4H8fLYFYKH/DuHI80YEwY6GeLVhPag==
+X-Received: by 2002:a05:600c:214d:b0:3c7:1182:4874 with SMTP id v13-20020a05600c214d00b003c711824874mr13663854wml.4.1666598864237;
+        Mon, 24 Oct 2022 01:07:44 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:735:6af:71fd:8d8b? ([2a01:e0a:982:cbb0:735:6af:71fd:8d8b])
+        by smtp.gmail.com with ESMTPSA id t2-20020a5d49c2000000b0023657e1b980sm7646065wrs.53.2022.10.24.01.07.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 01:07:43 -0700 (PDT)
+Message-ID: <9d7bbb01-ee3f-6a62-ad6a-98451df1da45@linaro.org>
+Date:   Mon, 24 Oct 2022 10:07:42 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8916: align TLMM pin
+ configuration with DT schema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221024002356.28261-1-krzysztof.kozlowski@linaro.org>
+ <20221024002356.28261-2-krzysztof.kozlowski@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+Reply-To: neil.armstrong@linaro.org
+In-Reply-To: <20221024002356.28261-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,127 +84,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the i.MX8MP PCIe EP support.
+On 24/10/2022 02:23, Krzysztof Kozlowski wrote:
+> DT schema expects TLMM pin configuration nodes to be named with
+> '-state' suffix and their optional children with '-pins' suffix.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Not tested on hardware.
+> ---
+>   arch/arm64/boot/dts/qcom/apq8016-sbc.dts      |  14 +-
+>   .../boot/dts/qcom/msm8916-alcatel-idol347.dts |  14 +-
+>   .../arm64/boot/dts/qcom/msm8916-asus-z00l.dts |  24 +-
+>   .../arm64/boot/dts/qcom/msm8916-huawei-g7.dts |  20 +-
+>   .../boot/dts/qcom/msm8916-longcheer-l8150.dts |  16 +-
+>   .../boot/dts/qcom/msm8916-longcheer-l8910.dts |   8 +-
+>   arch/arm64/boot/dts/qcom/msm8916-pins.dtsi    | 274 +++++++++---------
+>   .../qcom/msm8916-samsung-a2015-common.dtsi    |  61 ++--
+>   .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts |   6 +-
+>   .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts |   2 +-
+>   .../qcom/msm8916-samsung-e2015-common.dtsi    |   4 +-
+>   .../dts/qcom/msm8916-samsung-grandmax.dts     |   2 +-
+>   .../boot/dts/qcom/msm8916-samsung-j5.dts      |   2 +-
+>   .../dts/qcom/msm8916-samsung-serranove.dts    |  41 +--
+>   .../dts/qcom/msm8916-wingtech-wt88047.dts     |  21 +-
+>   15 files changed, 259 insertions(+), 250 deletions(-)
+> 
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- drivers/pci/controller/dwc/pci-imx6.c | 19 ++++++++++++++++++-
- 1 file changed, 18 insertions(+), 1 deletion(-)
+<snip>
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 3f01cf3776ec..3f04b9ebfd0f 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -54,6 +54,7 @@ enum imx6_pcie_variants {
- 	IMX8MP,
- 	IMX8MQ_EP,
- 	IMX8MM_EP,
-+	IMX8MP_EP,
- };
- 
- #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
-@@ -158,7 +159,8 @@ static unsigned int imx6_pcie_grp_offset(const struct imx6_pcie *imx6_pcie)
- 		imx6_pcie->drvdata->variant != IMX8MQ_EP &&
- 		imx6_pcie->drvdata->variant != IMX8MM &&
- 		imx6_pcie->drvdata->variant != IMX8MM_EP &&
--		imx6_pcie->drvdata->variant != IMX8MP);
-+		imx6_pcie->drvdata->variant != IMX8MP &&
-+		imx6_pcie->drvdata->variant != IMX8MP_EP);
- 	return imx6_pcie->controller_id == 1 ? IOMUXC_GPR16 : IOMUXC_GPR14;
- }
- 
-@@ -323,6 +325,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		/*
- 		 * The PHY initialization had been done in the PHY
- 		 * driver, break here directly.
-@@ -584,6 +587,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
- 		if (ret) {
- 			dev_err(dev, "unable to enable pcie_aux clock\n");
-@@ -631,6 +635,7 @@ static void imx6_pcie_disable_ref_clk(struct imx6_pcie *imx6_pcie)
- 	case IMX8MQ:
- 	case IMX8MQ_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		clk_disable_unprepare(imx6_pcie->pcie_aux);
- 		break;
- 	default:
-@@ -701,6 +706,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	case IMX6SX:
-@@ -779,6 +785,7 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		break;
- 	}
- 
-@@ -831,6 +838,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		reset_control_deassert(imx6_pcie->apps_reset);
- 		break;
- 	}
-@@ -853,6 +861,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	}
-@@ -1104,6 +1113,7 @@ static int imx6_add_pcie_ep(struct imx6_pcie *imx6_pcie,
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX8MQ_EP:
- 	case IMX8MM_EP:
-+	case IMX8MP_EP:
- 		pcie_dbi2_offset = SZ_1M;
- 		break;
- 	default:
-@@ -1318,6 +1328,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 	case IMX8MM:
- 	case IMX8MM_EP:
- 	case IMX8MP:
-+	case IMX8MP_EP:
- 		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
- 		if (IS_ERR(imx6_pcie->pcie_aux))
- 			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
-@@ -1487,6 +1498,11 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.mode = DW_PCIE_EP_TYPE,
- 		.gpr = "fsl,imx8mm-iomuxc-gpr",
- 	},
-+	[IMX8MP_EP] = {
-+		.variant = IMX8MP_EP,
-+		.mode = DW_PCIE_EP_TYPE,
-+		.gpr = "fsl,imx8mp-iomuxc-gpr",
-+	},
- };
- 
- static const struct of_device_id imx6_pcie_of_match[] = {
-@@ -1499,6 +1515,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx8mp-pcie", .data = &drvdata[IMX8MP], },
- 	{ .compatible = "fsl,imx8mq-pcie-ep", .data = &drvdata[IMX8MQ_EP], },
- 	{ .compatible = "fsl,imx8mm-pcie-ep", .data = &drvdata[IMX8MM_EP], },
-+	{ .compatible = "fsl,imx8mp-pcie-ep", .data = &drvdata[IMX8MP_EP], },
- 	{},
- };
- 
--- 
-2.25.1
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
