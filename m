@@ -2,117 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14BE260AEAD
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9C2F60AE64
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbiJXPMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 11:12:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34982 "EHLO
+        id S231553AbiJXO7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 10:59:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229828AbiJXPM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:12:27 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30991A208;
-        Mon, 24 Oct 2022 06:49:42 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id z97so31446040ede.8;
-        Mon, 24 Oct 2022 06:49:42 -0700 (PDT)
+        with ESMTP id S232322AbiJXO6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:58:54 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D8E12A34B
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:36:03 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id u7so6469365qvn.13
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:36:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Um6fnaXpZiNGoozY5O7gXcGXfv/SirCMtpElBWaRQrk=;
-        b=IiSP1xqFuUzG4h3Cp7vT8wXyWgtZ29ddcmbmbQZR+SKY3Dox+w2212dO8xqV8ZNpMb
-         XK6pOCzJPkTFGNo2wEG23VMhtf/JdZtGaCnfzuAM8Z+FElATM27i9z4+MGfCKV6kl0gl
-         +T6fsZQ/uwu1o42YYy1W8mseOZHNz/qOzPjIG69sch+L0iQOiAZ020zoSo19tSsGjjQ9
-         Rzlot/fUTyXrskC6wFJuSsL8YxWXhkxSz503GR7M8gCHFYOP9fhnlO0J8/gOdNfCv6NE
-         63CWvxCdv2HwndSAWxs4Qkjl170bqNfDA9jF0uDKyMQGQiAJYff9Ze1VZXesqmayXozz
-         28xA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NXoecYdGJC2+HYOwpiaqnVwgAvwqsGUF9D69/wSkRhI=;
+        b=NyZbVP20rPDepGnbV4uu3v6EY8m6TGiQ6owV05m+b7aGpSMSKydOIRIenlYnKDcMtN
+         92nqgn3EfAG3rvUW2nKJDgjqap4Ph6+UVA3Rb4ouirWkfeWybax0GYTN7teugD4g2RsE
+         OZyIglRWI1Lo57i02HkqyJLjAz0aMvSLZMwx+KjcVQEHuyYWXbeB7NzoIExp9JBKZk5Y
+         YrRbm/syzdFgCJKAK1+Dv+eRhnhCBn0T/imisPeV+IvvKzgjzzBeW8gZ0wzWHTXvzfkE
+         v7ePwrOkM2wiELe0ZJVn0vRRtCSkLyIU20+qfUStwClTv5o9vuuw1LMPSEe9Fq+nj+Es
+         a58w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Um6fnaXpZiNGoozY5O7gXcGXfv/SirCMtpElBWaRQrk=;
-        b=UwgjcBxDkLJvHB90T0b8E9smUV0dTU61jBCT2KV1AlG9tbb/c/Z0ocl5J8xBrSzQSB
-         wGIhTIS0663FVXRZmDO8aK1rvYuxDRe4kFM+/vch1o6p8Fl0MtQ6B5bmYYRuTbhgFoi8
-         zzicMBADSWgaQD29SqdJXFmuPzc1yHVHTVa7EGS2A9x5Bcq0pyW2rUKa2WfGeAnTdo+3
-         KQXlSgwCVSmrj3CxqDr5Puu7avoOKW889Wy8n9dJhQ9Wssj5aYuiBJPRkVTdn6q1PmUQ
-         gNS+AzjUvz3xbJN/0dP0ILZ8uZQz2+NpFmN/W7hznKDyAOFRh1J7efs0hzvGxv/kkuLS
-         JG2Q==
-X-Gm-Message-State: ACrzQf3RJTsPpw9BoVkUYVTdPtchOQ5ARp4i6+SdA41WrN4eaM2xkeR7
-        Ur+rvRMTu0F++KTkN4zPQw2uMc93YUU=
-X-Google-Smtp-Source: AMsMyM5S7wBzzYlk1b/MXtHZZm4vFo03coM0BiEqZdKMat/q/jvisGxXIKoGeThc7DvbRHnSVI8cJw==
-X-Received: by 2002:a17:906:5daa:b0:791:8933:f9f0 with SMTP id n10-20020a1709065daa00b007918933f9f0mr27209510ejv.335.1666618446100;
-        Mon, 24 Oct 2022 06:34:06 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id qu16-20020a170907111000b00780982d77d1sm15504223ejb.154.2022.10.24.06.34.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 06:34:04 -0700 (PDT)
-Date:   Mon, 24 Oct 2022 15:34:03 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: tegra: Populate Tegra234 PWMs
-Message-ID: <Y1aUS8KK4Uy8q/9E@orome>
-References: <20221019132903.157703-1-jonathanh@nvidia.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NXoecYdGJC2+HYOwpiaqnVwgAvwqsGUF9D69/wSkRhI=;
+        b=moASjZ4RmWimeLww1YdvJ9CPfwMY4UmcWRz+7+t1V8XBBG2wh/tS4SZUQOx34kfB9n
+         JaX96dHDlKKYrwc5deSGS1twf9wkiegulZ+FeV8vQM752kckOaqmQxfLbake0PFmtCmn
+         rYCYc28jIza1b9qwMDbW0/xism9r4SC9257aqUf60H0tKfGbHzjs+svDjgUjufnNhYJe
+         QIypfrJcsGC2G6jWPKZKU/OncgqL5ug6CbjlEjo2NLMx3vr24DE4ICbY7o1kSV7Oyswk
+         FCC8yfMhnUs4h6nW6bDcEkjTZqyz9CjgOR34cdBZFCJRJAyKZT7ITSkZmRO4QyS4+UGw
+         biuQ==
+X-Gm-Message-State: ACrzQf2orP62+p/DAKEkX7LW53FUYIawDY25o5G8hKg2gAnxg/gmtJNe
+        x8fePX/G+cgZV8LHzDEdFpqowz7y04V4uw==
+X-Google-Smtp-Source: AMsMyM4y39uLjjaZ3gT918SpmBGdDRV0vI6kOQrzttG9MnzBiUJO3QTYH6cfUlxXpAT4n9ebBvALdg==
+X-Received: by 2002:a05:6214:769:b0:4bb:77d5:bb53 with SMTP id f9-20020a056214076900b004bb77d5bb53mr2697128qvz.118.1666618464634;
+        Mon, 24 Oct 2022 06:34:24 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id bl9-20020a05620a1a8900b006cf38fd659asm14557889qkb.103.2022.10.24.06.34.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 06:34:24 -0700 (PDT)
+Message-ID: <94e05a63-e7f3-a78f-d0a6-8efcae619726@linaro.org>
+Date:   Mon, 24 Oct 2022 09:34:22 -0400
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="rKW4eG27OkPb0QHe"
-Content-Disposition: inline
-In-Reply-To: <20221019132903.157703-1-jonathanh@nvidia.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: add TCSR node
+Content-Language: en-US
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221024125843.25261-1-johan+linaro@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024125843.25261-1-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---rKW4eG27OkPb0QHe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Oct 19, 2022 at 02:29:02PM +0100, Jon Hunter wrote:
-> Populate all the PWM devices for Tegra234. Finally, update the
-> compatible string for the existing 'pwm1' node to just be 'tegra194-pwm'
-> and remove the fallback to 'tegra186-pwm', which aligns with the
-> binding documentation.
->=20
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+On 24/10/2022 08:58, Johan Hovold wrote:
+> Add the TCSR node which is needed for PCIe configuration.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 80 +++++++++++++++++++++++-
->  1 file changed, 78 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 5 +++++
 
-Both patches applied, thanks.
+Please send the patches together with the binding. There is no need to
+have this split and it causes additional effort during review - lookup
+of the binding.
 
-Thierry
+Also additional effort during binding review - lack of usage of bindings.
 
---rKW4eG27OkPb0QHe
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNWlEsACgkQ3SOs138+
-s6FfuRAAo+wPAbadrPY4XREFIt7i+fPYEurG1EISxRyyRWBNRkJIQ3ELQP6ak20h
-H+o+y0XvrCyuLKRIQYbnRR4BT0CvdiaRMpgcCcRXSDsvuiyMagIWBge7RHu+xPoL
-skkDphqwqkfZWfo1YJyqKOnALoWbQd9j8LBEMsXq4qBuUh8i/uBD4sdSMJqExwpB
-dRwyuLOWwUj+9IHxGvmgS98IhJ22+2DRcbVHTMKwBAK6voaY9+lrkU2qmmFLa9F4
-1TvJeT/uSAbMHsL52oLDrwRNElBXYRdXPGPPKloVB2eiHmMd3cJAx3fNRlLTZ2l6
-TsLfHmDf4WWj+nxWRWoGFJj6A8uR0whSd4rY7KGumjfE5HAQNRoAeA3RQb0VrGwC
-n0ME8ePur0tpG52SEAxPspn50V80QZoK21sLnpQtlKiSd0EsSuk92tbjhCpDQSoZ
-EM1blTvM+QfFmGpHFdEFEi6HcaRQL7us7KswQnzwKGjiIhGsh/m8fO7+RoqYdJnY
-Z4wxm2m2IKyfIUM//Kxh79mlRR+mZqVe/ZQb4iN6zG4KgKXee6acjehNtJcrgD8R
-o++jGMoDWT2SLFHtVE0TQwKIrmSTJzl/6WnSdnkgmX4/lVXJazQdo3K5uXpOwZoy
-rN7p/TKoKcPmZNi/G06x9M+MVSRwyEsoQx8O8N0WfgrDXKMcHj4=
-=ZgkW
------END PGP SIGNATURE-----
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---rKW4eG27OkPb0QHe--
+Best regards,
+Krzysztof
+
