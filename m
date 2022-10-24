@@ -2,293 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E27C060BBB8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AB1D60BBCE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:14:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232907AbiJXVLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 17:11:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34292 "EHLO
+        id S230023AbiJXVNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 17:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232916AbiJXVK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:10:56 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E4042CFD19
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 12:17:13 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id l28so6206865qtv.4
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 12:17:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1Uz1LChqXvtTQgQ4UX3FdXnaqMoy3szlw7sN3/aSmaU=;
-        b=tO1Rtjv/pG5rdUtCJjc6Wqt0VphLY9rbHOBvebxi2pLOg9CMzvOwLqxl5td/ZiJbDR
-         CxBLEnpssf2Hcj65gyijNBp3wfyR70YsaslP59G/9ILBxHNJQxhiqF3EjYB1nQhNgdsr
-         dLHQdqbl6kuFOFs8yG0s/B8+REWHQiazIrfKs8e4a21x44MIoVUed3ja3QA71XicAYUU
-         Az7fiBMGYXyIu3QWSBtDzqvE6UqvcctEthUw4epcTeSiZV+iko/F0e9LChCnGPT1WSIv
-         cKjUDn63w8MyUYYjmjTswQn8mmtsL0pO74ZN2j0dnGQCOMkriBgfBmNUg+Z5MerPWMrP
-         xGeg==
+        with ESMTP id S233870AbiJXVNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:13:30 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3A99F34B;
+        Mon, 24 Oct 2022 12:19:08 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id n83so11832935oif.11;
+        Mon, 24 Oct 2022 12:19:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Uz1LChqXvtTQgQ4UX3FdXnaqMoy3szlw7sN3/aSmaU=;
-        b=5Uu0rbROCx0ic5fdktgmvD0bkdHaJGjoaQDLQhfSGfB5hmGligijVgyjGLg/DwDYVD
-         kxjG1bpvfUPOjUx4EjOyu8cTQkQmOABKfoLmA/XxEWJCQRCbCkk1ppEZjTkTGUVGbecv
-         XilXTPSnQso0nNLXjarwklEKw107peEGDHjWdVFulB1v0FpVzR1mSTmcZy9nnKp5dTHZ
-         pd3+jp9u34b6YcuguVfSQsUW96hWWX5hsp8kFSgJXWH3HdNPWodJJZxJzsvnpO/77acZ
-         o7TOmgLw9YEi+3925fjLUZxb656hLWnJSjZGQZIR4+IZbBy4ogGjTAc8FM5yPDe/9iDT
-         qSPg==
-X-Gm-Message-State: ACrzQf2m/s/y9yKDBaY6KjHV3UBHZakXTZSpX4urM7fl52ogCUKTBUdN
-        ki1JZFJ3IK5yigJln52mW2rGaA==
-X-Google-Smtp-Source: AMsMyM4tuMOGYErwIW725XTlNxvY5jz9YlLp4nfLliYmjmdkBBtut5knzrkgWET62BwZrVWyS086hQ==
-X-Received: by 2002:a05:622a:3ca:b0:39c:c860:fc2f with SMTP id k10-20020a05622a03ca00b0039cc860fc2fmr28860824qtx.489.1666638949713;
-        Mon, 24 Oct 2022 12:15:49 -0700 (PDT)
-Received: from [172.22.22.4] ([98.61.227.136])
-        by smtp.googlemail.com with ESMTPSA id v8-20020a05620a440800b006ec59941acasm546994qkp.11.2022.10.24.12.15.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 12:15:48 -0700 (PDT)
-Message-ID: <bf67b30f-074b-22b5-8d23-b1531ad30d74@linaro.org>
-Date:   Mon, 24 Oct 2022 14:15:46 -0500
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QIBzsXoRmDPCk+QGItVKsAnVTVNA5SJC3SeSu8UPZ0Q=;
+        b=mxQII/Jy11+yUIWhqP2PeP/Lr5BZnFAyoiWSsR67VgllbOqCaHbffVdgag7PditIqG
+         T3Yj8xynxS6yQkYDJQkTQSS8HcuG+KCC3qKsR0yIr207Fj43g9WgxVgWEU8lpAjWdmoc
+         6iLCrydLb2bIii1k6Rjkxy9/B+NhHDbeT320FBBRLnFhva8C3l8tHL2JopTXczJafejH
+         LQcmBzdFDRNXzHb+gBZRobEDhjQtczFcpHHAGKnFTdWQ5MABWWZ1iU7iNm7JPiNBH12L
+         4q0FP/5M4u0OGmjH1JbEzWFAUhpF00tQpHTWcQDfSeMLHlDdNXpedQ/UyETzFyiHPGAd
+         UQDg==
+X-Gm-Message-State: ACrzQf2tz6RR+gTPoOrmHhTioArP0XOk3sgav0UoPNkTiWTa44V34FZO
+        sb3vKL91t8/7pItXlJ2A3DVOWr2T+g==
+X-Google-Smtp-Source: AMsMyM4MB6WxE1PPXgNUticTmOt/0jgwpX4JDtNdVwFd2Y/nV7ZFEF/0yX9UhR/ug7Xqhywv3Aw1Dw==
+X-Received: by 2002:a05:6808:16a6:b0:351:7211:6192 with SMTP id bb38-20020a05680816a600b0035172116192mr17441079oib.251.1666638994336;
+        Mon, 24 Oct 2022 12:16:34 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x6-20020a05680801c600b0035173c2fddasm172201oic.51.2022.10.24.12.16.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 12:16:33 -0700 (PDT)
+Received: (nullmailer pid 2064239 invoked by uid 1000);
+        Mon, 24 Oct 2022 19:16:35 -0000
+Date:   Mon, 24 Oct 2022 14:16:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2 v1] usb: phy: phy-gpio-vbus-usb: Add devicetree
+ bindings
+Message-ID: <20221024191635.GA2060090-robh@kernel.org>
+References: <20221022121149.3329641-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] net: ipa: fix some resource limit max values
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>
-Cc:     Alex Elder <elder@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-References: <20221024165636.3979249-1-caleb.connolly@linaro.org>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <20221024165636.3979249-1-caleb.connolly@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221022121149.3329641-1-linus.walleij@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/24/22 11:56 AM, Caleb Connolly wrote:
-> Some resource limits on IPA v3.1 and v3.5.1 have their max values set to
-> 255, this causes a few splats in ipa_reg_encode and prevents it from booting.
-> The limits are all 6 bits wide so adjust the max values to 63.
-
-Thank you for sending this Caleb.
-
-On IPA v3.5.1 (SDM845) I confirm that these resource limit fields are
-6 bits wide, while the values we assign are in some cases 255, which
-cannot be represented in 6 bits.  Your fix in this case is proper,
-changing the maximum limit from 255 to be 63.  (Just in case, I've
-sent a note to Qualcomm to ask them to confirm this, but I think this
-is fine.)
-
-I re-checked the definitions of the MIN_LIMIT and MAX_LIMIT fields
-for IPA v3.1, and it turns out in that case the *register field*
-definitions were wrong.  They should, in fact, be 8 bits wide rather
-than just 6.  So in that case, 255 would be a reasonable limit value.
-
-Did you observe these splats when doing actual testing on an msm8998
-(which has IPA v3.1)?  Or did you just double-check the code?  I
-looked at the other currently-supported platforms and didn't see
-this sort of problem elsewhere (IPA v4.2, 4.5, 4.9, 4.11).
-
-
-Could you please send a new version of your patch, which fixes the
-register definition in "ipa_reg-v3.1.c" instead?
-
-It might be best to fix the two issues in separate patches, since
-they will parts pf the code with different development histories.
-
-Thanks!
-
-					-Alex
-
-> Fixes: 1c418c4a929c ("net: ipa: define resource group/type IPA register fields")
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->   drivers/net/ipa/data/ipa_data-v3.1.c   | 62 +++++++++++++-------------
->   drivers/net/ipa/data/ipa_data-v3.5.1.c |  4 +-
->   2 files changed, 33 insertions(+), 33 deletions(-)
+On Sat, Oct 22, 2022 at 02:11:48PM +0200, Linus Walleij wrote:
+> This adds a simple device tree binding for a GPIO-based
+> VBUS detection PHY.
 > 
-> diff --git a/drivers/net/ipa/data/ipa_data-v3.1.c b/drivers/net/ipa/data/ipa_data-v3.1.c
-> index e0d71f609272..7ff093f982ad 100644
-> --- a/drivers/net/ipa/data/ipa_data-v3.1.c
-> +++ b/drivers/net/ipa/data/ipa_data-v3.1.c
-> @@ -187,53 +187,53 @@ static const struct ipa_gsi_endpoint_data ipa_gsi_endpoint_data[] = {
->   static const struct ipa_resource ipa_resource_src[] = {
->   	[IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS] = {
->   		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-> -			.min = 3,	.max = 255,
-> +			.min = 3,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-> -			.min = 3,	.max = 255,
-> +			.min = 3,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-> -			.min = 1,	.max = 255,
-> +			.min = 1,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-> -			.min = 1,	.max = 255,
-> +			.min = 1,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-> -			.min = 2,	.max = 255,
-> +			.min = 2,	.max = 63,
->   		},
->   	},
->   	[IPA_RESOURCE_TYPE_SRC_HDR_SECTORS] = {
->   		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   	},
->   	[IPA_RESOURCE_TYPE_SRC_HDRI1_BUFFER] = {
->   		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   	},
->   	[IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_LISTS] = {
-> @@ -272,36 +272,36 @@ static const struct ipa_resource ipa_resource_src[] = {
->   	},
->   	[IPA_RESOURCE_TYPE_SRC_HDRI2_BUFFERS] = {
->   		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   	},
->   	[IPA_RESOURCE_TYPE_SRC_HPS_DMARS] = {
->   		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   	},
->   	[IPA_RESOURCE_TYPE_SRC_ACK_ENTRIES] = {
-> @@ -345,22 +345,22 @@ static const struct ipa_resource ipa_resource_dst[] = {
->   	},
->   	[IPA_RESOURCE_TYPE_DST_DATA_SECTOR_LISTS] = {
->   		.limits[IPA_RSRC_GROUP_DST_UL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_DST_DL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_DST_DIAG_DPL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_DST_DMA] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_GENERAL] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_ENGINE] = {
-> -			.min = 0,	.max = 255,
-> +			.min = 0,	.max = 63,
->   		},
->   	},
->   	[IPA_RESOURCE_TYPE_DST_DPS_DMARS] = {
-> diff --git a/drivers/net/ipa/data/ipa_data-v3.5.1.c b/drivers/net/ipa/data/ipa_data-v3.5.1.c
-> index 383ef1890065..42f2c88a92d4 100644
-> --- a/drivers/net/ipa/data/ipa_data-v3.5.1.c
-> +++ b/drivers/net/ipa/data/ipa_data-v3.5.1.c
-> @@ -179,10 +179,10 @@ static const struct ipa_gsi_endpoint_data ipa_gsi_endpoint_data[] = {
->   static const struct ipa_resource ipa_resource_src[] = {
->   	[IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS] = {
->   		.limits[IPA_RSRC_GROUP_SRC_LWA_DL] = {
-> -			.min = 1,	.max = 255,
-> +			.min = 1,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UL_DL] = {
-> -			.min = 1,	.max = 255,
-> +			.min = 1,	.max = 63,
->   		},
->   		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->   			.min = 1,	.max = 63,
+> Cc: Felipe Balbi <balbi@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../bindings/phy/phy-usb-vbus-gpio.yaml       | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml b/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
+> new file mode 100644
+> index 000000000000..4e10b58f8235
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/phy-usb-vbus-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO-based VBUS detection USB PHY
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: A VBUS event occurs when a USB plug is attached to
+> +  a USB host and peripheral, the voltage (VBUS) is exposed from the
+> +  host to the peripheral when the last of the two ends of the
+> +  cable is plugged in. This can be either on the host side or on
+> +  the peripheral side, whichever comes last. It is possible to
+> +  provide a very simple USB VBUS detection mechanism by using a
+> +  GPIO line that will trigger on an edge event on the VBUS
+> +  pin.
 
+We already have Vbus GPIOs in the USB connector binding and there is 
+also the usb-nop-transceiver. Surely one of those works for you? 
+Preferably the former.
+
+Rob
