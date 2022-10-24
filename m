@@ -2,78 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9399A60BD59
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 00:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A1560BD68
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 00:31:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbiJXW2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 18:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49326 "EHLO
+        id S230447AbiJXWbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 18:31:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231204AbiJXW2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 18:28:09 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A673B46C
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 13:49:43 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id t25so6861593qkm.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 13:49:43 -0700 (PDT)
+        with ESMTP id S230347AbiJXWad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 18:30:33 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A63A13F85
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 13:53:22 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id ml12so6252841qvb.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 13:53:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GkmpsNViylq9BB1MxlxYNFU9pC/HN95G5AphBwXIurI=;
-        b=PGDd8ik8IIwKMIUsrm1jKXFQuLvqCRne6jdZeJ4bATC8PlKLBy+xP6ra7bzvwU4EDY
-         nG7fYF+SYQWA92kpD6XvUbVp9/qx/y3igNzKGu9EYc1cj6D3upzQNZFGXOoW1iSBTB5E
-         fn+RNtDYNRhYQbHmf8/0aYChksmKoUhSIJ41QkPi/i8MY8PsPh0Zw8ecuMEi31Gei4Q6
-         nV5UIGT7Qjq2PgPXhjD4edUcxw/KIYWvXF4/hPeDoFxtrxAx4jgLDQA8cchQHhKLY/4v
-         RCV0M9sfC1ZDdi/pnUjMyNcZYUD4ja8t8FS6F3Yoduk/RpvMADAyzhsyMc+XgIoLSXhG
-         uFmg==
+        bh=tqFLMg6uRhRQRmXJ9QneA5/Qult4cQee1Mbf8jF2WyE=;
+        b=AdkZFHvuiAP4xkerquOcpqZB3+k+FtH0/4XwqqQpZmxk6GgrLYTmb8gzshooljZSE6
+         jdakcuD8Alctrf4B+M4qnhgUAmiADrcwssfH9wNCEX70M2rzC1PUY7a5dVzkdK05jPGn
+         WgFiZsHIuvVuH4NXBSxghwPD5G9/lUsqL08n6/5t+tDTFdOICOi5Ri+B/aDy1f2kfqRl
+         q5iDubrjWedxmj6aMtR7hhuABT5Cr9oCqwbguV+mDbs1fsBlBIdDWDSx1p5Gon6qWv+F
+         qzRw2bzab9nF8uGnUqezDODBMBl8chfdELzmvA5uPBYJ0RJ62Ps/eIe13CO5ufgQG1nK
+         p1/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GkmpsNViylq9BB1MxlxYNFU9pC/HN95G5AphBwXIurI=;
-        b=Yx8PWF1ONNWby5GRPghRuYFiatiq0RxtvrjbBtJDSYKu+SR4EJ3u9h7QVfXxa2z57o
-         O6+IGKCG9yQ9YU7OY14z/Z4K6lyv7MkZ2EqYD2vZ3beRo0w8TfCNms64IlFssSF1y1cV
-         d1ps7sIjkaSIpzywBq1QbweheT57l3J0ERmoDZzl0QXpxt/AVU1ALrZ4Uzcr5QyvM8o+
-         zdmlpu8tZXKvjC7IIw1kWOMstHrQsTvOSWow9cDIWmublAxId5JkvX4F0ydtpKOJlYod
-         vOKF8Bx5Ro6DUPdUR/4rZMKzdcIZqaTY0YgfBLuMNxVjQs1ZbCAKiBObSAZjB86OLTpQ
-         BJbA==
-X-Gm-Message-State: ACrzQf37h5SnQnKCuA0gDpL1wFifaaHW6oMjOtQv2EgRM5+k8UB60r1q
-        4iylOcj8RXH1X6RLS2XSDGji7A==
-X-Google-Smtp-Source: AMsMyM6ZkZ/psZ7xFtzSk2+QefOCkJiSaxQwDA09YPJIno7suqbPrkOOfDSNwZb+THNYQaurWqW+lA==
-X-Received: by 2002:a05:620a:28d2:b0:6ef:a7f:dee4 with SMTP id l18-20020a05620a28d200b006ef0a7fdee4mr16570214qkp.400.1666644475623;
-        Mon, 24 Oct 2022 13:47:55 -0700 (PDT)
+        bh=tqFLMg6uRhRQRmXJ9QneA5/Qult4cQee1Mbf8jF2WyE=;
+        b=W3MmT9+KvZLqn+5neeEVTFMCK+oDpDkUyDtGuomwTT3bGZMlpdL2PP0xxT9YBDdCb6
+         y8XYkzpqLijd7RASL6Jtr2whrPwEjJ+jkv8tXYtuzp6z4WIUu5Go25PUfQWVGNAkeIk4
+         /jo1ImQp00KzzsIcRO/3qMAkIkGtzc32EFJ4Ug1WpV+T49EiXD2TN/vCtHZGqEaqO7AT
+         Owvq/nHUx37tQbjDJcV2i0ukVsDLC5El5Uc8REf5efQCyQHfwfKhK8UEc/jFIKH3ZrZh
+         iA2uNZ2Lzj16lbFJB933x0I7xaQ2KfKEZRoD7MWsBSl4m4Qo68syIP1Dpnobukx1WRwp
+         C3FA==
+X-Gm-Message-State: ACrzQf1MCBj8q4J03jLXiUoqxVdb6zut7g/5eS+in8Wgc52QUhK0oDL5
+        GMhFRwvpD3OuGqhIxNW4U4xjiodiwtMz6g==
+X-Google-Smtp-Source: AMsMyM51AifgSKGMphjiFZJRB5CThD2CylgJtsOaKsmO5Ikm7TvSu2+4uhdwYMMfpDLmjyFWp8prVw==
+X-Received: by 2002:a05:6214:e62:b0:4b3:ff39:7aef with SMTP id jz2-20020a0562140e6200b004b3ff397aefmr29749239qvb.31.1666644677366;
+        Mon, 24 Oct 2022 13:51:17 -0700 (PDT)
 Received: from [192.168.1.8] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id w3-20020ac857c3000000b0039442ee69c5sm490305qta.91.2022.10.24.13.47.54
+        by smtp.gmail.com with ESMTPSA id l11-20020a37f90b000000b006ee79bb1f8asm622386qkj.68.2022.10.24.13.51.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 13:47:55 -0700 (PDT)
-Message-ID: <e9608a55-7b2f-330d-df98-eedd0be53f47@linaro.org>
-Date:   Mon, 24 Oct 2022 16:47:53 -0400
+        Mon, 24 Oct 2022 13:51:16 -0700 (PDT)
+Message-ID: <8cc7a8b6-0ca9-bc61-77e3-abf24cfbc909@linaro.org>
+Date:   Mon, 24 Oct 2022 16:51:15 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
- subnodes
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+To:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
- <761d6ae2-e779-2a4b-a735-960c716c3024@linaro.org>
- <20221024185312.GA2037160-robh@kernel.org>
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Elad Nachman <enachman@marvell.com>
+References: <20221021194552.683-1-vadym.kochan@plvision.eu>
+ <20221021194552.683-2-vadym.kochan@plvision.eu>
+ <a46c6a18-903d-2120-4876-509ce8ad19d5@linaro.org>
+ <VI1P190MB03170416FB2C521103B8EE1A952E9@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221024185312.GA2037160-robh@kernel.org>
+In-Reply-To: <VI1P190MB03170416FB2C521103B8EE1A952E9@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,62 +86,222 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 14:53, Rob Herring wrote:
-> On Sat, Oct 22, 2022 at 12:05:15PM -0400, Krzysztof Kozlowski wrote:
->> On 21/10/2022 13:10, Sebastian Reichel wrote:
->>> The queue configuration is referenced by snps,mtl-rx-config and
->>> snps,mtl-tx-config. Most in-tree DTs put the referenced object
->>> as child node of the dwmac node.
->>>
->>> This adds proper description for this setup, which has the
->>> advantage of properly making sure only known properties are
->>> used.
->>>
->>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml   | 154 ++++++++++++------
->>>  1 file changed, 108 insertions(+), 46 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> index 13b984076af5..0bf6112cec2f 100644
->>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> @@ -167,56 +167,118 @@ properties:
->>>    snps,mtl-rx-config:
->>>      $ref: /schemas/types.yaml#/definitions/phandle
->>>      description:
->>> -      Multiple RX Queues parameters. Phandle to a node that can
->>> -      contain the following properties
->>> -        * snps,rx-queues-to-use, number of RX queues to be used in the
->>> -          driver
->>> -        * Choose one of these RX scheduling algorithms
->>> -          * snps,rx-sched-sp, Strict priority
->>> -          * snps,rx-sched-wsp, Weighted Strict priority
->>> -        * For each RX queue
->>> -          * Choose one of these modes
->>> -            * snps,dcb-algorithm, Queue to be enabled as DCB
->>> -            * snps,avb-algorithm, Queue to be enabled as AVB
->>> -          * snps,map-to-dma-channel, Channel to map
->>> -          * Specifiy specific packet routing
->>> -            * snps,route-avcp, AV Untagged Control packets
->>> -            * snps,route-ptp, PTP Packets
->>> -            * snps,route-dcbcp, DCB Control Packets
->>> -            * snps,route-up, Untagged Packets
->>> -            * snps,route-multi-broad, Multicast & Broadcast Packets
->>> -          * snps,priority, bitmask of the tagged frames priorities assigned to
->>> -            the queue
->>> +      Multiple RX Queues parameters. Phandle to a node that
->>> +      implements the 'rx-queues-config' object described in
->>> +      this binding.
->>> +
->>> +  rx-queues-config:
->>
->> If this field is specific to this device, then you need vendor prefix:
->> snps,rq-queues-config
+On 24/10/2022 15:48, Vadym Kochan wrote:
+> Hi Krzysztof,
 > 
-> Not for a node name...
+> On Sat, 22 Oct 2022 12:18:49 -0400, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> On 21/10/2022 15:45, Vadym Kochan wrote:
+>>> Switch the DT binding to a YAML schema to enable the DT validation.
+>>>
+>>> Dropped deprecated compatibles and properties described in txt file.
+>>>
+>>> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
+>>> ---
+>>>  .../bindings/mtd/marvell,nand-controller.yaml | 199 ++++++++++++++++++
+>>>  .../devicetree/bindings/mtd/marvell-nand.txt  | 126 -----------
+>>>  2 files changed, 199 insertions(+), 126 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+>>> new file mode 100644
+>>> index 000000000000..535b7f8903c8
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+>>> @@ -0,0 +1,199 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mtd/marvell,nand-controller.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Marvell NAND Flash Controller (NFC)
+>>> +
+>>> +maintainers:
+>>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+>>
+>> This should be someone responsible for hardware, not subsystem
+>> maintainer. Unless by coincidence Miquel matches both. :)
+>>
+>>> +
+>>> +properties:
+>>> +
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +        - const: marvell,armada-8k-nand-controller
+>>> +        - const: marvell,armada370-nand-controller
+>>
+>> Does not look like you tested the bindings. Please run `make
+>> dt_binding_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> 
+> Yes, on v1 I did not use yamllint, but installed after Rob pointed
+> on some lint warnings.
 
-Right.
+I did not say about yamllint.
+
+> 
+>>
+>>> +      - const: marvell,armada370-nand-controller
+>>> +      - const: marvell,pxa3xx-nand-controller
+>>
+>> These two are just enum.
+>>
+> 
+> OK.
+> 
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>
+>> Drop, comes with nand-controller.yaml
+>>
+> 
+> OK.
+> 
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>
+>> Ditto
+>>
+> 
+> OK.
+> 
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +    description: |
+>>
+>> No need for |
+>>
+>>> +     Shall reference the NAND controller clocks, the second one is
+>>> +     is only needed for the Armada 7K/8K SoCs
+>>
+>> You need allOf:if:then restricting it further per variant.
+>>
+> 
+> OK, added.
+> 
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: core
+>>> +      - const: reg
+>>> +    description: |
+>>> +      Mandatory if there is a second clock, in this case there
+>>> +      should be one clock named "core" and another one named "reg"
+>>
+>> The message is confusing. What is mandatory if there is a second clock?
+>> Plus, the binding requires two clocks.
+>>
+>> Drop entire description.
+>>
+>> minItems: 1
+>>
+> 
+> OK, droped (I used from the txt version).
+> Added minItems.
+> 
+>>
+>>> +
+>>> +  dmas:
+>>> +    maxItems: 1
+>>> +    description: rxtx DMA channel
+>>
+>> Drop description.
+>>
+> 
+> OK.
+> 
+>>> +
+>>> +  dma-names:
+>>> +    items:
+>>> +      - const: rxtx
+>>> +
+>>> +  marvell,system-controller:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Syscon node that handles NAND controller related registers
+>>> +
+>>> +patternProperties:
+>>> +  "^nand@[0-3]$":
+>>> +    type: object
+>>> +    properties:
+>>> +
+>>
+>> Drop blank line.
+>>
+> 
+> OK.
+> 
+>>> +      reg:
+>>> +        minimum: 0
+>>> +        maximum: 3
+>>> +
+>>> +      nand-rb:
+>>> +        minimum: 0
+>>> +        maximum: 1
+>>> +
+>>> +      nand-ecc-strength:
+>>> +        enum: [1, 4, 8]
+>>> +
+>>> +      nand-on-flash-bbt: true
+>>> +
+>>> +      nand-ecc-mode: true
+>>> +
+>>> +      nand-ecc-algo:
+>>> +        description: |
+>>> +          This property is essentially useful when not using hardware ECC.
+>>> +          Howerver, it may be added when using hardware ECC for clarification
+>>> +          but will be ignored by the driver because ECC mode is chosen depending
+>>> +          on the page size and the strength required by the NAND chip.
+>>> +          This value may be overwritten with nand-ecc-strength property.
+>>> +
+>>> +      nand-ecc-step-size:
+>>> +        const: 512
+>>
+>> Why this is const?
+>>
+> 
+> Removed const.
+> 
+>>> +        description: |
+>>> +          Marvell's NAND flash controller does use fixed strength
+>>> +          (1-bit for Hamming, 16-bit for BCH), so the actual step size
+>>> +          will shrink or grow in order to fit the required strength.
+>>> +          Step sizes are not completely random for all and follow certain
+>>> +          patterns described in AN-379, "Marvell SoC NFC ECC".
+>>> +
+>>> +      label:
+>>> +        $ref: /schemas/types.yaml#/definitions/string
+>>> +
+>>> +      partitions:
+>>> +        type: object
+>>> +        $ref: "/schemas/mtd/partitions/partition.yaml"
+>>
+>> Drop quotes
+>>
+> 
+> OK.
+> 
+>>         unevalautedProperties: false
+>>
+>> and then you will see errors, because you referenced schema for one
+>> partition.
+>>
+> 
+> Hm, I did not see errors with partitions with- or without "unevaluatedProperties".
+
+As pointed before and here - I am not sure if you tested the bindings,
+so of course then will be no warnings...
 
 Best regards,
 Krzysztof
