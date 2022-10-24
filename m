@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39E5260BAD6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 22:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C86DB60BBBA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:11:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230207AbiJXUlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 16:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48044 "EHLO
+        id S232098AbiJXVLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 17:11:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234780AbiJXUkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 16:40:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 421B7132EAA;
-        Mon, 24 Oct 2022 11:50:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 70ACA612A5;
-        Mon, 24 Oct 2022 12:54:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7864FC433C1;
-        Mon, 24 Oct 2022 12:54:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666616078;
-        bh=/k2eE8MbO1a7k6bMlbjRIuZ6b34XkvcZI55kUD9GP6Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eoCneCrDg+R/0/0w8aLO/o/2gYavPmzWPyQ3jh8PQ0o/daXA9pyAyunQNf3LO5hhf
-         GQILRcBfNPgIlDVeGMLYQHDC/BTBk8ioQLlI7l/OYkaolM5RYyBy5poQqYpHflwLls
-         nqJkJ1AjwCWVTy0IfrJvUYvlN1H6+Z6MrdVfWbqqvxCQiNI3OU2VHFYCHxnXIeofSV
-         r1WepEnR8oGUr4n+rbYqFynGXLFsAdjkKl3lNejixImkFFHGYVcFrRIrNELQC36I3i
-         SgallQfqUZ1lj2dwB1sGR0O9kQkTZ3FaMb7sIXUIWfd97pXEqsDmzGpJSuHHUPPOcz
-         9qnV8mYJF3ZwQ==
-Date:   Mon, 24 Oct 2022 13:54:33 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232396AbiJXVLU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:11:20 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4155D2CFD38
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 12:17:41 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1omx0I-0008QJ-LT; Mon, 24 Oct 2022 14:56:30 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1omx0I-0004tc-4L; Mon, 24 Oct 2022 14:56:30 +0200
+Date:   Mon, 24 Oct 2022 14:56:30 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: mfd: qcom,spmi-pmic: use generic node
- name "gpio"
-Message-ID: <Y1aLCdi7+UVNNBp1@google.com>
-References: <20220908080938.29199-1-krzysztof.kozlowski@linaro.org>
- <20220908080938.29199-3-krzysztof.kozlowski@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
+ off-on-delay-us for regulator-usdhc2-vmmc
+Message-ID: <20221024125630.frrbq4hy2bfxhjtq@pengutronix.de>
+References: <20221024115429.1343257-1-heiko.thiery@gmail.com>
+ <20221024122659.2krt2hh2sdvxuurn@pengutronix.de>
+ <CAEyMn7Y9uxeFLM7-6jR=bonusdwjX=ukRotZm=7x_3QyxVW-DQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220908080938.29199-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAEyMn7Y9uxeFLM7-6jR=bonusdwjX=ukRotZm=7x_3QyxVW-DQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Sep 2022, Krzysztof Kozlowski wrote:
-
-> GPIO controller nodes are named by convention just "gpio", not "gpios".
+On 22-10-24, Heiko Thiery wrote:
+> Hi Marco,
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> Am Mo., 24. Okt. 2022 um 14:34 Uhr schrieb Marco Felsch
+> <m.felsch@pengutronix.de>:
+> >
+> > Hi Heiko,
+> >
+> > On 22-10-24, Heiko Thiery wrote:
+> > > With that delay U-Boot is not able to store the environment variables in
+> > > the SD card. Since the delay is not required it can be remove.
+> >
+> > Now I'm curious, since this doesn't tell us the why, it just tell us
+> > about the end result. I'm asking because the NXP EVKs have an issue with
+> > the sd-card power line capacity and we need this delay to reach a level
+> > which is marked as low within the sd-spec.
+> 
+> I must admit that I do not know at all why this entry was made. I have
+> now looked at the dtbs of the imx8 EVKs and except for imx8dxl-evk.dts
+> I see no delay here.
 
-Applied, thanks.
+Please see <20221024031351.4135651-10-peng.fan@oss.nxp.com>, they will
+be added.
 
--- 
-Lee Jones [李琼斯]
+Regards,
+  Marco
