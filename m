@@ -2,55 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A27F960B778
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C8660B609
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbiJXTYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 15:24:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33672 "EHLO
+        id S232259AbiJXSqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 14:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233340AbiJXTYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:24:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD9983AE78
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 10:58:20 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1omxmP-0007w9-U5; Mon, 24 Oct 2022 15:46:13 +0200
-Message-ID: <504af0de-5c69-b695-f758-6650e150ba07@pengutronix.de>
-Date:   Mon, 24 Oct 2022 15:46:13 +0200
+        with ESMTP id S232245AbiJXSqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:46:08 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC608958E;
+        Mon, 24 Oct 2022 10:27:41 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id t25so1121601ejb.8;
+        Mon, 24 Oct 2022 10:27:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/eVCAg3MBYd00s2yyl7DgTtrrb0tSrJ4c68oN1h9w7E=;
+        b=dWa6dI5uCP4zJ4fO87i7erufj+h74Eryr600BTY2QUywiHyhBUFgAnaAcWtyOm9zAW
+         y6PqOrHwesRzvwsMPXefrRMm2amR0AvkQSmElforbPJeEckFngzq3AAy5p7cSCichffm
+         vHbSp1iAL1kt2edI6mn3RGydtnohDUjMQfHExBmT2Tf9bDS7TXo4F3wsgp0kcH/+dSvM
+         hzhM1JvKHM0971moHtZcbshbeY4NrEFOQLsL2iIAylTU7fKsSv1XU65P/0wjTf1GUvTp
+         MskaQ/RgkrOBjzdQANRQ3H05sH+Kr/Xy3kbeZQNlqI0+lA1mQN6F75jNpTzsiQDt2gjZ
+         MRbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/eVCAg3MBYd00s2yyl7DgTtrrb0tSrJ4c68oN1h9w7E=;
+        b=MfM62COJRaF4l7A47boRqVF/DcuSekz6sMCv+YzmW0ERKOV0gz7k8GdNeq3iQY2tLO
+         2tvh5QhqcxkqG/OFxftL/1RDBRT4p5+T7JiaDdm24m8fSwTLq6eCYCekeTFnjqJbqLpd
+         nP9XGVdOa1zQz/mPaqywJN09v3E/ahv9NLT5GIlSZykHbzMDr4ad7TYaFNH1sFKaMCIe
+         3VMEaEovd9ebqx6LSJtkrcr449Nz6itzIxiU69+avoVb+gnk76CTHuFeLfZHVxwxoKyr
+         mqhIzpC/MwJ6nPnt8XHRLGjTww98nmTCxPp++ku8/Z+3zMiJLtHTM5b79fbheF6Hqh/p
+         hJaA==
+X-Gm-Message-State: ACrzQf1ej57HvbGCG0d5OZeD5vOcPKWQ81tGnHqytHX1eHpM+vb8otjV
+        Q6OcU3pbNBSmzakKyL/I2yTdNfjOg48=
+X-Google-Smtp-Source: AMsMyM5JiYdxj+YMynL4r8t87wNUbi9fWl1FfbAZ25oL1/gb1nPrxwU6zMHJW+gm9NEbgav7YUseiA==
+X-Received: by 2002:a05:6512:150a:b0:4ab:11d7:4bc1 with SMTP id bq10-20020a056512150a00b004ab11d74bc1mr2216206lfb.447.1666620865418;
+        Mon, 24 Oct 2022 07:14:25 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::2? (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
+        by smtp.gmail.com with ESMTPSA id g25-20020a19ee19000000b004ac393ecc34sm343442lfb.302.2022.10.24.07.14.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 07:14:24 -0700 (PDT)
+Message-ID: <4e93d298-922a-2647-299b-5592a571ea53@gmail.com>
+Date:   Mon, 24 Oct 2022 17:14:23 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH v3 1/1] arm64: dts: tqma8mpql: add USB DR support
-To:     Jun Li <jun.li@nxp.com>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220905073730.199462-1-alexander.stein@ew.tq-group.com>
- <40f423ce-376c-acbf-db00-ca696da44fe4@pengutronix.de>
- <CAJ+vNU0SPowfxBAAyJ2QxGB8VifxpqMaNtB1M3c=C9wopu6LYw@mail.gmail.com>
- <a7983d24-cf0a-16ad-b202-1353da320003@pengutronix.de>
- <PA4PR04MB96409CB34D18F850074C311E89289@PA4PR04MB9640.eurprd04.prod.outlook.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v5 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
 Content-Language: en-US
-In-Reply-To: <PA4PR04MB96409CB34D18F850074C311E89289@PA4PR04MB9640.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Jagath Jog J <jagathjog1996@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <cover.1666614295.git.mazziesaccount@gmail.com>
+ <758b00d6aea0a6431a5a3a78d557d449c113b21e.1666614295.git.mazziesaccount@gmail.com>
+ <Y1aLIPkefcCZberw@smile.fi.intel.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <Y1aLIPkefcCZberw@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        NICE_REPLY_A,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,70 +86,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On 18.10.22 04:07, Jun Li wrote:
->> -----Original Message-----
->> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
->> Thanks for the info. Do you know if this issue exists with the i.MX8MN as
->> well? A colleague had trouble bringing up the OTG_ID HW function and I assume
->> it may be the same issue. I am unsure though, because the
->> imx8mn-tqma8mqnl-mba8mx.dts muxes the pad as OTG_ID.
+On 10/24/22 15:54, Andy Shevchenko wrote:
+> On Mon, Oct 24, 2022 at 03:40:29PM +0300, Matti Vaittinen wrote:
+>> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+>> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+>> ranges (2, 4, 8 and 16g), and probably some other cool features.
+>>
+>> Add support for the basic accelerometer features such as getting the
+>> acceleration data via IIO. (raw reads, triggered buffer [data-ready] or
+>> using the WMI IRQ).
+>>
+>> Important things to be added include the double-tap, motion
+>> detection and wake-up as well as the runtime power management.
 > 
-> No, iMX8MN is completely different IP(USB2 only) than iMX8MP, iMX8MN
-> has *OTG* inside so the ID functionality should be fine, what's the
-> trouble you colleague had?
-
-I see. Problem was that changes to the OTG pins were not detected
-on an i.MX8MN-based board, despite the colleague being sure that
-OTG controller registers were set correctly.. I'll have to catch up with
-him for more info. My current suspicion is that it may have been
-runtime-suspend related.
-
-I'll ask him to test again with your series separating USB/HSIO PDs.
-
-  https://lore.kernel.org/all/1664192735-14313-1-git-send-email-jun.li@nxp.com/
-
-We had a udev rule already, which I tested working on an i.MX8MM:
-
-  SUBSYSTEM=="platform", ACTION=="add", DRIVER=="imx_usb", ATTR{power/control}="on"
-
-But apparently something is still amiss.
-
-Thanks for the help everybody,
-Ahmad
-
-> 
-> Li Jun
->  
->>
->> Cheers,
->> Ahmad
->>
->>>
->>> Best Regards,
->>>
->>> Tim
->>>
->>
->>
->> --
->> Pengutronix e.K.                           |                             |
->> Steuerwalder Str. 21                       |
->> https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.pe
->> ngutronix.de%2F&amp;data=05%7C01%7Cjun.li%40nxp.com%7Cac32a99803dc4e710
->> 4d408dab0777a15%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6380163244
->> 44837508%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLC
->> JBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=4TFBorG%2BucyYuy
->> HrwhTDxjz4GV3%2FsCaHzx7i4cdw5Zw%3D&amp;reserved=0  |
->> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
->> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-> 
+> I think I gave you my tag, no?
 > 
 
+Sorry Andy. Yes you did. I forgot to add it - completely my bad.
+If I need to respin I'll add it - if I don't need to respin, Jonathan, 
+can you please add RBT from Andy if you merge this version?
+
+Sorry for the hassle!
+
+Yours,
+	-- Matti
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
