@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C2F60AE64
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F7960AEB6
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:13:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbiJXO7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 10:59:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39168 "EHLO
+        id S229920AbiJXPNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 11:13:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232322AbiJXO6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:58:54 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D8E12A34B
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:36:03 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id u7so6469365qvn.13
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:36:03 -0700 (PDT)
+        with ESMTP id S231691AbiJXPNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:13:21 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B618B2CF
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:50:33 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id u2so3679938ljl.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:50:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NXoecYdGJC2+HYOwpiaqnVwgAvwqsGUF9D69/wSkRhI=;
-        b=NyZbVP20rPDepGnbV4uu3v6EY8m6TGiQ6owV05m+b7aGpSMSKydOIRIenlYnKDcMtN
-         92nqgn3EfAG3rvUW2nKJDgjqap4Ph6+UVA3Rb4ouirWkfeWybax0GYTN7teugD4g2RsE
-         OZyIglRWI1Lo57i02HkqyJLjAz0aMvSLZMwx+KjcVQEHuyYWXbeB7NzoIExp9JBKZk5Y
-         YrRbm/syzdFgCJKAK1+Dv+eRhnhCBn0T/imisPeV+IvvKzgjzzBeW8gZ0wzWHTXvzfkE
-         v7ePwrOkM2wiELe0ZJVn0vRRtCSkLyIU20+qfUStwClTv5o9vuuw1LMPSEe9Fq+nj+Es
-         a58w==
+        bh=HFZjX5S7TOtvQCwB9xl/hGQf5yUtgAWOiJRBK3Mc0r4=;
+        b=M/DrH1WIigY7MKVYeORXxguZGdlaMYm388Q9Y0zeJXJAYpNHUHnC/seWKCRCDKVHZh
+         FYLajzsz66qCaNceZ4vmnt6q8mylKNF6hvucvj0kq6KjGhccTuNPAZWnq83tJUI7Z2St
+         13JCqldQNVjW8JcEu9r2l5ED0Q3ZFdZIr9V2BFb4ECvtpBhJlie6bxLVirhOvz3P8+yc
+         0xYFfs46bfRCSHixg3T4aH/gR/HPM0R3W1YWJdu5KYXrCiItapruc5uPaS87CZjTypfF
+         ZK+d7HI9Y8/0t2DFftZ6FMqgICqwl6t9MaqXPtoysb99Gh9xPGzLnUgX3I4RVBkksVBp
+         UDww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NXoecYdGJC2+HYOwpiaqnVwgAvwqsGUF9D69/wSkRhI=;
-        b=moASjZ4RmWimeLww1YdvJ9CPfwMY4UmcWRz+7+t1V8XBBG2wh/tS4SZUQOx34kfB9n
-         JaX96dHDlKKYrwc5deSGS1twf9wkiegulZ+FeV8vQM752kckOaqmQxfLbake0PFmtCmn
-         rYCYc28jIza1b9qwMDbW0/xism9r4SC9257aqUf60H0tKfGbHzjs+svDjgUjufnNhYJe
-         QIypfrJcsGC2G6jWPKZKU/OncgqL5ug6CbjlEjo2NLMx3vr24DE4ICbY7o1kSV7Oyswk
-         FCC8yfMhnUs4h6nW6bDcEkjTZqyz9CjgOR34cdBZFCJRJAyKZT7ITSkZmRO4QyS4+UGw
-         biuQ==
-X-Gm-Message-State: ACrzQf2orP62+p/DAKEkX7LW53FUYIawDY25o5G8hKg2gAnxg/gmtJNe
-        x8fePX/G+cgZV8LHzDEdFpqowz7y04V4uw==
-X-Google-Smtp-Source: AMsMyM4y39uLjjaZ3gT918SpmBGdDRV0vI6kOQrzttG9MnzBiUJO3QTYH6cfUlxXpAT4n9ebBvALdg==
-X-Received: by 2002:a05:6214:769:b0:4bb:77d5:bb53 with SMTP id f9-20020a056214076900b004bb77d5bb53mr2697128qvz.118.1666618464634;
-        Mon, 24 Oct 2022 06:34:24 -0700 (PDT)
-Received: from [192.168.1.8] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id bl9-20020a05620a1a8900b006cf38fd659asm14557889qkb.103.2022.10.24.06.34.23
+        bh=HFZjX5S7TOtvQCwB9xl/hGQf5yUtgAWOiJRBK3Mc0r4=;
+        b=wGd4wP3sdSX1m1xClTYtKTBi0tCs9cxk8bYn0KanJ4lIzDG+bk0J9lzGXmzEmAUYBD
+         UV9MGwEyu18CrF9+0MCfAvvTNLcCfvc3UZvyOzlzQY1Qlgb56i4Ic1sSdpiirZl/Lp30
+         RssQ4J43aUbWwR4KTNhMrqSx+YJOw/iE9yQj+nnfIDPeycGpZFOdOuC7bcTL4GtcFGcp
+         9ahi5m4Gn111H2N0Z92Mkupq2F5mpMUyYoshK3+X2YdQcm/JRmSXR6/LSlQRPw2nKth2
+         nIv8xhIcFCX2V6ZYVfKExLTWF7S5Ktk0AkS8Eiztsy91e+hvsvXxf9xU1eA+PblBt44S
+         rR5A==
+X-Gm-Message-State: ACrzQf1rqQE258dHPoas5DJFH96ugCwgFnaoaFKLePNIoQWgJW9LGsYD
+        TmZHWMY2qP3QVswytSmAqXbchY3qLGuVhbs7
+X-Google-Smtp-Source: AMsMyM6Cay83Fhrt2am2YSVlmOjugpbTdf1Ui3AKwagVyB8ovojrmkQXtuTIMd3QITZ4VR22jyyMYg==
+X-Received: by 2002:ac2:5b4e:0:b0:4aa:301f:3e2e with SMTP id i14-20020ac25b4e000000b004aa301f3e2emr2873383lfp.90.1666618468819;
+        Mon, 24 Oct 2022 06:34:28 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id n28-20020a05651203fc00b00494643db68bsm4531561lfq.78.2022.10.24.06.34.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 06:34:24 -0700 (PDT)
-Message-ID: <94e05a63-e7f3-a78f-d0a6-8efcae619726@linaro.org>
-Date:   Mon, 24 Oct 2022 09:34:22 -0400
+        Mon, 24 Oct 2022 06:34:28 -0700 (PDT)
+Message-ID: <e19e563c-842d-d54a-c986-62526a58b468@linaro.org>
+Date:   Mon, 24 Oct 2022 16:34:27 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: add TCSR node
-Content-Language: en-US
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 07/13] phy: qcom-qmp-usb: clean up probe initialisation
+Content-Language: en-GB
 To:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
+        Vinod Koul <vkoul@kernel.org>
 Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221024125843.25261-1-johan+linaro@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221024125843.25261-1-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221024100632.20549-1-johan+linaro@kernel.org>
+ <20221024100632.20549-8-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221024100632.20549-8-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -78,23 +80,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 08:58, Johan Hovold wrote:
-> Add the TCSR node which is needed for PCIe configuration.
+On 24/10/2022 13:06, Johan Hovold wrote:
+> Stop abusing the driver data pointer and instead pass the driver state
+> structure directly to the initialisation helpers during probe.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 5 +++++
+>   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 46 ++++++++++++-------------
+>   1 file changed, 22 insertions(+), 24 deletions(-)
 
-Please send the patches together with the binding. There is no need to
-have this split and it causes additional effort during review - lookup
-of the binding.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Also additional effort during binding review - lack of usage of bindings.
-
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
