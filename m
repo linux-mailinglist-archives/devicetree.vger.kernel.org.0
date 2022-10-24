@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7183760B1B1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 18:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14FAB60B1B5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 18:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232035AbiJXQd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 12:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42146 "EHLO
+        id S232615AbiJXQdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 12:33:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232336AbiJXQcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 12:32:54 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7C6F767A
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:19:49 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id v11so6786539wmd.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:19:49 -0700 (PDT)
+        with ESMTP id S232698AbiJXQdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 12:33:09 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1E63E75E
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:19:59 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id z24so3221788ljn.4
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:19:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=090t3LiJON2kk6iASQiAtMNlpPlevpv/5QY2UHRV3k4=;
-        b=TrbydOn6+MlfdB5ueUhejKJ9fTvRqb782d4b92UrYIPUs5JX+T6gXlwETkqdcT04z+
-         lQDQGXaktpTuqB82Es9pcd+7aCm2DqpVAL6ev2iO6x2xMe/QP1NeYdcKgSXg4I8d+bJX
-         Log9hOn+sQyj0vqF3svhKBigeHo6ttbILwPvozXvYXGaQ9s6v2eJviF1zQKpG3QN/qqH
-         PcGagBXHgDSEyxyyq5E3dUGxmPkHU0uEf5vGIPECblwN9cDHWWCt6CEoOfNX8rrN/3Ew
-         6FAprfeGHqpUgY3fg+FAL2XmMApIHodyL5Q1RZjlGnndmgeRBs9PCd2aFkOatfxTkgqM
-         M7pw==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6jLzWTJgQOtlVe+72Zg3h4fi2g2V5ar4l63Y1PCLPjc=;
+        b=Z42jI/gXhcXG5YxoueNeDtIC3JesqUpHJU8cD7xjqdpFe/r+2T9oqnaaDn/+VCsi8+
+         7nv6qZR7KznLY2jF8bhwMHq7P2w5ZoLClauIm6K2swABZF28/nRRVphkYBlqNrI5p+hD
+         B1qoWm8NR+r79EtsEM8ogTfNZhOQtQCK7lNx0axp6JDqRTeHm3Bvgd6DfkGHL0bOuqP1
+         dICzUk7rly8w9FubrYQmbfogXHNIRrel9h/z6IF1n4sm1Sa0ecfWGuW1Nf5OuViMEKhA
+         QApQJlHPCSbXoOyTMuLWi7ERjPCpf2ACGcJep+PvEl4m9Tp16dGSFEqNX36ivjvW0InD
+         zklw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=090t3LiJON2kk6iASQiAtMNlpPlevpv/5QY2UHRV3k4=;
-        b=zmOX7LHI94KjmJv8fvSwstR6uL9w0leBSS2b7ouo1KtdZ+03r78ZwtLitTxTmKUs/6
-         a0iBecBp8/dR0u1RdQDQLxMmqOABtQVHt08YDEssZSkEF3oLNzrOlKjnXDDYx8J7NPOd
-         kbMutW3h7h2fJYf7eIs4/hF/2yHXtZD6Nk1FvwRLg8zxoqhDxZ3icj6XD/gukcYtrtjP
-         jNWpOIzhIX3gxkOZ/iRPWhfzonLHop+aTnWLXVd2QlwEQhUukxQrhRkIkaQ2k7gX97pu
-         tKdHz4nGLN51VCkL0WJRhNSLFPknEIK5auoyYskK1Bb7RaJXF3/ORiy4CLfaqTSltugW
-         gITg==
-X-Gm-Message-State: ACrzQf0KoeT0ZZ7yV0QVYUV+bM0NklRPwj8ebhORgRpwaldhZdX4vPHV
-        DFiz+x1ZXt0y1neGa//2Vv4jFZWZT/TdqbO2
-X-Google-Smtp-Source: AMsMyM4z23bQnMwaktqgGV/n/irkd+JIobu7O/lGuCRh5Y+TL+jewkig0EBq1SOJq03bdUMnLIE81A==
-X-Received: by 2002:a05:600c:34c5:b0:3c7:b52:3ad3 with SMTP id d5-20020a05600c34c500b003c70b523ad3mr16000432wmq.88.1666617368473;
-        Mon, 24 Oct 2022 06:16:08 -0700 (PDT)
-Received: from fadwachiby.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id l24-20020a056000023800b00236627c078esm6322307wrz.110.2022.10.24.06.16.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 06:16:07 -0700 (PDT)
-From:   Fadwa CHIBY <fchiby@baylibre.com>
-X-Google-Original-From: Fadwa CHIBY
-To:     Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6jLzWTJgQOtlVe+72Zg3h4fi2g2V5ar4l63Y1PCLPjc=;
+        b=hXteESwyt2zRRVZ6ogyG7TUT0gn7U02dNbMETwMrlMoeFfX+hLFsZtQ8MEsrC5Ol/o
+         iYbexq/q/VfE7+DeuPXf0oUK+yFE891pBCs1I1ISjmw+hGy9Gw/wze45M/LfKd6+vXeU
+         pUfYJJ6J7FTV2iPiaJjRLlUli2f3DgYjfGlWUdpTfw+wDrJmhneCGPt8YcIO/uqzx4RB
+         DAcykxkEhGCGBFS9UUMBewLYUh/Go9g3eIaB+OXL9xpy074slHAYuKbGCEU5zgbd+SjY
+         obqylDzpu+J07+m/glTWHVq6Xgpz50IRWZdO7bznmJ1IcjDr6Ssi8bsw6MdLh/dOYAjj
+         c+7A==
+X-Gm-Message-State: ACrzQf1uQxFoeDgMkagc0h+8KihrQmbS+8FrhpEd3iwwH4NOoS0MO+VS
+        6KeM6NNZ1I0BM4qMTPc89FuY6ZJuHOeQNcTzgLY6c2WmbB2xig==
+X-Google-Smtp-Source: AMsMyM7GEkmV9v4atHnaNyKsdWev7GfMxpVpWKrPHXn2WJtejlHSWRanZiQZYYiLQFAsWnFgfPu5INCphD8i9o7t760=
+X-Received: by 2002:a19:c205:0:b0:4a4:60e5:5a25 with SMTP id
+ l5-20020a19c205000000b004a460e55a25mr12642060lfc.139.1666617869321; Mon, 24
+ Oct 2022 06:24:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221020130957.25197-1-fchiby@baylibre.com> <20221020130957.25197-2-fchiby@baylibre.com>
+ <aaf7d4a9-c767-6a63-691d-e3ae00b206fc@linaro.org>
+In-Reply-To: <aaf7d4a9-c767-6a63-691d-e3ae00b206fc@linaro.org>
+From:   Fadwa Chiby <fchiby@baylibre.com>
+Date:   Mon, 24 Oct 2022 15:24:18 +0200
+Message-ID: <CAL8gX1d53p3WQkmFrpxLZ6AUg+x_ZtBxUw08eNbkCBMRgj=jQw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: soc: mediatek: pwrap: add MT8365 SoC bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
         Johnson Wang <johnson.wang@mediatek.com>,
-        "Zhiyong . Tao" <zhiyong.tao@mediatek.com>
-Cc:     Fadwa CHIBY <fchiby@baylibre.com>, Sen Chu <sen.chu@mediatek.com>,
+        "Zhiyong.Tao" <zhiyong.tao@mediatek.com>,
         Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Sen Chu <sen.chu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 0/3] mediatek: pwrap: Add mt8365 pwrap support
-Date:   Mon, 24 Oct 2022 15:15:40 +0200
-Message-Id: <20221024131544.31219-1-fchiby@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE autolearn=ham
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,29 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fadwa CHIBY <fchiby@baylibre.com>
+Le jeu. 20 oct. 2022 =C3=A0 18:19, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> a =C3=A9crit :
+>
+> On 20/10/2022 09:09, fchiby@baylibre.com wrote:
+> > From: Fabien Parent <fparent@baylibre.com>
+> >
+> > Add pwrap binding documentation for
+> >
+> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+>
+> This is not exactly v1 then. Please use patch versioning and add
+> changelog (to cover letter or to individual patches).
+>
+> Best regards,
+> Krzysztof
+>
 
 Hello,
 
-MT8365 requires an extra 2 clocks to be enabled to behave correctly.
-This series contains patches adding the support of mt8365 pwrap.
-
-Changes in v2 :
-- Rebase on top of linux-next/master
-- Link to v1 "https://lore.kernel.org/linux-arm-kernel/20220530135522.762560-1-fparent@baylibre.com/"
+Thanks for your feedback. Everything is fixed in a new series.
 
 Regards,
 Fadwa CHIBY
-
-Fabien Parent (3):
-  dt-bindings: soc: mediatek: pwrap: add MT8365 SoC bindings
-  soc: mediatek: pwrap: add support for sys & tmr clocks
-  soc: mediatek: pwrap: add mt8365 SoC support
-
- .../bindings/soc/mediatek/pwrap.txt           |   3 +
- drivers/soc/mediatek/mtk-pmic-wrap.c          | 114 +++++++++++++++++-
- 2 files changed, 113 insertions(+), 4 deletions(-)
-
--- 
-2.25.1
-
