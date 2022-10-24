@@ -2,321 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA93660BC86
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71ACC60BECC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 01:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbiJXVwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 17:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
+        id S230181AbiJXXmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 19:42:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbiJXVw0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:52:26 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3628A1781F1
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 13:05:59 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id e20-20020a05600c449400b003cce0107a6fso43386wmo.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 13:05:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oiQT7+HgE+jR4dsGrwJz3G94YiAtTC/9uOWXE+hCFGA=;
-        b=okuddTzYO1TEbcOoHs3cETupscqVLFavT+ZuM0xyJ0FmgPOtwXLLbSGbDEtSB/vSeU
-         6y6hfL8paCriUw/eTP1AK+UrvF0MefnhJeNHDN8IkYKopUW2gsjlEpe7qO05CMornGP6
-         A/LjFxv0v2fI2RMpWEOfzutp13JkWalxwEGnj9maqqg3y/MLJSMyQaqp2b6KJFxuQwg1
-         W3FzYiqHS4aVRPDo8ntcp0sUQCB/qsIIngYm5Ni9YktjINff7ZOOT32zUlXMZYrRElNU
-         RzQtAYEkTjbeMKw3jFxDHXe2VisvcW2U/Q5eiSZnpLMcRcWRukJPHIEgwepD4RgDtXJQ
-         UnAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oiQT7+HgE+jR4dsGrwJz3G94YiAtTC/9uOWXE+hCFGA=;
-        b=6wAHwZngRtimG6T0di0e0ycFVpYCnAiQc5LOoRI/Tv4yEcXCP1Xaw66JgrFoggv0Fg
-         5DLKBQAQmoRfVHkvXJ0bVVicGmeMYHtfPmd/mWAtI6gz2i65jqZT/ar2EFHCFul4QxeN
-         fyaE8JKU6miA9pdARoongqzKkjGVX/g5Yq4yQV/I27UZ9CIRPIAphMN3KmjvCBykq6SH
-         3N/p5TNZjsg/657DjBRGGIicbjnUHoLbtX+79m9sNnLMWFIoBDfsZHK7VX/hjFtPtJW4
-         gh5b16jsMwbpiGmBxs1owumdUMWfkNnPtLf2ALS1/KAfNjZTGatOG+Oi7+IdY/IKcfqO
-         ZX9w==
-X-Gm-Message-State: ACrzQf0HgOu1+7dXamchadW0jYcr7nKViOljjMaxZO6ko07WCRfpRh0K
-        SHn9dgryiV/ULyT0vx6bAUVBWA==
-X-Google-Smtp-Source: AMsMyM5EgP3jrP0MHpcLueOSzk0P2MHNxZCsG/d9Mt4n7Q/UQlJfwgjk70koZ+VpXSeqg6kzdf/TMw==
-X-Received: by 2002:a05:600c:42c6:b0:3c6:f27e:cac8 with SMTP id j6-20020a05600c42c600b003c6f27ecac8mr23194116wme.175.1666641891081;
-        Mon, 24 Oct 2022 13:04:51 -0700 (PDT)
-Received: from [192.168.0.11] (cpc76482-cwma10-2-0-cust629.7-3.cable.virginm.net. [86.14.22.118])
-        by smtp.gmail.com with ESMTPSA id c11-20020a05600c0a4b00b003c6f27d275dsm9654212wmq.33.2022.10.24.13.04.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 13:04:50 -0700 (PDT)
-Message-ID: <e5ae9c89-7890-9bd7-3583-483667391203@linaro.org>
-Date:   Mon, 24 Oct 2022 21:04:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH] net: ipa: fix some resource limit max values
-To:     Alex Elder <elder@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>
-Cc:     Alex Elder <elder@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229822AbiJXXmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 19:42:24 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF4A1D73FB;
+        Mon, 24 Oct 2022 15:01:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1666615860; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=6dhnHc0bAedKhrMgs9Dk+4I6+5jfqv63sCgiUYVWOcI=;
+        b=tn1ZvOhDMsL2gp6C/3Ym9t7tzU8xZKvHqGrY4PYZXRWhTkGcKydZ7EkM1OPd+MtYhJbqEU
+        gaeSSUu5ewEavK1O9aX2hgvviFqghRqzkRmSVnUBoMURUYz5BkO4yWfO/2k3UF6FZOwmlk
+        eYlYk1D+4AEN4Q6V/cyZPE1MQ5gYaoA=
+Date:   Mon, 24 Oct 2022 13:50:50 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 2/2] serial: 8250/ingenic: Add support for the
+ JZ4750/JZ4755
+To:     Siarhei Volkau <lis8215@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>
-References: <20221024165636.3979249-1-caleb.connolly@linaro.org>
- <bf67b30f-074b-22b5-8d23-b1531ad30d74@linaro.org>
-Content-Language: en-US
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <bf67b30f-074b-22b5-8d23-b1531ad30d74@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Message-Id: <Q0D9KR.U3D9MHHH52AZ@crapouillou.net>
+In-Reply-To: <20221022151224.4000238-3-lis8215@gmail.com>
+References: <20221022151224.4000238-1-lis8215@gmail.com>
+        <20221022151224.4000238-3-lis8215@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Siarhei,
+
+Le sam. 22 oct. 2022 =E0 18:12:24 +0300, Siarhei Volkau=20
+<lis8215@gmail.com> a =E9crit :
+> JZ4750/55/60 (but not JZ4760b) have an extra divisor in between extclk
+> and peripheral clock, called CPCCR.ECS, the driver can't figure out=20
+> the
+> real state of the divisor without dirty hack - peek CGU CPCCR=20
+> register.
+> However, we can rely on a vendor's bootloader (u-boot 1.1.6) behavior:
+> if (extclk > 16MHz)
+>     the divisor is enabled, so the UART driving clock is extclk/2.
+>=20
+> This behavior relies on hardware differences: most boards (if not all)
+> with those SoCs have 12 or 24 MHz oscillators but many peripherals=20
+> want
+> 12Mhz to operate properly (AIC and USB-PHY at least).
+>=20
+> The patch doesn't affect JZ4760's behavior as it is subject for=20
+> another
+> patchset with re-classification of all supported ingenic UARTs.
+>=20
+> Link:=20
+> https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_seria=
+l.c#L158
+> Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
+> ---
+>  drivers/tty/serial/8250/8250_ingenic.c | 50=20
+> ++++++++++++++++++++++----
+>  1 file changed, 43 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/tty/serial/8250/8250_ingenic.c=20
+> b/drivers/tty/serial/8250/8250_ingenic.c
+> index 2b2f5d8d2..3ffa6b722 100644
+> --- a/drivers/tty/serial/8250/8250_ingenic.c
+> +++ b/drivers/tty/serial/8250/8250_ingenic.c
+> @@ -87,24 +87,19 @@ static void __init=20
+> ingenic_early_console_setup_clock(struct earlycon_device *dev
+>  	dev->port.uartclk =3D be32_to_cpup(prop);
+>  }
+>=20
+> -static int __init ingenic_early_console_setup(struct earlycon_device=20
+> *dev,
+> -					      const char *opt)
+> +static int __init ingenic_earlycon_setup_tail(struct earlycon_device=20
+> *dev,
+> +					      const char *opt)
+>  {
+>  	struct uart_port *port =3D &dev->port;
+>  	unsigned int divisor;
+>  	int baud =3D 115200;
+>=20
+> -	if (!dev->port.membase)
+> -		return -ENODEV;
+
+You can keep this here - no need to move it (and it'd avoid duplicating=20
+code).
+
+> -
+>  	if (opt) {
+>  		unsigned int parity, bits, flow; /* unused for now */
+>=20
+>  		uart_parse_options(opt, &baud, &parity, &bits, &flow);
+>  	}
+>=20
+> -	ingenic_early_console_setup_clock(dev);
+> -
+>  	if (dev->baud)
+>  		baud =3D dev->baud;
+>  	divisor =3D DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
+> @@ -129,9 +124,49 @@ static int __init=20
+> ingenic_early_console_setup(struct earlycon_device *dev,
+>  	return 0;
+>  }
+>=20
+> +static int __init ingenic_early_console_setup(struct earlycon_device=20
+> *dev,
+> +					      const char *opt)
+> +{
+> +	if (!dev->port.membase)
+> +		return -ENODEV;
+> +
+> +	ingenic_early_console_setup_clock(dev);
+> +
+> +	ingenic_earlycon_setup_tail(dev, opt);
+> +}
+> +
+> +static int __init jz4750_early_console_setup(struct earlycon_device=20
+> *dev,
+> +					     const char *opt)
+> +{
+> +	if (!dev->port.membase)
+> +		return -ENODEV;
+> +
+> +	/*
+> +	 * JZ4750/55/60 (not JZ4760b) have an extra divisor
+> +	 * between extclk and peripheral clock, the
+> +	 * driver can't figure out the real state of the
+> +	 * divisor without dirty hacks (peek CGU register).
+> +	 * However, we can rely on a vendor's behavior:
+> +	 * if (extclk > 16MHz)
+> +	 *   the divisor is enabled.
+> +	 * This behavior relies on hardware differences:
+> +	 * most boards with those SoCs have 12 or 24 MHz
+> +	 * oscillators but many peripherals want 12Mhz
+> +	 * to operate properly (AIC and USB-phy at least).
+> +	 */
+> +	ingenic_early_console_setup_clock(dev);
+> +	if (dev->port.uartclk > 16000000)
+> +		dev->port.uartclk /=3D 2;
+
+I would assume you could just do:
+dev->port.uartclk =3D 12000000;
+
+Since you'd always get a 12 MHz clock (either with a 12 MHz oscillator=20
+or a 24 MHz oscillator with a /2 divider).
+
+With that said - I am fine with that code, it would allow to fine-tune=20
+the oscillator value (although I hightly doubt anybody is going to do=20
+that).
+
+The 16 MHz value sounds very arbitrary, but I'll give it a pass.
+
+Cheers,
+-Paul
+
+> +
+> +	ingenic_earlycon_setup_tail(dev, opt);
+> +}
+> +
+>  OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
+>  		    ingenic_early_console_setup);
+>=20
+> +OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
+> +		    jz4750_early_console_setup);
+> +
+>  OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
+>  		    ingenic_early_console_setup);
+>=20
+> @@ -328,6 +363,7 @@ static const struct ingenic_uart_config=20
+> x1000_uart_config =3D {
+>=20
+>  static const struct of_device_id of_match[] =3D {
+>  	{ .compatible =3D "ingenic,jz4740-uart", .data =3D &jz4740_uart_config=20
+> },
+> +	{ .compatible =3D "ingenic,jz4750-uart", .data =3D &jz4760_uart_config=20
+> },
+>  	{ .compatible =3D "ingenic,jz4760-uart", .data =3D &jz4760_uart_config=20
+> },
+>  	{ .compatible =3D "ingenic,jz4770-uart", .data =3D &jz4760_uart_config=20
+> },
+>  	{ .compatible =3D "ingenic,jz4775-uart", .data =3D &jz4760_uart_config=20
+> },
+> --
+> 2.36.1
+>=20
 
 
-On 24/10/2022 20:15, Alex Elder wrote:
-> On 10/24/22 11:56 AM, Caleb Connolly wrote:
->> Some resource limits on IPA v3.1 and v3.5.1 have their max values set to
->> 255, this causes a few splats in ipa_reg_encode and prevents it from booting.
->> The limits are all 6 bits wide so adjust the max values to 63.
-> 
-> Thank you for sending this Caleb.
-> 
-> On IPA v3.5.1 (SDM845) I confirm that these resource limit fields are
-> 6 bits wide, while the values we assign are in some cases 255, which
-> cannot be represented in 6 bits.  Your fix in this case is proper,
-> changing the maximum limit from 255 to be 63.  (Just in case, I've
-> sent a note to Qualcomm to ask them to confirm this, but I think this
-> is fine.)
-
-Great, thanks
-
-> 
-> I re-checked the definitions of the MIN_LIMIT and MAX_LIMIT fields
-> for IPA v3.1, and it turns out in that case the *register field*
-> definitions were wrong.  They should, in fact, be 8 bits wide rather
-> than just 6.  So in that case, 255 would be a reasonable limit value.
-
-Heh, well that's fun... Thanks for checking
-
-> 
-> Did you observe these splats when doing actual testing on an msm8998
-> (which has IPA v3.1)?  Or did you just double-check the code?  I
-> looked at the other currently-supported platforms and didn't see
-> this sort of problem elsewhere (IPA v4.2, 4.5, 4.9, 4.11).
-
-I found these just by 'grep'ing for "max = 255", none of the other versions had 
-that and I didn't see anything obvious at a glance so I expect only these two 
-platforms are affected. The same issue has been confirmed on MSM8998: 
-https://gitlab.com/msm8998-mainline/linux/-/issues/39
-
-Jami (CC'd) has offered to test the next revision of the fix there so we can be 
-sure it works on v3.1 and v3.5.1.
-> 
-> 
-> Could you please send a new version of your patch, which fixes the
-> register definition in "ipa_reg-v3.1.c" instead?
-> 
-> It might be best to fix the two issues in separate patches, since
-> they will parts pf the code with different development histories.
-
-That makes sense, will do.
-> 
-> Thanks!
-> 
->                      -Alex
-> 
->> Fixes: 1c418c4a929c ("net: ipa: define resource group/type IPA register fields")
->> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
->> ---
->>   drivers/net/ipa/data/ipa_data-v3.1.c   | 62 +++++++++++++-------------
->>   drivers/net/ipa/data/ipa_data-v3.5.1.c |  4 +-
->>   2 files changed, 33 insertions(+), 33 deletions(-)
->>
->> diff --git a/drivers/net/ipa/data/ipa_data-v3.1.c 
->> b/drivers/net/ipa/data/ipa_data-v3.1.c
->> index e0d71f609272..7ff093f982ad 100644
->> --- a/drivers/net/ipa/data/ipa_data-v3.1.c
->> +++ b/drivers/net/ipa/data/ipa_data-v3.1.c
->> @@ -187,53 +187,53 @@ static const struct ipa_gsi_endpoint_data 
->> ipa_gsi_endpoint_data[] = {
->>   static const struct ipa_resource ipa_resource_src[] = {
->>       [IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS] = {
->>           .limits[IPA_RSRC_GROUP_SRC_UL] = {
->> -            .min = 3,    .max = 255,
->> +            .min = 3,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DL] = {
->> -            .min = 3,    .max = 255,
->> +            .min = 3,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DIAG] = {
->> -            .min = 1,    .max = 255,
->> +            .min = 1,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DMA] = {
->> -            .min = 1,    .max = 255,
->> +            .min = 1,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->> -            .min = 2,    .max = 255,
->> +            .min = 2,    .max = 63,
->>           },
->>       },
->>       [IPA_RESOURCE_TYPE_SRC_HDR_SECTORS] = {
->>           .limits[IPA_RSRC_GROUP_SRC_UL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DIAG] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DMA] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>       },
->>       [IPA_RESOURCE_TYPE_SRC_HDRI1_BUFFER] = {
->>           .limits[IPA_RSRC_GROUP_SRC_UL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DIAG] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DMA] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>       },
->>       [IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_LISTS] = {
->> @@ -272,36 +272,36 @@ static const struct ipa_resource ipa_resource_src[] = {
->>       },
->>       [IPA_RESOURCE_TYPE_SRC_HDRI2_BUFFERS] = {
->>           .limits[IPA_RSRC_GROUP_SRC_UL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DIAG] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DMA] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>       },
->>       [IPA_RESOURCE_TYPE_SRC_HPS_DMARS] = {
->>           .limits[IPA_RSRC_GROUP_SRC_UL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DIAG] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_DMA] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>       },
->>       [IPA_RESOURCE_TYPE_SRC_ACK_ENTRIES] = {
->> @@ -345,22 +345,22 @@ static const struct ipa_resource ipa_resource_dst[] = {
->>       },
->>       [IPA_RESOURCE_TYPE_DST_DATA_SECTOR_LISTS] = {
->>           .limits[IPA_RSRC_GROUP_DST_UL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_DST_DL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_DST_DIAG_DPL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_DST_DMA] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_DST_Q6ZIP_GENERAL] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_DST_Q6ZIP_ENGINE] = {
->> -            .min = 0,    .max = 255,
->> +            .min = 0,    .max = 63,
->>           },
->>       },
->>       [IPA_RESOURCE_TYPE_DST_DPS_DMARS] = {
->> diff --git a/drivers/net/ipa/data/ipa_data-v3.5.1.c 
->> b/drivers/net/ipa/data/ipa_data-v3.5.1.c
->> index 383ef1890065..42f2c88a92d4 100644
->> --- a/drivers/net/ipa/data/ipa_data-v3.5.1.c
->> +++ b/drivers/net/ipa/data/ipa_data-v3.5.1.c
->> @@ -179,10 +179,10 @@ static const struct ipa_gsi_endpoint_data 
->> ipa_gsi_endpoint_data[] = {
->>   static const struct ipa_resource ipa_resource_src[] = {
->>       [IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS] = {
->>           .limits[IPA_RSRC_GROUP_SRC_LWA_DL] = {
->> -            .min = 1,    .max = 255,
->> +            .min = 1,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UL_DL] = {
->> -            .min = 1,    .max = 255,
->> +            .min = 1,    .max = 63,
->>           },
->>           .limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
->>               .min = 1,    .max = 63,
-> 
-
--- 
-Kind Regards,
-Caleb (they/them)
