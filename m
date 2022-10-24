@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 390F160AF0D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14BE260AEAD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230022AbiJXP3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 11:29:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53284 "EHLO
+        id S232209AbiJXPMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 11:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232512AbiJXP3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:29:14 -0400
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB7C290
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 07:16:01 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id u2so3773184ljl.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 07:16:00 -0700 (PDT)
+        with ESMTP id S229828AbiJXPM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:12:27 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30991A208;
+        Mon, 24 Oct 2022 06:49:42 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id z97so31446040ede.8;
+        Mon, 24 Oct 2022 06:49:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OEFP8+56rR9PvuAAqNAvtloZrK4zeXNg7EvBCjIpJgQ=;
-        b=Z+wojvNOo17B1XSeQtJq5/B77ewxu77Xa8OqTUUlzdoBdxgs2C9cGp1E71npftPZzp
-         E0OoQYLS9WRNzX9AHLW5qOQWMB54EzRdQl5Hp8WUpgTFe0nptilBWJcpjUkVWqWUFQr7
-         CFYdh0umW4F5rPD4qf7QCkQsT4A/t7fMdiqpEHJGblm9R/41bkZrXbHjl1sp85HmD51D
-         sthw0wmVFzeUhwJW8EoCtXIxsGGfsNl56YZQ69kfnskiTGqnUmAS0p1WThONQtwfDCKd
-         4jBgATf0ayOBwQzzZqX5LV92t0Zsr5KuQYUiEqOhiNB+TpakfqbY9Xm9PH2/1uHnLQvR
-         sBkw==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Um6fnaXpZiNGoozY5O7gXcGXfv/SirCMtpElBWaRQrk=;
+        b=IiSP1xqFuUzG4h3Cp7vT8wXyWgtZ29ddcmbmbQZR+SKY3Dox+w2212dO8xqV8ZNpMb
+         XK6pOCzJPkTFGNo2wEG23VMhtf/JdZtGaCnfzuAM8Z+FElATM27i9z4+MGfCKV6kl0gl
+         +T6fsZQ/uwu1o42YYy1W8mseOZHNz/qOzPjIG69sch+L0iQOiAZ020zoSo19tSsGjjQ9
+         Rzlot/fUTyXrskC6wFJuSsL8YxWXhkxSz503GR7M8gCHFYOP9fhnlO0J8/gOdNfCv6NE
+         63CWvxCdv2HwndSAWxs4Qkjl170bqNfDA9jF0uDKyMQGQiAJYff9Ze1VZXesqmayXozz
+         28xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OEFP8+56rR9PvuAAqNAvtloZrK4zeXNg7EvBCjIpJgQ=;
-        b=q8UdRXWfyn+TUSluJyKP/x977kbRUp/E1gLiSrCB6ldH/kY2kyYlp5ntNUesMm4Z+D
-         ovDYlfrYxooOqXNSuS3tUeEok1gWXeqpFPBXzx2ivEL04e2/hPwxH+88X8biXkuhCsqx
-         FpNyeqnQfrtohr5TXg2gdudMiU3JBKudFkV8nKKeIEC9dNXM9gIuiLvUwWEje8a6VAZN
-         H91NmLxk8Qa1AHxQsDSi29rGMmLW1kCxv0bbo4Pt1DlcqskurGIpv7aIis/QxFHzRe8t
-         o4vy+m6LX0gUn3pPFi1bJ2eLXqr3jxAddERHq3/4na/X8JiOgIPX92npzweBRCb6OmTd
-         OVHA==
-X-Gm-Message-State: ACrzQf1mmTI9OcVNfl6uFyS8dBJ2f1b2dbi3Mla+epYAkOK+wy30pmSU
-        d8JmfgfFNaEZ+T3BeSCJzCndjZHKKSvjZJoU
-X-Google-Smtp-Source: AMsMyM4Hg7dpthJWZwkUnvoNsm8BSrOEizgPXzEPxmzDJocBi5HppPiwJ7HkmQ1KaardkYsiQuW7oA==
-X-Received: by 2002:a2e:b11a:0:b0:26e:4c9:f7f7 with SMTP id p26-20020a2eb11a000000b0026e04c9f7f7mr11599749ljl.522.1666618418471;
-        Mon, 24 Oct 2022 06:33:38 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id q21-20020a0565123a9500b004ac393ecc32sm329035lfu.304.2022.10.24.06.33.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 06:33:38 -0700 (PDT)
-Message-ID: <0b384fd6-a72b-4975-7649-9376f193700c@linaro.org>
-Date:   Mon, 24 Oct 2022 16:33:37 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 04/13] phy: qcom-qmp-usb: move pm ops
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Um6fnaXpZiNGoozY5O7gXcGXfv/SirCMtpElBWaRQrk=;
+        b=UwgjcBxDkLJvHB90T0b8E9smUV0dTU61jBCT2KV1AlG9tbb/c/Z0ocl5J8xBrSzQSB
+         wGIhTIS0663FVXRZmDO8aK1rvYuxDRe4kFM+/vch1o6p8Fl0MtQ6B5bmYYRuTbhgFoi8
+         zzicMBADSWgaQD29SqdJXFmuPzc1yHVHTVa7EGS2A9x5Bcq0pyW2rUKa2WfGeAnTdo+3
+         KQXlSgwCVSmrj3CxqDr5Puu7avoOKW889Wy8n9dJhQ9Wssj5aYuiBJPRkVTdn6q1PmUQ
+         gNS+AzjUvz3xbJN/0dP0ILZ8uZQz2+NpFmN/W7hznKDyAOFRh1J7efs0hzvGxv/kkuLS
+         JG2Q==
+X-Gm-Message-State: ACrzQf3RJTsPpw9BoVkUYVTdPtchOQ5ARp4i6+SdA41WrN4eaM2xkeR7
+        Ur+rvRMTu0F++KTkN4zPQw2uMc93YUU=
+X-Google-Smtp-Source: AMsMyM5S7wBzzYlk1b/MXtHZZm4vFo03coM0BiEqZdKMat/q/jvisGxXIKoGeThc7DvbRHnSVI8cJw==
+X-Received: by 2002:a17:906:5daa:b0:791:8933:f9f0 with SMTP id n10-20020a1709065daa00b007918933f9f0mr27209510ejv.335.1666618446100;
+        Mon, 24 Oct 2022 06:34:06 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id qu16-20020a170907111000b00780982d77d1sm15504223ejb.154.2022.10.24.06.34.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 06:34:04 -0700 (PDT)
+Date:   Mon, 24 Oct 2022 15:34:03 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221024100632.20549-1-johan+linaro@kernel.org>
- <20221024100632.20549-5-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221024100632.20549-5-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: tegra: Populate Tegra234 PWMs
+Message-ID: <Y1aUS8KK4Uy8q/9E@orome>
+References: <20221019132903.157703-1-jonathanh@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rKW4eG27OkPb0QHe"
+Content-Disposition: inline
+In-Reply-To: <20221019132903.157703-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,18 +74,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 13:06, Johan Hovold wrote:
-> Move the PM ops structure next to the implementation to keep the driver
-> callbacks grouped.
-> 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+
+--rKW4eG27OkPb0QHe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Oct 19, 2022 at 02:29:02PM +0100, Jon Hunter wrote:
+> Populate all the PWM devices for Tegra234. Finally, update the
+> compatible string for the existing 'pwm1' node to just be 'tegra194-pwm'
+> and remove the fallback to 'tegra186-pwm', which aligns with the
+> binding documentation.
+>=20
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 80 +++++++++++++++++++++++-
+>  1 file changed, 78 insertions(+), 2 deletions(-)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Both patches applied, thanks.
 
--- 
-With best wishes
-Dmitry
+Thierry
 
+--rKW4eG27OkPb0QHe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNWlEsACgkQ3SOs138+
+s6FfuRAAo+wPAbadrPY4XREFIt7i+fPYEurG1EISxRyyRWBNRkJIQ3ELQP6ak20h
+H+o+y0XvrCyuLKRIQYbnRR4BT0CvdiaRMpgcCcRXSDsvuiyMagIWBge7RHu+xPoL
+skkDphqwqkfZWfo1YJyqKOnALoWbQd9j8LBEMsXq4qBuUh8i/uBD4sdSMJqExwpB
+dRwyuLOWwUj+9IHxGvmgS98IhJ22+2DRcbVHTMKwBAK6voaY9+lrkU2qmmFLa9F4
+1TvJeT/uSAbMHsL52oLDrwRNElBXYRdXPGPPKloVB2eiHmMd3cJAx3fNRlLTZ2l6
+TsLfHmDf4WWj+nxWRWoGFJj6A8uR0whSd4rY7KGumjfE5HAQNRoAeA3RQb0VrGwC
+n0ME8ePur0tpG52SEAxPspn50V80QZoK21sLnpQtlKiSd0EsSuk92tbjhCpDQSoZ
+EM1blTvM+QfFmGpHFdEFEi6HcaRQL7us7KswQnzwKGjiIhGsh/m8fO7+RoqYdJnY
+Z4wxm2m2IKyfIUM//Kxh79mlRR+mZqVe/ZQb4iN6zG4KgKXee6acjehNtJcrgD8R
+o++jGMoDWT2SLFHtVE0TQwKIrmSTJzl/6WnSdnkgmX4/lVXJazQdo3K5uXpOwZoy
+rN7p/TKoKcPmZNi/G06x9M+MVSRwyEsoQx8O8N0WfgrDXKMcHj4=
+=ZgkW
+-----END PGP SIGNATURE-----
+
+--rKW4eG27OkPb0QHe--
