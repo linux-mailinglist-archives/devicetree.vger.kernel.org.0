@@ -2,123 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B66E860AF06
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3888960AF24
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230108AbiJXP1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 11:27:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47004 "EHLO
+        id S230106AbiJXPf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 11:35:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231936AbiJXP1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:27:13 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 246A919B662
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 07:13:07 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id 8so6120509qka.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 07:13:07 -0700 (PDT)
+        with ESMTP id S230165AbiJXPfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:35:32 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C3597D76;
+        Mon, 24 Oct 2022 07:22:57 -0700 (PDT)
+Received: by mail-qt1-f176.google.com with SMTP id w3so5660108qtv.9;
+        Mon, 24 Oct 2022 07:22:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PQh6en3faLQiT/yj2VP0RfsSYxaK3tAnPo5TU5fEGwc=;
-        b=XQwHoUNkuA6v6mtVC0x7/Jdi2fJ+j+bLMcd4M8ZRXa84QYTdOZiBGd0W57yOnWipZF
-         iLj02CJsYIfvSiuYvmr5mESSMZkJSQEFdmAj6KQGuvOU4JjCi3VORda7DJaZFFxcxBZ+
-         IRoqURWQX+VqEb02VJ3rNyyfxWotJCTex0O9xRnLI+rRFpyUDSbk9BTpRuKKkNaXsh21
-         FRRHX6SbEvjuN+MRg4qSYVrBLR+ecTPwchYA7BVaXvabr5vn/DGwZNIi/quj44Q6Cnt0
-         /x7e8gIlUnNfwTnibxZ6sxL3TrgSYOQXqAzpLPv1ap2zBsT3jvamSehEu3hLYxlrr54B
-         gHWg==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=z95RGHhrq2RpkVpagLbxbym9uTh1REHQsUV1yjQ7WkY=;
+        b=L13ity+YPc1L1SXl6GrXMurF79RdrsqFl3nO8Gd+biOii0FxyhcAYB2fL1AYmdme88
+         ZC+DSWWsNPDyndApeebfPYY1QIMc1/CA2LB4i2IzJnu/Wr6hSDooEHVaD6l3uv6EeMDI
+         Q4Wc/+T6iD7cEm06seJXGEEud3bTd9yW6MIu5bSnjrumR2QAlDKDS23ffNVHU2vgNuEA
+         De0IeY7dL1n45UaPhVOhva+fn7Gjoqm30N8s1yFs+go0G403zWIDjckcvXboMFDsqprw
+         VCRx9fshRCgx8k+4l50w4zhXcFGB22MXLAo5LFM6zS5BMmprJBk5cqTNk21rjuu1tCTO
+         4QFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PQh6en3faLQiT/yj2VP0RfsSYxaK3tAnPo5TU5fEGwc=;
-        b=xiCE1P5OolUspNKkZQpgCcofpLcgL4yVbVP4EQEoM3QriRRXMYnRX17A3EVfDZ64lo
-         V+yQgBk6jZXLlNmaodFjsufhS4fakMFVZhuzrLo4WA+SLk9SFHlN0Rt3D079ucx4kRX4
-         NaYRlFa447ET6+TWKiK5tzYoU2kCEPDwYjk784a6YSsx/2Myf9oVNN61tRybp32obmGy
-         ArG5l94D8b4m6w+vjjLBmSl9Zg52bCjIqB4FT7lTLCum+grufyg5D6wbLupMRBCkbClU
-         cHd88VbKQO8eAsjZT1Kw5RAj2A/TfWNp/m/trqMGXXpax9fHuR+27zgMiyN7WfM9xAi7
-         xT0g==
-X-Gm-Message-State: ACrzQf1Q2VChG/CmlFxtVBhCEw5PFUT/kM4x9wGIZAx2D+6LV+U2HYlj
-        SYy8J4lU3PgKl76zHcPynDepxQ==
-X-Google-Smtp-Source: AMsMyM7Qxr6BevMKOWfQdZIPH/PhEDWpoflXYfmA0OT9fJubp9WQkPM2hswnDri38ZBfuIOc8i3S6g==
-X-Received: by 2002:a05:620a:29c2:b0:6ee:b27c:2a50 with SMTP id s2-20020a05620a29c200b006eeb27c2a50mr23920806qkp.485.1666620593227;
-        Mon, 24 Oct 2022 07:09:53 -0700 (PDT)
-Received: from [192.168.1.8] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id q13-20020a05620a0d8d00b006dfa0891397sm29980qkl.32.2022.10.24.07.09.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 07:09:52 -0700 (PDT)
-Message-ID: <826176ba-d7c6-a64f-e15e-d2694571cb72@linaro.org>
-Date:   Mon, 24 Oct 2022 10:09:51 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z95RGHhrq2RpkVpagLbxbym9uTh1REHQsUV1yjQ7WkY=;
+        b=kC/q1lWQXzFxEc1G0Rwy3LGioo3nUM3rmOHHm+jmxISPoyAB1TWffgxlUUMoQ2qDfK
+         urKjS5DbhY/RCiORhi1044amAHDyUpfp4K86gxihRqvi2SGMgj76P7e4v7kulcL//a/Z
+         eXx2MyWnrW016VGDLYgUDc/gx9Ka4ngcLZlIx/7PW3VuXFvQ0aBYXNwfzvZEL27r3hb8
+         43xKM+S4snICmq9TJDVMW2PLg33IJKbQrBcx/nNd9qXjFKBxi40EnYz3iAEHgwGJ+tk2
+         bAbB5Hi7Zm09Ni4w0BK/bHB9KouW6WRKZ9e2GWOharSIOFIGtVOYkM0/j11Liu6bnVDS
+         mlaQ==
+X-Gm-Message-State: ACrzQf3StRG08rwOpT+zORlxFrWYFH5Ib6bxpnIDcFNPlZkg9sDIrlsq
+        HsT8ZIoARuqRWsaFg5fzuO+MXNt8tDgx6oSWGX4=
+X-Google-Smtp-Source: AMsMyM4wZ3KM3bv1WBiHFnmWOO8Msm6909wuihlUA7xJv313iAW4xA1mzKBzJI2/4dgP//ip6ORR+aTOhySEHm5arhM=
+X-Received: by 2002:ac8:7c46:0:b0:39c:fa92:a27a with SMTP id
+ o6-20020ac87c46000000b0039cfa92a27amr25660189qtv.61.1666621148926; Mon, 24
+ Oct 2022 07:19:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: add TCSR node
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221024125843.25261-1-johan+linaro@kernel.org>
- <94e05a63-e7f3-a78f-d0a6-8efcae619726@linaro.org>
- <Y1aWPhP7/ft8s+bh@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y1aWPhP7/ft8s+bh@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221024132757.3345400-1-sravanhome@gmail.com>
+ <20221024132757.3345400-9-sravanhome@gmail.com> <CAHp75VeCGNvLhpsRvfzf8oedAhZVGuaiDQYJyahpPkvz1qQd7g@mail.gmail.com>
+ <CAHp75Vd8L3vnfqahSP77b8bA-Z70w7rHOSNVgXPUXmOjBonLPg@mail.gmail.com> <40711ccb-ef96-4905-40ed-525c0a490fba@gmail.com>
+In-Reply-To: <40711ccb-ef96-4905-40ed-525c0a490fba@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 24 Oct 2022 17:18:33 +0300
+Message-ID: <CAHp75Veht22nPGyZGp4G0yGvYm4hyjZGvX4fdz4qCz7VUJcEdg@mail.gmail.com>
+Subject: Re: [PATCH v4 8/8] power: supply: fix wrong interpretation of
+ register value
+To:     saravanan sekar <sravanhome@gmail.com>
+Cc:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 09:42, Johan Hovold wrote:
-> On Mon, Oct 24, 2022 at 09:34:22AM -0400, Krzysztof Kozlowski wrote:
->> On 24/10/2022 08:58, Johan Hovold wrote:
->>> Add the TCSR node which is needed for PCIe configuration.
->>>
->>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 5 +++++
->>
->> Please send the patches together with the binding. There is no need to
->> have this split and it causes additional effort during review - lookup
->> of the binding.
-> 
-> I was under the impression that the dts changes should be submitted
-> separately from the binding as they go through different trees. (And
-> last time I posted them together the subsystem maintainer ended up
-> taking also the dts changes by mistake).
+On Mon, Oct 24, 2022 at 5:07 PM saravanan sekar <sravanhome@gmail.com> wrote:
+>
+> On 24/10/22 15:50, Andy Shevchenko wrote:
+> > On Mon, Oct 24, 2022 at 4:50 PM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> >> On Mon, Oct 24, 2022 at 4:28 PM Saravanan Sekar <sravanhome@gmail.com> wrote:
+> >>>
+> >>> fix wrong interpretation of bitwise as hex
+> >
+> > Maybe you can replace 0x with 0b instead?
+> >
+>
+> Ok, I consider to changes as "fix the register value interpretation as
+> 0x instead of 0b" does it fits !!
 
-Yes, that's also true. :)
+No, it doesn't because there is no evidence of 0b in use. I suggested
+to use 0b in the code (as the part of your change) instead of
+switching to hex.
 
-> The binding has been picked up by Lee now so I posted the dts change.
-> Could have added a lore link though.
-
-This also would work and help a lot.
-
-It depends in general on the maintainer - for example Greg does not want
-to deal with individual patches, especially if DTS is just one patch and
-USB would be 10 of them. Our toolset is not good for picking up 10 out
-of 11. For all such cases - please provide link to lore.
-
-If however there are just two patches - one DTS and one for maintainer -
-then having them in one patchset should not cause additional effort for
-the maintainer.
-
-As you can see on the list, majority of patchsets consist of
-bindings+DTS. Pretty often entire piece - bindings+driver+DTS.
-
-Best regards,
-Krzysztof
-
+-- 
+With Best Regards,
+Andy Shevchenko
