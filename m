@@ -2,206 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0005560B8F7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 22:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 221A860B57C
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233243AbiJXT7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 15:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
+        id S229588AbiJXS3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 14:29:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234030AbiJXT67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:58:59 -0400
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 896922920F8
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 11:21:48 -0700 (PDT)
-Received: by mail-pj1-f51.google.com with SMTP id m2so4728246pjr.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 11:21:48 -0700 (PDT)
+        with ESMTP id S232182AbiJXS26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:28:58 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD1CD1CEC24
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 10:10:53 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id o12so17779908lfq.9
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 10:10:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pja81Rhvf+nc30IgGNzM8/t/SC1TJPZW1TXOrzNAkS8=;
-        b=qTJiWOwtCxymrtgegTu8qvv9CQdcqJAnAFOAwO7MQXk/GJaub7uJ/Eo9q0C48PrnUu
-         MP1ShQyQApNeVovj42GXJkeeh9mmItsIVuPzDTI+LHQ5WRp6ygqy9areYbnXiLM3SGSt
-         p+M6IUYlNMaExbgkJQuay/n9YOqKV6WFhB3LE/DHQMMT5CAPrrqNeqhnUkJmrcDPrtZ1
-         TeRE6P2w9J2z7wd55BWM/8Awft62HD7Bx3ERnWveVIDnFrXRrgCHS4PFrFhe4cgCVXTZ
-         yQLdVet5mUrGLpG3cE6+4IwzzqcS+CYMaAbTIp4yUFB5oGmS1Kyb+/7sWyhx1VvAWJQy
-         fySQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c08g93mBF9rHhNs3GF7QFErRxt7k1Q6/dC3x12TTUPQ=;
+        b=yUK2myVCWVcO34uSWy0fHghoA84NZxDo5TJhxBYUNSM900bXaQ9hLJ9qNgrQyLQp5f
+         +ELWvZryll9o+JUOYN7vMC9GLU9jJ7HBizm4RnFpYz3q5Br51TPu0ozqIUJrxMWc7Akm
+         djiqSsIgFpriscJEeqouabdM1nCxmfTeelRKcci0kpBMRHX2GuCmMUn6g3qBursFVcC1
+         E0t2CUrmKZGZz8+qYPVYoJbVbCu+N/i8J1XEnWKSg4u/HZ4UVCDmOPXKSRtf5fVxkGj5
+         fITajnhGSR1/VqpiUunvYkEuU317Jv8asdwtEd79t+YbufbVsba1gv352qtZH32/jhju
+         6UvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pja81Rhvf+nc30IgGNzM8/t/SC1TJPZW1TXOrzNAkS8=;
-        b=D2J5dV5e70bOxUgwkLsfXAsk3I0c5An+ISwWd7CiJpKmzE/9N3rJSzHFa0VEhlOV+8
-         S7wK4v8f3zBVbAbC4UI6O3Lu5xiObT9LUymDpJjgBkB8nyLq8LAxXkDTEKy5aq98ol11
-         Mx5/RwStJzhnIf9xbGxElf3t7obNQxK+X85uiqjVeAawxd58UIdbaGmPrzVaG+MceOkD
-         ZH0OYkDk8cdNIsh2n3WrGROEDEy5F3q/1z6/Rp/iLwHgTSOx5D316ImXrLWCW/yi8xh9
-         japN1+WbaxP7kSStHGFthKsqFawkWgUECQ0V/0Wj8U4ukUBL+DXGpjly6vMyQJrIccAP
-         7mmA==
-X-Gm-Message-State: ACrzQf08uHvPdpj3t30yE6zwpdQPdmnLbnnW0aKQ9yp8dcNefE3ltEnD
-        kzPMqCiSOI86hFr4Lve4k1lVSirbyt7rwA==
-X-Google-Smtp-Source: AMsMyM7eLs7/zR87TlE5CHm/Vgtm5DIknIDhVY1qdoVER2IP3IgEtQwxxU6jlkqJcxhX1/uU6N02qQ==
-X-Received: by 2002:a17:902:bf46:b0:179:eba5:90ba with SMTP id u6-20020a170902bf4600b00179eba590bamr34424895pls.16.1666629540969;
-        Mon, 24 Oct 2022 09:39:00 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id g5-20020a170902e38500b0017ca9f4d22fsm6103522ple.209.2022.10.24.09.38.59
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c08g93mBF9rHhNs3GF7QFErRxt7k1Q6/dC3x12TTUPQ=;
+        b=mg7m5vNcit23RRwKmtE3AUDr/RZXCnmbiSwvD4L5m3AJXAsdxce9fRJ8ADzlc1C8zd
+         RRB2tjDgnhNrX+mC6xjGE9CPYkWXSyFycZ9fY0Kb3x4sMOCbil1vfbifAsy3EAj+ROJh
+         yFome1PtIeIXVslIgFU4JMlrtA8Qh4BSLiUYBGx23wW6pzYiZGsGybpZXGeSJ50ElTLn
+         RlInKgzAwvddfpan2QMz8XVWhK15uApDIUKY9ju7eXweZcZlIIWgn8DLQHvCqSw/ewNJ
+         6Wnfw25yJhbm9MYTOpJ8xvXWfqB1ob06boQWeDrseE4JMdnYkUfVClA7ehl3IyUFfbpT
+         vBjg==
+X-Gm-Message-State: ACrzQf1qXcF3BhDUzt8xZBTNpxDAvrhVIeh/DSANK6pHc63GKoU4/YXc
+        Sq4L9JhINE/3buV62osGLUN1kPtg78TUaiqK
+X-Google-Smtp-Source: AMsMyM6tFJiCqeATOg585ajkr5p5VpOPABLpiGqO7LfhXBC03jcNk0nMuWUmk3+wwHI9mYMZ/cL9HQ==
+X-Received: by 2002:a2e:a910:0:b0:261:b408:1169 with SMTP id j16-20020a2ea910000000b00261b4081169mr13085322ljq.360.1666629746968;
+        Mon, 24 Oct 2022 09:42:26 -0700 (PDT)
+Received: from eriador.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id k14-20020ac2456e000000b004948378080csm4593978lfm.290.2022.10.24.09.42.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 09:38:59 -0700 (PDT)
-Date:   Mon, 24 Oct 2022 10:38:58 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Daniel Kestrel <kestrelseventyfour@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mon, 24 Oct 2022 09:42:26 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] Add support for WASP SoC on AVM router boards
-Message-ID: <20221024163858.GB626419@p14s>
-References: <20220804210806.4053-1-kestrelseventyfour@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v9 00/12] dt-bindings: display/msm: rework MDSS and DPU bindings
+Date:   Mon, 24 Oct 2022 19:42:13 +0300
+Message-Id: <20221024164225.3236654-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220804210806.4053-1-kestrelseventyfour@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Create separate YAML schema for MDSS devicesd$ (both for MDP5 and DPU
+devices). Cleanup DPU schema files, so that they do not contain schema
+for both MDSS and DPU nodes. Apply misc small fixes to the DPU schema
+afterwards. Add schema for the MDSS and DPU on sm8250 platform.
 
-I have started to review this patchset.  I expect the process to take several
-days and will clearly let you know when I am done.
+Soft dependency on [1] to define qcom,dsi-phy-14nm-2290 binding used in
+examples
 
-Thanks,
-Mathieu
+[1] https://lore.kernel.org/linux-arm-msm/20220924121900.222711-1-dmitry.baryshkov@linaro.org/
 
-On Thu, Aug 04, 2022 at 11:08:03PM +0200, Daniel Kestrel wrote:
-> There is a popular set of Lantiq xrx200 router boards by AVM in
-> Germany (AVM Fritzbox 3390, 3490, 5490, 5491 and 7490) which
-> have the strange implementation of having the wifi cards
-> connected to a separate memory only ATH79 based SoC. It has no
-> persistent storage and no access to any resource on the Lantiq
-> host, but is connect to the Lantiq GSWIP switch on an additional
-> fixed internal network port.
-> This kernel module is to support booting the secondary SoC called
-> Wireless Assistant Support Processor (WASP).
-> After turning it on, a small network boot firmware is sent to
-> the SoC by using mdio and when it is started, an initramfs
-> linux image is sent to the SoC using raw ethernet frames.
-> 
-> The whole procedure takes about 6 seconds, if there is no error.
-> So far tested on 3490, 5490 and 7490 devices based on OpenWrt, 3390
-> takes about 20 seconds.
-> 
-> Patch 1/3 adds the vendor name
-> Patch 2/3 adds the dt-bindings
-> Patch 3/3 adds the remoteproc driver
-> 
-> To build and run, there is OpenWrt PR 5075.
-> 
-> Please review.
-> 
-> Changes in v5:
->   - Replace names for properties and descriptions as requested in the
->     device tree documentation and change the driver to accept them
->   - Change example in the device tree documentation
->   - Restructure constants and defines in the beginning of the driver
->     source for better readability
->   - Combine m_start_addr and m_exec_addr into a single constant and
->     change avm_wasp_netboot_write_header to use only this one constant
->   - Change variable startup_gpio to power_gpio in driver
-> 
-> Changes in v4:
->   - Fix compiler warnings with W=2 option
-> 
-> Changes in v3:
->   - Replace generic avm,fritzboxx490-wasp with actual device names for
->     device tree documentation and change the driver to accept them
->   - Add maxItems to device tree documentation
->   - Change example in the device tree documentation
->   - Fix wait time to make the Wasp upload work for 3390 more reliable
->   - Enable the SOC on driver load, use reset instead of disable/enable
->     while driver is loaded and disable on unloading the driver
->   - Change some messages printed to adhere to standards (e.g. remove !)
-> 
-> Changes in v2:
->   - Remove firmware names from dt-binding and add as kmod parameters
->   - Rename other bindings with vender prefix and fix gpios suffix
->   - Change descriptions in dt-binding
->   - Replace/Remove asynch load of firmware with request_firmware_direct
->   - Fix comments to use the errno define instead of the number
->   - Implement wait loops with read_poll_timeout() macro
->   - Wrap read_poll_timeout() macro in function saving 6k module size
->   - Return -ETIMEDOUT for all errors returned by read_poll_timeout
->   - Replace mdio writes/reads with mdiobus_write and mdiobus_read and add
->     return codes and their handling
->   - Remove mutex for mdiobus_lock and add return code checking for mdio ops
->   - Replaced the mdio register array with directly specifying registers
->   - As a result of the previous 3 changes remove the functions for mdio
->   - Consolidate error messages for mdio writes into a single one saved 1k
->     for module size
->   - Replaced mdelay with usleep_range saved 0,7k module size
->   - Remove unneeded include <linux/interrupt.h> and <linux/error.h>
->   - Wrap all blocks with {} and fix some indentation errors
->   - Change const len in to size_t in avm_wasp_netboot_write_chunk
->   - Make all methods static to fix kernel bot warning
->   - Change read variable name in avm_wasp_load_initramfs_image
->   - Change ssize_t variables to size_t in avm_wasp_load_initramfs_image
->   - avm_wasp_netboot_write_chunk change for loop for 2 byte divisibility
->   - Change uint32_t to u32
->   - Change int count = -1 to u32 with U32_MAX initialisation
->   - Add check for firmware len divisable by 4
->   - Replace big endian bit shift operations with be32_to_cpu
->   - Change loop to write 14 byte firmware chuncks like suggested
->   - Change WASP_CHUNK_SIZE to ARRAY_SIZE(mac_data) for readability
->   - Change int done to boolean
->   - Change unsigned ints to u32
->   - Change int to size_t for send_len
->   - Use int for numbytes because kernel_recvmsg returns error or number
->   - Two sockets are not needed, so reduce to one socket usage
->   - Remove struct timeval definition, replace with __kernel_old_timeval
->   - __kernel_old_timeval is depracated, but arch mips is 32bit platform
->   - Replace &avmwasp->pdev->dev with local dev
->   - Check if wasp network interface is up and fail if not in start method
->   - Remove setsockopt for SO_REUSEADDR and SO_BINDTODEVICE
->   - Remove packet_counter
->   - Move firmware and firmware_end out of RESP_DISCOVER to make sure that
->     they are initialized if RESP_DISCOVER is not happening first
->   - indend break;
->   - Move second half of the send/receive paket while loop to RESP_OK and
->     let RESP_DISCOVER fall through
->   - Remove bringing up the wasp network interface
->   - Check if wasp network interface is up in probe and defer if not
->   - Remove the check for the root device and replace it with match data
->     for WASP device identification
->   - Move of_read and find of mdio bus to rproc_start but delete reference
->     after using it in the rproc_start method
->   - Replace dev_set_drvdata with platform_set_drvdata
->   - Remove avm_wasp_rproc_boot_addr because its not needed and move
->     setting the fw struct pointer to avm_wasp_rproc_load
->   - Move avm_wasp.h definitions to kernel module
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> Daniel Kestrel (3):
->   dt-bindings: vendor-prefixes: Add AVM
->   dt-bindings: remoteproc: Add AVM WASP
->   remoteproc: Add AVM WASP driver
-> 
->  .../bindings/remoteproc/avm,wasp-rproc.yaml   |   61 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
->  drivers/remoteproc/Kconfig                    |   10 +
->  drivers/remoteproc/Makefile                   |    1 +
->  drivers/remoteproc/avm_wasp.c                 | 1051 +++++++++++++++++
->  5 files changed, 1125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
->  create mode 100644 drivers/remoteproc/avm_wasp.c
-> 
-> -- 
-> 2.17.1
-> 
+Changes since v8:
+ - Dropped DSI/DSI-PHY examples from the first patch. Proper example
+   generate a pile of warnings because of DSI schema deficiencies. I'll
+   add these examples back, once DSI schema is fixed.
+
+Changes since v7:
+ - Expanded examples to include MDSS child nodes (Krzysztof)
+
+Changes since v6:
+ - Removed extra newlines (Krzysztof)
+ - Added $ref to dpu-common.yaml#/ports/port@foo to enforce schema
+   for the port nodes (Rob)
+ - Removed unused allOf's (Rob)
+ - Fixed repeated interconnects descriptions (Rob)
+ - Fixed dpu-common.yaml and mdss-common.yaml descriptions (Rob)
+ - Fixed intentation of examples (Krzysztof)
+ - Renamed MDSS and DPU schema to follow compat names (Rob)
+
+Changes since v5:
+ - Dropped the core clock from mdss.yaml. It will be handled in a
+   separate patchset together with adding the clock itself.
+ - Fixed a typo in two commit subjects (mdm -> msm).
+
+Changes since v4:
+ - Created separate mdss-common.yaml
+ - Rather than squashing everything into mdss.yaml, create individual
+   schema files for MDSS devices.
+
+Changes since v3:
+ - Changed mdss->(dpu, dsi, etc.) relationship into the tight binding
+   depending on the mdss compatible string.
+ - Added sm8250 dpu schema and added qcom,sm8250-mdss to mdss.yaml
+
+Changes since v2:
+ - Added a patch to allow opp-table under the dpu* nodes.
+ - Removed the c&p issue which allowed the @0 nodes under the MDSS
+   device node.
+
+Changes since v1:
+ - Renamed DPU device nodes from mdp@ to display-controller@
+ - Described removal of mistakenly mentioned "lut" clock
+ - Switched mdss.yaml to use $ref instead of fixing compatible strings
+ - Dropped mdp-opp-table description (renamed by Krzysztof in his
+   patchset)
+ - Reworked DPU's ports definitions. Dropped description of individual
+   ports, left only /ports $ref and description in dpu-common.yaml.
+
+Dmitry Baryshkov (12):
+  dt-bindings: display/msm: split qcom,mdss bindings
+  dt-bindings: display/msm: add gcc-bus clock to dpu-smd845
+  dt-bindings: display/msm: add interconnects property to
+    qcom,mdss-smd845
+  dt-bindings: display/msm: move common DPU properties to
+    dpu-common.yaml
+  dt-bindings: display/msm: move common MDSS properties to
+    mdss-common.yaml
+  dt-bindings: display/msm: split dpu-sc7180 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-sc7280 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-sdm845 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-msm8998 into DPU and MDSS parts
+  dt-bindings: display/msm: split dpu-qcm2290 into DPU and MDSS parts
+  dt-bindings: display/msm: add missing device nodes to mdss-* schemas
+  dt-bindings: display/msm: add support for the display on SM8250
+
+ .../bindings/display/msm/dpu-common.yaml      |  52 +++
+ .../bindings/display/msm/dpu-msm8998.yaml     | 223 ---------
+ .../bindings/display/msm/dpu-qcm2290.yaml     | 222 ---------
+ .../bindings/display/msm/dpu-sc7180.yaml      | 235 ----------
+ .../bindings/display/msm/dpu-sc7280.yaml      | 239 ----------
+ .../bindings/display/msm/dpu-sdm845.yaml      | 217 ---------
+ .../devicetree/bindings/display/msm/mdp5.txt  |  30 +-
+ .../bindings/display/msm/mdss-common.yaml     |  83 ++++
+ .../bindings/display/msm/qcom,mdss.yaml       | 196 ++++++++
+ .../display/msm/qcom,msm8998-dpu.yaml         |  95 ++++
+ .../display/msm/qcom,msm8998-mdss.yaml        | 268 +++++++++++
+ .../display/msm/qcom,qcm2290-dpu.yaml         |  84 ++++
+ .../display/msm/qcom,qcm2290-mdss.yaml        | 198 ++++++++
+ .../bindings/display/msm/qcom,sc7180-dpu.yaml |  95 ++++
+ .../display/msm/qcom,sc7180-mdss.yaml         | 304 +++++++++++++
+ .../bindings/display/msm/qcom,sc7280-dpu.yaml |  98 ++++
+ .../display/msm/qcom,sc7280-mdss.yaml         | 422 ++++++++++++++++++
+ .../bindings/display/msm/qcom,sdm845-dpu.yaml |  90 ++++
+ .../display/msm/qcom,sdm845-mdss.yaml         | 270 +++++++++++
+ .../bindings/display/msm/qcom,sm8250-dpu.yaml |  92 ++++
+ .../display/msm/qcom,sm8250-mdss.yaml         | 330 ++++++++++++++
+ 21 files changed, 2678 insertions(+), 1165 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-common.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
+
+-- 
+2.35.1
+
