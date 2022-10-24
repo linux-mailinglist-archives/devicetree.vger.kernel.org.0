@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133B060B6BE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AF2D60B879
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233026AbiJXTJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 15:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57552 "EHLO
+        id S232021AbiJXTqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 15:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231901AbiJXTJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:09:22 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B9B580B0;
-        Mon, 24 Oct 2022 10:48:37 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id r14so32876739edc.7;
-        Mon, 24 Oct 2022 10:48:36 -0700 (PDT)
+        with ESMTP id S232051AbiJXTos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:44:48 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1F125F1CE
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 11:12:42 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f37so18008326lfv.8
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 11:12:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lLLFhdOjQdZVRi4+dO3LV4A0SKwug3EMMGQt1+QKLJM=;
-        b=ARxc6MtH2mx0X8Zz04iqbFY7gSCEE8pZ1qcWgY+bfnOASKVlGMS45z2/V8Sax4EHId
-         K3k6exT3goUntttLvMxaBlZ8eJDnahocz0V+Shq16ED7zrIL3/taap1SKM23rgkoSSUc
-         qA3w0Ko77XIG3QAnrU/tagZrSydiNnESWOSMmNcgGjPqWKWQ4x3NZ/QU8kQsvG7rCs8z
-         PGC8Rhs7uVaHm4F60B1HPzxc3Ijvy+2+gBztS42FcjL9P6AArJryR3RAL0N5uPqIi23p
-         Pw/I9mbF2nPXh+ry9PTsQzK3FqFBLb2h6oNc45Ip/yK3116ofyqtzRe/ct4XYXjDklLI
-         ia7Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9mKsfIWpa7V9k46Arai0KI6Ar9k3GJZZKenWY2uV0rU=;
+        b=ywvMqT+z+qb9B9IOh9FO4Rw7gnnbwZSApPutG7lpctxAL21queUrkzYeLZMeloFSbl
+         x9K6DXvCSWwG5lU0epxgjqFuxhgMeSengsuV6d2ZycOPLYNh0dncq5S+MZMG2Fql+Z4k
+         qEcdJojzp98vOr12LtDmQ5+cffJNfr7Um1/EhAT4wttCCc0XT/Xhr5x38xAQUvI0DCxs
+         hW6XWRLOOVNGql9EuG43BKD6ioeYzglQemNd1zoJb6YdYeWSDe9Jq+9FsBigPvh9hpuf
+         MMjOCRzfG7gYxAxAj6hb49pVwp/pJTEVl8sCqKMYxVnf3zagnVChCsiZ4qxC5u//c1nl
+         B3Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lLLFhdOjQdZVRi4+dO3LV4A0SKwug3EMMGQt1+QKLJM=;
-        b=FmMmrdQX9uulR/yhhfeHI8nh+kNistG/Zjx4XTN6Jcqkaa+rTVEDZBKgTzRVH2AzHq
-         2BALA3Lux8kyRN4Li57A5ERkgsLBplMXJnDoHAJHfgZSzFUQ3sSO0lrSaI7yGT7+7vYM
-         FZGRf0bxCgr8EIKqsaUO7t1ppZ9TB5cFikJOexp/rUT5B82LvLsHE0TkUap7Jk8GmXhY
-         6BE8Uxwa944O+bNJyLpTZzplCAaVH5gnKHHjg2LsFIZVBun7x5sfVBRlrgA8VMFtOr3E
-         O1Vq9nvuzljowZt6mlzfIG2IKR3u8kWsUgmhozgjItk4zlY4+uM7DFVt4NaXQZEJTZIb
-         2+2Q==
-X-Gm-Message-State: ACrzQf037Tss8HRHfkGNy/Znj9Vz+GMUvFLpHGaYr2XUOxLgQ4HvXojh
-        D/AZBLqnTxXaeuWWVzAxQTOIetgy4s0=
-X-Google-Smtp-Source: AMsMyM5OZgGw0Zl5UJYWJ3Xrn6tNdg5QKfk1JM9oi8g1+WlLZjjnT0KJx1sRGwhdHIavjPlodQ/gQQ==
-X-Received: by 2002:a17:907:9717:b0:78d:9fb4:16dd with SMTP id jg23-20020a170907971700b0078d9fb416ddmr28304599ejc.720.1666618088834;
-        Mon, 24 Oct 2022 06:28:08 -0700 (PDT)
-Received: from discovery.. (p5dcfeede.dip0.t-ipconnect.de. [93.207.238.222])
-        by smtp.gmail.com with ESMTPSA id l20-20020a056402231400b00457c5637578sm18243818eda.63.2022.10.24.06.28.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 06:28:08 -0700 (PDT)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, Saravanan Sekar <sravanhome@gmail.com>
-Subject: [PATCH v4 8/8] power: supply: fix wrong interpretation of register value
-Date:   Mon, 24 Oct 2022 15:27:57 +0200
-Message-Id: <20221024132757.3345400-9-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20221024132757.3345400-1-sravanhome@gmail.com>
-References: <20221024132757.3345400-1-sravanhome@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9mKsfIWpa7V9k46Arai0KI6Ar9k3GJZZKenWY2uV0rU=;
+        b=i8cO0MDd5P0CKwAAl4tiziUtqloHqQHfBX2/FAofG8uumGi0tanMyTzriRcjU5h6h8
+         QHfFO/kvU5NTnmiMOSfHn58ufdOrklKTMmj//d5l4cwfjYwnGd4kQgNKfJFogq5WPo2H
+         Dn1/uZI2WV1WAHwywanG/KbZRy4csrQf5TmoKogyhJcWkiM7m+aykn/ME3dQVihUub4y
+         YEbNjzSvfhed7464mI/oHBhRPDl+8V7Pli9HI9LP0hp8O2cXpHbXfqFtXLGRbpi9UxDi
+         IXn/5y+xXejRcxGpFwg5B2Jr+DSiUmV0e/odXUhat4oDhgsb8uyP7D3M4NeDPsv8BsAK
+         dqpg==
+X-Gm-Message-State: ACrzQf3qgklL/Jn9LJhlDMUcZES8wydzeCqtu6ww0wzSNkPzLZMq380j
+        +zZ15Xwu4NnGV1MAfm2DlTvfM6iJRZvbmroY
+X-Google-Smtp-Source: AMsMyM7WUs6aeUNCICLhdJhwB77WGIRqZ7ubxT1Qp1R7WDdA/kFHuprTdIx1QPeWe6A8jDWVL7bYxg==
+X-Received: by 2002:a2e:8697:0:b0:26f:b795:8b39 with SMTP id l23-20020a2e8697000000b0026fb7958b39mr12457697lji.218.1666618322142;
+        Mon, 24 Oct 2022 06:32:02 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id c24-20020ac244b8000000b004947f8b6266sm4411058lfm.203.2022.10.24.06.32.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 06:32:01 -0700 (PDT)
+Message-ID: <d8ffbfeb-be30-e221-6185-974569f72515@linaro.org>
+Date:   Mon, 24 Oct 2022 16:32:01 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 09/10] phy: qcom-qmp-ufs: restructure PHY creation
+Content-Language: en-GB
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221024090041.19574-1-johan+linaro@kernel.org>
+ <20221024090041.19574-10-johan+linaro@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221024090041.19574-10-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,39 +81,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fix wrong interpretation of bitwise as hex
+On 24/10/2022 12:00, Johan Hovold wrote:
+> In preparation for supporting devicetree bindings which do not use a
+> child node, move the PHY creation to probe() proper and parse the serdes
+> resource in what is now the legacy devicetree helper.
+> 
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 34 ++++++++++++-------------
+>   1 file changed, 16 insertions(+), 18 deletions(-)
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- drivers/power/supply/mp2629_charger.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-diff --git a/drivers/power/supply/mp2629_charger.c b/drivers/power/supply/mp2629_charger.c
-index 9e4111aace4b..2ff3729afc48 100644
---- a/drivers/power/supply/mp2629_charger.c
-+++ b/drivers/power/supply/mp2629_charger.c
-@@ -328,10 +328,10 @@ static int mp2629_charger_battery_get_prop(struct power_supply *psy,
- 			val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
- 			break;
- 		case 0x01:
--		case 0x10:
-+		case 0x02:
- 			val->intval = POWER_SUPPLY_STATUS_CHARGING;
- 			break;
--		case 0x11:
-+		case 0x03:
- 			val->intval = POWER_SUPPLY_STATUS_FULL;
- 		}
- 		break;
-@@ -349,7 +349,7 @@ static int mp2629_charger_battery_get_prop(struct power_supply *psy,
- 		case 0x01:
- 			val->intval = POWER_SUPPLY_CHARGE_TYPE_TRICKLE;
- 			break;
--		case 0x10:
-+		case 0x02:
- 			val->intval = POWER_SUPPLY_CHARGE_TYPE_STANDARD;
- 			break;
- 		default:
 -- 
-2.32.0
+With best wishes
+Dmitry
 
