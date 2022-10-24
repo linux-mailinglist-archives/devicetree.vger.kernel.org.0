@@ -2,372 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB407609948
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF207609950
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229923AbiJXEks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 00:40:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52870 "EHLO
+        id S229997AbiJXElp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 00:41:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbiJXEk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:40:27 -0400
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6713AB20;
-        Sun, 23 Oct 2022 21:40:06 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: hector@marcansoft.com)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B2621424B9;
-        Mon, 24 Oct 2022 04:40:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1666586405; bh=E4VzSpZFeNA5d/uDXozYlW93u8ZNKpH+5o1ytjh8lo0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=k4/9da3phZ0pUF289YlBI/t1+9dfx4Po4asOkUORSBhIji4r1DW587XmBYCBe72VE
-         fHrBAkPKMeOON8WjZd/mAT3ZpRMRiOhOraEapjOE/pBex9yjaRLHvAV9oWYQ8o2JB0
-         T3G0eQXekJ15UfpFyQ+Z+E0USw7lfbpujhvzHDW59/WpX3oFI+qYI4lsMlkWz16/tE
-         rAF7njHB2iMe2wWpvq8W7P72fodL79NmUNZQ/SLGJGgMGea8h14hd4LvcLxcA8JRtQ
-         Ds1N9kVVtJ56AyaCaDP75s8LKxFbWHzix1wOmyuWMX6eWMIolfP1sO46ZPNHQmAM4A
-         ev3s1cjPfNv6w==
-From:   Hector Martin <marcan@marcan.st>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        with ESMTP id S230040AbiJXElf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:41:35 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F087D422EF;
+        Sun, 23 Oct 2022 21:41:34 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id g12so1479669wrs.10;
+        Sun, 23 Oct 2022 21:41:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eorg+/Ww/9XjaDGiE3G7GADATyRcOGLQTY6DHSskd48=;
+        b=QuvnFqc0iKixA40xm8USZ9WYyJCxtBTdwfF5Uk1etsEgWFoFwEb5ALUqvaWl6F02bX
+         GQ63h0UcjaVgrMb4mAYw3s7473Daf6BlPxo0BV2kxzSUpsBrkhUDwaIh9GMwTkL28ryM
+         Sz85SdeapZIPkGwNxbbSaZ3IeLyUK7vYmq9oLF4i/t9MKr4T15lasYe4wIvr5yU/Y6QF
+         phz+aUF3V7zIodHYobwWPF8vLT+2LQOX+y/k4Qn5cNl9t8FSBDmW0iB+wJUoBT8XmBdF
+         vkzQsxvOXeEmAdPpoHWfhdrgXT95bL2eYP1TrQ8Vj1oxxox/15pTo/9KuOCc7CA4JFVD
+         vnJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eorg+/Ww/9XjaDGiE3G7GADATyRcOGLQTY6DHSskd48=;
+        b=oVHRpdPbRiCuaOb0REEvyl8KcPW7E5r5htzeYbp/m8QZdO6TfZYXzWinztXLYrZ0YI
+         NeODfBMSU6ltfJdYba1SDGvmWKNN1V2ZgO0OAIB5uyYmDXuj+ICq2ZkOmdyhLP92quZg
+         RhEaHAYceDUAiOrU5wsQ4DB0x1wS+VkFsGJd9/1fYYuTjx1zTTKt5O7+UH+chWydBai4
+         kZ6i2pFKMo8j4GTHp1eoutvtqV99vDy/RKbsBZpXmXmH3511aIMgdF7/FjT07mzeHpY3
+         A4f2jE1Ph51lTuHZRPFHMlKUNKvw+scZiLBXLxEUqst8JZnH/BIJxVqtIcFTnHmaiHsa
+         RbnQ==
+X-Gm-Message-State: ACrzQf3nPuQvoamDRyvUVSiJobvrp4WtHbkIHvKKUhPtlnUK0O4BXu7M
+        WTIB2aWQEwWUJDxWlhTOj3w=
+X-Google-Smtp-Source: AMsMyM7L/JtlELi3aklbJQzRKOj6rIqKgn40eJOjtT5hGGN2bw7+G8bdr/AXSEcIuy4A6a8ZXurZ1g==
+X-Received: by 2002:a05:6000:180b:b0:236:5985:9c4e with SMTP id m11-20020a056000180b00b0023659859c4emr8194068wrh.584.1666586493463;
+        Sun, 23 Oct 2022 21:41:33 -0700 (PDT)
+Received: from hp-power-15.localdomain (mm-197-18-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.18.197])
+        by smtp.gmail.com with ESMTPSA id l39-20020a05600c1d2700b003c6deb5c1edsm9856925wms.45.2022.10.23.21.41.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Oct 2022 21:41:32 -0700 (PDT)
+From:   Siarhei Volkau <lis8215@gmail.com>
+Cc:     Siarhei Volkau <lis8215@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 5/5] arm64: dts: apple: Add CPU topology & cpufreq nodes for t8103
-Date:   Mon, 24 Oct 2022 13:39:25 +0900
-Message-Id: <20221024043925.25379-6-marcan@marcan.st>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221024043925.25379-1-marcan@marcan.st>
-References: <20221024043925.25379-1-marcan@marcan.st>
+        Paul Cercueil <paul@crapouillou.net>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: [PATCH v5 0/3] Add Ingenic JZ4755 CGU driver
+Date:   Mon, 24 Oct 2022 07:40:53 +0300
+Message-Id: <20221024044057.4151633-1-lis8215@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing CPU topology/capacity information and the cpufreq nodes,
-so we can have CPU frequency scaling and the scheduler has the
-information it needs to make the correct decisions.
+This patch series adds a Clock Generation Unit (CGU)
+driver for the JZ4755 SoC.
 
-Boost states are commented out, as they are not yet available (that
-requires CPU deep sleep support, to be eventually done via PSCI).
-The driver supports them fine; the hardware will just refuse to ever
-go into them at this time, so don't expose them to users until that's
-done.
+v5:
+ - reword commit msg for documentation
+ - reword cover letter
+v4:
+ - absent commit msg fixed
+ - +/- ack
+v3:
+ - MACH_JZ4755 creation removed
+ - AIC clock parent fixed
+ - EXT/512 clock clarified (tested)
+ - dt header license refined
+v2:
+ - CGU patches moved into its own patchset
+ - dual license for dt-bindings header
+ - Krzysztof's ack picked up
+v1:
+ - adds support for the whole JZ4755
 
-Signed-off-by: Hector Martin <marcan@marcan.st>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 206 +++++++++++++++++++++++++--
- 1 file changed, 196 insertions(+), 10 deletions(-)
+Siarhei Volkau (3):
+  dt-bindings: ingenic: Add support for the JZ4755 CGU
+  dt-bindings: clock: Add Ingenic JZ4755 CGU header
+  clk: Add Ingenic JZ4755 CGU driver
 
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 51a63b29d404..055e395ee88d 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -22,71 +22,245 @@ cpus {
- 		#address-cells = <2>;
- 		#size-cells = <0>;
- 
--		cpu0: cpu@0 {
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu_e0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_e1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_e2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_e3>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu_p0>;
-+				};
-+				core1 {
-+					cpu = <&cpu_p1>;
-+				};
-+				core2 {
-+					cpu = <&cpu_p2>;
-+				};
-+				core3 {
-+					cpu = <&cpu_p3>;
-+				};
-+			};
-+		};
-+
-+		cpu_e0: cpu@0 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x0>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu1: cpu@1 {
-+		cpu_e1: cpu@1 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x1>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu2: cpu@2 {
-+		cpu_e2: cpu@2 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x2>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu3: cpu@3 {
-+		cpu_e3: cpu@3 {
- 			compatible = "apple,icestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x3>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&ecluster_opp>;
-+			capacity-dmips-mhz = <714>;
-+			performance-domains = <&cpufreq_e>;
- 		};
- 
--		cpu4: cpu@10100 {
-+		cpu_p0: cpu@10100 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10100>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu5: cpu@10101 {
-+		cpu_p1: cpu@10101 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10101>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu6: cpu@10102 {
-+		cpu_p2: cpu@10102 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10102>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 
--		cpu7: cpu@10103 {
-+		cpu_p3: cpu@10103 {
- 			compatible = "apple,firestorm";
- 			device_type = "cpu";
- 			reg = <0x0 0x10103>;
- 			enable-method = "spin-table";
- 			cpu-release-addr = <0 0>; /* To be filled by loader */
-+			operating-points-v2 = <&pcluster_opp>;
-+			capacity-dmips-mhz = <1024>;
-+			performance-domains = <&cpufreq_p>;
- 		};
- 	};
- 
-+	ecluster_opp: opp-table-0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <7500>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <972000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <22000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1332000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <27000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1704000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <33000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <2064000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <50000>;
-+		};
-+	};
-+
-+	pcluster_opp: opp-table-1 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp01 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-level = <1>;
-+			clock-latency-ns = <8000>;
-+		};
-+		opp02 {
-+			opp-hz = /bits/ 64 <828000000>;
-+			opp-level = <2>;
-+			clock-latency-ns = <19000>;
-+		};
-+		opp03 {
-+			opp-hz = /bits/ 64 <1056000000>;
-+			opp-level = <3>;
-+			clock-latency-ns = <21000>;
-+		};
-+		opp04 {
-+			opp-hz = /bits/ 64 <1284000000>;
-+			opp-level = <4>;
-+			clock-latency-ns = <23000>;
-+		};
-+		opp05 {
-+			opp-hz = /bits/ 64 <1500000000>;
-+			opp-level = <5>;
-+			clock-latency-ns = <24000>;
-+		};
-+		opp06 {
-+			opp-hz = /bits/ 64 <1728000000>;
-+			opp-level = <6>;
-+			clock-latency-ns = <29000>;
-+		};
-+		opp07 {
-+			opp-hz = /bits/ 64 <1956000000>;
-+			opp-level = <7>;
-+			clock-latency-ns = <31000>;
-+		};
-+		opp08 {
-+			opp-hz = /bits/ 64 <2184000000>;
-+			opp-level = <8>;
-+			clock-latency-ns = <34000>;
-+		};
-+		opp09 {
-+			opp-hz = /bits/ 64 <2388000000>;
-+			opp-level = <9>;
-+			clock-latency-ns = <36000>;
-+		};
-+		opp10 {
-+			opp-hz = /bits/ 64 <2592000000>;
-+			opp-level = <10>;
-+			clock-latency-ns = <51000>;
-+		};
-+		opp11 {
-+			opp-hz = /bits/ 64 <2772000000>;
-+			opp-level = <11>;
-+			clock-latency-ns = <54000>;
-+		};
-+		opp12 {
-+			opp-hz = /bits/ 64 <2988000000>;
-+			opp-level = <12>;
-+			clock-latency-ns = <55000>;
-+		};
-+#if 0
-+		/* Not available until CPU deep sleep is implemented */
-+		opp13 {
-+			opp-hz = /bits/ 64 <3096000000>;
-+			opp-level = <13>;
-+			clock-latency-ns = <55000>;
-+			turbo-mode;
-+		};
-+		opp14 {
-+			opp-hz = /bits/ 64 <3144000000>;
-+			opp-level = <14>;
-+			clock-latency-ns = <56000>;
-+			turbo-mode;
-+		};
-+		opp15 {
-+			opp-hz = /bits/ 64 <3204000000>;
-+			opp-level = <15>;
-+			clock-latency-ns = <56000>;
-+			turbo-mode;
-+		};
-+#endif
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupt-parent = <&aic>;
-@@ -124,6 +298,18 @@ soc {
- 		ranges;
- 		nonposted-mmio;
- 
-+		cpufreq_e: cpufreq@210e20000 {
-+			compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x10e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
-+		cpufreq_p: cpufreq@211e20000 {
-+			compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
-+			reg = <0x2 0x11e20000 0 0x1000>;
-+			#performance-domain-cells = <0>;
-+		};
-+
- 		i2c0: i2c@235010000 {
- 			compatible = "apple,t8103-i2c", "apple,i2c";
- 			reg = <0x2 0x35010000 0x0 0x4000>;
-@@ -229,12 +415,12 @@ aic: interrupt-controller@23b100000 {
- 			affinities {
- 				e-core-pmu-affinity {
- 					apple,fiq-index = <AIC_CPU_PMU_E>;
--					cpus = <&cpu0 &cpu1 &cpu2 &cpu3>;
-+					cpus = <&cpu_e0 &cpu_e1 &cpu_e2 &cpu_e3>;
- 				};
- 
- 				p-core-pmu-affinity {
- 					apple,fiq-index = <AIC_CPU_PMU_P>;
--					cpus = <&cpu4 &cpu5 &cpu6 &cpu7>;
-+					cpus = <&cpu_p0 &cpu_p1 &cpu_p2 &cpu_p3>;
- 				};
- 			};
- 		};
+ .../bindings/clock/ingenic,cgu.yaml           |   2 +
+ drivers/clk/ingenic/Kconfig                   |  10 +
+ drivers/clk/ingenic/Makefile                  |   1 +
+ drivers/clk/ingenic/jz4755-cgu.c              | 346 ++++++++++++++++++
+ .../dt-bindings/clock/ingenic,jz4755-cgu.h    |  49 +++
+ 5 files changed, 408 insertions(+)
+ create mode 100644 drivers/clk/ingenic/jz4755-cgu.c
+ create mode 100644 include/dt-bindings/clock/ingenic,jz4755-cgu.h
+
 -- 
-2.35.1
+2.36.1
 
