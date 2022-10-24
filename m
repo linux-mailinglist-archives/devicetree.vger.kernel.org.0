@@ -2,477 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA37609955
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2313609979
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbiJXElt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 00:41:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58772 "EHLO
+        id S230137AbiJXEyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 00:54:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229841AbiJXElm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:41:42 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F172CE08;
-        Sun, 23 Oct 2022 21:41:41 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id l14-20020a05600c1d0e00b003c6ecc94285so6223911wms.1;
-        Sun, 23 Oct 2022 21:41:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9or8BQZ5UocHwGTC/NbwWWjQgKltm58wOJFrxqGoBWI=;
-        b=PTpgys4kBI5swR68Y7AUyEnZr2EfnF9B6E1LcOAqmqEKV7jiz0S6xMoB1I8k0/46lU
-         Zd0f3AiU0brDdbQ1QtiUsU4oa98V2HTy3nKVxJuU12N91RUxr5vmp/VasHDmLMMJGkdF
-         FPg/VcH1tkvNMFXfH1f+5EgmhaMFVzLJxiTd2OsloQsgl/bdOr/VPHfYl3bxvppzc3gR
-         aTvaWHRV0nescqoleMq1joRXxd60BmyhEaayBhaY4KTeh6fb49cWb66zE5SAPxONQ0SC
-         rWEUx1kOqYL4SOSU1wrf+cjBWdlJ2X4ho2w+Ey1Mu2F87lTQz98GILMdwsMllME9BL6q
-         ZQUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9or8BQZ5UocHwGTC/NbwWWjQgKltm58wOJFrxqGoBWI=;
-        b=6Cu5I29NlBsHnx0ZnJ58IZFm0eCt41nEws8j4uGzkIT7REfxsX1xrL4IAWw6YVZAXn
-         2fltFyJPjTKYwfksB1PeGq4wibG86AqWQPjsRFGtRYzGLBPWyTjXEA+Ntp5bGB0UNdZo
-         FVGHKkuC4VCZqymtFGsVNGAjjL2dV+IklqG+jhKHbsDTcseXTd6aDflbjyM0qVVGP7ip
-         /c9rtpf0X+Qrv2DKZLN/JIHBymsa7Cyj9eqsP7zcYsYk1oReqfMm2n0fRiljQ1fok/gk
-         sDg/Djs1Qe1qJbkSZsXPBnBHKknFZaAk2BoNxY1rXNWbU+L+NNJJ3u16rrbvdTWFLlYD
-         eNKw==
-X-Gm-Message-State: ACrzQf1VOwa0xAaJ4SdXQpaPChsy02wJVeA07/7hEZSgZy+ijDZUL0Mq
-        ZXnU+s57v72ApmWrJ8G2Wu4=
-X-Google-Smtp-Source: AMsMyM5ppUq3cPUozWhyZu2k4zrHHO35kNIV6IOxQR5QjnoCYo9gnYjkQm9ueXuCsIdOKNWPUz4bBw==
-X-Received: by 2002:a05:600c:6008:b0:3c6:c3fa:c173 with SMTP id az8-20020a05600c600800b003c6c3fac173mr21938091wmb.190.1666586499587;
-        Sun, 23 Oct 2022 21:41:39 -0700 (PDT)
-Received: from hp-power-15.localdomain (mm-197-18-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.18.197])
-        by smtp.gmail.com with ESMTPSA id l39-20020a05600c1d2700b003c6deb5c1edsm9856925wms.45.2022.10.23.21.41.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Oct 2022 21:41:39 -0700 (PDT)
-From:   Siarhei Volkau <lis8215@gmail.com>
-Cc:     Siarhei Volkau <lis8215@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: [PATCH v5 3/3] clk: Add Ingenic JZ4755 CGU driver
-Date:   Mon, 24 Oct 2022 07:40:56 +0300
-Message-Id: <20221024044057.4151633-4-lis8215@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20221024044057.4151633-1-lis8215@gmail.com>
-References: <20221024044057.4151633-1-lis8215@gmail.com>
+        with ESMTP id S230107AbiJXEyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:54:06 -0400
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B2537A529;
+        Sun, 23 Oct 2022 21:54:04 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 458AD42137;
+        Mon, 24 Oct 2022 04:53:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1666587242; bh=hTIfI1TimkoQbe2AR20uYjLSCpdXcrxx7IELqXaCqFI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=G/m7gCvhKw9O2d4cKPN8jwXyzQPu/KeSr3SYbUo6bVg+Oc7LD7hcdnqzKXNwA/cP5
+         Qz9x4YelwUF/VzZFsJ9Qeb3Ui+QDgPj78zpYR4PPUvJP0N//apKkmjK8FJy4HG+Rx+
+         5fUD3ddBvsbrgiyA3hASpBcafQWQa+61My4P3hQP4B7PxvoGvBLwZy5F8Q/0Kfu/CI
+         ISv0P89RnaK6V3BMrUkY9M3Q3tXMdE/lguht1NqUUwjes45NkbdkHkWQWB9pONzRiD
+         QQNHGIzejzGkPHtGlXVySnxh5l9tvR81LcOeD+oniSTfP4YQx6Qfja+mUj9m67HMA/
+         XKNm0Id5540Aw==
+Message-ID: <62ac9899-477e-8181-3b31-4afae9a9c3df@marcan.st>
+Date:   Mon, 24 Oct 2022 13:53:50 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 4/7] lib/vsprintf: Add support for generic FOURCCs by
+ extending %p4cc
+Content-Language: en-US
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Petr Mladek <pmladek@suse.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        asahi@lists.linux.dev, Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Sven Peter <sven@svenpeter.dev>
+References: <YxdInl2qzQWM+3bs@shell.armlinux.org.uk>
+ <E1oVYUS-005CmS-IA@rmk-PC.armlinux.org.uk> <Y0/Kt9CW5vYcxHhK@alley>
+ <Y0/kJwpbvbeul8n3@shell.armlinux.org.uk>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <Y0/kJwpbvbeul8n3@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the clocks provided by the CGU in the Ingenic JZ4755
-SoC.
+On 19/10/2022 20.48, Russell King (Oracle) wrote:
+> On Wed, Oct 19, 2022 at 12:00:23PM +0200, Petr Mladek wrote:
+>> On Tue 2022-09-06 14:19:44, Russell King wrote:
+>>> From: Hector Martin <marcan@marcan.st>
+>>>
+> ... 
+>>> +Generic FourCC code
+>>> +-------------------
+>>> +
+>>> +::
+>>> +	%p4c[hnbl]	gP00 (0x67503030)
+>>> +
+>>> +Print a generic FourCC code, as both ASCII characters and its numerical
+>>> +value as hexadecimal.
+>>> +
+>>> +The additional ``h``, ``r``, ``b``, and ``l`` specifiers are used to specify
+>>> +host, reversed, big or little endian order data respectively. Host endian
+>>> +order means the data is interpreted as a 32-bit integer and the most
+>>> +significant byte is printed first; that is, the character code as printed
+>>> +matches the byte order stored in memory on big-endian systems, and is reversed
+>>> +on little-endian systems.
+>>> +
+>>> +Passed by reference.
+>>> +
+>>> +Examples for a little-endian machine, given &(u32)0x67503030::
+>>> +
+>>> +	%p4ch	gP00 (0x67503030)
+>>> +	%p4cl	gP00 (0x67503030)
+>>> +	%p4cb	00Pg (0x30305067)
+>>> +	%p4cr	00Pg (0x30305067)
+>>
+>> Nit: I would prefer to keep the same order (h,r,b,l) everywhere.
+>>
+>>      I guess that you wanted to show exactly the same results next
+>>      to each other. But it is not the case on big-endian anyway.
+> 
+> This is straight from the Asahi kernel tree, and is unmodified. I'm
+> guessing you're use of "you" here refers to Hector rather than me.
+> 
+> So, Hector, any opinions on Petr's comments please?
 
-Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
----
- drivers/clk/ingenic/Kconfig      |  10 +
- drivers/clk/ingenic/Makefile     |   1 +
- drivers/clk/ingenic/jz4755-cgu.c | 346 +++++++++++++++++++++++++++++++
- 3 files changed, 357 insertions(+)
- create mode 100644 drivers/clk/ingenic/jz4755-cgu.c
+Fine with me, feel free to make the changes :)
 
-diff --git a/drivers/clk/ingenic/Kconfig b/drivers/clk/ingenic/Kconfig
-index 898f1bc47..f80ac4f29 100644
---- a/drivers/clk/ingenic/Kconfig
-+++ b/drivers/clk/ingenic/Kconfig
-@@ -15,6 +15,16 @@ config INGENIC_CGU_JZ4740
- 
- 	  If building for a JZ4740 SoC, you want to say Y here.
- 
-+config INGENIC_CGU_JZ4755
-+	bool "Ingenic JZ4755 CGU driver"
-+	default MACH_JZ4755
-+	select INGENIC_CGU_COMMON
-+	help
-+	  Support the clocks provided by the CGU hardware on Ingenic JZ4755
-+	  and compatible SoCs.
-+
-+	  If building for a JZ4755 SoC, you want to say Y here.
-+
- config INGENIC_CGU_JZ4725B
- 	bool "Ingenic JZ4725B CGU driver"
- 	default MACH_JZ4725B
-diff --git a/drivers/clk/ingenic/Makefile b/drivers/clk/ingenic/Makefile
-index 9edfaf461..81d8e23c2 100644
---- a/drivers/clk/ingenic/Makefile
-+++ b/drivers/clk/ingenic/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_INGENIC_CGU_COMMON)	+= cgu.o pm.o
- obj-$(CONFIG_INGENIC_CGU_JZ4740)	+= jz4740-cgu.o
-+obj-$(CONFIG_INGENIC_CGU_JZ4755)	+= jz4755-cgu.o
- obj-$(CONFIG_INGENIC_CGU_JZ4725B)	+= jz4725b-cgu.o
- obj-$(CONFIG_INGENIC_CGU_JZ4760)	+= jz4760-cgu.o
- obj-$(CONFIG_INGENIC_CGU_JZ4770)	+= jz4770-cgu.o
-diff --git a/drivers/clk/ingenic/jz4755-cgu.c b/drivers/clk/ingenic/jz4755-cgu.c
-new file mode 100644
-index 000000000..4f869efa7
---- /dev/null
-+++ b/drivers/clk/ingenic/jz4755-cgu.c
-@@ -0,0 +1,346 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Ingenic JZ4755 SoC CGU driver
-+ * Heavily based on JZ4725b CGU driver
-+ *
-+ * Copyright (C) 2022 Siarhei Volkau
-+ * Author: Siarhei Volkau <lis8215@gmail.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/delay.h>
-+#include <linux/of.h>
-+
-+#include <dt-bindings/clock/ingenic,jz4755-cgu.h>
-+
-+#include "cgu.h"
-+#include "pm.h"
-+
-+/* CGU register offsets */
-+#define CGU_REG_CPCCR		0x00
-+#define CGU_REG_LCR		0x04
-+#define CGU_REG_CPPCR		0x10
-+#define CGU_REG_CLKGR		0x20
-+#define CGU_REG_OPCR		0x24
-+#define CGU_REG_I2SCDR		0x60
-+#define CGU_REG_LPCDR		0x64
-+#define CGU_REG_MSCCDR		0x68
-+#define CGU_REG_SSICDR		0x74
-+#define CGU_REG_CIMCDR		0x7C
-+
-+/* bits within the LCR register */
-+#define LCR_SLEEP		BIT(0)
-+
-+static struct ingenic_cgu *cgu;
-+
-+static const s8 pll_od_encoding[4] = {
-+	0x0, 0x1, -1, 0x3,
-+};
-+
-+static const u8 jz4755_cgu_cpccr_div_table[] = {
-+	1, 2, 3, 4, 6, 8,
-+};
-+
-+static const u8 jz4755_cgu_pll_half_div_table[] = {
-+	2, 1,
-+};
-+
-+static const struct ingenic_cgu_clk_info jz4755_cgu_clocks[] = {
-+
-+	/* External clocks */
-+
-+	[JZ4755_CLK_EXT] = { "ext", CGU_CLK_EXT },
-+	[JZ4755_CLK_OSC32K] = { "osc32k", CGU_CLK_EXT },
-+
-+	[JZ4755_CLK_PLL] = {
-+		"pll", CGU_CLK_PLL,
-+		.parents = { JZ4755_CLK_EXT, -1, -1, -1 },
-+		.pll = {
-+			.reg = CGU_REG_CPPCR,
-+			.rate_multiplier = 1,
-+			.m_shift = 23,
-+			.m_bits = 9,
-+			.m_offset = 2,
-+			.n_shift = 18,
-+			.n_bits = 5,
-+			.n_offset = 2,
-+			.od_shift = 16,
-+			.od_bits = 2,
-+			.od_max = 4,
-+			.od_encoding = pll_od_encoding,
-+			.stable_bit = 10,
-+			.bypass_reg = CGU_REG_CPPCR,
-+			.bypass_bit = 9,
-+			.enable_bit = 8,
-+		},
-+	},
-+
-+	/* Muxes & dividers */
-+
-+	[JZ4755_CLK_PLL_HALF] = {
-+		"pll half", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 21, 1, 1, -1, -1, -1, 0,
-+			jz4755_cgu_pll_half_div_table,
-+		},
-+	},
-+
-+	[JZ4755_CLK_EXT_HALF] = {
-+		"ext half", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_EXT, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 30, 1, 1, -1, -1, -1, 0,
-+			NULL,
-+		},
-+	},
-+
-+	[JZ4755_CLK_CCLK] = {
-+		"cclk", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 0, 1, 4, 22, -1, -1, 0,
-+			jz4755_cgu_cpccr_div_table,
-+		},
-+	},
-+
-+	[JZ4755_CLK_H0CLK] = {
-+		"hclk", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 4, 1, 4, 22, -1, -1, 0,
-+			jz4755_cgu_cpccr_div_table,
-+		},
-+	},
-+
-+	[JZ4755_CLK_PCLK] = {
-+		"pclk", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 8, 1, 4, 22, -1, -1, 0,
-+			jz4755_cgu_cpccr_div_table,
-+		},
-+	},
-+
-+	[JZ4755_CLK_MCLK] = {
-+		"mclk", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 12, 1, 4, 22, -1, -1, 0,
-+			jz4755_cgu_cpccr_div_table,
-+		},
-+	},
-+
-+	[JZ4755_CLK_H1CLK] = {
-+		"h1clk", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL, -1, -1, -1 },
-+		.div = {
-+			CGU_REG_CPCCR, 16, 1, 4, 22, -1, -1, 0,
-+			jz4755_cgu_cpccr_div_table,
-+		},
-+	},
-+
-+	[JZ4755_CLK_UDC] = {
-+		"udc", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, JZ4755_CLK_PLL_HALF, -1, -1 },
-+		.mux = { CGU_REG_CPCCR, 29, 1 },
-+		.div = { CGU_REG_CPCCR, 23, 1, 6, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 10 },
-+	},
-+
-+	[JZ4755_CLK_LCD] = {
-+		"lcd", CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_PLL_HALF, -1, -1, -1 },
-+		.div = { CGU_REG_LPCDR, 0, 1, 11, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 9 },
-+	},
-+
-+	[JZ4755_CLK_MMC] = {
-+		"mmc", CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_PLL_HALF, -1, -1, -1 },
-+		.div = { CGU_REG_MSCCDR, 0, 1, 5, -1, -1, -1 },
-+	},
-+
-+	[JZ4755_CLK_I2S] = {
-+		"i2s", CGU_CLK_MUX | CGU_CLK_DIV,
-+		.parents = { JZ4755_CLK_EXT_HALF, JZ4755_CLK_PLL_HALF, -1, -1 },
-+		.mux = { CGU_REG_CPCCR, 31, 1 },
-+		.div = { CGU_REG_I2SCDR, 0, 1, 9, -1, -1, -1 },
-+	},
-+
-+	[JZ4755_CLK_SPI] = {
-+		"spi", CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_PLL_HALF, -1, -1, -1 },
-+		.div = { CGU_REG_SSICDR, 0, 1, 4, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 4 },
-+	},
-+
-+	[JZ4755_CLK_TVE] = {
-+		"tve", CGU_CLK_MUX | CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_LCD, JZ4755_CLK_EXT, -1, -1 },
-+		.mux = { CGU_REG_LPCDR, 31, 1 },
-+		.gate = { CGU_REG_CLKGR, 18 },
-+	},
-+
-+	[JZ4755_CLK_RTC] = {
-+		"rtc", CGU_CLK_MUX | CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT512, JZ4755_CLK_OSC32K, -1, -1 },
-+		.mux = { CGU_REG_OPCR, 2, 1},
-+		.gate = { CGU_REG_CLKGR, 2 },
-+	},
-+
-+	[JZ4755_CLK_CIM] = {
-+		"cim", CGU_CLK_DIV | CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_PLL_HALF, -1, -1, -1 },
-+		.div = { CGU_REG_CIMCDR, 0, 1, 8, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 8 },
-+	},
-+
-+	/* Gate-only clocks */
-+
-+	[JZ4755_CLK_UART0] = {
-+		"uart0", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 0 },
-+	},
-+
-+	[JZ4755_CLK_UART1] = {
-+		"uart1", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 14 },
-+	},
-+
-+	[JZ4755_CLK_UART2] = {
-+		"uart2", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 15 },
-+	},
-+
-+	[JZ4755_CLK_ADC] = {
-+		"adc", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 7 },
-+	},
-+
-+	[JZ4755_CLK_AIC] = {
-+		"aic", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 5 },
-+	},
-+
-+	[JZ4755_CLK_I2C] = {
-+		"i2c", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 3 },
-+	},
-+
-+	[JZ4755_CLK_BCH] = {
-+		"bch", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_MCLK/* not sure */, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 11 },
-+	},
-+
-+	[JZ4755_CLK_TCU] = {
-+		"tcu", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 1 },
-+	},
-+
-+	[JZ4755_CLK_DMA] = {
-+		"dma", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_PCLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 12 },
-+	},
-+
-+	[JZ4755_CLK_MMC0] = {
-+		"mmc0", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_MMC, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 6 },
-+	},
-+
-+	[JZ4755_CLK_MMC1] = {
-+		"mmc1", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_MMC, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 16 },
-+	},
-+
-+	[JZ4755_CLK_AUX_CPU] = {
-+		"aux_cpu", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_H1CLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 24 },
-+	},
-+
-+	[JZ4755_CLK_AHB1] = {
-+		"ahb1", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_H1CLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 23 },
-+	},
-+
-+	[JZ4755_CLK_IDCT] = {
-+		"idct", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_H1CLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 22 },
-+	},
-+
-+	[JZ4755_CLK_DB] = {
-+		"db", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_H1CLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 21 },
-+	},
-+
-+	[JZ4755_CLK_ME] = {
-+		"me", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_H1CLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 20 },
-+	},
-+
-+	[JZ4755_CLK_MC] = {
-+		"mc", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_H1CLK, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 19 },
-+	},
-+
-+	[JZ4755_CLK_TSSI] = {
-+		"tssi", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF/* not sure */, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 17 },
-+	},
-+
-+	[JZ4755_CLK_IPU] = {
-+		"ipu", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_PLL_HALF/* not sure */, -1, -1, -1 },
-+		.gate = { CGU_REG_CLKGR, 13 },
-+	},
-+
-+	[JZ4755_CLK_EXT512] = {
-+		"ext/512", CGU_CLK_FIXDIV,
-+		.parents = { JZ4755_CLK_EXT },
-+
-+		.fixdiv = { 512 },
-+	},
-+
-+	[JZ4755_CLK_UDC_PHY] = {
-+		"udc_phy", CGU_CLK_GATE,
-+		.parents = { JZ4755_CLK_EXT_HALF, -1, -1, -1 },
-+		.gate = { CGU_REG_OPCR, 6, true },
-+	},
-+};
-+
-+static void __init jz4755_cgu_init(struct device_node *np)
-+{
-+	int retval;
-+
-+	cgu = ingenic_cgu_new(jz4755_cgu_clocks,
-+			      ARRAY_SIZE(jz4755_cgu_clocks), np);
-+	if (!cgu) {
-+		pr_err("%s: failed to initialise CGU\n", __func__);
-+		return;
-+	}
-+
-+	retval = ingenic_cgu_register_clocks(cgu);
-+	if (retval)
-+		pr_err("%s: failed to register CGU Clocks\n", __func__);
-+
-+	ingenic_cgu_register_syscore_ops(cgu);
-+}
-+CLK_OF_DECLARE_DRIVER(jz4755_cgu, "ingenic,jz4755-cgu", jz4755_cgu_init);
--- 
-2.36.1
-
+- Hector
