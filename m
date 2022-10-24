@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13C4F60AE5D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2F4E60AE24
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233404AbiJXO6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 10:58:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51152 "EHLO
+        id S231477AbiJXOuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 10:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbiJXO6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:58:18 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6774DA3B84
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:35:33 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id l14so9042463wrw.2
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:35:33 -0700 (PDT)
+        with ESMTP id S235344AbiJXOtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:49:51 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3DA104D0B
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:27:21 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id l16-20020a05600c4f1000b003c6c0d2a445so6620109wmq.4
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:27:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=97PYge/1MTmObwJ7LXSqk7SH569eS9TzAoTm4p09NqE=;
-        b=ozxe0mOn9EGDZvMKzeOdMD86FrhZjb1xYaPuoB+6ff8bXiHAL0VZWJmPm2Cjfo7t28
-         vnsa87erDfablZGIiGSkzAHC1FZuLuT0sknv7QNo7qjCgRwhGgpKbwi9uS/FhnCmLW96
-         RRgUqWoEMGqdAa9PuCuZSATiZW1D8kprBrW8bwwdp9lNDLOtM0w/9MrtaeLXHWyklgWF
-         xIkk8gHKHrMmyCNijTxyBu8UfFG2oACXSikL5RPQ9SPLmJv2yTbr+cqGA5wHEpKg0BXM
-         rTHiIvidbAaZiBkm/Feyw5nA6I3d4YL3UtHJ0gP+xXiZFmwVua2UUCiDIv9LdJ06gHRn
-         JqVg==
+        bh=Wg8m4GG4QjexJtQ30uCclpZbT7iCGr4ggTfboiYgY7w=;
+        b=W0aOZLMhucJGkDWFZ4eLo90W7KJSaOP4g5shimjmGiPnHWVRLfBBjrRLoSODsg8dq0
+         xrLJ3Z755FPKU1WQxarAGiMXvi8RX+0JoM5em8BbtYKHKLPAXM9dFDbVbFcQHhvbThut
+         VbZ7y5XQ6aJlXy3cb7DJu8iGvR7L3v2aeVIW/sSJ7jfeRdsa3LlfVjRlOkpr/6UU6EK3
+         e7ru/CixxS1601VgYzo3glYEZrxDkJ/HbIGGG0doobG8avEEHQYhvkjm0kB18NozqrWi
+         OKVhFW9wYfP0Rz5jaipJJUTB6Xff9U8U3pBrhTmXd7kjKebaAIEI/QC3Sio+ha1RT8by
+         xZkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=97PYge/1MTmObwJ7LXSqk7SH569eS9TzAoTm4p09NqE=;
-        b=RcomomcuKlhOKZbDNZBNJ50rMuxxUTb9ZfuvPaRYIksjwXC3/AfOp8ew6ZfIwT7DzN
-         dHR81D6LYPm6sw6kSc6LaGp/OFvAtw683S7pElFK0fB5XYOZhj2IqT7JJV/eELULYXxk
-         RNbh0qWOCkhjN7jgeZ+0Hm/DjR27ql8a932rGPzssSx5fDGdrJCtIoX05XzI84QGnlpN
-         /9J/NnJ+EhvtT0Z41i/z6oplPnz/QfwZ9tOwuA1kYmZeTMA4ZZKVAq8rhLf+Np5cOAtj
-         Fn4ChGXQriAeb9ZFDaVpPzhBwHCp2EhhxuoV+G9nTedcTkvpcb5jzOuJOmDDJDLgP3WZ
-         56LQ==
-X-Gm-Message-State: ACrzQf119g9iPeyPyGLOiQALVN5BjqRNEwzG+sCrvj2EWNZNnQZmtI1W
-        PSAWEFX1rJkwLI0ZiMABN5Bb2alukg7Z4OAl
-X-Google-Smtp-Source: AMsMyM4WtwquW4/J7jv44/X1hX48qBjqbYlqrlzQyCgMTaKDJpyW1NDhe1IVMdHGjvdWa4zBAYv3Qw==
-X-Received: by 2002:adf:a4cc:0:b0:235:f41c:aa1e with SMTP id h12-20020adfa4cc000000b00235f41caa1emr15136314wrb.515.1666617378216;
-        Mon, 24 Oct 2022 06:16:18 -0700 (PDT)
+        bh=Wg8m4GG4QjexJtQ30uCclpZbT7iCGr4ggTfboiYgY7w=;
+        b=a4KZuq1NfrnmdvJYiNNdIkkDXKUB6e26G2aZ7NwhqXcehNqxrIB6F5tyb4kkGxqD5Z
+         51Pc1lzbSh5O/ZieYy2EzfT1+VSGvDLutIbztVjxRQSn7ReyqHsfsC/ZzOM12f/uWO1Q
+         cU74bNAmqHFJabxj4PfCl0UTJbGNPZfqsMWzyt7KtPavVWQS0N7h5M+BrNUMb78fHAJH
+         qUk5JxnEUQFxo4wVVYLzQp8687Kx8aZG/Bz5bLx1oXGY+5tcIp8jx5VOQCbIT4vOXVIf
+         +yMOvBIHPwoSAQ1aGqXBdajoyQpgoVKHnN2T3JIT8PrTRHCR+e4PE/QbvtkEeE27BzUz
+         AFOw==
+X-Gm-Message-State: ACrzQf37MjQvOhebiiq8XS6vYx+ZgIRkXuMde66O4MMX12oHkfo6PoDr
+        ALY4AdHTZXdKSnAw5B3Wev3iAkAoKLD/v2Uy
+X-Google-Smtp-Source: AMsMyM540QyJygyyI1aVFU3oRNSF3FU9t13sfAoCzM4zbaT4cykElqhdjbjaVQODkTz+W8n50nxENw==
+X-Received: by 2002:a05:600c:5252:b0:3c6:f478:96e6 with SMTP id fc18-20020a05600c525200b003c6f47896e6mr29614762wmb.75.1666617383603;
+        Mon, 24 Oct 2022 06:16:23 -0700 (PDT)
 Received: from fadwachiby.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id l24-20020a056000023800b00236627c078esm6322307wrz.110.2022.10.24.06.16.15
+        by smtp.gmail.com with ESMTPSA id l24-20020a056000023800b00236627c078esm6322307wrz.110.2022.10.24.06.16.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 06:16:16 -0700 (PDT)
+        Mon, 24 Oct 2022 06:16:22 -0700 (PDT)
 From:   Fadwa CHIBY <fchiby@baylibre.com>
 X-Google-Original-From: Fadwa CHIBY
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -60,21 +60,19 @@ To:     Rob Herring <robh+dt@kernel.org>,
         "Zhiyong . Tao" <zhiyong.tao@mediatek.com>
 Cc:     Fabien Parent <fparent@baylibre.com>,
         Fadwa CHIBY <fchiby@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
         Sen Chu <sen.chu@mediatek.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 1/3] dt-bindings: soc: mediatek: pwrap: add MT8365 SoC bindings
-Date:   Mon, 24 Oct 2022 15:15:41 +0200
-Message-Id: <20221024131544.31219-2-fchiby@baylibre.com>
+Subject: [PATCH v2 2/3] soc: mediatek: pwrap: add support for sys & tmr clocks
+Date:   Mon, 24 Oct 2022 15:15:42 +0200
+Message-Id: <20221024131544.31219-3-fchiby@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221024131544.31219-1-fchiby@baylibre.com>
 References: <20221024131544.31219-1-fchiby@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE autolearn=unavailable
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,36 +82,109 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabien Parent <fparent@baylibre.com>
 
-Add pwrap binding documentation for
+MT8365 requires an extra 2 clocks to be enabled to behave correctly.
+Add support these 2 clocks, they are made optional since they seem to
+be present only on MT8365.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 Signed-off-by: Fadwa CHIBY <fchiby@baylibre.com>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/soc/mediatek/pwrap.txt | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/soc/mediatek/mtk-pmic-wrap.c | 36 ++++++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-index d24e2bc444be..8424b93c432e 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-+++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-@@ -30,6 +30,7 @@ Required properties in pwrap device node.
- 	"mediatek,mt8186-pwrap" for MT8186 SoCs
- 	"mediatek,mt8188-pwrap", "mediatek,mt8195-pwrap" for MT8188 SoCs
- 	"mediatek,mt8195-pwrap" for MT8195 SoCs
-+	"mediatek,mt8365-pwrap" for MT8365 SoCs
- 	"mediatek,mt8516-pwrap" for MT8516 SoCs
- - interrupts: IRQ for pwrap in SOC
- - reg-names: "pwrap" is required; "pwrap-bridge" is optional.
-@@ -39,6 +40,8 @@ Required properties in pwrap device node.
- - clock-names: Must include the following entries:
-   "spi": SPI bus clock
-   "wrap": Main module clock
-+  "sys": System module clock (for MT8365 SoC)
-+  "tmr": Timer module clock (for MT8365 SoC)
- - clocks: Must contain an entry for each entry in clock-names.
+diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
+index eb82ae06697f..d56b00023ccd 100644
+--- a/drivers/soc/mediatek/mtk-pmic-wrap.c
++++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
+@@ -1171,6 +1171,8 @@ struct pmic_wrapper {
+ 	const struct pwrap_slv_type *slave;
+ 	struct clk *clk_spi;
+ 	struct clk *clk_wrap;
++	struct clk *clk_sys;
++	struct clk *clk_tmr;
+ 	struct reset_control *rstc;
  
- Optional properities:
+ 	struct reset_control *rstc_bridge;
+@@ -2214,6 +2216,20 @@ static int pwrap_probe(struct platform_device *pdev)
+ 		return PTR_ERR(wrp->clk_wrap);
+ 	}
+ 
++	wrp->clk_sys = devm_clk_get_optional(wrp->dev, "sys");
++	if (IS_ERR(wrp->clk_sys)) {
++		return dev_err_probe(wrp->dev, PTR_ERR(wrp->clk_sys),
++				     "failed to get clock: %pe\n",
++				     wrp->clk_sys);
++	}
++
++	wrp->clk_tmr = devm_clk_get_optional(wrp->dev, "tmr");
++	if (IS_ERR(wrp->clk_tmr)) {
++		return dev_err_probe(wrp->dev, PTR_ERR(wrp->clk_tmr),
++				     "failed to get clock: %pe\n",
++				     wrp->clk_tmr);
++	}
++
+ 	ret = clk_prepare_enable(wrp->clk_spi);
+ 	if (ret)
+ 		return ret;
+@@ -2222,6 +2238,14 @@ static int pwrap_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_out1;
+ 
++	ret = clk_prepare_enable(wrp->clk_sys);
++	if (ret)
++		goto err_out2;
++
++	ret = clk_prepare_enable(wrp->clk_tmr);
++	if (ret)
++		goto err_out3;
++
+ 	/* Enable internal dynamic clock */
+ 	if (HAS_CAP(wrp->master->caps, PWRAP_CAP_DCM)) {
+ 		pwrap_writel(wrp, 1, PWRAP_DCM_EN);
+@@ -2236,7 +2260,7 @@ static int pwrap_probe(struct platform_device *pdev)
+ 		ret = pwrap_init(wrp);
+ 		if (ret) {
+ 			dev_dbg(wrp->dev, "init failed with %d\n", ret);
+-			goto err_out2;
++			goto err_out4;
+ 		}
+ 	}
+ 
+@@ -2250,7 +2274,7 @@ static int pwrap_probe(struct platform_device *pdev)
+ 	if (!(pwrap_readl(wrp, PWRAP_WACS2_RDATA) & mask_done)) {
+ 		dev_dbg(wrp->dev, "initialization isn't finished\n");
+ 		ret = -ENODEV;
+-		goto err_out2;
++		goto err_out4;
+ 	}
+ 
+ 	/* Initialize watchdog, may not be done by the bootloader */
+@@ -2288,7 +2312,7 @@ static int pwrap_probe(struct platform_device *pdev)
+ 			       IRQF_TRIGGER_HIGH,
+ 			       "mt-pmic-pwrap", wrp);
+ 	if (ret)
+-		goto err_out2;
++		goto err_out4;
+ 
+ 	wrp->regmap = devm_regmap_init(wrp->dev, NULL, wrp, wrp->slave->regops->regmap);
+ 	if (IS_ERR(wrp->regmap)) {
+@@ -2300,11 +2324,15 @@ static int pwrap_probe(struct platform_device *pdev)
+ 	if (ret) {
+ 		dev_dbg(wrp->dev, "failed to create child devices at %pOF\n",
+ 				np);
+-		goto err_out2;
++		goto err_out4;
+ 	}
+ 
+ 	return 0;
+ 
++err_out4:
++	clk_disable_unprepare(wrp->clk_tmr);
++err_out3:
++	clk_disable_unprepare(wrp->clk_sys);
+ err_out2:
+ 	clk_disable_unprepare(wrp->clk_wrap);
+ err_out1:
 -- 
 2.25.1
 
