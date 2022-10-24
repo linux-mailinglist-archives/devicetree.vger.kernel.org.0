@@ -2,102 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F44360B65C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B0260B692
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbiJXS4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 14:56:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
+        id S230461AbiJXTFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 15:05:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232761AbiJXSzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:55:20 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B05161A20A9;
-        Mon, 24 Oct 2022 10:36:06 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29OHYebx012535;
-        Mon, 24 Oct 2022 12:34:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666632881;
-        bh=NBWWl42SSL4G3YUtPMkVXQP2CMrKN1xbC8aYMEj43O8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=fR47W8GfFwNZN3+QM1UwUBG77eSBqQ5WeFsdgHcNQNkdq55ZtSjPpk5Xgf8F7QxQc
-         LAGpgcLuIV4ecgJpoXrJosMow/P9UVZTKIctHu+bMKo86tFVRVYXdrdH5+xpe0ooVI
-         C192ir0Fz+Tba0hQwp2aTlFvcnOdrWzZs5JFrFwQ=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29OHYeek006895
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 24 Oct 2022 12:34:40 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 24
- Oct 2022 12:34:40 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 24 Oct 2022 12:34:40 -0500
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29OHYYJ4039154;
-        Mon, 24 Oct 2022 12:34:39 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+        with ESMTP id S233023AbiJXTEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:04:07 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF71635C4;
+        Mon, 24 Oct 2022 10:43:41 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id 13so6783138ejn.3;
+        Mon, 24 Oct 2022 10:43:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G5dEsEgZ/MYkIBk3aJrt65fnhNjkvgLRnG0jJQz6jDU=;
+        b=PjjgvEElO5osAliUOTVCQFOeYjdHlXiKcham5vx71LuYRj+RmHWNdn9pEE/ginrQNq
+         G9dgaeQbeQC7xAE25//AGEvtg+bULsZDBTPSfh1ruBtyxXdVYmNkN4/aQlk0PSCeRK6w
+         mVib5hbS9abLD8TZuMs49Iz2iWipNw4kf8iFuuky3v9agrwgqwPUlmcK2qGklTzJBHRh
+         TE5jqtpFuuEpweTrUUrPbul0SRpLKoUwd17GGcNHlSMdmuQgzqo1cJpatTGZtfFAoIsX
+         QjLVKJxKWqd/CWsKE0umP1xKonYHRv6xzCnQY/q+D6F9pxHPUkWvPQLx09YJ8McqAbQI
+         g1nA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G5dEsEgZ/MYkIBk3aJrt65fnhNjkvgLRnG0jJQz6jDU=;
+        b=GaYnukHF/pRxiaDNYlrviu0dRPxsKmTRUr3ziFhQg9PheiM59A0sWeTWepyunUvMo0
+         8ADsG5Ah2A/7MztuqoHTW+aXowBbYsch+2aCFqLsPLKEDcTG2fJXj4Zy5hWB1JzATcLQ
+         Q2EdScDSbRA5GWSJgOEiQSJsmRQb3L5Y+ujhoEQOujeyKnFQcAWTKKMomQ/9zXpWORlQ
+         4XUPiYOq4ed4ubS+fdty07t8vTM4w2gbxMQbwyih8BEp+zKaooyvBbbCjTS2HUK3hSMI
+         YsVQvJLo5R6zu5iuAaMiXLiVnDEGPeUbteGBIqjoItQuuZz//JW5srspKh71w/RjFb/2
+         aYNQ==
+X-Gm-Message-State: ACrzQf3/7MEAPnVexma0LzflvqZ/eviiIhAJe5fu89bPjI6IhSblhIMn
+        FuUjxczhtzAopw/SP4ToQ/CLOL2gaxk=
+X-Google-Smtp-Source: AMsMyM7XPS+4QTEj+9w9kdtCBaOiJDGH58pvqCRCzZSYhUnYOAOEaECdyDqMrPlKKAhxZPPZJVW+WA==
+X-Received: by 2002:a17:907:70a:b0:741:78ab:dce5 with SMTP id xb10-20020a170907070a00b0074178abdce5mr29052090ejb.527.1666633345683;
+        Mon, 24 Oct 2022 10:42:25 -0700 (PDT)
+Received: from localhost.localdomain ([46.216.4.225])
+        by smtp.googlemail.com with ESMTPSA id v7-20020aa7cd47000000b0044bfdbd8a33sm195278edw.88.2022.10.24.10.42.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 10:42:25 -0700 (PDT)
+From:   Dzmitry Sankouski <dsankouski@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Dzmitry Sankouski <dsankouski@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH v2 6/7] arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
-Date:   Mon, 24 Oct 2022 12:34:33 -0500
-Message-ID: <20221024173434.32518-7-afd@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221024173434.32518-1-afd@ti.com>
-References: <20221024173434.32518-1-afd@ti.com>
+        linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v10 1/2] dt-bindings: arm: add xiaomi,sagit board based on msm8998 chip
+Date:   Mon, 24 Oct 2022 20:42:20 +0300
+Message-Id: <20221024174220.1649910-1-dsankouski@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DTB Overlays (.dtbo) can now be built from source files with the
-extension (.dtso). This makes it clear what is the content of the files
-and differentiates them from base DTB source files.
+Add xiaomi,sagit board (Xiaomi Mi 6) binding.
 
-Convert the DTB overlay source files in the arm64/xilinx directory.
-
-Signed-off-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../{zynqmp-sck-kv-g-revA.dts => zynqmp-sck-kv-g-revA.dtso}       | 0
- .../{zynqmp-sck-kv-g-revB.dts => zynqmp-sck-kv-g-revB.dtso}       | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename arch/arm64/boot/dts/xilinx/{zynqmp-sck-kv-g-revA.dts => zynqmp-sck-kv-g-revA.dtso} (100%)
- rename arch/arm64/boot/dts/xilinx/{zynqmp-sck-kv-g-revB.dts => zynqmp-sck-kv-g-revB.dtso} (100%)
+Changes for v2:none
+Changes for v3:
+- remove unused 'sagit' compatible line
+Changes for v4: none
+Changes for v5: none
+Changes for v6: Start with capital letter and finish with full-stop
+Changes for v7: none
+Changes for v8: none
+Changes for v9: add Acked-by tag
+Changes for v10: none
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-similarity index 100%
-rename from arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
-rename to arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-similarity index 100%
-rename from arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
-rename to arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index fb1d00bcc847..294075bafb97 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -239,6 +239,7 @@ properties:
+               - sony,xperia-lilac
+               - sony,xperia-maple
+               - sony,xperia-poplar
++              - xiaomi,sagit
+           - const: qcom,msm8998
+ 
+       - items:
 -- 
-2.37.3
+2.30.2
 
