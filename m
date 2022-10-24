@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD755609BFE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D660C609C81
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbiJXIB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:01:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36618 "EHLO
+        id S229610AbiJXI1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:27:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbiJXIBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:01:55 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A115D729;
-        Mon, 24 Oct 2022 01:01:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666598513; x=1698134513;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PscHU1ZUOYvLbYdHmHk85RNII8BoOIqBa+IXJPv7aY4=;
-  b=iH1j9wYgOdIVa6tFJDE7F8LJ0kJOXm/TW7PfjMEKyuC6F2Fby+4pOEv+
-   T6bjO94H1LTKeUABRkDN2edsC07rMmokVUZ/36aDLQXDR1kFpk3LC/sWR
-   pfHHtT2nx4VCQeFkwzR5J/WBln2JCSFPYCmXUsSSmoez2Iv3UODknOxHG
-   iEs24yRZuo5j7oBAgR3kEudzoa17YZVIGBQo0OQiMt4pwaJIIreaCpg5E
-   Y4sWroTOQVPsaCUrEsZYBkoD7hF2IyjMO+cKNCeyB1GCOjC6M6nxEb6tO
-   AkptQj0meClYejj8oNeEuKWWoKjOl1DEMCm52GiBzdeavQiDxRe3RFo5e
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="290663906"
-X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; 
-   d="scan'208";a="290663906"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2022 01:01:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="773736785"
-X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; 
-   d="scan'208";a="773736785"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 24 Oct 2022 01:01:44 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 24 Oct 2022 11:01:43 +0300
-Date:   Mon, 24 Oct 2022 11:01:43 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Wayne Chang <waynec@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, treding@nvidia.com,
-        jonathanh@nvidia.com, thierry.reding@gmail.com, ajayg@nvidia.com,
-        kishon@ti.com, vkoul@kernel.org, p.zabel@pengutronix.de,
-        balbi@kernel.org, mathias.nyman@intel.com, jckuo@nvidia.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, singhanc@nvidia.com,
-        linux-i2c@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 06/11] usb: typec: ucsi_ccg: Replace ccgx to well-known
- regex
-Message-ID: <Y1ZGZ2H0/ug3se6j@kuha.fi.intel.com>
-References: <20221024074128.1113554-1-waynec@nvidia.com>
- <20221024074128.1113554-7-waynec@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221024074128.1113554-7-waynec@nvidia.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230233AbiJXI1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:27:47 -0400
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0254A1B7AD;
+        Mon, 24 Oct 2022 01:27:38 -0700 (PDT)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 853CD220E80;
+        Mon, 24 Oct 2022 10:27:05 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 57181220E60;
+        Mon, 24 Oct 2022 10:27:05 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 538481802201;
+        Mon, 24 Oct 2022 16:27:03 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     l.stach@pengutronix.de, bhelgaas@google.com, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, kishon@ti.com,
+        kw@linux.com, frank.li@nxp.com
+Cc:     hongxing.zhu@nxp.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: [PATCH v4 0/14] Add i.MX PCIe EP mode support
+Date:   Mon, 24 Oct 2022 16:06:29 +0800
+Message-Id: <1666598803-1912-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 24, 2022 at 03:41:23PM +0800, Wayne Chang wrote:
-> ccgx is refer to the cypress cypd4226 typec controller.
-> Replace ccgx to well-known regex "cypress".
-> 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> ---
->  drivers/usb/typec/ucsi/ucsi_ccg.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> index 139707a2f3d6..5d3099e6eb77 100644
-> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
-> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
-> @@ -1358,7 +1358,7 @@ static int ucsi_ccg_probe(struct i2c_client *client,
->  	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
->  
->  	/* Only fail FW flashing when FW build information is not provided */
-> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
-> +	status = device_property_read_u16(dev, "cypress,firmware-build",
->  					  &uc->fw_build);
->  	if (status)
->  		dev_err(uc->dev, "failed to get FW build information\n");
+i.MX PCIe controller is one dual mode PCIe controller, and can work either
+as RC or EP.
 
-This will break bisectability. You need to first add that
-"cyppress,firmware-build" identifier without removing the old
-"ccgx,firmware-build" identifier, and then introduce a separate
-clean-up patch where you remove it when it's safe to remove:
+This series add the i.MX PCIe EP mode support. And had been verified on
+i.MX8MQ, i.MX8MM EVK and i.MX8MP EVK boards.
 
-1. Add new - This patch.
-2. Modify users - PATCH 7/11.
-3. Remove old - *missing*.
+In the verification, one EVK board used as RC, the other one used as EP.
+Use the cross TX/RX differential cable connect the two PCIe ports of these
+two EVK boards.
 
-thanks,
++-----------+                +------------+
+|   PCIe TX |<-------------->|PCIe RX     |
+|           |                |            |
+|EVK Board  |                |EVK Board   |
+|           |                |            |
+|   PCIe RX |<-------------->|PCIe TX     |
++-----------+                +------------+
 
--- 
-heikki
+NOTE:
+Re-base to 6.1-rc1, and re-send the v4 series.
+BTW, the following PHY changes [1] is required when apply this series.
+
+[1] https://patchwork.kernel.org/project/linux-pci/cover/1665625622-20551-1-git-send-email-hongxing.zhu@nxp.com/
+
+Main changes from v3 -> v4:
+- Add the Rob's ACK in the dt-binding patch.
+- Use "i.MX" to keep spell consistent.
+- Squash generic endpoint infrastructure changes of
+  "[12/14] PCI: imx6: Add iMX8MM PCIe EP mode" into Kconfig changes.
+
+Main changes from v2 -> v3:
+- Add the i.MX8MP PCIe EP support, and verified on i.MX8MP EVK board.
+- Rebase to latest pci/next branch(tag: v6.0-rc1 plus some PCIe changes).
+
+Main changes from v1 -> v2:
+- Add Rob's ACK into first two commits.
+- Rebase to the tag: pci-v5.20-changes of the pci/next branch.
+
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml |   3 ++
+arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi             |  14 ++++++
+arch/arm64/boot/dts/freescale/imx8mm.dtsi                 |  20 +++++++++
+arch/arm64/boot/dts/freescale/imx8mp-evk.dts              |  13 ++++++
+arch/arm64/boot/dts/freescale/imx8mp.dtsi                 |  19 ++++++++
+arch/arm64/boot/dts/freescale/imx8mq-evk.dts              |  12 ++++++
+arch/arm64/boot/dts/freescale/imx8mq.dtsi                 |  27 ++++++++++++
+drivers/misc/pci_endpoint_test.c                          |   2 +
+drivers/pci/controller/dwc/Kconfig                        |  23 +++++++++-
+drivers/pci/controller/dwc/pci-imx6.c                     | 200 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+10 files changed, 314 insertions(+), 19 deletions(-)
+
+[RESEND v4 01/14] dt-bindings: imx6q-pcie: Add i.MX8MM PCIe EP mode
+[RESEND v4 02/14] dt-bindings: imx6q-pcie: Add i.MX8MQ PCIe EP mode
+[RESEND v4 03/14] dt-bindings: imx6q-pcie: Add i.MX8MP PCIe EP mode
+[RESEND v4 04/14] arm64: dts: Add i.MX8MM PCIe EP support
+[RESEND v4 05/14] arm64: dts: Add i.MX8MM PCIe EP support on EVK
+[RESEND v4 06/14] arm64: dts: Add i.MX8MQ PCIe EP support
+[RESEND v4 07/14] arm64: dts: Add i.MX8MQ PCIe EP support on EVK
+[RESEND v4 08/14] arm64: dts: Add i.MX8MP PCIe EP support
+[RESEND v4 09/14] arm64: dts: Add i.MX8MP PCIe EP support on EVK
+[RESEND v4 10/14] misc: pci_endpoint_test: Add i.MX8 PCIe EP device
+[RESEND v4 11/14] PCI: imx6: Add i.MX PCIe EP mode support
+[RESEND v4 12/14] PCI: imx6: Add i.MX8MQ PCIe EP support
+[RESEND v4 13/14] PCI: imx6: Add i.MX8MM PCIe EP support
+[RESEND v4 14/14] PCI: imx6: Add i.MX8MP PCIe EP support
