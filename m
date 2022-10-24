@@ -2,45 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 688366097EA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 03:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57BFB6097FD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 03:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbiJXBoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 21:44:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45962 "EHLO
+        id S229721AbiJXB6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 21:58:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiJXBoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 21:44:09 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 083216D9FF;
-        Sun, 23 Oct 2022 18:44:08 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MwdCH3v1XzHv3l;
-        Mon, 24 Oct 2022 09:43:55 +0800 (CST)
-Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
- (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
- 2022 09:44:06 +0800
-From:   Weilong Chen <chenweilong@huawei.com>
-To:     <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
-        <xuwei5@huawei.com>, <wsa@kernel.org>, <robh+dt@kernel.org>,
-        <robh@kernel.org>
-CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH next v8 2/2] dt-bindings: i2c: add entry for hisilicon,i2c-ascend910
-Date:   Mon, 24 Oct 2022 09:51:51 +0800
-Message-ID: <20221024015151.342651-2-chenweilong@huawei.com>
-X-Mailer: git-send-email 2.31.GIT
-In-Reply-To: <20221024015151.342651-1-chenweilong@huawei.com>
-References: <20221024015151.342651-1-chenweilong@huawei.com>
+        with ESMTP id S229455AbiJXB6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 21:58:41 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AEEA6611B;
+        Sun, 23 Oct 2022 18:58:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 98514B80E77;
+        Mon, 24 Oct 2022 01:58:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3219C433C1;
+        Mon, 24 Oct 2022 01:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666576718;
+        bh=+F7HiW9RND3/Jb9W1InscmlPJ6IHh0hxSyw1E6xpqTw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TKY3kDS15T6rvASucVP5zagRbke0MWYCHoxa1dwgkRtPK0g10w8JYXdN+bd3sF9zl
+         YwQF2NBMcTPGATXnTCs1XkpTq3rODgHq+IcAW8gQ3bsVlSdoJJ9EBh9Zze/Qx/vtUt
+         CRnCXUlIvznZVXTvUMqwET2K1F1XyBcRwoRKYmgs5Edr4Zg0HFfeFMZSf4SoSF2a2b
+         sK1qHicITwzEP83uI3MYZaAASsQYIASOXocQ83WN3VD1Qh9v3e3GV31mYcP4laF8n+
+         sE8XbDHjCb1fqd/xWx6KbV9MgWSCVmJcXmvtcPYgLGxJJV/dTAHwCIMIQtyK51wbe1
+         AeVBGwHIZceJQ==
+Date:   Mon, 24 Oct 2022 09:58:29 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marcel Ziswiler <marcel@ziswiler.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alistair Francis <alistair@alistair23.me>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Johann Neuhauser <jneuhauser@dh-electronics.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] arm: dts: colibri-imx6: usb dual-role switching
+ et. al.
+Message-ID: <20221024015829.GX125525@dragon>
+References: <20220928073336.63881-1-marcel@ziswiler.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220928073336.63881-1-marcel@ziswiler.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,107 +66,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible for HiSilicon i2c.
+On Wed, Sep 28, 2022 at 09:33:31AM +0200, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> 
+> This series is an assortment of USB dual-role specific commits as
+> follows:
+> 
+> Introduce USBC_DET GPIO based USB dual-role aka device/host switching.
+> 
+> Move USB VBUS supply from single carrier board to module level device
+> tree. This pin is as per Colibri module family standard.
+> 
+> Specify USBH_PEN GPIO being active-low rather than active-high
+> (cosmetic only).
+> 
+> Remove spurious debounce property from linux,extcon-usb-gpio. That
+> commit is actually for Colibri iMX7.
+> 
+> Changes in v2:
+> - Dropped fixes tag as this change is rather cosmetic.
+> - Add new commit also actually enabling CONFIG_EXTCON_USB_GPIO.
+> 
+> Marcel Ziswiler (4):
+>   arm: dts: colibri-imx6: move vbus-supply to module level device tree
+>   arm: dts: colibri-imx6: specify usbh_pen gpio being active-low
+>   arm: dts: imx7-colibri: remove spurious debounce property
+>   ARM: imx_v6_v7_defconfig: Enable USB GPIO extcon support
+> 
+> Philippe Schenker (1):
+>   arm: dts: colibri-imx6: usb dual-role switching
 
-Signed-off-by: Weilong Chen <chenweilong@huawei.com>
----
-Change since v7:
-- Fix yamllint errors, rename i2c-xxx to i2c-ascend910
-Link: https://lore.kernel.org/all/166635752527.3428089.707277745439761591.robh@kernel.org/
+We idiomatically use prefix 'ARM: dts: ...' for i.MX arm DTS.  Fixed
+them up and applied the series.
 
- .../bindings/i2c/hisilicon,i2c-ascend910.yaml | 70 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
-new file mode 100644
-index 000000000000..918825a3026b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/i2c/hisilicon,i2c-ascend910.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: HiSilicon common I2C controller Device Tree Bindings
-+
-+maintainers:
-+  - Yicong Yang <yangyicong@hisilicon.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,i2c-ascend910
-+    description:
-+      The HiSilicon common I2C controller can be used for many different
-+      types of SoC such as Huawei Ascend AI series chips.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    default: 400000
-+
-+  i2c-sda-falling-time-ns:
-+    default: 343
-+
-+  i2c-scl-falling-time-ns:
-+    default: 203
-+
-+  i2c-sda-hold-time-ns:
-+    default: 830
-+
-+  i2c-scl-rising-time-ns:
-+    default: 365
-+
-+  i2c-digital-filter-width-ns:
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c@5038b0000 {
-+      compatible = "hisilicon,i2c-ascend910";
-+      reg = <0x38b0000 0x10000>;
-+      interrupts = <0x0 120 0x4>;
-+      i2c-sda-falling-time-ns = <56>;
-+      i2c-scl-falling-time-ns = <56>;
-+      i2c-sda-hold-time-ns = <56>;
-+      i2c-scl-rising-time-ns = <56>;
-+      i2c-digital-filter;
-+      i2c-digital-filter-width-ns = <0x0>;
-+      clocks = <&alg_clk>;
-+      clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ad32dc9c4822..5e5e4a3f5ada 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9211,6 +9211,7 @@ M:	Yicong Yang <yangyicong@hisilicon.com>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
- W:	https://www.hisilicon.com
-+F:	Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
- F:	drivers/i2c/busses/i2c-hisi.c
- 
- HISILICON LPC BUS DRIVER
--- 
-2.31.GIT
-
+Shawn
