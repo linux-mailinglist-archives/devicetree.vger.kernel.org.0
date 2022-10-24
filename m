@@ -2,98 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB9160B3A2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3BB960B055
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 18:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbiJXRNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 13:13:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51540 "EHLO
+        id S232481AbiJXQFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 12:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231597AbiJXRMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:12:45 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2E25724B
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:48:02 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id bn35so4620055ljb.5
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:48:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fx5nJYBC3Q8DnGw9StujAKQsTNCS9sjAujJ7iNJnrTw=;
-        b=jiOWMKP0eMVkW+a+y7F8YqwZrvDEtSXBDMBTZDaeAJd0kaBcpKkzaVXT5BlggRvChq
-         PgfumTjH0RCxMyx2pyMVlX9LMq4mGfogusSmzzwc05Ug477Ou5kKYW43pGO2Ah6Lfdmm
-         iW9WWsUd5t4rzqDw9jhudGnMX9NcdJ175nTA2AggsKczbb+dNsZqbNH6VeR6Trqwz40i
-         gYvtOOAEiKH3Iq+1iwN4CHpsHWrfn5yo5GUZmrmgUdpMUuCeJpWTPbvmsk6m1UpSoHH8
-         1irTx5Bo3CPHj6gFWlPWLWEC06tntbOQhEYXZPsGhrkguebYGxvWdJyAqyl5W+nI5l9e
-         24Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fx5nJYBC3Q8DnGw9StujAKQsTNCS9sjAujJ7iNJnrTw=;
-        b=VnMHglAuaSO0z01nP7XkKpfHS9GPPN7+75u/5LSrgmrAvJiFsr/8xQIkxtZzIU2GoX
-         7AV7ywfxQaW5/tbEwOBUOBBaGSXTJ94fxR7FUwRsHoe7y3d31IVkXpv2iHkwW2yt0YVt
-         aMx3KNdXXjHHoajMTK3iVIJZEE7S/wcODKhwwITFMgiALpOzHEw8j53cOlakQbdemR7a
-         CCvm/iQ7m7KFBclnuNkgwDbWPmhBgDaM4OnP2PhsYxCsburafVAeOE2enkITKlK/8J3R
-         TJrrVivrGXUgczyolAXz1txKXOO6yAyb2BpGLgfOVdzsuZCIFiyk1nMJUagOMz8mdLVo
-         LTRA==
-X-Gm-Message-State: ACrzQf0GJjSANUHe4fDSOfAwmUS1AkdEWX4YGneYnmP+DgPo8AQfQQZi
-        YZGopLj9PpsgPbioE3NZwnyDBSHbSoZMOmKu
-X-Google-Smtp-Source: AMsMyM7tA0XW4v5SToFTS92Ia64U7XEvhJ2pV2o2X1l42GgkeRZpOXOVYSgCAoofODCrAMzUqPf4XA==
-X-Received: by 2002:a2e:8743:0:b0:277:10a8:3e8f with SMTP id q3-20020a2e8743000000b0027710a83e8fmr717491ljj.423.1666618503109;
-        Mon, 24 Oct 2022 06:35:03 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id t9-20020a05651c204900b002770f0a742bsm308578ljo.41.2022.10.24.06.35.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 06:35:02 -0700 (PDT)
-Message-ID: <a42527fa-f34e-3c4e-7b34-2963c4675668@linaro.org>
-Date:   Mon, 24 Oct 2022 16:35:02 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 12/13] phy: qcom-qmp-usb: restructure PHY creation
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S233303AbiJXQE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 12:04:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70E82DE0;
+        Mon, 24 Oct 2022 07:56:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8D4C1B81B44;
+        Mon, 24 Oct 2022 13:38:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A17AC43470;
+        Mon, 24 Oct 2022 13:38:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666618707;
+        bh=I4FTtsDnU0ezaEay34oD3KMJKI9F4/bPpdTPGpE8do0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cV2AmzVatMWxWwoE+eVdEHmWI9NUojM5cEYwEOf+Tb0k20YLHrzOrDSPYvD25GPyM
+         V6KWZu9hVeDknIZipT4kzJL3NpoF35cPB2Qs5PTKFcaTf2pMPvawsw8qUQTzLvRvQ7
+         H+fHN5LLDHjHSqSR14M8dEwa3Y499ajj2WNdi1SgWU3TUJoDQhRkPWUxG1EGPPUdoQ
+         vzeZR9frETE2p6kK+mt5QYwFUX148t4CdeiyGATCKZvOYVcaLmj0mXyN6n/rpCxGGc
+         Vq6SWAcvbyFjyv4zNTZEaOEe+V3O1ZRETuOZLpdyDMNKt6pXqII44OlV5GdOeXoSH3
+         jPPB4qYrMyaDQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1omxec-0008Ro-LS; Mon, 24 Oct 2022 15:38:10 +0200
+Date:   Mon, 24 Oct 2022 15:38:10 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 13/13] phy: qcom-qmp-usb: add support for updated
+ sc8280xp binding
+Message-ID: <Y1aVQsKpBL7Dlt1j@hovoldconsulting.com>
 References: <20221024100632.20549-1-johan+linaro@kernel.org>
- <20221024100632.20549-13-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221024100632.20549-13-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+ <20221024100632.20549-14-johan+linaro@kernel.org>
+ <2f758573-c901-25a5-c4fb-8dc2f72b42bf@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2f758573-c901-25a5-c4fb-8dc2f72b42bf@linaro.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 13:06, Johan Hovold wrote:
-> In preparation for supporting devicetree bindings which do not use a
-> child node, move the PHY creation to probe() proper and parse the serdes
-> and dp_com resources in what is now the legacy devicetree helper.
+On Mon, Oct 24, 2022 at 04:35:25PM +0300, Dmitry Baryshkov wrote:
+> On 24/10/2022 13:06, Johan Hovold wrote:
+> > Add support for the new SC8280XP binding.
+> > 
+> > Note that the binding does not try to describe every register subregion
+> > and instead the driver holds the corresponding offsets. This includes
+> > the PCS_USB region which was initially overlooked.
+> > 
+> > Note that the driver will no longer accept the old binding due to the
+> > fixed "phy_phy" reset name.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> >   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 82 ++++++++++++++++++++-----
+> >   1 file changed, 67 insertions(+), 15 deletions(-)
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 46 ++++++++++++-------------
->   1 file changed, 22 insertions(+), 24 deletions(-)
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thanks for reviewing, Dmitry!
 
--- 
-With best wishes
-Dmitry
-
+Johan
