@@ -2,177 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6AA60B1C6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 18:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1742160B25F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 18:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233231AbiJXQhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 12:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45252 "EHLO
+        id S231816AbiJXQqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 12:46:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233239AbiJXQgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 12:36:46 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FE91DDD6
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:24:22 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id g7so17293220lfv.5
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:24:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8GmmEDLhPtDYGFH5uDa8ewun8HTtWaYq8inIclFrr34=;
-        b=GUTUlgJsaHA4De+mJhZ+UmmvwF1ZwXh+aFlXzXw1Uu4YOSsKtA8lSWxzWzqwCsvU0Z
-         0W9ubaTYraX0YXrqxMJo8XFG00LMRq2xkz1EMOEcyav4RH0VPoDsyw9ITOOlvZIcxarm
-         LwlLO6dKyVXgUrdQCHGaotCIYgicdqB31t4+7XplhZ733ZuBWc3ZihwOliQFIuc/o/RF
-         aPPZIMoKikhNUUEgc2EQ6iUNWNtnkYRPLhVyMTeD71ZwVN3pVKHuwikMotGnLICTcDZ3
-         jOhoFcYkd/11Mz9N9lwn9OmKsNteueGXfzSicazT1Q+NkvHaBK/gwiLoG6wqL3u3CNPJ
-         tu1w==
+        with ESMTP id S234771AbiJXQos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 12:44:48 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD23D132241;
+        Mon, 24 Oct 2022 08:30:55 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id 8so6277443qka.1;
+        Mon, 24 Oct 2022 08:30:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8GmmEDLhPtDYGFH5uDa8ewun8HTtWaYq8inIclFrr34=;
-        b=DApkdqYrIBRlnuvevYlTDKkRr/gtUmVLKddBbzWVp1o/d0Uzt4V92XiMhqbM1X6HNE
-         V6Dlz5Z+JqTuUEVQ8jLekP9OkBWcnuHLkfklfzLKxvCeSx1I1qR4r5gdPPSbWeqZgGVz
-         3XrW+bDcKkrngpOZEid2NZIPv51vkRUl+O/yx6rx7EqsevlIYMw2I1fu9B/7O13arBQv
-         Cq8mp+BSCzxUmkIkpTllqWiqSE1OIaB2mBJeM5hNAGbUpHoEmb39wDxU0nmD3h+cbBuN
-         lY/k0sxjS0ixtAuqqKhoBUXu9+ja50vriroJ9LjV8+o096uSTf8lduKQrzKAjjhoQ6EI
-         j0NQ==
-X-Gm-Message-State: ACrzQf0M0rO3bU/aEFA49pO/bY76qBT9BoJWaLUvCuVDzLWruxp5AxRJ
-        5Adfm688QMUuDckLhSdZIT5DRg==
-X-Google-Smtp-Source: AMsMyM7TKRK5p/7QPJQNylGLX09PsYQBF/7sdHc8UeGpUuXeCeh4znls4acnCbTNBWbBWtUevXTOrw==
-X-Received: by 2002:a05:6512:a8c:b0:4a2:10f1:6e06 with SMTP id m12-20020a0565120a8c00b004a210f16e06mr11369220lfu.415.1666624940562;
-        Mon, 24 Oct 2022 08:22:20 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id v14-20020a2ea44e000000b0026dfd1fb1aesm6080ljn.25.2022.10.24.08.22.19
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cHT5Rt2YRD3TxMdqZcnrFfX+ch7zR8neoaazNIgvH4s=;
+        b=o8UYQnYqagOJk7xHL7ioRItrsBk4Qv7WzL2+wKOHKL98J666DOd7Ceoqs44x6TqF+h
+         4RBe8hHOwdDaRf4CZij0jLuG0ExctYqHhJBq+2AFPJucTPiOI60tSGlI6Smk3eIgJwMa
+         p8lduArEWE4JPCaWcUoxSBY5DF6Jl7AQ8iUHI+d2TPTzASa50EXQyzk0kUxTDe/NYF0O
+         ejhHvs1TZHgphuoE8EI9fqka1snqi76MZ3OcpcqFqCloivxTlFYI1UwCrUdVFM6p88x2
+         gVAoTsi4sDb+Advoty8x2kvCV/WRPXYNPsTNyMtY2U+7K2086PF6gaC+fZoIswYvG9Hw
+         2AKA==
+X-Gm-Message-State: ACrzQf2pNrSLoSSBDKSahyLaSPk/ux+EZ3etTuPI1FGV+oZIYq2RrFJ9
+        bfjNVsEZbxT86JEck6isCUTsw+iOp/RWhw==
+X-Google-Smtp-Source: AMsMyM4Vkd7cp4pbO1rM/WpR2yqfdH7jEaPA2xKnICY7kI7XOc/KqJfpkN+1sY6S7VC0Kr3Hgqfa9g==
+X-Received: by 2002:a05:620a:244e:b0:6c6:f3b8:9c3 with SMTP id h14-20020a05620a244e00b006c6f3b809c3mr23359764qkn.218.1666625281759;
+        Mon, 24 Oct 2022 08:28:01 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id d19-20020a05620a241300b006cfc01b4461sm103204qkn.118.2022.10.24.08.28.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 08:22:20 -0700 (PDT)
-Message-ID: <52e7a83b-bd83-ba63-55f9-a75cf549546d@linaro.org>
-Date:   Mon, 24 Oct 2022 18:22:19 +0300
+        Mon, 24 Oct 2022 08:28:01 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-35befab86a4so88605387b3.8;
+        Mon, 24 Oct 2022 08:28:00 -0700 (PDT)
+X-Received: by 2002:a81:99d8:0:b0:368:909b:a111 with SMTP id
+ q207-20020a8199d8000000b00368909ba111mr19866197ywg.502.1666625280651; Mon, 24
+ Oct 2022 08:28:00 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v8 01/15] drm/msm/disp/dpu: clear dpu_assign_crtc and get
- crtc from connector state instead of dpu_enc
-Content-Language: en-GB
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com, quic_khsieh@quicinc.com,
-        quic_vproddut@quicinc.com, quic_bjorande@quicinc.com,
-        quic_aravindh@quicinc.com, quic_abhinavk@quicinc.com,
-        quic_sbillaka@quicinc.com
-References: <1665576159-3749-1-git-send-email-quic_vpolimer@quicinc.com>
- <1665576159-3749-2-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1665576159-3749-2-git-send-email-quic_vpolimer@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com> <202210191806.RZK10y3x-lkp@intel.com>
+In-Reply-To: <202210191806.RZK10y3x-lkp@intel.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 24 Oct 2022 17:27:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXBT2cEqfy00u+0VB=cRUAtrgH9LD26gXgavdvmQyN+pQ@mail.gmail.com>
+Message-ID: <CAMuHMdXBT2cEqfy00u+0VB=cRUAtrgH9LD26gXgavdvmQyN+pQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+To:     kernel test robot <lkp@intel.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kbuild-all@lists.01.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2022 15:02, Vinod Polimera wrote:
-> Update crtc retrieval from dpu_enc to dpu_enc connector state,
-> since new links get set as part of the dpu enc virt mode set.
-> The dpu_enc->crtc cache is no more needed, hence cleaning it as
-> part of this change.
-> 
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  4 ---
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 42 +++++++++--------------------
->   drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  8 ------
->   3 files changed, 13 insertions(+), 41 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index 13ce321..8ec9a13 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -1029,7 +1029,6 @@ static void dpu_crtc_disable(struct drm_crtc *crtc,
->   		 */
->   		if (dpu_encoder_get_intf_mode(encoder) == INTF_MODE_VIDEO)
->   			release_bandwidth = true;
-> -		dpu_encoder_assign_crtc(encoder, NULL);
->   	}
->   
->   	/* wait for frame_event_done completion */
-> @@ -1099,9 +1098,6 @@ static void dpu_crtc_enable(struct drm_crtc *crtc,
->   	trace_dpu_crtc_enable(DRMID(crtc), true, dpu_crtc);
->   	dpu_crtc->enabled = true;
->   
-> -	drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask)
-> -		dpu_encoder_assign_crtc(encoder, crtc);
-> -
->   	/* Enable/restore vblank irq handling */
->   	drm_crtc_vblank_on(crtc);
->   }
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> index 9c6817b..d05b353 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-> @@ -132,11 +132,6 @@ enum dpu_enc_rc_states {
->    * @intfs_swapped:	Whether or not the phys_enc interfaces have been swapped
->    *			for partial update right-only cases, such as pingpong
->    *			split where virtual pingpong does not generate IRQs
-> - * @crtc:		Pointer to the currently assigned crtc. Normally you
-> - *			would use crtc->state->encoder_mask to determine the
-> - *			link between encoder/crtc. However in this case we need
-> - *			to track crtc in the disable() hook which is called
-> - *			_after_ encoder_mask is cleared.
->    * @connector:		If a mode is set, cached pointer to the active connector
->    * @crtc_kickoff_cb:		Callback into CRTC that will flush & start
->    *				all CTL paths
-> @@ -181,7 +176,6 @@ struct dpu_encoder_virt {
->   
->   	bool intfs_swapped;
->   
-> -	struct drm_crtc *crtc;
->   	struct drm_connector *connector;
->   
->   	struct dentry *debugfs_root;
-> @@ -1288,7 +1282,7 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
->   		struct dpu_encoder_phys *phy_enc)
->   {
->   	struct dpu_encoder_virt *dpu_enc = NULL;
-> -	unsigned long lock_flags;
-> +	struct drm_crtc *crtc;
->   
->   	if (!drm_enc || !phy_enc)
->   		return;
-> @@ -1296,12 +1290,13 @@ static void dpu_encoder_vblank_callback(struct drm_encoder *drm_enc,
->   	DPU_ATRACE_BEGIN("encoder_vblank_callback");
->   	dpu_enc = to_dpu_encoder_virt(drm_enc);
->   
-> -	atomic_inc(&phy_enc->vsync_cnt);
-> +	if (!dpu_enc->connector || !dpu_enc->connector->state ||
-> +	    !dpu_enc->connector->state->crtc)
-> +		return;
->   
-> -	spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
-> -	if (dpu_enc->crtc)
-> -		dpu_crtc_vblank_callback(dpu_enc->crtc);
-> -	spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
-> +	atomic_inc(&phy_enc->vsync_cnt);
-> +	crtc = dpu_enc->connector->state->crtc;
-> +	dpu_crtc_vblank_callback(crtc);
+On Wed, Oct 19, 2022 at 1:17 PM kernel test robot <lkp@intel.com> wrote:
+> I love your patch! Perhaps something to improve:
+>
+> [auto build test WARNING on net-next/master]
+> [also build test WARNING on net/master robh/for-next linus/master v6.1-rc1 next-20221019]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/net-ethernet-renesas-Add-Ethernet-Switch-driver/20221019-163806
+> patch link:    https://lore.kernel.org/r/20221019083518.933070-3-yoshihiro.shimoda.uh%40renesas.com
+> patch subject: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+> config: m68k-allyesconfig
+> compiler: m68k-linux-gcc (GCC) 12.1.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/intel-lab-lkp/linux/commit/f310f8cc37dfb090cfb06ae38530276327569464
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Yoshihiro-Shimoda/net-ethernet-renesas-Add-Ethernet-Switch-driver/20221019-163806
+>         git checkout f310f8cc37dfb090cfb06ae38530276327569464
+>         # save the config file
+>         mkdir build_dir && cp config build_dir/.config
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/net/
+>
+> If you fix the issue, kindly add following tag where applicable
+> | Reported-by: kernel test robot <lkp@intel.com>
+>
+> All warnings (new ones prefixed by >>):
+>
+>    drivers/net/ethernet/renesas/rswitch.c: In function 'rswitch_ext_desc_get_dptr':
+> >> drivers/net/ethernet/renesas/rswitch.c:355:71: warning: left shift count >= width of type [-Wshift-count-overflow]
+>      355 |         return __le32_to_cpu(desc->dptrl) | (dma_addr_t)(desc->dptrh) << 32;
+>          |                                                                       ^~
+>    drivers/net/ethernet/renesas/rswitch.c: In function 'rswitch_ext_ts_desc_get_dptr':
+>    drivers/net/ethernet/renesas/rswitch.c:367:71: warning: left shift count >= width of type [-Wshift-count-overflow]
+>      367 |         return __le32_to_cpu(desc->dptrl) | (dma_addr_t)(desc->dptrh) << 32;
+>          |                                                                       ^~
+>
+>
+> vim +355 drivers/net/ethernet/renesas/rswitch.c
+>
+>    352
+>    353  static dma_addr_t rswitch_ext_desc_get_dptr(struct rswitch_ext_desc *desc)
+>    354  {
+>  > 355          return __le32_to_cpu(desc->dptrl) | (dma_addr_t)(desc->dptrh) << 32;
 
-So, what if the user commits the mode setting change on another CPU, 
-while we are handling the vblank callback here? Can this happen?
+A simple fix would be to replace the cast to "dma_addr_t" by a cast to "u64".
+A more convoluted fix would be:
 
->   
->   	DPU_ATRACE_END("encoder_vblank_callback");
->   }
--- 
-With best wishes
-Dmitry
+    dma_addr_t dma;
 
+    dma = __le32_to_cpu(desc->dptrl);
+    if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
+            dma |= (u64)desc->dptrh << 32;
+    return dma;
+
+Looking at the gcc compiler output, the both cases are optimized to the
+exact same code, for both arm32 and arm64, so I'd go for the simple fix.
+
+BTW, if struct rswitch_ext_desc would just extend struct rswitch_desc,
+you could use rswitch_ext_desc_get_dptr() for both.
+
+>    356  }
+>    357
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
