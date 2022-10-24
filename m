@@ -2,68 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4753D60AF29
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7AD60ADF4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbiJXPi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 11:38:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
+        id S233208AbiJXOmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 10:42:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbiJXPiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:38:14 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40981D4428;
-        Mon, 24 Oct 2022 07:26:58 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id g129so7177009pgc.7;
-        Mon, 24 Oct 2022 07:26:58 -0700 (PDT)
+        with ESMTP id S233336AbiJXOlk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:41:40 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38A18F01AB;
+        Mon, 24 Oct 2022 06:18:14 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id i21so10037259edj.10;
+        Mon, 24 Oct 2022 06:18:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uZ6iF6T0zIUXPA/iUJjlbeVV5R7S7nny4K0HA6GOdU4=;
-        b=aBt95Awussn3Wm9r/7PTxZWOl2PYOTP2QP85zW2nDHTj6f0Z4ydtLbWgZP+DizE+WZ
-         3RrO3kAVi5tEUW2z922K+9+VBVIiAmy4certMrulkqwPFLW2QUEPeIPhfKt5YX6xgC2X
-         hT0wlr4oFClhrk1S6jPKQ1aGgvGR8rEur++3wxN35ylNqKHOpzwPhsi6i5rmg1Pj39vW
-         8KqwhF5XlyaoczOuLNvLbUVXiLOmRRIjK4W6VBMNst8CsSS8QPq6jMLaPuTtJyMV5t0G
-         TGK1La8qEpPCx3OPzQqieGFUARQIAQhZ6XW6unCf29WwOFBbguF9OI1fnOYuSWXJsbes
-         Mt/Q==
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WHhhh1m1Ank9pgC7SXLMOjGjiWt+7yExjFZnNqxa60k=;
+        b=iBQhkfqiP8vMNzFD1+pp3Nr5/vSgodxgarna9rmg6FXxz3Y06TDvL2s/BhVRP9Ec9H
+         MZ97tWHqLPNZ8gGbu52VdiFvWNdq2d/FV7eUitVqyA4uyXMwuEPUwif+bFFpsjxgRKgM
+         m5UX5n4J6mXGbrb44CvgBIulEKVdNCGzeux46pA4Xy8ACkoXJM2COLrKtOZP/DteMfag
+         XYwqXWYY90AccLVPNVmSbr656vLzz+EFXWeLx2h3s1jdEtAaWaaOfat+5KoLf2gNoh3p
+         CrqYLW+q1NzVT7BJmV0iTn6hArR3fhtKwSuZGiLEaE9JvKxrsRy8+5jFKUxjCzxZIOET
+         OU7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uZ6iF6T0zIUXPA/iUJjlbeVV5R7S7nny4K0HA6GOdU4=;
-        b=7Fr7iZV7+oTUNt8FeL0TP9dX+OjwqztAbneVIkBYI1lGwE+CYqt7jvhlz1JxyNxoqX
-         2Ugrmw24v04h/xASv8LGUicN5uQjOksTBaVJwWwNRhuv4/DVoUPg3K9zxJ3zTOvBjavE
-         ihm1awz1m6AfF54diyfIulqe1CiP867TKTKzi+o0nWbzzL2MPctVYW07/KtvlQpk3qy9
-         DtxseSqbzKTlC0MbgtC6UqN+T6TUvg9uR1n+MSuAOIJ4fe17YQD/v/NpzpJTgZvdlxUb
-         CTQFGlBswcnO+qr8pTeGqkAbUSLubHyfxhVaf3X0QAWsnxE9xJYcjx0jqY8LvZ2DSfAc
-         7wcA==
-X-Gm-Message-State: ACrzQf0312J25BLi+m0qxw5U7skK9Qz72tSDcYEyy/qADdT9VQ25lCaU
-        IlFXryzIGzPjGCfCGn0gnDYW8hY8PzBFe7ZYPAaU4uWs
-X-Google-Smtp-Source: AMsMyM6sSiIpLatv76v+ujr0bWsW3B2wikZU8HsGumExxEGBwIcNwvwahd77TVvlPjWHjMiTM3YrQ9QlZn5WzGuzj8o=
-X-Received: by 2002:a17:902:b190:b0:186:b9b2:9268 with SMTP id
- s16-20020a170902b19000b00186b9b29268mr754073plr.32.1666616889648; Mon, 24 Oct
- 2022 06:08:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221024115429.1343257-1-heiko.thiery@gmail.com>
- <20221024122659.2krt2hh2sdvxuurn@pengutronix.de> <CAEyMn7Y9uxeFLM7-6jR=bonusdwjX=ukRotZm=7x_3QyxVW-DQ@mail.gmail.com>
- <20221024125630.frrbq4hy2bfxhjtq@pengutronix.de>
-In-Reply-To: <20221024125630.frrbq4hy2bfxhjtq@pengutronix.de>
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Mon, 24 Oct 2022 15:07:57 +0200
-Message-ID: <CAEyMn7ZVT+jR1sH6-RB8C6GnLF4bYvnd8f154AGKKZiPzmGbDA@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
- off-on-delay-us for regulator-usdhc2-vmmc
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WHhhh1m1Ank9pgC7SXLMOjGjiWt+7yExjFZnNqxa60k=;
+        b=QdJMbf3SZTAzjTK0xjn3QWM5G/tUVuzKB1yUHkikJTjQ0OaF5f/nWD2mLaUpn4buta
+         OOeq74/Mjm++OhvKFAJYaPbu8bC7zgsGqdjnL3Z5YXAkdsvLJy3iUMftHgnI97JKw7yj
+         3KtX0lE7FYkT7NS46//qv51Y9A+i353cdmXtlwIzT+FC6ewtgcHuVirZTAFhgXMCQXNa
+         mvIBCIguWIfxtNwgYwS44SWmW66f0iwIZAgP+iexdPW5QNnTWI1esCdk5YFDPQ3+blVQ
+         WSGEn4y4Xd5z6pUmjWgjvEUNiMGLP29N6MF3IEYXLPOzIkX5IB7yf+Pn7PwXLP3r7Kqn
+         2+tQ==
+X-Gm-Message-State: ACrzQf3nJj2aAhEuuVjkJQZp8KW3XpzOeZYBeCJRxypgbE09RxbGzZZt
+        14wvhfgqbapJGvQ0opgoEFI=
+X-Google-Smtp-Source: AMsMyM60AGGuzqAkSsx5ALiyT2hDq2SbX+gt5Hfevx9ogvvaQ6UuZajA3LN9fM+GSOuoNvI/zCGpYw==
+X-Received: by 2002:a17:907:3f90:b0:78d:afad:2a78 with SMTP id hr16-20020a1709073f9000b0078dafad2a78mr28190463ejc.68.1666617329498;
+        Mon, 24 Oct 2022 06:15:29 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 4-20020a170906310400b00780ab5a9116sm15584053ejx.211.2022.10.24.06.15.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 06:15:28 -0700 (PDT)
+Date:   Mon, 24 Oct 2022 15:15:26 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Mikko Perttunen <cyndis@kapsi.fi>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>,
+        dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/8] memory: tegra: Add API for retrieving carveout
+ bounds
+Message-ID: <Y1aP7kDi8cJUTcGN@orome>
+References: <20220920081203.3237744-1-cyndis@kapsi.fi>
+ <20220920081203.3237744-2-cyndis@kapsi.fi>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="+8zFj/rzOJcr5x3I"
+Content-Disposition: inline
+In-Reply-To: <20220920081203.3237744-2-cyndis@kapsi.fi>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -74,40 +82,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
 
-Am Mo., 24. Okt. 2022 um 14:58 Uhr schrieb Marco Felsch
-<m.felsch@pengutronix.de>:
->
-> On 22-10-24, Heiko Thiery wrote:
-> > Hi Marco,
-> >
-> > Am Mo., 24. Okt. 2022 um 14:34 Uhr schrieb Marco Felsch
-> > <m.felsch@pengutronix.de>:
-> > >
-> > > Hi Heiko,
-> > >
-> > > On 22-10-24, Heiko Thiery wrote:
-> > > > With that delay U-Boot is not able to store the environment variables in
-> > > > the SD card. Since the delay is not required it can be remove.
-> > >
-> > > Now I'm curious, since this doesn't tell us the why, it just tell us
-> > > about the end result. I'm asking because the NXP EVKs have an issue with
-> > > the sd-card power line capacity and we need this delay to reach a level
-> > > which is marked as low within the sd-spec.
-> >
-> > I must admit that I do not know at all why this entry was made. I have
-> > now looked at the dtbs of the imx8 EVKs and except for imx8dxl-evk.dts
-> > I see no delay here.
->
-> Please see <20221024031351.4135651-10-peng.fan@oss.nxp.com>, they will
-> be added.
+--+8zFj/rzOJcr5x3I
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I think I have to re-check that and especially why U-Boot is not able
-with that setting to access the SD card for writing the environment.
+On Tue, Sep 20, 2022 at 11:11:56AM +0300, Mikko Perttunen wrote:
+> From: Mikko Perttunen <mperttunen@nvidia.com>
+>=20
+> On Tegra234 NVDEC firmware is loaded from a secure carveout, where it
+> has been loaded by a bootloader. When booting NVDEC, we need to tell it
+> the address of this firmware, which we can determine by checking the
+> starting address of the carveout. As such, add an MC API to query the
+> bounds of carveouts, and add related information on Tegra234.
+>=20
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+> v2:
+> - Add check for 64-bit phys_addr_t. In practice phys_addr_t
+>   is always 64 bits where this runs, but it avoids warnings in
+>   compile test.
+> ---
+>  drivers/memory/tegra/mc.c       | 25 +++++++++++++++++++++++++
+>  drivers/memory/tegra/tegra234.c |  5 +++++
+>  include/soc/tegra/mc.h          | 11 +++++++++++
+>  3 files changed, 41 insertions(+)
 
-Thanks!
+Krzysztof,
 
->
-> Regards,
->   Marco
+I've applied this to the same tree as the patch that uses it for now.
+Let me know if you want me to put this on a separate stable branch for
+you to pull in.
+
+Thierry
+
+--+8zFj/rzOJcr5x3I
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNWj+4ACgkQ3SOs138+
+s6FY2Q//bQUj39dvu/5Swb+Y6wOhHV3XtEERAJsg3FDGGZR05duhgkto+Fqf+WYs
+kest5BIuQfrjuEg19XXUDMgrJ20PPfkl9PriRw0D3/yZomyS2bieEz9Tl00/7cup
+SVPIunSj9lPuCRD5R8x7xCe20CFCI9SnDDEpZAbRXK11xiLxRBsEPrSS2ltJ3cIv
+/6p9GT37fUtNfEOuFkGPUIW8hVhhM4aBOXv4PqyRnHzWg+MamLmNWyy6mOf/a5dt
+qUs7YLas5jxgOdGAm+dLjO1ao/F6Py7pDTtIBb/akd6maRHBHexpg/cqo9UqMaT1
+VE8Y4A+1nCQHIsrslIpmYg0FN+v80pIaMn20mh1OvAkwnL91ggeK5z55YgLbzm6O
+Lfy6tX0VcaB0mONVoDGQ9+1uMY/A7OaGDuBFUaQeFqH8dYVM6XnFVpl7LFUwkoqy
+UtcH7I0jxcmlxxuh8bYM1dsKksAtp0RsBgAyddgPReNoAyK7ZqlUbP6yyfjlWSvN
+MIP9xQlmec7Al97s5RzvW2HDYWVIWQ5FeY9vZfAoeTGzBzqXLjA1vQpbJa1Wj8FR
+NqCparCt6JlFKPDKHOSsja50h0605RKGJdGZS5426lNwh2hSQozsimta3ATvmfyk
+jm77BUlj33ECmgTCa1THNJG7qnLjI7rLk4Z+CDadDRHh/j6VYVc=
+=E8o3
+-----END PGP SIGNATURE-----
+
+--+8zFj/rzOJcr5x3I--
