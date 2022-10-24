@@ -2,90 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0B7160A40A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 14:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F360F60A4EA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 14:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbiJXMFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 08:05:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46904 "EHLO
+        id S233236AbiJXMSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 08:18:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232619AbiJXMD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 08:03:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF29422EA;
-        Mon, 24 Oct 2022 04:50:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 99B906122D;
-        Mon, 24 Oct 2022 11:50:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4375C433C1;
-        Mon, 24 Oct 2022 11:49:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666612201;
-        bh=l/XI3CiJsKnOLgsVQc6BqIisIYNhZPrUZPh4AYIN9KY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=thh7k93cgCNwV2UH4mQx9y5s/g6abLBR4vV0jfk+XRMc8utp9EIhdJC4lIOGf2jNV
-         yxBhIdZCw8PqPJOvwK/Lf1YE2tm2NHXAU1oGnSDVLqZ1/uUVUL0wZfu0DKEAU4gMLq
-         5xeujSbo3slyB6EdEcqvcZ0Z0aFfyUypCRVEeFcNeRuzvE235Bl6WIKRRFA7Ixw/5G
-         Un5JsjwAZwwgiFeNFVcy/ObJ3ePvZOVI50AECxC0TGKjxRCP1xPX7JLP1zI/vvjlsn
-         I7xda0Gmk0T/M9/JmvV/lZS/jwsCbYvNMq8dJIxl4+/CGvINcHOj/ssVCRmcsrRXxt
-         VBkkEQvriRE2Q==
-Date:   Mon, 24 Oct 2022 12:49:55 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        with ESMTP id S233002AbiJXMRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 08:17:39 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2AD681689;
+        Mon, 24 Oct 2022 04:56:40 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id bh7-20020a05600c3d0700b003c6fb3b2052so6448945wmb.2;
+        Mon, 24 Oct 2022 04:56:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=axn3aaHBRF7DrwO9saARJ14Bo7kXLQznomx3jTXdStk=;
+        b=PE8V9kp4GRfFmpdgzcTNucrSZO+RuGeyG6fjbleBbN2wJO78dFFNVo2Hi+PEme81j+
+         ub8R2aNIn6TNimRhD6oR1OvHWvh/KFrpuq7lTwtrVC3vaJWyS+JktzRuGqvZ9Wuzhi+G
+         vrI7EJ2Y36LebfU4jr2GTPSCvakZry8uULHKSZB1DCZBKTdNFWDQrBuNQfqZRzP4BwfL
+         jNCZwLDEgWGV/yDps2ssHF7OD9mhJ6bocRob2zsKYwp8rauluXUpvox7FIdOZbYp0Mlq
+         JJmg2Eej4pbejCcKErL0GCGAqtm+U1E1u7tN0prhs7Fz+nwlaoZjG8nNt1aySi2p7rFc
+         sXPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=axn3aaHBRF7DrwO9saARJ14Bo7kXLQznomx3jTXdStk=;
+        b=7t7F8LWgSOjARfTgfV8AQ5dIiwNQhoBtbHN/GgqOcASon82NFCTSC21iPXZtVt/5y7
+         A0U1YR6aFf2Jt0hRONhgQAbTnUOrsMnqcyhvopgld2cX6U7mC5IjRlLE1c01w7d83cuy
+         UtYV2oI/6dgqMJ/dVjxoiG4V3KdZWXium13GIiD/WVODE+goZrKuJrFxR2ObDRosxFgO
+         rbYWhcphJCQGVQJBPAKdqJVZCz7h+UQ2GRZl/KXCEvYWYiq17u+bsWOFdsFQqeIc1HVt
+         sU/alUn0Q9SRO/ond/DnTu1K7r/Dva7Rl+ZnQ+Dyze3LIc841XMTnQ8rpfAe0o4Arz1/
+         V5Rg==
+X-Gm-Message-State: ACrzQf01uVPEYXJUsq59Z5KyGyOvXnIAngtuL8og7dA4VDZwqEp3oW2d
+        wTW9hORdJKe2fMBSiTm8fHVQ/mi6oGM=
+X-Google-Smtp-Source: AMsMyM5HFklmeyYv6QSh8a0HERpkOwctcpnTPGXOReiJCofIUhPFcGm9dv3UDFvMDErEsK3dBD0MkA==
+X-Received: by 2002:a05:600c:502c:b0:3c6:f5ff:e089 with SMTP id n44-20020a05600c502c00b003c6f5ffe089mr21918323wmr.108.1666612485200;
+        Mon, 24 Oct 2022 04:54:45 -0700 (PDT)
+Received: from hthiery.kontron.local ([213.135.10.150])
+        by smtp.gmail.com with ESMTPSA id c11-20020a05600c0a4b00b003c6f27d275dsm8484971wmq.33.2022.10.24.04.54.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 04:54:44 -0700 (PDT)
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] ASoC: simple-card: Support custom DAI system
- clock IDs
-Message-ID: <Y1Z74/vKHbnaCLrX@sirena.org.uk>
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Heiko Thiery <heiko.thiery@gmail.com>
+Subject: [PATCH v3] arm64: dts: imx8mq-kontron-pitx-imx8m: remove off-on-delay-us for regulator-usdhc2-vmmc
+Date:   Mon, 24 Oct 2022 13:54:30 +0200
+Message-Id: <20221024115429.1343257-1-heiko.thiery@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fXtczi/kKlNHcG53"
-Content-Disposition: inline
-In-Reply-To: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
-X-Cookie: You will forget that you ever knew me.
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+With that delay U-Boot is not able to store the environment variables in
+the SD card. Since the delay is not required it can be remove.
 
---fXtczi/kKlNHcG53
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: 5dbadc848259 (arm64: dts: fsl: add support for Kontron pitx-imx8m board)
 
-On Sat, Oct 22, 2022 at 05:27:41PM +0100, Aidan MacDonald wrote:
+Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
+---
+v3:
+ - Improve commit message and explain why it is a fix (thanks to Fabio)
 
-> Some DAIs have multiple system clock sources, which can be chosen
-> using the "clk_id" argument to snd_soc_dai_set_sysclk(). Currently
-> this is hardcoded to 0 when using simple cards, but that choice is
-> not always suitable.
+v2:
+ - add Fixes tag
 
-We already have clock bindings, if we need to configure clocks we should
-be using those to configure there.
+ arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
---fXtczi/kKlNHcG53
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+index a91c136797f6..21442e04a632 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+@@ -51,7 +51,6 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+-		off-on-delay-us = <20000>;
+ 		enable-active-high;
+ 	};
+ };
+-- 
+2.30.2
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNWe+IACgkQJNaLcl1U
-h9By4wf+MO0f2rw7A/XLJQONuNVrcWtI0Cz17wuuWDvSlDxNWS3cq0OafQbjXYD2
-MIN1j9goUvD9Y++mcr65EhFvRtaD5+BEWVIq2/gNTpWOBSTTN06REGvOkyjOrYMU
-AxIAuperEJcYDJxlk0Wi8uVD63kmPi3omezXXRZW2xF5wku655JWWowPDtvl+Yqn
-WVNsDLlwBG7RpgoI/v5TupZky6kY4YwLUDGYqx0RQazQ1TVSbLPYnXScckY3yn14
-PcKloZwkgnraB1dVYim6FJF5xUXakwk02tTdZBK9//oIucjWmhjUoMihjdXU1TCV
-ajFepx+RlJ967a/P5vLR9O3qmNhT7w==
-=5Xyf
------END PGP SIGNATURE-----
-
---fXtczi/kKlNHcG53--
