@@ -2,87 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D7660AA3D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 15:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E9F60A6F1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 14:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbiJXNbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 09:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46066 "EHLO
+        id S234171AbiJXMmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 08:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236464AbiJXNbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 09:31:11 -0400
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469B75FE3;
-        Mon, 24 Oct 2022 05:34:24 -0700 (PDT)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-13b23e29e36so10914254fac.8;
-        Mon, 24 Oct 2022 05:34:24 -0700 (PDT)
+        with ESMTP id S234628AbiJXMkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 08:40:21 -0400
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A977E33A;
+        Mon, 24 Oct 2022 05:08:00 -0700 (PDT)
+Received: by mail-pj1-f51.google.com with SMTP id z5-20020a17090a8b8500b00210a3a2364fso8903279pjn.0;
+        Mon, 24 Oct 2022 05:08:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mcGmlCRK6WN6ZG/jGCj5N7yle6pB40XVPW0Ha2mB7cY=;
-        b=DTyl13zwGNI2L2P0eMGz201o5eswiW6LlwdR60hIrSy/znAIVU1lUBxbGenC4PNpGf
-         pbyBoWWKkUt67+Ny7ETdFAG+Ds3tVPWZM33rJHvrjEBntMpi8IsvJ0NdFEWuOoTlhqGi
-         YPWL0ArMWnF/3RD1g64XvWXSK4w1xZa2GTvX39dqWw6AxT9Acyx5fX/POelQ3MDOMnXv
-         7CXUKY0j0nLQtqVE+JnEdmV/mzwa6LnCrQi4Th+h817ifxACqR7mDpRl1X2hFYO/hoJp
-         hiJm5/5gDjV2zDZpxIZZHKHWsHr0fODP7aKd8bYD22N9aJ9+a5SMfnKpMIWIHRo2RQEz
-         42Bw==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lEXljrDw04wugCg/PDPyOEnwP1P5hItYMVo1gxAx7t8=;
+        b=KMRXjpCyWsvVw+7XiYlbKGStvGACKJIS4oyWrAmKILhm2GcDQ8MGYA13JxjJLVBkhG
+         yFqEG4/ZgccnRiskUH1azL2UQxddc5anpGQv69pmtNSjlONwOUMlf8tBsHMay6NFv6Pr
+         Itre1SjmsDTbzJhHgupn6dKYf3LwE7oFWWe6Mqw3oXilHdoefjPBA2pRB+e2b0Bq22VY
+         dXX75RKpmfe76/wYDqP5YC51ke54GaZkBuYKk6eoBW6MD9bI1CcEmTLIE8wTHvpwwxiJ
+         qeHAxH0wdyMkqEAerX1RQN31IjK0fbCoEY4oMnjklSBGB0tvLhmcDKh7a1N52NQTj/oY
+         09mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mcGmlCRK6WN6ZG/jGCj5N7yle6pB40XVPW0Ha2mB7cY=;
-        b=O/BxyEqg8R10D3BX5YqIsqZWP4qfZ7ipLatO7BMUUy97+QU+K4F1VsRYqtrKAuzcgG
-         ajOr736tcXVL/s33ZX/RKVLTTrceP63NhUZ9NAsD0p10PXvzjjwPHNAyLDfOcMvTIDzv
-         lVsEFfXmXDEFHFrIMDeZcyRpkCegKTLT4bExUXbetx9RF+2W5ioOZTw2bvUkQLrkHVzv
-         ILrJg5/8DZMeA1VlqdUm8GMa5V+YKmZzkCu2dQuFb2OvdLplfk1LjErceO++a8vE6A5k
-         fAlg7paWAdhc9ZDXgWWV15hZZEkoRdXQG7FQOunp/JE1tRnr0WLwKublVjgacqUwin+9
-         yLxA==
-X-Gm-Message-State: ACrzQf0Y0dxSe8vqmMEusOXxeYiadzzuI4T1oxv7bMyK4dnWGzZy49wF
-        9bexbWqFjzifYr1qXUIU4m+atCbopqWVFWEszulSmkUA
-X-Google-Smtp-Source: AMsMyM5Wbatd2b2pPEV9BD4wN0+HBaMvhyEYRz3gNUPz+1LXWj2fimEF21KkWd8k2azbwYnuNj3bLbqg/JRTVhk8W+U=
-X-Received: by 2002:a17:90b:190f:b0:211:5d2a:ade9 with SMTP id
- mp15-20020a17090b190f00b002115d2aade9mr28048950pjb.76.1666612643319; Mon, 24
- Oct 2022 04:57:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221024115429.1343257-1-heiko.thiery@gmail.com>
-In-Reply-To: <20221024115429.1343257-1-heiko.thiery@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 24 Oct 2022 08:57:11 -0300
-Message-ID: <CAOMZO5B11Jbnr-3_86QA7Vec-YLGu6+Rv8TxBsMcn7bSG9ZhDw@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
- off-on-delay-us for regulator-usdhc2-vmmc
-To:     Heiko Thiery <heiko.thiery@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lEXljrDw04wugCg/PDPyOEnwP1P5hItYMVo1gxAx7t8=;
+        b=3Dyng98FY30UFq74O4ESnBvdRnirTIc1cjnup8sLyEHmzHwzI7SSNEPuqmM+6jEyLD
+         tBal5R4kEZDKyBZdyZ3UpXHX2MPf5nToLDM3kcx0V3hVQ2IoJXXfbBi0e9x1DGw+vC8b
+         DslJEfu2DtIf4npKNIeMWYTCnNvjsBUD9a0sNazBhI559eLhi5ogN0OU9gKQhr0lA5FJ
+         7EbEbjGa7VXubAHwfDFtqv9dg9r1oQ3omWoPV7ZVeXp1jr3o+GXuDVY2lY3COGQGArv2
+         E3H/MFElPCtJrqyPljT9+Eros8XaZIapGxotmLuLPEq5uxmgpfsquPErwYgkXuh1oNGq
+         LcOw==
+X-Gm-Message-State: ACrzQf3T9YBPp+5f3SaAm7bXuhTXdxo/QQVMMRoxZil9DoiUP3DTdwz5
+        cOLArIibMmAZwNoqpRCqOoc=
+X-Google-Smtp-Source: AMsMyM6a2jrPJQCXU523rN6IgJmxpifiRvb7NfqVI97VI/0q0mWvXUQTAZfjLfezYtusZLegzK0BTA==
+X-Received: by 2002:a17:90a:5308:b0:20b:1eae:c94e with SMTP id x8-20020a17090a530800b0020b1eaec94emr73558027pjh.88.1666613054672;
+        Mon, 24 Oct 2022 05:04:14 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:3698:60f8:9964:1fb4])
+        by smtp.gmail.com with ESMTPSA id z22-20020a62d116000000b0055f209690c0sm19573031pfg.50.2022.10.24.05.04.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 05:04:14 -0700 (PDT)
+Date:   Mon, 24 Oct 2022 05:04:11 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, linux-input@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ARM: dts: imx6qdl-sabre*: fix Egalax touchscreen
+ properties
+Message-ID: <Y1Z/O8vx6W/Z1Rg5@google.com>
+References: <20220920042608.1865560-1-dmitry.torokhov@gmail.com>
+ <20221023093016.GC125525@dragon>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221023093016.GC125525@dragon>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+On Sun, Oct 23, 2022 at 05:30:16PM +0800, Shawn Guo wrote:
+> On Mon, Sep 19, 2022 at 09:26:05PM -0700, Dmitry Torokhov wrote:
+> > This patch fixes interrupt trigger (should be level low as that is what the
+> > driver is always using), the GPIO that is the interrupt source that is also
+> > used to wake up chip by driving the line low.
+> > 
+> > The proper polarity is be needed for converting the driver to gpiod API.
+> > 
+> > Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> 
+> Looks good to me.  Let me know if you want me to pick it up.  Otherwise,
+> 
+> Acked-by: Shawn Guo <shawnguo@kernel.org>
 
-On Mon, Oct 24, 2022 at 8:54 AM Heiko Thiery <heiko.thiery@gmail.com> wrote:
->
-> With that delay U-Boot is not able to store the environment variables in
-> the SD card. Since the delay is not required it can be remove.
->
-> Fixes: 5dbadc848259 (arm64: dts: fsl: add support for Kontron pitx-imx8m board)
->
-> Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
-> ---
-> v3:
->  - Improve commit message and explain why it is a fix (thanks to Fabio)
+Thank you, I merged it with the other 3 patches through my tree.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+-- 
+Dmitry
