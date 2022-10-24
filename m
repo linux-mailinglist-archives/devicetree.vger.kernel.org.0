@@ -2,129 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE25B60BBEE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4055460BC3F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232268AbiJXVSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 17:18:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54516 "EHLO
+        id S229491AbiJXVdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 17:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233999AbiJXVSX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:18:23 -0400
-Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1075357E1;
-        Mon, 24 Oct 2022 12:24:38 -0700 (PDT)
-Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-13b103a3e5dso13028511fac.2;
-        Mon, 24 Oct 2022 12:24:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vqLHNCC4h3WefblPd4YUovHfNe5etB8EwtpDxyh2rNg=;
-        b=wzi8euRnhAA1EdmwU3Q2/xYWlC+fk8VExj1JthqCgUfw2dTqoVhlZ7+/4g3FDrnVKn
-         pyZYikoEqH7C3cD/b9CaZdW+c4o8ysbHUJyYc/eBDokNmHbHM/syLFuJNoY94lSo6Ks6
-         2q7TaiSO3K8Qjv3t/w51rXNciTTvjw1w6tfgStuQPXCQG7NmnEkrI+rjI4hM53FJtGB/
-         ErbIYdSB2vsRDe3tuwaCm2ojOBz9VWel1KDfnjdqio68urfLRnzKNkop8JzLMTp7lCo7
-         pXTROgD+ja2gGfOLeaVe7yyv/leKS398LHwolxpbXW56Q+ncsxgE6d1gYKiBwH0EHnht
-         V1zA==
-X-Gm-Message-State: ACrzQf0qldZ/05ZRRciHj7bRQl4BQKW52LZTzwkg8IkBGtH5jtk+G4CL
-        3Hv4n1pOWnjt/dUEPhB0FQ==
-X-Google-Smtp-Source: AMsMyM5ai7TBx2hq9Yw2a73b9Dx0NsSpGKlCAqRK1rsVAwL1TyUeCKFTJoiykMmsw8LzRorV6iZ2tQ==
-X-Received: by 2002:a05:6870:2054:b0:132:d1fb:ddf0 with SMTP id l20-20020a056870205400b00132d1fbddf0mr39306295oad.283.1666639392419;
-        Mon, 24 Oct 2022 12:23:12 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u4-20020a4ac984000000b004768f725b7csm332279ooq.23.2022.10.24.12.23.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 12:23:11 -0700 (PDT)
-Received: (nullmailer pid 2071537 invoked by uid 1000);
-        Mon, 24 Oct 2022 19:23:13 -0000
-Date:   Mon, 24 Oct 2022 14:23:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Sam Shih <Sam.Shih@mediatek.com>,
-        Steven Liu <steven.liu@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S229671AbiJXVcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:32:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDCA2186DD;
+        Mon, 24 Oct 2022 12:39:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D5E8661575;
+        Mon, 24 Oct 2022 19:37:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB923C433C1;
+        Mon, 24 Oct 2022 19:37:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666640271;
+        bh=GTzGyK5ICOdcW3TRbCJOV0+yXyHnU9QoAMm0ZKS8v1c=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ALITZss1pRbrMLdGnnQCScYQIAox+NcvETAU1maabpqGSPYDt06K5VvFXuzFOtgAT
+         jnUpj/4Kf8pzKh4YkR7sbKknASD6DgQJlDKWscUF7ErS2PwmolbpJ9NUFUdmUwPueA
+         IgF7ZhjNzcHl46dHOByqrTfML814kg079KcqiHjuFhr0eCyyMuHY88XK1LI1SosyT8
+         RmlTXj2E59MkGAh/Mzcf3gbOXYexxeuJM6dfHGmjSxYb//EvbyHfzjWvSzb+x1fBhP
+         b7wI7EEXjwuDvwVeQRYKT5m20PvJ5Knq12gE3A7rfbPy826UEx4gyTJI5LksnTxp+5
+         h0pKCrJ70TL/g==
+From:   Conor Dooley <conor@kernel.org>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] dt-bindings: PCI: mediatek-gen3: add mt7986 clock
- config
-Message-ID: <20221024192313.GA2069519-robh@kernel.org>
-References: <20221023170234.83621-1-linux@fw-web.de>
- <20221023170234.83621-4-linux@fw-web.de>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Padmarao Begari <padmarao.begari@microchip.com>
+Subject: [RFC] riscv: dts: microchip: add OPPs to mpfs
+Date:   Mon, 24 Oct 2022 20:36:48 +0100
+Message-Id: <20221024193647.1089769-1-conor@kernel.org>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221023170234.83621-4-linux@fw-web.de>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 23, 2022 at 07:02:34PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> MT7986 needs 4 clocks for PCIe, define them in binding.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Patch 2 is incomplete without this one. Therefore, patch 2 and 3 should 
-be 1 patch.
+The U-Boot dts for mpfs defines three OPPs which are missing from the
+Linux dts. For ease of synchronisation of the two, add the missing OPPs
+to the Linux dt too.
 
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> index 3662422b38ea..e6020e684c00 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -79,9 +79,11 @@ properties:
->        - const: mac
->  
->    clocks:
-> +    minItems: 4
->      maxItems: 6
->  
->    clock-names:
-> +    minItems: 4
->      maxItems: 6
->  
->    assigned-clocks:
-> @@ -162,6 +164,20 @@ allOf:
->              - const: tl_32k
->              - const: peri_26m
->              - const: peri_mem
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt7986-pcie
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: peri_26m
-> +            - const: top_133m
->  
->  unevaluatedProperties: false
->  
-> -- 
-> 2.34.1
-> 
-> 
+CC: Padmarao Begari <padmarao.begari@microchip.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+
+Hey Padmarao,
+I've been trying to pick off the bits that're different between the Linux
+& U-Boot dts. Do you remember why we added OPPs to the U-Boot dts but
+didn't propagate them elsewhere?
+
+ arch/riscv/boot/dts/microchip/mpfs.dtsi | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+index 0a9bb84af438..9d9ff7174341 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+@@ -23,6 +23,7 @@ cpu0: cpu@0 {
+ 			reg = <0>;
+ 			riscv,isa = "rv64imac";
+ 			clocks = <&clkcfg CLK_CPU>;
++			operating-points-v2 = <&cluster0_opps>;
+ 			status = "disabled";
+ 
+ 			cpu0_intc: interrupt-controller {
+@@ -51,6 +52,7 @@ cpu1: cpu@1 {
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
++			operating-points-v2 = <&cluster0_opps>;
+ 			status = "okay";
+ 
+ 			cpu1_intc: interrupt-controller {
+@@ -79,6 +81,7 @@ cpu2: cpu@2 {
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
++			operating-points-v2 = <&cluster0_opps>;
+ 			status = "okay";
+ 
+ 			cpu2_intc: interrupt-controller {
+@@ -107,6 +110,7 @@ cpu3: cpu@3 {
+ 			clocks = <&clkcfg CLK_CPU>;
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
++			operating-points-v2 = <&cluster0_opps>;
+ 			status = "okay";
+ 
+ 			cpu3_intc: interrupt-controller {
+@@ -136,6 +140,7 @@ cpu4: cpu@4 {
+ 			tlb-split;
+ 			next-level-cache = <&cctrllr>;
+ 			status = "okay";
++			operating-points-v2 = <&cluster0_opps>;
+ 			cpu4_intc: interrupt-controller {
+ 				#interrupt-cells = <1>;
+ 				compatible = "riscv,cpu-intc";
+@@ -166,6 +171,24 @@ core4 {
+ 				};
+ 			};
+ 		};
++
++		cluster0_opps: opp-table {
++			compatible = "operating-points-v2";
++			opp-shared;
++
++			opp-600000000 {
++			    opp-hz = /bits/ 64 <600000000>;
++			    opp-microvolt = <1100000>;
++			};
++			opp-300000000 {
++			    opp-hz = /bits/ 64 <300000000>;
++			    opp-microvolt = <950000>;
++			};
++			opp-150000000 {
++			    opp-hz = /bits/ 64 <150000000>;
++			    opp-microvolt = <750000>;
++			};
++		};
+ 	};
+ 
+ 	refclk: mssrefclk {
+-- 
+2.38.0
+
