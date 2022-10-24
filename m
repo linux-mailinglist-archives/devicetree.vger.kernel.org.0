@@ -2,54 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 256F960B4E9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:07:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93F1860B4E0
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230167AbiJXSHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 14:07:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55142 "EHLO
+        id S231483AbiJXSGQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Oct 2022 14:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232350AbiJXSGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:06:39 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918EB14085
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:46:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B4A02B8149C
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 16:44:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE97CC433D7;
-        Mon, 24 Oct 2022 16:44:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666629870;
-        bh=/nJHTHEGLgd7iVwMhSotTOXcSCGsAb0CCqvD75S0Gnw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=rCbHQAaOqhJNak2+2EB3BiosjV+8qH5/GPFzVT5KikZK3dNjqaOPwcUFj9xTt3Z6J
-         Rch57Wn6rP25FvcFQrCaYd0DybgupDAebrLCdDR/j+ZB7VTeY+39E+yrS4EK3CqR+Y
-         9tHJSkvMR5hIejwHL/X2mxEY/gADmtdxkKHgZLP47D4T5owaiCsklSJ+LnSsp36nz9
-         mqLzjEasVueCCh8ZDgCvQPwKGao7xMjKgzu6xTcx5+1tpvc/6Zj4wTqzCLv7HU+68+
-         pu9mvMras+6REG6EiIp4Dxk0Oz6nmUevZdfBGQHnQVbfBqN5rBrVO09fGQIscIdfDH
-         I6rXQ3GHp/6Xw==
-Message-ID: <1d5cc799-445f-0fae-1e3b-e094583d956f@kernel.org>
-Date:   Mon, 24 Oct 2022 11:44:28 -0500
+        with ESMTP id S231473AbiJXSFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:05:39 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342261C8D5D;
+        Mon, 24 Oct 2022 09:46:14 -0700 (PDT)
+Received: from fraeml704-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Mx18P3FFdz67xWY;
+        Tue, 25 Oct 2022 00:42:45 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ fraeml704-chm.china.huawei.com (10.206.15.53) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2375.31; Mon, 24 Oct 2022 18:44:37 +0200
+Received: from localhost (10.202.226.42) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
+ 2022 17:44:36 +0100
+Date:   Mon, 24 Oct 2022 17:44:35 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+To:     Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v2 3/5] dt-bindings: iio: temperature: ltc2983: refine
+Message-ID: <20221024174435.00003489@huawei.com>
+In-Reply-To: <5cfc6dbb2a324746ece4f6cc0e633ccedfce2c54.camel@gmail.com>
+References: <20221020090257.1717053-1-demonsingur@gmail.com>
+        <20221020090257.1717053-4-demonsingur@gmail.com>
+        <20221023135124.1fdeab5e@jic23-huawei>
+        <5cfc6dbb2a324746ece4f6cc0e633ccedfce2c54.camel@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCHv2] arm: dts: socfpga: align mmc node names with dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20221024152110.197041-1-dinguyen@kernel.org>
- <e1d6f611-3d43-c9a5-fa03-a3376f4916ba@linaro.org>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <e1d6f611-3d43-c9a5-fa03-a3376f4916ba@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,84 +62,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 23 Oct 2022 15:46:13 +0200
+Nuno Sá <noname.nuno@gmail.com> wrote:
 
-
-On 10/24/22 11:17, Krzysztof Kozlowski wrote:
-> On 24/10/2022 11:21, Dinh Nguyen wrote:
->> dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
->>
->> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
->> ---
->> v2: put back mmc0 for "linux,default-trigger"
->> ---
->>   arch/arm/boot/dts/socfpga.dtsi                      | 2 +-
->>   arch/arm/boot/dts/socfpga_arria10.dtsi              | 2 +-
->>   arch/arm/boot/dts/socfpga_arria5.dtsi               | 2 +-
->>   arch/arm/boot/dts/socfpga_arria5_socdk.dts          | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5.dtsi             | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts  | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5_mcv.dtsi         | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5_socdk.dts        | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5_sockit.dts       | 2 +-
->>   arch/arm/boot/dts/socfpga_cyclone5_sodia.dts        | 2 +-
->>   arch/arm/boot/dts/socfpga_vt.dts                    | 2 +-
->>   12 files changed, 12 insertions(+), 12 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
->> index 2459f3cd7dd9..57a5d6c924b1 100644
->> --- a/arch/arm/boot/dts/socfpga.dtsi
->> +++ b/arch/arm/boot/dts/socfpga.dtsi
->> @@ -755,7 +755,7 @@ l3regs@0xff800000 {
->>   			reg = <0xff800000 0x1000>;
->>   		};
->>   
->> -		mmc: dwmmc0@ff704000 {
->> +		mmc: mmc@ff704000 {
->>   			compatible = "altr,socfpga-dw-mshc";
->>   			reg = <0xff704000 0x1000>;
->>   			interrupts = <0 139 4>;
->> diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
->> index 4370e3cbbb4b..a06211fcb5c3 100644
->> --- a/arch/arm/boot/dts/socfpga_arria10.dtsi
->> +++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
->> @@ -656,7 +656,7 @@ L2: cache-controller@fffff000 {
->>   			arm,shared-override;
->>   		};
->>   
->> -		mmc: dwmmc0@ff808000 {
->> +		mmc: mmc@ff808000 {
->>   			#address-cells = <1>;
->>   			#size-cells = <0>;
->>   			compatible = "altr,socfpga-dw-mshc";
->> diff --git a/arch/arm/boot/dts/socfpga_arria5.dtsi b/arch/arm/boot/dts/socfpga_arria5.dtsi
->> index 22dbf07afcff..9ce4b4979ecb 100644
->> --- a/arch/arm/boot/dts/socfpga_arria5.dtsi
->> +++ b/arch/arm/boot/dts/socfpga_arria5.dtsi
->> @@ -18,7 +18,7 @@ osc1 {
->>   			};
->>   		};
->>   
->> -		mmc0: dwmmc0@ff704000 {
->> +		mmc: mmc@ff704000 {
->>   			broken-cd;
->>   			bus-width = <4>;
->>   			cap-mmc-highspeed;
->> diff --git a/arch/arm/boot/dts/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
->> index 7f5458d8fccc..40f12232c150 100644
->> --- a/arch/arm/boot/dts/socfpga_arria5_socdk.dts
->> +++ b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
->> @@ -107,7 +107,7 @@ rtc@68 {
->>   	};
->>   };
->>   
->> -&mmc0 {
->> +&mmc {
+> On Sun, 2022-10-23 at 13:51 +0100, Jonathan Cameron wrote:
+> > On Thu, 20 Oct 2022 12:02:55 +0300
+> > Cosmin Tanislav <demonsingur@gmail.com> wrote:
+> >   
+> > > From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> > > 
+> > >  * make sure addresses are represented as hex
+> > >  * add note about wrong unit value for adi,mux-delay-config-us
+> > >  * simplify descriptions
+> > >  * add descriptions for the items of custom sensor tables
+> > >  * add default property values where applicable
+> > >  * use conditionals to extend minimum reg value
+> > >    for single ended sensors
+> > >  * remove " around phandle schema $ref
+> > >  * remove label from example and use generic temperature
+> > >    sensor name
+> > > 
+> > > Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>  
+> > 
+> > Hi Cosmin,
+> > 
+> > Just one question inline from me (other than the build bot report
+> > that I'll
+> > assume you'll fix for v3).
+> > 
+> > Otherwise looks like a nice cleanup to me.
+> > 
+> > I wonder a bit on whether it is worth splitting up, but that would be
+> > rather messy to actually do so will leave that to the dt experts to
+> > comment
+> > on.
+> > 
+> > Jonathan
+> > 
+> >   
+> > > ---
+> > >  .../bindings/iio/temperature/adi,ltc2983.yaml | 309 +++++++++++---
+> > > ----
+> > >  1 file changed, 182 insertions(+), 127 deletions(-)
+> > > 
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
+> > > l
+> > > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
+> > > l
+> > > index 722781aa4697..3e97ec841fd6 100644
+> > > ---
+> > > a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
+> > > l
+> > > +++
+> > > b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam
+> > > l
+> > > @@ -26,25 +26,25 @@ properties:
+> > >  
+> > >    adi,mux-delay-config-us:
+> > >      description:
+> > > -      The LTC2983 performs 2 or 3 internal conversion cycles per
+> > > temperature
+> > > -      result. Each conversion cycle is performed with different
+> > > excitation and
+> > > -      input multiplexer configurations. Prior to each conversion,
+> > > these
+> > > -      excitation circuits and input switch configurations are
+> > > changed and an
+> > > -      internal 1ms delay ensures settling prior to the conversion
+> > > cycle in most
+> > > -      cases. An extra delay can be configured using this property.
+> > > The value is
+> > > -      rounded to nearest 100us.
+> > > +      Extra delay prior to each conversion, in addition to the
+> > > internal 1ms
+> > > +      delay, for the multiplexer to switch input configurations
+> > > and
+> > > +      excitation values.
+> > > +
+> > > +      This property is supposed to be in microseconds, but to
+> > > maintain
+> > > +      compatibility, this value will be multiplied by 100 before
+> > > usage.  
+> > 
+> > This new text has me a little confused.  Previously we talked
+> > rounding, now it
+> > is saying the value is multiplied (which would make it definitely not
+> > in micro
+> > secs!)..  So are we papering over a driver bug here?
+> > 
+> >   
 > 
-> This does not look related and was not mentioned in commit msg,
+> Hi Jonathan,
+> 
+> Let me try to make this one clear as it was my mess...
+> 
+> The multiplication is done internally by the device. I messed up in
+> this one as this value is clearly not in us but it is the raw value.
+> So, tecnically, there's nothing wrong in the driver as it just reads
+> this property and directly writes it. But of course this is misleading
+> and wrong from the bindings point of view.
+> 
+> That said, me and Cosmin did spoke about just having this property
+> 'deprecated' and add a new one (the driver would need to be changed
+> accordingly) - no idea also about a new name for it :)
+> 
+> But for this round, Cosmin decided to have this stated on the
+> description and see what you and dt maintainers had to say about it and
+> if making it 'deprecated' is the way to go (or something else).
+
+Deprecating and replacing with something right definitely seems like
+correct option to me.  Naming always fun though when we already used the
+most obvious name ;)
+
+Thanks for the explanation.
+
+Jonathan
+
+> 
+> - Nuno Sá
 > 
 
-Because I've changed the mmc0 node to 'mmc', this is needed, otherwise 
-the build will break.
-
-Dinh
