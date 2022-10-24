@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63720609AB8
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 08:47:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7758A609ABF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 08:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbiJXGrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 02:47:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37114 "EHLO
+        id S230030AbiJXGvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 02:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiJXGrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 02:47:15 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908175E307
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 23:46:55 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id n18so649667qvt.11
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 23:46:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lxnav.com; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DKf+A6HhtX9mc2hAkoHaxtvJcmxghygi4kxKwGPcH54=;
-        b=iwHnzLCm7oFOSTBLS3J2/nP0hfKORtPMV5RPaK1XwwLcMM+/ag2fq0iOotOa4f6I6j
-         SwE1PIETbxH83QXsJqYrNMqPSzAppnKgEii6EeWcV19D/hk/dEHFcwaPRqcPMsHUKZbN
-         GXxBlBuQN/vjxvqG91b60BO2rgfh+7x4M7emg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DKf+A6HhtX9mc2hAkoHaxtvJcmxghygi4kxKwGPcH54=;
-        b=cS16b/TMvJUGdJT9lSL9uhBxLfMdfT5GjgDcfxOgkWXQA++BDYAfPvsSM/Slyu9gBT
-         MOl0T0ZZtbgTxg/DAA9z4Vm0ZYNHUMYvahAD+ogaSMlwgge8h1loRe0gm3nJHDHGCO47
-         fHvRlhcX/nhp0/xdz0xDNUNRMwKjYjr0ZMO428gGaWccCQwv26iAPfD5wq6WvlQTpi5h
-         6cAkjr0vas0zV79XQMKLySfVClctnBJnY9S6yJidTVV4nx1wLfpEh+rY7bhotVqIIK9d
-         1BVjds2U68k0Uqa429ZoWzCa5H7Aowr6QbH4ePp7Inlnv/lCNWhQ724VEDPLk+156Eks
-         qvsQ==
-X-Gm-Message-State: ACrzQf2nYeLDTeimWRqPg0jx2XMKwMlG7REcVQLZCywRnd3ZIX1ZO3p/
-        F4okYim8+yDIqGni80kvUux13IByVEwJLVpavfLvGA==
-X-Google-Smtp-Source: AMsMyM6FjMmilmr/1MGP2WwAanNef8DNvM6W2Bl6M6zASp15U5hmP3GXP7D3gEMuTBUdFJtU75sPsmKzeFZtkXvK6MM=
-X-Received: by 2002:a05:6214:e4f:b0:4bb:769f:19a9 with SMTP id
- o15-20020a0562140e4f00b004bb769f19a9mr1781205qvc.2.1666594014701; Sun, 23 Oct
- 2022 23:46:54 -0700 (PDT)
+        with ESMTP id S230012AbiJXGvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 02:51:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E37748CA3;
+        Sun, 23 Oct 2022 23:51:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 20E4FB80ED4;
+        Mon, 24 Oct 2022 06:51:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07951C433D7;
+        Mon, 24 Oct 2022 06:51:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666594269;
+        bh=VfgOEi8uV7y5OEJiq7APLWjtfyJvuKRFZf3WePzO+t8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ij+xhdrztODC7PA0QWXx4+cpgBqXxtMDlZ0TXynOPKub/yrmZrAUEMhmcGgKItgj5
+         Tor9CS8FeDOSRQET4jdC9Ucxd1wbiGeTKBZSlDKiRums3EavWX7oz0jbZr2X7kqiQS
+         /wGQvWp1yuEKejLh4ikvEIziHEvg7UyvN7BMRDLymFqoJ26DJn0/QVqNInFxoFW3qI
+         bdQ0zrepkqHwSNgucybQ98CHrTNlGxn3sZJdO8BA9A0fNuy0ikquSnaTl+JZK3dOjs
+         EtHZSOzY+rEH04ygE+U68GFy43qCbTHsG1wROYnM3ra3pzilvw6DRA6UnChfTCBwHz
+         AX2PJYK5YEnjw==
+Date:   Mon, 24 Oct 2022 08:51:02 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Marcin Wojtas <mw@semihalf.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hch@lst.de, jaz@semihalf.com
+Subject: Re: [PATCH] ARM: dts: armada-38x: Mark devices as dma-coherent
+Message-ID: <20221024085102.15712ce9@thinkpad>
+In-Reply-To: <CAPv3WKdcQGqofEgV4w_iiQ7FFa0ZF=du8gK9eAD==10HhwEnUA@mail.gmail.com>
+References: <20221022234024.87475-1-mw@semihalf.com>
+        <Y1VX4RtzKQZHe/oO@lunn.ch>
+        <Y1Vp4BdC50o9roKe@shell.armlinux.org.uk>
+        <CAPv3WKdcQGqofEgV4w_iiQ7FFa0ZF=du8gK9eAD==10HhwEnUA@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20221021135827.1444793-1-mitja@lxnav.com> <20221021135827.1444793-3-mitja@lxnav.com>
- <Y1K7hWKl0siEtaAl@gmail.com> <20221023121002.742bc48f@jic23-huawei>
-In-Reply-To: <20221023121002.742bc48f@jic23-huawei>
-From:   =?UTF-8?Q?Mitja_=C5=A0pes?= <mitja@lxnav.com>
-Date:   Mon, 24 Oct 2022 08:46:27 +0200
-Message-ID: <CACbQKWf2zfbQ5DvMZs50VVfQbmcGp63b9yg6aZ29NbiQ01QmFg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] iio: pressure: ms5611: changed hardcoded SPI speed
- to value limited
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 23, 2022 at 1:09 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> Please give a fixes tag for this one as well.
-> The driver should never have been doing this.
+On Sun, 23 Oct 2022 23:30:34 +0200
+Marcin Wojtas <mw@semihalf.com> wrote:
 
-Fixes: c0644160a8b5 ("iio: pressure: add support for MS5611 pressure
-and temperature sensor")
+> niedz., 23 pa=C5=BA 2022 o 18:21 Russell King (Oracle)
+> <linux@armlinux.org.uk> napisa=C5=82(a):
+> >
+> > On Sun, Oct 23, 2022 at 05:04:01PM +0200, Andrew Lunn wrote: =20
+> > > On Sun, Oct 23, 2022 at 01:40:24AM +0200, Marcin Wojtas wrote: =20
+> > > > Armada 38x platforms marks all devices as coherent via
+> > > > mvebu_hwcc_notifier(), whereas the standard way to determine
+> > > > this is by of_dma_is_coherent(). Reflect the hardware
+> > > > capabilities by adding 'dma-coherent' properties to the device tree=
+. =20
+> > >
+> > > Hi Marcin
+> > >
+> > > Does this need to go to -rc for 6.0? The DMA issues being reported?
+> > > If so, please add a Fixed: tag. =20
+> >
+> > Are we absolutely sure this makes sense?
+> >
+> > Looking at atch/arm/mach-mvebu/coherency.c, there are dependencies
+> > on stuff such as whether the kernel is in SMP mode or not (because
+> > the page tables need to be appropriately marked as shared for
+> > coherency with IO to work). We only enable the shared bit if we're
+> > in SMP mode because (a) its difficult to do at runtime due to TLB
+> > conflicts (requires switching the MMU off, rewriting the page tables
+> > and switching the MMU back on), and (b) setting the shared bit for
+> > CPUs that don't need it _can_ result in the CPUs basically bypassing
+> > their caches and thus kill system performance.
+> >
+> > So, if we have Armada 38x platforms that are operated in uniprocessor
+> > mode, this patch can cause havoc on such a setup.
+> >
+> > I would suggest utmost caution with this approach.
+> > =20
+>=20
+> Sure. In such a case the description of 380 variant (single core)
+> should remain untouched.
+>=20
+> We need to decide what to do with dual-CPU, i.e. Armada 385/388. How abou=
+t:
+> - Don't change current behavior, i.e. perform a necessary kernel
+> configuration in "arm,pl310-cache" driver,
+> arch/arm/mach-mvebu/coherency.c + &coherencyfab:node in DT
+> - Satisfy of_dma_is_coherent() by adding `dma-coherent;` in
+> armada-385.dtsi only (IMO this would describe HW properly)
+> ?
 
-Kind regards,
-Mitja
+It will describe HW properly, but someone running older kernel compiled
+with no SMP support will see a performance drop. I wonder how many
+people do that.
+
+Marek
