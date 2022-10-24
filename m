@@ -2,166 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFFE3609D76
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 11:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E5E7609D89
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 11:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbiJXJGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 05:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49868 "EHLO
+        id S230321AbiJXJL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 05:11:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbiJXJGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 05:06:06 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CEC550523;
-        Mon, 24 Oct 2022 02:05:20 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id a15so7220361ljb.7;
-        Mon, 24 Oct 2022 02:05:20 -0700 (PDT)
+        with ESMTP id S230456AbiJXJL0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 05:11:26 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0B64DB29
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 02:11:23 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id 126so10346759ybw.3
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 02:11:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sc2xTyv7WhK0w0KiqvUbbhcFT9MGY/u9f9xFlxY5zGI=;
-        b=gu9x4FYoCa++/g5ZhNvlqNJP6LDJ+4zt+iY1gwQWDC/SyQBXxakmjlvhdAK2AE0U6H
-         JCXWzc0xxfuKnQ11U4niPu7CRPaW5Fye0gNIcVc488gGegb6RUOVz3VmexFQTqfktLM7
-         GwFJzbCZZrNFW0v3rsrG4rc7GwBiRJocr0I20X54VZ0WlnG9GbT8nOnT8nJ2yRZROYOr
-         caKWgAlK5DSAuEmGqYy1GBqynKnKS44DCg2T7g5isanAG5ucPMPcuJOl/Ose0A8qSTbo
-         AGD2qcizHIH7buHId7DPz5Pcz1s1ahq6Ihr/nh7TiXndn++Hl0UZFLtaYsKCJbAZ9y4K
-         gGQQ==
+        d=semihalf.com; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zXMhWjca4naE0pCAheDzGm0IxJuDch6/SpXa6XWdtWM=;
+        b=RiUATNYBaLUD42t0rnY0VOqBk1UjGFpIlfK4WE4ieztDIti82XuL9pvCuLtWIAbQfR
+         oaTKMxuzwdaotitn18013BoSESOiAmZKXqrIoHBFOV4AtthYZsdAG/HkKolpf7e8kvaZ
+         COkQCtZAJlql2llpgZgf9xUm/IaBr4wsfjEvKm2pT8SuZS+2FCcdEbvDZHHHSw5vrONa
+         pU4j0US4hDyq0TfZhTWlzbaRgawbDGkfV0Ud+IuYknjUgv0QMpbOcPOBP8faLAeOkG0D
+         gEciwNMDr+Ge7SURZn4vhq0wPR4ZoWpB4Qrx/n3/HSgwaHbI2h6e7gMR5qoF6wPb2Jwt
+         nqqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sc2xTyv7WhK0w0KiqvUbbhcFT9MGY/u9f9xFlxY5zGI=;
-        b=x+P9xZfYuQfFIz5LATVLN2+GQZa3Ppj1XupLYYh/6Ca2vSG6NKZyoMmTUXCxxmXk7K
-         KPw26hG4MMUNB/F6of4uoK7yYWN97Xedp9LuRyLiXr2dc432lN5KvMgpgd0MEVxLVi4G
-         fm8zODJCYz6KQgLIULuy3cJIDxfmzIvjduhM36cGMiLEeS5grxId7YJpBTzFyhKhHWFI
-         gNe2qaiw1vZR0kp5msjpcANc6PTCRmDvp5Daa/ja72Nni9Ov4+Y3N9xZhXRAI5eSFG+F
-         4kwkwQYwEyTMxHABtlUz6h/D5SUCYnUegPCepSuuZNLOaDjVnXuUUEE+DCG0EGOqffJM
-         r8zA==
-X-Gm-Message-State: ACrzQf0PwaCDfbWYwLwU+trpxv6vcgDb0zEGGGFSwgLzECl4+JEFM6EG
-        jiPwOviLcNVkFGUd8bhidww=
-X-Google-Smtp-Source: AMsMyM4Frb2INZxL9iGQKqjwpa+2YRNEk2CXt2SGi+vhM5chBR9b9eHFzWNe/ILnfoqLUmyGcUGASQ==
-X-Received: by 2002:a05:651c:b2b:b0:26f:cf40:a560 with SMTP id b43-20020a05651c0b2b00b0026fcf40a560mr12324712ljr.516.1666602317769;
-        Mon, 24 Oct 2022 02:05:17 -0700 (PDT)
-Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
-        by smtp.gmail.com with ESMTPSA id a17-20020a05651c031100b0027628240ff7sm1723147ljp.135.2022.10.24.02.05.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 02:05:16 -0700 (PDT)
-Date:   Mon, 24 Oct 2022 11:05:42 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Mitja Spes <mitja@lxnav.com>, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Tomasz Duszynski <tduszyns@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: pressure: ms5611: changed hardcoded SPI
- speed to value limited
-Message-ID: <Y1ZVZpOgq8XkeCF1@gmail.com>
-References: <20221021135827.1444793-1-mitja@lxnav.com>
- <20221021135827.1444793-3-mitja@lxnav.com>
- <Y1K7hWKl0siEtaAl@gmail.com>
- <20221023121222.5fe4a743@jic23-huawei>
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zXMhWjca4naE0pCAheDzGm0IxJuDch6/SpXa6XWdtWM=;
+        b=IHSW1n8KUDZ4AOdRdKZvjg7w1yd6YVUvJdUDWHg8ZfASifWN+5VpFgWIN1otsvNe3T
+         OCujyv4buHf+Ks4wZjI+mFgv7fhBgRMblh4imLDq4k/WFp+8xK1u/zAlsD1Fc0XB7HUE
+         zkyYnbOL6oPUvDrsmb8veP9/ro+JEmuzQ4oFNk6M/SmmUYUJIy5eizaAMOGn655FG2Vt
+         28YjypeH9bFhnCxK2xb8sANO0vCq2IMJ04BaktMZZz+MrO5bs4e3IBr8mpTETr2tHVex
+         AZgApnMTH29zZKzg/OiHCQ52bidX+NbmkOShQjqJHTT71oyBKtETtkiv1J6spwQSotJI
+         z9Cg==
+X-Gm-Message-State: ACrzQf0tZm949dUwF0g205I0NX8NlhYISDXrxFFbGpPCVqtsuVZBJKjp
+        sK22FkDWNXzPGDBjkSi67Kd/AD1NxrCxwuSrB+iRpg==
+X-Google-Smtp-Source: AMsMyM4027Be+x4O6dyZmj4bQkztQncmx9H78GrU5MELpebcq1LjfLXe0Zw0Kqh0fmf7ZjRdNfMl/GHr8ry2368PV1o=
+X-Received: by 2002:a25:9a88:0:b0:6b9:c29a:2f4b with SMTP id
+ s8-20020a259a88000000b006b9c29a2f4bmr28077461ybo.236.1666602683018; Mon, 24
+ Oct 2022 02:11:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uqXQvfub/FN0MVU1"
-Content-Disposition: inline
-In-Reply-To: <20221023121222.5fe4a743@jic23-huawei>
+References: <20221022234024.87475-1-mw@semihalf.com> <Y1VX4RtzKQZHe/oO@lunn.ch>
+ <Y1Vp4BdC50o9roKe@shell.armlinux.org.uk> <CAPv3WKdcQGqofEgV4w_iiQ7FFa0ZF=du8gK9eAD==10HhwEnUA@mail.gmail.com>
+ <20221024085102.15712ce9@thinkpad> <Y1ZEBqrxZ1PSLCU6@shell.armlinux.org.uk>
+In-Reply-To: <Y1ZEBqrxZ1PSLCU6@shell.armlinux.org.uk>
+From:   Marcin Wojtas <mw@semihalf.com>
+Date:   Mon, 24 Oct 2022 11:11:12 +0200
+Message-ID: <CAPv3WKeL30nhrFdVTgAhpYUk7v2zR4F9E3NrBrsGvYtFU-mzRA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: armada-38x: Mark devices as dma-coherent
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hch@lst.de, jaz@semihalf.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+pon., 24 pa=C5=BA 2022 o 09:51 Russell King (Oracle)
+<linux@armlinux.org.uk> napisa=C5=82(a):
+>
+> On Mon, Oct 24, 2022 at 08:51:02AM +0200, Marek Beh=C3=BAn wrote:
+> > > Sure. In such a case the description of 380 variant (single core)
+> > > should remain untouched.
+> > >
+> > > We need to decide what to do with dual-CPU, i.e. Armada 385/388. How =
+about:
+> > > - Don't change current behavior, i.e. perform a necessary kernel
+> > > configuration in "arm,pl310-cache" driver,
+> > > arch/arm/mach-mvebu/coherency.c + &coherencyfab:node in DT
+> > > - Satisfy of_dma_is_coherent() by adding `dma-coherent;` in
+> > > armada-385.dtsi only (IMO this would describe HW properly)
+> > > ?
+> >
+> > It will describe HW properly, but someone running older kernel compiled
+> > with no SMP support will see a performance drop. I wonder how many
+> > people do that.
+>
+> If the kernel is built without SMP support, the page table entries will
+> not have the shared bit set, and the system will _not_ be DMA-coherent.
+> Having DT mark devices as "dma-coherent" in this case will lead to data
+> corruption, because the DMA API will believe them to be DMA-coherent
+> when the page tables are not setup for that to work.
+>
 
---uqXQvfub/FN0MVU1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jonathan,
-
-On Sun, Oct 23, 2022 at 12:12:22PM +0100, Jonathan Cameron wrote:
-> On Fri, 21 Oct 2022 17:32:21 +0200
-> Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
->=20
-> > Hi Mitja,
-> >=20
-> > On Fri, Oct 21, 2022 at 03:58:21PM +0200, Mitja Spes wrote:
-> > > Don't hardcode the ms5611 SPI speed, limit it instead.
-> > >=20
-> > > Signed-off-by: Mitja Spes <mitja@lxnav.com>
-> > > ---
-> > >  drivers/iio/pressure/ms5611_spi.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/drivers/iio/pressure/ms5611_spi.c b/drivers/iio/pressure=
-/ms5611_spi.c
-> > > index 432e912096f4..a0a7205c9c3a 100644
-> > > --- a/drivers/iio/pressure/ms5611_spi.c
-> > > +++ b/drivers/iio/pressure/ms5611_spi.c
-> > > @@ -91,7 +91,7 @@ static int ms5611_spi_probe(struct spi_device *spi)
-> > >  	spi_set_drvdata(spi, indio_dev);
-> > > =20
-> > >  	spi->mode =3D SPI_MODE_0;
-> > > -	spi->max_speed_hz =3D 20000000;
-> > > +	spi->max_speed_hz =3D min(spi->max_speed_hz, 20000000U); =20
-> >=20
-> > max_speed_hz is a limit, and the max frequency the ms5611 support is
-> > 20MHz.
-> Hi Marcus,
->=20
-> I'm not following what you are commenting on.. Perhaps give more
-> detail?
-
-Sorry for being unclear.
-However, I must have thought wrong, this is good as it takes the speedlimit=
- set
-in e.g. devicetree into account.
-
-
->=20
-> Thanks,
->=20
-> Jonathan
->=20
-> >=20
-> > Best regards,
-> > Marcus Folkesson
->=20
+Thanks, for the explanation. Since we're heavily dependent on what
+happens in the kernel we boot, it will be easier to just drop this
+patch and keep using the DT as-is.
 
 Best regards,
-Marcus Folkesson
-
---uqXQvfub/FN0MVU1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmNWVWEACgkQiIBOb1ld
-UjIUMhAAv8D5WWjvG14j7k8xAuDLVsAylOoEeaDOVDmShMKPzUU4TzNVk6beca+/
-/TOo1U9fowbbTMIqxbYXr8mMiyBPaYoLP0WLn+bIfRNhhLyH9bry3X+FJshedLzM
-lWAEtyAarjGhnnajUJZzu29EFe0q7pWE36Ai8e4wm24gnuQTROQgBZY9NaDOR2S2
-IiL2VeiP/0fZn+8M3aMXHCeINUpQ74wA3bGwbHl2G6pMFbh1oEh39+URQVAXvUTw
-3Kj6Brp+d4o+Mhy7pDnJCvRmFmARe2KMqrgKDMWb5hm6Q3APO3b5X5cOJFA5Ric3
-Ldwfo/ubmJECTPcX+E1hIqruBkb4OZ0WGDS8FH6uIdxuhrpVkB0zIyiVk6XeCPKW
-7fDklzTyjvh/KXf1h8EQC0eLex+xiBhKO8DsaL7XdU68P/imtwIGGQlzRxFThu7B
-UHyfk93l6Ut2bQ+QuzgSQD+wBU3KG6TYIEGU9Z4NtSTu0f3OTR+mgZg3oZvvpOh4
-1j5IVMMTP6lBOZ2N9mWX6gveaOG4WNVL2c9G30xGBdVzJgYDsfwjo//Yu8rPFdga
-ppGxr7HpMy27e4h4uqI38rZzvqhHT+xPvCHZ0Y7dr6uz5zFd3v8inbMH0b4jmlYD
-y3WJGGOuWXooVlfn1g36VeK94uRJ9Vgbs+5yamYYItIZsxR7IXk=
-=SSFn
------END PGP SIGNATURE-----
-
---uqXQvfub/FN0MVU1--
+Marcin
