@@ -2,142 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9542C60B474
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC28660B4BC
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232688AbiJXRpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 13:45:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57188 "EHLO
+        id S231687AbiJXSCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 14:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232484AbiJXRpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:45:24 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D3E1E0996;
-        Mon, 24 Oct 2022 09:21:05 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id g10so11328162oif.10;
-        Mon, 24 Oct 2022 09:21:05 -0700 (PDT)
+        with ESMTP id S232419AbiJXSCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:02:05 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC7C074BAB;
+        Mon, 24 Oct 2022 09:42:12 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id b12so32669827edd.6;
+        Mon, 24 Oct 2022 09:42:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=E9Ctdqg5j4nqQ/U0t6zhlv3WZWEIk/6dcA0neCwvrWg=;
+        b=h0sOJYVi7ZklO1Whdk3U6NQAWCZQb4I9VsbUh+Zmr4gWgRqeivJXMwzIp4t7SEhcnE
+         yWqY/COvaUYulI4ZmwwrqXV5TuTybbIi0mUGZ0CfTmVWhPw4fM5UXIjI5p+5+E25rU16
+         zCPI6SrzyHAkDcXCorMD/SGIiaPBdttecWlsgJLXF0L4HOM6JNrm21QyqXV7KRR3SRdw
+         jcdp7MN80Yz2Y85WKxe/LTKhp768CjiUMbKZhRfdflrJAbDfNu54umlt1IsM/gD5DwDu
+         aiK9qdRJnkTooH4twDcrX2+r0vQAlTbodUKj9C232/WPnMC1MIPCClOyvFXidxk8Lplq
+         i8aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xmB3s2OqT66rk7MgqqeQlYz/bdEkGy0qgYIJeA+CLy0=;
-        b=FnOFaJ798AxvaRulplcwTZJhJ0Buvqy54tQAH+JiCsqQCYisMfdawARe6FxTB/sXPz
-         pfM28WLF9zUc6Atl08zL9WaWAYNpvCu/hxRowDXVWqJbRaQzoSumXhqhUkHYw9qDje5f
-         D4e0RWdBqYCrzjaxw25HfH/NKBxAlqXX5szyJAq5tk+Vnnamr+MplNDrPeqr0x8zZxp5
-         FWT65b5ShPpOSFbcvubbVIWh/pRYGcdMxWVE3/RgrRxtXbgjZEO6Uu9l0BT5eBsup8VS
-         g4PNhnqPE8/yq/tmJrCZNew5m6AiETdeMuyoxTqMMWozqUwLWlgDFIBh79eYJ1C3EgAk
-         9t8w==
-X-Gm-Message-State: ACrzQf0hPbDOEYY86bPBwWeAJysCdzxScObtmk+8cMlI/0wZ7YMqVbls
-        IVYobjabJe467ZuzweFz8Vwr8l3SWw==
-X-Google-Smtp-Source: AMsMyM5GgVf+Fq2zW0aTr2tqUvK6jEfRogxjv/ZwsWgOlV1NxE7O2hFWOphibJoEQeTRkOA57/pCWg==
-X-Received: by 2002:aca:3083:0:b0:355:afb:cdb5 with SMTP id w125-20020aca3083000000b003550afbcdb5mr28020261oiw.110.1666628285473;
-        Mon, 24 Oct 2022 09:18:05 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c23-20020a056808105700b0035486165f4csm3334oih.37.2022.10.24.09.18.04
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=E9Ctdqg5j4nqQ/U0t6zhlv3WZWEIk/6dcA0neCwvrWg=;
+        b=rtcOpLKOkL73OiphfithSb/+0Bd5K4BZ6vMI5N8cfusMfNm+HFmSjfcEUKtZIlrblr
+         r4Tr4qYUBxX5cVeVSXQgHZBjc5aDNNRvBZpsejcNq52Ff0yMEqE7q7h9qfEJe9AZZdA/
+         oXfHeeb0/QBWTBmaTQHITn2svNpy39fXe63fZJePAHJjH9BHQRpP7iRT+uU4yc/7jnZ9
+         dIxGp+cl8eonR+JjuxxlZm5hjSkl3UuCho5wjsrRDev0r8f7UIBP0JaBQLYJAy9tZQfC
+         qK88pSS88Y2SEJ++JaE2j56Dmspi3VjtEql3N1/pmDTh5ZVisQWTT2+2TVEBZd3xXJ8a
+         BqnQ==
+X-Gm-Message-State: ACrzQf2pZm9+2ZBDPM+yxjnXdNnMzcMt4A7clGOSKghOsyW0yaQwPsky
+        n59EqcVZKZJ2uEjsjJU8i0OE7B0VvreXTw==
+X-Google-Smtp-Source: AMsMyM6OlCumPa4pUVoUHabvsgkVNryvyiZMRF2DnEeuewy0AkPgzR6nh/D1IoAursQrpc2m09cjgQ==
+X-Received: by 2002:a17:907:94cf:b0:78d:38cd:afcf with SMTP id dn15-20020a17090794cf00b0078d38cdafcfmr28956678ejc.229.1666628819165;
+        Mon, 24 Oct 2022 09:26:59 -0700 (PDT)
+Received: from 1974459598.wifi.kn.vutbr.cz (nat-kn.net.vutbr.cz. [147.229.117.40])
+        by smtp.gmail.com with ESMTPSA id b14-20020a1709064d4e00b0078dd4c89781sm108186ejv.35.2022.10.24.09.26.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 09:18:04 -0700 (PDT)
-Received: (nullmailer pid 1869834 invoked by uid 1000);
-        Mon, 24 Oct 2022 16:18:06 -0000
-Date:   Mon, 24 Oct 2022 11:18:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
-Message-ID: <20221024161806.GA1855651-robh@kernel.org>
-References: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
- <20221013094838.1529153-2-Naresh.Solanki@9elements.com>
+        Mon, 24 Oct 2022 09:26:58 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20Za=C5=A5ovi=C4=8D?= <m.zatovic1@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andersson@kernel.org, jeffrey.l.hugo@gmail.com,
+        Michael.Srba@seznam.cz, gregkh@linuxfoundation.org,
+        elder@linaro.org, hemantk@codeaurora.org, mani@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+Cc:     =?UTF-8?q?Martin=20Za=C5=A5ovi=C4=8D?= <m.zatovic1@gmail.com>
+Subject: [RFCv3 PATCH 0/2] Wiegand bus driver
+Date:   Mon, 24 Oct 2022 18:26:48 +0200
+Message-Id: <20221024162650.36587-1-m.zatovic1@gmail.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221013094838.1529153-2-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 13, 2022 at 11:48:36AM +0200, Naresh Solanki wrote:
-> Add common fan properties bindings to a schema.
-> 
-> Bindings for fan controllers can reference the common schema for the
-> fan
-> 
-> child nodes:
-> 
->   patternProperties:
->     "^fan@[0-2]":
->       type: object
->       $ref: fan-common.yaml#
-> 
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../devicetree/bindings/hwmon/fan-common.yaml | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> new file mode 100644
-> index 000000000000..224f5013c93f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common fan properties
-> +
-> +maintainers:
-> +  - Naresh Solanki <naresh.solanki@9elements.com>
-> +
-> +properties:
-> +  max-rpm:
-> +    description:
-> +      Max RPM supported by fan.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pulses-per-revolution:
-> +    description:
-> +      The number of pulse from fan sensor per revolution.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  default-rpm:
-> +    description:
-> +      Target RPM the fan should be configured during driver probe.
+Thank you for all your suggestions and points.
 
-So if we unload and reload the driver module, it should go back to the 
-default? 
+I have realized that I have approached implementing the Wiegand bus
+driver wrong. I have used the words 'GPIO controller', which made it
+seem like there was a GPIO controller for which another driver would
+be needed. What I meant to implement is a simple bit-banged Wiegand
+bus driver.
 
-I think it is really, 'target RPM if not already configured' which could 
-be keep the setting from a register (e.g. what the bootloader set) or 
-perhaps you already have temperature information to use...
+There is no GPIO controller, instead the two GPIO lines are
+controlled by the bus. They are utilized to send messages following
+the Wiegand protocol and the bus driver should implement such
+bit-banging. Now only a single devicetree entry is needed instead
+of two as in the previous version - thanks to Krzysztof for
+pointing it out.
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+The driver was based on similar drivers in the drivers/bus directory.
+There is also an abstract API in include/linux/wiegand.h that
+contains functions to write to the bus or set a particular format.
+This API is meant to be used in drivers of devices communicating
+using Wiegand protocol.
 
-> +  pwm-frequency:
-> +    description:
-> +      PWM frequency for fan in Hertz(Hz).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  pwm-polarity-inverse:
-> +    description:
-> +      Inverse PWM polarity for fan.
-> +    type: boolean
+The user can write on the bus using a device file or change
+the format and message payload length via sysfs files.
 
-As I said before, the PWM binding handles these 2 settings. Use it. Yes, 
-it's a bit of an overkill when the child is the consumer of the parent. 
-Until some 'clever' h/w engineer decides to use one of the PWMs for 
-something else like a backlight.
+The driver was tested on NXP Verdin iMX8MP Plus.
 
-Rob
+With regards,
+Martin Zaťovič
+
+v1->v2:
+Split the driver into a bus driver a gpio driver and an abstract API.
+Fix issues pointed out in RFC
+
+v2->v3:
+Discard the bus driver. Implement new bus driver based on the gpio
+driver(the gpio driver was actually implementing the functionality
+of the bus).
+Fix make dt_bindings_check errors.
+Use devicetree properties for pulse_len, interval_len and frame_gap
+attributes.
+
+Martin Zaťovič (2):
+  dt-bindings: bus: add Wiegand bus dt documentation
+  bus: add bit banged Wiegand bus driver
+
+ Documentation/ABI/testing/sysfs-bus-wiegand   |  20 +
+ .../devicetree/bindings/bus/wiegand.yaml      |  75 +++
+ MAINTAINERS                                   |   8 +
+ drivers/bus/Kconfig                           |   7 +
+ drivers/bus/Makefile                          |   1 +
+ drivers/bus/wiegand.c                         | 509 ++++++++++++++++++
+ include/linux/wiegand.h                       |  58 ++
+ 7 files changed, 678 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-wiegand
+ create mode 100644 Documentation/devicetree/bindings/bus/wiegand.yaml
+ create mode 100644 drivers/bus/wiegand.c
+ create mode 100644 include/linux/wiegand.h
+
+--
+2.37.3
