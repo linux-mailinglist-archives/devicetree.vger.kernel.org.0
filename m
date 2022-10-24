@@ -2,139 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B648860B44B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB4460B47D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233066AbiJXRgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 13:36:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44558 "EHLO
+        id S232657AbiJXRr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 13:47:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233393AbiJXRgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:36:04 -0400
+        with ESMTP id S229886AbiJXRrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:47:04 -0400
 Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FFCA15D0B7
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:11:01 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id bj12so6052500ejb.13
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:11:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D1C14DF2B;
+        Mon, 24 Oct 2022 09:23:09 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id kt23so700696ejc.7;
+        Mon, 24 Oct 2022 09:23:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=48QRiPSkyAXEiO5tejGFOhq9qKIkuEQxYvh+zCSe1rQ=;
-        b=AlxEoE8Z/iKF5aYZqd7lFy0indUeyF+usAszriTmec+DUSqOtDowAVNnUtEw8/8iNp
-         1Drtyn4ddu+rAhUwAi9CmKhajqaqrZfSWiKnWxLH4qsb/oeCKnWkRuNySfcDDTt0FICP
-         TpbQS2AF+2Pxu64YhUSA/ZhIFqScuQQ+Ru9qNrCLPU4ikd9seq5CSQ/WELgo4ZKQXjqJ
-         h+8P6x7Ho22oa59SblEqMkccLIUaFqEBStFefReiZqcJy8cmZGeEEDgdonNkB4EF4E8L
-         xFY4RRVtg7wZMtYifDXVyTt2VZZtf5PjhDVcm7GohcQpYGp1UlALK8A7ihMg/VFX6QpX
-         cgSg==
+        bh=hP8b5SS/NsW2nMLW/xSwPyyreIz/0UJMi8FgJ7xYbiY=;
+        b=dNM2IXi+yYy6NnfdJ0TWhvuVgBAl+4pS8y/Xs7eHyDthyelxiOrwCJ2MEm484pEee7
+         FsCzK0hK4j9dQJQdUC/VItm1G6DklEZV6krCcMu9ShYPfsnZ8IfGLVvUH57PgzTVG1Rk
+         2h9QjlQwGsn4TEIRl7DUjsnnxEUa3zzEFPq072nA8G233sfQb8AaFSk/VSIFJjnMH0DV
+         HKi4BtKavXvMJ0YqKZwwhMTETchk9k8FeINrfelCyow4ZD/KQJvhor1AeHMOvYuEiCSg
+         6yr6i+0zGKEAc8z7igya8o7OuyAJjzoW/q0GkyJmU8nJ72KzKK0gl1N/5t+4wxbTNY2b
+         WgPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=48QRiPSkyAXEiO5tejGFOhq9qKIkuEQxYvh+zCSe1rQ=;
-        b=Hxi8v1izqMfZkpyGE+npJ3Zl8nEDELAvE//M9Ttnob3qFr52qNx/rLg8mLv0ZlybtK
-         Fb0EVt1jT0ZdzE4OrpV8JP08v2JUbIHh+4QN0LZtF7wwB4e0bt5BZqA+AOYTH0wBB902
-         NufqoXyKTeLU86Fv37BXHL42YIA4QlXabIApjy8znANe0fS4jcgvsAA+SXnI9pZqgwhT
-         pGkgsFlQH+zVHM2nmQO3iJ8Hn8fYT8CgZuyPHHBSE0LWNwMy/NB+Cq5mDeM5awFwGzYj
-         osOtHSBEbC218LBuaFAloB5lvat3ZBu++GBDPOwSVYqKRIZaedoDpgHpkwwmpJWGlArd
-         jwrQ==
-X-Gm-Message-State: ACrzQf1KF/m3akjQ25TOfysHtAfzZ7Puqy79sde2md96hxYNtgxqK8sU
-        1p/IguDF0JNgIAmVE8b5psh6AtIpGh/ilol7
-X-Google-Smtp-Source: AMsMyM6m1tYusvtcWN+1mQQDBonnIuGtubOqJCb75Q+1wDN3YjX0bl2egvkd+XFHgwlXvFOzUiyy6Q==
-X-Received: by 2002:a05:6512:2201:b0:492:f874:39fa with SMTP id h1-20020a056512220100b00492f87439famr11850139lfu.365.1666620204586;
-        Mon, 24 Oct 2022 07:03:24 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id y13-20020a056512044d00b004a044928923sm4522341lfk.293.2022.10.24.07.03.23
+        bh=hP8b5SS/NsW2nMLW/xSwPyyreIz/0UJMi8FgJ7xYbiY=;
+        b=RT8w61t2q03P51m/PigJPdBxZNfN/t6IMWUjy6ifyk06qqQs70zQ1vyekO5KNJLjaj
+         Oy5XyxGDMisbx7PEZJF1OnvJNv3KkHNJjzYk/SS4L1NrKi/sCyu3AkAnh8JqhZV8q4Y7
+         CLfb42QO04yJSfc37XLyybPnH46gguOz3S4y74SO/wTSw8UhktflVvAa5Dtlq4kXpbNQ
+         SkkeledsAMbSWfWmQQoyzkLoz9zHan/wA4NsFrt7cHL19bYXeLY89CRXMYghb5UKhUaP
+         aIunXrpLKoylXKCMrJ0SYd4u6Bnvzpmk4srW+U2+iDEMtzXxNImZV2A+PxWF9Ut5IBu5
+         yEzg==
+X-Gm-Message-State: ACrzQf0r8d0ZtDzde59nskMfLss/8wH5h1JVhruCXxmQBpl5I1g+WJsb
+        9k7AZuXwr2+K3Ml9ASBvcvVsmUD8Y1o=
+X-Google-Smtp-Source: AMsMyM7Cg1lEvF1ex7ag4vTHjVpCu9JynpVIzJ3mjmVZwbfOJxh18CRJCEfRbJb7+Z8sToY2Hx7afg==
+X-Received: by 2002:a2e:a7c5:0:b0:26f:c304:a16f with SMTP id x5-20020a2ea7c5000000b0026fc304a16fmr12556208ljp.47.1666620974864;
+        Mon, 24 Oct 2022 07:16:14 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f3:4a00::2? (dc75zzyyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:16f3:4a00::2])
+        by smtp.gmail.com with ESMTPSA id 11-20020ac24d4b000000b00492dc29be7bsm4544141lfp.227.2022.10.24.07.16.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 07:03:24 -0700 (PDT)
-Message-ID: <29271240-f66c-33b0-5e9e-29b559eeda5c@linaro.org>
-Date:   Mon, 24 Oct 2022 17:03:23 +0300
+        Mon, 24 Oct 2022 07:16:14 -0700 (PDT)
+Message-ID: <4e6d331b-0cc3-de9b-9fa2-96981f594c83@gmail.com>
+Date:   Mon, 24 Oct 2022 17:16:12 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 00/10] phy: qcom-qmp-ufs: fix sc8280xp binding
-Content-Language: en-GB
-To:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221024090041.19574-1-johan+linaro@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221024090041.19574-1-johan+linaro@kernel.org>
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v4 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Content-Language: en-US
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     DDRokosov@sberdevices.ru, andriy.shevchenko@linux.intel.com,
+        demonsingur@gmail.com, devicetree@vger.kernel.org,
+        jagathjog1996@gmail.com, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        matti.vaittinen@fi.rohmeurope.com, nikita.yoush@cogentembedded.com,
+        robh+dt@kernel.org
+References: <cover.1666350457.git.mazziesaccount@gmail.com>
+ <7baf3dd482ab1db0d8a3676d6d5d3e4ab7f3cf9d.1666350457.git.mazziesaccount@gmail.com>
+ <3ad8b485-9007-f7e9-f52a-d5644a688bcf@wanadoo.fr>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <3ad8b485-9007-f7e9-f52a-d5644a688bcf@wanadoo.fr>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 12:00, Johan Hovold wrote:
-> This series fixes the UFS PHY devicetree binding for SC8280XP and adds
-> support for the new updated binding to the driver.
-> 
-> The first half of the series clean up the driver in preparation for
-> supporting SC8280XP and its new binding that drops the legacy child node
-> and the (incomplete) description of register subregions.
-> 
-> The other QMP bindings suffer from similar problems and the PCIe driver
-> is being fixed here:
-> 
-> 	https://lore.kernel.org/lkml/20221021110947.28103-1-johan+linaro@kernel.org/
-> 
-> and follow-on series will do corresponding changes to the USB and combo
-> QMP bindings and drivers.
+Thanks for the review Christophe,
 
-Great! I'm looking forward to seeing the combo patchset. Then I can 
-probably rebase my regs layout patches on top of your tree.
+On 10/24/22 16:34, Christophe JAILLET wrote:
+> Le 21/10/2022 à 13:22, Matti Vaittinen a écrit :
+>> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+>> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+>> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+>> ranges (2, 4, 8 and 16g), and probably some other cool features.
+>>
+>> Add support for the basic accelerometer features such as getting the
+>> acceleration data via IIO. (raw reads, triggered buffer [data-ready] or
+>> using the WMI IRQ).
+>>
+>> Important things to be added include the double-tap, motion
+>> detection and wake-up as well as the runtime power management.
+>>
+>> Signed-off-by: Matti Vaittinen 
+>> <mazziesaccount-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>>
+>> ---
+> 
+> Hi, should there be a v5:
 
-> 
-> Note that these patches depend on the linux-phy next branch of today and
-> the following two series:
-> 
->   1. [PATCH v2 00/14] phy: qcom-qmp: further prep cleanups
-> 
->      https://lore.kernel.org/lkml/20221012081241.18273-1-johan+linaro@kernel.org
-> 
->   2. [PATCH 00/20] phy: qcom-qmp: further prep fixes and cleanups (set 3)
-> 
->      https://lore.kernel.org/lkml/20221012084846.24003-1-johan+linaro@kernel.org
-> 
-> Johan
-> 
-> 
-> Johan Hovold (10):
->    phy: qcom-qmp-ufs: move device-id table
->    phy: qcom-qmp-ufs: merge driver data
->    phy: qcom-qmp-ufs: clean up device-tree parsing
->    phy: qcom-qmp-ufs: clean up probe initialisation
->    phy: qcom-qmp-ufs: rename PHY ops structure
->    phy: qcom-qmp-ufs: clean up PHY init
->    dt-bindings: phy: qcom,qmp-ufs: rename current bindings
->    dt-bindings: phy: qcom,qmp-ufs: fix sc8280xp binding
->    phy: qcom-qmp-ufs: restructure PHY creation
->    phy: qcom-qmp-ufs: add support for updated sc8280xp binding
-> 
->   ...phy.yaml => qcom,msm8996-qmp-ufs-phy.yaml} |  17 +-
->   .../phy/qcom,sc8280xp-qmp-ufs-phy.yaml        |  83 ++++
->   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       | 381 +++++++++---------
->   3 files changed, 287 insertions(+), 194 deletions(-)
->   rename Documentation/devicetree/bindings/phy/{qcom,qmp-ufs-phy.yaml => qcom,msm8996-qmp-ufs-phy.yaml} (93%)
->   create mode 100644 Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml
-> 
+I did already send out the v5 shortly before your review. If I need to 
+send v6 I'll apply your suggestions.
+
+
+Yours
+	-- Matti
 
 -- 
-With best wishes
-Dmitry
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
