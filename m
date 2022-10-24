@@ -2,292 +2,457 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2AA0609ADA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 09:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15F0F609B1F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 09:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbiJXHAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 03:00:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39122 "EHLO
+        id S230046AbiJXHRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 03:17:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbiJXHAa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 03:00:30 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C742BB35;
-        Mon, 24 Oct 2022 00:00:20 -0700 (PDT)
-X-UUID: 8bbf94c61458406ebc1e2683938f1fb0-20221024
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=j7rpdpDxukLQykFxVx9uWvBd2Oi6MhJtBN5ZZYflQgs=;
-        b=hc1ZECvLUVMblUKT58qysNGQ97Gai1XfYCTn8ybgjwk/lQEF8jgPT9aUYluqTbOzDwT4wIW51wX3FTELq+u8ylgaNSyYR/X/K2V8wL7/TNf4pqDfOQdOJIuS38qLwXGFbfIpaEy3mBc3RH13KktuR5yzezTstKDglGcocf/VXjo=;
-X-CID-UNFAMILIAR: 1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:efdb091b-3789-4238-b420-43d90d38ba83,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:100
-X-CID-INFO: VERSION:1.1.12,REQID:efdb091b-3789-4238-b420-43d90d38ba83,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:100
-X-CID-META: VersionHash:62cd327,CLOUDID:447f79c8-03ab-4171-989e-341ab5339257,B
-        ulkID:221024150017OMBNL3KB,BulkQuantity:0,Recheck:0,SF:38|28|16|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 8bbf94c61458406ebc1e2683938f1fb0-20221024
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <mingjia.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1964739988; Mon, 24 Oct 2022 15:00:14 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 24 Oct 2022 15:00:12 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 24 Oct 2022 15:00:11 +0800
-From:   Mingjia Zhang <mingjia.zhang@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4] media: mediatek: vcodec: Add to support VP9 inner racing mode
-Date:   Mon, 24 Oct 2022 15:00:09 +0800
-Message-ID: <20221024070009.4488-1-mingjia.zhang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230056AbiJXHRN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 03:17:13 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A5C4CA15;
+        Mon, 24 Oct 2022 00:17:09 -0700 (PDT)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C732C471;
+        Mon, 24 Oct 2022 09:17:06 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1666595827;
+        bh=QwTYtoRw5d9J+veUMMU+4XlqVDLalV4JB81eofUWsp0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=QGLQ9R7SriYFA4S9PrWE0ybUuLE6ZDje4xl7zfklDBGGgCrvRCAnQK7ObpN9YAxmi
+         Sr4H97t+lReZHCCwQTtsMWuOa6yeOcMhG1O08MojOOh4rQ2LmQgjzz5ErXJjr21Lqu
+         qqWt7MIWuvUNf1Hh6U8sZSqPoKo+VunqTJDWHkJ8=
+Message-ID: <61e67300-3ed4-827f-34c6-9317fef69673@ideasonboard.com>
+Date:   Mon, 24 Oct 2022 10:17:03 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [RFC PATCH v5 4/6] drm/tidss: Add support to configure OLDI mode
+ for am625-dss.
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>
+References: <20220928175223.15225-1-a-bhatia1@ti.com>
+ <20220928175223.15225-5-a-bhatia1@ti.com>
+ <88220e6f-1bcc-7746-4281-e74f9e832e97@ideasonboard.com>
+ <d6f8b40b-3e2d-e777-28c9-ff67065e2c8b@ti.com>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <d6f8b40b-3e2d-e777-28c9-ff67065e2c8b@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to reduce decoder latency, enable VP9 inner racing mode.
-Send lat trans buffer information to core when trigger lat to work,
-need not to wait until lat decode done.
+On 18/10/2022 10:00, Aradhya Bhatia wrote:
+> Hi Tomi
+> 
+> Thank you for the comprehensive feedback across all the patches. I am
+> working on them.
+> 
+> I do have some concerns which I have talked about, below.
+> 
+> On 12-Oct-22 17:53, Tomi Valkeinen wrote:
+>> On 28/09/2022 20:52, Aradhya Bhatia wrote:
+>>> The newer version of DSS (AM625-DSS) has 2 OLDI TXes at its disposal.
+>>> These can be configured to support the following modes:
+>>>
+>>> 1. OLDI_SINGLE_LINK_SINGLE_MODE
+>>> Single Output over OLDI 0.
+>>> +------+        +---------+      +-------+
+>>> |      |        |         |      |       |
+>>> | CRTC +------->+ ENCODER +----->| PANEL |
+>>> |      |        |         |      |       |
+>>> +------+        +---------+      +-------+
+>>
+>> Can you have single link on OLDI 1 (OLDI 0 off)? I don't know if that 
+>> make sense on this platform, but if the pins for OLDI 0 and 1 are 
+>> different, there might be a reason on some cases for that.
+> 
+> HW does not support a case where single link is enabled over OLDI 1 with
+> OLDI 0 off, even though the pins are different.
+> 
+> One could still put 2 panel nodes in DT to set OLDI in a Clone Mode and
+> simply not use OLDI 0 pins, but I dont think that is a valid case that
+> should be supported.
+> 
+>>
+>>> 2. OLDI_SINGLE_LINK_CLONE_MODE
+>>> Duplicate Output over OLDI 0 and 1.
+>>> +------+        +---------+      +-------+
+>>> |      |        |         |      |       |
+>>> | CRTC +---+--->| ENCODER +----->| PANEL |
+>>> |      |   |    |         |      |       |
+>>> +------+   |    +---------+      +-------+
+>>>        |
+>>
+>> I think you've got a tab in the line above, but otherwise use spaces.
+>>
+>>>             |    +---------+      +-------+
+>>>             |    |         |      |       |
+>>>             +--->| ENCODER +----->| PANEL |
+>>>                  |         |      |       |
+>>>                  +---------+      +-------+
+>>>
+>>> 3. OLDI_DUAL_LINK_MODE
+>>> Combined Output over OLDI 0 and 1.
+>>> +------+        +---------+      +-------+
+>>> |      |        |         +----->|       |
+>>> | CRTC +------->+ ENCODER |      | PANEL |
+>>> |      |        |         +----->|       |
+>>> +------+        +---------+      +-------+
+>>>
+>>> Following the above pathways for different modes, 2 encoder/panel-bridge
+>>> pipes get created for clone mode, and 1 pipe in cases of single link and
+>>> dual link mode.
+>>>
+>>> Add support for confgure the OLDI modes using of and lvds DRM helper
+>>
+>> "configuring"
+>>
+>>> functions.
+>>>
+>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>>> ---
+>>>   drivers/gpu/drm/tidss/tidss_dispc.c |  11 +++
+>>>   drivers/gpu/drm/tidss/tidss_dispc.h |   8 ++
+>>>   drivers/gpu/drm/tidss/tidss_drv.h   |   3 +
+>>>   drivers/gpu/drm/tidss/tidss_kms.c   | 146 +++++++++++++++++++++++-----
+>>>   4 files changed, 145 insertions(+), 23 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
+>>> b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>> index 34f0da4bb3e3..88008ad39b55 100644
+>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>>> @@ -354,6 +354,8 @@ struct dispc_device {
+>>>       bool is_enabled;
+>>> +    enum dispc_oldi_modes oldi_mode;
+>>> +
+>>>       struct dss_vp_data vp_data[TIDSS_MAX_PORTS];
+>>>       u32 *fourccs;
+>>> @@ -1958,6 +1960,15 @@ const u32 *dispc_plane_formats(struct 
+>>> dispc_device *dispc, unsigned int *len)
+>>>       return dispc->fourccs;
+>>>   }
+>>> +int dispc_configure_oldi_mode(struct dispc_device *dispc,
+>>> +                  enum dispc_oldi_modes oldi_mode)
+>>> +{
+>>> +    WARN_ON(!dispc);
+>>> +
+>>> +    dispc->oldi_mode = oldi_mode;
+>>> +    return 0;
+>>> +}
+>>
+>> I think "configure" means more than just storing the value. Maybe 
+>> dispc_set_oldi_mode(). And an empty line above the return.
+>>
+>>> +
+>>>   static s32 pixinc(int pixels, u8 ps)
+>>>   {
+>>>       if (pixels == 1)
+>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h 
+>>> b/drivers/gpu/drm/tidss/tidss_dispc.h
+>>> index b66418e583ee..45cce1054832 100644
+>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.h
+>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.h
+>>> @@ -64,6 +64,13 @@ enum dispc_dss_subrevision {
+>>>       DISPC_AM625,
+>>>   };
+>>> +enum dispc_oldi_modes {
+>>> +    OLDI_MODE_OFF,                /* OLDI turned off / tied off in 
+>>> IP. */
+>>> +    OLDI_SINGLE_LINK_SINGLE_MODE,        /* Single Output over OLDI 
+>>> 0. */
+>>> +    OLDI_SINGLE_LINK_CLONE_MODE,        /* Duplicate Output over 
+>>> OLDI 0 and 1. */
+>>> +    OLDI_DUAL_LINK_MODE,            /* Combined Output over OLDI 0 
+>>> and 1. */
+>>> +};
+>>> +
+>>>   struct dispc_features {
+>>>       int min_pclk_khz;
+>>>       int max_pclk_khz[DISPC_VP_MAX_BUS_TYPE];
+>>> @@ -131,6 +138,7 @@ int dispc_plane_setup(struct dispc_device *dispc, 
+>>> u32 hw_plane,
+>>>                 u32 hw_videoport);
+>>>   int dispc_plane_enable(struct dispc_device *dispc, u32 hw_plane, 
+>>> bool enable);
+>>>   const u32 *dispc_plane_formats(struct dispc_device *dispc, unsigned 
+>>> int *len);
+>>> +int dispc_configure_oldi_mode(struct dispc_device *dispc, enum 
+>>> dispc_oldi_modes oldi_mode);
+>>>   int dispc_init(struct tidss_device *tidss);
+>>>   void dispc_remove(struct tidss_device *tidss);
+>>> diff --git a/drivers/gpu/drm/tidss/tidss_drv.h 
+>>> b/drivers/gpu/drm/tidss/tidss_drv.h
+>>> index d7f27b0b0315..2252ba0222ca 100644
+>>> --- a/drivers/gpu/drm/tidss/tidss_drv.h
+>>> +++ b/drivers/gpu/drm/tidss/tidss_drv.h
+>>> @@ -12,6 +12,9 @@
+>>>   #define TIDSS_MAX_PORTS 4
+>>>   #define TIDSS_MAX_PLANES 4
+>>> +/* For AM625-DSS with 2 OLDI TXes */
+>>> +#define TIDSS_MAX_BRIDGE_PER_PIPE    2
+>>
+>> "BRIDGES"?
+>>
+>>> +
+>>>   typedef u32 dispc_irq_t;
+>>>   struct tidss_device {
+>>> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c 
+>>> b/drivers/gpu/drm/tidss/tidss_kms.c
+>>> index 666e527a0acf..73afe390f36d 100644
+>>> --- a/drivers/gpu/drm/tidss/tidss_kms.c
+>>> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
+>>> @@ -107,32 +107,84 @@ static const struct drm_mode_config_funcs 
+>>> mode_config_funcs = {
+>>>       .atomic_commit = drm_atomic_helper_commit,
+>>>   };
+>>> +static int tidss_get_oldi_mode(struct tidss_device *tidss)
+>>
+>> Return enum dispc_oldi_modes, not int.
+>>
+>>> +{
+>>> +    int pixel_order;
+>>> +    struct device_node *dss_ports, *oldi0_port, *oldi1_port;
+>>> +
+>>> +    dss_ports = of_get_next_child(tidss->dev->of_node, NULL);
+>>
+>> Hmm you get the next child and hope that it's the ports node?
+>>
+>> In any case, I think you can call of_graph_get_port_by_id() with the 
+>> tidss->dev->of_node and it'll do the right thing.
+> I think this will only work if the child of dss node is just "ports",
+> but we've been using "dss_ports" as the child.
+> 
+> However, you are right. I shouldn't expect the first child to be
+> dss_ports. I will use the "of_get_child_by_name" helper to get the
+> dss_ports node.
 
-Signed-off-by: Mingjia Zhang <mingjia.zhang@mediatek.com>
----
-Changes from v3:
+I don't think you need to. of_graph_get_port_by_id() should work fine 
+with the dss node.
 
-- CTS/GTS test pass
-- Fluster result: Ran 275/303 tests successfully
+>>> +    oldi0_port = of_graph_get_port_by_id(dss_ports, 0);
+>>> +    oldi1_port = of_graph_get_port_by_id(dss_ports, 2);
+>>
+>> I think you need to of_put these at some point.
+>>
+>>> +    if (!(oldi0_port && oldi1_port))
+>>> +        return OLDI_SINGLE_LINK_SINGLE_MODE;
+>>
+>> This one matches also for !oldi0 && oldi1. If oldi1 cannot be used in 
+>> single-link mode, the above should take it into account.
+> 
+> Right. I will print a warning if somebody's trying to use (!oldi0 &&
+> oldi1) but since its a single link requirement, I will still set the
+> OLDI for single link single mode.
+> 
+>>
+>>> +
+>>> +    /*
+>>> +     * OLDI Ports found for both the OLDI TXes. The DSS is to be 
+>>> configured
+>>> +     * in either Dual Link or Clone Mode.
+>>> +     */
+>>> +    pixel_order = drm_of_lvds_get_dual_link_pixel_order(oldi0_port,
+>>> +                                oldi1_port);
+>>> +    switch (pixel_order) {
+>>> +    case -EINVAL:
+>>> +        /*
+>>> +         * The dual link properties were not found in at least one of
+>>> +         * the sink nodes. Since 2 OLDI ports are present in the DT, it
+>>> +         * can be safely assumed that the required configuration is
+>>> +         * Clone Mode.
+>>> +         */
+>>> +        return OLDI_SINGLE_LINK_CLONE_MODE;
+>>> +
+>>> +    case DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS:
+>>> +    case DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS:
+>>> +        /*
+>>> +         * Note that the OLDI TX 0 transmits the odd set of pixels 
+>>> while
+>>> +         * the OLDI TX 1 transmits the even set. This is a fixed
+>>> +         * configuration in the IP and an cannot be change vis SW. 
+>>> These
+>>> +         * properties have been used to merely identify if a Dual Link
+>>> +         * configuration is required. Swapping this property in the 
+>>> panel
+>>> +         * port DT nodes will not make any difference.
+>>> +         */
+>>
+>> But if they are in the wrong order, shouldn't we fail or at least give 
+>> a warning?
+>>  >> +        return OLDI_DUAL_LINK_MODE;
+>>> +
+>>> +    default:
+>>> +        return OLDI_MODE_OFF;
+>>> +    }
+>>> +}
+>>> +
+>>>   static int tidss_dispc_modeset_init(struct tidss_device *tidss)
+>>>   {
+>>>       struct device *dev = tidss->dev;
+>>>       unsigned int fourccs_len;
+>>>       const u32 *fourccs = dispc_plane_formats(tidss->dispc, 
+>>> &fourccs_len);
+>>> -    unsigned int i;
+>>> +    unsigned int i, j;
+>>>       struct pipe {
+>>>           u32 hw_videoport;
+>>> -        struct drm_bridge *bridge;
+>>> +        struct drm_bridge *bridge[TIDSS_MAX_BRIDGE_PER_PIPE];
+>>>           u32 enc_type;
+>>> +        u32 num_bridges;
+>>>       };
+>>>       const struct dispc_features *feat = tidss->feat;
+>>> -    u32 max_vps = feat->num_vps;
+>>> +    u32 max_ports = feat->num_max_ports;
+>>>       u32 max_planes = feat->num_planes;
+>>>       struct pipe pipes[TIDSS_MAX_PORTS];
+>>>       u32 num_pipes = 0;
+>>> +    u32 pipe_number = 0;
+>>>       u32 crtc_mask;
+>>> +    u32 num_oldi = 0;
+>>> +    u32 oldi0_port = 0;
+>>> +    u32 hw_vp = 0;
+>>> +    enum dispc_oldi_modes oldi_mode;
+>>>       /* first find all the connected panels & bridges */
+>>> -    for (i = 0; i < max_vps; i++) {
+>>> +    for (i = 0; i < max_ports; i++) {
+>>>           struct drm_panel *panel;
+>>>           struct drm_bridge *bridge;
+>>> +        bool bridge_req = true;
+>>>           u32 enc_type = DRM_MODE_ENCODER_NONE;
+>>>           int ret;
+>>> @@ -146,6 +198,11 @@ static int tidss_dispc_modeset_init(struct 
+>>> tidss_device *tidss)
+>>>               return ret;
+>>>           }
+>>> +        /* default number of bridges required for a panel/bridge*/
+>>> +        pipe_number = num_pipes;
+>>> +        pipes[pipe_number].num_bridges = 1;
+>>> +        hw_vp = i;
+>>> +
+>>>           if (panel) {
+>>>               u32 conn_type;
+>>> @@ -155,7 +212,43 @@ static int tidss_dispc_modeset_init(struct 
+>>> tidss_device *tidss)
+>>>               case DISPC_VP_OLDI:
+>>>                   enc_type = DRM_MODE_ENCODER_LVDS;
+>>>                   conn_type = DRM_MODE_CONNECTOR_LVDS;
+>>> +
+>>> +                /*
+>>> +                 * A single DSS controller cannot support 2
+>>> +                 * independent displays. If 2nd node is detected,
+>>> +                 * it is for Dual Link Mode or Clone Mode.
+>>> +                 *
+>>> +                 * A new pipe instance is not required.
+>>> +                 */
+>>> +                if (++num_oldi == 2) {
+>>> +                    pipe_number = oldi0_port;
+>>> +                    hw_vp = i;
+>>> +
+>>> +                    /* 2nd OLDI DT node detected. Get its mode */
+>>> +                    oldi_mode = tidss_get_oldi_mode(tidss);
+>>> +                    bridge_req = false;
+>>> +
+>>> +                    /*
+>>> +                     * A separate panel bridge will only be
+>>> +                     * required if 2 panels are connected for
+>>> +                     * the OLDI Clone Mode.
+>>> +                     */
+>>> +                    if (oldi_mode == OLDI_SINGLE_LINK_CLONE_MODE) {
+>>> +                        bridge_req = true;
+>>> +                        (pipes[pipe_number].num_bridges)++;
+>>> +                    }
+>>> +                } else {
+>>> +                    /*
+>>> +                     * First OLDI DT node detected. Save it
+>>> +                     * in case there is another node for Dual
+>>> +                     * Link Mode or Clone Mode.
+>>> +                     */
+>>> +                    oldi0_port = i;
+>>> +                    oldi_mode = OLDI_SINGLE_LINK_SINGLE_MODE;
+>>> +                }
+>>> +                dispc_configure_oldi_mode(tidss->dispc, oldi_mode);
+>>>                   break;
+>>> +
+>>>               case DISPC_VP_DPI:
+>>>                   enc_type = DRM_MODE_ENCODER_DPI;
+>>>                   conn_type = DRM_MODE_CONNECTOR_DPI;
+>>> @@ -173,19 +266,23 @@ static int tidss_dispc_modeset_init(struct 
+>>> tidss_device *tidss)
+>>>                   return -EINVAL;
+>>>               }
+>>> -            bridge = devm_drm_panel_bridge_add(dev, panel);
+>>> -            if (IS_ERR(bridge)) {
+>>> -                dev_err(dev,
+>>> -                    "failed to set up panel bridge for port %d\n",
+>>> -                    i);
+>>> -                return PTR_ERR(bridge);
+>>> +            if (bridge_req) {
+>>> +                bridge = devm_drm_panel_bridge_add(dev, panel);
+>>> +                if (IS_ERR(bridge)) {
+>>> +                    dev_err(dev,
+>>> +                        "failed to set up panel bridge for port %d\n",
+>>> +                        i);
+>>> +                    return PTR_ERR(bridge);
+>>> +                }
+>>>               }
+>>>           }
+>>> -        pipes[num_pipes].hw_videoport = i;
+>>> -        pipes[num_pipes].bridge = bridge;
+>>> -        pipes[num_pipes].enc_type = enc_type;
+>>> -        num_pipes++;
+>>> +        if (bridge_req) {
+>>> +            pipes[pipe_number].hw_videoport = hw_vp;
+>>> +            pipes[pipe_number].bridge[pipes[pipe_number].num_bridges 
+>>> - 1] = bridge;
+>>> +            pipes[pipe_number].enc_type = enc_type;
+>>> +            num_pipes++;
+>>> +        }
+>>
+>> I need to look at this with better time. But I started to wonder, 
+>> would it be clearer to first figure out the oldi setup before the 
+>> loop, rather than figuring it out inside the loop. I'm not sure if it 
+>> would help much, though.
+>>
+> I had not thought about taking this approach, but it might actually be
+> better.
+> 
+> These patches, at the moment, do not support a case where a clone mode
+> or dual link mode is used on a bridge instead of a panel. My edits
+> inside the loop are panel dependent. If we do have oldi setup
+> information prior to the beginning of the loop, the panel dependency can
+> be removed and some commond code can be written to support an additional
+> encoder - bridge connection should it be required.
+> 
+> Let me know what you think!
+> 
+> If this apparch is better indeed, I will make these changes before
+> sending out the next revision.
 
-Changes from v2:
+I'll say if it's better when I see the code =). But generally speaking, 
+I think it's often better to first figure out what is needed and only 
+after that do the actual work. Especially in probe-time code where it's 
+not a big deal if you iterate over the ports multiple times, instead of 
+doing all in a single loop.
 
-- CTS/GTS test pass
-- Fluster result: Ran 240/303 tests successfully
-
-Changes from v1:
-
-- CTS/GTS test pass
----
- .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 87 ++++++++++---------
- 1 file changed, 48 insertions(+), 39 deletions(-)
-
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-index 81de876d51267..baf7ecd54eda3 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
-@@ -436,6 +436,7 @@ struct vdec_vp9_slice_ref {
-  * @frame_ctx:		4 frame context according to VP9 Spec
-  * @frame_ctx_helper:	4 frame context according to newest kernel spec
-  * @dirty:		state of each frame context
-+ * @local_vsi:		local instance vsi information
-  * @init_vsi:		vsi used for initialized VP9 instance
-  * @vsi:		vsi used for decoding/flush ...
-  * @core_vsi:		vsi used for Core stage
-@@ -482,6 +483,8 @@ struct vdec_vp9_slice_instance {
- 	struct v4l2_vp9_frame_context frame_ctx_helper;
- 	unsigned char dirty[4];
- 
-+	struct vdec_vp9_slice_vsi local_vsi;
-+
- 	/* MicroP vsi */
- 	union {
- 		struct vdec_vp9_slice_init_vsi *init_vsi;
-@@ -1616,16 +1619,10 @@ static int vdec_vp9_slice_update_single(struct vdec_vp9_slice_instance *instance
- }
- 
- static int vdec_vp9_slice_update_lat(struct vdec_vp9_slice_instance *instance,
--				     struct vdec_lat_buf *lat_buf,
--				     struct vdec_vp9_slice_pfc *pfc)
-+				     struct vdec_vp9_slice_vsi *vsi)
- {
--	struct vdec_vp9_slice_vsi *vsi;
--
--	vsi = &pfc->vsi;
--	memcpy(&pfc->state[0], &vsi->state, sizeof(vsi->state));
--
- 	mtk_vcodec_debug(instance, "Frame %u LAT CRC 0x%08x %lx %lx\n",
--			 pfc->seq, vsi->state.crc[0],
-+			 (instance->seq - 1), vsi->state.crc[0],
- 			 (unsigned long)vsi->trans.dma_addr,
- 			 (unsigned long)vsi->trans.dma_addr_end);
- 
-@@ -2090,6 +2087,13 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 		return ret;
- 	}
- 
-+	if (IS_VDEC_INNER_RACING(ctx->dev->dec_capability)) {
-+		vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
-+		memcpy(&instance->local_vsi, vsi, sizeof(*vsi));
-+		vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
-+		vsi = &instance->local_vsi;
-+	}
-+
- 	if (instance->irq) {
- 		ret = mtk_vcodec_wait_for_done_ctx(ctx,	MTK_INST_IRQ_RECEIVED,
- 						   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_LAT0);
-@@ -2102,22 +2106,25 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 	}
- 
- 	vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
--	ret = vdec_vp9_slice_update_lat(instance, lat_buf, pfc);
-+	ret = vdec_vp9_slice_update_lat(instance, vsi);
- 
--	/* LAT trans full, no more UBE or decode timeout */
--	if (ret) {
--		mtk_vcodec_err(instance, "VP9 decode error: %d\n", ret);
--		return ret;
--	}
-+	if (!IS_VDEC_INNER_RACING(ctx->dev->dec_capability))
-+		/* LAT trans full, no more UBE or decode timeout */
-+		if (ret) {
-+			mtk_vcodec_err(instance, "frame[%d] decode error: %d\n",
-+				       ret, (instance->seq - 1));
-+			return ret;
-+		}
- 
--	mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
--			 (unsigned long)pfc->vsi.trans.dma_addr,
--			 (unsigned long)pfc->vsi.trans.dma_addr_end);
- 
--	vdec_msg_queue_update_ube_wptr(&ctx->msg_queue,
--				       vsi->trans.dma_addr_end +
--				       ctx->msg_queue.wdma_addr.dma_addr);
--	vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
-+	vsi->trans.dma_addr_end += ctx->msg_queue.wdma_addr.dma_addr;
-+	vdec_msg_queue_update_ube_wptr(&ctx->msg_queue, vsi->trans.dma_addr_end);
-+	if (!IS_VDEC_INNER_RACING(ctx->dev->dec_capability))
-+		vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
-+
-+	mtk_vcodec_debug(instance, "lat trans end addr(0x%lx), ube start addr(0x%lx)\n",
-+			 (unsigned long)vsi->trans.dma_addr_end,
-+			 (unsigned long)ctx->msg_queue.wdma_addr.dma_addr);
- 
- 	return 0;
- }
-@@ -2139,40 +2146,40 @@ static int vdec_vp9_slice_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
- {
- 	struct vdec_vp9_slice_instance *instance;
--	struct vdec_vp9_slice_pfc *pfc;
-+	struct vdec_vp9_slice_pfc *pfc = NULL;
- 	struct mtk_vcodec_ctx *ctx = NULL;
- 	struct vdec_fb *fb = NULL;
- 	int ret = -EINVAL;
- 
- 	if (!lat_buf)
--		goto err;
-+		return -EINVAL;
- 
- 	pfc = lat_buf->private_data;
- 	ctx = lat_buf->ctx;
- 	if (!pfc || !ctx)
--		goto err;
-+		return -EINVAL;
- 
- 	instance = ctx->drv_handle;
- 	if (!instance)
--		goto err;
-+		return -EINVAL;
- 
- 	fb = ctx->dev->vdec_pdata->get_cap_buffer(ctx);
- 	if (!fb) {
- 		ret = -EBUSY;
--		goto err;
-+		goto vdec_dec_end;
- 	}
- 
- 	ret = vdec_vp9_slice_setup_core(instance, fb, lat_buf, pfc);
- 	if (ret) {
- 		mtk_vcodec_err(instance, "vdec_vp9_slice_setup_core\n");
--		goto err;
-+		goto vdec_dec_end;
- 	}
- 	vdec_vp9_slice_vsi_to_remote(&pfc->vsi, instance->core_vsi);
- 
- 	ret = vpu_dec_core(&instance->vpu);
- 	if (ret) {
- 		mtk_vcodec_err(instance, "vpu_dec_core\n");
--		goto err;
-+		goto vdec_dec_end;
- 	}
- 
- 	if (instance->irq) {
-@@ -2190,25 +2197,27 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
- 	ret = vdec_vp9_slice_update_core(instance, lat_buf, pfc);
- 	if (ret) {
- 		mtk_vcodec_err(instance, "vdec_vp9_slice_update_core\n");
--		goto err;
-+		goto vdec_dec_end;
- 	}
- 
--	pfc->vsi.trans.dma_addr_end += ctx->msg_queue.wdma_addr.dma_addr;
- 	mtk_vcodec_debug(instance, "core dma_addr_end 0x%lx\n",
- 			 (unsigned long)pfc->vsi.trans.dma_addr_end);
--	vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
--	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req);
--
--	return 0;
- 
--err:
--	if (ctx && pfc) {
--		/* always update read pointer */
--		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
-+vdec_dec_end:
-+	/* always update read pointer */
-+	if (IS_VDEC_INNER_RACING(ctx->dev->dec_capability))
-+		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue,
-+					       pfc->vsi.trans.dma_addr);
-+	else
-+		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue,
-+					       pfc->vsi.trans.dma_addr_end);
- 
-+	if (ret)
- 		if (fb)
- 			ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req);
--	}
-+	else
-+		ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req);
-+
- 	return ret;
- }
- 
--- 
-2.18.0
+  Tomi
 
