@@ -2,58 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D06C60BBBE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE6B060BBE3
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232457AbiJXVLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 17:11:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55642 "EHLO
+        id S230422AbiJXVRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 17:17:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231933AbiJXVLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:11:22 -0400
+        with ESMTP id S231169AbiJXVQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:16:42 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6373A2D038F;
-        Mon, 24 Oct 2022 12:17:54 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9FF17F998;
+        Mon, 24 Oct 2022 12:22:36 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 5D728B817B0;
-        Mon, 24 Oct 2022 12:51:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84E0DC433D6;
-        Mon, 24 Oct 2022 12:51:10 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BDDA0B819A6;
+        Mon, 24 Oct 2022 12:53:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6164C433D7;
+        Mon, 24 Oct 2022 12:53:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666615874;
-        bh=4cT1AgEscL+bDejuGY6uubW9ABwIZGuR4hZ++Wp8v4w=;
+        s=k20201202; t=1666616004;
+        bh=BuDzI/RcBVB6ggLiJtNs6vgK6SYiYVAFxoGoEpVsspY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kq3W0qANSUbPg7Xp/RRLV7VbWyzUd4fFQfb2glXmct6bX6PIhetoQgY85xKNVeA+J
-         G6jvtiH0AxGM35AE0jkcMeu8B3ip0EwROrkAQfDl6VVWPpT19T544nwG7qFVCop0VI
-         HDNSyETZfrbbhPwwU7JyS7whFHvKU4rqL4Qy4qZsH6Z9upRjNew40drv8HnH1wbgMW
-         I/bZPHsz9Gi23tSc8LlxSOnHWY6O4v9KT3nTwLO3zW6yfkolKWKQwH4wnwT3LBcdsn
-         W+D1mLFp2BV/5+TXP/f9FolibKs2KNirfCEyZNpHUj20JdWj8iYfZvGEUe+miHsp/n
-         ip4jPJQHClUqA==
-Date:   Mon, 24 Oct 2022 13:51:07 +0100
+        b=bTjbYGIq9l0+ld78/G0/9LiP1+VNLS5Cw8kV4zplkgQM1ecF3JM1TXguXbJhLmxz2
+         Bma/BmmTj2gxmAg+LiR6jDecPhNY5j39LqLFbOZOj4GLfQLSUzGtwX+M6BvSvA/335
+         IM4s54HYDROpY6XTN+wU30ALBI3bos+Iuy5w8o3zX8/ja+kaG+9XNmx6AzwRaXmeqJ
+         UxN6+njv/VkV7PzkRClt8djcIXKYkPW6WYwrzMLRk/uyEstXxukefeHGRJokfnyMnh
+         CnToeq4LxSSAwSRAEW6DOt171VbY4YjY/lqReEg8usP5V4r59srXqI5k5ToxfxL9UV
+         Gq2mB9hqii/nw==
+Date:   Mon, 24 Oct 2022 13:53:18 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Chen Zhong <chen.zhong@mediatek.com>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: mfd: mt6397: add binding for MT6357
-Message-ID: <Y1aKOxGTNAsb2vgz@google.com>
-References: <20221005-mt6357-support-v2-0-f17ba2d2d0a9@baylibre.com>
- <20221005-mt6357-support-v2-1-f17ba2d2d0a9@baylibre.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: mfd: qcom,tcsr: add sc8280xp binding
+Message-ID: <Y1aKvvk4UQ/Ho8Hl@google.com>
+References: <20221019122253.19669-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221005-mt6357-support-v2-1-f17ba2d2d0a9@baylibre.com>
+In-Reply-To: <20221019122253.19669-1-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -63,33 +59,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 05 Oct 2022, Alexandre Mergnat wrote:
+On Wed, 19 Oct 2022, Johan Hovold wrote:
 
-> From: Fabien Parent <fparent@baylibre.com>
+> Add a binding for the SC8280XP TCSR.
 > 
-> Add binding documentation for the MT6357 PMIC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->  Documentation/devicetree/bindings/mfd/mt6397.txt | 1 +
+> 
+> Changes in v2
+>  - rebase on 6.1-rc1 and a328ae8504db ("dt-bindings: mfd: qcom,tcsr:
+>    Drop simple-mfd from IPQ6018")
+
+I think I just fixed-up and merged v1 of this patch.
+
+Please ensure I did the right thing.
+
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> index 0088442efca1..518986c44880 100644
-> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> @@ -21,6 +21,7 @@ Required properties:
->  compatible:
->  	"mediatek,mt6323" for PMIC MT6323
->  	"mediatek,mt6331" for PMIC MT6331 and MT6332
-> +	"mediatek,mt6357" for PMIC MT6357
->  	"mediatek,mt6358" for PMIC MT6358 and MT6366
->  	"mediatek,mt6359" for PMIC MT6359
->  	"mediatek,mt6397" for PMIC MT6397
-
-Let me know when it's safe to merge this.
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> index b12809b5cc22..cb0ae38a777f 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
+> @@ -21,6 +21,7 @@ properties:
+>            - qcom,qcs404-tcsr
+>            - qcom,sc7180-tcsr
+>            - qcom,sc7280-tcsr
+> +          - qcom,sc8280xp-tcsr
+>            - qcom,sdm630-tcsr
+>            - qcom,sdm845-tcsr
+>            - qcom,sm8150-tcsr
 
 -- 
 Lee Jones [李琼斯]
