@@ -2,128 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9381360BFB2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 02:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 556D860C029
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 02:52:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230035AbiJYAgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 20:36:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58630 "EHLO
+        id S230214AbiJYAww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 20:52:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbiJYAfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 20:35:51 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D121EE1A;
-        Mon, 24 Oct 2022 16:02:15 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id l14so11044335wrw.2;
-        Mon, 24 Oct 2022 16:02:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=KaoGSotGAFceXqyyQYu9XCTEP8cta6cn87AncWEkKJY=;
-        b=IV2RWjSsTpxEczaXY2qgq5ATQ4pPYPFWTulRqg14h2wu3f4harvqBv1HOrabkiZ+0C
-         6uqhrFrj6umwZTfzAtlLbL+oI2y7aydQdeBU1Tec9XtdwZshkL8s7FHKYJv6mpJgI/OC
-         hOAg1uByJ1ku79XAe1A9ku/XwkitmNY39TeANEY6lcMm0oFzOuHaZvAu98RNcogZFv8m
-         X3Gc/5TB3MOtiAiJjJZFd3S2iDCrSMF2+r3nINt1MjurFsaZSG2xsCZ+s+3M4tXEbOch
-         7NgXLOLGU35Yo4tZfQN2b6wfGYlEBbrSOpYo5F0/gwiRNvb6OQvLoFm5ZU6LYXAWZq68
-         vHLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KaoGSotGAFceXqyyQYu9XCTEP8cta6cn87AncWEkKJY=;
-        b=7ONuPf/eprJafoLG0su1MnXL4wAbfwRrREM/vEdM1X4pHJYJ2MPX6Z37irKLJaYtYo
-         7UAFMTBIsh0cAHU1Vms/nqq11fvckmrOsFFbH0riGKZiOo8PTH9RhGqCRTytIFn9xjFY
-         OgMDPGN5CuM6/fniw3QWCqkxMZFOAqEBgB/GhFjwXnriPWDz4YB+rVXt80aRdCsPdH8R
-         Lvq08LOFYYF17Ek/anUvSZwtrdFv+Wbz7VsxjrJkXbAtBvoXCtuZ5cDpMBrbFayF/M6b
-         zoo3eAFNkdK3fW++wAFI080yFluUBVL+SaFcn6B+duWqjNn47L4sRvZIXeA5vueRPAxR
-         OAQw==
-X-Gm-Message-State: ACrzQf2YLJYmeMPjDgjfcfAsA20cqW3Hecnuz6sM1NrdDxx3+EOK04AM
-        fteZklXsAXltv4j4sJQ8A6o=
-X-Google-Smtp-Source: AMsMyM7GyNXIsaHwAiWktSz5FIbnYUO2r4ym96pAz6HpvYe5hMahqSmSxp5DkSTuWtfbQhqNnjxFjg==
-X-Received: by 2002:a5d:64e9:0:b0:22e:7631:bcab with SMTP id g9-20020a5d64e9000000b0022e7631bcabmr24146249wri.36.1666652534115;
-        Mon, 24 Oct 2022 16:02:14 -0700 (PDT)
-Received: from localhost (94.197.2.59.threembb.co.uk. [94.197.2.59])
-        by smtp.gmail.com with ESMTPSA id t7-20020adfe107000000b0022da3977ec5sm742225wrz.113.2022.10.24.16.02.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 16:02:13 -0700 (PDT)
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
- <87fsfem6zd.wl-kuninori.morimoto.gx@renesas.com>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] ASoC: simple-card: Support custom DAI system
- clock IDs
-Date:   Mon, 24 Oct 2022 10:18:15 +0100
-In-reply-to: <87fsfem6zd.wl-kuninori.morimoto.gx@renesas.com>
-Message-ID: <MXQXY4d7ZMjCu1ChI1EL7daeg1zENP5H@localhost>
+        with ESMTP id S229678AbiJYAwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 20:52:38 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95E711D3766;
+        Mon, 24 Oct 2022 16:34:09 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1omwC7-0001Zb-SU; Mon, 24 Oct 2022 14:04:39 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Conor Dooley <conor@kernel.org>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH v3 2/2] soc: renesas: Add L2 cache management for RZ/Five SoC
+Date:   Mon, 24 Oct 2022 14:04:38 +0200
+Message-ID: <4750602.GXAFRqVoOG@diego>
+In-Reply-To: <CA+V-a8vA_ZbV+SEy8Ch8ZuYAb+U37CtC8Ys=svMv7fjy79mR=A@mail.gmail.com>
+References: <20221019220242.4746-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <Y1Md4bMYJHI34HuJ@spud> <CA+V-a8vA_ZbV+SEy8Ch8ZuYAb+U37CtC8Ys=svMv7fjy79mR=A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
-Kuninori Morimoto <kuninori.morimoto.gx@renesas.com> writes:
+Am Montag, 24. Oktober 2022, 13:55:00 CEST schrieb Lad, Prabhakar:
+> Hi Conor,
+> 
+> On Fri, Oct 21, 2022 at 11:32 PM Conor Dooley <conor@kernel.org> wrote:
+> >
+> > On Fri, Oct 21, 2022 at 11:05:40PM +0100, Lad, Prabhakar wrote:
+> > > Hi Rob,
+> > >
+> > > Thank you for the review.
+> > >
+> > > On Fri, Oct 21, 2022 at 3:05 AM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Wed, Oct 19, 2022 at 11:02:42PM +0100, Prabhakar wrote:
+> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > >
+> > > > > On the AX45MP core, cache coherency is a specification option so it may
+> > > > > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > > > > allocate a global dma coherent pool from which DMA allocations are taken
+> > > > > and marked as non-cacheable + bufferable using the PMA region as specified
+> > > > > in the device tree. Synchronization callbacks are implemented to
+> > > > > synchronize when doing DMA transactions.
+> > > > >
+> > > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > > > > block that allows dynamic adjustment of memory attributes in the runtime.
+> > > > > It contains a configurable amount of PMA entries implemented as CSR
+> > > > > registers to control the attributes of memory locations in interest.
+> > > > >
+> > > > > Below are the memory attributes supported:
+> > > > > * Device, Non-bufferable
+> > > > > * Device, bufferable
+> > > > > * Memory, Non-cacheable, Non-bufferable
+> > > > > * Memory, Non-cacheable, Bufferable
+> > > > > * Memory, Write-back, No-allocate
+> > > > > * Memory, Write-back, Read-allocate
+> > > > > * Memory, Write-back, Write-allocate
+> > > > > * Memory, Write-back, Read and Write-allocate
+> > > > >
+> > > > > This patch adds support to configure the memory attributes of the memory
+> > > > > regions as passed from the l2 cache node and exposes the cache management
+> > > > > ops.
+> > > > >
+> > > > > More info about PMA (section 10.3):
+> > > > > http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
+> > > > >
+> > > > > This feature is based on the work posted [0] by Vincent Chen
+> > > > > <vincentc@andestech.com> for the Andes AndeStart RISC-V CPU.
+> > > > >
+> > > > > [0] https://lore.kernel.org/lkml/1540982130-28248-1-git-send-email-vincentc@andestech.com/
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > ---
+> > > > >  arch/riscv/include/asm/cacheflush.h    |   8 +
+> > > > >  arch/riscv/include/asm/errata_list.h   |   2 +
+> > > > >  arch/riscv/mm/dma-noncoherent.c        |  20 ++
+> > > > >  drivers/soc/renesas/Kconfig            |   5 +
+> > > > >  drivers/soc/renesas/Makefile           |   4 +
+> > > > >  drivers/soc/renesas/rzf/Kconfig        |   6 +
+> > > > >  drivers/soc/renesas/rzf/Makefile       |   3 +
+> > > > >  drivers/soc/renesas/rzf/ax45mp_cache.c | 431 +++++++++++++++++++++++++
+> > > >
+> > > > How many cache drivers do we have around now? I've seen a few bindings
+> > > > go by. I'm guessing it is time to stop putting the drivers in the
+> > > > drivers/soc/ dumping ground.
+> > > >
+> > > The main reason this driver is not in arch/riscv is that it has vendor
+> > > specific extensions. Due to this reason it was agreed during the LPC
+> > > that vendor specific extension should be maintained by SoC vendors and
+> > > was agreed that this can go into drivers/soc/renesas folder instead.
+> >
+> > Does not in drivers/soc mean they need to go into arch/riscv?
+> I was under the impression Rob wanted them arch/riscv, sorry for the confusion.
+> 
+> > The outcome of the chat at the LPC BoF was more that the cache drivers
+> > themselves should not be be routed via the arch maintainers, no?
+> >
+> Indeed.
+> 
+> > >
+> > > > >  drivers/soc/renesas/rzf/ax45mp_sbi.h   |  29 ++
+> > > > >  9 files changed, 508 insertions(+)
+> > > > >  create mode 100644 drivers/soc/renesas/rzf/Kconfig
+> > > > >  create mode 100644 drivers/soc/renesas/rzf/Makefile
+> > > > >  create mode 100644 drivers/soc/renesas/rzf/ax45mp_cache.c
+> > > > >  create mode 100644 drivers/soc/renesas/rzf/ax45mp_sbi.h
+> > > > >
+> > > > > diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm/cacheflush.h
+> > > > > index 8a5c246b0a21..40aa790be9a3 100644
+> > > > > --- a/arch/riscv/include/asm/cacheflush.h
+> > > > > +++ b/arch/riscv/include/asm/cacheflush.h
+> > > > > @@ -65,6 +65,14 @@ static inline void riscv_noncoherent_supported(void) {}
+> > > > >  #define SYS_RISCV_FLUSH_ICACHE_LOCAL 1UL
+> > > > >  #define SYS_RISCV_FLUSH_ICACHE_ALL   (SYS_RISCV_FLUSH_ICACHE_LOCAL)
+> > > > >
+> > > > > +#ifdef CONFIG_AX45MP_L2_CACHE
+> > > > > +void ax45mp_cpu_dma_inval_range(void *vaddr, size_t end);
+> > > > > +void ax45mp_cpu_dma_wb_range(void *vaddr, size_t end);
+> > > > > +
+> > > > > +#define ALT_CMO_OP(_op, _start, _size, _cachesize)   \
+> > > > > +                _op(_start, _size)
+> > > > > +#endif
+> > > > > +
+> > > > >  #include <asm-generic/cacheflush.h>
+> > > > >
+> > > > >  #endif /* _ASM_RISCV_CACHEFLUSH_H */
+> > > > > diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
+> > > > > index 19a771085781..d9cbf60c3b65 100644
+> > > > > --- a/arch/riscv/include/asm/errata_list.h
+> > > > > +++ b/arch/riscv/include/asm/errata_list.h
+> > > > > @@ -89,6 +89,7 @@ asm volatile(ALTERNATIVE(                                           \
+> > > > >  #define ALT_THEAD_PMA(_val)
+> > > > >  #endif
+> > > > >
+> > > > > +#ifdef CONFIG_ERRATA_THEAD_CMO
+> > > > >  /*
+> > > > >   * dcache.ipa rs1 (invalidate, physical address)
+> > > > >   * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
+> > > > > @@ -143,5 +144,6 @@ asm volatile(ALTERNATIVE_2(                                               \
+> > > > >       : "a0")
+> > > > >
+> > > > >  #endif /* __ASSEMBLY__ */
+> > > > > +#endif
+> > > > >
+> > > > >  #endif
+> > > > > diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
+> > > > > index b0add983530a..5270acca6766 100644
+> > > > > --- a/arch/riscv/mm/dma-noncoherent.c
+> > > > > +++ b/arch/riscv/mm/dma-noncoherent.c
+> > > > > @@ -24,13 +24,25 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+> > > > >
+> > > > >       switch (dir) {
+> > > > >       case DMA_TO_DEVICE:
+> > > > > +#ifdef CONFIG_ERRATA_THEAD_CMO
+> > > > >               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+> > > > > +#elif CONFIG_AX45MP_L2_CACHE
+> > > > > +             ALT_CMO_OP(ax45mp_cpu_dma_wb_range, vaddr, size, 0x0);
+> > > > > +#endif
+> > > >
+> > > > How do you support more than one platform in a build?
+> > > >
+> > > Yes, that's one concern which I have mentioned in the cover letter too
+> > > (At that moment it's just a single platform). Suggestions welcome!
+> >
+> > I think I said it on one of the earlier version, but it needs to be
+> > implemented w/ runtime patching via alternatives just like the thead
+> > stuff patches in their functions.
+> >
+> I'm a bit stumped with alternatives() usage.
+> 
+> Currently I am just replacing the ALT_CMO_OP() macro if
+> CONFIG_AX45MP_L2_CACHE is enabled. For AX45MP currently we have two
+> exported functions ax45mp_cpu_dma_inval_range/ax45mp_cpu_dma_wb_range.
+> If I switch to
+> ALTERNATIVE() macro usage then I'll have to use the assembly version
+> of the above two mentioned functions?
 
-> Hi Aidan
->
-> Thank you for your patch
->
->> Some DAIs have multiple system clock sources, which can be chosen
->> using the "clk_id" argument to snd_soc_dai_set_sysclk(). Currently
->> this is hardcoded to 0 when using simple cards, but that choice is
->> not always suitable.
->>
->> Add the "system-clock-id" property to allow selecting a different
->> clock ID on a per-DAI basis.
->>
->> To simplify the logic on DPCM cards, add a dummy "asoc_simple_dai"
->> instance and use that for the dummy components on DPCM links. This
->> ensures that when we're iterating over DAIs in the PCM runtime there
->> is always a matching "asoc_simple_dai" we can dereference.
->>
->> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
->> ---
->
-> I think adding "system-clock-id" and adding "dummy asoc_simple_dai" are
-> different topics. This patch should be separated into 2 patches.
+The overarching goal should always be the unified-kernel-image.
+So hardware-specific compile-time #ifeefs are normally a no-no :-) .
 
-Sounds good to me.
+So yes, it most likely should be assembly-based, and you'll "just" need
+to introduce an ALTERNATIVE_3 macro, similar to what ALTERNAITVE_2 does.
 
-> And I couldn't understand the reason why we need to add dummy asoc_simple_dai.
-> In my understanding, we don't parse DT for dummy connection.
-> Which process are you talking about specifically here?
->
-> 	This ensures that when we're iterating over DAIs in the PCM runtime there
-> 	is always a matching "asoc_simple_dai" we can dereference.
-> -
-> Thank you for your help !!
->
-> Best regards
-> ---
-> Kuninori Morimoto
+That is actually the really nice part of alternatives, that you can have as
+many variants as you like.
 
-DPCM DAI links have some real DAIs and one dummy DAI. Each real DAI has
-an asoc_simple_dai associated with it to contain the information parsed
-from the DT. The dummy DAI does not have an asoc_simple_dai. I'm adding
-a dummy asoc_simple_dai for these dummy DAIs to make the mapping of
-snd_soc_dai to asoc_simple_dai 1-to-1.
+Heiko
 
-The non 1-to-1 mapping is problematic, because if I have a snd_soc_dai
-and want to look up a simple-card property I would need to check if the
-matching asoc_simple_dai exists first, and have a special case for DPCM
-dummy DAIs. With a 1-to-1 mapping I can handle all DAIs the same way.
 
-Regards,
-Aidan
