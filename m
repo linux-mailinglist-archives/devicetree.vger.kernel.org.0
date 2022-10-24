@@ -2,229 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE1560B35E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1686B60B158
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 18:20:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbiJXRFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 13:05:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
+        id S232119AbiJXQUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 12:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235140AbiJXREN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:04:13 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAC437E324;
-        Mon, 24 Oct 2022 08:40:03 -0700 (PDT)
-Received: by mail-qk1-f177.google.com with SMTP id z17so3630316qkj.8;
-        Mon, 24 Oct 2022 08:40:03 -0700 (PDT)
+        with ESMTP id S234944AbiJXQTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 12:19:37 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C732115436;
+        Mon, 24 Oct 2022 08:05:47 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id h24so5750412qta.7;
+        Mon, 24 Oct 2022 08:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QuRSYRsBBAeZV4fcTjPOUogplLOaj6PiAdrhBn0xRFc=;
+        b=TRC5DsPBnnroOzB2R+k7IqSDXUB8zUw5cJS8GSsv3Sv3JpjzME2PlcEZyD0HdKIfAl
+         TT0WmdZdr4LnCHt6TzkYLrbkUevvOGMJWNt6sg9VF5lzlbC/YwVlm7oCf/RsC5xlAJaU
+         ntdDGymdDlSSfXjVU/OfNSQ/pDaKsKm7pt+nTS88XMWgHD3MiZ8WsfYUC2n9EjJlu/FL
+         mLQjpCSREQIMXan/3vtGwkQPVK59lZjXicFGppG48LN4wDW18ChdjMgKHn7b9X9p4lDM
+         kMs71ar5oE4cnKJiVTshlaj3fzV5RLPmUWuooQzRFMtWNrntFp75N2GtsGniedKxVIB4
+         yhFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zOUr8vKGqEWk39crx6gBwH6ieHL8arm1vSqANMxY3zA=;
-        b=LvyIIQTXIEg/BA3CAYzOWGXMJjNCorfEsMLOX7fUS3VispZDJx7AhYlai9sTP/MaFU
-         GIPYuh03VBGJ2K2atkA6yCOAhIc474EFMfyeuHFOBLp3Alsm1k66uDgYqRbkL4EYnOS+
-         gk1e/P/9Uy8J0P53QX3as0/uo0bO2YaR+d/7/NJzZmm68KMfHDcDDLw6bNxideu2tfid
-         rCbbKL1CKAlcFAd4P7CyzP1ShKcLNiS+N4vTnyUVhyey1RJ/W5/h+Iy9y5UQaivQvsnE
-         2gm36k5ucsmgkZye9YwwXvvUH2CB3CFkR72FCCY8++n/r5j8Bcaf05FgWbC0hqd2LSDl
-         F8yA==
-X-Gm-Message-State: ACrzQf2fnB6D5UT6b2pDsmGcLrwnhk0n6uZULGreDZ4xpA4cj/V2BuzD
-        OxDUCklL1GfHNBQ63KNRNslR7fJst1CeqQ==
-X-Google-Smtp-Source: AMsMyM6V9GpFdBVsAvJFJvDpUUuxm7k92sCv6iAHVCdeIA89KNpPcu9pNesifpvhdJsyV0vpnqiBwg==
-X-Received: by 2002:a05:620a:4310:b0:6ac:f9df:178d with SMTP id u16-20020a05620a431000b006acf9df178dmr23150286qko.773.1666619235241;
-        Mon, 24 Oct 2022 06:47:15 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id cf17-20020a05622a401100b0039c7b9522ecsm12926068qtb.35.2022.10.24.06.47.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 06:47:14 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-36a4b86a0abso69897237b3.7;
-        Mon, 24 Oct 2022 06:47:14 -0700 (PDT)
-X-Received: by 2002:a0d:de43:0:b0:349:31bd:e8d5 with SMTP id
- h64-20020a0dde43000000b0034931bde8d5mr28384338ywe.283.1666619233755; Mon, 24
- Oct 2022 06:47:13 -0700 (PDT)
+        bh=QuRSYRsBBAeZV4fcTjPOUogplLOaj6PiAdrhBn0xRFc=;
+        b=Ylcfal068ICxDPwUQUmO89fMwXkEpfVJ1ss5kH37ziHb+/E6InAs/ouy6rZQ+bcFBV
+         st/SOqXEaO4fFL4NY1m9umvXrkd2ItWqGo1SJMZLCsLhwPrmVm18QjyZyf5EtIfcy+gr
+         oLibEmkTehjn2/s14UQ/q8tB60p/PO3KqirffxnACevvsGFMsAL9/wkp9znLj0HnwdEM
+         1yOhqe8zbe5UF189keB1kURhOjpPFFldN96dN6pl/fiJM0rJBNcbK5uHcF1wxPpD5W/W
+         Oi/cqaT2GwfTcaFeIe9AIkGM+Ffio3IVixxudE/7mh9Z8AcvdxD8IT5BVVZV2EGdvabn
+         hfJw==
+X-Gm-Message-State: ACrzQf35P2HI2cJbtJIZcoib53cQwDsSDSiVUJ7dvfGxzNYOmi7heX1J
+        X8xXHJG3Um5mv2EiuJB19Ku9NwPy8TX0W+tBDmVeRDEYJUg=
+X-Google-Smtp-Source: AMsMyM6/vj+OYU1fRsLNLVy+HcOFy1orUfoRd/mpNbcZyL3cQ3fg3lm2uBrQdR/K8mMJSxGHIWgDdf1nm1tdZD/DXvM=
+X-Received: by 2002:ac8:5c83:0:b0:39c:e9b9:9efd with SMTP id
+ r3-20020ac85c83000000b0039ce9b99efdmr27992397qta.481.1666619400481; Mon, 24
+ Oct 2022 06:50:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221019220242.4746-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221019220242.4746-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221019220242.4746-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 24 Oct 2022 15:47:02 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVVzUN1ScY4vh3d8=XvshOjc0C4G2duFRHSPms3S+2yeA@mail.gmail.com>
-Message-ID: <CAMuHMdVVzUN1ScY4vh3d8=XvshOjc0C4G2duFRHSPms3S+2yeA@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 1/2] dt-bindings: cache: r9a07g043f-l2-cache: Add
- DT binding documentation for L2 cache controller
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.co>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <anup@brainfault.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221024132757.3345400-1-sravanhome@gmail.com> <20221024132757.3345400-7-sravanhome@gmail.com>
+In-Reply-To: <20221024132757.3345400-7-sravanhome@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 24 Oct 2022 16:49:24 +0300
+Message-ID: <CAHp75VcvZ9drkFfbpVJFz0UWQvOMgAu3+JmV4HvOG3dPKDoN5w@mail.gmail.com>
+Subject: Re: [PATCH v4 6/8] power: supply: fix failed to get iio channel by
+ device name
+To:     Saravanan Sekar <sravanhome@gmail.com>
+Cc:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Thu, Oct 20, 2022 at 12:02 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Oct 24, 2022 at 4:28 PM Saravanan Sekar <sravanhome@gmail.com> wrote:
 >
-> Add DT binding documentation for L2 cache controller found on RZ/Five SoC.
+> The mfd cell devices name populated on sysfs entry is dynamically derived
+> from an auto instance which introduced a regression. As a result
+> mpc2629_charger driver failed to get adc channel because of iio consumer
+> name mismatch with the sysfs.
 >
-> The Renesas RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP
-> Single) from Andes. The AX45MP core has an L2 cache controller, this patch
-> describes the L2 cache block.
+> /sys/class/i2c-adapter/i2c-1/mp2629_adc.0.auto/
+> /sys/class/i2c-adapter/i2c-1/mp2629_charger.1.auto/
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Fixes: 466a62d7642f(mfd: core: Make a best effort attempt to match devices)
 
-Thanks for your patch!
+Wrong Fixes tag format, moreover the fixes should be grouped at the
+beginning of the series, so it will be visible and splittable based on
+this property.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cache/andestech,ax45mp-cache.yaml
-> @@ -0,0 +1,125 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cache/andestech,ax45mp-cache.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Andestech AX45MP L2 Cache Controller
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description:
-> +  A level-2 cache (L2C) is used to improve the system performance by providing
-> +  a larger amount of cache line entries and reasonable access delays. The L2C
-
-large
-
-> +  is shared between cores, and a non-inclusive non-exclusive policy is used.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - andestech,ax45mp-cache
-> +
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: andestech,ax45mp-cache
-> +      - const: cache
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  cache-line-size:
-> +    const: 64
-
-This is fixed here, but the driver accepts (and uses) whatever value specified?
-
-> +
-> +  cache-level:
-> +    const: 2
-> +
-> +  cache-sets:
-> +    const: 1024
-> +
-> +  cache-size:
-> +    enum: [131072, 262144, 524288, 1048576, 2097152]
-> +
-> +  cache-unified: true
-> +
-> +  next-level-cache: true
-> +
-> +  andestech,pma-regions:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    minItems: 1
-> +    maxItems: 16
-> +    description: Optional array of memory regions to be set as non-cacheable
-> +                 bufferable regions which will be setup in the PMA.
-> +
-> +  andestech,inst-prefetch:
-> +    description: Instruction prefetch depth
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1, 2, 3 ]
-> +
-> +  andestech,data-prefetch:
-> +    description: Data prefetch depth
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1, 2, 3 ]
-
-According to Section 8.1.2 ("L2-Cache Prefetch"), this should be
-[ 0, 2, 4, 8 ].
-
-> +  andestech,tag-ram-ctl:
-> +    description: Tag RAM output cycle. First tuple indicates output cycle and the
-> +      second tuple indicates setup cycle.
-
-Nit: to me it sounds more logical to have the setup cycle first.
-See also the order in the comment in the driver code:
-
-     /* tag RAM and data RAM setup and output cycle */
-
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    items:
-> +      - minimum: 0
-> +        maximum: 2
-> +      - minimum: 0
-> +        maximum: 2
-> +
-> +  andestech,data-ram-ctl:
-> +    description: Data RAM output cycle. First tuple indicates output cycle and the
-> +      second tuple indicates setup cycle.
-
-Likewise.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    items:
-> +      - minimum: 0
-> +        maximum: 2
-> +      - minimum: 0
-> +        maximum: 2
-
-Do we really need these andestech-specific properties?
-If yes, how much (if any) of this do we want to be handled by the boot
-loader, and how much (if any) by Linux?
-If Linux is responsible, we might have to boot with L2 disabled, right?
-
-For ARM Cortex A15/A7, we also have arm,{data,tag}-latency properties
-defined, but no DTS specifies them (my patches to add them on R-Car
-Gen2 were rejected).  Note that this is different for e.g. older PL310.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+With Best Regards,
+Andy Shevchenko
