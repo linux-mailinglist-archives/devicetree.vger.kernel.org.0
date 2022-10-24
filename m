@@ -2,119 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5AB96098F9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 05:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18CD56098FD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:01:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbiJXDys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 23:54:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47096 "EHLO
+        id S230045AbiJXEBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 00:01:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbiJXDyo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 23:54:44 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 487711129
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 20:54:39 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29O3sX5g002665;
-        Sun, 23 Oct 2022 22:54:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666583673;
-        bh=r5DWePghI8fCtIYdy6BD5IFcH0Ykyaz99Zro6k3jc9o=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=GuC8HBeVxUF49XIKGKLYz7tMP3nXj8/g8ydDiW5U/LX2o8NlL7pMy/D8qH+wIGzff
-         Sc8DCQL6bVaKtvzEBIxT52ItgkIzObrfIEmCoMvNPQgfXLWHeJJ/fI8/pbtxbqr7GA
-         MWsxA/mgDc0293PAYOhyDpk59P7urwRNZkmg30j8=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29O3sXne083411
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 23 Oct 2022 22:54:33 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Sun, 23
- Oct 2022 22:54:33 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Sun, 23 Oct 2022 22:54:32 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29O3sUwP014323;
-        Sun, 23 Oct 2022 22:54:31 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <lee@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Matt Ranostay <mranostay@ti.com>
-Subject: [PATCH RESEND v2 2/2] arm64: dts: k3-j72*: correct compatible for syscon entries
-Date:   Sun, 23 Oct 2022 20:54:05 -0700
-Message-ID: <20221024035405.366208-3-mranostay@ti.com>
-X-Mailer: git-send-email 2.38.GIT
-In-Reply-To: <20221024035405.366208-1-mranostay@ti.com>
-References: <20221024035405.366208-1-mranostay@ti.com>
+        with ESMTP id S229934AbiJXEBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:01:51 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 993D26A514
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 21:01:49 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id io19so2529370plb.8
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 21:01:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zkSiz3crf2T+ikAMcFUJLUknPn5PUxv2vZ/hh7siBZ4=;
+        b=l+Q97JnNAQ06zAHzXqbTdRWx1QLTeWV7R190V3pPlPg+HC3DM7dF1gB8qWLiFtq+uP
+         IFGgiK2TxfZ+jJ4rCpzUiK9kJJFXW6CejOx32JbEIwzVRCOU29fswh2a0GoE8AH0fhmT
+         AbTYnU72zgJMxm/Wpu1K25gITMoPe+i9VGprgkPcMDnwJsGAAbzGxFQAMtecOLQQk9r8
+         GeD07LwHZnz/1gJ7nj8CeLuvFccIxkgIaa9dDTpkOX1fCgVH0gNmd6qYf2+QDoTpclfQ
+         bfyK7ylD0Pl+9271W65/vqvHCYxTY7PqZrl/VHvL6jn1lh+dPxdR0YDs8x05UxDO2Yyh
+         tung==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zkSiz3crf2T+ikAMcFUJLUknPn5PUxv2vZ/hh7siBZ4=;
+        b=Tn5oZ7uVGZWTyPRHVLfFl0Lp7u5odbWmlWeRlYL3CeYsr4Q8s46J3K9KGSdWiMAPoO
+         duaQfPeP8LsYVSM1HFSi6WwG6C3uQysam+OG2OJs1cmgLRTddibtNA1TUlzBYifqO6TC
+         39kWhyFWIEyS4Runf5nOBFVEpJfpTS4xOQyTmZNg6SjCkX9AtxdZZrGJDTflfkFR392k
+         AHRpFoEZ/U+dZhgngiuDhBvZr7CF+hJAcEAFd40fjannLXfLW4LZO6KZgS0QHzGDU9TF
+         AuYMvp9osF6oh9Z2+tV3VQBCtwlEzJd1J9Gt/Hl/QF6Nskvvvyj6n43M2XaddjbougNe
+         WjhA==
+X-Gm-Message-State: ACrzQf2ZJ6lb0Yqqx/VAu1PaiP8joIf9GAKrQVbnmXoW5lxsoVmzy7zg
+        z8UVhrujfqYIQYSQyEQ4OOLP
+X-Google-Smtp-Source: AMsMyM6izrD95VKfxNC49/7xFe9LascYp5uSU5dAjgNEqhZo/P5Q0QG8IvRmkPuP/P6kq22u256/WA==
+X-Received: by 2002:a17:90b:4d0c:b0:20b:c983:2d85 with SMTP id mw12-20020a17090b4d0c00b0020bc9832d85mr72770137pjb.45.1666584108931;
+        Sun, 23 Oct 2022 21:01:48 -0700 (PDT)
+Received: from thinkpad ([117.193.210.252])
+        by smtp.gmail.com with ESMTPSA id 5-20020a630205000000b00442c70b659esm16520472pgc.91.2022.10.23.21.01.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Oct 2022 21:01:47 -0700 (PDT)
+Date:   Mon, 24 Oct 2022 09:31:40 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        viresh.kumar@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/4] cpufreq: qcom-hw: Add CPU clock provider support
+Message-ID: <20221024040140.GA221610@thinkpad>
+References: <20221019135925.366162-1-manivannan.sadhasivam@linaro.org>
+ <20221019135925.366162-4-manivannan.sadhasivam@linaro.org>
+ <b88de305-cb1f-7251-ccb8-4ea3b62bc322@linaro.org>
+ <20221021093140.GC93287@thinkpad>
+ <20221024030648.dthglkkcy5wtziwd@baldur>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221024030648.dthglkkcy5wtziwd@baldur>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing ti,j7*-system-controller compatible to bus defines in mcu/wakeup
-domains to avoid the following similar warnings from dt-schema checks:
+On Sun, Oct 23, 2022 at 10:06:48PM -0500, Bjorn Andersson wrote:
+> On Fri, Oct 21, 2022 at 03:01:40PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, Oct 20, 2022 at 08:39:50AM +0300, Dmitry Baryshkov wrote:
+> > > On 19/10/2022 16:59, Manivannan Sadhasivam wrote:
+> > > > Qcom CPUFreq hardware (EPSS/OSM) controls clock and voltage to the CPU
+> > > > cores. But this relationship is not represented with the clk framework
+> > > > so far.
+> > > > 
+> > > > So, let's make the qcom-cpufreq-hw driver a clock provider. This makes the
+> > > > clock producer/consumer relationship cleaner and is also useful for CPU
+> > > > related frameworks like OPP to know the frequency at which the CPUs are
+> > > > running.
+> > > > 
+> > > > The clock frequency provided by the driver is for each CPU policy. We
+> > > > cannot get the frequency of each CPU core because, not all platforms
+> > > > support per-core DCVS feature.
+> > > > 
+> > > > Also the frequency supplied by the driver is the actual frequency that
+> > > > comes out of the EPSS/OSM block after the DCVS operation. This frequency is
+> > > > not same as what the CPUFreq framework has set but it is the one that gets
+> > > > supplied to the CPUs after throttling by LMh.
+> > > > 
+> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > ---
+> > > >   drivers/cpufreq/qcom-cpufreq-hw.c | 67 +++++++++++++++++++++++++++++--
+> > > >   1 file changed, 63 insertions(+), 4 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> > > > index a5b3b8d0e164..4dd710f9fb69 100644
+> > > > --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> > > > +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> > > > @@ -4,6 +4,7 @@
+> > > >    */
+> > > >   #include <linux/bitfield.h>
+> > > > +#include <linux/clk-provider.h>
+> > > >   #include <linux/cpufreq.h>
+> > > >   #include <linux/init.h>
+> > > >   #include <linux/interconnect.h>
+> > > > @@ -54,6 +55,7 @@ struct qcom_cpufreq_data {
+> > > >   	bool cancel_throttle;
+> > > >   	struct delayed_work throttle_work;
+> > > >   	struct cpufreq_policy *policy;
+> > > > +	struct clk_hw cpu_clk;
+> > > >   	bool per_core_dcvs;
+> > > >   };
+> > > > @@ -482,6 +484,54 @@ static void qcom_cpufreq_hw_lmh_exit(struct qcom_cpufreq_data *data)
+> > > >   	free_irq(data->throttle_irq, data);
+> > > >   }
+> > > > +static unsigned long qcom_cpufreq_hw_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> > > > +{
+> > > > +	struct qcom_cpufreq_data *data = container_of(hw, struct qcom_cpufreq_data, cpu_clk);
+> > > > +
+> > > > +	return qcom_lmh_get_throttle_freq(data) / HZ_PER_KHZ;
+> > > > +}
+> > > > +
+> > > > +static const struct clk_ops qcom_cpufreq_hw_clk_ops = {
+> > > > +	.recalc_rate = qcom_cpufreq_hw_recalc_rate,
+> > > > +};
+> > > > +
+> > > > +static int qcom_cpufreq_hw_clk_add(struct qcom_cpufreq_data *data, u32 index)
+> > > > +{
+> > > > +	struct platform_device *pdev = cpufreq_get_driver_data();
+> > > > +	struct device *dev = &pdev->dev;
+> > > > +	char *clk_name = devm_kasprintf(dev, GFP_KERNEL, "qcom_cpufreq%d", index);
+> > > > +	static struct clk_init_data init = {};
+> > > > +	int ret;
+> > > > +
+> > > > +	init.name = clk_name;
+> > > > +	init.flags = CLK_GET_RATE_NOCACHE;
+> > > > +	init.ops = &qcom_cpufreq_hw_clk_ops;
+> > > > +	data->cpu_clk.init = &init;
+> > > > +
+> > > > +	ret = clk_hw_register(dev, &data->cpu_clk);
+> > > > +	if (ret < 0) {
+> > > > +		dev_err(dev, "Failed to register Qcom CPUFreq clock\n");
+> > > > +		return ret;
+> > > > +	}
+> > > > +
+> > > > +	ret = of_clk_add_hw_provider(dev->of_node, of_clk_hw_simple_get, &data->cpu_clk);
+> > > 
+> > > This doesn't look corresponding to the DT bindings you are adding.
+> > > of_clk_hw_simple_get() would return a single clock per dt node, whichever
+> > > arguments were passed, while you are adding clocks correspoding to CPU
+> > > clusters.
+> > > 
+> > > From what I see according to the bindings, you should register a single
+> > > provider using the of_clk_hw_onecell_get() function.
+> > > 
+> > 
+> > Well, that won't work either :( The detail that I missed in first place is
+> > that the clock providers are added for the same DT node for each policy. So
+> > there is a single clock under the clock provider for a policy but they all
+> > belong to the same DT node.
+> > 
+> > This works when a clk provider gets added and then followed by "clk_get()"
+> > (that's what happening during the ->init() callback). But each time a new
+> > provider gets added, it is replacing the old for the same DT node.
+> > 
+> > The problem here is, we do not know how many policys are going to be there
+> > during the probe time. I'll think about a proper solution and update.
+> > 
+> 
+> You could get this by looping over all the cpus and count how many
+> unique qcom,freq-domains you have.
+> 
 
-arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@40f00000: compatible: ['syscon', 'simple-mfd'] is too short'
+I just counted the number of "freq-domainX" register spaces defined in cpufreq
+node and used that as the domain count.
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi  | 2 +-
- arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+> But it seems like a bigger problem is that you need to register your
+> clock "provider" at a device-level, rather than a policy level. I did
+> some experiments with moving most of the resource management to probe
+> and it did look quite promising, but in the end I figured out a shorter
+> path to per-core frequency voting and threw that code out again.
+> 
+> It seems however that this would be a good idea to pick up.
+> 
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index e5be78a58682..2025aab4b66f 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -35,7 +35,7 @@ k3_reset: reset-controller {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j7200-system-controller", "syscon", "simple-mfd";
- 		reg = <0x00 0x40f00000 0x00 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index df08724bbf1c..5d9ec221fa34 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -35,7 +35,7 @@ k3_reset: reset-controller {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-index 4d1bfabd1313..dfd40369b931 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
-@@ -69,7 +69,7 @@ wkup_gpio_intr: interrupt-controller@42200000 {
- 	};
- 
- 	mcu_conf: syscon@40f00000 {
--		compatible = "syscon", "simple-mfd";
-+		compatible = "ti,j721s2-system-controller", "syscon", "simple-mfd";
- 		reg = <0x0 0x40f00000 0x0 0x20000>;
- 		#address-cells = <1>;
- 		#size-cells = <1>;
+This is what exactly I've done now (not posted yet). Moving the resource
+management is indeed the correct way since the resources are static and not
+tied to the CPUs. Plus it allows us to use devm_ helpers for tieing all the
+resources to the device.
+
+> 
+> Beyond resolving Viresh request though, we have the problem that on
+> SM8350 and SC8280XP (at least), the L3 cache is controlled by per-core
+> registers residing in the register blocks hogged by the cpufreq driver,
+> and is configured in unit of Hz. So we can't directly use the osm-l3
+> model - without hacking up the drivers to allow for overlapping ioremap.
+> 
+> We could probably extend the cpufreq driver to express this as a path
+> between each core and the L3 cache and just ignore the unit (kBps vs Hz)
+> (i.e.  duplicate osm-l3 in the cpufreq driver).
+> But it doesn't seem unreasonable to me to express this as a clock per
+> CPU and just add another opp-hz value to the opp-table, now that this is
+> supported.
+> 
+> This design would also allow for profiling based mechanisms to pick
+> these clocks up and issue clk_set_rate(), if such mechanisms would be
+> desirable.
+> 
+
+This sounds reasonable to me. Let's discuss this offline and come up with a
+design.
+
+Thanks,
+Mani
+
+> Regards,
+> Bjorn
+
 -- 
-2.38.GIT
-
+மணிவண்ணன் சதாசிவம்
