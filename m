@@ -2,107 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB1D60BBCE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:14:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 135F560BBE2
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 23:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbiJXVNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 17:13:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60660 "EHLO
+        id S233603AbiJXVRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 17:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233870AbiJXVNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:13:30 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3A99F34B;
-        Mon, 24 Oct 2022 12:19:08 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id n83so11832935oif.11;
-        Mon, 24 Oct 2022 12:19:07 -0700 (PDT)
+        with ESMTP id S230055AbiJXVQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 17:16:38 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD5E82D2873;
+        Mon, 24 Oct 2022 12:22:26 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-13b103a3e5dso13022572fac.2;
+        Mon, 24 Oct 2022 12:22:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QIBzsXoRmDPCk+QGItVKsAnVTVNA5SJC3SeSu8UPZ0Q=;
-        b=mxQII/Jy11+yUIWhqP2PeP/Lr5BZnFAyoiWSsR67VgllbOqCaHbffVdgag7PditIqG
-         T3Yj8xynxS6yQkYDJQkTQSS8HcuG+KCC3qKsR0yIr207Fj43g9WgxVgWEU8lpAjWdmoc
-         6iLCrydLb2bIii1k6Rjkxy9/B+NhHDbeT320FBBRLnFhva8C3l8tHL2JopTXczJafejH
-         LQcmBzdFDRNXzHb+gBZRobEDhjQtczFcpHHAGKnFTdWQ5MABWWZ1iU7iNm7JPiNBH12L
-         4q0FP/5M4u0OGmjH1JbEzWFAUhpF00tQpHTWcQDfSeMLHlDdNXpedQ/UyETzFyiHPGAd
-         UQDg==
-X-Gm-Message-State: ACrzQf2tz6RR+gTPoOrmHhTioArP0XOk3sgav0UoPNkTiWTa44V34FZO
-        sb3vKL91t8/7pItXlJ2A3DVOWr2T+g==
-X-Google-Smtp-Source: AMsMyM4MB6WxE1PPXgNUticTmOt/0jgwpX4JDtNdVwFd2Y/nV7ZFEF/0yX9UhR/ug7Xqhywv3Aw1Dw==
-X-Received: by 2002:a05:6808:16a6:b0:351:7211:6192 with SMTP id bb38-20020a05680816a600b0035172116192mr17441079oib.251.1666638994336;
-        Mon, 24 Oct 2022 12:16:34 -0700 (PDT)
+        bh=kWGGk3FSvDrDNlj7m3/+RkyTCBK7scHSBvuDcHj894A=;
+        b=b4w07ECEL03vaL+fIShk3B86XWVGaNU7T0f0Qa95NYvELT8+MnL/baxzCp/jT7Zv2j
+         HWmnvcUqjrZ+NLP7HoJO46H/SPWNhrVKDloccB8bHgYDDBuQik9dn8+FBOMRFpIV6iuv
+         QBUqZDGiOotKn4/g6qpzZfkT2+wd3uaB/s4Owad52xC2T6haFx7+cwnMFTXDrKH6+A9t
+         pqeFZcCwHRMwzKY6OQrbHya14zAJzBxj8aNO75KbRGSAWj6Kjs7Uyz9ZuiF/UYFnGBXi
+         R1ELUcR1ntfPNAu2wLbJZxBYtd4cW/Pjckn28ci6z3heRm+jFrcDyPl088iOka3UX84E
+         QBWQ==
+X-Gm-Message-State: ACrzQf0gn6clAisML1EuKVl6Ht6m8rs4kYVIMyVoVjemD0nFBn8bFZMb
+        P5GNqt6lm+Fh8m6ASajNng==
+X-Google-Smtp-Source: AMsMyM7Kon71TlhiViOgQoNGKfyW7PqeyYXqSISfxJSgf75N31P+dvtYVbGx3ovjnog4dpNSMlMyYA==
+X-Received: by 2002:a05:6870:f692:b0:13a:f2be:7b49 with SMTP id el18-20020a056870f69200b0013af2be7b49mr15736513oab.77.1666639275109;
+        Mon, 24 Oct 2022 12:21:15 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x6-20020a05680801c600b0035173c2fddasm172201oic.51.2022.10.24.12.16.33
+        by smtp.gmail.com with ESMTPSA id r40-20020a05683044a800b0066194e0e1casm102893otv.75.2022.10.24.12.21.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 12:16:33 -0700 (PDT)
-Received: (nullmailer pid 2064239 invoked by uid 1000);
-        Mon, 24 Oct 2022 19:16:35 -0000
-Date:   Mon, 24 Oct 2022 14:16:35 -0500
+        Mon, 24 Oct 2022 12:21:14 -0700 (PDT)
+Received: (nullmailer pid 2069404 invoked by uid 1000);
+        Mon, 24 Oct 2022 19:21:15 -0000
+Date:   Mon, 24 Oct 2022 14:21:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2 v1] usb: phy: phy-gpio-vbus-usb: Add devicetree
- bindings
-Message-ID: <20221024191635.GA2060090-robh@kernel.org>
-References: <20221022121149.3329641-1-linus.walleij@linaro.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org, Steven Liu <steven.liu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Sam Shih <Sam.Shih@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: mediatek-gen3: add SoC based clock
+ config
+Message-ID: <166663927468.2069331.7937155894835281223.robh@kernel.org>
+References: <20221023170234.83621-1-linux@fw-web.de>
+ <20221023170234.83621-2-linux@fw-web.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221022121149.3329641-1-linus.walleij@linaro.org>
+In-Reply-To: <20221023170234.83621-2-linux@fw-web.de>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 22, 2022 at 02:11:48PM +0200, Linus Walleij wrote:
-> This adds a simple device tree binding for a GPIO-based
-> VBUS detection PHY.
+On Sun, 23 Oct 2022 19:02:32 +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Cc: Felipe Balbi <balbi@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> The PCIe driver covers different SOC which needing different clock
+> configs. Define them based on compatible.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  .../bindings/phy/phy-usb-vbus-gpio.yaml       | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
+>  .../bindings/pci/mediatek-pcie-gen3.yaml      | 48 ++++++++++++++-----
+>  1 file changed, 36 insertions(+), 12 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml b/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
-> new file mode 100644
-> index 000000000000..4e10b58f8235
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/phy-usb-vbus-gpio.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/phy-usb-vbus-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO-based VBUS detection USB PHY
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: A VBUS event occurs when a USB plug is attached to
-> +  a USB host and peripheral, the voltage (VBUS) is exposed from the
-> +  host to the peripheral when the last of the two ends of the
-> +  cable is plugged in. This can be either on the host side or on
-> +  the peripheral side, whichever comes last. It is possible to
-> +  provide a very simple USB VBUS detection mechanism by using a
-> +  GPIO line that will trigger on an edge event on the VBUS
-> +  pin.
 
-We already have Vbus GPIOs in the USB connector binding and there is 
-also the usb-nop-transceiver. Surely one of those works for you? 
-Preferably the former.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
