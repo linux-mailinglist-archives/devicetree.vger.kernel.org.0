@@ -2,71 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90FC960B887
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A27F960B778
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:24:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231931AbiJXTud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 15:50:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
+        id S231815AbiJXTYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 15:24:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234204AbiJXTuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:50:02 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C09618C94D;
-        Mon, 24 Oct 2022 11:15:56 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id a13so33043920edj.0;
-        Mon, 24 Oct 2022 11:15:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XX7YiiGevtISI0XSZZMb5osn/jTMBowrI9vJR9V/T7A=;
-        b=Ahsq7/pmrfp2KoGqVXZoy5NBZKbqm7VWN1fU1FMWrNnTBGWCdjNE/nO+W1BulZIcpJ
-         F7CG77QLQdmggVsasOP66jRulbVV2HWk5qelObkdurv0nYW86hJHJIUrDAWRHXNZCYdD
-         Wc/gKchScqlR0Eaj0tPz66EtFONYSHcw3iSfv5BXexdXgnpQ2BttKk+VvOX6xy1gBUDh
-         jZIwRBo1YgLKmh+AISNGxdczpCmjqUUitA1aixioGwyfIOu1DxG5MDcL19spcr9+Vr46
-         YHypK7hBgXXyUpMWtEb7TvRlIyxGfsgZT4yXHkXxSe1Y+cwfSfmyJAa9OSMPH3nV+aYi
-         NQYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XX7YiiGevtISI0XSZZMb5osn/jTMBowrI9vJR9V/T7A=;
-        b=PJWRdNNeIO4pilxKOvFxsMPSADxMtPazbPjR2kOnAewtigeuwkuaoQmtJ9LO4QHtwD
-         soVdBT7FxUA3Z1or7v9DP7C9qSxWxfD2DaJyloDMFqpUimuMWhpGV93aS3C+uer7t3Ef
-         fMoshdqOA2V4/IEVQKRc1KTJRultQ0GZl/w/4uvtWdnksQDUrt2G45ky75VUVsfegPTN
-         ZItDvXv2mtCJo+SboZQtcVE3Cx/Axprd8oPuA+oAgW+iGHnIKetIQV35X92lVIdlH+ss
-         bKCwi0Lv1+JtfxzBsEga1HE2pJeRDzMDLYMRp3n0hYtZAMr0ApS+9HL0/kkaovDUTCvh
-         Sd/Q==
-X-Gm-Message-State: ACrzQf0ssPJfq7Z2N3xxBlJb6AqZzWUqjvGeMVbrGKY2wDpSsdmtW6b+
-        o3VDBEwHEczO69ecC3CJ76QU0WYJjEM=
-X-Google-Smtp-Source: AMsMyM5cvHqhuapFX+2hHyIxLP375qizLYhAMFBowVkQdXgh5rljsTJ4VXgwPUAZtVjvYG/chFwEJg==
-X-Received: by 2002:a05:6402:2813:b0:461:e7bc:560a with SMTP id h19-20020a056402281300b00461e7bc560amr2301115ede.340.1666619119953;
-        Mon, 24 Oct 2022 06:45:19 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id k26-20020a17090632da00b0078082f95e5csm15506063ejk.204.2022.10.24.06.45.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 06:45:19 -0700 (PDT)
-Date:   Mon, 24 Oct 2022 15:45:17 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Add SBSA UART for Tegra234
-Message-ID: <Y1aW7R/Yb440/fey@orome>
-References: <20221019144700.170361-1-jonathanh@nvidia.com>
+        with ESMTP id S233340AbiJXTYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:24:12 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD9983AE78
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 10:58:20 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1omxmP-0007w9-U5; Mon, 24 Oct 2022 15:46:13 +0200
+Message-ID: <504af0de-5c69-b695-f758-6650e150ba07@pengutronix.de>
+Date:   Mon, 24 Oct 2022 15:46:13 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ZO0HNTfB+6/jabfj"
-Content-Disposition: inline
-In-Reply-To: <20221019144700.170361-1-jonathanh@nvidia.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH v3 1/1] arm64: dts: tqma8mpql: add USB DR support
+To:     Jun Li <jun.li@nxp.com>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220905073730.199462-1-alexander.stein@ew.tq-group.com>
+ <40f423ce-376c-acbf-db00-ca696da44fe4@pengutronix.de>
+ <CAJ+vNU0SPowfxBAAyJ2QxGB8VifxpqMaNtB1M3c=C9wopu6LYw@mail.gmail.com>
+ <a7983d24-cf0a-16ad-b202-1353da320003@pengutronix.de>
+ <PA4PR04MB96409CB34D18F850074C311E89289@PA4PR04MB9640.eurprd04.prod.outlook.com>
+Content-Language: en-US
+In-Reply-To: <PA4PR04MB96409CB34D18F850074C311E89289@PA4PR04MB9640.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+        NICE_REPLY_A,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,50 +58,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---ZO0HNTfB+6/jabfj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 18.10.22 04:07, Jun Li wrote:
+>> -----Original Message-----
+>> From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>> Thanks for the info. Do you know if this issue exists with the i.MX8MN as
+>> well? A colleague had trouble bringing up the OTG_ID HW function and I assume
+>> it may be the same issue. I am unsure though, because the
+>> imx8mn-tqma8mqnl-mba8mx.dts muxes the pad as OTG_ID.
+> 
+> No, iMX8MN is completely different IP(USB2 only) than iMX8MP, iMX8MN
+> has *OTG* inside so the ID functionality should be fine, what's the
+> trouble you colleague had?
 
-On Wed, Oct 19, 2022 at 03:47:00PM +0100, Jon Hunter wrote:
-> Populate the SBSA UART for Tegra234 and enable this UART for Jetson AGX
-> Orin.
->=20
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  .../boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 5 +++++
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi                   | 7 +++++++
->  2 files changed, 12 insertions(+)
+I see. Problem was that changes to the OTG pins were not detected
+on an i.MX8MN-based board, despite the colleague being sure that
+OTG controller registers were set correctly.. I'll have to catch up with
+him for more info. My current suspicion is that it may have been
+runtime-suspend related.
 
-Applied, thanks. I noticed that the nodes have become a litte disordered
-after the P2U nodes were added in commit ec142c44b026 ("arm64: tegra:
-Add P2U and PCIe controller nodes to Tegra234 DT"), so I sorted the SBSA
-UART node correctly and then reordered the remaining nodes correctly.
+I'll ask him to test again with your series separating USB/HSIO PDs.
 
-We should probably have a check for that. I'll see if I can come up with
-something quickly.
+  https://lore.kernel.org/all/1664192735-14313-1-git-send-email-jun.li@nxp.com/
 
-Thierry
+We had a udev rule already, which I tested working on an i.MX8MM:
 
---ZO0HNTfB+6/jabfj
-Content-Type: application/pgp-signature; name="signature.asc"
+  SUBSYSTEM=="platform", ACTION=="add", DRIVER=="imx_usb", ATTR{power/control}="on"
 
------BEGIN PGP SIGNATURE-----
+But apparently something is still amiss.
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNWlusACgkQ3SOs138+
-s6E8lxAAnklCc6KaKmir/m+hgmJ334h/0FV65JsGKbVcBbJQ9rGEUBtsetO5XA5Q
-uxSdOmSFOwBlq3rohi+TCuPlad8iiOfykl4qZtlIu84/a6lJSIfg2u02rHrUjw18
-QW7Ywdpj2FTeQisA4c5oOx1+spp7DPdM/osLHDxTXi3Xx1QOmDx1X+kMPcU39pG8
-9PqNsmxX0o9jLzxXz9NMKhw1xs5aIDRVzpk4mcopPaNH+1LnaIfxx601w+rwAzY+
-q6Ws8bSmaI5HZnUyL9P1fknMJx/wXc4DM5JEE+10WtS03KX9eKtPwCQPVtEzy+P7
-1HO7lX8+tP1/NJuQ+rpVgxbpNzABLuV0nzuSuIJw58ZPCzOpLMcw+VCuG7FcoS1N
-gQMhTD5uI1NbLBn4vFhDsgbcej530blYInnVG35Q3X4CRbg7SsakMQIJTrHUgyKi
-KfCkqIGb8ElLZMOUHb0OVAH6ZBJL8JNBV3VwawRyShyCxt+1TghA/EZSDE50eRZp
-nj6Xt+HQdZ+fWIitzSMg9D3glp3X22wo69K2ta1iCAOte0Kqicz4++R6NFetxM0b
-gYPg/VWJopl4cCmyBn5CwSEZWGmmmDOQtppi8uV+MyfK/q14wMF+cIn0nTiQ0lBN
-bZ8OEaZ63OhaaNtKrx4rD4qIs4UeJVP0hV/ddMxPiJDdJIL0jjU=
-=9Fws
------END PGP SIGNATURE-----
+Thanks for the help everybody,
+Ahmad
 
---ZO0HNTfB+6/jabfj--
+> 
+> Li Jun
+>  
+>>
+>> Cheers,
+>> Ahmad
+>>
+>>>
+>>> Best Regards,
+>>>
+>>> Tim
+>>>
+>>
+>>
+>> --
+>> Pengutronix e.K.                           |                             |
+>> Steuerwalder Str. 21                       |
+>> https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.pe
+>> ngutronix.de%2F&amp;data=05%7C01%7Cjun.li%40nxp.com%7Cac32a99803dc4e710
+>> 4d408dab0777a15%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6380163244
+>> 44837508%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLC
+>> JBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=4TFBorG%2BucyYuy
+>> HrwhTDxjz4GV3%2FsCaHzx7i4cdw5Zw%3D&amp;reserved=0  |
+>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+> 
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
