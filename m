@@ -2,143 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D353260B50B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8306560B5E5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 20:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbiJXSMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 14:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50176 "EHLO
+        id S230025AbiJXSoS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 14:44:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231805AbiJXSMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:12:02 -0400
-Received: from wnew4-smtp.messagingengine.com (wnew4-smtp.messagingengine.com [64.147.123.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4B626C44E;
-        Mon, 24 Oct 2022 09:53:44 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id 382C32B066F1;
-        Mon, 24 Oct 2022 10:27:54 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Mon, 24 Oct 2022 10:27:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1666621673; x=
-        1666628873; bh=j5Xmm1hIOnDXfjVvOH1nBH2jD1dezyQFcZOvqExQy/Q=; b=R
-        FOCrFIiTxT4VVyc9mEDQdkEn+wGl6bgl85vYTnOHs9SmkuBXihbN449jNzacB8jI
-        rTTZjSbMHEkOE6lva8OK7H+tWMs7X8EpOfrjmtb6/oVOGDu9QbZ0yoFBmwCcqV/f
-        OY2S9hiS5k+xnEniFrSzWv69cVnlbB0lhSbJ9CqHWVp9ya8AIfEqbYesbuFRq9Qd
-        PSVVASHWixWTm4BTrueGRqrr2qoyHEcyvUm2O9mtgTacw1X/e4TGUOI7spwRF4k8
-        NrLH6dKrsa3XnjqeccrXYuGDRxoUwvp7+h9Ls1LReoWuxJMTQSMuUwY2jFO3D+Jm
-        dHiTM/iSZCKnRNoHbTlJQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1666621673; x=
-        1666628873; bh=j5Xmm1hIOnDXfjVvOH1nBH2jD1dezyQFcZOvqExQy/Q=; b=j
-        bQ9YG0M5QUfhAMC5KcxlBfNv3OPZ3dcPqvAHDAkHJFJBtkG/oKiHEgB/CGkfd5D4
-        4WXIXCvh3vM6V7jLlWzrMUTV4Fpaa7SNUDAMOjP9/s26EtfpqJpXHuJvjncEf/Hb
-        l2A1rrOSEilHAzFog8P4c885b26rzqZmcbf/q5PoNykrPcDsbeuOwk+rlSf/XLVe
-        pO9o+yifsE2IWF0Wd9xtiS41jAXVVz31C3ZyF1314cL/e+AOiNL9MtukAPZEZ2j8
-        gZbNNP84mt+QmazljsROIuA11JsXMnAQOzsIvfqse5ElLjsQWYAznhJvSftlDiy8
-        UDnTIRgLvHwK0iMEY12aQ==
-X-ME-Sender: <xms:6KBWY_gwmdA9MhV8F7kI-IAT6RjoV8UyoY8vJd_im8nzMhPr-w5SEg>
-    <xme:6KBWY8DFzu_H1NXJNLoNcdftX0Fccg83xmP1gZ_Oo0PjdmKShBDqthVvsAPur-jjx
-    nKKucVvJWn2dHOfBYM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrgedtgedgjedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpefgkeeuleegieeghfduudeltdekfeffjeeuleehleefudettddtgfevueef
-    feeigeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:6KBWY_EKFaUSxfmbFq4u45xHq3kzkmlHX7APZxOrmpX4NKAPPIVhLw>
-    <xmx:6KBWY8Sa2YoRcKoTYZV4cAVrgo3XWvtPHJE_rauldYzUHnGUJcpV8g>
-    <xmx:6KBWY8zBpoCDaeX7eS6StOnrb6kSgFjb8QNDCQkjBv4w_fjHvPPK9g>
-    <xmx:6aBWY7iVKZZZeLJhXB65ARrCr06Q6ReuiHPabu10swOp_0SKXFR2BwSFrZk>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id F38B1B60086; Mon, 24 Oct 2022 10:27:51 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1047-g9e4af4ada4-fm-20221005.001-g9e4af4ad
-Mime-Version: 1.0
-Message-Id: <8d6ddb0d-98be-4c4d-9523-f024c339c8d0@app.fastmail.com>
-In-Reply-To: <2204103.iZASKD2KPV@diego>
-References: <20221021202254.4142411-1-arnd@kernel.org>
- <20221021203329.4143397-1-arnd@kernel.org> <2204103.iZASKD2KPV@diego>
-Date:   Mon, 24 Oct 2022 16:27:31 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Arnd Bergmann" <arnd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, "Ben Dooks" <ben-linux@fluff.org>,
-        "Simtec Linux Team" <linux@simtec.co.uk>,
-        "Arnaud Patard" <arnaud.patard@rtp-net.org>,
-        "Christer Weinigel" <christer@weinigel.se>,
-        "Guillaume GOURAT" <guillaume.gourat@nexvision.tv>,
-        openmoko-kernel@lists.openmoko.org,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Alim Akhtar" <alim.akhtar@samsung.com>,
-        "Olof Johansson" <olof@lixom.net>, soc@kernel.org,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Sylwester Nawrocki" <s.nawrocki@samsung.com>,
-        "Tomasz Figa" <tomasz.figa@gmail.com>,
-        "Chanwoo Choi" <cw00.choi@samsung.com>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>, linux-doc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 01/21] ARM: s3c: remove all s3c24xx support
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232348AbiJXSnh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 14:43:37 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E02E6144089;
+        Mon, 24 Oct 2022 10:25:51 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BBAC4D6E;
+        Mon, 24 Oct 2022 07:56:49 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B75B83F792;
+        Mon, 24 Oct 2022 07:56:41 -0700 (PDT)
+Date:   Mon, 24 Oct 2022 15:56:39 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Icenowy Zheng <uwu@icenowy.me>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        soc@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 10/10] ARM: dts: suniv: add device tree for PopStick
+ v1.1
+Message-ID: <20221024155639.5e97d205@donnerap.cambridge.arm.com>
+In-Reply-To: <20221012055602.1544944-11-uwu@icenowy.me>
+References: <20221012055602.1544944-1-uwu@icenowy.me>
+        <20221012055602.1544944-11-uwu@icenowy.me>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 22, 2022, at 22:56, Heiko St=C3=BCbner wrote:
-> Am Freitag, 21. Oktober 2022, 22:27:34 CEST schrieb Arnd Bergmann:
->> From: Arnd Bergmann <arnd@arndb.de>
->>=20
->> The platform was deprecated in commit 6a5e69c7ddea ("ARM: s3c: mark
->> as deprecated and schedule removal") and can be removed. This includes
->> all files that are exclusively for s3c24xx and not shared with s3c64x=
-x,
->> as well as the glue logic in Kconfig and the maintainer file entries.
->>=20
->> Cc: Arnaud Patard <arnaud.patard@rtp-net.org>
->> Cc: Ben Dooks <ben-linux@fluff.org>
->> Cc: Christer Weinigel <christer@weinigel.se>
->> Cc: Guillaume GOURAT <guillaume.gourat@nexvision.tv>
->> Cc: Heiko Stuebner <heiko@sntech.de>
->> Cc: Simtec Linux Team <linux@simtec.co.uk>
->> Cc: openmoko-kernel@lists.openmoko.org
->> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->
-> So many memories of me starting out in the kernel on s3c24xx.
-> But it's no use trying to keep stuff around that nobody will likely
-> ever use again. So with a sad face
->
-> Acked-by: Heiko Stuebner <heiko@sntech.de>
->
->
-> though you might want to also include
-> 	drivers/dma/s3c24xx-dma.c
+On Wed, 12 Oct 2022 13:56:02 +0800
+Icenowy Zheng <uwu@icenowy.me> wrote:
 
-This was in a separate patch that removes the driver:
+Hi,
 
-https://lore.kernel.org/linux-arm-kernel/20221021203329.4143397-14-arnd@=
-kernel.org/
+> PopStick is a minimal Allwinner F1C200s dongle, with its USB controller
+> wired to a USB Type-A port, a SD slot and a SPI NAND flash on board, and
+> an on-board CH340 USB-UART converted connected to F1C200s's UART0.
+> 
+> Add a device tree for it. As F1C200s is just F1C100s with a different
+> DRAM chip co-packaged, directly use F1C100s DTSI here.
+> 
+> This commit covers the v1.1 version of this board, which is now shipped.
+> v1.0 is some internal sample that have not been shipped at all.
 
-In the first patch, I only include references to removed
-Kconfig symbols that would not make sense to split out into
-separate patches.
+As mentioned in the other patch, if that is the case, I don't think we
+need to bother about the version number in the filename and compatible
+strings, especially if a v1.0 will never be upstreamed. If there are users
+of the internal version still, they can use an explicit "v1.0" in their
+downstream versions.
 
-    Arnd
+So apart from what Krzysztof and Clement already mentioned, the DT itself
+looks fine to me otherwise. I also ran dt-validate on it, and used it as a
+base for another F1C200s board.
+
+Cheers,
+Andre
+
+> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> ---
+> New patch introduced in v2.
+> 
+>  arch/arm/boot/dts/Makefile                    |   3 +-
+>  .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 101 ++++++++++++++++++
+>  2 files changed, 103 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 6aa7dc4db2fc..0249c07bd8a6 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1391,7 +1391,8 @@ dtb-$(CONFIG_MACH_SUN9I) += \
+>  	sun9i-a80-optimus.dtb \
+>  	sun9i-a80-cubieboard4.dtb
+>  dtb-$(CONFIG_MACH_SUNIV) += \
+> -	suniv-f1c100s-licheepi-nano.dtb
+> +	suniv-f1c100s-licheepi-nano.dtb \
+> +	suniv-f1c200s-popstick-v1.1.dtb
+>  dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
+>  	tegra20-acer-a500-picasso.dtb \
+>  	tegra20-asus-tf101.dtb \
+> diff --git a/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+> new file mode 100644
+> index 000000000000..121dfc6f609d
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
+> @@ -0,0 +1,101 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
+> + */
+> +
+> +/dts-v1/;
+> +#include "suniv-f1c100s.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "Popcorn Computer PopStick v1.1";
+> +	compatible = "sourceparts,popstick-v1.1", "sourceparts,popstick",
+> +		     "allwinner,suniv-f1c200s", "allwinner,suniv-f1c100s";
+> +
+> +	aliases {
+> +		mmc0 = &mmc0;
+> +		serial0 = &uart0;
+> +		spi0 = &spi0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led {
+> +			function = LED_FUNCTION_STATUS;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			gpios = <&pio 4 6 GPIO_ACTIVE_HIGH>; /* PE6 */
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	reg_vcc3v3: vcc3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +	};
+> +};
+> +
+> +&mmc0 {
+> +	cd-gpios = <&pio 4 3 GPIO_ACTIVE_LOW>; /* PE3 */
+> +	bus-width = <4>;
+> +	disable-wp;
+> +	status = "okay";
+> +	vmmc-supply = <&reg_vcc3v3>;
+> +};
+> +
+> +&spi0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi0_pc_pins>;
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "spi-nand";
+> +		reg = <0>;
+> +		spi-max-frequency = <40000000>;
+> +
+> +		partitions {
+> +			compatible = "fixed-partitions";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			partition@0 {
+> +				label = "u-boot-with-spl";
+> +				reg = <0x0 0x100000>;
+> +			};
+> +
+> +			ubi@100000 {
+> +				label = "ubi";
+> +				reg = <0x100000 0x7f00000>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&otg_sram {
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_pe_pins>;
+> +	status = "okay";
+> +};
+> +
+> +&usb_otg {
+> +	dr_mode = "peripheral";
+> +	status = "okay";
+> +};
+> +
+> +&usbphy {
+> +	status = "okay";
+> +};
+
