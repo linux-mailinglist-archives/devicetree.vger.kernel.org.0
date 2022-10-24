@@ -2,61 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0656609C56
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 673BD609C78
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229981AbiJXIWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:22:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
+        id S230370AbiJXI1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:27:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbiJXIWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:22:10 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEAF62FFE0;
-        Mon, 24 Oct 2022 01:19:59 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B0A1CC0015;
-        Mon, 24 Oct 2022 08:19:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666599572;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=RsqEFobdfsJRtGDvtqy+4TRi3reZeX3cMLi8uvmdLcY=;
-        b=d0h7bSc2nXVRxjESjkDhnIoofW1xbyU1vXmWSVCrL/QG1B337LcN4oi1FQjU+V6RayoOW/
-        GKwTh6RXECnaUN+1WqnYuTNXCXG7xKYe0OPL+ZiCyzig3uXoPbIr+yddHR+VsOgr4IwfPp
-        BT+BdBqh3sq1dxhsb3om3KmrzpgR3W4uPEoRvDLFTHqsM81GID55zsIyNyYgm5gc3Dmxs8
-        krZHxZsVtH5i4ODKchcu2PDTQiDNraysieaDDlSQz8Xg80RIxCw0b+CwN5if3j/M8coJmg
-        KYM+TtKooSH80iHhlCz+jnLYAMFVtEp4mfjfHARe3u2c87f71ZnhYDpqXM9jZQ==
-Date:   Mon, 24 Oct 2022 10:19:28 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Elad Nachman <enachman@marvell.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML DT
- scheme
-Message-ID: <20221024101928.351ae15f@xps-13>
-In-Reply-To: <a46c6a18-903d-2120-4876-509ce8ad19d5@linaro.org>
-References: <20221021194552.683-1-vadym.kochan@plvision.eu>
-        <20221021194552.683-2-vadym.kochan@plvision.eu>
-        <a46c6a18-903d-2120-4876-509ce8ad19d5@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S230341AbiJXI0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:26:36 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D0B84D4D7;
+        Mon, 24 Oct 2022 01:26:09 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29O7nHTW020020;
+        Mon, 24 Oct 2022 10:25:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=y1rr3SuzTx4+VSNLhUbJG8kHUD97eG7n0PTphv4eVAg=;
+ b=tP96pfR7y0WNwl5Oahwq626J46hrmj+Uco9tUYaSC2Mlfr1q5BFTCkj8bCSogw81G5ou
+ 8N7U2a+TTaoySn8KvuXHIZEHCFlVB9alEniWHRuPafegtNoo+8D6m71INR0h2atkiLD5
+ iz7J1T80xQQtAs6axzTcRKZe3GtZAKZJloM/Gj4FDkqkH1JA/Onb2Fgs+YLr+RF7xB4+
+ 8ZVAKgSo7USM3szfz3vFWC5/Z46XAVmlN8Ef+OpmYWQhLRi//qdeJmN6IqEQox7VQqSA
+ O/QbWMFzQhl411UylzZ9tibtHg/kb3fSF4FjK80Mst1+wmAsu5cZpAnMfztpd/CSI1m3 Sw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kc7v29djc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Oct 2022 10:25:42 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 57F0610002A;
+        Mon, 24 Oct 2022 10:25:36 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC7A621683A;
+        Mon, 24 Oct 2022 10:25:36 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
+ 2022 10:25:36 +0200
+Message-ID: <3392048d-e7a9-efb2-b795-30ee0c6ad6d1@foss.st.com>
+Date:   Mon, 24 Oct 2022 10:25:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] ARM: dts: stm32: add support for USB2514B onboard hub on
+ stm32mp157c-ev1
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <amelie.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20220930145643.249099-1-fabrice.gasnier@foss.st.com>
+Content-Language: en-US
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220930145643.249099-1-fabrice.gasnier@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-24_02,2022-10-21_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,51 +74,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Fabrice,
 
-krzysztof.kozlowski@linaro.org wrote on Sat, 22 Oct 2022 12:18:49 -0400:
+On 9/30/22 16:56, Fabrice Gasnier wrote:
+> Add support for USB2514B onboard hub on stm32mp157c EV1 board. The HUB
+> is supplied by a 3v3 PMIC regulator.
+> 
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> ---
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> index e22e394832a8..a0ff92662e02 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+> @@ -362,6 +362,14 @@ &usart3 {
+>   &usbh_ehci {
+>   	phys = <&usbphyc_port0>;
+>   	status = "okay";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	/* onboard HUB */
+> +	hub@1 {
+> +		compatible = "usb424,2514";
+> +		reg = <1>;
+> +		vdd-supply = <&v3v3>;
+> +	};
+>   };
+>   
+>   &usbotg_hs {
 
-> On 21/10/2022 15:45, Vadym Kochan wrote:
-> > Switch the DT binding to a YAML schema to enable the DT validation.
-> >=20
-> > Dropped deprecated compatibles and properties described in txt file.
-> >=20
-> > Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> > ---
-> >  .../bindings/mtd/marvell,nand-controller.yaml | 199 ++++++++++++++++++
-> >  .../devicetree/bindings/mtd/marvell-nand.txt  | 126 -----------
-> >  2 files changed, 199 insertions(+), 126 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-=
-controller.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.=
-txt
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-control=
-ler.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.ya=
-ml
-> > new file mode 100644
-> > index 000000000000..535b7f8903c8
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> > @@ -0,0 +1,199 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/marvell,nand-controller.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Marvell NAND Flash Controller (NFC)
-> > +
-> > +maintainers:
-> > +  - Miquel Raynal <miquel.raynal@bootlin.com> =20
->=20
-> This should be someone responsible for hardware, not subsystem
-> maintainer. Unless by coincidence Miquel matches both. :)
+Applied on stm32-next.
 
-Haha, actually I do because I rewrote this driver entirely few years
-ago. I don't actively maintain these platforms anymore but I don't mind
-being assigned here if nobody else cares. Otherwise indeed, Vadym
-or someone else from Marvell can take over, I don't mind.
-
-Thanks,
-Miqu=C3=A8l
+Thanks
+Alex
