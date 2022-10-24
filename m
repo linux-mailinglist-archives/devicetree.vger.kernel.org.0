@@ -2,210 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71ACC60BECC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 01:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99AB060BE02
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 00:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbiJXXmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 19:42:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37776 "EHLO
+        id S230167AbiJXW5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 18:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiJXXmY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 19:42:24 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF4A1D73FB;
-        Mon, 24 Oct 2022 15:01:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1666615860; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
+        with ESMTP id S232178AbiJXW5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 18:57:04 -0400
+Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:103:465::111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC7D261AD9;
+        Mon, 24 Oct 2022 14:18:33 -0700 (PDT)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4MwxXv50gFz9tPh;
+        Mon, 24 Oct 2022 16:00:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noorman.info;
+        s=MBO0001; t=1666620015;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=6dhnHc0bAedKhrMgs9Dk+4I6+5jfqv63sCgiUYVWOcI=;
-        b=tn1ZvOhDMsL2gp6C/3Ym9t7tzU8xZKvHqGrY4PYZXRWhTkGcKydZ7EkM1OPd+MtYhJbqEU
-        gaeSSUu5ewEavK1O9aX2hgvviFqghRqzkRmSVnUBoMURUYz5BkO4yWfO/2k3UF6FZOwmlk
-        eYlYk1D+4AEN4Q6V/cyZPE1MQ5gYaoA=
-Date:   Mon, 24 Oct 2022 13:50:50 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 2/2] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        bh=xgG1+/mqCR7NFJDaGitypAnL4fZThzOryVEVRuhQPXg=;
+        b=T7cdqwZpGNkSkEyO+O/KpPasMxKTDJiuAOIVWIJv2No/nvtQhnc+qp/MxVBP0X1iruNMA2
+        5f1b4yPBnHCI2MLv+Qm3y85xtU7LUvnL75T71ZGASKq+imAKa7VEbN/DrM2iFtK8V38yeV
+        2GUPIfOjKHGvWWrCuMKx8Hpw/3+DTnkYbPNOvrECLSExYSk7jODURST7MnwDB3sWkOLc0Y
+        LiKhGpZSMMPEDfzj/HvI3GfmPRKa+W5LcuWV9syR9cq4esdltqcNu7AMIAwlZ8ClfeoBBS
+        UpLJHytloQPUcppvsUzGjiXmdKISepCp0NYiAcpLyBrfLP/sKuViYojjJC3GTA==
+From:   Job Noorman <job@noorman.info>
+To:     Job Noorman <job@noorman.info>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <Q0D9KR.U3D9MHHH52AZ@crapouillou.net>
-In-Reply-To: <20221022151224.4000238-3-lis8215@gmail.com>
-References: <20221022151224.4000238-1-lis8215@gmail.com>
-        <20221022151224.4000238-3-lis8215@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, Rob Herring <robh@kernel.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v6 1/3] dt-bindings: touchscreen: add Himax hx83112b bindings
+Date:   Mon, 24 Oct 2022 15:59:57 +0200
+Message-Id: <20221024140001.139111-2-job@noorman.info>
+In-Reply-To: <20221024140001.139111-1-job@noorman.info>
+References: <20221024140001.139111-1-job@noorman.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4MwxXv50gFz9tPh
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siarhei,
+This patch adds device tree bindings for Himax 83112b touchscreen
+devices.
 
-Le sam. 22 oct. 2022 =E0 18:12:24 +0300, Siarhei Volkau=20
-<lis8215@gmail.com> a =E9crit :
-> JZ4750/55/60 (but not JZ4760b) have an extra divisor in between extclk
-> and peripheral clock, called CPCCR.ECS, the driver can't figure out=20
-> the
-> real state of the divisor without dirty hack - peek CGU CPCCR=20
-> register.
-> However, we can rely on a vendor's bootloader (u-boot 1.1.6) behavior:
-> if (extclk > 16MHz)
->     the divisor is enabled, so the UART driving clock is extclk/2.
->=20
-> This behavior relies on hardware differences: most boards (if not all)
-> with those SoCs have 12 or 24 MHz oscillators but many peripherals=20
-> want
-> 12Mhz to operate properly (AIC and USB-PHY at least).
->=20
-> The patch doesn't affect JZ4760's behavior as it is subject for=20
-> another
-> patchset with re-classification of all supported ingenic UARTs.
->=20
-> Link:=20
-> https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_seria=
-l.c#L158
-> Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
-> ---
->  drivers/tty/serial/8250/8250_ingenic.c | 50=20
-> ++++++++++++++++++++++----
->  1 file changed, 43 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/tty/serial/8250/8250_ingenic.c=20
-> b/drivers/tty/serial/8250/8250_ingenic.c
-> index 2b2f5d8d2..3ffa6b722 100644
-> --- a/drivers/tty/serial/8250/8250_ingenic.c
-> +++ b/drivers/tty/serial/8250/8250_ingenic.c
-> @@ -87,24 +87,19 @@ static void __init=20
-> ingenic_early_console_setup_clock(struct earlycon_device *dev
->  	dev->port.uartclk =3D be32_to_cpup(prop);
->  }
->=20
-> -static int __init ingenic_early_console_setup(struct earlycon_device=20
-> *dev,
-> -					      const char *opt)
-> +static int __init ingenic_earlycon_setup_tail(struct earlycon_device=20
-> *dev,
-> +					      const char *opt)
->  {
->  	struct uart_port *port =3D &dev->port;
->  	unsigned int divisor;
->  	int baud =3D 115200;
->=20
-> -	if (!dev->port.membase)
-> -		return -ENODEV;
+Signed-off-by: Job Noorman <job@noorman.info>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../input/touchscreen/himax,hx83112b.yaml     | 63 +++++++++++++++++++
+ MAINTAINERS                                   |  6 ++
+ 2 files changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
 
-You can keep this here - no need to move it (and it'd avoid duplicating=20
-code).
-
-> -
->  	if (opt) {
->  		unsigned int parity, bits, flow; /* unused for now */
->=20
->  		uart_parse_options(opt, &baud, &parity, &bits, &flow);
->  	}
->=20
-> -	ingenic_early_console_setup_clock(dev);
-> -
->  	if (dev->baud)
->  		baud =3D dev->baud;
->  	divisor =3D DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
-> @@ -129,9 +124,49 @@ static int __init=20
-> ingenic_early_console_setup(struct earlycon_device *dev,
->  	return 0;
->  }
->=20
-> +static int __init ingenic_early_console_setup(struct earlycon_device=20
-> *dev,
-> +					      const char *opt)
-> +{
-> +	if (!dev->port.membase)
-> +		return -ENODEV;
-> +
-> +	ingenic_early_console_setup_clock(dev);
-> +
-> +	ingenic_earlycon_setup_tail(dev, opt);
-> +}
-> +
-> +static int __init jz4750_early_console_setup(struct earlycon_device=20
-> *dev,
-> +					     const char *opt)
-> +{
-> +	if (!dev->port.membase)
-> +		return -ENODEV;
-> +
-> +	/*
-> +	 * JZ4750/55/60 (not JZ4760b) have an extra divisor
-> +	 * between extclk and peripheral clock, the
-> +	 * driver can't figure out the real state of the
-> +	 * divisor without dirty hacks (peek CGU register).
-> +	 * However, we can rely on a vendor's behavior:
-> +	 * if (extclk > 16MHz)
-> +	 *   the divisor is enabled.
-> +	 * This behavior relies on hardware differences:
-> +	 * most boards with those SoCs have 12 or 24 MHz
-> +	 * oscillators but many peripherals want 12Mhz
-> +	 * to operate properly (AIC and USB-phy at least).
-> +	 */
-> +	ingenic_early_console_setup_clock(dev);
-> +	if (dev->port.uartclk > 16000000)
-> +		dev->port.uartclk /=3D 2;
-
-I would assume you could just do:
-dev->port.uartclk =3D 12000000;
-
-Since you'd always get a 12 MHz clock (either with a 12 MHz oscillator=20
-or a 24 MHz oscillator with a /2 divider).
-
-With that said - I am fine with that code, it would allow to fine-tune=20
-the oscillator value (although I hightly doubt anybody is going to do=20
-that).
-
-The 16 MHz value sounds very arbitrary, but I'll give it a pass.
-
-Cheers,
--Paul
-
-> +
-> +	ingenic_earlycon_setup_tail(dev, opt);
-> +}
-> +
->  OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
->  		    ingenic_early_console_setup);
->=20
-> +OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
-> +		    jz4750_early_console_setup);
-> +
->  OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
->  		    ingenic_early_console_setup);
->=20
-> @@ -328,6 +363,7 @@ static const struct ingenic_uart_config=20
-> x1000_uart_config =3D {
->=20
->  static const struct of_device_id of_match[] =3D {
->  	{ .compatible =3D "ingenic,jz4740-uart", .data =3D &jz4740_uart_config=20
-> },
-> +	{ .compatible =3D "ingenic,jz4750-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4760-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4770-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4775-uart", .data =3D &jz4760_uart_config=20
-> },
-> --
-> 2.36.1
->=20
-
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+new file mode 100644
+index 000000000000..be2ba185c086
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+@@ -0,0 +1,63 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/himax,hx83112b.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Himax hx83112b touchscreen controller bindings
++
++maintainers:
++  - Job Noorman <job@noorman.info>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    enum:
++      - himax,hx83112b
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  touchscreen-inverted-x: true
++  touchscreen-inverted-y: true
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++  touchscreen-swapped-x-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@48 {
++        compatible = "himax,hx83112b";
++        reg = <0x48>;
++        interrupt-parent = <&tlmm>;
++        interrupts = <65 IRQ_TYPE_LEVEL_LOW>;
++        touchscreen-size-x = <1080>;
++        touchscreen-size-y = <2160>;
++        reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
++      };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cf0f18502372..469ab6382906 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9162,6 +9162,12 @@ W:	http://www.highpoint-tech.com
+ F:	Documentation/scsi/hptiop.rst
+ F:	drivers/scsi/hptiop.c
+ 
++HIMAX HX83112B TOUCHSCREEN SUPPORT
++M:	Job Noorman <job@noorman.info>
++L:	linux-input@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
++
+ HIPPI
+ M:	Jes Sorensen <jes@trained-monkey.org>
+ L:	linux-hippi@sunsite.dk
+-- 
+2.38.1
 
