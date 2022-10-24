@@ -2,203 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F134F609C4D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0656609C56
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230340AbiJXIS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49558 "EHLO
+        id S229981AbiJXIWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:22:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229851AbiJXISE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:18:04 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52806500F
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 01:16:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666599377; x=1698135377;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=bXK1aob4hsgkJ/UGYit2zlsv7bO/CwXtzWh4iUKBUo0=;
-  b=aXPfKKpKrfzgQITmo1NecMdf+QFWGpAoPEtGD4oBe47EDMDBO9SBIK2a
-   ah0U0lCLNxYyvPc+U8u1WIoLWdgBuSNZTwR1r6O01U6egNkejE4RR9vvl
-   tNURlb0tjmHIbA2A21n3t8ONGSbewbILp2+j8Pn1gywcurONRk00/rfWH
-   grBxA+sz+2Z+70CZmhix7jPssZ1vKSmNguzVTKJk6spHACwGVP6DZlxvo
-   2pljd9xmG6ctOcANJveAr92GrQvrhswQP/m3QTQHXfZQUedO5bosEc6zf
-   uxUZRiqC+cbGk/t8PdMB+xNpIX7gOQkyXTZLwXq/fyPGc1niIO32IjP1E
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,207,1661810400"; 
-   d="scan'208";a="26924517"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 24 Oct 2022 10:15:33 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 24 Oct 2022 10:15:33 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 24 Oct 2022 10:15:33 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666599333; x=1698135333;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=bXK1aob4hsgkJ/UGYit2zlsv7bO/CwXtzWh4iUKBUo0=;
-  b=dgxuaPcQRu47kty6E1B3j72SQuvSi4SSRsULH/Re7ExY99PBtoUVF4PS
-   6yIsjuWWrOygfm1w7Crn2hQhrCPvrQ06dr9g5CgVTSNATzizF88jA3RJQ
-   uz6rNeLDDTU6lNhI1PIfRA7G0CcogkATsmV1tPLL/uImrzc1mYmKwzGnd
-   UMqJJhspkBPce2uCRb8Nbvx8z9frxvx4vh5c+ErcGKbKAcILtPqilsuhY
-   JVCI/R5DE0qcu1ShnDoI/d69Gy1UX7WEHXOh5vlGApga95ZR0aEr6VZGm
-   vRGyzKLxLcX6zk7pC7W/0sxhLg9rNpCWsKow1R4BAoPgAwku53fU1UIgQ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.95,207,1661810400"; 
-   d="scan'208";a="26924516"
-Subject: Re: Re: [PATCH 1/1] arm64: dts: imx8mm-tqma8mqml-mba8mx: Fix USB DR
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 24 Oct 2022 10:15:33 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 04411280056;
-        Mon, 24 Oct 2022 10:15:33 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229610AbiJXIWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:22:10 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEAF62FFE0;
+        Mon, 24 Oct 2022 01:19:59 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B0A1CC0015;
+        Mon, 24 Oct 2022 08:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666599572;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=RsqEFobdfsJRtGDvtqy+4TRi3reZeX3cMLi8uvmdLcY=;
+        b=d0h7bSc2nXVRxjESjkDhnIoofW1xbyU1vXmWSVCrL/QG1B337LcN4oi1FQjU+V6RayoOW/
+        GKwTh6RXECnaUN+1WqnYuTNXCXG7xKYe0OPL+ZiCyzig3uXoPbIr+yddHR+VsOgr4IwfPp
+        BT+BdBqh3sq1dxhsb3om3KmrzpgR3W4uPEoRvDLFTHqsM81GID55zsIyNyYgm5gc3Dmxs8
+        krZHxZsVtH5i4ODKchcu2PDTQiDNraysieaDDlSQz8Xg80RIxCw0b+CwN5if3j/M8coJmg
+        KYM+TtKooSH80iHhlCz+jnLYAMFVtEp4mfjfHARe3u2c87f71ZnhYDpqXM9jZQ==
+Date:   Mon, 24 Oct 2022 10:19:28 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Mon, 24 Oct 2022 10:15:28 +0200
-Message-ID: <5614294.DvuYhMxLoT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20221024013123.GV125525@dragon>
-References: <20220926112622.2912885-1-alexander.stein@ew.tq-group.com> <20221024013123.GV125525@dragon>
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Elad Nachman <enachman@marvell.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
+Message-ID: <20221024101928.351ae15f@xps-13>
+In-Reply-To: <a46c6a18-903d-2120-4876-509ce8ad19d5@linaro.org>
+References: <20221021194552.683-1-vadym.kochan@plvision.eu>
+        <20221021194552.683-2-vadym.kochan@plvision.eu>
+        <a46c6a18-903d-2120-4876-509ce8ad19d5@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Shawn,
+Hello,
 
-Am Montag, 24. Oktober 2022, 03:31:23 CEST schrieb Shawn Guo:
-> On Mon, Sep 26, 2022 at 01:26:22PM +0200, Alexander Stein wrote:
-> > extcon does not work somehow, so switch to usb-role-switch instead.
-> 
-> So extcon was added without testing?
+krzysztof.kozlowski@linaro.org wrote on Sat, 22 Oct 2022 12:18:49 -0400:
 
-It had been tested, but apparently only the USB Host case :( extcon itself 
-does work and detects ID pin correctly. Cable states switch when a USB device 
-(mass storage) is attached and removed, thus mass storage is detect and 
-usable.
-But unfortunately this is not the case for USB device using g_serial udc 
-driver. IMHO this seems to be a problem within chipidea usb driver.
-Using usb-role-switch instead, both USB host and USB device do work.
-
-Best regards,
-Alexander
-
-> Shawn
-> 
-> > Fixes: dfcd1b6f7620 ("arm64: dts: freescale: add initial device tree for
-> > TQMa8MQML with i.MX8MM") Signed-off-by: Alexander Stein
-> > <alexander.stein@ew.tq-group.com>
+> On 21/10/2022 15:45, Vadym Kochan wrote:
+> > Switch the DT binding to a YAML schema to enable the DT validation.
+> >=20
+> > Dropped deprecated compatibles and properties described in txt file.
+> >=20
+> > Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > > ---
-> > 
-> >  .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 32 +++++++++++++++----
-> >  1 file changed, 26 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-> > b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts index
-> > bfb44630da6b..56323c989d55 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-> > @@ -34,11 +34,25 @@ reg_usdhc2_vmmc: regulator-vmmc {
-> > 
-> >  		off-on-delay-us = <12000>;
-> >  	
-> >  	};
-> > 
-> > -	extcon_usbotg1: extcon-usbotg1 {
-> > -		compatible = "linux,extcon-usb-gpio";
-> > +	connector {
-> > +		compatible = "gpio-usb-b-connector", "usb-b-connector";
-> > +		type = "micro";
-> > +		label = "X19";
-> > 
-> >  		pinctrl-names = "default";
-> > 
-> > -		pinctrl-0 = <&pinctrl_usb1_extcon>;
-> > -		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-> > +		pinctrl-0 = <&pinctrl_usb1_connector>;
-> > +		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+> >  .../bindings/mtd/marvell,nand-controller.yaml | 199 ++++++++++++++++++
+> >  .../devicetree/bindings/mtd/marvell-nand.txt  | 126 -----------
+> >  2 files changed, 199 insertions(+), 126 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-=
+controller.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.=
+txt
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-control=
+ler.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.ya=
+ml
+> > new file mode 100644
+> > index 000000000000..535b7f8903c8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
+> > @@ -0,0 +1,199 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/marvell,nand-controller.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +		ports {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
+> > +title: Marvell NAND Flash Controller (NFC)
 > > +
-> > +			port@0 {
-> > +				reg = <0>;
-> > +				usb_dr_connector: endpoint {
-> > +					remote-endpoint = 
-<&usb1_drd_sw>;
-> > +				};
-> > +			};
-> > +		};
-> > 
-> >  	};
-> >  
-> >  };
-> > 
-> > @@ -106,13 +120,19 @@ &usbotg1 {
-> > 
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_usbotg1>;
-> >  	dr_mode = "otg";
-> > 
-> > -	extcon = <&extcon_usbotg1>;
-> > 
-> >  	srp-disable;
-> >  	hnp-disable;
-> >  	adp-disable;
-> >  	power-active-high;
-> >  	over-current-active-low;
-> > 
-> > +	usb-role-switch;
-> > 
-> >  	status = "okay";
-> > 
-> > +
-> > +	port {
-> > +		usb1_drd_sw: endpoint {
-> > +			remote-endpoint = <&usb_dr_connector>;
-> > +		};
-> > +	};
-> > 
-> >  };
-> >  
-> >  &usbotg2 {
-> > 
-> > @@ -242,7 +262,7 @@ pinctrl_usbotg1: usbotg1grp {
-> > 
-> >  			   <MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC		
-0x84>;
-> >  	
-> >  	};
-> > 
-> > -	pinctrl_usb1_extcon: usb1-extcongrp {
-> > +	pinctrl_usb1_connector: usb1-connectorgrp {
-> > 
-> >  		fsl,pins = <MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		
-0x1c0>;
-> >  	
-> >  	};
+> > +maintainers:
+> > +  - Miquel Raynal <miquel.raynal@bootlin.com> =20
+>=20
+> This should be someone responsible for hardware, not subsystem
+> maintainer. Unless by coincidence Miquel matches both. :)
 
+Haha, actually I do because I rewrote this driver entirely few years
+ago. I don't actively maintain these platforms anymore but I don't mind
+being assigned here if nobody else cares. Otherwise indeed, Vadym
+or someone else from Marvell can take over, I don't mind.
 
-
-
+Thanks,
+Miqu=C3=A8l
