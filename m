@@ -2,149 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B306A60BB69
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 22:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D8260BB66
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 22:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231351AbiJXU7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 16:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
+        id S235216AbiJXU6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 16:58:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235295AbiJXU7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 16:59:05 -0400
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D554B796AC
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 12:04:51 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-3321c2a8d4cso93989727b3.5
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 12:04:51 -0700 (PDT)
+        with ESMTP id S232746AbiJXU6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 16:58:23 -0400
+Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D32787095;
+        Mon, 24 Oct 2022 12:04:07 -0700 (PDT)
+Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-13b6c1c89bdso7067758fac.13;
+        Mon, 24 Oct 2022 12:04:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=snPxLK8FNksLj7AlNjpK1EeZ2TmNBOvlk5453e59nHQ=;
-        b=F4SVF3jk24n6z+LnLCjYSBtGLVDAo6KtD0axHrkjMgc1mVueWl5aUEwg0rauh3RKQ3
-         CJSnb36LIqa5mtpMnDBWREdUjni2/neikL6rWLrJ5OTWIuou6ByzZ9tdGkVv6ncGxXB0
-         ad5ksck22IlA6GgagUQZNJo4oHl+b+BGcVtUeXvAJwgcNScR3lfnT5l/MZCpyLUBpnwJ
-         Ho5isLUzeCak6e9DiXDk2xbhwq9kvX3BnlM9ntuZXu/IxX9nS2ZkhhhIUj2MuTO1sHnT
-         kEgMauo/kEjWpKJj5mJHYTt2RLt+QVWWrS9rwwG1oujM9ckvXOBNleeRCLN9ziMaVxrT
-         GABw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=H8i7U5bmMKO/8z/xC4NChgsxdHTmYMHq2WLzQcOksu4=;
+        b=dPUXKTYiNvpyV/oK0w2Z+840q4ciXuOPb6P66JQaakBUBvfyiKOKMDYbwOnXTXvtpZ
+         HOXhU2W+agoxJFZKi2WQVJ3CuifdKHR23nAqJIZED113Ptuyu99YmqW9I8EiDfbH8EXd
+         Jh7chDuECzTosoXNty9NH+TgR5xZc+p/29KWrTan1T4K6jD7MqSHBzqm2v720ZM7psR+
+         u7ViduNkkOCWpurn4v+bDMsa2ruLusIvicSSEEWJls1ncitrb1pwEKzi7UNU9GIMT/DZ
+         bsDpB9BG/6Yl9ZTArhW4zC2inHSVwDYzWdaoLLLxtZeD4fFAZbC/iKgow8cpeKN3zvKN
+         HhUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=snPxLK8FNksLj7AlNjpK1EeZ2TmNBOvlk5453e59nHQ=;
-        b=Ge4evT8rPT3rEcvwZ4VMaNSj3cRqzt+OSsDOuUwn/h5N9XkkI5sar3YN2xgarZGroh
-         wQghRWpe6HROjoYLik3mF/kc9Q9Mjz6als1eOwhej9TvnFTXU9+6FKcwbGIX02SJ6HqT
-         LT+O5GVCBQcQOHhENOgHqjsbYSsQoa810/Su2mBDZ8u1Sl4HR2NXDxk23xzdZ7r5E/dS
-         TQHmd0eLpzASSgWtLrfku727RrC7DswtUKQ666fnkp9XG0jf8koLKNLvTaq2I7m2ocVE
-         RqTe00RRUlXk/6XLbnVVgtPFxMweDXHAlvWdVZTre5h5F2eAhAE68w2AljcMoQHQSM77
-         z+Gw==
-X-Gm-Message-State: ACrzQf3va/x8QZmPLCSA7h6jV0p1kKR0azPb6eS0VWG5X+roMIBfI2OU
-        qPPdK1oYpLVzGdybXdsFoNtGCqU04GQ/ANdT5yQPTegQMxXkxg==
-X-Google-Smtp-Source: AMsMyM44Yz57mLZ7aNo97LD42ijifgZDz8rD7i+PQ4S/RlMbhD3VDaPhHwMEzKMn2sK6msV6oIdd29hYTu2mpkc4lZc=
-X-Received: by 2002:a81:7804:0:b0:369:1074:e2b with SMTP id
- t4-20020a817804000000b0036910740e2bmr20270304ywc.127.1666637939812; Mon, 24
- Oct 2022 11:58:59 -0700 (PDT)
+        bh=H8i7U5bmMKO/8z/xC4NChgsxdHTmYMHq2WLzQcOksu4=;
+        b=QWCBYHWzooTWUhtMZP62Ehs0MJr/bfleqX4ausCQbyWgCPyIcXr8SwkOBvKIW8xa3Y
+         NQT7yFo3Sw44+og+x+YU/lhR7UHZkSmhwmnohfaBWou46h9eHE4ENoKUYUe4yeSB3NhX
+         cw71SnaqL5xfBLE9lcbxxkQ/81cZwkHIEwAmTz9Qw7578Zf+ku4DrvirECD21uaAetQH
+         wNxz6FTWqZHbgfAx2enm9OXs/vKITy/WfRyBeDUtPyO2iz3khUeuyFsqMMWRYczQ1O53
+         V6fraYjC/t/sHqw96RicKOr+U72Cyyt835eatgW47Akb2Ik2BheOFRt3TxIokHIsFVpm
+         8JwQ==
+X-Gm-Message-State: ACrzQf3bGxnH2y3f4rlUTJm3qQZ2lFtqSQvLa2k788KEktYut6a95FGb
+        0NTmH7nWeZmRqq/wFXnqzCI=
+X-Google-Smtp-Source: AMsMyM4H5JWmW1ivLCPgGqI7B1uo7DYgBup/VLoraFetEljQEQzdMgP4Jefq4ToKDnv4e6dYgXOLPA==
+X-Received: by 2002:a05:6870:4250:b0:13b:686b:af0d with SMTP id v16-20020a056870425000b0013b686baf0dmr6984899oac.34.1666638210138;
+        Mon, 24 Oct 2022 12:03:30 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d22-20020a4ad356000000b004805e9e9f3dsm331882oos.1.2022.10.24.12.03.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 12:03:29 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <31046e78-840f-4c1a-3966-6cb539e11685@roeck-us.net>
+Date:   Mon, 24 Oct 2022 12:03:27 -0700
 MIME-Version: 1.0
-References: <20211209103505.197453-1-vkoul@kernel.org> <20211209103505.197453-11-vkoul@kernel.org>
- <5035b6a3-164b-afa0-b714-4deb886f9f90@linaro.org> <9f696023-f2b4-ccd0-34a0-6f4d5848e862@linaro.org>
- <8c1428a6-f268-cb03-3e55-887d30236924@linaro.org> <3af48606-731f-6047-92ca-80435f401ae3@linaro.org>
- <d5726896-e62b-d19d-454b-700dd1c42222@linaro.org>
-In-Reply-To: <d5726896-e62b-d19d-454b-700dd1c42222@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 24 Oct 2022 21:58:48 +0300
-Message-ID: <CAA8EJpovd0D154QUG1_EtCnCrffJBt+SPWQtLEZWb=dc_PLGjA@mail.gmail.com>
-Subject: Re: [PATCH v2 10/13] arm64: dts: qcom: sm8450: add spmi node
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 2/2] dt-bindings: watchdog: aspeed: Document
+ aspeed,pre-timeout-irq-us
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Eddie James <eajames@linux.ibm.com>
+Cc:     linux-watchdog@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, wim@linux-watchdog.org,
+        andrew@aj.id.au, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org
+References: <20221021151559.781983-1-eajames@linux.ibm.com>
+ <20221021151559.781983-3-eajames@linux.ibm.com>
+ <20221024184423.GA2023764-robh@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20221024184423.GA2023764-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Oct 2022 at 21:56, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 24/10/2022 12:48, Dmitry Baryshkov wrote:
-> > On 24/10/2022 19:46, Krzysztof Kozlowski wrote:
-> >> On 24/10/2022 12:45, Dmitry Baryshkov wrote:
-> >>> On 24/10/2022 17:56, Krzysztof Kozlowski wrote:
-> >>>> On 09/12/2021 05:35, Vinod Koul wrote:
-> >>>>> Add the spmi bus as found in the SM8450 SoC
-> >>>>>
-> >>>>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> >>>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> >>>>> ---
-> >>>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 18 ++++++++++++++++++
-> >>>>>    1 file changed, 18 insertions(+)
-> >>>>>
-> >>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> >>>>> index f75de777f6ea..b80e34fd3fe1 100644
-> >>>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> >>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> >>>>> @@ -645,6 +645,24 @@ pdc: interrupt-controller@b220000 {
-> >>>>>                           interrupt-controller;
-> >>>>>                   };
-> >>>>>
-> >>>>> +         spmi_bus: spmi@c42d000 {
-> >>>>> +                 compatible = "qcom,spmi-pmic-arb";
-> >>>>> +                 reg = <0x0 0x0c400000 0x0 0x00003000>,
-> >>>>> +                       <0x0 0x0c500000 0x0 0x00400000>,
-> >>>>> +                       <0x0 0x0c440000 0x0 0x00080000>,
-> >>>>> +                       <0x0 0x0c4c0000 0x0 0x00010000>,
-> >>>>> +                       <0x0 0x0c42d000 0x0 0x00010000>;
-> >>>>
-> >>>> This is a patch from December 2021. Is there anything blocking it from
-> >>>> being merged?
-> >>>>
-> >>>> The same applies to several other patches here.
-> >>>
-> >>> As far as I know, Stephen still didn't pick up the spmi-pmic-arb support
-> >>> for the PMIC on the SM8450 platform. Thus we also can not merge the DT
-> >>> parts.
-> >>
-> >> Why we cannot merge DTS? How is DTS with new nodes depending on any
-> >> driver changes?
-> >
-> > In this particular case, there was an open question, what should be the
-> > bindings for the PMIC ARB v7.
->
-> Ah, so it is about PMIC ARB v7 bindings? Then it's reasonable to wait
-> with this one. I just had an impression that it's about driver changes...
+On 10/24/22 11:44, Rob Herring wrote:
+> On Fri, Oct 21, 2022 at 10:15:59AM -0500, Eddie James wrote:
+>> Document this new property for the pre-timeout interrupt.
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>>   Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 7 ++++++-
+>>   1 file changed, 6 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+>> index a8197632d6d2..81d2c35ca7e3 100644
+>> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+>> +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+>> @@ -40,12 +40,17 @@ Optional properties:
+>>   			specified no external signal is sent.
+>>    - aspeed,ext-pulse-duration: External signal pulse duration in microseconds
+>>   
+>> -Optional properties for AST2500-compatible watchdogs:
+>> +Optional properties for AST2500 and AST2600 compatible watchdogs:
+>>    - aspeed,ext-push-pull: If aspeed,external-signal is present, set the pin's
+>>   			 drive type to push-pull. The default is open-drain.
+>>    - aspeed,ext-active-high: If aspeed,external-signal is present and and the pin
+>>   			   is configured as push-pull, then set the pulse
+>>   			   polarity to active-high. The default is active-low.
+>> + - aspeed,pre-timeout-irq-us: If aspeed,pre-timeout-irq-us is non-zero, the
+>> +			      pre-timeout interrupt will be enabled for the
+>> +			      watchdog. The interrupt will fire the specified
+>> +			      number of microseconds before the watchdog expires
+>> +			      and trigger a kernel panic.
+> 
+> A pre-timeout interrupt is fairly common. Come up with a common property
+> please. You'll need to be clear if the time is from wdog restart or time
+> before final timeout.
+> 
 
-Yes, it's about binding. Thus we have been waiting for quite some time.
+It would be nice if it would match the semantics of the existing
+pretimeout attribute in the watchdog core.
 
->
-> >
-> >>
-> >> Just like I replied to Konrad - if that's true, bindings are simply
-> >> wrong and should be fixed.
-> >
-> > Maybe I missed the reply. Which email are you referring to?
->
-> I meant about this one:
->
-> https://lore.kernel.org/linux-arm-msm/8c1428a6-f268-cb03-3e55-887d30236924@linaro.org/T/#m50f4c72775492046f9b0a172e974cab83563af3c
+Guenter
 
-Ack, for some reason I got it later than the previous one.
-
->
-> Best regards,
-> Krzysztof
->
-
-
--- 
-With best wishes
-Dmitry
