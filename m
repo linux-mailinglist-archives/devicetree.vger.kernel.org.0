@@ -2,142 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEBBB60B79E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4253E60B7AF
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 21:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232783AbiJXT1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 15:27:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48948 "EHLO
+        id S230382AbiJXTal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 15:30:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232939AbiJXT1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:27:25 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BA541D06
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 10:59:08 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id be13so17989963lfb.4
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 10:59:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aD24Bp/fTbOiKGm+qzIYna6YYsi6ArKhPIadGs0v1CQ=;
-        b=dHOEPB8sjIilqPERlDG2D//r77mo6JMgLmjhGdq5WqWnKpAePnLIbJdZkw2z/suHZq
-         aUegZHRTMaTMskd5lmjhSqGq7kMB6QfVvTEcsXO19T6hYpYkgEYXl0Vh+rtrcWonZkf7
-         zfDLhdxnMb3uw+xg6MVu3gincuJ6t4aOaH4SaBDY/X6LSBbbttZ4JqKqdtVjc13e/Uh9
-         J7095GW//CvKwPFzCHfhoZ32K2Wib3GczfkrcBHjcrwMh2MSz/gddxFogowTtGwJwXIK
-         AJXwftrCOCOKhHxkDPlgWnT99Q460GrSy9gARs/R4d5pGHDigSfUO0lh4IDGEy2tL5KU
-         aL0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aD24Bp/fTbOiKGm+qzIYna6YYsi6ArKhPIadGs0v1CQ=;
-        b=MUWLWFAoco+/dSlMyXL+DTIgQOEef1xg6Qw4QOAtTIEVT0EKS8n9Ru7n5xe6OocKPB
-         Q+Z5iujkwTqV8ppfcQs93zDFQUXhLCkbyKRTZxQ0qDZ1NfHUWjrUI8JvLRBu5UuKsYP7
-         GGV+7ezVU8lEhKnEVG6C339plnwlT0DMPfQGhBJA6dyMnWCKpFoLMbqOxJDefxtxrsyv
-         FX6+LlaUCnRhdBb5hA4KFXrI2HLsvdJe+5RFow/jHHDvGfE10AXph5ibyJIOnBAHaf8M
-         Se5FMkBChgC3o2pk64SuJMaOxtfIsPXf2LHs2MmiMhqU2mpootD8VxdPPLuY63eCmr2f
-         ujaA==
-X-Gm-Message-State: ACrzQf3c8piXQxLGffr5IzgVKQxdxKDoUeakyH4fsC12KGGCQRZcFlX+
-        FdK6pMtgkXgfXyX2HE8Y5qRD4imItXJ+VOTH
-X-Google-Smtp-Source: AMsMyM4qKtrgJEWf/IxUA7SiYlAHohKjfI12hYZHjh7NauNCoP+9BzJekhZ0XBXK4mNbM8g/xIbasg==
-X-Received: by 2002:a05:6512:2808:b0:4a4:7cab:b28d with SMTP id cf8-20020a056512280800b004a47cabb28dmr11820707lfb.384.1666630128581;
-        Mon, 24 Oct 2022 09:48:48 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id s21-20020a056512203500b00498f3ebffb2sm4616076lfs.25.2022.10.24.09.48.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 09:48:48 -0700 (PDT)
-Message-ID: <3af48606-731f-6047-92ca-80435f401ae3@linaro.org>
-Date:   Mon, 24 Oct 2022 19:48:47 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 10/13] arm64: dts: qcom: sm8450: add spmi node
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        with ESMTP id S233286AbiJXT3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 15:29:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63BD4FFF8F;
+        Mon, 24 Oct 2022 11:00:35 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-096-059-109.ewe-ip-backbone.de [91.96.59.109])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DF4716602830;
+        Mon, 24 Oct 2022 17:55:55 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666630556;
+        bh=7HmGEeUycu9JUOAzQUWsfe2Icu5JIRazyOm+DZSY+30=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jQ9R/puRhj5UJrIR+0rGBUm+ADPfk77O0r9TOrfMOfg+xjwVeaiMA2tf357DsmjVo
+         b0yUD41zMqbrthlg4k/Lm6qrQxhdGxV3B0aHmbYFBCibv+FA/YyVfuq4361pZuSr6m
+         4LYh0FZh+/xnmYmQSJ1OLGPXhM7JoxKpooFZQwrvaSJybjKIW88gHR6/WwgDmpSHBZ
+         oIDeriLZQY6C2gN243+X+tIr8Z2qrjwlNX3JXwQ5I7eAkSravupCKl2/h0fcGSikfD
+         VD7JUwx+wYIEn3oY2p2couV6ch6MRVIVNindJYWRoURfSzailfPhjvxQCcGxh8BzCZ
+         Kagmzz5+sU2GA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id EE5C8480AEC; Mon, 24 Oct 2022 18:55:53 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211209103505.197453-1-vkoul@kernel.org>
- <20211209103505.197453-11-vkoul@kernel.org>
- <5035b6a3-164b-afa0-b714-4deb886f9f90@linaro.org>
- <9f696023-f2b4-ccd0-34a0-6f4d5848e862@linaro.org>
- <8c1428a6-f268-cb03-3e55-887d30236924@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <8c1428a6-f268-cb03-3e55-887d30236924@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCHv2 0/6] Convert HYM8563 RTC binding to YAML
+Date:   Mon, 24 Oct 2022 18:55:43 +0200
+Message-Id: <20221024165549.74574-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 19:46, Krzysztof Kozlowski wrote:
-> On 24/10/2022 12:45, Dmitry Baryshkov wrote:
->> On 24/10/2022 17:56, Krzysztof Kozlowski wrote:
->>> On 09/12/2021 05:35, Vinod Koul wrote:
->>>> Add the spmi bus as found in the SM8450 SoC
->>>>
->>>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/sm8450.dtsi | 18 ++++++++++++++++++
->>>>    1 file changed, 18 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>> index f75de777f6ea..b80e34fd3fe1 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>>> @@ -645,6 +645,24 @@ pdc: interrupt-controller@b220000 {
->>>>    			interrupt-controller;
->>>>    		};
->>>>    
->>>> +		spmi_bus: spmi@c42d000 {
->>>> +			compatible = "qcom,spmi-pmic-arb";
->>>> +			reg = <0x0 0x0c400000 0x0 0x00003000>,
->>>> +			      <0x0 0x0c500000 0x0 0x00400000>,
->>>> +			      <0x0 0x0c440000 0x0 0x00080000>,
->>>> +			      <0x0 0x0c4c0000 0x0 0x00010000>,
->>>> +			      <0x0 0x0c42d000 0x0 0x00010000>;
->>>
->>> This is a patch from December 2021. Is there anything blocking it from
->>> being merged?
->>>
->>> The same applies to several other patches here.
->>
->> As far as I know, Stephen still didn't pick up the spmi-pmic-arb support
->> for the PMIC on the SM8450 platform. Thus we also can not merge the DT
->> parts.
-> 
-> Why we cannot merge DTS? How is DTS with new nodes depending on any
-> driver changes?
+Hi,
 
-In this particular case, there was an open question, what should be the 
-bindings for the PMIC ARB v7.
+This converts HYM8563 binding to YAML and fixes
+the existing DTs.
 
-> 
-> Just like I replied to Konrad - if that's true, bindings are simply
-> wrong and should be fixed.
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20221021170605.85163-1-sebastian.reichel@collabora.com/
+ * Added patches fixing the existing devicetrees (Rob Herring)
+ * Dual licensed the binding (Krzysztof Kozlowski)
+ * Added maxItems for clock-output-names (Krzysztof Kozlowski)
 
-Maybe I missed the reply. Which email are you referring to?
+-- Sebastian
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Sebastian Reichel (6):
+  arm64: dts: rockchip: fix node name for hym8563 rtc
+  arm64: dts: rockchip: remove clock-frequency from rtc
+  arm: dts: rockchip: fix node name for hym8563 rtc
+  arm: dts: rockchip: remove clock-frequency from rtc
+  arm64: dts: meson: remove clock-frequency from rtc
+  dt-bindings: rtc: convert hym8563 bindings to json-schema
+
+ .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+ .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
+ arch/arm/boot/dts/rk3036-evb.dts              |  3 +-
+ arch/arm/boot/dts/rk3288-evb-act8846.dts      |  2 +-
+ arch/arm/boot/dts/rk3288-firefly.dtsi         |  3 +-
+ arch/arm/boot/dts/rk3288-miqi.dts             |  3 +-
+ arch/arm/boot/dts/rk3288-rock2-square.dts     |  3 +-
+ arch/arm/boot/dts/rk3288-vmarc-som.dtsi       |  1 -
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  1 -
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     |  1 -
+ .../dts/amlogic/meson-gxm-minix-neo-u9h.dts   |  1 -
+ .../dts/rockchip/rk3368-orion-r68-meta.dts    |  3 +-
+ arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  3 +-
+ .../boot/dts/rockchip/rk3399-roc-pc-plus.dts  |  3 +-
+ .../dts/rockchip/rk3399pro-vmarc-som.dtsi     |  3 +-
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   |  1 -
+ .../boot/dts/rockchip/rk3568-rock-3a.dts      |  1 -
+ 17 files changed, 65 insertions(+), 53 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
 
 -- 
-With best wishes
-Dmitry
+2.35.1
 
