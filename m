@@ -2,106 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C3B460ACD7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:16:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F15960AEA1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232584AbiJXOQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 10:16:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
+        id S230415AbiJXPK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 11:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237034AbiJXOPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:15:35 -0400
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86A34635DC;
-        Mon, 24 Oct 2022 05:55:23 -0700 (PDT)
-Received: by mail-pf1-f178.google.com with SMTP id g28so8864796pfk.8;
-        Mon, 24 Oct 2022 05:55:23 -0700 (PDT)
+        with ESMTP id S231149AbiJXPKc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:10:32 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81D33B1BAD
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:46:40 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id d13so6057772qko.5
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 06:46:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5D2qC8JkQWqg5OtsTeOnj08o8r3sOjBd1D5QMgS0xg8=;
+        b=yYWOASGG8+yX8Jd0BSwaMrWaTQaF1idwVNY9mplB3kPADoF+qgXoP3xMZt2A9V4TMD
+         U8KddUVeATgg0qHYSkx0ptmnMJq7I2xDfmVm0+IBUlBoGOikVUg9Jpwk5eMz6esfv7jd
+         83x4lC2Sofq69o2tabvK/ys18bnZTnxdJABSz6ze4rVJYCwyxsa8HjsNkCqKRG0uNWvH
+         N5ZJIeh9g+g1wjKWyOrYXlqKbl6NMW5lGWnwyj4Qpy1FoakM8J3AxonU/CD4QtVkm2/b
+         Sfzabawmy1yKvL7B1nOt26XSLMopqoxqsGUmf+DS1zqXfy0gy4qzL4TDgyMmUgOehaeE
+         ykeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TIs/7jsTplOiTmK71IOmd1MtbeRmmHQaVO9SeNsFPEI=;
-        b=H+f609bljltxHtEvGCrpGTUzOHEcOSDjxVS+GbzW8JDjnO63Rtoa1dazIb2L1Ekksw
-         Hqsjr91OoWiyJ4sUplZSLOtrR8mQ/lVEpztiSxYNpmH9/8yveIPrM9c5SVK49hmEp+LY
-         vS1VKeWnATXsa9rNgROwLP1q4EM7x8bFD8NUr0/WJ3NBruO9hVEZUGH/J0CL2HzYuxRX
-         nZ1B2IJ5iCW0LZxwI1wm/RZVceucuYZyQE4OkBNJuNEbGDnKUOFD+wugpUr6KfXTIVQ2
-         UkbLjk2vf9eYKVscXsD54+Ump0VY3U0ft4/zbLpA68YMn6dbQ9HLM2NhDuzLR1CvDIzK
-         /qPg==
-X-Gm-Message-State: ACrzQf0d/QcwUC/tEJC6At/G2xrXK43nrGEtoj6VSz9R9HJ7f/rMHbQU
-        hMkKj460D3Rny5bqmYB1/vy4LfJ0keg44Q==
-X-Google-Smtp-Source: AMsMyM5LUaTQ1hsO2YLfn08QQOEUI62y2A0C07T7lYkMYwIWtqpHRN2Y43Aq9a82c0quM4jC7rTX/w==
-X-Received: by 2002:a05:6214:c68:b0:4b2:31c5:78bc with SMTP id t8-20020a0562140c6800b004b231c578bcmr27218596qvj.45.1666612034806;
-        Mon, 24 Oct 2022 04:47:14 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id bp17-20020a05620a459100b006ce3f1af120sm15029241qkb.44.2022.10.24.04.47.13
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5D2qC8JkQWqg5OtsTeOnj08o8r3sOjBd1D5QMgS0xg8=;
+        b=hbVSAVzgpTH3Jxx2t7C3QKmtz9EJ5g99XMOHZi0TCnU7KeQ9xKJ7bzX28JsL6xsZHa
+         GazXT5gjjsyYFM9tAd1mNK855iodY5+1x9qt7yhH0FC72CSs+/T4OxVJ4Ohuy39cimAb
+         lLXjsLzShn6n6N0XAtC30IfFMU99rFhKQGremIRTBohBGRJ2avjSr62aaK5W7gz1j/XD
+         oxA2zoY+PVUlQjFAAkkDKBPEU0GzDhJ/Az1IkvpPaN58WTkcgYs6chigKSWSpyqnDuRw
+         i5jON3QlhsPtnFWj9T0Ra/0QTuntWRKoU7cgh8X915nVSaZV4OHSF5D9Kr0N6IhGuw0O
+         ZXZw==
+X-Gm-Message-State: ACrzQf2OsnL8JYYeEvCAC0luQROMOVU0wBOM6VHC/Gl8jWpmFixi/obY
+        A3XaqZkRv6GD6qAeESZ4LrnHc0S0OnL2gQ==
+X-Google-Smtp-Source: AMsMyM7WUD0Ah3DfBvBkzwZxZHjuXsIf/fAn07VWLqQ/iLKoKdePrhROBZ1MPk4ROCGiJJD/VF+9mQ==
+X-Received: by 2002:ac8:5894:0:b0:39d:13b5:1afd with SMTP id t20-20020ac85894000000b0039d13b51afdmr16699085qta.127.1666614142269;
+        Mon, 24 Oct 2022 05:22:22 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id y5-20020a05620a44c500b006b5e296452csm15355428qkp.54.2022.10.24.05.22.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 04:47:14 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id j7so10695987ybb.8;
-        Mon, 24 Oct 2022 04:47:13 -0700 (PDT)
-X-Received: by 2002:a5b:104:0:b0:6b0:429:3fe9 with SMTP id 4-20020a5b0104000000b006b004293fe9mr27481885ybx.543.1666612033596;
- Mon, 24 Oct 2022 04:47:13 -0700 (PDT)
+        Mon, 24 Oct 2022 05:22:21 -0700 (PDT)
+Message-ID: <10e29fa9-e1b5-9d3d-1dd4-8914c4444099@linaro.org>
+Date:   Mon, 24 Oct 2022 08:22:20 -0400
 MIME-Version: 1.0
-References: <20221023182437.15263-1-afd@ti.com> <20221023182437.15263-2-afd@ti.com>
-In-Reply-To: <20221023182437.15263-2-afd@ti.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 24 Oct 2022 13:47:02 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWSorMA8uBSfOQCBXpY+319Pb_fcaHX5B8o1=xxaaGofA@mail.gmail.com>
-Message-ID: <CAMuHMdWSorMA8uBSfOQCBXpY+319Pb_fcaHX5B8o1=xxaaGofA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] kbuild: Allow DTB overlays to built from .dtso named
- source files
-To:     Andrew Davis <afd@ti.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v5 1/3] dt-bindings: ingenic: Add support for the JZ4755
+ CGU
+Content-Language: en-US
+To:     Siarhei Volkau <lis8215@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Paul Cercueil <paul@crapouillou.net>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20221024044057.4151633-1-lis8215@gmail.com>
+ <20221024044057.4151633-2-lis8215@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024044057.4151633-2-lis8215@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 23, 2022 at 8:24 PM Andrew Davis <afd@ti.com> wrote:
-> Currently DTB Overlays (.dtbo) are build from source files with the same
-> extension (.dts) as the base DTs (.dtb). This may become confusing and
-> even lead to wrong results. For example, a composite DTB (created from a
-> base DTB and a set of overlays) might have the same name as one of the
-> overlays that create it.
->
-> Different files should be generated from differently named sources.
->  .dtb  <-> .dts
->  .dtbo <-> .dtso
->
-> We do not remove the ability to compile DTBO files from .dts files here,
-> only add a new rule allowing the .dtso file name. The current .dts named
-> overlays can be renamed with time. After all have been renamed we can
-> remove the other rule.
->
-> Signed-off-by: Andrew Davis <afd@ti.com>
+On 24/10/2022 00:40, Siarhei Volkau wrote:
+> Add documentation for the clock generation unit (CGU)
+> of the JZ4755 SoC.
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
