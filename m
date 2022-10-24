@@ -2,152 +2,464 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE48360975D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 01:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73A37609773
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 02:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiJWXyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Oct 2022 19:54:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
+        id S229875AbiJXAYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Oct 2022 20:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbiJWXyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 19:54:19 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2114.outbound.protection.outlook.com [40.107.114.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA4D60EB9;
-        Sun, 23 Oct 2022 16:54:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mi0ysKrNhzUDLy26kB35TuFLbfSmE1+RbfYiXuJuZn3VFAA/AGDoFobHSHLZhkukafbjKLIAKRMYMnYBiypk7B7wzWAuwK9kC5j8IfsrqZ+Zrggtu+y89xrTg+gBR/Y5kMzy4wF6VFHCsJfnoZhuS8Gy2C9YBlWfG7zxo+U5GTuTf2jo7ME5q29V+rnCahXvph7I76dHCWwizJy7VwiKnrRtolEKS7U3+FI6oc/NRnRJUASzJ5Ry9T/uWJeecJ+1BBP/6Ks+6R+Y64ysoz8+Ek87F1PhZnyzBx8dUCqjDOxTvxY/xMnRLryD2lx8L72yWrNXwcnaq6Bhwzrk6mc6AQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KEq4OdJK1ddoKTdgHf7BODWIeZU9bxt6gJRXYgJpjGA=;
- b=cLtATLjJZypdOw+FBkgoP2w+FP5tW/y8ee6+b9NiOCuq3oxJxDaFwNiKw8E37BZhSlatFE/99dgwGsU3BDfH2U9VpSzLfXesMIMMBoowbFtv6iakigB6zqv1gnGMBUU3hE6e+LVGHDFIcMDSp8ce1D8+aR8l0PlPjeUQ17li/CI+eiwZ9n4mMqqKFfm9CfJ/YRLinNwgquAgGtHsLhbTMl9InXNvm9N52eeTxD/J5L0cFSgyUSIuEB0RQTi+GIcA6I6KVRYQK53RSE7VCt++uX+I8IYK/n14pT+Eh5LH6ZIT0kFrP2GELmRT5lVM5x/RcQuj5Y6jmbxNTt+28ypQcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KEq4OdJK1ddoKTdgHf7BODWIeZU9bxt6gJRXYgJpjGA=;
- b=Y0Dk+vG38ptOWIeYTBs9tTGscp6DQwWh6prjp1sv8obdFfMhkPcgqkk3Gbi9sr8zWVIDNu04NvhzRxu4tkrUOulZiUFI5YWCY5MTfEhKXRsLcjdyQzhBGl66XdoGbKXYDu7wllGidhn2BGYA4fmEc+qk0IorVRO1VsY5Nna5RDw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by TYWPR01MB10521.jpnprd01.prod.outlook.com (2603:1096:400:29e::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.21; Sun, 23 Oct
- 2022 23:54:15 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4cba:2bd5:dfd4:f3cf]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::4cba:2bd5:dfd4:f3cf%5]) with mapi id 15.20.5746.023; Sun, 23 Oct 2022
- 23:54:15 +0000
-Message-ID: <87fsfem6zd.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] ASoC: simple-card: Support custom DAI system clock IDs
-In-Reply-To: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
-User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Sun, 23 Oct 2022 23:54:14 +0000
-X-ClientProxiedBy: TYAPR01CA0115.jpnprd01.prod.outlook.com
- (2603:1096:404:2a::31) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        with ESMTP id S229803AbiJXAYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Oct 2022 20:24:04 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70A596BCC0
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 17:24:01 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id z8so4888291qtv.5
+        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 17:24:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u0Fm7YEizFS86TGfdUo1Dki3jfvQjpGMfc6beEbHU7A=;
+        b=gA0JodCN6Np+vte7sTMpoKZBa/Zh0fEHIIySCQTqL8U9GCkby2y73bcqpZMATc8NLw
+         34BM6e2Qaptd0+pGP2bt8OTNmQ2TIrHKl4KH9MtbZ7RtZoQVhzJ7vS59SgfUn12D3Pyi
+         ex3KgpkJmpSDPNWilU/u6QrfPoERDCsdQ2bgnhvsxIMb4Ds/HAvR9c9656Bx4vw+heXw
+         0wIrKmbMn6aC5QvB58tZ0QCMtxDkjqMsMIUjYT057laWt1grl2BiUAAhI12xuqiagt4g
+         RW1R4iQXIObWf8RaksNsH3lVOcBCPmRzrvL6Y21j3wfXLOotoICLnqdH93A+DuVXolET
+         C6rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u0Fm7YEizFS86TGfdUo1Dki3jfvQjpGMfc6beEbHU7A=;
+        b=Q46jmu5oj3CIYyhLsLVSxYdzCsllaEuRCHg6+n4pcswi+Qg9eMaSpMEdsNyZXGS02V
+         w4BI7yYf31TE9xj1NwCaa6WQ2BHO6GbKCOcxIXhJU3o/NqrYMbpRhohMTJXDtzyb7OVe
+         65/bbJ7uM0c3d8LtEZsklFn9KB0SBeXvo2IMXFzNEL+ksOc0jlXzSUBn9SLDS6fPI2Nl
+         VfLxmLfo90LGxA7lMUuWwn7dI73G4rT1NWNNvDAIn+gmBwNV2sfXpR+RRNEcfEZybXuu
+         3lzdRPt2FWuLhGy0EWQsElPPQw5ob8lI1CLMAcWn0yvLsxUOC5XQEYOpekF4igjXi6M9
+         iy2g==
+X-Gm-Message-State: ACrzQf31WN6EhJoOzNSvFzSe7ZKAoWU8SHyWfIJSRxjWKZ92MndpMKHs
+        0YgmhhvmtDLMHBcGDgUAzBnuLg==
+X-Google-Smtp-Source: AMsMyM6UQfp8Sfp++PQgg76SfyAgaygAkllPWQwuo23keBffiUQTsGjKyqZKqeGLOJQjQxWC5mOFvA==
+X-Received: by 2002:ac8:5e4b:0:b0:39d:205:3253 with SMTP id i11-20020ac85e4b000000b0039d02053253mr21182522qtx.243.1666571040507;
+        Sun, 23 Oct 2022 17:24:00 -0700 (PDT)
+Received: from krzk-bin.. ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id dm54-20020a05620a1d7600b006eeb185c209sm13847629qkb.50.2022.10.23.17.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Oct 2022 17:23:59 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: pinctrl: qcom,msm8916: convert to dtschema
+Date:   Sun, 23 Oct 2022 20:23:55 -0400
+Message-Id: <20221024002356.28261-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|TYWPR01MB10521:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6e01735e-eac2-4f6c-5bbb-08dab551e3ec
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ByzJoxNWC44EVyv51s6ZrNh4/cplTraesoAU/I8AewSRTzA+AVDvnpT0so+/Q0tY2rsUQgzxPrKkCfKTyY4jTMCOcb6NxN5WhybLpBb9NKySqX6uosWTsnOz+sjs7/yBLx9tuXMnvykVs7K+hwszX+OGjeJ9sqibbl2T0a4cdezI4iil4FVbK+dFLn49MoLmHFFTVMkZkbyLUkf8EObCRoakcSoLvC9O4Azd7b3Ql2mGVwlzI0PAUxL9CGx2zjL2EV2usgqmdoJmGrMiEyo3C4sxFr1tbdTuDH8Gu5+GQ61EVlN0KPmTSK2uePNcA3zciVKhRESSSPumzChSzYNtmoCLxbhjpXmzWVuQVLHfKV/BpVVpY0TBgSXJUwFRB1Qx0vlXcv3hgiw3bhXyWbZoi2iYWgRdfmoQNGRDQWfxhOA781WqnPsf3Wvv2PPQSVB+k6PCmKnoDr4g+0OL6Ncg5RSKC4rDe8JRy4Yx2/BfhaTs2sbfifrFAwGt9ruEc1YeUGH5IaxHf9rHPO4v56+OoK2b6E5nA9izd9M3AFau75R6QAlE8Qbahn9Y8DPLPD+lAS96hWVNvq/H8D+Wnhul+enjX9ENl2pIT6rFcLWcg7m3PCvlsP+vEaIIZNcW3VPuc7KkoWQO1/ztjNNZCVPBv2icsUrtTFVv7qi27VbJ2YGfdLtmWdtUjbfHq9tiU5ooLDQmrLE7aldcNau/G5goSQ7mnC47aPv2OmbFS0tzAbE2W0ZFEUygBreAYDpa+kbkEJLtfmKqjnROpwCo9ms2iA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(39860400002)(136003)(346002)(366004)(451199015)(83380400001)(86362001)(478600001)(6486002)(8676002)(26005)(52116002)(6506007)(6512007)(41300700001)(7416002)(316002)(4326008)(6916009)(66476007)(66556008)(66946007)(5660300002)(8936002)(2616005)(38350700002)(38100700002)(2906002)(36756003)(186003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BHa1fr8a4O5wPVaLf616tpIxOeTPc0isoUyzccd3EL63tYVav+Bpq2JAzA0V?=
- =?us-ascii?Q?1DHzovPAGXJkeU2dBjL1F0bEEoqVgs9/9Q56RGKM4jtn4avKSi98IrEeMQQ5?=
- =?us-ascii?Q?uNAQ33V7J9/o+XaejyXnJoGRv5MXfMPz9hRaaUmdEo3d7mk53k0i5ZJrA1iG?=
- =?us-ascii?Q?5ba46N09Ad3NJDvs4udm8cimTS9bEaQd4M5fAwLokAGNlYJIzhV/gGCynHy+?=
- =?us-ascii?Q?mCkpLy6rJ7SbZnwqRYwpNoQP005XU/eb1NW9vPoT1xjuCpZeaiAxlt7IUUh2?=
- =?us-ascii?Q?nqFQEvfUNWqgGb4YguDzUi8vN3O9pUHeZaJ46ZIp6EqOv41GxiyiWsKOJvyQ?=
- =?us-ascii?Q?VZEtHK3qDVs0hT2zd/dpBtZtv+0PDCxc91vcCFxKR8HmmXIK5Vfcary71m8g?=
- =?us-ascii?Q?E+MuOcEfr2yc/eDjG2vzb3044/JuMtfJe8JeCmjBNVaj2x4J2sIx6I7GLavw?=
- =?us-ascii?Q?RjBz+c7+QYh6Y6bJAr95/O9hqGaLtnX5mmk5ossaL9r/RoLQflE+2fgjYI+5?=
- =?us-ascii?Q?sjwtt+R9M13Uwzw0bAOiHMronAY+YW/b2jXRUuxPV92MikQ/f7PsnbVFui7p?=
- =?us-ascii?Q?avrIbjxObxTM0NTWl00UUnqJL2qTxTUzH0vz6nG3Bzd1/kjtRIPGDeDXW8ol?=
- =?us-ascii?Q?Qh+AK2qaJ8Q9aRkUnOCK9FNmZB6Mn53GIvf3EbikrVJCVW0rtk0XSk1fXxJ7?=
- =?us-ascii?Q?9VUJkZqAZwvBHP3SVoj5hQ+F01QAiW1GvWtNRXK24dGnOzGZ0eoBQ9ImHzjw?=
- =?us-ascii?Q?Xu06FdyJeBPpWDaAsJZx8KULBYXp7paCvua/8uJ/9adOIdL/o75fZbZ9tgiF?=
- =?us-ascii?Q?e+H7pHMzm/++SMcrkRT6klaNIpvuHESqyvOBp0vSew9ilRI4akOhCQY0XR38?=
- =?us-ascii?Q?9wAIyuzfzHwjlixd6EjvaHZ01RB/1P1pUoxMgpvY18aGDlhNmDz84K2atmMS?=
- =?us-ascii?Q?avLImQgd2Svcp7EYlM1BB1ehjeOkguId1bR1Aq6swIi1kHcy1MLVJnCyn7vW?=
- =?us-ascii?Q?mCJeL2+GFlUSQUrPMSQFT3W69aq8wt8SSpW5Ak1kQeKx4uLu+CTBFJLEKKi2?=
- =?us-ascii?Q?Yf33AZtKmeoVjHEplG+BY6PtI7UvvYRrIf6qPj74WNZdDpsIz4qASopupvO+?=
- =?us-ascii?Q?F8adJ+7nNE32yfcjFC9pKCMtrlHoyYLdDNTtK5BZL+QI6Aqebz7QutzFjXcX?=
- =?us-ascii?Q?dQdS2qTXnShxuE01Q+510asqsziy6uVHladp/ug2hXPbIOeCTSWrXhUO9xCi?=
- =?us-ascii?Q?A70cCgnijBBjEOhptdKQ3MyTX/D3q4FsOlFn9s1RsGF/PxVkSOq0w3IAoYHj?=
- =?us-ascii?Q?V63GrH2teGho7Y5mmq84LVDUpRKLieUQc4/l97DWUF8jPCONwAXpKN1tyFDx?=
- =?us-ascii?Q?UBg+gJzIv2WynZTkvKavbzYJWWSEUy3m3a9RDQhmD4fnVhMqpftPDt1f6wzB?=
- =?us-ascii?Q?Qhux6dH165CoUUiIH5rIJN0eOPenbDPgeVG5CuWrNqtaYnjJINGOfrlk6zUL?=
- =?us-ascii?Q?oLk9hrxaHvYiYNR6ZC60GFeLA/HpRLjiiqfoKDVcDIm5SyESnkFIJvmBuBP9?=
- =?us-ascii?Q?znFYIMefkuY9WJwvCTNaCMqQaadO07YJBOw9kZh3h2m+fXVepab6oQQGV8yG?=
- =?us-ascii?Q?ztThJ/XV3LYuOnTBDip4Nqg=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e01735e-eac2-4f6c-5bbb-08dab551e3ec
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2022 23:54:15.2085
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MAdBa97dwtc/XtdFB7kXuEr/uPn/BvAOyZpxJGbOKt8luy3dgctPwGXtVasp7Ikl/sjuFJND3K6IkTEqHl0SCGms1tJ/xUiAWmzP3lw5razh8u6J4R2guz6px1rQ0n+D
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10521
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert Qualcomm MSM8916 pin controller bindings to DT schema.  Keep the
+parsing of pin configuration subnodes consistent with other Qualcomm
+schemas (children named with '-state' suffix, their children with
+'-pins').
 
-Hi Aidan
-
-Thank you for your patch
-
-> Some DAIs have multiple system clock sources, which can be chosen
-> using the "clk_id" argument to snd_soc_dai_set_sysclk(). Currently
-> this is hardcoded to 0 when using simple cards, but that choice is
-> not always suitable.
-> 
-> Add the "system-clock-id" property to allow selecting a different
-> clock ID on a per-DAI basis.
-> 
-> To simplify the logic on DPCM cards, add a dummy "asoc_simple_dai"
-> instance and use that for the dummy components on DPCM links. This
-> ensures that when we're iterating over DAIs in the PCM runtime there
-> is always a matching "asoc_simple_dai" we can dereference.
-> 
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-> ---
-
-I think adding "system-clock-id" and adding "dummy asoc_simple_dai" are
-different topics. This patch should be separated into 2 patches.
-
-And I couldn't understand the reason why we need to add dummy asoc_simple_dai.
-In my understanding, we don't parse DT for dummy connection.
-Which process are you talking about specifically here?
-
-	This ensures that when we're iterating over DAIs in the PCM runtime there
-	is always a matching "asoc_simple_dai" we can dereference.
-- 
-Thank you for your help !!
-
-Best regards
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Kuninori Morimoto
+ .../bindings/pinctrl/qcom,msm8916-pinctrl.txt | 195 ------------------
+ .../pinctrl/qcom,msm8916-pinctrl.yaml         | 166 +++++++++++++++
+ 2 files changed, 166 insertions(+), 195 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.yaml
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.txt
+deleted file mode 100644
+index 3354a63296d9..000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.txt
++++ /dev/null
+@@ -1,195 +0,0 @@
+-Qualcomm MSM8916 TLMM block
+-
+-This binding describes the Top Level Mode Multiplexer block found in the
+-MSM8916 platform.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: must be "qcom,msm8916-pinctrl"
+-
+-- reg:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: the base address and size of the TLMM register space.
+-
+-- interrupts:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: should specify the TLMM summary IRQ.
+-
+-- interrupt-controller:
+-	Usage: required
+-	Value type: <none>
+-	Definition: identifies this node as an interrupt controller
+-
+-- #interrupt-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: must be 2. Specifying the pin number and flags, as defined
+-		    in <dt-bindings/interrupt-controller/irq.h>
+-
+-- gpio-controller:
+-	Usage: required
+-	Value type: <none>
+-	Definition: identifies this node as a gpio controller
+-
+-- #gpio-cells:
+-	Usage: required
+-	Value type: <u32>
+-	Definition: must be 2. Specifying the pin number and flags, as defined
+-		    in <dt-bindings/gpio/gpio.h>
+-
+-- gpio-ranges:
+-	Usage: required
+-	Definition:  see ../gpio/gpio.txt
+-
+-- gpio-reserved-ranges:
+-	Usage: optional
+-	Definition: see ../gpio/gpio.txt
+-
+-Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
+-a general description of GPIO and interrupt bindings.
+-
+-Please refer to pinctrl-bindings.txt in this directory for details of the
+-common pinctrl bindings used by client devices, including the meaning of the
+-phrase "pin configuration node".
+-
+-The pin configuration nodes act as a container for an arbitrary number of
+-subnodes. Each of these subnodes represents some desired configuration for a
+-pin, a group, or a list of pins or groups. This configuration can include the
+-mux function to select on those pin(s)/group(s), and various pin configuration
+-parameters, such as pull-up, drive strength, etc.
+-
+-
+-PIN CONFIGURATION NODES:
+-
+-The name of each subnode is not important; all subnodes should be enumerated
+-and processed purely based on their content.
+-
+-Each subnode only affects those parameters that are explicitly listed. In
+-other words, a subnode that lists a mux function but no pin configuration
+-parameters implies no information about any pin configuration parameters.
+-Similarly, a pin subnode that describes a pullup parameter implies no
+-information about e.g. the mux function.
+-
+-
+-The following generic properties as defined in pinctrl-bindings.txt are valid
+-to specify in a pin configuration subnode:
+-
+-- pins:
+-	Usage: required
+-	Value type: <string-array>
+-	Definition: List of gpio pins affected by the properties specified in
+-		    this subnode.  Valid pins are:
+-		    gpio0-gpio121,
+-		    sdc1_clk,
+-		    sdc1_cmd,
+-		    sdc1_data
+-		    sdc2_clk,
+-		    sdc2_cmd,
+-		    sdc2_data,
+-		    qdsd_cmd,
+-		    qdsd_data0,
+-		    qdsd_data1,
+-		    qdsd_data2,
+-		    qdsd_data3
+-
+-- function:
+-	Usage: required
+-	Value type: <string>
+-	Definition: Specify the alternative function to be configured for the
+-		    specified pins. Functions are only valid for gpio pins.
+-		    Valid values are:
+-	adsp_ext, alsp_int, atest_bbrx0, atest_bbrx1, atest_char, atest_char0,
+-	atest_char1, atest_char2, atest_char3, atest_combodac, atest_gpsadc0,
+-	atest_gpsadc1, atest_tsens, atest_wlan0, atest_wlan1, backlight_en,
+-	bimc_dte0,bimc_dte1, blsp_i2c1, blsp_i2c2, blsp_i2c3, blsp_i2c4,
+-	blsp_i2c5, blsp_i2c6, blsp_spi1, blsp_spi1_cs1, blsp_spi1_cs2,
+-	blsp_spi1_cs3, blsp_spi2, blsp_spi2_cs1, blsp_spi2_cs2, blsp_spi2_cs3,
+-	blsp_spi3, blsp_spi3_cs1, blsp_spi3_cs2, blsp_spi3_cs3, blsp_spi4,
+-	blsp_spi5, blsp_spi6, blsp_uart1, blsp_uart2, blsp_uim1, blsp_uim2,
+-	cam1_rst, cam1_standby, cam_mclk0, cam_mclk1, cci_async, cci_i2c,
+-	cci_timer0, cci_timer1, cci_timer2, cdc_pdm0, codec_mad, dbg_out,
+-	display_5v, dmic0_clk, dmic0_data, dsi_rst, ebi0_wrcdc, euro_us,
+-	ext_lpass, flash_strobe, gcc_gp1_clk_a, gcc_gp1_clk_b, gcc_gp2_clk_a,
+-	gcc_gp2_clk_b, gcc_gp3_clk_a, gcc_gp3_clk_b, gpio, gsm0_tx0, gsm0_tx1,
+-	gsm1_tx0, gsm1_tx1, gyro_accl, kpsns0, kpsns1, kpsns2, ldo_en,
+-	ldo_update, mag_int, mdp_vsync, modem_tsync, m_voc, nav_pps, nav_tsync,
+-	pa_indicator, pbs0, pbs1, pbs2, pri_mi2s, pri_mi2s_ws, prng_rosc,
+-	pwr_crypto_enabled_a, pwr_crypto_enabled_b, pwr_modem_enabled_a,
+-	pwr_modem_enabled_b, pwr_nav_enabled_a, pwr_nav_enabled_b,
+-	qdss_ctitrig_in_a0, qdss_ctitrig_in_a1, qdss_ctitrig_in_b0,
+-	qdss_ctitrig_in_b1, qdss_ctitrig_out_a0, qdss_ctitrig_out_a1,
+-	qdss_ctitrig_out_b0, qdss_ctitrig_out_b1, qdss_traceclk_a,
+-	qdss_traceclk_b, qdss_tracectl_a, qdss_tracectl_b, qdss_tracedata_a,
+-	qdss_tracedata_b, reset_n, sd_card, sd_write, sec_mi2s, smb_int,
+-	ssbi_wtr0, ssbi_wtr1, uim1, uim2, uim3, uim_batt, wcss_bt, wcss_fm,
+-	wcss_wlan, webcam1_rst
+-
+-- bias-disable:
+-	Usage: optional
+-	Value type: <none>
+-	Definition: The specified pins should be configured as no pull.
+-
+-- bias-pull-down:
+-	Usage: optional
+-	Value type: <none>
+-	Definition: The specified pins should be configured as pull down.
+-
+-- bias-pull-up:
+-	Usage: optional
+-	Value type: <none>
+-	Definition: The specified pins should be configured as pull up.
+-
+-- output-high:
+-	Usage: optional
+-	Value type: <none>
+-	Definition: The specified pins are configured in output mode, driven
+-		    high.
+-		    Not valid for sdc pins.
+-
+-- output-low:
+-	Usage: optional
+-	Value type: <none>
+-	Definition: The specified pins are configured in output mode, driven
+-		    low.
+-		    Not valid for sdc pins.
+-
+-- drive-strength:
+-	Usage: optional
+-	Value type: <u32>
+-	Definition: Selects the drive strength for the specified pins, in mA.
+-		    Valid values are: 2, 4, 6, 8, 10, 12, 14 and 16
+-
+-Example:
+-
+-	tlmm: pinctrl@1000000 {
+-		compatible = "qcom,msm8916-pinctrl";
+-		reg = <0x1000000 0x300000>;
+-		interrupts = <0 208 0>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		gpio-ranges = <&tlmm 0 0 122>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-
+-		uart2: uart2-default {
+-			mux {
+-				pins = "gpio4", "gpio5";
+-				function = "blsp_uart2";
+-			};
+-
+-			tx {
+-				pins = "gpio4";
+-				drive-strength = <4>;
+-				bias-disable;
+-			};
+-
+-			rx {
+-				pins = "gpio5";
+-				drive-strength = <2>;
+-				bias-pull-up;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.yaml
+new file mode 100644
+index 000000000000..5495f58905af
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8916-pinctrl.yaml
+@@ -0,0 +1,166 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,msm8916-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm MSM8916 TLMM pin controller
++
++maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  Top Level Mode Multiplexer pin controller in Qualcomm MSM8916 SoC.
++
++properties:
++  compatible:
++    const: qcom,msm8916-pinctrl
++
++  reg:
++    maxItems: 1
++
++  interrupts: true
++  interrupt-controller: true
++  "#interrupt-cells": true
++  gpio-controller: true
++  "#gpio-cells": true
++  gpio-ranges: true
++  wakeup-parent: true
++
++  gpio-reserved-ranges:
++    minItems: 1
++    maxItems: 61
++
++  gpio-line-names:
++    maxItems: 122
++
++patternProperties:
++  "-state$":
++    oneOf:
++      - $ref: "#/$defs/qcom-msm8916-tlmm-state"
++      - patternProperties:
++          "-pins$":
++            $ref: "#/$defs/qcom-msm8916-tlmm-state"
++        additionalProperties: false
++
++$defs:
++  qcom-msm8916-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-1][0-9]|12[01])$"
++            - enum: [ qdsd_clk, qdsd_cmd, qdsd_data0, qdsd_data1, qdsd_data2,
++                      qdsd_data3, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk,
++                      sdc2_cmd, sdc2_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ gpio, adsp_ext, alsp_int, atest_bbrx0, atest_bbrx1, atest_char,
++                atest_char0, atest_char1, atest_char2, atest_char3,
++                atest_combodac, atest_gpsadc0, atest_gpsadc1, atest_tsens,
++                atest_wlan0, atest_wlan1, backlight_en, bimc_dte0, bimc_dte1,
++                blsp_i2c1, blsp_i2c2, blsp_i2c3, blsp_i2c4, blsp_i2c5,
++                blsp_i2c6, blsp_spi1, blsp_spi1_cs1, blsp_spi1_cs2,
++                blsp_spi1_cs3, blsp_spi2, blsp_spi2_cs1, blsp_spi2_cs2,
++                blsp_spi2_cs3, blsp_spi3, blsp_spi3_cs1, blsp_spi3_cs2,
++                blsp_spi3_cs3, blsp_spi4, blsp_spi5, blsp_spi6, blsp_uart1,
++                blsp_uart2, blsp_uim1, blsp_uim2, cam1_rst, cam1_standby,
++                cam_mclk0, cam_mclk1, cci_async, cci_i2c, cci_timer0,
++                cci_timer1, cci_timer2, cdc_pdm0, codec_mad, dbg_out,
++                display_5v, dmic0_clk, dmic0_data, dsi_rst, ebi0_wrcdc,
++                euro_us, ext_lpass, flash_strobe, gcc_gp1_clk_a, gcc_gp1_clk_b,
++                gcc_gp2_clk_a, gcc_gp2_clk_b, gcc_gp3_clk_a, gcc_gp3_clk_b,
++                gsm0_tx0, gsm0_tx1, gsm1_tx0, gsm1_tx1, gyro_accl, kpsns0,
++                kpsns1, kpsns2, ldo_en, ldo_update, mag_int, mdp_vsync,
++                modem_tsync, m_voc, nav_pps, nav_tsync, pa_indicator, pbs0,
++                pbs1, pbs2, pri_mi2s, pri_mi2s_ws, prng_rosc,
++                pwr_crypto_enabled_a, pwr_crypto_enabled_b,
++                pwr_modem_enabled_a, pwr_modem_enabled_b, pwr_nav_enabled_a,
++                pwr_nav_enabled_b, qdss_ctitrig_in_a0, qdss_ctitrig_in_a1,
++                qdss_ctitrig_in_b0, qdss_ctitrig_in_b1, qdss_ctitrig_out_a0,
++                qdss_ctitrig_out_a1, qdss_ctitrig_out_b0, qdss_ctitrig_out_b1,
++                qdss_traceclk_a, qdss_traceclk_b, qdss_tracectl_a,
++                qdss_tracectl_b, qdss_tracedata_a, qdss_tracedata_b, reset_n,
++                sd_card, sd_write, sec_mi2s, smb_int, ssbi_wtr0, ssbi_wtr1,
++                uim1, uim2, uim3, uim_batt, wcss_bt, wcss_fm, wcss_wlan,
++                webcam1_rst ]
++
++      bias-pull-down: true
++      bias-pull-up: true
++      bias-disable: true
++      drive-strength: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++
++    additionalProperties: false
++
++allOf:
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    msmgpio: pinctrl@1000000 {
++        compatible = "qcom,msm8916-pinctrl";
++        reg = <0x01000000 0x300000>;
++        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++        gpio-controller;
++        gpio-ranges = <&msmgpio 0 0 122>;
++        #gpio-cells = <2>;
++        interrupt-controller;
++        #interrupt-cells = <2>;
++
++        blsp1-uart2-sleep-state {
++            pins = "gpio4", "gpio5";
++            function = "gpio";
++
++            drive-strength = <2>;
++            bias-pull-down;
++        };
++
++        spi1-default-state {
++            spi-pins {
++                pins = "gpio0", "gpio1", "gpio3";
++                function = "blsp_spi1";
++
++                drive-strength = <12>;
++                bias-disable;
++            };
++
++            cs-pins {
++                pins = "gpio2";
++                function = "gpio";
++
++                drive-strength = <16>;
++                bias-disable;
++                output-high;
++            };
++        };
++    };
+-- 
+2.34.1
+
