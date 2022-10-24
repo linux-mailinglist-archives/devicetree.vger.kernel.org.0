@@ -2,130 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95815609920
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:27:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B958609937
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 06:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiJXE1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 00:27:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56152 "EHLO
+        id S229907AbiJXEjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 00:39:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229576AbiJXE1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:27:19 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ECD772EC2
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 21:27:16 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id a29so14899834lfo.1
-        for <devicetree@vger.kernel.org>; Sun, 23 Oct 2022 21:27:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dsk5CrZNueDPtuaAH1T6ByrqedpifBu30NKTXE3DIrQ=;
-        b=CpCMkhdenirRouvRGG0BILtVUvFEd5aDGL7VID6oPrth7aNOd91QDz1oy7B7OH0Obh
-         B3RRzzs6FmVuEQIXqGIjEyyJBqDMNEvJf25QnS5VOLW3hF1Tbz45Lk+fW9SfeqTINsmC
-         U9Inbfmg+fkFeXwDqi/G+2fYuvlSGw3qFokOoiKWjyTp1OJwwruOmBaryzDu7fBTgVQM
-         bAEgsdi5lWIvTjdVCSoi5CVClE4aAPKwVtQHX6ROu8v4BpwTQSrzMAdd16e4lWJLohpD
-         CxU6kj2Yy7Fp282otnASNrJvUbJRUZK3Ed4F1K3pLWWMZvcjOJMmHkEk4BDkmRArxA3x
-         4eQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dsk5CrZNueDPtuaAH1T6ByrqedpifBu30NKTXE3DIrQ=;
-        b=YGq+kVRmbZvMoFMzSM1qxXNOvMuoSY2fDvKn00CibeOrEZVySiZcaBMTpy5cDJtyVA
-         kAVsUNG6kop4AB/Urra7I3xCKXYPDG4iC0Dxywfen0yZk2yMU6II8E/RDr5GDB7FYfK1
-         51uv0L1HSuakaVmZPUy+KaZnN4DIGLCEn61uDKurF0PWyyc6OivRLDzb4amZV5o7A00X
-         DTNjilsTSVLsDELMkbXGgd1sHc9wnP70EsrFssc9aLvw1YnAMrnWOqzLKtuNFmql/z0/
-         +ENbnHnM5gp8OSDvCY74KXzorYQv+WAA0B8FJwFBHIHM7sIuiSKAlmWuo0k0UN8PVqqO
-         LJrQ==
-X-Gm-Message-State: ACrzQf0ic3OTSr533sxSzFTIZ96giuOZuhW2k9F7xFZ/LEwp6UCizKPT
-        mjluPm+bMVWxbur8IZISWWIqXV/BQtjOVIj2WZ1PRg==
-X-Google-Smtp-Source: AMsMyM4T3topThgg5ZuMoUHR0TVRDCF2V1F6PeP3YU93In1utVJUs/DA4F87zpq37OFYZ4BaDeiDJ+o98W2pyco+au4=
-X-Received: by 2002:a05:6512:2207:b0:4a2:6b5d:8afc with SMTP id
- h7-20020a056512220700b004a26b5d8afcmr10071171lfu.261.1666585634285; Sun, 23
- Oct 2022 21:27:14 -0700 (PDT)
+        with ESMTP id S229738AbiJXEjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 00:39:48 -0400
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CD61006;
+        Sun, 23 Oct 2022 21:39:42 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 921AC4248E;
+        Mon, 24 Oct 2022 04:39:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1666586380; bh=PSIFBicjAsCmHU1aD6l6zkYxcFB0FGKPngGEO+mAWSQ=;
+        h=From:To:Cc:Subject:Date;
+        b=NDsLUNRMLS+soEDN1/NPuJdzeXmAp7lorII8SuaT5AHcEwFwKw2sX4goU/57qx05k
+         taoKsGazNkms5aVzIiYXpPyvPFfcfiloUyWS0EgwMRavQPlsLuDyZm1YYwuoalJ5gI
+         1LOZuEVhLHdRit8jOhSUMuJV1Dm0K5qs07I7gLx7yH24Mviz91FmXUV8oOTqtGUZ5i
+         gx2krc7rsVPVABY97iw68tCd2PBoQEHSkc2ATqTKOxNalY/t+DEJhZxbskib+9Fz4y
+         V8mkZvr62Or0qEbHVoikbCeUNkjQVh9uFgoUIf2ASfr+GmTRLfHrt+eeNjzVgSUdtK
+         64f4v/1ZATT3g==
+From:   Hector Martin <marcan@marcan.st>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/5] Apple SoC cpufreq driver
+Date:   Mon, 24 Oct 2022 13:39:20 +0900
+Message-Id: <20221024043925.25379-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220805074935.1158098-1-jun.nie@linaro.org> <20220805074935.1158098-3-jun.nie@linaro.org>
- <20220926162917.yte3kooilqenufrp@builder.lan>
-In-Reply-To: <20220926162917.yte3kooilqenufrp@builder.lan>
-From:   Jun Nie <jun.nie@linaro.org>
-Date:   Mon, 24 Oct 2022 12:27:03 +0800
-Message-ID: <CABymUCP9XbKvq=_7Q1ToE7cp3zP1JF2KThK-SSTz=B6mS92eXQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] soc: qcom: rpmpd: Add corner power-domains states
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     abel.vesa@linaro.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, agross@kernel.org,
-        shawn.guo@linaro.org, bryan.odonoghue@linaro.org,
-        linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn Andersson <andersson@kernel.org> =E4=BA=8E2022=E5=B9=B49=E6=9C=8827=
-=E6=97=A5=E5=91=A8=E4=BA=8C 00:29=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Fri, Aug 05, 2022 at 03:49:33PM +0800, Jun Nie wrote:
-> > Some SoCs use corner instead of level in rpm regulator, such as
-> > MSM8916 and MSM8939. Add these power-domains states value so that
-> > devices can vote them.
-> >
-> > Note that there is a shift with 1 when converting the value from
-> > regulator usage in Qualcomm Linux 3.18 to power domain usage here.
-> > Because corner is not well hacked in regulator framework in 3.18.
-> > For example, RPM_REGULATOR_CORNER_RETENTION is 2 in 3.18 while
-> > RPM_SMD_CORNER_RETENTION is 1.
-> >
->
-> How about we just stick with the numbers in the rpmpd node in DT, as
-> that would be the only place these constants are used and all the actual
-> users can use the label associated there?
->
-> Regards,
-> Bjorn
+Hi folks,
 
-The clock driver change in this patch set, the consumer of the
-regulator, is dropped. So there
-is no more consumers that need the name. So this whole patch set can
-be abandoned now.
+Third time's the charm? Here's v3 of the cpufreq driver for Apple SoCs.
+This version takes a page from both v1 and v2, keeping the dedicated
+cpufreq style (instead of pretending to be a clock controller) but using
+dedicated DT nodes for each cluster, which accurately represents the
+hardware. In particular, this makes supporting t6002 (M1 Ultra) a lot
+more reasonable on the DT side.
 
-Regards,
-Jun
->
-> > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > ---
-> >  include/dt-bindings/power/qcom-rpmpd.h | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindin=
-gs/power/qcom-rpmpd.h
-> > index 6cce5b7aa940..f778dbbf083d 100644
-> > --- a/include/dt-bindings/power/qcom-rpmpd.h
-> > +++ b/include/dt-bindings/power/qcom-rpmpd.h
-> > @@ -297,4 +297,12 @@
-> >  #define RPM_SMD_LEVEL_TURBO_HIGH      448
-> >  #define RPM_SMD_LEVEL_BINNING         512
-> >
-> > +/* RPM SMD Power Domain performance levels in regulator corner method =
-*/
-> > +#define RPM_SMD_CORNER_RETENTION     1
-> > +#define RPM_SMD_CORNER_SVS_KRAIT     2
-> > +#define RPM_SMD_CORNER_SVS_SOC               3
-> > +#define RPM_SMD_CORNER_NORMAL                4
-> > +#define RPM_SMD_CORNER_TURBO         5
-> > +#define RPM_SMD_CORNER_SUPER_TURBO   6
-> > +
-> >  #endif
-> > --
-> > 2.25.1
-> >
+This version also switches to the standard performance-domains binding,
+so we don't need any more vendor-specific properties. In order to
+support this, I had to make the performance-domains parsing code more
+generic. This required a minor change to the only consumer
+(mediatek-cpufreq-hw).
+
+The Linux driver probes based on platform compatible, and then attempts
+to locate the cluster nodes by following the performance-domains links
+from CPU nodes (this will then fail for any incompatible nodes, e.g. if
+a future SoC needs a new compatible and can't fall back). This approach
+was suggested by robh as the right way to handle the impedance mismatch
+between the hardware, which has separate controllers per cluster, and
+the Linux model where there can only be one CPUFreq driver instance.
+
+Functionality-wise, there are no significant changes from v2. The only
+notable difference is support for t8112 (M2). This works largely the
+same as the other SoCs, but they ran out of bits in the current PState
+register, so that needs a SoC-specific quirk. Since that register is
+not used by macOS (it was discovered experimentally) and is not critical
+for functionality (it just allows accurately reporting the current
+frequency to userspace, given boost clock limitations), I've decided to
+only use it when a SoC-specific compatible is present. The default
+fallback code will simply report the requested frequency as actual.
+I expect this will work for future SoCs.
+
+As usual, MAINTAINERS and DT changes are split. I expect patches #2~#4
+to go through the cpufreq tree, and we'll take care of #1 and #5 via
+the asahi-soc tree.
+
+Hector Martin (5):
+  MAINTAINERS: Add entries for Apple SoC cpufreq driver
+  dt-bindings: cpufreq: apple,soc-cpufreq: Add binding for Apple SoC
+    cpufreq
+  cpufreq: Generalize of_perf_domain_get_sharing_cpumask phandle format
+  cpufreq: apple-soc: Add new driver to control Apple SoC CPU P-states
+  arm64: dts: apple: Add CPU topology & cpufreq nodes for t8103
+
+ .../cpufreq/apple,cluster-cpufreq.yaml        | 119 ++++++
+ MAINTAINERS                                   |   2 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          | 206 +++++++++-
+ drivers/cpufreq/Kconfig.arm                   |   9 +
+ drivers/cpufreq/Makefile                      |   1 +
+ drivers/cpufreq/apple-soc-cpufreq.c           | 352 ++++++++++++++++++
+ drivers/cpufreq/cpufreq-dt-platdev.c          |   2 +
+ drivers/cpufreq/mediatek-cpufreq-hw.c         |  14 +-
+ include/linux/cpufreq.h                       |  28 +-
+ 9 files changed, 706 insertions(+), 27 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+ create mode 100644 drivers/cpufreq/apple-soc-cpufreq.c
+
+-- 
+2.35.1
+
