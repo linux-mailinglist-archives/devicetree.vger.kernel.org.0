@@ -2,113 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15872609E6D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 12:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0133609E9A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 12:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbiJXKBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 06:01:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
+        id S230425AbiJXKHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 06:07:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbiJXKBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 06:01:42 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5946140B3;
-        Mon, 24 Oct 2022 03:01:40 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29O7YUSg032118;
-        Mon, 24 Oct 2022 12:01:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=/1ISvok2MlOVWxjeDXBIB0FBrreJWa64+ZVjHl7H/0E=;
- b=ljRaRjj4fCSSmCbA1JOGd19ApHhO1Ydkdv6uAasZqkwQ7Wpf5aVeYKyQ/suf441kJdDp
- FHD/YOmgMC4JY60lHQ0MhzRk0F7NTEvoyB5Y9557PmzFo7usgJ2FWtL2jdcKgZDagZXM
- pv5WVmdGc/pvLhAeu8/NgD/7HwBr6yBhF+XVXTdUbLpTT0oweZ//R4sUXZYdhqbqxHJw
- j/7SCmJwAvVkfnJYPPrkQvJD2FfwisNPWQivz2azLxV3dxJgpYDet9isvEdfEc0N9aft
- kirP2IB1oa28yn/AULAiDWk+bHrhtLVt2/SK2L/YRcTQ7dRSojMhFuwvmRLdIjeRgKHR 5g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kc5xktfqw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Oct 2022 12:01:29 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2FF24100039;
-        Mon, 24 Oct 2022 12:01:25 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2863C21A20D;
-        Mon, 24 Oct 2022 12:01:25 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
- 2022 12:01:24 +0200
-Message-ID: <608d4642-34f8-a00a-ffe9-e34bb40f0342@foss.st.com>
-Date:   Mon, 24 Oct 2022 12:01:23 +0200
+        with ESMTP id S230307AbiJXKHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 06:07:09 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41CAB419B7;
+        Mon, 24 Oct 2022 03:07:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id ABFC4B810B2;
+        Mon, 24 Oct 2022 10:07:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47F56C433D7;
+        Mon, 24 Oct 2022 10:07:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666606023;
+        bh=tayFJ0zIpPNVGZUS4cmjEbiTrP4owsq5Yv1fDhHyyaw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=P27ZWaZc7pD/HNh+mXLuYd+iczelBbxiLYrr5IUhsIficy7b9a872+jD9L/bpvs/9
+         piRKbdlTvxXII2s5JRjJIdWMrZV6rQ/x5ijtAkgZjK2lXplPGnkqhhCyFWW6t8lsqQ
+         vSpnx79dTcJTebFCzWkdavI2oCK4HrPDKrqGRK+I2isw6GP9Yq/0UPeV9IShCB0b7y
+         r826F5thtFSdAGG/k3j6fcS1KnKUoQQaouGmB+oi1lTUUYGvujbO3UaT33KQaHc/dM
+         MeliJ9GXdfbN2UYM7icHdxs5XN9rl9Chlx/5Et1nEyitqPFEdyD1FGMKke50KHJRLX
+         KsyIrGtc4N/0g==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1omuM2-0005M4-KK; Mon, 24 Oct 2022 12:06:46 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 00/13] phy: qcom-qmp-usb: fix sc8280xp binding
+Date:   Mon, 24 Oct 2022 12:06:19 +0200
+Message-Id: <20221024100632.20549-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 00/10] Add support for USB on STM32MP13
-Content-Language: en-US
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <amelie.delaunay@foss.st.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20221014141509.211149-1-fabrice.gasnier@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20221014141509.211149-1-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-24_02,2022-10-21_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
+This series fixes the USB PHY devicetree binding for SC8280XP and adds
+support for the new updated binding to the driver.
 
-On 10/14/22 16:14, Fabrice Gasnier wrote:
-> Add support for USBPHYC, USB Host and USB OTG on STM32MP13.
-> Enable all these interfaces on STM32MP135F-DK board.
-> Enable the STM32G0 UCSI driver as module.
-> Dependency on PWR and PMIC regulator is tempoarily managed by using
-> fixed regulators (resp in the SoC dtsi and the board dts files).
-> The USB support is functional when these regulators gets enabled at
-> boot time before entering the kernel.
-> 
-> Changes in v2:
-> Adopt "usb" and "typec" generic node names
-> 
-> Amelie Delaunay (5):
->    ARM: dts: stm32: add USBPHYC and dual USB HS PHY support on stm32mp131
->    ARM: dts: stm32: add UBSH EHCI and OHCI support on stm32mp131
->    ARM: dts: stm32: add USB OTG HS support on stm32mp131
->    ARM: dts: stm32: enable USB HS phys on stm32mp135f-dk
->    ARM: dts: stm32: enable USB Host EHCI on stm32mp135f-dk
-> 
-> Fabrice Gasnier (5):
->    ARM: dts: stm32: add PWR fixed regulators on stm32mp131
->    ARM: dts: stm32: add fixed regulators to support usb on stm32mp135f-dk
->    ARM: dts: stm32: add pins for stm32g0 typec controller on stm32mp13
->    ARM: dts: stm32: enable USB OTG in dual role mode on stm32mp135f-dk
->    ARM: multi_v7_defconfig: enable Type-C UCSI and STM32G0 as modules
-> 
->   arch/arm/boot/dts/stm32mp13-pinctrl.dtsi |  7 ++
->   arch/arm/boot/dts/stm32mp131.dtsi        | 81 ++++++++++++++++++++
->   arch/arm/boot/dts/stm32mp135f-dk.dts     | 95 ++++++++++++++++++++++++
->   arch/arm/configs/multi_v7_defconfig      |  2 +
->   4 files changed, 185 insertions(+)
-> 
+The first half of the series clean up the driver in preparation for
+supporting SC8280XP and its new binding that drops the legacy child node
+and the (incomplete) description of register subregions.
 
-Series applied on stm32-next.
+The other QMP bindings suffer from similar problems and the PCIe and UFS
+drivers are being fixed here:
 
-Cheers
-Alex
+        https://lore.kernel.org/lkml/20221021110947.28103-1-johan+linaro@kernel.org/
+	https://lore.kernel.org/lkml/20221024090041.19574-1-johan+linaro@kernel.org/
+
+and a follow-on series will do corresponding changes to the combo QMP
+bindings and driver.
+
+Note that these patches depend on the linux-phy next branch of today and
+the following two series:
+
+ 1. [PATCH v2 00/14] phy: qcom-qmp: further prep cleanups
+
+    https://lore.kernel.org/lkml/20221012081241.18273-1-johan+linaro@kernel.org
+
+ 2. [PATCH 00/20] phy: qcom-qmp: further prep fixes and cleanups (set 3)
+
+    https://lore.kernel.org/lkml/20221012084846.24003-1-johan+linaro@kernel.org
+
+Johan
+
+
+Johan Hovold (13):
+  phy: qcom-qmp-usb: fix sc8280xp PCS_USB offset
+  phy: qcom-qmp-usb: sort device-id table
+  phy: qcom-qmp-usb: move device-id table
+  phy: qcom-qmp-usb: move pm ops
+  phy: qcom-qmp-usb: merge driver data
+  phy: qcom-qmp-usb: clean up device-tree parsing
+  phy: qcom-qmp-usb: clean up probe initialisation
+  phy: qcom-qmp-usb: rename PHY ops structure
+  phy: qcom-qmp-usb: clean up PHY init
+  dt-bindings: phy: qcom,qmp-usb: rename current bindings
+  dt-bindings: phy: qcom,qmp-usb: fix sc8280xp binding
+  phy: qcom-qmp-usb: restructure PHY creation
+  phy: qcom-qmp-usb: add support for updated sc8280xp binding
+
+ ...phy.yaml => qcom,msm8996-qmp-usb-phy.yaml} |  20 +-
+ .../phy/qcom,sc8280xp-qmp-usb-phy.yaml        | 105 ++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 532 +++++++++---------
+ 3 files changed, 368 insertions(+), 289 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{qcom,qmp-usb-phy.yaml => qcom,msm8996-qmp-usb-phy.yaml} (95%)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb-phy.yaml
+
+-- 
+2.37.3
+
