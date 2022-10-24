@@ -2,134 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AED30609F35
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 12:40:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1867D609F75
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 12:57:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiJXKkT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Oct 2022 06:40:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59220 "EHLO
+        id S229914AbiJXK5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 06:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229730AbiJXKkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 06:40:16 -0400
-Received: from relay.hostedemail.com (smtprelay0013.hostedemail.com [216.40.44.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFE033B463;
-        Mon, 24 Oct 2022 03:40:11 -0700 (PDT)
-Received: from omf03.hostedemail.com (a10.router.float.18 [10.200.18.1])
-        by unirelay06.hostedemail.com (Postfix) with ESMTP id 51226AB064;
-        Mon, 24 Oct 2022 10:40:09 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf03.hostedemail.com (Postfix) with ESMTPA id E2CF96000A;
-        Mon, 24 Oct 2022 10:40:03 +0000 (UTC)
-Message-ID: <6b9b7f9d835a271312bd5955d96b83bd14c9e6fa.camel@perches.com>
-Subject: Re: [PATCH v4 3/3] MAINTAINERS: Add KX022A maintainer entry
-From:   Joe Perches <joe@perches.com>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Jagath Jog J <jagathjog1996@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Date:   Mon, 24 Oct 2022 03:40:01 -0700
-In-Reply-To: <0c1471c0-b6b0-7b2b-62af-d3221edeeac4@fi.rohmeurope.com>
-References: <cover.1666350457.git.mazziesaccount@gmail.com>
-         <db45c0ee76c3205b9253cb2200a79119c2f2b946.1666350457.git.mazziesaccount@gmail.com>
-         <92c3f72e60bc99bf4a21da259b4d78c1bdca447d.camel@perches.com>
-         <0c1471c0-b6b0-7b2b-62af-d3221edeeac4@fi.rohmeurope.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.44.4 (3.44.4-2.fc36) 
+        with ESMTP id S229707AbiJXK5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 06:57:24 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A109017431;
+        Mon, 24 Oct 2022 03:57:01 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id 192so1491731pfx.5;
+        Mon, 24 Oct 2022 03:57:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UikcnIir68Gg7jAGa1ZQ2RsVDg3ZFdrs8Hn3MmBqfQE=;
+        b=oI9D3OTI21D7mTjKfwDvNngd5mssglBIeHiyZiN1iHD3ZeyIwr6kTqsE37bjRpH/RX
+         uI7GI/+k548eIbpTFhPno1BRvmr1aVLMA+BC9e3wlJT3Mc+0kMywhlDrZqXVrlG+wbS6
+         8R8l+itlqz2Xd1sf7/4KTeSF41rWjHxsDWND23CDQ3wb6RuoUluyYT5mwRBtk/aZ+rwm
+         lAxb4xwUoqc4Xa/kDnenA4CBpwy4igzSkUWkGSjE2YIKun6RPw2G1+TZoLXnYp5pLldB
+         OIoJjjydtrVAvtpI6LmORI/Cq4sV0u752r40zQlvSeiPhsQb82aR+0jwF7F+eZWZ3C1Z
+         Mctw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UikcnIir68Gg7jAGa1ZQ2RsVDg3ZFdrs8Hn3MmBqfQE=;
+        b=M72rDuLZUtMJU7DTajKYfXZobKa/ISELpptzFgqrehxTOwaTqdnL/Yi6tNssvbE1x0
+         4K3AH7pQ05RHRNP154JCt7bwNWeY6mh8sm/gUaCrCQgCcH/lakzb3oapPzzwKhjvNuJc
+         fenuBphmcmJZ8s4GnbBmVT7o4WCHSyp3tgtOO0DDIfLIJgVY6QW64tF1eWwIppJwVChi
+         pXKwTIeeRyD4GR99thdSM8MbWjfrrQoJz1M51S6TQLrDpHmI7ftIPBgwNnQilBaNGcBl
+         z5lQ0oBzkLiirNpJqUe3Ir3Mu6vA+Z35cw77psFUuI7iSnUMnVVBlu7QZET6EzHaNhzV
+         4P6A==
+X-Gm-Message-State: ACrzQf0IUtwoXyNfd6NoOYapKCYvn+4+EBIaPh/jMmmRXiD5yvzxPPsF
+        wHB1IHVL9U9YwbpLks/TAFg=
+X-Google-Smtp-Source: AMsMyM78e2ncpzE6psSy4B7MWzgD25cLDSaMI3i0DTFnGFw+E3K5YIHnKpjSWdPny8vcuL0Xd7wmVg==
+X-Received: by 2002:a05:6a00:8d0:b0:53b:2cbd:fab6 with SMTP id s16-20020a056a0008d000b0053b2cbdfab6mr32834633pfu.3.1666609011328;
+        Mon, 24 Oct 2022 03:56:51 -0700 (PDT)
+Received: from RD-3580-24288.rt.l (111-82-141-7.emome-ip.hinet.net. [111.82.141.7])
+        by smtp.gmail.com with ESMTPSA id a15-20020a631a4f000000b0045751ef6423sm1366696pgm.87.2022.10.24.03.56.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 03:56:51 -0700 (PDT)
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+To:     sre@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     chiaen_wu@richtek.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: [PATCH v3 0/3] Add Richtek RT9467 5A Battery Charger support
+Date:   Mon, 24 Oct 2022 18:55:45 +0800
+Message-Id: <cover.1666633143.git.chiaen_wu@richtek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_NONE,UNPARSEABLE_RELAY autolearn=no autolearn_force=no
-        version=3.4.6
-X-Stat-Signature: r4mtm9zbjpfjaacgghcjpwpq8aruqopy
-X-Rspamd-Server: rspamout08
-X-Rspamd-Queue-Id: E2CF96000A
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX1+NCoWF+QkD4EYH2wNG31bmSVo7//aomnU=
-X-HE-Tag: 1666608003-170265
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-10-24 at 07:24 +0000, Vaittinen, Matti wrote:
-> Hi Joe,
-> 
-> On 10/24/22 09:52, Joe Perches wrote:
-> > On Fri, 2022-10-21 at 14:23 +0300, Matti Vaittinen wrote:
-> > > Add maintainer entry for ROHM/Kionix KX022A accelerometer sensor driver.
-> > > 
-> > > Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> > > ---
-> > >   MAINTAINERS | 5 +++++
-> > >   1 file changed, 5 insertions(+)
-> > > 
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index cf0f18502372..3ab9c5f97dfe 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -11435,6 +11435,11 @@ F:	drivers/mfd/khadas-mcu.c
-> > >   F:	include/linux/mfd/khadas-mcu.h
-> > >   F:	drivers/thermal/khadas_mcu_fan.c
-> > >   
-> > > +KIONIX/ROHM KX022A ACCELEROMETER
-> > > +R:	Matti Vaittinen <mazziesaccount@gmail.com>
-> > > +S:	Supported
-> > > +F:	drivers/iio/accel/kionix-kx022a*
-> > 
-> > How is this "S: Supported" without an M: maintainer?
-> 
-> I am currently paid to work with the Kionix/ROHM upstream drivers. Hence 
-> I add 'S:' to ones I am looking after.
-> 
-> The ideology why I have 'R' and not 'M' is summarized by my earlier patch:
-> 
->  >> I can also add myself as a maintainer instead of a reviewer if it better
->  >> suits iio maintainer. I however don't plan setting up my own public
->  >> repository and hope the further patches will be merged via IIO tree.
->  >>
->  >> So, as Geert once explained to me - In that case the difference between
->  >> me as a maintainer vs. a reviewer would be only really relevant to the
->  >> subsystem (in this case IIO) maintainer. The subsystem maintainer who
->  >> merges patches is allowed to take in changes acked by downstream
->  >> maintainer w/o obligation to do thorough review. (Downstream 
-> maintainer is
->  >> to be blamed if things explode :]). If ack is given by a reviewer, then
->  >> the subsystem maintainer has the full responsibility and should always
->  >> do the review. Or - this is how I remember our discussion went - feel
->  >> free to correct me if I am wrong :] In any case - please let me know if
->  >> you'd rather see M: not R: in front of my name for the kx022a.
-> 
-> This seemed to be fine with Jonathan:
-> 
-> https://lore.kernel.org/all/87ac9a5e-b5ba-82f3-c00c-75d5e6f01597@gmail.com/
-> 
-> I've also written a longer version of this in an LinkedIn article:
-> https://www.linkedin.com/pulse/should-you-linux-kernel-maintainer-matti-vaittinen/
-> 
-> (I enjoy writing small stories. So doing an occasional small LinkedIn 
-> articles on working with the upstream is kind of an hobby for me.)
-> 
-> Anyways, I don't see a contradiction with 'S + R' compared to 'S + M'. 
-> Well, please educate me if I am wrong :]
+From: ChiaEn Wu <chiaen_wu@richtek.com>
 
-The subsystem is one thing, someone outside of KIONIX/ROHM may be
-supporting the subsystem.  If this _particular_ driver is "supported"
-there should be an individual listed as its actual maintainer, not
-just a person that might review submitted patches.
+This patch set is to add Richtek RT9467 5A Battery Charger support.
 
-	S: *Status*, one of the following:
-	   Supported:	Someone is actually paid to look after this.
-	   Maintained:	Someone actually looks after it.
+RT9467 is a switch-mode single cell Li-Ion/Li-Polymer battery charger
+for portable applications.
 
-"this" is this particular driver, not any subsystem "above" it.
+It integrates a synchronous PWM controller, power MOSFETs,
+input current sensing and regulation, high-accuracy voltage regulation,
+and charge termination. The charge current is regulated through
+integrated sensing resistors.
+
+The RT9467 also features USB On-The-Go (OTG) support. It also integrates
+D+/D- pin for USB host/charging port detection.
+
+Thank you,
+ChiaEn Wu
+---
+Change in v3:
+- In Patch 1/3 (dt-bindings: RT9467 Charger DTS)
+	- Add 'Reviewed-By' tag
+
+
+Change in v2:
+- In Patch 1/3 (dt-bindings: RT9467 Charger DTS)
+	- Revise the definition of 'enable-gpios'
+	- Revise the node name to generic name in the example
+	  ('rt9467@5b' --> 'charger@5b')
+	- Revise the example usage of 'charge-enable-gpios' with GPIO flags
+
+- In Patch 2/3 (power: supply: RT9467 Charger Driver)
+	- Add missing header file <linux/bitfied.h>
+	- Add new header files <linux/sysfs.h> and <linux/kstrtox.h> for adding
+	  'sysoff' sysfs feature
+	- Add assign 'rt9467_sysfs_groups' to '.attr_grp' of psy config
+	- Remove unused varible 'rt9467_port_stat_names[]'
+
+- In Patch 3/3 (ABI Documentation for RT9467 sysfs attribute)
+	- New file since v2 patch
+
+
+ChiaEn Wu (3):
+  dt-bindings: power: supply: Add Richtek RT9467 battery charger
+  power: supply: rt9467: Add Richtek RT9467 charger driver
+  Documentation: power: rt9467: Document exported sysfs entries
+
+ Documentation/ABI/testing/sysfs-class-power-rt9467 |   19 +
+ .../power/supply/richtek,rt9467-charger.yaml       |   82 ++
+ drivers/power/supply/Kconfig                       |   19 +
+ drivers/power/supply/Makefile                      |    1 +
+ drivers/power/supply/rt9467-charger.c              | 1282 ++++++++++++++++++++
+ 5 files changed, 1403 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-power-rt9467
+ create mode 100644 Documentation/devicetree/bindings/power/supply/richtek,rt9467-charger.yaml
+ create mode 100644 drivers/power/supply/rt9467-charger.c
+
+-- 
+2.7.4
+
