@@ -2,205 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4857060BE38
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 01:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A68F260BDDF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 00:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiJXXKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 19:10:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35506 "EHLO
+        id S231681AbiJXWv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 18:51:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbiJXXJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 19:09:43 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA99E1905CC;
-        Mon, 24 Oct 2022 14:31:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1666645537; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=1UD+7xSqDi+aiCecEHlellc6AlNFN+6Hnf+64Mwju04=;
-        b=1/RwB8pLXZAOeHRrHgf4rRHS77BqdNxIP1WQmi34UGYci7+f217kiaTRID++zeaPUCqz3g
-        Ql95hcwli5XhoLHbexC4jHVyRa51yTlAw+MYQLkn2jvjVjrlJXWSljIgvN1fy4gQYC/QdD
-        ZTw2ZfxmFDr4/9eq+to0U3GMC2WEHTc=
-Date:   Mon, 24 Oct 2022 22:05:27 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v3 2/2] serial: 8250/ingenic: Add support for the
- JZ4750/JZ4755
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Message-Id: <3XZ9KR.KOUPAEJY0VWY2@crapouillou.net>
-In-Reply-To: <20221022165047.4020785-3-lis8215@gmail.com>
-References: <20221022165047.4020785-1-lis8215@gmail.com>
-        <20221022165047.4020785-3-lis8215@gmail.com>
+        with ESMTP id S231789AbiJXWvn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 18:51:43 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26A7E3200E4
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 14:13:35 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id d13so6891058qko.5
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 14:13:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=U7xgcAQUxqCetKkAStPZTWmoUelcv5+Ss4HzMxPQZgU=;
+        b=jMMG2YQgF8A58BVrxKwYRDkMAFRvuhplQeT6srJ/0jOIreEZW8IiTd6g5InVC+RyEV
+         nnjyxcGScTmhewQLbd0bDO99ON88K1lEmwW9Z4X4e4kzuY+2hJgHtDLtq9uQkjU1KXt6
+         B1yEPSApCgO7ZuINanql8Oe/CBxLXc4WLsnkTxy9NildJYk09TCK8jLd8IYRs7UU1J/h
+         fQYQOwVFc0QGC7Qbv1GTUjojQqj15bAeP0+Ksp2tfmUOimgtzaJ++a8R6YjbDQMLqQyA
+         yg4TnqJqv/R+ldisXWuLuEO9h6MALp4sDHiDERK4auyoGN9HOcZ2UHRFc8cn6gS3akf3
+         4WHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U7xgcAQUxqCetKkAStPZTWmoUelcv5+Ss4HzMxPQZgU=;
+        b=Sh+RC6F6niXOyUeGOd1+r8LH0XbUOJwXkeTwaGP5ahKkYcGzZuxofR9aJpmA/aGACb
+         85CLMUz2JGvxo4LU6rDuC+zdQ62pvob7/kAu01B5xidw8w+s/95T9zWxfXaEwb4ANkPL
+         iNIx5A/gVEYSi8b+XR+b4+73zicDP9UkPE6oaIrIStGy7haN0B+J1GU0LyiOr0c4tqDf
+         /qHNP828V302CDr5gZ8yFWeTurNJ+pv/nG5Q752EGSdzSota+4HmmmAyhXrYGYvFAKWs
+         2ZpHHrkt+DzNNz9F6bF5zdbhFjoC1SxL0fb0JC5NRbws0xoJr+zdIMF3d7ir113mGD0w
+         vE9g==
+X-Gm-Message-State: ACrzQf2BJ2DIvjXm7lCpeO+YD4Y8Mi3ZTQuMqBt8WvzPnpLWAj9qtpEV
+        4f6NkfqBcahjEJJHZ2NdqH+ykw==
+X-Google-Smtp-Source: AMsMyM6Yg322PC/++Fxnl9cx9/2/2/tHEv914tArFIApiYucQv+fqbt/9M1K10vXjHWWjC+OIrMDNw==
+X-Received: by 2002:ae9:e907:0:b0:6e9:5397:15fb with SMTP id x7-20020ae9e907000000b006e9539715fbmr24806111qkf.466.1666645941654;
+        Mon, 24 Oct 2022 14:12:21 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id u4-20020a05620a430400b006bb8b5b79efsm618126qko.129.2022.10.24.14.12.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 14:12:21 -0700 (PDT)
+Message-ID: <07255e98-b5fe-3555-8cf8-b1e0005fd3d4@linaro.org>
+Date:   Mon, 24 Oct 2022 17:12:19 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [RFCv3 PATCH 1/2] dt-bindings: bus: add Wiegand bus dt
+ documentation
+Content-Language: en-US
+To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andersson@kernel.org, jeffrey.l.hugo@gmail.com,
+        Michael.Srba@seznam.cz, gregkh@linuxfoundation.org,
+        elder@linaro.org, hemantk@codeaurora.org, mani@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org
+References: <20221024162650.36587-1-m.zatovic1@gmail.com>
+ <20221024162650.36587-2-m.zatovic1@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024162650.36587-2-m.zatovic1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Siarhei,
+On 24/10/2022 12:26, Martin Zaťovič wrote:
+> This patch documents the devicetree entry for a Wiegand bus.
 
-Le sam. 22 oct. 2022 =E0 19:50:47 +0300, Siarhei Volkau=20
-<lis8215@gmail.com> a =E9crit :
-> JZ4750/55/60 (but not JZ4760b) have an extra divisor in between extclk
-> and peripheral clock, called CPCCR.ECS, the driver can't figure out=20
-> the
-> real state of the divisor without dirty hack - peek CGU CPCCR=20
-> register.
-> However, we can rely on a vendor's bootloader (u-boot 1.1.6) behavior:
-> if (extclk > 16MHz)
->     the divisor is enabled, so the UART driving clock is extclk/2.
->=20
-> This behavior relies on hardware differences: most boards (if not all)
-> with those SoCs have 12 or 24 MHz oscillators but many peripherals=20
-> want
-> 12Mhz to operate properly (AIC and USB-PHY at least).
->=20
-> The patch doesn't affect JZ4760's behavior as it is subject for=20
-> another
-> patchset with re-classification of all supported ingenic UARTs.
->=20
-> Link:=20
-> https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_seria=
-l.c#L158
-> Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> A Wiegand bus follows the Wiegand protocol. The bus claims two GPIO
+> lines over which the communication is realized. It also introduces
+> parameters to control the pulse durations and the length of a gap
+> after finishing sending a frame.
+> 
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
 > ---
->  drivers/tty/serial/8250/8250_ingenic.c | 48=20
-> ++++++++++++++++++++++----
->  1 file changed, 42 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/tty/serial/8250/8250_ingenic.c=20
-> b/drivers/tty/serial/8250/8250_ingenic.c
-> index 2b2f5d8d2..744705467 100644
-> --- a/drivers/tty/serial/8250/8250_ingenic.c
-> +++ b/drivers/tty/serial/8250/8250_ingenic.c
-> @@ -87,24 +87,19 @@ static void __init=20
-> ingenic_early_console_setup_clock(struct earlycon_device *dev
->  	dev->port.uartclk =3D be32_to_cpup(prop);
->  }
->=20
-> -static int __init ingenic_early_console_setup(struct earlycon_device=20
-> *dev,
-> +static int __init ingenic_earlycon_setup_tail(struct earlycon_device=20
-> *dev,
->  					      const char *opt)
->  {
->  	struct uart_port *port =3D &dev->port;
->  	unsigned int divisor;
->  	int baud =3D 115200;
->=20
-> -	if (!dev->port.membase)
-> -		return -ENODEV;
+>  .../devicetree/bindings/bus/wiegand.yaml      | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/wiegand.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/wiegand.yaml b/Documentation/devicetree/bindings/bus/wiegand.yaml
+> new file mode 100644
+> index 000000000000..cc8d3c46bcde
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/wiegand.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Again, as I said on your v2, you can keep this here. Then you won't=20
-have to duplicate code.
+Dual license
 
-> -
->  	if (opt) {
->  		unsigned int parity, bits, flow; /* unused for now */
->=20
->  		uart_parse_options(opt, &baud, &parity, &bits, &flow);
->  	}
->=20
-> -	ingenic_early_console_setup_clock(dev);
-> -
->  	if (dev->baud)
->  		baud =3D dev->baud;
->  	divisor =3D DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
-> @@ -129,9 +124,49 @@ static int __init=20
-> ingenic_early_console_setup(struct earlycon_device *dev,
->  	return 0;
->  }
->=20
-> +static int __init ingenic_early_console_setup(struct earlycon_device=20
-> *dev,
-> +					      const char *opt)
-> +{
-> +	if (!dev->port.membase)
-> +		return -ENODEV;
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/wiegand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	ingenic_early_console_setup_clock(dev);
+> +title: Wiegand Bus
 > +
-> +	return ingenic_earlycon_setup_tail(dev, opt);
-> +}
+> +maintainers:
+> +  - Martin Zaťovič <m.zatovic1@gmail.com>
 > +
-> +static int __init jz4750_early_console_setup(struct earlycon_device=20
-> *dev,
-> +					     const char *opt)
-> +{
-> +	if (!dev->port.membase)
-> +		return -ENODEV;
+> +description: |
+> +  Wiegand interface is a wiring standard popularized in the 1980s. To this day
+> +  many card readers, fingerprint readers, sensors, etc. use Wiegand interface
+> +  particularly for access control applications. It utilizes two wires to
+> +  transmit the data - D0 and D1.
 > +
-> +	/*
-> +	 * JZ4750/55/60 (not JZ4760b) have an extra divisor
-> +	 * between extclk and peripheral clock, the
-> +	 * driver can't figure out the real state of the
-> +	 * divisor without dirty hacks (peek CGU register).
-> +	 * However, we can rely on a vendor's behavior:
-> +	 * if (extclk > 16MHz)
-> +	 *   the divisor is enabled.
-> +	 * This behavior relies on hardware differences:
-> +	 * most boards with those SoCs have 12 or 24 MHz
-> +	 * oscillators but many peripherals want 12Mhz
-> +	 * to operate properly (AIC and USB-phy at least).
-> +	 */
-> +	ingenic_early_console_setup_clock(dev);
-> +	if (dev->port.uartclk > 16000000)
-> +		dev->port.uartclk /=3D 2;
+> +  Both data lines are initially pulled up. To send a bit of value 1, the D1
+> +  line is set low. Similarly to send a bit of value 0, the D0 line is set low.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^wiegand(@.*|-[0-9a-f])*$"
+> +
+> +  compatible:
+> +    contains:
+> +      const: wiegand
 
-I'm OK with this code, but the comment is not very clear.
+I think you are still making some shortcuts in design and this also
+causes some misunderstanding.
 
-What about:
+If this is a bus, then there should be child device(s). But there is
+none. If there is no device, how are you going to use this? Imagine now
+a SPI controller without child device...
 
-"JZ4750/55/60 have an optional /2 divider between the EXT oscillator=20
-and some peripherals including UART, which will be enabled if using a=20
-24 MHz oscillator, and disabled when using a 12 MHz oscillator."
-
-Cheers,
--Paul
+If this is a bus, then one controller implementing it might be using
+GPIOs, but other one might have dedicated lines. Unless it's not
+possible and all Wiegand implementations use GPIOs? It does not sound right.
 
 > +
-> +	return ingenic_earlycon_setup_tail(dev, opt);
-> +}
+> +  data-hi-gpios:
+> +    description: GPIO spec for data-hi line to use. This line is initially
+> +      pulled up to high value. Wiegand write of a bit of value 1 results in
+> +      this line being pulled down for pulse length duration.
+> +    maxItems: 1
 > +
->  OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
->  		    ingenic_early_console_setup);
->=20
-> +OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
-> +		    jz4750_early_console_setup);
+> +  data-lo-gpios:
+> +    description: GPIO spec for data-lo line to use. This line is initially
+> +      pulled up to high value. Wiegand write of a bit of value 0 results in
+> +      this line being pulled down for pulse length duration.
+> +    maxItems: 1
 > +
->  OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
->  		    ingenic_early_console_setup);
->=20
-> @@ -328,6 +363,7 @@ static const struct ingenic_uart_config=20
-> x1000_uart_config =3D {
->=20
->  static const struct of_device_id of_match[] =3D {
->  	{ .compatible =3D "ingenic,jz4740-uart", .data =3D &jz4740_uart_config=20
-> },
-> +	{ .compatible =3D "ingenic,jz4750-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4760-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4770-uart", .data =3D &jz4760_uart_config=20
-> },
->  	{ .compatible =3D "ingenic,jz4775-uart", .data =3D &jz4760_uart_config=20
-> },
-> --
-> 2.36.1
->=20
+> +  pulse-len:
+> +    description: length of the low pulse for both data-lo and data-hi lines.
+> +    maxItems: 1
+> +
+> +  interval-len:
+> +    description: length of a whole bit (both the pulse and the high phase) for
+> +      both data-hi and data-lo lines in usecs; defaults to 2000us.
+> +    maxItems: 1
+> +
+> +  frame-gap:
+> +    description: length of the last bit of a frame (both the pulse and the high
+> +      phase) in usec; defaults to 2000us.
 
+For these properties you must use standard units.
+
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+
+Best regards,
+Krzysztof
 
