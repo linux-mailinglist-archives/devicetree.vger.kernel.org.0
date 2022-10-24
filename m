@@ -2,153 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6719260B3FC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2186360B344
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:01:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231550AbiJXRXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 13:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
+        id S233025AbiJXRBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 13:01:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231960AbiJXRXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:23:17 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7DF9DDA7;
-        Mon, 24 Oct 2022 08:58:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1666626968;
-        bh=38vTFzrZKf3FVvekYXAM+9K/QQ7KdRjbBzJUpJt6VgA=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=GHipPWegnSsSMUsQisbWiaRtJD9PHUgzMX2cbNuQPrEQxKEzWbrdXUdzHyma2Dv2b
-         lEGOzp2Up1OONWonVr9MTVaXE4qCMKKc3S3XChw9B4SHAQcQmx2pEh4Vy7qgOJR7nA
-         3vXxV9MFrxQEs+UnHgKVrkZFaL4UD2NIYQOLnef8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.75.40] ([80.245.75.40]) by web-mail.gmx.net
- (3c-app-gmx-bap55.server.lan [172.19.172.125]) (via HTTP); Mon, 24 Oct 2022
- 16:55:20 +0200
+        with ESMTP id S235233AbiJXRAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:00:17 -0400
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E912018C
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:37:54 -0700 (PDT)
+Received: by mail-qv1-f47.google.com with SMTP id n18so1377578qvt.11
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 08:37:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ThFhz8xILcwbKl/+NqgoXJc1Gt1sMOhgIkpsFZun7AY=;
+        b=WMANydh+WdLPXn4JMDNjBjxj6L4FBADwe/MZuNwL+EjZOLRgfUHD0TED2u8c7F9RoL
+         AGMFNuhaqPlsxjHqTWVQBgCBSPuyq+qEk6OS4PouZPTacv8JaqlHRnSAgfuH2SjCUoYC
+         USYQ8lgn4XcJazs+N36vTRYwLTIk58GiZaID58sA8tcwVrmUQdYbcxMKdHpssPmWbh8P
+         OaNqduTRM71tumJjZoLIj0ZpD4qRhEfECEjQLCRxWXCjgMJo8EPBDcLIAsJPHYqBQjkc
+         yfIZi6SGV+TdOLqIZ5dhP97NxBxGYB7IPsWqMh8jYe2Uaz1KZIgZjR/dirVUYe4eIT0f
+         P7NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ThFhz8xILcwbKl/+NqgoXJc1Gt1sMOhgIkpsFZun7AY=;
+        b=2QhJqZcV2N+NCAtUWy2ZOfrT/5bkK/M+WmgPFI/hBW9vitOp6z4BQKHZoYa3srZWZN
+         jwucuBFGDqA+7YM96h58IY5eWe3nsJ0dWfwXB4PfXBgeg+QTV1tt6i+cv5nF4WgA5rXF
+         WXIpRgR563K6gcSFPhA9ykKjM0Hr3Tcn0KtrkS8+tZZ65RgbMY0RopU7f047PTwIK/vT
+         /JHIlOP6holKyZo6/ErGl+5660UCkYYhV0SQT+xph8ZZJkYriyixOOzI5XFWUKixgUlv
+         wt/i9ZfB1VQInpbYy3PM6Lkg6U9lGe0E8BHRGB6CsvdUZLoQm8qoKX848P9LiwDvbLlc
+         p6zA==
+X-Gm-Message-State: ACrzQf3PW47hQruVitGPdCYncnH4041eFoeZevAdMHcS7CwryBqQM3VC
+        CHQfsTjnZG2fHl/Zcp4PMIOsPAAcqcg9Ew==
+X-Google-Smtp-Source: AMsMyM6E9VCifBLRm7iwjWjZ7r/tkYJ7sL+Q3vttwMKX+IisDyXcqCvJYHOBaIJIAZJc+04Gz0cDIg==
+X-Received: by 2002:a05:6214:d6e:b0:4b9:692d:c486 with SMTP id 14-20020a0562140d6e00b004b9692dc486mr18309751qvs.104.1666623367504;
+        Mon, 24 Oct 2022 07:56:07 -0700 (PDT)
+Received: from [192.168.1.8] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id b10-20020ac8678a000000b0039a3df76a26sm90317qtp.18.2022.10.24.07.56.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 07:56:06 -0700 (PDT)
+Message-ID: <5035b6a3-164b-afa0-b714-4deb886f9f90@linaro.org>
+Date:   Mon, 24 Oct 2022 10:56:05 -0400
 MIME-Version: 1.0
-Message-ID: <trinity-95441a68-0025-49de-8c73-9730fb9cec42-1666623320110@3c-app-gmx-bap55>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 10/13] arm64: dts: qcom: sm8450: add spmi node
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Aw: Re: [PATCH v3 3/7] dt-bindings: mmc: mtk-sd: add mt7986
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211209103505.197453-1-vkoul@kernel.org>
+ <20211209103505.197453-11-vkoul@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20211209103505.197453-11-vkoul@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 24 Oct 2022 16:55:20 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <a0121e0a-9f62-8630-45c5-d32eaa91d46f@linaro.org>
-References: <20221023091247.70586-1-linux@fw-web.de>
- <20221023091247.70586-4-linux@fw-web.de>
- <a0121e0a-9f62-8630-45c5-d32eaa91d46f@linaro.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:IcIPaVgbRpByh7zwpXh4z9zY0VuCVJ0BaE6por2d9gpyO8zxW3t1fgd81QSE28VxLcD1u
- HkBl2H0ZLbUdRlcLxl9izmQuyB026eQFlnKdge9hDQBmNNJnN8hcAkNsaGap/6Ipdg280JwgdDsv
- z0t7GEoaowPjoBCs4a4gZcMVfxgSeFNFJukhgYCAxPgYN1LH4nZyf2rnyPbMZ6c6aSjVCcSVlIC/
- qeP+pr3BIEib7wR8/YVe/RFL/biv5BgnYFn/FDdVNvwui01qtL3tn/LD6zhyh13fQLNf0LEYBhQ4
- VA=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:ARJ9dboFzH4=:xEplBRIg61P9GDoxzDcos4
- nyw8DtuIVlBW56G4hBBvxf8ZvCqTTuYFbALZIIOegC4rIrSywPAUk2oi9XzD5jzvbvF5Jratn
- 22/DW+q1ZmGyCBP70hCDbVwPTmdKbcOYCtPxYNKqKGFtyFVa5hQvtwI6Va7ZnZCXlRd1UbTvg
- PBdsHNvJH+3+l+89Y6A1dyKi29z4DSnpEAF0w8GbuLuJzDDYILP3R3jT8QBF57J++5YR2wZrs
- DGzKdKUP3jYC3JZONj1a/+jJfavdO4MNLGQmzpCJs01j9WO5JmEXdo425xhZVEppauE1bXhzY
- LL26KEyB/SjURdt8ZNzKIqx+vkbtc2OrdB3VmNBC1gYMdTAzy9HPofA5s4gORgXnQJPKruF+z
- xZECcyg6BscsbsvOs7gMcJfavs+43hGhPPl0WFTzK2ZymnOKNcJOZxe4sZYljW1smrlRhygO9
- BbysSr3Ge9qKAoviOEfQadA+xHw1+zPVA3mD8EyfJkn9LuelS6Z49AWnnsDr3uoEoQ41B7uFW
- RT5Q3Z8DYjCdNVz2ctpcu4U+8sZIIvC+jRQkusRg4lbqdexAqXFTznlzhi50v3ium78+8U1UU
- /BFSP3xx7/uz/Tujift/rdM4BUCRA3m8NLjT5Q3LtzW44akTh4Ijcgp8Cpjf0qlO/6wZznoD7
- CRdssc0DROYejVlLG9WOnk1vEN1ggxOwvbxyb6VufeSHSAsy/r3M0w7r2jxFiXM07Fzy8XGyv
- /lMTMxKhsu30p/4ixzIz0K98xH+tgMhHdIamSHe7Jdnq2F49iqjKXPvgRwVNA6D4N8pSU+Pel
- JvGrpNls3T3KdszmaiOPB5ghHQWYIVmGXmp+N57GHBXNFDaLOuK6Oaa30M04ddNJQ0NA+Ro81
- 7Hu1Ys7FNc/qCoYEuOA6IQvgASLonGDLCILvH2zLFcJGOHgRw6edLcDiYHkfrPK9ALF/IgYVr
- pgRCKVV6TZ30RG+Z4Ilce0NbMqmDwDR+lhC51W+AYKj/DWH3FY3hsPJTBjd04xZ1wtU55F2qN
- KG3LKUroZxbs1nvA3XgI/3TWbYBotyev3FQssH5WW6FWj+vbVWP4ymMW1CHrDHSjCnawita6Y
- rKdtv9b4DjbiHwSHXLH/KyRLtYmrkU900Zj2c+W6cpc7n7UW44lryvDt/UmsRQZLo6YQz3pWw
- DuFb3hCofEJvRjDTWePTqpTYiAg9b13QhJDo18HaQLEDZLr9aFD3xsna79IWrtGXMdtG0p3J3
- ENF6+RoLG3zhviIOjx++hg3TB0XOFCl2mziFxPQ4tb9WC/eUuBYxVxLg8YU6esLRPyZ2GTHTo
- Z0ZU/dMX
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On 09/12/2021 05:35, Vinod Koul wrote:
+> Add the spmi bus as found in the SM8450 SoC
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index f75de777f6ea..b80e34fd3fe1 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -645,6 +645,24 @@ pdc: interrupt-controller@b220000 {
+>  			interrupt-controller;
+>  		};
+>  
+> +		spmi_bus: spmi@c42d000 {
+> +			compatible = "qcom,spmi-pmic-arb";
+> +			reg = <0x0 0x0c400000 0x0 0x00003000>,
+> +			      <0x0 0x0c500000 0x0 0x00400000>,
+> +			      <0x0 0x0c440000 0x0 0x00080000>,
+> +			      <0x0 0x0c4c0000 0x0 0x00010000>,
+> +			      <0x0 0x0c42d000 0x0 0x00010000>;
 
-> Gesendet: Sonntag, 23. Oktober 2022 um 14:56 Uhr
-> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> An: "Frank Wunderlich" <linux@fw-web.de>, linux-mediatek@lists.infradead=
-.org
-> Cc: "Frank Wunderlich" <frank-w@public-files.de>, "Chaotian Jing" <chaot=
-ian.jing@mediatek.com>, "Ulf Hansson" <ulf.hansson@linaro.org>, "Rob Herri=
-ng" <robh+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@li=
-naro.org>, "Matthias Brugger" <matthias.bgg@gmail.com>, "Wenbin Mei" <wenb=
-in.mei@mediatek.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.or=
-g, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-> Betreff: Re: [PATCH v3 3/7] dt-bindings: mmc: mtk-sd: add mt7986
->
-> On 23/10/2022 05:12, Frank Wunderlich wrote:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > Add SoC specific section for defining clock configuration.
-> >
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is a patch from December 2021. Is there anything blocking it from
+being merged?
 
-Hi,
+The same applies to several other patches here.
 
-got another config from mtk which requires changing binding a bit
+Best regards,
+Krzysztof
 
-                       clocks =3D <&topckgen CLK_TOP_EMMC_416M_SEL>,
-                                <&infracfg CLK_INFRA_MSDC_HCK_CK>,
-                                <&infracfg CLK_INFRA_MSDC_CK>,
-                                <&infracfg CLK_INFRA_MSDC_133M_CK>,
-                                 <&infracfg CLK_INFRA_MSDC_66M_CK>;
-                       clock-names =3D "source", "hclk", "source_cg", "bus=
-_clk",
-                                     "sys_cg";
-in binding:
-
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -241,15 +241,17 @@ allOf:
-           items:
-             - description: source clock
-             - description: HCLK which used for host
--            - description: AXI bus clock gate
--            - description: AHB bus clock gate
-+            - description: independent source clock gate
-+            - description: bus clock used for internal register access (r=
-equired for MSDC0/3).
-+            - description: msdc subsys clock gate
-         clock-names:
-           minItems: 3
-           items:
-             - const: source
-             - const: hclk
--            - const: axi_cg
--            - const: ahb_cg
-+            - const: "source_cg"
-+            - const: "bus_clk"
-+            - const: "sys_cg"
-
-will send an updated v4...old version was working but i should use the new=
- one.
-
-@Krzysztof can i take your RB here or should i leave it as Patch was chang=
-ed?
-
-regards Frank
