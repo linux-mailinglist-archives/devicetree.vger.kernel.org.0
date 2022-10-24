@@ -2,65 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C625609CF4
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FC4609D11
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbiJXIkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:40:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
+        id S230391AbiJXIqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:46:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230121AbiJXIkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:40:02 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B6A23E81;
-        Mon, 24 Oct 2022 01:40:01 -0700 (PDT)
+        with ESMTP id S230385AbiJXIq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:46:29 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0459D67056;
+        Mon, 24 Oct 2022 01:46:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666600801; x=1698136801;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=qSqf3GoAdrUKrL08IAjfyc7oJTBmbWa0J0R/wRLkH1Q=;
-  b=KKIKL1esS/wKrOQ1m1ysjcRlBwCQQm40EwvCw39s78YQhb5SPy1CujUe
-   3BCTAeR5N/i9WDVattFV5RPT5mtC7JMX7fLNH2VGZa4XmgEwNpVdkNBfk
-   Qt77Jl/cdpJRSYkYQKPYZK1A4eSYx1szgMhZQpEbZ8p8oVOpVNe/qtwfR
-   AMB0NJHjkETHGROaeQRLB3k6BtLs3p99Wg/gDsIyYjaxiWqPTtGO8K5VO
-   M/4cR4e6iyO2E+pJKOBT3229uKEp/OR2j9o0+wY4SGrF0tHvtTY8s/XC6
-   UYyDUJ2gRJYjk41Jq++Mvihu/+1be2BMKkJPsdW2fx0dsg7mV7Nj3wS9a
-   g==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="290670080"
+  t=1666601189; x=1698137189;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zr3WKsPxb7aaiIO0Wjz4+22fObmXP9eCkj8VHh8e+Zw=;
+  b=ivH+6Aiule3GXccJQb5bNmoDVy81GpkcZ4Q9RauKIkZsFODgkMs6cE8D
+   eFGKyNwTDiro+gbzfChUpsLiACAgyLA/UjPHvfoDhjRM1tfTncw8mSryk
+   AMWpg8pUSZiovFJseXClQKNSi6A3pmOv1u8iKJi+bE+/+X/ssl7lafhmq
+   AoPyfwkAvxgsnWTkGZQOPah2J+x8OHsBxqnZMjvtKn7WUvzKC9FMFlFwO
+   U6oIj/VvaULXWMi5uDK1WFA6Hg9WZpncT5wcNzJJTISMq29+c82SQSjpW
+   WrZJcxeKyTdy8nQtSeh29CBbJZFgPsyvwhDhshoyP3s+QOuIbMnfWFq9e
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="304978464"
 X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; 
-   d="scan'208";a="290670080"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2022 01:40:00 -0700
+   d="scan'208";a="304978464"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2022 01:46:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="609121584"
+X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="773746804"
 X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; 
-   d="scan'208";a="609121584"
-Received: from mylly.fi.intel.com (HELO [10.237.72.51]) ([10.237.72.51])
-  by orsmga006.jf.intel.com with ESMTP; 24 Oct 2022 01:39:57 -0700
-Message-ID: <623284c8-f4bb-1020-2f2e-a475f424c5b5@linux.intel.com>
-Date:   Mon, 24 Oct 2022 11:39:57 +0300
+   d="scan'208";a="773746804"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 24 Oct 2022 01:46:20 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 24 Oct 2022 11:46:20 +0300
+Date:   Mon, 24 Oct 2022 11:46:20 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Felipe Balbi <balbi@kernel.org>
+Cc:     Wayne Chang <waynec@nvidia.com>, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        treding@nvidia.com, jonathanh@nvidia.com, thierry.reding@gmail.com,
+        ajayg@nvidia.com, kishon@ti.com, vkoul@kernel.org,
+        p.zabel@pengutronix.de, mathias.nyman@intel.com, jckuo@nvidia.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, singhanc@nvidia.com,
+        linux-i2c@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 06/11] usb: typec: ucsi_ccg: Replace ccgx to well-known
+ regex
+Message-ID: <Y1ZQ3NyR7Suxdltu@kuha.fi.intel.com>
+References: <20221024074128.1113554-1-waynec@nvidia.com>
+ <20221024074128.1113554-7-waynec@nvidia.com>
+ <Y1ZGZ2H0/ug3se6j@kuha.fi.intel.com>
+ <87czaheiag.fsf@balbi.sh>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.3.3
-Subject: Re: [PATCH v6 00/10] Designware PWM driver updates for OF
-To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20221020151610.59443-1-ben.dooks@sifive.com>
-Content-Language: en-US
-From:   Jarkko Nikula <jarkko.nikula@linux.intel.com>
-In-Reply-To: <20221020151610.59443-1-ben.dooks@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87czaheiag.fsf@balbi.sh>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
         SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,18 +71,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-
-On 10/20/22 18:16, Ben Dooks wrote:
-> This is an updated version of the Designware PWM driver updates
-> for OF support, which now splits the driver into PCI and OF parts
-> as well as tries to sort out the review comments.
+On Mon, Oct 24, 2022 at 11:29:27AM +0300, Felipe Balbi wrote:
+> Heikki Krogerus <heikki.krogerus@linux.intel.com> writes:
 > 
-> Hopefully this can now be queued for the next kernel version.
+> > On Mon, Oct 24, 2022 at 03:41:23PM +0800, Wayne Chang wrote:
+> >> ccgx is refer to the cypress cypd4226 typec controller.
+> >> Replace ccgx to well-known regex "cypress".
+> >> 
+> >> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> >> ---
+> >>  drivers/usb/typec/ucsi/ucsi_ccg.c | 2 +-
+> >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >> 
+> >> diff --git a/drivers/usb/typec/ucsi/ucsi_ccg.c b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> >> index 139707a2f3d6..5d3099e6eb77 100644
+> >> --- a/drivers/usb/typec/ucsi/ucsi_ccg.c
+> >> +++ b/drivers/usb/typec/ucsi/ucsi_ccg.c
+> >> @@ -1358,7 +1358,7 @@ static int ucsi_ccg_probe(struct i2c_client *client,
+> >>  	INIT_WORK(&uc->pm_work, ccg_pm_workaround_work);
+> >>  
+> >>  	/* Only fail FW flashing when FW build information is not provided */
+> >> -	status = device_property_read_u16(dev, "ccgx,firmware-build",
+> >> +	status = device_property_read_u16(dev, "cypress,firmware-build",
+> >>  					  &uc->fw_build);
+> >>  	if (status)
+> >>  		dev_err(uc->dev, "failed to get FW build information\n");
+> >
+> > This will break bisectability. You need to first add that
+> > "cyppress,firmware-build" identifier without removing the old
+> > "ccgx,firmware-build" identifier, and then introduce a separate
+> > clean-up patch where you remove it when it's safe to remove:
+> >
+> > 1. Add new - This patch.
+> > 2. Modify users - PATCH 7/11.
+> > 3. Remove old - *missing*.
 > 
-> v6:
->   - fix removal ordering of DWC_PERIOD_NS
+> will it ever be safe to remove? What about potential products in the
+> market with little to no upgrade path? There are likely to be products
+> with a DTB that will never be updated, no?
 
-I did a quick test on our HW and PWM was counting as before.
+Not the case here. OF support is only just added to this driver in
+this series. That old identifier has been used as a build-in property
+only.
 
-Tested-by: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+thanks,
+
+-- 
+heikki
