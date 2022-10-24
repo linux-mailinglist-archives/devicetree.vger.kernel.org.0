@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9700860AD9E
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 16:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4753D60AF29
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 17:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbiJXOac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 10:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56216 "EHLO
+        id S230161AbiJXPi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 11:38:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234904AbiJXO2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 10:28:51 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ED92D73C2;
-        Mon, 24 Oct 2022 06:02:17 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-13b23e29e36so10999254fac.8;
-        Mon, 24 Oct 2022 06:02:16 -0700 (PDT)
+        with ESMTP id S230200AbiJXPiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 11:38:14 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40981D4428;
+        Mon, 24 Oct 2022 07:26:58 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id g129so7177009pgc.7;
+        Mon, 24 Oct 2022 07:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uZ6iF6T0zIUXPA/iUJjlbeVV5R7S7nny4K0HA6GOdU4=;
+        b=aBt95Awussn3Wm9r/7PTxZWOl2PYOTP2QP85zW2nDHTj6f0Z4ydtLbWgZP+DizE+WZ
+         3RrO3kAVi5tEUW2z922K+9+VBVIiAmy4certMrulkqwPFLW2QUEPeIPhfKt5YX6xgC2X
+         hT0wlr4oFClhrk1S6jPKQ1aGgvGR8rEur++3wxN35ylNqKHOpzwPhsi6i5rmg1Pj39vW
+         8KqwhF5XlyaoczOuLNvLbUVXiLOmRRIjK4W6VBMNst8CsSS8QPq6jMLaPuTtJyMV5t0G
+         TGK1La8qEpPCx3OPzQqieGFUARQIAQhZ6XW6unCf29WwOFBbguF9OI1fnOYuSWXJsbes
+         Mt/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p+x9joGdXdBFLPPxN1p6d7/jrm+b1E7zu0ZikUl9XbM=;
-        b=kN4xIs/QEGJ+oT9qrn2OjPi/N6FcvGH6BvACP76blbVF103TXYi+7qEU5tINWQ+OJz
-         dApYzrcvxoO2ZIXOFTxb7h3JgOvX67e53Ux9I2wwMvKPIJrbpeDZZobSiNgXQhwqMaF/
-         R3ztR06WTPRqxKei/NzyOWyK9tZuNZ0Cm15uInIPmFb7tUxRSre+3lm52uo1EfezpHK9
-         o9VNCRaweqKifLKL/48NiILy3trNo3072uYGiXhEVisoQwGcZ30ghYt4hAv1vlMBiN/X
-         ltLvQXpHTYGfKkWtuOvorD19U4Zbzkwzp6qZaLG5THbYH133b9fRVRaPubb8xH2WHVbL
-         oPdg==
-X-Gm-Message-State: ACrzQf3i7XkzH7UpZj1xKGIMrADeoCGwSUDmJj0hXhqGuTa4oC2Svjr2
-        vms3XoPp+qtUCiVrBxssV68CXNLJaw==
-X-Google-Smtp-Source: AMsMyM4RB1x55W7tWXLqKMCfn9+yNGKoyP28eeDXqoWuK46CSg7FurAIxSSG6961lNUtLuCZU2W88g==
-X-Received: by 2002:a05:6870:e9a8:b0:133:223f:49a1 with SMTP id r40-20020a056870e9a800b00133223f49a1mr38235091oao.114.1666616434841;
-        Mon, 24 Oct 2022 06:00:34 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g20-20020a056870c15400b0012796e8033dsm2716705oad.57.2022.10.24.06.00.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 06:00:34 -0700 (PDT)
-Received: (nullmailer pid 1652638 invoked by uid 1000);
-        Mon, 24 Oct 2022 13:00:35 -0000
-Date:   Mon, 24 Oct 2022 08:00:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, Ben Dooks <ben-linux@fluff.org>,
-        Simtec Linux Team <linux@simtec.co.uk>,
-        Arnd Bergmann <arnd@arndb.de>, linux-doc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-ide@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-pm@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-input@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-watchdog@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 00/21] ARM: s3c: clean out obsolete platforms
-Message-ID: <20221024130035.GA1645003-robh@kernel.org>
-References: <20221021202254.4142411-1-arnd@kernel.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uZ6iF6T0zIUXPA/iUJjlbeVV5R7S7nny4K0HA6GOdU4=;
+        b=7Fr7iZV7+oTUNt8FeL0TP9dX+OjwqztAbneVIkBYI1lGwE+CYqt7jvhlz1JxyNxoqX
+         2Ugrmw24v04h/xASv8LGUicN5uQjOksTBaVJwWwNRhuv4/DVoUPg3K9zxJ3zTOvBjavE
+         ihm1awz1m6AfF54diyfIulqe1CiP867TKTKzi+o0nWbzzL2MPctVYW07/KtvlQpk3qy9
+         DtxseSqbzKTlC0MbgtC6UqN+T6TUvg9uR1n+MSuAOIJ4fe17YQD/v/NpzpJTgZvdlxUb
+         CTQFGlBswcnO+qr8pTeGqkAbUSLubHyfxhVaf3X0QAWsnxE9xJYcjx0jqY8LvZ2DSfAc
+         7wcA==
+X-Gm-Message-State: ACrzQf0312J25BLi+m0qxw5U7skK9Qz72tSDcYEyy/qADdT9VQ25lCaU
+        IlFXryzIGzPjGCfCGn0gnDYW8hY8PzBFe7ZYPAaU4uWs
+X-Google-Smtp-Source: AMsMyM6sSiIpLatv76v+ujr0bWsW3B2wikZU8HsGumExxEGBwIcNwvwahd77TVvlPjWHjMiTM3YrQ9QlZn5WzGuzj8o=
+X-Received: by 2002:a17:902:b190:b0:186:b9b2:9268 with SMTP id
+ s16-20020a170902b19000b00186b9b29268mr754073plr.32.1666616889648; Mon, 24 Oct
+ 2022 06:08:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221021202254.4142411-1-arnd@kernel.org>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+References: <20221024115429.1343257-1-heiko.thiery@gmail.com>
+ <20221024122659.2krt2hh2sdvxuurn@pengutronix.de> <CAEyMn7Y9uxeFLM7-6jR=bonusdwjX=ukRotZm=7x_3QyxVW-DQ@mail.gmail.com>
+ <20221024125630.frrbq4hy2bfxhjtq@pengutronix.de>
+In-Reply-To: <20221024125630.frrbq4hy2bfxhjtq@pengutronix.de>
+From:   Heiko Thiery <heiko.thiery@gmail.com>
+Date:   Mon, 24 Oct 2022 15:07:57 +0200
+Message-ID: <CAEyMn7ZVT+jR1sH6-RB8C6GnLF4bYvnd8f154AGKKZiPzmGbDA@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
+ off-on-delay-us for regulator-usdhc2-vmmc
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,46 +74,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 10:22:28PM +0200, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> The s3c24xx platform was marked as deprecated a while ago,
-> and for the s3c64xx platform, we marked all except one legacy
-> board file as unused.
-> 
-> This series removes all of those, leaving only s3c64xx support
-> for DT based boots as well as the cragg6410 board file.
-> 
-> About half of the s3c specific drivers were only used on
-> the now removed machines, so these drivers can be retired
-> as well. I can either merge the driver removal patches through
-> the soc tree along with the board file patches, or subsystem
-> maintainers can pick them up into their own trees, whichever
-> they prefer.
+Hi Marco,
 
-[...]
+Am Mo., 24. Okt. 2022 um 14:58 Uhr schrieb Marco Felsch
+<m.felsch@pengutronix.de>:
+>
+> On 22-10-24, Heiko Thiery wrote:
+> > Hi Marco,
+> >
+> > Am Mo., 24. Okt. 2022 um 14:34 Uhr schrieb Marco Felsch
+> > <m.felsch@pengutronix.de>:
+> > >
+> > > Hi Heiko,
+> > >
+> > > On 22-10-24, Heiko Thiery wrote:
+> > > > With that delay U-Boot is not able to store the environment variables in
+> > > > the SD card. Since the delay is not required it can be remove.
+> > >
+> > > Now I'm curious, since this doesn't tell us the why, it just tell us
+> > > about the end result. I'm asking because the NXP EVKs have an issue with
+> > > the sd-card power line capacity and we need this delay to reach a level
+> > > which is marked as low within the sd-spec.
+> >
+> > I must admit that I do not know at all why this entry was made. I have
+> > now looked at the dtbs of the imx8 EVKs and except for imx8dxl-evk.dts
+> > I see no delay here.
+>
+> Please see <20221024031351.4135651-10-peng.fan@oss.nxp.com>, they will
+> be added.
 
->  Documentation/arm/index.rst                   |    1 -
->  Documentation/arm/samsung-s3c24xx/cpufreq.rst |   77 -
->  .../arm/samsung-s3c24xx/eb2410itx.rst         |   59 -
->  Documentation/arm/samsung-s3c24xx/gpio.rst    |  172 --
->  Documentation/arm/samsung-s3c24xx/h1940.rst   |   41 -
->  Documentation/arm/samsung-s3c24xx/index.rst   |   20 -
->  Documentation/arm/samsung-s3c24xx/nand.rst    |   30 -
->  .../arm/samsung-s3c24xx/overview.rst          |  311 ---
->  Documentation/arm/samsung-s3c24xx/s3c2412.rst |  121 -
->  Documentation/arm/samsung-s3c24xx/s3c2413.rst |   22 -
->  .../arm/samsung-s3c24xx/smdk2440.rst          |   57 -
->  Documentation/arm/samsung-s3c24xx/suspend.rst |  137 --
->  .../arm/samsung-s3c24xx/usb-host.rst          |   91 -
->  Documentation/arm/samsung/overview.rst        |   13 -
+I think I have to re-check that and especially why U-Boot is not able
+with that setting to access the SD card for writing the environment.
 
-What about?:
+Thanks!
 
-Documentation/devicetree/bindings/clock/samsung,s3c2410-clock.txt
-Documentation/devicetree/bindings/interrupt-controller/samsung,s3c24xx-irq.txt
-Documentation/devicetree/bindings/mmc/samsung,s3cmci.txt
-Documentation/devicetree/bindings/mtd/samsung-s3c2410.txt
-Documentation/devicetree/bindings/usb/s3c2410-usb.txt
-
-Rob
+>
+> Regards,
+>   Marco
