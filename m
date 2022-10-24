@@ -2,118 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1311E609CDF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C625609CF4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 10:40:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbiJXIgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 04:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33388 "EHLO
+        id S230097AbiJXIkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 04:40:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229933AbiJXIgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:36:40 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239B860500;
-        Mon, 24 Oct 2022 01:36:31 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29O7WQx4032750;
-        Mon, 24 Oct 2022 10:36:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=ykLzKEUdSBnu1ViK9+reJrmjgCeEvaT2J8wFmcU66mw=;
- b=Gf6OqbX16TFbFtVfgRbUsDbwegpzBhH1L/tt/zaHjcyhrq5Bn4SoXgmWFdAah8+KgDCN
- 0zH0KSNYDpjx7jDsz8iEyL+RHxj+oCfXh9qworc5xGSpz0LuIIcvLoxIcnK7ouzemHjs
- oNz+UihDjw44keA0K6ZlBcEBPxDyqtTZxyKtiqLL9kDCOGgdfaK5aJFQ5UtWVo6OFzSi
- if6wcB+bznYTwnyHeGjOcM/IHYT0DmUCGnCJWeVuqyBQjmGiGdYZ1Yc3WF5+yMYqdX/q
- NFyFnw/SXS/M4cya56pMm4b/fUU2Mzh46B/2EJJn6xxl3RpG0yA7c5Ma8HH6VHnVQ0jh 3g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kc7dk1vyg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 24 Oct 2022 10:36:09 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 62E6310002A;
-        Mon, 24 Oct 2022 10:36:03 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 439F5216ECE;
-        Mon, 24 Oct 2022 10:36:03 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Mon, 24 Oct
- 2022 10:36:01 +0200
-Message-ID: <776917d2-bb09-1175-1457-dc929e871e5f@foss.st.com>
-Date:   Mon, 24 Oct 2022 10:36:00 +0200
+        with ESMTP id S230121AbiJXIkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 04:40:02 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B6A23E81;
+        Mon, 24 Oct 2022 01:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666600801; x=1698136801;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=qSqf3GoAdrUKrL08IAjfyc7oJTBmbWa0J0R/wRLkH1Q=;
+  b=KKIKL1esS/wKrOQ1m1ysjcRlBwCQQm40EwvCw39s78YQhb5SPy1CujUe
+   3BCTAeR5N/i9WDVattFV5RPT5mtC7JMX7fLNH2VGZa4XmgEwNpVdkNBfk
+   Qt77Jl/cdpJRSYkYQKPYZK1A4eSYx1szgMhZQpEbZ8p8oVOpVNe/qtwfR
+   AMB0NJHjkETHGROaeQRLB3k6BtLs3p99Wg/gDsIyYjaxiWqPTtGO8K5VO
+   M/4cR4e6iyO2E+pJKOBT3229uKEp/OR2j9o0+wY4SGrF0tHvtTY8s/XC6
+   UYyDUJ2gRJYjk41Jq++Mvihu/+1be2BMKkJPsdW2fx0dsg7mV7Nj3wS9a
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="290670080"
+X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; 
+   d="scan'208";a="290670080"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Oct 2022 01:40:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10509"; a="609121584"
+X-IronPort-AV: E=Sophos;i="5.95,207,1661842800"; 
+   d="scan'208";a="609121584"
+Received: from mylly.fi.intel.com (HELO [10.237.72.51]) ([10.237.72.51])
+  by orsmga006.jf.intel.com with ESMTP; 24 Oct 2022 01:39:57 -0700
+Message-ID: <623284c8-f4bb-1020-2f2e-a475f424c5b5@linux.intel.com>
+Date:   Mon, 24 Oct 2022 11:39:57 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 3/3] ARM: dts: stm32: Drop MMCI interrupt-names
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Yann Gautier <yann.gautier@foss.st.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+ Firefox/102.0 Thunderbird/102.3.3
+Subject: Re: [PATCH v6 00/10] Designware PWM driver updates for OF
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20221013221242.218808-1-marex@denx.de>
- <20221013221242.218808-3-marex@denx.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20221013221242.218808-3-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Greentime Hu <greentime.hu@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+References: <20221020151610.59443-1-ben.dooks@sifive.com>
+Content-Language: en-US
+From:   Jarkko Nikula <jarkko.nikula@linux.intel.com>
+In-Reply-To: <20221020151610.59443-1-ben.dooks@sifive.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-24_02,2022-10-21_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/14/22 00:12, Marek Vasut wrote:
-> The pl18x MMCI driver does not use the interrupt-names property,
-> the binding document has been updated to recommend this property
-> be unused, remove it.
+Hi
+
+On 10/20/22 18:16, Ben Dooks wrote:
+> This is an updated version of the Designware PWM driver updates
+> for OF support, which now splits the driver into PCI and OF parts
+> as well as tries to sort out the review comments.
 > 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Yann Gautier <yann.gautier@foss.st.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <andersson@kernel.org>
-> Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Yann Gautier <yann.gautier@foss.st.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> To: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: Add RB from Linus and Yann
-> ---
->   arch/arm/boot/dts/stm32h743.dtsi  | 2 --
->   arch/arm/boot/dts/stm32mp131.dtsi | 2 --
->   arch/arm/boot/dts/stm32mp151.dtsi | 3 ---
->   3 files changed, 7 deletions(-)
+> Hopefully this can now be queued for the next kernel version.
 > 
+> v6:
+>   - fix removal ordering of DWC_PERIOD_NS
 
-Applied on stm32-next.
+I did a quick test on our HW and PWM was counting as before.
 
-Cheers
-Alex
-
+Tested-by: Jarkko Nikula <jarkko.nikula@linux.intel.com>
