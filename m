@@ -2,108 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E5E7609D89
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 11:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34CB1609DB7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 11:16:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbiJXJL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 05:11:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43310 "EHLO
+        id S229787AbiJXJQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 05:16:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbiJXJL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 05:11:26 -0400
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA0B64DB29
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 02:11:23 -0700 (PDT)
-Received: by mail-yb1-xb31.google.com with SMTP id 126so10346759ybw.3
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 02:11:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zXMhWjca4naE0pCAheDzGm0IxJuDch6/SpXa6XWdtWM=;
-        b=RiUATNYBaLUD42t0rnY0VOqBk1UjGFpIlfK4WE4ieztDIti82XuL9pvCuLtWIAbQfR
-         oaTKMxuzwdaotitn18013BoSESOiAmZKXqrIoHBFOV4AtthYZsdAG/HkKolpf7e8kvaZ
-         COkQCtZAJlql2llpgZgf9xUm/IaBr4wsfjEvKm2pT8SuZS+2FCcdEbvDZHHHSw5vrONa
-         pU4j0US4hDyq0TfZhTWlzbaRgawbDGkfV0Ud+IuYknjUgv0QMpbOcPOBP8faLAeOkG0D
-         gEciwNMDr+Ge7SURZn4vhq0wPR4ZoWpB4Qrx/n3/HSgwaHbI2h6e7gMR5qoF6wPb2Jwt
-         nqqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zXMhWjca4naE0pCAheDzGm0IxJuDch6/SpXa6XWdtWM=;
-        b=IHSW1n8KUDZ4AOdRdKZvjg7w1yd6YVUvJdUDWHg8ZfASifWN+5VpFgWIN1otsvNe3T
-         OCujyv4buHf+Ks4wZjI+mFgv7fhBgRMblh4imLDq4k/WFp+8xK1u/zAlsD1Fc0XB7HUE
-         zkyYnbOL6oPUvDrsmb8veP9/ro+JEmuzQ4oFNk6M/SmmUYUJIy5eizaAMOGn655FG2Vt
-         28YjypeH9bFhnCxK2xb8sANO0vCq2IMJ04BaktMZZz+MrO5bs4e3IBr8mpTETr2tHVex
-         AZgApnMTH29zZKzg/OiHCQ52bidX+NbmkOShQjqJHTT71oyBKtETtkiv1J6spwQSotJI
-         z9Cg==
-X-Gm-Message-State: ACrzQf0tZm949dUwF0g205I0NX8NlhYISDXrxFFbGpPCVqtsuVZBJKjp
-        sK22FkDWNXzPGDBjkSi67Kd/AD1NxrCxwuSrB+iRpg==
-X-Google-Smtp-Source: AMsMyM4027Be+x4O6dyZmj4bQkztQncmx9H78GrU5MELpebcq1LjfLXe0Zw0Kqh0fmf7ZjRdNfMl/GHr8ry2368PV1o=
-X-Received: by 2002:a25:9a88:0:b0:6b9:c29a:2f4b with SMTP id
- s8-20020a259a88000000b006b9c29a2f4bmr28077461ybo.236.1666602683018; Mon, 24
- Oct 2022 02:11:23 -0700 (PDT)
+        with ESMTP id S230097AbiJXJQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 05:16:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D5E6A49B;
+        Mon, 24 Oct 2022 02:15:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 50F0DB81015;
+        Mon, 24 Oct 2022 09:15:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E75ABC433B5;
+        Mon, 24 Oct 2022 09:15:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666602941;
+        bh=6VuJyOuXrZYfUSFkV45f4BbgcLburovNmgn2tZqTBTI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=E8lAWlEhi5sKFKYNnEmDJVI0OX2i0rEiVh6zlgt7bnUglUHRfeIBQ4pcJAP5iTJ85
+         yUZ91T4Sm24hj8gHjtVL2WtbVNmfpAD9FFEU1m3loRRoeTSZF545ShVjDDhSb9RzY3
+         +NwcX5vAizTMbo3sPXyCRl0dVDCJTsbBV35JfCnhP09/ySORR1Yyo5d/RQWv0ug2au
+         wL6Vl0JnF0xpxs3jgRlDVkJ0KgEW04lhw7ywTIvJNRtguCIFei36YFBT58PHl4CqD6
+         pSo2ZdLB8OCNnHwU5MxrWmw2AUamBNwZDH2fB9I3WXLyBKfs4nHeJSBsk7BlWkfB4x
+         +ZTPhMK2C7mPg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1omtYJ-0005Iw-G5; Mon, 24 Oct 2022 11:15:24 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/4] arm64: dts: qcom: fix UFS PHY registers
+Date:   Mon, 24 Oct 2022 11:15:03 +0200
+Message-Id: <20221024091507.20342-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-References: <20221022234024.87475-1-mw@semihalf.com> <Y1VX4RtzKQZHe/oO@lunn.ch>
- <Y1Vp4BdC50o9roKe@shell.armlinux.org.uk> <CAPv3WKdcQGqofEgV4w_iiQ7FFa0ZF=du8gK9eAD==10HhwEnUA@mail.gmail.com>
- <20221024085102.15712ce9@thinkpad> <Y1ZEBqrxZ1PSLCU6@shell.armlinux.org.uk>
-In-Reply-To: <Y1ZEBqrxZ1PSLCU6@shell.armlinux.org.uk>
-From:   Marcin Wojtas <mw@semihalf.com>
-Date:   Mon, 24 Oct 2022 11:11:12 +0200
-Message-ID: <CAPv3WKeL30nhrFdVTgAhpYUk7v2zR4F9E3NrBrsGvYtFU-mzRA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: armada-38x: Mark devices as dma-coherent
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hch@lst.de, jaz@semihalf.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pon., 24 pa=C5=BA 2022 o 09:51 Russell King (Oracle)
-<linux@armlinux.org.uk> napisa=C5=82(a):
->
-> On Mon, Oct 24, 2022 at 08:51:02AM +0200, Marek Beh=C3=BAn wrote:
-> > > Sure. In such a case the description of 380 variant (single core)
-> > > should remain untouched.
-> > >
-> > > We need to decide what to do with dual-CPU, i.e. Armada 385/388. How =
-about:
-> > > - Don't change current behavior, i.e. perform a necessary kernel
-> > > configuration in "arm,pl310-cache" driver,
-> > > arch/arm/mach-mvebu/coherency.c + &coherencyfab:node in DT
-> > > - Satisfy of_dma_is_coherent() by adding `dma-coherent;` in
-> > > armada-385.dtsi only (IMO this would describe HW properly)
-> > > ?
-> >
-> > It will describe HW properly, but someone running older kernel compiled
-> > with no SMP support will see a performance drop. I wonder how many
-> > people do that.
->
-> If the kernel is built without SMP support, the page table entries will
-> not have the shared bit set, and the system will _not_ be DMA-coherent.
-> Having DT mark devices as "dma-coherent" in this case will lead to data
-> corruption, because the DMA API will believe them to be DMA-coherent
-> when the page tables are not setup for that to work.
->
+When working on the updated QMP binding for SC8280XP, I noticed that the
+UFS PHY register definitions for most platforms are wrong. Apparently
+the register region sizes have just been copied verbatim from the
+original SDM845.
 
-Thanks, for the explanation. Since we're heavily dependent on what
-happens in the kernel we boot, it will be easier to just drop this
-patch and keep using the DT as-is.
+As Linux maps these regions as full pages this is currently not an issue
+on Linux, but let's update the sizes to match the vendor drivers.
 
-Best regards,
-Marcin
+Note that SC8280XP also suffers from this, but that problem will soon go
+away when the UFS nodes are updated to match the new binding:
+
+	https://lore.kernel.org/lkml/20221024090041.19574-1-johan+linaro@kernel.org/
+
+Johan
+
+
+Johan Hovold (4):
+  arm64: dts: qcom: sm8150: fix UFS PHY registers
+  arm64: dts: qcom: sm8250: fix UFS PHY registers
+  arm64: dts: qcom: sm8350: fix UFS PHY registers
+  arm64: dts: qcom: sm8450: fix UFS PHY registers
+
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 10 +++++-----
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 10 +++++-----
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 10 +++++-----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 10 +++++-----
+ 4 files changed, 20 insertions(+), 20 deletions(-)
+
+-- 
+2.37.3
+
