@@ -2,226 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 556D860C029
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 02:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19AE660BF55
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 02:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbiJYAww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 20:52:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42856 "EHLO
+        id S229674AbiJYAQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 20:16:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbiJYAwi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 20:52:38 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95E711D3766;
-        Mon, 24 Oct 2022 16:34:09 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1omwC7-0001Zb-SU; Mon, 24 Oct 2022 14:04:39 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Conor Dooley <conor@kernel.org>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Anup Patel <anup@brainfault.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [RFC PATCH v3 2/2] soc: renesas: Add L2 cache management for RZ/Five SoC
-Date:   Mon, 24 Oct 2022 14:04:38 +0200
-Message-ID: <4750602.GXAFRqVoOG@diego>
-In-Reply-To: <CA+V-a8vA_ZbV+SEy8Ch8ZuYAb+U37CtC8Ys=svMv7fjy79mR=A@mail.gmail.com>
-References: <20221019220242.4746-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <Y1Md4bMYJHI34HuJ@spud> <CA+V-a8vA_ZbV+SEy8Ch8ZuYAb+U37CtC8Ys=svMv7fjy79mR=A@mail.gmail.com>
+        with ESMTP id S230438AbiJYAPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 20:15:50 -0400
+Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D288C106E25
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 15:34:59 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id mxacoYi4Bg7y2mxaconyov; Mon, 24 Oct 2022 15:34:04 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Mon, 24 Oct 2022 15:34:04 +0200
+X-ME-IP: 86.243.100.34
+Message-ID: <3ad8b485-9007-f7e9-f52a-d5644a688bcf@wanadoo.fr>
+Date:   Mon, 24 Oct 2022 15:34:02 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 2/3] iio: accel: Support Kionix/ROHM KX022A
+ accelerometer
+Content-Language: fr
+To:     mazziesaccount@gmail.com
+Cc:     DDRokosov@sberdevices.ru, andriy.shevchenko@linux.intel.com,
+        demonsingur@gmail.com, devicetree@vger.kernel.org,
+        jagathjog1996@gmail.com, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        matti.vaittinen@fi.rohmeurope.com, nikita.yoush@cogentembedded.com,
+        robh+dt@kernel.org
+References: <cover.1666350457.git.mazziesaccount@gmail.com>
+ <7baf3dd482ab1db0d8a3676d6d5d3e4ab7f3cf9d.1666350457.git.mazziesaccount@gmail.com>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <7baf3dd482ab1db0d8a3676d6d5d3e4ab7f3cf9d.1666350457.git.mazziesaccount@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-Am Montag, 24. Oktober 2022, 13:55:00 CEST schrieb Lad, Prabhakar:
-> Hi Conor,
+Le 21/10/2022 à 13:22, Matti Vaittinen a écrit :
+> KX022A is a 3-axis accelerometer from ROHM/Kionix. The sensor features
+> include variable ODRs, I2C and SPI control, FIFO/LIFO with watermark IRQ,
+> tap/motion detection, wake-up & back-to-sleep events, four acceleration
+> ranges (2, 4, 8 and 16g), and probably some other cool features.
 > 
-> On Fri, Oct 21, 2022 at 11:32 PM Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Fri, Oct 21, 2022 at 11:05:40PM +0100, Lad, Prabhakar wrote:
-> > > Hi Rob,
-> > >
-> > > Thank you for the review.
-> > >
-> > > On Fri, Oct 21, 2022 at 3:05 AM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Wed, Oct 19, 2022 at 11:02:42PM +0100, Prabhakar wrote:
-> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > >
-> > > > > On the AX45MP core, cache coherency is a specification option so it may
-> > > > > not be supported. In this case DMA will fail. As a workaround, firstly we
-> > > > > allocate a global dma coherent pool from which DMA allocations are taken
-> > > > > and marked as non-cacheable + bufferable using the PMA region as specified
-> > > > > in the device tree. Synchronization callbacks are implemented to
-> > > > > synchronize when doing DMA transactions.
-> > > > >
-> > > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
-> > > > > block that allows dynamic adjustment of memory attributes in the runtime.
-> > > > > It contains a configurable amount of PMA entries implemented as CSR
-> > > > > registers to control the attributes of memory locations in interest.
-> > > > >
-> > > > > Below are the memory attributes supported:
-> > > > > * Device, Non-bufferable
-> > > > > * Device, bufferable
-> > > > > * Memory, Non-cacheable, Non-bufferable
-> > > > > * Memory, Non-cacheable, Bufferable
-> > > > > * Memory, Write-back, No-allocate
-> > > > > * Memory, Write-back, Read-allocate
-> > > > > * Memory, Write-back, Write-allocate
-> > > > > * Memory, Write-back, Read and Write-allocate
-> > > > >
-> > > > > This patch adds support to configure the memory attributes of the memory
-> > > > > regions as passed from the l2 cache node and exposes the cache management
-> > > > > ops.
-> > > > >
-> > > > > More info about PMA (section 10.3):
-> > > > > http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
-> > > > >
-> > > > > This feature is based on the work posted [0] by Vincent Chen
-> > > > > <vincentc@andestech.com> for the Andes AndeStart RISC-V CPU.
-> > > > >
-> > > > > [0] https://lore.kernel.org/lkml/1540982130-28248-1-git-send-email-vincentc@andestech.com/
-> > > > >
-> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > ---
-> > > > >  arch/riscv/include/asm/cacheflush.h    |   8 +
-> > > > >  arch/riscv/include/asm/errata_list.h   |   2 +
-> > > > >  arch/riscv/mm/dma-noncoherent.c        |  20 ++
-> > > > >  drivers/soc/renesas/Kconfig            |   5 +
-> > > > >  drivers/soc/renesas/Makefile           |   4 +
-> > > > >  drivers/soc/renesas/rzf/Kconfig        |   6 +
-> > > > >  drivers/soc/renesas/rzf/Makefile       |   3 +
-> > > > >  drivers/soc/renesas/rzf/ax45mp_cache.c | 431 +++++++++++++++++++++++++
-> > > >
-> > > > How many cache drivers do we have around now? I've seen a few bindings
-> > > > go by. I'm guessing it is time to stop putting the drivers in the
-> > > > drivers/soc/ dumping ground.
-> > > >
-> > > The main reason this driver is not in arch/riscv is that it has vendor
-> > > specific extensions. Due to this reason it was agreed during the LPC
-> > > that vendor specific extension should be maintained by SoC vendors and
-> > > was agreed that this can go into drivers/soc/renesas folder instead.
-> >
-> > Does not in drivers/soc mean they need to go into arch/riscv?
-> I was under the impression Rob wanted them arch/riscv, sorry for the confusion.
+> Add support for the basic accelerometer features such as getting the
+> acceleration data via IIO. (raw reads, triggered buffer [data-ready] or
+> using the WMI IRQ).
 > 
-> > The outcome of the chat at the LPC BoF was more that the cache drivers
-> > themselves should not be be routed via the arch maintainers, no?
-> >
-> Indeed.
+> Important things to be added include the double-tap, motion
+> detection and wake-up as well as the runtime power management.
 > 
-> > >
-> > > > >  drivers/soc/renesas/rzf/ax45mp_sbi.h   |  29 ++
-> > > > >  9 files changed, 508 insertions(+)
-> > > > >  create mode 100644 drivers/soc/renesas/rzf/Kconfig
-> > > > >  create mode 100644 drivers/soc/renesas/rzf/Makefile
-> > > > >  create mode 100644 drivers/soc/renesas/rzf/ax45mp_cache.c
-> > > > >  create mode 100644 drivers/soc/renesas/rzf/ax45mp_sbi.h
-> > > > >
-> > > > > diff --git a/arch/riscv/include/asm/cacheflush.h b/arch/riscv/include/asm/cacheflush.h
-> > > > > index 8a5c246b0a21..40aa790be9a3 100644
-> > > > > --- a/arch/riscv/include/asm/cacheflush.h
-> > > > > +++ b/arch/riscv/include/asm/cacheflush.h
-> > > > > @@ -65,6 +65,14 @@ static inline void riscv_noncoherent_supported(void) {}
-> > > > >  #define SYS_RISCV_FLUSH_ICACHE_LOCAL 1UL
-> > > > >  #define SYS_RISCV_FLUSH_ICACHE_ALL   (SYS_RISCV_FLUSH_ICACHE_LOCAL)
-> > > > >
-> > > > > +#ifdef CONFIG_AX45MP_L2_CACHE
-> > > > > +void ax45mp_cpu_dma_inval_range(void *vaddr, size_t end);
-> > > > > +void ax45mp_cpu_dma_wb_range(void *vaddr, size_t end);
-> > > > > +
-> > > > > +#define ALT_CMO_OP(_op, _start, _size, _cachesize)   \
-> > > > > +                _op(_start, _size)
-> > > > > +#endif
-> > > > > +
-> > > > >  #include <asm-generic/cacheflush.h>
-> > > > >
-> > > > >  #endif /* _ASM_RISCV_CACHEFLUSH_H */
-> > > > > diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/asm/errata_list.h
-> > > > > index 19a771085781..d9cbf60c3b65 100644
-> > > > > --- a/arch/riscv/include/asm/errata_list.h
-> > > > > +++ b/arch/riscv/include/asm/errata_list.h
-> > > > > @@ -89,6 +89,7 @@ asm volatile(ALTERNATIVE(                                           \
-> > > > >  #define ALT_THEAD_PMA(_val)
-> > > > >  #endif
-> > > > >
-> > > > > +#ifdef CONFIG_ERRATA_THEAD_CMO
-> > > > >  /*
-> > > > >   * dcache.ipa rs1 (invalidate, physical address)
-> > > > >   * | 31 - 25 | 24 - 20 | 19 - 15 | 14 - 12 | 11 - 7 | 6 - 0 |
-> > > > > @@ -143,5 +144,6 @@ asm volatile(ALTERNATIVE_2(                                               \
-> > > > >       : "a0")
-> > > > >
-> > > > >  #endif /* __ASSEMBLY__ */
-> > > > > +#endif
-> > > > >
-> > > > >  #endif
-> > > > > diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-> > > > > index b0add983530a..5270acca6766 100644
-> > > > > --- a/arch/riscv/mm/dma-noncoherent.c
-> > > > > +++ b/arch/riscv/mm/dma-noncoherent.c
-> > > > > @@ -24,13 +24,25 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
-> > > > >
-> > > > >       switch (dir) {
-> > > > >       case DMA_TO_DEVICE:
-> > > > > +#ifdef CONFIG_ERRATA_THEAD_CMO
-> > > > >               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
-> > > > > +#elif CONFIG_AX45MP_L2_CACHE
-> > > > > +             ALT_CMO_OP(ax45mp_cpu_dma_wb_range, vaddr, size, 0x0);
-> > > > > +#endif
-> > > >
-> > > > How do you support more than one platform in a build?
-> > > >
-> > > Yes, that's one concern which I have mentioned in the cover letter too
-> > > (At that moment it's just a single platform). Suggestions welcome!
-> >
-> > I think I said it on one of the earlier version, but it needs to be
-> > implemented w/ runtime patching via alternatives just like the thead
-> > stuff patches in their functions.
-> >
-> I'm a bit stumped with alternatives() usage.
+> Signed-off-by: Matti Vaittinen <mazziesaccount-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > 
-> Currently I am just replacing the ALT_CMO_OP() macro if
-> CONFIG_AX45MP_L2_CACHE is enabled. For AX45MP currently we have two
-> exported functions ax45mp_cpu_dma_inval_range/ax45mp_cpu_dma_wb_range.
-> If I switch to
-> ALTERNATIVE() macro usage then I'll have to use the assembly version
-> of the above two mentioned functions?
+> ---
 
-The overarching goal should always be the unified-kernel-image.
-So hardware-specific compile-time #ifeefs are normally a no-no :-) .
+Hi, should there be a v5:
 
-So yes, it most likely should be assembly-based, and you'll "just" need
-to introduce an ALTERNATIVE_3 macro, similar to what ALTERNAITVE_2 does.
+> +/*
+> + * The KX022A has FIFO which can store 43 samples of HiRes data from 2
 
-That is actually the really nice part of alternatives, that you can have as
-many variants as you like.
+Nit: 2 here, but 3 the lines just before.
 
-Heiko
-
+> + * channels. This equals to 43 (samples) * 3 (channels) * 2 (bytes/sample) to
+> + * 258 bytes of sample data. The quirk to know is that the amount of bytes in
+> + * the FIFO is advertised via 8 bit register (max value 255). The thing to note
+> + * is that full 258 bytes of data is indicated using the max value 255.
+> + */
 
