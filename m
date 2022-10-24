@@ -2,87 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 608AE60BDA6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 00:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D553E60BD41
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 00:19:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231307AbiJXWmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 18:42:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49614 "EHLO
+        id S231154AbiJXWTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 18:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231503AbiJXWmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 18:42:17 -0400
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 572BB2570B0
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 14:05:05 -0700 (PDT)
-Received: by mail-pj1-f46.google.com with SMTP id f5-20020a17090a4a8500b002131bb59d61so132349pjh.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 14:05:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LtcqmdNpdxVti+PLFBkqhLTVTZXFkee13e2fHeU9k5s=;
-        b=QVbx7NHfVSfl6nirglkzBeA+hCnIBJDHm0p8W/g0USrA/MgF1jPHl6aOnzrczIcvOe
-         F5M+Lz+wDfJGatAx0HTUNbXnhgZLIslnLl/o5CdD4g1n7BvzZHnEviYkK2zgZywWxAvS
-         Kr0y646UcPQr5037GQbAgLncSJaJ2EY9Ei2Vd4zYdAX/WgAl9h6FgQ8+3yrxKKsFZjrg
-         brNPvf6QSWrfrHZfUj42Yr7FPCE4VIcTGVL4BDFGdNiGs0ZwvHkZpBHPXd7QG6fLovVw
-         OTb/J+ScLqhCGfzQx41boeHgfp2N+ymrdtpzQf52fB2jq/r1gqWtUocl6OZIGf1D+ri7
-         0Qfw==
+        with ESMTP id S232136AbiJXWTY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 18:19:24 -0400
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D5C030F9DD;
+        Mon, 24 Oct 2022 13:36:49 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id a18so6872702qko.0;
+        Mon, 24 Oct 2022 13:36:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LtcqmdNpdxVti+PLFBkqhLTVTZXFkee13e2fHeU9k5s=;
-        b=MF9k49tq7uxL3qduuKQd79IAcJhlSNGkCpUhb8d4bWyBmPhy0vggPE4Nhxox/s2wmZ
-         6wWciKZA3Kgy1mGZ6JXbohgyyWdeTLgKU4H8t2yVAgCfqUKaHXCrMcu6OM0bhd9Ie2uJ
-         YccLbfpLwU0Hm3uPlaCHy9GxoKySkOMUYpFUefroFGoFb0fRBLaF2easTMpqIYlpy/jH
-         iBbkDQoz/Fy9QOe8nOdxOTEVX55Lfviu/wnHxWBEzMWI0Yg0+c8iv/To9OjWI0WM10E1
-         FFcu6zQhkqa+UFCyfMACp3NZSHWEwiZ98/gbuDmlb34UEY6EkUQKAEE2PUPT1Yl2bmTr
-         4kLg==
-X-Gm-Message-State: ACrzQf2j+PdjoQeEih8YV2zavFrhZEcc8x+RwPUwuYQ58gGHbkD8uYJ4
-        EwKOlgsjnESwAVsgdAmAg5C7dDJ1ikcupA==
-X-Google-Smtp-Source: AMsMyM4LxUqzwBifLSHZve8Ei2kV0KF1ARMRAM9wAVOYV/6KmScdc+UPtZC4HMwMtaA2GQkBj9Beng==
-X-Received: by 2002:a05:6214:230b:b0:4b8:aa39:f3a6 with SMTP id gc11-20020a056214230b00b004b8aa39f3a6mr20402645qvb.30.1666643479627;
-        Mon, 24 Oct 2022 13:31:19 -0700 (PDT)
-Received: from [192.168.1.8] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id z4-20020ac86b84000000b0035d432f5ba3sm504667qts.17.2022.10.24.13.31.18
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yYxFT6Ykd1Wr0+ICysK5Xd7jISrpDQ+r635XImWlzf0=;
+        b=QEjw10dykjyDM543pBxA1qhz9xttlulerWDCp4NT2P0O9Di4sspd5BAaBrMDAuxzr8
+         OBlObuvcjC9B/A8Ht3XDnV3XrCIhHtoopyu7BxXAPeao59mX1Zol/NRXNiX/jDRg3spV
+         qWtsjKSPMSRWX7QHLnMJfE9Zvs0zvfP+AyVVnqcMwIUVinofsz+2y12HvZlSziBRq3pT
+         a//Kv+9kyZmUkL07tMI21f69PnyxomnKopoO8EjW8dsjiKgPbjhmvJsSMfbjmO79chYX
+         L2q+JANHQfvqDPZzPVF7tIQxyeuytAmbFGs1VoKBFPcpAxWWjnBgnd3qKR7NS39fHkAN
+         gDuQ==
+X-Gm-Message-State: ACrzQf01FUQXkf3/snR5HI417+AxUBIY4AnU7XLP5Xe5u97zTE2UavDD
+        QuqBCq2deGgYgYCx3UHii6vgIWiu8U2yJg==
+X-Google-Smtp-Source: AMsMyM6BVlxBodu2isqZi/nHNp+DBjZA6YEAeJAuVLCM10/VOKf1TYiSs/Sa0Qvdk4qHUi5dS9qT3Q==
+X-Received: by 2002:a05:620a:240f:b0:6ec:ffd0:22a4 with SMTP id d15-20020a05620a240f00b006ecffd022a4mr24568272qkn.523.1666643753277;
+        Mon, 24 Oct 2022 13:35:53 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id v14-20020a05622a188e00b0039a8b075248sm545400qtc.14.2022.10.24.13.35.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 13:31:19 -0700 (PDT)
-Message-ID: <a4faa952-c5b6-fd6c-aa50-08c982fb3cdd@linaro.org>
-Date:   Mon, 24 Oct 2022 16:31:17 -0400
+        Mon, 24 Oct 2022 13:35:52 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 187so3223130ybe.1;
+        Mon, 24 Oct 2022 13:35:51 -0700 (PDT)
+X-Received: by 2002:a25:d24a:0:b0:6ca:4a7a:75cd with SMTP id
+ j71-20020a25d24a000000b006ca4a7a75cdmr20186708ybg.89.1666643750729; Mon, 24
+ Oct 2022 13:35:50 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCHv3] arm: dts: socfpga: align mmc node names with dtschema
-Content-Language: en-US
-To:     Dinh Nguyen <dinguyen@kernel.org>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-References: <20221024171309.203821-1-dinguyen@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221024171309.203821-1-dinguyen@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20221019083518.933070-3-yoshihiro.shimoda.uh@renesas.com>
+ <202210191806.RZK10y3x-lkp@intel.com> <CAMuHMdXBT2cEqfy00u+0VB=cRUAtrgH9LD26gXgavdvmQyN+pQ@mail.gmail.com>
+ <d7c9b9b4-4ee8-4754-b32f-e3205daf47b3@app.fastmail.com>
+In-Reply-To: <d7c9b9b4-4ee8-4754-b32f-e3205daf47b3@app.fastmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 24 Oct 2022 22:35:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWbkro70fmyauUnEPyKZYytWD0o4a06=UzDTzCZ9-B6vw@mail.gmail.com>
+Message-ID: <CAMuHMdWbkro70fmyauUnEPyKZYytWD0o4a06=UzDTzCZ9-B6vw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] net: ethernet: renesas: Add Ethernet Switch driver
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     kernel test robot <lkp@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, kbuild-all@lists.01.org,
+        Netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 13:13, Dinh Nguyen wrote:
-> dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
-> v3: remove unneccesary rename mmc0 to mmc
+Hi Arnd,
 
+On Mon, Oct 24, 2022 at 9:55 PM Arnd Bergmann <arnd@arndb.de> wrote:
+> On Mon, Oct 24, 2022, at 17:27, Geert Uytterhoeven wrote:
+> > On Wed, Oct 19, 2022 at 1:17 PM kernel test robot <lkp@intel.com> wrote:
+> >>    drivers/net/ethernet/renesas/rswitch.c: In function 'rswitch_ext_desc_get_dptr':
+> >> >> drivers/net/ethernet/renesas/rswitch.c:355:71: warning: left shift count >= width of type [-Wshift-count-overflow]
+> >>      355 |         return __le32_to_cpu(desc->dptrl) | (dma_addr_t)(desc->dptrh) << 32;
+> >>          |                                                                       ^~
+> >>    drivers/net/ethernet/renesas/rswitch.c: In function 'rswitch_ext_ts_desc_get_dptr':
+> >>    drivers/net/ethernet/renesas/rswitch.c:367:71: warning: left shift count >= width of type [-Wshift-count-overflow]
+> >>      367 |         return __le32_to_cpu(desc->dptrl) | (dma_addr_t)(desc->dptrh) << 32;
+> >>          |                                                                       ^~
+> >>
+> >>
+> >> vim +355 drivers/net/ethernet/renesas/rswitch.c
+> >>
+> >>    352
+> >>    353  static dma_addr_t rswitch_ext_desc_get_dptr(struct rswitch_ext_desc *desc)
+> >>    354  {
+> >>  > 355          return __le32_to_cpu(desc->dptrl) | (dma_addr_t)(desc->dptrh) << 32;
+> >
+> > A simple fix would be to replace the cast to "dma_addr_t" by a cast to "u64".
+> > A more convoluted fix would be:
+> >
+> >     dma_addr_t dma;
+> >
+> >     dma = __le32_to_cpu(desc->dptrl);
+> >     if (IS_ENABLED(CONFIG_ARCH_DMA_ADDR_T_64BIT))
+> >             dma |= (u64)desc->dptrh << 32;
+> >     return dma;
+> >
+> > Looking at the gcc compiler output, the both cases are optimized to the
+> > exact same code, for both arm32 and arm64, so I'd go for the simple fix.
+> >
+> > BTW, if struct rswitch_ext_desc would just extend struct rswitch_desc,
+> > you could use rswitch_ext_desc_get_dptr() for both.
+> >
+>
+> Regardless of which way this is expressed, it looked like there is
+> a missing __le32_to_cpu() around the high word.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think it's OK, because desc->dptrh is u8:
 
-Best regards,
-Krzysztof
+    struct rswitch_desc {
+            __le16 info_ds; /* Descriptor size */
+            u8 die_dt;      /* Descriptor interrupt enable and type */
+            __u8  dptrh;    /* Descriptor pointer MSB */
+            __le32 dptrl;   /* Descriptor pointer LSW */
+    } __packed;
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
