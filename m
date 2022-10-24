@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6711B60B46F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FD2960B470
+	for <lists+devicetree@lfdr.de>; Mon, 24 Oct 2022 19:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233187AbiJXRnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 13:43:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43958 "EHLO
+        id S230290AbiJXRoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 13:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229819AbiJXRn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:43:27 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC0224C947
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:18:47 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id g11so5907635qts.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:18:47 -0700 (PDT)
+        with ESMTP id S233324AbiJXRnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 13:43:49 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC43513E02
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:19:09 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id ml12so5779631qvb.0
+        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 09:19:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kkHt7s7VueS+yqyVhguewaguIXeRKiiObRdiVTmhMq4=;
-        b=p0wlLhqXrK6ojJ02m/2cIRUXP1W6sSSk3fUAwF328I0sJ3lYsP6NXYr2EBQdrTxwg2
-         PsfXWuGh7tWOY6xhkbd7gS+lnkiqqnk1IRyGqLZpr0I3iqiGwYaHlbnH17OPz2jd4/7t
-         RFDImnE+MwfMzyynMlkQyRnRki3OTEGmgEUyfiae7ksAAjT6IbZRRpii6oigTWJnHqTq
-         Z6ZXpvHOvU+Plj6eytpMons6DnYioavxI0Me5Z5tokui3UGgaPY0v5ybWDUL8FRFegGO
-         stwFELVTywZ2tZ804IkaVmuI49Y3MGu/Bk9Al7X5/lwSelRbijnzB8I4ST9wr07V5uP+
-         JBbg==
+        bh=J2VRpuKdojQ+NO71XeVe/4aq9kyu5s+RF8YH+GVAGQk=;
+        b=IgBKvN1Jz/4Om5ZnD8LEG/AvOKunpdCr3euP9oqM6bmg5l/MfdL1e+EUe978PJUV3l
+         OcAk9hXYtAIOPBLnZExK8FyE3rjaa+51VC/YMvIc0Vp/sWd1XYy3mioagfIgptoNjE+F
+         LG8YdrfTvaZxqnbv74tP/LsvD5MGU+1b1fw+u0NpsuebQn/sEgIek/1mHGYkJ0/kCTwT
+         EWMDPu/TqoUlJWkWP8fKnLjzaz0aw+s/ilLaguVTBMUfvUbTGbZS5+OAukId6KiKxE1w
+         /QR/I2p5sKtb1anfyOUmQ+2CsDSQYf5yb7IKo/d5LLN+g4CkQg8Zn3bVZcSKAg+65/nG
+         CkTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kkHt7s7VueS+yqyVhguewaguIXeRKiiObRdiVTmhMq4=;
-        b=NyurQLtLW2ImhfgXRwiNsIA1m6uumtz+Xtu2lsWUkEyLmz15fQQtX5MXVGGhlHP6Aj
-         GHndQ76lFw2Md3h2O6XmNRA9fZiDqiJwT2LquR6sBwdHEEotno4WAlrvSsGtZaTKU5MR
-         c9MnJGeeUzY5BOIuKZT6qGB2Xo3nF5cOu6ZCUeyuZhVEy9McnjbrPutemQaRKHBKJacu
-         U64I/oCPTkKkXEhvVAbaHJZeQN++dErar6tMw1PfPO29H7jk+vfTIrCJY0RroeDLCnG3
-         Qf6P1vSzpI8iDCA2GSXqeEQ6kbiDe8FyqrXOe6UNuwqJJCdGR3IUr3Ze2U6KOhgqmnI9
-         byaw==
-X-Gm-Message-State: ACrzQf1AJwNqVYwUCL9e8mee/YENUsL0g+vXAhjWiWJMd0RRf3QvFr2E
-        7Afk2ryB2kdLooxUxCiIImhfl1uukYIsDA==
-X-Google-Smtp-Source: AMsMyM4qoSseM95jLEm1elg8JEI6QXvCaGObqWcc5rQia54ewHUCVM578288JqDT4Iu4iJZI7rsS4Q==
-X-Received: by 2002:a05:622a:211:b0:39c:f429:e03a with SMTP id b17-20020a05622a021100b0039cf429e03amr29174644qtx.389.1666628200951;
-        Mon, 24 Oct 2022 09:16:40 -0700 (PDT)
+        bh=J2VRpuKdojQ+NO71XeVe/4aq9kyu5s+RF8YH+GVAGQk=;
+        b=U+Tf867yzTjDS6cehA80ZBQjrlu1lT4ufugxyQlvCLAyrZazqG4DWAKzSbpuTaed0/
+         ti5eNjuP5XAQ3uqc3isJZ+xYoGNBOnPcbiOgGRTeT8ajf/nj7B71w9vw49HMyKciApGD
+         okAN6wMG9caLpeO+w8C7eR/iS6r6Mh3UYxL/DHIti/+QEVbdfB2YrdQEUvqDbZhVveaD
+         na76ydXbZ8Ln2p6/sp2Xft75w76l94K5yhuV3txc209u7Wxi6LFpbYp2QxOjd6HuotTz
+         HHM7epqBr6QY0jx+SnFTq9rx0mNxvw8e08kx+Wf4ggGR3QKN3q6FqQfrvN7W4VRmgcCJ
+         VftA==
+X-Gm-Message-State: ACrzQf0Fc+fYyOeGT9XDgl7Skq4+4HG6v2ooHEsIt7JSD/nZSjXv/vPE
+        +fr+theyKRZWTAiibcKuCBBv/p1bTbPAcA==
+X-Google-Smtp-Source: AMsMyM55U0cD1Ha6tf4mZ5xI5fwicQGYnOZXrkGxrJF05zv1atvqfdCYZoOGiWZw6ZuF+mkbGEquyA==
+X-Received: by 2002:a0c:e087:0:b0:4b8:ff9:f760 with SMTP id l7-20020a0ce087000000b004b80ff9f760mr19887457qvk.52.1666628251206;
+        Mon, 24 Oct 2022 09:17:31 -0700 (PDT)
 Received: from [192.168.1.8] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id d1-20020ac847c1000000b00398df095cf5sm181944qtr.34.2022.10.24.09.16.39
+        by smtp.gmail.com with ESMTPSA id e2-20020ac86702000000b0039467aadeb8sm194523qtp.13.2022.10.24.09.17.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 09:16:40 -0700 (PDT)
-Message-ID: <0312d875-3e94-ebb6-017f-5f7559269d9e@linaro.org>
-Date:   Mon, 24 Oct 2022 12:16:38 -0400
+        Mon, 24 Oct 2022 09:17:30 -0700 (PDT)
+Message-ID: <e1d6f611-3d43-c9a5-fa03-a3376f4916ba@linaro.org>
+Date:   Mon, 24 Oct 2022 12:17:29 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 10/13] arm64: dts: qcom: sm8450: add spmi node
-To:     konrad.dybcio@somainline.org
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211209103505.197453-1-vkoul@kernel.org>
- <20211209103505.197453-11-vkoul@kernel.org>
- <5035b6a3-164b-afa0-b714-4deb886f9f90@linaro.org>
- <59859752dbafda83c801c6a7bf0a06e1@somainline.org>
+Subject: Re: [PATCHv2] arm: dts: socfpga: align mmc node names with dtschema
 Content-Language: en-US
+To:     Dinh Nguyen <dinguyen@kernel.org>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+References: <20221024152110.197041-1-dinguyen@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <59859752dbafda83c801c6a7bf0a06e1@somainline.org>
+In-Reply-To: <20221024152110.197041-1-dinguyen@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,46 +72,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 11:06, konrad.dybcio@somainline.org wrote:
-> On 2022-10-24 16:56, Krzysztof Kozlowski wrote:
->> On 09/12/2021 05:35, Vinod Koul wrote:
->>> Add the spmi bus as found in the SM8450 SoC
->>>
->>> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->>> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm8450.dtsi | 18 ++++++++++++++++++
->>>  1 file changed, 18 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi 
->>> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> index f75de777f6ea..b80e34fd3fe1 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->>> @@ -645,6 +645,24 @@ pdc: interrupt-controller@b220000 {
->>>  			interrupt-controller;
->>>  		};
->>>
->>> +		spmi_bus: spmi@c42d000 {
->>> +			compatible = "qcom,spmi-pmic-arb";
->>> +			reg = <0x0 0x0c400000 0x0 0x00003000>,
->>> +			      <0x0 0x0c500000 0x0 0x00400000>,
->>> +			      <0x0 0x0c440000 0x0 0x00080000>,
->>> +			      <0x0 0x0c4c0000 0x0 0x00010000>,
->>> +			      <0x0 0x0c42d000 0x0 0x00010000>;
->>
->> This is a patch from December 2021. Is there anything blocking it from
->> being merged?
-> I think it depended on a series of changes to the driver, as 8450 has a 
-> newer SPMI ver
->
+On 24/10/2022 11:21, Dinh Nguyen wrote:
+> dwmmc0@ff704000: $nodename:0: 'dwmmc0@ff704000' does not match '^mmc(@.*)?$'
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+> v2: put back mmc0 for "linux,default-trigger"
+> ---
+>  arch/arm/boot/dts/socfpga.dtsi                      | 2 +-
+>  arch/arm/boot/dts/socfpga_arria10.dtsi              | 2 +-
+>  arch/arm/boot/dts/socfpga_arria5.dtsi               | 2 +-
+>  arch/arm/boot/dts/socfpga_arria5_socdk.dts          | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5.dtsi             | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5_chameleon96.dts  | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5_mcv.dtsi         | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5_socdk.dts        | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5_sockit.dts       | 2 +-
+>  arch/arm/boot/dts/socfpga_cyclone5_sodia.dts        | 2 +-
+>  arch/arm/boot/dts/socfpga_vt.dts                    | 2 +-
+>  12 files changed, 12 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
+> index 2459f3cd7dd9..57a5d6c924b1 100644
+> --- a/arch/arm/boot/dts/socfpga.dtsi
+> +++ b/arch/arm/boot/dts/socfpga.dtsi
+> @@ -755,7 +755,7 @@ l3regs@0xff800000 {
+>  			reg = <0xff800000 0x1000>;
+>  		};
+>  
+> -		mmc: dwmmc0@ff704000 {
+> +		mmc: mmc@ff704000 {
+>  			compatible = "altr,socfpga-dw-mshc";
+>  			reg = <0xff704000 0x1000>;
+>  			interrupts = <0 139 4>;
+> diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
+> index 4370e3cbbb4b..a06211fcb5c3 100644
+> --- a/arch/arm/boot/dts/socfpga_arria10.dtsi
+> +++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
+> @@ -656,7 +656,7 @@ L2: cache-controller@fffff000 {
+>  			arm,shared-override;
+>  		};
+>  
+> -		mmc: dwmmc0@ff808000 {
+> +		mmc: mmc@ff808000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  			compatible = "altr,socfpga-dw-mshc";
+> diff --git a/arch/arm/boot/dts/socfpga_arria5.dtsi b/arch/arm/boot/dts/socfpga_arria5.dtsi
+> index 22dbf07afcff..9ce4b4979ecb 100644
+> --- a/arch/arm/boot/dts/socfpga_arria5.dtsi
+> +++ b/arch/arm/boot/dts/socfpga_arria5.dtsi
+> @@ -18,7 +18,7 @@ osc1 {
+>  			};
+>  		};
+>  
+> -		mmc0: dwmmc0@ff704000 {
+> +		mmc: mmc@ff704000 {
+>  			broken-cd;
+>  			bus-width = <4>;
+>  			cap-mmc-highspeed;
+> diff --git a/arch/arm/boot/dts/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
+> index 7f5458d8fccc..40f12232c150 100644
+> --- a/arch/arm/boot/dts/socfpga_arria5_socdk.dts
+> +++ b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
+> @@ -107,7 +107,7 @@ rtc@68 {
+>  	};
+>  };
+>  
+> -&mmc0 {
+> +&mmc {
 
-If the new device node in DTS (for new hardware) depends on driver
-changes, then something here is completely broken. Probably in the
-bindings for Qualcomm SPMI PMIC.
-
-I expect adding DTS independently of driver changes. It anyway goes
-always via separate branches.
+This does not look related and was not mentioned in commit msg,
 
 Best regards,
 Krzysztof
