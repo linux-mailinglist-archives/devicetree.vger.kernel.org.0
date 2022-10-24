@@ -2,221 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 795A060C01A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 02:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0835160C03D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 02:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiJYAud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 20:50:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40710 "EHLO
+        id S231361AbiJYAzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 20:55:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiJYAuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 20:50:08 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51A54E8C5C
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 16:29:12 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id j21so7066267qkk.9
-        for <devicetree@vger.kernel.org>; Mon, 24 Oct 2022 16:29:12 -0700 (PDT)
+        with ESMTP id S229909AbiJYAys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 20:54:48 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1410C1D3753;
+        Mon, 24 Oct 2022 16:38:59 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id bu30so18376022wrb.8;
+        Mon, 24 Oct 2022 16:38:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sDEiOO2OxUQEqcJLQZ7kBsOvRFZBqkT37nDYaev+ddU=;
-        b=TwfP4qZqh4BiLDQV8bKcN09HTJJB3GwPlAFBoCOIaBVjuUKx835RqDrfXzzU0I+ATj
-         3z9IxlU39VJ/0T02QQc0PW7mT6gt2vaVNpAO0NjZuUv/skIp+iHZ0oA36GcU/Sul4PRj
-         5vSlCegDDJxYot192NhL05+XWH3q4iAKh6mtBNdlaRbIDwPetrJDYZ5hWXjd3AHeG5rY
-         SDTNF449Tsmg/z0kkgdWdUW83n4ZNeomfkPZHZKp2Vyvk+QjRUKHSi+2v2/kPfkou6Wc
-         1l32r/V5jg8XUnPFCvrjg+PwtGc62cG2rvO6NGeyAUTqhkjq2HJ6Dso/Q0j0+L/Up4Wn
-         qI5Q==
+        d=gmail.com; s=20210112;
+        h=mime-version:message-id:date:in-reply-to:subject:cc:to:from
+         :references:from:to:cc:subject:date:message-id:reply-to;
+        bh=uINnN2GHQROVBHy0xs24WDA9fdZGIwwuHPSB6D8DuTs=;
+        b=AdE3d4TO018237MR782/QXsf+J0r9dEceAgrDW1PFNxiBs+UkjSYSQOlK+Av988gSq
+         pC2fBlVd6LZgxxl8Q6D4ub06f1IYV7gP1B1R5CbqQw6ZM2B+pXt10cHUfTIbZah7QKC4
+         NYNiLAWhZjKkaDkMX6Sv4LBkW1w4/IQxp232LUnXgIP/dQ7QyJCChjXYXMRBlj5VQ9SH
+         bsvuexK4/+bwRB9U8gpCZ+8eNiHWRu+iAj9pmbdOxx7DsbybOLo6l1N03F/lpL8lzXXb
+         A0FyXPeseFkeuRzvAXjAPJAIl6rszM0fV9SOE/q5NUbnZu2qIsMoGj+z10fJG5zj+9Go
+         P2vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sDEiOO2OxUQEqcJLQZ7kBsOvRFZBqkT37nDYaev+ddU=;
-        b=cWH9zg7bV+kstN82+ZKZ9dZx1+qShSxaUJwLydlGJGmzOP/DGnyP8GliaoEt17pJTS
-         KVS0ar1V2vKfjsemXKIr26EDRkYMzNoA4TWSYr7uSSnjbbhYKVYeKqldc6WWKt13BBea
-         DvVOUk4k2ADtWanCrLz6EvKwaktpSHEIyyACVChbAlzwMA+SEMz61IpTSJmnY+9ZaPq6
-         OYtB6wXe7XOwyOYm3M5FWlJO5+feAgKcdzQGkw0WQ/H6Ij+hLQFag8p7WSsno8wiB8bK
-         WGLXypgl49Dhju1suL54qguakL87ErsggIkgaPG0JPZDkN+6EvMlAM4aKt2sUZqUVqyq
-         RL9w==
-X-Gm-Message-State: ACrzQf3lw6DC9tm6OC3gjGsKADmFRKJGOkJCNetjFXnhD6KaFOw5EvzD
-        eDqvJHPktVF8AT3kBf1utt+t0Q==
-X-Google-Smtp-Source: AMsMyM4ZQwkLHu6v8w+ZHyWFThFAVPZOqYX9ByMlpVhRAn8QqQIOhDADr3uBRhpmvP4in84UZwkutA==
-X-Received: by 2002:a05:620a:2f5:b0:6ee:82ea:b531 with SMTP id a21-20020a05620a02f500b006ee82eab531mr24796730qko.324.1666654151315;
-        Mon, 24 Oct 2022 16:29:11 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id h6-20020a375306000000b006f3a20dccaesm805379qkb.136.2022.10.24.16.29.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Oct 2022 16:29:10 -0700 (PDT)
-Message-ID: <3aa78c08-6d19-8480-cf31-2de41642b100@linaro.org>
-Date:   Mon, 24 Oct 2022 19:29:09 -0400
+        h=mime-version:message-id:date:in-reply-to:subject:cc:to:from
+         :references:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uINnN2GHQROVBHy0xs24WDA9fdZGIwwuHPSB6D8DuTs=;
+        b=1SxItpg4ZKfwOv7jLTBk6p+IQ1IuGbGWywO4kcPzE04K3V2Tdf6Gu1T5UszDUeor6I
+         L220QBKBD2wCeIt9UOHET+NpbtZRkzwZYimVwJtXZxyJ/57t4EDTCxWemZZz/cFc7W3i
+         hq7Jnd4DySQaitJ/YAEayeILKUL24rGOWfdE8v7fIJNk4ZxqKS+KJjq1M7tpLGmXlnzJ
+         IuMmb1+QDggeZjCi/qnAFqPT22O+WxagKiNXUbFPh3WO1E3XCVXkaRpve9PxQyh7fzaV
+         hjLfAtXXTCrdH+wR5YUI4tkfgzXU1bT9Ior17KKk9emhyCMJP162ObMTf8x61AipAZ3m
+         ekIQ==
+X-Gm-Message-State: ACrzQf06mJ+ZwGx92kikKouh7oou6Gh6C6WAQeZkw7xIdLFFxLamIr2A
+        Sfw9ojzQGI7uDfmSriLqIKs=
+X-Google-Smtp-Source: AMsMyM5u2rmG+7GZxp9w2eyvFqjRuht6OLVy3tzVXAe4A+h8TiDnquvfZC2i4xAvYj1QXrV/4tQLwA==
+X-Received: by 2002:a05:6000:184:b0:236:7685:7e6d with SMTP id p4-20020a056000018400b0023676857e6dmr3918668wrx.305.1666654738132;
+        Mon, 24 Oct 2022 16:38:58 -0700 (PDT)
+Received: from localhost (94.197.2.59.threembb.co.uk. [94.197.2.59])
+        by smtp.gmail.com with ESMTPSA id a15-20020adffacf000000b002366e3f1497sm916284wrs.6.2022.10.24.16.38.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 16:38:57 -0700 (PDT)
+References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
+ <20221022162742.21671-2-aidanmacdonald.0x0@gmail.com>
+ <ef6a326b-5c61-988b-2ec2-cd8e233e5d28@linaro.org>
+ <GMvEU8xVTkjIoQ518XWAaLkhldSZHlk7@localhost>
+ <4ef59d94-d045-55fc-d531-c84e7edb8333@linaro.org>
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] dt-bindings: ASoC: simple-card: Add
+ system-clock-id property
+In-reply-to: <4ef59d94-d045-55fc-d531-c84e7edb8333@linaro.org>
+Date:   Tue, 25 Oct 2022 00:38:56 +0100
+Message-ID: <hXRpArckbrXUelDdaJ3Y2SErmKiuycXt@localhost>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
- subnodes
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
- <761d6ae2-e779-2a4b-a735-960c716c3024@linaro.org>
- <20221024222850.5zq426cnn75twmvn@mercury.elektranox.org>
- <aa146042-2130-9fc3-adcd-c6d701084b4a@linaro.org>
-In-Reply-To: <aa146042-2130-9fc3-adcd-c6d701084b4a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 19:28, Krzysztof Kozlowski wrote:
-> On 24/10/2022 18:28, Sebastian Reichel wrote:
->> Hi,
+
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+
+> On 23/10/2022 09:47, Aidan MacDonald wrote:
 >>
->> On Sat, Oct 22, 2022 at 12:05:15PM -0400, Krzysztof Kozlowski wrote:
->>> On 21/10/2022 13:10, Sebastian Reichel wrote:
->>>> The queue configuration is referenced by snps,mtl-rx-config and
->>>> snps,mtl-tx-config. Most in-tree DTs put the referenced object
->>>> as child node of the dwmac node.
+>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+>>
+>>> On 22/10/2022 12:27, Aidan MacDonald wrote:
+>>>> This is a new per-DAI property used to specify the clock ID argument
+>>>> to snd_soc_dai_set_sysclk().
+>>>
+>>> You did no show the use of this property and here you refer to some
+>>> specific Linux driver implementation, so in total this does no look like
+>>>  a hardware property.
+>>>
+>>> You also did not explain why do you need it (the most important piece of
+>>> commit msg).
+>>>
 >>>>
->>>> This adds proper description for this setup, which has the
->>>> advantage of properly making sure only known properties are
->>>> used.
->>>>
->>>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+>>>> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 >>>> ---
->>>> [...]
+>>>>  Documentation/devicetree/bindings/sound/simple-card.yaml | 8 ++++++++
+>>>>  1 file changed, 8 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+>>>> index ed19899bc94b..cb7774e235d0 100644
+>>>> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
+>>>> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+>>>> @@ -57,6 +57,12 @@ definitions:
+>>>>        single fixed sampling rate.
+>>>>      $ref: /schemas/types.yaml#/definitions/flag
+>>>>
+>>>> +  system-clock-id:
+>>>> +    description: |
+>>>> +      Specify the clock ID used for setting the DAI system clock.
 >>>
->>> Please update the DTS example with all this.
->>
->> ok
-> 
-> BTW, I also found:
-> 
-> https://lore.kernel.org/linux-devicetree/20201214091616.13545-5-Sergey.Semin@baikalelectronics.ru/
->>
 >>>
->>>>  
->>>>    snps,mtl-tx-config:
->>>>      $ref: /schemas/types.yaml#/definitions/phandle
->>>>      description:
->>>> -      Multiple TX Queues parameters. Phandle to a node that can
->>>> -      contain the following properties
->>>> -        * snps,tx-queues-to-use, number of TX queues to be used in the
->>>> -          driver
->>>> -        * Choose one of these TX scheduling algorithms
->>>> -          * snps,tx-sched-wrr, Weighted Round Robin
->>>> -          * snps,tx-sched-wfq, Weighted Fair Queuing
->>>> -          * snps,tx-sched-dwrr, Deficit Weighted Round Robin
->>>> -          * snps,tx-sched-sp, Strict priority
->>>> -        * For each TX queue
->>>> -          * snps,weight, TX queue weight (if using a DCB weight
->>>> -            algorithm)
->>>> -          * Choose one of these modes
->>>> -            * snps,dcb-algorithm, TX queue will be working in DCB
->>>> -            * snps,avb-algorithm, TX queue will be working in AVB
->>>> -              [Attention] Queue 0 is reserved for legacy traffic
->>>> -                          and so no AVB is available in this queue.
->>>> -          * Configure Credit Base Shaper (if AVB Mode selected)
->>>> -            * snps,send_slope, enable Low Power Interface
->>>> -            * snps,idle_slope, unlock on WoL
->>>> -            * snps,high_credit, max write outstanding req. limit
->>>> -            * snps,low_credit, max read outstanding req. limit
->>>> -          * snps,priority, bitmask of the priorities assigned to the queue.
->>>> -            When a PFC frame is received with priorities matching the bitmask,
->>>> -            the queue is blocked from transmitting for the pause time specified
->>>> -            in the PFC frame.
->>>> +      Multiple TX Queues parameters. Phandle to a node that
->>>> +      implements the 'tx-queues-config' object described in
->>>> +      this binding.
->>>> +
->>>> +  tx-queues-config:
->>>> +    type: object
->>>> +    properties:
->>>> +      snps,tx-queues-to-use:
->>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>> +        description: number of TX queues to be used in the driver
->>>> +      snps,tx-sched-wrr:
->>>> +        type: boolean
->>>> +        description: Weighted Round Robin
->>>> +      snps,tx-sched-wfq:
->>>> +        type: boolean
->>>> +        description: Weighted Fair Queuing
->>>> +      snps,tx-sched-dwrr:
->>>> +        type: boolean
->>>> +        description: Deficit Weighted Round Robin
->>>> +      snps,tx-sched-sp:
->>>> +        type: boolean
->>>> +        description: Strict priority
->>>> +    patternProperties:
->>>> +      "^queue[0-9]$":
->>>> +        description: Each subnode represents a queue.
->>>> +        type: object
->>>> +        properties:
->>>> +          snps,weight:
->>>> +            $ref: /schemas/types.yaml#/definitions/uint32
->>>> +            description: TX queue weight (if using a DCB weight algorithm)
->>>> +          snps,dcb-algorithm:
->>>> +            type: boolean
->>>> +            description: TX queue will be working in DCB
->>>> +          snps,avb-algorithm:
+>>> With lack of explanation above, I would say - use common clock framework
+>>> to choose a clock...
 >>>
->>> Is DCB and AVB compatible with each other? If not, then this should be
->>> rather enum (with a string for algorithm name).
 >>>
->>> This applies also to other fields which are mutually exclusive.
+>>> Best regards,
+>>> Krzysztof
 >>
->> Yes and I agree it is ugly. But this is not a new binding, but just
->> properly describing the existing binding. It's not my fault :)
-> 
-> I understand (and did not think it's your fault), but you are
-> redesigning them. Existing DTS will have to be updated. If this is
-> already implemented by some other DTS, then well... they did not follow
-> bindings, so it's their fault. :)
-> 
-> What I want to say, why refactoring it if the new format is still poor?
+>> Sorry, I didn't explain things very well. The system clock ID is indeed
+>> a property of the DAI hardware. The ID is not specific to Linux in any
+>> way, and really it's an enumeration that requires a dt-binding.
 >>
->>>> +            type: boolean
->>>> +            description:
->>>> +              TX queue will be working in AVB.
->>>> +              Queue 0 is reserved for legacy traffic and so no AVB is
->>>> +              available in this queue.
->>>> +          snps,send_slope:
->>>
->>> Use hyphens, no underscores.
->>> (This is already an incompatible change in bindings, so we can fix up
->>> the naming)
+>> A DAI may support multiple system clock inputs or outputs identified by
+>> the clock ID. In the case of outputs, these could be distinct clocks
+>> that have their own I/O pins, or the clock ID could select the internal
+>> source clock used for a clock generator. For inputs, the system clock ID
+>> may inform the DAI how or where the system clock is being provided so
+>> hardware registers can be configured appropriately.
 >>
->> No, this is not an incompatible change in the bindings. It's 100%
->> compatible. What this patch does is removing the text description
->> for 'snps,mtl-tx-config' and instead documenting the node in YAML
->> syntax. 'snps,mtl-tx-config' does not specify where this node should
->> be, so many DTS files do this:
-> 
-> Old binding did not document "tx-queues-config". Old binding had
-> "snps,mtl-tx-config" which was a phandle, so this is an ABI break of
-> bindings.
+>> Really the details do not matter, except that in a particular DAI link
+>> configuration a specific clock ID must be used. This is determined by
+>> the actual hardware connection between the DAIs; if the wrong clock is
+>> used, the DAI may not function correctly.
+>>
+>> Currently the device tree is ambiguous as to which system clock should
+>> be used when the DAI supports more than one, because there is no way to
+>> specify which clock was intended. Linux just treats the ID as zero, but
+>> that's currently a Linux-specific numbering so there's guarantee that
+>> another OS would choose the same clock as Linux.
+>>
+>> The system-clock-id property is therefore necessary to fully describe
+>> the hardware connection between DAIs in a DAI link when a DAI offers
+>> more than one choice of system clock.
+>>
+>> I will resend the patch with the above in the commit message.
+>
+> For example if you want to define which input pin to use (so you have
+> internal mux), it's quite unspecific to give them some indexes. What is
+> 0? What is 1? Number of pin? Number of pin counting from where?
+>
+> Since this is unanswered, the IDs are also driver and implementation
+> dependent, thus you still have the same problem - another OS can choose
+> different clock. That's not then a hardware description, but software
+> configuration.
+>
+> Best regards,
+> Krzysztof
 
-Bah, not ABI break, just change in bindings, of course :)
+I answered this already. The enumeration is arbitrary. Create some
+dt-bindings and voila, it becomes standardized and OS-independent.
 
-Best regards,
-Krzysztof
-
+Regards,
+Aidan
