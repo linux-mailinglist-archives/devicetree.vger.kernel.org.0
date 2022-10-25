@@ -2,133 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DF4D60CEC1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D5160CED1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233011AbiJYOSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:18:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34560 "EHLO
+        id S232469AbiJYOVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:21:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233148AbiJYOSB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:18:01 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE70B46DBE;
-        Tue, 25 Oct 2022 07:17:47 -0700 (PDT)
-Received: from mercury (dyndsl-095-033-154-085.ewe-ip-backbone.de [95.33.154.85])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9692D66017D3;
-        Tue, 25 Oct 2022 15:17:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666707454;
-        bh=n69auhz0Ir0VGRIA5Bye37d1x6LLrH8ICp6KQcQA+8c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oCtHezU1Ok3oYWhsSRhZCr0wT9aISnoiWLqTGmnJpa2pQ01K2feGoMToVu5H0/F35
-         9MQr6opKRN/dmBayoL9AmB36wqq8lf/PAlqi9h3qOieUjArSlnhg8g1Lf36WCtdiHf
-         eqaSTH7MOf7w0urxr1OG1Ym3mwDePBjq9resKtIXrL7Pbzp8UEf/fAFI6TLq1RQ/Rp
-         YEFRUPGN4VGfj9i6ZiPXLWE2PUdyRo85LhWYK4hzV6HE/CJ9KDto6DRCpDM6hxtwml
-         BLtI52iHB6To+JPqn3S87Ryzx2YAaI4qePG6GXG1j0ibi5irOrS+0PbAFmL6yB6Ndu
-         mSrICxIt9FUJA==
-Received: by mercury (Postfix, from userid 1000)
-        id 43E5C10607D6; Tue, 25 Oct 2022 16:17:32 +0200 (CEST)
-Date:   Tue, 25 Oct 2022 16:17:32 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
- subnodes
-Message-ID: <20221025141732.z65kswaptgeuz2cl@mercury.elektranox.org>
-References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
- <761d6ae2-e779-2a4b-a735-960c716c3024@linaro.org>
- <20221024222850.5zq426cnn75twmvn@mercury.elektranox.org>
- <aa146042-2130-9fc3-adcd-c6d701084b4a@linaro.org>
+        with ESMTP id S232846AbiJYOVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:21:42 -0400
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A88380EB5;
+        Tue, 25 Oct 2022 07:21:40 -0700 (PDT)
+Received: by mail-oo1-xc36.google.com with SMTP id x6-20020a4ac586000000b0047f8cc6dbe4so1849323oop.3;
+        Tue, 25 Oct 2022 07:21:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yko5glIn0tdH0ycCuGOetmeeVh4jbYQFoyxurLJH+28=;
+        b=XMKh31YujBGTgFvh/3bL/FJZ9lbvUpwDIv8xizLBI3z3Y3cEyBj3Vg+O3dn4cWst1o
+         Idcb+RCS3CRObMpknf+nYdmslkuNrsaVhgu7u4XXCxnKGlaHPJknbKTJG82mOPEwiAK/
+         U6RH+TxJ4L4dZUFRbl68MesEhLvyf4iYpNT5IAoFy20seD2+eVGLdgUAcW7Cu6e+mz2b
+         vCGWR0JSLSOUL44ocBUVdFHL9AY8iqrXp8EsLgxsRjToJ+K+mLku/7itzfJnuOwz3/uf
+         kqyZVQeLl3aUH90BMNryZJmBXKU05Nf097iIFbZKz6dw8lchOahxunWA2Mp/hrNk1hf6
+         A06g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yko5glIn0tdH0ycCuGOetmeeVh4jbYQFoyxurLJH+28=;
+        b=WCE36eZTXobY9MlcGMKc6ZrdgLofI6ykJ+P0f0ktX7xyVzT9fE5q95Zn3nnXvoDrDS
+         5TLWaUux6rClJvFCKu9tgCWU9uJ4Lw6wOdW9HmpKhtcazYQObvsjlTUegc92wWwWKgry
+         k6r6cowaCTjVASZx71IYcj3gkd0AS1OGHaNbgHqzU4B/pDfzLxi3uuM0wygoVOUw6JUE
+         1TQJ0pru7mQYtPo/gDYA/5nRhDrLZgLXpbLxnxQtTa1eDKAqbxBiqTh4yr2d3k9zk0yg
+         4DnODlf2PQ1ogBqFPxX0NXrRaWeAXTBeqPlZnNNu43ja8qqt8Sa5AESYiw50izVyX/fq
+         s1BQ==
+X-Gm-Message-State: ACrzQf3KosCPLx08vw3Lj0ZQzitITQzwCFLyvKlnXf85cfc+RQ6PEtQe
+        6O+QDOHRuCYIXOnl+0HBVI8=
+X-Google-Smtp-Source: AMsMyM4hC9gdelH7FK9R/Gan9m4AcPKmHPKl3Amx7nPKpEUnC5Z0GnU1uvauhxxxuVj1KRRxg9Aq5g==
+X-Received: by 2002:a4a:ab0c:0:b0:47f:653f:693e with SMTP id i12-20020a4aab0c000000b0047f653f693emr17114124oon.86.1666707699384;
+        Tue, 25 Oct 2022 07:21:39 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u16-20020a056871059000b0012d939eb0bfsm1598376oan.34.2022.10.25.07.21.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Oct 2022 07:21:38 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <bea41e17-0269-d88e-fd22-ad5c5a4b8dac@roeck-us.net>
+Date:   Tue, 25 Oct 2022 07:21:34 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mydihmwcuy62wu5n"
-Content-Disposition: inline
-In-Reply-To: <aa146042-2130-9fc3-adcd-c6d701084b4a@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To:     Andrej Picej <andrej.picej@norik.com>,
+        linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221025072533.2980154-1-andrej.picej@norik.com>
+ <20221025072533.2980154-2-andrej.picej@norik.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
+In-Reply-To: <20221025072533.2980154-2-andrej.picej@norik.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/25/22 00:25, Andrej Picej wrote:
+> Putting device into the "Suspend-To-Idle" mode causes watchdog to
+> trigger and reset the board after set watchdog timeout period elapses.
+> 
 
---mydihmwcuy62wu5n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+s/reset/resets/
 
-Hi,
+> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
+> watchdog in WAIT mode. This is done by setting WDW bit in WCR
+> (Watchdog Control Register) Watchdog operation is restored after exiting
 
-On Mon, Oct 24, 2022 at 07:28:29PM -0400, Krzysztof Kozlowski wrote:
-> Old binding did not document "tx-queues-config". Old binding had
-> "snps,mtl-tx-config" which was a phandle, so this is an ABI break of
-> bindings.
->
-> You are changing the binding - adding new properties.
+'.' after ')' missing ?
 
-The new binding still has the phandle. The only thing I changed is
-explicitly allowing the referenced node to be a subnode of the dwmac
-node. This is 100% compatible, since the binding does not specify
-where the referenced node should be. Only the example suggested it
-could be next to the ethernet node. But changing any properties in
-the config node means a ABI break requiring code changes.
+> WAIT mode as expected. WAIT mode coresponds with Linux's
 
-Note, that right now 4/7 devicetrees with snps,mtl-tx-config already
-follow the scheme I documented. The other 3 have the queue config
-below the root node like the current example:
+s/coresponds/corresponds/
 
-has the queues config in /:
- * arch/arm/boot/dts/artpec6.dtsi
- * arch/arm64/boot/dts/mediatek/mt2712e.dtsi
- * arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> "Suspend-To-Idle".
+> 
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> ---
+> Changes in v2:
+>   - validate the property with compatible string, as this functionality
+>     is not supported by all devices.
+> ---
+>   drivers/watchdog/imx2_wdt.c | 37 +++++++++++++++++++++++++++++++++++++
+>   1 file changed, 37 insertions(+)
+> 
+> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
+> index d0c5d47ddede..dd9866c6f1e5 100644
+> --- a/drivers/watchdog/imx2_wdt.c
+> +++ b/drivers/watchdog/imx2_wdt.c
+> @@ -35,6 +35,7 @@
+>   
+>   #define IMX2_WDT_WCR		0x00		/* Control Register */
+>   #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* -> Watchdog Timeout Field */
+> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable for WAIT */
+>   #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset WDOG_B */
+>   #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset Signal */
+>   #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable */
+> @@ -67,6 +68,27 @@ struct imx2_wdt_device {
+>   	bool ext_reset;
+>   	bool clk_is_on;
+>   	bool no_ping;
+> +	bool sleep_wait;
+> +};
+> +
+> +static const char * const wdw_boards[] __initconst = {
+> +	"fsl,imx25-wdt",
+> +	"fsl,imx35-wdt",
+> +	"fsl,imx50-wdt",
+> +	"fsl,imx51-wdt",
+> +	"fsl,imx53-wdt",
+> +	"fsl,imx6q-wdt",
+> +	"fsl,imx6sl-wdt",
+> +	"fsl,imx6sll-wdt",
+> +	"fsl,imx6sx-wdt",
+> +	"fsl,imx6ul-wdt",
+> +	"fsl,imx7d-wdt",
+> +	"fsl,imx8mm-wdt",
+> +	"fsl,imx8mn-wdt",
+> +	"fsl,imx8mp-wdt",
+> +	"fsl,imx8mq-wdt",
+> +	"fsl,vf610-wdt",
+> +	NULL
+>   };
+>   
+>   static bool nowayout = WATCHDOG_NOWAYOUT;
+> @@ -129,6 +151,9 @@ static inline void imx2_wdt_setup(struct watchdog_device *wdog)
+>   
+>   	/* Suspend timer in low power mode, write once-only */
+>   	val |= IMX2_WDT_WCR_WDZST;
+> +	/* Suspend timer in low power WAIT mode, write once-only */
+> +	if (wdev->sleep_wait)
+> +		val |= IMX2_WDT_WCR_WDW;
+>   	/* Strip the old watchdog Time-Out value */
+>   	val &= ~IMX2_WDT_WCR_WT;
+>   	/* Generate internal chip-level reset if WDOG times out */
+> @@ -313,6 +338,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
+>   
+>   	wdev->ext_reset = of_property_read_bool(dev->of_node,
+>   						"fsl,ext-reset-output");
+> +
+> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait"))
+> +		if (of_device_compatible_match(dev->of_node, wdw_boards))
+> +			wdev->sleep_wait = 1;
 
-has the queues config in the ethernet node:
- * arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
- * arch/arm64/boot/dts/freescale/imx8mp-evk.dts
- * arch/arm64/boot/dts/rockchip/rk3568.dtsi
- * arch/arm64/boot/dts/rockchip/rk356x.dtsi
+Since sleep_wait is bool:
+			wdev->sleep_wait = true;
 
-After my change both are considered valid. Anyways I'm doing this
-for rk3588 and planned to follow the subnode style. But if I have
-to fully fix this mess I will just put the queue config to the
-root node instead and let somebody else figure this out.
+> +		else {
+> +			dev_warn(dev, "Warning: Suspending watchdog during " \
+> +				"WAIT mode is not supported for this device.\n");
 
--- Sebastian
+Do not split strings. "Warning:" is redundant. Please handle the error first.
 
---mydihmwcuy62wu5n
-Content-Type: application/pgp-signature; name="signature.asc"
+> +			wdev->sleep_wait = 0;
 
------BEGIN PGP SIGNATURE-----
+Unnecessary; false by default. Also, this should fail and return -EINVAL.
+Devicetree files should be correct, and warning messages tend to be ignored.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmNX7/EACgkQ2O7X88g7
-+pqxixAAixJg4jKnLIysudmOG3bwFNtz/E0sXxWmxFPMDK8dm0zwNVq1b1kP3prG
-xyEy7uqMRw1l5JzcmaQTkFbDjBVA0BLHGwY31/FEU5MR4ElFKqWdkFzkt3oV6N5b
-+RUOd1SYAPngXZlbwcegdDirl+fMBOvS4KyJxEmlaxka0HQ5eLU5jdK7QWc6dhnL
-eKdfch2qVThP3K00Oz47hQEpqWaGZUv8KmxMPTgHZTElx/lkOjKyMj9ATIS/2Wlc
-2gH608dBl8OqOmC9dyMCMxFHECK1qIkizebKkSQNRn1FudDlbgTFSNdJpjSCUBRo
-V9fwJc8ZeJKNf/fmh+eHoXG751pOVKT8ica2Akiba4M4TbwJ5Hej0q+DI8li43zE
-F+XKzg8jxXguKus74HF2rewG/+LqSz2XhfgZC1OqEB8uyBZu9SeAzNwONQ9L49Mt
-OsYtOobXRiFQ+a5AJQtIsR3UBqD6L1lgRvb8MWk04EJ75jk4grxDbMAF8cRXY6pn
-f3y9YxevlGmzh+xUThA/PLx55N15PRWfAYUOELcvsyKlzToS8N/lDrvUUTp+MTbr
-yTvBSzC7poEN1lLm3VWBuIIJpmO3ZgERVrMRO3EXtrR801+fjBH8fm/33sLyFNdE
-yMNecsOaBb8E8ixFzLcZtaQXc2gjAZJ4OTnpQbI6F+ACuFkYcAI=
-=9qXU
------END PGP SIGNATURE-----
+> +		}
 
---mydihmwcuy62wu5n--
+All branches of if/else need to wither use {} or no {}.
+
+> +	else
+> +		wdev->sleep_wait = 0;
+> +
+Unnecessary.
+
+I would suggest to replace the above code with something like
+
+	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait")) {
+		if (!of_device_compatible_match(dev->of_node, wdw_boards)) {
+			dev_err(dev, "Suspending watchdog in WAIT mode is not supported for this device\n");
+			return -EINVAL;
+		}
+		wdev->sleep_wait = true;
+	}
+
+>   	/*
+>   	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
+>   	 * during suspend.
+
+I still wonder how that interacts with fsl,suspend-in-wait, but since we have a
+property for that we can leave that for someone else to find out. Maybe add a
+comment explaining that interaction with "fsl,suspend-in-wait" is unknown.
+
+Thanks,
+Guenter
+
