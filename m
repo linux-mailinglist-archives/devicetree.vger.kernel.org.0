@@ -2,120 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB39560C4A7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5498360C509
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbiJYHDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 03:03:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58680 "EHLO
+        id S231733AbiJYH0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 03:26:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231486AbiJYHDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:03:07 -0400
-Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF036B517A;
-        Tue, 25 Oct 2022 00:03:03 -0700 (PDT)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout3.routing.net (Postfix) with ESMTP id BB7D062639;
-        Tue, 25 Oct 2022 07:03:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1666681381;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=jIYRiFA4WqI9vlLRtf7GZM26SSCJYVipWJkDfE5iQSY=;
-        b=CmoCacvj34Ssrs7PCs1PDzIu8ujOWIjc632MnRcroFcpU+RSxfMLbqFjnI/aYItpyKoFuA
-        HucHjd5QO6m+1gYuQu/kF6KS01XNkQ2S6JsmrLQnQC4GhqB4l5rLukLazWnB5qR9UM51UL
-        GADLSBN3ErCtnICNw3S67D6Qd7JkfnM=
-Received: from frank-G5.. (fttx-pool-217.61.152.57.bambit.de [217.61.152.57])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id D8D4B360037;
-        Tue, 25 Oct 2022 07:03:00 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for MT7986 SoC
-Date:   Tue, 25 Oct 2022 09:02:55 +0200
-Message-Id: <20221025070255.14407-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231696AbiJYH0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:26:00 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2AD112A8D;
+        Tue, 25 Oct 2022 00:25:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=hGXhW6u7vYKwy9A2hNsUWM+US9sTwavux1Peo1AKLrY=; b=DC42333jw/J629nGM+epNrcUC9
+        AtQT/jMSsf8mKBmzf8DBmCq8VFHCh1q3p2WZLMr5PEnrXa5K3o5syY2KRxC7oheRAeQryOQ+GtMIM
+        w2tPehhGzTcHcZ/CNCMHys9GcythGf/tIihfr/7nlFxgOBwL4uxJIwK7jiLBc03g2I+DbsJ+w97GM
+        GBAk1IUdqMnRBWuZJZMuuW4sLaPhBxC9UwM6kFKclrymI7jNiM2n0UWTLVDzlEcS7kDDqbdFQpfv3
+        eJM1gAFOgPcTev/GAByNzoDdGpaoyWC0JxxgrjJiiagh0av1UchZsuKPfr6QrSYaX1ADliqlfZOYE
+        R5guxMDg==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:33544 helo=localhost.localdomain)
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1onEJZ-006HEZ-Bv;
+        Tue, 25 Oct 2022 09:25:40 +0200
+From:   Andrej Picej <andrej.picej@norik.com>
+To:     linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Suspending i.MX watchdog in WAIT mode
+Date:   Tue, 25 Oct 2022 09:25:30 +0200
+Message-Id: <20221025072533.2980154-1-andrej.picej@norik.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: 52361692-f7db-4a76-b884-8f2441ad5df9
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+The i.MX6 watchdog can't be stopped once started. Additionally, watchdog
+hardware configuration needs to be able to handle low-power modes of the
+SoC. For low-power modes, there are two configuration bits in the TRM:
+- WDZST bit disables the watchdog timer in "deeper" low power modes and
+- WDW bit disables the watchdog timer in "WAIT" mode
 
-Add new splitted uart pins and emmc_51
+WDZST bit support is already in place since 1a9c5efa576e ("watchdog: imx2_wdt: disable watchdog timer during low power mode").
+On the other hand, handling of WDZST bit was omitted so far but now
+these patch series bring support for it.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-v2:
-- wrap on col 80
----
- .../pinctrl/mediatek,mt7986-pinctrl.yaml         | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+SoC's "WAIT" low-power mode corresponds to Linux's freeze or
+Suspend-to-Idle (S0) mode which can be activated with:
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-index 75766956cfad..1fe4d2550206 100644
---- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
-@@ -87,6 +87,8 @@ patternProperties:
-           "wifi_led"        "led"       1, 2
-           "i2c"             "i2c"       3, 4
-           "uart1_0"         "uart"      7, 8, 9, 10
-+          "uart1_rx_tx"     "uart"      42, 43
-+          "uart1_cts_rts"   "uart"      44, 45
-           "pcie_clk"        "pcie"      9
-           "pcie_wake"       "pcie"      10
-           "spi1_0"          "spi"       11, 12, 13, 14
-@@ -98,9 +100,11 @@ patternProperties:
-           "emmc_45"         "emmc"      22, 23, 24, 25, 26, 27, 28, 29, 30,
-                                         31, 32
-           "spi1_1"          "spi"       23, 24, 25, 26
--          "uart1_2"         "uart"      29, 30, 31, 32
-+          "uart1_2_rx_tx"   "uart"      29, 30
-+          "uart1_2_cts_rts" "uart"      31, 32
-           "uart1_1"         "uart"      23, 24, 25, 26
--          "uart2_0"         "uart"      29, 30, 31, 32
-+          "uart2_0_rx_tx"   "uart"      29, 30
-+          "uart2_0_cts_rts" "uart"      31, 32
-           "spi0"            "spi"       33, 34, 35, 36
-           "spi0_wp_hold"    "spi"       37, 38
-           "uart1_3_rx_tx"   "uart"      35, 36
-@@ -157,7 +161,7 @@ patternProperties:
-             then:
-               properties:
-                 groups:
--                  enum: [emmc, emmc_rst]
-+                  enum: [emmc, emmc_rst, emmc_51]
-           - if:
-               properties:
-                 function:
-@@ -227,8 +231,10 @@ patternProperties:
-             then:
-               properties:
-                 groups:
--                  enum: [uart1_0, uart1_1, uart1_2, uart1_3_rx_tx,
--                         uart1_3_cts_rts, uart2_0, uart2_1, uart0, uart1, uart2]
-+                  enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
-+                         uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
-+                         uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rts,
-+                         uart2_1, uart0, uart1, uart2]
-           - if:
-               properties:
-                 function:
+$ echo freeze > /sys/power/state
+
+Without these patches, board would be reset by the watchdog after
+timeout of 128 seconds since watchdog would not be stopped when SoC
+entered Suspend-to-Idle mode. With patches in place, boards using
+imx2-wdt are able to stay in Suspend-to-Idle mode indefinitely.
+
+Last but not least, WDW bit is not found on all imx2-wdt supported i.MX
+devices, therefore a new device-tree property "fsl,suspend-in-wait" has
+been introduced for this.
+
+Here is a v1: https://lore.kernel.org/lkml/20221019111714.1953262-1-andrej.picej@norik.com/
+
+Change log for v2 in the corresponding patches.
+
+Andrej Picej (3):
+  watchdog: imx2_wdg: suspend watchdog in WAIT mode
+  dt-bindings: watchdog: fsl-imx: document suspend in wait mode
+  ARM: dts: imx6ul/ull: suspend i.MX6UL watchdog in wait mode
+
+ .../bindings/watchdog/fsl-imx-wdt.yaml        | 22 +++++++++++
+ .../boot/dts/imx6ul-phytec-phycore-som.dtsi   |  4 ++
+ drivers/watchdog/imx2_wdt.c                   | 37 +++++++++++++++++++
+ 3 files changed, 63 insertions(+)
+
 -- 
-2.34.1
+2.25.1
 
