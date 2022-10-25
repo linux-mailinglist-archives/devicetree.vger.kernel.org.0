@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1BB60D4E8
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C7360D4EF
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232334AbiJYTsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 15:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40610 "EHLO
+        id S230245AbiJYTt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 15:49:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232324AbiJYTsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:48:40 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65DC4F07FB
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:48:39 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id s17so8900645qkj.12
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:48:39 -0700 (PDT)
+        with ESMTP id S232304AbiJYTtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:49:55 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D1312D07
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:49:50 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id z6so477086qtv.5
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:49:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nsy/E/McG6wphxcYFdjdUMTRPfbaeJ0Z5p5LSzNi/vo=;
-        b=RdjgjIJid3w2NovUK1hSPAckw+AekRfr7Gt2LGMF6fw7aTtpYrGBc6556Xfz8BtVK/
-         x8jJevoDOug7BDK+/EnIVxGOg4VKRv73vLTrDrXNio3XcQnVD1vBh9z3wZcbdLr2/34M
-         xqR8XEfTHRaVz9QDTqC6pLb+tnlGfMVaWPPlOPRe6jGGsMwYugutKD4KfzWY9yS0289S
-         RDcVpSSJI0TF+n0WAjBdLnIdat6To60QJ/fiGURxkOOlIRiLpuqhLNfzCHPIBV8SQpzN
-         gSgXV6JSQ5Kb0WF3He8HLNhj1UngD3XRxD9TZAOiEEnYIFW0J7X8gzv2dvKJhxRd3Lpy
-         GnUw==
+        bh=U41pkWnztK+i9UJZd7s5z8LIiVyrhcfeu311i/JqJM8=;
+        b=ZFG1ze7gQ7pP9QhmCO1qgsX4LR7vZ+Ynt4b8aO3aFFIEKuPT8tgKjsSX7OM/4eTdVC
+         ZxvD1/1lu9Bh8KZbEvVZvL2r5tDCA4CSmu5jx4bgYS7ntOiqdtbM8qflPN6ghUGkyWEs
+         N5YGlO0vt6YEWRI67ygYiusJcCdF85emAit/aspDfJV1xfNtPt+5z/RNHUSdbNqZUaku
+         bUHCqGd/t1nsm1KesFxjIubI7j0YtQKOoIhJqWRVHr3nRisd+ph0qKSgTW8L8UE0RmgR
+         n6wdWL02OktzsVki8tx47w9YfJex8dkas7SD9gG8i9CBq2Dw+NBeyeIe/ApVZIT5HP6v
+         4JWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nsy/E/McG6wphxcYFdjdUMTRPfbaeJ0Z5p5LSzNi/vo=;
-        b=efynu2phpK81FnqxJfSy/M6l6FxViETA5e17tUmN04M53HHy7yQffg3PKsnv92XDjG
-         gYKN+ChDomTjXYbPsAB3yAPEhpw0CLgPbrWqwPA5JUOHaLbae2Vznrf/gTSV8wNLgcOe
-         q9OLX0MfylOQEilJ/9qUknU5/b/DUh0L9oClY9vlu7VuBZ4EWpaRCdtCm/4boC9vcg+k
-         oyBaM6l0++hqYQzdr5MtBuSQ/JLDPot98qipHRPKloLtjRBtDDnqyyiNmvNAGKZrKOMs
-         XrPLpej3aYabeQp3it7i7Dm6Nfre93BqwRKnK7U4A5PaQ7ZN03L53exrfsMhmD8SjvcQ
-         CAfA==
-X-Gm-Message-State: ACrzQf0Y0h1gSdz0NXcKffC13RKpne5QNcI1+Scffc+SqivHkgYhpyGQ
-        jLfORj6KG3OQE580aHgwl1w9kA==
-X-Google-Smtp-Source: AMsMyM55rJIV7dZ7ouZTeJWWZDxaDM/Si4uJAf9nILmG79CPEQ3hsU6mnX5fDPVAYwYI+dbMCE1aMg==
-X-Received: by 2002:a05:620a:2618:b0:6ea:908:120e with SMTP id z24-20020a05620a261800b006ea0908120emr27840879qko.645.1666727318586;
-        Tue, 25 Oct 2022 12:48:38 -0700 (PDT)
+        bh=U41pkWnztK+i9UJZd7s5z8LIiVyrhcfeu311i/JqJM8=;
+        b=Ltu7wJdkJ6XyFy+wQh3pC6jzHBNiLIB536BA9IHVwN+tLnb9CFDPXhWSDfztnW7qmn
+         tEO5mrsbooExUXzZLMl7FW6e//erD2VfUwl9mGiihgVk4E4v32GVfnD5IoOwr5S5lR/l
+         Hr/bDl4FglQdEl4oEdC5NtVzNWm4LCy77PHOFGgPWon8jdPZngiZB+q/vYCSkqLHOeUj
+         jVjg13yXUU2o9M8La67mgOchQNKrS4GbQa1n4qN3dk2mBGS5b9F5b6A0FiEdz0+ZJqZt
+         TA7TFcsMSyLEH73YTwc8RkEwXT3yj3I+a4dW48iwdtHYPf4VdyTVSVXZQ3IR0bnu2+z8
+         onOw==
+X-Gm-Message-State: ACrzQf28JMwOnWoIYBUsngYbnNPTpwXVlqKdYM8srODvYhjtY9/tGeUB
+        KY/SYUctMgHfw0ngHAhS2jfQNA==
+X-Google-Smtp-Source: AMsMyM6+s9yLCfeEgg3kbixXLX/jGhSq3bpEZpjwl3Rb1L5e21mSdwAl7KYOL2J9lqP6sxLZLiBvuw==
+X-Received: by 2002:ac8:5d93:0:b0:398:3709:945c with SMTP id d19-20020ac85d93000000b003983709945cmr33024036qtx.459.1666727390012;
+        Tue, 25 Oct 2022 12:49:50 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id t30-20020a37ea1e000000b006ec771d8f89sm2515328qkj.112.2022.10.25.12.48.36
+        by smtp.gmail.com with ESMTPSA id d20-20020ac851d4000000b0035bafecff78sm2023136qtn.74.2022.10.25.12.49.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 12:48:37 -0700 (PDT)
-Message-ID: <8a4048d4-2675-96ed-89f1-db77084d18ba@linaro.org>
-Date:   Tue, 25 Oct 2022 15:48:35 -0400
+        Tue, 25 Oct 2022 12:49:49 -0700 (PDT)
+Message-ID: <5dc85333-b265-ab10-74db-1ed969630813@linaro.org>
+Date:   Tue, 25 Oct 2022 15:49:48 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
@@ -95,30 +95,55 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 25/10/2022 15:39, Verdun, Jean-Marie wrote:
 > Hi Krzysztof,
 > 
-
-Use mailing list style of replying. I can bear the lack of wrapping (one
-huge sentence), but top-post is a no.
-
 > I think what we try to do is to introduce an abstraction layer between the interfaces and the drivers, as our CPLD interfaces are platform dependents. I mean the Power On control could be at address 0x09 on one platform or 0x119 on another one. We would like to find a way to avoid to have to change the driver code, but just feeding the driver with relevant datas, which could be into a platform dependent include file or through the proposed solution that Nick is promoting.
-
-I think this was already said. Repeating it, with very similar words
-will not help us...
-
-Let me be then clear: I care little about your goal of abstracting some
-driver code. I care about proper Devicetree bindings and proper
-representation of hardware in Devicetree sources.
-
-Looks like you want to hack around Devicetree to match your needs. This
-does not work. I gave you the proposed solution based on my feeling and
-limited understanding of what you have there. If this does not work for
-you, then life - you need to find other solution.
-
 > 
 > If the CPLD memory address space was consistent between platform and generation that would be great but unfortunately that is not the case that is why we try to break down the dependency into the driver code and retrieve the data from another place.
+> 
+> JM
+> ________________________________
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sent: Tuesday, October 25, 2022 12:33 PM
+> To: Hawkins, Nick <nick.hawkins@hpe.com>
+> Cc: Verdun, Jean-Marie <verdun@hpe.com>; krzysztof.kozlowski+dt@linaro.org <krzysztof.kozlowski+dt@linaro.org>; linux@armlinux.org.uk <linux@armlinux.org.uk>; devicetree@vger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; linux-arm-kernel@lists.infradead.org <linux-arm-kernel@lists.infradead.org>; Rob Herring <robh+dt@kernel.org>
+> Subject: Re: [PATCH v1 2/5] dt-bindings: soc: hpe: Add hpe,gxp-plreg
+> 
+> On 25/10/2022 15:26, Hawkins, Nick wrote:
+>>
+>>> I don't know exactly what type of devices you represent in that plreg, but in general the fan device would be the respective plreg. The same with other pieces like hwmon, power supply.
+>> We were primarily representing the registers that translate to the CPLD input/outputs from our platforms as well as handling the interrupts associated with those inputs/outputs.
+> 
+> So basically each register (or set of registers) is a device? How is it
+> different than any other multi-functional device? Why do you want to
+> model it differently?
 
-I don't see how this argument is relevant to my questions. I did not
-propose anything which would require some "memory address space
-consistency".
+How is it different, I am asking?
+
+> 
+>> When you say "would be the respective plreg" do you mean that each device/controller would need to perform the actions plreg does individually? In that case how should we get information for that register/memory region and interrupts from the dts? Could it be something like this:
+>>
+>> plreg: plreg@d1000000 {
+>>       compatible = "hpe,gxp-plreg";
+>>       reg = <0xd1000000 0xFF>;
+>>       interrupts = <26>;
+>>       interrupt-parent = <&vic0>;
+>> };
+>>
+>> fanctrl: fanctrl@c1000c00 {
+>>       compatible = "hpe,gxp-fan-ctrl";
+>>       reg = <0xc1000c00 0x200>;
+>>       plreg_handle = <&plreg>;
+>> };
+>>
+> 
+> No, rather these are one node.
+> 
+> You insist to represent this all as programmable logic, but why? CPLD,
+> FPGA, ASIC, dedicated IC - all are just implementations and for us
+> what's matter are the interfaces, inputs and outputs.
+
+
+And seriously... this is not a chat. Take a bit of time to answer these
+questions instead of replying immediately with a same response as yesterday.
 
 Best regards,
 Krzysztof
