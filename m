@@ -2,108 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A32C760C5A9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:43:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C402160C5D1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232053AbiJYHnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 03:43:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39434 "EHLO
+        id S231806AbiJYHtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 03:49:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231985AbiJYHmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:42:54 -0400
-Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8810215B302;
-        Tue, 25 Oct 2022 00:42:49 -0700 (PDT)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout2.routing.net (Postfix) with ESMTP id 368D96050E;
-        Tue, 25 Oct 2022 07:42:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1666683768;
+        with ESMTP id S231356AbiJYHtf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:49:35 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B3A26AE5;
+        Tue, 25 Oct 2022 00:49:33 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B9A0A20005;
+        Tue, 25 Oct 2022 07:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666684172;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=9YIiUZlTrjdPAMVHM7klpVqQezdSDroJaCTYC5nvEj0=;
-        b=jjN/qTIWkHOJVJ7PLMaZt76lgdWzdRJfbGiWQBZdFB0eS8q6aObyaaf1zHwfzxl/f0YuWL
-        rEjAcxTdKxCMrs9CDg8hMrwGBo5/uTuS1WcvjF+L8LmSXN1B1EzhrpcuwLjij4YUkM2cME
-        3YVnp8HK28SNNMifWjrjPeUDj+lUd5o=
-Received: from frank-G5.. (fttx-pool-217.61.152.57.bambit.de [217.61.152.57])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 3EF9B360310;
-        Tue, 25 Oct 2022 07:42:47 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        bh=AuSwOgZY8sHme8bFpEr2PZ8MbxLNuNWPW+Z3pPtGyEk=;
+        b=PUEdnLAPCSLhuoDaQISlHsB6738xXC0Wj/kHDXu2JGyYtg9rbHDE5pkj45sfbtsjHjxDz5
+        ZpyHpFWTjRGOs0Mf5/w3D5hD/8a6EGUqhq8pkQSJlLvDdD02ZgXv5tqC+cWg6a645RGW0B
+        7O/xuvUnUomJp+HpFiao61DM6lz7WmAddX9u0awkbiaTg66UuTWRdPVujgWI2y70UXY4Qt
+        aRySmhTRIrAvQ6i7LTFynGvzi9GxdUWE7jq0M/FaF52n1hBpbnW5y1YUQ4O3C4e9yY2Sri
+        8nJJ25B+xIsPl1LmSPmTvMqz8jyvhfFBBFrPPXK78FcO1WTLbMOO+2i/jIG9jw==
+Date:   Tue, 25 Oct 2022 09:49:30 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sam Shih <Sam.Shih@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH v4 6/6] mmc: mediatek: add support for MT7986 SoC
-Date:   Tue, 25 Oct 2022 09:42:38 +0200
-Message-Id: <20221025074238.18136-7-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221025074238.18136-1-linux@fw-web.de>
-References: <20221025074238.18136-1-linux@fw-web.de>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory-controllers: arm,pl353-smc: Extend
+ to support 'arm,pl354' SMC
+Message-ID: <20221025094930.492548e1@xps-13>
+In-Reply-To: <CAL_Jsq+C903Syo-buYvC5=jtvhtvhwerEbz9wkd6nRFs7aB8LQ@mail.gmail.com>
+References: <20221021203928.286169-1-robh@kernel.org>
+        <20221024101405.3c2e163a@xps-13>
+        <CAL_Jsq+C903Syo-buYvC5=jtvhtvhwerEbz9wkd6nRFs7aB8LQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 698909de-f190-41ca-b759-7c49a09373a3
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sam Shih <sam.shih@mediatek.com>
+Hi Rob,
 
-Adding mt7986 own characteristics and of_device_id to have support
-of MT7986 SoC.
+robh@kernel.org wrote on Mon, 24 Oct 2022 09:31:41 -0500:
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- drivers/mmc/host/mtk-sd.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> On Mon, Oct 24, 2022 at 3:14 AM Miquel Raynal <miquel.raynal@bootlin.com>=
+ wrote:
+> >
+> > Hi Rob,
+> >
+> > robh@kernel.org wrote on Fri, 21 Oct 2022 15:39:28 -0500:
+> > =20
+> > > Add support for the Arm PL354 static memory controller to the existing
+> > > Arm PL353 binding. Both are different configurations of the same IP w=
+ith
+> > > support for different types of memory interfaces.
+> > >
+> > > The 'arm,pl354' binding has already been in use upstream for a long t=
+ime
+> > > in Arm development boards. The existing users have only the controller
+> > > without any child devices, so drop the required address properties
+> > > (ranges, #address-cells, #size-cells). The schema for 'ranges' is too
+> > > constrained as the order is not important and the PL354 has 8
+> > > chipselects (And the PL353 actually has up to 8 too). =20
+> >
+> > I'm not convinced the ranges constraint should be soften. For me
+> > the order was important (and the description in the yaml useful, but
+> > that's a personal opinion). What makes you think the ranges order is
+> > not relevant on PL353? =20
+>=20
+> Address translation looks for a matching entry, so order doesn't
+> matter. However, we have seen cases in PCI hosts where the driver
+> populates registers based on the order of ranges. That's a driver
+> problem IMO. For PCI, it was multiple entries of the same type. For
+> this, we have the chip select number in the entry, so we shouldn't
+> have the same sort of problem. Except there is another issue that the
+> SRAM interface chipselects are numbered 1 and 2. The PL353 can have 4
+> NAND chipselects, I don't think the host addresses are necessarily in
+> order or contiguous either, so you could need 4 entries for NAND. The
+> existing description doesn't handle that, and the chipselects for the
+> SRAM interface should have been numbered 4-7. I don't mind saying the
+> entries should be in order by chipselect, but we can't define indices
+> of the entries as was done. It's all kind of academic because we don't
+> have any h/w needing anything else though the Arm boards would if the
+> child nodes actually got defined (not likely at this point).
 
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index df941438aef5..3f7f3a1e0df8 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -552,6 +552,19 @@ static const struct mtk_mmc_compatible mt7622_compat = {
- 	.support_64g = false,
- };
- 
-+static const struct mtk_mmc_compatible mt7986_compat = {
-+	.clk_div_bits = 12,
-+	.recheck_sdio_irq = true,
-+	.hs400_tune = false,
-+	.pad_tune_reg = MSDC_PAD_TUNE0,
-+	.async_fifo = true,
-+	.data_tune = true,
-+	.busy_check = true,
-+	.stop_clk_fix = true,
-+	.enhance_rx = true,
-+	.support_64g = true,
-+};
-+
- static const struct mtk_mmc_compatible mt8135_compat = {
- 	.clk_div_bits = 8,
- 	.recheck_sdio_irq = true,
-@@ -609,6 +622,7 @@ static const struct of_device_id msdc_of_ids[] = {
- 	{ .compatible = "mediatek,mt6795-mmc", .data = &mt6795_compat},
- 	{ .compatible = "mediatek,mt7620-mmc", .data = &mt7620_compat},
- 	{ .compatible = "mediatek,mt7622-mmc", .data = &mt7622_compat},
-+	{ .compatible = "mediatek,mt7986-mmc", .data = &mt7986_compat},
- 	{ .compatible = "mediatek,mt8135-mmc", .data = &mt8135_compat},
- 	{ .compatible = "mediatek,mt8173-mmc", .data = &mt8173_compat},
- 	{ .compatible = "mediatek,mt8183-mmc", .data = &mt8183_compat},
--- 
-2.34.1
+Alright, thanks for the feedback.
 
+Cheers,
+Miqu=C3=A8l
