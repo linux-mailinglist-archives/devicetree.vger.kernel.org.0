@@ -2,96 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D8760CFAD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B02B60CFC1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:59:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbiJYO4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:56:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35506 "EHLO
+        id S230038AbiJYO7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231693AbiJYO4j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:56:39 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C5C19ABF4
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:56:37 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id l9so5662368qkk.11
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:56:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uUiubakIlF1DpxdqyZ7Sj+SDXQ/dw5Cd208ltlbQ02A=;
-        b=m6Ls5iooVS3Fnkf/3NW2w8jTlWMzIYAuv5F4dmXAkmLpai7RaFRizUY3fHggCFdwl5
-         wNKIh8SJ1QFKkm16gP3LAOZv1jhIFM8VOthJwtKYUj7u+hfiqqacrmyK3J3nv7WWy67n
-         nk6SDPJT+ZuvjH/PZNgh4RiUElV6wa2daF+/6EZ1QRgvBMlRUDER9PjT4b0cF+DQ5Cn2
-         h5/CsJRP/W42czQnDTXMBNCxCYztGtpidL+0kI1HLoBjopI6atnNBovzKnl73RsthZSq
-         /ERMjBDo3+OcPDjN+jNYe3P8+tJ362nDh0TLjkUGsQAYRvN+ulX0V1R4C+8hEGXJ2Fdy
-         +ynw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uUiubakIlF1DpxdqyZ7Sj+SDXQ/dw5Cd208ltlbQ02A=;
-        b=vDDZgNnS95RRNYJ+MS05SPnG1lU6H+fQ0XCruM5ZBISxqKm5RNh3onH6OBCgyBIEAq
-         l4CzdKz/UFIAkQeCvIMAtxVaEIDJ3UAP5Fq3Addip2SlZOGnkJEVd0Bw2vkAVnxu43mq
-         q1A4ygUI16owmoHiKwkUsTfTyRA21OqzKxREsdcJDmR6d8ai2Y1mEc3TltSZv2JHF/qt
-         DvmL4cv6zIESslGgEJrLKle9PuqEVMSCiCFag0HzY1yEtPZ55KhEUk8YRE8caKHQz8yF
-         Mx+8gXvKpcFHGOYTg9u9x9giQkq+DzmyUuPqN/dOsMXogg9TTEiIvYUb52E5hdVDxqYW
-         uddg==
-X-Gm-Message-State: ACrzQf205rm3lWRzLzIMznn0Il0r/Ha7hLQIuRF1uB2fIplQY2JVyMlN
-        gRCWa058HyveIOYSJke4AS3bOQ==
-X-Google-Smtp-Source: AMsMyM40J8qEW/jyC6caiIqv2XzBMoKkNM1NJBwLdGrCnRdc8istSwcNfzTfcYq3K9r0J522tKA3dg==
-X-Received: by 2002:a05:620a:4514:b0:6ef:e65:bc77 with SMTP id t20-20020a05620a451400b006ef0e65bc77mr18909789qkp.644.1666709796970;
-        Tue, 25 Oct 2022 07:56:36 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id r11-20020a05620a298b00b006bba46e5eeasm2304609qkp.37.2022.10.25.07.56.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 07:56:35 -0700 (PDT)
-Message-ID: <cd2e3ae3-6a30-f6cd-fbbb-9c5c6071fb9b@linaro.org>
-Date:   Tue, 25 Oct 2022 10:56:33 -0400
+        with ESMTP id S232588AbiJYO7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:59:21 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EE3151B76EF
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:59:18 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 810F2D6E;
+        Tue, 25 Oct 2022 07:59:24 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B312B3F71A;
+        Tue, 25 Oct 2022 07:59:16 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, soc@kernel.org,
+        Icenowy Zheng <uwu@icenowy.me>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH 0/3] ARM: dts: Add Lctech Pi F1C200s board support
+Date:   Tue, 25 Oct 2022 15:59:06 +0100
+Message-Id: <20221025145909.2837939-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: update pcie/pwm/spi bindings for
- MT7986 SoC
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221024074349.7777-1-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221024074349.7777-1-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2022 03:43, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Allow multiple items for pcie, pwm and spi function.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Hi,
 
+The Lctech Pi F1C200s is a small development board with the eponymous
+Allwinner SoC.
+It ships with SPI NAND flash, but I couldn't get that to work:
+============
+spi-nand spi0.0: unknown raw ID 00000000
+spi-nand: probe of spi0.0 failed with error -524
+============
+I leave in the DT node anyway (minus partitions), matching the schematic.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The boards has two USB-C ports, one of which is connected to a USB
+serial adapter chip. Since the other one (connected to the MUSB
+controller) lacks any CC pin connections, I need to fix the OTG role
+here, and went with peripheral. Forcing host mode worked as well, but
+requires a separate power supply (although the other USB port works for
+that as well).
 
-Best regards,
-Krzysztof
+The board was apparently also sold under the "Cherry Pi" brand before.
+
+Patches 1 and 2 add the required DT bindings for the vendor and board
+name strings, patch 3 adds the .dts file.
+
+Please have a look!
+
+Cheers,
+Andre
+
+Andre Przywara (3):
+  dt-bindings: vendor-prefixes: add Lctech name
+  dt-bindings: arm: sunxi: add compatible strings for Lctech Pi
+  ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  6 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ arch/arm/boot/dts/Makefile                    |  1 +
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          |  5 ++
+ arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 80 +++++++++++++++++++
+ 5 files changed, 94 insertions(+)
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+
+-- 
+2.25.1
 
