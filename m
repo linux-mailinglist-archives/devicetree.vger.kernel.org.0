@@ -2,95 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFAF660D4C1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DD660D4D1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:40:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231829AbiJYTfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 15:35:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
+        id S231639AbiJYTkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 15:40:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231844AbiJYTfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:35:19 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B12E09CF
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:35:17 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id m6so8897487qkm.4
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:35:17 -0700 (PDT)
+        with ESMTP id S231248AbiJYTk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:40:29 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701A25AA16
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:40:28 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id j6so5059470qvn.12
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:40:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2bq8bNdyAl5co9FRYH86QFP+zOKhtTWspptpU7rpeE8=;
-        b=c/tvtk3KCyMvg8pBI+5+7wb+wpn7cny5S+BrrgEzKB8h0AyRYzM7tvDTTENYgAAmht
-         9ZLGU7DFL5tQQ+diKV+bqbWTOvOCpu/aYL8ub1/huwmjoj5wbVXtRcWqYBl6VK6vyjoU
-         orDIHQqp0bjuYBCsTw5JFlCUhMZxGwr2PMfDQCivpdwDkQle0gnhmzCQNVFKq1P4aYlh
-         rDUXtI3vYkpo/1/NKsvMSfOgW83Zmj2e9bZRNMnswQhltRgsLpj9U+qx35ChA9B1Ri5k
-         427iyNQK2MWyVuLQWfsXRBuG/I6zcVvvaLe5Ls4G5vkD2y41wvByWpEK5J+glWhR3T+Q
-         J+Ag==
+        bh=PuJ4rqhBVW/pzXuCIr6qAp0C/9agM39YZk4Tyezi0lg=;
+        b=L2kqjdxA4/IcBXtCiww7ZIrzUkvLV+QQMxEBKsv9hiUWXaMwc/uzi0z+O/cOcRG7JV
+         /J1c8ZyXAM9gvNhXIYl7273XQr93hmQedx+ZlTHuC1B/oDk0jk4gHMrfs1OIWoZgr5Zp
+         qSyueabix5LDL24xa9eZdzp0Ojzj0lJt52J6DQ6PJuLScOOUbDKNzJ1pBeXOJQeLmYU8
+         6nF+RcwAUmuHQJ1po29cdqUOmaUBN1Jcnv5rSBY2Wabdac1z5bB4zugv2mNo94obfeAU
+         23sIqtykWF1b9ubLcGKJJwi2lMcrN/6AsruNeE2IUUdTRVoVieFZ7ZMKMJT59eqcC0Df
+         1lnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2bq8bNdyAl5co9FRYH86QFP+zOKhtTWspptpU7rpeE8=;
-        b=LRk+NyXMaXi//ESu9iBbPJNm3eenBULWyAfpjzBRkz42eLslZzpdqRJU80+1tIvY1T
-         QO0qdPoETwgPR14HN/d2QLGT9SfHlGsyOBuxpQZgWfB0zsI1zZK6jxow2Ivfoy426F5O
-         zeXVC2yX0/XCf7bhmgiTI+f7IDdUEO0zGeF36VQBn8OfGcG8Q7Bwj1s+Ym6mA6hsyrNu
-         BLOS8ZBlQG0EE4TSinFCb7SezRGwR6R/c7weFUQPRA9oD6lHU58nkrx2sBqPJjcgqVVG
-         NtqN/znsWVuWo/jWfJouFR+7dvo5rrz9i2wnCk0Zvazm487vxGXYYT2OaFdHkiJLZRzd
-         aA3w==
-X-Gm-Message-State: ACrzQf0VZcnnKy0+kcJHc1MF0fEgZE5VFGw63CKOjuxBXbD46QnABLnF
-        xTI+xPR1iGG8TzTzBhlRBuH4yw==
-X-Google-Smtp-Source: AMsMyM7fJwOd+SyYyPd28ciUONaMMuTnB6KKRvaZZqShNPCGAXm+hPxBX13eeavvMQbuGAPA4rrDIA==
-X-Received: by 2002:a05:620a:370e:b0:6ee:f54d:d8b with SMTP id de14-20020a05620a370e00b006eef54d0d8bmr19281703qkb.21.1666726516792;
-        Tue, 25 Oct 2022 12:35:16 -0700 (PDT)
+        bh=PuJ4rqhBVW/pzXuCIr6qAp0C/9agM39YZk4Tyezi0lg=;
+        b=fGmQK/5x5/mJYDLiGrVjpFKvTCRpF2moJ/aKJa4+rPYax+IBtSSPrW3NOAxQm7ow9U
+         E9JlfyrY4g1MtK4O+zb8XA1Pknvuvrahs7wyE3XnmRh+AijRObcoxbbHxRMRJlQXCtIQ
+         7j8ZnEUS7EoJGlYXX1vxnI8OVSmx+ca8OGydTVUxXHKSySjU87xJnlpvBgqD2jNYh2pz
+         sExa1R8xXx1tHFrm74jZ+x26Q1lrK2oPeJxJCf0N+y9SU4O4nNfm7hMDmMxD+BvfkXrt
+         Fq2S9niK7h1/YCRcyFq9DxcpVxxWoCMVqyO++Ez/ZeEY9in2Fg3aYj1ZIQPHPYIVdewS
+         6atw==
+X-Gm-Message-State: ACrzQf2xyujhM637Ngd/oM0arIBHdm8Kxq+MdiBzAC/YzATVYA+Q1fjj
+        49PWlLA4pUG7emxhhwR8RBeaPg==
+X-Google-Smtp-Source: AMsMyM7+P6vDmIeHHpQ1nGvGx/DyvpypIrLH2RG7R10wpTZc9qLl/phhWX5f1YYNDk+MUG5rmd8g4g==
+X-Received: by 2002:ad4:5eca:0:b0:4ba:535a:6d45 with SMTP id jm10-20020ad45eca000000b004ba535a6d45mr21478617qvb.56.1666726827588;
+        Tue, 25 Oct 2022 12:40:27 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id 3-20020ac85903000000b00399d5d564b7sm2127131qty.56.2022.10.25.12.35.15
+        by smtp.gmail.com with ESMTPSA id l2-20020a05620a28c200b006e8f8ca8287sm2653378qkp.120.2022.10.25.12.40.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 12:35:16 -0700 (PDT)
-Message-ID: <e7192d9b-df86-a860-d5cb-8b4b9184e5bc@linaro.org>
-Date:   Tue, 25 Oct 2022 15:35:14 -0400
+        Tue, 25 Oct 2022 12:40:26 -0700 (PDT)
+Message-ID: <7c67c721-685a-fa0e-ab4b-41b7de3ea0a0@linaro.org>
+Date:   Tue, 25 Oct 2022 15:40:25 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for
- MT7986 SoC
+Subject: Re: [PATCH v2 2/2] dt-bindings: soc: add loongson2 guts
 Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221025070255.14407-1-linux@fw-web.de>
+        Arnd Bergmann <arnd@arndb.de>,
+        Hector Martin <marcan@marcan.st>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221025035128.21068-1-zhuyinbo@loongson.cn>
+ <20221025035128.21068-2-zhuyinbo@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221025070255.14407-1-linux@fw-web.de>
+In-Reply-To: <20221025035128.21068-2-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 03:02, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 24/10/2022 23:51, Yinbo Zhu wrote:
+> Add the loongson2 soc guts driver binding with DT schema format
+> using json-schema.
 > 
-> Add new splitted uart pins and emmc_51
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+>  .../soc/loongson/loongson,ls2k-guts.yaml      | 37 +++++++++++++++++++
+
+Looks like wrong location, although difficult to judge because you did
+not describe the hardware at all. If this is chipinfo-like device, then
+Documentation/devicetree/bindings/hwinfo/.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+> new file mode 100644
+> index 000000000000..2502f8aeb74d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-guts.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson2 GUTS driver.
+
+Drop "driver." unless you refer to some hardware (like motor driver?).
+
+> +
+> +maintainers:
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +description: |
+> +  GUTS driver was to manage and access global utilities block. Initially
+
+Drop "driver" and describe instead what is GUTS, including its acronym,
+
+> +  only reading SVR and registering soc device are supported.
+
+Entire sentence describe Linux driver - drop it. Instead describe the
+device, the hardware.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,ls2k-guts
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  little-endian: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    guts: guts@1fe00000 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
 
 Best regards,
 Krzysztof
