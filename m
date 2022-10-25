@@ -2,58 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D9F260CDFF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 15:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1AB60CE66
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232376AbiJYNxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 09:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60390 "EHLO
+        id S232955AbiJYOHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231341AbiJYNw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 09:52:59 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCBF112AA8;
-        Tue, 25 Oct 2022 06:52:55 -0700 (PDT)
+        with ESMTP id S232944AbiJYOHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:07:21 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3414A808;
+        Tue, 25 Oct 2022 07:03:25 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id d3so10541735ljl.1;
+        Tue, 25 Oct 2022 07:03:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1666705977;
-  x=1698241977;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=51IkYYQzj/DjJ02fpm/wLPje788xVAqGLK/ZhFdLnmE=;
-  b=K9brY9stvNRgQGpzu0seiiJedgcNJZzMFYxsS9c79Av/Dhag4D/T3gY7
-   oFhW3cr1tm6xJk/dKTfUzJJ9X9f71oXSs877I3iFtVX1BzY0n7b1qMQL+
-   ZVXnpbHJIkCl/Ixq3xu/TaHkz1r25n8S33N3t+gsyqlgLAiL8F5m9vPmp
-   pEY/Dh/hhF7e8tu5x8Cit9Mtaeawif1oIZfn8kqIypAF/VhONs3alBp8n
-   k+mRWqIUX9I8B0o5AxbapN9oNEz92LYwYucuNqd4mwQMHR/Mc0ymzAXip
-   Yvas7nAKY6e9Yhum/iAlFxvpRkn06QQiHB2Mxk201XpP3jbTWANJGjZAK
-   w==;
-From:   Camel Guo <camel.guo@axis.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Camel Guo <camel.guo@axis.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        d=gmail.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=LDh25WK5EdmTjyyh5ZatIhq2ClQm71CUP1FZJzQM5eg=;
+        b=SC5bu2cW4n7XCMxVdGfrgaCIj45ngYflZIIRWeRBN5Zl/6oIX6EvPO9ynECh2ecYrJ
+         iq6uXk4K1wWy7Tf0jeV5IMCOCzvIiurc1bRtw0VK2Sid6gRDl7G7EZDMpDzy1PU5U3Z2
+         oPzlOYLq6gobxwtV+mMwTyFbagxjAI/FGKdsvQ26OlGh+5mudw/SX85NhWvVpMrVzpxr
+         x14hoIpcIWw6lYmtqak6e1vpU3BG+FZz+k2Ap6IJxR7swgk+NFsu/xFM8nc/8C8J/0/Y
+         ZEfvF0DqoJWfa4GKcSUz2S/pXvHTJXWFA4rzc0I+bPbJkZ1FHdpV4iWLVHVXS/sTFVWn
+         B0Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LDh25WK5EdmTjyyh5ZatIhq2ClQm71CUP1FZJzQM5eg=;
+        b=gOP48I+ixyyAYEsBNidvyydl7xyzXGaWmQuHAkpdXso84D/bxbKAaaVM0SsOPJYfD+
+         RZniQlqRAeiP60nHVb8STTGOVrfR8n57vd0LSRTnCmX3cl9W1W4u7Q8LmHa9A7CB9/wu
+         SFU7BNgObyg4n5dyOjIb8Q2RZc9TjLsp/S35FyoHfj+PcPeriwrmbQW0qqsQavepuViR
+         AEpJiQaSaq+e0G9ioEAEC44THnzEvD1mttkcFK6EUYZO5X6UJ5ht7ju5cJEv8FphYXib
+         j29rjgd9bv8p990qSeIFgzpE+KE6UGMEIHmvoWeoiCi7xQ5q7L9yk/wsa15MBMLynf/+
+         r33A==
+X-Gm-Message-State: ACrzQf0bfwKutNX22NblJYyq57HnI5UlyC2xhFV6/Jjx8ukn3joSCYzn
+        lDmNPUTJGjON7QNcFGsFXgHpN0J3jk/1sw==
+X-Google-Smtp-Source: AMsMyM7dsSBi1keccZDqEY8/9I1zmHmLglE9+G2f/WWyAQdwbu6ifSthYU5b0rSVlVNm3RekRpKhwg==
+X-Received: by 2002:a2e:8445:0:b0:26d:e6f0:e099 with SMTP id u5-20020a2e8445000000b0026de6f0e099mr14621163ljh.243.1666706603317;
+        Tue, 25 Oct 2022 07:03:23 -0700 (PDT)
+Received: from obelisk ([83.149.246.185])
+        by smtp.gmail.com with ESMTPSA id q8-20020a2eb4a8000000b0026dd4be2290sm507206ljm.90.2022.10.25.07.03.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Oct 2022 07:03:17 -0700 (PDT)
+References: <20221022162042.14113-1-mike.rudenko@gmail.com>
+ <20221022162042.14113-3-mike.rudenko@gmail.com>
+ <20221025130958.bnedjlkm6kmiluoe@uno.localdomain>
+User-agent: mu4e 1.9.0; emacs 28.2
+From:   Mikhail Rudenko <mike.rudenko@gmail.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        <kernel@axis.com>
-Subject: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX switch
-Date:   Tue, 25 Oct 2022 15:52:41 +0200
-Message-ID: <20221025135243.4038706-3-camel.guo@axis.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20221025135243.4038706-1-camel.guo@axis.com>
-References: <20221025135243.4038706-1-camel.guo@axis.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Marek Vasut <marex@denx.de>, Jimmy Su <jimmy.su@intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] media: i2c: add support for OV4689
+Date:   Tue, 25 Oct 2022 16:51:02 +0300
+In-reply-to: <20221025130958.bnedjlkm6kmiluoe@uno.localdomain>
+Message-ID: <87y1t4gfvp.fsf@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,TO_EQ_FM_DIRECT_MX,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,PDS_OTHER_BAD_TLD,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,1070 +82,1157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial framework for Maxlinear's GSW1xx switch and
-currently only GSW145 in MDIO managed mode is supported.
 
-Signed-off-by: Camel Guo <camel.guo@axis.com>
----
- MAINTAINERS                   |   3 +
- drivers/net/dsa/Kconfig       |  16 +
- drivers/net/dsa/Makefile      |   2 +
- drivers/net/dsa/gsw1xx.h      |  27 ++
- drivers/net/dsa/gsw1xx_core.c | 823 ++++++++++++++++++++++++++++++++++
- drivers/net/dsa/gsw1xx_mdio.c | 128 ++++++
- 6 files changed, 999 insertions(+)
- create mode 100644 drivers/net/dsa/gsw1xx.h
- create mode 100644 drivers/net/dsa/gsw1xx_core.c
- create mode 100644 drivers/net/dsa/gsw1xx_mdio.c
+Hi Jacopo,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index df88faabdb53..40371dc9e2dd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12590,6 +12590,9 @@ M:	Camel Guo <camel.guo@axis.com>
- L:	netdev@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml
-+F:	drivers/net/dsa/gsw1xx.h
-+F:	drivers/net/dsa/gsw1xx_core.c
-+F:	drivers/net/dsa/gsw1xx_mdio.c
- 
- MCBA MICROCHIP CAN BUS ANALYZER TOOL DRIVER
- R:	Yasushi SHOJI <yashi@spacecubics.com>
-diff --git a/drivers/net/dsa/Kconfig b/drivers/net/dsa/Kconfig
-index 07507b4820d7..af57b92f786a 100644
---- a/drivers/net/dsa/Kconfig
-+++ b/drivers/net/dsa/Kconfig
-@@ -122,4 +122,20 @@ config NET_DSA_VITESSE_VSC73XX_PLATFORM
- 	  This enables support for the Vitesse VSC7385, VSC7388, VSC7395
- 	  and VSC7398 SparX integrated ethernet switches, connected over
- 	  a CPU-attached address bus and work in memory-mapped I/O mode.
-+
-+config NET_DSA_MXL_GSW1XX
-+	tristate
-+	select REGMAP
-+	help
-+	  This enables support for the Maxlinear GSW1XX integrated ethernet
-+	  switch chips.
-+
-+config NET_DSA_MXL_GSW1XX_MDIO
-+	tristate "MaxLinear GSW1XX ethernet switch in MDIO managed mode"
-+	select NET_DSA_MXL_GSW1XX
-+	select FIXED_PHY
-+	help
-+	  This enables access functions if the MaxLinear GSW1XX is configured
-+	  for MDIO managed mode.
-+
- endmenu
-diff --git a/drivers/net/dsa/Makefile b/drivers/net/dsa/Makefile
-index 16eb879e0cb4..022fc661107b 100644
---- a/drivers/net/dsa/Makefile
-+++ b/drivers/net/dsa/Makefile
-@@ -15,6 +15,8 @@ obj-$(CONFIG_NET_DSA_SMSC_LAN9303_MDIO) += lan9303_mdio.o
- obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX) += vitesse-vsc73xx-core.o
- obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX_PLATFORM) += vitesse-vsc73xx-platform.o
- obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX_SPI) += vitesse-vsc73xx-spi.o
-+obj-$(CONFIG_NET_DSA_MXL_GSW1XX) += gsw1xx_core.o
-+obj-$(CONFIG_NET_DSA_MXL_GSW1XX_MDIO) += gsw1xx_mdio.o
- obj-y				+= b53/
- obj-y				+= hirschmann/
- obj-y				+= microchip/
-diff --git a/drivers/net/dsa/gsw1xx.h b/drivers/net/dsa/gsw1xx.h
-new file mode 100644
-index 000000000000..08b2975e1267
---- /dev/null
-+++ b/drivers/net/dsa/gsw1xx.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef GSW1XX_H
-+#define GSW1XX_H
-+
-+#include <linux/regmap.h>
-+#include <linux/device.h>
-+#include <net/dsa.h>
-+
-+struct gsw1xx_hw_info {
-+	int max_ports;
-+	int cpu_port;
-+};
-+
-+struct gsw1xx_priv {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct dsa_switch *ds;
-+	const struct gsw1xx_hw_info *hw_info;
-+};
-+
-+extern const struct regmap_access_table gsw1xx_register_set;
-+
-+int gsw1xx_probe(struct gsw1xx_priv *priv, struct device *dev);
-+void gsw1xx_remove(struct gsw1xx_priv *priv);
-+void gsw1xx_shutdown(struct gsw1xx_priv *priv);
-+
-+#endif /* GSW1XX_H */
-diff --git a/drivers/net/dsa/gsw1xx_core.c b/drivers/net/dsa/gsw1xx_core.c
-new file mode 100644
-index 000000000000..1b3cbee4addc
---- /dev/null
-+++ b/drivers/net/dsa/gsw1xx_core.c
-@@ -0,0 +1,823 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <linux/delay.h>
-+#include <linux/etherdevice.h>
-+#include <linux/if_bridge.h>
-+#include <linux/if_vlan.h>
-+#include <linux/module.h>
-+#include <linux/of_mdio.h>
-+#include <linux/of_net.h>
-+#include <linux/of_platform.h>
-+#include <linux/phy.h>
-+#include <linux/phylink.h>
-+#include <linux/regmap.h>
-+#include <net/dsa.h>
-+
-+#include "gsw1xx.h"
-+
-+/* GSW1XX MDIO Registers */
-+#define GSW1XX_MDIO_BASE_ADDR		0xF400
-+#define GSW1XX_MDIO_REG_LEN		0x0422
-+#define GSW1XX_MDIO_GLOB		0x00
-+#define  GSW1XX_MDIO_GLOB_ENABLE	BIT(15)
-+#define GSW1XX_MDIO_CTRL		0x08
-+#define  GSW1XX_MDIO_CTRL_BUSY		BIT(12)
-+#define  GSW1XX_MDIO_CTRL_RD		BIT(11)
-+#define  GSW1XX_MDIO_CTRL_WR		BIT(10)
-+#define  GSW1XX_MDIO_CTRL_PHYAD_MASK	0x1F
-+#define  GSW1XX_MDIO_CTRL_PHYAD_SHIFT	5
-+#define  GSW1XX_MDIO_CTRL_REGAD_MASK	0x1F
-+#define GSW1XX_MDIO_READ		0x09
-+#define GSW1XX_MDIO_WRITE		0x0A
-+#define GSW1XX_MDIO_MDC_CFG0		0x0B
-+#define GSW1XX_MDIO_PHYp(p)		(0x15 - (p))
-+#define  GSW1XX_MDIO_PHY_LINK_MASK	0x6000
-+#define  GSW1XX_MDIO_PHY_LINK_AUTO	0x0000
-+#define  GSW1XX_MDIO_PHY_LINK_DOWN	0x4000
-+#define  GSW1XX_MDIO_PHY_LINK_UP	0x2000
-+#define  GSW1XX_MDIO_PHY_SPEED_MASK	0x1800
-+#define  GSW1XX_MDIO_PHY_SPEED_AUTO	0x1800
-+#define  GSW1XX_MDIO_PHY_SPEED_M10	0x0000
-+#define  GSW1XX_MDIO_PHY_SPEED_M100	0x0800
-+#define  GSW1XX_MDIO_PHY_SPEED_G1	0x1000
-+#define  GSW1XX_MDIO_PHY_FDUP_MASK	0x0600
-+#define  GSW1XX_MDIO_PHY_FDUP_AUTO	0x0000
-+#define  GSW1XX_MDIO_PHY_FDUP_EN	0x0200
-+#define  GSW1XX_MDIO_PHY_FDUP_DIS	0x0600
-+#define  GSW1XX_MDIO_PHY_FCONTX_MASK	0x0180
-+#define  GSW1XX_MDIO_PHY_FCONTX_AUTO	0x0000
-+#define  GSW1XX_MDIO_PHY_FCONTX_EN	0x0100
-+#define  GSW1XX_MDIO_PHY_FCONTX_DIS	0x0180
-+#define  GSW1XX_MDIO_PHY_FCONRX_MASK	0x0060
-+#define  GSW1XX_MDIO_PHY_FCONRX_AUTO	0x0000
-+#define  GSW1XX_MDIO_PHY_FCONRX_EN	0x0020
-+#define  GSW1XX_MDIO_PHY_FCONRX_DIS	0x0060
-+#define  GSW1XX_MDIO_PHY_ADDR_MASK	0x001F
-+#define  GSW1XX_MDIO_PHY_MASK		(GSW1XX_MDIO_PHY_ADDR_MASK | \
-+					 GSW1XX_MDIO_PHY_FCONRX_MASK | \
-+					 GSW1XX_MDIO_PHY_FCONTX_MASK | \
-+					 GSW1XX_MDIO_PHY_LINK_MASK | \
-+					 GSW1XX_MDIO_PHY_SPEED_MASK | \
-+					 GSW1XX_MDIO_PHY_FDUP_MASK)
-+
-+/* GSW1XX_IP Core Registers */
-+#define GSW1XX_IP_BASE_ADDR		0xE000
-+#define GSW1XX_IP_REG_LEN		0x0D46
-+#define GSW1XX_IP_SWRES			0x000
-+#define  GSW1XX_IP_SWRES_R1		BIT(1)	/* Software reset */
-+#define  GSW1XX_IP_SWRES_R0		BIT(0)	/* Hardware reset */
-+#define GSW1XX_IP_VERSION		0x013
-+#define  GSW1XX_IP_VERSION_REV_SHIFT	0
-+#define  GSW1XX_IP_VERSION_REV_MASK	GENMASK(7, 0)
-+#define  GSW1XX_IP_VERSION_MOD_SHIFT	8
-+#define  GSW1XX_IP_VERSION_MOD_MASK	GENMASK(15, 8)
-+#define   GSW1XX_IP_VERSION_2_3		0x023
-+
-+#define GSW1XX_IP_BM_RAM_VAL(x)		(0x043 - (x))
-+#define GSW1XX_IP_BM_RAM_ADDR		0x044
-+#define GSW1XX_IP_BM_RAM_CTRL		0x045
-+#define  GSW1XX_IP_BM_RAM_CTRL_BAS		BIT(15)
-+#define  GSW1XX_IP_BM_RAM_CTRL_OPMOD		BIT(5)
-+#define  GSW1XX_IP_BM_RAM_CTRL_ADDR_MASK	GENMASK(4, 0)
-+#define GSW1XX_IP_BM_QUEUE_GCTRL		0x04A
-+#define  GSW1XX_IP_BM_QUEUE_GCTRL_GL_MOD	BIT(10)
-+/* buffer management Port Configuration Register */
-+#define GSW1XX_IP_BM_PCFGp(p)		(0x080 + ((p) * 2))
-+#define  GSW1XX_IP_BM_PCFG_CNTEN	BIT(0)	/* RMON Counter Enable */
-+/* PCE */
-+#define GSW1XX_IP_PCE_PMAP2		0x454	/* Default Multicast port map */
-+#define GSW1XX_IP_PCE_PMAP3		0x455	/* Default Unknown Unicast port map */
-+#define GSW1XX_IP_PCE_GCTRL_0		0x456
-+#define  GSW1XX_IP_PCE_GCTRL_0_MTFL	BIT(0)  /* MAC Table Flushing */
-+#define  GSW1XX_IP_PCE_GCTRL_0_MC_VALID	BIT(3)
-+#define GSW1XX_IP_PCE_PCTRL_0p(p)	(0x480 + ((p) * 0xA))
-+#define  GSW1XX_IP_PCE_PCTRL_0_PSTATE_LISTEN		0x0
-+#define  GSW1XX_IP_PCE_PCTRL_0_PSTATE_RX		0x1
-+#define  GSW1XX_IP_PCE_PCTRL_0_PSTATE_TX		0x2
-+#define  GSW1XX_IP_PCE_PCTRL_0_PSTATE_LEARNING		0x3
-+#define  GSW1XX_IP_PCE_PCTRL_0_PSTATE_FORWARDING	0x7
-+#define  GSW1XX_IP_PCE_PCTRL_0_PSTATE_MASK		GENMASK(2, 0)
-+
-+#define GSW1XX_IP_MAC_FLEN			0x8C5
-+#define GSW1XX_IP_MAC_CTRL_0p(p)		(0x903 + ((p) * 0xC))
-+#define  GSW1XX_IP_MAC_CTRL_0_PADEN		BIT(8)
-+#define  GSW1XX_IP_MAC_CTRL_0_FCS_EN		BIT(7)
-+#define  GSW1XX_IP_MAC_CTRL_0_FCON_MASK		0x0070
-+#define  GSW1XX_IP_MAC_CTRL_0_FCON_AUTO		0x0000
-+#define  GSW1XX_IP_MAC_CTRL_0_FCON_RX		0x0010
-+#define  GSW1XX_IP_MAC_CTRL_0_FCON_TX		0x0020
-+#define  GSW1XX_IP_MAC_CTRL_0_FCON_RXTX		0x0030
-+#define  GSW1XX_IP_MAC_CTRL_0_FCON_NONE		0x0040
-+#define  GSW1XX_IP_MAC_CTRL_0_FDUP_MASK		0x000C
-+#define  GSW1XX_IP_MAC_CTRL_0_FDUP_AUTO		0x0000
-+#define  GSW1XX_IP_MAC_CTRL_0_FDUP_EN		0x0004
-+#define  GSW1XX_IP_MAC_CTRL_0_FDUP_DIS		0x000C
-+#define  GSW1XX_IP_MAC_CTRL_0_GMII_MASK		0x0003
-+#define  GSW1XX_IP_MAC_CTRL_0_GMII_AUTO		0x0000
-+#define  GSW1XX_IP_MAC_CTRL_0_GMII_MII		0x0001
-+#define  GSW1XX_IP_MAC_CTRL_0_GMII_RGMII	0x0002
-+#define GSW1XX_IP_MAC_CTRL_2p(p)		(0x905 + ((p) * 0xC))
-+#define GSW1XX_IP_MAC_CTRL_2_MLEN		BIT(3) /* Maximum Untagged Frame Lnegth */
-+#define GSW1XX_IP_MAC_CTRL_4p(p)		(0x907 + ((p) * 0xC))
-+#define  GSW1XX_IP_MAC_CTRL_4_LPIEN		BIT(7)
-+
-+/* Ethernet Switch Fetch DMA Port Control Register */
-+#define GSW1XX_IP_FDMA_PCTRLp(p)		(0xA80 + ((p) * 0x6))
-+#define  GSW1XX_IP_FDMA_PCTRL_EN		BIT(0)	/* FDMA Port Enable */
-+
-+/* Ethernet Switch Store DMA Port Control Register */
-+#define GSW1XX_IP_SDMA_PCTRLp(p)		(0xBC0 + ((p) * 0x6))
-+#define  GSW1XX_IP_SDMA_PCTRL_EN		BIT(0)	/* SDMA Port Enable */
-+#define  GSW1XX_IP_SDMA_PCTRL_FCEN		BIT(1)	/* Flow Control Enable */
-+#define  GSW1XX_IP_SDMA_PCTRL_PAUFWD		BIT(3)	/* Pause Frame Forwarding */
-+
-+struct gsw1xx_rmon_cnt_desc {
-+	unsigned int size;
-+	unsigned int offset;
-+	const char *name;
-+};
-+
-+#define MIB_DESC(_size, _offset, _name)                                        \
-+	{                                                                      \
-+		.size = _size, .offset = _offset, .name = _name                \
-+	}
-+
-+static const struct gsw1xx_rmon_cnt_desc gsw1xx_rmon_cnt[] = {
-+	/** Receive Packet Count (only packets that are accepted and not discarded). */
-+	MIB_DESC(1, 0x1F, "RxGoodPkts"),
-+	MIB_DESC(1, 0x23, "RxUnicastPkts"),
-+	MIB_DESC(1, 0x22, "RxMulticastPkts"),
-+	MIB_DESC(1, 0x21, "RxFCSErrorPkts"),
-+	MIB_DESC(1, 0x1D, "RxUnderSizeGoodPkts"),
-+	MIB_DESC(1, 0x1E, "RxUnderSizeErrorPkts"),
-+	MIB_DESC(1, 0x1B, "RxOversizeGoodPkts"),
-+	MIB_DESC(1, 0x1C, "RxOversizeErrorPkts"),
-+	MIB_DESC(1, 0x20, "RxGoodPausePkts"),
-+	MIB_DESC(1, 0x1A, "RxAlignErrorPkts"),
-+	MIB_DESC(1, 0x12, "Rx64BytePkts"),
-+	MIB_DESC(1, 0x13, "Rx127BytePkts"),
-+	MIB_DESC(1, 0x14, "Rx255BytePkts"),
-+	MIB_DESC(1, 0x15, "Rx511BytePkts"),
-+	MIB_DESC(1, 0x16, "Rx1023BytePkts"),
-+	/** Receive Size 1024-1522 (or more, if configured) Packet Count. */
-+	MIB_DESC(1, 0x17, "RxMaxBytePkts"),
-+	MIB_DESC(1, 0x18, "RxDroppedPkts"),
-+	MIB_DESC(1, 0x19, "RxFilteredPkts"),
-+	MIB_DESC(2, 0x24, "RxGoodBytes"),
-+	MIB_DESC(2, 0x26, "RxBadBytes"),
-+	MIB_DESC(1, 0x11, "TxAcmDroppedPkts"),
-+	MIB_DESC(1, 0x0C, "TxGoodPkts"),
-+	MIB_DESC(1, 0x06, "TxUnicastPkts"),
-+	MIB_DESC(1, 0x07, "TxMulticastPkts"),
-+	MIB_DESC(1, 0x00, "Tx64BytePkts"),
-+	MIB_DESC(1, 0x01, "Tx127BytePkts"),
-+	MIB_DESC(1, 0x02, "Tx255BytePkts"),
-+	MIB_DESC(1, 0x03, "Tx511BytePkts"),
-+	MIB_DESC(1, 0x04, "Tx1023BytePkts"),
-+	/** Transmit Size 1024-1522 (or more, if configured) Packet Count. */
-+	MIB_DESC(1, 0x05, "TxMaxBytePkts"),
-+	MIB_DESC(1, 0x08, "TxSingleCollCount"),
-+	MIB_DESC(1, 0x09, "TxMultCollCount"),
-+	MIB_DESC(1, 0x0A, "TxLateCollCount"),
-+	MIB_DESC(1, 0x0B, "TxExcessCollCount"),
-+	MIB_DESC(1, 0x0D, "TxPauseCount"),
-+	MIB_DESC(1, 0x10, "TxDroppedPkts"),
-+	MIB_DESC(2, 0x0E, "TxGoodBytes"),
-+};
-+
-+static u32 gsw1xx_switch_r(struct gsw1xx_priv *priv, u32 offset)
-+{
-+	int ret = 0;
-+	u32 val = 0;
-+
-+	ret = regmap_read(priv->regmap, GSW1XX_IP_BASE_ADDR + offset, &val);
-+
-+	return ret < 0 ? (u32)ret : val;
-+}
-+
-+static void gsw1xx_switch_w(struct gsw1xx_priv *priv, u32 val, u32 offset)
-+{
-+	regmap_write(priv->regmap, GSW1XX_IP_BASE_ADDR + offset, val);
-+}
-+
-+static u32 gsw1xx_mdio_r(struct gsw1xx_priv *priv, u32 offset)
-+{
-+	int ret = 0;
-+	u32 val = 0;
-+
-+	ret = regmap_read(priv->regmap, GSW1XX_MDIO_BASE_ADDR + offset, &val);
-+
-+	return ret < 0 ? (u32)ret : val;
-+}
-+
-+static void gsw1xx_mdio_w(struct gsw1xx_priv *priv, u32 val, u32 offset)
-+{
-+	regmap_write(priv->regmap, GSW1XX_MDIO_BASE_ADDR + offset, val);
-+}
-+
-+static void gsw1xx_mdio_mask(struct gsw1xx_priv *priv, u32 clear, u32 set,
-+			     u32 offset)
-+{
-+	u32 val = gsw1xx_mdio_r(priv, offset);
-+
-+	val &= ~(clear);
-+	val |= set;
-+	gsw1xx_mdio_w(priv, val, offset);
-+}
-+
-+static void gsw1xx_switch_mask(struct gsw1xx_priv *priv, u32 clear, u32 set,
-+			       u32 offset)
-+{
-+	u32 val = gsw1xx_switch_r(priv, offset);
-+
-+	val &= ~(clear);
-+	val |= set;
-+	gsw1xx_switch_w(priv, val, offset);
-+}
-+
-+static u32 gsw1xx_switch_r_timeout(struct gsw1xx_priv *priv, u32 offset,
-+				   u32 cleared)
-+{
-+	u32 val;
-+
-+	return read_poll_timeout(gsw1xx_switch_r, val, (val & cleared) == 0, 20,
-+				 50000, true, priv, offset);
-+}
-+
-+static int gsw1xx_mdio_poll(struct gsw1xx_priv *priv)
-+{
-+	int cnt = 100;
-+
-+	while (likely(cnt--)) {
-+		u32 ctrl = gsw1xx_mdio_r(priv, GSW1XX_MDIO_CTRL);
-+
-+		if ((ctrl & GSW1XX_MDIO_CTRL_BUSY) == 0)
-+			return 0;
-+		usleep_range(20, 40);
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static int gsw1xx_mdio_wr(struct mii_bus *bus, int addr, int reg, u16 val)
-+{
-+	struct gsw1xx_priv *priv = bus->priv;
-+	int err;
-+
-+	err = gsw1xx_mdio_poll(priv);
-+	if (err) {
-+		dev_err(&bus->dev, "timeout while waiting for MDIO bus\n");
-+		return err;
-+	}
-+
-+	gsw1xx_mdio_w(priv, val, GSW1XX_MDIO_WRITE);
-+	gsw1xx_mdio_w(priv,
-+		      GSW1XX_MDIO_CTRL_WR |
-+			      ((addr & GSW1XX_MDIO_CTRL_PHYAD_MASK)
-+			       << GSW1XX_MDIO_CTRL_PHYAD_SHIFT) |
-+			      (reg & GSW1XX_MDIO_CTRL_REGAD_MASK),
-+		      GSW1XX_MDIO_CTRL);
-+
-+	return 0;
-+}
-+
-+static int gsw1xx_mdio_rd(struct mii_bus *bus, int addr, int reg)
-+{
-+	struct gsw1xx_priv *priv = bus->priv;
-+	int err;
-+
-+	err = gsw1xx_mdio_poll(priv);
-+	if (err) {
-+		dev_err(&bus->dev, "timeout while waiting for MDIO bus\n");
-+		return err;
-+	}
-+
-+	gsw1xx_mdio_w(priv,
-+		      GSW1XX_MDIO_CTRL_RD |
-+			      ((addr & GSW1XX_MDIO_CTRL_PHYAD_MASK)
-+			       << GSW1XX_MDIO_CTRL_PHYAD_SHIFT) |
-+			      (reg & GSW1XX_MDIO_CTRL_REGAD_MASK),
-+		      GSW1XX_MDIO_CTRL);
-+
-+	err = gsw1xx_mdio_poll(priv);
-+	if (err) {
-+		dev_err(&bus->dev, "timeout while waiting for MDIO bus\n");
-+		return err;
-+	}
-+
-+	return gsw1xx_mdio_r(priv, GSW1XX_MDIO_READ);
-+}
-+
-+static int gsw1xx_mdio(struct gsw1xx_priv *priv, struct device_node *mdio_np)
-+{
-+	struct dsa_switch *ds = priv->ds;
-+	int err;
-+
-+	ds->slave_mii_bus = mdiobus_alloc();
-+	if (!ds->slave_mii_bus)
-+		return -ENOMEM;
-+
-+	ds->slave_mii_bus->priv = priv;
-+	ds->slave_mii_bus->read = gsw1xx_mdio_rd;
-+	ds->slave_mii_bus->write = gsw1xx_mdio_wr;
-+	ds->slave_mii_bus->name = "mxl,gsw1xx-mdio";
-+	snprintf(ds->slave_mii_bus->id, MII_BUS_ID_SIZE, "%s-mii",
-+		 dev_name(priv->dev));
-+	ds->slave_mii_bus->parent = priv->dev;
-+	ds->slave_mii_bus->phy_mask = ~ds->phys_mii_mask;
-+
-+	err = of_mdiobus_register(ds->slave_mii_bus, mdio_np);
-+	if (err)
-+		mdiobus_free(ds->slave_mii_bus);
-+
-+	return err;
-+}
-+
-+static int gsw1xx_port_enable(struct dsa_switch *ds, int port,
-+			      struct phy_device *phydev)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+
-+	if (!dsa_is_user_port(ds, port))
-+		return 0;
-+
-+	/* RMON Counter Enable for port */
-+	gsw1xx_switch_w(priv, GSW1XX_IP_BM_PCFG_CNTEN,
-+			GSW1XX_IP_BM_PCFGp(port));
-+
-+	/* enable port fetch/store dma */
-+	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_FDMA_PCTRL_EN,
-+			   GSW1XX_IP_FDMA_PCTRLp(port));
-+	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_SDMA_PCTRL_EN,
-+			   GSW1XX_IP_SDMA_PCTRLp(port));
-+
-+	if (!dsa_is_cpu_port(ds, port)) {
-+		u32 mdio_phy = 0;
-+
-+		if (phydev)
-+			mdio_phy =
-+				phydev->mdio.addr & GSW1XX_MDIO_PHY_ADDR_MASK;
-+
-+		gsw1xx_mdio_mask(priv, GSW1XX_MDIO_PHY_ADDR_MASK, mdio_phy,
-+				 GSW1XX_MDIO_PHYp(port));
-+	}
-+
-+	return 0;
-+}
-+
-+static void gsw1xx_port_disable(struct dsa_switch *ds, int port)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+
-+	if (!dsa_is_user_port(ds, port))
-+		return;
-+
-+	gsw1xx_switch_mask(priv, GSW1XX_IP_FDMA_PCTRL_EN, 0,
-+			   GSW1XX_IP_FDMA_PCTRLp(port));
-+	gsw1xx_switch_mask(priv, GSW1XX_IP_SDMA_PCTRL_EN, 0,
-+			   GSW1XX_IP_SDMA_PCTRLp(port));
-+}
-+
-+static int gsw1xx_setup(struct dsa_switch *ds)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+	unsigned int cpu_port = priv->hw_info->cpu_port;
-+	int i;
-+	int err;
-+
-+	gsw1xx_switch_w(priv, GSW1XX_IP_SWRES_R0, GSW1XX_IP_SWRES);
-+	usleep_range(5000, 10000);
-+	gsw1xx_switch_w(priv, 0, GSW1XX_IP_SWRES);
-+
-+	/* disable port fetch/store dma on all ports */
-+	for (i = 0; i < priv->hw_info->max_ports; i++)
-+		gsw1xx_port_disable(ds, i);
-+
-+	/* enable Switch */
-+	gsw1xx_mdio_mask(priv, 0, GSW1XX_MDIO_GLOB_ENABLE, GSW1XX_MDIO_GLOB);
-+
-+	gsw1xx_switch_w(priv, 0x7F, GSW1XX_IP_PCE_PMAP2);
-+	gsw1xx_switch_w(priv, 0x7F, GSW1XX_IP_PCE_PMAP3);
-+
-+	/* Deactivate MDIO PHY auto polling since it affects mmd read/write.
-+	 */
-+	gsw1xx_mdio_w(priv, 0x0, GSW1XX_MDIO_MDC_CFG0);
-+
-+	gsw1xx_switch_mask(priv, 1, GSW1XX_IP_MAC_CTRL_2_MLEN,
-+			   GSW1XX_IP_MAC_CTRL_2p(cpu_port));
-+	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_BM_QUEUE_GCTRL_GL_MOD,
-+			   GSW1XX_IP_BM_QUEUE_GCTRL);
-+
-+	/* Flush MAC Table */
-+	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_PCE_GCTRL_0_MTFL,
-+			   GSW1XX_IP_PCE_GCTRL_0);
-+	err = gsw1xx_switch_r_timeout(priv, GSW1XX_IP_PCE_GCTRL_0,
-+				      GSW1XX_IP_PCE_GCTRL_0_MTFL);
-+	if (err) {
-+		dev_err(priv->dev, "MAC flushing didn't finish\n");
-+		return err;
-+	}
-+
-+	gsw1xx_port_enable(ds, cpu_port, NULL);
-+
-+	return 0;
-+}
-+
-+static enum dsa_tag_protocol gsw1xx_get_tag_protocol(struct dsa_switch *ds,
-+						     int port,
-+						     enum dsa_tag_protocol mp)
-+{
-+	return DSA_TAG_PROTO_NONE;
-+}
-+
-+static void gsw1xx_port_stp_state_set(struct dsa_switch *ds, int port, u8 state)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+	u32 stp_state;
-+
-+	switch (state) {
-+	case BR_STATE_DISABLED:
-+		gsw1xx_switch_mask(priv, GSW1XX_IP_SDMA_PCTRL_EN, 0,
-+				   GSW1XX_IP_SDMA_PCTRLp(port));
-+		return;
-+	case BR_STATE_BLOCKING:
-+	case BR_STATE_LISTENING:
-+		stp_state = GSW1XX_IP_PCE_PCTRL_0_PSTATE_LISTEN;
-+		break;
-+	case BR_STATE_LEARNING:
-+		stp_state = GSW1XX_IP_PCE_PCTRL_0_PSTATE_LEARNING;
-+		break;
-+	case BR_STATE_FORWARDING:
-+		stp_state = GSW1XX_IP_PCE_PCTRL_0_PSTATE_FORWARDING;
-+		break;
-+	default:
-+		dev_err(priv->dev, "invalid STP state: %d\n", state);
-+		return;
-+	}
-+
-+	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_SDMA_PCTRL_EN,
-+			   GSW1XX_IP_SDMA_PCTRLp(port));
-+	gsw1xx_switch_mask(priv, GSW1XX_IP_PCE_PCTRL_0_PSTATE_MASK, stp_state,
-+			   GSW1XX_IP_PCE_PCTRL_0p(port));
-+}
-+
-+static void gsw1xx_port_set_link(struct gsw1xx_priv *priv, int port, bool link)
-+{
-+	u32 mdio_phy;
-+
-+	if (link)
-+		mdio_phy = GSW1XX_MDIO_PHY_LINK_UP;
-+	else
-+		mdio_phy = GSW1XX_MDIO_PHY_LINK_DOWN;
-+
-+	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_PHY_LINK_MASK, mdio_phy,
-+			 GSW1XX_MDIO_PHYp(port));
-+}
-+
-+static void gsw1xx_port_set_speed(struct gsw1xx_priv *priv, int port, int speed,
-+				  phy_interface_t interface)
-+{
-+	u32 mdio_phy = 0, mac_ctrl_0 = 0;
-+
-+	switch (speed) {
-+	case SPEED_10:
-+		mdio_phy = GSW1XX_MDIO_PHY_SPEED_M10;
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_GMII_MII;
-+		break;
-+
-+	case SPEED_100:
-+		mdio_phy = GSW1XX_MDIO_PHY_SPEED_M100;
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_GMII_MII;
-+		break;
-+
-+	case SPEED_1000:
-+		mdio_phy = GSW1XX_MDIO_PHY_SPEED_G1;
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_GMII_RGMII;
-+		break;
-+	}
-+
-+	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_PHY_SPEED_MASK, mdio_phy,
-+			 GSW1XX_MDIO_PHYp(port));
-+	gsw1xx_switch_mask(priv, GSW1XX_IP_MAC_CTRL_0_GMII_MASK, mac_ctrl_0,
-+			   GSW1XX_IP_MAC_CTRL_0p(port));
-+}
-+
-+static void gsw1xx_port_set_duplex(struct gsw1xx_priv *priv, int port,
-+				   int duplex)
-+{
-+	u32 mac_ctrl_0, mdio_phy;
-+
-+	if (duplex == DUPLEX_FULL) {
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_FDUP_EN;
-+		mdio_phy = GSW1XX_MDIO_PHY_FDUP_EN;
-+	} else {
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_FDUP_DIS;
-+		mdio_phy = GSW1XX_MDIO_PHY_FDUP_DIS;
-+	}
-+
-+	gsw1xx_switch_mask(priv, GSW1XX_IP_MAC_CTRL_0_FDUP_MASK, mac_ctrl_0,
-+			   GSW1XX_IP_MAC_CTRL_0p(port));
-+	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_PHY_FDUP_MASK, mdio_phy,
-+			 GSW1XX_MDIO_PHYp(port));
-+}
-+
-+static void gsw1xx_port_set_pause(struct gsw1xx_priv *priv, int port,
-+				  bool tx_pause, bool rx_pause)
-+{
-+	u32 mac_ctrl_0, mdio_phy;
-+
-+	if (tx_pause && rx_pause) {
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_FCON_RXTX;
-+		mdio_phy =
-+			GSW1XX_MDIO_PHY_FCONTX_EN | GSW1XX_MDIO_PHY_FCONRX_EN;
-+	} else if (tx_pause) {
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_FCON_TX;
-+		mdio_phy =
-+			GSW1XX_MDIO_PHY_FCONTX_EN | GSW1XX_MDIO_PHY_FCONRX_DIS;
-+	} else if (rx_pause) {
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_FCON_RX;
-+		mdio_phy =
-+			GSW1XX_MDIO_PHY_FCONTX_DIS | GSW1XX_MDIO_PHY_FCONRX_EN;
-+	} else {
-+		mac_ctrl_0 = GSW1XX_IP_MAC_CTRL_0_FCON_NONE;
-+		mdio_phy =
-+			GSW1XX_MDIO_PHY_FCONTX_DIS | GSW1XX_MDIO_PHY_FCONRX_DIS;
-+	}
-+
-+	gsw1xx_switch_mask(priv, GSW1XX_IP_MAC_CTRL_0_FCON_MASK, mac_ctrl_0,
-+			   GSW1XX_IP_MAC_CTRL_0p(port));
-+	gsw1xx_mdio_mask(priv,
-+			 GSW1XX_MDIO_PHY_FCONTX_MASK | GSW1XX_MDIO_PHY_FCONRX_MASK,
-+			 mdio_phy, GSW1XX_MDIO_PHYp(port));
-+}
-+
-+static void gsw1xx_phylink_mac_link_down(struct dsa_switch *ds, int port,
-+					 unsigned int mode,
-+					 phy_interface_t interface)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+
-+	if (!dsa_is_cpu_port(ds, port))
-+		gsw1xx_port_set_link(priv, port, false);
-+}
-+
-+static void gsw1xx_phylink_mac_link_up(struct dsa_switch *ds, int port,
-+				       unsigned int mode,
-+				       phy_interface_t interface,
-+				       struct phy_device *phydev, int speed,
-+				       int duplex, bool tx_pause, bool rx_pause)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+
-+	if (!dsa_is_cpu_port(ds, port)) {
-+		gsw1xx_port_set_link(priv, port, true);
-+		gsw1xx_port_set_speed(priv, port, speed, interface);
-+		gsw1xx_port_set_duplex(priv, port, duplex);
-+		gsw1xx_port_set_pause(priv, port, tx_pause, rx_pause);
-+	}
-+}
-+
-+static void gsw1xx_get_strings(struct dsa_switch *ds, int port, u32 stringset,
-+			       uint8_t *data)
-+{
-+	int i;
-+
-+	if (stringset != ETH_SS_STATS)
-+		return;
-+
-+	for (i = 0; i < ARRAY_SIZE(gsw1xx_rmon_cnt); i++)
-+		strncpy(data + i * ETH_GSTRING_LEN, gsw1xx_rmon_cnt[i].name,
-+			ETH_GSTRING_LEN);
-+}
-+
-+static u32 gsw1xx_bcm_ram_entry_read(struct gsw1xx_priv *priv, u32 port,
-+				     u32 index)
-+{
-+	u32 result;
-+	int err;
-+
-+	gsw1xx_switch_w(priv, index, GSW1XX_IP_BM_RAM_ADDR);
-+	gsw1xx_switch_mask(priv,
-+			   GSW1XX_IP_BM_RAM_CTRL_ADDR_MASK | GSW1XX_IP_BM_RAM_CTRL_OPMOD,
-+			   port | GSW1XX_IP_BM_RAM_CTRL_BAS,
-+			   GSW1XX_IP_BM_RAM_CTRL);
-+
-+	err = gsw1xx_switch_r_timeout(priv, GSW1XX_IP_BM_RAM_CTRL,
-+				      GSW1XX_IP_BM_RAM_CTRL_BAS);
-+	if (err) {
-+		dev_err(priv->dev,
-+			"timeout while reading entry: %u from RMON table for port: %u",
-+			index, port);
-+		return 0;
-+	}
-+
-+	result = gsw1xx_switch_r(priv, GSW1XX_IP_BM_RAM_VAL(0));
-+	result |= gsw1xx_switch_r(priv, GSW1XX_IP_BM_RAM_VAL(1)) << 16;
-+
-+	return result;
-+}
-+
-+static void gsw1xx_get_ethtool_stats(struct dsa_switch *ds, int port,
-+				     uint64_t *data)
-+{
-+	struct gsw1xx_priv *priv = ds->priv;
-+	const struct gsw1xx_rmon_cnt_desc *rmon_cnt;
-+	int i;
-+	u64 high;
-+
-+	for (i = 0; i < ARRAY_SIZE(gsw1xx_rmon_cnt); i++) {
-+		rmon_cnt = &gsw1xx_rmon_cnt[i];
-+
-+		data[i] =
-+			gsw1xx_bcm_ram_entry_read(priv, port, rmon_cnt->offset);
-+		if (rmon_cnt->size == 2) {
-+			high = gsw1xx_bcm_ram_entry_read(priv, port,
-+							 rmon_cnt->offset + 1);
-+			data[i] |= high << 32;
-+		}
-+	}
-+}
-+
-+static int gsw1xx_get_sset_count(struct dsa_switch *ds, int port, int sset)
-+{
-+	if (sset != ETH_SS_STATS)
-+		return 0;
-+
-+	return ARRAY_SIZE(gsw1xx_rmon_cnt);
-+}
-+
-+static int gsw1xx_get_mac_eee(struct dsa_switch *ds, int port,
-+			      struct ethtool_eee *e)
-+{
-+	struct gsw1xx_priv *priv = (struct gsw1xx_priv *)ds->priv;
-+	u32 val = 0;
-+
-+	val = gsw1xx_switch_r(priv, GSW1XX_IP_MAC_CTRL_4p(port));
-+	e->tx_lpi_enabled = !!(val & GSW1XX_IP_MAC_CTRL_4_LPIEN);
-+
-+	e->tx_lpi_timer = 20;
-+
-+	return 0;
-+}
-+
-+static int gsw1xx_set_mac_eee(struct dsa_switch *ds, int port,
-+			      struct ethtool_eee *e)
-+{
-+	struct gsw1xx_priv *priv = (struct gsw1xx_priv *)ds->priv;
-+
-+	if (e->tx_lpi_enabled) {
-+		gsw1xx_switch_mask(priv, 0, GSW1XX_IP_MAC_CTRL_4_LPIEN,
-+				   GSW1XX_IP_MAC_CTRL_4p(port));
-+	} else {
-+		gsw1xx_switch_mask(priv, GSW1XX_IP_MAC_CTRL_4_LPIEN, 0,
-+				   GSW1XX_IP_MAC_CTRL_4p(port));
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct dsa_switch_ops gsw1xx_switch_ops = {
-+	.get_tag_protocol	= gsw1xx_get_tag_protocol,
-+	.setup			= gsw1xx_setup,
-+	.set_mac_eee		= gsw1xx_set_mac_eee,
-+	.get_mac_eee		= gsw1xx_get_mac_eee,
-+	.port_enable		= gsw1xx_port_enable,
-+	.port_disable		= gsw1xx_port_disable,
-+	.port_stp_state_set	= gsw1xx_port_stp_state_set,
-+	.phylink_mac_link_down	= gsw1xx_phylink_mac_link_down,
-+	.phylink_mac_link_up	= gsw1xx_phylink_mac_link_up,
-+	.get_strings		= gsw1xx_get_strings,
-+	.get_ethtool_stats	= gsw1xx_get_ethtool_stats,
-+	.get_sset_count		= gsw1xx_get_sset_count,
-+};
-+
-+int gsw1xx_probe(struct gsw1xx_priv *priv, struct device *dev)
-+{
-+	struct device_node *np, *mdio_np;
-+	int err;
-+	u32 version;
-+
-+	if (!priv->regmap || IS_ERR(priv->regmap))
-+		return -EINVAL;
-+
-+	priv->hw_info = of_device_get_match_data(dev);
-+	if (!priv->hw_info)
-+		return -EINVAL;
-+
-+	priv->ds = devm_kzalloc(dev, sizeof(*priv->ds), GFP_KERNEL);
-+	if (!priv->ds)
-+		return -ENOMEM;
-+
-+	priv->ds->dev = dev;
-+	priv->ds->num_ports = priv->hw_info->max_ports;
-+	priv->ds->priv = priv;
-+	priv->ds->ops = &gsw1xx_switch_ops;
-+	priv->dev = dev;
-+	version = gsw1xx_switch_r(priv, GSW1XX_IP_VERSION);
-+
-+	np = dev->of_node;
-+	switch (version) {
-+	case GSW1XX_IP_VERSION_2_3:
-+		if (!of_device_is_compatible(np, "mxl,gsw145-mdio"))
-+			return -EINVAL;
-+		break;
-+	default:
-+		dev_err(dev, "unknown GSW1XX_IP version: 0x%x", version);
-+		return -ENOENT;
-+	}
-+
-+	/* bring up the mdio bus */
-+	mdio_np = of_get_child_by_name(np, "mdio");
-+	if (!mdio_np) {
-+		dev_err(dev, "missing child mdio node\n");
-+		return -EINVAL;
-+	}
-+
-+	err = gsw1xx_mdio(priv, mdio_np);
-+	if (err) {
-+		dev_err(dev, "mdio probe failed\n");
-+		goto put_mdio_node;
-+	}
-+
-+	err = dsa_register_switch(priv->ds);
-+	if (err) {
-+		dev_err(dev, "dsa switch register failed: %i\n", err);
-+		goto mdio_bus;
-+	}
-+	if (!dsa_is_cpu_port(priv->ds, priv->hw_info->cpu_port)) {
-+		dev_err(dev,
-+			"wrong CPU port defined, HW only supports port: %i",
-+			priv->hw_info->cpu_port);
-+		err = -EINVAL;
-+		goto disable_switch;
-+	}
-+
-+	dev_set_drvdata(dev, priv);
-+
-+	return 0;
-+
-+disable_switch:
-+	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-+	dsa_unregister_switch(priv->ds);
-+mdio_bus:
-+	if (mdio_np) {
-+		mdiobus_unregister(priv->ds->slave_mii_bus);
-+		mdiobus_free(priv->ds->slave_mii_bus);
-+	}
-+put_mdio_node:
-+	of_node_put(mdio_np);
-+	return err;
-+}
-+EXPORT_SYMBOL(gsw1xx_probe);
-+
-+void gsw1xx_remove(struct gsw1xx_priv *priv)
-+{
-+	if (!priv)
-+		return;
-+
-+	/* disable the switch */
-+	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-+
-+	dsa_unregister_switch(priv->ds);
-+
-+	if (priv->ds->slave_mii_bus) {
-+		mdiobus_unregister(priv->ds->slave_mii_bus);
-+		of_node_put(priv->ds->slave_mii_bus->dev.of_node);
-+		mdiobus_free(priv->ds->slave_mii_bus);
-+	}
-+
-+	dev_set_drvdata(priv->dev, NULL);
-+}
-+EXPORT_SYMBOL(gsw1xx_remove);
-+
-+void gsw1xx_shutdown(struct gsw1xx_priv *priv)
-+{
-+	if (!priv)
-+		return;
-+
-+	/* disable the switch */
-+	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-+
-+	dsa_switch_shutdown(priv->ds);
-+
-+	dev_set_drvdata(priv->dev, NULL);
-+}
-+EXPORT_SYMBOL(gsw1xx_shutdown);
-+
-+static const struct regmap_range gsw1xx_valid_regs[] = {
-+	/* GSWIP Core Registers */
-+	regmap_reg_range(GSW1XX_IP_BASE_ADDR,
-+			 GSW1XX_IP_BASE_ADDR + GSW1XX_IP_REG_LEN),
-+	/* Top Level PDI Registers, MDIO Master Reigsters */
-+	regmap_reg_range(GSW1XX_MDIO_BASE_ADDR,
-+			 GSW1XX_MDIO_BASE_ADDR + GSW1XX_MDIO_REG_LEN),
-+};
-+
-+const struct regmap_access_table gsw1xx_register_set = {
-+	.yes_ranges = gsw1xx_valid_regs,
-+	.n_yes_ranges = ARRAY_SIZE(gsw1xx_valid_regs),
-+};
-+EXPORT_SYMBOL(gsw1xx_register_set);
-+
-+MODULE_AUTHOR("Camel Guo <camel.guo@axis.com>");
-+MODULE_DESCRIPTION("Core Driver for MaxLinear GSM1XX ethernet switch");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/net/dsa/gsw1xx_mdio.c b/drivers/net/dsa/gsw1xx_mdio.c
-new file mode 100644
-index 000000000000..8328001041ed
---- /dev/null
-+++ b/drivers/net/dsa/gsw1xx_mdio.c
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * MaxLinear switch driver for GSW1XX in MDIO managed mode
-+ */
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mdio.h>
-+#include <linux/phy.h>
-+#include <linux/of.h>
-+
-+#include "gsw1xx.h"
-+
-+#define GSW1XX_SMDIO_TARGET_BASE_ADDR_REG	0x1F
-+
-+static int gsw1xx_mdio_write(void *ctx, uint32_t reg, uint32_t val)
-+{
-+	struct mdio_device *mdiodev = (struct mdio_device *)ctx;
-+	int ret = 0;
-+
-+	mutex_lock_nested(&mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
-+
-+	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr,
-+				  GSW1XX_SMDIO_TARGET_BASE_ADDR_REG, reg);
-+	if (ret < 0)
-+		goto out;
-+
-+	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr, 0, val);
-+
-+out:
-+	mutex_unlock(&mdiodev->bus->mdio_lock);
-+
-+	return ret;
-+}
-+
-+static int gsw1xx_mdio_read(void *ctx, uint32_t reg, uint32_t *val)
-+{
-+	struct mdio_device *mdiodev = (struct mdio_device *)ctx;
-+	int ret = 0;
-+
-+	mutex_lock_nested(&mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
-+
-+	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr,
-+				  GSW1XX_SMDIO_TARGET_BASE_ADDR_REG, reg);
-+	if (ret < 0)
-+		goto out;
-+
-+	*val = mdiodev->bus->read(mdiodev->bus, mdiodev->addr, 0);
-+
-+out:
-+	mutex_unlock(&mdiodev->bus->mdio_lock);
-+
-+	return ret;
-+}
-+
-+static const struct regmap_config gsw1xx_mdio_regmap_config = {
-+	.reg_bits = 16,
-+	.val_bits = 16,
-+	.reg_stride = 1,
-+
-+	.disable_locking = true,
-+
-+	.volatile_table = &gsw1xx_register_set,
-+	.wr_table = &gsw1xx_register_set,
-+	.rd_table = &gsw1xx_register_set,
-+
-+	.reg_read = gsw1xx_mdio_read,
-+	.reg_write = gsw1xx_mdio_write,
-+
-+	.cache_type = REGCACHE_NONE,
-+};
-+
-+static int gsw1xx_mdio_probe(struct mdio_device *mdiodev)
-+{
-+	struct gsw1xx_priv *priv;
-+	struct device *dev = &mdiodev->dev;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regmap = devm_regmap_init(dev, NULL, mdiodev,
-+					&gsw1xx_mdio_regmap_config);
-+	if (IS_ERR(priv->regmap)) {
-+		ret = PTR_ERR(priv->regmap);
-+		dev_err(dev, "regmap init failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return gsw1xx_probe(priv, dev);
-+}
-+
-+static void gsw1xx_mdio_remove(struct mdio_device *mdiodev)
-+{
-+	gsw1xx_remove(dev_get_drvdata(&mdiodev->dev));
-+}
-+
-+static void gsw1xx_mdio_shutdown(struct mdio_device *mdiodev)
-+{
-+	gsw1xx_shutdown(dev_get_drvdata(&mdiodev->dev));
-+}
-+
-+static const struct gsw1xx_hw_info gsw145_hw_info = {
-+	.max_ports = 6,
-+	.cpu_port = 5,
-+};
-+
-+static const struct of_device_id gsw1xx_mdio_of_match[] = {
-+	{ .compatible = "mxl,gsw145-mdio", .data = &gsw145_hw_info },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, gsw1xx_mdio_of_match);
-+
-+static struct mdio_driver gsw1xx_mdio_driver = {
-+	.probe  = gsw1xx_mdio_probe,
-+	.remove = gsw1xx_mdio_remove,
-+	.shutdown = gsw1xx_mdio_shutdown,
-+	.mdiodrv.driver = {
-+		.name = "GSW1XX_MDIO",
-+		.of_match_table = of_match_ptr(gsw1xx_mdio_of_match),
-+	},
-+};
-+
-+mdio_module_driver(gsw1xx_mdio_driver);
-+
-+MODULE_AUTHOR("Camel Guo <camel.guo@axis.com>");
-+MODULE_DESCRIPTION("Driver for MaxLinear GSM1XX ethernet switch in MDIO managed mode");
-+MODULE_LICENSE("GPL");
--- 
-2.30.2
+On 2022-10-25 at 15:09 +02, Jacopo Mondi <jacopo@jmondi.org> wrote:
 
+> Hi Mikhail,
+>
+> On Sat, Oct 22, 2022 at 07:20:07PM +0300, Mikhail Rudenko wrote:
+>> Add a V4L2 sub-device driver for OmniVision OV4689 image sensor. This
+>> is a 4 Mpx image sensor using the I2C bus for control and the CSI-2
+>> bus for data.
+>>
+>> This driver supports following features:
+>> - manual exposure and analog gain control support
+>> - test pattern support
+>> - media controller support
+>> - runtime PM support
+>> - support following resolutions:
+>>   + 2688x1520 at 30 fps
+>>
+>> The driver provides all mandatory V4L2 controls for compatibility with
+>> libcamera. The sensor supports 1/2/4-lane CSI-2 modes, but the driver
+>> implements 4 lane mode only at this moment.
+>>
+>> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+>> ---
+>>  MAINTAINERS                |    1 +
+>>  drivers/media/i2c/Kconfig  |   13 +
+>>  drivers/media/i2c/Makefile |    1 +
+>>  drivers/media/i2c/ov4689.c | 1026 ++++++++++++++++++++++++++++++++++++
+>>  4 files changed, 1041 insertions(+)
+>>  create mode 100644 drivers/media/i2c/ov4689.c
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 4d6d86a9f704..acf38afb3e73 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -15210,6 +15210,7 @@ L:	linux-media@vger.kernel.org
+>>  S:	Maintained
+>>  T:	git git://linuxtv.org/media_tree.git
+>>  F:	Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+>> +F:	drivers/media/i2c/ov5647.c
+>>
+>>  OMNIVISION OV5640 SENSOR DRIVER
+>>  M:	Steve Longerbeam <slongerbeam@gmail.com>
+>> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+>> index 7806d4b81716..1e1985252ec8 100644
+>> --- a/drivers/media/i2c/Kconfig
+>> +++ b/drivers/media/i2c/Kconfig
+>> @@ -445,6 +445,19 @@ config VIDEO_OV2740
+>>  	  To compile this driver as a module, choose M here: the
+>>  	  module will be called ov2740.
+>>
+>> +config VIDEO_OV4689
+>> +	tristate "OmniVision OV4689 sensor support"
+>> +	depends on GPIOLIB && VIDEO_DEV && I2C
+>> +	select MEDIA_CONTROLLER
+>> +	select VIDEO_V4L2_SUBDEV_API
+>> +	select V4L2_FWNODE
+>> +	help
+>> +	  This is a Video4Linux2 sensor-level driver for the OmniVision
+>> +	  OV4689 camera.
+>> +
+>> +	  To compile this driver as a module, choose M here: the
+>> +	  module will be called ov4689.
+>> +
+>>  config VIDEO_OV5640
+>>  	tristate "OmniVision OV5640 sensor support"
+>>  	depends on OF
+>> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+>> index 0a2933103dd9..c1a2cb351c0f 100644
+>> --- a/drivers/media/i2c/Makefile
+>> +++ b/drivers/media/i2c/Makefile
+>> @@ -79,6 +79,7 @@ obj-$(CONFIG_VIDEO_OV2659) += ov2659.o
+>>  obj-$(CONFIG_VIDEO_OV2680) += ov2680.o
+>>  obj-$(CONFIG_VIDEO_OV2685) += ov2685.o
+>>  obj-$(CONFIG_VIDEO_OV2740) += ov2740.o
+>> +obj-$(CONFIG_VIDEO_OV4689) += ov4689.o
+>>  obj-$(CONFIG_VIDEO_OV5640) += ov5640.o
+>>  obj-$(CONFIG_VIDEO_OV5645) += ov5645.o
+>>  obj-$(CONFIG_VIDEO_OV5647) += ov5647.o
+>> diff --git a/drivers/media/i2c/ov4689.c b/drivers/media/i2c/ov4689.c
+>> new file mode 100644
+>> index 000000000000..419ff7371ba8
+>> --- /dev/null
+>> +++ b/drivers/media/i2c/ov4689.c
+>> @@ -0,0 +1,1026 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * ov4689 driver
+>> + *
+>> + * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
+>> + * Copyright (C) 2022 Mikhail Rudenko
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/i2c.h>
+>> +#include <linux/module.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/regulator/consumer.h>
+>> +#include <media/media-entity.h>
+>> +#include <media/v4l2-async.h>
+>> +#include <media/v4l2-ctrls.h>
+>> +#include <media/v4l2-subdev.h>
+>> +#include <media/v4l2-fwnode.h>
+>> +
+>> +#define CHIP_ID				0x004688
+>> +#define OV4689_REG_CHIP_ID		0x300a
+>> +
+>> +#define OV4689_XVCLK_FREQ		24000000
+>> +
+>> +#define OV4689_REG_CTRL_MODE		0x0100
+>> +#define OV4689_MODE_SW_STANDBY		0x0
+>> +#define OV4689_MODE_STREAMING		BIT(0)
+>> +
+>> +#define OV4689_REG_EXPOSURE		0x3500
+>> +#define OV4689_EXPOSURE_MIN		4
+>> +#define OV4689_EXPOSURE_STEP		1
+>> +#define OV4689_VTS_MAX			0x7fff
+>> +
+>> +#define OV4689_REG_GAIN_H		0x3508
+>> +#define OV4689_REG_GAIN_L		0x3509
+>> +#define OV4689_GAIN_H_MASK		0x07
+>> +#define OV4689_GAIN_H_SHIFT		8
+>> +#define OV4689_GAIN_L_MASK		0xff
+>> +#define OV4689_GAIN_STEP		1
+>> +#define OV4689_GAIN_DEFAULT		0x80
+>> +
+>> +#define OV4689_REG_TEST_PATTERN		0x5040
+>> +#define OV4689_TEST_PATTERN_ENABLE	0x80
+>> +#define OV4689_TEST_PATTERN_DISABLE	0x0
+>> +
+>> +#define OV4689_REG_VTS			0x380e
+>> +
+>> +#define REG_NULL			0xFFFF
+>> +
+>> +#define OV4689_REG_VALUE_08BIT		1
+>> +#define OV4689_REG_VALUE_16BIT		2
+>> +#define OV4689_REG_VALUE_24BIT		3
+>> +
+>> +#define OV4689_LANES			4
+>> +
+>> +static const char *const ov4689_supply_names[] = {
+>> +	"avdd", /* Analog power */
+>> +	"dovdd", /* Digital I/O power */
+>> +	"dvdd", /* Digital core power */
+>> +};
+>> +
+>> +struct regval {
+>> +	u16 addr;
+>> +	u8 val;
+>> +};
+>> +
+>> +enum ov4689_mode_id {
+>> +	OV4689_MODE_2688_1520 = 0,
+>> +	OV4689_NUM_MODES,
+>> +};
+>> +
+>> +struct ov4689_mode {
+>> +	enum ov4689_mode_id id;
+>> +	u32 width;
+>> +	u32 height;
+>> +	u32 max_fps;
+>> +	u32 hts_def;
+>> +	u32 vts_def;
+>> +	u32 exp_def;
+>> +	u32 pixel_rate;
+>> +	u32 sensor_width;
+>> +	u32 sensor_height;
+>> +	u32 crop_top;
+>> +	u32 crop_left;
+>> +	const struct regval *reg_list;
+>> +};
+>> +
+>> +struct ov4689 {
+>> +	struct i2c_client *client;
+>> +	struct clk *xvclk;
+>> +	struct gpio_desc *reset_gpio;
+>> +	struct gpio_desc *pwdn_gpio;
+>> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov4689_supply_names)];
+>> +
+>> +	struct v4l2_subdev subdev;
+>> +	struct media_pad pad;
+>> +
+>> +	u32 clock_rate;
+>> +
+>> +	struct mutex mutex; /* lock to protect streaming, ctrls and cur_mode */
+>> +	bool streaming;
+>> +	struct v4l2_ctrl_handler ctrl_handler;
+>> +	struct v4l2_ctrl *exposure;
+>> +
+>> +	const struct ov4689_mode *cur_mode;
+>> +};
+>> +
+>> +#define to_ov4689(sd) container_of(sd, struct ov4689, subdev)
+>> +
+>> +struct ov4689_gain_range {
+>> +	u32 logical_min;
+>> +	u32 logical_max;
+>> +	u32 offset;
+>> +	u32 divider;
+>> +	u32 physical_min;
+>> +	u32 physical_max;
+>> +};
+>> +
+>> +/*
+>> + * Xclk 24Mhz
+>> + * max_framerate 30fps
+>> + * mipi_datarate per lane 1008Mbps
+>> + */
+>> +static const struct regval ov4689_2688x1520_regs[] = {
+>> +	{0x0103, 0x01}, {0x3638, 0x00}, {0x0300, 0x00},
+>> +	{0x0302, 0x2a}, {0x0303, 0x00}, {0x0304, 0x03},
+>> +	{0x030b, 0x00}, {0x030d, 0x1e}, {0x030e, 0x04},
+>> +	{0x030f, 0x01}, {0x0312, 0x01}, {0x031e, 0x00},
+>> +	{0x3000, 0x20}, {0x3002, 0x00}, {0x3018, 0x72},
+>> +	{0x3020, 0x93}, {0x3021, 0x03}, {0x3022, 0x01},
+>> +	{0x3031, 0x0a}, {0x303f, 0x0c}, {0x3305, 0xf1},
+>> +	{0x3307, 0x04}, {0x3309, 0x29}, {0x3500, 0x00},
+>> +	{0x3501, 0x60}, {0x3502, 0x00}, {0x3503, 0x04},
+>> +	{0x3504, 0x00}, {0x3505, 0x00}, {0x3506, 0x00},
+>> +	{0x3507, 0x00}, {0x3508, 0x00}, {0x3509, 0x80},
+>> +	{0x350a, 0x00}, {0x350b, 0x00}, {0x350c, 0x00},
+>> +	{0x350d, 0x00}, {0x350e, 0x00}, {0x350f, 0x80},
+>> +	{0x3510, 0x00}, {0x3511, 0x00}, {0x3512, 0x00},
+>> +	{0x3513, 0x00}, {0x3514, 0x00}, {0x3515, 0x80},
+>> +	{0x3516, 0x00}, {0x3517, 0x00}, {0x3518, 0x00},
+>> +	{0x3519, 0x00}, {0x351a, 0x00}, {0x351b, 0x80},
+>> +	{0x351c, 0x00}, {0x351d, 0x00}, {0x351e, 0x00},
+>> +	{0x351f, 0x00}, {0x3520, 0x00}, {0x3521, 0x80},
+>> +	{0x3522, 0x08}, {0x3524, 0x08}, {0x3526, 0x08},
+>> +	{0x3528, 0x08}, {0x352a, 0x08}, {0x3602, 0x00},
+>> +	{0x3603, 0x40}, {0x3604, 0x02}, {0x3605, 0x00},
+>> +	{0x3606, 0x00}, {0x3607, 0x00}, {0x3609, 0x12},
+>> +	{0x360a, 0x40}, {0x360c, 0x08}, {0x360f, 0xe5},
+>> +	{0x3608, 0x8f}, {0x3611, 0x00}, {0x3613, 0xf7},
+>> +	{0x3616, 0x58}, {0x3619, 0x99}, {0x361b, 0x60},
+>> +	{0x361c, 0x7a}, {0x361e, 0x79}, {0x361f, 0x02},
+>> +	{0x3632, 0x00}, {0x3633, 0x10}, {0x3634, 0x10},
+>> +	{0x3635, 0x10}, {0x3636, 0x15}, {0x3646, 0x86},
+>> +	{0x364a, 0x0b}, {0x3700, 0x17}, {0x3701, 0x22},
+>> +	{0x3703, 0x10}, {0x370a, 0x37}, {0x3705, 0x00},
+>> +	{0x3706, 0x63}, {0x3709, 0x3c}, {0x370b, 0x01},
+>> +	{0x370c, 0x30}, {0x3710, 0x24}, {0x3711, 0x0c},
+>> +	{0x3716, 0x00}, {0x3720, 0x28}, {0x3729, 0x7b},
+>> +	{0x372a, 0x84}, {0x372b, 0xbd}, {0x372c, 0xbc},
+>> +	{0x372e, 0x52}, {0x373c, 0x0e}, {0x373e, 0x33},
+>> +	{0x3743, 0x10}, {0x3744, 0x88}, {0x3745, 0xc0},
+>> +	{0x374a, 0x43}, {0x374c, 0x00}, {0x374e, 0x23},
+>> +	{0x3751, 0x7b}, {0x3752, 0x84}, {0x3753, 0xbd},
+>> +	{0x3754, 0xbc}, {0x3756, 0x52}, {0x375c, 0x00},
+>> +	{0x3760, 0x00}, {0x3761, 0x00}, {0x3762, 0x00},
+>> +	{0x3763, 0x00}, {0x3764, 0x00}, {0x3767, 0x04},
+>> +	{0x3768, 0x04}, {0x3769, 0x08}, {0x376a, 0x08},
+>> +	{0x376b, 0x20}, {0x376c, 0x00}, {0x376d, 0x00},
+>> +	{0x376e, 0x00}, {0x3773, 0x00}, {0x3774, 0x51},
+>> +	{0x3776, 0xbd}, {0x3777, 0xbd}, {0x3781, 0x18},
+>> +	{0x3783, 0x25}, {0x3798, 0x1b}, {0x3800, 0x00},
+>> +	{0x3801, 0x08}, {0x3802, 0x00}, {0x3803, 0x04},
+>> +	{0x3804, 0x0a}, {0x3805, 0x97}, {0x3806, 0x05},
+>> +	{0x3807, 0xfb}, {0x3808, 0x0a}, {0x3809, 0x80},
+>> +	{0x380a, 0x05}, {0x380b, 0xf0}, {0x380c, 0x0a},
+>> +	{0x380d, 0x0e}, {0x380e, 0x06}, {0x380f, 0x12},
+>> +	{0x3810, 0x00}, {0x3811, 0x08}, {0x3812, 0x00},
+>> +	{0x3813, 0x04}, {0x3814, 0x01}, {0x3815, 0x01},
+>> +	{0x3819, 0x01}, {0x3820, 0x00}, {0x3821, 0x06},
+>> +	{0x3829, 0x00}, {0x382a, 0x01}, {0x382b, 0x01},
+>> +	{0x382d, 0x7f}, {0x3830, 0x04}, {0x3836, 0x01},
+>> +	{0x3837, 0x00}, {0x3841, 0x02}, {0x3846, 0x08},
+>> +	{0x3847, 0x07}, {0x3d85, 0x36}, {0x3d8c, 0x71},
+>> +	{0x3d8d, 0xcb}, {0x3f0a, 0x00}, {0x4000, 0xf1},
+>> +	{0x4001, 0x40}, {0x4002, 0x04}, {0x4003, 0x14},
+>> +	{0x400e, 0x00}, {0x4011, 0x00}, {0x401a, 0x00},
+>> +	{0x401b, 0x00}, {0x401c, 0x00}, {0x401d, 0x00},
+>> +	{0x401f, 0x00}, {0x4020, 0x00}, {0x4021, 0x10},
+>> +	{0x4022, 0x07}, {0x4023, 0xcf}, {0x4024, 0x09},
+>> +	{0x4025, 0x60}, {0x4026, 0x09}, {0x4027, 0x6f},
+>> +	{0x4028, 0x00}, {0x4029, 0x02}, {0x402a, 0x06},
+>> +	{0x402b, 0x04}, {0x402c, 0x02}, {0x402d, 0x02},
+>> +	{0x402e, 0x0e}, {0x402f, 0x04}, {0x4302, 0xff},
+>> +	{0x4303, 0xff}, {0x4304, 0x00}, {0x4305, 0x00},
+>> +	{0x4306, 0x00}, {0x4308, 0x02}, {0x4500, 0x6c},
+>> +	{0x4501, 0xc4}, {0x4502, 0x40}, {0x4503, 0x01},
+>> +	{0x4601, 0xa7}, {0x4800, 0x04}, {0x4813, 0x08},
+>> +	{0x481f, 0x40}, {0x4829, 0x78}, {0x4837, 0x10},
+>> +	{0x4b00, 0x2a}, {0x4b0d, 0x00}, {0x4d00, 0x04},
+>> +	{0x4d01, 0x42}, {0x4d02, 0xd1}, {0x4d03, 0x93},
+>> +	{0x4d04, 0xf5}, {0x4d05, 0xc1}, {0x5000, 0xf3},
+>> +	{0x5001, 0x11}, {0x5004, 0x00}, {0x500a, 0x00},
+>> +	{0x500b, 0x00}, {0x5032, 0x00}, {0x5040, 0x00},
+>> +	{0x5050, 0x0c}, {0x5500, 0x00}, {0x5501, 0x10},
+>> +	{0x5502, 0x01}, {0x5503, 0x0f}, {0x8000, 0x00},
+>> +	{0x8001, 0x00}, {0x8002, 0x00}, {0x8003, 0x00},
+>> +	{0x8004, 0x00}, {0x8005, 0x00}, {0x8006, 0x00},
+>> +	{0x8007, 0x00}, {0x8008, 0x00}, {0x3638, 0x00},
+>> +	{REG_NULL, 0x00},
+>> +};
+>> +
+>> +static const struct ov4689_mode supported_modes[] = {
+>> +	{
+>> +		.id = OV4689_MODE_2688_1520,
+>> +		.width = 2688,
+>> +		.height = 1520,
+>> +		.sensor_width = 2720,
+>> +		.sensor_height = 1536,
+>> +		.crop_top = 8,
+>> +		.crop_left = 16,
+>> +		.max_fps = 30,
+>> +		.exp_def = 1536,
+>> +		.hts_def = 4 * 2574,
+>> +		.vts_def = 1554,
+>> +		.pixel_rate = 480000000,
+>> +		.reg_list = ov4689_2688x1520_regs,
+>> +	},
+>> +};
+>> +
+>> +static const u64 link_freq_menu_items[] = { 504000000 };
+>> +
+>> +static const char *const ov4689_test_pattern_menu[] = {
+>> +	"Disabled",
+>> +	"Vertical Color Bar Type 1",
+>> +	"Vertical Color Bar Type 2",
+>> +	"Vertical Color Bar Type 3",
+>> +	"Vertical Color Bar Type 4"
+>> +};
+>> +
+>> +/*
+>> + * These coefficients are based on those used in Rockchip's camera
+>> + * engine, with minor tweaks for continuity.
+>> + */
+>> +static const struct ov4689_gain_range ov4689_gain_ranges[] = {
+>> +	{
+>> +		.logical_min = 0,
+>> +		.logical_max = 255,
+>> +		.offset = 0,
+>> +		.divider = 1,
+>> +		.physical_min = 0,
+>> +		.physical_max = 255,
+>> +	},
+>> +	{
+>> +		.logical_min = 256,
+>> +		.logical_max = 511,
+>> +		.offset = 252,
+>> +		.divider = 2,
+>> +		.physical_min = 376,
+>> +		.physical_max = 504,
+>> +	},
+>> +	{
+>> +		.logical_min = 512,
+>> +		.logical_max = 1023,
+>> +		.offset = 758,
+>> +		.divider = 4,
+>> +		.physical_min = 884,
+>> +		.physical_max = 1012,
+>> +	},
+>> +	{
+>> +		.logical_min = 1024,
+>> +		.logical_max = 2047,
+>> +		.offset = 1788,
+>> +		.divider = 8,
+>> +		.physical_min = 1912,
+>> +		.physical_max = 2047,
+>> +	},
+>> +};
+>> +
+>> +/* Write registers up to 4 at a time */
+>> +static int ov4689_write_reg(struct i2c_client *client, u16 reg, u32 len,
+>> +			    u32 val)
+>> +{
+>> +	u32 buf_i, val_i;
+>> +	__be32 val_be;
+>> +	u8 *val_p;
+>> +	u8 buf[6];
+>> +
+>> +	if (len > 4)
+>> +		return -EINVAL;
+>> +
+>> +	buf[0] = reg >> 8;
+>> +	buf[1] = reg & 0xff;
+>> +
+>> +	val_be = cpu_to_be32(val);
+>> +	val_p = (u8 *)&val_be;
+>> +	buf_i = 2;
+>> +	val_i = 4 - len;
+>> +
+>> +	while (val_i < 4)
+>> +		buf[buf_i++] = val_p[val_i++];
+>> +
+>> +	if (i2c_master_send(client, buf, len + 2) != len + 2)
+>> +		return -EIO;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_write_array(struct i2c_client *client,
+>> +			      const struct regval *regs)
+>> +{
+>> +	int ret = 0;
+>> +	u32 i;
+>> +
+>> +	for (i = 0; ret == 0 && regs[i].addr != REG_NULL; i++)
+>> +		ret = ov4689_write_reg(client, regs[i].addr,
+>> +				       OV4689_REG_VALUE_08BIT, regs[i].val);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/* Read registers up to 4 at a time */
+>> +static int ov4689_read_reg(struct i2c_client *client, u16 reg, unsigned int len,
+>> +			   u32 *val)
+>> +{
+>> +	__be16 reg_addr_be = cpu_to_be16(reg);
+>> +	struct i2c_msg msgs[2];
+>> +	__be32 data_be = 0;
+>> +	u8 *data_be_p;
+>> +	int ret;
+>> +
+>> +	if (len > 4 || !len)
+>> +		return -EINVAL;
+>> +
+>> +	data_be_p = (u8 *)&data_be;
+>> +	/* Write register address */
+>> +	msgs[0].addr = client->addr;
+>> +	msgs[0].flags = 0;
+>> +	msgs[0].len = 2;
+>> +	msgs[0].buf = (u8 *)&reg_addr_be;
+>> +
+>> +	/* Read data from register */
+>> +	msgs[1].addr = client->addr;
+>> +	msgs[1].flags = I2C_M_RD;
+>> +	msgs[1].len = len;
+>> +	msgs[1].buf = &data_be_p[4 - len];
+>> +
+>> +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+>> +	if (ret != ARRAY_SIZE(msgs))
+>> +		return -EIO;
+>> +
+>> +	*val = be32_to_cpu(data_be);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void ov4689_fill_fmt(const struct ov4689_mode *mode,
+>> +			    struct v4l2_mbus_framefmt *fmt)
+>> +{
+>> +	fmt->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+>> +	fmt->width = mode->width;
+>> +	fmt->height = mode->height;
+>> +	fmt->field = V4L2_FIELD_NONE;
+>> +}
+>> +
+>> +static int ov4689_set_fmt(struct v4l2_subdev *sd,
+>> +			  struct v4l2_subdev_state *sd_state,
+>> +			  struct v4l2_subdev_format *fmt)
+>> +{
+>> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +
+>> +	/* only one mode supported for now */
+>> +	ov4689_fill_fmt(ov4689->cur_mode, mbus_fmt);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_get_fmt(struct v4l2_subdev *sd,
+>> +			  struct v4l2_subdev_state *sd_state,
+>> +			  struct v4l2_subdev_format *fmt)
+>> +{
+>> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +
+>> +	/* only one mode supported for now */
+>> +	ov4689_fill_fmt(ov4689->cur_mode, mbus_fmt);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_enum_mbus_code(struct v4l2_subdev *sd,
+>> +				 struct v4l2_subdev_state *sd_state,
+>> +				 struct v4l2_subdev_mbus_code_enum *code)
+>> +{
+>> +	if (code->index != 0)
+>> +		return -EINVAL;
+>> +	code->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_enum_frame_sizes(struct v4l2_subdev *sd,
+>> +				   struct v4l2_subdev_state *sd_state,
+>> +				   struct v4l2_subdev_frame_size_enum *fse)
+>> +{
+>> +	if (fse->index >= ARRAY_SIZE(supported_modes))
+>> +		return -EINVAL;
+>> +
+>> +	if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10)
+>> +		return -EINVAL;
+>> +
+>> +	fse->min_width = supported_modes[fse->index].width;
+>> +	fse->max_width = supported_modes[fse->index].width;
+>> +	fse->max_height = supported_modes[fse->index].height;
+>> +	fse->min_height = supported_modes[fse->index].height;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_enable_test_pattern(struct ov4689 *ov4689, u32 pattern)
+>> +{
+>> +	u32 val;
+>> +
+>> +	if (pattern)
+>> +		val = (pattern - 1) | OV4689_TEST_PATTERN_ENABLE;
+>> +	else
+>> +		val = OV4689_TEST_PATTERN_DISABLE;
+>> +
+>> +	return ov4689_write_reg(ov4689->client, OV4689_REG_TEST_PATTERN,
+>> +				OV4689_REG_VALUE_08BIT, val);
+>> +}
+>> +
+>> +static int ov4689_get_selection(struct v4l2_subdev *sd,
+>> +				struct v4l2_subdev_state *state,
+>> +				struct v4l2_subdev_selection *sel)
+>> +{
+>> +	const struct ov4689_mode *mode = to_ov4689(sd)->cur_mode;
+>> +
+>> +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+>> +		return -EINVAL;
+>> +
+>> +	switch (sel->target) {
+>> +	case V4L2_SEL_TGT_CROP_BOUNDS:
+>> +		sel->r.top = 0;
+>> +		sel->r.left = 0;
+>> +		sel->r.width = mode->sensor_width;
+>> +		sel->r.height = mode->sensor_height;
+>> +		return 0;
+>> +	case V4L2_SEL_TGT_CROP:
+>> +	case V4L2_SEL_TGT_CROP_DEFAULT:
+>> +		sel->r.top = mode->crop_top;
+>> +		sel->r.left = mode->crop_left;
+>> +		sel->r.width = mode->width;
+>> +		sel->r.height = mode->height;
+>> +		return 0;
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int ov4689_s_stream(struct v4l2_subdev *sd, int on)
+>> +{
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +	struct i2c_client *client = ov4689->client;
+>> +	int ret = 0;
+>> +
+>> +	mutex_lock(&ov4689->mutex);
+>> +
+>> +	on = !!on;
+>> +	if (on == ov4689->streaming)
+>> +		goto unlock_and_return;
+>> +
+>> +	if (on) {
+>> +		ret = pm_runtime_resume_and_get(&client->dev);
+>> +		if (ret < 0)
+>> +			goto unlock_and_return;
+>> +
+>> +		ret = ov4689_write_array(ov4689->client,
+>> +					 ov4689->cur_mode->reg_list);
+>> +		if (ret) {
+>> +			pm_runtime_put(&client->dev);
+>> +			goto unlock_and_return;
+>> +		}
+>> +
+>> +		ret = __v4l2_ctrl_handler_setup(&ov4689->ctrl_handler);
+>> +		if (ret) {
+>> +			pm_runtime_put(&client->dev);
+>> +			goto unlock_and_return;
+>> +		}
+>> +
+>> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_CTRL_MODE,
+>> +				       OV4689_REG_VALUE_08BIT,
+>> +				       OV4689_MODE_STREAMING);
+>> +		if (ret) {
+>> +			pm_runtime_put(&client->dev);
+>> +			goto unlock_and_return;
+>> +		}
+>> +	} else {
+>> +		ov4689_write_reg(ov4689->client, OV4689_REG_CTRL_MODE,
+>> +				 OV4689_REG_VALUE_08BIT,
+>> +				 OV4689_MODE_SW_STANDBY);
+>> +		pm_runtime_put(&client->dev);
+>> +	}
+>> +
+>> +	ov4689->streaming = on;
+>> +
+>> +unlock_and_return:
+>> +	mutex_unlock(&ov4689->mutex);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +/* Calculate the delay in us by clock rate and clock cycles */
+>> +static inline u32 ov4689_cal_delay(struct ov4689 *ov4689, u32 cycles)
+>> +{
+>> +	return DIV_ROUND_UP(cycles * 1000,
+>> +			    DIV_ROUND_UP(ov4689->clock_rate, 1000));
+>> +}
+>> +
+>> +static int __maybe_unused ov4689_power_on(struct device *dev)
+>> +{
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +	u32 delay_us;
+>> +	int ret;
+>> +
+>> +	ret = clk_prepare_enable(ov4689->xvclk);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "Failed to enable xvclk\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 1);
+>> +
+>> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov4689_supply_names),
+>> +				    ov4689->supplies);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "Failed to enable regulators\n");
+>> +		goto disable_clk;
+>> +	}
+>> +
+>> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 0);
+>> +	usleep_range(500, 1000);
+>> +	gpiod_set_value_cansleep(ov4689->pwdn_gpio, 0);
+>> +
+>> +	/* 8192 cycles prior to first SCCB transaction */
+>> +	delay_us = ov4689_cal_delay(ov4689, 8192);
+>> +	usleep_range(delay_us, delay_us * 2);
+>> +
+>> +	return 0;
+>> +
+>> +disable_clk:
+>> +	clk_disable_unprepare(ov4689->xvclk);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int __maybe_unused ov4689_power_off(struct device *dev)
+>> +{
+>> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +
+>> +	gpiod_set_value_cansleep(ov4689->pwdn_gpio, 1);
+>> +	clk_disable_unprepare(ov4689->xvclk);
+>> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 1);
+>> +	regulator_bulk_disable(ARRAY_SIZE(ov4689_supply_names),
+>> +			       ov4689->supplies);
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+>> +{
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +	struct v4l2_mbus_framefmt *try_fmt;
+>> +
+>> +	mutex_lock(&ov4689->mutex);
+>> +
+>> +	try_fmt = v4l2_subdev_get_try_format(sd, fh->state, 0);
+>> +	/* Initialize try_fmt */
+>> +	ov4689_fill_fmt(&supported_modes[OV4689_MODE_2688_1520], try_fmt);
+>> +
+>> +	mutex_unlock(&ov4689->mutex);
+>> +
+>> +	return 0;
+>> +}
+>
+> FYI the centralized state support has been recently introduced in v4l2.
+> It allows you (among other things) to replace open with init_cfg and
+> centralize the handling of formats initialization. This driver only
+> supports one format, so no big deal.
+
+Could you point me at some documentation/example code on this? I think
+at some point in future (after the driver is accepted) I'll be
+implementing more modes (at least 2x2 and 4x4 binning) and the
+centralized state will come in useful.
+
+>> +
+>> +static const struct dev_pm_ops ov4689_pm_ops = {
+>> +	SET_RUNTIME_PM_OPS(ov4689_power_off, ov4689_power_on, NULL)
+>> +};
+>> +
+>> +static const struct v4l2_subdev_internal_ops ov4689_internal_ops = {
+>> +	.open = ov4689_open,
+>> +};
+>> +
+>> +static const struct v4l2_subdev_video_ops ov4689_video_ops = {
+>> +	.s_stream = ov4689_s_stream,
+>> +};
+>> +
+>> +static const struct v4l2_subdev_pad_ops ov4689_pad_ops = {
+>> +	.enum_mbus_code = ov4689_enum_mbus_code,
+>> +	.enum_frame_size = ov4689_enum_frame_sizes,
+>> +	.get_fmt = ov4689_get_fmt,
+>> +	.set_fmt = ov4689_set_fmt,
+>> +	.get_selection = ov4689_get_selection,
+>> +};
+>> +
+>> +static const struct v4l2_subdev_ops ov4689_subdev_ops = {
+>> +	.video = &ov4689_video_ops,
+>> +	.pad = &ov4689_pad_ops,
+>> +};
+>> +
+>> +/*
+>> + * Map userspace (logical) gain to sensor (physical) gain using
+>> + * ov4689_gain_ranges table.
+>> + */
+>> +static int ov4689_map_gain(struct ov4689 *ov4689, int logical_gain, int *result)
+>> +{
+>> +	const struct device *dev = &ov4689->client->dev;
+>> +	const struct ov4689_gain_range *range;
+>> +	unsigned int n;
+>> +
+>> +	for (n = 0; n < ARRAY_SIZE(ov4689_gain_ranges); n++) {
+>> +		if (logical_gain >= ov4689_gain_ranges[n].logical_min &&
+>> +		    logical_gain <= ov4689_gain_ranges[n].logical_max) {
+>> +			break;
+>> +		}
+>
+> No need for {} here
+>
+
+Will fix in v5. I wonder, why doesn't checkpatch.pl catch ones like this?..
+
+>> +	}
+>> +
+>> +	if (n == ARRAY_SIZE(ov4689_gain_ranges)) {
+>> +		dev_warn_ratelimited(dev, "no mapping found for gain %d\n",
+>> +				     logical_gain);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	range = &ov4689_gain_ranges[n];
+>> +
+>> +	*result = clamp(range->offset + (logical_gain) / range->divider,
+>> +			range->physical_min, range->physical_max);
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_set_ctrl(struct v4l2_ctrl *ctrl)
+>> +{
+>> +	struct ov4689 *ov4689 =
+>> +		container_of(ctrl->handler, struct ov4689, ctrl_handler);
+>> +	struct i2c_client *client = ov4689->client;
+>> +	int sensor_gain;
+>> +	s64 max_expo;
+>> +	int ret;
+>> +
+>> +	/* Propagate change of current control to all related controls */
+>> +	switch (ctrl->id) {
+>> +	case V4L2_CID_VBLANK:
+>> +		/* Update max exposure while meeting expected vblanking */
+>> +		max_expo = ov4689->cur_mode->height + ctrl->val - 4;
+>> +		__v4l2_ctrl_modify_range(ov4689->exposure,
+>> +					 ov4689->exposure->minimum, max_expo,
+>> +					 ov4689->exposure->step,
+>> +					 ov4689->exposure->default_value);
+>> +		break;
+>> +	}
+>> +
+>> +	if (!pm_runtime_get_if_in_use(&client->dev))
+>> +		return 0;
+>> +
+>> +	switch (ctrl->id) {
+>> +	case V4L2_CID_EXPOSURE:
+>> +		/* 4 least significant bits of expsoure are fractional part */
+>> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_EXPOSURE,
+>> +				       OV4689_REG_VALUE_24BIT, ctrl->val << 4);
+>> +		break;
+>> +	case V4L2_CID_ANALOGUE_GAIN:
+>> +		ret = ov4689_map_gain(ov4689, ctrl->val, &sensor_gain);
+>> +
+>> +		ret = ret ?:
+>> +			ov4689_write_reg(ov4689->client, OV4689_REG_GAIN_H,
+>> +					 OV4689_REG_VALUE_08BIT,
+>> +					 (sensor_gain >> OV4689_GAIN_H_SHIFT) &
+>> +					 OV4689_GAIN_H_MASK);
+>> +		ret = ret ?:
+>> +			ov4689_write_reg(ov4689->client, OV4689_REG_GAIN_L,
+>> +					 OV4689_REG_VALUE_08BIT,
+>> +					 sensor_gain & OV4689_GAIN_L_MASK);
+>> +		break;
+>> +	case V4L2_CID_VBLANK:
+>> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_VTS,
+>> +				       OV4689_REG_VALUE_16BIT,
+>> +				       ctrl->val + ov4689->cur_mode->height);
+>> +		break;
+>> +	case V4L2_CID_TEST_PATTERN:
+>> +		ret = ov4689_enable_test_pattern(ov4689, ctrl->val);
+>> +		break;
+>> +	default:
+>> +		dev_warn(&client->dev, "%s Unhandled id:0x%x, val:0x%x\n",
+>> +			 __func__, ctrl->id, ctrl->val);
+>> +		ret = -EINVAL;
+>> +		break;
+>> +	}
+>> +
+>> +	pm_runtime_put(&client->dev);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct v4l2_ctrl_ops ov4689_ctrl_ops = {
+>> +	.s_ctrl = ov4689_set_ctrl,
+>> +};
+>> +
+>> +static int ov4689_initialize_controls(struct ov4689 *ov4689)
+>> +{
+>> +	struct i2c_client *client = v4l2_get_subdevdata(&ov4689->subdev);
+>> +	struct v4l2_fwnode_device_properties props;
+>> +	struct v4l2_ctrl_handler *handler;
+>> +	const struct ov4689_mode *mode;
+>> +	s64 exposure_max, vblank_def;
+>> +	struct v4l2_ctrl *ctrl;
+>> +	s64 h_blank_def;
+>> +	int ret;
+>> +
+>> +	handler = &ov4689->ctrl_handler;
+>> +	mode = ov4689->cur_mode;
+>> +	ret = v4l2_ctrl_handler_init(handler, 10);
+>> +	if (ret)
+>> +		return ret;
+>> +	handler->lock = &ov4689->mutex;
+>> +
+>> +	ctrl = v4l2_ctrl_new_int_menu(handler, NULL, V4L2_CID_LINK_FREQ, 0, 0,
+>> +				      link_freq_menu_items);
+>> +	if (ctrl)
+>> +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+>> +
+>> +	v4l2_ctrl_new_std(handler, NULL, V4L2_CID_PIXEL_RATE, 0,
+>> +			  mode->pixel_rate, 1, mode->pixel_rate);
+>> +
+>> +	h_blank_def = mode->hts_def - mode->width;
+>> +	ctrl = v4l2_ctrl_new_std(handler, NULL, V4L2_CID_HBLANK, h_blank_def,
+>> +				 h_blank_def, 1, h_blank_def);
+>> +	if (ctrl)
+>> +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+>> +
+>> +	vblank_def = mode->vts_def - mode->height;
+>> +	v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_VBLANK,
+>> +			  vblank_def, OV4689_VTS_MAX - mode->height, 1,
+>> +			  vblank_def);
+>> +
+>> +	exposure_max = mode->vts_def - 4;
+>> +	ov4689->exposure =
+>> +		v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_EXPOSURE,
+>> +				  OV4689_EXPOSURE_MIN, exposure_max,
+>> +				  OV4689_EXPOSURE_STEP, mode->exp_def);
+>> +
+>> +	v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
+>> +			  ov4689_gain_ranges[0].logical_min,
+>> +			  ov4689_gain_ranges[ARRAY_SIZE(ov4689_gain_ranges) - 1]
+>> +				  .logical_max,
+>> +			  OV4689_GAIN_STEP, OV4689_GAIN_DEFAULT);
+>> +
+>> +	v4l2_ctrl_new_std_menu_items(handler, &ov4689_ctrl_ops,
+>> +				     V4L2_CID_TEST_PATTERN,
+>> +				     ARRAY_SIZE(ov4689_test_pattern_menu) - 1,
+>> +				     0, 0, ov4689_test_pattern_menu);
+>> +
+>> +	if (handler->error) {
+>> +		ret = handler->error;
+>> +		dev_err(&ov4689->client->dev, "Failed to init controls(%d)\n",
+>> +			ret);
+>> +		goto err_free_handler;
+>> +	}
+>> +
+>> +	ret = v4l2_fwnode_device_parse(&client->dev, &props);
+>> +	if (ret)
+>> +		goto err_free_handler;
+>> +
+>> +	ret = v4l2_ctrl_new_fwnode_properties(handler, &ov4689_ctrl_ops,
+>> +					      &props);
+>> +	if (ret)
+>> +		goto err_free_handler;
+>> +
+>> +	ov4689->subdev.ctrl_handler = handler;
+>> +
+>> +	return 0;
+>> +
+>> +err_free_handler:
+>> +	v4l2_ctrl_handler_free(handler);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int ov4689_check_sensor_id(struct ov4689 *ov4689,
+>> +				  struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &ov4689->client->dev;
+>> +	u32 id = 0;
+>> +	int ret;
+>> +
+>> +	ret = ov4689_read_reg(client, OV4689_REG_CHIP_ID,
+>> +			      OV4689_REG_VALUE_16BIT, &id);
+>> +	if (ret) {
+>> +		dev_err(dev, "Cannot read sensor ID\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (id != CHIP_ID) {
+>> +		dev_err(dev, "Unexpected sensor ID %06x, expected %06x\n",
+>> +			id, CHIP_ID);
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	dev_info(dev, "Detected OV%06x sensor\n", CHIP_ID);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_configure_regulators(struct ov4689 *ov4689)
+>> +{
+>> +	unsigned int supplies_count = ARRAY_SIZE(ov4689_supply_names);
+>> +	unsigned int i;
+>> +
+>> +	for (i = 0; i < supplies_count; i++)
+>> +		ov4689->supplies[i].supply = ov4689_supply_names[i];
+>> +
+>> +	return devm_regulator_bulk_get(&ov4689->client->dev, supplies_count,
+>> +				       ov4689->supplies);
+>> +}
+>> +
+>> +static u64 ov4689_check_link_frequency(struct v4l2_fwnode_endpoint *ep)
+>> +{
+>> +	unsigned int freqs_count = ARRAY_SIZE(link_freq_menu_items);
+>> +	const u64 *freqs = link_freq_menu_items;
+>> +	unsigned int i, j;
+>> +
+>> +	for (i = 0; i < freqs_count; i++) {
+>> +		for (j = 0; j < ep->nr_of_link_frequencies; j++)
+>> +			if (freqs[i] == ep->link_frequencies[j])
+>> +				return freqs[i];
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int ov4689_check_hwcfg(struct device *dev)
+>> +{
+>> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
+>> +	struct v4l2_fwnode_endpoint bus_cfg = {
+>> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
+>> +	};
+>> +	struct fwnode_handle *endpoint;
+>> +	int ret;
+>> +
+>> +	endpoint = fwnode_graph_get_next_endpoint(fwnode, NULL);
+>> +	if (!endpoint)
+>> +		return -EINVAL;
+>> +
+>> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &bus_cfg);
+>> +	fwnode_handle_put(endpoint);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	if (bus_cfg.bus.mipi_csi2.num_data_lanes != OV4689_LANES) {
+>> +		dev_err(dev, "Only a 4-lane CSI2 config is supported");
+>> +		ret = -EINVAL;
+>> +		goto out_free_bus_cfg;
+>> +	}
+>> +
+>> +	if (!bus_cfg.nr_of_link_frequencies) {
+>> +		dev_err(dev, "No link frequencies defined\n");
+>> +		ret = -EINVAL;
+>> +		goto out_free_bus_cfg;
+>> +	}
+>
+> As the driver has a single supported freq I wonder if it is required
+> to have it mandatory. I got contradictory feedbacks in the past, so
+> whatever you have here I guess it's fine (same reasoning goes for dts,
+> if there's only one accepted item, does it need to be made mandatory
+> ?)
+>
+> Nits apart, the driver looks sane
+>
+> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+
+Thanks for the review, Jacopo!
+
+> Thanks
+>   j
+>
+>> +
+>> +	if (!ov4689_check_link_frequency(&bus_cfg)) {
+>> +		dev_err(dev, "No supported link frequency found\n");
+>> +		ret = -EINVAL;
+>> +	}
+>> +
+>> +out_free_bus_cfg:
+>> +	v4l2_fwnode_endpoint_free(&bus_cfg);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int ov4689_probe(struct i2c_client *client)
+>> +{
+>> +	struct device *dev = &client->dev;
+>> +	struct v4l2_subdev *sd;
+>> +	struct ov4689 *ov4689;
+>> +	int ret;
+>> +
+>> +	ret = ov4689_check_hwcfg(dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ov4689 = devm_kzalloc(dev, sizeof(*ov4689), GFP_KERNEL);
+>> +	if (!ov4689)
+>> +		return -ENOMEM;
+>> +
+>> +	ov4689->client = client;
+>> +	ov4689->cur_mode = &supported_modes[OV4689_MODE_2688_1520];
+>> +
+>> +	ov4689->xvclk = devm_clk_get_optional(dev, NULL);
+>> +	if (IS_ERR(ov4689->xvclk))
+>> +		return dev_err_probe(dev, PTR_ERR(ov4689->xvclk),
+>> +				     "Failed to get external clock\n");
+>> +
+>> +	if (!ov4689->xvclk) {
+>> +		dev_dbg(dev,
+>> +			"No clock provided, using clock-frequency property\n");
+>> +		device_property_read_u32(dev, "clock-frequency",
+>> +					 &ov4689->clock_rate);
+>> +	} else {
+>> +		ov4689->clock_rate = clk_get_rate(ov4689->xvclk);
+>> +	}
+>> +
+>> +	if (ov4689->clock_rate != OV4689_XVCLK_FREQ) {
+>> +		dev_err(dev,
+>> +			"External clock rate mismatch: got %d Hz, expected %d Hz\n",
+>> +			ov4689->clock_rate, OV4689_XVCLK_FREQ);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	ov4689->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+>> +						     GPIOD_OUT_LOW);
+>> +	if (IS_ERR(ov4689->reset_gpio)) {
+>> +		dev_err(dev, "Failed to get reset-gpios\n");
+>> +		return PTR_ERR(ov4689->reset_gpio);
+>> +	}
+>> +
+>> +	ov4689->pwdn_gpio = devm_gpiod_get_optional(dev, "pwdn", GPIOD_OUT_LOW);
+>> +	if (IS_ERR(ov4689->pwdn_gpio)) {
+>> +		dev_err(dev, "Failed to get pwdn-gpios\n");
+>> +		return PTR_ERR(ov4689->pwdn_gpio);
+>> +	}
+>> +
+>> +	ret = ov4689_configure_regulators(ov4689);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret,
+>> +				     "Failed to get power regulators\n");
+>> +
+>> +	mutex_init(&ov4689->mutex);
+>> +
+>> +	sd = &ov4689->subdev;
+>> +	v4l2_i2c_subdev_init(sd, client, &ov4689_subdev_ops);
+>> +	ret = ov4689_initialize_controls(ov4689);
+>> +	if (ret)
+>> +		goto err_destroy_mutex;
+>> +
+>> +	ret = ov4689_power_on(dev);
+>> +	if (ret)
+>> +		goto err_free_handler;
+>> +
+>> +	ret = ov4689_check_sensor_id(ov4689, client);
+>> +	if (ret)
+>> +		goto err_power_off;
+>> +
+>> +	sd->internal_ops = &ov4689_internal_ops;
+>> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>> +
+>> +	ov4689->pad.flags = MEDIA_PAD_FL_SOURCE;
+>> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
+>> +	ret = media_entity_pads_init(&sd->entity, 1, &ov4689->pad);
+>> +	if (ret < 0)
+>> +		goto err_power_off;
+>> +
+>> +	ret = v4l2_async_register_subdev_sensor(sd);
+>> +	if (ret) {
+>> +		dev_err(dev, "v4l2 async register subdev failed\n");
+>> +		goto err_clean_entity;
+>> +	}
+>> +
+>> +	pm_runtime_set_active(dev);
+>> +	pm_runtime_enable(dev);
+>> +	pm_runtime_idle(dev);
+>> +
+>> +	return 0;
+>> +
+>> +err_clean_entity:
+>> +	media_entity_cleanup(&sd->entity);
+>> +err_power_off:
+>> +	ov4689_power_off(dev);
+>> +err_free_handler:
+>> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
+>> +err_destroy_mutex:
+>> +	mutex_destroy(&ov4689->mutex);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static void ov4689_remove(struct i2c_client *client)
+>> +{
+>> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+>> +	struct ov4689 *ov4689 = to_ov4689(sd);
+>> +
+>> +	v4l2_async_unregister_subdev(sd);
+>> +	media_entity_cleanup(&sd->entity);
+>> +
+>> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
+>> +	mutex_destroy(&ov4689->mutex);
+>> +
+>> +	pm_runtime_disable(&client->dev);
+>> +	if (!pm_runtime_status_suspended(&client->dev))
+>> +		ov4689_power_off(&client->dev);
+>> +	pm_runtime_set_suspended(&client->dev);
+>> +}
+>> +
+>> +static const struct of_device_id ov4689_of_match[] = {
+>> +	{ .compatible = "ovti,ov4689" },
+>> +	{},
+>> +};
+>> +MODULE_DEVICE_TABLE(of, ov4689_of_match);
+>> +
+>> +static struct i2c_driver ov4689_i2c_driver = {
+>> +	.driver = {
+>> +		.name = "ov4689",
+>> +		.pm = &ov4689_pm_ops,
+>> +		.of_match_table = ov4689_of_match,
+>> +	},
+>> +	.probe_new = ov4689_probe,
+>> +	.remove	= ov4689_remove,
+>> +};
+>> +
+>> +module_i2c_driver(ov4689_i2c_driver);
+>> +
+>> +MODULE_DESCRIPTION("OmniVision ov4689 sensor driver");
+>> +MODULE_LICENSE("GPL");
+>> --
+>> 2.38.1
+>>
+
+
+--
+Best regards,
+Mikhail Rudenko
