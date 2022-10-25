@@ -2,64 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2DF160D52D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 22:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5821660D54C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 22:13:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232679AbiJYUFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 16:05:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60740 "EHLO
+        id S229515AbiJYUNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 16:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232185AbiJYUFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 16:05:05 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BACB1B1EB;
-        Tue, 25 Oct 2022 13:05:04 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id o64so15746700oib.12;
-        Tue, 25 Oct 2022 13:05:04 -0700 (PDT)
+        with ESMTP id S232327AbiJYUND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 16:13:03 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75FBD7DF4F
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 13:13:01 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id 1so12255248vsx.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 13:13:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1CDt1y7e7BIyTnclLO8/l8wF0JXVZnj5kZesVA/eyFg=;
+        b=K3/2yhlJoAiQZi9EIf9ab9ebsvLBXlapY9+VwvPvvaVRJdx5Qh7HaDiz2pbdxMyjy6
+         7O0o8Vn/BmDMXgzxWGyev/NBW9V/cCjmYxXMKeQtMV/TakUujFewAyvj3sGn29sXYTwy
+         HJUaeg9EChZ2sMJxySltPYCDU+/TXDc57BhfM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QLRJG7zY0JAEptvz+m8vckaJwnRqZSqYUd2xM523SOI=;
-        b=Q+DHAuBGQWbsNK/ccE+uo+jUGsn2EAbxZ6xNagISworT18d3A+SQHXoefCwBWooFfy
-         coO/EDyvAacsfdz5v9jYNV0ZtlrmLH4ZShS8MlXfn+NZ56itT1FxYIk5Y391P04mLkTI
-         RJKfUS6Egg6GIg5jqqIWaTLrFv+5R2orK/FHyLNkMaumW5mVij1M0+gfQCVb38Gdpi7W
-         A8FMHsDOhiUAMFQ7amF2EimbigfpYQwnCdUk7XcY04sb2DhBlxVayk/+nRMq9O6rztEC
-         xTtaEq6YUoJHiU6EnEvzMH+ZEwm7D2WsE0aPyrHP5iZKuj1T1+WT+OVHG2k8UuuZkwqs
-         GilQ==
-X-Gm-Message-State: ACrzQf15KJRQ0MGkSSb08mR257CS/tkk09pTz0oylEzK38LH1+HUJgSs
-        aAx4eFD0ESNi2RkWhTlcndebjTkmmg==
-X-Google-Smtp-Source: AMsMyM7+pyOTSb/iI/TPXj3oPVsA7J8gcQSboT6REpmeVgWrD6HL9Q6EUyxzn9vsLehZFdX/QWx9Dg==
-X-Received: by 2002:a05:6808:316:b0:357:65d7:13a1 with SMTP id i22-20020a056808031600b0035765d713a1mr6240777oie.233.1666728303779;
-        Tue, 25 Oct 2022 13:05:03 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bk34-20020a0568081a2200b00354e8bc0236sm1293164oib.34.2022.10.25.13.05.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 13:05:03 -0700 (PDT)
-Received: (nullmailer pid 3155082 invoked by uid 1000);
-        Tue, 25 Oct 2022 20:05:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Camel Guo <camel.guo@axis.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1CDt1y7e7BIyTnclLO8/l8wF0JXVZnj5kZesVA/eyFg=;
+        b=6lhPdE/nHlKAo+NKbWUh5q6gn1V6wEN3HG7TcN7CJ+0XVQcQ4MTyqu5Z4r3FtH08sb
+         +npBwrq6yBms9l4tzxr02iTSswvH/FwzoGcmC7KbyFHCY5GI0Z3SegNg/ypPql5pHR0b
+         Dd0+R8Gqyu2E7uMyn43S311a+wJy1YHBwyi8PIhWOPWYfERPY2q1cvLG30VqEdFOIevc
+         cK+sEp7V88mPcqzt/rFuhMDFHzMsfvV/IRBAsK9Nme+QAFuAbSbxIk52ueiG+dv4tY9G
+         S+/C7BglkqiiaU4wPnOMdr4TzJzw69f3LVv7qdBZNxlQ4HPnuOeQZMBc0xpQDQN7bZ5q
+         BHsg==
+X-Gm-Message-State: ACrzQf2UIsgwPrTGr4WaOTI8zmSbcRPxn+PM3jb6/4Ypu0dFrP6wBvvo
+        nqGp3n/1RewgUmGaPxzdkrIzFzZjqezd/9KwMVpzBQ==
+X-Google-Smtp-Source: AMsMyM442Daimvpeuj+fzZhj86o7I+uEPF+apOJTcNTkmGt7gJrIuTpph61tawRfa3xTlXfYPexjfx9DegwQ7Ul9dgo=
+X-Received: by 2002:a67:f106:0:b0:3aa:efc:8610 with SMTP id
+ n6-20020a67f106000000b003aa0efc8610mr8867914vsk.65.1666728780555; Tue, 25 Oct
+ 2022 13:13:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221024220015.1759428-1-nfraprado@collabora.com> <20221024220015.1759428-3-nfraprado@collabora.com>
+In-Reply-To: <20221024220015.1759428-3-nfraprado@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 25 Oct 2022 13:12:49 -0700
+Message-ID: <CAGXv+5HJo5x2ieOegmv5vkfh+rTevdR_fri-7PeK+Gd+GXVjNw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek, rt5682s: Add AVDD and
+ MICVDD supplies
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-        kernel@axis.com, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, Vivien Didelot <vivien.didelot@gmail.com>
-In-Reply-To: <20221025135243.4038706-2-camel.guo@axis.com>
-References: <20221025135243.4038706-1-camel.guo@axis.com> <20221025135243.4038706-2-camel.guo@axis.com>
-Message-Id: <166672723479.3138623.7338069718402647563.robh@kernel.org>
-Subject: Re: [RFC net-next 1/2] dt-bindings: net: dsa: add bindings for GSW Series switches
-Date:   Tue, 25 Oct 2022 15:05:02 -0500
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Derek Fang <derek.fang@realtek.com>,
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,42 +73,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Oct 2022 15:52:40 +0200, Camel Guo wrote:
-> Add documentation and an example for Maxlinear's GSW Series Ethernet
-> switches.
-> 
-> Signed-off-by: Camel Guo <camel.guo@axis.com>
+On Mon, Oct 24, 2022 at 3:01 PM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+
+The actual chip also has LDO1_IN (for digital core and charge pump)
+and DBVDD (for I/O). However in the Chromebook designs these two
+and AVDD are all provided from the same power rail, through separate
+filter banks.
+
+Neither does the datasheet specify the ordering of AVDD, DBVDD, and
+LDO1_IN for power sequencing, just that three should be toggled together.
+
+Should we model these? Or wait until some design actually splits these?
+
+
+ChenYu
+
+
+> already used by sc7180-trogdor-kingoftown.dtsi, so document them in the
+> binding.
+>
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+>
 > ---
->  .../devicetree/bindings/net/dsa/mxl,gsw.yaml  | 140 ++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   6 +
->  3 files changed, 148 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml: properties:mdio:allOf:0:$ref: 'http://devicetree.org/schemas/net/ethernet-phy.yaml#' should not be valid under {'pattern': '^https?://'}
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/mxl,gsw.example.dtb: switch@0: mdio: 'reg' is a required property
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>
+> Changes in v2:
+> - Added mention that property is already used in a DT to the commit
+>   message
+>
+>  Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml=
+ b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+> index 1c0b06d82369..ac1dea5b4450 100644
+> --- a/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/realtek,rt5682s.yaml
+> @@ -90,6 +90,10 @@ properties:
+>    "#sound-dai-cells":
+>      const: 1
+>
+> +  AVDD-supply: true
+> +
+> +  MICVDD-supply: true
+> +
+>  additionalProperties: false
+>
+>  required:
+> --
+> 2.38.1
+>
