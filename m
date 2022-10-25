@@ -2,131 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B967660CEEB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF4960CEF3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:28:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231855AbiJYO0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33284 "EHLO
+        id S229597AbiJYO17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:27:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229730AbiJYOZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:25:58 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D16E11476;
-        Tue, 25 Oct 2022 07:25:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AiuMqSv62jZNqTOMDvngdnIB35QL8ggLplHF9XIll5GJfDBeGkknR3NQt6GU2O6snexDukcyLTJp0w/i+Zs/aIMUJQYlWBJZYuvAP2TdsqdqW45EhIiY71adGL0mH/eHAD5wtkEe35wPRqaYuLt+9PimkUmK6cX4jAb5066qvaW/xoC7STejVutnh8a3qKlkz6XU5FXAc0LNRGCRCOHRjLXIJ2ZA2IdgKJtaTMI5J8/bULtxS4EqW2o7iCfeLX1u3pYsbpHajs1hedBm66J7VEoKe4GsTg9T8fkkRRhv0xVyKhPWIcPrqtd6nWRad/raCn12Z88yJnHvupffTOtXXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TKnpvsmNt9TLoyqK3q2tvupirpE/cYRki84s1DK+NoY=;
- b=LUPjWi9Cx/e8tYGkAxARIzxN9TMkNTabJnACjnjamy791YmWuQypWuPmFqeFycZswVkiaJnsg0xo9YA5pWtTpY2XZs4Gfxbjs0YppURMrUsF7t+DyejeUOSClulilG1iLboyPAHv+zrshyU1IO2bPkglsZBoNZyK0aeVUhwVr2SX2QL0yAc/FGSCOcg3yrYa3UR88ZuRAizvKsYpjzG6Atpe0izgx3MFDYKHrInccexruwS4RvAEmL60jQKmkhduAlAcKxRpAVSchEWaEMfrS+Iu6jTSvqssK3yNrc5NCqdsIUIZeZBW7rCc2cNb3lC8y5V4LkXqFa9Xs9z/l6ZewQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TKnpvsmNt9TLoyqK3q2tvupirpE/cYRki84s1DK+NoY=;
- b=nzQvZ0EQ5gzy9rrykIjbsHboAp9ukjn4f2ao5m4IaYLtFjiJo6mW++LlXOfLNChX0+SHeHp0MrtAfPd43KmADew2jIErqxlf5jgf1zrTq7M7PrrKAdFFIPBOD1G2/VaMfDZebwvLePHESOagv4ftbJdZYm0x4BNq2AldJW4v0GEqT227ArAsivzjHyT8z5M4m88YzOkY5pLEzBzabJg/oRMw+mpbVZ34SdQLJy57E2MrRFecDf9YE42ApyKeoWMH8ZNOCpTLcxFyntXfTGF0QN9+VcRUbU4zQPnIYfYsWP17SZ9fIFNwTZnL2xLnVKLl5hq1ATOZweXwlVoG68lKzA==
-Received: from MW4PR04CA0361.namprd04.prod.outlook.com (2603:10b6:303:81::6)
- by DM4PR12MB6542.namprd12.prod.outlook.com (2603:10b6:8:89::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5746.26; Tue, 25 Oct 2022 14:25:54 +0000
-Received: from CO1NAM11FT087.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:81:cafe::7) by MW4PR04CA0361.outlook.office365.com
- (2603:10b6:303:81::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28 via Frontend
- Transport; Tue, 25 Oct 2022 14:25:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- CO1NAM11FT087.mail.protection.outlook.com (10.13.174.68) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5746.16 via Frontend Transport; Tue, 25 Oct 2022 14:25:53 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 25 Oct
- 2022 07:25:47 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Tue, 25 Oct 2022 07:25:47 -0700
-Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.986.29 via Frontend
- Transport; Tue, 25 Oct 2022 07:25:46 -0700
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH] arm64: tegra: Enable PWM3 for Jetson Orin
-Date:   Tue, 25 Oct 2022 15:25:38 +0100
-Message-ID: <20221025142538.33156-1-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231629AbiJYO15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:27:57 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0431AA52E9
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:27:54 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id z17so5485637qkj.8
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:27:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MkOv4t1Tr+2m88Yj/LhSqe7IoeT5GjbtqmdRAIP6OEk=;
+        b=wz1/lM1BcJqHxJ/Koec1Kk/14Kobm8MXoSYbeA5Pwen8/OUMGUYwd+7HTX6ePq9ipA
+         8sNTEFGTkcKUMfoPiIAANQTt0VTAxX/4n8edwscf8V0xYz4kbxM4TG1BhPMJMtBH99M5
+         k0Qy7rLJBmkPODWH8+QqdtTti7QA8rfetdpk8DstzIi9JLaVLAR1iFNC7PXdSODjuyc3
+         9Q8P/A5aNuKxXZS9Li8SqQXaez0WLi+WPNbU84oIXLIu25X/5avG6x6nU9tqlRo0P3Mz
+         f9y+mJb31hxm+1M7QZyPAQuy0LrecT0K5WjPD+MpIfur5Hggn1SsjfOxkEmM1W8R5IHO
+         6jXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MkOv4t1Tr+2m88Yj/LhSqe7IoeT5GjbtqmdRAIP6OEk=;
+        b=IBNtKPI3YCJtYlKOdot6S4/CkoZR6vjDqYA+OI0+Zq3SFhhwG1pWL9CTeS34+9P19R
+         v8995LnT2Zrl3afabOG+I873Ic0cYiHrQT+KtrGI+XRWfrHSuccaFYxGgarwbuGjjroZ
+         DeHgPV43mHH6M9tI0a9PSKd44XG8/2iOoJgeeT9QD5ljX6dMH1OGsnMrxQqakwlqAMiC
+         UyP+7hEBHLBmj9SObduSmgmRwvOIKq6yyM9z4lLBhAy1kzUiBHFn9GurL6+ULTXxA11P
+         xXR6dWMxvWfbb4sj+t8eEO02/jFzE9jTaeINv4qExWaMZ5vNYHAySAinSxvYYTIKG6xq
+         Ls/Q==
+X-Gm-Message-State: ACrzQf1GPNfzK59ubhqkJv3gE5kSD2LLv13IS2Iy1EOg1hb9CN9zp9ZF
+        9B0wGBDDw7ATOFMARRNqqI6/xw==
+X-Google-Smtp-Source: AMsMyM4ttW6oz+y+rCvmkcWe3ZBLOYUgO9lwtgxilDy1Bv7GGaqR6Qz38ugPzHeOeWZxNRrxQX7MdQ==
+X-Received: by 2002:a05:620a:c4f:b0:6cf:33cd:2bc9 with SMTP id u15-20020a05620a0c4f00b006cf33cd2bc9mr27425389qki.99.1666708073614;
+        Tue, 25 Oct 2022 07:27:53 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id o11-20020ac85a4b000000b0039cc944ebdasm1692899qta.54.2022.10.25.07.27.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Oct 2022 07:27:52 -0700 (PDT)
+Message-ID: <16aac887-232a-7141-cc65-eab19c532592@linaro.org>
+Date:   Tue, 25 Oct 2022 10:27:50 -0400
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT087:EE_|DM4PR12MB6542:EE_
-X-MS-Office365-Filtering-Correlation-Id: eeb4e1a9-77aa-4345-e2dd-08dab694d2e1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i0KdlsFmmUbeVwIVqOEZuFrXqkLoqfh+SkoxPPl5g6lgT4tfunq60v2IrORi3JhLc/tm14AYMECoSBxP4LxlHRQVsPzJsujcvSAINO3bReiMdZX+Ql3xQAmPeICchybDhEiScnAv0Lns1ASeO5ZDXhcoMFqlFUAxooE+Aip6F9nnBufWFfYYczoAPWVPoD01HEHuH4RFzGlxEmBgGUirinwyjcwjAr5UffxSErW3051corLQiUpIplRP0Btfw41+nlDgASuVO+fQ1jIDuk196f7rW2Q9Q0syBkztA/ivwnziDp7k1whLzLaEnI2gaZN1QKF3qzWhH7fBn1SkBJ33rtZpBGDWdqJjp6beplQ15ef5ciEDs6j7ej5V9dD1XHtOlXz+NECAeeaMzbLxgnq5kPvHa5Hx+seht7XB5X7nmdIfQhYY0KsT0hg6blyXep84cNkOSB1mntjHtL+gGLyLk5+8EAhVngwbk/xmwpS52Dht5kLzgqAFFy4CRe8AY3Twxp7VcNCMmpEaYkTQDsRJjRSqKvbmNLeZQ23HTP3LuCoZQK1XIi8QSQz04pOTzvAkqduGRVVDbHMseqzY5kMglXgfMlCXS9fJu4Sv2Z5/fZ6fkyBpxT8FDSVDFYlIb/2/lQKCgaMnxXdOXjP8tDjJFCjLk1ls5qa939/0jK54WXPazj1LgUKJ+z418v/QbMybomPc5qsydaYvGLxm9xdc7xkoGRr4yzx5MAD7h0MRUab9UQIVzbzqLhWKXmEYqt9wWd731bcn6IV/IJU5mlrs4A==
-X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(39860400002)(346002)(376002)(451199015)(40470700004)(36840700001)(46966006)(36756003)(7636003)(8936002)(5660300002)(70586007)(4744005)(70206006)(47076005)(426003)(83380400001)(36860700001)(86362001)(82740400003)(40480700001)(54906003)(336012)(356005)(2616005)(26005)(107886003)(186003)(316002)(478600001)(82310400005)(41300700001)(110136005)(40460700003)(8676002)(4326008)(1076003)(7696005)(2906002)(6666004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2022 14:25:53.4686
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: eeb4e1a9-77aa-4345-e2dd-08dab694d2e1
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT087.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6542
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [RFC net-next 1/2] dt-bindings: net: dsa: add bindings for GSW
+ Series switches
+Content-Language: en-US
+To:     Camel Guo <camel.guo@axis.com>, Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        kernel@axis.com
+References: <20221025135243.4038706-1-camel.guo@axis.com>
+ <20221025135243.4038706-2-camel.guo@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221025135243.4038706-2-camel.guo@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable PMW3 for the Jetson AGX Orin platform which is used for
-operating the PWM Fan.
+On 25/10/2022 09:52, Camel Guo wrote:
+> Add documentation and an example for Maxlinear's GSW Series Ethernet
+> switches.
+> 
+> Signed-off-by: Camel Guo <camel.guo@axis.com>
+> ---
+>  .../devicetree/bindings/net/dsa/mxl,gsw.yaml  | 140 ++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |   6 +
+>  3 files changed, 148 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml b/Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml
+> new file mode 100644
+> index 000000000000..8e124b7ec58c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/dsa/mxl,gsw.yaml
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- .../boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts      | 6 ++++++
- 1 file changed, 6 insertions(+)
+Filename based on compatible, so mxl,gsw145-mdio.yaml. But see below.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-index f7a1265cee97..df703fb0cfff 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-@@ -2012,6 +2012,12 @@ serial@31d0000 {
- 			status = "okay";
- 		};
- 
-+		pwm@32a0000 {
-+			assigned-clocks = <&bpmp TEGRA234_CLK_PWM3>;
-+			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
-+			status = "okay";
-+		};
-+
- 		hda@3510000 {
- 			nvidia,model = "NVIDIA Jetson AGX Orin HDA";
- 			status = "okay";
--- 
-2.25.1
+> @@ -0,0 +1,140 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/dsa/mxl,gsw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxlinear GSW Series Switch Device Tree Bindings
+
+Drop "Device Tree Bindings"
+
+> +
+> +allOf:
+> +  - $ref: dsa.yaml#
+> +
+> +maintainers:
+> +  - Camel Guo <camel.guo@axis.com>
+> +
+> +description:
+> +  The Maxlinear's GSW Series Ethernet Switch is a highly integrated, low-power,
+> +  non-blocking Gigabit Ethernet Switch.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+You do not have multiple choices, so no need for oneOf
+
+> +      - enum:
+> +          - mxl,gsw145-mdio
+
+Why "mdio" suffix?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  mdio:
+> +    type: object
+> +
+> +    description:
+> +      Container of ethernet phy devices on the MDIO bus of GSW switch
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +      '#size-cells':
+> +        const: 0
+> +
+> +    allOf:
+
+No need for allOf
+
+> +      - $ref: "http://devicetree.org/schemas/net/ethernet-phy.yaml#"
+
+That's not an URL. Open other schemas using ethernet-phy and check how
+they are doing.
+
+You miss:
+
+    unevaluatedProperties: false
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - mdio
+> +
+> +additionalProperties: true
+
+This cannot be true. Again - open existing bindings and do like they are
+doing, not differently.
+
+You wanted here unevaluatedProperties: false.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    mdio {
+
+Hmmm... switch with MDIO is part of MDIO?
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        switch@0 {
+> +            compatible = "mxl,gsw145-mdio";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x0>;
+
+reg is a second property
+
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+
+Best regards,
+Krzysztof
 
