@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B56DD60CBB2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 14:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B824E60CBBB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 14:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbiJYMZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 08:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34420 "EHLO
+        id S231226AbiJYM0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 08:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231548AbiJYMZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 08:25:07 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 509069A9F1
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 05:25:05 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id a24so7323256qto.10
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 05:25:05 -0700 (PDT)
+        with ESMTP id S231217AbiJYM0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 08:26:34 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB84F11A94F
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 05:26:32 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id c23so7331863qtw.8
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 05:26:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dRvNij7ZOIekp+J81NtM1ZKFkAXFSj+/+Qrfb79WT7o=;
-        b=VoH0weBN/SoMr1M/mpxKzE/2RftN/KUPBJ8bTLo5sMZSu/nxHvLl7ZWGDyHo2+oDKP
-         c6xRxDTGFpNlt0rBh8LlaY/GyI0bD2HFEp36CNMnB5RMJ/zu+/RGQSZfFvZLClVHhBVp
-         Q1g3R7G9ZiGO6miRfFuFRlFveBd0ZEj7s0p3MKZYKEUZ+f4SKi9iuWrm+pPhe2s7QK+r
-         fNjgS4Y9O6y2/ZLF9NVNh+NOaBkw220XrA3kGua/aHE5DS6AIKL0KOR3hWlk92AnayPA
-         5Ldq03oCapJszTtAv2P+2GvHNOFMnti8liZFkCjsk3sqtt3p6eFbMjFBGdOFEjL65EbR
-         anDQ==
+        bh=oUDb55F/wfKgAhE2ejE3CixOIq1tXHhPMaApHmafj2Q=;
+        b=mc5CW/Wy/umHxhLgQjZyDuOSj4FMWvayMAg4Fz05HyEgTOV1I3xtPDntJqN3qECuAY
+         mTWwp3gWzZUYduHK27vPviL8D9qjRYxf5bvSoe2skauZMjZMD5QSYufE+TkE79bheePI
+         BYdpYkZjF4zgHQz82nq8idhex+dcPNESXtjeoB/ZPUISjMIuN7NmmYhrAkTgpwqhr3an
+         oYkQIlBl1y5AHgMxt4md2zlTmTg0pyU2y9zLMtzuS2pD6GGaWjF/TYLqWQgOYpW3lrf/
+         ybSzcaQYmuD73eMQaTYCIInP7K9wpcqdgl0iUsTt5MBsqL9QF6HJrZre/A4FRGiiy2Dx
+         ULbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dRvNij7ZOIekp+J81NtM1ZKFkAXFSj+/+Qrfb79WT7o=;
-        b=RWNlKrn+axj6kR9IawBEbXh/gRqWvasEgUBNYdG35qTTnGLiODBKF64gHLLNookioj
-         P+IoY5ge3XG972j5P/H807gLZmxtJovxniRZzlWYjBn8r6mzzJZAw4v6kzuFw6ZiLdnr
-         PcCNyP9OmGbpKFv+D+B3xhUvkpig1RoGMusb3IKOHLU2ovQXVGG44FBYdaGihFh0sf5Q
-         6auFJCKkU9XfyCzT6u8yswvEoGAAe34eRnNHWhsDaBrITbnnCyYbDCNdYK903Pw6jyCf
-         ODhv2ZUdtlNHipxE6r08hbK3iudAn1wdUXpUmjlCj5LXLM7GQjjYTzzCLdqnDQ0dkVrI
-         mJIQ==
-X-Gm-Message-State: ACrzQf0LLvGVSKHyrsL7j9QJ7DrUA29BLxvV9BgPb++6LV/K+mb+95Y5
-        W9REu/t0/XTAuGNSZiHt7ijccg==
-X-Google-Smtp-Source: AMsMyM6txyZvLp+XIQgGwi6nnoaZ782KMl4c3wdGT5paqUoILle4KcYW+NMfUd+MT4R3iIbCSz4PIQ==
-X-Received: by 2002:a05:622a:647:b0:39c:f902:0 with SMTP id a7-20020a05622a064700b0039cf9020000mr30072243qtb.277.1666700704433;
-        Tue, 25 Oct 2022 05:25:04 -0700 (PDT)
+        bh=oUDb55F/wfKgAhE2ejE3CixOIq1tXHhPMaApHmafj2Q=;
+        b=PfG2RwydyLJI6dSXZfpjWiGUbEgBIsGeW5Q8oEQ35eMghM9ExtQGC0S09f3gq6g/vG
+         QYVC+seRjjWyBEM9PwGX2Jve7OzQZ0C7wLEpvnDEdAYIC176EIqWMVsBX8SzQakbWaus
+         B09F3rdO0bWRHLM9rWm2C5qzNajaDaNYvTiWaabW4RS4AX4kCyt0KBhHk3pu/xXp/Aaz
+         mkc9N8ij1+u/uH1iPwcO0dqtfhLWEBDR/GFMjY2YMy+iApeosSpNlRnIRRp+YBW+m/6V
+         g+AB9Th+/Ri600rR9ey3IwFwh5qmSv7IrG9myJH+Br1+iMNWeQ5STPIuU8uHhhjWrc3A
+         Piqw==
+X-Gm-Message-State: ACrzQf1BvtzUmJ3/McNA7jp6LIuQTHbWbkFHbsLImPsvOApLu5T9zij/
+        FJL3mVgv2IV9KXb37Ne3y6AR8Q==
+X-Google-Smtp-Source: AMsMyM61ygt5D1dzc4qIV7FXHvxMV6ZkNXtAYZ84UiLNQnpIO0kLe8vSEVEg46x8MtbEqNw0Yxwkkw==
+X-Received: by 2002:a05:622a:11d0:b0:39d:322:7c38 with SMTP id n16-20020a05622a11d000b0039d03227c38mr25465827qtk.291.1666700792138;
+        Tue, 25 Oct 2022 05:26:32 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id y9-20020a37f609000000b006b8e8c657ccsm1847920qkj.117.2022.10.25.05.25.02
+        by smtp.gmail.com with ESMTPSA id f18-20020a05620a409200b006ce515196a7sm2005039qko.8.2022.10.25.05.26.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 05:25:03 -0700 (PDT)
-Message-ID: <a980821f-9177-8eb7-ee36-1b1e614d30fc@linaro.org>
-Date:   Tue, 25 Oct 2022 08:25:01 -0400
+        Tue, 25 Oct 2022 05:26:31 -0700 (PDT)
+Message-ID: <0175808e-2cd5-8689-1a94-172d67e4eb57@linaro.org>
+Date:   Tue, 25 Oct 2022 08:26:30 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML DT
- scheme
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
+ MICVDD supplies
 Content-Language: en-US
-To:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Mark Brown <broonie@kernel.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Derek Fang <derek.fang@realtek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Elad Nachman <enachman@marvell.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-References: <20221025101713.11893-1-vadym.kochan@plvision.eu>
- <20221025101713.11893-2-vadym.kochan@plvision.eu>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221025101713.11893-2-vadym.kochan@plvision.eu>
+In-Reply-To: <20221024220015.1759428-3-nfraprado@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -86,87 +82,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 06:17, Vadym Kochan wrote:
-> Switch the DT binding to a YAML schema to enable the DT validation.
+On 24/10/2022 18:00, Nícolas F. R. A. Prado wrote:
+> The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+> already used by sc7180-trogdor-kingoftown.dtsi, so document them in the
+> binding.
 > 
-> Dropped deprecated compatibles and properties described in txt file.
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > ---
 > 
-> v4:
->    1) Remove "label" and "partitions" properties
+> Changes in v2:
+> - Added mention that property is already used in a DT to the commit
+>   message
 
-I think you did not read the feedback.
+You already got an ack for it. Don't ignore it.
 
-
-(...)
-
-> +
-> +  marvell,system-controller:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Syscon node that handles NAND controller related registers
-> +
-> +patternProperties:
-> +  "^nand@[0-3]$":
-> +    type: object
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 3
-> +
-> +      nand-rb:
-> +        minimum: 0
-> +        maximum: 1
-> +
-> +      nand-ecc-strength:
-> +        enum: [1, 4, 8]
-> +
-> +      nand-on-flash-bbt: true
-> +
-> +      nand-ecc-mode: true
-> +
-> +      nand-ecc-algo:
-> +        description: |
-> +          This property is essentially useful when not using hardware ECC.
-> +          Howerver, it may be added when using hardware ECC for clarification
-> +          but will be ignored by the driver because ECC mode is chosen depending
-> +          on the page size and the strength required by the NAND chip.
-> +          This value may be overwritten with nand-ecc-strength property.
-> +
-> +      nand-ecc-step-size:
-> +        description: |
-> +          Marvell's NAND flash controller does use fixed strength
-> +          (1-bit for Hamming, 16-bit for BCH), so the actual step size
-> +          will shrink or grow in order to fit the required strength.
-> +          Step sizes are not completely random for all and follow certain
-> +          patterns described in AN-379, "Marvell SoC NFC ECC".
-> +
-> +      marvell,nand-keep-config:
-> +        description: |
-> +          Orders the driver not to take the timings from the core and
-> +          leaving them completely untouched. Bootloader timings will then
-> +          be used.
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +
-> +      marvell,nand-enable-arbiter:
-> +        description: |
-> +          To enable the arbiter, all boards blindly used it,
-> +          this bit was set by the bootloader for many boards and even if
-> +          it is marked reserved in several datasheets, it might be needed to set
-> +          it (otherwise it is harmless) so whether or not this property is set,
-> +          the bit is selected by the driver.
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        deprecated: true
-> +
-> +    required:
-> +      - reg
-> +      - nand-rb
-
-I have no clue why you are doing some random changes. Now you dropped
-additionalProperties for nand@ about which no one asked you to drop.
-
-No. It *must* be here.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
