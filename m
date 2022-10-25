@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B3660CF7B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3BB260CF86
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232731AbiJYOqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:46:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
+        id S231315AbiJYOte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232745AbiJYOqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:46:47 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEFB318F243
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:46:46 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id y10so8300133wma.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:46:46 -0700 (PDT)
+        with ESMTP id S231967AbiJYOtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:49:33 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCA72DDF
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:49:31 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id l9so5644910qkk.11
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:49:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LopGlgKhvm32wTid0qhleNX0zRA4//F/8VxaJyDktKs=;
-        b=I1z3mKWiVt9ra7NqgGZ1lxmax+gR+Rpbh9s0z951uLuFibjIOotScr3Z66je20grqL
-         seFqrE7edY/wHTOz8DsJSYwC4eOGM7lxK8Xrzez5SggsisUUWpxBVHI4nezoSOn8/mq8
-         hi8ZTJJKQE4vAlFEVnwTc9tw3jYMvtCTg/mpdvZgVplsO9SeGWDW+h7oeXgfoKS6x0Ly
-         pqJw8g4atH/15PRQmVBblJzp9+eBW1Yl5fnPoD/SJr0upUCJVzVcs/hOaDzMTdJ98cS2
-         2DQqJoZOX8aqC1ez3W3TWFh5X8ZeOYmd6ajYm9WbNJKIFwJzXr7HrlWAyTF5C184j95A
-         1dWw==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8YP5wWUEEBMY2PTNKrTu3Hh2pQmEm7huU1HOYVz0Rwk=;
+        b=jwEJWV/zFdZ896Mkmss4/ajlWv6Os+0/UtK8gEBYdYtX5hvHY0/rI58TAvELkvqVsE
+         YJargWbH5W1QyduIbf7U2FNwQcQvsAmEyafhApayU/O8VFZIDia/USrcnbhY0bouVtok
+         2HwauXBFcJTpxlvgaY70ySmMsiDBUGAge285taKQC9lM07fL4/70Xr+lHmbgTxNOQybU
+         q2hM+fHtSfR71pvx5/bB54JFwT/1RwiqtQ2mnzlAWHCDfRE2stpV6SvhOWjj35LMof4W
+         NP1SxoAnNIAI/e+72XdoNM9mVuBXlyQYehDWrG0jwSTWdImJl5cP1bNpiQFnpplwjPKc
+         Hb/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LopGlgKhvm32wTid0qhleNX0zRA4//F/8VxaJyDktKs=;
-        b=cKS8XB4Fklp6ssmtluyO32CVEHgab9uT7e4JJg/lrmszuGrN9O17FV3LOgZuVwIf49
-         Wc9d9JrGmytLt5XE2nbsmlE2RbAIT7xAXHeDHgKeg8Jh4l5y7GB1/1G1UF8uyJYNFczW
-         Wx0jGvCZJUryJqUIp3V1iEpRc03WrAmXxSefxF4nV2B0n/1zQ/rxqEZn/CPGebn+HNdP
-         RcNcbeCm+xS7PpEXRYXQk+gE9JFRq/vSmTwHnlD4lSidCZL6bXFXso6Qtq/mucZsZjy1
-         ynRJ+rdYsy7ixcryrx1q7ozakZzppYJPlHjE/R6NfrO/S1JPZnsho1e0VUod1bNp2r5n
-         kksw==
-X-Gm-Message-State: ACrzQf1RpzEC/lbdTCdG3JjFwddpsslL2lBBP3Ge/fRAB/B5ULkkdKwd
-        XYvh1QdD5Q6Go7ewn40/pXGmPg==
-X-Google-Smtp-Source: AMsMyM5viWsVZbx2LjdqeTusxCj/brx91Qs9pRD+VOokyVVP3l/Uvnu+D5ZYZjuVFJWVtiLM9KvaYg==
-X-Received: by 2002:a7b:cbce:0:b0:3c6:fb29:6084 with SMTP id n14-20020a7bcbce000000b003c6fb296084mr29912467wmi.131.1666709205331;
-        Tue, 25 Oct 2022 07:46:45 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id q6-20020a1ce906000000b003c6d0f8c377sm2498670wmc.7.2022.10.25.07.46.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 07:46:44 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Anand Moon <linux.amoon@gmail.com>,
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8YP5wWUEEBMY2PTNKrTu3Hh2pQmEm7huU1HOYVz0Rwk=;
+        b=Tg8WomZIXxW1gJbmca8QeCTEn4tu4DBAl57Ga2SpxyqJy+2WIosqotS/RErJEz06Ij
+         mvVt2pSc6m1P/AgZ+FwzFOxH5F6bzwINlaUhPDxcidQzjBpufsQp47hCwSou7JXr0Ekd
+         io86T0AFun9tpjDXhDhQqNaa7ryEmTCaVGRgZf4U0xxRY+1AirswGSn8nj7wIoJHDgbv
+         3k7tmUD3Q8YDPJwQxQ9aAYE1dqBuhzuTVGVFtZLr9r/fad1RTbXEvfNYCCjglHqLL52A
+         RDo6WYiD4i1hRDgHp+48SMnMa3XDv3BqT4XtXQcQdfQaFGk4SzfjN9hkRoLvkqz1T9NT
+         U5Ng==
+X-Gm-Message-State: ACrzQf0cBDKSspuGxMUd6eeZypRMZHWy8bbvpsMxT+M5nqUvvwJPXdUa
+        AX/k5tjMrUv23TCxS9JMoOvcxw==
+X-Google-Smtp-Source: AMsMyM6CxSbFXx8tIMJFyF8KEBlAnnnHYsyGOMTSwcPVWCGa6Me8gw8xFad19rxKtM7zhMtCSDY/FQ==
+X-Received: by 2002:a05:620a:484c:b0:6ee:9acb:dfdc with SMTP id ec12-20020a05620a484c00b006ee9acbdfdcmr26735181qkb.594.1666709370859;
+        Tue, 25 Oct 2022 07:49:30 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id m17-20020ae9e711000000b006ed61f18651sm2155611qka.16.2022.10.25.07.49.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Oct 2022 07:49:30 -0700 (PDT)
+Message-ID: <d181924f-d87b-cad3-400a-dec22d3b29a6@linaro.org>
+Date:   Tue, 25 Oct 2022 10:49:28 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 2/2] dt-bindings: hpet: add loongson2 hpet
+Content-Language: en-US
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Dan Johansen <strit@manjaro.org>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20221021050906.1158-1-linux.amoon@gmail.com>
-References: <20221021050906.1158-1-linux.amoon@gmail.com>
-Subject: Re: [PATCHv2] arm64: dts: meson: Enable active coling using gpio-fan on Odroid N2/N2+
-Message-Id: <166670920454.4012520.12238178333554890690.b4-ty@linaro.org>
-Date:   Tue, 25 Oct 2022 16:46:44 +0200
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.1
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev
+References: <20221021010925.21604-1-zhuyinbo@loongson.cn>
+ <20221021010925.21604-2-zhuyinbo@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221021010925.21604-2-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,40 +85,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, 21 Oct 2022 05:09:03 +0000, Anand Moon wrote:
-> Odroid N2/N2+ support active cooling via gpio-fan controller.
-> Add fan controls and tip point for cpu and ddr thermal sensor
-> on this boards.
+On 20/10/2022 21:09, Yinbo Zhu wrote:
+> Add the loongson2 High Precision Event Timer (HPET) binding
+> with DT schema format using json-schema.
 > 
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v3:
+> 		1. Update dts that base on common clock framework.
 > 
+>  .../bindings/timer/loongson,ls2k-hpet.yaml    | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> new file mode 100644
+> index 000000000000..01656048858a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/timer/loongson,ls2k-hpet.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson2 High Precision Event Timer (HPET)
+> +
+> +maintainers:
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +properties:
+> +  compatible:
+> +    const: loongson,ls2k-hpet
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: SoC apb clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_clk
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/arm64-dt)
+Just: apb
 
-[1/1] arm64: dts: meson: Enable active coling using gpio-fan on Odroid N2/N2+
-      https://git.kernel.org/amlogic/c/44a201df71739a3c5ef3c40e58ebaccfd052d430
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
 
-These changes has been applied on the intermediate git tree [1].
+Your patchset is now untestable/unapplicable because you have a
+dependency. You need to explain the dependencies in the cover letter or
+in the patch changelog (---).
 
-The v6.2/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+Best regards,
+Krzysztof
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
