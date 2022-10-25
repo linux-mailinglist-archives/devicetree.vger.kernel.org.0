@@ -2,109 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0E160D70F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 00:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58BC60D72C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 00:33:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbiJYW15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 18:27:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42530 "EHLO
+        id S232433AbiJYWdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 18:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231191AbiJYW1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 18:27:55 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFF01ADAC;
-        Tue, 25 Oct 2022 15:27:54 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sc25so16457354ejc.12;
-        Tue, 25 Oct 2022 15:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=QQH4TaYIF6o38h7xbsFuFuW1teTfoq+Fiszi+NsDgAM=;
-        b=iEqpYCwY/QVTnjy4gBWJRmoe3Liq1KuoPKwrWuNlpEGzeZXOhDJpUiEj3kT9vW7NA/
-         n7Bldio0YTQRAJrAB5UJF391QPEcFHf93zLfCQ0Gvn6osvR1S4etwVwMlBSiuZWwPKG+
-         HM5tUBIMYq0PHOguc3cpA8ZjYjgHg5D+iycaQrxBSFsoGsqiKbuXvxAbCqB1q+LAtCVF
-         SS7DgOEA5Vn8bCi7EQGT0teXoRjIT32KudE2spuo4w+yApmVbwFSd1M4ghPtYIP+b/Fv
-         GWFR3Ffp75tp3SNFEdrgXr1XGD/RBidr1h4LT1eoCSv0raqElEqQx37Og87uy5Y9JjOU
-         b3CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QQH4TaYIF6o38h7xbsFuFuW1teTfoq+Fiszi+NsDgAM=;
-        b=nzPBE1zPK876xpAY8ESupVgY6tlBT/wT6de4uwmnRNaL+9PFFpETA/68wfPvdC1TPH
-         D7vYKOKSSgf/fFcyaPhH4VvkN353XiJNYxp9eKGzF4vek3ao+lEXYbbtRyQy3DgLV7EE
-         rB3r8E5BR6pXiimuhu86l4HRD1HDBFm9dI9TdTaxQQXnqKQsnqS1mBT0KiYkBREUI3G5
-         ifccLKwfidAIAL1Tme8T+B/N9+P581rB6oPwADYhnMoVF6Ll84oUlQgBKQz6Uopm55dn
-         MhjMyY2F9OFQoTFLeytAjdHH0K6vOWPHyjhDae+mvRX3l645QerZMoMUJ07tlLA+ZXq+
-         Zwgg==
-X-Gm-Message-State: ACrzQf3ivpHrBnRc7/WhEkKvVQKu+WcnhOXWdcglzWhsJ57xs1qZCeF0
-        8K3Jir6B/Yn/3Nfd5RAcWYQ=
-X-Google-Smtp-Source: AMsMyM4yuBBqbTkrLresixT63VODi3DoEvd2NVhI8pHLQRLJHMmALipMbV/mqYxTnflvOY/B8Waj0g==
-X-Received: by 2002:a17:907:e93:b0:78d:46b3:3a76 with SMTP id ho19-20020a1709070e9300b0078d46b33a76mr33905029ejc.133.1666736872599;
-        Tue, 25 Oct 2022 15:27:52 -0700 (PDT)
-Received: from hoboy.vegasvil.org (81-223-89-254.static.upcbusiness.at. [81.223.89.254])
-        by smtp.gmail.com with ESMTPSA id m8-20020a509308000000b0045bd257b307sm2302860eda.22.2022.10.25.15.27.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 15:27:51 -0700 (PDT)
-Date:   Tue, 25 Oct 2022 15:27:49 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, yangbo.lu@nxp.com,
-        radhey.shyam.pandey@amd.com, anirudha.sarangi@amd.com,
-        harini.katakam@amd.com, git@amd.com
-Subject: Re: [PATCH net-next V2] dt-bindings: net: ethernet-controller: Add
- ptp-hardware-clock
-Message-ID: <Y1hi5YHS/ATx79JJ@hoboy.vegasvil.org>
-References: <20221021054111.25852-1-sarath.babu.naidu.gaddam@amd.com>
- <20221024165723.GA1896281-robh@kernel.org>
+        with ESMTP id S232000AbiJYWdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 18:33:08 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 116775244E;
+        Tue, 25 Oct 2022 15:33:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666737187; x=1698273187;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PkMpR8UhouXSKr2UufQNVOYgkr4gvr3rdbAMwptbgJI=;
+  b=SxU8Ud45IJ1cB+IIjMKe8EbkT38b0/BK9JYwKGebUXnrwv9RMEJiKv92
+   cW9ktr6H8OsGNcs/tKuKQ+XP/XnOq/q+T69n8qL5i9z2RK5oZGDaw1t6X
+   +4CQNedVmEa8tzzxPctUvXhonxlgCdGPV+c6WYxSXLYi9WkLIzsBucGem
+   8a8O2fXj+j6CNhzhF3/e3XCIad/3pROuwr0VTrQf7wNO7JMFdzASZkOlT
+   mvUnBhPaPc3bah+cftBzgtjuRYpK6TIfA1+paugvnOm6gUD1yIMu3+MqA
+   gpxf0enXaHxpVGVX5410tx/u8H3C+ad/RNlVNE52c53+tl7UAGfezXgYM
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="309496360"
+X-IronPort-AV: E=Sophos;i="5.95,213,1661842800"; 
+   d="scan'208";a="309496360"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 15:33:05 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="700709944"
+X-IronPort-AV: E=Sophos;i="5.95,213,1661842800"; 
+   d="scan'208";a="700709944"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 15:33:02 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id D800420321;
+        Wed, 26 Oct 2022 01:32:59 +0300 (EEST)
+Date:   Tue, 25 Oct 2022 22:32:59 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 4/4] media: platform: Add Renesas RZ/G2L CRU driver
+Message-ID: <Y1hkG6NVFS08WTIg@paasikivi.fi.intel.com>
+References: <20221004234343.54777-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221004234343.54777-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221024165723.GA1896281-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221004234343.54777-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 24, 2022 at 11:57:23AM -0500, Rob Herring wrote:
-> On Thu, Oct 20, 2022 at 11:41:10PM -0600, Sarath Babu Naidu Gaddam wrote:
-> > There is currently no standard property to pass PTP device index
-> > information to ethernet driver when they are independent.
-> > 
-> > ptp-hardware-clock property will contain phandle to PTP clock node.
-> > 
-> > Freescale driver currently has this implementation but it will be
-> > good to agree on a generic (optional) property name to link to PTP
-> > phandle to Ethernet node. In future or any current ethernet driver
-> > wants to use this method of reading the PHC index,they can simply use
-> > this generic name and point their own PTP clock node, instead of
-> > creating separate property names in each ethernet driver DT node.
-> 
-> Seems like this does the same thing as 
-> Documentation/devicetree/bindings/ptp/timestamper.txt.
-> 
-> Or perhaps what we have in bindings/timestamp/ which unfortunately does 
-> about the same thing.
-> 
-> The latter one is more flexible and follows standard provider/consumer 
-> patterns. So timestamper.txt should probably be deprecated.
+Hi Prabhakar,
 
-I don't see how you can do that.  The provider/consumer semantics are
-completely opposite.
+A few comments below... apologies for not reviewing this earlier. Looks
+good in general but there are a few points that need some attention.
 
-The three (including present patch) bindings specify three different
-relationships.
+On Wed, Oct 05, 2022 at 12:43:43AM +0100, Prabhakar wrote:
+...
+> +static int rzg2l_cru_ip_pre_streamon(struct v4l2_subdev *sd, u32 flags)
+> +{
+> +	struct rzg2l_cru_dev *cru;
+> +	int ret;
+> +
+> +	cru = v4l2_get_subdevdata(sd);
+> +
+> +	if (!cru->is_csi)
+> +		return -EINVAL;
+> +
+> +	ret = v4l2_subdev_call(cru->ip.remote, video, pre_streamon, 0);
 
-Thanks,
-Richard
+If you're calling pre_streamon successfully, you'll have to have an
+equivalent number of post_streamoff calls.
+
+...
+
+> +static int rzg2l_cru_set_stream(struct rzg2l_cru_dev *cru, int on)
+> +{
+> +	struct media_pipeline *pipe;
+> +	struct v4l2_subdev *sd;
+> +	struct media_pad *pad;
+> +	unsigned long flags;
+> +	int ret;
+> +
+> +	pad = media_pad_remote_pad_first(&cru->pad);
+> +	if (!pad)
+> +		return -EPIPE;
+> +
+> +	sd = media_entity_to_v4l2_subdev(pad->entity);
+> +
+> +	if (!on) {
+> +		media_pipeline_stop(&cru->vdev.entity);
+> +		return v4l2_subdev_call(sd, video, s_stream, 0);
+
+Ditto.
+
+> +	}
+> +
+> +	ret = rzg2l_cru_mc_validate_format(cru, sd, pad);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = v4l2_subdev_call(sd, video, pre_streamon, 0);
+> +	if (ret == -ENOIOCTLCMD)
+> +		ret = 0;
+> +	if (ret)
+> +		return ret;
+
+For all cases below where streaming on doesn't succeed, you'll have to have
+a call of post_streamoff.
+
+> +
+> +	spin_lock_irqsave(&cru->qlock, flags);
+> +
+> +	/* Select a video input */
+> +	if (cru->is_csi)
+> +		rzg2l_cru_write(cru, CRUnCTRL, CRUnCTRL_VINSEL(0));
+> +
+> +	/* Cancel the software reset for image processing block */
+> +	rzg2l_cru_write(cru, CRUnRST, CRUnRST_VRESETN);
+> +
+> +	/* Disable and clear the interrupt before using */
+> +	rzg2l_cru_write(cru, CRUnIE, 0);
+> +	rzg2l_cru_write(cru, CRUnINTS, 0x001f000f);
+> +
+> +	/* Initialize the AXI master */
+> +	rzg2l_cru_initialize_axi(cru);
+> +
+> +	/* Initialize image convert */
+> +	ret = rzg2l_cru_initialize_image_conv(cru);
+> +	if (ret) {
+> +		spin_unlock_irqrestore(&cru->qlock, flags);
+> +		return ret;
+> +	}
+> +
+> +	/* Enable interrupt */
+> +	rzg2l_cru_write(cru, CRUnIE, CRUnIE_EFE);
+> +
+> +	/* Enable image processing reception */
+> +	rzg2l_cru_write(cru, ICnEN, ICnEN_ICEN);
+> +
+> +	spin_unlock_irqrestore(&cru->qlock, flags);
+> +
+> +	pipe = sd->entity.pipe ? sd->entity.pipe : &cru->vdev.pipe;
+> +	ret = media_pipeline_start(&cru->vdev.entity, pipe);
+> +	if (ret)
+> +		return ret;
+> +
+> +	clk_disable_unprepare(cru->vclk);
+> +
+> +	ret = v4l2_subdev_call(sd, video, s_stream, 1);
+> +	if (ret == -ENOIOCTLCMD)
+> +		ret = 0;
+> +	if (ret) {
+> +		/* enable back vclk so that release() disables it */
+> +		clk_prepare_enable(cru->vclk);
+> +		media_pipeline_stop(&cru->vdev.entity);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(cru->vclk);
+
+What will happen if enabling vclk will fail here? (Or above?)
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+
+-- 
+Kind regards,
+
+Sakari Ailus
