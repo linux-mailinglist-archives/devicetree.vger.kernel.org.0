@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F81660C1BF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 04:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D2160C1D4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 04:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbiJYCdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 22:33:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52312 "EHLO
+        id S231328AbiJYCm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 22:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231224AbiJYCdO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 22:33:14 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53BCD11D9BD;
-        Mon, 24 Oct 2022 19:33:10 -0700 (PDT)
+        with ESMTP id S229785AbiJYCm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 22:42:57 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A194C63FC;
+        Mon, 24 Oct 2022 19:42:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1666665190; x=1698201190;
+  t=1666665776; x=1698201776;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
   bh=KIcla/cBfKfsp2q+fhYfTr8alpP/iyi9SD4SxWv2kyM=;
-  b=Zx8xUVkSoidm7hJsR1gdJg2WpmVpgXWhWgXqni6BpKNc/J/6h89lOk9B
-   usxL6MdtNSl2gVUIltvOiVvi1pT17DOBKS1xN2vrN4V2yHYsXPG3ufUn+
-   dzFb4kPNsNkQsG0wqKUrB6AkvspgQY09C28BikN0cy699mBNDK/6IMvqv
-   wD3srty8Kxo7idxL8pXXMUqFOiITmKMD51qLKZxA2dOXY4p5YKrDI4TkG
-   RMj7CEPO5u/ygHUr8w4WdMcZYBKzAl8rFzAG4LXzXRgiZxlyYLrrNpH2T
-   H7NDm/YRRf0abSOVLQAB2WkL5bbPHKl3coUPnkVFdLDNPblURs758gqn7
+  b=QecRc8VS4/EvhGraME+4l5kG1TuSg5Q9nBxguAWo4tqsrBvar38GkqQk
+   79F924HCBLUI4St4NL640ktgtryAOdBGbrENkxco18yVh1OII9hYOlYqe
+   uRFxzxzlwQQ1N9wRtN2p6jNRxAqQmIlCMfU9wElP57AhFxd7E4Iip6CAr
+   mVXHrgv0Jb9NhrhUGwFWWHu0DBielGNm4r6JpiiuvjWKHkqK4ggRYCDH8
+   5EQq93rhCQo9mVjZzLF8VYHyDvv25nHgvOH9q10N6bwJTpARM42VDhLIo
+   wt6Upwvxf0WI96TSvGsVS/mOUlaivZhAYO3E4O741VuifhW1i9xXzaG5D
    A==;
 X-IronPort-AV: E=Sophos;i="5.95,210,1661842800"; 
-   d="scan'208";a="196873207"
+   d="scan'208";a="120182565"
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Oct 2022 19:33:09 -0700
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Oct 2022 19:40:25 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Mon, 24 Oct 2022 19:33:08 -0700
+ 15.1.2507.12; Mon, 24 Oct 2022 19:40:11 -0700
 Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Mon, 24 Oct 2022 19:33:03 -0700
+ 15.1.2507.12 via Frontend Transport; Mon, 24 Oct 2022 19:40:06 -0700
 From:   Tudor Ambarus <tudor.ambarus@microchip.com>
 To:     <robh+dt@kernel.org>, <sai.krishna.potthuri@amd.com>,
         <miquel.raynal@bootlin.com>, <krzysztof.kozlowski+dt@linaro.org>,
@@ -48,7 +48,7 @@ CC:     Tudor Ambarus <tudor.ambarus@microchip.com>,
         <saikrishna12468@gmail.com>, <devicetree@vger.kernel.org>,
         <git@amd.com>
 Subject: Re: [PATCH v3 0/2] mtd: spi-nor: Add flash device reset support
-Date:   Tue, 25 Oct 2022 05:32:59 +0300
+Date:   Tue, 25 Oct 2022 05:40:02 +0300
 Message-ID: <166666517332.181018.1753222058274543983.b4-ty@microchip.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220908064428.2962-1-sai.krishna.potthuri@amd.com>
@@ -58,8 +58,8 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
