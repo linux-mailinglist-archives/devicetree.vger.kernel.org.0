@@ -2,104 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9951E60CCF9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 15:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 690FF60CD0B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 15:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232740AbiJYNG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 09:06:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
+        id S231681AbiJYNKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 09:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232749AbiJYNGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 09:06:31 -0400
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2081.outbound.protection.outlook.com [40.107.94.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3DD05FEA;
-        Tue, 25 Oct 2022 06:06:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g/AH34G2iqw0w9vODejG5crij3+SEXqFxpRMnR/j9J2MapvmqO8K1aJfFnQvkRiHCUkUV41InVVVYaZ5aqx5nnVNYbIs5rrTZaiGJvhLao1k/FM5Grkn+2e4shgJKkgo+TWCwduC+xIWAJmpaDIyApgv5Q5XMU0zDVgUf3fnM54nhZ080u5nVhUPPKQIRKgvYW5vUPbztZFEFnE+phGi+MhInabP4IB7M46moxB6/2ier1IwHvwjyxtVmy+2CAT6MjDX2UjTwap26orApNL9+ejyI7o/F7Ih/5XgLXYqBD6W2FNOMaQkBmTmhVszUrGqhuF14W/FAdkxqMiCpAcxcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jNbwIxNZBjvht3rwEQEUe+MsnVRL3Y75Mm4mCkT1HxA=;
- b=EaqVG+DS9MzuWgNoZeli0ddENP2/Qx31TcfpFsxGTYzJLYg6yURxNVWNqTUWYJPiMVnF2EdKQo5S9n/5at0G8Kt6WMqgDKOnxYgIEXqAcZ1JiSFC5x9TsoDg/BMESWfnbjBs/dx12RFS7rxAptx1WMJMBhpOx2Usx5Yo/HmPCrymRbK5g00yoyrjzOWHLrwVNwPQStCWcb2UUte70XZ6yXssGEz7NsNW6gqLtRB/hi9RmngDTZEPx0+tvAumkcnBatwx/TjwAnawKDihJZatNhnG0limQMsPDsguSbV2Okm4D7o7nX7jDVQayrwhN6+lsSeI3LI6BkyHJJUPKIgpEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jNbwIxNZBjvht3rwEQEUe+MsnVRL3Y75Mm4mCkT1HxA=;
- b=sfBECLwENAXGFhNKVS4R10zvNIF+lmoDtcheeFiolkVyPp09aJoDYPRXqf1lX7i0sJADe2+Vq6R9PO79Tq6cxg59Gn0csOu7+T1CQSppg5XZH/k1dD9NDfX8lh/dq6PbSVDHeCZWC23gxRIfa0BQdThl8rSlqQ//21pyONf50yQ=
-Received: from BN0PR04CA0096.namprd04.prod.outlook.com (2603:10b6:408:ec::11)
- by CH0PR12MB5332.namprd12.prod.outlook.com (2603:10b6:610:d7::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.33; Tue, 25 Oct
- 2022 13:06:04 +0000
-Received: from BN8NAM11FT093.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ec:cafe::7d) by BN0PR04CA0096.outlook.office365.com
- (2603:10b6:408:ec::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.27 via Frontend
- Transport; Tue, 25 Oct 2022 13:06:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT093.mail.protection.outlook.com (10.13.177.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5746.16 via Frontend Transport; Tue, 25 Oct 2022 13:06:04 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 25 Oct
- 2022 08:05:59 -0500
-Message-ID: <61eeb4fb-b746-7b51-df7c-ddd9c709e200@amd.com>
-Date:   Tue, 25 Oct 2022 15:05:57 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v10 5/6] firmware: xilinx: Add RPU configuration APIs
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@amd.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S229841AbiJYNKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 09:10:12 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A091102;
+        Tue, 25 Oct 2022 06:10:05 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 068781C0015;
+        Tue, 25 Oct 2022 13:09:59 +0000 (UTC)
+Date:   Tue, 25 Oct 2022 15:09:58 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Mikhail Rudenko <mike.rudenko@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Ben Levinsky" <ben.levinsky@amd.com>
-References: <20221011212501.2661003-1-tanmay.shah@amd.com>
- <20221011212501.2661003-6-tanmay.shah@amd.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <20221011212501.2661003-6-tanmay.shah@amd.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT093:EE_|CH0PR12MB5332:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f066a10-62bf-4d3b-4e96-08dab689ac6d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 01gAtTko3XL2jMR1uuScZ7C0a/WoRvNOaGS4ex7YBbZFyl0tBDLhJzAAKk11zj1h/zeq5q1A1QODjaUFW2z+AjuOA4XKgQBWvJK3yogayTWSZ7i4fSbYxkftTBR84U9gg0G5z7VN37vwXPVQ8KFebA2Pkv/870uWl/qM5kHBtdtuiPrsy0Cz0w3LyIZUYnQcaNM99uVbcZwQkxdPzxqcjFesEi30th6YGcXa9F6IijeSeaibnnxJgsz4748G3e51RCqu1hTbR8tnxDFu4s9o7hW2w7HUv2ViWuNMzTdAYrO/m1Fc6DC2J3iFRNMkIvCGF39jSYMPB/PDmRvEW39EUzylMehRHv5XGLIoQEoLk5sx/0M7WVYJ1zQQ+XFXIPle8lj4w2ysr3Mrcch82TIuAnuCKpV72hV83HLxpKsrdp5Z01iDTOl7e/OmZeNuHzpaVVnEZfyZYTevLWGiE1bnwS4FIeR+cP4oWS9OX0bX6N+/fXPWtSL+cDXRxehJe1HkEWUValax6e922jPFYCDprNzf9593RtXIQNFxtsxOmhGyeN8RBpHfGbZr33a/yjIvRUVPLQuXw0CJomBfIOnNv7XudxJcDAegbhzU+JKBVrr7NE6QAOkUTIRBnEUAKisLAgutiyzbSO+XDB7ouE4aGorQ44pi7IVl6N+K2xeNT94jcLTx753Kkw93heNzf8a5un3zPSx/UaRV6brYdA0Sn3/z5OLKC2KFYWysZvJIyyl8un2NRQU1+/vnVWJ0Y330SCZzMLnUiF6YGTcIYMF08RPaIdTNCHy/eeXeCx3iy+0207lp0fwFQoDuRjXbHwmsRxZLplYfok6PvXlbURXjaw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(376002)(136003)(346002)(451199015)(36840700001)(46966006)(40470700004)(40460700003)(186003)(336012)(47076005)(53546011)(426003)(44832011)(36860700001)(2906002)(83380400001)(26005)(5660300002)(16526019)(40480700001)(2616005)(110136005)(70206006)(16576012)(478600001)(8676002)(82310400005)(70586007)(4326008)(41300700001)(8936002)(316002)(54906003)(31686004)(81166007)(31696002)(36756003)(86362001)(356005)(82740400003)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2022 13:06:04.5497
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f066a10-62bf-4d3b-4e96-08dab689ac6d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT093.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5332
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Marek Vasut <marex@denx.de>, Jimmy Su <jimmy.su@intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] media: i2c: add support for OV4689
+Message-ID: <20221025130958.bnedjlkm6kmiluoe@uno.localdomain>
+References: <20221022162042.14113-1-mike.rudenko@gmail.com>
+ <20221022162042.14113-3-mike.rudenko@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20221022162042.14113-3-mike.rudenko@gmail.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,PDS_OTHER_BAD_TLD,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -107,161 +49,1137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mikhail,
 
-
-On 10/11/22 23:25, Tanmay Shah wrote:
-> From: Ben Levinsky <ben.levinsky@amd.com>
-> 
-> This patch adds APIs to access to configure RPU and its
-> processor-specific memory.
-> 
-> That is query the run-time mode of RPU as either split or lockstep as well
-> as API to set this mode. In addition add APIs to access configuration of
-> the RPUs' tightly coupled memory (TCM).
-> 
-> Signed-off-by: Ben Levinsky <ben.levinsky@amd.com>
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+On Sat, Oct 22, 2022 at 07:20:07PM +0300, Mikhail Rudenko wrote:
+> Add a V4L2 sub-device driver for OmniVision OV4689 image sensor. This
+> is a 4 Mpx image sensor using the I2C bus for control and the CSI-2
+> bus for data.
+>
+> This driver supports following features:
+> - manual exposure and analog gain control support
+> - test pattern support
+> - media controller support
+> - runtime PM support
+> - support following resolutions:
+>   + 2688x1520 at 30 fps
+>
+> The driver provides all mandatory V4L2 controls for compatibility with
+> libcamera. The sensor supports 1/2/4-lane CSI-2 modes, but the driver
+> implements 4 lane mode only at this moment.
+>
+> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
 > ---
-> 
-> Changes in v10:
->    - None
-> 
-> Changes in v9:
->    - None
-> 
-> Changes in v8:
->    - None
-> 
-> Changes in v7:
->    - None
-> 
-> Changes in v6:
->    - None
-> 
-> Changes in v5:
->    - None
-> 
-> Changes in v4:
->    - None
-> 
-> Changes in v3:
->    - Add missing function argument documentation
-> 
->   drivers/firmware/xilinx/zynqmp.c     | 62 ++++++++++++++++++++++++++++
->   include/linux/firmware/xlnx-zynqmp.h | 18 ++++++++
->   2 files changed, 80 insertions(+)
-> 
-> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
-> index edb13167170f..eba359e66414 100644
-> --- a/drivers/firmware/xilinx/zynqmp.c
-> +++ b/drivers/firmware/xilinx/zynqmp.c
-> @@ -1159,6 +1159,68 @@ int zynqmp_pm_release_node(const u32 node)
->   }
->   EXPORT_SYMBOL_GPL(zynqmp_pm_release_node);
->   
-> +/**
-> + * zynqmp_pm_get_rpu_mode() - Get RPU mode
-> + * @node_id:	Node ID of the device
-> + * @rpu_mode:	return by reference value
-> + *		either split or lockstep
+>  MAINTAINERS                |    1 +
+>  drivers/media/i2c/Kconfig  |   13 +
+>  drivers/media/i2c/Makefile |    1 +
+>  drivers/media/i2c/ov4689.c | 1026 ++++++++++++++++++++++++++++++++++++
+>  4 files changed, 1041 insertions(+)
+>  create mode 100644 drivers/media/i2c/ov4689.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4d6d86a9f704..acf38afb3e73 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15210,6 +15210,7 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  T:	git git://linuxtv.org/media_tree.git
+>  F:	Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> +F:	drivers/media/i2c/ov5647.c
+>
+>  OMNIVISION OV5640 SENSOR DRIVER
+>  M:	Steve Longerbeam <slongerbeam@gmail.com>
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index 7806d4b81716..1e1985252ec8 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -445,6 +445,19 @@ config VIDEO_OV2740
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called ov2740.
+>
+> +config VIDEO_OV4689
+> +	tristate "OmniVision OV4689 sensor support"
+> +	depends on GPIOLIB && VIDEO_DEV && I2C
+> +	select MEDIA_CONTROLLER
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	select V4L2_FWNODE
+> +	help
+> +	  This is a Video4Linux2 sensor-level driver for the OmniVision
+> +	  OV4689 camera.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called ov4689.
+> +
+>  config VIDEO_OV5640
+>  	tristate "OmniVision OV5640 sensor support"
+>  	depends on OF
+> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+> index 0a2933103dd9..c1a2cb351c0f 100644
+> --- a/drivers/media/i2c/Makefile
+> +++ b/drivers/media/i2c/Makefile
+> @@ -79,6 +79,7 @@ obj-$(CONFIG_VIDEO_OV2659) += ov2659.o
+>  obj-$(CONFIG_VIDEO_OV2680) += ov2680.o
+>  obj-$(CONFIG_VIDEO_OV2685) += ov2685.o
+>  obj-$(CONFIG_VIDEO_OV2740) += ov2740.o
+> +obj-$(CONFIG_VIDEO_OV4689) += ov4689.o
+>  obj-$(CONFIG_VIDEO_OV5640) += ov5640.o
+>  obj-$(CONFIG_VIDEO_OV5645) += ov5645.o
+>  obj-$(CONFIG_VIDEO_OV5647) += ov5647.o
+> diff --git a/drivers/media/i2c/ov4689.c b/drivers/media/i2c/ov4689.c
+> new file mode 100644
+> index 000000000000..419ff7371ba8
+> --- /dev/null
+> +++ b/drivers/media/i2c/ov4689.c
+> @@ -0,0 +1,1026 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ov4689 driver
 > + *
-> + * Return:	return 0 on success or error+reason.
-> + *		if success, then  rpu_mode will be set
-> + *		to current rpu mode.
+> + * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
+> + * Copyright (C) 2022 Mikhail Rudenko
 > + */
-> +int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode)
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-async.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-subdev.h>
+> +#include <media/v4l2-fwnode.h>
+> +
+> +#define CHIP_ID				0x004688
+> +#define OV4689_REG_CHIP_ID		0x300a
+> +
+> +#define OV4689_XVCLK_FREQ		24000000
+> +
+> +#define OV4689_REG_CTRL_MODE		0x0100
+> +#define OV4689_MODE_SW_STANDBY		0x0
+> +#define OV4689_MODE_STREAMING		BIT(0)
+> +
+> +#define OV4689_REG_EXPOSURE		0x3500
+> +#define OV4689_EXPOSURE_MIN		4
+> +#define OV4689_EXPOSURE_STEP		1
+> +#define OV4689_VTS_MAX			0x7fff
+> +
+> +#define OV4689_REG_GAIN_H		0x3508
+> +#define OV4689_REG_GAIN_L		0x3509
+> +#define OV4689_GAIN_H_MASK		0x07
+> +#define OV4689_GAIN_H_SHIFT		8
+> +#define OV4689_GAIN_L_MASK		0xff
+> +#define OV4689_GAIN_STEP		1
+> +#define OV4689_GAIN_DEFAULT		0x80
+> +
+> +#define OV4689_REG_TEST_PATTERN		0x5040
+> +#define OV4689_TEST_PATTERN_ENABLE	0x80
+> +#define OV4689_TEST_PATTERN_DISABLE	0x0
+> +
+> +#define OV4689_REG_VTS			0x380e
+> +
+> +#define REG_NULL			0xFFFF
+> +
+> +#define OV4689_REG_VALUE_08BIT		1
+> +#define OV4689_REG_VALUE_16BIT		2
+> +#define OV4689_REG_VALUE_24BIT		3
+> +
+> +#define OV4689_LANES			4
+> +
+> +static const char *const ov4689_supply_names[] = {
+> +	"avdd", /* Analog power */
+> +	"dovdd", /* Digital I/O power */
+> +	"dvdd", /* Digital core power */
+> +};
+> +
+> +struct regval {
+> +	u16 addr;
+> +	u8 val;
+> +};
+> +
+> +enum ov4689_mode_id {
+> +	OV4689_MODE_2688_1520 = 0,
+> +	OV4689_NUM_MODES,
+> +};
+> +
+> +struct ov4689_mode {
+> +	enum ov4689_mode_id id;
+> +	u32 width;
+> +	u32 height;
+> +	u32 max_fps;
+> +	u32 hts_def;
+> +	u32 vts_def;
+> +	u32 exp_def;
+> +	u32 pixel_rate;
+> +	u32 sensor_width;
+> +	u32 sensor_height;
+> +	u32 crop_top;
+> +	u32 crop_left;
+> +	const struct regval *reg_list;
+> +};
+> +
+> +struct ov4689 {
+> +	struct i2c_client *client;
+> +	struct clk *xvclk;
+> +	struct gpio_desc *reset_gpio;
+> +	struct gpio_desc *pwdn_gpio;
+> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov4689_supply_names)];
+> +
+> +	struct v4l2_subdev subdev;
+> +	struct media_pad pad;
+> +
+> +	u32 clock_rate;
+> +
+> +	struct mutex mutex; /* lock to protect streaming, ctrls and cur_mode */
+> +	bool streaming;
+> +	struct v4l2_ctrl_handler ctrl_handler;
+> +	struct v4l2_ctrl *exposure;
+> +
+> +	const struct ov4689_mode *cur_mode;
+> +};
+> +
+> +#define to_ov4689(sd) container_of(sd, struct ov4689, subdev)
+> +
+> +struct ov4689_gain_range {
+> +	u32 logical_min;
+> +	u32 logical_max;
+> +	u32 offset;
+> +	u32 divider;
+> +	u32 physical_min;
+> +	u32 physical_max;
+> +};
+> +
+> +/*
+> + * Xclk 24Mhz
+> + * max_framerate 30fps
+> + * mipi_datarate per lane 1008Mbps
+> + */
+> +static const struct regval ov4689_2688x1520_regs[] = {
+> +	{0x0103, 0x01}, {0x3638, 0x00}, {0x0300, 0x00},
+> +	{0x0302, 0x2a}, {0x0303, 0x00}, {0x0304, 0x03},
+> +	{0x030b, 0x00}, {0x030d, 0x1e}, {0x030e, 0x04},
+> +	{0x030f, 0x01}, {0x0312, 0x01}, {0x031e, 0x00},
+> +	{0x3000, 0x20}, {0x3002, 0x00}, {0x3018, 0x72},
+> +	{0x3020, 0x93}, {0x3021, 0x03}, {0x3022, 0x01},
+> +	{0x3031, 0x0a}, {0x303f, 0x0c}, {0x3305, 0xf1},
+> +	{0x3307, 0x04}, {0x3309, 0x29}, {0x3500, 0x00},
+> +	{0x3501, 0x60}, {0x3502, 0x00}, {0x3503, 0x04},
+> +	{0x3504, 0x00}, {0x3505, 0x00}, {0x3506, 0x00},
+> +	{0x3507, 0x00}, {0x3508, 0x00}, {0x3509, 0x80},
+> +	{0x350a, 0x00}, {0x350b, 0x00}, {0x350c, 0x00},
+> +	{0x350d, 0x00}, {0x350e, 0x00}, {0x350f, 0x80},
+> +	{0x3510, 0x00}, {0x3511, 0x00}, {0x3512, 0x00},
+> +	{0x3513, 0x00}, {0x3514, 0x00}, {0x3515, 0x80},
+> +	{0x3516, 0x00}, {0x3517, 0x00}, {0x3518, 0x00},
+> +	{0x3519, 0x00}, {0x351a, 0x00}, {0x351b, 0x80},
+> +	{0x351c, 0x00}, {0x351d, 0x00}, {0x351e, 0x00},
+> +	{0x351f, 0x00}, {0x3520, 0x00}, {0x3521, 0x80},
+> +	{0x3522, 0x08}, {0x3524, 0x08}, {0x3526, 0x08},
+> +	{0x3528, 0x08}, {0x352a, 0x08}, {0x3602, 0x00},
+> +	{0x3603, 0x40}, {0x3604, 0x02}, {0x3605, 0x00},
+> +	{0x3606, 0x00}, {0x3607, 0x00}, {0x3609, 0x12},
+> +	{0x360a, 0x40}, {0x360c, 0x08}, {0x360f, 0xe5},
+> +	{0x3608, 0x8f}, {0x3611, 0x00}, {0x3613, 0xf7},
+> +	{0x3616, 0x58}, {0x3619, 0x99}, {0x361b, 0x60},
+> +	{0x361c, 0x7a}, {0x361e, 0x79}, {0x361f, 0x02},
+> +	{0x3632, 0x00}, {0x3633, 0x10}, {0x3634, 0x10},
+> +	{0x3635, 0x10}, {0x3636, 0x15}, {0x3646, 0x86},
+> +	{0x364a, 0x0b}, {0x3700, 0x17}, {0x3701, 0x22},
+> +	{0x3703, 0x10}, {0x370a, 0x37}, {0x3705, 0x00},
+> +	{0x3706, 0x63}, {0x3709, 0x3c}, {0x370b, 0x01},
+> +	{0x370c, 0x30}, {0x3710, 0x24}, {0x3711, 0x0c},
+> +	{0x3716, 0x00}, {0x3720, 0x28}, {0x3729, 0x7b},
+> +	{0x372a, 0x84}, {0x372b, 0xbd}, {0x372c, 0xbc},
+> +	{0x372e, 0x52}, {0x373c, 0x0e}, {0x373e, 0x33},
+> +	{0x3743, 0x10}, {0x3744, 0x88}, {0x3745, 0xc0},
+> +	{0x374a, 0x43}, {0x374c, 0x00}, {0x374e, 0x23},
+> +	{0x3751, 0x7b}, {0x3752, 0x84}, {0x3753, 0xbd},
+> +	{0x3754, 0xbc}, {0x3756, 0x52}, {0x375c, 0x00},
+> +	{0x3760, 0x00}, {0x3761, 0x00}, {0x3762, 0x00},
+> +	{0x3763, 0x00}, {0x3764, 0x00}, {0x3767, 0x04},
+> +	{0x3768, 0x04}, {0x3769, 0x08}, {0x376a, 0x08},
+> +	{0x376b, 0x20}, {0x376c, 0x00}, {0x376d, 0x00},
+> +	{0x376e, 0x00}, {0x3773, 0x00}, {0x3774, 0x51},
+> +	{0x3776, 0xbd}, {0x3777, 0xbd}, {0x3781, 0x18},
+> +	{0x3783, 0x25}, {0x3798, 0x1b}, {0x3800, 0x00},
+> +	{0x3801, 0x08}, {0x3802, 0x00}, {0x3803, 0x04},
+> +	{0x3804, 0x0a}, {0x3805, 0x97}, {0x3806, 0x05},
+> +	{0x3807, 0xfb}, {0x3808, 0x0a}, {0x3809, 0x80},
+> +	{0x380a, 0x05}, {0x380b, 0xf0}, {0x380c, 0x0a},
+> +	{0x380d, 0x0e}, {0x380e, 0x06}, {0x380f, 0x12},
+> +	{0x3810, 0x00}, {0x3811, 0x08}, {0x3812, 0x00},
+> +	{0x3813, 0x04}, {0x3814, 0x01}, {0x3815, 0x01},
+> +	{0x3819, 0x01}, {0x3820, 0x00}, {0x3821, 0x06},
+> +	{0x3829, 0x00}, {0x382a, 0x01}, {0x382b, 0x01},
+> +	{0x382d, 0x7f}, {0x3830, 0x04}, {0x3836, 0x01},
+> +	{0x3837, 0x00}, {0x3841, 0x02}, {0x3846, 0x08},
+> +	{0x3847, 0x07}, {0x3d85, 0x36}, {0x3d8c, 0x71},
+> +	{0x3d8d, 0xcb}, {0x3f0a, 0x00}, {0x4000, 0xf1},
+> +	{0x4001, 0x40}, {0x4002, 0x04}, {0x4003, 0x14},
+> +	{0x400e, 0x00}, {0x4011, 0x00}, {0x401a, 0x00},
+> +	{0x401b, 0x00}, {0x401c, 0x00}, {0x401d, 0x00},
+> +	{0x401f, 0x00}, {0x4020, 0x00}, {0x4021, 0x10},
+> +	{0x4022, 0x07}, {0x4023, 0xcf}, {0x4024, 0x09},
+> +	{0x4025, 0x60}, {0x4026, 0x09}, {0x4027, 0x6f},
+> +	{0x4028, 0x00}, {0x4029, 0x02}, {0x402a, 0x06},
+> +	{0x402b, 0x04}, {0x402c, 0x02}, {0x402d, 0x02},
+> +	{0x402e, 0x0e}, {0x402f, 0x04}, {0x4302, 0xff},
+> +	{0x4303, 0xff}, {0x4304, 0x00}, {0x4305, 0x00},
+> +	{0x4306, 0x00}, {0x4308, 0x02}, {0x4500, 0x6c},
+> +	{0x4501, 0xc4}, {0x4502, 0x40}, {0x4503, 0x01},
+> +	{0x4601, 0xa7}, {0x4800, 0x04}, {0x4813, 0x08},
+> +	{0x481f, 0x40}, {0x4829, 0x78}, {0x4837, 0x10},
+> +	{0x4b00, 0x2a}, {0x4b0d, 0x00}, {0x4d00, 0x04},
+> +	{0x4d01, 0x42}, {0x4d02, 0xd1}, {0x4d03, 0x93},
+> +	{0x4d04, 0xf5}, {0x4d05, 0xc1}, {0x5000, 0xf3},
+> +	{0x5001, 0x11}, {0x5004, 0x00}, {0x500a, 0x00},
+> +	{0x500b, 0x00}, {0x5032, 0x00}, {0x5040, 0x00},
+> +	{0x5050, 0x0c}, {0x5500, 0x00}, {0x5501, 0x10},
+> +	{0x5502, 0x01}, {0x5503, 0x0f}, {0x8000, 0x00},
+> +	{0x8001, 0x00}, {0x8002, 0x00}, {0x8003, 0x00},
+> +	{0x8004, 0x00}, {0x8005, 0x00}, {0x8006, 0x00},
+> +	{0x8007, 0x00}, {0x8008, 0x00}, {0x3638, 0x00},
+> +	{REG_NULL, 0x00},
+> +};
+> +
+> +static const struct ov4689_mode supported_modes[] = {
+> +	{
+> +		.id = OV4689_MODE_2688_1520,
+> +		.width = 2688,
+> +		.height = 1520,
+> +		.sensor_width = 2720,
+> +		.sensor_height = 1536,
+> +		.crop_top = 8,
+> +		.crop_left = 16,
+> +		.max_fps = 30,
+> +		.exp_def = 1536,
+> +		.hts_def = 4 * 2574,
+> +		.vts_def = 1554,
+> +		.pixel_rate = 480000000,
+> +		.reg_list = ov4689_2688x1520_regs,
+> +	},
+> +};
+> +
+> +static const u64 link_freq_menu_items[] = { 504000000 };
+> +
+> +static const char *const ov4689_test_pattern_menu[] = {
+> +	"Disabled",
+> +	"Vertical Color Bar Type 1",
+> +	"Vertical Color Bar Type 2",
+> +	"Vertical Color Bar Type 3",
+> +	"Vertical Color Bar Type 4"
+> +};
+> +
+> +/*
+> + * These coefficients are based on those used in Rockchip's camera
+> + * engine, with minor tweaks for continuity.
+> + */
+> +static const struct ov4689_gain_range ov4689_gain_ranges[] = {
+> +	{
+> +		.logical_min = 0,
+> +		.logical_max = 255,
+> +		.offset = 0,
+> +		.divider = 1,
+> +		.physical_min = 0,
+> +		.physical_max = 255,
+> +	},
+> +	{
+> +		.logical_min = 256,
+> +		.logical_max = 511,
+> +		.offset = 252,
+> +		.divider = 2,
+> +		.physical_min = 376,
+> +		.physical_max = 504,
+> +	},
+> +	{
+> +		.logical_min = 512,
+> +		.logical_max = 1023,
+> +		.offset = 758,
+> +		.divider = 4,
+> +		.physical_min = 884,
+> +		.physical_max = 1012,
+> +	},
+> +	{
+> +		.logical_min = 1024,
+> +		.logical_max = 2047,
+> +		.offset = 1788,
+> +		.divider = 8,
+> +		.physical_min = 1912,
+> +		.physical_max = 2047,
+> +	},
+> +};
+> +
+> +/* Write registers up to 4 at a time */
+> +static int ov4689_write_reg(struct i2c_client *client, u16 reg, u32 len,
+> +			    u32 val)
 > +{
-> +	u32 ret_payload[PAYLOAD_ARG_CNT];
-> +	int ret;
+> +	u32 buf_i, val_i;
+> +	__be32 val_be;
+> +	u8 *val_p;
+> +	u8 buf[6];
 > +
-> +	ret = zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
-> +				  IOCTL_GET_RPU_OPER_MODE, 0, 0, ret_payload);
+> +	if (len > 4)
+> +		return -EINVAL;
 > +
-> +	/* only set rpu_mode if no error */
-> +	if (ret == XST_PM_SUCCESS)
-> +		*rpu_mode = ret_payload[0];
+> +	buf[0] = reg >> 8;
+> +	buf[1] = reg & 0xff;
+> +
+> +	val_be = cpu_to_be32(val);
+> +	val_p = (u8 *)&val_be;
+> +	buf_i = 2;
+> +	val_i = 4 - len;
+> +
+> +	while (val_i < 4)
+> +		buf[buf_i++] = val_p[val_i++];
+> +
+> +	if (i2c_master_send(client, buf, len + 2) != len + 2)
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_write_array(struct i2c_client *client,
+> +			      const struct regval *regs)
+> +{
+> +	int ret = 0;
+> +	u32 i;
+> +
+> +	for (i = 0; ret == 0 && regs[i].addr != REG_NULL; i++)
+> +		ret = ov4689_write_reg(client, regs[i].addr,
+> +				       OV4689_REG_VALUE_08BIT, regs[i].val);
 > +
 > +	return ret;
 > +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_get_rpu_mode);
 > +
-> +/**
-> + * zynqmp_pm_set_rpu_mode() - Set RPU mode
-> + * @node_id:	Node ID of the device
-> + * @rpu_mode:	Argument 1 to requested IOCTL call. either split or lockstep
-> + *
-> + *		This function is used to set RPU mode to split or
-> + *		lockstep
-> + *
-> + * Return:	Returns status, either success or error+reason
+> +/* Read registers up to 4 at a time */
+> +static int ov4689_read_reg(struct i2c_client *client, u16 reg, unsigned int len,
+> +			   u32 *val)
+> +{
+> +	__be16 reg_addr_be = cpu_to_be16(reg);
+> +	struct i2c_msg msgs[2];
+> +	__be32 data_be = 0;
+> +	u8 *data_be_p;
+> +	int ret;
+> +
+> +	if (len > 4 || !len)
+> +		return -EINVAL;
+> +
+> +	data_be_p = (u8 *)&data_be;
+> +	/* Write register address */
+> +	msgs[0].addr = client->addr;
+> +	msgs[0].flags = 0;
+> +	msgs[0].len = 2;
+> +	msgs[0].buf = (u8 *)&reg_addr_be;
+> +
+> +	/* Read data from register */
+> +	msgs[1].addr = client->addr;
+> +	msgs[1].flags = I2C_M_RD;
+> +	msgs[1].len = len;
+> +	msgs[1].buf = &data_be_p[4 - len];
+> +
+> +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+> +	if (ret != ARRAY_SIZE(msgs))
+> +		return -EIO;
+> +
+> +	*val = be32_to_cpu(data_be);
+> +
+> +	return 0;
+> +}
+> +
+> +static void ov4689_fill_fmt(const struct ov4689_mode *mode,
+> +			    struct v4l2_mbus_framefmt *fmt)
+> +{
+> +	fmt->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> +	fmt->width = mode->width;
+> +	fmt->height = mode->height;
+> +	fmt->field = V4L2_FIELD_NONE;
+> +}
+> +
+> +static int ov4689_set_fmt(struct v4l2_subdev *sd,
+> +			  struct v4l2_subdev_state *sd_state,
+> +			  struct v4l2_subdev_format *fmt)
+> +{
+> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +
+> +	/* only one mode supported for now */
+> +	ov4689_fill_fmt(ov4689->cur_mode, mbus_fmt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_get_fmt(struct v4l2_subdev *sd,
+> +			  struct v4l2_subdev_state *sd_state,
+> +			  struct v4l2_subdev_format *fmt)
+> +{
+> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +
+> +	/* only one mode supported for now */
+> +	ov4689_fill_fmt(ov4689->cur_mode, mbus_fmt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_enum_mbus_code(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_state *sd_state,
+> +				 struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	if (code->index != 0)
+> +		return -EINVAL;
+> +	code->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_enum_frame_sizes(struct v4l2_subdev *sd,
+> +				   struct v4l2_subdev_state *sd_state,
+> +				   struct v4l2_subdev_frame_size_enum *fse)
+> +{
+> +	if (fse->index >= ARRAY_SIZE(supported_modes))
+> +		return -EINVAL;
+> +
+> +	if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10)
+> +		return -EINVAL;
+> +
+> +	fse->min_width = supported_modes[fse->index].width;
+> +	fse->max_width = supported_modes[fse->index].width;
+> +	fse->max_height = supported_modes[fse->index].height;
+> +	fse->min_height = supported_modes[fse->index].height;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_enable_test_pattern(struct ov4689 *ov4689, u32 pattern)
+> +{
+> +	u32 val;
+> +
+> +	if (pattern)
+> +		val = (pattern - 1) | OV4689_TEST_PATTERN_ENABLE;
+> +	else
+> +		val = OV4689_TEST_PATTERN_DISABLE;
+> +
+> +	return ov4689_write_reg(ov4689->client, OV4689_REG_TEST_PATTERN,
+> +				OV4689_REG_VALUE_08BIT, val);
+> +}
+> +
+> +static int ov4689_get_selection(struct v4l2_subdev *sd,
+> +				struct v4l2_subdev_state *state,
+> +				struct v4l2_subdev_selection *sel)
+> +{
+> +	const struct ov4689_mode *mode = to_ov4689(sd)->cur_mode;
+> +
+> +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> +		return -EINVAL;
+> +
+> +	switch (sel->target) {
+> +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> +		sel->r.top = 0;
+> +		sel->r.left = 0;
+> +		sel->r.width = mode->sensor_width;
+> +		sel->r.height = mode->sensor_height;
+> +		return 0;
+> +	case V4L2_SEL_TGT_CROP:
+> +	case V4L2_SEL_TGT_CROP_DEFAULT:
+> +		sel->r.top = mode->crop_top;
+> +		sel->r.left = mode->crop_left;
+> +		sel->r.width = mode->width;
+> +		sel->r.height = mode->height;
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ov4689_s_stream(struct v4l2_subdev *sd, int on)
+> +{
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +	struct i2c_client *client = ov4689->client;
+> +	int ret = 0;
+> +
+> +	mutex_lock(&ov4689->mutex);
+> +
+> +	on = !!on;
+> +	if (on == ov4689->streaming)
+> +		goto unlock_and_return;
+> +
+> +	if (on) {
+> +		ret = pm_runtime_resume_and_get(&client->dev);
+> +		if (ret < 0)
+> +			goto unlock_and_return;
+> +
+> +		ret = ov4689_write_array(ov4689->client,
+> +					 ov4689->cur_mode->reg_list);
+> +		if (ret) {
+> +			pm_runtime_put(&client->dev);
+> +			goto unlock_and_return;
+> +		}
+> +
+> +		ret = __v4l2_ctrl_handler_setup(&ov4689->ctrl_handler);
+> +		if (ret) {
+> +			pm_runtime_put(&client->dev);
+> +			goto unlock_and_return;
+> +		}
+> +
+> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_CTRL_MODE,
+> +				       OV4689_REG_VALUE_08BIT,
+> +				       OV4689_MODE_STREAMING);
+> +		if (ret) {
+> +			pm_runtime_put(&client->dev);
+> +			goto unlock_and_return;
+> +		}
+> +	} else {
+> +		ov4689_write_reg(ov4689->client, OV4689_REG_CTRL_MODE,
+> +				 OV4689_REG_VALUE_08BIT,
+> +				 OV4689_MODE_SW_STANDBY);
+> +		pm_runtime_put(&client->dev);
+> +	}
+> +
+> +	ov4689->streaming = on;
+> +
+> +unlock_and_return:
+> +	mutex_unlock(&ov4689->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +/* Calculate the delay in us by clock rate and clock cycles */
+> +static inline u32 ov4689_cal_delay(struct ov4689 *ov4689, u32 cycles)
+> +{
+> +	return DIV_ROUND_UP(cycles * 1000,
+> +			    DIV_ROUND_UP(ov4689->clock_rate, 1000));
+> +}
+> +
+> +static int __maybe_unused ov4689_power_on(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +	u32 delay_us;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(ov4689->xvclk);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable xvclk\n");
+> +		return ret;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 1);
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov4689_supply_names),
+> +				    ov4689->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators\n");
+> +		goto disable_clk;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 0);
+> +	usleep_range(500, 1000);
+> +	gpiod_set_value_cansleep(ov4689->pwdn_gpio, 0);
+> +
+> +	/* 8192 cycles prior to first SCCB transaction */
+> +	delay_us = ov4689_cal_delay(ov4689, 8192);
+> +	usleep_range(delay_us, delay_us * 2);
+> +
+> +	return 0;
+> +
+> +disable_clk:
+> +	clk_disable_unprepare(ov4689->xvclk);
+> +
+> +	return ret;
+> +}
+> +
+> +static int __maybe_unused ov4689_power_off(struct device *dev)
+> +{
+> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +
+> +	gpiod_set_value_cansleep(ov4689->pwdn_gpio, 1);
+> +	clk_disable_unprepare(ov4689->xvclk);
+> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 1);
+> +	regulator_bulk_disable(ARRAY_SIZE(ov4689_supply_names),
+> +			       ov4689->supplies);
+> +	return 0;
+> +}
+> +
+> +static int ov4689_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> +{
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +	struct v4l2_mbus_framefmt *try_fmt;
+> +
+> +	mutex_lock(&ov4689->mutex);
+> +
+> +	try_fmt = v4l2_subdev_get_try_format(sd, fh->state, 0);
+> +	/* Initialize try_fmt */
+> +	ov4689_fill_fmt(&supported_modes[OV4689_MODE_2688_1520], try_fmt);
+> +
+> +	mutex_unlock(&ov4689->mutex);
+> +
+> +	return 0;
+> +}
+
+FYI the centralized state support has been recently introduced in v4l2.
+It allows you (among other things) to replace open with init_cfg and
+centralize the handling of formats initialization. This driver only
+supports one format, so no big deal.
+
+> +
+> +static const struct dev_pm_ops ov4689_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(ov4689_power_off, ov4689_power_on, NULL)
+> +};
+> +
+> +static const struct v4l2_subdev_internal_ops ov4689_internal_ops = {
+> +	.open = ov4689_open,
+> +};
+> +
+> +static const struct v4l2_subdev_video_ops ov4689_video_ops = {
+> +	.s_stream = ov4689_s_stream,
+> +};
+> +
+> +static const struct v4l2_subdev_pad_ops ov4689_pad_ops = {
+> +	.enum_mbus_code = ov4689_enum_mbus_code,
+> +	.enum_frame_size = ov4689_enum_frame_sizes,
+> +	.get_fmt = ov4689_get_fmt,
+> +	.set_fmt = ov4689_set_fmt,
+> +	.get_selection = ov4689_get_selection,
+> +};
+> +
+> +static const struct v4l2_subdev_ops ov4689_subdev_ops = {
+> +	.video = &ov4689_video_ops,
+> +	.pad = &ov4689_pad_ops,
+> +};
+> +
+> +/*
+> + * Map userspace (logical) gain to sensor (physical) gain using
+> + * ov4689_gain_ranges table.
 > + */
-> +int zynqmp_pm_set_rpu_mode(u32 node_id, enum rpu_oper_mode rpu_mode)
+> +static int ov4689_map_gain(struct ov4689 *ov4689, int logical_gain, int *result)
 > +{
-> +	return zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
-> +				   IOCTL_SET_RPU_OPER_MODE, (u32)rpu_mode,
-> +				   0, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_rpu_mode);
+> +	const struct device *dev = &ov4689->client->dev;
+> +	const struct ov4689_gain_range *range;
+> +	unsigned int n;
 > +
-> +/**
-> + * zynqmp_pm_set_tcm_config - configure TCM
-> + * @node_id:	Firmware specific TCM subsystem ID
-> + * @tcm_mode:	Argument 1 to requested IOCTL call
-> + *              either PM_RPU_TCM_COMB or PM_RPU_TCM_SPLIT
-> + *
-> + * This function is used to set RPU mode to split or combined
-> + *
-> + * Return: status: 0 for success, else failure
-> + */
-> +int zynqmp_pm_set_tcm_config(u32 node_id, enum rpu_tcm_comb tcm_mode)
-> +{
-> +	return zynqmp_pm_invoke_fn(PM_IOCTL, node_id,
-> +				   IOCTL_TCM_COMB_CONFIG, (u32)tcm_mode, 0,
-> +				   NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(zynqmp_pm_set_tcm_config);
-> +
->   /**
->    * zynqmp_pm_force_pwrdwn - PM call to request for another PU or subsystem to
->    *             be powered down forcefully
-> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
-> index d52f8413b892..83c69c968e32 100644
-> --- a/include/linux/firmware/xlnx-zynqmp.h
-> +++ b/include/linux/firmware/xlnx-zynqmp.h
-> @@ -503,6 +503,9 @@ int zynqmp_pm_request_wake(const u32 node,
->   			   const bool set_addr,
->   			   const u64 address,
->   			   const enum zynqmp_pm_request_ack ack);
-> +int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode);
-> +int zynqmp_pm_set_rpu_mode(u32 node_id, u32 arg1);
-> +int zynqmp_pm_set_tcm_config(u32 node_id, u32 arg1);
->   #else
->   static inline int zynqmp_pm_get_api_version(u32 *version)
->   {
-> @@ -787,6 +790,21 @@ static inline int zynqmp_pm_request_wake(const u32 node,
->   {
->   	return -ENODEV;
->   }
-> +
-> +static inline int zynqmp_pm_get_rpu_mode(u32 node_id, enum rpu_oper_mode *rpu_mode)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_set_rpu_mode(u32 node_id, u32 arg1)
-> +{
-> +	return -ENODEV;
-> +}
-> +
-> +static inline int zynqmp_pm_set_tcm_config(u32 node_id, u32 arg1)
-> +{
-> +	return -ENODEV;
-> +}
->   #endif
->   
->   #endif /* __FIRMWARE_ZYNQMP_H__ */
+> +	for (n = 0; n < ARRAY_SIZE(ov4689_gain_ranges); n++) {
+> +		if (logical_gain >= ov4689_gain_ranges[n].logical_min &&
+> +		    logical_gain <= ov4689_gain_ranges[n].logical_max) {
+> +			break;
+> +		}
 
+No need for {} here
 
-Acked-by: Michal Simek <michal.simek@amd.com>
+> +	}
+> +
+> +	if (n == ARRAY_SIZE(ov4689_gain_ranges)) {
+> +		dev_warn_ratelimited(dev, "no mapping found for gain %d\n",
+> +				     logical_gain);
+> +		return -EINVAL;
+> +	}
+> +
+> +	range = &ov4689_gain_ranges[n];
+> +
+> +	*result = clamp(range->offset + (logical_gain) / range->divider,
+> +			range->physical_min, range->physical_max);
+> +	return 0;
+> +}
+> +
+> +static int ov4689_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct ov4689 *ov4689 =
+> +		container_of(ctrl->handler, struct ov4689, ctrl_handler);
+> +	struct i2c_client *client = ov4689->client;
+> +	int sensor_gain;
+> +	s64 max_expo;
+> +	int ret;
+> +
+> +	/* Propagate change of current control to all related controls */
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_VBLANK:
+> +		/* Update max exposure while meeting expected vblanking */
+> +		max_expo = ov4689->cur_mode->height + ctrl->val - 4;
+> +		__v4l2_ctrl_modify_range(ov4689->exposure,
+> +					 ov4689->exposure->minimum, max_expo,
+> +					 ov4689->exposure->step,
+> +					 ov4689->exposure->default_value);
+> +		break;
+> +	}
+> +
+> +	if (!pm_runtime_get_if_in_use(&client->dev))
+> +		return 0;
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_EXPOSURE:
+> +		/* 4 least significant bits of expsoure are fractional part */
+> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_EXPOSURE,
+> +				       OV4689_REG_VALUE_24BIT, ctrl->val << 4);
+> +		break;
+> +	case V4L2_CID_ANALOGUE_GAIN:
+> +		ret = ov4689_map_gain(ov4689, ctrl->val, &sensor_gain);
+> +
+> +		ret = ret ?:
+> +			ov4689_write_reg(ov4689->client, OV4689_REG_GAIN_H,
+> +					 OV4689_REG_VALUE_08BIT,
+> +					 (sensor_gain >> OV4689_GAIN_H_SHIFT) &
+> +					 OV4689_GAIN_H_MASK);
+> +		ret = ret ?:
+> +			ov4689_write_reg(ov4689->client, OV4689_REG_GAIN_L,
+> +					 OV4689_REG_VALUE_08BIT,
+> +					 sensor_gain & OV4689_GAIN_L_MASK);
+> +		break;
+> +	case V4L2_CID_VBLANK:
+> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_VTS,
+> +				       OV4689_REG_VALUE_16BIT,
+> +				       ctrl->val + ov4689->cur_mode->height);
+> +		break;
+> +	case V4L2_CID_TEST_PATTERN:
+> +		ret = ov4689_enable_test_pattern(ov4689, ctrl->val);
+> +		break;
+> +	default:
+> +		dev_warn(&client->dev, "%s Unhandled id:0x%x, val:0x%x\n",
+> +			 __func__, ctrl->id, ctrl->val);
+> +		ret = -EINVAL;
+> +		break;
+> +	}
+> +
+> +	pm_runtime_put(&client->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops ov4689_ctrl_ops = {
+> +	.s_ctrl = ov4689_set_ctrl,
+> +};
+> +
+> +static int ov4689_initialize_controls(struct ov4689 *ov4689)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&ov4689->subdev);
+> +	struct v4l2_fwnode_device_properties props;
+> +	struct v4l2_ctrl_handler *handler;
+> +	const struct ov4689_mode *mode;
+> +	s64 exposure_max, vblank_def;
+> +	struct v4l2_ctrl *ctrl;
+> +	s64 h_blank_def;
+> +	int ret;
+> +
+> +	handler = &ov4689->ctrl_handler;
+> +	mode = ov4689->cur_mode;
+> +	ret = v4l2_ctrl_handler_init(handler, 10);
+> +	if (ret)
+> +		return ret;
+> +	handler->lock = &ov4689->mutex;
+> +
+> +	ctrl = v4l2_ctrl_new_int_menu(handler, NULL, V4L2_CID_LINK_FREQ, 0, 0,
+> +				      link_freq_menu_items);
+> +	if (ctrl)
+> +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	v4l2_ctrl_new_std(handler, NULL, V4L2_CID_PIXEL_RATE, 0,
+> +			  mode->pixel_rate, 1, mode->pixel_rate);
+> +
+> +	h_blank_def = mode->hts_def - mode->width;
+> +	ctrl = v4l2_ctrl_new_std(handler, NULL, V4L2_CID_HBLANK, h_blank_def,
+> +				 h_blank_def, 1, h_blank_def);
+> +	if (ctrl)
+> +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> +
+> +	vblank_def = mode->vts_def - mode->height;
+> +	v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_VBLANK,
+> +			  vblank_def, OV4689_VTS_MAX - mode->height, 1,
+> +			  vblank_def);
+> +
+> +	exposure_max = mode->vts_def - 4;
+> +	ov4689->exposure =
+> +		v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_EXPOSURE,
+> +				  OV4689_EXPOSURE_MIN, exposure_max,
+> +				  OV4689_EXPOSURE_STEP, mode->exp_def);
+> +
+> +	v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
+> +			  ov4689_gain_ranges[0].logical_min,
+> +			  ov4689_gain_ranges[ARRAY_SIZE(ov4689_gain_ranges) - 1]
+> +				  .logical_max,
+> +			  OV4689_GAIN_STEP, OV4689_GAIN_DEFAULT);
+> +
+> +	v4l2_ctrl_new_std_menu_items(handler, &ov4689_ctrl_ops,
+> +				     V4L2_CID_TEST_PATTERN,
+> +				     ARRAY_SIZE(ov4689_test_pattern_menu) - 1,
+> +				     0, 0, ov4689_test_pattern_menu);
+> +
+> +	if (handler->error) {
+> +		ret = handler->error;
+> +		dev_err(&ov4689->client->dev, "Failed to init controls(%d)\n",
+> +			ret);
+> +		goto err_free_handler;
+> +	}
+> +
+> +	ret = v4l2_fwnode_device_parse(&client->dev, &props);
+> +	if (ret)
+> +		goto err_free_handler;
+> +
+> +	ret = v4l2_ctrl_new_fwnode_properties(handler, &ov4689_ctrl_ops,
+> +					      &props);
+> +	if (ret)
+> +		goto err_free_handler;
+> +
+> +	ov4689->subdev.ctrl_handler = handler;
+> +
+> +	return 0;
+> +
+> +err_free_handler:
+> +	v4l2_ctrl_handler_free(handler);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ov4689_check_sensor_id(struct ov4689 *ov4689,
+> +				  struct i2c_client *client)
+> +{
+> +	struct device *dev = &ov4689->client->dev;
+> +	u32 id = 0;
+> +	int ret;
+> +
+> +	ret = ov4689_read_reg(client, OV4689_REG_CHIP_ID,
+> +			      OV4689_REG_VALUE_16BIT, &id);
+> +	if (ret) {
+> +		dev_err(dev, "Cannot read sensor ID\n");
+> +		return ret;
+> +	}
+> +
+> +	if (id != CHIP_ID) {
+> +		dev_err(dev, "Unexpected sensor ID %06x, expected %06x\n",
+> +			id, CHIP_ID);
+> +		return -ENODEV;
+> +	}
+> +
+> +	dev_info(dev, "Detected OV%06x sensor\n", CHIP_ID);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_configure_regulators(struct ov4689 *ov4689)
+> +{
+> +	unsigned int supplies_count = ARRAY_SIZE(ov4689_supply_names);
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < supplies_count; i++)
+> +		ov4689->supplies[i].supply = ov4689_supply_names[i];
+> +
+> +	return devm_regulator_bulk_get(&ov4689->client->dev, supplies_count,
+> +				       ov4689->supplies);
+> +}
+> +
+> +static u64 ov4689_check_link_frequency(struct v4l2_fwnode_endpoint *ep)
+> +{
+> +	unsigned int freqs_count = ARRAY_SIZE(link_freq_menu_items);
+> +	const u64 *freqs = link_freq_menu_items;
+> +	unsigned int i, j;
+> +
+> +	for (i = 0; i < freqs_count; i++) {
+> +		for (j = 0; j < ep->nr_of_link_frequencies; j++)
+> +			if (freqs[i] == ep->link_frequencies[j])
+> +				return freqs[i];
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ov4689_check_hwcfg(struct device *dev)
+> +{
+> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
+> +	struct v4l2_fwnode_endpoint bus_cfg = {
+> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
+> +	};
+> +	struct fwnode_handle *endpoint;
+> +	int ret;
+> +
+> +	endpoint = fwnode_graph_get_next_endpoint(fwnode, NULL);
+> +	if (!endpoint)
+> +		return -EINVAL;
+> +
+> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &bus_cfg);
+> +	fwnode_handle_put(endpoint);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (bus_cfg.bus.mipi_csi2.num_data_lanes != OV4689_LANES) {
+> +		dev_err(dev, "Only a 4-lane CSI2 config is supported");
+> +		ret = -EINVAL;
+> +		goto out_free_bus_cfg;
+> +	}
+> +
+> +	if (!bus_cfg.nr_of_link_frequencies) {
+> +		dev_err(dev, "No link frequencies defined\n");
+> +		ret = -EINVAL;
+> +		goto out_free_bus_cfg;
+> +	}
 
-M
+As the driver has a single supported freq I wonder if it is required
+to have it mandatory. I got contradictory feedbacks in the past, so
+whatever you have here I guess it's fine (same reasoning goes for dts,
+if there's only one accepted item, does it need to be made mandatory
+?)
+
+Nits apart, the driver looks sane
+
+Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+
+Thanks
+  j
+
+> +
+> +	if (!ov4689_check_link_frequency(&bus_cfg)) {
+> +		dev_err(dev, "No supported link frequency found\n");
+> +		ret = -EINVAL;
+> +	}
+> +
+> +out_free_bus_cfg:
+> +	v4l2_fwnode_endpoint_free(&bus_cfg);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ov4689_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct v4l2_subdev *sd;
+> +	struct ov4689 *ov4689;
+> +	int ret;
+> +
+> +	ret = ov4689_check_hwcfg(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ov4689 = devm_kzalloc(dev, sizeof(*ov4689), GFP_KERNEL);
+> +	if (!ov4689)
+> +		return -ENOMEM;
+> +
+> +	ov4689->client = client;
+> +	ov4689->cur_mode = &supported_modes[OV4689_MODE_2688_1520];
+> +
+> +	ov4689->xvclk = devm_clk_get_optional(dev, NULL);
+> +	if (IS_ERR(ov4689->xvclk))
+> +		return dev_err_probe(dev, PTR_ERR(ov4689->xvclk),
+> +				     "Failed to get external clock\n");
+> +
+> +	if (!ov4689->xvclk) {
+> +		dev_dbg(dev,
+> +			"No clock provided, using clock-frequency property\n");
+> +		device_property_read_u32(dev, "clock-frequency",
+> +					 &ov4689->clock_rate);
+> +	} else {
+> +		ov4689->clock_rate = clk_get_rate(ov4689->xvclk);
+> +	}
+> +
+> +	if (ov4689->clock_rate != OV4689_XVCLK_FREQ) {
+> +		dev_err(dev,
+> +			"External clock rate mismatch: got %d Hz, expected %d Hz\n",
+> +			ov4689->clock_rate, OV4689_XVCLK_FREQ);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ov4689->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						     GPIOD_OUT_LOW);
+> +	if (IS_ERR(ov4689->reset_gpio)) {
+> +		dev_err(dev, "Failed to get reset-gpios\n");
+> +		return PTR_ERR(ov4689->reset_gpio);
+> +	}
+> +
+> +	ov4689->pwdn_gpio = devm_gpiod_get_optional(dev, "pwdn", GPIOD_OUT_LOW);
+> +	if (IS_ERR(ov4689->pwdn_gpio)) {
+> +		dev_err(dev, "Failed to get pwdn-gpios\n");
+> +		return PTR_ERR(ov4689->pwdn_gpio);
+> +	}
+> +
+> +	ret = ov4689_configure_regulators(ov4689);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to get power regulators\n");
+> +
+> +	mutex_init(&ov4689->mutex);
+> +
+> +	sd = &ov4689->subdev;
+> +	v4l2_i2c_subdev_init(sd, client, &ov4689_subdev_ops);
+> +	ret = ov4689_initialize_controls(ov4689);
+> +	if (ret)
+> +		goto err_destroy_mutex;
+> +
+> +	ret = ov4689_power_on(dev);
+> +	if (ret)
+> +		goto err_free_handler;
+> +
+> +	ret = ov4689_check_sensor_id(ov4689, client);
+> +	if (ret)
+> +		goto err_power_off;
+> +
+> +	sd->internal_ops = &ov4689_internal_ops;
+> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +
+> +	ov4689->pad.flags = MEDIA_PAD_FL_SOURCE;
+> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +	ret = media_entity_pads_init(&sd->entity, 1, &ov4689->pad);
+> +	if (ret < 0)
+> +		goto err_power_off;
+> +
+> +	ret = v4l2_async_register_subdev_sensor(sd);
+> +	if (ret) {
+> +		dev_err(dev, "v4l2 async register subdev failed\n");
+> +		goto err_clean_entity;
+> +	}
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	return 0;
+> +
+> +err_clean_entity:
+> +	media_entity_cleanup(&sd->entity);
+> +err_power_off:
+> +	ov4689_power_off(dev);
+> +err_free_handler:
+> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
+> +err_destroy_mutex:
+> +	mutex_destroy(&ov4689->mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static void ov4689_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct ov4689 *ov4689 = to_ov4689(sd);
+> +
+> +	v4l2_async_unregister_subdev(sd);
+> +	media_entity_cleanup(&sd->entity);
+> +
+> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
+> +	mutex_destroy(&ov4689->mutex);
+> +
+> +	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		ov4689_power_off(&client->dev);
+> +	pm_runtime_set_suspended(&client->dev);
+> +}
+> +
+> +static const struct of_device_id ov4689_of_match[] = {
+> +	{ .compatible = "ovti,ov4689" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, ov4689_of_match);
+> +
+> +static struct i2c_driver ov4689_i2c_driver = {
+> +	.driver = {
+> +		.name = "ov4689",
+> +		.pm = &ov4689_pm_ops,
+> +		.of_match_table = ov4689_of_match,
+> +	},
+> +	.probe_new = ov4689_probe,
+> +	.remove	= ov4689_remove,
+> +};
+> +
+> +module_i2c_driver(ov4689_i2c_driver);
+> +
+> +MODULE_DESCRIPTION("OmniVision ov4689 sensor driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.38.1
+>
