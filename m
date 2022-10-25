@@ -2,358 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEC260CEE3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B967660CEEB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:26:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbiJYOYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:24:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53826 "EHLO
+        id S231855AbiJYO0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:26:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232641AbiJYOYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:24:01 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7331F104D39
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:23:59 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id h24so7581333qta.7
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:23:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aEerMWHyvmyU5PYfWpEtRfJuOuQqMGt3PGGVgLgFm8Y=;
-        b=I9wqFvxwIH2Y3eZ4ilZB/C85HRZyQ8TtJ6YDvcsgd+sva/U/KyF9KaixVU51fszRXF
-         /NuKYz+CtfA8b6gKjspzLUK3CsLEFXFMofoQ7Rw63aOAbY3USvVrPSTdu+tZ2gvI7qbT
-         sWmdqBTOpveyU960QOKhSnisWSb+AEt31D6UDLT66C0eQfooNj/B8akxLtMQraJc2nXg
-         /UY84C0u7PAnUx2JC8bWxOKw86UoGxAWsQ9Pta6iItEB6x5cUtfzDUm4gdFt6pvleNyk
-         26FAhZIJXYMKinV8AzkN5+NsFIdBQVIpP2QezTBaJJ7Y5wgD1SlX+VwT0Npkl2jvilVr
-         ZgJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aEerMWHyvmyU5PYfWpEtRfJuOuQqMGt3PGGVgLgFm8Y=;
-        b=2QaJl0k2YDoxN196NQ4hTTKHAf1n9CK8nWtEMUY6IyDBg3bC7KTs6Vpcx0ltHY8yMh
-         J7PTSkXrGjfltEcrG8M7u7NwKgFd4D2vDu7iDvgKIUfuWhwoGYAywPSQfFVXLbsGEgG0
-         HHAwiBvw0rPtXeTvLpCPD/8SsjVaR7+wZgKlqUIOswQzF+/r8XGadMxIwpSOn6ffWy2X
-         pD2o6aSE+HbP2+JJDcV1F3yKjIGBePJMBoCylK7Y2w8z41bLjOaIT34XvUlThoO6Zr1I
-         5lgF9ToQ/1+nIiXcghIQm6fho4tZj/UeKUvqA/b0w3Wr1mY6C1zALLlxX6InnYorhpzO
-         lovA==
-X-Gm-Message-State: ACrzQf03QO2rn+kzfVQAJSuHUWMpaWCXqAwcUMzy0tPNvmUyYmPIrykx
-        jp3SXmjokzB982F27PPyYcHN+w==
-X-Google-Smtp-Source: AMsMyM5V3SML4r6N4Nls3J7kaJMXqe96oAidLnzfadTvAeW2WWMtx5Y0SSUqCyqnSPIANDPchx2hzw==
-X-Received: by 2002:a05:622a:40d:b0:397:bd61:ef1d with SMTP id n13-20020a05622a040d00b00397bd61ef1dmr32728619qtx.404.1666707838570;
-        Tue, 25 Oct 2022 07:23:58 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id fy14-20020a05622a5a0e00b0039ccd7a0e10sm1639173qtb.62.2022.10.25.07.23.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 07:23:57 -0700 (PDT)
-Message-ID: <d942c724-4520-4a7b-8c36-704032c68a36@linaro.org>
-Date:   Tue, 25 Oct 2022 10:23:55 -0400
+        with ESMTP id S229730AbiJYOZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:25:58 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D16E11476;
+        Tue, 25 Oct 2022 07:25:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AiuMqSv62jZNqTOMDvngdnIB35QL8ggLplHF9XIll5GJfDBeGkknR3NQt6GU2O6snexDukcyLTJp0w/i+Zs/aIMUJQYlWBJZYuvAP2TdsqdqW45EhIiY71adGL0mH/eHAD5wtkEe35wPRqaYuLt+9PimkUmK6cX4jAb5066qvaW/xoC7STejVutnh8a3qKlkz6XU5FXAc0LNRGCRCOHRjLXIJ2ZA2IdgKJtaTMI5J8/bULtxS4EqW2o7iCfeLX1u3pYsbpHajs1hedBm66J7VEoKe4GsTg9T8fkkRRhv0xVyKhPWIcPrqtd6nWRad/raCn12Z88yJnHvupffTOtXXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TKnpvsmNt9TLoyqK3q2tvupirpE/cYRki84s1DK+NoY=;
+ b=LUPjWi9Cx/e8tYGkAxARIzxN9TMkNTabJnACjnjamy791YmWuQypWuPmFqeFycZswVkiaJnsg0xo9YA5pWtTpY2XZs4Gfxbjs0YppURMrUsF7t+DyejeUOSClulilG1iLboyPAHv+zrshyU1IO2bPkglsZBoNZyK0aeVUhwVr2SX2QL0yAc/FGSCOcg3yrYa3UR88ZuRAizvKsYpjzG6Atpe0izgx3MFDYKHrInccexruwS4RvAEmL60jQKmkhduAlAcKxRpAVSchEWaEMfrS+Iu6jTSvqssK3yNrc5NCqdsIUIZeZBW7rCc2cNb3lC8y5V4LkXqFa9Xs9z/l6ZewQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TKnpvsmNt9TLoyqK3q2tvupirpE/cYRki84s1DK+NoY=;
+ b=nzQvZ0EQ5gzy9rrykIjbsHboAp9ukjn4f2ao5m4IaYLtFjiJo6mW++LlXOfLNChX0+SHeHp0MrtAfPd43KmADew2jIErqxlf5jgf1zrTq7M7PrrKAdFFIPBOD1G2/VaMfDZebwvLePHESOagv4ftbJdZYm0x4BNq2AldJW4v0GEqT227ArAsivzjHyT8z5M4m88YzOkY5pLEzBzabJg/oRMw+mpbVZ34SdQLJy57E2MrRFecDf9YE42ApyKeoWMH8ZNOCpTLcxFyntXfTGF0QN9+VcRUbU4zQPnIYfYsWP17SZ9fIFNwTZnL2xLnVKLl5hq1ATOZweXwlVoG68lKzA==
+Received: from MW4PR04CA0361.namprd04.prod.outlook.com (2603:10b6:303:81::6)
+ by DM4PR12MB6542.namprd12.prod.outlook.com (2603:10b6:8:89::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5746.26; Tue, 25 Oct 2022 14:25:54 +0000
+Received: from CO1NAM11FT087.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:81:cafe::7) by MW4PR04CA0361.outlook.office365.com
+ (2603:10b6:303:81::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28 via Frontend
+ Transport; Tue, 25 Oct 2022 14:25:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ CO1NAM11FT087.mail.protection.outlook.com (10.13.174.68) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5746.16 via Frontend Transport; Tue, 25 Oct 2022 14:25:53 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Tue, 25 Oct
+ 2022 07:25:47 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 25 Oct 2022 07:25:47 -0700
+Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.29 via Frontend
+ Transport; Tue, 25 Oct 2022 07:25:46 -0700
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH] arm64: tegra: Enable PWM3 for Jetson Orin
+Date:   Tue, 25 Oct 2022 15:25:38 +0100
+Message-ID: <20221025142538.33156-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX
- switch
-Content-Language: en-US
-To:     Camel Guo <camel.guo@axis.com>, Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        kernel@axis.com
-References: <20221025135243.4038706-1-camel.guo@axis.com>
- <20221025135243.4038706-3-camel.guo@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221025135243.4038706-3-camel.guo@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT087:EE_|DM4PR12MB6542:EE_
+X-MS-Office365-Filtering-Correlation-Id: eeb4e1a9-77aa-4345-e2dd-08dab694d2e1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: i0KdlsFmmUbeVwIVqOEZuFrXqkLoqfh+SkoxPPl5g6lgT4tfunq60v2IrORi3JhLc/tm14AYMECoSBxP4LxlHRQVsPzJsujcvSAINO3bReiMdZX+Ql3xQAmPeICchybDhEiScnAv0Lns1ASeO5ZDXhcoMFqlFUAxooE+Aip6F9nnBufWFfYYczoAPWVPoD01HEHuH4RFzGlxEmBgGUirinwyjcwjAr5UffxSErW3051corLQiUpIplRP0Btfw41+nlDgASuVO+fQ1jIDuk196f7rW2Q9Q0syBkztA/ivwnziDp7k1whLzLaEnI2gaZN1QKF3qzWhH7fBn1SkBJ33rtZpBGDWdqJjp6beplQ15ef5ciEDs6j7ej5V9dD1XHtOlXz+NECAeeaMzbLxgnq5kPvHa5Hx+seht7XB5X7nmdIfQhYY0KsT0hg6blyXep84cNkOSB1mntjHtL+gGLyLk5+8EAhVngwbk/xmwpS52Dht5kLzgqAFFy4CRe8AY3Twxp7VcNCMmpEaYkTQDsRJjRSqKvbmNLeZQ23HTP3LuCoZQK1XIi8QSQz04pOTzvAkqduGRVVDbHMseqzY5kMglXgfMlCXS9fJu4Sv2Z5/fZ6fkyBpxT8FDSVDFYlIb/2/lQKCgaMnxXdOXjP8tDjJFCjLk1ls5qa939/0jK54WXPazj1LgUKJ+z418v/QbMybomPc5qsydaYvGLxm9xdc7xkoGRr4yzx5MAD7h0MRUab9UQIVzbzqLhWKXmEYqt9wWd731bcn6IV/IJU5mlrs4A==
+X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230022)(4636009)(136003)(396003)(39860400002)(346002)(376002)(451199015)(40470700004)(36840700001)(46966006)(36756003)(7636003)(8936002)(5660300002)(70586007)(4744005)(70206006)(47076005)(426003)(83380400001)(36860700001)(86362001)(82740400003)(40480700001)(54906003)(336012)(356005)(2616005)(26005)(107886003)(186003)(316002)(478600001)(82310400005)(41300700001)(110136005)(40460700003)(8676002)(4326008)(1076003)(7696005)(2906002)(6666004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2022 14:25:53.4686
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eeb4e1a9-77aa-4345-e2dd-08dab694d2e1
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT087.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6542
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 09:52, Camel Guo wrote:
-> Add initial framework for Maxlinear's GSW1xx switch and
-> currently only GSW145 in MDIO managed mode is supported.
-> 
-> Signed-off-by: Camel Guo <camel.guo@axis.com>
-> ---
+Enable PMW3 for the Jetson AGX Orin platform which is used for
+operating the PWM Fan.
 
-(...)
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ .../boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts      | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> +	priv->ds->dev = dev;
-> +	priv->ds->num_ports = priv->hw_info->max_ports;
-> +	priv->ds->priv = priv;
-> +	priv->ds->ops = &gsw1xx_switch_ops;
-> +	priv->dev = dev;
-> +	version = gsw1xx_switch_r(priv, GSW1XX_IP_VERSION);
-> +
-> +	np = dev->of_node;
-> +	switch (version) {
-> +	case GSW1XX_IP_VERSION_2_3:
-> +		if (!of_device_is_compatible(np, "mxl,gsw145-mdio"))
-> +			return -EINVAL;
-> +		break;
-> +	default:
-> +		dev_err(dev, "unknown GSW1XX_IP version: 0x%x", version);
-> +		return -ENOENT;
-> +	}
-> +
-> +	/* bring up the mdio bus */
-> +	mdio_np = of_get_child_by_name(np, "mdio");
-> +	if (!mdio_np) {
-> +		dev_err(dev, "missing child mdio node\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	err = gsw1xx_mdio(priv, mdio_np);
-> +	if (err) {
-> +		dev_err(dev, "mdio probe failed\n");
-
-dev_err_probe()
-
-> +		goto put_mdio_node;
-> +	}
-> +
-> +	err = dsa_register_switch(priv->ds);
-> +	if (err) {
-> +		dev_err(dev, "dsa switch register failed: %i\n", err);
-
-
-dev_err_probe()
-
-> +		goto mdio_bus;
-> +	}
-> +	if (!dsa_is_cpu_port(priv->ds, priv->hw_info->cpu_port)) {
-> +		dev_err(dev,
-> +			"wrong CPU port defined, HW only supports port: %i",
-> +			priv->hw_info->cpu_port);
-> +		err = -EINVAL;
-> +		goto disable_switch;
-> +	}
-> +
-> +	dev_set_drvdata(dev, priv);
-> +
-> +	return 0;
-> +
-> +disable_switch:
-> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-> +	dsa_unregister_switch(priv->ds);
-> +mdio_bus:
-> +	if (mdio_np) {
-> +		mdiobus_unregister(priv->ds->slave_mii_bus);
-> +		mdiobus_free(priv->ds->slave_mii_bus);
-> +	}
-> +put_mdio_node:
-> +	of_node_put(mdio_np);
-> +	return err;
-> +}
-> +EXPORT_SYMBOL(gsw1xx_probe);
-> +
-> +void gsw1xx_remove(struct gsw1xx_priv *priv)
-> +{
-> +	if (!priv)
-> +		return;
-> +
-> +	/* disable the switch */
-> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-> +
-> +	dsa_unregister_switch(priv->ds);
-> +
-> +	if (priv->ds->slave_mii_bus) {
-> +		mdiobus_unregister(priv->ds->slave_mii_bus);
-> +		of_node_put(priv->ds->slave_mii_bus->dev.of_node);
-> +		mdiobus_free(priv->ds->slave_mii_bus);
-> +	}
-> +
-> +	dev_set_drvdata(priv->dev, NULL);
-> +}
-> +EXPORT_SYMBOL(gsw1xx_remove);
-> +
-> +void gsw1xx_shutdown(struct gsw1xx_priv *priv)
-> +{
-> +	if (!priv)
-> +		return;
-> +
-> +	/* disable the switch */
-> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-> +
-> +	dsa_switch_shutdown(priv->ds);
-> +
-> +	dev_set_drvdata(priv->dev, NULL);
-> +}
-> +EXPORT_SYMBOL(gsw1xx_shutdown);
-
-1. EXPORT_SYMBOL_GPL
-2. Why do you do it in the first place? It's one driver, no need for
-building two modules. Same applies to other places.
-
-> +
-> +static const struct regmap_range gsw1xx_valid_regs[] = {
-> +	/* GSWIP Core Registers */
-> +	regmap_reg_range(GSW1XX_IP_BASE_ADDR,
-> +			 GSW1XX_IP_BASE_ADDR + GSW1XX_IP_REG_LEN),
-> +	/* Top Level PDI Registers, MDIO Master Reigsters */
-> +	regmap_reg_range(GSW1XX_MDIO_BASE_ADDR,
-> +			 GSW1XX_MDIO_BASE_ADDR + GSW1XX_MDIO_REG_LEN),
-> +};
-> +
-> +const struct regmap_access_table gsw1xx_register_set = {
-> +	.yes_ranges = gsw1xx_valid_regs,
-> +	.n_yes_ranges = ARRAY_SIZE(gsw1xx_valid_regs),
-> +};
-> +EXPORT_SYMBOL(gsw1xx_register_set);
-> +
-> +MODULE_AUTHOR("Camel Guo <camel.guo@axis.com>");
-> +MODULE_DESCRIPTION("Core Driver for MaxLinear GSM1XX ethernet switch");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/net/dsa/gsw1xx_mdio.c b/drivers/net/dsa/gsw1xx_mdio.c
-> new file mode 100644
-> index 000000000000..8328001041ed
-> --- /dev/null
-> +++ b/drivers/net/dsa/gsw1xx_mdio.c
-> @@ -0,0 +1,128 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * MaxLinear switch driver for GSW1XX in MDIO managed mode
-> + */
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mdio.h>
-> +#include <linux/phy.h>
-> +#include <linux/of.h>
-> +
-> +#include "gsw1xx.h"
-> +
-> +#define GSW1XX_SMDIO_TARGET_BASE_ADDR_REG	0x1F
-> +
-> +static int gsw1xx_mdio_write(void *ctx, uint32_t reg, uint32_t val)
-> +{
-> +	struct mdio_device *mdiodev = (struct mdio_device *)ctx;
-> +	int ret = 0;
-> +
-> +	mutex_lock_nested(&mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
-> +
-> +	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr,
-> +				  GSW1XX_SMDIO_TARGET_BASE_ADDR_REG, reg);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr, 0, val);
-> +
-> +out:
-> +	mutex_unlock(&mdiodev->bus->mdio_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int gsw1xx_mdio_read(void *ctx, uint32_t reg, uint32_t *val)
-> +{
-> +	struct mdio_device *mdiodev = (struct mdio_device *)ctx;
-> +	int ret = 0;
-> +
-> +	mutex_lock_nested(&mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
-> +
-> +	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr,
-> +				  GSW1XX_SMDIO_TARGET_BASE_ADDR_REG, reg);
-> +	if (ret < 0)
-> +		goto out;
-> +
-> +	*val = mdiodev->bus->read(mdiodev->bus, mdiodev->addr, 0);
-> +
-> +out:
-> +	mutex_unlock(&mdiodev->bus->mdio_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct regmap_config gsw1xx_mdio_regmap_config = {
-> +	.reg_bits = 16,
-> +	.val_bits = 16,
-> +	.reg_stride = 1,
-> +
-> +	.disable_locking = true,
-> +
-> +	.volatile_table = &gsw1xx_register_set,
-> +	.wr_table = &gsw1xx_register_set,
-> +	.rd_table = &gsw1xx_register_set,
-> +
-> +	.reg_read = gsw1xx_mdio_read,
-> +	.reg_write = gsw1xx_mdio_write,
-> +
-> +	.cache_type = REGCACHE_NONE,
-> +};
-> +
-> +static int gsw1xx_mdio_probe(struct mdio_device *mdiodev)
-> +{
-> +	struct gsw1xx_priv *priv;
-> +	struct device *dev = &mdiodev->dev;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->regmap = devm_regmap_init(dev, NULL, mdiodev,
-> +					&gsw1xx_mdio_regmap_config);
-> +	if (IS_ERR(priv->regmap)) {
-> +		ret = PTR_ERR(priv->regmap);
-> +		dev_err(dev, "regmap init failed: %d\n", ret);
-> +		return ret;
-
-return dev_err_probe().
-
-> +	}
-> +
-> +	return gsw1xx_probe(priv, dev);
-> +}
-> +
-> +static void gsw1xx_mdio_remove(struct mdio_device *mdiodev)
-> +{
-> +	gsw1xx_remove(dev_get_drvdata(&mdiodev->dev));
-> +}
-> +
-> +static void gsw1xx_mdio_shutdown(struct mdio_device *mdiodev)
-> +{
-> +	gsw1xx_shutdown(dev_get_drvdata(&mdiodev->dev));
-> +}
-> +
-> +static const struct gsw1xx_hw_info gsw145_hw_info = {
-> +	.max_ports = 6,
-> +	.cpu_port = 5,
-> +};
-> +
-> +static const struct of_device_id gsw1xx_mdio_of_match[] = {
-> +	{ .compatible = "mxl,gsw145-mdio", .data = &gsw145_hw_info },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, gsw1xx_mdio_of_match);
-> +
-> +static struct mdio_driver gsw1xx_mdio_driver = {
-> +	.probe  = gsw1xx_mdio_probe,
-> +	.remove = gsw1xx_mdio_remove,
-> +	.shutdown = gsw1xx_mdio_shutdown,
-> +	.mdiodrv.driver = {
-> +		.name = "GSW1XX_MDIO",
-> +		.of_match_table = of_match_ptr(gsw1xx_mdio_of_match),
-
-of_match_ptr requires maybe_unused. Or just drop it.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+index f7a1265cee97..df703fb0cfff 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+@@ -2012,6 +2012,12 @@ serial@31d0000 {
+ 			status = "okay";
+ 		};
+ 
++		pwm@32a0000 {
++			assigned-clocks = <&bpmp TEGRA234_CLK_PWM3>;
++			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
++			status = "okay";
++		};
++
+ 		hda@3510000 {
+ 			nvidia,model = "NVIDIA Jetson AGX Orin HDA";
+ 			status = "okay";
+-- 
+2.25.1
 
