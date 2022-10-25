@@ -2,94 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1636460C88F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 11:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF93B60C918
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 11:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231576AbiJYJlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 05:41:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47494 "EHLO
+        id S230225AbiJYJ7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 05:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231600AbiJYJlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 05:41:04 -0400
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A4795262
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 02:39:52 -0700 (PDT)
-Received: by mail-vs1-xe29.google.com with SMTP id o5so8851758vsc.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 02:39:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fvzvFrxkZV5P4Rxxxs1xdYcVHP1vUjFiEqvZB3LuHYc=;
-        b=EWFYiPtiuAwxNryPnRCRdIyflpxGealCpHT6V1v1VS5B2nqrufxbLRVuz9HSoqUktX
-         PqmO3m4pEjHTLdGWfP5h0AAyyU5sdckU9Tg5iUoYD5Qx4fTa9/rs8qR+qd5hWt+PBudZ
-         3ByNvJ4UWNaldAsahYhisDbIJPzvtUbzLc4ZLg45uu3tZqAO8TABAvjqCp7I6okC133S
-         95EuZFviywanN+sDyivhu50+b+WsacxCtHhxnkgQaGSPz0wDrJ0/QedjGfvIG3nqyt8M
-         BBmFxpQcsZJdUl4SMzO8ZMVTqZNk173vIZhRKJIWqKNvANZIhQAS9lHwuDx0Du9PhKlU
-         YO+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fvzvFrxkZV5P4Rxxxs1xdYcVHP1vUjFiEqvZB3LuHYc=;
-        b=weQdAzxyCl9+c4fzGyGx7pzlhLVxAOieCwqaMdti0ZEUcUux54TAf4upCBiZREEl8b
-         OmcgLgSFA9xtudjMDY+1/x6iU7ySGoFef4vXKUw31rX1KyEmPYirhZynECUHzcZ65Y/6
-         9WaDc17CxhmyczxZOW9qYmum5JnLbK6BgxT1DZqysLKkcv5UAkVy3honSnuTajgNJP+1
-         eHwwbcRtVjADkRMhUoW+hOvszvRba4t3OCDYJXlqOX/auiRHYSRtjmb6BHwx8VlxVrlY
-         JyRAJQYa41PE+PU3Dz1eNKxbvuxR4E6OmvuEmVCe95pBkERmohmoHOIooOXRbWOr670h
-         pF9A==
-X-Gm-Message-State: ACrzQf0sR6p0tccdP8ONxyDI4F8Lf3RJa3eQ/jamCWmpKh6dCfXf+LOr
-        8rl1daGwUY1VGYbbbKmaFVNnROMzNYC8cBGCMgNgDQ==
-X-Google-Smtp-Source: AMsMyM4L+MECpm34SLXLViLyxzAqpAQKmvDH+EK7kDBSeMqrsQMfJ06efXpTiInyduawbLa3Usu+nUlNEKJAlo4Oh8Y=
-X-Received: by 2002:a05:6102:5788:b0:3a6:764d:1382 with SMTP id
- dh8-20020a056102578800b003a6764d1382mr21135112vsb.13.1666690791574; Tue, 25
- Oct 2022 02:39:51 -0700 (PDT)
+        with ESMTP id S231469AbiJYJ6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 05:58:34 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5233F16D893;
+        Tue, 25 Oct 2022 02:53:25 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id EC30E660237B;
+        Tue, 25 Oct 2022 10:53:22 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666691603;
+        bh=AfoC+u7QOoMXL0swZVl0spuIt4jUU/HeJkWsU7RAiyY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=e3IHYNgCWZFHB87MlOvMPIe8lEbMrg8kIJx4WoAX8/jwbREZ7I3fZaTIyr0w3J10j
+         pZBOISwXMzpJCcYc7/SQvDd+Ma5oayPsd8+Ka6I5VNGbVveaGhOL8VeRMqvGMgKBpL
+         exWc+XE1mILerfwugzCj1mWwZ1a9Va2UaSUVjtsUeKpM5q/neXObmgIHRnRKlTyLAR
+         MbtO1yqpogjhUhFaJsm+l+jIcu4xvzEVqJmUZMkiMNsA/4y4wXTxuu4aApxS8uY5iz
+         abIvvWX4zMGKOFa+VW0O6sL/fttYa5qLsw5kuw9CT+Ca78H8kubHmx9Jb8aRahwQXJ
+         oHQ5piozLYcYA==
+Message-ID: <03f10476-f36f-3b74-6523-7bfbbbf1a5e7@collabora.com>
+Date:   Tue, 25 Oct 2022 11:53:20 +0200
 MIME-Version: 1.0
-References: <20221007114647.2723457-1-s.hauer@pengutronix.de>
-In-Reply-To: <20221007114647.2723457-1-s.hauer@pengutronix.de>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 25 Oct 2022 11:39:40 +0200
-Message-ID: <CAMRc=MfqvNvq7RLbWivZj7Q4fBBLEAWFHU0Wq+u-086ehK-jLA@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] gpio: Add gpio-latch driver
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        kernel@pengutronix.de, Serge Semin <fancer.lancer@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 3/3] soc: mediatek: pwrap: add mt8365 SoC support
+Content-Language: en-US
+To:     Fadwa CHIBY <fchiby@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Johnson Wang <johnson.wang@mediatek.com>,
+        "Zhiyong . Tao" <zhiyong.tao@mediatek.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Sen Chu <sen.chu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221024131544.31219-1-fchiby@baylibre.com>
+ <20221024131544.31219-4-fchiby@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221024131544.31219-4-fchiby@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 7, 2022 at 1:47 PM Sascha Hauer <s.hauer@pengutronix.de> wrote:
->
-> This series includes the changes requested by Serge Semin for v4.
->
-> Sascha
->
-> Sascha Hauer (2):
->   gpio: Add gpio latch driver
->   dt-bindings: gpio: Add gpio-latch binding document
->
->  .../devicetree/bindings/gpio/gpio-latch.yaml  |  94 ++++++++
->  drivers/gpio/Kconfig                          |   6 +
->  drivers/gpio/Makefile                         |   1 +
->  drivers/gpio/gpio-latch.c                     | 220 ++++++++++++++++++
->  4 files changed, 321 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-latch.yaml
->  create mode 100644 drivers/gpio/gpio-latch.c
->
-> --
-> 2.30.2
->
+Il 24/10/22 15:15, Fadwa CHIBY ha scritto:
+> From: Fabien Parent <fparent@baylibre.com>
+> 
+> Add PMIC Wrap support for MT8365 SoC.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Fadwa CHIBY <fchiby@baylibre.com>
 
-I reversed the order of the patches, fixed the strange formatting of
-struct of_device_id and queued the series.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Bartosz
