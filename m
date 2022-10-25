@@ -2,79 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F1AB60CE66
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97DC860CE63
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:07:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232955AbiJYOHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49428 "EHLO
+        id S233007AbiJYOH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:07:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232944AbiJYOHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:07:21 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F3414A808;
-        Tue, 25 Oct 2022 07:03:25 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id d3so10541735ljl.1;
-        Tue, 25 Oct 2022 07:03:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=LDh25WK5EdmTjyyh5ZatIhq2ClQm71CUP1FZJzQM5eg=;
-        b=SC5bu2cW4n7XCMxVdGfrgaCIj45ngYflZIIRWeRBN5Zl/6oIX6EvPO9ynECh2ecYrJ
-         iq6uXk4K1wWy7Tf0jeV5IMCOCzvIiurc1bRtw0VK2Sid6gRDl7G7EZDMpDzy1PU5U3Z2
-         oPzlOYLq6gobxwtV+mMwTyFbagxjAI/FGKdsvQ26OlGh+5mudw/SX85NhWvVpMrVzpxr
-         x14hoIpcIWw6lYmtqak6e1vpU3BG+FZz+k2Ap6IJxR7swgk+NFsu/xFM8nc/8C8J/0/Y
-         ZEfvF0DqoJWfa4GKcSUz2S/pXvHTJXWFA4rzc0I+bPbJkZ1FHdpV4iWLVHVXS/sTFVWn
-         B0Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LDh25WK5EdmTjyyh5ZatIhq2ClQm71CUP1FZJzQM5eg=;
-        b=gOP48I+ixyyAYEsBNidvyydl7xyzXGaWmQuHAkpdXso84D/bxbKAaaVM0SsOPJYfD+
-         RZniQlqRAeiP60nHVb8STTGOVrfR8n57vd0LSRTnCmX3cl9W1W4u7Q8LmHa9A7CB9/wu
-         SFU7BNgObyg4n5dyOjIb8Q2RZc9TjLsp/S35FyoHfj+PcPeriwrmbQW0qqsQavepuViR
-         AEpJiQaSaq+e0G9ioEAEC44THnzEvD1mttkcFK6EUYZO5X6UJ5ht7ju5cJEv8FphYXib
-         j29rjgd9bv8p990qSeIFgzpE+KE6UGMEIHmvoWeoiCi7xQ5q7L9yk/wsa15MBMLynf/+
-         r33A==
-X-Gm-Message-State: ACrzQf0bfwKutNX22NblJYyq57HnI5UlyC2xhFV6/Jjx8ukn3joSCYzn
-        lDmNPUTJGjON7QNcFGsFXgHpN0J3jk/1sw==
-X-Google-Smtp-Source: AMsMyM7dsSBi1keccZDqEY8/9I1zmHmLglE9+G2f/WWyAQdwbu6ifSthYU5b0rSVlVNm3RekRpKhwg==
-X-Received: by 2002:a2e:8445:0:b0:26d:e6f0:e099 with SMTP id u5-20020a2e8445000000b0026de6f0e099mr14621163ljh.243.1666706603317;
-        Tue, 25 Oct 2022 07:03:23 -0700 (PDT)
-Received: from obelisk ([83.149.246.185])
-        by smtp.gmail.com with ESMTPSA id q8-20020a2eb4a8000000b0026dd4be2290sm507206ljm.90.2022.10.25.07.03.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 07:03:17 -0700 (PDT)
-References: <20221022162042.14113-1-mike.rudenko@gmail.com>
- <20221022162042.14113-3-mike.rudenko@gmail.com>
- <20221025130958.bnedjlkm6kmiluoe@uno.localdomain>
-User-agent: mu4e 1.9.0; emacs 28.2
-From:   Mikhail Rudenko <mike.rudenko@gmail.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Marek Vasut <marex@denx.de>, Jimmy Su <jimmy.su@intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] media: i2c: add support for OV4689
-Date:   Tue, 25 Oct 2022 16:51:02 +0300
-In-reply-to: <20221025130958.bnedjlkm6kmiluoe@uno.localdomain>
-Message-ID: <87y1t4gfvp.fsf@gmail.com>
+        with ESMTP id S232627AbiJYOHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:07:01 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9481F10A7DC;
+        Tue, 25 Oct 2022 07:02:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KQQBIHg6IBRnkbPBPj1yXbc8Q2CVMvhmVifIK/RPNT8Qgcwmt2aT9ccP/x0JscZ1Aes0tgBSxFNNlAjsergLYx1/bSbzU12txVqotZ6/LlGhBnpaDFxIXprjd8D9VMm424uA569eSfs7ZHt3NudaahDAx/ysS2ag73jCjbaURIFvX4331kp6lOAwofVIxBN7PF4Rl2bux47RKOdIMUSBae/+njN1sHtPj686BpFM4+2mbDNiOA2UwhvW2b70NTaQti4OnU7l1lfWqIyyq4cyRf2ueKGoZmfeadoe0EXqyigsxSixXTS14j1mWQQ4NNcSx8vs4Ky6fQRA+KHU0/bxSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TrOY891+pZTpBK8yVqVJynEU5yb8OL3NtJ8WSHn1b6o=;
+ b=aZmMI3sPwGfuLz+78VNZLQMA26iScHk85l4UduO9oNyoGJufXhCxYkiVSD00tzfguxXN8t9i/AHAneabbYHCdY4N7UtHbPT81Jgbnz/ZMDxfAloUbSdbEU26FHe21/uS91vZZcrSAkejreIGq/8rjZRXcneYqo2i+MNPoBpVDJrN+zKp7MVplVsFZ2afpXABi0qnSqUZVFzIpkixGRA0xNxfSQE7jrTtyRoK+W5TGHjgU+IS3OUKXl2K4mO4KE/XnJxoY29ECibf8TtMN2IDd4VxadHHI2N9FEmvRmW7/Iv4JNcDouqqEZ0fa4go6CrQ4G063Dk1Eq7vDsHftjikKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TrOY891+pZTpBK8yVqVJynEU5yb8OL3NtJ8WSHn1b6o=;
+ b=YNjqqkg63V/GBC0yAePgO91dIgB5e4CUAn6hBkn7KupyvP4FQSofjj2HZQNRvHuGjBsHB5GZM/GrwRPrwmWSHujj/MTGYjt3snMlyYZkB9ML7D132HZVNyqp4EmW8r2PLsi8dkod+DuoX5GLiLJCReu5/Kj+ZUnaxdzvdjBdw3I=
+Received: from CY4PR1201MB0135.namprd12.prod.outlook.com (2603:10b6:910:17::8)
+ by DS0PR12MB7945.namprd12.prod.outlook.com (2603:10b6:8:153::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.25; Tue, 25 Oct
+ 2022 14:02:42 +0000
+Received: from CY4PR1201MB0135.namprd12.prod.outlook.com
+ ([fe80::4b4:ce67:45a5:8578]) by CY4PR1201MB0135.namprd12.prod.outlook.com
+ ([fe80::4b4:ce67:45a5:8578%11]) with mapi id 15.20.5746.028; Tue, 25 Oct 2022
+ 14:02:40 +0000
+From:   "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "michals@xilinx.com" <michals@xilinx.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
+Subject: RE: [PATCH 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML
+ schemas of Xilinx AXI PCIe Root Port Bridge
+Thread-Topic: [PATCH 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML
+ schemas of Xilinx AXI PCIe Root Port Bridge
+Thread-Index: AQHY48megkEGyLpEwEiovFARdD0eCa4V0IIAgAlcPgA=
+Date:   Tue, 25 Oct 2022 14:02:40 +0000
+Message-ID: <CY4PR1201MB013503952A791795589118FD8B319@CY4PR1201MB0135.namprd12.prod.outlook.com>
+References: <20221019144640.9458-1-thippeswamy.havalige@amd.com>
+ <a45bbe87-9ce0-4b52-c275-cf1a361b7afe@linaro.org>
+In-Reply-To: <a45bbe87-9ce0-4b52-c275-cf1a361b7afe@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY4PR1201MB0135:EE_|DS0PR12MB7945:EE_
+x-ms-office365-filtering-correlation-id: d5ed63a8-8053-4384-eb23-08dab691944e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: yTqeMJuieX9xSFQ/3xCGGoR0iudsE4WE/dnik8g3bhgVkdEsrufmgLXBKpfl0d4sq1ByXQzNGe9cOEgTHxbNivG6+OMO4yF3HYGwS9RJeYMriNZebNWZsaGOsTbq7zFG8ixnxvoF48J8zJUcu8x9vTqHxhaEz6v5+Z1Ebrr0It1OOTNOSzXI5qGVTxK7DjWGdHfR/8wNHOdTxs/CHh+cBx48Kdr1OUiH4D/c4Wb2Vc2maNpjem5m7zKJYbKYM+82U1f8DBg9Q5tic6LR9u2hlaphe7g/1Kjb25OHSc6DmJIrrcsi2QIqUicwgL/K7bpKjLAFQP6QwJULoTotK4mi9gtC7R+Y4nPpVdaQtckZMXTAHXXK1075dPkSdIjrUwfqkOMEhC2Z654hGzCBf09gtor6OuUa/NTqxfMJMs0EyE8AW8j0YvGJ0eMyS+Rek5BZb/1dptI4jo8oR6FhY5XKsuAs+UEwh00UJ68iEKsIwYjmJ7sTs6MHGHyFy/buoLBgictfsdpvcTNPz1MXIWeBVhmaXwz0oX6Ib+FZYINNlhTsh2SUjNzOfS+fnEWORdfcsZi6GZ19O/magmyG+tqZQ1mNF8U3Jm2JmNDGQZEFT9mnRtKYz/Aw8Drl4SgK/fBIAI716trNxDqKNI0OkTTsLwlpRWv7miRN7sNeYE9o2qPbUsHJjy2mJO/EJj5Yp7J/UH96ywiKQRvXf7ZN+/4JVOZhJDiurVc3UeV+I7C6satynYom1LdB8e9u9SZu1illwbzC7lJRmkKnh3uNNqGlr0PAVzwiiClYvMz1N2WKqjz9RS6lJVY/KuK2b1ePfAqmhrx9KE7GysafnZ6EiUHqsA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR1201MB0135.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(136003)(39860400002)(376002)(346002)(396003)(451199015)(8936002)(41300700001)(33656002)(66556008)(66946007)(4326008)(186003)(9686003)(52536014)(5660300002)(76116006)(6506007)(38070700005)(7696005)(53546011)(83380400001)(8676002)(38100700002)(2906002)(86362001)(478600001)(122000001)(316002)(55016003)(66476007)(966005)(110136005)(66446008)(64756008)(71200400001)(54906003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VkUybVQya01VbWM2NmhzRGJMTU5RMWQ4Z3ppRHloRVNPWUtLcHVHc3JFWHZB?=
+ =?utf-8?B?eDlwclpGMU4rWm9NUTRIQk1Scmx5dTVpQ0NZWmZ6eVdjZzVXOE5ZZU85Rysx?=
+ =?utf-8?B?eWplVlF4NHhHaGJ5ZlFVSkRNcDdIRW9CRHNrL0xxSW5zMGpmUUEwc3d6MVJy?=
+ =?utf-8?B?dEMydWs1aUU3SFNlSmdFL2FacDVZWGVjdUZmNHVlQTRvSVBKMUlGVlE4RXdO?=
+ =?utf-8?B?aS9UOHY5UGczSld1N05vOCtrRWJ5czlWNDRlL05uV3NyNlZ1UlFYbkpBMnhR?=
+ =?utf-8?B?d0pqSE85WDRkM2NwSkxVSkFDR0F3a1MxVU5TdXh6azd3UnkrOUFxdWE1TlNK?=
+ =?utf-8?B?dTFIS2t3UXJYYWhDZHhvWTNnYkc3SVU3NE1rNllXaXQ4L2I2RFRxMXRKdm1q?=
+ =?utf-8?B?eHhCUS8rQ0J1bVVvRThQdlFDeXBZODlsVk5KQ2tSUmFDK3h5eTdaZ29PSWtJ?=
+ =?utf-8?B?T0NJdmN4Z1VrbElOOGM3L2h0QmhQUWY3NklwWFRScjduWHN0dnRveDU1NHZW?=
+ =?utf-8?B?clU4Nmg1MWpBcFE1c28waGNMR2lFNnpHT3k1ZWtaUjFGMXVKbFRmNEk5Q2RK?=
+ =?utf-8?B?cUlDdnJMc3pvVG9VamtQODZtVklKeHVmSTk3c1hNMVV3dHVQOGFNMitMWUJC?=
+ =?utf-8?B?M082NEdCYVRHSXVneEQvVUJxbnYyN0FrTDVKaXNDQjBmblJwZW5RUjNLV2N2?=
+ =?utf-8?B?alVTOCtJK2ZEOU1vaDJneDNJc3Y2UlpWVWUrRVh5YjM3a0xkOVNKYXhrTzJn?=
+ =?utf-8?B?UWhNYTRRMHRvRGRnSUdkWTBTSlZlWUFKOTJrbmFxQ2JQemRESDluTlNnVkRh?=
+ =?utf-8?B?ZUV6QUovZlFhUHY5UlVGRFVSV0dQVlZ0R0hCck1TRXkreTcrNHVlSlVEU0xF?=
+ =?utf-8?B?Nmp1QWJQdE5WOTJubE5MVGsrOVFwZHFXRjlSNG1aYkNxV3RCOUQ0MU50RnNk?=
+ =?utf-8?B?b3E0UTR4YTRkck01Q0kxRDFuL1lOWk9UNlczUXR0Vkd1OHNKSHh2WlU5Vnlp?=
+ =?utf-8?B?T2RQTVdCQlBlbUg1TkY0N21xMVoydHVmNTJLakkzNHJJZHFzd0dKdUx5a0kx?=
+ =?utf-8?B?dldOSllyWnRQdFhDZmdSSXRaZEdZRVMzY3lRN3UxVTc4cWdmMXd0TUpZU3d2?=
+ =?utf-8?B?WElIRXQ0MEdOSjlDd01GcWNjMWFzNW9UdVNkTURkdE1RYWQrQ3RnWDdFYzJL?=
+ =?utf-8?B?OGpDMnA0MUhKY3dEdU1wb3BWeU9QMTgwcm1pUHg2cW43VjNtV01ndzIrb2l5?=
+ =?utf-8?B?WTlEMUQ1WDc0UzlnWThWK1NmWDBuSVhwQ3dwUFc4VFB4TUtQUjdZVWkvNUtN?=
+ =?utf-8?B?TjFaVUJVUEhkd0l3N2NzZGJLTlQ4WGVZVkYzZE5jWk80cHhHc2VtVFh6eEJs?=
+ =?utf-8?B?UUhkNTVJY041YUNYVzJKSGtnMXlIdnFBdVBoQXlQTU1KVFcrQkVZS0hrRkxv?=
+ =?utf-8?B?MzF5NU5vSVpKYXdmZitRaGRleER4WnZ0MTJvY0hyd0g3aTVYYndHQjNoeFV6?=
+ =?utf-8?B?Q3czU0pTdElhS1lCVTlqUVpIU2V5ZzJqSHFuK01uRUFZNEJaTXErSlV0MFdZ?=
+ =?utf-8?B?V0dVL0QrRy9wZ3lNandqbnpIYWNVR0RNNzdDc1E1VXN6RkdOM1drQkYvbWtH?=
+ =?utf-8?B?dVJiRmFsS2lhWDhEbzVVdElURWNEYVBKN21oLzgzSGtSb2lUbDFQL0xOeFVw?=
+ =?utf-8?B?eVVVdFIzMjU5Q0M0TUkwK2kvZ2g4UFo0c2RBRHZHbk5UYUZ4M3ZqNEptdmlV?=
+ =?utf-8?B?QjdyVk9WNit6RkNYdmZiQ2plU1dmTXIvYTM5ZzJ1a3NWZjBpcGdDRzI1NkRp?=
+ =?utf-8?B?bHdtVHRtVWYrd0M4Zm1ZdUQzSTVPLzFmWUNyUloxSzdYM2RoM3FuMklURjdL?=
+ =?utf-8?B?aFRXNGNhZDA1bm5NbnFrMndrWWtuOFFHUDlsUjJWdU44QmZXV1pybjdqd3cy?=
+ =?utf-8?B?UVRVTi9GRmxxSjhyS2hhdlFTZGJvZk43cWxrU1h4VlZXOUsrUEdzbzFONGdC?=
+ =?utf-8?B?d1RzTFJxdjVuUG1JMGUwaXVZNnNmd0ZHQ1YwN2ZOVkZCN2RMQWl6N0JZOFhz?=
+ =?utf-8?B?YnlrSzYrUXVEclNGYktzbmI5bXZ4T09GUUt3Q2pNM1VJUU1XQjVYYkY5cXlH?=
+ =?utf-8?B?VDFCTmVCUjlnUDNBK1pkOHRjaThYQ0pma3FzNWE5Y2pxcnVkMHVDWXhucElU?=
+ =?utf-8?Q?nej+OdiPeD8RAapa/441TaM=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,PDS_OTHER_BAD_TLD,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1201MB0135.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5ed63a8-8053-4384-eb23-08dab691944e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2022 14:02:40.0903
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: n8TxxDTDVMQyYxhSolee8vgd90hmDaogXdHvzMjMusPBVZ2UIyRr3/YQkJcBVYcCnig4DlzXpYGKaSw808nERQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7945
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,1157 +134,151 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Jacopo,
-
-On 2022-10-25 at 15:09 +02, Jacopo Mondi <jacopo@jmondi.org> wrote:
-
-> Hi Mikhail,
->
-> On Sat, Oct 22, 2022 at 07:20:07PM +0300, Mikhail Rudenko wrote:
->> Add a V4L2 sub-device driver for OmniVision OV4689 image sensor. This
->> is a 4 Mpx image sensor using the I2C bus for control and the CSI-2
->> bus for data.
->>
->> This driver supports following features:
->> - manual exposure and analog gain control support
->> - test pattern support
->> - media controller support
->> - runtime PM support
->> - support following resolutions:
->>   + 2688x1520 at 30 fps
->>
->> The driver provides all mandatory V4L2 controls for compatibility with
->> libcamera. The sensor supports 1/2/4-lane CSI-2 modes, but the driver
->> implements 4 lane mode only at this moment.
->>
->> Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
->> ---
->>  MAINTAINERS                |    1 +
->>  drivers/media/i2c/Kconfig  |   13 +
->>  drivers/media/i2c/Makefile |    1 +
->>  drivers/media/i2c/ov4689.c | 1026 ++++++++++++++++++++++++++++++++++++
->>  4 files changed, 1041 insertions(+)
->>  create mode 100644 drivers/media/i2c/ov4689.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4d6d86a9f704..acf38afb3e73 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -15210,6 +15210,7 @@ L:	linux-media@vger.kernel.org
->>  S:	Maintained
->>  T:	git git://linuxtv.org/media_tree.git
->>  F:	Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
->> +F:	drivers/media/i2c/ov5647.c
->>
->>  OMNIVISION OV5640 SENSOR DRIVER
->>  M:	Steve Longerbeam <slongerbeam@gmail.com>
->> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
->> index 7806d4b81716..1e1985252ec8 100644
->> --- a/drivers/media/i2c/Kconfig
->> +++ b/drivers/media/i2c/Kconfig
->> @@ -445,6 +445,19 @@ config VIDEO_OV2740
->>  	  To compile this driver as a module, choose M here: the
->>  	  module will be called ov2740.
->>
->> +config VIDEO_OV4689
->> +	tristate "OmniVision OV4689 sensor support"
->> +	depends on GPIOLIB && VIDEO_DEV && I2C
->> +	select MEDIA_CONTROLLER
->> +	select VIDEO_V4L2_SUBDEV_API
->> +	select V4L2_FWNODE
->> +	help
->> +	  This is a Video4Linux2 sensor-level driver for the OmniVision
->> +	  OV4689 camera.
->> +
->> +	  To compile this driver as a module, choose M here: the
->> +	  module will be called ov4689.
->> +
->>  config VIDEO_OV5640
->>  	tristate "OmniVision OV5640 sensor support"
->>  	depends on OF
->> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
->> index 0a2933103dd9..c1a2cb351c0f 100644
->> --- a/drivers/media/i2c/Makefile
->> +++ b/drivers/media/i2c/Makefile
->> @@ -79,6 +79,7 @@ obj-$(CONFIG_VIDEO_OV2659) += ov2659.o
->>  obj-$(CONFIG_VIDEO_OV2680) += ov2680.o
->>  obj-$(CONFIG_VIDEO_OV2685) += ov2685.o
->>  obj-$(CONFIG_VIDEO_OV2740) += ov2740.o
->> +obj-$(CONFIG_VIDEO_OV4689) += ov4689.o
->>  obj-$(CONFIG_VIDEO_OV5640) += ov5640.o
->>  obj-$(CONFIG_VIDEO_OV5645) += ov5645.o
->>  obj-$(CONFIG_VIDEO_OV5647) += ov5647.o
->> diff --git a/drivers/media/i2c/ov4689.c b/drivers/media/i2c/ov4689.c
->> new file mode 100644
->> index 000000000000..419ff7371ba8
->> --- /dev/null
->> +++ b/drivers/media/i2c/ov4689.c
->> @@ -0,0 +1,1026 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * ov4689 driver
->> + *
->> + * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
->> + * Copyright (C) 2022 Mikhail Rudenko
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/i2c.h>
->> +#include <linux/module.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <media/media-entity.h>
->> +#include <media/v4l2-async.h>
->> +#include <media/v4l2-ctrls.h>
->> +#include <media/v4l2-subdev.h>
->> +#include <media/v4l2-fwnode.h>
->> +
->> +#define CHIP_ID				0x004688
->> +#define OV4689_REG_CHIP_ID		0x300a
->> +
->> +#define OV4689_XVCLK_FREQ		24000000
->> +
->> +#define OV4689_REG_CTRL_MODE		0x0100
->> +#define OV4689_MODE_SW_STANDBY		0x0
->> +#define OV4689_MODE_STREAMING		BIT(0)
->> +
->> +#define OV4689_REG_EXPOSURE		0x3500
->> +#define OV4689_EXPOSURE_MIN		4
->> +#define OV4689_EXPOSURE_STEP		1
->> +#define OV4689_VTS_MAX			0x7fff
->> +
->> +#define OV4689_REG_GAIN_H		0x3508
->> +#define OV4689_REG_GAIN_L		0x3509
->> +#define OV4689_GAIN_H_MASK		0x07
->> +#define OV4689_GAIN_H_SHIFT		8
->> +#define OV4689_GAIN_L_MASK		0xff
->> +#define OV4689_GAIN_STEP		1
->> +#define OV4689_GAIN_DEFAULT		0x80
->> +
->> +#define OV4689_REG_TEST_PATTERN		0x5040
->> +#define OV4689_TEST_PATTERN_ENABLE	0x80
->> +#define OV4689_TEST_PATTERN_DISABLE	0x0
->> +
->> +#define OV4689_REG_VTS			0x380e
->> +
->> +#define REG_NULL			0xFFFF
->> +
->> +#define OV4689_REG_VALUE_08BIT		1
->> +#define OV4689_REG_VALUE_16BIT		2
->> +#define OV4689_REG_VALUE_24BIT		3
->> +
->> +#define OV4689_LANES			4
->> +
->> +static const char *const ov4689_supply_names[] = {
->> +	"avdd", /* Analog power */
->> +	"dovdd", /* Digital I/O power */
->> +	"dvdd", /* Digital core power */
->> +};
->> +
->> +struct regval {
->> +	u16 addr;
->> +	u8 val;
->> +};
->> +
->> +enum ov4689_mode_id {
->> +	OV4689_MODE_2688_1520 = 0,
->> +	OV4689_NUM_MODES,
->> +};
->> +
->> +struct ov4689_mode {
->> +	enum ov4689_mode_id id;
->> +	u32 width;
->> +	u32 height;
->> +	u32 max_fps;
->> +	u32 hts_def;
->> +	u32 vts_def;
->> +	u32 exp_def;
->> +	u32 pixel_rate;
->> +	u32 sensor_width;
->> +	u32 sensor_height;
->> +	u32 crop_top;
->> +	u32 crop_left;
->> +	const struct regval *reg_list;
->> +};
->> +
->> +struct ov4689 {
->> +	struct i2c_client *client;
->> +	struct clk *xvclk;
->> +	struct gpio_desc *reset_gpio;
->> +	struct gpio_desc *pwdn_gpio;
->> +	struct regulator_bulk_data supplies[ARRAY_SIZE(ov4689_supply_names)];
->> +
->> +	struct v4l2_subdev subdev;
->> +	struct media_pad pad;
->> +
->> +	u32 clock_rate;
->> +
->> +	struct mutex mutex; /* lock to protect streaming, ctrls and cur_mode */
->> +	bool streaming;
->> +	struct v4l2_ctrl_handler ctrl_handler;
->> +	struct v4l2_ctrl *exposure;
->> +
->> +	const struct ov4689_mode *cur_mode;
->> +};
->> +
->> +#define to_ov4689(sd) container_of(sd, struct ov4689, subdev)
->> +
->> +struct ov4689_gain_range {
->> +	u32 logical_min;
->> +	u32 logical_max;
->> +	u32 offset;
->> +	u32 divider;
->> +	u32 physical_min;
->> +	u32 physical_max;
->> +};
->> +
->> +/*
->> + * Xclk 24Mhz
->> + * max_framerate 30fps
->> + * mipi_datarate per lane 1008Mbps
->> + */
->> +static const struct regval ov4689_2688x1520_regs[] = {
->> +	{0x0103, 0x01}, {0x3638, 0x00}, {0x0300, 0x00},
->> +	{0x0302, 0x2a}, {0x0303, 0x00}, {0x0304, 0x03},
->> +	{0x030b, 0x00}, {0x030d, 0x1e}, {0x030e, 0x04},
->> +	{0x030f, 0x01}, {0x0312, 0x01}, {0x031e, 0x00},
->> +	{0x3000, 0x20}, {0x3002, 0x00}, {0x3018, 0x72},
->> +	{0x3020, 0x93}, {0x3021, 0x03}, {0x3022, 0x01},
->> +	{0x3031, 0x0a}, {0x303f, 0x0c}, {0x3305, 0xf1},
->> +	{0x3307, 0x04}, {0x3309, 0x29}, {0x3500, 0x00},
->> +	{0x3501, 0x60}, {0x3502, 0x00}, {0x3503, 0x04},
->> +	{0x3504, 0x00}, {0x3505, 0x00}, {0x3506, 0x00},
->> +	{0x3507, 0x00}, {0x3508, 0x00}, {0x3509, 0x80},
->> +	{0x350a, 0x00}, {0x350b, 0x00}, {0x350c, 0x00},
->> +	{0x350d, 0x00}, {0x350e, 0x00}, {0x350f, 0x80},
->> +	{0x3510, 0x00}, {0x3511, 0x00}, {0x3512, 0x00},
->> +	{0x3513, 0x00}, {0x3514, 0x00}, {0x3515, 0x80},
->> +	{0x3516, 0x00}, {0x3517, 0x00}, {0x3518, 0x00},
->> +	{0x3519, 0x00}, {0x351a, 0x00}, {0x351b, 0x80},
->> +	{0x351c, 0x00}, {0x351d, 0x00}, {0x351e, 0x00},
->> +	{0x351f, 0x00}, {0x3520, 0x00}, {0x3521, 0x80},
->> +	{0x3522, 0x08}, {0x3524, 0x08}, {0x3526, 0x08},
->> +	{0x3528, 0x08}, {0x352a, 0x08}, {0x3602, 0x00},
->> +	{0x3603, 0x40}, {0x3604, 0x02}, {0x3605, 0x00},
->> +	{0x3606, 0x00}, {0x3607, 0x00}, {0x3609, 0x12},
->> +	{0x360a, 0x40}, {0x360c, 0x08}, {0x360f, 0xe5},
->> +	{0x3608, 0x8f}, {0x3611, 0x00}, {0x3613, 0xf7},
->> +	{0x3616, 0x58}, {0x3619, 0x99}, {0x361b, 0x60},
->> +	{0x361c, 0x7a}, {0x361e, 0x79}, {0x361f, 0x02},
->> +	{0x3632, 0x00}, {0x3633, 0x10}, {0x3634, 0x10},
->> +	{0x3635, 0x10}, {0x3636, 0x15}, {0x3646, 0x86},
->> +	{0x364a, 0x0b}, {0x3700, 0x17}, {0x3701, 0x22},
->> +	{0x3703, 0x10}, {0x370a, 0x37}, {0x3705, 0x00},
->> +	{0x3706, 0x63}, {0x3709, 0x3c}, {0x370b, 0x01},
->> +	{0x370c, 0x30}, {0x3710, 0x24}, {0x3711, 0x0c},
->> +	{0x3716, 0x00}, {0x3720, 0x28}, {0x3729, 0x7b},
->> +	{0x372a, 0x84}, {0x372b, 0xbd}, {0x372c, 0xbc},
->> +	{0x372e, 0x52}, {0x373c, 0x0e}, {0x373e, 0x33},
->> +	{0x3743, 0x10}, {0x3744, 0x88}, {0x3745, 0xc0},
->> +	{0x374a, 0x43}, {0x374c, 0x00}, {0x374e, 0x23},
->> +	{0x3751, 0x7b}, {0x3752, 0x84}, {0x3753, 0xbd},
->> +	{0x3754, 0xbc}, {0x3756, 0x52}, {0x375c, 0x00},
->> +	{0x3760, 0x00}, {0x3761, 0x00}, {0x3762, 0x00},
->> +	{0x3763, 0x00}, {0x3764, 0x00}, {0x3767, 0x04},
->> +	{0x3768, 0x04}, {0x3769, 0x08}, {0x376a, 0x08},
->> +	{0x376b, 0x20}, {0x376c, 0x00}, {0x376d, 0x00},
->> +	{0x376e, 0x00}, {0x3773, 0x00}, {0x3774, 0x51},
->> +	{0x3776, 0xbd}, {0x3777, 0xbd}, {0x3781, 0x18},
->> +	{0x3783, 0x25}, {0x3798, 0x1b}, {0x3800, 0x00},
->> +	{0x3801, 0x08}, {0x3802, 0x00}, {0x3803, 0x04},
->> +	{0x3804, 0x0a}, {0x3805, 0x97}, {0x3806, 0x05},
->> +	{0x3807, 0xfb}, {0x3808, 0x0a}, {0x3809, 0x80},
->> +	{0x380a, 0x05}, {0x380b, 0xf0}, {0x380c, 0x0a},
->> +	{0x380d, 0x0e}, {0x380e, 0x06}, {0x380f, 0x12},
->> +	{0x3810, 0x00}, {0x3811, 0x08}, {0x3812, 0x00},
->> +	{0x3813, 0x04}, {0x3814, 0x01}, {0x3815, 0x01},
->> +	{0x3819, 0x01}, {0x3820, 0x00}, {0x3821, 0x06},
->> +	{0x3829, 0x00}, {0x382a, 0x01}, {0x382b, 0x01},
->> +	{0x382d, 0x7f}, {0x3830, 0x04}, {0x3836, 0x01},
->> +	{0x3837, 0x00}, {0x3841, 0x02}, {0x3846, 0x08},
->> +	{0x3847, 0x07}, {0x3d85, 0x36}, {0x3d8c, 0x71},
->> +	{0x3d8d, 0xcb}, {0x3f0a, 0x00}, {0x4000, 0xf1},
->> +	{0x4001, 0x40}, {0x4002, 0x04}, {0x4003, 0x14},
->> +	{0x400e, 0x00}, {0x4011, 0x00}, {0x401a, 0x00},
->> +	{0x401b, 0x00}, {0x401c, 0x00}, {0x401d, 0x00},
->> +	{0x401f, 0x00}, {0x4020, 0x00}, {0x4021, 0x10},
->> +	{0x4022, 0x07}, {0x4023, 0xcf}, {0x4024, 0x09},
->> +	{0x4025, 0x60}, {0x4026, 0x09}, {0x4027, 0x6f},
->> +	{0x4028, 0x00}, {0x4029, 0x02}, {0x402a, 0x06},
->> +	{0x402b, 0x04}, {0x402c, 0x02}, {0x402d, 0x02},
->> +	{0x402e, 0x0e}, {0x402f, 0x04}, {0x4302, 0xff},
->> +	{0x4303, 0xff}, {0x4304, 0x00}, {0x4305, 0x00},
->> +	{0x4306, 0x00}, {0x4308, 0x02}, {0x4500, 0x6c},
->> +	{0x4501, 0xc4}, {0x4502, 0x40}, {0x4503, 0x01},
->> +	{0x4601, 0xa7}, {0x4800, 0x04}, {0x4813, 0x08},
->> +	{0x481f, 0x40}, {0x4829, 0x78}, {0x4837, 0x10},
->> +	{0x4b00, 0x2a}, {0x4b0d, 0x00}, {0x4d00, 0x04},
->> +	{0x4d01, 0x42}, {0x4d02, 0xd1}, {0x4d03, 0x93},
->> +	{0x4d04, 0xf5}, {0x4d05, 0xc1}, {0x5000, 0xf3},
->> +	{0x5001, 0x11}, {0x5004, 0x00}, {0x500a, 0x00},
->> +	{0x500b, 0x00}, {0x5032, 0x00}, {0x5040, 0x00},
->> +	{0x5050, 0x0c}, {0x5500, 0x00}, {0x5501, 0x10},
->> +	{0x5502, 0x01}, {0x5503, 0x0f}, {0x8000, 0x00},
->> +	{0x8001, 0x00}, {0x8002, 0x00}, {0x8003, 0x00},
->> +	{0x8004, 0x00}, {0x8005, 0x00}, {0x8006, 0x00},
->> +	{0x8007, 0x00}, {0x8008, 0x00}, {0x3638, 0x00},
->> +	{REG_NULL, 0x00},
->> +};
->> +
->> +static const struct ov4689_mode supported_modes[] = {
->> +	{
->> +		.id = OV4689_MODE_2688_1520,
->> +		.width = 2688,
->> +		.height = 1520,
->> +		.sensor_width = 2720,
->> +		.sensor_height = 1536,
->> +		.crop_top = 8,
->> +		.crop_left = 16,
->> +		.max_fps = 30,
->> +		.exp_def = 1536,
->> +		.hts_def = 4 * 2574,
->> +		.vts_def = 1554,
->> +		.pixel_rate = 480000000,
->> +		.reg_list = ov4689_2688x1520_regs,
->> +	},
->> +};
->> +
->> +static const u64 link_freq_menu_items[] = { 504000000 };
->> +
->> +static const char *const ov4689_test_pattern_menu[] = {
->> +	"Disabled",
->> +	"Vertical Color Bar Type 1",
->> +	"Vertical Color Bar Type 2",
->> +	"Vertical Color Bar Type 3",
->> +	"Vertical Color Bar Type 4"
->> +};
->> +
->> +/*
->> + * These coefficients are based on those used in Rockchip's camera
->> + * engine, with minor tweaks for continuity.
->> + */
->> +static const struct ov4689_gain_range ov4689_gain_ranges[] = {
->> +	{
->> +		.logical_min = 0,
->> +		.logical_max = 255,
->> +		.offset = 0,
->> +		.divider = 1,
->> +		.physical_min = 0,
->> +		.physical_max = 255,
->> +	},
->> +	{
->> +		.logical_min = 256,
->> +		.logical_max = 511,
->> +		.offset = 252,
->> +		.divider = 2,
->> +		.physical_min = 376,
->> +		.physical_max = 504,
->> +	},
->> +	{
->> +		.logical_min = 512,
->> +		.logical_max = 1023,
->> +		.offset = 758,
->> +		.divider = 4,
->> +		.physical_min = 884,
->> +		.physical_max = 1012,
->> +	},
->> +	{
->> +		.logical_min = 1024,
->> +		.logical_max = 2047,
->> +		.offset = 1788,
->> +		.divider = 8,
->> +		.physical_min = 1912,
->> +		.physical_max = 2047,
->> +	},
->> +};
->> +
->> +/* Write registers up to 4 at a time */
->> +static int ov4689_write_reg(struct i2c_client *client, u16 reg, u32 len,
->> +			    u32 val)
->> +{
->> +	u32 buf_i, val_i;
->> +	__be32 val_be;
->> +	u8 *val_p;
->> +	u8 buf[6];
->> +
->> +	if (len > 4)
->> +		return -EINVAL;
->> +
->> +	buf[0] = reg >> 8;
->> +	buf[1] = reg & 0xff;
->> +
->> +	val_be = cpu_to_be32(val);
->> +	val_p = (u8 *)&val_be;
->> +	buf_i = 2;
->> +	val_i = 4 - len;
->> +
->> +	while (val_i < 4)
->> +		buf[buf_i++] = val_p[val_i++];
->> +
->> +	if (i2c_master_send(client, buf, len + 2) != len + 2)
->> +		return -EIO;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_write_array(struct i2c_client *client,
->> +			      const struct regval *regs)
->> +{
->> +	int ret = 0;
->> +	u32 i;
->> +
->> +	for (i = 0; ret == 0 && regs[i].addr != REG_NULL; i++)
->> +		ret = ov4689_write_reg(client, regs[i].addr,
->> +				       OV4689_REG_VALUE_08BIT, regs[i].val);
->> +
->> +	return ret;
->> +}
->> +
->> +/* Read registers up to 4 at a time */
->> +static int ov4689_read_reg(struct i2c_client *client, u16 reg, unsigned int len,
->> +			   u32 *val)
->> +{
->> +	__be16 reg_addr_be = cpu_to_be16(reg);
->> +	struct i2c_msg msgs[2];
->> +	__be32 data_be = 0;
->> +	u8 *data_be_p;
->> +	int ret;
->> +
->> +	if (len > 4 || !len)
->> +		return -EINVAL;
->> +
->> +	data_be_p = (u8 *)&data_be;
->> +	/* Write register address */
->> +	msgs[0].addr = client->addr;
->> +	msgs[0].flags = 0;
->> +	msgs[0].len = 2;
->> +	msgs[0].buf = (u8 *)&reg_addr_be;
->> +
->> +	/* Read data from register */
->> +	msgs[1].addr = client->addr;
->> +	msgs[1].flags = I2C_M_RD;
->> +	msgs[1].len = len;
->> +	msgs[1].buf = &data_be_p[4 - len];
->> +
->> +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
->> +	if (ret != ARRAY_SIZE(msgs))
->> +		return -EIO;
->> +
->> +	*val = be32_to_cpu(data_be);
->> +
->> +	return 0;
->> +}
->> +
->> +static void ov4689_fill_fmt(const struct ov4689_mode *mode,
->> +			    struct v4l2_mbus_framefmt *fmt)
->> +{
->> +	fmt->code = MEDIA_BUS_FMT_SBGGR10_1X10;
->> +	fmt->width = mode->width;
->> +	fmt->height = mode->height;
->> +	fmt->field = V4L2_FIELD_NONE;
->> +}
->> +
->> +static int ov4689_set_fmt(struct v4l2_subdev *sd,
->> +			  struct v4l2_subdev_state *sd_state,
->> +			  struct v4l2_subdev_format *fmt)
->> +{
->> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +
->> +	/* only one mode supported for now */
->> +	ov4689_fill_fmt(ov4689->cur_mode, mbus_fmt);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_get_fmt(struct v4l2_subdev *sd,
->> +			  struct v4l2_subdev_state *sd_state,
->> +			  struct v4l2_subdev_format *fmt)
->> +{
->> +	struct v4l2_mbus_framefmt *mbus_fmt = &fmt->format;
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +
->> +	/* only one mode supported for now */
->> +	ov4689_fill_fmt(ov4689->cur_mode, mbus_fmt);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_enum_mbus_code(struct v4l2_subdev *sd,
->> +				 struct v4l2_subdev_state *sd_state,
->> +				 struct v4l2_subdev_mbus_code_enum *code)
->> +{
->> +	if (code->index != 0)
->> +		return -EINVAL;
->> +	code->code = MEDIA_BUS_FMT_SBGGR10_1X10;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_enum_frame_sizes(struct v4l2_subdev *sd,
->> +				   struct v4l2_subdev_state *sd_state,
->> +				   struct v4l2_subdev_frame_size_enum *fse)
->> +{
->> +	if (fse->index >= ARRAY_SIZE(supported_modes))
->> +		return -EINVAL;
->> +
->> +	if (fse->code != MEDIA_BUS_FMT_SBGGR10_1X10)
->> +		return -EINVAL;
->> +
->> +	fse->min_width = supported_modes[fse->index].width;
->> +	fse->max_width = supported_modes[fse->index].width;
->> +	fse->max_height = supported_modes[fse->index].height;
->> +	fse->min_height = supported_modes[fse->index].height;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_enable_test_pattern(struct ov4689 *ov4689, u32 pattern)
->> +{
->> +	u32 val;
->> +
->> +	if (pattern)
->> +		val = (pattern - 1) | OV4689_TEST_PATTERN_ENABLE;
->> +	else
->> +		val = OV4689_TEST_PATTERN_DISABLE;
->> +
->> +	return ov4689_write_reg(ov4689->client, OV4689_REG_TEST_PATTERN,
->> +				OV4689_REG_VALUE_08BIT, val);
->> +}
->> +
->> +static int ov4689_get_selection(struct v4l2_subdev *sd,
->> +				struct v4l2_subdev_state *state,
->> +				struct v4l2_subdev_selection *sel)
->> +{
->> +	const struct ov4689_mode *mode = to_ov4689(sd)->cur_mode;
->> +
->> +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
->> +		return -EINVAL;
->> +
->> +	switch (sel->target) {
->> +	case V4L2_SEL_TGT_CROP_BOUNDS:
->> +		sel->r.top = 0;
->> +		sel->r.left = 0;
->> +		sel->r.width = mode->sensor_width;
->> +		sel->r.height = mode->sensor_height;
->> +		return 0;
->> +	case V4L2_SEL_TGT_CROP:
->> +	case V4L2_SEL_TGT_CROP_DEFAULT:
->> +		sel->r.top = mode->crop_top;
->> +		sel->r.left = mode->crop_left;
->> +		sel->r.width = mode->width;
->> +		sel->r.height = mode->height;
->> +		return 0;
->> +	}
->> +
->> +	return -EINVAL;
->> +}
->> +
->> +static int ov4689_s_stream(struct v4l2_subdev *sd, int on)
->> +{
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +	struct i2c_client *client = ov4689->client;
->> +	int ret = 0;
->> +
->> +	mutex_lock(&ov4689->mutex);
->> +
->> +	on = !!on;
->> +	if (on == ov4689->streaming)
->> +		goto unlock_and_return;
->> +
->> +	if (on) {
->> +		ret = pm_runtime_resume_and_get(&client->dev);
->> +		if (ret < 0)
->> +			goto unlock_and_return;
->> +
->> +		ret = ov4689_write_array(ov4689->client,
->> +					 ov4689->cur_mode->reg_list);
->> +		if (ret) {
->> +			pm_runtime_put(&client->dev);
->> +			goto unlock_and_return;
->> +		}
->> +
->> +		ret = __v4l2_ctrl_handler_setup(&ov4689->ctrl_handler);
->> +		if (ret) {
->> +			pm_runtime_put(&client->dev);
->> +			goto unlock_and_return;
->> +		}
->> +
->> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_CTRL_MODE,
->> +				       OV4689_REG_VALUE_08BIT,
->> +				       OV4689_MODE_STREAMING);
->> +		if (ret) {
->> +			pm_runtime_put(&client->dev);
->> +			goto unlock_and_return;
->> +		}
->> +	} else {
->> +		ov4689_write_reg(ov4689->client, OV4689_REG_CTRL_MODE,
->> +				 OV4689_REG_VALUE_08BIT,
->> +				 OV4689_MODE_SW_STANDBY);
->> +		pm_runtime_put(&client->dev);
->> +	}
->> +
->> +	ov4689->streaming = on;
->> +
->> +unlock_and_return:
->> +	mutex_unlock(&ov4689->mutex);
->> +
->> +	return ret;
->> +}
->> +
->> +/* Calculate the delay in us by clock rate and clock cycles */
->> +static inline u32 ov4689_cal_delay(struct ov4689 *ov4689, u32 cycles)
->> +{
->> +	return DIV_ROUND_UP(cycles * 1000,
->> +			    DIV_ROUND_UP(ov4689->clock_rate, 1000));
->> +}
->> +
->> +static int __maybe_unused ov4689_power_on(struct device *dev)
->> +{
->> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +	u32 delay_us;
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(ov4689->xvclk);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to enable xvclk\n");
->> +		return ret;
->> +	}
->> +
->> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 1);
->> +
->> +	ret = regulator_bulk_enable(ARRAY_SIZE(ov4689_supply_names),
->> +				    ov4689->supplies);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to enable regulators\n");
->> +		goto disable_clk;
->> +	}
->> +
->> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 0);
->> +	usleep_range(500, 1000);
->> +	gpiod_set_value_cansleep(ov4689->pwdn_gpio, 0);
->> +
->> +	/* 8192 cycles prior to first SCCB transaction */
->> +	delay_us = ov4689_cal_delay(ov4689, 8192);
->> +	usleep_range(delay_us, delay_us * 2);
->> +
->> +	return 0;
->> +
->> +disable_clk:
->> +	clk_disable_unprepare(ov4689->xvclk);
->> +
->> +	return ret;
->> +}
->> +
->> +static int __maybe_unused ov4689_power_off(struct device *dev)
->> +{
->> +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +
->> +	gpiod_set_value_cansleep(ov4689->pwdn_gpio, 1);
->> +	clk_disable_unprepare(ov4689->xvclk);
->> +	gpiod_set_value_cansleep(ov4689->reset_gpio, 1);
->> +	regulator_bulk_disable(ARRAY_SIZE(ov4689_supply_names),
->> +			       ov4689->supplies);
->> +	return 0;
->> +}
->> +
->> +static int ov4689_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
->> +{
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +	struct v4l2_mbus_framefmt *try_fmt;
->> +
->> +	mutex_lock(&ov4689->mutex);
->> +
->> +	try_fmt = v4l2_subdev_get_try_format(sd, fh->state, 0);
->> +	/* Initialize try_fmt */
->> +	ov4689_fill_fmt(&supported_modes[OV4689_MODE_2688_1520], try_fmt);
->> +
->> +	mutex_unlock(&ov4689->mutex);
->> +
->> +	return 0;
->> +}
->
-> FYI the centralized state support has been recently introduced in v4l2.
-> It allows you (among other things) to replace open with init_cfg and
-> centralize the handling of formats initialization. This driver only
-> supports one format, so no big deal.
-
-Could you point me at some documentation/example code on this? I think
-at some point in future (after the driver is accepted) I'll be
-implementing more modes (at least 2x2 and 4x4 binning) and the
-centralized state will come in useful.
-
->> +
->> +static const struct dev_pm_ops ov4689_pm_ops = {
->> +	SET_RUNTIME_PM_OPS(ov4689_power_off, ov4689_power_on, NULL)
->> +};
->> +
->> +static const struct v4l2_subdev_internal_ops ov4689_internal_ops = {
->> +	.open = ov4689_open,
->> +};
->> +
->> +static const struct v4l2_subdev_video_ops ov4689_video_ops = {
->> +	.s_stream = ov4689_s_stream,
->> +};
->> +
->> +static const struct v4l2_subdev_pad_ops ov4689_pad_ops = {
->> +	.enum_mbus_code = ov4689_enum_mbus_code,
->> +	.enum_frame_size = ov4689_enum_frame_sizes,
->> +	.get_fmt = ov4689_get_fmt,
->> +	.set_fmt = ov4689_set_fmt,
->> +	.get_selection = ov4689_get_selection,
->> +};
->> +
->> +static const struct v4l2_subdev_ops ov4689_subdev_ops = {
->> +	.video = &ov4689_video_ops,
->> +	.pad = &ov4689_pad_ops,
->> +};
->> +
->> +/*
->> + * Map userspace (logical) gain to sensor (physical) gain using
->> + * ov4689_gain_ranges table.
->> + */
->> +static int ov4689_map_gain(struct ov4689 *ov4689, int logical_gain, int *result)
->> +{
->> +	const struct device *dev = &ov4689->client->dev;
->> +	const struct ov4689_gain_range *range;
->> +	unsigned int n;
->> +
->> +	for (n = 0; n < ARRAY_SIZE(ov4689_gain_ranges); n++) {
->> +		if (logical_gain >= ov4689_gain_ranges[n].logical_min &&
->> +		    logical_gain <= ov4689_gain_ranges[n].logical_max) {
->> +			break;
->> +		}
->
-> No need for {} here
->
-
-Will fix in v5. I wonder, why doesn't checkpatch.pl catch ones like this?..
-
->> +	}
->> +
->> +	if (n == ARRAY_SIZE(ov4689_gain_ranges)) {
->> +		dev_warn_ratelimited(dev, "no mapping found for gain %d\n",
->> +				     logical_gain);
->> +		return -EINVAL;
->> +	}
->> +
->> +	range = &ov4689_gain_ranges[n];
->> +
->> +	*result = clamp(range->offset + (logical_gain) / range->divider,
->> +			range->physical_min, range->physical_max);
->> +	return 0;
->> +}
->> +
->> +static int ov4689_set_ctrl(struct v4l2_ctrl *ctrl)
->> +{
->> +	struct ov4689 *ov4689 =
->> +		container_of(ctrl->handler, struct ov4689, ctrl_handler);
->> +	struct i2c_client *client = ov4689->client;
->> +	int sensor_gain;
->> +	s64 max_expo;
->> +	int ret;
->> +
->> +	/* Propagate change of current control to all related controls */
->> +	switch (ctrl->id) {
->> +	case V4L2_CID_VBLANK:
->> +		/* Update max exposure while meeting expected vblanking */
->> +		max_expo = ov4689->cur_mode->height + ctrl->val - 4;
->> +		__v4l2_ctrl_modify_range(ov4689->exposure,
->> +					 ov4689->exposure->minimum, max_expo,
->> +					 ov4689->exposure->step,
->> +					 ov4689->exposure->default_value);
->> +		break;
->> +	}
->> +
->> +	if (!pm_runtime_get_if_in_use(&client->dev))
->> +		return 0;
->> +
->> +	switch (ctrl->id) {
->> +	case V4L2_CID_EXPOSURE:
->> +		/* 4 least significant bits of expsoure are fractional part */
->> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_EXPOSURE,
->> +				       OV4689_REG_VALUE_24BIT, ctrl->val << 4);
->> +		break;
->> +	case V4L2_CID_ANALOGUE_GAIN:
->> +		ret = ov4689_map_gain(ov4689, ctrl->val, &sensor_gain);
->> +
->> +		ret = ret ?:
->> +			ov4689_write_reg(ov4689->client, OV4689_REG_GAIN_H,
->> +					 OV4689_REG_VALUE_08BIT,
->> +					 (sensor_gain >> OV4689_GAIN_H_SHIFT) &
->> +					 OV4689_GAIN_H_MASK);
->> +		ret = ret ?:
->> +			ov4689_write_reg(ov4689->client, OV4689_REG_GAIN_L,
->> +					 OV4689_REG_VALUE_08BIT,
->> +					 sensor_gain & OV4689_GAIN_L_MASK);
->> +		break;
->> +	case V4L2_CID_VBLANK:
->> +		ret = ov4689_write_reg(ov4689->client, OV4689_REG_VTS,
->> +				       OV4689_REG_VALUE_16BIT,
->> +				       ctrl->val + ov4689->cur_mode->height);
->> +		break;
->> +	case V4L2_CID_TEST_PATTERN:
->> +		ret = ov4689_enable_test_pattern(ov4689, ctrl->val);
->> +		break;
->> +	default:
->> +		dev_warn(&client->dev, "%s Unhandled id:0x%x, val:0x%x\n",
->> +			 __func__, ctrl->id, ctrl->val);
->> +		ret = -EINVAL;
->> +		break;
->> +	}
->> +
->> +	pm_runtime_put(&client->dev);
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct v4l2_ctrl_ops ov4689_ctrl_ops = {
->> +	.s_ctrl = ov4689_set_ctrl,
->> +};
->> +
->> +static int ov4689_initialize_controls(struct ov4689 *ov4689)
->> +{
->> +	struct i2c_client *client = v4l2_get_subdevdata(&ov4689->subdev);
->> +	struct v4l2_fwnode_device_properties props;
->> +	struct v4l2_ctrl_handler *handler;
->> +	const struct ov4689_mode *mode;
->> +	s64 exposure_max, vblank_def;
->> +	struct v4l2_ctrl *ctrl;
->> +	s64 h_blank_def;
->> +	int ret;
->> +
->> +	handler = &ov4689->ctrl_handler;
->> +	mode = ov4689->cur_mode;
->> +	ret = v4l2_ctrl_handler_init(handler, 10);
->> +	if (ret)
->> +		return ret;
->> +	handler->lock = &ov4689->mutex;
->> +
->> +	ctrl = v4l2_ctrl_new_int_menu(handler, NULL, V4L2_CID_LINK_FREQ, 0, 0,
->> +				      link_freq_menu_items);
->> +	if (ctrl)
->> +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
->> +
->> +	v4l2_ctrl_new_std(handler, NULL, V4L2_CID_PIXEL_RATE, 0,
->> +			  mode->pixel_rate, 1, mode->pixel_rate);
->> +
->> +	h_blank_def = mode->hts_def - mode->width;
->> +	ctrl = v4l2_ctrl_new_std(handler, NULL, V4L2_CID_HBLANK, h_blank_def,
->> +				 h_blank_def, 1, h_blank_def);
->> +	if (ctrl)
->> +		ctrl->flags |= V4L2_CTRL_FLAG_READ_ONLY;
->> +
->> +	vblank_def = mode->vts_def - mode->height;
->> +	v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_VBLANK,
->> +			  vblank_def, OV4689_VTS_MAX - mode->height, 1,
->> +			  vblank_def);
->> +
->> +	exposure_max = mode->vts_def - 4;
->> +	ov4689->exposure =
->> +		v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_EXPOSURE,
->> +				  OV4689_EXPOSURE_MIN, exposure_max,
->> +				  OV4689_EXPOSURE_STEP, mode->exp_def);
->> +
->> +	v4l2_ctrl_new_std(handler, &ov4689_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
->> +			  ov4689_gain_ranges[0].logical_min,
->> +			  ov4689_gain_ranges[ARRAY_SIZE(ov4689_gain_ranges) - 1]
->> +				  .logical_max,
->> +			  OV4689_GAIN_STEP, OV4689_GAIN_DEFAULT);
->> +
->> +	v4l2_ctrl_new_std_menu_items(handler, &ov4689_ctrl_ops,
->> +				     V4L2_CID_TEST_PATTERN,
->> +				     ARRAY_SIZE(ov4689_test_pattern_menu) - 1,
->> +				     0, 0, ov4689_test_pattern_menu);
->> +
->> +	if (handler->error) {
->> +		ret = handler->error;
->> +		dev_err(&ov4689->client->dev, "Failed to init controls(%d)\n",
->> +			ret);
->> +		goto err_free_handler;
->> +	}
->> +
->> +	ret = v4l2_fwnode_device_parse(&client->dev, &props);
->> +	if (ret)
->> +		goto err_free_handler;
->> +
->> +	ret = v4l2_ctrl_new_fwnode_properties(handler, &ov4689_ctrl_ops,
->> +					      &props);
->> +	if (ret)
->> +		goto err_free_handler;
->> +
->> +	ov4689->subdev.ctrl_handler = handler;
->> +
->> +	return 0;
->> +
->> +err_free_handler:
->> +	v4l2_ctrl_handler_free(handler);
->> +
->> +	return ret;
->> +}
->> +
->> +static int ov4689_check_sensor_id(struct ov4689 *ov4689,
->> +				  struct i2c_client *client)
->> +{
->> +	struct device *dev = &ov4689->client->dev;
->> +	u32 id = 0;
->> +	int ret;
->> +
->> +	ret = ov4689_read_reg(client, OV4689_REG_CHIP_ID,
->> +			      OV4689_REG_VALUE_16BIT, &id);
->> +	if (ret) {
->> +		dev_err(dev, "Cannot read sensor ID\n");
->> +		return ret;
->> +	}
->> +
->> +	if (id != CHIP_ID) {
->> +		dev_err(dev, "Unexpected sensor ID %06x, expected %06x\n",
->> +			id, CHIP_ID);
->> +		return -ENODEV;
->> +	}
->> +
->> +	dev_info(dev, "Detected OV%06x sensor\n", CHIP_ID);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_configure_regulators(struct ov4689 *ov4689)
->> +{
->> +	unsigned int supplies_count = ARRAY_SIZE(ov4689_supply_names);
->> +	unsigned int i;
->> +
->> +	for (i = 0; i < supplies_count; i++)
->> +		ov4689->supplies[i].supply = ov4689_supply_names[i];
->> +
->> +	return devm_regulator_bulk_get(&ov4689->client->dev, supplies_count,
->> +				       ov4689->supplies);
->> +}
->> +
->> +static u64 ov4689_check_link_frequency(struct v4l2_fwnode_endpoint *ep)
->> +{
->> +	unsigned int freqs_count = ARRAY_SIZE(link_freq_menu_items);
->> +	const u64 *freqs = link_freq_menu_items;
->> +	unsigned int i, j;
->> +
->> +	for (i = 0; i < freqs_count; i++) {
->> +		for (j = 0; j < ep->nr_of_link_frequencies; j++)
->> +			if (freqs[i] == ep->link_frequencies[j])
->> +				return freqs[i];
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int ov4689_check_hwcfg(struct device *dev)
->> +{
->> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
->> +	struct v4l2_fwnode_endpoint bus_cfg = {
->> +		.bus_type = V4L2_MBUS_CSI2_DPHY,
->> +	};
->> +	struct fwnode_handle *endpoint;
->> +	int ret;
->> +
->> +	endpoint = fwnode_graph_get_next_endpoint(fwnode, NULL);
->> +	if (!endpoint)
->> +		return -EINVAL;
->> +
->> +	ret = v4l2_fwnode_endpoint_alloc_parse(endpoint, &bus_cfg);
->> +	fwnode_handle_put(endpoint);
->> +	if (ret)
->> +		return ret;
->> +
->> +	if (bus_cfg.bus.mipi_csi2.num_data_lanes != OV4689_LANES) {
->> +		dev_err(dev, "Only a 4-lane CSI2 config is supported");
->> +		ret = -EINVAL;
->> +		goto out_free_bus_cfg;
->> +	}
->> +
->> +	if (!bus_cfg.nr_of_link_frequencies) {
->> +		dev_err(dev, "No link frequencies defined\n");
->> +		ret = -EINVAL;
->> +		goto out_free_bus_cfg;
->> +	}
->
-> As the driver has a single supported freq I wonder if it is required
-> to have it mandatory. I got contradictory feedbacks in the past, so
-> whatever you have here I guess it's fine (same reasoning goes for dts,
-> if there's only one accepted item, does it need to be made mandatory
-> ?)
->
-> Nits apart, the driver looks sane
->
-> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-
-Thanks for the review, Jacopo!
-
-> Thanks
->   j
->
->> +
->> +	if (!ov4689_check_link_frequency(&bus_cfg)) {
->> +		dev_err(dev, "No supported link frequency found\n");
->> +		ret = -EINVAL;
->> +	}
->> +
->> +out_free_bus_cfg:
->> +	v4l2_fwnode_endpoint_free(&bus_cfg);
->> +
->> +	return ret;
->> +}
->> +
->> +static int ov4689_probe(struct i2c_client *client)
->> +{
->> +	struct device *dev = &client->dev;
->> +	struct v4l2_subdev *sd;
->> +	struct ov4689 *ov4689;
->> +	int ret;
->> +
->> +	ret = ov4689_check_hwcfg(dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ov4689 = devm_kzalloc(dev, sizeof(*ov4689), GFP_KERNEL);
->> +	if (!ov4689)
->> +		return -ENOMEM;
->> +
->> +	ov4689->client = client;
->> +	ov4689->cur_mode = &supported_modes[OV4689_MODE_2688_1520];
->> +
->> +	ov4689->xvclk = devm_clk_get_optional(dev, NULL);
->> +	if (IS_ERR(ov4689->xvclk))
->> +		return dev_err_probe(dev, PTR_ERR(ov4689->xvclk),
->> +				     "Failed to get external clock\n");
->> +
->> +	if (!ov4689->xvclk) {
->> +		dev_dbg(dev,
->> +			"No clock provided, using clock-frequency property\n");
->> +		device_property_read_u32(dev, "clock-frequency",
->> +					 &ov4689->clock_rate);
->> +	} else {
->> +		ov4689->clock_rate = clk_get_rate(ov4689->xvclk);
->> +	}
->> +
->> +	if (ov4689->clock_rate != OV4689_XVCLK_FREQ) {
->> +		dev_err(dev,
->> +			"External clock rate mismatch: got %d Hz, expected %d Hz\n",
->> +			ov4689->clock_rate, OV4689_XVCLK_FREQ);
->> +		return -EINVAL;
->> +	}
->> +
->> +	ov4689->reset_gpio = devm_gpiod_get_optional(dev, "reset",
->> +						     GPIOD_OUT_LOW);
->> +	if (IS_ERR(ov4689->reset_gpio)) {
->> +		dev_err(dev, "Failed to get reset-gpios\n");
->> +		return PTR_ERR(ov4689->reset_gpio);
->> +	}
->> +
->> +	ov4689->pwdn_gpio = devm_gpiod_get_optional(dev, "pwdn", GPIOD_OUT_LOW);
->> +	if (IS_ERR(ov4689->pwdn_gpio)) {
->> +		dev_err(dev, "Failed to get pwdn-gpios\n");
->> +		return PTR_ERR(ov4689->pwdn_gpio);
->> +	}
->> +
->> +	ret = ov4689_configure_regulators(ov4689);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret,
->> +				     "Failed to get power regulators\n");
->> +
->> +	mutex_init(&ov4689->mutex);
->> +
->> +	sd = &ov4689->subdev;
->> +	v4l2_i2c_subdev_init(sd, client, &ov4689_subdev_ops);
->> +	ret = ov4689_initialize_controls(ov4689);
->> +	if (ret)
->> +		goto err_destroy_mutex;
->> +
->> +	ret = ov4689_power_on(dev);
->> +	if (ret)
->> +		goto err_free_handler;
->> +
->> +	ret = ov4689_check_sensor_id(ov4689, client);
->> +	if (ret)
->> +		goto err_power_off;
->> +
->> +	sd->internal_ops = &ov4689_internal_ops;
->> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
->> +
->> +	ov4689->pad.flags = MEDIA_PAD_FL_SOURCE;
->> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
->> +	ret = media_entity_pads_init(&sd->entity, 1, &ov4689->pad);
->> +	if (ret < 0)
->> +		goto err_power_off;
->> +
->> +	ret = v4l2_async_register_subdev_sensor(sd);
->> +	if (ret) {
->> +		dev_err(dev, "v4l2 async register subdev failed\n");
->> +		goto err_clean_entity;
->> +	}
->> +
->> +	pm_runtime_set_active(dev);
->> +	pm_runtime_enable(dev);
->> +	pm_runtime_idle(dev);
->> +
->> +	return 0;
->> +
->> +err_clean_entity:
->> +	media_entity_cleanup(&sd->entity);
->> +err_power_off:
->> +	ov4689_power_off(dev);
->> +err_free_handler:
->> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
->> +err_destroy_mutex:
->> +	mutex_destroy(&ov4689->mutex);
->> +
->> +	return ret;
->> +}
->> +
->> +static void ov4689_remove(struct i2c_client *client)
->> +{
->> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
->> +	struct ov4689 *ov4689 = to_ov4689(sd);
->> +
->> +	v4l2_async_unregister_subdev(sd);
->> +	media_entity_cleanup(&sd->entity);
->> +
->> +	v4l2_ctrl_handler_free(&ov4689->ctrl_handler);
->> +	mutex_destroy(&ov4689->mutex);
->> +
->> +	pm_runtime_disable(&client->dev);
->> +	if (!pm_runtime_status_suspended(&client->dev))
->> +		ov4689_power_off(&client->dev);
->> +	pm_runtime_set_suspended(&client->dev);
->> +}
->> +
->> +static const struct of_device_id ov4689_of_match[] = {
->> +	{ .compatible = "ovti,ov4689" },
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(of, ov4689_of_match);
->> +
->> +static struct i2c_driver ov4689_i2c_driver = {
->> +	.driver = {
->> +		.name = "ov4689",
->> +		.pm = &ov4689_pm_ops,
->> +		.of_match_table = ov4689_of_match,
->> +	},
->> +	.probe_new = ov4689_probe,
->> +	.remove	= ov4689_remove,
->> +};
->> +
->> +module_i2c_driver(ov4689_i2c_driver);
->> +
->> +MODULE_DESCRIPTION("OmniVision ov4689 sensor driver");
->> +MODULE_LICENSE("GPL");
->> --
->> 2.38.1
->>
-
-
---
-Best regards,
-Mikhail Rudenko
+SGksDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtyenlzenRvZiBLb3ps
+b3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gU2VudDogV2VkbmVzZGF5
+LCBPY3RvYmVyIDE5LCAyMDIyIDg6MzQgUE0NCj4gVG86IEhhdmFsaWdlLCBUaGlwcGVzd2FteSA8
+dGhpcHBlc3dhbXkuaGF2YWxpZ2VAYW1kLmNvbT47IGxpbnV4LQ0KPiBwY2lAdmdlci5rZXJuZWwu
+b3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2Vy
+bmVsLm9yZzsga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnDQo+IENjOiBiaGVsZ2Fh
+c0Bnb29nbGUuY29tOyBtaWNoYWxzQHhpbGlueC5jb207IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4g
+R29nYWRhLCBCaGFyYXQgS3VtYXIgPGJoYXJhdC5rdW1hci5nb2dhZGFAYW1kLmNvbT4NCj4gU3Vi
+amVjdDogUmU6IFtQQVRDSCAxLzJdIGR0LWJpbmRpbmdzOiBQQ0k6IHhpbGlueC1wY2llOiBDb252
+ZXJ0IHRvIFlBTUwNCj4gc2NoZW1hcyBvZiBYaWxpbnggQVhJIFBDSWUgUm9vdCBQb3J0IEJyaWRn
+ZQ0KPiANCj4gT24gMTkvMTAvMjAyMiAxMDo0NiwgVGhpcHBlc3dhbXkgSGF2YWxpZ2Ugd3JvdGU6
+DQo+ID4gQ29udmVydCB0byBZQU1MIGR0c2NoZW1hcyBvZiBYaWxpbnggQVhJIFBDSWUgUm9vdCBQ
+b3J0IEJyaWRnZSBkdA0KPiA+IGJpbmRpbmcuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBUaGlw
+cGVzd2FteSBIYXZhbGlnZSA8dGhpcHBlc3dhbXkuaGF2YWxpZ2VAYW1kLmNvbT4NCj4gPiAtLS0N
+Cj4gPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL3hpbGlueC1wY2llLnR4dCAgIHwgODgg
+LS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kveGls
+aW54LXBjaWUueWFtbCAgfCA4MSArKysrKysrKysrKysrKysrKw0KPiA+ICAyIGZpbGVzIGNoYW5n
+ZWQsIDgxIGluc2VydGlvbnMoKyksIDg4IGRlbGV0aW9ucygtKSAgZGVsZXRlIG1vZGUNCj4gPiAx
+MDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS94aWxpbngtcGNpZS50
+eHQNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL3BjaS94aWxpbngtcGNpZS55YW1sDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS94aWxpbngtcGNpZS50eHQNCj4gPiBi
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kveGlsaW54LXBjaWUudHh0DQo+
+ID4gZGVsZXRlZCBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggZmQ1N2E4MTE4MGE0Li4wMDAw
+MDAwMDAwMDANCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNp
+L3hpbGlueC1wY2llLnR4dA0KPiA+ICsrKyAvZGV2L251bGwNCj4gPiBAQCAtMSw4OCArMCwwIEBA
+DQo+ID4gLSogWGlsaW54IEFYSSBQQ0llIFJvb3QgUG9ydCBCcmlkZ2UgRFQgZGVzY3JpcHRpb24N
+Cj4gPiAtDQo+ID4gLVJlcXVpcmVkIHByb3BlcnRpZXM6DQo+ID4gLS0gI2FkZHJlc3MtY2VsbHM6
+IEFkZHJlc3MgcmVwcmVzZW50YXRpb24gZm9yIHJvb3QgcG9ydHMsIHNldCB0byA8Mz4NCj4gPiAt
+LSAjc2l6ZS1jZWxsczogU2l6ZSByZXByZXNlbnRhdGlvbiBmb3Igcm9vdCBwb3J0cywgc2V0IHRv
+IDwyPg0KPiA+IC0tICNpbnRlcnJ1cHQtY2VsbHM6IHNwZWNpZmllcyB0aGUgbnVtYmVyIG9mIGNl
+bGxzIG5lZWRlZCB0byBlbmNvZGUgYW4NCj4gPiAtCWludGVycnVwdCBzb3VyY2UuIFRoZSB2YWx1
+ZSBtdXN0IGJlIDEuDQo+ID4gLS0gY29tcGF0aWJsZTogU2hvdWxkIGNvbnRhaW4gInhsbngsYXhp
+LXBjaWUtaG9zdC0xLjAwLmEiDQo+ID4gLS0gcmVnOiBTaG91bGQgY29udGFpbiBBWEkgUENJZSBy
+ZWdpc3RlcnMgbG9jYXRpb24gYW5kIGxlbmd0aA0KPiA+IC0tIGRldmljZV90eXBlOiBtdXN0IGJl
+ICJwY2kiDQo+ID4gLS0gaW50ZXJydXB0czogU2hvdWxkIGNvbnRhaW4gQVhJIFBDSWUgaW50ZXJy
+dXB0DQo+ID4gLS0gaW50ZXJydXB0LW1hcC1tYXNrLA0KPiA+IC0gIGludGVycnVwdC1tYXA6IHN0
+YW5kYXJkIFBDSSBwcm9wZXJ0aWVzIHRvIGRlZmluZSB0aGUgbWFwcGluZyBvZiB0aGUNCj4gPiAt
+CVBDSSBpbnRlcmZhY2UgdG8gaW50ZXJydXB0IG51bWJlcnMuDQo+ID4gLS0gcmFuZ2VzOiByYW5n
+ZXMgZm9yIHRoZSBQQ0kgbWVtb3J5IHJlZ2lvbnMgKEkvTyBzcGFjZSByZWdpb24gaXMgbm90DQo+
+ID4gLQlzdXBwb3J0ZWQgYnkgaGFyZHdhcmUpDQo+ID4gLQlQbGVhc2UgcmVmZXIgdG8gdGhlIHN0
+YW5kYXJkIFBDSSBidXMgYmluZGluZyBkb2N1bWVudCBmb3IgYSBtb3JlDQo+ID4gLQlkZXRhaWxl
+ZCBleHBsYW5hdGlvbg0KPiA+IC0NCj4gPiAtT3B0aW9uYWwgcHJvcGVydGllcyBmb3IgWnlucS9N
+aWNyb2JsYXplOg0KPiA+IC0tIGJ1cy1yYW5nZTogUENJIGJ1cyBudW1iZXJzIGNvdmVyZWQNCj4g
+PiAtDQo+ID4gLUludGVycnVwdCBjb250cm9sbGVyIGNoaWxkIG5vZGUNCj4gPiAtKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKw0KPiA+IC1SZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+IC0t
+IGludGVycnVwdC1jb250cm9sbGVyOiBpZGVudGlmaWVzIHRoZSBub2RlIGFzIGFuIGludGVycnVw
+dA0KPiA+IGNvbnRyb2xsZXINCj4gPiAtLSAjYWRkcmVzcy1jZWxsczogc3BlY2lmaWVzIHRoZSBu
+dW1iZXIgb2YgY2VsbHMgbmVlZGVkIHRvIGVuY29kZSBhbg0KPiA+IC0JYWRkcmVzcy4gVGhlIHZh
+bHVlIG11c3QgYmUgMC4NCj4gPiAtLSAjaW50ZXJydXB0LWNlbGxzOiBzcGVjaWZpZXMgdGhlIG51
+bWJlciBvZiBjZWxscyBuZWVkZWQgdG8gZW5jb2RlIGFuDQo+ID4gLQlpbnRlcnJ1cHQgc291cmNl
+LiBUaGUgdmFsdWUgbXVzdCBiZSAxLg0KPiA+IC0NCj4gPiAtTk9URToNCj4gPiAtVGhlIGNvcmUg
+cHJvdmlkZXMgYSBzaW5nbGUgaW50ZXJydXB0IGZvciBib3RoIElOVHgvTVNJIG1lc3NhZ2VzLiBT
+bywNCj4gPiAtY3JlYXRlZCBhIGludGVycnVwdCBjb250cm9sbGVyIG5vZGUgdG8gc3VwcG9ydCAn
+aW50ZXJydXB0LW1hcCcgRFQNCj4gPiAtZnVuY3Rpb25hbGl0eS4gIFRoZSBkcml2ZXIgd2lsbCBj
+cmVhdGUgYW4gSVJRIGRvbWFpbiBmb3IgdGhpcyBtYXAsDQo+ID4gZGVjb2RlIC10aGUgZm91ciBJ
+TlR4IGludGVycnVwdHMgaW4gSVNSIGFuZCByb3V0ZSB0aGVtIHRvIHRoaXMgZG9tYWluLg0KPiA+
+IC0NCj4gPiAtDQo+ID4gLUV4YW1wbGU6DQo+ID4gLSsrKysrKysrDQo+ID4gLVp5bnE6DQo+ID4g
+LQlwY2lfZXhwcmVzczogYXhpLXBjaWVANTAwMDAwMDAgew0KPiA+IC0JCSNhZGRyZXNzLWNlbGxz
+ID0gPDM+Ow0KPiA+IC0JCSNzaXplLWNlbGxzID0gPDI+Ow0KPiA+IC0JCSNpbnRlcnJ1cHQtY2Vs
+bHMgPSA8MT47DQo+ID4gLQkJY29tcGF0aWJsZSA9ICJ4bG54LGF4aS1wY2llLWhvc3QtMS4wMC5h
+IjsNCj4gPiAtCQlyZWcgPSA8IDB4NTAwMDAwMDAgMHgxMDAwMDAwID47DQo+ID4gLQkJZGV2aWNl
+X3R5cGUgPSAicGNpIjsNCj4gPiAtCQlpbnRlcnJ1cHRzID0gPCAwIDUyIDQgPjsNCj4gPiAtCQlp
+bnRlcnJ1cHQtbWFwLW1hc2sgPSA8MCAwIDAgNz47DQo+ID4gLQkJaW50ZXJydXB0LW1hcCA9IDww
+IDAgMCAxICZwY2llX2ludGMgMT4sDQo+ID4gLQkJCQk8MCAwIDAgMiAmcGNpZV9pbnRjIDI+LA0K
+PiA+IC0JCQkJPDAgMCAwIDMgJnBjaWVfaW50YyAzPiwNCj4gPiAtCQkJCTwwIDAgMCA0ICZwY2ll
+X2ludGMgND47DQo+ID4gLQkJcmFuZ2VzID0gPCAweDAyMDAwMDAwIDAgMHg2MDAwMDAwMCAweDYw
+MDAwMDAwIDANCj4gMHgxMDAwMDAwMCA+Ow0KPiA+IC0NCj4gPiAtCQlwY2llX2ludGM6IGludGVy
+cnVwdC1jb250cm9sbGVyIHsNCj4gPiAtCQkJaW50ZXJydXB0LWNvbnRyb2xsZXI7DQo+ID4gLQkJ
+CSNhZGRyZXNzLWNlbGxzID0gPDA+Ow0KPiA+IC0JCQkjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0K
+PiA+IC0JCX07DQo+ID4gLQl9Ow0KPiA+IC0NCj4gPiAtDQo+ID4gLU1pY3JvYmxhemU6DQo+ID4g
+LQlwY2lfZXhwcmVzczogYXhpLXBjaWVAMTAwMDAwMDAgew0KPiA+IC0JCSNhZGRyZXNzLWNlbGxz
+ID0gPDM+Ow0KPiA+IC0JCSNzaXplLWNlbGxzID0gPDI+Ow0KPiA+IC0JCSNpbnRlcnJ1cHQtY2Vs
+bHMgPSA8MT47DQo+ID4gLQkJY29tcGF0aWJsZSA9ICJ4bG54LGF4aS1wY2llLWhvc3QtMS4wMC5h
+IjsNCj4gPiAtCQlyZWcgPSA8MHgxMDAwMDAwMCAweDQwMDAwMDA+Ow0KPiA+IC0JCWRldmljZV90
+eXBlID0gInBjaSI7DQo+ID4gLQkJaW50ZXJydXB0LXBhcmVudCA9IDwmbWljcm9ibGF6ZV8wX2lu
+dGM+Ow0KPiA+IC0JCWludGVycnVwdHMgPSA8MSAyPjsNCj4gPiAtCQlpbnRlcnJ1cHQtbWFwLW1h
+c2sgPSA8MCAwIDAgNz47DQo+ID4gLQkJaW50ZXJydXB0LW1hcCA9IDwwIDAgMCAxICZwY2llX2lu
+dGMgMT4sDQo+ID4gLQkJCQk8MCAwIDAgMiAmcGNpZV9pbnRjIDI+LA0KPiA+IC0JCQkJPDAgMCAw
+IDMgJnBjaWVfaW50YyAzPiwNCj4gPiAtCQkJCTwwIDAgMCA0ICZwY2llX2ludGMgND47DQo+ID4g
+LQkJcmFuZ2VzID0gPDB4MDIwMDAwMDAgMHgwMDAwMDAwMCAweDgwMDAwMDAwIDB4ODAwMDAwMDAN
+Cj4gMHgwMDAwMDAwMCAweDEwMDAwMDAwPjsNCj4gPiAtDQo+ID4gLQkJcGNpZV9pbnRjOiBpbnRl
+cnJ1cHQtY29udHJvbGxlciB7DQo+ID4gLQkJCWludGVycnVwdC1jb250cm9sbGVyOw0KPiA+IC0J
+CQkjYWRkcmVzcy1jZWxscyA9IDwwPjsNCj4gPiAtCQkJI2ludGVycnVwdC1jZWxscyA9IDwxPjsN
+Cj4gPiAtCQl9Ow0KPiA+IC0NCj4gPiAtCX07DQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kveGlsaW54LXBjaWUueWFtbA0KPiA+IGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS94aWxpbngtcGNpZS55YW1sDQo+ID4gbmV3
+IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjZiMzcyYWMxNzYzZQ0K
+PiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvcGNpL3hpbGlueC1wY2llLnlhbWwNCj4gPiBAQCAtMCwwICsxLDgxIEBADQo+ID4gKyMg
+U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKSAl
+WUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVt
+YXMvcGNpL3hpbGlueC1wY2llLnlhbWwjDQo+IA0KPiBGaWxlbmFtZSBiYXNlZCBvbiBjb21wYXRp
+YmxlLCBzbzoNCj4geGxueCxheGktcGNpZS1ob3N0LnlhbWwNCj4gDQo+ID4gKyRzY2hlbWE6IGh0
+dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsNCj4gPiAr
+dGl0bGU6IFhpbGlueCBBWEkgUENJZSBSb290IFBvcnQgQnJpZGdlIERUIGRlc2NyaXB0aW9uDQo+
+IA0KPiBEcm9wICJEVCBkZXNjcmlwdGlvbiINCj4gDQo+ID4gKw0KPiA+ICttYWludGFpbmVyczoN
+Cj4gPiArICAtIFRoaXBwZXN3YW15IEhhdmFsaWdlIDx0aGlwcGVzd0B4aWxpbnguY29tPg0KPiA+
+ICsNCj4gPiArYWxsT2Y6DQo+ID4gKyAgLSAkcmVmOiAvc2NoZW1hcy9wY2kvcGNpLWJ1cy55YW1s
+Iw0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsgICAg
+Y29uc3Q6IHhsbngsYXhpLXBjaWUtaG9zdC0xLjAwLmENCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+
+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IHNob3VsZCBjb250YWluIEFY
+SSBQQ0llIHJlZ2lzdGVycyBsb2NhdGlvbiBhbmQNCj4gPiArIGxlbmd0aA0KPiANCj4gRHJvcCBk
+ZXNjcmlwdGlvbiwganVzdCBtYXhJdGVtczogMQ0KPiANCj4gPiArDQo+ID4gKyAgaW50ZXJydXB0
+czoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBzaG91bGQgY29u
+dGFpbiBBWEkgUENJZSBpbnRlcnJ1cHQNCj4gDQo+IERpdHRvDQo+IA0KPiANCj4gPiArDQo+ID4g
+KyAgcmFuZ2VzOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IHwN
+Cj4gPiArICAgICAgICAgIHJhbmdlcyBmb3IgdGhlIFBDSSBtZW1vcnkgcmVnaW9ucyAoSS9PIHNw
+YWNlIHJlZ2lvbiBpcyBub3QNCj4gPiArICAgICAgICAgIHN1cHBvcnRlZCBieSBoYXJkd2FyZSkN
+Cj4gPiArDQo+ID4gKyAgIiNpbnRlcnJ1cHQtY2VsbHMiOg0KPiA+ICsgICAgY29uc3Q6IDENCj4g
+PiArDQo+ID4gKyAgaW50ZXJydXB0LWNvbnRyb2xsZXI6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjog
+aWRlbnRpZmllcyB0aGUgbm9kZSBhcyBhbiBpbnRlcnJ1cHQgY29udHJvbGxlcg0KPiA+ICsgICAg
+dHlwZTogb2JqZWN0DQo+IA0KPiAgICAgYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+IA0K
+PiA+ICsgICAgcHJvcGVydGllczoNCj4gPiArICAgICAgImludGVycnVwdC1jb250cm9sbGVyIjog
+dHJ1ZQ0KPiA+ICsgICAgICAiI2FkZHJlc3MtY2VsbHMiOg0KPiA+ICsgICAgICAgIGNvbnN0OiAw
+DQo+ID4gKyAgICAgICIjaW50ZXJydXB0LWNlbGxzIjoNCj4gPiArICAgICAgICBjb25zdDogMQ0K
+PiANCj4gQWRkIGFsc28gcmVxdWlyZWQgcHJvcGVydGllcyBmb3IgdGhpcyBub2RlLg0KPiANCj4g
+PiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+ICsgIC0gcmVnDQo+
+ID4gKyAgLSBpbnRlcnJ1cHRzDQo+ID4gKyAgLSByYW5nZXMNCj4gPiArICAtIGRldmljZV90eXBl
+DQo+ID4gKyAgLSBpbnRlcnJ1cHQtbWFwDQo+ID4gKyAgLSAiI2ludGVycnVwdC1jZWxscyINCj4g
+PiArICAtIGludGVycnVwdC1jb250cm9sbGVyDQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3Bl
+cnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArDQo+
+ID4gKyAgICBaeW5xOg0KPiA+ICsgICAgICAgIHBjaV9leHByZXNzOiBwY2llQDUwMDAwMDAwIHsN
+Cj4gPiArICAgICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+IA0KPiBVc2UgNCBz
+cGFjZXMgZm9yIGV4YW1wbGUgaW5kZW50YXRpb24uDQo+IA0KPiA+ICsgICAgICAgICAgICAgICAj
+c2l6ZS1jZWxscyA9IDwyPjsNCj4gPiArICAgICAgICAgICAgICAgI2ludGVycnVwdC1jZWxscyA9
+IDwxPjsNCj4gPiArICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJ4bG54LGF4aS1wY2llLWhv
+c3QtMS4wMC5hIjsNCj4gPiArICAgICAgICAgICAgICAgcmVnID0gPCAweDUwMDAwMDAwIDB4MTAw
+MDAwMCA+Ow0KPiANCj4gRml4IHN0eWxlLg0KPiANCj4gY29tcGF0aWJsZSBnb2VzIGZpcnN0LCB0
+aGVuIHJlZywgdGhlbiB0aGUgcmVzdC4NCj4gDQo+ID4gKyAgICAgICAgICAgICAgIGRldmljZV90
+eXBlID0gInBjaSI7DQo+ID4gKyAgICAgICAgICAgICAgIGludGVycnVwdHMgPSA8IDAgNTIgNCA+
+Ow0KPiANCj4gRml4IHRoZSBzdHlsZSwgdXNlIGRlZmluZXMuDQo+IA0KPiA+ICsgICAgICAgICAg
+ICAgICBpbnRlcnJ1cHQtbWFwLW1hc2sgPSA8MCAwIDAgNz47DQo+ID4gKyAgICAgICAgICAgICAg
+IGludGVycnVwdC1tYXAgPSA8MCAwIDAgMSAmcGNpZV9pbnRjIDE+LA0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgPDAgMCAwIDIgJnBjaWVfaW50YyAyPiwNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIDwwIDAgMCAzICZwY2llX2ludGMgMz4sDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8MCAwIDAgNCAmcGNpZV9pbnRjIDQ+Ow0KPiA+
+ICsgICAgICAgICAgICAgICAgcmFuZ2VzID0gPCAweDAyMDAwMDAwIDAgMHg2MDAwMDAwMCAweDYw
+MDAwMDAwIDANCj4gPiArIDB4MTAwMDAwMDAgPjsNCj4gDQo+IE9yaWdpbmFsIGV4YW1wbGUgbG9v
+a2VkIGNvcnJlY3QsIHNvIGhvdyBkaWQgaXQgYmVjb21lIHdpdGggdGhlc2Ugc3BhY2VzPw0KPiAN
+Cj4gPiArICAgICAgICAgICAgICAgIHBjaWVfaW50YzogaW50ZXJydXB0LWNvbnRyb2xsZXIgew0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgaW50ZXJydXB0LWNvbnRyb2xsZXI7DQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwwPjsNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAg
+ICAgICAgICAgICB9Ow0KPiA+ICsgICAgfTsNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6
+dG9mDQoNClRoYW5rcyBmb3IgcmV2aWV3aW5nLCBJIGFncmVlIHdpdGggYWxsIHRoZSByZWNvbW1l
+bmRlZCBjaGFuZ2VzLiAgSSdsbCBzZW5kIHVwZGF0ZWQgcGF0Y2hlcy4NCg0KUmVnYXJkcywNClRo
+aXBwZXN3YW15IEggDQo=
