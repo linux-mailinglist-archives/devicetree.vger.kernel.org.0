@@ -2,154 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C72D60C80D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 11:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26F8B60C88B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 11:40:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbiJYJ3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 05:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60592 "EHLO
+        id S231224AbiJYJko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 05:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229936AbiJYJ2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 05:28:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B696810553
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 02:25:35 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1onGBY-0000jR-F6; Tue, 25 Oct 2022 11:25:24 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 72D3B10944C;
-        Tue, 25 Oct 2022 09:25:22 +0000 (UTC)
-Date:   Tue, 25 Oct 2022 11:25:20 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20221025092520.lz7qkafrwolwnbau@pengutronix.de>
-References: <20221012062558.732930-1-matej.vasilevski@seznam.cz>
- <20221012062558.732930-3-matej.vasilevski@seznam.cz>
+        with ESMTP id S231894AbiJYJkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 05:40:17 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6853015DB38;
+        Tue, 25 Oct 2022 02:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666690712; x=1698226712;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=L0u7IH4H7p5aHjMzlVqiIOdoNle0VoIxzK5Llxq/Tpw=;
+  b=H969q8C6rgDLrEr04y1akKB1zriNoAACSNYX1yv2cUXNfQGLAOKz9qxA
+   1UufuK7WB32PG8VbzEibWRlZrRwGmuQslHLuiXph4vv4LKNN+56F8ReDR
+   HEYxV/hgwuAl7c0u4qIsTYK+jFgc2+BnwokpgkYaFfEkL9fq7rlGDCB9/
+   Yv7VpNfHUQHaukpMI0n2pPzt8Br1YgBxDVxcnBfUGVynUE0NPMwC1chkj
+   ZFZ5CKWjDey7WoB+VexwJl88c23YZb+1SJCcOnjFSEhZt5WZy/NXKcIZt
+   6W9S8fnzm3RuG7UtyCcus93wEq5/IceXvrckoMrXqyyFRlu0r1eqj+uVM
+   g==;
+X-IronPort-AV: E=Sophos;i="5.95,211,1661810400"; 
+   d="scan'208";a="26955978"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 25 Oct 2022 11:38:30 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 25 Oct 2022 11:38:30 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 25 Oct 2022 11:38:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666690710; x=1698226710;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=L0u7IH4H7p5aHjMzlVqiIOdoNle0VoIxzK5Llxq/Tpw=;
+  b=OxRj9mLVvZGxpkpR4t7hFtUDOQURY5wc2kIuvhEfktccAJi2unBDs5iC
+   nfUhL2UudszmCTBgQmHCaOkMApIVneGZX5vWf/GLW0ZbT9DLhtJf6EDS2
+   qtHmlxQJM2Bv+fvWPU/ZH1lXjydNMtDAAnO6yDGybt7OX4DkcgFpwHT+c
+   TqZmt6nL3BZ2EobahjZTTECA/VJREGYQvlMyh7evJxrTVFVeeZW7VGs82
+   vbXDJLsoCUFYLxwqWXVRNe9VcpgcQJjOiAUOzesAg8MbkxzhWCEXOwxcY
+   8djDwAvCQytX2y3RIbCLwG/tjhkEnOu4jw9Mc57/O/ulRZofAYPEitVvO
+   A==;
+X-IronPort-AV: E=Sophos;i="5.95,211,1661810400"; 
+   d="scan'208";a="26955977"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 25 Oct 2022 11:38:30 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 402A1280056;
+        Tue, 25 Oct 2022 11:38:30 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Andrej Picej <andrej.picej@norik.com>
+Cc:     linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
+Date:   Tue, 25 Oct 2022 11:38:26 +0200
+Message-ID: <13126397.uLZWGnKmhe@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20221025072533.2980154-2-andrej.picej@norik.com>
+References: <20221025072533.2980154-1-andrej.picej@norik.com> <20221025072533.2980154-2-andrej.picej@norik.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2pqevftidrz3jehg"
-Content-Disposition: inline
-In-Reply-To: <20221012062558.732930-3-matej.vasilevski@seznam.cz>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---2pqevftidrz3jehg
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 12.10.2022 08:25:56, Matej Vasilevski wrote:
-> This patch adds support for retrieving hardware timestamps to RX and
-> error CAN frames. It uses timecounter and cyclecounter structures,
-> because the timestamping counter width depends on the IP core integration
-> (it might not always be 64-bit).
-> For platform devices, you should specify "ts" clock in device tree.
-> For PCI devices, the timestamping frequency is assumed to be the same
-> as bus frequency.
->=20
-> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
-
-[...]
-
->  int ctucan_suspend(struct device *dev)
-> @@ -1337,12 +1456,41 @@ int ctucan_resume(struct device *dev)
->  }
->  EXPORT_SYMBOL(ctucan_resume);
-> =20
-> +int ctucan_runtime_suspend(struct device *dev)
-> +{
-> +	struct net_device *ndev =3D dev_get_drvdata(dev);
-> +	struct ctucan_priv *priv =3D netdev_priv(ndev);
+Am Dienstag, 25. Oktober 2022, 09:25:31 CEST schrieb Andrej Picej:
+> Putting device into the "Suspend-To-Idle" mode causes watchdog to
+> trigger and reset the board after set watchdog timeout period elapses.
+> 
+> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
+> watchdog in WAIT mode. This is done by setting WDW bit in WCR
+> (Watchdog Control Register) Watchdog operation is restored after exiting
+> WAIT mode as expected. WAIT mode coresponds with Linux's
+> "Suspend-To-Idle".
+> 
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> ---
+> Changes in v2:
+>  - validate the property with compatible string, as this functionality
+>    is not supported by all devices.
+> ---
+>  drivers/watchdog/imx2_wdt.c | 37 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+> 
+> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
+> index d0c5d47ddede..dd9866c6f1e5 100644
+> --- a/drivers/watchdog/imx2_wdt.c
+> +++ b/drivers/watchdog/imx2_wdt.c
+> @@ -35,6 +35,7 @@
+> 
+>  #define IMX2_WDT_WCR		0x00		/* Control 
+Register */
+>  #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* -> 
+Watchdog Timeout Field */
+> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable 
+for WAIT */
+>  #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset 
+WDOG_B */
+>  #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset 
+Signal */
+>  #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable 
+*/
+> @@ -67,6 +68,27 @@ struct imx2_wdt_device {
+>  	bool ext_reset;
+>  	bool clk_is_on;
+>  	bool no_ping;
+> +	bool sleep_wait;
+> +};
 > +
-> +	clk_disable_unprepare(priv->timestamp_clk);
+> +static const char * const wdw_boards[] __initconst = {
+> +	"fsl,imx25-wdt",
+> +	"fsl,imx35-wdt",
+> +	"fsl,imx50-wdt",
+> +	"fsl,imx51-wdt",
+> +	"fsl,imx53-wdt",
+> +	"fsl,imx6q-wdt",
+> +	"fsl,imx6sl-wdt",
+> +	"fsl,imx6sll-wdt",
+> +	"fsl,imx6sx-wdt",
+> +	"fsl,imx6ul-wdt",
+> +	"fsl,imx7d-wdt",
+> +	"fsl,imx8mm-wdt",
+> +	"fsl,imx8mn-wdt",
+> +	"fsl,imx8mp-wdt",
+> +	"fsl,imx8mq-wdt",
+> +	"fsl,vf610-wdt",
+> +	NULL
+>  };
+
+So the models listed in Documentation/devicetree/bindings/watchdog/fsl-imx-
+wdt.yaml not supporting this feature are
+* fsl,imx21-wdt
+* fsl,imx27-wdt
+* fsl,imx31-wdt
+* fsl,ls1012a-wdt
+* fsl,ls1043a-wdt
+?
+
+But all models are listed as compatible to fsl,imx21-wdt. So there is 
+something wrong here. IMHO this sounds like the compatible list has to be 
+split and updated. Depending on that this feature can be detected. Maintaining 
+another list seems error prone to me.
+
+Best regards,
+Alexander
+
+>  static bool nowayout = WATCHDOG_NOWAYOUT;
+> @@ -129,6 +151,9 @@ static inline void imx2_wdt_setup(struct watchdog_device
+> *wdog)
+> 
+>  	/* Suspend timer in low power mode, write once-only */
+>  	val |= IMX2_WDT_WCR_WDZST;
+> +	/* Suspend timer in low power WAIT mode, write once-only */
+> +	if (wdev->sleep_wait)
+> +		val |= IMX2_WDT_WCR_WDW;
+>  	/* Strip the old watchdog Time-Out value */
+>  	val &= ~IMX2_WDT_WCR_WT;
+>  	/* Generate internal chip-level reset if WDOG times out */
+> @@ -313,6 +338,18 @@ static int __init imx2_wdt_probe(struct platform_device
+> *pdev)
+> 
+>  	wdev->ext_reset = of_property_read_bool(dev->of_node,
+>  						"fsl,ext-
+reset-output");
 > +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(ctucan_runtime_suspend);
+> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait"))
+> +		if (of_device_compatible_match(dev->of_node, 
+wdw_boards))
+> +			wdev->sleep_wait = 1;
+> +		else {
+> +			dev_warn(dev, "Warning: Suspending watchdog 
+during " \
+> +				"WAIT mode is not supported for 
+this device.\n");
+> +			wdev->sleep_wait = 0;
+> +		}
+> +	else
+> +		wdev->sleep_wait = 0;
 > +
-> +int ctucan_runtime_resume(struct device *dev)
-> +{
-> +	struct net_device *ndev =3D dev_get_drvdata(dev);
-> +	struct ctucan_priv *priv =3D netdev_priv(ndev);
-> +	int ret;
-> +
-> +	ret =3D clk_prepare_enable(priv->timestamp_clk);
-> +	if (ret) {
-> +		dev_err(dev, "Cannot enable timestamping clock: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(ctucan_runtime_resume);
+>  	/*
+>  	 * The i.MX7D doesn't support low power mode, so we need to ping 
+the
+> watchdog * during suspend.
 
-Regarding the timestamp_clk handling:
 
-If you prepare_enable the timestamp_clk during probe_common() and don't
-disable_unprepare it, it stays on the whole lifetime of the driver. So
-there's no need/reason for the runtime suspend/resume functions.
 
-So either keep the clock powered and remove the suspend/resume functions
-or shut down the clock after probe.
 
-If you want to make things 1000% clean, you can get the timestamp's
-clock rate during open() and re-calculate the mult and shift. The
-background is that the clock rate might change if the clock is not
-enabled (at least that's not guaranteed by the common clock framework).
-Actual HW implementations might differ.
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---2pqevftidrz3jehg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmNXq34ACgkQrX5LkNig
-0137awgAl+o5l9VnGtWijsorYQSdAlZHIMgEBzaCdGHe45E7q/nvYSgyliBc7J6a
-58GYkPDD0D7WH82InFuLecm//MqLImiXZZqoo9RaqsLMTjV12xV//vNPZIQoA0+I
-FSLP9Gg/TZUN1ORPert99XZ+9u8ZcFHHQCGor9zSEf9GGc+iurMmG7eBNzX9KS9r
-6TPJkifeuG0f+Sh7G8WVDxUjQ/I1j5xZ2Z0fat1yn9aTZVIVUpkeyNkKBKpf++hS
-dc4xJGc85UeOLystjoaZTqENchO2zfVzK4YxEwVms93OcBtj4+OiQ5lNkYYnxVqn
-gblQRt1atIAWuwlgNo7woeu6C38HSA==
-=A8pO
------END PGP SIGNATURE-----
-
---2pqevftidrz3jehg--
