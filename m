@@ -2,100 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 529EC60C4AE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8484960C463
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 08:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231486AbiJYHDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 03:03:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59350 "EHLO
+        id S231440AbiJYG5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 02:57:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231464AbiJYHDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:03:47 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3650FB56C8;
-        Tue, 25 Oct 2022 00:03:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666681426; x=1698217426;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IdGt3/sVdQCrkszY6V9UyvuqPthfUwGWvmfdyyXo7/w=;
-  b=h7cq5Lmiaor1uh87PYbicyG2gOym1MNG0UME2FspV0/+aeU6FUe+eiYl
-   GcI9nPfZNrAQc6Z7rex9aR/WcD/WsWAggrE8e/KiCMyfYjzLC/xhQ4Z0h
-   LT6n6oROc8lCR0zGJTJUjmtlB8QJneUuTQ8jqQQUEonqq2wSAG0hrbUEr
-   ns7W7o8qHwxx5voAvgXgXmtJ/5SqwPkITqgPCMP6sEq5xVoUGU2XnjsBf
-   /K/UD6MdbZaPtSbREob4mSBwDSJ4B/Kceyb8NqWV7JyI3fG8Onlq1Ecgd
-   diguoO9oC6/xJAbMfks88zN0bVXYTANbT1t2aKQHaST3pVznXeumD7wJb
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="288002177"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; 
-   d="scan'208";a="288002177"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2022 00:03:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10510"; a="626328772"
-X-IronPort-AV: E=Sophos;i="5.95,211,1661842800"; 
-   d="scan'208";a="626328772"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orsmga007.jf.intel.com with ESMTP; 25 Oct 2022 00:03:42 -0700
-Date:   Tue, 25 Oct 2022 14:54:38 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, dg@emlix.com,
-        j.zink@pengutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, system@metrotek.ru
-Subject: Re: [PATCH v20 1/2] fpga: lattice-sysconfig-spi: add Lattice
- sysCONFIG FPGA manager
-Message-ID: <Y1eILk6ArO5OVzwW@yilunxu-OptiPlex-7050>
-References: <20221025053947.2737-1-i.bornyakov@metrotek.ru>
- <20221025053947.2737-2-i.bornyakov@metrotek.ru>
+        with ESMTP id S231469AbiJYG52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 02:57:28 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087E162C3;
+        Mon, 24 Oct 2022 23:57:26 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id w3so6979576qtv.9;
+        Mon, 24 Oct 2022 23:57:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3QYintIKLSO/5/dPNaNKqiylY6TQ4PQK7lYP/tlZYSw=;
+        b=IELxruD5ijyoHHjG0ysg8Cru3TMpzNoRDagQq3xYVFiZ15Uzi76LYtl94KVL6QYOtn
+         fiEassSflgAMuZVnAlY6jnpEW6XHNF6Zm2QGqQONsU6o8jj/3A9pCHuDMmcjhSs/0jiy
+         /wjyNX+acELrfIrzrvlYo/Xl/cJjK8w847kq9mHQ7WyOTNvx2SOn5Kuv+Tetg5KAEn3n
+         2I5ihMfpwGDRmmwDZEOnJ4PoWHwpt9hdXJTJ63PXPCOs/nogtkjxeP2Vp6eLdlOOpH75
+         uMiw3rMwTo3p+a7P50i374thEllvRS//8FHpdHkQaPWNv4mveoSNKoCIzki0Yz9LI/hl
+         U0aA==
+X-Gm-Message-State: ACrzQf0oped5oIKvoBV/n072oFJ6u8x8Omz1AJPWPjTByVua4hcfl/YI
+        3QGokIn1P13WTrum/qLX8QLw0m52G8BKZg==
+X-Google-Smtp-Source: AMsMyM7DXI8LKKrba+CS3zADWP6A05C7Zv2sSIPE5eSjgpzaHMKcgzn7pFXO8KVcYzlZF3w2LNZw6Q==
+X-Received: by 2002:ac8:7e96:0:b0:39c:d833:e8c3 with SMTP id w22-20020ac87e96000000b0039cd833e8c3mr30699526qtj.303.1666681044738;
+        Mon, 24 Oct 2022 23:57:24 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id bi24-20020a05620a319800b006eeca296c00sm1548652qkb.104.2022.10.24.23.57.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 23:57:24 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id f205so13544456yba.2;
+        Mon, 24 Oct 2022 23:57:23 -0700 (PDT)
+X-Received: by 2002:a25:26c1:0:b0:6c3:bdae:c6d6 with SMTP id
+ m184-20020a2526c1000000b006c3bdaec6d6mr34190989ybm.36.1666681043700; Mon, 24
+ Oct 2022 23:57:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221025053947.2737-2-i.bornyakov@metrotek.ru>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20221024173434.32518-1-afd@ti.com> <20221024173434.32518-8-afd@ti.com>
+In-Reply-To: <20221024173434.32518-8-afd@ti.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 25 Oct 2022 08:57:12 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWrL1U7qOM+qOCa6-YhdJEe_5bCCDnXp_Fx3_6eDgkkSA@mail.gmail.com>
+Message-ID: <CAMuHMdWrL1U7qOM+qOCa6-YhdJEe_5bCCDnXp_Fx3_6eDgkkSA@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] staging: pi433: overlay: Rename overlay source
+ file from .dts to .dtso
+To:     Andrew Davis <afd@ti.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-10-25 at 08:39:46 +0300, Ivan Bornyakov wrote:
-> Add support to the FPGA manager for programming Lattice ECP5 FPGA over
-> slave SPI sysCONFIG interface.
-> 
-> sysCONFIG interface core functionality is separate from both ECP5 and
-> SPI specifics, so support for other FPGAs with different port types can
-> be added in the future.
-> 
-> Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+On Mon, Oct 24, 2022 at 7:34 PM Andrew Davis <afd@ti.com> wrote:
+> DTB Overlays (.dtbo) can now be built from source files with the
+> extension (.dtso). This makes it clear what is the content of the files
+> and differentiates them from base DTB source files.
+>
+> Rename the pi433-overlay.dts file to pi433-overlay.dtso and update
+> the information file pi433.txt for the same.
+>
+> Signed-off-by: Andrew Davis <afd@ti.com>
 
-[...]
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> +static int sysconfig_spi_bitstream_burst_init(struct sysconfig_priv *priv)
-> +{
-> +	const u8 lsc_bitstream_burst[] = SYSCONFIG_LSC_BITSTREAM_BURST;
-> +	struct spi_device *spi = to_spi_device(priv->dev);
-> +	struct spi_transfer xfer = {};
-> +	struct spi_message msg;
-> +	size_t buf_len;
-> +	void *buf;
-> +	int ret;
-> +
-> +	buf_len = sizeof(lsc_bitstream_burst);
-> +
-> +	buf = kmemdup(lsc_bitstream_burst, buf_len, GFP_KERNEL);
-> +	if (!buf)
-> +		return -ENOMEM;
-> +
-> +
+Gr{oetje,eeting}s,
 
-I removed the second blank line and applied this series to for-next.
+                        Geert
 
-Thanks,
-Yilun
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
