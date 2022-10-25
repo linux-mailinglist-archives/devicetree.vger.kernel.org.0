@@ -2,124 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D4B60D4BB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAF660D4C1
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231742AbiJYTdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 15:33:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
+        id S231829AbiJYTfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 15:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231646AbiJYTdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:33:44 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E85DEF01
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:33:41 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id z30so8862734qkz.13
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:33:41 -0700 (PDT)
+        with ESMTP id S231844AbiJYTfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:35:19 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B12E09CF
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:35:17 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id m6so8897487qkm.4
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:35:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AlQ1cRCD9fKmzJ3+TI4hUp5O0g7efZTefHgpU8Oatwc=;
-        b=e2iE+ZZIuDxbexuvQ3MNI0S0a57hqso6u8T4ICq4sHJumjN2p01uWKF7HEq3yHwJfW
-         /a48UX69qaN8StNxOyG9OAbj+/A/ypTwuzhJ17Zl89heJqDYLq+81a/1u698AKlpfimV
-         MdEEbpauwKZQtc6hc4OC4eyZCFcNOLNj8IoHdSFwHeFNzw3X/wAH4JKTek3/snbr1gt0
-         YmTcc9H3Z+i091+UL9YFv8DXrFra4EdDY0x9ygksuOfoCsxSBvqTmSRfAv61cEdzJFqN
-         D/BcxkxmY64NJsE796MlftoLI8krdo/p/kZ1emheOrt6K8PD5vfpnckHWChm3CiNqXOJ
-         a80w==
+        bh=2bq8bNdyAl5co9FRYH86QFP+zOKhtTWspptpU7rpeE8=;
+        b=c/tvtk3KCyMvg8pBI+5+7wb+wpn7cny5S+BrrgEzKB8h0AyRYzM7tvDTTENYgAAmht
+         9ZLGU7DFL5tQQ+diKV+bqbWTOvOCpu/aYL8ub1/huwmjoj5wbVXtRcWqYBl6VK6vyjoU
+         orDIHQqp0bjuYBCsTw5JFlCUhMZxGwr2PMfDQCivpdwDkQle0gnhmzCQNVFKq1P4aYlh
+         rDUXtI3vYkpo/1/NKsvMSfOgW83Zmj2e9bZRNMnswQhltRgsLpj9U+qx35ChA9B1Ri5k
+         427iyNQK2MWyVuLQWfsXRBuG/I6zcVvvaLe5Ls4G5vkD2y41wvByWpEK5J+glWhR3T+Q
+         J+Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AlQ1cRCD9fKmzJ3+TI4hUp5O0g7efZTefHgpU8Oatwc=;
-        b=GSdjKXZSUhLhXJOQdJa0Wyt4ytWivYXcWcN1XAuu6sntsXCphTFcS/u7lo1Tu4MNuz
-         EwaFAlIac1DaFoqZLpaaj8b6X9pgO1Rcc6ZearL3HhPtUGIX8cvNJvGhFYDUimO9+Nyy
-         9gNt10T5QjV96OP8J+r6AnHm30nmibvAWZMaYuEyonoe7Jr0iwUwHuLb8p1fuqnOUca5
-         XObLXAAwSE1/8aBsEifjOsTeElfNiDSQrcxznEmcsQcc2he4XRE8ktdmiBMXq2St6MyW
-         7RG7O/Jo4/9ge2thWWL5qVYIqPPKIAAt+noCCqahPA0BHHiTpOLfeVlZE1zllUfz01A3
-         dWDA==
-X-Gm-Message-State: ACrzQf1rg0KPrBSr3viDqotna7/4tm47drtbS2EdN40F3iJY/Mq0hIC4
-        UQt/gSLzF/Acqf5eJhRGHQg4pA==
-X-Google-Smtp-Source: AMsMyM73hVc1EX6lix0TOkq2k3vnCuy+Cme12+Qh5B9TkdSfJAb3HbTfFdnbboOdn1GwfPCMbotNJA==
-X-Received: by 2002:a05:620a:2057:b0:6e6:f4d:980b with SMTP id d23-20020a05620a205700b006e60f4d980bmr27862052qka.544.1666726420885;
-        Tue, 25 Oct 2022 12:33:40 -0700 (PDT)
+        bh=2bq8bNdyAl5co9FRYH86QFP+zOKhtTWspptpU7rpeE8=;
+        b=LRk+NyXMaXi//ESu9iBbPJNm3eenBULWyAfpjzBRkz42eLslZzpdqRJU80+1tIvY1T
+         QO0qdPoETwgPR14HN/d2QLGT9SfHlGsyOBuxpQZgWfB0zsI1zZK6jxow2Ivfoy426F5O
+         zeXVC2yX0/XCf7bhmgiTI+f7IDdUEO0zGeF36VQBn8OfGcG8Q7Bwj1s+Ym6mA6hsyrNu
+         BLOS8ZBlQG0EE4TSinFCb7SezRGwR6R/c7weFUQPRA9oD6lHU58nkrx2sBqPJjcgqVVG
+         NtqN/znsWVuWo/jWfJouFR+7dvo5rrz9i2wnCk0Zvazm487vxGXYYT2OaFdHkiJLZRzd
+         aA3w==
+X-Gm-Message-State: ACrzQf0VZcnnKy0+kcJHc1MF0fEgZE5VFGw63CKOjuxBXbD46QnABLnF
+        xTI+xPR1iGG8TzTzBhlRBuH4yw==
+X-Google-Smtp-Source: AMsMyM7fJwOd+SyYyPd28ciUONaMMuTnB6KKRvaZZqShNPCGAXm+hPxBX13eeavvMQbuGAPA4rrDIA==
+X-Received: by 2002:a05:620a:370e:b0:6ee:f54d:d8b with SMTP id de14-20020a05620a370e00b006eef54d0d8bmr19281703qkb.21.1666726516792;
+        Tue, 25 Oct 2022 12:35:16 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id dt27-20020a05620a479b00b006cdd0939ffbsm2556783qkb.86.2022.10.25.12.33.39
+        by smtp.gmail.com with ESMTPSA id 3-20020ac85903000000b00399d5d564b7sm2127131qty.56.2022.10.25.12.35.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 12:33:39 -0700 (PDT)
-Message-ID: <0b6dd763-365d-6f35-59cb-18c599b73d3a@linaro.org>
-Date:   Tue, 25 Oct 2022 15:33:38 -0400
+        Tue, 25 Oct 2022 12:35:16 -0700 (PDT)
+Message-ID: <e7192d9b-df86-a860-d5cb-8b4b9184e5bc@linaro.org>
+Date:   Tue, 25 Oct 2022 15:35:14 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v1 2/5] dt-bindings: soc: hpe: Add hpe,gxp-plreg
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20221011185525.94210-1-nick.hawkins@hpe.com>
- <20221011185525.94210-3-nick.hawkins@hpe.com>
- <CAL_Jsq+xb2Ltfne4mQMXQAde-eHS7TsO73YZ-vhE7nK1Z_M0gw@mail.gmail.com>
- <DM4PR84MB192795B45639710259E9B19D88229@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <820095a2-3722-5c3a-77fb-5a6b6b44e1c3@linaro.org>
- <DM4PR84MB19275A47D7006BD5664E1AF488319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <d51b7f8d-3681-e19d-3ebb-7e021fc50403@linaro.org>
- <DM4PR84MB19275D8DB8B27CE0D1A05AA588319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <7c9e943a-4806-6339-cee1-9156e7792111@linaro.org>
- <DM4PR84MB192759035B110DE54EA9B63688319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings for
+ MT7986 SoC
 Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20221025070255.14407-1-linux@fw-web.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM4PR84MB192759035B110DE54EA9B63688319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <20221025070255.14407-1-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 15:26, Hawkins, Nick wrote:
+On 25/10/2022 03:02, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
->> I don't know exactly what type of devices you represent in that plreg, but in general the fan device would be the respective plreg. The same with other pieces like hwmon, power supply.
-> We were primarily representing the registers that translate to the CPLD input/outputs from our platforms as well as handling the interrupts associated with those inputs/outputs.
-
-So basically each register (or set of registers) is a device? How is it
-different than any other multi-functional device? Why do you want to
-model it differently?
-
-> When you say "would be the respective plreg" do you mean that each device/controller would need to perform the actions plreg does individually? In that case how should we get information for that register/memory region and interrupts from the dts? Could it be something like this:
+> Add new splitted uart pins and emmc_51
 > 
-> plreg: plreg@d1000000 {
->       compatible = "hpe,gxp-plreg";
->       reg = <0xd1000000 0xFF>;
->       interrupts = <26>;
->       interrupt-parent = <&vic0>;
-> };
-> 
-> fanctrl: fanctrl@c1000c00 {
->       compatible = "hpe,gxp-fan-ctrl";
->       reg = <0xc1000c00 0x200>;
->       plreg_handle = <&plreg>;
-> };
-> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-No, rather these are one node.
 
-You insist to represent this all as programmable logic, but why? CPLD,
-FPGA, ASIC, dedicated IC - all are just implementations and for us
-what's matter are the interfaces, inputs and outputs.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
