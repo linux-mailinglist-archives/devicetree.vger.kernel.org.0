@@ -2,96 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE61960CAAC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:13:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4D360CACA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:21:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbiJYLNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 07:13:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
+        id S231844AbiJYLVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 07:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230345AbiJYLNf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:13:35 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C5318194C;
-        Tue, 25 Oct 2022 04:13:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
-         references;
-        bh=BfioPz7Gh4xtsZmNJPRfyWcmTTsR07b3GsCjLfhkMoQ=;
-        b=ZLY9HSgJHv9Kqiwtu85TZyRYCzqmHRnvLXmBIxfq9VS3sEgn/SyN3yPxIlaDtgYrLVn2LBHpW7wmt
-         kRzhHo3q8LFMzm5DzETDq0HtCZ9ZgdfNBEbtHFiB7XCzTjniCc1NsYDWzY4ugKdFD9PCumBmgwvlXw
-         CItlHShz/8EVdWAH74A7OWNriYxrJLSOZIgty4fS8SlWs/7JlfJbNx7qx1PSy4CvcQabiMe9rxPfwf
-         XHUikNCgrj1k9UO6WNVH3V5LXNrZDRHSez+gx/9EdC2ZLMEkUoilrfV5EDsRPgHBaAil8Dy5BQv01H
-         hWGPHfcs/bCo2Zh8ga9E0dBlzsmKcow==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000009,0.006414)], BW: [Enabled, t: (0.000018,0.000001)], RTDA: [Enabled, t: (0.071619), Hit: No, Details: v2.42.0; Id: 15.52k1ot.1gg7dhp45.buia; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from h-e2.ddg ([85.143.252.66])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Tue, 25 Oct 2022 14:13:24 +0300
-Date:   Tue, 25 Oct 2022 14:11:54 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Xu Yilun <yilun.xu@intel.com>
-Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com, dg@emlix.com,
-        j.zink@pengutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, system@metrotek.ru
-Subject: Re: [PATCH v20 1/2] fpga: lattice-sysconfig-spi: add Lattice
- sysCONFIG FPGA manager
-Message-ID: <20221025111154.d4o6hvya2fb6hmev@h-e2.ddg>
-References: <20221025053947.2737-1-i.bornyakov@metrotek.ru>
- <20221025053947.2737-2-i.bornyakov@metrotek.ru>
- <Y1eILk6ArO5OVzwW@yilunxu-OptiPlex-7050>
+        with ESMTP id S231286AbiJYLVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:21:25 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E71F63C7;
+        Tue, 25 Oct 2022 04:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=+YhmmoZMLY7XrNhYbkL+EQRVhqHSiXfciFzZavrXBJg=; b=NJg02Upj0PEyhmA81VlVsjmBPH
+        8A2RCWamtgL1y372jrQ4PJrhaYtAuAfyZW4g/FC+8a8A6bdj/Dbb/RZtMcYdil9ZXq6bnZotxF2L4
+        AUOfC/Gz89HejPyjPgHjT59vYJ14vp7ZYR9uERNbQ5DdbrpgtdtY3Tgbh0wOGPr0baptndvI+PqpJ
+        mXHGpRD6Bb/ner9r/s4N+zHenQgijZQxsmqm1TqdTvEE5Ee1ibdh7gfndUqAeKb1h/WNKAX0j8/sk
+        4LxDbx7ltzbnsy0jOOe1E5nKV0QOA/AUzQ3BRoMdnDm0c3AjpacJ++bzDDsvnoK+UT5OeU4znCnFS
+        0uLZCpJg==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:38524 helo=[192.168.69.85])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1onHze-006z2X-4R;
+        Tue, 25 Oct 2022 13:21:14 +0200
+Message-ID: <56af1cc3-c10e-5694-d25f-252304732568@norik.com>
+Date:   Tue, 25 Oct 2022 13:21:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y1eILk6ArO5OVzwW@yilunxu-OptiPlex-7050>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
+Content-Language: en-GB
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, wim@linux-watchdog.org,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221025072533.2980154-1-andrej.picej@norik.com>
+ <20221025072533.2980154-2-andrej.picej@norik.com>
+ <13126397.uLZWGnKmhe@steina-w>
+From:   Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <13126397.uLZWGnKmhe@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 25, 2022 at 02:54:38PM +0800, Xu Yilun wrote:
-> On 2022-10-25 at 08:39:46 +0300, Ivan Bornyakov wrote:
-> > Add support to the FPGA manager for programming Lattice ECP5 FPGA over
-> > slave SPI sysCONFIG interface.
-> > 
-> > sysCONFIG interface core functionality is separate from both ECP5 and
-> > SPI specifics, so support for other FPGAs with different port types can
-> > be added in the future.
-> > 
-> > Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Hi Alexander,
+
+On 25. 10. 22 11:38, Alexander Stein wrote:
+> Am Dienstag, 25. Oktober 2022, 09:25:31 CEST schrieb Andrej Picej:
+>> Putting device into the "Suspend-To-Idle" mode causes watchdog to
+>> trigger and reset the board after set watchdog timeout period elapses.
+>>
+>> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
+>> watchdog in WAIT mode. This is done by setting WDW bit in WCR
+>> (Watchdog Control Register) Watchdog operation is restored after exiting
+>> WAIT mode as expected. WAIT mode coresponds with Linux's
+>> "Suspend-To-Idle".
+>>
+>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+>> ---
+>> Changes in v2:
+>>   - validate the property with compatible string, as this functionality
+>>     is not supported by all devices.
+>> ---
+>>   drivers/watchdog/imx2_wdt.c | 37 +++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>
+>> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
+>> index d0c5d47ddede..dd9866c6f1e5 100644
+>> --- a/drivers/watchdog/imx2_wdt.c
+>> +++ b/drivers/watchdog/imx2_wdt.c
+>> @@ -35,6 +35,7 @@
+>>
+>>   #define IMX2_WDT_WCR		0x00		/* Control
+> Register */
+>>   #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* ->
+> Watchdog Timeout Field */
+>> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable
+> for WAIT */
+>>   #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset
+> WDOG_B */
+>>   #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset
+> Signal */
+>>   #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable
+> */
+>> @@ -67,6 +68,27 @@ struct imx2_wdt_device {
+>>   	bool ext_reset;
+>>   	bool clk_is_on;
+>>   	bool no_ping;
+>> +	bool sleep_wait;
+>> +};
+>> +
+>> +static const char * const wdw_boards[] __initconst = {
+>> +	"fsl,imx25-wdt",
+>> +	"fsl,imx35-wdt",
+>> +	"fsl,imx50-wdt",
+>> +	"fsl,imx51-wdt",
+>> +	"fsl,imx53-wdt",
+>> +	"fsl,imx6q-wdt",
+>> +	"fsl,imx6sl-wdt",
+>> +	"fsl,imx6sll-wdt",
+>> +	"fsl,imx6sx-wdt",
+>> +	"fsl,imx6ul-wdt",
+>> +	"fsl,imx7d-wdt",
+>> +	"fsl,imx8mm-wdt",
+>> +	"fsl,imx8mn-wdt",
+>> +	"fsl,imx8mp-wdt",
+>> +	"fsl,imx8mq-wdt",
+>> +	"fsl,vf610-wdt",
+>> +	NULL
+>>   };
 > 
-> [...]
+> So the models listed in Documentation/devicetree/bindings/watchdog/fsl-imx-
+> wdt.yaml not supporting this feature are
+> * fsl,imx21-wdt
+> * fsl,imx27-wdt
+> * fsl,imx31-wdt
+> * fsl,ls1012a-wdt
+> * fsl,ls1043a-wdt
+> ?
+yes, you are correct.
+
 > 
-> > +static int sysconfig_spi_bitstream_burst_init(struct sysconfig_priv *priv)
-> > +{
-> > +	const u8 lsc_bitstream_burst[] = SYSCONFIG_LSC_BITSTREAM_BURST;
-> > +	struct spi_device *spi = to_spi_device(priv->dev);
-> > +	struct spi_transfer xfer = {};
-> > +	struct spi_message msg;
-> > +	size_t buf_len;
-> > +	void *buf;
-> > +	int ret;
-> > +
-> > +	buf_len = sizeof(lsc_bitstream_burst);
-> > +
-> > +	buf = kmemdup(lsc_bitstream_burst, buf_len, GFP_KERNEL);
-> > +	if (!buf)
-> > +		return -ENOMEM;
-> > +
-> > +
-> 
-> I removed the second blank line and applied this series to for-next.
+> But all models are listed as compatible to fsl,imx21-wdt. So there is
+> something wrong here. IMHO this sounds like the compatible list has to be
+> split and updated. Depending on that this feature can be detected. Maintaining
+> another list seems error prone to me.
 > 
 
-Sorry for this negligence. Thanks.
+So basically the compatible lists would be split into two groups, one 
+for the devices which support this WDW bit and the rest which don't 
+support this?
+You got a point here, but...this means that every processors 
+device-tree, which has two compatible strings (with "fsl,imx21-wdt") 
+should be updated, right? That sounds like quite a lot of changes, which 
+I'd like to avoid if possible.
 
+Best regards,
+Andrej
+
+> Best regards,
+> Alexander
+> 
+>>   static bool nowayout = WATCHDOG_NOWAYOUT;
+>> @@ -129,6 +151,9 @@ static inline void imx2_wdt_setup(struct watchdog_device
+>> *wdog)
+>>
+>>   	/* Suspend timer in low power mode, write once-only */
+>>   	val |= IMX2_WDT_WCR_WDZST;
+>> +	/* Suspend timer in low power WAIT mode, write once-only */
+>> +	if (wdev->sleep_wait)
+>> +		val |= IMX2_WDT_WCR_WDW;
+>>   	/* Strip the old watchdog Time-Out value */
+>>   	val &= ~IMX2_WDT_WCR_WT;
+>>   	/* Generate internal chip-level reset if WDOG times out */
+>> @@ -313,6 +338,18 @@ static int __init imx2_wdt_probe(struct platform_device
+>> *pdev)
+>>
+>>   	wdev->ext_reset = of_property_read_bool(dev->of_node,
+>>   						"fsl,ext-
+> reset-output");
+>> +
+>> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait"))
+>> +		if (of_device_compatible_match(dev->of_node,
+> wdw_boards))
+>> +			wdev->sleep_wait = 1;
+>> +		else {
+>> +			dev_warn(dev, "Warning: Suspending watchdog
+> during " \
+>> +				"WAIT mode is not supported for
+> this device.\n");
+>> +			wdev->sleep_wait = 0;
+>> +		}
+>> +	else
+>> +		wdev->sleep_wait = 0;
+>> +
+>>   	/*
+>>   	 * The i.MX7D doesn't support low power mode, so we need to ping
+> the
+>> watchdog * during suspend.
+> 
+> 
+> 
+> 
