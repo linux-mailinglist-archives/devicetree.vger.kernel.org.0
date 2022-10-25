@@ -2,271 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D5D60D6C2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 00:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA31860D6F5
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 00:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232504AbiJYWGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 18:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38134 "EHLO
+        id S232058AbiJYWXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 18:23:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232214AbiJYWGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 18:06:50 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCBB672EDB;
-        Tue, 25 Oct 2022 15:06:47 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id h9so12296129wrt.0;
-        Tue, 25 Oct 2022 15:06:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U/b2ry2eREZpQrayM8pLQ/WtjYgIHMF+G/lbwLaKSf4=;
-        b=JQXfCBiqZbzP5yTTlxr3EGz53xce3Aa/Ku+J2ahBCt2LsI8outAK6yhmUvwoQ8ai11
-         EfSuSLmRHmovOKTS4EotfYkVjUrh+ZWaIr6L7FlYqxhvvjMCM0rZ5XHniyqlqwQI6YCX
-         KqRfsoRq83tdyzHsiGoexP4JbKTRr+FF0VSJgBbvTqw4e5z4yR3q2xF0MBj55eq0i8hZ
-         QEarnRDuY4SyfRLHd3KlLamW/wM3Zr9cGCM1zHe8ttWbyywxZk8E4Nq4bQ819vbL4LOw
-         WWzD6yOq0ecZamsyiHeZP8PbtGz8FeGfvOAsIftrv+CFEt1gSlLne9v3dE9WMdyW1W4X
-         EjDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U/b2ry2eREZpQrayM8pLQ/WtjYgIHMF+G/lbwLaKSf4=;
-        b=H/wDCOTq8Y/lV4eO8HYtW52VH5ouuo+tTC8rliecrsu0Dqe2a/BNvqybc4tRw+Y3NY
-         DFU5smDyyl4Zj/mESwgl7Yz5YXMhPGGKHYhlIqBS4E4rioKAsbksiM+ipQILJKNozoFG
-         GxA1E9oUinZzuQY2o/b0Gpnl6sxStSLjqVWZb4r6rr4sQQCpu4Ed9oGM9r4IUic3atDH
-         UJElrXCqdmMgp7YG1eM3XB0V1Ya6w2bl74cD42dEwoOTOD4JTXdfiEmo+rWWPegS4GGJ
-         d+kOBFl1Yvz1OvWJdYgJlwoidJQRXFOC53pRIKqSUOThpwW6UM10qfikQs9GRcBzMcDs
-         OLQA==
-X-Gm-Message-State: ACrzQf3ptu+3mTwQZfak0QYaVlV+cJxxLdIn48S+0aEcynM+UBBPDUNa
-        u0TRDUPJCppmXdHHFLZm7pNXRhhfrGWMDA==
-X-Google-Smtp-Source: AMsMyM4NxkIjCoW1jXtg0U6l6q46VarwvcbwRgKnXYT02v5kre0ykIeGSKQHaROp2OnA1S/1uKP71A==
-X-Received: by 2002:adf:e88e:0:b0:236:792e:f2a2 with SMTP id d14-20020adfe88e000000b00236792ef2a2mr6494927wrm.220.1666735606305;
-        Tue, 25 Oct 2022 15:06:46 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:1d2a:d2a2:361e:a475])
-        by smtp.gmail.com with ESMTPSA id l18-20020a05600c1d1200b003a342933727sm210534wms.3.2022.10.25.15.06.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 15:06:45 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        with ESMTP id S230453AbiJYWXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 18:23:35 -0400
+Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7277558A;
+        Tue, 25 Oct 2022 15:23:32 -0700 (PDT)
+Received: from email.seznam.cz
+        by email-smtpc24b.ko.seznam.cz (email-smtpc24b.ko.seznam.cz [10.53.18.33])
+        id 757841dd91d492e374a5e0b3;
+        Wed, 26 Oct 2022 00:22:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1666736562; bh=6GDtThpj3NN+LEEr3gicdW2ugccmoKw5NTQ1pWky2/A=;
+        h=Received:Date:From:To:Cc:Subject:Message-ID:References:
+         MIME-Version:Content-Type:Content-Disposition:In-Reply-To;
+        b=Qlmj0TV32seBqamYRxJ2A94bpCLO8ZRwPiGtRNxbscYV/tR2tJT+s4UGk6+GDi4qv
+         L1OdsQ/fXVnNIgWQRf31Bl3WeUMXQZaC33Ns7Dp5CfXjpl4hApKeg8hjfdBeAH7S57
+         rFGr7rWr77pEEZpu5lTamQ75f/swUihAZGf1sirU=
+Received: from hopium (2a02:8308:900d:2600:d7fc:ccab:3140:290d [2a02:8308:900d:2600:d7fc:ccab:3140:290d])
+        by email-relay5.ng.seznam.cz (Seznam SMTPD 1.3.138) with ESMTP;
+        Wed, 26 Oct 2022 00:22:39 +0200 (CEST)  
+Date:   Wed, 26 Oct 2022 00:22:37 +0200
+From:   Matej Vasilevski <matej.vasilevski@seznam.cz>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Samuel Holland <samuel@sholland.org>, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: r9a07g043: Split out RZ/G2UL SoC specific parts
-Date:   Tue, 25 Oct 2022 23:06:29 +0100
-Message-Id: <20221025220629.79321-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221025220629.79321-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221025220629.79321-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/4] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20221025222237.GA4635@hopium>
+References: <20221012062558.732930-1-matej.vasilevski@seznam.cz>
+ <20221012062558.732930-3-matej.vasilevski@seznam.cz>
+ <20221024200238.tgqkjjyagklglshu@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221024200238.tgqkjjyagklglshu@pengutronix.de>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Marc,
+thanks for another review from you.
+I'll merge the responses for all three mails from you, so I don't spam
+the mailing list too much.
 
-Move RZ/G2UL SoC specific parts to r9a07g043u.dtsi so that r9a07g043.dtsi
-can be shared with RZ/Five (RISC-V SoC).
+On Mon, Oct 24, 2022 at 10:02:38PM +0200, Marc Kleine-Budde wrote:
+> On 12.10.2022 08:25:56, Matej Vasilevski wrote:
+> > This patch adds support for retrieving hardware timestamps to RX and
+> 
+> Later in the code you set struct ethtool_ts_info::tx_types but the
+> driver doesn't set TX timestamps, does it?
+> 
 
-Below are the changes due to which SoC specific parts are moved to
-r9a07g043u.dtsi:
-- RZ/G2UL has Cortex-A55 (ARM64) whereas the RZ/Five has AX45MP (RISC-V)
-- RZ/G2UL has GICv3 as interrupt controller whereas the RZ/Five has PLIC
-- RZ/G2UL has interrupts for SYSC block whereas interrupts are missing
-  for SYSC block on RZ/Five
-- RZ/G2UL has armv8-timer whereas the RZ/Five has riscv-timer
+No, it doesn't explicitly. Unless something changed and I don't know about it,
+all the drivers using can_put_echo_skb() (includes ctucanfd) now report
+software (hardware if available) tx timestamps thanks to Vincent's patch.
+https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/commit/?id=12a18d79dc14c80b358dbd26461614b97f2ea4a6
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-RFC->v2
-* Updated commit message about timer
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi  | 54 +------------------
- arch/arm64/boot/dts/renesas/r9a07g043u.dtsi | 60 +++++++++++++++++++++
- 2 files changed, 61 insertions(+), 53 deletions(-)
+> > error CAN frames. It uses timecounter and cyclecounter structures,
+> > because the timestamping counter width depends on the IP core integration
+> > (it might not always be 64-bit).
+> > For platform devices, you should specify "ts" clock in device tree.
+> > For PCI devices, the timestamping frequency is assumed to be the same
+> > as bus frequency.
+> > 
+> > Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
+> 
+> [...]
+> 
+> > diff --git a/drivers/net/can/ctucanfd/ctucanfd_base.c b/drivers/net/can/ctucanfd/ctucanfd_base.c
+> > index b8da15ea6ad9..079819d53e23 100644
+> > --- a/drivers/net/can/ctucanfd/ctucanfd_base.c
+> > +++ b/drivers/net/can/ctucanfd/ctucanfd_base.c
+> 
+> [...]
+> 
+> > @@ -950,6 +986,11 @@ static int ctucan_rx_poll(struct napi_struct *napi, int quota)
+> >  			cf->data[1] |= CAN_ERR_CRTL_RX_OVERFLOW;
+> >  			stats->rx_packets++;
+> >  			stats->rx_bytes += cf->can_dlc;
+> > +			if (priv->timestamp_enabled) {
+> > +				u64 tstamp = ctucan_read_timestamp_counter(priv);
+> > +
+> > +				ctucan_skb_set_timestamp(priv, skb, tstamp);
+> > +			}
+> >  			netif_rx(skb);
+> >  		}
+> >  
+> > @@ -1230,6 +1271,9 @@ static int ctucan_open(struct net_device *ndev)
+> >  		goto err_chip_start;
+> >  	}
+> >  
+> > +	if (priv->timestamp_possible)
+> > +		ctucan_timestamp_init(priv);
+> > +
+> 
+> This is racy. You have to init the timestamping before the start of the
+> chip, i.e. enabling the IRQs. I had the same problem with the gs_usb
+> driver:
+> 
+> | https://lore.kernel.org/all/20220921081329.385509-1-mkl@pengutronix.de
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index a7248204d2ba..3f7d451b1199 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- /*
-- * Device Tree Source for the RZ/G2UL SoC
-+ * Device Tree Source for the RZ/Five and RZ/G2UL SoCs
-  *
-  * Copyright (C) 2022 Renesas Electronics Corp.
-  */
-@@ -68,36 +68,8 @@ opp-1000000000 {
- 		};
- 	};
- 
--	cpus {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		cpu0: cpu@0 {
--			compatible = "arm,cortex-a55";
--			reg = <0>;
--			device_type = "cpu";
--			#cooling-cells = <2>;
--			next-level-cache = <&L3_CA55>;
--			enable-method = "psci";
--			clocks = <&cpg CPG_CORE R9A07G043_CLK_I>;
--			operating-points-v2 = <&cluster0_opp>;
--		};
--
--		L3_CA55: cache-controller-0 {
--			compatible = "cache";
--			cache-unified;
--			cache-size = <0x40000>;
--		};
--	};
--
--	psci {
--		compatible = "arm,psci-1.0", "arm,psci-0.2";
--		method = "smc";
--	};
--
- 	soc: soc {
- 		compatible = "simple-bus";
--		interrupt-parent = <&gic>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
-@@ -550,12 +522,6 @@ cpg: clock-controller@11010000 {
- 		sysc: system-controller@11020000 {
- 			compatible = "renesas,r9a07g043-sysc";
- 			reg = <0 0x11020000 0 0x10000>;
--			interrupts = <SOC_PERIPHERAL_IRQ(42) IRQ_TYPE_LEVEL_HIGH>,
--				     <SOC_PERIPHERAL_IRQ(43) IRQ_TYPE_LEVEL_HIGH>,
--				     <SOC_PERIPHERAL_IRQ(44) IRQ_TYPE_LEVEL_HIGH>,
--				     <SOC_PERIPHERAL_IRQ(45) IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "lpm_int", "ca55stbydone_int",
--					  "cm33stbyr_int", "ca55_deny";
- 			status = "disabled";
- 		};
- 
-@@ -608,16 +574,6 @@ dmac: dma-controller@11820000 {
- 			dma-channels = <16>;
- 		};
- 
--		gic: interrupt-controller@11900000 {
--			compatible = "arm,gic-v3";
--			#interrupt-cells = <3>;
--			#address-cells = <0>;
--			interrupt-controller;
--			reg = <0x0 0x11900000 0 0x40000>,
--			      <0x0 0x11940000 0 0x60000>;
--			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
--		};
--
- 		sdhi0: mmc@11c00000 {
- 			compatible = "renesas,sdhi-r9a07g043",
- 				     "renesas,rcar-gen3-sdhi";
-@@ -883,12 +839,4 @@ target: trip-point {
- 			};
- 		};
- 	};
--
--	timer {
--		compatible = "arm,armv8-timer";
--		interrupts-extended = <&gic GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
--				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
--				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
--				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
--	};
- };
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-index 96f935bc2d4d..b8bf06b51235 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-@@ -10,3 +10,63 @@
- #define SOC_PERIPHERAL_IRQ(nr)		GIC_SPI nr
- 
- #include "r9a07g043.dtsi"
-+
-+/ {
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			compatible = "arm,cortex-a55";
-+			reg = <0>;
-+			device_type = "cpu";
-+			#cooling-cells = <2>;
-+			next-level-cache = <&L3_CA55>;
-+			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A07G043_CLK_I>;
-+			operating-points-v2 = <&cluster0_opp>;
-+		};
-+
-+		L3_CA55: cache-controller-0 {
-+			compatible = "cache";
-+			cache-unified;
-+			cache-size = <0x40000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0", "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts-extended = <&gic GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
-+				      <&gic GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
-+				      <&gic GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
-+				      <&gic GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+};
-+
-+&soc {
-+	interrupt-parent = <&gic>;
-+
-+	gic: interrupt-controller@11900000 {
-+		compatible = "arm,gic-v3";
-+		#interrupt-cells = <3>;
-+		#address-cells = <0>;
-+		interrupt-controller;
-+		reg = <0x0 0x11900000 0 0x40000>,
-+		      <0x0 0x11940000 0 0x60000>;
-+		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&sysc {
-+	interrupts = <SOC_PERIPHERAL_IRQ(42) IRQ_TYPE_LEVEL_HIGH>,
-+		     <SOC_PERIPHERAL_IRQ(43) IRQ_TYPE_LEVEL_HIGH>,
-+		     <SOC_PERIPHERAL_IRQ(44) IRQ_TYPE_LEVEL_HIGH>,
-+		     <SOC_PERIPHERAL_IRQ(45) IRQ_TYPE_LEVEL_HIGH>;
-+	interrupt-names = "lpm_int", "ca55stbydone_int",
-+			  "cm33stbyr_int", "ca55_deny";
-+};
--- 
-2.25.1
+Thanks for pointing this out, I'll fix this.
 
+> 
+> >  	netdev_info(ndev, "ctu_can_fd device registered\n");
+> >  	napi_enable(&priv->napi);
+> >  	netif_start_queue(ndev);
+> > @@ -1262,6 +1306,8 @@ static int ctucan_close(struct net_device *ndev)
+> >  	ctucan_chip_stop(ndev);
+> >  	free_irq(ndev->irq, ndev);
+> >  	close_candev(ndev);
+> > +	if (priv->timestamp_possible)
+> > +		ctucan_timestamp_stop(priv);
+> 
+> Can you make this symmetric with respect to the ctucan_open() function.
+
+Yes, will do.
+
+> >  
+> >  	pm_runtime_put(priv->dev);
+> >  
+> > @@ -1294,15 +1340,88 @@ static int ctucan_get_berr_counter(const struct net_device *ndev, struct can_ber
+> >  	return 0;
+> >  }
+> 
+> [...]
+> 
+> > @@ -1385,15 +1534,29 @@ int ctucan_probe_common(struct device *dev, void __iomem *addr, int irq, unsigne
+> >  
+> >  	/* Getting the can_clk info */
+> >  	if (!can_clk_rate) {
+> > -		priv->can_clk = devm_clk_get(dev, NULL);
+> > +		priv->can_clk = devm_clk_get_optional(dev, "core");
+> > +		if (!priv->can_clk)
+> > +			/* For compatibility with (older) device trees without clock-names */
+> > +			priv->can_clk = devm_clk_get(dev, NULL);
+> >  		if (IS_ERR(priv->can_clk)) {
+> > -			dev_err(dev, "Device clock not found.\n");
+> > +			dev_err(dev, "Device clock not found: %pe.\n", priv->can_clk);
+> >  			ret = PTR_ERR(priv->can_clk);
+> >  			goto err_free;
+> >  		}
+> >  		can_clk_rate = clk_get_rate(priv->can_clk);
+> >  	}
+> >  
+> > +	if (!timestamp_clk_rate) {
+> > +		priv->timestamp_clk = devm_clk_get(dev, "ts");
+> > +		if (IS_ERR(priv->timestamp_clk)) {
+> > +			/* Take the core clock instead */
+> > +			dev_info(dev, "Failed to get ts clk\n");
+> > +			priv->timestamp_clk = priv->can_clk;
+> > +		}
+> > +		clk_prepare_enable(priv->timestamp_clk);
+> > +		timestamp_clk_rate = clk_get_rate(priv->timestamp_clk);
+> > +	}
+> > +
+> >  	priv->write_reg = ctucan_write32_le;
+> >  	priv->read_reg = ctucan_read32_le;
+> >  
+> > @@ -1424,6 +1587,50 @@ int ctucan_probe_common(struct device *dev, void __iomem *addr, int irq, unsigne
+> >  
+> >  	priv->can.clock.freq = can_clk_rate;
+> >  
+> > +	/* Obtain timestamping counter bit size */
+> > +	timestamp_bit_size = FIELD_GET(REG_ERR_CAPT_TS_BITS,
+> > +				       ctucan_read32(priv, CTUCANFD_ERR_CAPT));
+> > +
+> > +	/* The register value is actually bit_size - 1 */
+> > +	if (timestamp_bit_size) {
+> > +		timestamp_bit_size += 1;
+> > +	} else {
+> > +		/* For 2.x versions of the IP core, we will assume 64-bit counter
+> > +		 * if there was a 0 in the register.
+> > +		 */
+> > +		u32 version_reg = ctucan_read32(priv, CTUCANFD_DEVICE_ID);
+> > +		u32 major = FIELD_GET(REG_DEVICE_ID_VER_MAJOR, version_reg);
+> > +
+> > +		if (major == 2)
+> > +			timestamp_bit_size = 64;
+> > +		else
+> > +			priv->timestamp_possible = false;
+> > +	}
+> > +
+> > +	/* Setup conversion constants and work delay */
+> > +	if (priv->timestamp_possible) {
+> > +		u64 max_cycles;
+> > +		u64 work_delay_ns;
+> > +		u32 maxsec;
+> > +
+> > +		priv->cc.read = ctucan_read_timestamp_cc_wrapper;
+> > +		priv->cc.mask = CYCLECOUNTER_MASK(timestamp_bit_size);
+> > +		maxsec = min_t(u32, CTUCANFD_MAX_WORK_DELAY_SEC,
+> > +			       div_u64(priv->cc.mask, timestamp_clk_rate));
+> > +		clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift,
+> > +				       timestamp_clk_rate, NSEC_PER_SEC, maxsec);
+> > +
+> > +		/* shortened copy of clocks_calc_max_nsecs() */
+> > +		max_cycles = div_u64(ULLONG_MAX, priv->cc.mult);
+> > +		max_cycles = min(max_cycles, priv->cc.mask);
+> > +		work_delay_ns = clocksource_cyc2ns(max_cycles, priv->cc.mult,
+> > +						   priv->cc.shift) >> 2;
+> 
+> I think we can use cyclecounter_cyc2ns() for this, see:
+> 
+> | https://elixir.bootlin.com/linux/v6.0.3/source/drivers/net/ethernet/ti/cpts.c#L642
+> 
+> BTW: This is the only networking driver using clocks_calc_mult_shift()
+> (so far) :D
+> 
+
+I don't really see the benefit at the moment (I have to include
+clocksource.h anyway due to the clocks_calc_mult_shift()), but sure,
+I'll use cyclecounter_cyc2ns().
+
+Fun fact :-D I might look into the cpts.c
+
+> > +		priv->work_delay_jiffies = nsecs_to_jiffies(work_delay_ns);
+> > +
+> > +		if (priv->work_delay_jiffies == 0)
+> > +			priv->timestamp_possible = false;
+> > +	}
+> > +
+> 
+> regards,
+> Marc
+> 
+> -- 
+> Pengutronix e.K.                 | Marc Kleine-Budde           |
+> Embedded Linux                   | https://www.pengutronix.de  |
+> Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+Mail 2:
+>Regarding the timestamp_clk handling:
+>
+>If you prepare_enable the timestamp_clk during probe_common() and don't
+>disable_unprepare it, it stays on the whole lifetime of the driver. So
+>there's no need/reason for the runtime suspend/resume functions.
+>
+>So either keep the clock powered and remove the suspend/resume functions
+>or shut down the clock after probe.
+>
+>If you want to make things 1000% clean, you can get the timestamp's
+>clock rate during open() and re-calculate the mult and shift. The
+>background is that the clock rate might change if the clock is not
+>enabled (at least that's not guaranteed by the common clock framework).
+>Actual HW implementations might differ.
+
+Hmm, I thought that pm_runtime_put() will eventually run runtime suspend
+callback, but now I see that it will run only the idle callback (which
+I haven't defined).
+I'll remove the runtime suspend/resume callbacks.
+
+Best regards,
+Matej
