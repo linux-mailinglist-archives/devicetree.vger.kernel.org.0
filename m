@@ -2,145 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 066BA60C623
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 10:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C84C60C631
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 10:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232143AbiJYIN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 04:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46256 "EHLO
+        id S230214AbiJYIS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 04:18:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231248AbiJYIN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 04:13:26 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAC7EEF59E;
-        Tue, 25 Oct 2022 01:13:25 -0700 (PDT)
-Received: by mail-qk1-f182.google.com with SMTP id l9so5031466qkk.11;
-        Tue, 25 Oct 2022 01:13:25 -0700 (PDT)
+        with ESMTP id S229652AbiJYIS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 04:18:56 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E542C2CA8;
+        Tue, 25 Oct 2022 01:18:55 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id d26so10490966eje.10;
+        Tue, 25 Oct 2022 01:18:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TbJbxdG5CUFnRGL1K+Jxsme9L/A30/vtCpvY270WFek=;
+        b=E8MQCFp1fY4VHscWgf/gq31bCak7taqLKOLkJC5180nxJ+xj9ilsICXockQTnXIVdC
+         3k392WCNRuB6Pa5MKW6VHY5lLNTLvSgtTCUnv27//9AceDY5ObEv4rbB5/Sx+DCc+WlU
+         +VE+1pKHdC5IbRsvFBCNVOg/KbXtCfAqVjkZD31ISRxhKRScNXiogKcbxXnBWBnG509A
+         WzCN48aWmn+2RDSJ978aanNxzcrKj/K4f939dR5SRhmCaTdV/7buVQ6hxUsLb2HnSN17
+         Bpcxn2a62LjT+QCYdhkNvkA/udsm6ean8gOQlIoaLH0+wqxsVFnbOSEhV45y3CFkKyNS
+         MxXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PtQY6npOwzdAaof0U9/1BSiKAWT8zlsAxOmGaO2LJJU=;
-        b=AvXnRsGDKOxy5AqK3Ijm7nbYO8iMN/1LNoV33RpqErb+ZHwBCbLVC8AbgV7Y19UL2Q
-         aqGNnddQw7tQF+5WvCA4Nsxkc9oNvXYTUJMJEmlAx2mHVty42p+cZ2b00HskS12V0JSw
-         Y6MAv1qkEIKAyL2K4F113Nc8PIrZPi6cVkJI5+xtfncCY1peGXNae0XM1LUDSvCZrhn6
-         4Z/khKuq2cbiDA0CtmSoGaeVUDUznbfAz3aUxxN763M41+aKtSyRDo3Cet7rufF8TsDo
-         EZb3ViT8YYdWTY4cj6K/Oo0G6TL6JeyvLMrcWTi7HEWRDXvsSG7UXAaEC8OTUZ5z8ohA
-         5o6Q==
-X-Gm-Message-State: ACrzQf1lrlCOcxMW0izo/sZFRNb65/VJxOrk2mqdEOZ43AvTYHHBqX5A
-        qnyKjSb/8S4SPJYTlbOn955AbypsvbyQVA==
-X-Google-Smtp-Source: AMsMyM5iweyC604cUhRZST7up1PaoYKREGcaguAShjygJaiQCRDb+XZGnpJUnnfH0ywlzjHqvVsIQg==
-X-Received: by 2002:a05:620a:2686:b0:6f5:723e:6316 with SMTP id c6-20020a05620a268600b006f5723e6316mr6249327qkp.103.1666685604844;
-        Tue, 25 Oct 2022 01:13:24 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id cm21-20020a05622a251500b0039c72bb51f3sm1215273qtb.86.2022.10.25.01.13.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 01:13:24 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-36847dfc5ccso107245067b3.0;
-        Tue, 25 Oct 2022 01:13:24 -0700 (PDT)
-X-Received: by 2002:a81:1b09:0:b0:35d:cf91:aadc with SMTP id
- b9-20020a811b09000000b0035dcf91aadcmr32638191ywb.47.1666685604020; Tue, 25
- Oct 2022 01:13:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220915165256.352843-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220915165256.352843-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220915165256.352843-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Oct 2022 10:13:12 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVJ4gp=kT2S+5bhjdZACSbEX=3pP7mmmi_GEbeAOxtHGw@mail.gmail.com>
-Message-ID: <CAMuHMdVJ4gp=kT2S+5bhjdZACSbEX=3pP7mmmi_GEbeAOxtHGw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg2ul-smarc: Add
- /omit-if-no-ref/ to pinmux
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        bh=TbJbxdG5CUFnRGL1K+Jxsme9L/A30/vtCpvY270WFek=;
+        b=00U6AxmiXDCzfZgE1I+Z7RyW+gKxpxxivteW44W21AJwK40H7g169UQXojYwe1PW6g
+         mAj8LBpcW8sZIcySIw5TN111C5xfIH3SRVWe48Ji8wwHMFoq9nButu+bwAmu7LwTPC/2
+         CAQjKTnuX2VofZCo0qIWcXPGNmvBUn2pPrCLxGyT5IGARPKId2rEZJEGAc1I/LYGOk+k
+         i2F3b3/dsniBYtHjGqM3io9ZjIvfZ4g5oohFoPSXPWytW0/dGeWn6jfn060RpRsYlRYW
+         vcu1m/1hqjOuEY2ItKy5zvwUzE1SA+r1lxrI0TnB9fj1PBLluYtWbta9TpRBA309K23b
+         zZ4A==
+X-Gm-Message-State: ACrzQf1Br63NmAZMj9VD0ohQaIF2ZXlKEqppY3Qgx19tLpEi7u2prlEA
+        0tlAYXt29TDUS1OMe4/DiYM=
+X-Google-Smtp-Source: AMsMyM5Mw4HgGpXO4IP0Xtcj+r5SCe1zFNuB6o9LtwQDnvg1srt2Sms1H6PUKIZYvrj9zeDpVoW2yw==
+X-Received: by 2002:a17:907:a40f:b0:790:540c:b6e3 with SMTP id sg15-20020a170907a40f00b00790540cb6e3mr31440039ejc.41.1666685933652;
+        Tue, 25 Oct 2022 01:18:53 -0700 (PDT)
+Received: from localhost.localdomain ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id l1-20020a1709060cc100b007822196378asm992898ejh.176.2022.10.25.01.18.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Oct 2022 01:18:53 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH v3 0/4] Support more parts in LTC2983
+Date:   Tue, 25 Oct 2022 11:18:38 +0300
+Message-Id: <20221025081842.1896748-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.38.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Add support for the following parts:
+ * LTC2984
+ * LTC2986
+ * LTM2985
 
-On Thu, Sep 15, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> In preparation to re-use the RZ/G2UL SMARC SoM and carrier DTS/I with the
-> RZ/Five add /omit-if-no-ref/ keyword to pinmux entries as the support for
-> RZ/Five SMARC EVK will be gradually added.
->
-> Once we have full blown support for RZ/Five SMARC EVK we can get rid of
-> the /omit-if-no-ref/ keyword.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+The LTC2984 is a variant of the LTC2983 with EEPROM.
+The LTC2986 is a variant of the LTC2983 with only 10 channels,
+EEPROM and support for active analog temperature sensors.
+The LTM2985 is software-compatible with the LTC2986.
 
-Thanks for your patch!
+Also, make bulk write buffer DMA-safe.
 
-I finally had a deeper look at this...
+V1 -> V2:
+ * add Fixes tag
+ * add patch that fixes the regmap_bulk_write() call with stack allocated
+   buffer
+ * add patch that refines the binding in preperation for adding new
+   parts support to it
+ * do not use stack allocated buffer for writing the EEPROM key
 
-Why do you want to disable these nodes? While they are indeed not
-used yet on RZ/Five, they are valid hardware descriptions for the
-RZ/Five SMARC EVK, and their presence doesn't harm anything.
+V2 -> V3:
+ * drop minItems if equal to maxItems
+ * drop adi,single-ended conditions because of recent dtschema
+   restrictions (even though they're valid in jsonschema and the last
+   dtschema tag)
+ * drop "allocate iio channels once" patch since it's been picked as a fix
 
-I do see a valid use case for marking pin control subnodes with
-/omit-if-no-ref/: you can provide all possible configurations as a
-convenience for the user, so the user no longer has to look up the
-numeric parameters of the RZG2L_PORT_PINMUX() macros.
-But IMHO those would belong in the SoC-specific .dtsi, not in a
-board .dtsi.  See e.g. the massive use of /omit-if-no-ref/ in sunxi
-and rockchip .dtsi files.
+Cosmin Tanislav (4):
+  iio: temperature: ltc2983: make bulk write buffer DMA-safe
+  dt-bindings: iio: temperature: ltc2983: refine
+  dt-bindings: iio: temperature: ltc2983: support more parts
+  iio: temperature: ltc2983: support more parts
 
-Am I missing something?
+ .../bindings/iio/temperature/adi,ltc2983.yaml | 329 +++++++++++-------
+ drivers/iio/temperature/ltc2983.c             | 193 +++++++++-
+ 2 files changed, 380 insertions(+), 142 deletions(-)
 
-> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-pinfunction.dtsi
-> @@ -12,12 +12,14 @@ &pinctrl {
->         pinctrl-0 = <&sound_clk_pins>;
-                        ^^^^^^^^^^^^^^
->         pinctrl-names = "default";
->
-> +       /omit-if-no-ref/
->         can0_pins: can0 {
->                 pinmux = <RZG2L_PORT_PINMUX(1, 1, 3)>, /* TX */
->                          <RZG2L_PORT_PINMUX(1, 2, 3)>; /* RX */
->         };
->
->  #if (SW_ET0_EN_N)
-> +       /omit-if-no-ref/
->         can0-stb-hog {
->                 gpio-hog;
->                 gpios = <RZG2L_GPIO(2, 2) GPIO_ACTIVE_HIGH>;
+-- 
+2.38.1
 
-> @@ -94,11 +103,13 @@ sd1_mux_uhs {
->                 };
->         };
->
-> +       /omit-if-no-ref/
->         sound_clk_pins: sound_clk {
-
-FTR, this one is always referenced.
-
->                 pins = "AUDIO_CLK1", "AUDIO_CLK2";
->                 input-enable;
->         };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
