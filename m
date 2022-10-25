@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 128F760C919
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 11:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D8160C947
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:02:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbiJYJ7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 05:59:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56382 "EHLO
+        id S231608AbiJYKCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 06:02:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231744AbiJYJ6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 05:58:35 -0400
+        with ESMTP id S231649AbiJYKB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:01:59 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E916318B4B6;
-        Tue, 25 Oct 2022 02:53:26 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C68A44554;
+        Tue, 25 Oct 2022 02:54:47 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B92A5660239C;
-        Tue, 25 Oct 2022 10:53:24 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 80C206600011;
+        Tue, 25 Oct 2022 10:54:45 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666691605;
-        bh=7sqWmlrQ0eJozSQq6glqhBf0BoFUn4lafxzq4xWkqCM=;
+        s=mail; t=1666691686;
+        bh=1q4rZfObRZxO8+JHR7vaDLdjMed/BUEslgXYYLFJykc=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BvwZaP3mClff5CQ8gv7AHVuMSW738U7Wv1esLQ5GFtk5hijaoBWAxbLdGKYxSlxLe
-         9Yqk7F56MckdgQVReydedmjjdbm61FP93GyqhzgBm915wP87IOeegeEkcHeKYuRbF0
-         OZz3fr9LBOvFhrrFy0N83w9/2UayfTTT7kHCO0n9bG/1i6NqmDb5/uNwz4YiPkX1na
-         BEDIHHYdA9EFC+ha03d4Dqgvy8r7AonurlLpc0s8YGlta3jISPVATO6KVTQ0SyesBZ
-         QJJ/KQooeXKA3lTSnQ4TzKmqP7ikkRWem/aE5lRrcG/YuRNdTjy/Jsu32L9CWzBXRW
-         jGOk6nHInqKuQ==
-Message-ID: <8e7c2a65-0be2-fdb9-6824-87d8e83e8a5d@collabora.com>
-Date:   Tue, 25 Oct 2022 11:53:22 +0200
+        b=hm8OPB+RilErmyhlGdxknvLlSohESk35wtrkkQOALlxFYD20WUCcfVZZ9C++ZvaN9
+         6tmUBRnDhdDqy1mZW9napuSWZ4ZbOBSFcG3TzFIb/FsY8tlJsgJRjy6wZxY4VLN86+
+         Mn2oxMBaryRVJK/Ioyf2I859SLpYqNwCrt51d6wg4KxevvcIDNVZJoiOs5P5MerB5P
+         ozZCc202zdiGCF5MzCHO+j8tnWx31gbqZe/epuk58LIVH4pExX6++UF1fb71BpOODx
+         1/GukLWmSm+6S77XUYAzTPlXv+GZ3jnqyMHZrsukDhrqtj6JEyP8kPJ4Cxd4tV8moC
+         TgnA0QmTjHnzg==
+Message-ID: <2a771db2-5570-73a4-e16e-3bfa29deb8f8@collabora.com>
+Date:   Tue, 25 Oct 2022 11:54:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v2 2/3] soc: mediatek: pwrap: add support for sys & tmr
- clocks
+Subject: Re: [PATCH v2 1/3] dt-bindings: soc: mediatek: pwrap: add MT8365 SoC
+ bindings
+Content-Language: en-US
 To:     Fadwa CHIBY <fchiby@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -45,15 +46,16 @@ To:     Fadwa CHIBY <fchiby@baylibre.com>,
         Johnson Wang <johnson.wang@mediatek.com>,
         "Zhiyong . Tao" <zhiyong.tao@mediatek.com>
 Cc:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
         Sen Chu <sen.chu@mediatek.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 References: <20221024131544.31219-1-fchiby@baylibre.com>
- <20221024131544.31219-3-fchiby@baylibre.com>
-Content-Language: en-US
+ <20221024131544.31219-2-fchiby@baylibre.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221024131544.31219-3-fchiby@baylibre.com>
+In-Reply-To: <20221024131544.31219-2-fchiby@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -68,13 +70,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 Il 24/10/22 15:15, Fadwa CHIBY ha scritto:
 > From: Fabien Parent <fparent@baylibre.com>
 > 
-> MT8365 requires an extra 2 clocks to be enabled to behave correctly.
-> Add support these 2 clocks, they are made optional since they seem to
-> be present only on MT8365.
+> Add pwrap binding documentation for
 > 
 > Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > Signed-off-by: Fadwa CHIBY <fchiby@baylibre.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/soc/mediatek/pwrap.txt | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> index d24e2bc444be..8424b93c432e 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> @@ -30,6 +30,7 @@ Required properties in pwrap device node.
+>   	"mediatek,mt8186-pwrap" for MT8186 SoCs
+>   	"mediatek,mt8188-pwrap", "mediatek,mt8195-pwrap" for MT8188 SoCs
+>   	"mediatek,mt8195-pwrap" for MT8195 SoCs
+> +	"mediatek,mt8365-pwrap" for MT8365 SoCs
+>   	"mediatek,mt8516-pwrap" for MT8516 SoCs
+>   - interrupts: IRQ for pwrap in SOC
+>   - reg-names: "pwrap" is required; "pwrap-bridge" is optional.
+> @@ -39,6 +40,8 @@ Required properties in pwrap device node.
+>   - clock-names: Must include the following entries:
+>     "spi": SPI bus clock
+>     "wrap": Main module clock
+> +  "sys": System module clock (for MT8365 SoC)
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+"sys": Optional system module clock
+"tmr": Optional timer module clock
 
+....as it's not granted that MT8365 is and will always be the only user.
 
+Cheers,
+Angelo
+
+> +  "tmr": Timer module clock (for MT8365 SoC)
+>   - clocks: Must contain an entry for each entry in clock-names.
+>   
+>   Optional properities:
