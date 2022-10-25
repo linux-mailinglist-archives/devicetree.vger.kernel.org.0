@@ -2,172 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2406060D0EC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0847E60D0F0
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:45:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbiJYPnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 11:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47002 "EHLO
+        id S232167AbiJYPox convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 25 Oct 2022 11:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231761AbiJYPnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:43:42 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60C9107A9C
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:43:40 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id x16so4493981ilm.5
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:43:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=sd/PK5OlpobQgWTMERaVRbuer0UWyOazQwPUJRB+kec=;
-        b=febl1GAQxbCnrmWYZ8iWEaUO4euPKUJehHb8WcxSG/hPfrTExjhi6VGaDW1gFEs8xD
-         jC8UxbBaWQckA062EHPuUcI/b6f3n1MjaWQAe5ylbgrEs/l9sKW32CZRKM7AqR+EqVkn
-         xzK2kDliHThZNnuDW3ts6gi+qneohOUuYc9kI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sd/PK5OlpobQgWTMERaVRbuer0UWyOazQwPUJRB+kec=;
-        b=6/g/sypkBTSadLJX7tgJcAwyKtAjY9BStJ2QfJlHiSlwtshYD1LezQUAS5fo1BQ6kO
-         y5Zrhuo/pcsg0Ndk/+5xEzZls3AZcW3goJpIIGxBOiOg3TzdOW05xqvq7DBI+2tmLGPk
-         qwCZoIJmB0z+e2E9WNihIzSP0T9eo9NJIFyoc0fEyEwTLXQoMABEd/+PqQjYUNhoFimV
-         aZRvzc95ZSI2tKVgHzTo6VbVZYYV4CdEtOAhmQFGXLbXPEDDWNNvjnGQ20hmGptIhPoI
-         m+Ddmmgw77ti3KyfYGZggcnMGH/Su3EqjHLSGZ53N29tHI+4iOnKtYm+CIfEhHFvtsh6
-         0PHw==
-X-Gm-Message-State: ACrzQf3I/6IDM99oPz3aGkBmReIhmbCghxRNBn9IrW8WWKCFoGxu1Mvy
-        KSysCTcLRGvKakYzSy2aPsBycg==
-X-Google-Smtp-Source: AMsMyM5tJUEu0NeW97N/uIEqztVjVv8PFNNU1MQsKjEfwoMjhOjkACwR9slmZV1dL5hzwuh2/gekkw==
-X-Received: by 2002:a92:dc8a:0:b0:2f9:9675:42ef with SMTP id c10-20020a92dc8a000000b002f9967542efmr24310722iln.130.1666712619902;
-        Tue, 25 Oct 2022 08:43:39 -0700 (PDT)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id y18-20020a027312000000b00363af75d0acsm1038186jab.67.2022.10.25.08.43.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 08:43:39 -0700 (PDT)
-Date:   Tue, 25 Oct 2022 15:43:38 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232376AbiJYPow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:44:52 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 81E0E50700
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:44:50 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 851CAD6E;
+        Tue, 25 Oct 2022 08:44:56 -0700 (PDT)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CED2D3F71A;
+        Tue, 25 Oct 2022 08:44:48 -0700 (PDT)
+Date:   Tue, 25 Oct 2022 16:44:45 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Icenowy Zheng <uwu@icenowy.me>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: pm6350: add temp sensor and thermal
- zone config
-Message-ID: <Y1gEKs3fvUYf7YqB@google.com>
-References: <20220812114421.1195044-1-luca.weiss@fairphone.com>
- <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
- <CM43WTWNP8MM.3145TGVN4208B@otso>
- <YvaErMmLIQaDolKR@google.com>
- <CNQTKQWNZIH9.61TJWGH1K44F@otso>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, soc@kernel.org,
+        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
+Message-ID: <20221025164445.12f5f89c@donnerap.cambridge.arm.com>
+In-Reply-To: <73ea157f7e0c75f8bda16b3ac464be58fe7fb3ab.camel@icenowy.me>
+References: <20221025145909.2837939-1-andre.przywara@arm.com>
+        <20221025145909.2837939-4-andre.przywara@arm.com>
+        <73ea157f7e0c75f8bda16b3ac464be58fe7fb3ab.camel@icenowy.me>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CNQTKQWNZIH9.61TJWGH1K44F@otso>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+On Tue, 25 Oct 2022 23:30:26 +0800
+Icenowy Zheng <uwu@icenowy.me> wrote:
 
-On Thu, Oct 20, 2022 at 04:28:07PM +0200, Luca Weiss wrote:
-> Hi Matthias,
-> 
-> sorry for the delay in getting back to you.
-> 
-> On Fri Aug 12, 2022 at 6:49 PM CEST, Matthias Kaehlcke wrote:
-> > On Fri, Aug 12, 2022 at 04:06:47PM +0200, Luca Weiss wrote:
-> > > Hi Krzysztof,
-> > > 
-> > > +CC Matthias Kaehlcke (author of patch mentioned further below)
-> > > 
-> > > On Fri Aug 12, 2022 at 3:36 PM CEST, Krzysztof Kozlowski wrote:
-> > > > On 12/08/2022 14:44, Luca Weiss wrote:
-> > > > > Add temp-alarm device tree node and a default configuration for the
-> > > > > corresponding thermal zone for this PMIC. Temperatures are based on
-> > > > > downstream values.
-> > > > > 
-> > > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > > > ---
-> > > > > With this config I'm getting this in dmesg, not sure if it's a warning
-> > > > > that should be solved or just an informative warning.
-> > > > > 
-> > > > > [    0.268256] spmi-temp-alarm c440000.spmi:pmic@0:temp-alarm@2400: No ADC is configured and critical temperature is above the maximum stage 2 threshold of 140 C! Configuring stage 2 shutdown at 140 C.
-> > > > > 
-> > > > > As far as I can tell, based on downstream dts this PMIC doesn't have an
-> > > > > ADC.
-> >
-> > I don't seem to have access to the datasheet, in any case that the ADC isn't
-> > configured in the downstream dts doesn't necessarily mean the PMIC doesn't
-> > have one. The PM6150 has one, and it is probably relatively close to the
-> > PM6350.
-> 
-> Too bad :(
-> 
-> >
-> > > > You configure 145 and driver believes 140 is the limit, so it seems
-> > > > warning should be addressed.
-> > > 
-> > > Hm...
-> > > 
-> > > >
-> > > > From where did you get 145 degrees as limit? Downstream DTS?
-> > > 
-> > > Yes, downstream dts[0].
-> > > 
-> > > From what I can see in the downstream driver, it always disabled this
-> > > "software override of stage 2 and 3 shutdowns"[1]
-> > > 
-> > > In mainline only since f1599f9e4cd6 ("thermal: qcom-spmi: Use PMIC
-> > > thermal stage 2 for critical trip points") this check exists, which is
-> > > not part of downstream (wasn't in 4.19 yet), where this software
-> > > override tries to get enabled so that thermal core can handle this.
-> > > 
-> > > Any suggestion what I can do here? Maybe looking at msm-5.4 sources (and
-> > > associated dts) might reveal something..?
-> >
-> > I wouldn't necessarily consider QC downstream code as a reliable source of
-> > truth ...
-> >
-> > > Maybe newer SoCs/PMICs have a different config?
-> >
-> > Commit aa92b3310c55 ("thermal/drivers/qcom-spmi-temp-alarm: Add support
-> > for GEN2 rev 1 PMIC peripherals") added support for gen2 PMICs, which
-> > actually have lower thresholds than gen1. From the log it seems that the
-> > PM6350 is identified as gen1 device (max stage 2 threshold = 140 degC).
-> 
-> PM6350 is detected as QPNP_TM_SUBTYPE_GEN2 so gen2 actually. Just the
-> log message is hardcoded to 140 degC, the if above actually has
-> stage2_threshold_max = 125000 (125degC) and stage2_threshold_min =
-> 110000 (110degC) so lower than 140 (basically like you said).
+Hi Icenowy,
 
-Good to know.
+thanks for having a look!
+And btw, forgot to mention in the cover letter: this relies on the USB bits
+in your series. Which works nicely, even in host mode.
 
-> >
-> > It seems setting the limit to 140 degC or one of the other stage 2
-> > thresholds would be a reasonable course of action. stage 2 is the
-> > threshold at which the PMIC is so hot that the system should shut
-> > down, and 140 degC is the highest of the stage 2 thresholds. Even
-> > if it was possible, what would be gained from setting the trip
-> > point 5 degC higher?
+> 在 2022-10-25星期二的 15:59 +0100，Andre Przywara写道：
+> > The Lctech Pi F1C200s (also previously known under the Cherry Pi
+> > brand)  
 > 
-> Based on this, do you think it's reasonable to just set the limit to
-> 125 degC and be done with it? Or some other way to resolve this? I'd of
-> course mention in the commit message that I've decreased the value from
-> 145 (msm-4.19) to 125.
+> Oh? Are they the same hardware?
 
-Yes, setting it to 125°C or one of the other stage 2 threshold values for
-gen2 sounds good to me.
+My board looks identical to this one:
+https://www.cnx-software.com/2022/02/03/more-allwinner-f1c200s-arm9-boards-mangopi-r3-and-cherrypi-f1c200s/#cherrypi-f1c200s
+
+The only difference is the silkscreen, there is no cherry logo on mine,
+but the (no longer working) URL is the same, so it's the same board from
+the same company. I guess legal troubles?
+
+> > is a small development board with the Allwinner F1C200s SoC. This is
+> > the
+> > same as the F1C100s, but with 64MB instead of 32MB co-packaged DRAM.
+> > 
+> > Alongside the obligatory micro-SD card slot, the board features a
+> > SPI-NAND flash chip, LCD and touch connectors, and unpopulated
+> > expansion header pins.
+> > There are two USB Type-C ports on the board: One supplies the power,
+> > also
+> > connects to the USB MUSB OTG controller port. The other one is
+> > connected
+> > to an CH340 USB serial chip, which in turn is connected to UART1.
+> > 
+> > Add a devicetree file, so that the board can be used easily.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  arch/arm/boot/dts/Makefile                    |  1 +
+> >  arch/arm/boot/dts/suniv-f1c100s.dtsi          |  5 ++
+> >  arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 80
+> > +++++++++++++++++++
+> >  3 files changed, 86 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+> > 
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 6abf6434eb372..f99c5c20bf7ef 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1394,6 +1394,7 @@ dtb-$(CONFIG_MACH_SUN9I) += \
+> >         sun9i-a80-cubieboard4.dtb
+> >  dtb-$(CONFIG_MACH_SUNIV) += \
+> >         suniv-f1c100s-licheepi-nano.dtb \
+> > +       suniv-f1c200s-lctech-pi.dtb \
+> >         suniv-f1c200s-popstick-v1.1.dtb
+> >  dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
+> >         tegra20-acer-a500-picasso.dtb \
+> > diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> > b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> > index 0f24c766c9fc5..2ec022e92eea8 100644
+> > --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> > +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> > @@ -201,6 +201,11 @@ uart0_pe_pins: uart0-pe-pins {
+> >                                 pins = "PE0", "PE1";
+> >                                 function = "uart0";
+> >                         };
+> > +
+> > +                       uart1_pa_pins: uart1-pa-pins {
+> > +                               pins = "PA2", "PA3";
+> > +                               function = "uart1";
+> > +                       };  
+> 
+> Should this be in a splitted commit?
+
+I don't know if this is really necessary, but am of course happy to spin
+this one out, if needed.
+
+> >                 };
+> >  
+> >                 timer@1c20c00 {
+> > diff --git a/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+> > b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+> > new file mode 100644
+> > index 0000000000000..a9d1778395438
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
+> > @@ -0,0 +1,80 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright 2022 Arm Ltd,
+> > + * based on work:
+> > + *   Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "suniv-f1c100s.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > +       model = "Lctech Pi F1C200s";
+> > +       compatible = "lctech,pi-f1c200s", "allwinner,suniv-f1c200s",
+> > +                    "allwinner,suniv-f1c100s";
+> > +
+> > +       aliases {
+> > +               mmc0 = &mmc0;
+> > +               serial0 = &uart1;
+> > +               spi0 = &spi0;
+> > +       };
+> > +
+> > +       chosen {
+> > +               stdout-path = "serial0:115200n8";
+> > +       };
+> > +
+> > +       reg_vcc3v3: regulator-3v3 {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "vcc3v3";
+> > +               regulator-min-microvolt = <3300000>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +       };
+> > +};
+> > +
+> > +&mmc0 {
+> > +       broken-cd;
+> > +       bus-width = <4>;
+> > +       disable-wp;
+> > +       vmmc-supply = <&reg_vcc3v3>;
+> > +       status = "okay";
+> > +};
+> > +
+> > +&otg_sram {
+> > +       status = "okay";
+> > +};
+> > +
+> > +&spi0 {
+> > +       pinctrl-names = "default";
+> > +       pinctrl-0 = <&spi0_pc_pins>;
+> > +       status = "okay";
+> > +
+> > +       flash@0 {
+> > +               compatible = "spi-nand";
+> > +               reg = <0>;
+> > +               #address-cells = <1>;
+> > +               #size-cells = <1>;
+> > +               spi-max-frequency = <40000000>;
+> > +       };
+> > +};
+> > +
+> > +&uart1 {
+> > +       pinctrl-names = "default";
+> > +       pinctrl-0 = <&uart1_pa_pins>;
+> > +       status = "okay";
+> > +};
+> > +
+> > +/*
+> > + * This is a Type-C socket, but CC1/2 are not connected, and VBUS is
+> > connected
+> > + * to Vin, which supplies the board. Host mode works (if the board
+> > is powered
+> > + * otherwise), but peripheral is probably the intention.
+> > + */
+> > +&usb_otg {
+> > +       dr_mode = "peripheral";
+> > +       status = "okay";
+> > +};  
+> 
+> Finally we should get able to override dr_mode just by HW.
+
+Do you mean by software? Yeah, that would be useful. Otherwise one could
+dedicate a GPIO to a fake ID_DET pin, I guess. Or use a DT overlay.
+
+Cheers,
+Andre
+
+> > +
+> > +&usbphy {
+> > +       status = "okay";
+> > +};  
+> 
+
