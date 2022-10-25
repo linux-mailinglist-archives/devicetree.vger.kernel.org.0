@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4AB760CBD3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 14:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A87760CBFC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 14:37:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbiJYM2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 08:28:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
+        id S231614AbiJYMhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 08:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbiJYM2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 08:28:50 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A8A0180ADC;
-        Tue, 25 Oct 2022 05:28:49 -0700 (PDT)
-Received: by mail-qk1-f182.google.com with SMTP id j21so7857987qkk.9;
-        Tue, 25 Oct 2022 05:28:49 -0700 (PDT)
+        with ESMTP id S231921AbiJYMhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 08:37:25 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6244B188A8F;
+        Tue, 25 Oct 2022 05:37:22 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id w29so263639qtv.9;
+        Tue, 25 Oct 2022 05:37:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zk1x69BorUq5EOLXWvjLkthJmpSNSl2Oga4mvV/7nWM=;
-        b=CV/5X84xLpBtdrdzbHrJxbXKT0HSho93jBDhdAQngR/0jwUxtxvaMSt7676dfX7K6R
-         m6bBgjjRLFcVvomO6O3JUrzpQRDjB6VlLhgl5UnOODgZX60eY9NIU6ZJ4w7oj3n5bqwy
-         oARE0GXw4mHul38kK8Hl0QReY8asKLWJEXyDCG7nWJAg1IP8lIqWpft90ASzZe5tZc38
-         /LlpoK+6TelflD4jAw458OrNdfV/Iu0s4gezSkT9nvIWWCfHeV1vc2BZP2XMIRAs7ZoN
-         eYLnLmaXCCX5q06BLI0Hb35jCmw07B2OqNyH5ieD5tuodrIV/Sr+x9cc/sw+ha55D8IQ
-         aJlw==
-X-Gm-Message-State: ACrzQf1z2Kq8+JK4cH2CL1w4HaTFYWZr0LbYPiAcUBLj1BSJynGdUOlx
-        aq8spmXJ8mgmZK5O0tkOhoP+EQ1W4WZ1wQ==
-X-Google-Smtp-Source: AMsMyM6mYXpc4bKLmwIUwPrBFz8/OFbToakjxyQFAQ/8Kgcp6DIFwKS7woc8bwZrwTE8TPIHpHIrKA==
-X-Received: by 2002:a05:620a:d96:b0:6ce:bca6:9dd0 with SMTP id q22-20020a05620a0d9600b006cebca69dd0mr26604621qkl.152.1666700927585;
-        Tue, 25 Oct 2022 05:28:47 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id g10-20020ac8480a000000b0039cc9d24843sm1526666qtq.66.2022.10.25.05.28.45
+        bh=DEjQC8UwPSpJbdU9AEdKNSZFHoUYuJmVXV6mmwXFmnE=;
+        b=kPoaRQDk7c03OxLLlwxc/8TvgirLoU8gjI0HHW2VjngQ3RG+390WQ4sqxfBZlmM1Ct
+         R9wle9KvdhO4NfemC2o9Ec0DEX3rWoVPZmM4JZoWl1oC63Kgalkn5uopv7vXQzca8XR4
+         nOLjNv4S5H0oEi3uflSndg9wet7UF0CrBx+zUIAmckCRO35KE3aCCbuk/ZhjOpt442uE
+         F2SzG6fffYfzeztkET3uTivkslDy061lir5Z5Gza/Hp305tpDn63BnFcEDgSsqMub9zB
+         0L4jzT/tk0NCivB48vSC0ZvczO99X1TDDJRJH6DJU7f8p29cd3ASqq8CbF6wX+Qb8mCV
+         yNqw==
+X-Gm-Message-State: ACrzQf14jH4zgyRTdjFTDGHBapHMfQNL1tBhgVUiehq3BRyNeLae0toV
+        n5cEuIgObrDOCSSyhBr1FuP0cVXcgWeW0Q==
+X-Google-Smtp-Source: AMsMyM6fy6Pk9aSnxvpfj4ewVzTeuNY4HOgACqJEkX2PwEBilrcbv7P5dWvPqGTVm2je/ZXnL4P5mA==
+X-Received: by 2002:a05:622a:49:b0:39c:e83e:8839 with SMTP id y9-20020a05622a004900b0039ce83e8839mr30682325qtw.424.1666701441266;
+        Tue, 25 Oct 2022 05:37:21 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id g3-20020ac87d03000000b00342f8984348sm1570874qtb.87.2022.10.25.05.37.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 05:28:46 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-3321c2a8d4cso111798507b3.5;
-        Tue, 25 Oct 2022 05:28:45 -0700 (PDT)
-X-Received: by 2002:a81:12c8:0:b0:36a:bd6b:92fb with SMTP id
- 191-20020a8112c8000000b0036abd6b92fbmr16103916yws.316.1666700925399; Tue, 25
- Oct 2022 05:28:45 -0700 (PDT)
+        Tue, 25 Oct 2022 05:37:19 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-369426664f9so111664067b3.12;
+        Tue, 25 Oct 2022 05:37:19 -0700 (PDT)
+X-Received: by 2002:a0d:de43:0:b0:349:31bd:e8d5 with SMTP id
+ h64-20020a0dde43000000b0034931bde8d5mr32925900ywe.283.1666701438736; Tue, 25
+ Oct 2022 05:37:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221017091201.199457-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221017091201.199457-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221017091201.199457-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221017091201.199457-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221017091201.199457-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20221017091201.199457-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Oct 2022 14:28:34 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXiim0bDBxaGWi2GjAmKS1gKj8D8TUBPXnZtm0EphKsmQ@mail.gmail.com>
-Message-ID: <CAMuHMdXiim0bDBxaGWi2GjAmKS1gKj8D8TUBPXnZtm0EphKsmQ@mail.gmail.com>
-Subject: Re: [RFC RESEND PATCH 1/2] arm64: dts: renesas: r9a07g043: Introduce
- SOC_PERIPHERAL_IRQ() macro to specify interrupt property
+Date:   Tue, 25 Oct 2022 14:37:07 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXuiCne2NvCzu8x9LeM_W8rxwLX-0w=kHnGa30bdzFaDQ@mail.gmail.com>
+Message-ID: <CAMuHMdXuiCne2NvCzu8x9LeM_W8rxwLX-0w=kHnGa30bdzFaDQ@mail.gmail.com>
+Subject: Re: [RFC RESEND PATCH 2/2] arm64: dts: renesas: r9a07g043: Split out
+ RZ/G2UL SoC specific parts
 To:     Prabhakar <prabhakar.csengg@gmail.com>
 Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -70,8 +70,8 @@ Cc:     Magnus Damm <magnus.damm@gmail.com>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,45 +83,24 @@ Hi Prabhakar,
 On Mon, Oct 17, 2022 at 11:12 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
 > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> Introduce SOC_PERIPHERAL_IRQ() macro to specify interrupt property so
-> that we can share the common parts of the SoC DTSI with the RZ/Five
-> (RISC-V) SoC and the RZ/G2UL (ARM64) SoC.
+> Move RZ/G2UL SoC specific parts to r9a07g043u.dtsi so that r9a07g043.dtsi
+> can be shared with RZ/Five (RISC-V SoC).
 >
-> This patch adds a new file r9a07g043u.dtsi to separate out RZ/G2UL
-> (ARM64) SoC specific parts. No functional changes (same DTB).
+> Below are the changes due to which SoC specific parts are moved to
+> r9a07g043u.dtsi:
+> - RZ/G2UL has Cortex-A55 (ARM64) whereas the RZ/Five has AX45MP (RISC-V)
+> - RZ/G2UL has GICv3 as interrupt controller whereas the RZ/Five has PLIC
+> - RZ/G2UL has interrupts for SYSC block whereas interrupts are missing
+>   for SYSC block on RZ/Five
 >
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 Thanks for your patch!
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u.dtsi
-> @@ -0,0 +1,12 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the RZ/G2UL SoC
-> + *
-> + * Copyright (C) 2022 Renesas Electronics Corp.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +#define SOC_PERIPHERAL_IRQ(nr, na)     GIC_SPI nr na
+This assumes the operating points tables are the same for both variants?
+I guess that's OK.
 
-s/na/flags/
-
-Originally, when I assumed incorrectly that dtc does not support
-arithmetic, I used "nr" and "na" in the macro I proposed to mean RISC-V
-("r") resp. ARM ("a") interrupt number.  Apparently the names stuck,
-although the second parameter now has a completely different meaning ;-)
-
-However, as the NCEPLIC does support interrupt flags, unlike the SiFive
-PLIC, there is no need to have the flags parameter in the macro.
-
-> +
-> +#include "r9a07g043.dtsi"
-
-The rest LGTM.
+Overall, LGTM.
 
 Gr{oetje,eeting}s,
 
