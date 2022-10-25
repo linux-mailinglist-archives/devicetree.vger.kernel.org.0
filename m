@@ -2,188 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7D060C558
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B661260C57B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 09:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbiJYHeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 03:34:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60546 "EHLO
+        id S231853AbiJYHiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 03:38:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231907AbiJYHeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:34:05 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7519152018
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 00:33:44 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id l6so6416756pjj.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 00:33:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XNFZLWBDpEQVVP8PITjRVb+C8Kzi0WYhsCO8eonBgh0=;
-        b=QsWpwnJULajs9HDqiZmXgkvTZGZkYUVcrZ3B7G7duiqEitktj9vkDQ/g75wHP7rLUf
-         Y3LQKXcUxrmrcTzZApvHSGRd8WDKxJl9BFS9YeQiQcopN147yzmCmsbwfVwQ74Cuf4L2
-         t6CsM7bnebtyY0C+qYldRH6J+y7Ie3OM/phjKEuQ8PpE2kMUEcwqpwEvi8QWsVca1d9F
-         qeqMrcfJHFDjWyDBS6zLxeUfs4BG+K7Jx85MsYbjBWRCwUhEvznPHZtGZrkNkeITMnsP
-         MZAph4ZsdQmxqbeYbzw4waTcN8bE5p+L9Bexg9B2yhAH0liE2Mh33RrsCYUIVpwE8XQM
-         N0AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XNFZLWBDpEQVVP8PITjRVb+C8Kzi0WYhsCO8eonBgh0=;
-        b=bZPWmrBHOPg7Gj2eGsyLfDjqL7Gz8LntQMfvsF9SCbt3Qxo1vcQ00KHTgmUbdqHL3Q
-         5ygdxf6zXpCPhRLxNZrFpVBRzWKsHcQ4KamXNCdxXJwWZSuSP6xbDaeGqq0Qg8aQyzYX
-         CblZsptK3K/kJu38WpMV1/WUt3SnbpkU5VQ128jZwoRca72p4d8fQis6F3axxJ8R0PUD
-         tml5zE+OPDjye/vpfN88jc/zXu6hZwEJ7X3s2iA/lbV2018e8hW/qxBOBXAfyktRczgP
-         KSLrwj0nxjyhmxJN1BsKSDNcZbmyY9GC+k3UvCGIYvU8LiLHi6lnJP5hB9mtzYXk65Wz
-         WLoQ==
-X-Gm-Message-State: ACrzQf0TJZn8LXL5qNrMG4hbph5E14tJWnf0KOelMarJ/7RcQP+tyO6p
-        wZslErlU2Aw3cLQllcj8RYP7
-X-Google-Smtp-Source: AMsMyM6+ep5OX6LFLnBIpKwOJqjTdnabuv3UlmkbhDRgTYaCRuGzjWjDmrmMeJFhb7UIoHNASgukig==
-X-Received: by 2002:a17:902:ce09:b0:178:bb78:49a5 with SMTP id k9-20020a170902ce0900b00178bb7849a5mr37984224plg.100.1666683223934;
-        Tue, 25 Oct 2022 00:33:43 -0700 (PDT)
-Received: from localhost.localdomain ([117.193.211.146])
-        by smtp.gmail.com with ESMTPSA id c1-20020a17090a4d0100b0020dda7efe61sm5048369pjg.5.2022.10.25.00.33.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 00:33:42 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org, viresh.kumar@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
-        robh+dt@kernel.org
-Cc:     johan@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 7/7] cpufreq: qcom-hw: Add CPU clock provider support
-Date:   Tue, 25 Oct 2022 13:02:54 +0530
-Message-Id: <20221025073254.1564622-8-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S231849AbiJYHit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 03:38:49 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6417F110B1C;
+        Tue, 25 Oct 2022 00:38:48 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29P7UMti020601;
+        Tue, 25 Oct 2022 07:38:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=aMykm1529RSRKYLy5BBR1klB9BxD6Lr0yPQ+hOsFZKY=;
+ b=moDXjCr9aLVlheG1VywRX0/jv1n7Zg9hNxWKGPkKkLsIwe1mG/zwcgX27VRphM8BQMJs
+ 6/RvuIQsPHfbQqWapQk/WUowhv4qD6H7nUdYfBUqE2o8kZFqu6AQSPuB2dYfYmpmqJSR
+ 0fPQrgQ4BxcHdF9YPRkXERWB9pP38svUEjHfs3v1AcojqWB0y3jSfbgly9tjWKpDqOdI
+ 8y/mv87J6hTBza6nHFiTZm4mRM+5GPLTwFDqznUwhlqBuzkWMZks3oo3sHDeiFXDRAE9
+ iVE6YtxkYTjGTfzDii/h2KTkUSD/cTXi4uFQ6289rCP72ZujcResUDSIirjZ1wKkN6VP Cg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3keb1mr2nu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Oct 2022 07:38:38 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29P7ccFt028258
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Oct 2022 07:38:38 GMT
+Received: from fenglinw2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 25 Oct 2022 00:38:34 -0700
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fenglin Wu <quic_fenglinw@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>
+Subject: [PATCH v4 2/2] dt-bindings: leds: add QCOM flash LED controller
+Date:   Tue, 25 Oct 2022 15:38:02 +0800
+Message-ID: <20221025073802.2662564-3-quic_fenglinw@quicinc.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221025073254.1564622-1-manivannan.sadhasivam@linaro.org>
-References: <20221025073254.1564622-1-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20221025073802.2662564-1-quic_fenglinw@quicinc.com>
+References: <20221025073802.2662564-1-quic_fenglinw@quicinc.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: chG0yzsh16UL6of5LIVfzb4cMw4wQk2m
+X-Proofpoint-ORIG-GUID: chG0yzsh16UL6of5LIVfzb4cMw4wQk2m
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-25_03,2022-10-21_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 clxscore=1015 suspectscore=0 phishscore=0 spamscore=0
+ adultscore=0 mlxlogscore=999 priorityscore=1501 malwarescore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2209130000 definitions=main-2210250043
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qcom CPUFreq hardware (EPSS/OSM) controls clock and voltage to the CPU
-cores. But this relationship is not represented with the clk framework
-so far.
+Add binding document for flash LED module inside Qualcomm Technologies,
+Inc. PMICs.
 
-So, let's make the qcom-cpufreq-hw driver a clock provider. This makes the
-clock producer/consumer relationship cleaner and is also useful for CPU
-related frameworks like OPP to know the frequency at which the CPUs are
-running.
-
-The clock frequency provided by the driver is for each frequency domain.
-We cannot get the frequency of each CPU core because, not all platforms
-support per-core DCVS feature.
-
-Also the frequency supplied by the driver is the actual frequency that
-comes out of the EPSS/OSM block after the DCVS operation. This frequency is
-not same as what the CPUFreq framework has set but it is the one that gets
-supplied to the CPUs after throttling by LMh.
-
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/cpufreq/qcom-cpufreq-hw.c | 43 +++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ .../bindings/leds/qcom,spmi-flash-led.yaml    | 116 ++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
 
-diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-index 76f840636828..66677db3e267 100644
---- a/drivers/cpufreq/qcom-cpufreq-hw.c
-+++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
- #include <linux/cpufreq.h>
- #include <linux/init.h>
- #include <linux/interconnect.h>
-@@ -53,6 +54,7 @@ struct qcom_cpufreq_data {
- 	bool cancel_throttle;
- 	struct delayed_work throttle_work;
- 	struct cpufreq_policy *policy;
-+	struct clk_hw cpu_clk;
- 
- 	bool per_core_dcvs;
- };
-@@ -601,8 +603,20 @@ static struct cpufreq_driver cpufreq_qcom_hw_driver = {
- 	.ready		= qcom_cpufreq_ready,
- };
- 
-+static unsigned long qcom_cpufreq_hw_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-+{
-+	struct qcom_cpufreq_data *data = container_of(hw, struct qcom_cpufreq_data, cpu_clk);
+diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+new file mode 100644
+index 000000000000..1b273aecaaec
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/qcom,spmi-flash-led.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	return qcom_lmh_get_throttle_freq(data) / HZ_PER_KHZ;
-+}
++title: Flash LED device inside Qualcomm Technologies, Inc. PMICs
 +
-+static const struct clk_ops qcom_cpufreq_hw_clk_ops = {
-+	.recalc_rate = qcom_cpufreq_hw_recalc_rate,
-+};
++maintainers:
++  - Fenglin Wu <quic_fenglinw@quicinc.com>
 +
- static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
- {
-+	struct clk_hw_onecell_data *clk_data;
- 	struct device *dev = &pdev->dev;
- 	struct device *cpu_dev;
- 	struct clk *clk;
-@@ -645,8 +659,16 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
- 
- 	qcom_cpufreq.soc_data = of_device_get_match_data(dev);
- 
-+	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, num_domains), GFP_KERNEL);
-+	if (!clk_data)
-+		return -ENOMEM;
++description: |
++  Flash LED controller is present inside some Qualcomm Technologies, Inc. PMICs.
++  The flash LED module can have different number of LED channels supported
++  e.g. 3 or 4. There are some different registers between them but they can
++  both support maximum current up to 1.5 A per channel and they can also support
++  ganging 2 channels together to supply maximum current up to 2 A. The current
++  will be split symmetrically on each channel and they will be enabled and
++  disabled at the same time.
 +
-+	clk_data->num = num_domains;
++properties:
++  compatible:
++    items:
++      - enum:
++          - qcom,pm8150c-flash-led
++          - qcom,pm8150l-flash-led
++          - qcom,pm8350c-flash-led
++      - const: qcom,spmi-flash-led
 +
- 	for (i = 0; i < num_domains; i++) {
- 		struct qcom_cpufreq_data *data = &qcom_cpufreq.data[i];
-+		static struct clk_init_data init = {};
-+		const char *clk_name;
- 		struct resource *res;
- 		void __iomem *base;
- 
-@@ -658,6 +680,27 @@ static int qcom_cpufreq_hw_driver_probe(struct platform_device *pdev)
- 
- 		data->base = base;
- 		data->res = res;
++  reg:
++    maxItems: 1
 +
-+		/* Register CPU clock for each frequency domain */
-+		clk_name = devm_kasprintf(dev, GFP_KERNEL, "qcom_cpufreq%d", i);
-+		init.name = clk_name;
-+		init.flags = CLK_GET_RATE_NOCACHE;
-+		init.ops = &qcom_cpufreq_hw_clk_ops;
-+		data->cpu_clk.init = &init;
++patternProperties:
++  "^led-[0-3]$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
++    description:
++      Represents the physical LED components which are connected to the
++      flash LED channels' output.
 +
-+		ret = devm_clk_hw_register(dev, &data->cpu_clk);
-+		if (ret < 0) {
-+			dev_err(dev, "Failed to register Qcom CPUFreq clock\n");
-+			return ret;
-+		}
++    properties:
++      led-sources:
++        description:
++          The HW indices of the flash LED channels that connect to the
++          physical LED
++        allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2, 3, 4]
 +
-+		clk_data->hws[i] = &data->cpu_clk;
-+	}
++      led-max-microamp:
++        anyOf:
++          - minimum: 5000
++            maximum: 500000
++            multipleOf: 5000
++          - minimum: 10000
++            maximum: 1000000
++            multipleOf: 10000
 +
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to add Qcom CPUFreq clock provider\n");
-+		return ret;
- 	}
- 
- 	ret = cpufreq_register_driver(&cpufreq_qcom_hw_driver);
++      flash-max-microamp:
++        anyOf:
++          - minimum: 12500
++            maximum: 1500000
++            multipleOf: 12500
++          - minimum: 25000
++            maximum: 2000000
++            multipleOf: 25000
++
++      flash-max-timeout-us:
++        minimum: 10000
++        maximum: 1280000
++        multipleOf: 10000
++
++    required:
++      - led-sources
++      - led-max-microamp
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++    spmi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        led-controller@ee00 {
++            compatible = "qcom,pm8350c-flash-led", "qcom,spmi-flash-led";
++            reg = <0xee00>;
++
++            led-0 {
++                function = LED_FUNCTION_FLASH;
++                color = <LED_COLOR_ID_WHITE>;
++                led-sources = <1>, <4>;
++                led-max-microamp = <300000>;
++                flash-max-microamp = <2000000>;
++                flash-max-timeout-us = <1280000>;
++                function-enumerator = <0>;
++            };
++
++            led-1 {
++                function = LED_FUNCTION_FLASH;
++                color = <LED_COLOR_ID_YELLOW>;
++                led-sources = <2>, <3>;
++                led-max-microamp = <300000>;
++                flash-max-microamp = <2000000>;
++                flash-max-timeout-us = <1280000>;
++                function-enumerator = <1>;
++            };
++        };
++    };
 -- 
 2.25.1
 
