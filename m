@@ -2,106 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF09C60CA85
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7887960CAA8
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:11:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbiJYLDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 07:03:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38958 "EHLO
+        id S231605AbiJYLLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 07:11:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231752AbiJYLDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:03:34 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06A5017F670;
-        Tue, 25 Oct 2022 04:03:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231305AbiJYLLC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:11:02 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76971DDD2;
+        Tue, 25 Oct 2022 04:11:00 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 8435CCE1C6F;
-        Tue, 25 Oct 2022 11:03:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B6AC433D6;
-        Tue, 25 Oct 2022 11:03:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666695811;
-        bh=fdcC4mR4dB/QFx3WrYK6jDAfOS5Cp8jhgwy0xEun364=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nKazl75omI35NaM4AI2u4k7W5QiR9pAJRt1uiREc6D9JOG0NtBkXFx60eYJJ3s3vx
-         z8Fi1DuCZYyslE9JG9lszhv1LRjqS88Wv5q8jdxMol+kMjqm9DBQzbstW/JDWonxHu
-         ILgo+cQHum2iXzIJGrjlVB2Z5z7d9N7qGhN7QE/d8Hdw2+vpPgzeZtHJq8fFau9GXz
-         vMTpeyGLs7FgaKTv5+O1tJI5CGYXlCQaT6vhfeSFdB2+QQyx8o/TH3HvX9rFDXxR1U
-         WCGDJP5c2y3Qt9P4q8qZerE+VNeu3NFJkfyKs04C5lOBVLDNl7fieU4Jk1EsupmK/G
-         tguviyOcG63DQ==
-Date:   Tue, 25 Oct 2022 12:03:25 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] ASoC: simple-card: Support custom DAI system
- clock IDs
-Message-ID: <Y1fCfej+/WH8TI39@sirena.org.uk>
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
- <Y1Z74/vKHbnaCLrX@sirena.org.uk>
- <XaoRSEMyUlabAR8wEJITmm2lGCjwfPZg@localhost>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C229D6602363;
+        Tue, 25 Oct 2022 12:10:58 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666696259;
+        bh=wUzXNP2554vw1kifpUJL6eaLTVMshR1MxYNA6by4EzE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=bQjtAhXTWZEzWSb+blobyNbH+w/nBH91kxBzhBQmcTrWeWOV2jNfxWEeVag77fRb+
+         I5XEZOTyi8Gt2beznmq2vcKlDrumy7kXeVEI5oVvSRkHZL3AS8IOUryl/zzntQKDSR
+         2rAjpdHTphT+7wir469slnKFVY1JuXILXbSDbWFr9grT3cygqMIkJWP0IaSz8+dMA2
+         o6SyxK9tqqLyHSltatqW8L24CmQqyFEelNPfQUR1OzA/SDSF2hm+BQ4IeOdCVnICbr
+         /JbuKdGABjIL2gFp7/ih7fFqCiPz848r6LouRDS2nAo3pxCYg6avUdxZFE2A+eI/Gq
+         aiCHa13yUt/ew==
+Message-ID: <22728b06-f460-6dda-21fa-1d7a7ae3b903@collabora.com>
+Date:   Tue, 25 Oct 2022 13:10:56 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="iUFfooZ1kpfKCAGd"
-Content-Disposition: inline
-In-Reply-To: <XaoRSEMyUlabAR8wEJITmm2lGCjwfPZg@localhost>
-X-Cookie: Your step will soil many countries.
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 2/2] dt-bindings: PCI: mediatek-gen3: add support for
+ mt7986
+Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20221025072837.16591-1-linux@fw-web.de>
+ <20221025072837.16591-3-linux@fw-web.de>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221025072837.16591-3-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 25/10/22 09:28, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Add compatible string and clock-definition for mt7986. It needs 4 clocks
+> for PCIe, define them in binding.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+> v2:
+> - squashed patch 2+3 (compatible and clock definition)
+> ---
+>   .../bindings/pci/mediatek-pcie-gen3.yaml        | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> index 98d3f0f1cd76..57d0e84253e9 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> @@ -48,6 +48,7 @@ properties:
+>       oneOf:
+>         - items:
+>             - enum:
+> +              - mediatek,mt7986-pcie
+>                 - mediatek,mt8188-pcie
+>                 - mediatek,mt8195-pcie
+>             - const: mediatek,mt8192-pcie
+> @@ -78,9 +79,11 @@ properties:
+>         - const: mac
+>   
+>     clocks:
+> +    minItems: 4
+>       maxItems: 6
 
---iUFfooZ1kpfKCAGd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I'm not sure that this is really correct.
+If you have a list of items (const or description, doesn't matter), you don't have
+to specify maxItems, as it is implicitly equal to the number of items.
+Also, specifying minItems means that you're "setting" one or more items as
+optional.
 
-On Tue, Oct 25, 2022 at 12:17:25AM +0100, Aidan MacDonald wrote:
-> Mark Brown <broonie@kernel.org> writes:
+It looks like you're specifying a specific and definite list of items for both
+clocks and clock-names... and for all of the supported SoCs, so, I don't think
+that having {min,max}Items globally specified on clocks, clock-names make any
+kind of sense.
 
-> > We already have clock bindings, if we need to configure clocks we should
-> > be using those to configure there.
+.....but I'd like for someone else to give an opinion on this as well.
 
-> The existing clock bindings are only useful for setting rates, and
-> .set_sysclk() does more than that. See my reply to Krzysztof if you
-> want an explanation, check nau8821 or tas2552 codecs for an example
-> of the kind of thing I'm talking about.
+Krzysztof, please?
 
-I thought there was stuff for muxes, but in any case if you are adding a
-new binding here you could just as well add one to the clock bindings.
+Cheers,
+Angelo
 
-> I picked those codecs at random, but they are fairly representative:
-> often a codec will allow the system clock to be derived from another
-> I2S clock (eg. BCLK), or provided directly, or maybe generated from an
-> internal PLL. In cases like that you need to configure the codec with
-> .set_sysclk() to select the right input. Many card drivers need to do
-> this, it's just as important as .set_fmt() or .hw_params().
+>   
+>     clock-names:
+> +    minItems: 4
+>       maxItems: 6
+>   
+>     assigned-clocks:
+> @@ -161,6 +164,20 @@ allOf:
+>               - const: tl_32k
+>               - const: peri_26m
+>               - const: peri_mem
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt7986-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pl_250m
+> +            - const: tl_26m
+> +            - const: peri_26m
+> +            - const: top_133m
+>   
+>   unevaluatedProperties: false
+>   
+> 
 
-There is a strong case for saying that all the clocking in CODECs might
-fit into the clock API, especially given the whole DT thing.
-
---iUFfooZ1kpfKCAGd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNXwnwACgkQJNaLcl1U
-h9DI6Af8Cuqiya/+8/lme/cDu+8TN8e8NuItmTYE0zwwWFnj4moKAKOKjnbxCrq3
-H8QZEZheZKL8XP4bCWHLQufnlxwzDApe7++u7t8EtX9EL8mV+cUmtSaOt+fkhBBf
-4lv32bLyPe5OX2a/mr7+ZlFWU3Zx3Y4/ZoYNsQnuQvfNtaM057yFyLdkYi2kMhUn
-MfUL8GEQS6Nu8+IqNxlRlgtE3wFr31DByy/pe74Ly+dbj85UMltrMgke/bMcsXPB
-GtTGf22OV2ZuaOWiW0PgGg7wLoqFzgK1Fg04aF5EMHtoF3eiLzIPxOJH+4tZJEkf
-Q8lfomo8CA2QoBibB2zP3gBeIFjDig==
-=+vuf
------END PGP SIGNATURE-----
-
---iUFfooZ1kpfKCAGd--
