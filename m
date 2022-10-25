@@ -2,78 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81D5160CED1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEC260CEE3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232469AbiJYOVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:21:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48416 "EHLO
+        id S231911AbiJYOYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:24:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232846AbiJYOVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:21:42 -0400
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A88380EB5;
-        Tue, 25 Oct 2022 07:21:40 -0700 (PDT)
-Received: by mail-oo1-xc36.google.com with SMTP id x6-20020a4ac586000000b0047f8cc6dbe4so1849323oop.3;
-        Tue, 25 Oct 2022 07:21:40 -0700 (PDT)
+        with ESMTP id S232641AbiJYOYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:24:01 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7331F104D39
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:23:59 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id h24so7581333qta.7
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:23:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Yko5glIn0tdH0ycCuGOetmeeVh4jbYQFoyxurLJH+28=;
-        b=XMKh31YujBGTgFvh/3bL/FJZ9lbvUpwDIv8xizLBI3z3Y3cEyBj3Vg+O3dn4cWst1o
-         Idcb+RCS3CRObMpknf+nYdmslkuNrsaVhgu7u4XXCxnKGlaHPJknbKTJG82mOPEwiAK/
-         U6RH+TxJ4L4dZUFRbl68MesEhLvyf4iYpNT5IAoFy20seD2+eVGLdgUAcW7Cu6e+mz2b
-         vCGWR0JSLSOUL44ocBUVdFHL9AY8iqrXp8EsLgxsRjToJ+K+mLku/7itzfJnuOwz3/uf
-         kqyZVQeLl3aUH90BMNryZJmBXKU05Nf097iIFbZKz6dw8lchOahxunWA2Mp/hrNk1hf6
-         A06g==
+        bh=aEerMWHyvmyU5PYfWpEtRfJuOuQqMGt3PGGVgLgFm8Y=;
+        b=I9wqFvxwIH2Y3eZ4ilZB/C85HRZyQ8TtJ6YDvcsgd+sva/U/KyF9KaixVU51fszRXF
+         /NuKYz+CtfA8b6gKjspzLUK3CsLEFXFMofoQ7Rw63aOAbY3USvVrPSTdu+tZ2gvI7qbT
+         sWmdqBTOpveyU960QOKhSnisWSb+AEt31D6UDLT66C0eQfooNj/B8akxLtMQraJc2nXg
+         /UY84C0u7PAnUx2JC8bWxOKw86UoGxAWsQ9Pta6iItEB6x5cUtfzDUm4gdFt6pvleNyk
+         26FAhZIJXYMKinV8AzkN5+NsFIdBQVIpP2QezTBaJJ7Y5wgD1SlX+VwT0Npkl2jvilVr
+         ZgJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:sender
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Yko5glIn0tdH0ycCuGOetmeeVh4jbYQFoyxurLJH+28=;
-        b=WCE36eZTXobY9MlcGMKc6ZrdgLofI6ykJ+P0f0ktX7xyVzT9fE5q95Zn3nnXvoDrDS
-         5TLWaUux6rClJvFCKu9tgCWU9uJ4Lw6wOdW9HmpKhtcazYQObvsjlTUegc92wWwWKgry
-         k6r6cowaCTjVASZx71IYcj3gkd0AS1OGHaNbgHqzU4B/pDfzLxi3uuM0wygoVOUw6JUE
-         1TQJ0pru7mQYtPo/gDYA/5nRhDrLZgLXpbLxnxQtTa1eDKAqbxBiqTh4yr2d3k9zk0yg
-         4DnODlf2PQ1ogBqFPxX0NXrRaWeAXTBeqPlZnNNu43ja8qqt8Sa5AESYiw50izVyX/fq
-         s1BQ==
-X-Gm-Message-State: ACrzQf3KosCPLx08vw3Lj0ZQzitITQzwCFLyvKlnXf85cfc+RQ6PEtQe
-        6O+QDOHRuCYIXOnl+0HBVI8=
-X-Google-Smtp-Source: AMsMyM4hC9gdelH7FK9R/Gan9m4AcPKmHPKl3Amx7nPKpEUnC5Z0GnU1uvauhxxxuVj1KRRxg9Aq5g==
-X-Received: by 2002:a4a:ab0c:0:b0:47f:653f:693e with SMTP id i12-20020a4aab0c000000b0047f653f693emr17114124oon.86.1666707699384;
-        Tue, 25 Oct 2022 07:21:39 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u16-20020a056871059000b0012d939eb0bfsm1598376oan.34.2022.10.25.07.21.36
+        bh=aEerMWHyvmyU5PYfWpEtRfJuOuQqMGt3PGGVgLgFm8Y=;
+        b=2QaJl0k2YDoxN196NQ4hTTKHAf1n9CK8nWtEMUY6IyDBg3bC7KTs6Vpcx0ltHY8yMh
+         J7PTSkXrGjfltEcrG8M7u7NwKgFd4D2vDu7iDvgKIUfuWhwoGYAywPSQfFVXLbsGEgG0
+         HHAwiBvw0rPtXeTvLpCPD/8SsjVaR7+wZgKlqUIOswQzF+/r8XGadMxIwpSOn6ffWy2X
+         pD2o6aSE+HbP2+JJDcV1F3yKjIGBePJMBoCylK7Y2w8z41bLjOaIT34XvUlThoO6Zr1I
+         5lgF9ToQ/1+nIiXcghIQm6fho4tZj/UeKUvqA/b0w3Wr1mY6C1zALLlxX6InnYorhpzO
+         lovA==
+X-Gm-Message-State: ACrzQf03QO2rn+kzfVQAJSuHUWMpaWCXqAwcUMzy0tPNvmUyYmPIrykx
+        jp3SXmjokzB982F27PPyYcHN+w==
+X-Google-Smtp-Source: AMsMyM5V3SML4r6N4Nls3J7kaJMXqe96oAidLnzfadTvAeW2WWMtx5Y0SSUqCyqnSPIANDPchx2hzw==
+X-Received: by 2002:a05:622a:40d:b0:397:bd61:ef1d with SMTP id n13-20020a05622a040d00b00397bd61ef1dmr32728619qtx.404.1666707838570;
+        Tue, 25 Oct 2022 07:23:58 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id fy14-20020a05622a5a0e00b0039ccd7a0e10sm1639173qtb.62.2022.10.25.07.23.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 07:21:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <bea41e17-0269-d88e-fd22-ad5c5a4b8dac@roeck-us.net>
-Date:   Tue, 25 Oct 2022 07:21:34 -0700
+        Tue, 25 Oct 2022 07:23:57 -0700 (PDT)
+Message-ID: <d942c724-4520-4a7b-8c36-704032c68a36@linaro.org>
+Date:   Tue, 25 Oct 2022 10:23:55 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
+ Thunderbird/102.4.0
+Subject: Re: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX
+ switch
 Content-Language: en-US
-To:     Andrej Picej <andrej.picej@norik.com>,
-        linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221025072533.2980154-1-andrej.picej@norik.com>
- <20221025072533.2980154-2-andrej.picej@norik.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
-In-Reply-To: <20221025072533.2980154-2-andrej.picej@norik.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Camel Guo <camel.guo@axis.com>, Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        kernel@axis.com
+References: <20221025135243.4038706-1-camel.guo@axis.com>
+ <20221025135243.4038706-3-camel.guo@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221025135243.4038706-3-camel.guo@axis.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,135 +87,273 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/25/22 00:25, Andrej Picej wrote:
-> Putting device into the "Suspend-To-Idle" mode causes watchdog to
-> trigger and reset the board after set watchdog timeout period elapses.
+On 25/10/2022 09:52, Camel Guo wrote:
+> Add initial framework for Maxlinear's GSW1xx switch and
+> currently only GSW145 in MDIO managed mode is supported.
 > 
-
-s/reset/resets/
-
-> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
-> watchdog in WAIT mode. This is done by setting WDW bit in WCR
-> (Watchdog Control Register) Watchdog operation is restored after exiting
-
-'.' after ')' missing ?
-
-> WAIT mode as expected. WAIT mode coresponds with Linux's
-
-s/coresponds/corresponds/
-
-> "Suspend-To-Idle".
-> 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Camel Guo <camel.guo@axis.com>
 > ---
-> Changes in v2:
->   - validate the property with compatible string, as this functionality
->     is not supported by all devices.
-> ---
->   drivers/watchdog/imx2_wdt.c | 37 +++++++++++++++++++++++++++++++++++++
->   1 file changed, 37 insertions(+)
-> 
-> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
-> index d0c5d47ddede..dd9866c6f1e5 100644
-> --- a/drivers/watchdog/imx2_wdt.c
-> +++ b/drivers/watchdog/imx2_wdt.c
-> @@ -35,6 +35,7 @@
->   
->   #define IMX2_WDT_WCR		0x00		/* Control Register */
->   #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* -> Watchdog Timeout Field */
-> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable for WAIT */
->   #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset WDOG_B */
->   #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset Signal */
->   #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable */
-> @@ -67,6 +68,27 @@ struct imx2_wdt_device {
->   	bool ext_reset;
->   	bool clk_is_on;
->   	bool no_ping;
-> +	bool sleep_wait;
+
+(...)
+
+> +	priv->ds->dev = dev;
+> +	priv->ds->num_ports = priv->hw_info->max_ports;
+> +	priv->ds->priv = priv;
+> +	priv->ds->ops = &gsw1xx_switch_ops;
+> +	priv->dev = dev;
+> +	version = gsw1xx_switch_r(priv, GSW1XX_IP_VERSION);
+> +
+> +	np = dev->of_node;
+> +	switch (version) {
+> +	case GSW1XX_IP_VERSION_2_3:
+> +		if (!of_device_is_compatible(np, "mxl,gsw145-mdio"))
+> +			return -EINVAL;
+> +		break;
+> +	default:
+> +		dev_err(dev, "unknown GSW1XX_IP version: 0x%x", version);
+> +		return -ENOENT;
+> +	}
+> +
+> +	/* bring up the mdio bus */
+> +	mdio_np = of_get_child_by_name(np, "mdio");
+> +	if (!mdio_np) {
+> +		dev_err(dev, "missing child mdio node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	err = gsw1xx_mdio(priv, mdio_np);
+> +	if (err) {
+> +		dev_err(dev, "mdio probe failed\n");
+
+dev_err_probe()
+
+> +		goto put_mdio_node;
+> +	}
+> +
+> +	err = dsa_register_switch(priv->ds);
+> +	if (err) {
+> +		dev_err(dev, "dsa switch register failed: %i\n", err);
+
+
+dev_err_probe()
+
+> +		goto mdio_bus;
+> +	}
+> +	if (!dsa_is_cpu_port(priv->ds, priv->hw_info->cpu_port)) {
+> +		dev_err(dev,
+> +			"wrong CPU port defined, HW only supports port: %i",
+> +			priv->hw_info->cpu_port);
+> +		err = -EINVAL;
+> +		goto disable_switch;
+> +	}
+> +
+> +	dev_set_drvdata(dev, priv);
+> +
+> +	return 0;
+> +
+> +disable_switch:
+> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
+> +	dsa_unregister_switch(priv->ds);
+> +mdio_bus:
+> +	if (mdio_np) {
+> +		mdiobus_unregister(priv->ds->slave_mii_bus);
+> +		mdiobus_free(priv->ds->slave_mii_bus);
+> +	}
+> +put_mdio_node:
+> +	of_node_put(mdio_np);
+> +	return err;
+> +}
+> +EXPORT_SYMBOL(gsw1xx_probe);
+> +
+> +void gsw1xx_remove(struct gsw1xx_priv *priv)
+> +{
+> +	if (!priv)
+> +		return;
+> +
+> +	/* disable the switch */
+> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
+> +
+> +	dsa_unregister_switch(priv->ds);
+> +
+> +	if (priv->ds->slave_mii_bus) {
+> +		mdiobus_unregister(priv->ds->slave_mii_bus);
+> +		of_node_put(priv->ds->slave_mii_bus->dev.of_node);
+> +		mdiobus_free(priv->ds->slave_mii_bus);
+> +	}
+> +
+> +	dev_set_drvdata(priv->dev, NULL);
+> +}
+> +EXPORT_SYMBOL(gsw1xx_remove);
+> +
+> +void gsw1xx_shutdown(struct gsw1xx_priv *priv)
+> +{
+> +	if (!priv)
+> +		return;
+> +
+> +	/* disable the switch */
+> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
+> +
+> +	dsa_switch_shutdown(priv->ds);
+> +
+> +	dev_set_drvdata(priv->dev, NULL);
+> +}
+> +EXPORT_SYMBOL(gsw1xx_shutdown);
+
+1. EXPORT_SYMBOL_GPL
+2. Why do you do it in the first place? It's one driver, no need for
+building two modules. Same applies to other places.
+
+> +
+> +static const struct regmap_range gsw1xx_valid_regs[] = {
+> +	/* GSWIP Core Registers */
+> +	regmap_reg_range(GSW1XX_IP_BASE_ADDR,
+> +			 GSW1XX_IP_BASE_ADDR + GSW1XX_IP_REG_LEN),
+> +	/* Top Level PDI Registers, MDIO Master Reigsters */
+> +	regmap_reg_range(GSW1XX_MDIO_BASE_ADDR,
+> +			 GSW1XX_MDIO_BASE_ADDR + GSW1XX_MDIO_REG_LEN),
 > +};
 > +
-> +static const char * const wdw_boards[] __initconst = {
-> +	"fsl,imx25-wdt",
-> +	"fsl,imx35-wdt",
-> +	"fsl,imx50-wdt",
-> +	"fsl,imx51-wdt",
-> +	"fsl,imx53-wdt",
-> +	"fsl,imx6q-wdt",
-> +	"fsl,imx6sl-wdt",
-> +	"fsl,imx6sll-wdt",
-> +	"fsl,imx6sx-wdt",
-> +	"fsl,imx6ul-wdt",
-> +	"fsl,imx7d-wdt",
-> +	"fsl,imx8mm-wdt",
-> +	"fsl,imx8mn-wdt",
-> +	"fsl,imx8mp-wdt",
-> +	"fsl,imx8mq-wdt",
-> +	"fsl,vf610-wdt",
-> +	NULL
->   };
->   
->   static bool nowayout = WATCHDOG_NOWAYOUT;
-> @@ -129,6 +151,9 @@ static inline void imx2_wdt_setup(struct watchdog_device *wdog)
->   
->   	/* Suspend timer in low power mode, write once-only */
->   	val |= IMX2_WDT_WCR_WDZST;
-> +	/* Suspend timer in low power WAIT mode, write once-only */
-> +	if (wdev->sleep_wait)
-> +		val |= IMX2_WDT_WCR_WDW;
->   	/* Strip the old watchdog Time-Out value */
->   	val &= ~IMX2_WDT_WCR_WT;
->   	/* Generate internal chip-level reset if WDOG times out */
-> @@ -313,6 +338,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
->   
->   	wdev->ext_reset = of_property_read_bool(dev->of_node,
->   						"fsl,ext-reset-output");
+> +const struct regmap_access_table gsw1xx_register_set = {
+> +	.yes_ranges = gsw1xx_valid_regs,
+> +	.n_yes_ranges = ARRAY_SIZE(gsw1xx_valid_regs),
+> +};
+> +EXPORT_SYMBOL(gsw1xx_register_set);
 > +
-> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait"))
-> +		if (of_device_compatible_match(dev->of_node, wdw_boards))
-> +			wdev->sleep_wait = 1;
-
-Since sleep_wait is bool:
-			wdev->sleep_wait = true;
-
-> +		else {
-> +			dev_warn(dev, "Warning: Suspending watchdog during " \
-> +				"WAIT mode is not supported for this device.\n");
-
-Do not split strings. "Warning:" is redundant. Please handle the error first.
-
-> +			wdev->sleep_wait = 0;
-
-Unnecessary; false by default. Also, this should fail and return -EINVAL.
-Devicetree files should be correct, and warning messages tend to be ignored.
-
-> +		}
-
-All branches of if/else need to wither use {} or no {}.
-
-> +	else
-> +		wdev->sleep_wait = 0;
+> +MODULE_AUTHOR("Camel Guo <camel.guo@axis.com>");
+> +MODULE_DESCRIPTION("Core Driver for MaxLinear GSM1XX ethernet switch");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/net/dsa/gsw1xx_mdio.c b/drivers/net/dsa/gsw1xx_mdio.c
+> new file mode 100644
+> index 000000000000..8328001041ed
+> --- /dev/null
+> +++ b/drivers/net/dsa/gsw1xx_mdio.c
+> @@ -0,0 +1,128 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * MaxLinear switch driver for GSW1XX in MDIO managed mode
+> + */
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mdio.h>
+> +#include <linux/phy.h>
+> +#include <linux/of.h>
 > +
-Unnecessary.
+> +#include "gsw1xx.h"
+> +
+> +#define GSW1XX_SMDIO_TARGET_BASE_ADDR_REG	0x1F
+> +
+> +static int gsw1xx_mdio_write(void *ctx, uint32_t reg, uint32_t val)
+> +{
+> +	struct mdio_device *mdiodev = (struct mdio_device *)ctx;
+> +	int ret = 0;
+> +
+> +	mutex_lock_nested(&mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
+> +
+> +	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr,
+> +				  GSW1XX_SMDIO_TARGET_BASE_ADDR_REG, reg);
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr, 0, val);
+> +
+> +out:
+> +	mutex_unlock(&mdiodev->bus->mdio_lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int gsw1xx_mdio_read(void *ctx, uint32_t reg, uint32_t *val)
+> +{
+> +	struct mdio_device *mdiodev = (struct mdio_device *)ctx;
+> +	int ret = 0;
+> +
+> +	mutex_lock_nested(&mdiodev->bus->mdio_lock, MDIO_MUTEX_NESTED);
+> +
+> +	ret = mdiodev->bus->write(mdiodev->bus, mdiodev->addr,
+> +				  GSW1XX_SMDIO_TARGET_BASE_ADDR_REG, reg);
+> +	if (ret < 0)
+> +		goto out;
+> +
+> +	*val = mdiodev->bus->read(mdiodev->bus, mdiodev->addr, 0);
+> +
+> +out:
+> +	mutex_unlock(&mdiodev->bus->mdio_lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct regmap_config gsw1xx_mdio_regmap_config = {
+> +	.reg_bits = 16,
+> +	.val_bits = 16,
+> +	.reg_stride = 1,
+> +
+> +	.disable_locking = true,
+> +
+> +	.volatile_table = &gsw1xx_register_set,
+> +	.wr_table = &gsw1xx_register_set,
+> +	.rd_table = &gsw1xx_register_set,
+> +
+> +	.reg_read = gsw1xx_mdio_read,
+> +	.reg_write = gsw1xx_mdio_write,
+> +
+> +	.cache_type = REGCACHE_NONE,
+> +};
+> +
+> +static int gsw1xx_mdio_probe(struct mdio_device *mdiodev)
+> +{
+> +	struct gsw1xx_priv *priv;
+> +	struct device *dev = &mdiodev->dev;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->regmap = devm_regmap_init(dev, NULL, mdiodev,
+> +					&gsw1xx_mdio_regmap_config);
+> +	if (IS_ERR(priv->regmap)) {
+> +		ret = PTR_ERR(priv->regmap);
+> +		dev_err(dev, "regmap init failed: %d\n", ret);
+> +		return ret;
 
-I would suggest to replace the above code with something like
+return dev_err_probe().
 
-	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait")) {
-		if (!of_device_compatible_match(dev->of_node, wdw_boards)) {
-			dev_err(dev, "Suspending watchdog in WAIT mode is not supported for this device\n");
-			return -EINVAL;
-		}
-		wdev->sleep_wait = true;
-	}
+> +	}
+> +
+> +	return gsw1xx_probe(priv, dev);
+> +}
+> +
+> +static void gsw1xx_mdio_remove(struct mdio_device *mdiodev)
+> +{
+> +	gsw1xx_remove(dev_get_drvdata(&mdiodev->dev));
+> +}
+> +
+> +static void gsw1xx_mdio_shutdown(struct mdio_device *mdiodev)
+> +{
+> +	gsw1xx_shutdown(dev_get_drvdata(&mdiodev->dev));
+> +}
+> +
+> +static const struct gsw1xx_hw_info gsw145_hw_info = {
+> +	.max_ports = 6,
+> +	.cpu_port = 5,
+> +};
+> +
+> +static const struct of_device_id gsw1xx_mdio_of_match[] = {
+> +	{ .compatible = "mxl,gsw145-mdio", .data = &gsw145_hw_info },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, gsw1xx_mdio_of_match);
+> +
+> +static struct mdio_driver gsw1xx_mdio_driver = {
+> +	.probe  = gsw1xx_mdio_probe,
+> +	.remove = gsw1xx_mdio_remove,
+> +	.shutdown = gsw1xx_mdio_shutdown,
+> +	.mdiodrv.driver = {
+> +		.name = "GSW1XX_MDIO",
+> +		.of_match_table = of_match_ptr(gsw1xx_mdio_of_match),
 
->   	/*
->   	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
->   	 * during suspend.
+of_match_ptr requires maybe_unused. Or just drop it.
 
-I still wonder how that interacts with fsl,suspend-in-wait, but since we have a
-property for that we can leave that for someone else to find out. Maybe add a
-comment explaining that interaction with "fsl,suspend-in-wait" is unknown.
-
-Thanks,
-Guenter
+Best regards,
+Krzysztof
 
