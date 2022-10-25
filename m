@@ -2,174 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C3860C9E2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB5F660CA14
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:30:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232410AbiJYKWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 06:22:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60454 "EHLO
+        id S231958AbiJYKaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 06:30:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232435AbiJYKVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:21:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2558713669F;
-        Tue, 25 Oct 2022 03:18:47 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 38415660239C;
-        Tue, 25 Oct 2022 11:18:45 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666693125;
-        bh=oPF1o7oWPbryY18wvQiyqLyaSGkoOyYT6E+3DLkyLxs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=aNxRpUtzvLMgc0F9bQ4w3Pla8RcdaRHv8Cryqkg+evUgzf2jE9kuUy6pcnO1hkucl
-         Jxs+diruWGkYOA5oU2Ydei2qtQTk2zOPW8nOwQ9P6wgrPpb1tnG0ghdJUGwuzOoFA4
-         +OuqXMVALz5ew3SouzOGDkE75nmFAkIzvs5/N7157pve+pFQ72TchQWZvqYE0G2ywj
-         XP9Ek3H4XfIEHoEw6kSfPSsCX0Im0z7EL2shxzG0l9lTgD2le5qep7g43dQBdxqEse
-         4kvlwIAGfvJBU13l1Y3aXlo/y8+BThw2hlbrBHzTRyfMALtthobTNh9w44it19NZhX
-         bYp2HlOWhlALQ==
-Message-ID: <473d67ed-198f-82c6-9f32-5827c1f8c852@collabora.com>
-Date:   Tue, 25 Oct 2022 12:18:43 +0200
+        with ESMTP id S232026AbiJYK3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:29:49 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 82F0E90;
+        Tue, 25 Oct 2022 03:29:41 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 78505D6E;
+        Tue, 25 Oct 2022 03:29:47 -0700 (PDT)
+Received: from [10.57.36.110] (unknown [10.57.36.110])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B3DD43F7B4;
+        Tue, 25 Oct 2022 03:29:38 -0700 (PDT)
+Message-ID: <34c3daf3-88f8-0dc2-026b-95ca075195b4@arm.com>
+Date:   Tue, 25 Oct 2022 11:29:12 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v2 03/12] ASoC: mediatek: mt8188: support audsys clock
-Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20221021082719.18325-1-trevor.wu@mediatek.com>
- <20221021082719.18325-4-trevor.wu@mediatek.com>
- <de66f0e3-7694-7315-c896-9211259a1a17@collabora.com>
- <776557c0fda5a538549ee0d4f4b7f482b0d69934.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <776557c0fda5a538549ee0d4f4b7f482b0d69934.camel@mediatek.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
+ and ranges
+Content-Language: en-GB
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>, megi@xff.cz,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        michael.riesch@wolfvision.net, frattaroli.nicolas@gmail.com,
+        s.hauer@pengutronix.de, frank-w@public-files.de,
+        ezequiel@vanguardiasur.com.ar, yifeng.zhao@rock-chips.com,
+        jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221005085439.740992-1-megi@xff.cz>
+ <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
+ <20221005220812.4psu6kckej63yo2z@core> <4679102.Wku2Vz74k6@phil>
+ <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
+ <20221021153913.l5ry6v4mcnzcmj2v@core>
+ <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
+ <20221021193248.2he6amnj7knk4biu@core>
+ <87edv0sxup.fsf@bloch.sibelius.xs4all.nl>
+ <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
+ <875ygbsrf3.fsf@bloch.sibelius.xs4all.nl>
+ <5a8f9934-1959-7962-d575-e3c2f5bc6ade@arm.com>
+ <CAMdYzYrXp1kgdRpBmnfiFrXcdkk6_oWozpywgCYbNo_MU+8+=A@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMdYzYrXp1kgdRpBmnfiFrXcdkk6_oWozpywgCYbNo_MU+8+=A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/10/22 11:58, Trevor Wu (吳文良) ha scritto:
-> On Fri, 2022-10-21 at 10:41 +0200, AngeloGioacchino Del Regno wrote:
->> Il 21/10/22 10:27, Trevor Wu ha scritto:
->>> Add mt8188 audio cg clock control. Audio clock gates are registered
->>> to CCF
->>> for reference count and clock parent management.
->>>
->>> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
->>> ---
->>>    sound/soc/mediatek/mt8188/mt8188-audsys-clk.c | 206
->>> ++++++++++++++++++
->>>    sound/soc/mediatek/mt8188/mt8188-audsys-clk.h |  15 ++
->>>    .../soc/mediatek/mt8188/mt8188-audsys-clkid.h |  83 +++++++
->>>    3 files changed, 304 insertions(+)
->>>    create mode 100644 sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>>    create mode 100644 sound/soc/mediatek/mt8188/mt8188-audsys-clk.h
->>>    create mode 100644 sound/soc/mediatek/mt8188/mt8188-audsys-
->>> clkid.h
->>>
->>> diff --git a/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>> b/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>> new file mode 100644
->>> index 000000000000..1f294231d4c2
->>> --- /dev/null
->>> +++ b/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
->>> @@ -0,0 +1,206 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * mt8188-audsys-clk.c  --  MediaTek 8188 audsys clock control
->>> + *
->>> + * Copyright (c) 2022 MediaTek Inc.
->>> + * Author: Chun-Chia Chiu <chun-chia.chiu@mediatek.com>
->>> + */
->>> +
->>> +#include <linux/clk.h>
->>> +#include <linux/clk-provider.h>
->>> +#include <linux/clkdev.h>
->>> +#include "mt8188-afe-common.h"
->>> +#include "mt8188-audsys-clk.h"
->>> +#include "mt8188-audsys-clkid.h"
->>> +#include "mt8188-reg.h"
->>> +
->>> +struct afe_gate {
->>> +	int id;
->>> +	const char *name;
->>> +	const char *parent_name;
->>> +	int reg;
->>> +	u8 bit;
->>> +	const struct clk_ops *ops;
->>> +	unsigned long flags;
->>> +	u8 cg_flags;
->>> +};
->>> +
->>> +#define GATE_AFE_FLAGS(_id, _name, _parent, _reg, _bit, _flags,
->>> _cgflags) {\
->>> +		.id = _id,					\
->>> +		.name = _name,					\
->>> +		.parent_name = _parent,				\
->>> +		.reg = _reg,					\
->>> +		.bit = _bit,					\
->>> +		.flags = _flags,				\
->>> +		.cg_flags = _cgflags,				\
->>> +	}
->>> +
->>> +#define GATE_AFE(_id, _name, _parent, _reg, _bit)		\
->>> +	GATE_AFE_FLAGS(_id, _name, _parent, _reg, _bit,		\
->>> +		       CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->>> CLK_GATE_SET_TO_DISABLE)
+On 2022-10-24 21:16, Peter Geis wrote:
+> On Mon, Oct 24, 2022 at 7:05 AM Robin Murphy <robin.murphy@arm.com> wrote:
 >>
->> Can you please explain what's the reason for CLK_IGNORE_UNUSED here?
->> Maybe we can solve some issue that you're facing in a cleaner way.
+>> On 2022-10-22 18:24, Mark Kettenis wrote:
+>>>> From: Peter Geis <pgwipeout@gmail.com>
+>>>> Date: Sat, 22 Oct 2022 08:19:57 -0400
+>>>
+>>> Hello Peter,
+>>>
+>>>> On Fri, Oct 21, 2022 at 4:52 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+>>>>>
+>>>>>> Date: Fri, 21 Oct 2022 21:32:48 +0200
+>>>>>> From: Ondřej Jirman <megi@xff.cz>
+>>>>>>
+>>>>>> On Fri, Oct 21, 2022 at 12:48:15PM -0400, Peter Geis wrote:
+>>>>>>> On Fri, Oct 21, 2022 at 11:39 AM Ondřej Jirman <megi@xff.cz> wrote:
+>>>>>>>>
+>>>>>>>> On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
+>>>>>>>>> Good Morning Heiko,
+>>>>>>>>>
+>>>>>>>>> Apologies for just getting to this, I'm still in the middle of moving
+>>>>>>>>> and just got my lab set back up.
+>>>>>>>>>
+>>>>>>>>> I've tested this patch series and it leads to the same regression with
+>>>>>>>>> NVMe drives. A loop of md5sum on two identical 4GB random files
+>>>>>>>>> produces the following results:
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+>>>>>>>>> fad97e91da8d4fd554c895cafa89809b  test-rand2.img
+>>>>>>>>> 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
+>>>>>>>>> 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+>>>>>>>>> 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
+>>>>>>>>> 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
+>>>>>>>>> b9637505bf88ed725f6d03deb7065dab  test-rand.img
+>>>>>>>>> f7437e88d524ea92e097db51dce1c60d  test-rand2.img
+>>>>>>>>>
+>>>>>>>>> Before this patch series:
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
+>>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
+>>>>>>>>>
+>>>>>>>>> Though I do love where this patch is going and would like to see if it
+>>>>>>>>> can be made to work, in its current form it does not.
+>>>>>>>>
+>>>>>>>> Thanks for the test. Can you please also test v1? Also please share lspci -vvv
+>>>>>>>> of your nvme drive, so that we can see allocated address ranges, etc.
+>>>>>>>
+>>>>>>> Good catch, with your patch as is, the following issue crops up:
+>>>>>>> Region 0: Memory at 300000000 (64-bit, non-prefetchable) [size=16K]
+>>>>>>> Region 2: I/O ports at 1000 [disabled] [size=256]
+>>>>>>>
+>>>>>>> However, with a simple fix, we can get this:
+>>>>>>> Region 0: Memory at 300000000 (64-bit, non-prefetchable) [virtual] [size=16K]
+>>>>>>> Region 2: I/O ports at 1000 [virtual] [size=256]
+>>>>>>>
+>>>>>>> and with it a working NVMe drive.
+>>>>>>>
+>>>>>>> Change the following range:
+>>>>>>> 0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
+>>>>>>> to
+>>>>>>> 0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x40000000>;
+>>>>>>
+>>>>>> I've already tried this, but this unfrotunately breaks the wifi cards.
+>>>>>> (those only use the I/O space) Maybe because I/O and memory address spaces
+>>>>>> now overlap, I don't know. That's why I used the 1GiB offset for memory
+>>>>>> space.
+>>>>>
+>>>>> Meanwhile, I have an NVMe drive that only works if mmio is completely
+>>>>> untranslated.  This is an ADATA SX8000NP drive, which uses a Silicon
+>>>>> Motion SM2260 controller.
+>>>>>
+>>>>> So for me, a working configuration has the following "ranges":
+>>>>>
+>>>>> ranges = <0x01000000 0x0 0x00000000 0x3 0x3fff0000 0x0 0x00010000>,
+>>>>>            <0x02000000 0x0 0xf4000000 0x0 0xf4000000 0x0 0x02000000>,
+>>>>>            <0x03000000 0x3 0x10000000 0x3 0x10000000 0x0 0x2fff0000>;
+>>>>>
+>>>>> This also needs changes to the "reg" propery:
+>>>>>
+>>>>> reg = <0x3 0xc0000000 0x0 0x00400000>,
+>>>>>         <0x0 0xfe260000 0x0 0x00010000>,
+>>>>>         <0x3 0x00000000 0x0 0x10000000>;
+>>>>
+>>>> Now this is interesting. I've been reading up on PCIe ranges and what
+>>>> is necessary for things to work properly, and I found this interesting
+>>>> article from ARM:
+>>>> https://developer.arm.com/documentation/102337/0000/Programmers-model/Memory-maps/AP-system-memory-map/PCIe-MMIO-and-ECAM-memory-regions
+>>>>
+>>>> TLDR: We need a low region (below 4g) and a high region.
+>>>
+>>> Well, that description applies to a specific ARM reference design.
+>>> And it appears that the PCIe-RC used in that reference design does not
+>>> support address translation.
 >>
->> Regards,
->> Angelo
+>> Indeed, that's not an "interesting article", it's just documentation for
+>> some other system that isn't this one. In fact it's a system that
+>> strictly doesn't even *have* PCIe; the reference designs are not
+>> complete SoCs, and all that is being described there is the interconnect
+>> address map for the parts which are in place ready for a customer to
+>> stitch their choice of PCIe implementation to.
+>>
+>> The equivalent for RK3568 is that you *do* have "low" and "high" PCIe
+>> windows at 0xfx000000 and 0x3xxx00000 respectively in the system
+>> interconnect address map. How the PCIe controllers choose to relate
+>> those system MMIO addresses to those to PCI Memory, I/O and Config space
+>> addresses is another matter entirely.
 > 
-> Hi Angelo,
+> Unfortunately we are working with insufficient documentation and
+> without the detailed understanding of a system integrator here. I'm
+> fully aware that the Neoverse N2 is not the rk3568, however
+> significant chunks of the rk3568 are based on ARM IP. Looking at how
+> ARM expects things to work by comparing their reference documents to
+> the hardware we have on hand is helpful in determining what we are
+> lacking.
 > 
-> Because clk_disable_unused() calls clk_core_is_enabled(), register
-> access happens in is_enabled() ops.
-> At the moment, the power for register access is not enabled, so the
-> register read results in CPU hang.
+> The specific portions of the documentation that I found useful are not
+> the memory maps, but the generic descriptions of expected PCIe
+> regions. Combining those with other reference documents (unfortunately
+> most x86 based, but we have the unfortunate reality that PCIe has a
+> lot of x86isms to deal with) is quite enlightening.
+
+OK, but you're looking at the wrong place for that. The only actual 
+relevant reference would be rule PCI_MM_06 in the BSA[1], which says 
+that PCI memory space should not be translated relative to the system 
+address map. It is hopefully obvious that 32-bit devices need 32-bit PCI 
+mem space to assign to their BARs, thus it falls out that if there is no 
+translation, that requires a 32-bit window in system address space too.
+
+That is of course speaking of a BSA-compliant system. Vendors are still 
+free to not care about BSA and do whatever the heck they want.
+
+Thanks,
+Robin.
+
+[1] https://developer.arm.com/documentation/den0094/latest/
+
+> I've been pinging
+> various representatives of the IP and implementation on the mailing
+> list about these issues for about a year now with no responses from
+> the Designware folk. You have been pretty one of the only individuals
+> with the level of knowledge we need to respond and I thank you for
+> that.
 > 
-> That's why I added CLK_IGNORE_UNUSED here, but it can't resolve all
-> issues. Actually, we met same problem when "cat
-> /sys/kernel/debug/clk/clk_summary" is used. We are still suffering the
-> problem.
+> Based on what I've read I suspect that at least one of the two
+> following statements is true:
+> a. Mark is correct that translation is broken in Rockchip's
+> implementation (unknown if this is a SoC or a driver issue)
+> b. We do in fact require IO and Config to be 32 bit addressable to be
+> fully compatible.
 > 
-> I'm not sure if I can implement clk ops by myself, and exclude the
-> registration of is_enabled() ops.
+> These issues are compounded in rk3588 where we have much smaller
+> regions in the 32bit space for PCIe, so a definite answer on the true
+> requirements and limitations would be quite helpful.
 > 
-
-Is the power for register access enabled with a power domain?
-
-Check drivers/clk/clk.c, grep for core->rpm_enabled.
-
-If you enable runtime PM before registering the clocks, and you register them
-with the right struct device, the clock API will enable power for you before
-trying to read the clock enable status.
-
-Regards,
-Angelo
-
+> As always, thank you for your time,
+> Peter
+> 
+>>
+>> Robin.
