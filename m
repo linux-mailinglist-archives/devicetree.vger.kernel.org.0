@@ -2,114 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C910F60CD7C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 15:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8372360CDDC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 15:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232874AbiJYNag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 09:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43982 "EHLO
+        id S232008AbiJYNtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 09:49:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232870AbiJYNaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 09:30:21 -0400
-Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D3EBE1E;
-        Tue, 25 Oct 2022 06:30:13 -0700 (PDT)
-Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
-        by mxout3.routing.net (Postfix) with ESMTP id E8EC66269F;
-        Tue, 25 Oct 2022 13:30:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1666704605;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WAjUi/ga04HIkMa7Z+d3a+gEhyr0vQRbkNFGR/WcXSQ=;
-        b=a5RrdKXte/35yjTwJvGKlVu5lgtfaA7v8j1tRHeFzSb/Chcec/eCRJ2ZqMfBHTT693Xgeb
-        HrxtY11z0KvK+6S2M9U/M19WTdMha7FL5FB2m6y/nQhOUXwVae58Z90w3vslj9vZOkp5k9
-        Da+b9cEx1/aAIzTH1Ytotn9CmBWH/mk=
-Received: from frank-G5.. (fttx-pool-217.61.152.57.bambit.de [217.61.152.57])
-        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id EAD5A40112;
-        Tue, 25 Oct 2022 13:30:03 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sam Shih <Sam.Shih@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v5 6/6] mmc: mediatek: add support for MT7986 SoC
-Date:   Tue, 25 Oct 2022 15:29:53 +0200
-Message-Id: <20221025132953.81286-7-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221025132953.81286-1-linux@fw-web.de>
-References: <20221025132953.81286-1-linux@fw-web.de>
+        with ESMTP id S231715AbiJYNtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 09:49:01 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3221B188101
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 06:49:00 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id 8so8055292qka.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 06:49:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VpMsl6jm+Q7wCngrxA8V9e6lKIjDRsrhMdY0rEbcY7k=;
+        b=U25Lit/LeZq5grDHi3qdKXiEeX7SVegjsBdlFQVNI8Y/+CIItKiDh/VkZYmlMZhCcj
+         wrhzatMIAIUCQBMENZQJ1PTw4YWCloorh2VrLys91yDQf5I6xnvCdRMK5smFHchImufk
+         95NBA1uQDv1buxBEzMJ0rnCSFJ1nLAxGg4SGrUFhmn8W1dHNVI93vCwfz6owyWZ6uEPJ
+         P8etiuR77cLMRq9F+uhi2LFGN9PG1swq6k7Mh65wvvAbRsOWUeMJ2ZZi7fWK3v7APd9C
+         DkM/x6h8zI7lp0fj+9G27S+GiXnqRElbUUsm4lhmzM32HTO2g1yXMFub8uD56uM7nB2C
+         Cmcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VpMsl6jm+Q7wCngrxA8V9e6lKIjDRsrhMdY0rEbcY7k=;
+        b=ynDYlKo4CzzCQ0XXeFXRekfZv4/W86vPcpcphjzj9cwZL+M+1sSBD4I0y/8mDgBZk3
+         hWg4odMU9c7T8++iXlrlqMbyz1BpTQqOfhGK/uejFPQR55qTPCBbSoGqEzNxBCxXTJu1
+         Z/yrb7NOq9aSzgXb2lNgIYutoa0X359y9HVxt1sRe6jJn1MgCmXpUg20Mo8UQecDrTcP
+         WSglgaPswN5kE6bRZgSccOk7fpDNfs7o7BGJsNGEJNA6cAFa7ZDhcJtapdyxQCA+yQkr
+         +xGRqI+Q7nOgYc5CQjBTnf2vXWG9jZZ89PdrGGfFfgQBV+9dYxgiF+WXlmRVxuASlASg
+         UMKQ==
+X-Gm-Message-State: ACrzQf2WZ8bTlPv/4IkTTKEp36DQK+kQsr+c925q3dwiJ/wYx4zJ2YJ2
+        SadlGRi+YSrp06fGfDESh2vNeQ==
+X-Google-Smtp-Source: AMsMyM46KU+z6yR+3aORkIfcWMzu0fiRjDj+ptUTf2IKXwGOYGCiiSoLHuVOkQ6CBKhP+B9aesllxg==
+X-Received: by 2002:ae9:e718:0:b0:6ee:8335:4191 with SMTP id m24-20020ae9e718000000b006ee83354191mr26880375qka.83.1666705739392;
+        Tue, 25 Oct 2022 06:48:59 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id w27-20020a05620a0e9b00b006f16148fa96sm2045473qkm.91.2022.10.25.06.48.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Oct 2022 06:48:58 -0700 (PDT)
+Message-ID: <ca484809-07e4-44ca-0ab3-26947bda7fa8@linaro.org>
+Date:   Tue, 25 Oct 2022 09:48:57 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 481834d9-7b72-49f9-bee4-d48e2eac2acb
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: watchdog: fsl-imx: document suspend
+ in wait mode
+Content-Language: en-US
+To:     Andrej Picej <andrej.picej@norik.com>,
+        linux-watchdog@vger.kernel.org
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221025072533.2980154-1-andrej.picej@norik.com>
+ <20221025072533.2980154-3-andrej.picej@norik.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221025072533.2980154-3-andrej.picej@norik.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sam Shih <sam.shih@mediatek.com>
+On 25/10/2022 03:25, Andrej Picej wrote:
+> Property "fsl,suspend-in-wait" suspends watchdog in "WAIT" mode which
+> corresponds to Linux's Suspend-to-Idle S0 mode. If this property is not
+> set and the device is put into Suspend-to-Idle mode, the watchdog
+> triggers a reset after 128 seconds.
+> 
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> ---
+> Changes in v2:
+>  - add a commit message,
+>  - add a list of devices which support this functionality
+> ---
+>  .../bindings/watchdog/fsl-imx-wdt.yaml        | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+> index fb7695515be1..9289de97859b 100644
+> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+> @@ -55,6 +55,28 @@ properties:
+>        If present, the watchdog device is configured to assert its
+>        external reset (WDOG_B) instead of issuing a software reset.
+>  
+> +  fsl,suspend-in-wait:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      If present, the watchdog device is suspended in WAIT mode
+> +      (Suspend-to-Idle). Only supported on following devices:
+> +        - "fsl,imx25-wdt",
 
-Adding mt7986 own characteristics and of_device_id to have support
-of MT7986 SoC.
+You need to define such allow/disallow in allOf:if:then, instead. Like
+example-schema is doing for foo-supply, just disallow it for some types
+or use "if: not: ..."
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-v5:
-- add reviewed-tag
----
- drivers/mmc/host/mtk-sd.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index df941438aef5..3f7f3a1e0df8 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -552,6 +552,19 @@ static const struct mtk_mmc_compatible mt7622_compat = {
- 	.support_64g = false,
- };
- 
-+static const struct mtk_mmc_compatible mt7986_compat = {
-+	.clk_div_bits = 12,
-+	.recheck_sdio_irq = true,
-+	.hs400_tune = false,
-+	.pad_tune_reg = MSDC_PAD_TUNE0,
-+	.async_fifo = true,
-+	.data_tune = true,
-+	.busy_check = true,
-+	.stop_clk_fix = true,
-+	.enhance_rx = true,
-+	.support_64g = true,
-+};
-+
- static const struct mtk_mmc_compatible mt8135_compat = {
- 	.clk_div_bits = 8,
- 	.recheck_sdio_irq = true,
-@@ -609,6 +622,7 @@ static const struct of_device_id msdc_of_ids[] = {
- 	{ .compatible = "mediatek,mt6795-mmc", .data = &mt6795_compat},
- 	{ .compatible = "mediatek,mt7620-mmc", .data = &mt7620_compat},
- 	{ .compatible = "mediatek,mt7622-mmc", .data = &mt7622_compat},
-+	{ .compatible = "mediatek,mt7986-mmc", .data = &mt7986_compat},
- 	{ .compatible = "mediatek,mt8135-mmc", .data = &mt8135_compat},
- 	{ .compatible = "mediatek,mt8173-mmc", .data = &mt8173_compat},
- 	{ .compatible = "mediatek,mt8183-mmc", .data = &mt8183_compat},
--- 
-2.34.1
+Best regards,
+Krzysztof
 
