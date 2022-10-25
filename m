@@ -2,170 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18AF260D0DA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2406060D0EC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:43:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233355AbiJYPjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 11:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57538 "EHLO
+        id S230463AbiJYPnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 11:43:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233296AbiJYPjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:39:23 -0400
-Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [IPv6:2001:690:2100:1::15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B3C18C431;
-        Tue, 25 Oct 2022 08:39:18 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 1DD286008800;
-        Tue, 25 Oct 2022 16:39:17 +0100 (WEST)
-X-Virus-Scanned: by amavisd-new-2.11.0 (20160426) (Debian) at
-        tecnico.ulisboa.pt
-Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
-        by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavisd-new, port 10025)
-        with LMTP id P3tti42Jko2u; Tue, 25 Oct 2022 16:39:13 +0100 (WEST)
-Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [IPv6:2001:690:2100:1::b3dd:b9ac])
-        by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 827FD600880E;
-        Tue, 25 Oct 2022 16:39:13 +0100 (WEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tecnico.ulisboa.pt;
-        s=mail; t=1666712353;
-        bh=TdKh3E/XenanfAlC8eRJ4MFy4v4lhEiS+bjmvYDecWA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=DFoFdXZQPGg7hCvqp70azEQUKhX8PjoLkb6XiAg/qm2l5UsYJ4y/k9MiKcF/DzzOx
-         VEGAKzABha6nonD1mZqOsX3V//4CDBkb6t3SurJFaz108Md388KQJbCFIFVhxNauA5
-         WyyforKeAErwW1zf0wWDehMstF1yecDV/Go0egPM=
-Received: from localhost.localdomain (unknown [89.207.171.77])
-        (Authenticated sender: ist187313)
-        by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id 1025636007E;
-        Tue, 25 Oct 2022 16:39:01 +0100 (WEST)
-From:   Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
-Cc:     Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, thierry.reding@gmail.com,
-        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        jonathanh@nvidia.com, arnd@arndb.de,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: smaug: Add display panel node
-Date:   Tue, 25 Oct 2022 16:37:49 +0100
-Message-Id: <20221025153746.101278-5-diogo.ivo@tecnico.ulisboa.pt>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221025153746.101278-1-diogo.ivo@tecnico.ulisboa.pt>
-References: <20221025153746.101278-1-diogo.ivo@tecnico.ulisboa.pt>
+        with ESMTP id S231761AbiJYPnm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:43:42 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60C9107A9C
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:43:40 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id x16so4493981ilm.5
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=sd/PK5OlpobQgWTMERaVRbuer0UWyOazQwPUJRB+kec=;
+        b=febl1GAQxbCnrmWYZ8iWEaUO4euPKUJehHb8WcxSG/hPfrTExjhi6VGaDW1gFEs8xD
+         jC8UxbBaWQckA062EHPuUcI/b6f3n1MjaWQAe5ylbgrEs/l9sKW32CZRKM7AqR+EqVkn
+         xzK2kDliHThZNnuDW3ts6gi+qneohOUuYc9kI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sd/PK5OlpobQgWTMERaVRbuer0UWyOazQwPUJRB+kec=;
+        b=6/g/sypkBTSadLJX7tgJcAwyKtAjY9BStJ2QfJlHiSlwtshYD1LezQUAS5fo1BQ6kO
+         y5Zrhuo/pcsg0Ndk/+5xEzZls3AZcW3goJpIIGxBOiOg3TzdOW05xqvq7DBI+2tmLGPk
+         qwCZoIJmB0z+e2E9WNihIzSP0T9eo9NJIFyoc0fEyEwTLXQoMABEd/+PqQjYUNhoFimV
+         aZRvzc95ZSI2tKVgHzTo6VbVZYYV4CdEtOAhmQFGXLbXPEDDWNNvjnGQ20hmGptIhPoI
+         m+Ddmmgw77ti3KyfYGZggcnMGH/Su3EqjHLSGZ53N29tHI+4iOnKtYm+CIfEhHFvtsh6
+         0PHw==
+X-Gm-Message-State: ACrzQf3I/6IDM99oPz3aGkBmReIhmbCghxRNBn9IrW8WWKCFoGxu1Mvy
+        KSysCTcLRGvKakYzSy2aPsBycg==
+X-Google-Smtp-Source: AMsMyM5tJUEu0NeW97N/uIEqztVjVv8PFNNU1MQsKjEfwoMjhOjkACwR9slmZV1dL5hzwuh2/gekkw==
+X-Received: by 2002:a92:dc8a:0:b0:2f9:9675:42ef with SMTP id c10-20020a92dc8a000000b002f9967542efmr24310722iln.130.1666712619902;
+        Tue, 25 Oct 2022 08:43:39 -0700 (PDT)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id y18-20020a027312000000b00363af75d0acsm1038186jab.67.2022.10.25.08.43.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Oct 2022 08:43:39 -0700 (PDT)
+Date:   Tue, 25 Oct 2022 15:43:38 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: pm6350: add temp sensor and thermal
+ zone config
+Message-ID: <Y1gEKs3fvUYf7YqB@google.com>
+References: <20220812114421.1195044-1-luca.weiss@fairphone.com>
+ <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
+ <CM43WTWNP8MM.3145TGVN4208B@otso>
+ <YvaErMmLIQaDolKR@google.com>
+ <CNQTKQWNZIH9.61TJWGH1K44F@otso>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CNQTKQWNZIH9.61TJWGH1K44F@otso>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Google Pixel C has a JDI LPM102A188A display panel. Add a
-DT node for it. Tested on Pixel C.
+Hi Luca,
 
-Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
----
-Changes in v2:
- - renamed backlight node to a generic name
- - removed underscores
+On Thu, Oct 20, 2022 at 04:28:07PM +0200, Luca Weiss wrote:
+> Hi Matthias,
+> 
+> sorry for the delay in getting back to you.
+> 
+> On Fri Aug 12, 2022 at 6:49 PM CEST, Matthias Kaehlcke wrote:
+> > On Fri, Aug 12, 2022 at 04:06:47PM +0200, Luca Weiss wrote:
+> > > Hi Krzysztof,
+> > > 
+> > > +CC Matthias Kaehlcke (author of patch mentioned further below)
+> > > 
+> > > On Fri Aug 12, 2022 at 3:36 PM CEST, Krzysztof Kozlowski wrote:
+> > > > On 12/08/2022 14:44, Luca Weiss wrote:
+> > > > > Add temp-alarm device tree node and a default configuration for the
+> > > > > corresponding thermal zone for this PMIC. Temperatures are based on
+> > > > > downstream values.
+> > > > > 
+> > > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > > > > ---
+> > > > > With this config I'm getting this in dmesg, not sure if it's a warning
+> > > > > that should be solved or just an informative warning.
+> > > > > 
+> > > > > [    0.268256] spmi-temp-alarm c440000.spmi:pmic@0:temp-alarm@2400: No ADC is configured and critical temperature is above the maximum stage 2 threshold of 140 C! Configuring stage 2 shutdown at 140 C.
+> > > > > 
+> > > > > As far as I can tell, based on downstream dts this PMIC doesn't have an
+> > > > > ADC.
+> >
+> > I don't seem to have access to the datasheet, in any case that the ADC isn't
+> > configured in the downstream dts doesn't necessarily mean the PMIC doesn't
+> > have one. The PM6150 has one, and it is probably relatively close to the
+> > PM6350.
+> 
+> Too bad :(
+> 
+> >
+> > > > You configure 145 and driver believes 140 is the limit, so it seems
+> > > > warning should be addressed.
+> > > 
+> > > Hm...
+> > > 
+> > > >
+> > > > From where did you get 145 degrees as limit? Downstream DTS?
+> > > 
+> > > Yes, downstream dts[0].
+> > > 
+> > > From what I can see in the downstream driver, it always disabled this
+> > > "software override of stage 2 and 3 shutdowns"[1]
+> > > 
+> > > In mainline only since f1599f9e4cd6 ("thermal: qcom-spmi: Use PMIC
+> > > thermal stage 2 for critical trip points") this check exists, which is
+> > > not part of downstream (wasn't in 4.19 yet), where this software
+> > > override tries to get enabled so that thermal core can handle this.
+> > > 
+> > > Any suggestion what I can do here? Maybe looking at msm-5.4 sources (and
+> > > associated dts) might reveal something..?
+> >
+> > I wouldn't necessarily consider QC downstream code as a reliable source of
+> > truth ...
+> >
+> > > Maybe newer SoCs/PMICs have a different config?
+> >
+> > Commit aa92b3310c55 ("thermal/drivers/qcom-spmi-temp-alarm: Add support
+> > for GEN2 rev 1 PMIC peripherals") added support for gen2 PMICs, which
+> > actually have lower thresholds than gen1. From the log it seems that the
+> > PM6350 is identified as gen1 device (max stage 2 threshold = 140 degC).
+> 
+> PM6350 is detected as QPNP_TM_SUBTYPE_GEN2 so gen2 actually. Just the
+> log message is hardcoded to 140 degC, the if above actually has
+> stage2_threshold_max = 125000 (125degC) and stage2_threshold_min =
+> 110000 (110degC) so lower than 140 (basically like you said).
 
- arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
+Good to know.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-index 84ec4d8b7f10..5db0b25c8d58 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-@@ -31,6 +31,37 @@ memory {
- 	};
- 
- 	host1x@50000000 {
-+		dc@54200000 {
-+			status = "okay";
-+		};
-+
-+		dsia: dsi@54300000 {
-+			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
-+			status = "okay";
-+
-+			link2: panel@0 {
-+				compatible = "jdi,lpm102a188a";
-+				reg = <0>;
-+			};
-+		};
-+
-+		dsib: dsi@54400000 {
-+			avdd-dsi-csi-supply = <&vdd_dsi_csi>;
-+			nvidia,ganged-mode = <&dsia>;
-+			status = "okay";
-+
-+			link1: panel@0 {
-+				compatible = "jdi,lpm102a188a";
-+				reg = <0>;
-+				power-supply = <&pplcd_vdd>;
-+				ddi-supply = <&pp1800_lcdio>;
-+				enable-gpios = <&gpio TEGRA_GPIO(V, 1) GPIO_ACTIVE_HIGH>;
-+				reset-gpios = <&gpio TEGRA_GPIO(V, 2) GPIO_ACTIVE_LOW>;
-+				link2 = <&link2>;
-+				backlight = <&backlight>;
-+			};
-+		};
-+
- 		dpaux: dpaux@545c0000 {
- 			status = "okay";
- 		};
-@@ -1627,6 +1658,37 @@ nau8825@1a {
- 			status = "okay";
- 		};
- 
-+		backlight: backlight@2c {
-+			compatible = "ti,lp8557";
-+			reg = <0x2c>;
-+			power-supply = <&pplcd_vdd>;
-+			enable-supply = <&pp1800_lcdio>;
-+			bl-name = "lp8557-backlight";
-+			dev-ctrl = /bits/ 8 <0x01>;
-+			init-brt = /bits/ 8 <0x80>;
-+
-+			/* Full scale current, 20mA */
-+			rom-11h {
-+				rom-addr = /bits/ 8 <0x11>;
-+				rom-val = /bits/ 8 <0x05>;
-+			};
-+			/* Frequency = 4.9kHz, magic undocumented val */
-+			rom-12h {
-+				rom-addr = /bits/ 8 <0x12>;
-+				rom-val = /bits/ 8 <0x29>;
-+			};
-+			/* Boost freq = 1MHz, BComp option = 1 */
-+			rom-13h {
-+				rom-addr = /bits/ 8 <0x13>;
-+				rom-val = /bits/ 8 <0x03>;
-+			};
-+			/* 4V OV, 6 output LED string enabled */
-+			rom-14h {
-+				rom-addr = /bits/ 8 <0x14>;
-+				rom-val = /bits/ 8 <0xbf>;
-+			};
-+		};
-+
- 		audio-codec@2d {
- 			compatible = "realtek,rt5677";
- 			reg = <0x2d>;
-@@ -1908,4 +1970,12 @@ usbc_vbus: regulator-usbc-vbus {
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 	};
-+
-+	vdd_dsi_csi: regulator-vdd-dsi-csi {
-+		compatible = "regulator-fixed";
-+		regulator-name = "AVDD_DSI_CSI_1V2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&pp1200_avdd>;
-+	};
- };
--- 
-2.38.1
+> >
+> > It seems setting the limit to 140 degC or one of the other stage 2
+> > thresholds would be a reasonable course of action. stage 2 is the
+> > threshold at which the PMIC is so hot that the system should shut
+> > down, and 140 degC is the highest of the stage 2 thresholds. Even
+> > if it was possible, what would be gained from setting the trip
+> > point 5 degC higher?
+> 
+> Based on this, do you think it's reasonable to just set the limit to
+> 125 degC and be done with it? Or some other way to resolve this? I'd of
+> course mention in the commit message that I've decreased the value from
+> 145 (msm-4.19) to 125.
 
+Yes, setting it to 125°C or one of the other stage 2 threshold values for
+gen2 sounds good to me.
