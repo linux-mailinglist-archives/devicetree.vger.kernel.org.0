@@ -2,104 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 583E960C1D6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 04:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB6A60C20A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 05:05:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbiJYCnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 22:43:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36716 "EHLO
+        id S229915AbiJYDFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 23:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbiJYCnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 22:43:09 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC8F13AE55;
-        Mon, 24 Oct 2022 19:43:08 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id u8-20020a17090a5e4800b002106dcdd4a0so14873324pji.1;
-        Mon, 24 Oct 2022 19:43:08 -0700 (PDT)
+        with ESMTP id S229890AbiJYDFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 23:05:53 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 865B818E04;
+        Mon, 24 Oct 2022 20:05:51 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id bs21so2894406wrb.4;
+        Mon, 24 Oct 2022 20:05:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mV+GmkM5T+Z4YGFSVgtClSbjpVnm7tENAQZ0qymGquE=;
-        b=o/rfZHK9lBRIPYU0h9n8rn/cmxibbkidswYdgOYctV33CCbkpjR45aK58E9qHNDVTZ
-         YXqKjXynSwKH81l7CyztTBx1+7b6aLnyWZJVaiSsshXznCRBK7xvKzKZpf2pTM5s0KIQ
-         OWhqsKHpTs5OU64XRIVEP6bVCHok0ZBRg0yI11+84VW9EbqQQ8BoFRXmNN8Ok3TQrpZ2
-         RuEvslDRrRcA7d+MH9qGQ5EnKEjht++ylGJxuGrpKRTiLta8e99xboE4oMWHLAeG5JOS
-         +SkC+ekpU8SqAnztMFUH4x4Ex5n0+pErx/bCLh1IAU31rE6ai4To3Wu7bsG/4ufj51Zh
-         PqVA==
+        d=jms.id.au; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHZj3l3++Ddr3AOE8EL7nYLAyx2hz56W7EAVPvSQms4=;
+        b=NPSEdvmAHyQF7GYSkWJQEQkWJSJpiFYRTsRfpCyuezJNlbV6knOWbB6PP/Cuu1uQG4
+         5CAung3kEF3WKB9l/h7Sw08bSjk0rgtCMdbMLtUIhzdvDSobxbRBd11J0amsDi+ttgeQ
+         fKjjU2XHz6OmLtkwhMkPTveeI3pK7DGq22kro=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mV+GmkM5T+Z4YGFSVgtClSbjpVnm7tENAQZ0qymGquE=;
-        b=yYmokNHSjWlmHFqMfpLwIdn6EikcAM0bWCle47p8QOi6+W323VxtXbE0K7B9hTFgOI
-         4EicYXRw44PTRRkcjN1iVJtPZXy/VXuEBBj08xGhGPOBaiEyDjm1UCNw5kJK6DRVb+4s
-         32OQGjay5jxi3BL4HF4ttqAhsw3qy+/6O0Y1u6xj80Rye1lhVfh8TOnMnyR9JST69JBk
-         BaRp6PixnlgwtBYPJWfWpn1DCLVBQVY/60fkjQOV5Z83vI09QeZIA+7ZZwMqliY6zr50
-         eYpSxZATleJOnfY56HtRQmutF2rV4XrtjRm1afAOWqrHy3YZBwhyvY//66KGwXpgcnaA
-         Bw5w==
-X-Gm-Message-State: ACrzQf0wh9Tw6ve0B3eiIMW2h6aqeIgYWIBgi1AsJAzK8388trfgOBJQ
-        1FseuB6hTmtk51rCuao6Y2Q=
-X-Google-Smtp-Source: AMsMyM6Gn9mitFHKGNaBOVjMemkrZDCwBoVXWp3zLOWC+8DpJz3H3JZkZk3J8nbXfblaGsgUI2XRww==
-X-Received: by 2002:a17:902:e742:b0:17f:6a44:ee4a with SMTP id p2-20020a170902e74200b0017f6a44ee4amr37219795plf.103.1666665788091;
-        Mon, 24 Oct 2022 19:43:08 -0700 (PDT)
-Received: from localhost.localdomain.dhcpserver.bu9bmc.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id p12-20020aa79e8c000000b0056befcd7958sm458516pfq.84.2022.10.24.19.43.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 19:43:07 -0700 (PDT)
-From:   Potin Lai <potin.lai.pt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        bh=XHZj3l3++Ddr3AOE8EL7nYLAyx2hz56W7EAVPvSQms4=;
+        b=h8sv2Cr8AKMxfJ+C2ztbk0zoIdgiKy59Ky/SJbrtaFvlqe30omzBwwIQGbTyQBEpM0
+         bACEMiB7mwL7YF7YrdC2x+9qV9EON9FVXxhMPqaEbJOQ5AyPagSX0LAF6yLIe3hK+qL5
+         qYbMvfDCVPy214JadHoe9x8vCzn4bd9Tj5xroBBMaWkaQa39H1LgFlweexmP/2f0AUd7
+         Hg/jByrmXMu+up2Jw9DasAqltRD4Pl4zijeLLypOLMjgtA5BzdRl8LlluBdaQFgqtn6P
+         mI1+2zJz2R5C/9Eqid3S5FDuR+YXkP0s/KDR1h96mY6q9usvsK7IxOFms0TA9LMGsjKL
+         /PwQ==
+X-Gm-Message-State: ACrzQf1YnFq66z0vUDzowpJ6aSsP+hOFj05Nbo9C34tszDnjGwAvgPRr
+        8WfwUHoY+BNXaej/L5yFb15ngt0BXDs5m8PuV08=
+X-Google-Smtp-Source: AMsMyM4PUgPNLOA6UQuNP0O23XeSyalN1qOy6S5PHSg5rvuSZ55XK4sYYo6iVHQAylF9tZnjSQED/H3/2Wbjqbo6rZo=
+X-Received: by 2002:adf:df83:0:b0:236:6d5d:ff8b with SMTP id
+ z3-20020adfdf83000000b002366d5dff8bmr6843563wrl.315.1666667149764; Mon, 24
+ Oct 2022 20:05:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221025024145.1561047-1-potin.lai.pt@gmail.com>
+In-Reply-To: <20221025024145.1561047-1-potin.lai.pt@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 25 Oct 2022 03:05:37 +0000
+Message-ID: <CACPK8XdpeKVaxFki3GRyo30bWYNF6Q5wL706j5deaqi8P=ssdA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] ARM: dts: aspeed: bletchley: add aliases for mdio0
+ and mdio3
+To:     Potin Lai <potin.lai.pt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
         Patrick Williams <patrick@stwcx.xyz>,
-        Potin Lai <potin.lai@quantatw.com>,
-        Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH 1/1] ARM: dts: aspeed: bletchley: add aliases for mdio0 and mdio3
-Date:   Tue, 25 Oct 2022 10:41:45 +0800
-Message-Id: <20221025024145.1561047-1-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.31.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Potin Lai <potin.lai@quantatw.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add aliases for mdio0 and mdio3 so that we can use name to lookup the
-address of Aspeed SOC.
+On Tue, 25 Oct 2022 at 02:43, Potin Lai <potin.lai.pt@gmail.com> wrote:
+>
+> Add aliases for mdio0 and mdio3 so that we can use name to lookup the
+> address of Aspeed SOC.
+>
+> For example:
+> root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio0
+> /ahb/mdio@1e650000
+> root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio3
+> /ahb/mdio@1e650018
+>
+> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> index c02c15f15465..2825d5f3f78b 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+> @@ -15,6 +15,8 @@ / {
+>
+>         aliases {
+>                 serial4 = &uart5;
+> +               mdio0 = &mdio0;
+> +               mdio3 = &mdio3;
 
-For example:
-root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio0
-/ahb/mdio@1e650000
-root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio3
-/ahb/mdio@1e650018
+Should this go into the dtsi instead?
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-index c02c15f15465..2825d5f3f78b 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -15,6 +15,8 @@ / {
- 
- 	aliases {
- 		serial4 = &uart5;
-+		mdio0 = &mdio0;
-+		mdio3 = &mdio3;
- 	};
- 
- 	chosen {
--- 
-2.31.1
-
+>         };
+>
+>         chosen {
+> --
+> 2.31.1
+>
