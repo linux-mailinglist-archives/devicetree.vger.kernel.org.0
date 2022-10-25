@@ -2,197 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B48360C0B7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 03:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7EA60C141
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 03:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbiJYBO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Oct 2022 21:14:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39156 "EHLO
+        id S231305AbiJYBoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Oct 2022 21:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbiJYBOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 21:14:34 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46DB23A8;
-        Mon, 24 Oct 2022 17:30:54 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id y16so8017979wrt.12;
-        Mon, 24 Oct 2022 17:30:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JUI2EETvDOjbIumJEb3ZJvshccQCHKXMjETbOCjz3XE=;
-        b=MfcJBXM0cjRRekdrMeVr88Xc0f7GYhqi2MGWq/OaPf/dwBtc5OlFqGtqsx1PWX7Huo
-         bIOa+xruB4K1VklHkW8w3+/aEPHFdLbddOTQR1xjI4WwWlkC7K0M7TFMo8Pz8lRHUT5O
-         tj/QnUpcEnkC36yHCiZQRgo4cok3AQY6RF4Iuam9IQDRT2acNnIZK6qzkO0ZNOjOCiwa
-         gsQRB148PzrpKscQ93YIZUt4kMyH9CTp5aJynDi/ncilClNosY9/XpmTVt67XFhHhzMy
-         Qy5tolUu0v4hS/ttEWPC2GN+XaAG7Eq24aLyPsICdP1h1vfqMccBHTRMgj+spAlHRv2J
-         cavg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JUI2EETvDOjbIumJEb3ZJvshccQCHKXMjETbOCjz3XE=;
-        b=Socrj2Q+tzeY2ODVjrFi4v7XyKBU3CL+kuKV0ZU8pwmO2hsDwQAu9TsGN6PxsMoHv8
-         JHN0al+bWAo2kfBejxubzvPEhkbNkXANLatJUqGuzLGHQ2rxFSpGBrlsfV3rg46vBynM
-         gs32qTAhdKjE0Ov/EBKtPdIh25AzCvlvGpvjdxuTeOxX9fC7TpC1K74J3UFDGT/S83g6
-         tdcAlenI2DaNglqlIcupZVcfDvQPQi2d4spcW3jXbG5VnJ7wxvAaT+FSX+WMzbfsF61F
-         O8+y+0o+yVg53plToweOcL8BHg4rebezlFbgm8uvGfvEO3N90UPIWkUfFWU82o9x1F+f
-         IbLg==
-X-Gm-Message-State: ACrzQf0r4B+Lp5ADPunwVgUkQrfabXTBNc6bYGa3o2vwNQzRTb0f6Jqc
-        94zLkZlvPD7XH4KOD4HZyELG+FtVgOFNhac3hB8fVxI4ic0=
-X-Google-Smtp-Source: AMsMyM5KIuE+B94jMjL0eVPuIA0S3+KapYXPBJJ44aaEiFHADqVzOME9w659GojHoDkgerVIFoMCMFNfdQrCRgA2cb4=
-X-Received: by 2002:a5d:58d9:0:b0:236:5b81:2c99 with SMTP id
- o25-20020a5d58d9000000b002365b812c99mr10790750wrf.494.1666657852522; Mon, 24
- Oct 2022 17:30:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <1666320059-17544-1-git-send-email-u0084500@gmail.com>
- <1666320059-17544-2-git-send-email-u0084500@gmail.com> <20221024164251.GA1890861-robh@kernel.org>
-In-Reply-To: <20221024164251.GA1890861-robh@kernel.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 25 Oct 2022 08:30:40 +0800
-Message-ID: <CADiBU3_WUeyYdnmnG0Ff2pH+b3u1zOtP1z44LcA53Ba5c9nrEw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT6190 regulator
-To:     Rob Herring <robh@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
-        lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        with ESMTP id S230203AbiJYBnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Oct 2022 21:43:35 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F413F45056;
+        Mon, 24 Oct 2022 18:27:34 -0700 (PDT)
+X-UUID: 52a8a363e02d4cd98a3512feb9350419-20221025
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=6Gu0ND/jwgTDHnSCh5YQ1qm3jVdaf3TxXKNSqR5nggI=;
+        b=Xo8v005oovr0OaDxPzDQ6sd8Pc042Z8bNtRsWhhxg4MOz67rVrOvahbshSLk27xS3jDlQQf/YJdSAZXxAdL+9/3W0ZYQZ1t66fUAovc097pquLrPwBegeFOUrX5Qxrqq+6Hej8L6f+wA0W87UWH/uH5gtAbrz0ovV6UyFtZRUes=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:a2c47874-7e6b-4441-836d-523b4307cdaf,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:62cd327,CLOUDID:a7f289e4-e572-4957-be22-d8f73f3158f9,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 52a8a363e02d4cd98a3512feb9350419-20221025
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 457710875; Tue, 25 Oct 2022 09:27:30 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 25 Oct 2022 09:27:28 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 25 Oct 2022 09:27:28 +0800
+Message-ID: <9759df8a6fbe30bfbd0df72793b751b7628006bc.camel@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: mediatek-gen3: add SoC based
+ clock config
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Frank Wunderlich <linux@fw-web.de>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Sam Shih <Sam.Shih@mediatek.com>,
+        Steven Liu <steven.liu@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 25 Oct 2022 09:27:27 +0800
+In-Reply-To: <20221023170234.83621-2-linux@fw-web.de>
+References: <20221023170234.83621-1-linux@fw-web.de>
+         <20221023170234.83621-2-linux@fw-web.de>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2022=E5=B9=B410=E6=9C=8825=E6=97=A5=
- =E9=80=B1=E4=BA=8C =E5=87=8C=E6=99=A812:42=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Fri, Oct 21, 2022 at 10:40:58AM +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Add devicetree binding for Richtek RT6190 4-Switch buckboost controller=
-.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> > Since v2:
-> > - Rename binding filename to 'richtek,rt6190.yaml'
-> >
-> > ---
-> >  .../bindings/regulator/richtek,rt6190.yaml         | 77 ++++++++++++++=
-++++++++
-> >  1 file changed, 77 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/richtek=
-,rt6190.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt6190=
-.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt6190.yaml
-> > new file mode 100644
-> > index 00000000..dced404
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/richtek,rt6190.yaml
-> > @@ -0,0 +1,77 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/richtek,rt6190.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Richtek RT6190 4-Switch BuckBoost controller
-> > +
-> > +maintainers:
-> > +  - ChiYuan Huang <cy_huang@richtek.com>
-> > +
-> > +description: |
-> > +  The RT6190 is 4-Switch BuckBoost controller designed for converting =
-input
-> > +  voltage to output voltage that can be equal to, higher or lower than=
- input
-> > +  voltage. It operates with wide input voltage range from 4.5V to 36V,=
- and
-> > +  the output voltage can be set from 3V to 36V by external FB pin. It'=
-s commonly
-> > +  used for the application like as BuckBoost bus upply, docking statio=
-n and USB
->
-> typo: upply
->
-> > +  power delivery product.
-> > +
-> > +  Datasheet is available at
-> > +  https://www.richtek.com/assets/product_file/RT6190/DS6190-02.pdf
-> > +
-> > +allOf:
-> > +  - $ref: regulator.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - richtek,rt6190
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  enable-gpios: true
->
->        maxItems: 1
->
-It's coming from gpio-consumer-common.yaml.
-If so, does it still need to declare the 'maxItems'?
-> > +
-> > +  wakeup-source: true
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  regulator-allowed-modes:
-> > +    description: |
-> > +      buck allowed operating mode
-> > +        0: PSM mode (light load Power Saving Mode)
-> > +        1: FCCM mode (Forced-CCM mode)
->
->        maxItems: 2
->
-> > +    items:
-> > +      enum: [0, 1]
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      regulator@2c {
-> > +        compatible =3D "richtek,rt6190";
-> > +        reg =3D <0x2c>;
-> > +        wakeup-source;
-> > +        interrupts-extended =3D <&gpio26 0 IRQ_TYPE_LEVEL_LOW>;
-> > +        enable-gpios =3D <&gpio26 1 GPIO_ACTIVE_HIGH>;
-> > +        regulator-name =3D "richtek,rt6190-buckboost";
-> > +        regulator-min-microvolt =3D <3000000>;
-> > +        regulator-max-microvolt =3D <32000000>;
-> > +        regulator-min-microamp =3D <306000>;
-> > +        regulator-max-microamp =3D <12114000>;
-> > +        regulator-allowed-modes =3D <0 1>;
-> > +      };
-> > +    };
-> > --
-> > 2.7.4
-> >
-> >
+On Sun, 2022-10-23 at 19:02 +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> The PCIe driver covers different SOC which needing different clock
+> configs. Define them based on compatible.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  .../bindings/pci/mediatek-pcie-gen3.yaml      | 48 ++++++++++++++---
+> --
+>  1 file changed, 36 insertions(+), 12 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> gen3.yaml
+> index c00be39af64e..af0d2201746d 100644
+> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> @@ -43,9 +43,6 @@ description: |+
+>    each set has its own address for MSI message, and supports 32 MSI
+> vectors
+>    to generate interrupt.
+>  
+> -allOf:
+> -  - $ref: /schemas/pci/pci-bus.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -84,15 +81,7 @@ properties:
+>      maxItems: 6
+>  
+>    clock-names:
+> -    items:
+> -      - const: pl_250m
+> -      - const: tl_26m
+> -      - const: tl_96m
+> -      - const: tl_32k
+> -      - const: peri_26m
+> -      - enum:
+> -          - top_133m        # for MT8192
+> -          - peri_mem        # for MT8188/MT8195
+> +    maxItems: 6
+>  
+>    assigned-clocks:
+>      maxItems: 1
+> @@ -138,6 +127,41 @@ required:
+>    - '#interrupt-cells'
+>    - interrupt-controller
+>  
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8192-mmc
+
+This should be "mediatek,mt8192-pcie".
+
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pl_250m
+> +            - const: tl_26m
+> +            - const: tl_96m
+> +            - const: tl_32k
+> +            - const: peri_26m
+> +            - const: top_133m
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8188-pcie
+> +              - mediatek,mt8195-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pl_250m
+> +            - const: tl_26m
+> +            - const: tl_96m
+> +            - const: tl_32k
+> +            - const: peri_26m
+> +            - const: peri_mem
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+
