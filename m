@@ -2,101 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED92760C951
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E21D60C9AD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231167AbiJYKEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 06:04:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42704 "EHLO
+        id S231452AbiJYKOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 06:14:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232036AbiJYKDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:03:23 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DF7AE0700;
-        Tue, 25 Oct 2022 02:57:04 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sc25so11026411ejc.12;
-        Tue, 25 Oct 2022 02:57:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pAx8zlaUjVsueyFoH8eMRt9jigq+pALMNIu5jqg4QQk=;
-        b=caqsOQSSaJt6WVgqnE0PzdRddPlCI356oy1U3jxlLWpBUYqRRkyHnbeo3TVeSyE/xS
-         yow8Tm1a4Q120tCowFm1SPiQmDCDKssc7IHFMuu3WIbCOkKph1Y3hhYhyfFbubPYljdA
-         H8Mi6Tm9zrzhogu0rHhqo1FtWfZGyxrJdm6eodT0mpFEXuxz58OWyQwB6hi+l+NdF9pU
-         XnM2LYK9JK+vsul3zDoiPF9KEOXR9rN3brb8Pkdo0zPE6GhUEgjKdoyRlJE/kuwZJDP9
-         kOarcXka3e4hF3U+iseGpeanxLZfC7fPMJNukfPbogqShc7RVukPN/aKwiTZ9TQDRMJj
-         8Iog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pAx8zlaUjVsueyFoH8eMRt9jigq+pALMNIu5jqg4QQk=;
-        b=amlfJ64Js2uC62bUVGltg7R6fzc3soPZ/M7BNPf8+yoc+t80QTgfpsxMzpnH9AkB0W
-         x9EQtYzmmxuduzKY/NKqT3OS7S8ZyLAHlEE7Ub9eXFqnXySvQ6Yaev+z84DJxn7ekAnu
-         uJy82hWvBf+BBk/GHMfYaotAP4AhavirNOJP9aDpstdnBl5j49gDAiFSKpxsmGVGyBHB
-         hnGPIOPiywYUmV41bRAAFtpJagL2UMi045KLa2T2dRAPlIoEHYdleaCNssCjpp++U8jO
-         tYFfvcdW14GiSO6qfYlPntvPlmBybFuedvf8St4gMQXL8nbtMBDb4sMy9aUJ1RZQEcaw
-         uUEA==
-X-Gm-Message-State: ACrzQf0QmfcY20bNwnDnYNFRkm+wiCYJXXyi1Ss/WGqJV9uXP+x18dt4
-        ymtlabOhx5anvRezgeGbmsM=
-X-Google-Smtp-Source: AMsMyM7cHA0V5Del2vqlPCtRjYe2tHkw0XMTTjub7z1QGzqHP12iMAPDu7z4estQ6N4tnoYOHneR5g==
-X-Received: by 2002:a17:907:983:b0:77b:6e40:8435 with SMTP id bf3-20020a170907098300b0077b6e408435mr30162199ejc.570.1666691822807;
-        Tue, 25 Oct 2022 02:57:02 -0700 (PDT)
-Received: from localhost.localdomain (93-42-71-18.ip85.fastwebnet.it. [93.42.71.18])
-        by smtp.googlemail.com with ESMTPSA id j10-20020a17090686ca00b007789e7b47besm1130827ejy.25.2022.10.25.02.57.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 02:57:02 -0700 (PDT)
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Hendrik Koerner <koerhen@web.de>
-Subject: [PATCH] ARM: dts: qcom: ipq8064: disable mmc-ddr-1_8v for sdcc1
-Date:   Tue, 25 Oct 2022 01:38:17 +0200
-Message-Id: <20221024233817.27410-1-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.37.2
+        with ESMTP id S232401AbiJYKOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:14:01 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25008183E23;
+        Tue, 25 Oct 2022 03:06:28 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 576B66600363;
+        Tue, 25 Oct 2022 11:06:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666692386;
+        bh=VUGneu/GkKsEmT+PsR4f+B8IGy/eQwLdVzDz2FlK9lc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=iOlw4dlTjzXRVQ1CT2YdYh77UHzv1fjxXQd5xg4emPrpVJc/2t++4xZYC8XA3BDPU
+         UBTj7AMjXsbclKU3CP8qhVXAuFdoJxcW5qgbK+IAiTwmz+55/LdbwFTwx9wCInlBoa
+         FxfMnPUv/fSYvpiXfnd05I+kLzzvugqV3AduZyvdbjqGlZhqnmGZTpMpAiuZY8sG9g
+         JZ3dtrHD0kIdGjaBwvQU2gEIQaV9oMioeJXnk8WsYV+eyP+LFUzXBcxxBGL14+l2PH
+         6DPxutnTohLkzhbfocvwg1bb9Qas69D66ofJOsDKb/rymnR86W6/ga8dnLR2wei41r
+         IRzWN9T22iBfg==
+Message-ID: <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
+Date:   Tue, 25 Oct 2022 12:06:23 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
+ MICVDD supplies
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Mark Brown <broonie@kernel.org>
+Cc:     kernel@collabora.com, Derek Fang <derek.fang@realtek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221024220015.1759428-3-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It was reported non working mmc with this option enabled.
-Both mmc for ipq8064 are supplied by a fixed 3.3v regulator so mmc can't
-be run at 1.8v.
-Disable it to restore correct functionality of this SoC feature.
+Il 25/10/22 00:00, Nícolas F. R. A. Prado ha scritto:
+> The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+> already used by sc7180-trogdor-kingoftown.dtsi, so document them in the
+> binding.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 
-Tested-by: Hendrik Koerner <koerhen@web.de>
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- arch/arm/boot/dts/qcom-ipq8064.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+I also don't like these uppercase supply names... I wonder if it's worth changing
+the driver to get "avdd" *or* "AVDD" (so, if "avdd" fails -> backwards compat)...
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index 90c08b51680a..01ff24560ee6 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -756,7 +756,6 @@ sdcc1: mmc@12400000 {
- 				non-removable;
- 				cap-sd-highspeed;
- 				cap-mmc-highspeed;
--				mmc-ddr-1_8v;
- 				vmmc-supply = <&vsdcc_fixed>;
- 				dmas = <&sdcc1bam 2>, <&sdcc1bam 1>;
- 				dma-names = "tx", "rx";
--- 
-2.37.2
+...this way, we can change the devicetree to use the lowercase names without
+breaking abi.
 
+Of course, this commit would need to be changed to document only the lowercase
+supply names.
+
+Driver-wise, we have a rt5682s_supply_names array... we could do something like:
+
+static const char *rt5682s_supply_names_legacy[RT5682S_NUM_SUPPLIES] = {
+	[RT5682S_SUPPLY_AVDD] = "AVDD",
+	[RT5682S_SUPPLY_MICVDD] = "MICVDD",
+};
+
+static const char *rt5682s_supply_names[RT5682S_NUM_SUPPLIES] = {
+	[RT5682S_SUPPLY_AVDD] = "avdd",
+	[RT5682S_SUPPLY_MICVDD] = "micvdd",
+};
+
+for (...) assign_supply_names;
+ret = devm_regulator_bulk_get(...);
+
+if (ret) {
+	for (...) assign_legacy_supply_names;
+	ret = devm_regulator_bulk_get(...)
+	if (ret)
+		return ret;
+}
+
+What do you think?
+
+Cheers,
+Angelo
