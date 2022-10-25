@@ -2,47 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0847E60D0F0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0D160D0F4
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232167AbiJYPox convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 25 Oct 2022 11:44:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50190 "EHLO
+        id S230345AbiJYPsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 11:48:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232376AbiJYPow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:44:52 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 81E0E50700
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:44:50 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 851CAD6E;
-        Tue, 25 Oct 2022 08:44:56 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CED2D3F71A;
-        Tue, 25 Oct 2022 08:44:48 -0700 (PDT)
-Date:   Tue, 25 Oct 2022 16:44:45 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Icenowy Zheng <uwu@icenowy.me>
+        with ESMTP id S230179AbiJYPsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:48:06 -0400
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 185D013A7FD
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:48:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1666712868; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=XpElBdmhG95pvkRZTtu7NrokXpygpK3nj3LHpOqR18J9NJ17F3L6mo93OD8XnwdXeMuCzxmA5ejd2R2hTwDNsWdUC57ejEsIejBz483G+B/B9bBS2E1l4KxYbP3RhHmX9sSjET9gITmvMHnpYfjjBfy5HxbRYEnW3WLV9LDBTD4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1666712868; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=SFN3MHYwqgQ4syMrfHMBznZwgx3+83HJRzWEajE+UQA=; 
+        b=ON5T1N1al+QI9olfJNdmML8gv21j+x/+oRVlHoNHhcqB+bZFA05noNwD2Zl4C4Wyxqli75h7KH2XVGqV+6anHbW6nBvuuYTgzV58U/q0mw3zzWg6miSvKlPXmuznHOneAiojRqwzi4ug0ObgzciaxeIDA8b7wtHFjEi5IVUzoTU=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1666712868;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=SFN3MHYwqgQ4syMrfHMBznZwgx3+83HJRzWEajE+UQA=;
+        b=NUoeZAOGlwDppeGcRp4tRtXsH8vYqgXJEpj42ncgD4TclAD1+h/TjrV2AtBSwCh9
+        4dXPH2D91wbw2ZQ+WYTVIEYHUGi53/F5DYKAI2+5bJ5eqi76UQUSH8nrihJmDgNVXPE
+        +k4khj8AR3lQsIFp65i7Fy1/BFsBDCVCCPmkCClw=
+Received: from edelgard.fodlan.icenowy.me (112.94.102.105 [112.94.102.105]) by mx.zohomail.com
+        with SMTPS id 1666712866134332.719886075305; Tue, 25 Oct 2022 08:47:46 -0700 (PDT)
+Message-ID: <6ba37039524563be81a807df2f623a296e74c372.camel@icenowy.me>
+Subject: Re: [PATCH 3/3] ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Andre Przywara <andre.przywara@arm.com>
 Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
         Samuel Holland <samuel@sholland.org>,
         Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@lists.linux.dev, soc@kernel.org,
-        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
-Message-ID: <20221025164445.12f5f89c@donnerap.cambridge.arm.com>
-In-Reply-To: <73ea157f7e0c75f8bda16b3ac464be58fe7fb3ab.camel@icenowy.me>
+        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Date:   Tue, 25 Oct 2022 23:47:42 +0800
+In-Reply-To: <20221025164445.12f5f89c@donnerap.cambridge.arm.com>
 References: <20221025145909.2837939-1-andre.przywara@arm.com>
-        <20221025145909.2837939-4-andre.przywara@arm.com>
-        <73ea157f7e0c75f8bda16b3ac464be58fe7fb3ab.camel@icenowy.me>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+         <20221025145909.2837939-4-andre.przywara@arm.com>
+         <73ea157f7e0c75f8bda16b3ac464be58fe7fb3ab.camel@icenowy.me>
+         <20221025164445.12f5f89c@donnerap.cambridge.arm.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,184 +67,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Oct 2022 23:30:26 +0800
-Icenowy Zheng <uwu@icenowy.me> wrote:
-
-Hi Icenowy,
-
-thanks for having a look!
-And btw, forgot to mention in the cover letter: this relies on the USB bits
-in your series. Which works nicely, even in host mode.
-
-> 在 2022-10-25星期二的 15:59 +0100，Andre Przywara写道：
-> > The Lctech Pi F1C200s (also previously known under the Cherry Pi
-> > brand)  
-> 
-> Oh? Are they the same hardware?
-
-My board looks identical to this one:
-https://www.cnx-software.com/2022/02/03/more-allwinner-f1c200s-arm9-boards-mangopi-r3-and-cherrypi-f1c200s/#cherrypi-f1c200s
-
-The only difference is the silkscreen, there is no cherry logo on mine,
-but the (no longer working) URL is the same, so it's the same board from
-the same company. I guess legal troubles?
-
-> > is a small development board with the Allwinner F1C200s SoC. This is
-> > the
-> > same as the F1C100s, but with 64MB instead of 32MB co-packaged DRAM.
-> > 
-> > Alongside the obligatory micro-SD card slot, the board features a
-> > SPI-NAND flash chip, LCD and touch connectors, and unpopulated
-> > expansion header pins.
-> > There are two USB Type-C ports on the board: One supplies the power,
-> > also
-> > connects to the USB MUSB OTG controller port. The other one is
-> > connected
-> > to an CH340 USB serial chip, which in turn is connected to UART1.
-> > 
-> > Add a devicetree file, so that the board can be used easily.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  arch/arm/boot/dts/Makefile                    |  1 +
-> >  arch/arm/boot/dts/suniv-f1c100s.dtsi          |  5 ++
-> >  arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 80
-> > +++++++++++++++++++
-> >  3 files changed, 86 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index 6abf6434eb372..f99c5c20bf7ef 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -1394,6 +1394,7 @@ dtb-$(CONFIG_MACH_SUN9I) += \
-> >         sun9i-a80-cubieboard4.dtb
-> >  dtb-$(CONFIG_MACH_SUNIV) += \
-> >         suniv-f1c100s-licheepi-nano.dtb \
-> > +       suniv-f1c200s-lctech-pi.dtb \
-> >         suniv-f1c200s-popstick-v1.1.dtb
-> >  dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
-> >         tegra20-acer-a500-picasso.dtb \
-> > diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > index 0f24c766c9fc5..2ec022e92eea8 100644
-> > --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > @@ -201,6 +201,11 @@ uart0_pe_pins: uart0-pe-pins {
-> >                                 pins = "PE0", "PE1";
-> >                                 function = "uart0";
-> >                         };
-> > +
-> > +                       uart1_pa_pins: uart1-pa-pins {
-> > +                               pins = "PA2", "PA3";
-> > +                               function = "uart1";
-> > +                       };  
-> 
-> Should this be in a splitted commit?
-
-I don't know if this is really necessary, but am of course happy to spin
-this one out, if needed.
-
-> >                 };
-> >  
-> >                 timer@1c20c00 {
-> > diff --git a/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-> > b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-> > new file mode 100644
-> > index 0000000000000..a9d1778395438
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-> > @@ -0,0 +1,80 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright 2022 Arm Ltd,
-> > + * based on work:
-> > + *   Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "suniv-f1c100s.dtsi"
-> > +
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +
-> > +/ {
-> > +       model = "Lctech Pi F1C200s";
-> > +       compatible = "lctech,pi-f1c200s", "allwinner,suniv-f1c200s",
-> > +                    "allwinner,suniv-f1c100s";
-> > +
-> > +       aliases {
-> > +               mmc0 = &mmc0;
-> > +               serial0 = &uart1;
-> > +               spi0 = &spi0;
-> > +       };
-> > +
-> > +       chosen {
-> > +               stdout-path = "serial0:115200n8";
-> > +       };
-> > +
-> > +       reg_vcc3v3: regulator-3v3 {
-> > +               compatible = "regulator-fixed";
-> > +               regulator-name = "vcc3v3";
-> > +               regulator-min-microvolt = <3300000>;
-> > +               regulator-max-microvolt = <3300000>;
-> > +       };
-> > +};
-> > +
-> > +&mmc0 {
-> > +       broken-cd;
-> > +       bus-width = <4>;
-> > +       disable-wp;
-> > +       vmmc-supply = <&reg_vcc3v3>;
-> > +       status = "okay";
-> > +};
-> > +
-> > +&otg_sram {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&spi0 {
-> > +       pinctrl-names = "default";
-> > +       pinctrl-0 = <&spi0_pc_pins>;
-> > +       status = "okay";
-> > +
-> > +       flash@0 {
-> > +               compatible = "spi-nand";
-> > +               reg = <0>;
-> > +               #address-cells = <1>;
-> > +               #size-cells = <1>;
-> > +               spi-max-frequency = <40000000>;
-> > +       };
-> > +};
-> > +
-> > +&uart1 {
-> > +       pinctrl-names = "default";
-> > +       pinctrl-0 = <&uart1_pa_pins>;
-> > +       status = "okay";
-> > +};
-> > +
-> > +/*
-> > + * This is a Type-C socket, but CC1/2 are not connected, and VBUS is
-> > connected
-> > + * to Vin, which supplies the board. Host mode works (if the board
-> > is powered
-> > + * otherwise), but peripheral is probably the intention.
-> > + */
-> > +&usb_otg {
-> > +       dr_mode = "peripheral";
-> > +       status = "okay";
-> > +};  
-> 
-> Finally we should get able to override dr_mode just by HW.
-
-Do you mean by software? Yeah, that would be useful. Otherwise one could
-dedicate a GPIO to a fake ID_DET pin, I guess. Or use a DT overlay.
-
-Cheers,
-Andre
-
-> > +
-> > +&usbphy {
-> > +       status = "okay";
-> > +};  
-> 
+5ZyoIDIwMjItMTAtMjXmmJ/mnJ/kuoznmoQgMTY6NDQgKzAxMDDvvIxBbmRyZSBQcnp5d2FyYeWG
+memBk++8mgo+IE9uIFR1ZSwgMjUgT2N0IDIwMjIgMjM6MzA6MjYgKzA4MDAKPiBJY2Vub3d5IFpo
+ZW5nIDx1d3VAaWNlbm93eS5tZT4gd3JvdGU6Cj4gCj4gSGkgSWNlbm93eSwKPiAKPiB0aGFua3Mg
+Zm9yIGhhdmluZyBhIGxvb2shCj4gQW5kIGJ0dywgZm9yZ290IHRvIG1lbnRpb24gaW4gdGhlIGNv
+dmVyIGxldHRlcjogdGhpcyByZWxpZXMgb24gdGhlCj4gVVNCIGJpdHMKPiBpbiB5b3VyIHNlcmll
+cy4gV2hpY2ggd29ya3MgbmljZWx5LCBldmVuIGluIGhvc3QgbW9kZS4KPiAKPiA+IOWcqCAyMDIy
+LTEwLTI15pif5pyf5LqM55qEIDE1OjU5ICswMTAw77yMQW5kcmUgUHJ6eXdhcmHlhpnpgZPvvJoK
+PiA+ID4gVGhlIExjdGVjaCBQaSBGMUMyMDBzIChhbHNvIHByZXZpb3VzbHkga25vd24gdW5kZXIg
+dGhlIENoZXJyeSBQaQo+ID4gPiBicmFuZCnCoCAKPiA+IAo+ID4gT2g/IEFyZSB0aGV5IHRoZSBz
+YW1lIGhhcmR3YXJlPwo+IAo+IE15IGJvYXJkIGxvb2tzIGlkZW50aWNhbCB0byB0aGlzIG9uZToK
+PiBodHRwczovL3d3dy5jbngtc29mdHdhcmUuY29tLzIwMjIvMDIvMDMvbW9yZS1hbGx3aW5uZXIt
+ZjFjMjAwcy1hcm05LWJvYXJkcy1tYW5nb3BpLXIzLWFuZC1jaGVycnlwaS1mMWMyMDBzLyNjaGVy
+cnlwaS1mMWMyMDBzCj4gCj4gVGhlIG9ubHkgZGlmZmVyZW5jZSBpcyB0aGUgc2lsa3NjcmVlbiwg
+dGhlcmUgaXMgbm8gY2hlcnJ5IGxvZ28gb24KPiBtaW5lLAo+IGJ1dCB0aGUgKG5vIGxvbmdlciB3
+b3JraW5nKSBVUkwgaXMgdGhlIHNhbWUsIHNvIGl0J3MgdGhlIHNhbWUgYm9hcmQKPiBmcm9tCj4g
+dGhlIHNhbWUgY29tcGFueS4gSSBndWVzcyBsZWdhbCB0cm91Ymxlcz8KPiAKPiA+ID4gaXMgYSBz
+bWFsbCBkZXZlbG9wbWVudCBib2FyZCB3aXRoIHRoZSBBbGx3aW5uZXIgRjFDMjAwcyBTb0MuIFRo
+aXMKPiA+ID4gaXMKPiA+ID4gdGhlCj4gPiA+IHNhbWUgYXMgdGhlIEYxQzEwMHMsIGJ1dCB3aXRo
+IDY0TUIgaW5zdGVhZCBvZiAzMk1CIGNvLXBhY2thZ2VkCj4gPiA+IERSQU0uCj4gPiA+IAo+ID4g
+PiBBbG9uZ3NpZGUgdGhlIG9ibGlnYXRvcnkgbWljcm8tU0QgY2FyZCBzbG90LCB0aGUgYm9hcmQg
+ZmVhdHVyZXMgYQo+ID4gPiBTUEktTkFORCBmbGFzaCBjaGlwLCBMQ0QgYW5kIHRvdWNoIGNvbm5l
+Y3RvcnMsIGFuZCB1bnBvcHVsYXRlZAo+ID4gPiBleHBhbnNpb24gaGVhZGVyIHBpbnMuCj4gPiA+
+IFRoZXJlIGFyZSB0d28gVVNCIFR5cGUtQyBwb3J0cyBvbiB0aGUgYm9hcmQ6IE9uZSBzdXBwbGll
+cyB0aGUKPiA+ID4gcG93ZXIsCj4gPiA+IGFsc28KPiA+ID4gY29ubmVjdHMgdG8gdGhlIFVTQiBN
+VVNCIE9URyBjb250cm9sbGVyIHBvcnQuIFRoZSBvdGhlciBvbmUgaXMKPiA+ID4gY29ubmVjdGVk
+Cj4gPiA+IHRvIGFuIENIMzQwIFVTQiBzZXJpYWwgY2hpcCwgd2hpY2ggaW4gdHVybiBpcyBjb25u
+ZWN0ZWQgdG8gVUFSVDEuCj4gPiA+IAo+ID4gPiBBZGQgYSBkZXZpY2V0cmVlIGZpbGUsIHNvIHRo
+YXQgdGhlIGJvYXJkIGNhbiBiZSB1c2VkIGVhc2lseS4KPiA+ID4gCj4gPiA+IFNpZ25lZC1vZmYt
+Ynk6IEFuZHJlIFByenl3YXJhIDxhbmRyZS5wcnp5d2FyYUBhcm0uY29tPgo+ID4gPiAtLS0KPiA+
+ID4gwqBhcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIHzCoCAxICsKPiA+ID4gwqBhcmNoL2FybS9ib290L2R0cy9zdW5pdi1mMWMx
+MDBzLmR0c2nCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDUgKysKPiA+ID4gwqBhcmNoL2FybS9ib290
+L2R0cy9zdW5pdi1mMWMyMDBzLWxjdGVjaC1waS5kdHMgfCA4MAo+ID4gPiArKysrKysrKysrKysr
+KysrKysrCj4gPiA+IMKgMyBmaWxlcyBjaGFuZ2VkLCA4NiBpbnNlcnRpb25zKCspCj4gPiA+IMKg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL3N1bml2LWYxYzIwMHMtbGN0ZWNo
+LXBpLmR0cwo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2Vm
+aWxlCj4gPiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUKPiA+ID4gaW5kZXggNmFiZjY0
+MzRlYjM3Mi4uZjk5YzVjMjBiZjdlZiAxMDA2NDQKPiA+ID4gLS0tIGEvYXJjaC9hcm0vYm9vdC9k
+dHMvTWFrZWZpbGUKPiA+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUKPiA+ID4g
+QEAgLTEzOTQsNiArMTM5NCw3IEBAIGR0Yi0kKENPTkZJR19NQUNIX1NVTjlJKSArPSBcCj4gPiA+
+IMKgwqDCoMKgwqDCoMKgwqBzdW45aS1hODAtY3ViaWVib2FyZDQuZHRiCj4gPiA+IMKgZHRiLSQo
+Q09ORklHX01BQ0hfU1VOSVYpICs9IFwKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoHN1bml2LWYxYzEw
+MHMtbGljaGVlcGktbmFuby5kdGIgXAo+ID4gPiArwqDCoMKgwqDCoMKgwqBzdW5pdi1mMWMyMDBz
+LWxjdGVjaC1waS5kdGIgXAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgc3VuaXYtZjFjMjAwcy1wb3Bz
+dGljay12MS4xLmR0Ygo+ID4gPiDCoGR0Yi0kKENPTkZJR19BUkNIX1RFR1JBXzJ4X1NPQykgKz0g
+XAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgdGVncmEyMC1hY2VyLWE1MDAtcGljYXNzby5kdGIgXAo+
+ID4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvc3VuaXYtZjFjMTAwcy5kdHNpCj4g
+PiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvc3VuaXYtZjFjMTAwcy5kdHNpCj4gPiA+IGluZGV4IDBm
+MjRjNzY2YzlmYzUuLjJlYzAyMmU5MmVlYTggMTAwNjQ0Cj4gPiA+IC0tLSBhL2FyY2gvYXJtL2Jv
+b3QvZHRzL3N1bml2LWYxYzEwMHMuZHRzaQo+ID4gPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9z
+dW5pdi1mMWMxMDBzLmR0c2kKPiA+ID4gQEAgLTIwMSw2ICsyMDEsMTEgQEAgdWFydDBfcGVfcGlu
+czogdWFydDAtcGUtcGlucyB7Cj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5zID0gIlBFMCIsICJQRTEiOwo+ID4g
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgZnVuY3Rpb24gPSAidWFydDAiOwo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdWFydDFfcGFfcGluczogdWFydDEtcGEt
+cGlucyB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoHBpbnMgPSAiUEEyIiwgIlBBMyI7Cj4gPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGZ1bmN0
+aW9uID0gInVhcnQxIjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqB9O8KgIAo+ID4gCj4gPiBTaG91bGQgdGhpcyBiZSBpbiBhIHNwbGl0dGVkIGNv
+bW1pdD8KPiAKPiBJIGRvbid0IGtub3cgaWYgdGhpcyBpcyByZWFsbHkgbmVjZXNzYXJ5LCBidXQg
+YW0gb2YgY291cnNlIGhhcHB5IHRvCj4gc3Bpbgo+IHRoaXMgb25lIG91dCwgaWYgbmVlZGVkLgo+
+IAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiA+IMKgCj4gPiA+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdGltZXJAMWMyMGMwMCB7Cj4gPiA+IGRp
+ZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdW5pdi1mMWMyMDBzLWxjdGVjaC1waS5kdHMK
+PiA+ID4gYi9hcmNoL2FybS9ib290L2R0cy9zdW5pdi1mMWMyMDBzLWxjdGVjaC1waS5kdHMKPiA+
+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPiA+ID4gaW5kZXggMDAwMDAwMDAwMDAwMC4uYTlkMTc3
+ODM5NTQzOAo+ID4gPiAtLS0gL2Rldi9udWxsCj4gPiA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
+L3N1bml2LWYxYzIwMHMtbGN0ZWNoLXBpLmR0cwo+ID4gPiBAQCAtMCwwICsxLDgwIEBACj4gPiA+
+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9SIE1JVCkKPiA+ID4gKy8q
+Cj4gPiA+ICsgKiBDb3B5cmlnaHQgMjAyMiBBcm0gTHRkLAo+ID4gPiArICogYmFzZWQgb24gd29y
+azoKPiA+ID4gKyAqwqDCoCBDb3B5cmlnaHQgMjAyMiBJY2Vub3d5IFpoZW5nIDx1d3VAaWNlbm93
+eS5tZT4KPiA+ID4gKyAqLwo+ID4gPiArCj4gPiA+ICsvZHRzLXYxLzsKPiA+ID4gKyNpbmNsdWRl
+ICJzdW5pdi1mMWMxMDBzLmR0c2kiCj4gPiA+ICsKPiA+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5n
+cy9ncGlvL2dwaW8uaD4KPiA+ID4gKwo+ID4gPiArLyB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoG1v
+ZGVsID0gIkxjdGVjaCBQaSBGMUMyMDBzIjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgY29tcGF0aWJs
+ZSA9ICJsY3RlY2gscGktZjFjMjAwcyIsICJhbGx3aW5uZXIsc3VuaXYtCj4gPiA+IGYxYzIwMHMi
+LAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImFsbHdpbm5l
+cixzdW5pdi1mMWMxMDBzIjsKPiA+ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqBhbGlhc2VzIHsK
+PiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1tYzAgPSAmbW1jMDsKPiA+ID4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNlcmlhbDAgPSAmdWFydDE7Cj4gPiA+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzcGkwID0gJnNwaTA7Cj4gPiA+ICvCoMKgwqDC
+oMKgwqDCoH07Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgY2hvc2VuIHsKPiA+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0ZG91dC1wYXRoID0gInNlcmlhbDA6MTE1MjAw
+bjgiOwo+ID4gPiArwqDCoMKgwqDCoMKgwqB9Owo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoMKgwqDC
+oHJlZ192Y2MzdjM6IHJlZ3VsYXRvci0zdjMgewo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgY29tcGF0aWJsZSA9ICJyZWd1bGF0b3ItZml4ZWQiOwo+ID4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW5hbWUgPSAidmNjM3YzIjsKPiA+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDMz
+MDAwMDA+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW1h
+eC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoH07Cj4gPiA+ICt9
+Owo+ID4gPiArCj4gPiA+ICsmbW1jMCB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGJyb2tlbi1jZDsK
+PiA+ID4gK8KgwqDCoMKgwqDCoMKgYnVzLXdpZHRoID0gPDQ+Owo+ID4gPiArwqDCoMKgwqDCoMKg
+wqBkaXNhYmxlLXdwOwo+ID4gPiArwqDCoMKgwqDCoMKgwqB2bW1jLXN1cHBseSA9IDwmcmVnX3Zj
+YzN2Mz47Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiA+ID4gK307Cj4g
+PiA+ICsKPiA+ID4gKyZvdGdfc3JhbSB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJv
+a2F5IjsKPiA+ID4gK307Cj4gPiA+ICsKPiA+ID4gKyZzcGkwIHsKPiA+ID4gK8KgwqDCoMKgwqDC
+oMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgcGluY3Ry
+bC0wID0gPCZzcGkwX3BjX3BpbnM+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2th
+eSI7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgZmxhc2hAMCB7Cj4gPiA+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInNwaS1uYW5kIjsKPiA+ID4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwwPjsKPiA+ID4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDE+Owo+ID4gPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgI3NpemUtY2VsbHMgPSA8MT47Cj4gPiA+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBzcGktbWF4LWZyZXF1ZW5jeSA9IDw0MDAwMDAwMD47Cj4gPiA+
+ICvCoMKgwqDCoMKgwqDCoH07Cj4gPiA+ICt9Owo+ID4gPiArCj4gPiA+ICsmdWFydDEgewo+ID4g
+PiArwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4gPiArwqDCoMKg
+wqDCoMKgwqBwaW5jdHJsLTAgPSA8JnVhcnQxX3BhX3BpbnM+Owo+ID4gPiArwqDCoMKgwqDCoMKg
+wqBzdGF0dXMgPSAib2theSI7Cj4gPiA+ICt9Owo+ID4gPiArCj4gPiA+ICsvKgo+ID4gPiArICog
+VGhpcyBpcyBhIFR5cGUtQyBzb2NrZXQsIGJ1dCBDQzEvMiBhcmUgbm90IGNvbm5lY3RlZCwgYW5k
+Cj4gPiA+IFZCVVMgaXMKPiA+ID4gY29ubmVjdGVkCj4gPiA+ICsgKiB0byBWaW4sIHdoaWNoIHN1
+cHBsaWVzIHRoZSBib2FyZC4gSG9zdCBtb2RlIHdvcmtzIChpZiB0aGUKPiA+ID4gYm9hcmQKPiA+
+ID4gaXMgcG93ZXJlZAo+ID4gPiArICogb3RoZXJ3aXNlKSwgYnV0IHBlcmlwaGVyYWwgaXMgcHJv
+YmFibHkgdGhlIGludGVudGlvbi4KPiA+ID4gKyAqLwo+ID4gPiArJnVzYl9vdGcgewo+ID4gPiAr
+wqDCoMKgwqDCoMKgwqBkcl9tb2RlID0gInBlcmlwaGVyYWwiOwo+ID4gPiArwqDCoMKgwqDCoMKg
+wqBzdGF0dXMgPSAib2theSI7Cj4gPiA+ICt9O8KgIAo+ID4gCj4gPiBGaW5hbGx5IHdlIHNob3Vs
+ZCBnZXQgYWJsZSB0byBvdmVycmlkZSBkcl9tb2RlIGp1c3QgYnkgSFcuCj4gCj4gRG8geW91IG1l
+YW4gYnkgc29mdHdhcmU/IFllYWgsIHRoYXQgd291bGQgYmUgdXNlZnVsLiBPdGhlcndpc2Ugb25l
+Cj4gY291bGQKClllcywgYnkgU1cuIEl0J3MgYSB0eXBvIChJIHRoaW5rIGl0J3Mgc29tZSBraW5k
+IG9mIG5lcnZlIGxpbmsgYml0LWZsaXAKd2hlbiBJIHdhcyB0eXBpbmcgdGhpcykuCgpCVFcgSSB0
+aGluayB0aGUgZnVydGhlciB1dGlsaXphdGlvbiBvZiBzb21ldGhpbmcgbGlrZSBhIHByb3BlciBU
+eXBlLUMKY29udHJvbGxlciAoZS5nLiBGVVNCMzAyKSBuZWVkcyB0aGUgZHJpdmVyIHRvIGltcGxl
+bWVudCBhIG5ldyBpbnRlcmZhY2UKaW4ga2VybmVsLCB1c2Igcm9sZSBzd2l0Y2guCgo+IGRlZGlj
+YXRlIGEgR1BJTyB0byBhIGZha2UgSURfREVUIHBpbiwgSSBndWVzcy4gT3IgdXNlIGEgRFQgb3Zl
+cmxheS4KPiAKPiBDaGVlcnMsCj4gQW5kcmUKPiAKPiA+ID4gKwo+ID4gPiArJnVzYnBoeSB7Cj4g
+PiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiA+ID4gK307wqAgCj4gPiAKPiAK
+Cg==
 
