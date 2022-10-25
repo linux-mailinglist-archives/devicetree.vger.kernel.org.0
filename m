@@ -2,149 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C7360D4EF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDA6D60D512
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 21:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230245AbiJYTt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 15:49:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42396 "EHLO
+        id S231164AbiJYT5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 15:57:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232304AbiJYTtz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:49:55 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D1312D07
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:49:50 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id z6so477086qtv.5
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 12:49:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U41pkWnztK+i9UJZd7s5z8LIiVyrhcfeu311i/JqJM8=;
-        b=ZFG1ze7gQ7pP9QhmCO1qgsX4LR7vZ+Ynt4b8aO3aFFIEKuPT8tgKjsSX7OM/4eTdVC
-         ZxvD1/1lu9Bh8KZbEvVZvL2r5tDCA4CSmu5jx4bgYS7ntOiqdtbM8qflPN6ghUGkyWEs
-         N5YGlO0vt6YEWRI67ygYiusJcCdF85emAit/aspDfJV1xfNtPt+5z/RNHUSdbNqZUaku
-         bUHCqGd/t1nsm1KesFxjIubI7j0YtQKOoIhJqWRVHr3nRisd+ph0qKSgTW8L8UE0RmgR
-         n6wdWL02OktzsVki8tx47w9YfJex8dkas7SD9gG8i9CBq2Dw+NBeyeIe/ApVZIT5HP6v
-         4JWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U41pkWnztK+i9UJZd7s5z8LIiVyrhcfeu311i/JqJM8=;
-        b=Ltu7wJdkJ6XyFy+wQh3pC6jzHBNiLIB536BA9IHVwN+tLnb9CFDPXhWSDfztnW7qmn
-         tEO5mrsbooExUXzZLMl7FW6e//erD2VfUwl9mGiihgVk4E4v32GVfnD5IoOwr5S5lR/l
-         Hr/bDl4FglQdEl4oEdC5NtVzNWm4LCy77PHOFGgPWon8jdPZngiZB+q/vYCSkqLHOeUj
-         jVjg13yXUU2o9M8La67mgOchQNKrS4GbQa1n4qN3dk2mBGS5b9F5b6A0FiEdz0+ZJqZt
-         TA7TFcsMSyLEH73YTwc8RkEwXT3yj3I+a4dW48iwdtHYPf4VdyTVSVXZQ3IR0bnu2+z8
-         onOw==
-X-Gm-Message-State: ACrzQf28JMwOnWoIYBUsngYbnNPTpwXVlqKdYM8srODvYhjtY9/tGeUB
-        KY/SYUctMgHfw0ngHAhS2jfQNA==
-X-Google-Smtp-Source: AMsMyM6+s9yLCfeEgg3kbixXLX/jGhSq3bpEZpjwl3Rb1L5e21mSdwAl7KYOL2J9lqP6sxLZLiBvuw==
-X-Received: by 2002:ac8:5d93:0:b0:398:3709:945c with SMTP id d19-20020ac85d93000000b003983709945cmr33024036qtx.459.1666727390012;
-        Tue, 25 Oct 2022 12:49:50 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id d20-20020ac851d4000000b0035bafecff78sm2023136qtn.74.2022.10.25.12.49.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 12:49:49 -0700 (PDT)
-Message-ID: <5dc85333-b265-ab10-74db-1ed969630813@linaro.org>
-Date:   Tue, 25 Oct 2022 15:49:48 -0400
+        with ESMTP id S232635AbiJYT5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 15:57:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5149510EA02;
+        Tue, 25 Oct 2022 12:57:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 04BDDB81E88;
+        Tue, 25 Oct 2022 19:57:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A48C433D6;
+        Tue, 25 Oct 2022 19:57:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666727830;
+        bh=7XhSIz9hT5MjQIm4thSq4MY9Q3mxA3PJBkbPvWcrm1o=;
+        h=From:To:Cc:Subject:Date:From;
+        b=UVGraJNMazoS29PboYYzQEVitDlCfJWRSf61bqUBDIUeVG/JsnGEKHD2GL7hSe8E4
+         IW+mejsy9UnLpLMzAJjstzrBnDx1XJuRrU2UCwGURgpk3H14MlU/2Koh20wMBQkQ/u
+         OlLO8H3WhNEgPP5/4jnyJQUqOV0IFlpr3/cEt5aheo+c37ZEzeVfBtjKVq6RB6DERR
+         8q5Wy3DsT1g4fOZl9b8/0qUMyXUIADFCAnZDtp0jfVSrMcWNasQgcfvSfQyIHoGrze
+         R6Xt/kW/cIBDShj3gLollHkBVlLkPCR9wK44lWaWxF9SooLh/brrUKK9Fhjm3iAX/L
+         2r5rrfQ6ukE8Q==
+From:   Conor Dooley <conor@kernel.org>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] riscv: dts: microchip: fix memory node unit address for icicle
+Date:   Tue, 25 Oct 2022 20:56:44 +0100
+Message-Id: <20221025195643.1215890-1-conor@kernel.org>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v1 2/5] dt-bindings: soc: hpe: Add hpe,gxp-plreg
-Content-Language: en-US
-To:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20221011185525.94210-1-nick.hawkins@hpe.com>
- <20221011185525.94210-3-nick.hawkins@hpe.com>
- <CAL_Jsq+xb2Ltfne4mQMXQAde-eHS7TsO73YZ-vhE7nK1Z_M0gw@mail.gmail.com>
- <DM4PR84MB192795B45639710259E9B19D88229@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <820095a2-3722-5c3a-77fb-5a6b6b44e1c3@linaro.org>
- <DM4PR84MB19275A47D7006BD5664E1AF488319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <d51b7f8d-3681-e19d-3ebb-7e021fc50403@linaro.org>
- <DM4PR84MB19275D8DB8B27CE0D1A05AA588319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <7c9e943a-4806-6339-cee1-9156e7792111@linaro.org>
- <DM4PR84MB192759035B110DE54EA9B63688319@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
- <0b6dd763-365d-6f35-59cb-18c599b73d3a@linaro.org>
- <DM4PR84MB197662C12018090C312AF72DD6319@DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DM4PR84MB197662C12018090C312AF72DD6319@DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 15:39, Verdun, Jean-Marie wrote:
-> Hi Krzysztof,
-> 
-> I think what we try to do is to introduce an abstraction layer between the interfaces and the drivers, as our CPLD interfaces are platform dependents. I mean the Power On control could be at address 0x09 on one platform or 0x119 on another one. We would like to find a way to avoid to have to change the driver code, but just feeding the driver with relevant datas, which could be into a platform dependent include file or through the proposed solution that Nick is promoting.
-> 
-> If the CPLD memory address space was consistent between platform and generation that would be great but unfortunately that is not the case that is why we try to break down the dependency into the driver code and retrieve the data from another place.
-> 
-> JM
-> ________________________________
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Tuesday, October 25, 2022 12:33 PM
-> To: Hawkins, Nick <nick.hawkins@hpe.com>
-> Cc: Verdun, Jean-Marie <verdun@hpe.com>; krzysztof.kozlowski+dt@linaro.org <krzysztof.kozlowski+dt@linaro.org>; linux@armlinux.org.uk <linux@armlinux.org.uk>; devicetree@vger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; linux-arm-kernel@lists.infradead.org <linux-arm-kernel@lists.infradead.org>; Rob Herring <robh+dt@kernel.org>
-> Subject: Re: [PATCH v1 2/5] dt-bindings: soc: hpe: Add hpe,gxp-plreg
-> 
-> On 25/10/2022 15:26, Hawkins, Nick wrote:
->>
->>> I don't know exactly what type of devices you represent in that plreg, but in general the fan device would be the respective plreg. The same with other pieces like hwmon, power supply.
->> We were primarily representing the registers that translate to the CPLD input/outputs from our platforms as well as handling the interrupts associated with those inputs/outputs.
-> 
-> So basically each register (or set of registers) is a device? How is it
-> different than any other multi-functional device? Why do you want to
-> model it differently?
+From: Conor Dooley <conor.dooley@microchip.com>
 
-How is it different, I am asking?
+Evidently I forgot to update the unit address for the 38-bit cached
+memory node when I changed the address in the reg property..
+Update it to match.
 
-> 
->> When you say "would be the respective plreg" do you mean that each device/controller would need to perform the actions plreg does individually? In that case how should we get information for that register/memory region and interrupts from the dts? Could it be something like this:
->>
->> plreg: plreg@d1000000 {
->>       compatible = "hpe,gxp-plreg";
->>       reg = <0xd1000000 0xFF>;
->>       interrupts = <26>;
->>       interrupt-parent = <&vic0>;
->> };
->>
->> fanctrl: fanctrl@c1000c00 {
->>       compatible = "hpe,gxp-fan-ctrl";
->>       reg = <0xc1000c00 0x200>;
->>       plreg_handle = <&plreg>;
->> };
->>
-> 
-> No, rather these are one node.
-> 
-> You insist to represent this all as programmable logic, but why? CPLD,
-> FPGA, ASIC, dedicated IC - all are just implementations and for us
-> what's matter are the interfaces, inputs and outputs.
+Fixes: 6c1193301791 ("riscv: dts: microchip: update memory configuration for v2022.10")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-And seriously... this is not a chat. Take a bit of time to answer these
-questions instead of replying immediately with a same response as yesterday.
-
-Best regards,
-Krzysztof
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+index ec7b7c2a3ce2..8ced67c3b00b 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+@@ -37,7 +37,7 @@ ddrc_cache_lo: memory@80000000 {
+ 		status = "okay";
+ 	};
+ 
+-	ddrc_cache_hi: memory@1000000000 {
++	ddrc_cache_hi: memory@1040000000 {
+ 		device_type = "memory";
+ 		reg = <0x10 0x40000000 0x0 0x40000000>;
+ 		status = "okay";
+-- 
+2.38.0
 
