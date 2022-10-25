@@ -2,160 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F247660C35F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 07:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71CFE60C37F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 07:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbiJYFjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 01:39:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55942 "EHLO
+        id S229728AbiJYFwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 01:52:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbiJYFjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 01:39:44 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAF27DF2;
-        Mon, 24 Oct 2022 22:39:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=R+ShOV9WxeOs2LS2LVmHjwVARc6cq4RZzqDvKF0eUvo=;
-        b=n7XrF2z8A57Ho9F7WQQje4je3h8WQn1KqW2SpiwZqo9MSxtefLObABF+2pIxwEySheU+3Szo7BzS/
-         eJCF5GTWEPsZuKEdJvUgjsYc5ilOKaPqWran2l73uUPanUm6Nn8bELcuhGBQW/b+9tXR3eU9gDdsv5
-         yuSDRxvKdi2SsaTytgFXAnoQac5vcSrF43Rg/eFWe26T6cSuQL3+o5duKMbdo/dQ2aOyDZ5NpsRqUG
-         CQmGmP2XV4LgFmQTEoZoLANIdZe2Gyw2qJJ2XaEGlwfSsL6fDL757Qw6z3LNC0qjJwFiea48VLvTzU
-         i3XO2hKZtQUB2sWWjZOKysdQy+z9QAA==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.4.1445, Stamp: 3], Multi: [Enabled, t: (0.000010,0.013250)], BW: [Enabled, t: (0.000024,0.000001)], RTDA: [Enabled, t: (0.201393), Hit: No, Details: v2.42.0; Id: 15.52k68g.1gg6qe7uf.g6g; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([92.100.86.33])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Tue, 25 Oct 2022 08:39:26 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, dg@emlix.com, j.zink@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        system@metrotek.ru,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v20 2/2] dt-bindings: fpga: document Lattice sysCONFIG FPGA manager
-Date:   Tue, 25 Oct 2022 08:39:47 +0300
-Message-Id: <20221025053947.2737-3-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.37.4
-In-Reply-To: <20221025053947.2737-1-i.bornyakov@metrotek.ru>
-References: <20221025053947.2737-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S230071AbiJYFwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 01:52:04 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6036DBB062;
+        Mon, 24 Oct 2022 22:52:03 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id f140so10937131pfa.1;
+        Mon, 24 Oct 2022 22:52:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hIosgv5purvdOHjHB0Bdm/xsYrKIRMZ14fsco2UYxnk=;
+        b=Gi0LqGujeeIHDVQVa56iRgjW+CI3P/VaODt++d1WhDW+E0Ql+uw8P7QiLdb5EKVxtU
+         /buJsSr4XGFfPVSn7bFH4r0seo1W1Y3V0D+O2p+hV4jFqX+NUK2d5zkFrFD+r0KKH0SC
+         lAz8b3loolLsYJC277CGRf6khkO3AF9WYUoQPdv8JCpvx+PAGSa0YQ3hAaefocawFLIX
+         h08NMopijzftxPlUZzLBC1fZmGjdZmsPmFOHFiiTWLPDmIjWAtOe8Y5ZvHap0MxIb7Zu
+         KFG6TOPr5uyTE4Et8IeR4w/dbHdTx+foft5trYjehD0l5FSZBrGfAU+QzyfLNwOY64Dm
+         rgMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hIosgv5purvdOHjHB0Bdm/xsYrKIRMZ14fsco2UYxnk=;
+        b=3XyLW5cJaJV56xfhHhWzIUqjmiX2pcCiJHNc9XV/7oYDlWwxjPn3jARlBV4onZvo0O
+         nmC5uq5qJfq/VBQVCWgdhEORasfzpuFbcQOXajxvyutoxBR+wfCijoYkZzQUr9Pq39I2
+         3n3wxMePGcshsO2SKCUDMB5lcscGXqr0SyiLA10JZhaOP3GSSX1Z/icCjOURPNfrXQG6
+         jCMgrwarGk2x8r73YOiFtXMMBOsTe7bYGl9RCw1Gbfv3LeT/upoHhGPOX30u1/ajsB8h
+         6bWO6L4DnjFlCPLIE9D+e3nDqU8aKEpkQOuoiaH8U56FV6G6qpSUC0/Xs4dA/A+Kzi4I
+         eH2Q==
+X-Gm-Message-State: ACrzQf0PBo5XUbB9JTbZob4IuX/Ews95QgmjTlKkNaDhrYicl0vJMh7a
+        Xd0l4v2AFs1ERrIW4f7LeiM=
+X-Google-Smtp-Source: AMsMyM5Yrz5n05HNZztnB0pQdKPHsHmLKVkt2d8mYs8HXJ1l2cDamvLiDiMe7LXO+RQoeZk++Djq0Q==
+X-Received: by 2002:aa7:810a:0:b0:55b:674d:d123 with SMTP id b10-20020aa7810a000000b0055b674dd123mr38050507pfi.52.1666677122845;
+        Mon, 24 Oct 2022 22:52:02 -0700 (PDT)
+Received: from localhost.localdomain.dhcpserver.bu9bmc.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
+        by smtp.gmail.com with ESMTPSA id e126-20020a621e84000000b0056ba6952e40sm675644pfe.181.2022.10.24.22.52.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Oct 2022 22:52:02 -0700 (PDT)
+From:   Potin Lai <potin.lai.pt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Patrick Williams <patrick@stwcx.xyz>,
+        Potin Lai <potin.lai@quantatw.com>,
+        Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v2 1/1] ARM: dts: aspeed-g6: add aliases for mdio nodes
+Date:   Tue, 25 Oct 2022 13:50:46 +0800
+Message-Id: <20221025055046.1704920-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for configuring Lattice ECP5 FPGA over
-Slave SPI sysCONFIG interface.
+Add aliases for mdio nodes so that we can use name to lookup the
+bus address of Aspeed SOC.
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+For example:
+root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio0
+/ahb/mdio@1e650000
+root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio1
+/ahb/mdio@1e650008
+root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio2
+/ahb/mdio@1e650010
+root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio3
+/ahb/mdio@1e650018
+
+Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
 ---
- .../bindings/fpga/lattice,sysconfig.yaml      | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
+LINK: [v1] https://lore.kernel.org/all/20221025024145.1561047-1-potin.lai.pt@gmail.com/
 
-diff --git a/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-new file mode 100644
-index 000000000000..4fb05eb84e2a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/lattice,sysconfig.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/lattice,sysconfig.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lattice Slave SPI sysCONFIG FPGA manager
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description: |
-+  Lattice sysCONFIG port, which is used for FPGA configuration, among others,
-+  have Slave Serial Peripheral Interface. Only full reconfiguration is
-+  supported.
-+
-+  Programming of ECP5 is done by writing uncompressed bitstream image in .bit
-+  format into FPGA's SRAM configuration memory.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lattice,sysconfig-ecp5
-+
-+  reg:
-+    maxItems: 1
-+
-+  program-gpios:
-+    description:
-+      A GPIO line connected to PROGRAMN (active low) pin of the device.
-+      Initiates configuration sequence.
-+    maxItems: 1
-+
-+  init-gpios:
-+    description:
-+      A GPIO line connected to INITN (active low) pin of the device.
-+      Indicates that the FPGA is ready to be configured.
-+    maxItems: 1
-+
-+  done-gpios:
-+    description:
-+      A GPIO line connected to DONE (active high) pin of the device.
-+      Indicates that the configuration sequence is complete.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: lattice,sysconfig-ecp5
-+    then:
-+      properties:
-+        spi-max-frequency:
-+          maximum: 60000000
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        fpga-mgr@0 {
-+            compatible = "lattice,sysconfig-ecp5";
-+            reg = <0>;
-+            spi-max-frequency = <20000000>;
-+            program-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
-+            init-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
-+            done-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
+change v1 --> v2:
+* move mdio aliases to aspeed-g6.dtsi
+---
+ arch/arm/boot/dts/aspeed-g6.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+index 0cc92874caa8..6f159ef1efbc 100644
+--- a/arch/arm/boot/dts/aspeed-g6.dtsi
++++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+@@ -36,6 +36,10 @@ aliases {
+ 		serial4 = &uart5;
+ 		serial5 = &vuart1;
+ 		serial6 = &vuart2;
++		mdio0 = &mdio0;
++		mdio1 = &mdio1;
++		mdio2 = &mdio2;
++		mdio3 = &mdio3;
+ 	};
+ 
+ 
 -- 
-2.37.4
-
+2.31.1
 
