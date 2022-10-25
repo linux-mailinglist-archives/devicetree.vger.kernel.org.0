@@ -2,95 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A54F660C66C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 10:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1077660C67D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 10:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiJYI2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 04:28:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
+        id S232280AbiJYIdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 04:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232258AbiJYI2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 04:28:47 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48296FB73E
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 01:28:45 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id CF433240016;
-        Tue, 25 Oct 2022 08:28:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666686524;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=L0iH33vHqfhlbDqT2+HQxHHvCqCXB/mta+sWzhuV11I=;
-        b=GY5OHEdNb0k2CYtkc/MQ86hZp0vdxR0Raf2LXFZX9nqdFMrV5D277V6DK/NbTrQhT1SdL2
-        EC+wjuTfMNAsdeE242qk+ULxMMbflgeE7bqVZGBUYAkQq8v5qFKtVxkhcWlFMUeoslJx3Y
-        TMg3xC5RP3P2ZD+/5P33iFbYFdJ/9v9iCBGzaznNNRjpEdZGScEV8FIk6w6BCTYjd11jMj
-        C8qU1DdGZIOKyus7TDqt+Lew7thshVihZtEM7OI4+/4kiEI/Hjzt6yf3aIyf21LJhNfVcy
-        Snzcq4xfic9F5eMsjvSMCyicHVDfKdlE8+twFYRjRNz0SGZ9bNFRes17v8GOww==
-Date:   Tue, 25 Oct 2022 10:28:42 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Matt Ranostay <mranostay@ti.com>
-Cc:     <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: mfd: ti,am3359-tscadc: add missing
- power-domains property
-Message-ID: <20221025102842.3de6b3c2@xps-13>
-In-Reply-To: <20221025080014.403457-1-mranostay@ti.com>
-References: <20221025080014.403457-1-mranostay@ti.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232198AbiJYIc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 04:32:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68E8A4B8A;
+        Tue, 25 Oct 2022 01:32:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4DFF9617E7;
+        Tue, 25 Oct 2022 08:32:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8A35C433C1;
+        Tue, 25 Oct 2022 08:32:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666686777;
+        bh=P9otne2bGV5OzhI0QZtc8zRICsJTxdIfBvbZ+x2AHD4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DmuJBtrRLQRjMfi8fNmmrNYXtQG2e0SbTjhslLVQRZpDxwBOarHUGsOyb6atqoxu5
+         30wsWp6tK1WlcHgb8/TqU3BvN8ekb1rjBmYQuK5poeSWYKbbJe8yWUBUzt+eK/rW00
+         IJSFKAQxIjcMmKHmFY1E/TbPcckFxz7ZQMP8o4WY06UJZwyb6HZucpo4xXoLdjcxn0
+         wqRfeGi5aC9W2q2EQ1IJyqeubzLaJmRLU/aw/yh+k4Klyhrfu60XHNJXVMUpgjlngM
+         nG7RB4BfcsZNqI97S9Bdg4U0q3Crc6wld0c+IL3YwL5xELTtcXXbp/Uy3R2vLWhvu1
+         UzRpL7GQOtW0w==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1onFMU-00015B-MI; Tue, 25 Oct 2022 10:32:39 +0200
+Date:   Tue, 25 Oct 2022 10:32:38 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/4] soc: qcom: pmic_glink: Introduce altmode support
+Message-ID: <Y1efJh11B5UQZ0Tz@hovoldconsulting.com>
+References: <20220818031512.319310-1-bjorn.andersson@linaro.org>
+ <20220818031512.319310-4-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220818031512.319310-4-bjorn.andersson@linaro.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matt,
+[ Resending to Bjorn's current address. ]
 
-mranostay@ti.com wrote on Tue, 25 Oct 2022 01:00:14 -0700:
-
-> Add optional power-domains property to avoid the following dt-schema
-> failures:
->=20
-> tscadc@40200000: 'power-domains' does not match any of the regexes: 'pinc=
-trl-[0-9]+'
->=20
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-
-Looks legitimate.
-
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
+On Wed, Aug 17, 2022 at 08:15:11PM -0700, Bjorn Andersson wrote:
+> With the PMIC GLINK service, the host OS subscribes to USB-C altmode
+> messages, which are sent by the firmware to notify the host OS about
+> state updates and HPD interrupts.
+> 
+> The pmic_glink_altmode driver registers for these notifications and
+> propagates the notifications as typec_mux, typec_switch and DRM OOB
+> notifications as necessary to implement DisplayPort altmode support.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml =
-b/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
-> index 34bf6a01436f..23a63265be3c 100644
-> --- a/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
-> @@ -52,6 +52,9 @@ properties:
->      type: object
->      description: Magnetic reader
-> =20
-> +  power-domains:
-> +    maxItems: 1
+>  drivers/soc/qcom/Makefile             |   1 +
+>  drivers/soc/qcom/pmic_glink_altmode.c | 477 ++++++++++++++++++++++++++
+>  2 files changed, 478 insertions(+)
+>  create mode 100644 drivers/soc/qcom/pmic_glink_altmode.c
+
+> diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
+> new file mode 100644
+> index 000000000000..8d2d563cb756
+> --- /dev/null
+> +++ b/drivers/soc/qcom/pmic_glink_altmode.c
+
+> +static void pmic_glink_altmode_worker(struct work_struct *work)
+> +{
+> +	struct pmic_glink_altmode_port *alt_port = work_to_altmode_port(work);
+> +	struct pmic_glink_altmode *altmode = alt_port->altmode;
 > +
->  required:
->    - compatible
->    - reg
+> +	typec_switch_set(alt_port->typec_switch, alt_port->orientation);
+> +
+> +	if (alt_port->svid == USB_TYPEC_DP_SID)
+> +		pmic_glink_altmode_enable_dp(altmode, alt_port, alt_port->mode,
+> +					     alt_port->hpd_state, alt_port->hpd_irq);
+> +	else
+> +		pmic_glink_altmode_enable_usb(altmode, alt_port);
+> +
+> +	if (alt_port->hpd_state)
+> +		drm_bridge_hpd_notify(&alt_port->bridge, connector_status_connected);
+> +	else
+> +		drm_bridge_hpd_notify(&alt_port->bridge, connector_status_disconnected);
+> +
+> +	pmic_glink_altmode_request(altmode, ALTMODE_PAN_ACK, alt_port->index);
+> +};
 
+I'm seeing fairly frequent crashes during boot of the X13s due to these
+notifications being propagated before things have been fully set up:
 
-Thanks,
-Miqu=C3=A8l
+[   16.591910] panel-simple-dp-aux aux-aea0000.displayport-controller: Detected SHP LQ140M1JW48 (0x1511)
+[   16.592142] qcom,fastrpc-cb 1b300000.remoteproc:glink-edge:fastrpc:compute-cb@12: Adding to iommu group 17
+[   16.597644] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000010
+[   16.597653] Mem abort info:
+[   16.597657]   ESR = 0x0000000096000004
+[   16.597663]   EC = 0x25: DABT (current EL), IL = 32 bits
+[   16.597670]   SET = 0, FnV = 0
+[   16.597675]   EA = 0, S1PTW = 0
+[   16.597680]   FSC = 0x04: level 0 translation fault
+[   16.597686] Data abort info:
+[   16.597689]   ISV = 0, ISS = 0x00000004
+[   16.597694]   CM = 0, WnR = 0
+[   16.597698] user pgtable: 4k pages, 48-bit VAs, pgdp=0000000106b93000
+[   16.597706] [0000000000000010] pgd=0000000000000000, p4d=0000000000000000
+[   16.597722] Internal error: Oops: 0000000096000004 [#1] PREEMPT SMP
+[   16.597731] Dumping ftrace buffer:
+[   16.597742]    (ftrace buffer empty)
+[   16.597744] Modules linked in: fastrpc(+) rpmsg_ctrl qrtr_smd rpmsg_char qcom_battmgr pmic_glink_altmode rtc_pm8xxxr
+[   16.597831] CPU: 0 PID: 389 Comm: kworker/0:3 Not tainted 6.1.0-rc2 #195
+[   16.597838] Hardware name: Qualcomm QRD, BIOS 6.0.220110.BOOT.MXF.1.1-00470-MAKENA-1 01/10/2022
+[   16.597842] Workqueue: events pmic_glink_altmode_worker [pmic_glink_altmode]
+[   16.597864] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[   16.597870] pc : drm_kms_helper_hotplug_event+0x1c/0x50
+[   16.597882] lr : drm_kms_helper_hotplug_event+0x18/0x50
+[   16.597887] sp : ffff80000c20bca0
+[   16.597889] x29: ffff80000c20bca0 x28: ffffdba5eadbb000 x27: ffff22a9f6f2dc05
+[   16.597898] x26: ffffdba5eadc0b20 x25: ffffdba5eadd8ca0 x24: 0000000000000000
+[   16.597906] x23: 0000000000000003 x22: ffff22a888526000 x21: 0000000000000002
+[   16.597914] x20: ffff22a88ceed000 x19: ffff22a888526000 x18: 0000000000000020
+[   16.597921] x17: 4d003632323d524f x16: 4a414d00313d4755 x15: 4c50544f48006d72
+[   16.597929] x14: 0000000000000001 x13: 0000000000000040 x12: 0000000000000000
+[   16.597936] x11: 0000000000000000 x10: 0000000000000228 x9 : 0000000000000000
+[   16.597944] x8 : 0000000000000000 x7 : 0000000000000000 x6 : 0000000000062e00
+[   16.597951] x5 : 0000000000000000 x4 : ffff22a9f6f2d290 x3 : 0000000000062f00
+[   16.597959] x2 : 0000000000000000 x1 : 0000000000000000 x0 : 0000000000000000
+[   16.597965] Call trace:
+[   16.597968]  drm_kms_helper_hotplug_event+0x1c/0x50
+[   16.597973]  drm_bridge_connector_hpd_cb+0xa0/0xc0
+[   16.597983]  drm_bridge_hpd_notify+0x40/0x60
+[   16.597990]  pmic_glink_altmode_worker+0xc0/0x150 [pmic_glink_altmode]
+[   16.598006]  process_one_work+0x288/0x6c0
+[   16.598014]  worker_thread+0x74/0x450
+[   16.598019]  kthread+0x118/0x120
+[   16.598028]  ret_from_fork+0x10/0x20
+[   16.598039] Code: f9000bf3 aa0003f3 97ff22af f9445e60 (f9400801) 
+[   16.598043] ---[ end trace 0000000000000000 ]---
+[   16.603424] [drm] Initialized msm 1.9.0 20130625 for ae01000.mdp on minor 0
+
+I've verified that it is the funcs pointer in
+drm_kms_helper_hotplug_event() which is NULL and a hack like the below
+prevents the crash:
+
+diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+index 69b0b2b9cc1c..d515f5b6f3d5 100644
+--- a/drivers/gpu/drm/drm_probe_helper.c
++++ b/drivers/gpu/drm/drm_probe_helper.c
+@@ -661,7 +661,9 @@ void drm_kms_helper_hotplug_event(struct drm_device *dev)
+ {
+        /* send a uevent + call fbdev */
+        drm_sysfs_hotplug_event(dev);
+-       if (dev->mode_config.funcs->output_poll_changed)
++
++       WARN_ON(!dev->mode_config.funcs);
++       if (dev->mode_config.funcs && dev->mode_config.funcs->output_poll_changed)
+                dev->mode_config.funcs->output_poll_changed(dev);
+ 
+        drm_client_dev_hotplug(dev);
+
+It appears that pointer is set in msm_drm_init(), which suggests events
+are being forwarded before the driver is ready.
+
+Johan
