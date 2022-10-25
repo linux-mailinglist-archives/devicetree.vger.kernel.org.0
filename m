@@ -2,147 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF3F60D5F6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 23:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C353B60D611
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 23:21:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231909AbiJYVDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 17:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58842 "EHLO
+        id S231868AbiJYVVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 17:21:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231628AbiJYVDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 17:03:51 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF225A8FA;
-        Tue, 25 Oct 2022 14:03:50 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29PL0KpX008719;
-        Tue, 25 Oct 2022 21:03:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6ANxO3FG04XfjlFDKn1rFO+qMY4ZOEYGEf9X9sJVsmk=;
- b=cxqQhj8AtgsMXHoG8pQT1eqouYm7U32ZahN+UEnr5aX8Wp6AiDrlUSSDP7feOtgjm48o
- UQ1Y/38LJEsCc4bnTfU43BLne4kKHHfKGBNTpGFPEZLrLOW5Tgf2Y+I1tzr1/V8Wnru1
- xNxdpMpBKa3GmuY4CwEMN53oaEiNsup2bwUTJTSBRaUukXTmqvnqVdFbNuHSEVnlK8DG
- H/+NK//15hmTSllP3XMHuxjlpiEjghPjmww91By5QFFf8ZGB2mBF4GJwg3lbA2FLl8/z
- qgb2+O7/SZQAZUPaCWypxZF3H5wdVzUn/axbbVhdBk3XylbdItuefxHqAi4bsovZSBIh ng== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3keaf0hqgb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Oct 2022 21:03:40 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29PL3dCt010905
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Oct 2022 21:03:39 GMT
-Received: from [10.134.66.255] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 25 Oct
- 2022 14:03:38 -0700
-Message-ID: <05474921-eb21-968c-ed92-34769517cf31@quicinc.com>
-Date:   Tue, 25 Oct 2022 14:03:38 -0700
+        with ESMTP id S230345AbiJYVVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 17:21:17 -0400
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85CB656B95;
+        Tue, 25 Oct 2022 14:21:14 -0700 (PDT)
+Received: by mail-oo1-f42.google.com with SMTP id r11-20020a4aa2cb000000b004806f49e27eso2053568ool.7;
+        Tue, 25 Oct 2022 14:21:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=deetLSjfSLw9NGtsLyl5oAnaBu5KwyE7PmCTC5CrpT4=;
+        b=f137sr7tyDGBEB9TIbhKG85JgRx3aBMWnAghATpWvVCcG1udzWQQujiotbU4bu1qQ0
+         aLWZ0gRAUPMl/KNdoySQtNJyuc0BZVCyvUmVRM0wAf+8s1bKwmPA9h0XKLBRXLsW+Iz3
+         zaw+eYy0+qAzlVKTGdWTcwCTY8PB/zGh2yLN+eXhImC8V/WAsUjbnCSHnZlvboOU00jJ
+         aFUP4C6hhLMbbKE8wBwTMKeCeo39IioeKdFQ+MCBMz8LFoK/IEyCjlrB3KDFC88nHXT+
+         ptA6WJoOl3Ce/TWhtVWtAsONGgDBfKtOCPOgJxqoBZ9y2n5rwiFbi03x4E8uojY0nURt
+         vMIA==
+X-Gm-Message-State: ACrzQf2pHYYVnnYJtjymyJCy/OD4Aq+gWvL4RJ22MZvqbKuA0fVwRN96
+        5iIh6XwKk6wjx75JBCD7guAmOfMMGw==
+X-Google-Smtp-Source: AMsMyM7B0w6ukcpx4u+vNpmoWkDfOMj27vFI0GB9Idy7Se4NJx5Z1z15XHQVQGmHzX5VFVzePHTM/w==
+X-Received: by 2002:a4a:a387:0:b0:480:9a7a:4e99 with SMTP id s7-20020a4aa387000000b004809a7a4e99mr17647401ool.4.1666732873594;
+        Tue, 25 Oct 2022 14:21:13 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c31-20020a9d27a2000000b006622d085a7fsm1449429otb.50.2022.10.25.14.21.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Oct 2022 14:21:13 -0700 (PDT)
+Received: (nullmailer pid 3335003 invoked by uid 1000);
+        Tue, 25 Oct 2022 21:21:14 -0000
+Date:   Tue, 25 Oct 2022 16:21:14 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?iso-8859-1?Q?n=E7_=DCNAL?= <arinc.unal@arinc9.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v1 net-next 3/7] dt-bindings: net: dsa: qca8k: utilize
+ shared dsa.yaml
+Message-ID: <20221025212114.GA3322299-robh@kernel.org>
+References: <20221025050355.3979380-1-colin.foster@in-advantage.com>
+ <20221025050355.3979380-4-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Add QDU1000/QRU1000 pinctrl driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221014221025.7372-1-quic_molvera@quicinc.com>
- <20221014221025.7372-3-quic_molvera@quicinc.com>
- <498ea0a0-24c2-c9c0-3a5d-150ba32b3c4c@linaro.org>
-Content-Language: en-US
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <498ea0a0-24c2-c9c0-3a5d-150ba32b3c4c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6IoC9bP1KQH-dwbJq4dVclCY2YJWicb7
-X-Proofpoint-ORIG-GUID: 6IoC9bP1KQH-dwbJq4dVclCY2YJWicb7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-25_13,2022-10-25_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=787
- priorityscore=1501 suspectscore=0 phishscore=0 spamscore=0 adultscore=0
- clxscore=1015 malwarescore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
- definitions=main-2210250117
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221025050355.3979380-4-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 24, 2022 at 10:03:51PM -0700, Colin Foster wrote:
+> The dsa.yaml binding contains duplicated bindings for address and size
+> cells, as well as the reference to dsa-port.yaml. Instead of duplicating
+> this information, remove the reference to dsa-port.yaml and include the
+> full reference to dsa.yaml.
 
+I don't think this works without further restructuring. Essentially, 
+'unevaluatedProperties' on works on a single level. So every level has 
+to define all properties at that level either directly in 
+properties/patternProperties or within a $ref.
 
-On 10/15/2022 6:40 AM, Krzysztof Kozlowski wrote:
-> On 14/10/2022 18:10, Melody Olvera wrote:
->> Add pin control driver for the TLMM block found in the QDU1000
->> and QRU1000 SoC.
->>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>  drivers/pinctrl/qcom/Kconfig           |    9 +
->>  drivers/pinctrl/qcom/Makefile          |    1 +
->>  drivers/pinctrl/qcom/pinctrl-qdu1000.c | 1274 ++++++++++++++++++++++++
->>  3 files changed, 1284 insertions(+)
->>  create mode 100644 drivers/pinctrl/qcom/pinctrl-qdu1000.c
->>
->> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
->> index 9dc2d803a586..4ab857dc2847 100644
->> --- a/drivers/pinctrl/qcom/Kconfig
->> +++ b/drivers/pinctrl/qcom/Kconfig
->> @@ -248,6 +248,15 @@ config PINCTRL_QCOM_SSBI_PMIC
->>  	 which are using SSBI for communication with SoC. Example PMIC's
->>  	 devices are pm8058 and pm8921.
->>  
->> +config PINCTRL_QDU1000
->> +	tristate "Qualcomm Tehcnologies Inc QDU1000/QRU1000 pin controller driver"
->> +	depends on GPIOLIB && OF
-> depends on ARM64 || COMPILE_TEST
-Will add.
->> +	depends on PINCTRL_MSM
->> +	help
->> +	  This is the pinctrl, pinmux, pinconf, and gpiolib driver for the
->> +	  Qualcomm Technologies Inc TLMM block found on the Qualcomm
->> +	  Technologies Inc QDU1000 and QRU1000 platforms.
->> +
-> (...)
->
->> +	PINCTRL_PIN(138, "GPIO_138"),
->> +	PINCTRL_PIN(139, "GPIO_139"),
->> +	PINCTRL_PIN(140, "GPIO_140"),
->> +	PINCTRL_PIN(141, "GPIO_141"),
->> +	PINCTRL_PIN(142, "GPIO_142"),
->> +	PINCTRL_PIN(143, "GPIO_143"),
->> +	PINCTRL_PIN(144, "GPIO_144"),
->> +	PINCTRL_PIN(145, "GPIO_145"),
->> +	PINCTRL_PIN(146, "GPIO_146"),
->> +	PINCTRL_PIN(147, "GPIO_147"),
->> +	PINCTRL_PIN(148, "GPIO_148"),
->> +	PINCTRL_PIN(149, "GPIO_149"),
->> +	PINCTRL_PIN(150, "GPIO_150"),
-> Your bindings said you have GPIOs 0-149, not 0-150.
-Updated bindings.
->
->> +	PINCTRL_PIN(151, "SDC1_RCLK"),
->> +	PINCTRL_PIN(152, "SDC1_CLK"),
->> +	PINCTRL_PIN(153, "SDC1_CMD"),
->> +	PINCTRL_PIN(154, "SDC1_DATA"),
-> This also does not match bindings.
-Updated bindings.
+See how graph.yaml is structured and referenced for an example how this 
+has to work.
 
-Thanks,
-Melody
+> 
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
+> ---
+>  .../devicetree/bindings/net/dsa/qca8k.yaml         | 14 +++-----------
+>  1 file changed, 3 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> index 978162df51f7..7884f68cab73 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> @@ -66,22 +66,16 @@ properties:
+>                   With the legacy mapping the reg corresponding to the internal
+>                   mdio is the switch reg with an offset of -1.
+>  
+> +$ref: "dsa.yaml#"
+> +
+>  patternProperties:
+>    "^(ethernet-)?ports$":
+>      type: object
+> -    properties:
+> -      '#address-cells':
+> -        const: 1
+> -      '#size-cells':
+> -        const: 0
+> -
+>      patternProperties:
+>        "^(ethernet-)?port@[0-6]$":
+>          type: object
+>          description: Ethernet switch ports
+>  
+> -        $ref: dsa-port.yaml#
+> -
+>          properties:
+>            qca,sgmii-rxclk-falling-edge:
+>              $ref: /schemas/types.yaml#/definitions/flag
+> @@ -104,8 +98,6 @@ patternProperties:
+>                SGMII on the QCA8337, it is advised to set this unless a communication
+>                issue is observed.
+>  
+> -        unevaluatedProperties: false
+> -
+
+Dropping this means any undefined properties in port nodes won't be an 
+error. Once I fix all the issues related to these missing, there will be 
+a meta-schema checking for this (this could be one I fixed already).
+
+>  oneOf:
+>    - required:
+>        - ports
+> @@ -116,7 +108,7 @@ required:
+>    - compatible
+>    - reg
+>  
+> -additionalProperties: true
+
+This should certainly be changed though. We should only have 'true' for 
+incomplete collections of properties. IOW, for common bindings.
+
+> +unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> -- 
+> 2.25.1
+> 
+> 
