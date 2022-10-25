@@ -2,63 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0D160D0F4
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 17:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00A1160D135
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 18:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbiJYPsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 11:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59160 "EHLO
+        id S232151AbiJYQBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 12:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230179AbiJYPsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 11:48:06 -0400
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 185D013A7FD
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 08:48:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1666712868; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=XpElBdmhG95pvkRZTtu7NrokXpygpK3nj3LHpOqR18J9NJ17F3L6mo93OD8XnwdXeMuCzxmA5ejd2R2hTwDNsWdUC57ejEsIejBz483G+B/B9bBS2E1l4KxYbP3RhHmX9sSjET9gITmvMHnpYfjjBfy5HxbRYEnW3WLV9LDBTD4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1666712868; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=SFN3MHYwqgQ4syMrfHMBznZwgx3+83HJRzWEajE+UQA=; 
-        b=ON5T1N1al+QI9olfJNdmML8gv21j+x/+oRVlHoNHhcqB+bZFA05noNwD2Zl4C4Wyxqli75h7KH2XVGqV+6anHbW6nBvuuYTgzV58U/q0mw3zzWg6miSvKlPXmuznHOneAiojRqwzi4ug0ObgzciaxeIDA8b7wtHFjEi5IVUzoTU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1666712868;
-        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=SFN3MHYwqgQ4syMrfHMBznZwgx3+83HJRzWEajE+UQA=;
-        b=NUoeZAOGlwDppeGcRp4tRtXsH8vYqgXJEpj42ncgD4TclAD1+h/TjrV2AtBSwCh9
-        4dXPH2D91wbw2ZQ+WYTVIEYHUGi53/F5DYKAI2+5bJ5eqi76UQUSH8nrihJmDgNVXPE
-        +k4khj8AR3lQsIFp65i7Fy1/BFsBDCVCCPmkCClw=
-Received: from edelgard.fodlan.icenowy.me (112.94.102.105 [112.94.102.105]) by mx.zohomail.com
-        with SMTPS id 1666712866134332.719886075305; Tue, 25 Oct 2022 08:47:46 -0700 (PDT)
-Message-ID: <6ba37039524563be81a807df2f623a296e74c372.camel@icenowy.me>
-Subject: Re: [PATCH 3/3] ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, soc@kernel.org,
-        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Date:   Tue, 25 Oct 2022 23:47:42 +0800
-In-Reply-To: <20221025164445.12f5f89c@donnerap.cambridge.arm.com>
-References: <20221025145909.2837939-1-andre.przywara@arm.com>
-         <20221025145909.2837939-4-andre.przywara@arm.com>
-         <73ea157f7e0c75f8bda16b3ac464be58fe7fb3ab.camel@icenowy.me>
-         <20221025164445.12f5f89c@donnerap.cambridge.arm.com>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+        with ESMTP id S230179AbiJYQBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 12:01:46 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F021718F0F9
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 09:01:45 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id c8so8220075qvn.10
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 09:01:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5k4oXNi7wIr/yTUcNWF+k2ZgcBaXW2+/B9fhcI3NaxY=;
+        b=fZoLICmcpxc7ya8YhyB8zyJ0hhZBpusQO1Te7bNyn7VgyIrTHa/zgg93BVM9FX79Qx
+         yuiAJMyDN/1iRmtJ4dk3XD9iPp+OwWxHJYE8nJAe7t18FT6V8H/uifX0CqyDBrEy9Ird
+         YHrUM04nT93ARAzXeNQYU+P6Iq87XYJiqVRKHkyk1edg0+gRCkQgSR5DgWKgjTG1fkpr
+         Lmy6eqied/95AT5xejacqjO2ZIbFkJqgnrOArj5LCAPnHXezoXRkwDDo9UGqPsJradYI
+         siHQfJ14o7g/0y2GnEk+1zSEC0pKPBZgxy7AB/Kagq0DGLpL24OaS3ehvdQnFtVw6tJj
+         zKxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5k4oXNi7wIr/yTUcNWF+k2ZgcBaXW2+/B9fhcI3NaxY=;
+        b=p8LV5ZzRrVS3KjT9VKYJrT6syU08ZckEYiwptf2an57tX1dvBzrJzplqhbUFX6eJxH
+         2S1dAhhBV1q1BieJs60GjxLbKLNY/64wKjMMGWLb1H/QR65KIVvfPa0xT2vARjPIsNzy
+         l6chojD9zKOaMedNx2BJo2GZDesVzUtp+9zeM8lp/w8JH0iPOXPF8cUHxvs1XOSC+VGH
+         vusOAJtCpA1jeZR3SDX8Yq+z3jqCA6fgMa0q5hzS20IQEt2pZ1sKEVXJCxlyFzANG4jM
+         wRZ0s35WrsuvGYR6YzvZXjvrOSUrAyt27UNiiK6NYk1R5Ag4P4mLl/7yP8G8rbxUry6s
+         ZhQg==
+X-Gm-Message-State: ACrzQf3Qk76ae3NlF2Dgje7zLcTK1RqadiLBmiJL93Gb4hkmLDLJj3dR
+        zjJ6hpdN9JVkn0ADNYuJP9kYjA==
+X-Google-Smtp-Source: AMsMyM6o6xBD+WYR2CO0j6dAkweiKItDjdgpLFpHCMkk6IrNKCkm8KiYfd7Yt33MY63MGZbyfL20aA==
+X-Received: by 2002:ad4:594b:0:b0:4bb:6e7d:6c63 with SMTP id eo11-20020ad4594b000000b004bb6e7d6c63mr9749603qvb.86.1666713704935;
+        Tue, 25 Oct 2022 09:01:44 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id k11-20020ac85fcb000000b0039953dcc480sm1794373qta.88.2022.10.25.09.01.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Oct 2022 09:01:44 -0700 (PDT)
+Message-ID: <5c3126fb-8fdb-5163-95a8-136a4a7ee2ce@linaro.org>
+Date:   Tue, 25 Oct 2022 12:01:42 -0400
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 2/5] dt-bindings: cpufreq: apple,soc-cpufreq: Add
+ binding for Apple SoC cpufreq
+Content-Language: en-US
+To:     Hector Martin <marcan@marcan.st>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221024043925.25379-1-marcan@marcan.st>
+ <20221024043925.25379-3-marcan@marcan.st>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024043925.25379-3-marcan@marcan.st>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,133 +87,162 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-5ZyoIDIwMjItMTAtMjXmmJ/mnJ/kuoznmoQgMTY6NDQgKzAxMDDvvIxBbmRyZSBQcnp5d2FyYeWG
-memBk++8mgo+IE9uIFR1ZSwgMjUgT2N0IDIwMjIgMjM6MzA6MjYgKzA4MDAKPiBJY2Vub3d5IFpo
-ZW5nIDx1d3VAaWNlbm93eS5tZT4gd3JvdGU6Cj4gCj4gSGkgSWNlbm93eSwKPiAKPiB0aGFua3Mg
-Zm9yIGhhdmluZyBhIGxvb2shCj4gQW5kIGJ0dywgZm9yZ290IHRvIG1lbnRpb24gaW4gdGhlIGNv
-dmVyIGxldHRlcjogdGhpcyByZWxpZXMgb24gdGhlCj4gVVNCIGJpdHMKPiBpbiB5b3VyIHNlcmll
-cy4gV2hpY2ggd29ya3MgbmljZWx5LCBldmVuIGluIGhvc3QgbW9kZS4KPiAKPiA+IOWcqCAyMDIy
-LTEwLTI15pif5pyf5LqM55qEIDE1OjU5ICswMTAw77yMQW5kcmUgUHJ6eXdhcmHlhpnpgZPvvJoK
-PiA+ID4gVGhlIExjdGVjaCBQaSBGMUMyMDBzIChhbHNvIHByZXZpb3VzbHkga25vd24gdW5kZXIg
-dGhlIENoZXJyeSBQaQo+ID4gPiBicmFuZCnCoCAKPiA+IAo+ID4gT2g/IEFyZSB0aGV5IHRoZSBz
-YW1lIGhhcmR3YXJlPwo+IAo+IE15IGJvYXJkIGxvb2tzIGlkZW50aWNhbCB0byB0aGlzIG9uZToK
-PiBodHRwczovL3d3dy5jbngtc29mdHdhcmUuY29tLzIwMjIvMDIvMDMvbW9yZS1hbGx3aW5uZXIt
-ZjFjMjAwcy1hcm05LWJvYXJkcy1tYW5nb3BpLXIzLWFuZC1jaGVycnlwaS1mMWMyMDBzLyNjaGVy
-cnlwaS1mMWMyMDBzCj4gCj4gVGhlIG9ubHkgZGlmZmVyZW5jZSBpcyB0aGUgc2lsa3NjcmVlbiwg
-dGhlcmUgaXMgbm8gY2hlcnJ5IGxvZ28gb24KPiBtaW5lLAo+IGJ1dCB0aGUgKG5vIGxvbmdlciB3
-b3JraW5nKSBVUkwgaXMgdGhlIHNhbWUsIHNvIGl0J3MgdGhlIHNhbWUgYm9hcmQKPiBmcm9tCj4g
-dGhlIHNhbWUgY29tcGFueS4gSSBndWVzcyBsZWdhbCB0cm91Ymxlcz8KPiAKPiA+ID4gaXMgYSBz
-bWFsbCBkZXZlbG9wbWVudCBib2FyZCB3aXRoIHRoZSBBbGx3aW5uZXIgRjFDMjAwcyBTb0MuIFRo
-aXMKPiA+ID4gaXMKPiA+ID4gdGhlCj4gPiA+IHNhbWUgYXMgdGhlIEYxQzEwMHMsIGJ1dCB3aXRo
-IDY0TUIgaW5zdGVhZCBvZiAzMk1CIGNvLXBhY2thZ2VkCj4gPiA+IERSQU0uCj4gPiA+IAo+ID4g
-PiBBbG9uZ3NpZGUgdGhlIG9ibGlnYXRvcnkgbWljcm8tU0QgY2FyZCBzbG90LCB0aGUgYm9hcmQg
-ZmVhdHVyZXMgYQo+ID4gPiBTUEktTkFORCBmbGFzaCBjaGlwLCBMQ0QgYW5kIHRvdWNoIGNvbm5l
-Y3RvcnMsIGFuZCB1bnBvcHVsYXRlZAo+ID4gPiBleHBhbnNpb24gaGVhZGVyIHBpbnMuCj4gPiA+
-IFRoZXJlIGFyZSB0d28gVVNCIFR5cGUtQyBwb3J0cyBvbiB0aGUgYm9hcmQ6IE9uZSBzdXBwbGll
-cyB0aGUKPiA+ID4gcG93ZXIsCj4gPiA+IGFsc28KPiA+ID4gY29ubmVjdHMgdG8gdGhlIFVTQiBN
-VVNCIE9URyBjb250cm9sbGVyIHBvcnQuIFRoZSBvdGhlciBvbmUgaXMKPiA+ID4gY29ubmVjdGVk
-Cj4gPiA+IHRvIGFuIENIMzQwIFVTQiBzZXJpYWwgY2hpcCwgd2hpY2ggaW4gdHVybiBpcyBjb25u
-ZWN0ZWQgdG8gVUFSVDEuCj4gPiA+IAo+ID4gPiBBZGQgYSBkZXZpY2V0cmVlIGZpbGUsIHNvIHRo
-YXQgdGhlIGJvYXJkIGNhbiBiZSB1c2VkIGVhc2lseS4KPiA+ID4gCj4gPiA+IFNpZ25lZC1vZmYt
-Ynk6IEFuZHJlIFByenl3YXJhIDxhbmRyZS5wcnp5d2FyYUBhcm0uY29tPgo+ID4gPiAtLS0KPiA+
-ID4gwqBhcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoCAxICsKPiA+ID4gwqBhcmNoL2FybS9ib290L2R0cy9zdW5pdi1mMWMx
-MDBzLmR0c2nCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDUgKysKPiA+ID4gwqBhcmNoL2FybS9ib290
-L2R0cy9zdW5pdi1mMWMyMDBzLWxjdGVjaC1waS5kdHMgfCA4MAo+ID4gPiArKysrKysrKysrKysr
-KysrKysrCj4gPiA+IMKgMyBmaWxlcyBjaGFuZ2VkLCA4NiBpbnNlcnRpb25zKCspCj4gPiA+IMKg
-Y3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL3N1bml2LWYxYzIwMHMtbGN0ZWNo
-LXBpLmR0cwo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2Vm
-aWxlCj4gPiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUKPiA+ID4gaW5kZXggNmFiZjY0
-MzRlYjM3Mi4uZjk5YzVjMjBiZjdlZiAxMDA2NDQKPiA+ID4gLS0tIGEvYXJjaC9hcm0vYm9vdC9k
-dHMvTWFrZWZpbGUKPiA+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUKPiA+ID4g
-QEAgLTEzOTQsNiArMTM5NCw3IEBAIGR0Yi0kKENPTkZJR19NQUNIX1NVTjlJKSArPSBcCj4gPiA+
-IMKgwqDCoMKgwqDCoMKgwqBzdW45aS1hODAtY3ViaWVib2FyZDQuZHRiCj4gPiA+IMKgZHRiLSQo
-Q09ORklHX01BQ0hfU1VOSVYpICs9IFwKPiA+ID4gwqDCoMKgwqDCoMKgwqDCoHN1bml2LWYxYzEw
-MHMtbGljaGVlcGktbmFuby5kdGIgXAo+ID4gPiArwqDCoMKgwqDCoMKgwqBzdW5pdi1mMWMyMDBz
-LWxjdGVjaC1waS5kdGIgXAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgc3VuaXYtZjFjMjAwcy1wb3Bz
-dGljay12MS4xLmR0Ygo+ID4gPiDCoGR0Yi0kKENPTkZJR19BUkNIX1RFR1JBXzJ4X1NPQykgKz0g
-XAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgdGVncmEyMC1hY2VyLWE1MDAtcGljYXNzby5kdGIgXAo+
-ID4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvc3VuaXYtZjFjMTAwcy5kdHNpCj4g
-PiA+IGIvYXJjaC9hcm0vYm9vdC9kdHMvc3VuaXYtZjFjMTAwcy5kdHNpCj4gPiA+IGluZGV4IDBm
-MjRjNzY2YzlmYzUuLjJlYzAyMmU5MmVlYTggMTAwNjQ0Cj4gPiA+IC0tLSBhL2FyY2gvYXJtL2Jv
-b3QvZHRzL3N1bml2LWYxYzEwMHMuZHRzaQo+ID4gPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9z
-dW5pdi1mMWMxMDBzLmR0c2kKPiA+ID4gQEAgLTIwMSw2ICsyMDEsMTEgQEAgdWFydDBfcGVfcGlu
-czogdWFydDAtcGUtcGlucyB7Cj4gPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBwaW5zID0gIlBFMCIsICJQRTEiOwo+ID4g
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgZnVuY3Rpb24gPSAidWFydDAiOwo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Owo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdWFydDFfcGFfcGluczogdWFydDEtcGEt
-cGlucyB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoHBpbnMgPSAiUEEyIiwgIlBBMyI7Cj4gPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGZ1bmN0
-aW9uID0gInVhcnQxIjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqB9O8KgIAo+ID4gCj4gPiBTaG91bGQgdGhpcyBiZSBpbiBhIHNwbGl0dGVkIGNv
-bW1pdD8KPiAKPiBJIGRvbid0IGtub3cgaWYgdGhpcyBpcyByZWFsbHkgbmVjZXNzYXJ5LCBidXQg
-YW0gb2YgY291cnNlIGhhcHB5IHRvCj4gc3Bpbgo+IHRoaXMgb25lIG91dCwgaWYgbmVlZGVkLgo+
-IAo+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gPiA+IMKgCj4gPiA+
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdGltZXJAMWMyMGMwMCB7Cj4gPiA+IGRp
-ZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdW5pdi1mMWMyMDBzLWxjdGVjaC1waS5kdHMK
-PiA+ID4gYi9hcmNoL2FybS9ib290L2R0cy9zdW5pdi1mMWMyMDBzLWxjdGVjaC1waS5kdHMKPiA+
-ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPiA+ID4gaW5kZXggMDAwMDAwMDAwMDAwMC4uYTlkMTc3
-ODM5NTQzOAo+ID4gPiAtLS0gL2Rldi9udWxsCj4gPiA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
-L3N1bml2LWYxYzIwMHMtbGN0ZWNoLXBpLmR0cwo+ID4gPiBAQCAtMCwwICsxLDgwIEBACj4gPiA+
-ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9SIE1JVCkKPiA+ID4gKy8q
-Cj4gPiA+ICsgKiBDb3B5cmlnaHQgMjAyMiBBcm0gTHRkLAo+ID4gPiArICogYmFzZWQgb24gd29y
-azoKPiA+ID4gKyAqwqDCoCBDb3B5cmlnaHQgMjAyMiBJY2Vub3d5IFpoZW5nIDx1d3VAaWNlbm93
-eS5tZT4KPiA+ID4gKyAqLwo+ID4gPiArCj4gPiA+ICsvZHRzLXYxLzsKPiA+ID4gKyNpbmNsdWRl
-ICJzdW5pdi1mMWMxMDBzLmR0c2kiCj4gPiA+ICsKPiA+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5n
-cy9ncGlvL2dwaW8uaD4KPiA+ID4gKwo+ID4gPiArLyB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoG1v
-ZGVsID0gIkxjdGVjaCBQaSBGMUMyMDBzIjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgY29tcGF0aWJs
-ZSA9ICJsY3RlY2gscGktZjFjMjAwcyIsICJhbGx3aW5uZXIsc3VuaXYtCj4gPiA+IGYxYzIwMHMi
-LAo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgImFsbHdpbm5l
-cixzdW5pdi1mMWMxMDBzIjsKPiA+ID4gKwo+ID4gPiArwqDCoMKgwqDCoMKgwqBhbGlhc2VzIHsK
-PiA+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1tYzAgPSAmbW1jMDsKPiA+ID4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNlcmlhbDAgPSAmdWFydDE7Cj4gPiA+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBzcGkwID0gJnNwaTA7Cj4gPiA+ICvCoMKgwqDC
-oMKgwqDCoH07Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgY2hvc2VuIHsKPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHN0ZG91dC1wYXRoID0gInNlcmlhbDA6MTE1MjAw
-bjgiOwo+ID4gPiArwqDCoMKgwqDCoMKgwqB9Owo+ID4gPiArCj4gPiA+ICvCoMKgwqDCoMKgwqDC
-oHJlZ192Y2MzdjM6IHJlZ3VsYXRvci0zdjMgewo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgY29tcGF0aWJsZSA9ICJyZWd1bGF0b3ItZml4ZWQiOwo+ID4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW5hbWUgPSAidmNjM3YzIjsKPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRvci1taW4tbWljcm92b2x0ID0gPDMz
-MDAwMDA+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW1h
-eC1taWNyb3ZvbHQgPSA8MzMwMDAwMD47Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoH07Cj4gPiA+ICt9
-Owo+ID4gPiArCj4gPiA+ICsmbW1jMCB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoGJyb2tlbi1jZDsK
-PiA+ID4gK8KgwqDCoMKgwqDCoMKgYnVzLXdpZHRoID0gPDQ+Owo+ID4gPiArwqDCoMKgwqDCoMKg
-wqBkaXNhYmxlLXdwOwo+ID4gPiArwqDCoMKgwqDCoMKgwqB2bW1jLXN1cHBseSA9IDwmcmVnX3Zj
-YzN2Mz47Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiA+ID4gK307Cj4g
-PiA+ICsKPiA+ID4gKyZvdGdfc3JhbSB7Cj4gPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJv
-a2F5IjsKPiA+ID4gK307Cj4gPiA+ICsKPiA+ID4gKyZzcGkwIHsKPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgcGluY3Ry
-bC0wID0gPCZzcGkwX3BjX3BpbnM+Owo+ID4gPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2th
-eSI7Cj4gPiA+ICsKPiA+ID4gK8KgwqDCoMKgwqDCoMKgZmxhc2hAMCB7Cj4gPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInNwaS1uYW5kIjsKPiA+ID4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwwPjsKPiA+ID4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDE+Owo+ID4gPiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgI3NpemUtY2VsbHMgPSA8MT47Cj4gPiA+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBzcGktbWF4LWZyZXF1ZW5jeSA9IDw0MDAwMDAwMD47Cj4gPiA+
-ICvCoMKgwqDCoMKgwqDCoH07Cj4gPiA+ICt9Owo+ID4gPiArCj4gPiA+ICsmdWFydDEgewo+ID4g
-PiArwqDCoMKgwqDCoMKgwqBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOwo+ID4gPiArwqDCoMKg
-wqDCoMKgwqBwaW5jdHJsLTAgPSA8JnVhcnQxX3BhX3BpbnM+Owo+ID4gPiArwqDCoMKgwqDCoMKg
-wqBzdGF0dXMgPSAib2theSI7Cj4gPiA+ICt9Owo+ID4gPiArCj4gPiA+ICsvKgo+ID4gPiArICog
-VGhpcyBpcyBhIFR5cGUtQyBzb2NrZXQsIGJ1dCBDQzEvMiBhcmUgbm90IGNvbm5lY3RlZCwgYW5k
-Cj4gPiA+IFZCVVMgaXMKPiA+ID4gY29ubmVjdGVkCj4gPiA+ICsgKiB0byBWaW4sIHdoaWNoIHN1
-cHBsaWVzIHRoZSBib2FyZC4gSG9zdCBtb2RlIHdvcmtzIChpZiB0aGUKPiA+ID4gYm9hcmQKPiA+
-ID4gaXMgcG93ZXJlZAo+ID4gPiArICogb3RoZXJ3aXNlKSwgYnV0IHBlcmlwaGVyYWwgaXMgcHJv
-YmFibHkgdGhlIGludGVudGlvbi4KPiA+ID4gKyAqLwo+ID4gPiArJnVzYl9vdGcgewo+ID4gPiAr
-wqDCoMKgwqDCoMKgwqBkcl9tb2RlID0gInBlcmlwaGVyYWwiOwo+ID4gPiArwqDCoMKgwqDCoMKg
-wqBzdGF0dXMgPSAib2theSI7Cj4gPiA+ICt9O8KgIAo+ID4gCj4gPiBGaW5hbGx5IHdlIHNob3Vs
-ZCBnZXQgYWJsZSB0byBvdmVycmlkZSBkcl9tb2RlIGp1c3QgYnkgSFcuCj4gCj4gRG8geW91IG1l
-YW4gYnkgc29mdHdhcmU/IFllYWgsIHRoYXQgd291bGQgYmUgdXNlZnVsLiBPdGhlcndpc2Ugb25l
-Cj4gY291bGQKClllcywgYnkgU1cuIEl0J3MgYSB0eXBvIChJIHRoaW5rIGl0J3Mgc29tZSBraW5k
-IG9mIG5lcnZlIGxpbmsgYml0LWZsaXAKd2hlbiBJIHdhcyB0eXBpbmcgdGhpcykuCgpCVFcgSSB0
-aGluayB0aGUgZnVydGhlciB1dGlsaXphdGlvbiBvZiBzb21ldGhpbmcgbGlrZSBhIHByb3BlciBU
-eXBlLUMKY29udHJvbGxlciAoZS5nLiBGVVNCMzAyKSBuZWVkcyB0aGUgZHJpdmVyIHRvIGltcGxl
-bWVudCBhIG5ldyBpbnRlcmZhY2UKaW4ga2VybmVsLCB1c2Igcm9sZSBzd2l0Y2guCgo+IGRlZGlj
-YXRlIGEgR1BJTyB0byBhIGZha2UgSURfREVUIHBpbiwgSSBndWVzcy4gT3IgdXNlIGEgRFQgb3Zl
-cmxheS4KPiAKPiBDaGVlcnMsCj4gQW5kcmUKPiAKPiA+ID4gKwo+ID4gPiArJnVzYnBoeSB7Cj4g
-PiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsKPiA+ID4gK307wqAgCj4gPiAKPiAK
-Cg==
+On 24/10/2022 00:39, Hector Martin wrote:
+> This binding represents the cpufreq/DVFS hardware present in Apple SoCs.
+> The hardware has an independent controller per CPU cluster, and we
+> represent them as unique nodes in order to accurately describe the
+> hardware. The driver is responsible for binding them as a single cpufreq
+> device (in the Linux cpufreq model).
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../cpufreq/apple,cluster-cpufreq.yaml        | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+> new file mode 100644
+> index 000000000000..b11452f91468
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cpufreq/apple,cluster-cpufreq.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SoC cluster cpufreq device
+
+Few nits, in general looks fine to me.
+
+> +
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description: |
+> +  Apple SoCs (e.g. M1) have a per-cpu-cluster DVFS controller that is part of
+> +  the cluster management register block. This binding uses the standard
+> +  operating-points-v2 table to define the CPU performance states, with the
+> +  opp-level property specifying the hardware p-state index for that level.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: apple,t8103-cluster-cpufreq
+> +          - const: apple,cluster-cpufreq
+> +      - items:
+> +          - const: apple,t6000-cluster-cpufreq
+> +          - const: apple,t8103-cluster-cpufreq
+> +          - const: apple,cluster-cpufreq
+> +      - items:
+> +          - const: apple,t8112-cluster-cpufreq
+
+With the first one (t8103) - it's an enum.
+
+> +          - const: apple,cluster-cpufreq
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: The register region for this CPU cluster DVFS controller
+
+Drop description, quite obvious.
+
+> +
+> +  '#performance-domain-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#performance-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    // This example shows a single CPU per domain and 2 domains,
+> +    // with two p-states per domain.
+> +    // Shipping hardware has 2-4 CPUs per domain and 2-6 domains.
+> +    cpus {
+> +      #address-cells = <2>;
+> +      #size-cells = <0>;
+> +
+> +      cpu@0 {
+> +        compatible = "apple,icestorm";
+> +        device_type = "cpu";
+> +        reg = <0x0 0x0>;
+> +        operating-points-v2 = <&ecluster_opp>;
+> +        performance-domains = <&cpufreq_e>;
+> +      };
+> +
+> +      cpu@10100 {
+> +        compatible = "apple,firestorm";
+> +        device_type = "cpu";
+> +        reg = <0x0 0x10100>;
+> +        operating-points-v2 = <&pcluster_opp>;
+> +        performance-domains = <&cpufreq_p>;
+> +      };
+> +    };
+> +
+> +    ecluster_opp: opp-table-0 {
+> +      compatible = "operating-points-v2";
+> +      opp-shared;
+> +
+> +      opp01 {
+> +        opp-hz = /bits/ 64 <600000000>;
+> +        opp-level = <1>;
+> +        clock-latency-ns = <7500>;
+> +      };
+> +      opp02 {
+> +        opp-hz = /bits/ 64 <972000000>;
+> +        opp-level = <2>;
+> +        clock-latency-ns = <22000>;
+> +      };
+> +    };
+> +
+> +    pcluster_opp: opp-table-1 {
+> +      compatible = "operating-points-v2";
+> +      opp-shared;
+> +
+> +      opp01 {
+> +        opp-hz = /bits/ 64 <600000000>;
+> +        opp-level = <1>;
+> +        clock-latency-ns = <8000>;
+> +      };
+> +      opp02 {
+> +        opp-hz = /bits/ 64 <828000000>;
+> +        opp-level = <2>;
+> +        clock-latency-ns = <19000>;
+> +      };
+> +    };
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      cpufreq_e: cpufreq@210e20000 {
+
+Node name: performance-controller
+
+(cpufreq is rather Linux naming)
+
+> +        compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
+> +        reg = <0x2 0x10e20000 0 0x1000>;
+> +        #performance-domain-cells = <0>;
+> +      };
+> +
+> +      cpufreq_p: cpufreq@211e20000 {
+
+The same.
+
+> +        compatible = "apple,t8103-cluster-cpufreq", "apple,cluster-cpufreq";
+> +        reg = <0x2 0x11e20000 0 0x1000>;
+> +        #performance-domain-cells = <0>;
+> +      };
+> +    };
+
+Best regards,
+Krzysztof
 
