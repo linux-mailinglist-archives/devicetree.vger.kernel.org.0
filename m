@@ -2,159 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3BB260CF86
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2BB60CFA5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 16:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbiJYOte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 10:49:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
+        id S232336AbiJYOyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 10:54:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231967AbiJYOtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:49:33 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADCA72DDF
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:49:31 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id l9so5644910qkk.11
-        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 07:49:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8YP5wWUEEBMY2PTNKrTu3Hh2pQmEm7huU1HOYVz0Rwk=;
-        b=jwEJWV/zFdZ896Mkmss4/ajlWv6Os+0/UtK8gEBYdYtX5hvHY0/rI58TAvELkvqVsE
-         YJargWbH5W1QyduIbf7U2FNwQcQvsAmEyafhApayU/O8VFZIDia/USrcnbhY0bouVtok
-         2HwauXBFcJTpxlvgaY70ySmMsiDBUGAge285taKQC9lM07fL4/70Xr+lHmbgTxNOQybU
-         q2hM+fHtSfR71pvx5/bB54JFwT/1RwiqtQ2mnzlAWHCDfRE2stpV6SvhOWjj35LMof4W
-         NP1SxoAnNIAI/e+72XdoNM9mVuBXlyQYehDWrG0jwSTWdImJl5cP1bNpiQFnpplwjPKc
-         Hb/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8YP5wWUEEBMY2PTNKrTu3Hh2pQmEm7huU1HOYVz0Rwk=;
-        b=Tg8WomZIXxW1gJbmca8QeCTEn4tu4DBAl57Ga2SpxyqJy+2WIosqotS/RErJEz06Ij
-         mvVt2pSc6m1P/AgZ+FwzFOxH5F6bzwINlaUhPDxcidQzjBpufsQp47hCwSou7JXr0Ekd
-         io86T0AFun9tpjDXhDhQqNaa7ryEmTCaVGRgZf4U0xxRY+1AirswGSn8nj7wIoJHDgbv
-         3k7tmUD3Q8YDPJwQxQ9aAYE1dqBuhzuTVGVFtZLr9r/fad1RTbXEvfNYCCjglHqLL52A
-         RDo6WYiD4i1hRDgHp+48SMnMa3XDv3BqT4XtXQcQdfQaFGk4SzfjN9hkRoLvkqz1T9NT
-         U5Ng==
-X-Gm-Message-State: ACrzQf0cBDKSspuGxMUd6eeZypRMZHWy8bbvpsMxT+M5nqUvvwJPXdUa
-        AX/k5tjMrUv23TCxS9JMoOvcxw==
-X-Google-Smtp-Source: AMsMyM6CxSbFXx8tIMJFyF8KEBlAnnnHYsyGOMTSwcPVWCGa6Me8gw8xFad19rxKtM7zhMtCSDY/FQ==
-X-Received: by 2002:a05:620a:484c:b0:6ee:9acb:dfdc with SMTP id ec12-20020a05620a484c00b006ee9acbdfdcmr26735181qkb.594.1666709370859;
-        Tue, 25 Oct 2022 07:49:30 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id m17-20020ae9e711000000b006ed61f18651sm2155611qka.16.2022.10.25.07.49.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 07:49:30 -0700 (PDT)
-Message-ID: <d181924f-d87b-cad3-400a-dec22d3b29a6@linaro.org>
-Date:   Tue, 25 Oct 2022 10:49:28 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v3 2/2] dt-bindings: hpet: add loongson2 hpet
-Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232094AbiJYOyx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 10:54:53 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70131211DC;
+        Tue, 25 Oct 2022 07:54:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=1SkHs2ReypL5wxS5Ayju3gfZzKWmcZLvSrMlwHZTm+8=; b=gT4vguM5XriQGCcCcxem64dKMp
+        fFH4uYwKkFujfPQi46crEFMolZa0KVoXtQIoGtc9lYyUGNdXcyCKcKQdRMNLFeDzsMn+FAVI3DPQk
+        1p+vYuoEb91DYh0cTdhksOhTUJSCg5DBCbonfuJCs8NF98FFJBzgKcMxBZMqfA+mUZds=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1onLJ6-000XcV-Dn; Tue, 25 Oct 2022 16:53:32 +0200
+Date:   Tue, 25 Oct 2022 16:53:32 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Camel Guo <camel.guo@axis.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev
-References: <20221021010925.21604-1-zhuyinbo@loongson.cn>
- <20221021010925.21604-2-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021010925.21604-2-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        kernel@axis.com
+Subject: Re: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX
+ switch
+Message-ID: <Y1f4bIavgSv0OWi0@lunn.ch>
+References: <20221025135243.4038706-1-camel.guo@axis.com>
+ <20221025135243.4038706-3-camel.guo@axis.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221025135243.4038706-3-camel.guo@axis.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/10/2022 21:09, Yinbo Zhu wrote:
-> Add the loongson2 High Precision Event Timer (HPET) binding
-> with DT schema format using json-schema.
-> 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-> Change in v3:
-> 		1. Update dts that base on common clock framework.
-> 
->  .../bindings/timer/loongson,ls2k-hpet.yaml    | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
-> new file mode 100644
-> index 000000000000..01656048858a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/loongson,ls2k-hpet.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/net/dsa/Kconfig
+> @@ -122,4 +122,20 @@ config NET_DSA_VITESSE_VSC73XX_PLATFORM
+>  	  This enables support for the Vitesse VSC7385, VSC7388, VSC7395
+>  	  and VSC7398 SparX integrated ethernet switches, connected over
+>  	  a CPU-attached address bus and work in memory-mapped I/O mode.
 > +
-> +title: Loongson2 High Precision Event Timer (HPET)
+> +config NET_DSA_MXL_GSW1XX
+> +	tristate
+> +	select REGMAP
+> +	help
+> +	  This enables support for the Maxlinear GSW1XX integrated ethernet
+> +	  switch chips.
 > +
-> +maintainers:
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +properties:
-> +  compatible:
-> +    const: loongson,ls2k-hpet
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: SoC apb clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_clk
+> +config NET_DSA_MXL_GSW1XX_MDIO
+> +	tristate "MaxLinear GSW1XX ethernet switch in MDIO managed mode"
 
-Just: apb
+Please keep this file sorted on the tristate text.
+
+In general, it is wrong to insert at the end. That causes the most
+conflicts. By keeping lists like this sorted, inserts tend to be
+separated, and so don't cause conflicts. Also, keeping it sorted helps
+users actually find the configuration option they want.
+
+> +	select NET_DSA_MXL_GSW1XX
+> +	select FIXED_PHY
+> +	help
+> +	  This enables access functions if the MaxLinear GSW1XX is configured
+> +	  for MDIO managed mode.
+> +
+>  endmenu
+> diff --git a/drivers/net/dsa/Makefile b/drivers/net/dsa/Makefile
+> index 16eb879e0cb4..022fc661107b 100644
+> --- a/drivers/net/dsa/Makefile
+> +++ b/drivers/net/dsa/Makefile
+> @@ -15,6 +15,8 @@ obj-$(CONFIG_NET_DSA_SMSC_LAN9303_MDIO) += lan9303_mdio.o
+>  obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX) += vitesse-vsc73xx-core.o
+>  obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX_PLATFORM) += vitesse-vsc73xx-platform.o
+>  obj-$(CONFIG_NET_DSA_VITESSE_VSC73XX_SPI) += vitesse-vsc73xx-spi.o
+> +obj-$(CONFIG_NET_DSA_MXL_GSW1XX) += gsw1xx_core.o
+> +obj-$(CONFIG_NET_DSA_MXL_GSW1XX_MDIO) += gsw1xx_mdio.o
+
+This file is sorted as well.
+
+> diff --git a/drivers/net/dsa/gsw1xx.h b/drivers/net/dsa/gsw1xx.h
+
+If you think there is going to be a gsw1xx_spi.c and gsw1xx_uart.c, i
+would suggest you move into a subdirectory.
+
+> +static u32 gsw1xx_switch_r(struct gsw1xx_priv *priv, u32 offset)
+> +{
+> +	int ret = 0;
+> +	u32 val = 0;
+> +
+> +	ret = regmap_read(priv->regmap, GSW1XX_IP_BASE_ADDR + offset, &val);
+> +
+> +	return ret < 0 ? (u32)ret : val;
+
+A negative error code becomes positive? So how do you then know it is
+an error code?
+
+The general pattern is you pass the error code and the register value
+in two separate ways. Generally, the error code as the return value,
+as an int, and the register value via a pointer. Just as regmap_read()
+does.
+
+> +}
+> +
+> +static void gsw1xx_switch_w(struct gsw1xx_priv *priv, u32 val, u32 offset)
+> +{
+> +	regmap_write(priv->regmap, GSW1XX_IP_BASE_ADDR + offset, val);
+> +}
+
+Return the error code from regmap_write().
+
+In general, don't ignore errors. Return them up the call stack.
+
+> +static u32 gsw1xx_switch_r_timeout(struct gsw1xx_priv *priv, u32 offset,
+> +				   u32 cleared)
+> +{
+> +	u32 val;
+> +
+> +	return read_poll_timeout(gsw1xx_switch_r, val, (val & cleared) == 0, 20,
+> +				 50000, true, priv, offset);
+> +}
+> +
+> +static int gsw1xx_mdio_poll(struct gsw1xx_priv *priv)
+> +{
+> +	int cnt = 100;
+> +
+> +	while (likely(cnt--)) {
+> +		u32 ctrl = gsw1xx_mdio_r(priv, GSW1XX_MDIO_CTRL);
+> +
+> +		if ((ctrl & GSW1XX_MDIO_CTRL_BUSY) == 0)
+> +			return 0;
+> +		usleep_range(20, 40);
+> +	}
+> +
+> +	return -ETIMEDOUT;
+
+It looks like this could be implemented using read_poll_timeout() as
+well?
+
+> +}
+> +
+> +static int gsw1xx_mdio_wr(struct mii_bus *bus, int addr, int reg, u16 val)
+> +{
+> +	struct gsw1xx_priv *priv = bus->priv;
+> +	int err;
+
+Please check for C45 and return -EOPNOTSUPP.
 
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +	err = gsw1xx_mdio_poll(priv);
+> +	if (err) {
+> +		dev_err(&bus->dev, "timeout while waiting for MDIO bus\n");
+> +		return err;
+> +	}
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
+> +	gsw1xx_mdio_w(priv, val, GSW1XX_MDIO_WRITE);
+> +	gsw1xx_mdio_w(priv,
+> +		      GSW1XX_MDIO_CTRL_WR |
+> +			      ((addr & GSW1XX_MDIO_CTRL_PHYAD_MASK)
+> +			       << GSW1XX_MDIO_CTRL_PHYAD_SHIFT) |
+> +			      (reg & GSW1XX_MDIO_CTRL_REGAD_MASK),
+> +		      GSW1XX_MDIO_CTRL);
 > +
-> +additionalProperties: false
+> +	return 0;
+> +}
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/loongson,ls2k-clk.h>
+> +static int gsw1xx_mdio_rd(struct mii_bus *bus, int addr, int reg)
+> +{
+> +	struct gsw1xx_priv *priv = bus->priv;
+> +	int err;
 
-Your patchset is now untestable/unapplicable because you have a
-dependency. You need to explain the dependencies in the cover letter or
-in the patch changelog (---).
+Same here.
+
+> +static int gsw1xx_port_enable(struct dsa_switch *ds, int port,
+> +			      struct phy_device *phydev)
+> +{
+> +	struct gsw1xx_priv *priv = ds->priv;
+> +
+> +	if (!dsa_is_user_port(ds, port))
+> +		return 0;
+> +
+> +	/* RMON Counter Enable for port */
+> +	gsw1xx_switch_w(priv, GSW1XX_IP_BM_PCFG_CNTEN,
+> +			GSW1XX_IP_BM_PCFGp(port));
+> +
+> +	/* enable port fetch/store dma */
+> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_FDMA_PCTRL_EN,
+> +			   GSW1XX_IP_FDMA_PCTRLp(port));
+> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_SDMA_PCTRL_EN,
+> +			   GSW1XX_IP_SDMA_PCTRLp(port));
+> +
+> +	if (!dsa_is_cpu_port(ds, port)) {
+
+How can this be true given the previous check for dsa_is_user_port()?
 
 
-Best regards,
-Krzysztof
+> +static int gsw1xx_setup(struct dsa_switch *ds)
+> +{
+> +	struct gsw1xx_priv *priv = ds->priv;
+> +	unsigned int cpu_port = priv->hw_info->cpu_port;
+> +	int i;
+> +	int err;
 
+Reverse christmass tree, which means you need to delay assigning
+cpu_port into the body of the function.
+
+> +int gsw1xx_probe(struct gsw1xx_priv *priv, struct device *dev)
+> +{
+> +	struct device_node *np, *mdio_np;
+> +	int err;
+> +	u32 version;
+
+Reverse christmass tree.
+
+> +
+> +	if (!priv->regmap || IS_ERR(priv->regmap))
+> +		return -EINVAL;
+> +
+> +	priv->hw_info = of_device_get_match_data(dev);
+> +	if (!priv->hw_info)
+> +		return -EINVAL;
+> +
+> +	priv->ds = devm_kzalloc(dev, sizeof(*priv->ds), GFP_KERNEL);
+> +	if (!priv->ds)
+> +		return -ENOMEM;
+> +
+> +	priv->ds->dev = dev;
+> +	priv->ds->num_ports = priv->hw_info->max_ports;
+> +	priv->ds->priv = priv;
+> +	priv->ds->ops = &gsw1xx_switch_ops;
+> +	priv->dev = dev;
+> +	version = gsw1xx_switch_r(priv, GSW1XX_IP_VERSION);
+> +
+> +	np = dev->of_node;
+> +	switch (version) {
+> +	case GSW1XX_IP_VERSION_2_3:
+> +		if (!of_device_is_compatible(np, "mxl,gsw145-mdio"))
+> +			return -EINVAL;
+> +		break;
+> +	default:
+> +		dev_err(dev, "unknown GSW1XX_IP version: 0x%x", version);
+> +		return -ENOENT;
+
+I think ENODEV is more appropriate.
+
+I noticed there is no tagging protocol defined. How are frames
+direction out a specific port?
+
+I've also not yet looked at the overlap with lantiq_gswip.c.
+
+     Andrew
