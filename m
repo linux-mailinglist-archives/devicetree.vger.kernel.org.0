@@ -2,214 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4D360CACA
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF64660CAD5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231844AbiJYLVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 07:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
+        id S231811AbiJYLYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 07:24:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbiJYLVZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:21:25 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E71F63C7;
-        Tue, 25 Oct 2022 04:21:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=+YhmmoZMLY7XrNhYbkL+EQRVhqHSiXfciFzZavrXBJg=; b=NJg02Upj0PEyhmA81VlVsjmBPH
-        8A2RCWamtgL1y372jrQ4PJrhaYtAuAfyZW4g/FC+8a8A6bdj/Dbb/RZtMcYdil9ZXq6bnZotxF2L4
-        AUOfC/Gz89HejPyjPgHjT59vYJ14vp7ZYR9uERNbQ5DdbrpgtdtY3Tgbh0wOGPr0baptndvI+PqpJ
-        mXHGpRD6Bb/ner9r/s4N+zHenQgijZQxsmqm1TqdTvEE5Ee1ibdh7gfndUqAeKb1h/WNKAX0j8/sk
-        4LxDbx7ltzbnsy0jOOe1E5nKV0QOA/AUzQ3BRoMdnDm0c3AjpacJ++bzDDsvnoK+UT5OeU4znCnFS
-        0uLZCpJg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:38524 helo=[192.168.69.85])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.95)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1onHze-006z2X-4R;
-        Tue, 25 Oct 2022 13:21:14 +0200
-Message-ID: <56af1cc3-c10e-5694-d25f-252304732568@norik.com>
-Date:   Tue, 25 Oct 2022 13:21:18 +0200
+        with ESMTP id S231867AbiJYLYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:24:31 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2886F1FFB3
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 04:24:29 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so6499487fac.1
+        for <devicetree@vger.kernel.org>; Tue, 25 Oct 2022 04:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ogvOahPNmhpggqBTZ5QbvTn84Q49yePxZeXFmnUqiLs=;
+        b=jutuwQxLvlEtjl08GBEDEUQLUX0ZptKv2K4eZi72W8GM7Qc2yUpxRsr+hXwVtu+diN
+         ot8DN8Gnd4YFEI/dymIexaiz9CTLFPWzIzIBSFialYercjlsjhqfVBsin1yzJS/QfPXY
+         DsqtLyLFDuIE8pg4D5N1ubpMaMp7Jee8dXMncrAAhnYYtVWppvc6lKdxvghxhjb2VrzR
+         bE791M9x6DSiICRPPnF8+zvQqI2uSNjPbC3gbnJlMRQnIdgHYdtMteK1hlQI1c4IVmt5
+         U2eRg34zVbfoRXm4XnPRpLuMrnnxA8AGxmkhyBhHeNApBLp2GVt8H8duYlxMnS8IBilf
+         eSLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ogvOahPNmhpggqBTZ5QbvTn84Q49yePxZeXFmnUqiLs=;
+        b=kxMfK2Aa73BReeodePOecoAt0oPJfermXKC3yG/Bk7jY3hTKjd32icJCcDbFG1hSai
+         922kp6e4oeMif42YRlVUxtaMOAfrwFKCbhGrbYc+wkqQh1bshNSNHDULg8JxpDC4kYRf
+         kWNSW0m06zA47r5EH0J6Foc4XkVgG5P70uuglRDmxSsYnkVUVLLVYWxXyi1lV33IcW5H
+         OndC27bZFzYTBuOSOA8g2iE6SLQ48a19pm2Xu06OoZOOYn+OA+/AT98IwJVa9yRA1fvy
+         nmLLaAx8dBsrgC4+zk88eRu8T2K6cJAFrnvK2Z3arcDRy5FEdRUfeX10cNHvdoSF2MJO
+         m5ag==
+X-Gm-Message-State: ACrzQf2+b6sS8iMQlpQrysr7mtpXmiTLvjdttGwfXF4C7MpyBQQIAflv
+        sM86sOy04yu5SXeGuxFJ+AQoo0TU2sU0WvonODiLQQ==
+X-Google-Smtp-Source: AMsMyM76taCJV+dCGKywuvCZcEk2Xs4M2Rw6lpxM+f0zfnwF1BufrNo2tesNJ4zzfv12nDqHKLnIKsJPPbZDyD77A34=
+X-Received: by 2002:a05:6871:7a1:b0:131:946a:7b30 with SMTP id
+ o33-20020a05687107a100b00131946a7b30mr40030282oap.67.1666697068405; Tue, 25
+ Oct 2022 04:24:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
-Content-Language: en-GB
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221025072533.2980154-1-andrej.picej@norik.com>
- <20221025072533.2980154-2-andrej.picej@norik.com>
- <13126397.uLZWGnKmhe@steina-w>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <13126397.uLZWGnKmhe@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20221018145348.4051809-1-amit.pundir@linaro.org>
+ <CAPDyKFoBMB9OMUrcoPCV0of1fj2dimEwPyHGW=ydjJ2M0ubM8Q@mail.gmail.com>
+ <20221020093057.zrrvxlgghn27bpes@bogus> <CAMi1Hd05PkEJcHqHpQX-X6B2oR4250_pHPjkd2-54JWgKsYx0Q@mail.gmail.com>
+ <CAPDyKFo=w-ET62c-B6=qSpkZm-V9LmBuVRy38GzX_UAjQhX6oA@mail.gmail.com>
+ <20221020161628.nyimwuni4zboasjo@bogus> <CAPDyKFonwjh58jPoGc==BEjj6kY-=C97Ws=43hbdAqJMpEAa=g@mail.gmail.com>
+In-Reply-To: <CAPDyKFonwjh58jPoGc==BEjj6kY-=C97Ws=43hbdAqJMpEAa=g@mail.gmail.com>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Tue, 25 Oct 2022 16:53:51 +0530
+Message-ID: <CAMi1Hd0B7T=Tkw=P_rBDV9SQSGCXAeYLYPADtVkh=95xf54D8A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: Disable cpuidle states
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dt <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+On Fri, 21 Oct 2022 at 18:33, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Thu, 20 Oct 2022 at 18:16, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > On Thu, Oct 20, 2022 at 04:40:15PM +0200, Ulf Hansson wrote:
+> > > On Thu, 20 Oct 2022 at 16:09, Amit Pundir <amit.pundir@linaro.org> wrote:
+> > > >
+> > > > On Thu, 20 Oct 2022 at 15:01, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> > > > >
+> > > > > On Wed, Oct 19, 2022 at 01:57:34PM +0200, Ulf Hansson wrote:
+> > > > > > On Tue, 18 Oct 2022 at 16:53, Amit Pundir <amit.pundir@linaro.org> wrote:
+> > > > > > >
+> > > > > > > Disable cpuidle states for RB5. These cpuidle states
+> > > > > > > made the device highly unstable and it runs into the
+> > > > > > > following crash frequently:
+> > > > > > >
+> > > > > > > [    T1] vreg_l11c_3p3: failed to enable: -ETIMEDOUT
+> > > > > > > [    T1] qcom-rpmh-regulator 18200000.rsc:pm8150l-rpmh-regulators: ldo11: devm_regulator_register() failed, ret=-110
+> > > > > > > [    T1] qcom-rpmh-regulator: probe of 18200000.rsc:pm8150l-rpmh-regulators failed with error -110
+> > > > > > >
+> > > > > > > Fixes: 32bc936d7321 ("arm64: dts: qcom: sm8250: Add cpuidle states")
+> > > > > > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> > > > > > > ---
+> > > > > > >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 8 ++++++++
+> > > > > > >  1 file changed, 8 insertions(+)
+> > > > > > >
+> > > > > > > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > > > > > > index cc003535a3c5..f936c41bfbea 100644
+> > > > > > > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > > > > > > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> > > > > > > @@ -251,6 +251,14 @@ qca639x: qca639x {
+> > > > > > >
+> > > > > > >  };
+> > > > > > >
+> > > > > > > +&LITTLE_CPU_SLEEP_0 {
+> > > > > > > +       status = "disabled";
+> > > > > > > +};
+> > > > > > > +
+> > > > > > > +&BIG_CPU_SLEEP_0 {
+> > > > > > > +       status = "disabled";
+> > > > > > > +};
+> > > > > > > +
+> > > > > > >  &adsp {
+> > > > > > >         status = "okay";
+> > > > > > >         firmware-name = "qcom/sm8250/adsp.mbn";
+> > > > > > > --
+> > > > > > > 2.25.1
+> > > > > >
+> > > > > > Disabling the CPU idlestates, will revert us back to using only the WFI state.
+> > > > > >
+> > > > > > An option that probably works too is to just drop the idlestate for
+> > > > > > the CPU cluster. Would you mind trying the below and see if that works
+> > > > > > too?
+> > > > > >
+> > > > >
+> > > > > Indeed this is was I suggested to check initially. But I was surprised to
+> > > > > see IIUC, Amit just disabled CPU states with above change and got it working.
+> > > > > So it is not cluster state alone causing the issue, is it somehow presence
+> > > > > of both cpu and cluster states ? Am I missing something here.
+> > > > >
+> > > > > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > index c32227ea40f9..c707a49e8001 100644
+> > > > > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > @@ -700,7 +700,6 @@ CPU_PD7: cpu7 {
+> > > > > >
+> > > > > >                 CLUSTER_PD: cpu-cluster0 {
+> > > > > >                         #power-domain-cells = <0>;
+> > > > > > -                       domain-idle-states = <&CLUSTER_SLEEP_0>;
+> > > > >
+> > > > > How about just marking CLUSTER_SLEEP_0 state disabled ? That looks cleaner
+> > > > > than deleting this domain-idle-states property here. Also not sure if DTS
+> > > > > warnings will appear if you delete this ?
+> > > >
+> > > > Hi, I did try disabling CLUSTER_SLEEP_0: cluster-sleep-0 {} in
+> > > > domain-idle-states {} but that didn't help. That's why I end up
+> > > > disabling individual cpu states in idle-states {}.
+> > >
+> > > Yep, this boils down to the fact that genpd doesn't check whether the
+> > > domain-idle-state is disabled by using of_device_is_available(). See
+> > > genpd_iterate_idle_states().
+> > >
+> >
+> > Yes I found that but can't that be fixed with a simple patch like below ?
+>
+> Sure, yes it can.
+>
+> Although, it does complicate things a bit, as we would need two
+> patches instead of one, to get things working.
+>
+> >
+> > > That said, I suggest we go with the above one-line change. It may not
+> > > be as clean as it could be, but certainly easy to revert when the
+> > > support for it has been added in a newer kernel.
+> > >
+> >
+> > I don't like removing the state. It means it doesn't have the state rather
+> > than i"it has state but is not working and hence disabled".
+> >
+> > Will handling the availability of the state cause any issues ?
+>
+> No, this works fine. It's already been proven by Amit's test.
+>
+> >
+> > Regards,
+> > Sudeep
+> >
+> > -->8
+> >
+> > diff --git i/drivers/base/power/domain.c w/drivers/base/power/domain.c
+> > index ead135c7044c..6471b559230e 100644
+> > --- i/drivers/base/power/domain.c
+> > +++ w/drivers/base/power/domain.c
+> > @@ -2952,6 +2952,10 @@ static int genpd_iterate_idle_states(struct device_node *dn,
+> >                 np = it.node;
+> >                 if (!of_match_node(idle_state_match, np))
+> >                         continue;
+> > +
+> > +               if (!of_device_is_available(np))
+> > +                       continue;
+> > +
+> >                 if (states) {
+> >                         ret = genpd_parse_state(&states[i], np);
+> >                         if (ret) {
+> >
+>
+> The above code looks correct to me. Anyone that wants to submit the
+> patches? Otherwise I can try to manage it...
 
-On 25. 10. 22 11:38, Alexander Stein wrote:
-> Am Dienstag, 25. Oktober 2022, 09:25:31 CEST schrieb Andrej Picej:
->> Putting device into the "Suspend-To-Idle" mode causes watchdog to
->> trigger and reset the board after set watchdog timeout period elapses.
->>
->> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
->> watchdog in WAIT mode. This is done by setting WDW bit in WCR
->> (Watchdog Control Register) Watchdog operation is restored after exiting
->> WAIT mode as expected. WAIT mode coresponds with Linux's
->> "Suspend-To-Idle".
->>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->> Reviewed-by: Fabio Estevam <festevam@gmail.com>
->> ---
->> Changes in v2:
->>   - validate the property with compatible string, as this functionality
->>     is not supported by all devices.
->> ---
->>   drivers/watchdog/imx2_wdt.c | 37 +++++++++++++++++++++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>
->> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
->> index d0c5d47ddede..dd9866c6f1e5 100644
->> --- a/drivers/watchdog/imx2_wdt.c
->> +++ b/drivers/watchdog/imx2_wdt.c
->> @@ -35,6 +35,7 @@
->>
->>   #define IMX2_WDT_WCR		0x00		/* Control
-> Register */
->>   #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* ->
-> Watchdog Timeout Field */
->> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable
-> for WAIT */
->>   #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset
-> WDOG_B */
->>   #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset
-> Signal */
->>   #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable
-> */
->> @@ -67,6 +68,27 @@ struct imx2_wdt_device {
->>   	bool ext_reset;
->>   	bool clk_is_on;
->>   	bool no_ping;
->> +	bool sleep_wait;
->> +};
->> +
->> +static const char * const wdw_boards[] __initconst = {
->> +	"fsl,imx25-wdt",
->> +	"fsl,imx35-wdt",
->> +	"fsl,imx50-wdt",
->> +	"fsl,imx51-wdt",
->> +	"fsl,imx53-wdt",
->> +	"fsl,imx6q-wdt",
->> +	"fsl,imx6sl-wdt",
->> +	"fsl,imx6sll-wdt",
->> +	"fsl,imx6sx-wdt",
->> +	"fsl,imx6ul-wdt",
->> +	"fsl,imx7d-wdt",
->> +	"fsl,imx8mm-wdt",
->> +	"fsl,imx8mn-wdt",
->> +	"fsl,imx8mp-wdt",
->> +	"fsl,imx8mq-wdt",
->> +	"fsl,vf610-wdt",
->> +	NULL
->>   };
-> 
-> So the models listed in Documentation/devicetree/bindings/watchdog/fsl-imx-
-> wdt.yaml not supporting this feature are
-> * fsl,imx21-wdt
-> * fsl,imx27-wdt
-> * fsl,imx31-wdt
-> * fsl,ls1012a-wdt
-> * fsl,ls1043a-wdt
-> ?
-yes, you are correct.
+Just out of curiosity, I gave this patch a test run and, as Ulf also
+mentioned above, this patch alone is not enough to fix the boot
+regression I see on RB5.
 
-> 
-> But all models are listed as compatible to fsl,imx21-wdt. So there is
-> something wrong here. IMHO this sounds like the compatible list has to be
-> split and updated. Depending on that this feature can be detected. Maintaining
-> another list seems error prone to me.
-> 
+Regards,
+Amit Pundir
 
-So basically the compatible lists would be split into two groups, one 
-for the devices which support this WDW bit and the rest which don't 
-support this?
-You got a point here, but...this means that every processors 
-device-tree, which has two compatible strings (with "fsl,imx21-wdt") 
-should be updated, right? That sounds like quite a lot of changes, which 
-I'd like to avoid if possible.
-
-Best regards,
-Andrej
-
-> Best regards,
-> Alexander
-> 
->>   static bool nowayout = WATCHDOG_NOWAYOUT;
->> @@ -129,6 +151,9 @@ static inline void imx2_wdt_setup(struct watchdog_device
->> *wdog)
->>
->>   	/* Suspend timer in low power mode, write once-only */
->>   	val |= IMX2_WDT_WCR_WDZST;
->> +	/* Suspend timer in low power WAIT mode, write once-only */
->> +	if (wdev->sleep_wait)
->> +		val |= IMX2_WDT_WCR_WDW;
->>   	/* Strip the old watchdog Time-Out value */
->>   	val &= ~IMX2_WDT_WCR_WT;
->>   	/* Generate internal chip-level reset if WDOG times out */
->> @@ -313,6 +338,18 @@ static int __init imx2_wdt_probe(struct platform_device
->> *pdev)
->>
->>   	wdev->ext_reset = of_property_read_bool(dev->of_node,
->>   						"fsl,ext-
-> reset-output");
->> +
->> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait"))
->> +		if (of_device_compatible_match(dev->of_node,
-> wdw_boards))
->> +			wdev->sleep_wait = 1;
->> +		else {
->> +			dev_warn(dev, "Warning: Suspending watchdog
-> during " \
->> +				"WAIT mode is not supported for
-> this device.\n");
->> +			wdev->sleep_wait = 0;
->> +		}
->> +	else
->> +		wdev->sleep_wait = 0;
->> +
->>   	/*
->>   	 * The i.MX7D doesn't support low power mode, so we need to ping
-> the
->> watchdog * during suspend.
-> 
-> 
-> 
-> 
+>
+> Kind regards
+> Uffe
