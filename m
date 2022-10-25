@@ -2,77 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4873760CA63
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF09C60CA85
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 13:03:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbiJYKwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 06:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S231623AbiJYLDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 07:03:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231605AbiJYKwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:52:46 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78BAF17F662;
-        Tue, 25 Oct 2022 03:52:45 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S231752AbiJYLDe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 07:03:34 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06A5017F670;
+        Tue, 25 Oct 2022 04:03:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 872AC660239E;
-        Tue, 25 Oct 2022 11:52:43 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666695164;
-        bh=SzdPiBYNWocdiKOHMHJ7iv+TcTpeRmBI/i9El5W824Y=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mAOMNf0UO0+7xSfeErCzx3yn5i6/gpXzdqqSp6MLZGVGUgXfzgVCd4hTe3NKjvV75
-         cN+NH9qsXKwGuEIKFke8p9cmtFE30ifenB7o9OQncAKZaIu5Gs8fUXIWLm+jQ1S519
-         uN6F9EirwhavJzZ0kSPQOoY11tV9S0NPyjPoXhLFQ5Ir++qfyQNKPA/5Ct7Dl1GquL
-         UT8Z4Uqc79E8pAAUrX1k9l8V7b5dd5E9M0kfpOMylhL8B40GHA1eJ+glbE/9IeeoaQ
-         p1N+5iIU+L9UW1jYf9TkkPBtps3eW49wdaVoaTi0GKp+/YpXcQ4c0fvaN2o7atsddE
-         vvDQNCo6dGWGA==
-Message-ID: <aae70248-878a-5e36-ad4c-82849a184926@collabora.com>
-Date:   Tue, 25 Oct 2022 12:52:40 +0200
+        by sin.source.kernel.org (Postfix) with ESMTPS id 8435CCE1C6F;
+        Tue, 25 Oct 2022 11:03:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B6AC433D6;
+        Tue, 25 Oct 2022 11:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666695811;
+        bh=fdcC4mR4dB/QFx3WrYK6jDAfOS5Cp8jhgwy0xEun364=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nKazl75omI35NaM4AI2u4k7W5QiR9pAJRt1uiREc6D9JOG0NtBkXFx60eYJJ3s3vx
+         z8Fi1DuCZYyslE9JG9lszhv1LRjqS88Wv5q8jdxMol+kMjqm9DBQzbstW/JDWonxHu
+         ILgo+cQHum2iXzIJGrjlVB2Z5z7d9N7qGhN7QE/d8Hdw2+vpPgzeZtHJq8fFau9GXz
+         vMTpeyGLs7FgaKTv5+O1tJI5CGYXlCQaT6vhfeSFdB2+QQyx8o/TH3HvX9rFDXxR1U
+         WCGDJP5c2y3Qt9P4q8qZerE+VNeu3NFJkfyKs04C5lOBVLDNl7fieU4Jk1EsupmK/G
+         tguviyOcG63DQ==
+Date:   Tue, 25 Oct 2022 12:03:25 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] ASoC: simple-card: Support custom DAI system
+ clock IDs
+Message-ID: <Y1fCfej+/WH8TI39@sirena.org.uk>
+References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
+ <Y1Z74/vKHbnaCLrX@sirena.org.uk>
+ <XaoRSEMyUlabAR8wEJITmm2lGCjwfPZg@localhost>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v4 6/6] mmc: mediatek: add support for MT7986 SoC
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>
-References: <20221025074238.18136-1-linux@fw-web.de>
- <20221025074238.18136-7-linux@fw-web.de>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221025074238.18136-7-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iUFfooZ1kpfKCAGd"
+Content-Disposition: inline
+In-Reply-To: <XaoRSEMyUlabAR8wEJITmm2lGCjwfPZg@localhost>
+X-Cookie: Your step will soil many countries.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/10/22 09:42, Frank Wunderlich ha scritto:
-> From: Sam Shih <sam.shih@mediatek.com>
-> 
-> Adding mt7986 own characteristics and of_device_id to have support
-> of MT7986 SoC.
-> 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+--iUFfooZ1kpfKCAGd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Tue, Oct 25, 2022 at 12:17:25AM +0100, Aidan MacDonald wrote:
+> Mark Brown <broonie@kernel.org> writes:
 
+> > We already have clock bindings, if we need to configure clocks we should
+> > be using those to configure there.
+
+> The existing clock bindings are only useful for setting rates, and
+> .set_sysclk() does more than that. See my reply to Krzysztof if you
+> want an explanation, check nau8821 or tas2552 codecs for an example
+> of the kind of thing I'm talking about.
+
+I thought there was stuff for muxes, but in any case if you are adding a
+new binding here you could just as well add one to the clock bindings.
+
+> I picked those codecs at random, but they are fairly representative:
+> often a codec will allow the system clock to be derived from another
+> I2S clock (eg. BCLK), or provided directly, or maybe generated from an
+> internal PLL. In cases like that you need to configure the codec with
+> .set_sysclk() to select the right input. Many card drivers need to do
+> this, it's just as important as .set_fmt() or .hw_params().
+
+There is a strong case for saying that all the clocking in CODECs might
+fit into the clock API, especially given the whole DT thing.
+
+--iUFfooZ1kpfKCAGd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNXwnwACgkQJNaLcl1U
+h9DI6Af8Cuqiya/+8/lme/cDu+8TN8e8NuItmTYE0zwwWFnj4moKAKOKjnbxCrq3
+H8QZEZheZKL8XP4bCWHLQufnlxwzDApe7++u7t8EtX9EL8mV+cUmtSaOt+fkhBBf
+4lv32bLyPe5OX2a/mr7+ZlFWU3Zx3Y4/ZoYNsQnuQvfNtaM057yFyLdkYi2kMhUn
+MfUL8GEQS6Nu8+IqNxlRlgtE3wFr31DByy/pe74Ly+dbj85UMltrMgke/bMcsXPB
+GtTGf22OV2ZuaOWiW0PgGg7wLoqFzgK1Fg04aF5EMHtoF3eiLzIPxOJH+4tZJEkf
+Q8lfomo8CA2QoBibB2zP3gBeIFjDig==
+=+vuf
+-----END PGP SIGNATURE-----
+
+--iUFfooZ1kpfKCAGd--
