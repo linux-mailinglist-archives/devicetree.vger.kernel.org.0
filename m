@@ -2,59 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB5F660CA14
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:30:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE8660CA3E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 12:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbiJYKaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 06:30:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
+        id S232240AbiJYKnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 06:43:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232026AbiJYK3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:29:49 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 82F0E90;
-        Tue, 25 Oct 2022 03:29:41 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 78505D6E;
-        Tue, 25 Oct 2022 03:29:47 -0700 (PDT)
-Received: from [10.57.36.110] (unknown [10.57.36.110])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B3DD43F7B4;
-        Tue, 25 Oct 2022 03:29:38 -0700 (PDT)
-Message-ID: <34c3daf3-88f8-0dc2-026b-95ca075195b4@arm.com>
-Date:   Tue, 25 Oct 2022 11:29:12 +0100
+        with ESMTP id S232255AbiJYKnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 06:43:05 -0400
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140082.outbound.protection.outlook.com [40.107.14.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028F4FF20E;
+        Tue, 25 Oct 2022 03:43:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E7SQ2eBzwrWV56adTIg7H4+i6p5hBZ0eSKMbueSp4vWjhZcTCsBbHy5hwAc1QqqdJHhkk2Ypnltb3QejVdh/PQJA4TD6tMvHP95vJuNIKPjvw27Ua+YTvdEkbdbXQ03hzl2z75ZeFji6MBgRlMgoBpym1QwBBJw9HQUt42KGNGl48xcIIXj2Xjgwapj0VTcTu8xVKZ0jWqqhIxtfGUfnT4iLniTrArUcx4doXrzVoMeqP5EkkCzEBSQI92AXM9Csa9BUyJ8dDsFgeNY8tjbTC13QuQqlPbp6iI9WAu+F14kzk8h9WRHNBwe04IQLi5K4RU9s8Fg/7kfqs8qVy6YI6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RxT1mzeYBDeiyEUti+WKa3v5KXn5N5hb5/CfT9+Jivs=;
+ b=hGi7ZynZj7H91wxcfJAhq8ZHBT3/6JBKV8rJ/P5DCVrmX2Q7DbPEqu78HmNmRR3PUwbfm1GwFRgVMbpf4N75lU07E1LV2o1fjILbsWWT926eQWnbWgtWRzfyGbG9XfZB3ZevltooQyHypL4r7UOLOaE8oybgh0zX5gwYUvVwXJNvhSS68NJRXAhFJBtoTWIP+S/z6iRUQWww2A74u85IKzYNfCL1f+WGAZCGxpiq6tFcwW6pkKPo/x/3xdxfuTHV93fbbFf+YYANZuTAALAZqdn3L5lb4QhJEEJAML1KCm6SLLB5WMNJBM+L+rQNi0hsnA8i03yfoa+/nbywjwAxdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RxT1mzeYBDeiyEUti+WKa3v5KXn5N5hb5/CfT9+Jivs=;
+ b=QEWufevRsiT+PbXNTA8jpumbMQadK8UB6YyiYt6iEMEC3SikDzTfuiJNqblUo3qsztgRErCpCRkusNw3I+jpuIHNzd/JMEpVNT51M2YtQOGMvvANDDEXFXd4isuFCny2P4jio4CA33ZvSPx7VroSVz5sfB4tXHT/DX9fsftCDmc=
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
+ by PR3PR04MB7289.eurprd04.prod.outlook.com (2603:10a6:102:8a::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.21; Tue, 25 Oct
+ 2022 10:43:02 +0000
+Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::cc4:c5c2:db97:1313]) by PA4PR04MB9640.eurprd04.prod.outlook.com
+ ([fe80::cc4:c5c2:db97:1313%7]) with mapi id 15.20.5746.026; Tue, 25 Oct 2022
+ 10:43:02 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     "balbi@kernel.org" <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Xu Yang <xu.yang_2@nxp.com>
+Subject: RE: [PATCH 1/2] dt-bindings: usb: usb-nop-xceiv: add wakeup-source
+ property
+Thread-Topic: [PATCH 1/2] dt-bindings: usb: usb-nop-xceiv: add wakeup-source
+ property
+Thread-Index: AQHY52rF7JmfCQ9gvUu/JJrHN0RbAq4eQQoAgAB/FyA=
+Date:   Tue, 25 Oct 2022 10:43:02 +0000
+Message-ID: <PA4PR04MB96406F52F9DE40F363B9E39B89319@PA4PR04MB9640.eurprd04.prod.outlook.com>
+References: <1666588648-1047-1-git-send-email-jun.li@nxp.com>
+ <1995a21d-1458-8c80-4a24-641f4b5dcf81@linaro.org>
+In-Reply-To: <1995a21d-1458-8c80-4a24-641f4b5dcf81@linaro.org>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PA4PR04MB9640:EE_|PR3PR04MB7289:EE_
+x-ms-office365-filtering-correlation-id: 96f7051b-e567-48ca-a29a-08dab675b122
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kdK5O5aenqZ3+uSZ9t6QOhRZnyxAvSZjYx0eZmVsqE7vv/+SNH2dHSbextvWnU1dIlyxE4D/Y0v52D/wlcoUK1k3mUIwtnlIn/QBNgfF2KRj//0AXZguEF53fBvHRVN5mvnwjUsJCU/TDYXhmD/MqBDAW/9k2L4tIxT2C66MBgmw2iJQPICOktb2qfUEKY1uQ0aZVJwYd0mEA70df3ErhCJQEivULJo6hRJlu4bDnqkoB2Fr+GO9e4oqn/VhLGo8vBQ73il+ENrSpQpprGBceil/JPbd6SxSAH2F0YPNayj4ltIvRQwGq4jhiP5lxG0omCEFvcAXMxyy2vS7Fgg9C3M6mbVRrtTAffzlnqtSSg5aqW+Yair9MlFS646zhOEVAwPO17ZqHxSiYQmnnXbeflaUSCegS6NF8RUsC6cn0vRRy2Pa08hOZ48Dns6JrWxqmaSE5CaDpeK8speZAC46zGlAGvjHS/n2i7cFY/7Si4tnvbNm63VK3HKyoRaRfS6rNWaEHIcgcxw4evfpI79U8YpulWvcF3QK8UrCc6E6v+AyeTa4doX7uBQF38MKWvia7L7vMoMaBlMilo/UpxAI5MJydQffTRlBJALaO74GdoU+DsCr73tAkGLJUk9n0NiXE11HhlKEvkEFwZ5tNa8DQRyt8lMAHpYkSfphySs6tJ+OyXtu4vb1safHK8Ok5vETnP6W5BsFiGw2eE79snXR06l9njBUQfpuvZ9/sjTGRvnN/wrvtBaQVhp4VBEC9zkY+aAQnmYHKvDOcxq7umcjSw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(366004)(396003)(136003)(39860400002)(451199015)(33656002)(86362001)(122000001)(38100700002)(76116006)(66446008)(66946007)(66476007)(64756008)(54906003)(38070700005)(110136005)(8676002)(316002)(4326008)(8936002)(66556008)(2906002)(5660300002)(41300700001)(44832011)(186003)(478600001)(55016003)(52536014)(71200400001)(26005)(53546011)(83380400001)(9686003)(6506007)(7696005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TDlVQ2pOcU1MeXFLdURDS1NWN1VJSXJkMFArR3VKc0JtSXZoWTF0ejFiRG05?=
+ =?utf-8?B?ZEJyZnpEcDJKRDgzWjNEbjJJN2NuZHFLSEE4RzBqeUI0akJzNk1KZ2l4bkdM?=
+ =?utf-8?B?NDl2TE5YcnAvZm5UWlJKMUFOcDFzL3NHRFNHYzRBUDF0K0NmYldBRWplQUNC?=
+ =?utf-8?B?VVM3N1RGYm9kbE12amlCb0lNUWZIdVdDZ3FZZnN2c0VEZ3k1R1EvYzU1ZzZP?=
+ =?utf-8?B?eGhXbHpEczJFZE5BSmRVdElyQ0Z4amlVWUU4RFM3N25nV2phSEQyMXkxRGc5?=
+ =?utf-8?B?SXZKejNUSkdDWnU0ZG52U1RIQmVheUNISU90bkNzYjBLRWlpa0RNTXZWeUpl?=
+ =?utf-8?B?ZmFQSEZUbEQ3SVp1QWM0UU1vWkI3UkhZNHBmcGxPZEk3cTNqeXMvWnd1SjF2?=
+ =?utf-8?B?U0hsZEtra3dUZ1QrTTdkY3YrU1dvbGo5eVBnSERpaUdZOGw3MFVER09IajN6?=
+ =?utf-8?B?S0NjeWI2eGc2eXVMV2pjWlhtYkhoMDFVbDdLMU5rUWNOTkYyZGJjZGtXdmtY?=
+ =?utf-8?B?TC84WTRFbk81UFk4dHpaU2dZU1NrWVc4V0pTRTE3OXZKc05BcTYxTlpSems2?=
+ =?utf-8?B?cFR4Tk1ZbUllNUVjcVhlV2FTcXFMa0tWcEhGZ2NrSjhtZnlMWkJ1YzBVSVh2?=
+ =?utf-8?B?U0R6R1lxTWswWE9URGkrOWVIVE5IZ2RSWHdXdk8zTHJsTXVXV2Nic1JRVHh3?=
+ =?utf-8?B?Tnl3Q1RUVGRNeTJsZ09iSW8zb1JlU0o5WFViOTM1QXQ4bStzek5LdE5aaEIz?=
+ =?utf-8?B?VUFZTTBETTR6MkI1Y1NGM013Z3k1aDlGUTh0S0Ruek1VbzNxcW5aUWVmR2Z6?=
+ =?utf-8?B?SFRKTFFxUEU5OFJKOXNWUnZyTmUxZTIyeWZSemthdFBUcERNS2s2NXdMMVNW?=
+ =?utf-8?B?T1NXNmh1ZjQzV2VSSVFiR1EwMGtRQURPWVV1Unp3M2s4aDF2YkU2L0s1VnhQ?=
+ =?utf-8?B?OFR6Rk1oTzltVW1jczZHRXlNZXpyVW9JTmlqcXVzbDk0TFM3ZllyV3NtZ2o3?=
+ =?utf-8?B?SzFrbERwY2EzRWMwVGlORGxtZjRCYXhacGdCQ2NCcXZhTlIyR1VhbkNOalBw?=
+ =?utf-8?B?SlJ0RmpPcWFsb3JSWTdRME1wZVZ1WENUMmUwWEFXY2pUUVM2ck53WEFYYWhT?=
+ =?utf-8?B?c21ZMlk2dVVRVkhOTjExK0YzQlNGdkJlMDdYL09ZWThRSkc3dURROElURUhj?=
+ =?utf-8?B?NjU5dTM3TThVU1lDUVpyeDRJZk1Fc3VXL2NrTEVhMUVnSlpneUNyZ3E5aTlm?=
+ =?utf-8?B?OFJ0YmU1dmtHVDRQUEg3SDFyd29nd2d6Q3FUdFN5b2JDSmJCMVJGTmtRV1BQ?=
+ =?utf-8?B?YXE3V1p5NktmZ0VyRFV4bXVaZkxEUG1jTmZYQkdtOGp1UzJGbkl0L21rUmda?=
+ =?utf-8?B?aThud0gvaURqR2VkRWlUMUFEUllIMHcwRjdTZjhLamZqOGZIN2t0eER0NGpE?=
+ =?utf-8?B?Y29HdXJ0Z001d3RKcGNnSzhDWlFqeWsxa0M1Y09LSUtFTU1Ta0d5RG5MNEY0?=
+ =?utf-8?B?UmFBdmFCbUV5UWZuR2VRSzFQWFEwYU9IQkFCc21JTnFkS2pNR0tCY1R6THhr?=
+ =?utf-8?B?T2NVY0t2VDBkRGRmaEFzbEt2dml3QTBicnJFTnhwa0dhYndacmJ1RzZWYkE0?=
+ =?utf-8?B?cVk0ZTg0R2Q0K3VkOW9uRmVhMVpoamxZQTJkb2s0STBCZ1dWWWViY1BHVE9k?=
+ =?utf-8?B?dHh6eTRNckdmeUJCb0hOazJGdkh0bFBQczVGaU1qd2RDbWhRV2lRcUUvS3RL?=
+ =?utf-8?B?WXd2dDZpTXB3SWxCdE10c2ZKOUxyRHlaVmZEbkZnSndpdnZGZEVyUHVYd0VZ?=
+ =?utf-8?B?TFpnMUl1bVNyZnFXbHRKL0ZjLzFVQ3hxRXBVY0ZXY1JyWkJQZStrYjVJYXdn?=
+ =?utf-8?B?RE9yRWhXdFk4RFlSRlREYzdQU3d4NHNRVjlmTzJJRytoZDJwSnJKMzRXdkhC?=
+ =?utf-8?B?M2Z1ZzIya25zN3hCN1h6aWNZT1RiMnZtcVVLaEgxR09LYlhMN1VtZGE1Ynpu?=
+ =?utf-8?B?TFZtaklBcnpIeXRXMUptaEhpZWhXTmFJWXl1TEw2TWUvcVB0UVZHWnBOeElT?=
+ =?utf-8?B?SjNHa2dteGRWYzRqV2RMNThVMFRmOEQ1WWU5K3ZvcWJoZEFjWGExQzY3d1Zn?=
+ =?utf-8?Q?mSfs=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v2] arm64: dts: rockchip: rk356x: Fix PCIe register map
- and ranges
-Content-Language: en-GB
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>, megi@xff.cz,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michael.riesch@wolfvision.net, frattaroli.nicolas@gmail.com,
-        s.hauer@pengutronix.de, frank-w@public-files.de,
-        ezequiel@vanguardiasur.com.ar, yifeng.zhao@rock-chips.com,
-        jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221005085439.740992-1-megi@xff.cz>
- <CAMdYzYrEXEqOmMeozGBbAAvrujZcOxLh4VYOmu5DSjPWTS-5zQ@mail.gmail.com>
- <20221005220812.4psu6kckej63yo2z@core> <4679102.Wku2Vz74k6@phil>
- <CAMdYzYq3S2rR3Kb61irpV9xHYijNiJY0mkVnJwPrpXzxg_Zh9g@mail.gmail.com>
- <20221021153913.l5ry6v4mcnzcmj2v@core>
- <CAMdYzYpYC6ME_ZYE65UWq__i+rit6_os-+do+JLmEL7y-jKr9g@mail.gmail.com>
- <20221021193248.2he6amnj7knk4biu@core>
- <87edv0sxup.fsf@bloch.sibelius.xs4all.nl>
- <CAMdYzYp6ShLqKxdiAjaRFiRF5i+wzfKiQvwPMzyQLAutWZbApg@mail.gmail.com>
- <875ygbsrf3.fsf@bloch.sibelius.xs4all.nl>
- <5a8f9934-1959-7962-d575-e3c2f5bc6ade@arm.com>
- <CAMdYzYrXp1kgdRpBmnfiFrXcdkk6_oWozpywgCYbNo_MU+8+=A@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAMdYzYrXp1kgdRpBmnfiFrXcdkk6_oWozpywgCYbNo_MU+8+=A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96f7051b-e567-48ca-a29a-08dab675b122
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Oct 2022 10:43:02.5143
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k4w/3s24/vsNkuUhrK7p+vwsHUC5HrvYbtZw4oU5mrMOMoMP6kurf56f6BcLHVOu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7289
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,166 +132,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-10-24 21:16, Peter Geis wrote:
-> On Mon, Oct 24, 2022 at 7:05 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 2022-10-22 18:24, Mark Kettenis wrote:
->>>> From: Peter Geis <pgwipeout@gmail.com>
->>>> Date: Sat, 22 Oct 2022 08:19:57 -0400
->>>
->>> Hello Peter,
->>>
->>>> On Fri, Oct 21, 2022 at 4:52 PM Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
->>>>>
->>>>>> Date: Fri, 21 Oct 2022 21:32:48 +0200
->>>>>> From: Ondřej Jirman <megi@xff.cz>
->>>>>>
->>>>>> On Fri, Oct 21, 2022 at 12:48:15PM -0400, Peter Geis wrote:
->>>>>>> On Fri, Oct 21, 2022 at 11:39 AM Ondřej Jirman <megi@xff.cz> wrote:
->>>>>>>>
->>>>>>>> On Fri, Oct 21, 2022 at 09:07:50AM -0400, Peter Geis wrote:
->>>>>>>>> Good Morning Heiko,
->>>>>>>>>
->>>>>>>>> Apologies for just getting to this, I'm still in the middle of moving
->>>>>>>>> and just got my lab set back up.
->>>>>>>>>
->>>>>>>>> I've tested this patch series and it leads to the same regression with
->>>>>>>>> NVMe drives. A loop of md5sum on two identical 4GB random files
->>>>>>>>> produces the following results:
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
->>>>>>>>> fad97e91da8d4fd554c895cafa89809b  test-rand2.img
->>>>>>>>> 2d56a7baa05c38535f4c19a2b371f90a  test-rand.img
->>>>>>>>> 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
->>>>>>>>> 25cfcfecf4dd529e4e9fbbe2be482053  test-rand.img
->>>>>>>>> 74e8e6f93d7c3dc3ad250e91176f5901  test-rand2.img
->>>>>>>>> b9637505bf88ed725f6d03deb7065dab  test-rand.img
->>>>>>>>> f7437e88d524ea92e097db51dce1c60d  test-rand2.img
->>>>>>>>>
->>>>>>>>> Before this patch series:
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand.img
->>>>>>>>> d11cf0caa541b72551ca22dc5bef2de0  test-rand2.img
->>>>>>>>>
->>>>>>>>> Though I do love where this patch is going and would like to see if it
->>>>>>>>> can be made to work, in its current form it does not.
->>>>>>>>
->>>>>>>> Thanks for the test. Can you please also test v1? Also please share lspci -vvv
->>>>>>>> of your nvme drive, so that we can see allocated address ranges, etc.
->>>>>>>
->>>>>>> Good catch, with your patch as is, the following issue crops up:
->>>>>>> Region 0: Memory at 300000000 (64-bit, non-prefetchable) [size=16K]
->>>>>>> Region 2: I/O ports at 1000 [disabled] [size=256]
->>>>>>>
->>>>>>> However, with a simple fix, we can get this:
->>>>>>> Region 0: Memory at 300000000 (64-bit, non-prefetchable) [virtual] [size=16K]
->>>>>>> Region 2: I/O ports at 1000 [virtual] [size=256]
->>>>>>>
->>>>>>> and with it a working NVMe drive.
->>>>>>>
->>>>>>> Change the following range:
->>>>>>> 0x02000000 0x0 0x40000000 0x3 0x00000000 0x0 0x40000000>;
->>>>>>> to
->>>>>>> 0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x40000000>;
->>>>>>
->>>>>> I've already tried this, but this unfrotunately breaks the wifi cards.
->>>>>> (those only use the I/O space) Maybe because I/O and memory address spaces
->>>>>> now overlap, I don't know. That's why I used the 1GiB offset for memory
->>>>>> space.
->>>>>
->>>>> Meanwhile, I have an NVMe drive that only works if mmio is completely
->>>>> untranslated.  This is an ADATA SX8000NP drive, which uses a Silicon
->>>>> Motion SM2260 controller.
->>>>>
->>>>> So for me, a working configuration has the following "ranges":
->>>>>
->>>>> ranges = <0x01000000 0x0 0x00000000 0x3 0x3fff0000 0x0 0x00010000>,
->>>>>            <0x02000000 0x0 0xf4000000 0x0 0xf4000000 0x0 0x02000000>,
->>>>>            <0x03000000 0x3 0x10000000 0x3 0x10000000 0x0 0x2fff0000>;
->>>>>
->>>>> This also needs changes to the "reg" propery:
->>>>>
->>>>> reg = <0x3 0xc0000000 0x0 0x00400000>,
->>>>>         <0x0 0xfe260000 0x0 0x00010000>,
->>>>>         <0x3 0x00000000 0x0 0x10000000>;
->>>>
->>>> Now this is interesting. I've been reading up on PCIe ranges and what
->>>> is necessary for things to work properly, and I found this interesting
->>>> article from ARM:
->>>> https://developer.arm.com/documentation/102337/0000/Programmers-model/Memory-maps/AP-system-memory-map/PCIe-MMIO-and-ECAM-memory-regions
->>>>
->>>> TLDR: We need a low region (below 4g) and a high region.
->>>
->>> Well, that description applies to a specific ARM reference design.
->>> And it appears that the PCIe-RC used in that reference design does not
->>> support address translation.
->>
->> Indeed, that's not an "interesting article", it's just documentation for
->> some other system that isn't this one. In fact it's a system that
->> strictly doesn't even *have* PCIe; the reference designs are not
->> complete SoCs, and all that is being described there is the interconnect
->> address map for the parts which are in place ready for a customer to
->> stitch their choice of PCIe implementation to.
->>
->> The equivalent for RK3568 is that you *do* have "low" and "high" PCIe
->> windows at 0xfx000000 and 0x3xxx00000 respectively in the system
->> interconnect address map. How the PCIe controllers choose to relate
->> those system MMIO addresses to those to PCI Memory, I/O and Config space
->> addresses is another matter entirely.
-> 
-> Unfortunately we are working with insufficient documentation and
-> without the detailed understanding of a system integrator here. I'm
-> fully aware that the Neoverse N2 is not the rk3568, however
-> significant chunks of the rk3568 are based on ARM IP. Looking at how
-> ARM expects things to work by comparing their reference documents to
-> the hardware we have on hand is helpful in determining what we are
-> lacking.
-> 
-> The specific portions of the documentation that I found useful are not
-> the memory maps, but the generic descriptions of expected PCIe
-> regions. Combining those with other reference documents (unfortunately
-> most x86 based, but we have the unfortunate reality that PCIe has a
-> lot of x86isms to deal with) is quite enlightening.
-
-OK, but you're looking at the wrong place for that. The only actual 
-relevant reference would be rule PCI_MM_06 in the BSA[1], which says 
-that PCI memory space should not be translated relative to the system 
-address map. It is hopefully obvious that 32-bit devices need 32-bit PCI 
-mem space to assign to their BARs, thus it falls out that if there is no 
-translation, that requires a 32-bit window in system address space too.
-
-That is of course speaking of a BSA-compliant system. Vendors are still 
-free to not care about BSA and do whatever the heck they want.
-
-Thanks,
-Robin.
-
-[1] https://developer.arm.com/documentation/den0094/latest/
-
-> I've been pinging
-> various representatives of the IP and implementation on the mailing
-> list about these issues for about a year now with no responses from
-> the Designware folk. You have been pretty one of the only individuals
-> with the level of knowledge we need to respond and I thank you for
-> that.
-> 
-> Based on what I've read I suspect that at least one of the two
-> following statements is true:
-> a. Mark is correct that translation is broken in Rockchip's
-> implementation (unknown if this is a SoC or a driver issue)
-> b. We do in fact require IO and Config to be 32 bit addressable to be
-> fully compatible.
-> 
-> These issues are compounded in rk3588 where we have much smaller
-> regions in the 32bit space for PCIe, so a definite answer on the true
-> requirements and limitations would be quite helpful.
-> 
-> As always, thank you for your time,
-> Peter
-> 
->>
->> Robin.
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEtyenlzenRvZiBLb3psb3dz
+a2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gU2VudDogVHVlc2RheSwgT2N0
+b2JlciAyNSwgMjAyMiA4OjIzIEFNDQo+IFRvOiBKdW4gTGkgPGp1bi5saUBueHAuY29tPjsgZ3Jl
+Z2toQGxpbnV4Zm91bmRhdGlvbi5vcmc7DQo+IHJvYmgrZHRAa2VybmVsLm9yZzsga3J6eXN6dG9m
+Lmtvemxvd3NraStkdEBsaW5hcm8ub3JnDQo+IENjOiBiYWxiaUBrZXJuZWwub3JnOyBsaW51eC11
+c2JAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgWHUgWWFu
+ZyA8eHUueWFuZ18yQG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS8yXSBkdC1iaW5k
+aW5nczogdXNiOiB1c2Itbm9wLXhjZWl2OiBhZGQgd2FrZXVwLXNvdXJjZQ0KPiBwcm9wZXJ0eQ0K
+PiANCj4gT24gMjQvMTAvMjAyMiAwMToxNywgTGkgSnVuIHdyb3RlOg0KPiA+IHVzYiBwaHkgbWF5
+IGJlIHBhcnQgb2Ygd2FrZXVwIHNvdXJjZSwgc28gYWRkIHdha2V1cCBzb3VyY2UgcHJvcGVydHkN
+Cj4gDQo+IHMvdXNiL1VTQi8NCj4gDQo+ICJwYXJ0IG9mIHdha2V1cCBzb3VyY2UiIGlzIGFjdHVh
+bGx5IG5vdCBkZXNjcmlwdGl2ZS4gV2hhdCBkbyB5b3Ugd2FudCB0bw0KPiBzYXkgaGVyZT8NCg0K
+V2lsbCBjaGFuZ2UgdG8gYmUgIlVTQiBwaHkgbWF5IGJlIGEgc3lzdGVtIHdha2V1cCBzb3VyY2Ui
+Lg0KDQo+IA0KPiA+IHRvIGtlZXAgaXRzIHJlc291cmNlKGUuZyBwb3dlciBkb21haW4pIGFjdGl2
+ZSB0byBtYWtlIHVzYiByZW1vdGUNCj4gDQo+IHNwYWNlIGJlZm9yZSAoDQo+IHMvZS5nL2UuZy4v
+DQo+IHMvdXNiL1VTQi8NCg0KT2theS4NCg0KPiANCj4gPiB3YWtldXAgd29yay4NCj4gPg0KPiA+
+IFNpZ25lZC1vZmYtYnk6IExpIEp1biA8anVuLmxpQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIERv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNiLW5vcC14Y2Vpdi55YW1sIHwg
+NSArKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBk
+aWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2Itbm9w
+LXhjZWl2LnlhbWwNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2Iv
+dXNiLW5vcC14Y2Vpdi55YW1sDQo+ID4gaW5kZXggMjgyNGMxNzI4NWVlLi43YjcxZTMyZDFkZjAg
+MTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91
+c2Itbm9wLXhjZWl2LnlhbWwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvdXNiL3VzYi1ub3AteGNlaXYueWFtbA0KPiA+IEBAIC0zOSw2ICszOSwxMSBAQCBwcm9w
+ZXJ0aWVzOg0KPiA+ICAgICAgICB0aGUgVkJ1cyBsaW5lLg0KPiA+ICAgICAgJHJlZjogL3NjaGVt
+YXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZQ0KPiA+DQo+ID4gKyAgd2FrZXVwLXNv
+dXJjZToNCj4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL2Zs
+YWcNCj4gDQo+IFRoaXMgc2hvdWxkbid0IGJlIG5lZWRlZCwgYXMgaXQgaXMgYSBzdGFuZGFyZCBw
+cm9wZXJ0eS4NCg0KV2lsbCByZW1vdmUuDQoNCj4gDQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4g
+PiArICAgICAgU3BlY2lmeSBpZiBpdCdzIFVTQiByZW1vdGUgd2FrZXVwIGNhcGFibGUuDQo+IA0K
+PiBOb3cgeW91IGhhdmUgdG8gZXhwbGFpbiBpbiB0aGUgYmluZGluZ3Mgd2hhdCBpcyAiVVNCIHJl
+bW90ZSB3YWtldXAiLg0KDQoiVVNCIHJlbW90ZSB3YWtldXAiIGlzIGEgc3RhbmRhcmQgY29uY2Vw
+dCBpbiBVU0Igd29ybGQvc3BlYywgY2hhbmdlDQp0aGUgZGVzY3JpcHRpb24gbGlrZSAiaWYgdGhl
+IFVTQiBwaHkgY2FuIGRldGVjdCB0aGUgcmVtb3RlIHdha2V1cA0Kc2lnbmFsIHdoaWxlIHRoZSBz
+eXN0ZW0gc2xlZXAiIG1ha2Ugc2Vuc2UgdG8geW91Pw0KDQpUaGFua3MNCkxpIEp1bg0KDQo+IA0K
+PiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
