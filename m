@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CFE60C37F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 07:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C7E60C3E6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Oct 2022 08:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiJYFwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 01:52:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
+        id S231314AbiJYGjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 02:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230071AbiJYFwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 01:52:04 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6036DBB062;
-        Mon, 24 Oct 2022 22:52:03 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id f140so10937131pfa.1;
-        Mon, 24 Oct 2022 22:52:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hIosgv5purvdOHjHB0Bdm/xsYrKIRMZ14fsco2UYxnk=;
-        b=Gi0LqGujeeIHDVQVa56iRgjW+CI3P/VaODt++d1WhDW+E0Ql+uw8P7QiLdb5EKVxtU
-         /buJsSr4XGFfPVSn7bFH4r0seo1W1Y3V0D+O2p+hV4jFqX+NUK2d5zkFrFD+r0KKH0SC
-         lAz8b3loolLsYJC277CGRf6khkO3AF9WYUoQPdv8JCpvx+PAGSa0YQ3hAaefocawFLIX
-         h08NMopijzftxPlUZzLBC1fZmGjdZmsPmFOHFiiTWLPDmIjWAtOe8Y5ZvHap0MxIb7Zu
-         KFG6TOPr5uyTE4Et8IeR4w/dbHdTx+foft5trYjehD0l5FSZBrGfAU+QzyfLNwOY64Dm
-         rgMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hIosgv5purvdOHjHB0Bdm/xsYrKIRMZ14fsco2UYxnk=;
-        b=3XyLW5cJaJV56xfhHhWzIUqjmiX2pcCiJHNc9XV/7oYDlWwxjPn3jARlBV4onZvo0O
-         nmC5uq5qJfq/VBQVCWgdhEORasfzpuFbcQOXajxvyutoxBR+wfCijoYkZzQUr9Pq39I2
-         3n3wxMePGcshsO2SKCUDMB5lcscGXqr0SyiLA10JZhaOP3GSSX1Z/icCjOURPNfrXQG6
-         jCMgrwarGk2x8r73YOiFtXMMBOsTe7bYGl9RCw1Gbfv3LeT/upoHhGPOX30u1/ajsB8h
-         6bWO6L4DnjFlCPLIE9D+e3nDqU8aKEpkQOuoiaH8U56FV6G6qpSUC0/Xs4dA/A+Kzi4I
-         eH2Q==
-X-Gm-Message-State: ACrzQf0PBo5XUbB9JTbZob4IuX/Ews95QgmjTlKkNaDhrYicl0vJMh7a
-        Xd0l4v2AFs1ERrIW4f7LeiM=
-X-Google-Smtp-Source: AMsMyM5Yrz5n05HNZztnB0pQdKPHsHmLKVkt2d8mYs8HXJ1l2cDamvLiDiMe7LXO+RQoeZk++Djq0Q==
-X-Received: by 2002:aa7:810a:0:b0:55b:674d:d123 with SMTP id b10-20020aa7810a000000b0055b674dd123mr38050507pfi.52.1666677122845;
-        Mon, 24 Oct 2022 22:52:02 -0700 (PDT)
-Received: from localhost.localdomain.dhcpserver.bu9bmc.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id e126-20020a621e84000000b0056ba6952e40sm675644pfe.181.2022.10.24.22.52.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Oct 2022 22:52:02 -0700 (PDT)
-From:   Potin Lai <potin.lai.pt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231241AbiJYGjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 02:39:11 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22709147D17;
+        Mon, 24 Oct 2022 23:39:09 -0700 (PDT)
+X-UUID: 3cdc034a11d34d0193bbaedc53a61c63-20221025
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=tQobf7xDtt3s0PCmRp7MPfET49Bi1DCJ8ajNsUuFyIs=;
+        b=kj3Mq+CiCePf6Xqb1xJG+BIJ7YMsxNAYxlpyQslxZEcpLMeZUz71bRTWqwyw6kw5GOCalTMGcpM95t0aJbaHS1e79AKLMkNsEm/Wif60JMo3MQfnBOBu/pv6HaeGe/GoUMWcc0P/xqcFLmZLO7NO0tqsXVIu+Iw3o387GrMun7o=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:9a903fc1-5aa1-429f-98fd-044b19337204,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:62cd327,CLOUDID:1117026d-89d3-4bfa-baad-dc632a24bca3,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 3cdc034a11d34d0193bbaedc53a61c63-20221025
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1452619724; Tue, 25 Oct 2022 14:39:02 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 25 Oct 2022 14:39:01 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 25 Oct 2022 14:39:00 +0800
+Message-ID: <514697c381172b4baa011cc68ae8093c7517e0b2.camel@mediatek.com>
+Subject: Re: [PATCH v5 0/3] iommu/mediatek: Add mt8365 iommu support
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Patrick Williams <patrick@stwcx.xyz>,
-        Potin Lai <potin.lai@quantatw.com>,
-        Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH v2 1/1] ARM: dts: aspeed-g6: add aliases for mdio nodes
-Date:   Tue, 25 Oct 2022 13:50:46 +0800
-Message-Id: <20221025055046.1704920-1-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        Will Deacon <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        <devicetree@vger.kernel.org>, Fabien Parent <fparent@baylibre.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Markus Schneider-Pargmann" <msp@baylibre.com>,
+        <linux-mediatek@lists.infradead.org>, <iommu@lists.linux.dev>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
+        <libo.kang@mediatek.com>, <anan.sun@mediatek.com>
+Date:   Tue, 25 Oct 2022 14:39:00 +0800
+In-Reply-To: <20221001-iommu-support-v5-0-92cdbb83bbb8@baylibre.com>
+References: <20221001-iommu-support-v5-0-92cdbb83bbb8@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,44 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add aliases for mdio nodes so that we can use name to lookup the
-bus address of Aspeed SOC.
+On Fri, 2022-10-21 at 15:42 +0200, Alexandre Mergnat wrote:
+> Hi,
+> 
+> This series contains patches related to the support of mt8365 iommu.
+> Thanks for your feedback so far.
+> 
+> Regards,
+> Alex
+> 
+> Changes in
+> v5:                                                                  
+> - Fix name file in
+> mediatek,iommu.yaml                                          
+> - Rename defines to be more
+> consistent                                          
+> - Rework INT_ID_PORT_WIDTH_6
+> check                                              
+> - Link to v4: 
+> https://lore.kernel.org/r/20221001-iommu-support-v4-0-f1e13438dfd2@baylibre.com
 
-For example:
-root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio0
-/ahb/mdio@1e650000
-root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio1
-/ahb/mdio@1e650008
-root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio2
-/ahb/mdio@1e650010
-root@bletchley:~# cat /sys/firmware/devicetree/base/aliases/mdio3
-/ahb/mdio@1e650018
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
-LINK: [v1] https://lore.kernel.org/all/20221025024145.1561047-1-potin.lai.pt@gmail.com/
+For this series,
 
-change v1 --> v2:
-* move mdio aliases to aspeed-g6.dtsi
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Reviewed-by: Yong Wu <yong.wu@mediatek.com>
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index 0cc92874caa8..6f159ef1efbc 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -36,6 +36,10 @@ aliases {
- 		serial4 = &uart5;
- 		serial5 = &vuart1;
- 		serial6 = &vuart2;
-+		mdio0 = &mdio0;
-+		mdio1 = &mdio1;
-+		mdio2 = &mdio2;
-+		mdio3 = &mdio3;
- 	};
- 
- 
--- 
-2.31.1
 
