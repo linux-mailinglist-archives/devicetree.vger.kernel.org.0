@@ -2,131 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63CB260DBE3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 09:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B6460DBF0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 09:16:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233099AbiJZHOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 03:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55224 "EHLO
+        id S232489AbiJZHQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 03:16:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231937AbiJZHOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 03:14:10 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2083.outbound.protection.outlook.com [40.107.92.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C000BA905;
-        Wed, 26 Oct 2022 00:14:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bFPBgZvdSlvPs5mK8dHZkTf6iJV5BX5Lqueu3bk9eBQv4IRZh2UZ/W3oajJP3mIWbvJmVpKK3mH/OCpddJLDCZzM2gx6jsiHN0gypbiA1CkXaHZPGcoZCZTnbL+wyB3FoqGovWAX7pdEX+SII4ckxHZf/9ocf6I1fONwqLMI7p+V7y0eYXbtDHDaOW+MS9MuExTYGrdSQ+oDuRvoNEsd+bXAd68Zqx38rHXO3cPPAC9N7mJj0+sHq8jEQXd8M4K7VGnKFAQb0JSs4RthpetOf0cDyrJ7bvtgq7rG0R+Ly1qaiyFEXc+LddWwq8JOMUJRAjWsVscqbX4I0Nrt9D1MMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3bsa0b4nmGbMAwx3eSieZ7+X92IHcXdetaIs3jsV1TM=;
- b=Em46svjgoZ+hPiqwnIFlzx/sO0Oup5J9D/MjYiqY9/buvqFANzpGWcQS5r9znxnC5yzxPhUNl5anq3UhuGfsliEE+vcMXyDHgBmqwkX3AMG2NVc/DpGSkRdzcss77AebfpG8OBCD9kSHBGoO89nKAogc5n2n79nMrWpPvgOYFCYzGClHiUoPo8MYW7mHr1SRIzYVYGe/gJc4PHibZXnDv7jfOaf2TgyE8JwQzJpj5qrWhu8a2EUZ/ZMvOu+nMiWv/H9RreiRbcEYuAw8mipn88RHBfS4CrgEiVGBzYKekOKnKZ2qS4EJjWWR6FlrVjX879hVYh6tgSVzCyDQ++rElg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3bsa0b4nmGbMAwx3eSieZ7+X92IHcXdetaIs3jsV1TM=;
- b=JbpdlpCMHtU5yS/UbVLqLh0qDFqUza2kExwjodcg/jdCHU4uloWBkqyGlW3/5Cjv5rhrxKK6rFyGO6q/7n0UvQMW+eFgGrsoUxaQezQ4W0ljsE+1lo1vu2Ky+l1rvydw61gYbWKNZ6hEmKtE25rigsYCbqGotvnQWglE1SzgKEAqpnYMW3s4f2KZwFnngsr/X0byZ89h7KdcPuu3sty6xm43ZmwW6aCKPSBhEXllu+91mbUy+uVOwOmzbv1igtBWNr5cjcoN+X7SFMWqquZPgAcNbncdFLvhMagi/Pb2ednpXJcKXUgToHqhuBjcoRoBCEszy2fVI/4oGj1EScmgKw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- MW3PR12MB4393.namprd12.prod.outlook.com (2603:10b6:303:2c::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5746.28; Wed, 26 Oct 2022 07:14:05 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::c0e5:f111:3e59:7c66]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::c0e5:f111:3e59:7c66%6]) with mapi id 15.20.5746.023; Wed, 26 Oct 2022
- 07:14:05 +0000
-Message-ID: <f8eeeebc-e635-9c97-b97b-46df38f06002@nvidia.com>
-Date:   Wed, 26 Oct 2022 08:13:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 03/11] dt-bindings: usb: Add binding for Cypress cypd4226
- I2C driver
-Content-Language: en-US
-To:     Wayne Chang <waynec@nvidia.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        treding@nvidia.com, thierry.reding@gmail.com,
-        heikki.krogerus@linux.intel.com, ajayg@nvidia.com, kishon@ti.com,
-        vkoul@kernel.org, p.zabel@pengutronix.de, balbi@kernel.org,
-        mathias.nyman@intel.com, jckuo@nvidia.com
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, singhanc@nvidia.com,
-        linux-i2c@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-tegra@vger.kernel.org
-References: <20221024074128.1113554-1-waynec@nvidia.com>
- <20221024074128.1113554-4-waynec@nvidia.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-In-Reply-To: <20221024074128.1113554-4-waynec@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0508.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:13b::15) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
+        with ESMTP id S231706AbiJZHQF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 03:16:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA41398CB8
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 00:16:03 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1onade-00048m-FD; Wed, 26 Oct 2022 09:15:46 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 7F7C0109F4C;
+        Wed, 26 Oct 2022 07:15:43 +0000 (UTC)
+Date:   Wed, 26 Oct 2022 09:15:41 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/4] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20221026071541.ydvvtreum242he6w@pengutronix.de>
+References: <20221012062558.732930-1-matej.vasilevski@seznam.cz>
+ <20221012062558.732930-3-matej.vasilevski@seznam.cz>
+ <20221024200238.tgqkjjyagklglshu@pengutronix.de>
+ <20221025222237.GA4635@hopium>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MW3PR12MB4393:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f1ca8b0-8c19-49d2-f96e-08dab721aad7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6xCnBtsYB51sACIlzwq7Oh1hsyVfuMuAdg971vKViVQdtdqf3EBa+vY7ETTXaFnsaoptoN3JaEs1/fwk23OIljhpVKKSezDHVeCAZ2rNNpLZnYxrWNCE5L8nrXy33BeJpLu4tHTF81A4Bg2YG8zLpK2MdDPjdwpOWp7u4NtTLK7moUbBFX6A9KT+dFAlC/Oyog920giDW5kDFRDXwnCMJc2afx2LOgNLasw6GGY50Z0Y+09ThL+VDO57ZKrSoiSx9mNgwURJoFbO2HU2fgo8gJyB8rnDv2hHS7yfus+ngGm5sLhbh1lWSDfNZ+iH/ngRYpMSbh7/qupx+FUGBARlD66vbyd33zhE2bZ5KW0XqEGWJEODSREdG8GEgh2IA0RUCLNWPLvi+gssrUcLGMDbH4Cc1jAKWkcyawkw/0PgAIA6tN/h0+gmIGSC9TqvQcO/5YY7a11EkTgW89h26SimlIdBzST+DHEf0M4b794/TvzMqRkLZW8NplpUXOWYXuPWyW+VWjpIioM1MkTM3V3AQRYqX1S9zCtyy/x48eV1ZK/ajS2ZsH0W3owC1ZDkmlVQq6z61ceJcIfV3EEXSCV03cX8XnzE8jisdrkovxXK61shxXcDENLGlkn3qwu2PFmVswZvAKN57ezgVx0X75DVKoYutVQxvGSheNZ2F9lgxaOHVyOAmk/MOOu32d3uiWrrlSLwfvPTMvHrZblAL+fF/+bcOMhEORHR95bbDYPkxYw6u5Zq/ILvMtqXXULLXSgso18c1DhXTXhe8jrplsG0/ZZq7gyE7j4pn4XQBQihqnigqNjC0/hWLHKaDop8VbdKvWHQ8kvpWAot6CcsLbmzah7XgQkZlnBhPE6SKO4HeIvuxprB2sGe0TsqiFB9TFmScvkht4eKIH3NejRkFl3kcQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(376002)(136003)(346002)(39860400002)(366004)(451199015)(6666004)(478600001)(966005)(6512007)(53546011)(36756003)(38100700002)(6506007)(8676002)(316002)(6636002)(86362001)(921005)(31696002)(83380400001)(2616005)(186003)(6486002)(41300700001)(31686004)(8936002)(2906002)(66899015)(4326008)(5660300002)(66556008)(66476007)(66946007)(7416002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N2VLNlBLWTE0d0JQSG5tbUpHQ05vVmpHYWNSUXA0aW5KZkpKVFVhOWhPaWpE?=
- =?utf-8?B?dDZvSEVHVERMM2RvY3hTdzI0cWFHaDhpTWdJdHY3SUNxOGpnVnBLZzhUak1J?=
- =?utf-8?B?a09jdTlFQmtEL3o1aGl1Yy9NT2s4TDFuNWcrMEJVenR5QzBlWlljTktEcllx?=
- =?utf-8?B?MitmbkhCZTRvenBXNHNqRlZGNksrSDM5bVFtMmJLc0xEYmkyOTFlSFVWQk5V?=
- =?utf-8?B?VnB2emkxRFRPZHJMYm5WWXg2NU5BWHBqV3dIVzhJTTljdS9oWG1QZzZPWkUx?=
- =?utf-8?B?RVkvbjdQRVJpWGlHaXFyMkVkbG04eXFTUzlGK1RNZlprZ2FkT2ZadVZSdVY4?=
- =?utf-8?B?WkxoVjNuV0hKSWc5aDYxTUNuV0Z0dVFnMk1aM2s3QWFRTXBZWnNJSGx3Z01S?=
- =?utf-8?B?RnNMdWF4eGVqb285L0F2TEVlRDMwd0RMWk10SExGb0l2NUhaRkM5YUtkQ0Za?=
- =?utf-8?B?OUVVZEJBVTNBazhOSTI2eEg0eFdER1RqWG1iY3psdmRVQWJvdzRZU3Z0b3RR?=
- =?utf-8?B?dytmNXNOL01qY3dMVjdwZWg2VmRyL3N3d2c4YnBBL3JTV1J6V1hhK0FWQThi?=
- =?utf-8?B?KzZJYWVKS2U0Sm10ekFKZS9aSXZvSmNSWVBEODdZOTVFQ1owL3ZNTGpLNDg5?=
- =?utf-8?B?RFo4aDBKTmYyMHVTdUpnZ2UvYXdLWFl4ajFWZzNOYkJ1YXBZRGtCT3lBZE51?=
- =?utf-8?B?SkNMYmVvaWdONUdVaGdaNVZCNWsxZFBrMXBKVUhSNEF5S2pxOEdrZG5TbGxk?=
- =?utf-8?B?YVFlNmFlaTlmS0o5WGRnZU8rTjBJdEN0RW1MeUxobjdvM0ovczRIQVcxRk1t?=
- =?utf-8?B?bFNYVk00eDFiQkRLL0dHeGlHajQrNkN1OGxzWkRHWC9KOXJzUWJjbGJwZ2M5?=
- =?utf-8?B?dUtzL09VZkRtRVd4T3c3dDlsYVNnSXQyMGlGekpUNmw0UTBwNHBsN2U3bkpK?=
- =?utf-8?B?TXVrUVpYeklrZTc0cXJsS09hSXE3NnhyYVZwQ09jRXBXUDU0Rm5wUVlKVzRI?=
- =?utf-8?B?Wmt1eDl1dWRHVFNKM0U3UEYrSTZDSk9aT0xEUVdnbmdaN2hzbm5YbGVjT1JH?=
- =?utf-8?B?dFlzRzFnMjFPVStWUFFkbWJ6WEUwUzZRTzFLdDhkUHlpbmFuZmlzejhmcnVS?=
- =?utf-8?B?b3FvT2ZldGx6aUdDSHUvM1JQNUxpNlVqM3U1aXBIeGxzN3UxZm93U2Nwam5q?=
- =?utf-8?B?bmk4ZFZ5VzNPQnJ4OFFLYVArSmZSalZJYVNtSXRYekZJZlB1ekMzU21sc1Fw?=
- =?utf-8?B?dkpsQzNmVTkvSGhDdTlzMDNicm1LdGJxVG50VkdSaEI5Y2JCVEFhbnpXT3d0?=
- =?utf-8?B?RjhxQkJ4SU1UR09uWUpiOGhnbndVSmRLNDlCNU9nWDRaaWVHbEkxTW5OcEo5?=
- =?utf-8?B?cWpJVEE0YlpzZEVDbCtGOXhEWmNad2RNWW1tanFibWJIaHFQTExibkszeVdj?=
- =?utf-8?B?d0NPM3BSVFZtMWVmdTlFMkJxYlJUMDhiWThwcS9wR1IvY2oyOXpWVDBmUnVB?=
- =?utf-8?B?L0daV1JINFBuSE1zRndCcm0wMzZTdU9KdklVd0gwdVhqMlplZjkvcEZlV1Y1?=
- =?utf-8?B?VWFtbEtEK0FscWYrb2V6dFR6QTVGcmxwZW54OFJZdU53c0dLcWphdEl3TU9v?=
- =?utf-8?B?S0U5VWowaVgvenpIaGk0dGxYN1NCdDlIOUhrcDVVL2w1Z3JxdTN4QitnQSt1?=
- =?utf-8?B?MG84bFMxOTZ5TVgwbVY0MlNpZ2xZcVFQaXVGK0FuSnZBL3ZTUWR2bC9QNjFR?=
- =?utf-8?B?cld6V3ViT3IxQlVVRkY0OFovK1JwN3lhUTUzWm9XNmptbnVQa0R3cGd6aXZ5?=
- =?utf-8?B?eHZ5dVlGZUlFK2tvaXIvRTFTb1lyMkF0SHF1Wi8ybkdKbzYwcUFtbzFnUjdK?=
- =?utf-8?B?NVJYMS9kUml3M29JLzBpd2VJcnozS0NHLzZBMzV4UDBGc1YvTXp1Q3RXVnAv?=
- =?utf-8?B?RzRLK29Nc1JjQTJJdU5WdjN1NzM0eWlZY1BkdXJXdHg2eEdSaWhqYWlsODgv?=
- =?utf-8?B?MHlNaENlRjNkaWtLUm5XclhNbktQVUlVYTEwSXNDZk1lZVM5clYvc1lKNlhy?=
- =?utf-8?B?Qkh6VlJDZ2pOM0YxQ3g3ZGZRR3VZWllFMlRFMGZpQmZaY2M1NENHVVF2Zkdi?=
- =?utf-8?B?N3RrVTFtdWVuYjZXRDhhamduczk4cWlBeWpKY0o0QmlIOHF5VTFUaWlkZHJR?=
- =?utf-8?Q?+6EE+7R6rHDv6QbiDBZS/6L5cp/q9v0pcvt8ldctrprM?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f1ca8b0-8c19-49d2-f96e-08dab721aad7
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2022 07:14:05.7424
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UwbGT8N7Le+dP9x9z/LvodaE23WGvSbcUhvwVA7JzNPUdXZYgTteEEgSqqpTYHZQ54hlKuz+mD76/reKiOIwSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4393
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2l67orfrxkjniwtd"
+Content-Disposition: inline
+In-Reply-To: <20221025222237.GA4635@hopium>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -134,84 +66,122 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 24/10/2022 08:41, Wayne Chang wrote:
-> add device-tree binding documentation for Cypress cypd4226 type-C
-> controller's I2C interface. It is a standard i2c slave with GPIO
-> input as IRQ interface.
-> 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> ---
->   .../bindings/usb/cypress,cypd4226.yaml        | 86 +++++++++++++++++++
->   1 file changed, 86 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> new file mode 100644
-> index 000000000000..5ac28ab4e7a1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/cypress,cypd4226.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cypress cypd4226 UCSI I2C Type-C Controller
-> +
-> +maintainers:
-> +  - Wayne Chang <waynec@nvidia.com>
-> +
-> +description: |
-> +  The Cypress cypd4226 UCSI I2C type-C controller is a I2C interface type-C
-> +  controller.
-> +
-> +properties:
-> +  compatible:
-> +    const: cypress,cypd4226
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  reg:
-> +    const: 0x08
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  cypress,firmware-build:
-> +    enum:
-> +      - nv
-> +      - gn
-> +    description: |
-> +      the name of the CCGx firmware built for product series.
-> +      should be set one of following:
-> +      - "nv" for the RTX product series
+--2l67orfrxkjniwtd
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please add 'NVIDIA' so that it is 'for the NVIDIA RTX product series'
+On 26.10.2022 00:22:37, Matej Vasilevski wrote:
+> On Mon, Oct 24, 2022 at 10:02:38PM +0200, Marc Kleine-Budde wrote:
+> > On 12.10.2022 08:25:56, Matej Vasilevski wrote:
+> > > This patch adds support for retrieving hardware timestamps to RX and
+> >=20
+> > Later in the code you set struct ethtool_ts_info::tx_types but the
+> > driver doesn't set TX timestamps, does it?
+>=20
+> No, it doesn't explicitly. Unless something changed and I don't know abou=
+t it,
+> all the drivers using can_put_echo_skb() (includes ctucanfd) now report
+> software (hardware if available) tx timestamps thanks to Vincent's patch.
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/co=
+mmit/?id=3D12a18d79dc14c80b358dbd26461614b97f2ea4a6
 
-> +      - "gn" for the Jetson product series
+Yes, since that patch, drivers using can_put_echo_skb() support software
+TX timestamps. But you have to set the HW timestamp on the TX'ed CAN
+frame prior to the can_rx_offload_get_echo_skb() call for HW TX
+timestamps, e.g.:
 
-Same here please add 'NVIDIA' so that it is 'for the NVIDIA Jetson 
-product series'.
+| https://elixir.bootlin.com/linux/v6.0.3/source/drivers/net/can/spi/mcp251=
+xfd/mcp251xfd-tef.c#L112
 
-Rob, any concerns about this property in general? Unfortunately, ACPI 
-choose a 16-bit type for this and used 'nv' for the RTX product. I don't 
-find 'gn' for Jetson very descriptive but we need a way to differentiate 
-from RTX.
+[...]
 
-This is needed in the Cypress CCGX driver for the following ...
+> > > +	/* Setup conversion constants and work delay */
+> > > +	if (priv->timestamp_possible) {
+> > > +		u64 max_cycles;
+> > > +		u64 work_delay_ns;
+> > > +		u32 maxsec;
+> > > +
+> > > +		priv->cc.read =3D ctucan_read_timestamp_cc_wrapper;
+> > > +		priv->cc.mask =3D CYCLECOUNTER_MASK(timestamp_bit_size);
+> > > +		maxsec =3D min_t(u32, CTUCANFD_MAX_WORK_DELAY_SEC,
+> > > +			       div_u64(priv->cc.mask, timestamp_clk_rate));
+> > > +		clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift,
+> > > +				       timestamp_clk_rate, NSEC_PER_SEC, maxsec);
+> > > +
+> > > +		/* shortened copy of clocks_calc_max_nsecs() */
+> > > +		max_cycles =3D div_u64(ULLONG_MAX, priv->cc.mult);
+> > > +		max_cycles =3D min(max_cycles, priv->cc.mask);
+> > > +		work_delay_ns =3D clocksource_cyc2ns(max_cycles, priv->cc.mult,
+> > > +						   priv->cc.shift) >> 2;
+> >=20
+> > I think we can use cyclecounter_cyc2ns() for this, see:
+> >=20
+> > | https://elixir.bootlin.com/linux/v6.0.3/source/drivers/net/ethernet/t=
+i/cpts.c#L642
+> >=20
+> > BTW: This is the only networking driver using clocks_calc_mult_shift()
+> > (so far) :D
+> >=20
+>=20
+> I don't really see the benefit at the moment (I have to include
+> clocksource.h anyway due to the clocks_calc_mult_shift()), but sure,
+> I'll use cyclecounter_cyc2ns().
+>=20
+> Fun fact :-D I might look into the cpts.c
 
-https://lore.kernel.org/lkml/20220928150840.3804313-1-waynec@nvidia.com/
+The benefit is less variance in the kernel tree, use the same pattern to
+calculate the delay if both register width and frequency are unknown at
+compile time.
 
-Ideally, this should have been included in this series but was sent 
-before. We can always re-work/update the above patch even though it has 
-been queued up now.
+[...]
 
-Jon
+> >Regarding the timestamp_clk handling:
+> >
+> >If you prepare_enable the timestamp_clk during probe_common() and don't
+> >disable_unprepare it, it stays on the whole lifetime of the driver. So
+> >there's no need/reason for the runtime suspend/resume functions.
+> >
+> >So either keep the clock powered and remove the suspend/resume functions
+> >or shut down the clock after probe.
+> >
+> >If you want to make things 1000% clean, you can get the timestamp's
+> >clock rate during open() and re-calculate the mult and shift. The
+> >background is that the clock rate might change if the clock is not
+> >enabled (at least that's not guaranteed by the common clock framework).
+> >Actual HW implementations might differ.
+>=20
+> Hmm, I thought that pm_runtime_put() will eventually run runtime suspend
+> callback, but now I see that it will run only the idle callback (which
+> I haven't defined).
+> I'll remove the runtime suspend/resume callbacks.
 
--- 
-nvpublic
+If your clock stays enabled the whole driver lifetime you can use
+devm_clk_get_enabled(), devm will take care of the disable & unprepare.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--2l67orfrxkjniwtd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmNY3psACgkQrX5LkNig
+012JVQf+Kmtl9VwlhnbuQxUaQTfLZYcHTNpnfpLQqwdY3D0eVghiAKzQY5CJScB2
+nzwYYsTgJd4wFm2a8hJQkOmtvo2dyqiQlwzEFomuoj2z5qHfz+IQy3xyGyc1hUZZ
+tHFg40Rr7YuD/gp/uWZAP6+wF0fFlhFj5+NFiYrSOpSUQ7j+xos3Q19Xwsyl0r8z
+UV8q0gA1wKI1Ii3H5oTrokGiQY0nTxjsVLfxgv7ruy0l+sGGjWRtYUisg2xl1SZm
+pWVeFPvW52E+l9Wgkrevtcnxc2iDR5oWXBPy7sC8Z8BpUnjlFR1/2CB8U9o2II6h
+stAqS8Fy+tBB5RoHoS9DPDe9LFp97A==
+=lPhI
+-----END PGP SIGNATURE-----
+
+--2l67orfrxkjniwtd--
