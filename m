@@ -2,93 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C680D60E5ED
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 18:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D51560E61E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:04:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233986AbiJZQ6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 12:58:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47654 "EHLO
+        id S234101AbiJZREA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 13:04:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233951AbiJZQ6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 12:58:00 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA104A7AB0
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:57:59 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id s17so11005117qkj.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:57:59 -0700 (PDT)
+        with ESMTP id S234115AbiJZRD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:03:57 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58253B48A6
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:03:56 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id cr19so10428175qtb.0
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:03:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aDHp0LO4ebRzQFErfPNEMqx5O4CaTBDIkwZQBMq/Dg4=;
-        b=ArijeelUJ4PnCB2tHC2NEtSYiuXym+iw0HWEI1W1dBOm7EXblIcG21uFbiGLvzrDL1
-         rfJVmY+nvaFoZPQhr7Zs12QdvtEOelzAlDr277gLSNfTv9S4djxu+842lquiHvrwb4ht
-         IH5PJvqvphEJ9nJPke9o2WCPponWeEuyzo9qWj9HfTG52pbGFTGYkVhIkIptjcxUS79Z
-         a53cb1j2OE0FpAxO4hf0p4flfGoIhfoa2mERzDv1V0130kmsOETXwW0M1RVwYBgDcouq
-         S5Zebg4VM0ErgLbTzhvMJSbH7sv5bfZCloMq2NaxKwbSnpy0WwjPaL9bV1myFew4LVZr
-         iTLw==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9ROnzP60siuGiHzqktFDOH9iIayLn915GOnQp0HlYMk=;
+        b=WQN/OgLrj+21hWgl0AVRGD2GRCYZM/+eVGjYLm+PL0W+/M5AYvJu2JA3QwOeSWqUG3
+         yZoYkar/trbILSiiM454yG5TDe7VG2jn32cernhij6R+PYvCKZinC+eAsc/Yigm6Zpyq
+         WOZ6hs3eLa8DBEWAvSBYP3gZRa4KfvDpOmig9dkbs9+BLfr+Bmkl5nLAD5lqVdSarHlP
+         PbpaWM+2UySH0L6qnzlnj/fCp1G6BRupJxXGDheKcJCbgtIMEbW3hJFwD0Tj0t+TCagE
+         U+EwMOH7aqsGXgcc58irIvTsaPEPo1bVQcBnKQssg4qUJIw/fTKURsblVC2YeC2TlzlQ
+         dOIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aDHp0LO4ebRzQFErfPNEMqx5O4CaTBDIkwZQBMq/Dg4=;
-        b=GnCDxDXqWLDiWE6T35DO/8OMnLBPU69wxGbkvBQ0UnCosm6WunJF/8KUIxYHl6iZpH
-         tVnwdvjpJpK21+4zj+1tSdDJXDIQpFauoDAUn9s1uANiAMTx7JEvbcqMMeKM23Pj2gAE
-         yhxOlH1YJcHZdGlztP75zWUZwihMHjpFFFHL/c36T1tcFj8qHdlCQuuY3q+BezNqATD2
-         OYTJE9nkJ7RAF3TbKD6CagsgI6PTwVUGPDB6ZlfU7Apxm0nKbaOu1G6sxjmFGOLBfQtL
-         5JUvLncyyc25lADOL7ev6jZrNqqE7rPR/lTSr9RbPajjitRx3v8eFM7oSRngkBkdxP2M
-         OUQQ==
-X-Gm-Message-State: ACrzQf1jj42vQOpUZj4iPvfG2PzKGFP7Gc1qHIvmwaBCZuV0JrZThAbP
-        GakxgF9rHyinSR760rFLImzWERlHC4yBMw==
-X-Google-Smtp-Source: AMsMyM4L31N5v5Z/OJ+Ql1auenm0qxCUxsxrMOlHlUbzzY3cECrNBwFfxUJnIRShJRMOcirE+fzN4w==
-X-Received: by 2002:a05:620a:2189:b0:6e9:856f:944a with SMTP id g9-20020a05620a218900b006e9856f944amr31425798qka.322.1666803478643;
-        Wed, 26 Oct 2022 09:57:58 -0700 (PDT)
-Received: from krzk-bin.. ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id g21-20020a05620a40d500b006ee8874f5fasm4360759qko.53.2022.10.26.09.57.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 09:57:57 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: qcom,pmic-mpp: make compatible fallbacks specific
-Date:   Wed, 26 Oct 2022 12:57:46 -0400
-Message-Id: <166680346261.49767.16285909952987662463.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220908080703.28643-1-krzysztof.kozlowski@linaro.org>
-References: <20220908080703.28643-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9ROnzP60siuGiHzqktFDOH9iIayLn915GOnQp0HlYMk=;
+        b=7vPhSS+jct05eSceiipv1zwn1vWAv7pSIZj0cPXHABaCGITWqAVkO9na9ekeQQnm5N
+         jMDTmbitDyWUazRM4/OQt0Uo2Uf+OZvmCiQ2/hZ9sBoa6p5exHDe2hvgIhidnuX9nvip
+         GYjKeTcTZKLuoOjFhgkEQzqJDnGSkQsW7WElTtXh7lVJKxiVDjHTV62+gqXquIv39cqz
+         7ODyBWBoh+DYwAl4lQ6Z6rqFp+IRKqMYT4iQvLtOxWoYO054ZAoWeepwa/yx2kXIaGVv
+         UYbc8IlLfLsMgUimmVwab9bovuHuC09a4zyT+9CFBVOzt2cn1s0kq/fw0Jm53tQ7NLG+
+         eSWg==
+X-Gm-Message-State: ACrzQf0+DpfMF5fahw2vFAfIn/FCMzZMuJ0GntlXgWm28uzvriIHOK2u
+        0FlUl8qUt8rUKqWY01+KpWU32iMsC6ez5A==
+X-Google-Smtp-Source: AMsMyM4/C8rJdAsxQ9fxA3y4D0gF4T14Lak//zBKHECuv+eNLlugXnt6NnEZ+GqZGk9vdGO2+bKo8w==
+X-Received: by 2002:a05:622a:1713:b0:39c:e41e:2b27 with SMTP id h19-20020a05622a171300b0039ce41e2b27mr36484122qtk.45.1666803835511;
+        Wed, 26 Oct 2022 10:03:55 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id g21-20020a05620a40d500b006ee8874f5fasm4370163qko.53.2022.10.26.10.03.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 10:03:53 -0700 (PDT)
+Message-ID: <8489ce0a-3278-5509-4f82-f3d9d5ddd4c0@linaro.org>
+Date:   Wed, 26 Oct 2022 13:03:52 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 1/4 v5] dt-bindings: memory: Factor out common properties
+ of LPDDR bindings
+Content-Language: en-US
+To:     Julius Werner <jwerner@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20220930220606.303395-1-jwerner@chromium.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220930220606.303395-1-jwerner@chromium.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 8 Sep 2022 10:07:03 +0200, Krzysztof Kozlowski wrote:
-> Instead of allowing compatibles followed by any fallback (for SPMI or
-> SSBI PMICs), make the list specific.
+On 30/09/2022 18:06, Julius Werner wrote:
+> The bindings for different LPDDR versions mostly use the same kinds of
+> properties, so in order to reduce duplication when we're adding support
+> for more versions, this patch creates a new lpddr-props subschema that
+> can be referenced by the others to define these common parts. (This will
+> consider a few smaller I/O width and density numbers "legal" for LPDDR3
+> that are usually not used there, but this should be harmless.)
 > 
-> 
+> Signed-off-by: Julius Werner <jwerner@chromium.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Applied, thanks!
+Julius,
 
-[1/1] dt-bindings: pinctrl: qcom,pmic-mpp: make compatible fallbacks specific
-      https://git.kernel.org/krzk/linux-dt/c/7ec006642590033e2b07eeccf57134751acea03e
+For the future, write cover letter which describes why you are doing
+this. You explained the "why" some time ago in responses, but all such
+information should be in cover letter (plus the applicable part in the
+individual patches).
+
+Grepping through past emails to find "why" is unnecessary burden.
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
