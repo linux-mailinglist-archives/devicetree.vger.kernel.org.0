@@ -2,66 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D320F60D984
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 05:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E8960D9B8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 05:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232740AbiJZDEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 23:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53576 "EHLO
+        id S232201AbiJZD0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 23:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232865AbiJZDDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 23:03:11 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A655D8274F;
-        Tue, 25 Oct 2022 20:03:06 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8Bxfdppo1hjPIUCAA--.10179S3;
-        Wed, 26 Oct 2022 11:03:05 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxPuBio1hjWR0FAA--.19405S4;
-        Wed, 26 Oct 2022 11:03:03 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S232648AbiJZD0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 23:26:44 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914D376566;
+        Tue, 25 Oct 2022 20:26:42 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29Q3JY1B026825;
+        Wed, 26 Oct 2022 03:26:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=bWEWAH0sB2fQPU5zUpYsf4J0X01yhwE63KSa57l8S8k=;
+ b=ZUZTgmK4DTQ4i70Ekrv4YaeG0Otg3JRMta8NKjfv6v+HHpWaE+KUt7rSQDtVAwH95Ui7
+ C1XYmTVF+KBt9wL+qkflwPm3G5avbf5Xe8ZtqIAHfzAu8Tn9VjrGkfElawpXBpakJLsu
+ ujLpmPYntVPtpPSvFbh0N1/Dg7ZNUhWnXpcU30uyiSJJLQ2Q7F3yTc2cpU5G2GkSA7V7
+ y7TwalN00HrnmZFEjTFWONuFu0RxasmpCVpLG0VKR1GrQTyqdfnmyYbeZttVPfA5Ho+P
+ rJPTWCHXS/l2kx131hyDdMxbY5LIkVCqqLGcSXkoMULCVX6A9xkORCPfA/CWxw97s3pQ 9w== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kebr9t1ys-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Oct 2022 03:26:32 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29Q3QVlx010992
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Oct 2022 03:26:31 GMT
+Received: from th-lint-050.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Tue, 25 Oct 2022 20:26:30 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 3/3] dt-bindings: clock: add loongson2 clock
-Date:   Wed, 26 Oct 2022 11:02:56 +0800
-Message-Id: <20221026030256.30512-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221026030256.30512-1-zhuyinbo@loongson.cn>
-References: <20221026030256.30512-1-zhuyinbo@loongson.cn>
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        "Kuogee Hsieh" <quic_khsieh@quicinc.com>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 00/12] drm/msm: Add SC8280XP support
+Date:   Tue, 25 Oct 2022 20:26:12 -0700
+Message-ID: <20221026032624.30871-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxPuBio1hjWR0FAA--.19405S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4kJw4fKFyfWF1kuFg_yoW5GrWrpF
-        nxC345GryIvF17Zws5Ka4xC3Z5Za1kCF17ZFnrAa42kr98G3W5XF17KryDZa9rAFy7Za9r
-        ZFyxCr4UCa18Cr7anT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bfkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Xr0_
-        Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
-        CTnIWIevJa73UjIFyTuYvjxU2iFxUUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: uk3rTNuHFY8gANdHkA3D-aZJXoZR13uU
+X-Proofpoint-ORIG-GUID: uk3rTNuHFY8gANdHkA3D-aZJXoZR13uU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-25_15,2022-10-25_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ priorityscore=1501 malwarescore=0 phishscore=0 impostorscore=0 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2209130000
+ definitions=main-2210260016
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,98 +83,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the loongson2 clock binding with DT schema format using
-json-schema.
+This introduces support for the SC8280XP platform in the MDSS, DPU and
+DP driver. It reworks the HDP handling in the DP driver to support
+external HPD sources - such as the dp-connector, or USB Type-C altmode.
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/clock/loongson,ls2k-clk.yaml     | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+It then introduces the display clock controllers, mdss, dpu and
+displayport controllers and link everything together, for both the MDSS
+instances on the platform, and lastly enables EDP on the compute
+reference device and 6 of the MiniDP outputs on the automotive
+development platform.
 
-diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-new file mode 100644
-index 000000000000..6cc6e0755735
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/loongson,ls2k-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson2 SoC Clock Control Module
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+description: |
-+  Loongson2 SoC clock control module is an integrated clock controller, which
-+  generates and supplies to all modules.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-clk
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: 100m ref
-+
-+  clock-names:
-+    items:
-+      - const: ref_100m
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      The clock consumer should specify the desired clock by having the clock
-+      ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-+      for the full list of loongson2 SoC clock IDs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ref_100m: clock-ref-100m {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <100000000>;
-+        clock-output-names = "ref_100m";
-+    };
-+
-+    clk: clock-controller@1fe00480 {
-+        compatible = "loongson,ls2k-clk";
-+        reg = <0x1fe00480 0x58>;
-+        #clock-cells = <1>;
-+        clocks = <&ref_100m>;
-+        clock-names = "ref_100m";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f01d60cd5c3b..f61a431ad8ca 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11911,6 +11911,7 @@ LOONGSON2 SOC SERIES CLOCK DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-clk@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
- F:	drivers/clk/clk-loongson2.c
- F:	include/dt-bindings/clock/loongson,ls2k-clk.h
- 
+
+The patches was previously sent separately, but submitting them together
+here as they (except dts addition) goes in the same tree.
+
+Bjorn Andersson (12):
+  dt-bindings: display/msm: Add binding for SC8280XP MDSS
+  drm/msm/dpu: Introduce SC8280XP
+  dt-bindings: msm/dp: Add SDM845 and SC8280XP compatibles
+  drm/msm/dp: Stop using DP id as index in desc
+  drm/msm/dp: Add DP and EDP compatibles for SC8280XP
+  drm/msm/dp: Add SDM845 DisplayPort instance
+  drm/msm/dp: Implement hpd_notify()
+  drm/msm/dp: Don't enable HPD interrupts for edp
+  drm/msm/dp: HPD handling relates to next_bridge
+  arm64: dts: qcom: sc8280xp: Define some of the display blocks
+  arm64: dts: qcom: sc8280xp-crd: Enable EDP
+  arm64: dts: qcom: sa8295-adp: Enable DP instances
+
+ .../bindings/display/msm/dp-controller.yaml   |   3 +
+ .../bindings/display/msm/dpu-sc8280xp.yaml    | 287 ++++++
+ arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 244 ++++-
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  49 +-
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 838 ++++++++++++++++++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 217 +++++
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c |  18 +
+ .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.h |   3 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |   2 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
+ drivers/gpu/drm/msm/dp/dp_display.c           | 135 +--
+ drivers/gpu/drm/msm/dp/dp_drm.c               |   1 +
+ drivers/gpu/drm/msm/dp/dp_drm.h               |   2 +
+ drivers/gpu/drm/msm/msm_drv.h                 |   1 +
+ drivers/gpu/drm/msm/msm_mdss.c                |   2 +
+ 16 files changed, 1747 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc8280xp.yaml
+
 -- 
-2.31.1
+2.37.3
 
