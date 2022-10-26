@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A293F60E3D0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E70560E3D6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:55:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232823AbiJZOyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45196 "EHLO
+        id S234354AbiJZOzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233973AbiJZOys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:54:48 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A19611832
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:54:46 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id bb5so10024224qtb.11
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:54:46 -0700 (PDT)
+        with ESMTP id S234023AbiJZOzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:55:42 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE594DF19
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:55:40 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id hh9so10022910qtb.13
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:55:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=maWypIlUNRQImlFt8IOBRCfQffbBnX1XZA77vfFeGis=;
-        b=x0boBOpFEuAAbdJJdBwPBV2y6SFbtFG9IIaMdbFhxC2An9hMa+mfJO/wnc4rJPYge2
-         5SyC4VtTZNN9Z8IdkLfFb0bup9LZ+XgfE6XjXPUaAPXgBsxmROJn+N/tG/lsfOq6NKLI
-         mF5lEa43cBOw3xXyb8vBALIE+KmPj+Jk7r5qzZ9JpEayYHrck5J3jUTuB+vSPvYyCGUi
-         ZbqEddMoi37IfN90kdLeVvBdU+C6j7cAm7OIh9wqW9K8wzRhQi/qxrfhLamRomVnfi5S
-         0Z3agm5/qvLHrlDD3ViI9oqu20yBKB3yWCwA+BFLwb4CYChLTiVEAPtM4rXi3SkXJWRd
-         TlMw==
+        bh=e3lqNi3RbqgpuL1HhrQjDmFY0qPGdGmAhxHwivSb/T8=;
+        b=Gcb8FjMs4ySz6J+pR+J1Mo/EPLeUu24ZaxXMLXfj+jAWgYMTPDfUxiUow8fZpQ+i8I
+         9h34U92YQK5UR2zLTk97+OU7cXC0yJaTq8Y6OTGdTaSLKD2KKVd26WHoL5IVUPH3J+QO
+         7XrFg5T6yXwvOrbfOi4B8fZL1i1mh9My6ry+pAxcIgfz4Kmc49O8OFQiBPCPtRT5FdYV
+         Ju34rxsPx5/4VRT7Mqt81L7wwaB03Y2rpFkyX0cLpzgH3QQVx6TatZYdm+J0ipP0BD8h
+         pif4Orsgp4D/e3eyQypKmhjvH+Ss1Gu/8G2QEVmIZx0R3CvTT/JHI/95xR9DQe1nFnsO
+         vlhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=maWypIlUNRQImlFt8IOBRCfQffbBnX1XZA77vfFeGis=;
-        b=WqSWejegpRyEp12t2HjRUFylKtBEmgPH6ZCh/uiX51dUyBOD+EJ4BtriU1ngTrgonj
-         Gt25miXjyEPNRLv0nbHoehMD4MkxSgQkmenTb6pPG+rUE9Qi/D8kFHYBN9QTZUXelPxk
-         HQQOdYFBmKq2c1LEC9OaziBzRUIUQpYTQSr7i75kRmJV42+L5ncbQpCown0HT/fc1tQL
-         Xfiv5nBu5Im1r0k4UevXaEaEQKaiwyEUiF3+0E4uR4v69sDzAzXHo1TEBcbJZICwzuiF
-         0U78aJRqRftMvdpDXsovyn7wMdI3PmtAUFW9RC2KWCDFXxgtzKIyqj3LGiZoYTJkx4tu
-         L/gw==
-X-Gm-Message-State: ACrzQf3yYNfxQMtoeNyH55WJRpEp+Wl5Qwbgg8hzCZp8Z51VUVMyYwGF
-        qPZ+YZq4r0/4asFdvWVd+RM6uQ==
-X-Google-Smtp-Source: AMsMyM5V/3LE82C/jHm/q6UNMC47f/vDs71jqDRMUHg476+Ylo4FUg/rGSzbf0vqzwmGIfpbKKes4w==
-X-Received: by 2002:a05:622a:10b:b0:39c:e3ae:b790 with SMTP id u11-20020a05622a010b00b0039ce3aeb790mr37715488qtw.306.1666796085685;
-        Wed, 26 Oct 2022 07:54:45 -0700 (PDT)
+        bh=e3lqNi3RbqgpuL1HhrQjDmFY0qPGdGmAhxHwivSb/T8=;
+        b=f27SHT2FsLv641ft1TzKI2VGpByeEnuxK2vR1mA1Gr7xqIyCkx7cMYSUfbgxZQttqd
+         dK+GdY8iuedWrSksjRQR1ANqVGZQ2IMUoDPabY18Oa8c7aKsFxvmbH8c9IS86MvJrmQu
+         Cw3avbSZBsrHWKdQ5hBpdU8aR17g3mi3nZ5hmOd0XJrKvr3QskwIKm3iEeHzu9iwqND3
+         UfmcUv/7jrhJluMIkqgxMFCzzGGZ52zEErQxPcBQitEMFhbhu5I7RMJRpqQ0UotWZxVA
+         dMOPj6FfC46kIKpTrA18CvViBX3UyPkR31xtscjV538epcmDnA26wBlYXmvCrtC2sGad
+         GTkg==
+X-Gm-Message-State: ACrzQf2x/P+0sxC7+apyOan5Z+83owFcEcU0XczTQZmbkPDLqsoN7+0G
+        +QAk9LOzkhPf8n3+rJ5SngiKSQ==
+X-Google-Smtp-Source: AMsMyM7j/ZVDc5l9UFuHrdwBCBzkxBteTzFIJOBIUZKFvQpGoW8iRFKuzC3SUR7OGcb+XCilbIai4A==
+X-Received: by 2002:ac8:7f41:0:b0:39c:f34f:feca with SMTP id g1-20020ac87f41000000b0039cf34ffecamr36575709qtk.644.1666796139618;
+        Wed, 26 Oct 2022 07:55:39 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id bj7-20020a05620a190700b006bb87c4833asm3903320qkb.109.2022.10.26.07.54.43
+        by smtp.gmail.com with ESMTPSA id w27-20020a05620a0e9b00b006f16148fa96sm4007204qkm.91.2022.10.26.07.55.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:54:44 -0700 (PDT)
-Message-ID: <8ff8ca86-3e6a-c690-c2ac-49d978ff6669@linaro.org>
-Date:   Wed, 26 Oct 2022 10:54:43 -0400
+        Wed, 26 Oct 2022 07:55:38 -0700 (PDT)
+Message-ID: <853acb94-ee52-e776-2e0e-08ef837bf02d@linaro.org>
+Date:   Wed, 26 Oct 2022 10:55:36 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 05/11] dt-bindings: thermal: k3-j72xx: elaborate on
- binding description
+Subject: Re: [PATCH v2 06/11] dt-bindings: thermal: k3-j72xx: conditionally
+ require efuse reg range
 Content-Language: en-US
 To:     Bryan Brattlof <bb@ti.com>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -72,15 +72,15 @@ Cc:     Keerthy <j-keerthy@ti.com>, Linux PM <linux-pm@vger.kernel.org>,
         LKML <linux-kernel@vger.kernel.org>,
         LKML ARM <linux-arm-kernel@lists.infradead.org>
 References: <20221025191515.9151-1-bb@ti.com>
- <20221025191515.9151-6-bb@ti.com>
+ <20221025191515.9151-7-bb@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221025191515.9151-6-bb@ti.com>
+In-Reply-To: <20221025191515.9151-7-bb@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,14 +88,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/10/2022 15:15, Bryan Brattlof wrote:
-> Elaborate on the function of this device node as well as some of the
-> properties this node uses.
+> Only some of TI's J721E SoCs will need a eFuse register range mapped to
+> determine if they're affected by TI's i2128 erratum. All other SoC will
+> not need this eFuse range to function properly
 > 
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
+> Update the bindings for the k3_j72xx_bandgap thermal driver so other
+> devices will only need two register ranges
+> 
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
