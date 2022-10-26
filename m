@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 710DD60E98B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0229A60E999
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234094AbiJZTsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 15:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56302 "EHLO
+        id S234720AbiJZTvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 15:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiJZTsy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:48:54 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95001767A
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:48:53 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id u2so14593925ljl.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:48:53 -0700 (PDT)
+        with ESMTP id S234717AbiJZTvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:51:09 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A51B900C7
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:51:07 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id o4so18936544ljp.8
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:51:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IcF7nC6qZeFscVULWcDXtlNjrTcWvwqdBFLX1fChCl0=;
-        b=EKiJC2wvtyc1pnGNDD0QLOFeRSr1ERfSurDZO3BdCMbQoSuB/yzO/PjN/0+B3pB9SP
-         2cNy7mplk1MfulhWHanisX3xPgegT3DlKqsTJ8N84q7J1zSBwzCft3tKfGVNOH7tM7DQ
-         EuukqjcPoafyRLO1ci85aJAXy2HtYiv+3lvQo=
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kl2nAO5gy8gHX4P+zkYYuzR2j2HMszdyI0HmA3G3Bnc=;
+        b=R1stc9QNfLnbxcxfkLORrgbpZ/mok3CtKuqE8VQVvzf3iIbPBg7c94FRZfAVCa6y7t
+         ya0/7JuIltoLG9E2HdFQZyweeZT8l01mXCHveZpdhKiEISaNMy7qvRjIacjULL46fgHD
+         2Y0+7JXBqQqUPBZCExLJiKTNo0/G6F0BTa1jY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IcF7nC6qZeFscVULWcDXtlNjrTcWvwqdBFLX1fChCl0=;
-        b=HVZmLp7K5BALyIsN7YrxAoskVAGlEDVpSDTW245SKL3zD0DSIixEkv8ZYv9CLUtxrx
-         +nn4xxiVLlOEVP0TpNQQVlinAuZ3erKExr1KBUuXWXaa6SAZp9UAADdQH9pkVEA0b+nL
-         SzFkQHi13HZlXH2Gbou+IrXm/ijDyrQ5Hntj3hbk7offFJ3YWwP2iZVSlnPqztlnLazJ
-         W+/KYPZ6DZLfHrCNQ6x1WgutVKSx9QQ4K8DG+TvYxoDA+IhvlsLxVTBOiBzq5tynYtIk
-         jwiKJlO8Mld5aW4EUgUpPl7nnz5wxOEWOqKjDFHBTfCEZ2RNEfdsczoaUcl2OsCUf0CU
-         1OOg==
-X-Gm-Message-State: ACrzQf2sb8bd/Armogfl16pNmbB5I0fP0H+ZOmhHxZ2RM4Tm3voCFicN
-        9s50R9LXZTVfDj3uyYXJPpI7fdvGG4o5NWq/wyCiFw==
-X-Google-Smtp-Source: AMsMyM5oma+Er50gNfY2cB0Oq1hTIo8FlcK+IHcNScdvKqWoTxFq43C3FsNqIhwDSfDNdd3EhE3wM1lS6CydgPL3c3E=
-X-Received: by 2002:a05:651c:1111:b0:26f:eb56:5844 with SMTP id
- e17-20020a05651c111100b0026feb565844mr17861711ljo.4.1666813731908; Wed, 26
- Oct 2022 12:48:51 -0700 (PDT)
+        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Kl2nAO5gy8gHX4P+zkYYuzR2j2HMszdyI0HmA3G3Bnc=;
+        b=UNF/qlLoGIqoE2D2y55CMgKEXYIEjx8f0mLHMhRLIqcj0HGL3FcpANdgJfbWFAzNcl
+         XV5qXMOaR8yjAq4NBn+8Ls/9nvnRBev5jFAKCKquFzIpVXw3IC4jQ6U8UFg8z0l1p/mt
+         pWO+JOrRHwPysWO+V/X4eCYTYWNxY1z/+bWR7XeByZbe09u3QBW0jQV4PZDNIxYr2UTk
+         bysIwMqNeNxUPKoormQhQJTU23Zd+DqytinWCCUg3/HGShhxbE95ydMu68NkjKSEKrJ1
+         tCiJ5j3nfulb+BsBmpM3izoYfSUQR5eppUs8N00gUd4NaFKRKC+/ulcd3kjcdPRflvtT
+         Gpwg==
+X-Gm-Message-State: ACrzQf1vo8LDYB6GfmbZN4BhwMfxGqYG0fnv5f+5O6WtcXIBcrfL3OAk
+        +JAWFiGgOf3isYsrSUp/KN8J6dgTf6HsS2jYfK5DQQ==
+X-Google-Smtp-Source: AMsMyM55CS75cu8NCEEPadabnoMEL99YmG6yPMjuNP5NL1tM/On6r7BFU8Sbpa+YufOLkxQaZK5M9EqTtc6+ppTty1w=
+X-Received: by 2002:a2e:a98b:0:b0:26f:c755:ae8e with SMTP id
+ x11-20020a2ea98b000000b0026fc755ae8emr16098044ljq.27.1666813865392; Wed, 26
+ Oct 2022 12:51:05 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 26 Oct 2022 15:48:51 -0400
+ HTTPREST; Wed, 26 Oct 2022 15:51:04 -0400
 MIME-Version: 1.0
-In-Reply-To: <20221025164915.1.I38e2545eda2b3bd3fef6b41c98f451e32851ae70@changeid>
-References: <20221025164915.1.I38e2545eda2b3bd3fef6b41c98f451e32851ae70@changeid>
+In-Reply-To: <20221020225135.31750-2-krzysztof.kozlowski@linaro.org>
+References: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org> <20221020225135.31750-2-krzysztof.kozlowski@linaro.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Wed, 26 Oct 2022 15:48:51 -0400
-Message-ID: <CAE-0n53uR6WrkTXs-tWgd-jpFB8e776hX-Sv+WcZoAY4H9W5AQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Villager doesn't have NVME
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
+Date:   Wed, 26 Oct 2022 15:51:04 -0400
+Message-ID: <CAE-0n51d82iShZKanS6e+-yrctm03k+w6HPm=g8B+1SKTN_C2g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7180-trogdor-homestar: fully
+ configure secondary I2S pins
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
@@ -71,12 +73,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2022-10-25 16:52:39)
-> The sc7280-herobrine-villager derivative doesn't have NVME enabled so
-> we shouldn't mark the PCIe nodes as "okay" since they're just for
-> boards that have NVME.
+Quoting Krzysztof Kozlowski (2022-10-20 15:51:33)
+> The Trogdor Homestar DTSI adds additional GPIO52 pin to secondary I2S pins
+> ("sec_mi2s_active") and configures it to "mi2s_1" function.
 >
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> The Trogdor DTSI (which is included by Homestar) configures drive
+> strength and bias for all "sec_mi2s_active" pins, thus the intention was
+> to apply this configuration also to GPIO52 on Homestar.
+>
+> Reported-by: Doug Anderson <dianders@chromium.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: be0416a3f917 ("arm64: dts: qcom: Add sc7180-trogdor-homestar")
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>
 > ---
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
