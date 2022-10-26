@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A8CD60DF27
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8452F60DF80
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233343AbiJZLCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 07:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39426 "EHLO
+        id S233362AbiJZL02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 07:26:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233265AbiJZLCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:02:33 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35AEFB7ED1
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:02:31 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id j15so15173078wrq.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:02:30 -0700 (PDT)
+        with ESMTP id S233378AbiJZL0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:26:24 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2719D8E786
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:26:21 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id h185so14444129pgc.10
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:26:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Wv+lK711vFeOkaa3Qp58DAbyPphjfDZDE3jaNs67Gvk=;
-        b=nCFoVQj1TzEu56BZ7+4z29jNcy1DdPyggeQccdQjjd4B46gWsDCDhN9iz/QOxic6lA
-         k/nygJ4hASyHt5AZCV6JOveUNr3H2UNBSyveXcadxsD8gINgBi4FWkX1teanfP1nibIW
-         SFQ4Vi+fbvTBB1Ge5AjaV9bQXRHqssoGl8Fyfov+2EIoRzOkdH/7jqCUuNRwddNgBtRT
-         UUBM0Bx9ZsTkhhC/s36tCYQa3gIV0mADpFbUqQnPLVHOOfJ5FyreoLeiJT4YVriyLN0C
-         LESJ1P062nzfBJzNRlOvZrh/cXTBDxzd0mKTaH3Ve9FmOsgcFLJNUDQhul+CIZEfV41U
-         T38w==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X39jUhEZgZifFR/vv5lEeG2QMFhvU0R8f6aekPYqBWA=;
+        b=gphVIrg81EtYYywi+G+nK+6YaojesNFW6oqgahTGwqEuGbctiEERecPF5gFFjuzMs6
+         xl0N8xLb4hnhQ4vNsg4oHU/mMf02ZtDTpWCBgohnLrTTU0aZOJS+XnCUJsudzUIE1kBw
+         8RHT/92RSoaTo0pBddudhEr6A3JCIzOjDZcSevpXtf6AlBtLqjitMsIXFpmOn0xMPCDY
+         Lhh4hhJdy0PDHz/bMC5tc9zK1uc9b5Euo4mjMzNjCBgwW15wt7taHFRTk3rLBgmETlYn
+         w5nV8XrlGo7kiZpQPMDBbsB/Vlmu2QrR2DfX7/PtQE9maajq7iKD9Pm3p8CrjLfsZ49/
+         Aitg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wv+lK711vFeOkaa3Qp58DAbyPphjfDZDE3jaNs67Gvk=;
-        b=qw45edRIIHfzHydW0oCbxjYQs3nITDn50q3zOHx42pxdtT99N8SBCDvpsiBlOWOZrQ
-         0wcwWfwt1VHNC809g9j3WIsYsE1+xPZnvRH+svvm1ydSBEEy4fwHUE1lCXE1aUqRkwfY
-         /wyclnGLNW8wmci36gzkvOKRz4ZqN/oigzhuTFy5l0J8VAYVZaBZ33cZjRmR/VO0IS4I
-         lBDvdnyJVKDkDtBBIpMPd1DfzoDNMTbrH8BZA/4T3DFok5equTG8u1FYT8qBH4Cc4Alz
-         xoxivIe/1yCUEkhrGm5NhnQeinx6uT/L0/GSsJ1i6PLfQsqXct1dJk61CwDGPO1FBl+/
-         TrIg==
-X-Gm-Message-State: ACrzQf3gnXAYiK7VhME90DYRVs4ggOyQyEmLuwW4sRVgfJ6VYe9d3W3b
-        802/2TnvrQZ7Xbba504XVsON5A==
-X-Google-Smtp-Source: AMsMyM5/IK0Y55jZRn1DGhW6Oe8RtJZuWJ+ACBij9XW/Sp94JeJDtzyZVdNkfNfHekrL8fZcLBSS2Q==
-X-Received: by 2002:a05:6000:1687:b0:231:95e6:e9ec with SMTP id y7-20020a056000168700b0023195e6e9ecmr30383929wrd.275.1666782149546;
-        Wed, 26 Oct 2022 04:02:29 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id z7-20020a5d44c7000000b0023672104c24sm5237415wrr.74.2022.10.26.04.02.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 04:02:28 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     vkoul@kernel.org, yung-chuan.liao@linux.intel.com
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: [PATCH 6/6] soundwire: qcom: add support for v1.7 Soundwire Controller
-Date:   Wed, 26 Oct 2022 12:02:10 +0100
-Message-Id: <20221026110210.6575-7-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20221026110210.6575-1-srinivas.kandagatla@linaro.org>
-References: <20221026110210.6575-1-srinivas.kandagatla@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X39jUhEZgZifFR/vv5lEeG2QMFhvU0R8f6aekPYqBWA=;
+        b=zZYfzxvJXcNjWu3apnpQGyanRln8gYm4eOiYLUMoct5YCUp1RXxFFi4L0ar0ekxXlm
+         40Cj0aSaNl1c+t8rNeuRz6xd04Ah5o0JDJ16D0bGMqS1+vJSjcH2twW5Zty0Bc0AeQ+W
+         Bbdnd2Y42XL5Kc2Gc/istDSYre8bA8gKG11UQg5g7uzRaGCs7HNa4/FPZbzBxmEwVTzK
+         li0mWGmvvQ7UFW3Acd/eKYFNnNMKelssojhFAiqgwNA7CejznIP87EiVNbyRk9zzszZe
+         PnLobM560jOoYXVfi/ho8qIvljLWefZaxJ0h9WotymYefiYXaPYxOWV8PZt7LSidPB7T
+         n56A==
+X-Gm-Message-State: ACrzQf1OVI3KCgV8Qq4z5MbStN3kX7bndIRffpmKpLMFlJhPBEbd1bDD
+        3Ro1430jc3ygXPMqPh1IJ81q10JlkesqyE9nkA97Iw==
+X-Google-Smtp-Source: AMsMyM7Us9Ko9zWWL6OVuIx8zluZVYRms/TaSTeS6EVp4Yq4bg20aLKgbGMHCFYG5k/CKabd4tBR5SyLLngc0fyhMgs=
+X-Received: by 2002:a05:6a00:170a:b0:563:a40a:b5e1 with SMTP id
+ h10-20020a056a00170a00b00563a40ab5e1mr43327754pfc.40.1666783581306; Wed, 26
+ Oct 2022 04:26:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20221017235602.86250-1-giulio.benetti@benettiengineering.com> <20221017235602.86250-3-giulio.benetti@benettiengineering.com>
+In-Reply-To: <20221017235602.86250-3-giulio.benetti@benettiengineering.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 26 Oct 2022 13:25:44 +0200
+Message-ID: <CAPDyKFrkAi4-BUz=qKB4S9v1gKijUt8btu=0BVbF5HDEuH6YYQ@mail.gmail.com>
+Subject: Re: [PATCH 3/5] mmc: sdhci-esdhc-imx: improve imxrt1050 data
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
@@ -75,69 +69,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add support for v1.7 SoundWire Controller which has
-support for Multi-EE (Execution Environment), resulting in a
-new register and extending field in BUS_CTRL register.
+On Tue, 18 Oct 2022 at 01:56, Giulio Benetti
+<giulio.benetti@benettiengineering.com> wrote:
+>
+> i.MXRT1050 usdhc is not affected by ESDHC_FLAG_ERR004536 so let's remove
+> it. It supports ESDHC_FLAG_STD_TUNING and ESDHC_FLAG_HAVE_CAP1 so let's add
+> them.
+>
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
 
-With these updates v1.7.0 is fully supported.
+Applied for next, thanks!
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/soundwire/qcom.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
+Kind regards
+Uffe
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 54d370f4b291..335424870290 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -25,6 +25,8 @@
- 
- #define SWRM_COMP_SW_RESET					0x008
- #define SWRM_COMP_STATUS					0x014
-+#define SWRM_LINK_MANAGER_EE					0x018
-+#define SWRM_EE_CPU						1
- #define SWRM_FRM_GEN_ENABLED					BIT(0)
- #define SWRM_COMP_HW_VERSION					0x00
- #define SWRM_COMP_CFG_ADDR					0x04
-@@ -693,7 +695,14 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 	u32p_replace_bits(&val, SWRM_DEF_CMD_NO_PINGS, SWRM_MCP_CFG_MAX_NUM_OF_CMD_NO_PINGS_BMSK);
- 	ctrl->reg_write(ctrl, SWRM_MCP_CFG_ADDR, val);
- 
--	ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
-+	if (ctrl->version >= 0x01070000) {
-+		ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
-+		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL,
-+				SWRM_MCP_BUS_CLK_START << SWRM_EE_CPU);
-+	} else {
-+		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
-+	}
-+
- 	/* Configure number of retries of a read/write cmd */
- 	if (ctrl->version > 0x01050001) {
- 		/* Only for versions >= 1.5.1 */
-@@ -1518,7 +1527,13 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
- 	} else {
- 		reset_control_reset(ctrl->audio_cgcr);
- 
--		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
-+		if (ctrl->version >= 0x01070000) {
-+			ctrl->reg_write(ctrl, SWRM_LINK_MANAGER_EE, SWRM_EE_CPU);
-+			ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL,
-+					SWRM_MCP_BUS_CLK_START << SWRM_EE_CPU);
-+		} else {
-+			ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
-+		}
- 		ctrl->reg_write(ctrl, SWRM_INTERRUPT_CLEAR,
- 			SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET);
- 
-@@ -1582,6 +1597,7 @@ static const struct of_device_id qcom_swrm_of_match[] = {
- 	{ .compatible = "qcom,soundwire-v1.3.0", .data = &swrm_v1_3_data },
- 	{ .compatible = "qcom,soundwire-v1.5.1", .data = &swrm_v1_5_data },
- 	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_6_data },
-+	{ .compatible = "qcom,soundwire-v1.7.0", .data = &swrm_v1_5_data },
- 	{/* sentinel */},
- };
- 
--- 
-2.21.0
 
+> ---
+>  drivers/mmc/host/sdhci-esdhc-imx.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
+> index 55981b0f0b10..4bc0a2914a95 100644
+> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
+> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+> @@ -306,7 +306,8 @@ static struct esdhc_soc_data usdhc_imx7ulp_data = {
+>                         | ESDHC_FLAG_STATE_LOST_IN_LPMODE,
+>  };
+>  static struct esdhc_soc_data usdhc_imxrt1050_data = {
+> -       .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_HS200 | ESDHC_FLAG_ERR004536,
+> +       .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
+> +                       | ESDHC_FLAG_HAVE_CAP1 | ESDHC_FLAG_HS200,
+>  };
+>
+>  static struct esdhc_soc_data usdhc_imx8qxp_data = {
+> --
+> 2.34.1
+>
