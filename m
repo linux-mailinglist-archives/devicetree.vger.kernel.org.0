@@ -2,95 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B38460E316
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E769460E322
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234264AbiJZORG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
+        id S233816AbiJZOSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234231AbiJZOQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:16:54 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4972910F89F;
-        Wed, 26 Oct 2022 07:16:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 00932B822B3;
-        Wed, 26 Oct 2022 14:16:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92519C43141;
-        Wed, 26 Oct 2022 14:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666793809;
-        bh=g/TFpBgxMMZqURiLLWUGN40leXx3CKJGLqcUxhIb9O8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KPtsDd4pw0/CTvV7jbKIiAIVPMA0P47HPqLp7hxifJy8HStyY2YRHqPh2uNUQD3P1
-         FnOehrCj7USbQ+uFtkxFMTHPyxpZWHQwzpYWEedebmByviObeXisSBCtzENfPt9Qm5
-         DlTWDYCOZvLP95xLk2rwNEczaxJPdZZLBD1FZS7eunwOdHPi/KMXBsMo5a/epjneSP
-         Y7an2IoAMm0+vR4SQ62nu0+jChrOk+529eu0bQHPBtOeuzdaG23ViqYqQAp9OUTBc9
-         A54fCkW9o2t3VquDnJyj5gbNvRrfjb+vNSeWnNpQQKmQBRLgib5b2MpRK64SxkrpG7
-         8Pcjk5OsX3P5Q==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     jh80.chung@samsung.com
-Cc:     dinguyen@kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCHv6 6/6] arm: dts: socfpga: remove "clk-phase" in sdmmc_clk
-Date:   Wed, 26 Oct 2022 09:16:31 -0500
-Message-Id: <20221026141631.696863-6-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221026141631.696863-1-dinguyen@kernel.org>
-References: <20221026141631.696863-1-dinguyen@kernel.org>
+        with ESMTP id S234197AbiJZOSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:18:23 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 136A210F882
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:18:22 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id f8so10604360qkg.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:18:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6YtRWJZKbMif6QKbJ+qEdydNmgiCQ/4zO/xpn20FjE4=;
+        b=zdv4FwBCWn4px/ZLt6urY7kQ5Nzp174y1W9tVH1mW0ock6rV9wZBSXu9ivTdt6zbTL
+         WhTDnHDBw6mAYNtI1BmdeflDYALhjHvpVldTdQOpUwhBZIaoGdCzXbY5dpeFGggOUHTk
+         gXzffOzZ97i6hXQYzh94pTxhfIp9F/Db6KAkqCdRA2p66dGQ17rJw4netdD4OIdeJw7l
+         rOXafc6nTCRjQyLebEIxGq9w5UK9kZFVCmfkC8lz6F0smWx2CvSh5U2Eq3RVRHPk4ceH
+         DL7jADWT0VUCCapVJZ7hHRtLV3xSA/Im1YVoB4lPOkXqFBvaDiDq2+moeBa7ACD9uqMA
+         cVIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6YtRWJZKbMif6QKbJ+qEdydNmgiCQ/4zO/xpn20FjE4=;
+        b=SDvxOmyUK5ZiLypADcqNM89VwGow5LGPtI9PKlqh6eYQ6IApbivgrjKduR+7gb+LZm
+         kNUfAncnwTr5OkRcoRUwdynAYNabrRZzvsTlf5dR4BYIdjzCnUd7c7Y+ipuVWPTqihe+
+         mft6nkHHFI4hycV+zZrppA6dw9+nHEcb20HKvHwZ/ko0frWnzmbfbdD8y9Y4YowkX2Dn
+         mN4XUmv5GLZYkJj8kMADaGPbdhCdwPtD/3SAXUQ6WxxQQDJxkHR0EPZYq70RwoeS46aY
+         LQD7KIyp/mOHrzGavejSc42TVNAgLYfA8g46mwNeUQT/nWcAvL2BLAIDSJyPz6G8ABYT
+         Hs5A==
+X-Gm-Message-State: ACrzQf2xtgzdA5SXPPOPfFtgtrLhFGqkxL8Tvh4V6O2FREGcyzLkbEMO
+        +E3kOin1DwhwBrACBzuXQqQpCQ==
+X-Google-Smtp-Source: AMsMyM6764WLKyAmF+3eAYWy9F1BsXvQY4uwWjp3lRii2rrmauPtCVQKmSB/pWf5AHM85b+gdXjhGA==
+X-Received: by 2002:a37:6945:0:b0:6f4:ae0f:648b with SMTP id e66-20020a376945000000b006f4ae0f648bmr11991186qkc.329.1666793901165;
+        Wed, 26 Oct 2022 07:18:21 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id b14-20020ac8540e000000b00399ad646794sm3293499qtq.41.2022.10.26.07.18.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 07:18:20 -0700 (PDT)
+Message-ID: <4ddf54db-69c6-69a8-5c73-6c365b9f90b3@linaro.org>
+Date:   Wed, 26 Oct 2022 10:18:18 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: rtc: add bindings for max313xx RTCs
+Content-Language: en-US
+To:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+References: <20221026131124.289-1-Ibrahim.Tilki@analog.com>
+ <20221026131124.289-3-Ibrahim.Tilki@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221026131124.289-3-Ibrahim.Tilki@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the SDMMC driver can use the "clk-phase-sd-hs" binding, we don't
-need the clk-phase in the sdmmc_clk anymore.
+On 26/10/2022 09:11, Ibrahim Tilki wrote:
+> Devicetree binding documentation for Analog Devices MAX313XX RTCs
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v6: no changes
-v5: new
----
- arch/arm/boot/dts/socfpga.dtsi         | 1 -
- arch/arm/boot/dts/socfpga_arria10.dtsi | 1 -
- 2 files changed, 2 deletions(-)
+Drop second "bindings for" from the subject, it's redundant.
 
-diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
-index 604fc6e0c4ad..a2419a5c6c26 100644
---- a/arch/arm/boot/dts/socfpga.dtsi
-+++ b/arch/arm/boot/dts/socfpga.dtsi
-@@ -453,7 +453,6 @@ sdmmc_clk: sdmmc_clk {
- 						compatible = "altr,socfpga-gate-clk";
- 						clocks = <&f2s_periph_ref_clk>, <&main_nand_sdmmc_clk>, <&per_nand_mmc_clk>;
- 						clk-gate = <0xa0 8>;
--						clk-phase = <0 135>;
- 					};
- 
- 					sdmmc_clk_divided: sdmmc_clk_divided {
-diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
-index b6ebe207e2bc..eb528c103d70 100644
---- a/arch/arm/boot/dts/socfpga_arria10.dtsi
-+++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
-@@ -365,7 +365,6 @@ sdmmc_clk: sdmmc_clk {
- 						compatible = "altr,socfpga-a10-gate-clk";
- 						clocks = <&sdmmc_free_clk>;
- 						clk-gate = <0xC8 5>;
--						clk-phase = <0 135>;
- 					};
- 
- 					qspi_clk: qspi_clk {
--- 
-2.25.1
+> 
+> Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
+> Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+> ---
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
