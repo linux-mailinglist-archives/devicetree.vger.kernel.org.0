@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6E960E3B7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A184A60E3BA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233709AbiJZOtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
+        id S232842AbiJZOuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:50:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233445AbiJZOtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:49:12 -0400
+        with ESMTP id S233445AbiJZOuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:50:17 -0400
 Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE7411A95A
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:49:11 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id c8so10913829qvn.10
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:49:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188D048CA5
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:50:16 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id i12so11653377qvs.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:50:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OT9ZLmXoZ99vU44cK6SujU9Uw1YJY8It/YwsTq0QrL0=;
-        b=lVT0kkx4mZSsg2VVG2oYXrm9gCw8CBTuGRs5e4XtOyGVmEiJwVg/hI18DY+u2khbUY
-         rc3HxQ9YSRnQvUwQeuyMm0BC/0JNLyL/b54P16DTTYYO3I8vhdmx3lGCPyJV7gNke7HZ
-         AQjJzT5BcQ17SIW7Lm3rZuhIku90kp23exA3d2VP185IPRigoYTiqmRAjt3yTwklju4J
-         kh6bak8a7bBQQOdf5oQPktWoGBqrDicfXv4kTeqAvgzmLUk/0fFyNx1La9Vizd7eusTQ
-         rxz0M2vs2LEYJ+lEHfYnfZolHdya/ee1ncBI6M+dAqNhgePfAWkbOzTG8/hmFgJ4sFkC
-         uf7Q==
+        bh=i+Z+gNNMU3McZjMUVCV+bq5PaQ/StJP31GeGMFY00yQ=;
+        b=iIPefOFcajYIabwygnBa2cr7q2N+oLtPVvhqegJSA0Ufhe7KdZ3TGqotABFnYJ0C1D
+         W/NlNprE6YWePgE7Nc63LJF3EPTdaWqlceh9ze/sa8prd8ksNY1jja6yqU6JEyH95Z5L
+         rQZ3+qAkbUkke5RYamqTFblSuClAZkDL+XhUYDy6vuEsXLh3WmlgcnY0ZIJNEA5VYoVx
+         z0wLXQJ7vBkkOHMYgJysMz7AKiWUmVWF7OFi8IIC83dc+gOHzblo9KjbjJlSJTQ1JiUp
+         L2Y3x7HRjvNzQYvoXHs65umOrL/GcvVwnHGCfM17MjXJEEIRmI/oTo4K0qlFFKNqIQAN
+         tzow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OT9ZLmXoZ99vU44cK6SujU9Uw1YJY8It/YwsTq0QrL0=;
-        b=ADPG1xB86JUwCmSBMF75l/Rw2rXKZdcIDW6yNf+1Af3Y9YfbJXpmTxZv0axu9zPGk/
-         B6ko6LOgIggUeBKk9LhN33WkNy6bEhojOerE/1bT+SOc7GG45y/bs7ybdI/Vuw440mvs
-         B8r39J4yP73o2mnnTC94bq5FCvqkWSw4KvsTdRQjO2K8WrECgkqQeHzEoNFfofIhZ/Kl
-         F86xSvyi/Z5PTzxslxJYVAX+r6IguYSldU7yeKAjltU5x+FXivoaM1KMKU5OxqodNPPG
-         isG7gKyBNo/T8z4c7kduCTx3AHi12L7PXJFG7CsBu+JKmSIKBY2yqc/kATaTw+GBvdWc
-         y/5A==
-X-Gm-Message-State: ACrzQf1wg7Oo/TokZwc+Tz++7if8C+qSagzDbD5qv+f0puhR1Lg1LFWp
-        GGFhjYVHVDgQeK6U/9V+6wbl0l1e/VG+qw==
-X-Google-Smtp-Source: AMsMyM5dOcW27XttAY7Segfh0Cho50KvpOqF9JFQaROEGXh2Sfa3nIwtkUcUV7PK6FffCEUe02ylUg==
-X-Received: by 2002:ad4:5ba1:0:b0:4af:8920:f9c5 with SMTP id 1-20020ad45ba1000000b004af8920f9c5mr17491735qvq.59.1666795750947;
-        Wed, 26 Oct 2022 07:49:10 -0700 (PDT)
+        bh=i+Z+gNNMU3McZjMUVCV+bq5PaQ/StJP31GeGMFY00yQ=;
+        b=p19C07R1Ay0kBL7IGFF1V8nNGz7J4VOs1bENOWQJTHiC12F1urR7CWN5j/Itq3ezUY
+         dC4gNGHjCpcSZMnuxfwXEthaIOiHuRCkUzQ7xXR+EvR/ljvYIbQizX8ifHbA+IQFREPR
+         wvvh+PlxCB4DobvAyaaFGkkNFTRDhwGSsLNcV9U8eHWTnE7bQCW7uZwptz3QqR9GZ/rp
+         Sks9IRrazWAiOzuExVCztqVuEeSsX9zfp1dT2NYCJ/hU3zRA98c6VHsyQI2ODfVm5/WZ
+         Vw70Uyk7g5tHZIHnMo/hJFZ5vpxVFPnpWx5aUkht393+cEcmWef/JEAJoxpFoM5H6iJr
+         1cWQ==
+X-Gm-Message-State: ACrzQf0KUhSc0BOQhOjlL91LjBdjquy+v1dt9KslKktWA+3ST6RwL2GW
+        cLhPXV9edpGmdJmE9hVCVoBoMA==
+X-Google-Smtp-Source: AMsMyM6lqOGZD8a58+vf/bzIrwSNh5y/+CDdt5z9ZFq8Nfee+R0BXi3KqPEj+WUUXgJioniaHeafkA==
+X-Received: by 2002:a0c:aa96:0:b0:4bb:5ed3:49b6 with SMTP id f22-20020a0caa96000000b004bb5ed349b6mr18945896qvb.80.1666795815276;
+        Wed, 26 Oct 2022 07:50:15 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id o19-20020a05620a2a1300b006ee9d734479sm4183742qkp.33.2022.10.26.07.49.09
+        by smtp.gmail.com with ESMTPSA id m17-20020a05622a055100b003994bbe91bdsm3306333qtx.60.2022.10.26.07.50.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:49:10 -0700 (PDT)
-Message-ID: <64a01388-aa53-d88a-b6fe-4a935a299358@linaro.org>
-Date:   Wed, 26 Oct 2022 10:49:09 -0400
+        Wed, 26 Oct 2022 07:50:14 -0700 (PDT)
+Message-ID: <df14e401-4ee3-920b-aeb4-6bcf52ba85cf@linaro.org>
+Date:   Wed, 26 Oct 2022 10:50:12 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH RESEND v2 2/2] arm64: dts: k3-j72*: correct compatible for
- syscon entries
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: add Lctech name
 Content-Language: en-US
-To:     Matt Ranostay <mranostay@ti.com>, nm@ti.com, vigneshr@ti.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lee@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20221024035405.366208-1-mranostay@ti.com>
- <20221024035405.366208-3-mranostay@ti.com>
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, soc@kernel.org,
+        Icenowy Zheng <uwu@icenowy.me>,
+        =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+References: <20221025145909.2837939-1-andre.przywara@arm.com>
+ <20221025145909.2837939-2-andre.przywara@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221024035405.366208-3-mranostay@ti.com>
+In-Reply-To: <20221025145909.2837939-2-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,29 +81,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/10/2022 23:54, Matt Ranostay wrote:
-> Add missing ti,j7*-system-controller compatible to bus defines in mcu/wakeup
-> domains to avoid the following similar warnings from dt-schema checks:
+On 25/10/2022 10:59, Andre Przywara wrote:
+> Shenzen LC Technology [1] is a company making various boards and related
+> products around IoT and AI technology.
+> They used to use the "Cherry Pi" brand before.
 > 
-> arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: syscon@40f00000: compatible: ['syscon', 'simple-mfd'] is too short'
+> Add it to the vendor prefixes list.
 > 
+> [1] http://www.chinalctech.com
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 035ef859fbc58..e273bf9235946 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -695,6 +695,8 @@ patternProperties:
+>      description: Lantiq Semiconductor
+>    "^lattice,.*":
+>      description: Lattice Semiconductor
+> +  "^lctech,.*":
+> +    description: Shenzen LC Technology Co,, Ltd.
 
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
-
-
+Drop one comma.
 
 Best regards,
 Krzysztof
