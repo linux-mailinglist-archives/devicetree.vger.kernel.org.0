@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC6AF60E3A6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C41C60E3AF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233067AbiJZOqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:46:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55040 "EHLO
+        id S233928AbiJZOsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:48:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233671AbiJZOqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:46:49 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8972EB56DE
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:46:48 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id h2so8901414pgp.4
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:46:48 -0700 (PDT)
+        with ESMTP id S233305AbiJZOsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:48:09 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D6E6BEFBE
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:48:08 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id w29so2927580qtv.9
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:48:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZDoFbRmpFybio1qcLHY0tDGGsYUITlP7lC7AmzHBMGM=;
-        b=ErjcaOkv9A46t8SE5ZuZYqWKYgxYU75Xn13yXsVaU5LHB7gHdONvR2sFcvOw8AWc0W
-         fIPqi4JoNgoKnKqqU5szIVXZLtX0VkOJOf/YLRrtNOO2scUbyXe6Oi92ajQuJ40154br
-         zLynY1TTM2qoqp67CLdL3UViRqFtsysf5KHh7qCz6vNdgOu4Y8XzwnfMq/8hWBQUnOdP
-         oK3W3ue69CjfJQfNeiLF531tKavZ8icMLSkfYMbaV7IKC+DnBl2rKuoOwpIZzofsp53z
-         faCmggwwoUjw7Wl/QdZLRviaun8Fnfn/o3eG+w9fsn1oSqfqVo0k4NVS8MJVrmbQjoS/
-         H9xw==
+        bh=SA6ximgWcrGZSfkvZWfqRf8tuzgvJWoN/vqehJP59VU=;
+        b=RtTPtYFpF5w43UVMWtnp7DEnyHgaiVZ0UMK6eWGdkYQh6L3F7cHnyN/kEVd//lj497
+         0tKl6hTAmP6O0CaCDCEtb/4yntNbcz+d4ZSnCzif+byGTMoW3Wh/wuwUxgnnd07drh8B
+         EQmdqAHkaGTMaQjKkeptNLM8PEb9AzOIp9F1ZiR/liZawEPETeCF/0Nqk6AixyslkjyV
+         v0mzMT91v6K77riQ6FoRynL5rLZzKAoqnsMYElw0OYooutxWUn0Crj2hLPlzsvnJ1Oe6
+         aXnIOzcc6SbzXSyBVwxue9MjYRTlfmJnNzzoq/am+LE2QfRDBsL4DAUtWCBpSwLspHcJ
+         /2HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZDoFbRmpFybio1qcLHY0tDGGsYUITlP7lC7AmzHBMGM=;
-        b=dGfTO/pwDeJkMAXD58qNXIJmVxCPMjQYK6meCJoMyI11gVN30+fwvkKt9AlQgnaHvN
-         gfrDKVJc8MjNudk0oJaehbBksaVmW8OP4VkVAJ2chBThy0DfMGR2HIU2dorIcyRFVnj+
-         aLUKzobuiIfYtl8X/SXT/zqO3BXAJIv4veC2eokrRlFbsWC/bV1tjghYZhJY7IA7o1SX
-         hJikNcnVudJxZOKRE4sG3L4rv+jLAKsEYsJpri4V+LRwY/13eYAU2G7gzOaHjhkvddvb
-         8JcvaDgQrM+r1ql3Z84p92349y/+G+r/I+PuAUmIigv4RApgfAajMq3qZn0O2kqkiO2A
-         CSWg==
-X-Gm-Message-State: ACrzQf24sUiX/c2vh1OcBMGsKVJXwTkiMrSS1EP3AxeewB2BpfHG4KR+
-        JxO0Ws6RP+XCnFoWE3uJCFi73xxaINyMRA==
-X-Google-Smtp-Source: AMsMyM6tLMgDzhVuBp730Vc4cqg8QdTyjhTznsNLsPIIhXXYp6fgBJ1sbSEQDjUxH62sokrHC0E+Pw==
-X-Received: by 2002:a05:6214:20aa:b0:4b3:e0de:cbc2 with SMTP id 10-20020a05621420aa00b004b3e0decbc2mr35685060qvd.91.1666795596881;
-        Wed, 26 Oct 2022 07:46:36 -0700 (PDT)
+        bh=SA6ximgWcrGZSfkvZWfqRf8tuzgvJWoN/vqehJP59VU=;
+        b=Iedo8Wt6ySBuZULOh8ZEoSsPQ3xF0BL9v74/y7Mgoa6tWQL42Uv8S3+LN8cgJbcrwY
+         yD/SJKCsdfGTAQr34OzSSyNcXlMDPIxyRouyEOG5Dsnn2fbuFhk0wc17/UzRhNxh/t7d
+         8LfKBTW1rioqfwu7fAgP2hfBQT8Q4v5eVY7PAuHn8KQeYoNE8RPVwqPqhWSn8MMkGZa9
+         k52TBkDehmk9IFPgq7DMomGDaOjRb9OUCJaQTlFiV38tr9W7kmW78FuI33R0U8LDpM84
+         O5V+jX6GsVnfik3BBRQ4HmjQNjsUXbQCEaRj/M5/+WZmgMoBuJHmvwS0hULU/ptASWju
+         WD4g==
+X-Gm-Message-State: ACrzQf0vlwVvixh6z0kRHS1DKCcKYp+fXr1aP9zdRXsITBPnNTjrM6ft
+        JhUTwhSkfJpb01UYTb24tWO1Ng==
+X-Google-Smtp-Source: AMsMyM4THSiBQRYKk+evU/FKD4ggXIlSbWrvj3lViuNxvJCQDML3AEw3bCcxkl7BfC5bsgeI+3eLKQ==
+X-Received: by 2002:a05:622a:248:b0:39c:dfcb:9b63 with SMTP id c8-20020a05622a024800b0039cdfcb9b63mr37872881qtx.234.1666795687836;
+        Wed, 26 Oct 2022 07:48:07 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id o18-20020a05620a111200b006ec9f5e3396sm3935338qkk.72.2022.10.26.07.46.35
+        by smtp.gmail.com with ESMTPSA id e10-20020a05622a110a00b0039cb9ef50b5sm3310931qty.26.2022.10.26.07.48.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:46:36 -0700 (PDT)
-Message-ID: <30b95e7b-b902-babc-ea78-a2112c80ec7e@linaro.org>
-Date:   Wed, 26 Oct 2022 10:46:34 -0400
+        Wed, 26 Oct 2022 07:48:07 -0700 (PDT)
+Message-ID: <969635a9-ff58-d0a7-579d-0f3b4a208ea5@linaro.org>
+Date:   Wed, 26 Oct 2022 10:48:05 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH next 2/2] dt-bindings: gpio: add entry for
- hisilicon,gpio-ascend910
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Villager doesn't have NVME
 Content-Language: en-US
-To:     Weilong Chen <chenweilong@huawei.com>, f.fangjian@huawei.com,
-        linus.walleij@linaro.org, yangyicong@hisilicon.com,
-        xuwei5@huawei.com, robh+dt@kernel.org, robh@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20221026034219.172880-1-chenweilong@huawei.com>
- <20221026034219.172880-2-chenweilong@huawei.com>
+To:     Douglas Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221025164915.1.I38e2545eda2b3bd3fef6b41c98f451e32851ae70@changeid>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026034219.172880-2-chenweilong@huawei.com>
+In-Reply-To: <20221025164915.1.I38e2545eda2b3bd3fef6b41c98f451e32851ae70@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,97 +78,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 23:42, Weilong Chen wrote:
-> Add the new compatible for HiSilicon gpio controller driver.
+On 25/10/2022 19:52, Douglas Anderson wrote:
+> The sc7280-herobrine-villager derivative doesn't have NVME enabled so
+> we shouldn't mark the PCIe nodes as "okay" since they're just for
+> boards that have NVME.
 > 
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
->  .../gpio/hisilicon,gpio-ascend910.yaml        | 54 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml b/Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml
-> new file mode 100644
-> index 000000000000..912e4b808cae
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/hisilicon,gpio-ascend910.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HiSilicon common GPIO controller Device Tree Bindings
 
-Drop "Device Tree Bindings"
 
-> +
-> +maintainers:
-> +  - Jay Fang <f.fangjian@huawei.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: hisilicon,gpio-ascend910
-> +    description:
-> +      The HiSilicon common GPIO controller can be used for many different
-> +      types of SoC such as Huawei Ascend AI series chips.
-
-Put this description in top-level description.
-
-> +
-> +  reg:
-> +    description:
-> +      Address and length of the register set for the device.
-
-Drop description.
-
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  ngpios:
-> +    minimum: 1
-> +    maximum: 32
-> +
-> +required:
-> +  - compatible
-> +  - gpio-controller
-
-gpio-cells are not required?
-
-> +  - reg
-> +  - interrupts
-> +  - ngpios
-> +
-> +unevaluatedProperties: false
-
-Instead:
-additionalProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    gpio@840d0000 {
-> +      compatible = "hisilicon,gpio-ascend910";
-> +      reg = <0x840d0000 0x1000>;
-> +      ngpios = <0x20>;
-
-Convention for counting is to use decimal numbers.
-
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +      interrupts = <0x0 33 0x4>;
-
-This looks like standard IRQ flags, so use respective defines.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
