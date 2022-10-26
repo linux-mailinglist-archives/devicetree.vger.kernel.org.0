@@ -2,151 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB78160EA58
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2564160EA75
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233497AbiJZUkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 16:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58178 "EHLO
+        id S234284AbiJZUni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 16:43:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234018AbiJZUj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:39:57 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A061758F
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 13:39:53 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id t186so20507695yba.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 13:39:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=daYBwE/xgD9h3LwP3sciyNnst9YWMODARklElncCAU0=;
-        b=g+XJ8M3/27LzItdcyttOglsv/BP41vBwfOCU5njWntm42Cna4B84KFt9JxXFA81WGW
-         oHv2ipaiOxp9I8LqN3D7Awo6fBugGJBbVkfVkTbVqaZ/3actbpgSe7WtHoh8jZPrJTn+
-         /u6dDMcBuT8Td/kDRfiqCeWPMgCJxS4jWwmyIPOFaly/4MYdhJsau0a8W6BGFBnebJRr
-         HYclJfR/ZmJF863HTkF6qPjFk4ffS4z686Uy0HyGzJx9Y6Y0XX+Z36wSJ7HVnf892Dab
-         0pISkacDQ38x7TqCs6phTjrqCKgsq2G3l85DAXYkZhLR7LuU5KrHdMx2ndDyo5T0K0E2
-         tD9A==
+        with ESMTP id S234822AbiJZUnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:43:22 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F9C6122764;
+        Wed, 26 Oct 2022 13:43:15 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id o64so20277184oib.12;
+        Wed, 26 Oct 2022 13:43:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=daYBwE/xgD9h3LwP3sciyNnst9YWMODARklElncCAU0=;
-        b=Xfc9p+rc5pAIDC48k7PTqYGjRAjB8Y9WHbvdAPbKM6zEZtAjaJ6n/Va1M46AKrlBId
-         eS3+rGokUd5cC5W19Hw5UpRoQtNaEVbv8htZbD6psQKp757DyBvmZ/2sp7oldh6zlFpT
-         CYaSbHZth0UL84Ypk9G/WJ+JrtaVSVOKXSvNy0LZ80T/4P61QpSMFY/t9XYB2f29CBSr
-         MzpU79VUctLpDK76ad19kZ5jC+UmoGs1nUcTXw/ONc3rH8GjZU2nZWB6LoHyshneFNyc
-         MPgj8KJi7TeqEDn94gjxoHbk7mjlOMQgFQTr39zaFMvgkWnoXFxNm7YPfZHlqy9vr4cD
-         2njQ==
-X-Gm-Message-State: ACrzQf3kF/r0ygw43MnL7IxjwQv91D53ZHaoabT9dcV4bXsEZ3FiQQyd
-        fjpDP4Mzn0S8RjMLfEPCJdU5z467Uy2xKCH9dAC2hw==
-X-Google-Smtp-Source: AMsMyM6NoeDMXQ0P7X/sORDu/SfdbmYsySWoMWI2VrXjhxme//k9u7J+bBBfL+Ts1do43c7CJ2map1JSsuDKLkwe6Yw=
-X-Received: by 2002:a05:6902:724:b0:6c0:1784:b6c7 with SMTP id
- l4-20020a056902072400b006c01784b6c7mr40939021ybt.15.1666816792883; Wed, 26
- Oct 2022 13:39:52 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CFt4o/3AT7ylhMFk0KUVLNuDtN3vtOK7H3Uzq0oMikI=;
+        b=yCx/jvl7ITE8igLuPQWonXYV1sQUK7VCjOR53k1gGJMAked3gm8UHR2ADV7Cr4qK0h
+         xmzdbdN1LUeR3IDG7iHWG5T3DtGqZF2pE0cTwtIdNutyILINIDp/o1hF7lN8a3Z2U21W
+         MhFJUCvIoS6S2HF4oP8swjquFYxJ/P2VLwXNYdcmV2FDPjBiNO06xzo3Ngid8D4Zx+/B
+         1j58FP4MxWuaPkuN7wX20whispWy7svmOmoPM4TIPtDPDD6Ah9xuEjijK8Q2QsKASM2F
+         +CXSNg0UPqGqTOvNsQvXgZfdoMKqDN73uegv3bKPA5ObvmDaPRarC0zwQN9RoHkiPUg4
+         1ozQ==
+X-Gm-Message-State: ACrzQf0B71KOOoNOwoCFcr2jPLeRyDgSarrGyxSAYgepi46Of1TXgsIb
+        1mSVkaQdesshKrvJWlmajg==
+X-Google-Smtp-Source: AMsMyM7FmTGjqZWaN9pK4q0aJPmcWfpnQ4tqzXj0b6mzjLRH5YI3B2/g1IWpgJXqTHLyY1pepDgXOQ==
+X-Received: by 2002:a05:6808:179a:b0:354:979e:abf8 with SMTP id bg26-20020a056808179a00b00354979eabf8mr2977935oib.238.1666816994439;
+        Wed, 26 Oct 2022 13:43:14 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l2-20020a05683016c200b006679a03a753sm1797882otr.11.2022.10.26.13.43.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Oct 2022 13:43:13 -0700 (PDT)
+Received: (nullmailer pid 1286320 invoked by uid 1000);
+        Wed, 26 Oct 2022 20:43:15 -0000
+Date:   Wed, 26 Oct 2022 15:43:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        vladimir.oltean@nxp.com, vigneshr@ti.com, nsekhar@ti.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: net: ti: k3-am654-cpsw-nuss: Update
+ bindings for J721e CPSW9G
+Message-ID: <20221026204315.GA1161577-robh@kernel.org>
+References: <20221026090957.180592-1-s-vadapalli@ti.com>
+ <20221026090957.180592-2-s-vadapalli@ti.com>
 MIME-Version: 1.0
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-5-quic_eberman@quicinc.com> <56a47a6c-29b9-b8f3-e39b-a5841ddf7394@linaro.org>
- <e79513b9-3bbb-851c-6e46-92c043c8d1e7@quicinc.com>
-In-Reply-To: <e79513b9-3bbb-851c-6e46-92c043c8d1e7@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 26 Oct 2022 23:39:41 +0300
-Message-ID: <CAA8EJpoE5LPD531bCYT02zhUXH-6b59MkmQ=jwCHCqebEZ=75A@mail.gmail.com>
-Subject: Re: [PATCH v6 04/21] arm64: smccc: Include alternative-macros.h
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221026090957.180592-2-s-vadapalli@ti.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Oct 2022 at 23:24, Elliot Berman <quic_eberman@quicinc.com> wrot=
-e:
->
->
-> On 10/26/2022 12:46 PM, Dmitry Baryshkov wrote:
-> > On 26/10/2022 21:58, Elliot Berman wrote:
-> >> Fix build error when CONFIG_ARM64_SVE is selected and
-> >> asm/alternative-macros.h wasn't implicitly included by another header.
-> >
-> > Please include the build error into the commit message to help anybody
-> > looking for the solution for the same issue.
-> >
->
-> Now that the gunyah_hypercall implementation has been moved to its own
-> module, this change isn't needed because asm/alternative-macros.h got
-> implicitly included now. I can drop this, although not sure if we think
-> it's still correct to have it?
->
-> After I got rid of the other header files, for reference:
->
-> In file included from arch/arm64/gunyah/gunyah_hypercall.c:6:
-> arch/arm64/gunyah/gunyah_hypercall.c: In function =E2=80=98gh_hypercall_m=
-sgq_send=E2=80=99:
-> ./include/linux/arm-smccc.h:387:25: error: expected string literal
-> before =E2=80=98ALTERNATIVE=E2=80=99
->    387 | #define SMCCC_SVE_CHECK ALTERNATIVE("nop \n",  "bl
-> __arm_smccc_sve_check \n", \
+On Wed, Oct 26, 2022 at 02:39:55PM +0530, Siddharth Vadapalli wrote:
+> Update bindings for TI K3 J721e SoC which contains 9 ports (8 external
+> ports) CPSW9G module and add compatible for it.
 
-Please add this message to the commit log.
+Don't repeat 'bindings' in the subject, space is precious:
 
->
-> >>
-> >> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> >> ---
-> >>   include/linux/arm-smccc.h | 1 +
-> >>   1 file changed, 1 insertion(+)
-> >>
-> >> diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
-> >> index 220c8c60e021..6a627cdbbdec 100644
-> >> --- a/include/linux/arm-smccc.h
-> >> +++ b/include/linux/arm-smccc.h
-> >> @@ -383,6 +383,7 @@ asmlinkage void __arm_smccc_hvc(unsigned long a0,
-> >> unsigned long a1,
-> >>   /* nVHE hypervisor doesn't have a current thread so needs separate
-> >> checks */
-> >>   #if defined(CONFIG_ARM64_SVE) && !defined(__KVM_NVHE_HYPERVISOR__)
-> >> +#include <asm/alternative-macros.h>
-> >>   #define SMCCC_SVE_CHECK ALTERNATIVE("nop \n",  "bl
-> >> __arm_smccc_sve_check \n", \
-> >>                       ARM64_SVE)
-> >
+dt-bindings: net: ti: k3-am654-cpsw-nuss: Add J721e CPSW9G support
 
+Otherwise,
 
+Reviewed-by: Rob Herring <robh@kernel.org>
 
---=20
-With best wishes
-Dmitry
+> 
+> Changes made:
+>     - Add new compatible ti,j721e-cpswxg-nuss for CPSW9G.
+>     - Extend pattern properties for new compatible.
+>     - Change maximum number of CPSW ports to 8 for new compatible.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>  .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 33 ++++++++++++++++---
+>  1 file changed, 29 insertions(+), 4 deletions(-)
