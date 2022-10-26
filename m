@@ -2,87 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C217260E3EE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 17:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5411A60E403
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 17:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233948AbiJZPAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 11:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36740 "EHLO
+        id S233403AbiJZPDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 11:03:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229726AbiJZPAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 11:00:06 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 434DF2BB22;
-        Wed, 26 Oct 2022 08:00:03 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id r187so1912610oia.8;
-        Wed, 26 Oct 2022 08:00:03 -0700 (PDT)
+        with ESMTP id S234115AbiJZPDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 11:03:24 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA57EC1F0
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 08:03:24 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id l9so8171237qkk.11
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 08:03:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=txXT/wKuP7e6vmu341lu5ocYQu6nOYOzPylEPZrz0ao=;
-        b=eUKReRdPe5/6Wf1hvfzbtzHbxaDKbWabbo7VhS5Mw0W4Oyb7vlrOoUuM1n4Ccjs41i
-         CnEVqPzAY3qS/QzZgNB9cilk2SC2d1QODWsOijmjWRqKtPEhBVJHlCT/madDQQ/Njsil
-         OC4yvePxJKytlrH/4z8aN62RcP556W9jOz7sedI12lhEvtPRE+9F1qmwjTj3bRj6pCfT
-         oV7UrOISfNJUtn74TjL/bBnq/8o5/KamvzmV+5yG0vtb/sfcBoBnmDjoZ9safWks4SsL
-         rUBPIGatBcJx3vffkAFxWztkVN4RD1PutoreQEZxIqwIJ/qD/B580LX8JaSjBRuRCEuA
-         EKJg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vLZuzkEKYp97tAxDKW0D3/Gkrrsn7TLdMLIwN3unr6k=;
+        b=l6iea6O/IfA+IU8rsKa/xzdX0TI+DG5gYzNw4EfcdDXMQWAIx3WzFHQ7WrucFjyiw2
+         R6jbnPvM499FIYged2lfIzQbOAG28Fl2PeRw4xCeg1C/iLtTnQGVGlKNFJPn05JfE9J9
+         Z06FwsPirlsVSXZegXXJNS+Pm2mvskZ4+PkpZaMCDb/EIYlp60NlunTlvBf18hSoP5Gv
+         s6sNB2RJZRxFX9Cen0El2ParhFlnGry9Q/oOzcUNKlDzXqGp2Fu6fH4uYHzXHt4YfJdv
+         sRn+uR6IoPiWHOpl3t9b0ZGI41ZInAYeE1ARtdmcHz8DiZ3mTj+YOdFcCQhHjBNe+gQZ
+         TmDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=txXT/wKuP7e6vmu341lu5ocYQu6nOYOzPylEPZrz0ao=;
-        b=SKBFJVpFug8/jZN9KAcS2bvYfdcqWuAownP1Y7m7DQ9ixV3HPHTbm1MQkf4CqoD10b
-         AeRHUmMVX2V+7ya5W9+UP3cMRWFDbsLtyxWuBSx05i7Ek7HcslKUT+tNwcXdsEOlWt4m
-         Ja/9jDiWoZle7+nqv3MTkXpcxYGlgxxVlsOdNn+CFyPHDTh6goIQolXdIk0FVsyccU0Z
-         Qf0qdJ3K/ajU8/Pjz2UYVbri9ZG2m/Up0Ql41ZLaQj0Q7vUvrnvEVWncV/Ag9KRJwFYl
-         ZSnYWUZwkHXnsO9MCeHbPHTQpN0olA9NpzFROkQSnjW4pcL1Da/BiajE8FeQ4OkuGuic
-         FGVA==
-X-Gm-Message-State: ACrzQf12ugGpx6EXA3yZBhBxa/8HDYidFttHwpLdeM+5rcKho3EmwVyD
-        6EnpJzMjgC0AL5t+vJVTcL8=
-X-Google-Smtp-Source: AMsMyM7Boz8EiNGrugjMh/1o3LveBg7F50E5TXO7Q+5hoDFb4+nzDkAPU6DBuPcT107b8EUDsqUkQA==
-X-Received: by 2002:a05:6808:23d4:b0:354:e81a:12a8 with SMTP id bq20-20020a05680823d400b00354e81a12a8mr2083674oib.78.1666796403179;
-        Wed, 26 Oct 2022 08:00:03 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id w110-20020a9d3677000000b0066227572ee3sm2265814otb.52.2022.10.26.08.00.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 08:00:02 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 26 Oct 2022 08:00:01 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     macro@orcam.me.uk, Lee Jones <lee@kernel.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-Subject: Re: [PATCH v9 1/9] hwmon: smpro: Add Ampere's Altra smpro-hwmon
- driver
-Message-ID: <20221026150001.GA2545504@roeck-us.net>
-References: <20220929094321.770125-1-quan@os.amperecomputing.com>
- <20220929094321.770125-2-quan@os.amperecomputing.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vLZuzkEKYp97tAxDKW0D3/Gkrrsn7TLdMLIwN3unr6k=;
+        b=JohYeuZXHN2LLe2/6ElYAN+O5JhIAvPpS4w/vB4ZMLWCX7L5dZ8XBVyJPDPLw5wgtV
+         NLqGREbpIgrXdOSdxkRz5XA8MqYPkzpHIEgmrhiZuwSEx1p7I/XAQ4iGo0R/BDzGlaCe
+         9IN0cLCrPa8gSaYcSd1FN2kwiYibEL0D7vsc9Kw9QiAf4KD9NyJ/0SM8CXoY/yIjZHR2
+         53Q1Pj3/tpSIEchfO3F05ctZ220fpB0l1riiNPqE8D1UCnLZI2CwOaaJbJw2HMvqaL+Q
+         t/DXClXWEc0aScSL/kjKOwzF0o3wHdKVfhJLJwH7y13wNbvYR3x6IBUJ02mmyOZgt5+u
+         2GGg==
+X-Gm-Message-State: ACrzQf28Vy3LFbSjroMqXA/yuw2WM6wI3TxHCLxElAcGZnxMSTaR9aXA
+        0PQoHSwbil3nyeHzvzyWyYpfvw==
+X-Google-Smtp-Source: AMsMyM7rarxhxnKYKAQs4buid/BHIUQHXVqNLrmkLzuNgNzVpR0hobrza80y8f5pxap7RvookcNtbQ==
+X-Received: by 2002:a05:620a:bc5:b0:6ce:bc87:9253 with SMTP id s5-20020a05620a0bc500b006cebc879253mr32009819qki.486.1666796603111;
+        Wed, 26 Oct 2022 08:03:23 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id o8-20020ac87c48000000b003a4f22c6507sm554617qtv.48.2022.10.26.08.03.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 08:03:21 -0700 (PDT)
+Message-ID: <874e74ae-86bb-7950-1615-36e1a326e177@linaro.org>
+Date:   Wed, 26 Oct 2022 11:03:19 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220929094321.770125-2-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v1 2/2] dt-bindings: ASoC: simple-card: Add
+ system-clock-id property
+Content-Language: en-US
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
+ <20221022162742.21671-2-aidanmacdonald.0x0@gmail.com>
+ <ef6a326b-5c61-988b-2ec2-cd8e233e5d28@linaro.org>
+ <GMvEU8xVTkjIoQ518XWAaLkhldSZHlk7@localhost>
+ <4ef59d94-d045-55fc-d531-c84e7edb8333@linaro.org>
+ <hXRpArckbrXUelDdaJ3Y2SErmKiuycXt@localhost>
+ <66c1a100-922e-4a33-e80c-fc80866acf03@linaro.org>
+ <jZCUALhj8PoqVkuWdtLf8LnPAj1wDakF@localhost>
+ <38205667-d36f-e7a9-21b0-2e8597a662ff@linaro.org>
+ <qNdQQJRLFWJ6gNfwM73oJ8EH56Y5nWgd@localhost>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <qNdQQJRLFWJ6gNfwM73oJ8EH56Y5nWgd@localhost>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,16 +87,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 29, 2022 at 04:43:13PM +0700, Quan Nguyen wrote:
-> This commit adds support for Ampere SMpro hwmon driver. This driver
-> supports accessing various CPU sensors provided by the SMpro co-processor
-> including temperature, power, voltages, and current.
+On 26/10/2022 10:48, Aidan MacDonald wrote:
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+> 
+>> And the remaining piece I don't get is that these are not bindings for
+>> codec, but for sound audio card. You want to set "system-clock-id"
+>> property for audio card, while putting clock from codec, which will be
+>> used to pass back to the codec... so it is a property of the codec, not
+>> of the audio card. IOW, NAU8821_CLK_* does not configure here the clock
+>> of the system, but only, only clock of the codec.
+> 
+> The system clock is controlled at the DAI level, it's specific to one
+> DAI on one component. The simple-card device node has sub-nodes for the
+> DAI links, and each DAI link node has sub-nodes for the DAIs within the
+> link. "system-clock-id" is a property on the DAI nodes, so it's not a
+> card-level property, just one part of the overall card definition.
+> 
+> Since the clock ID is something defined by the codec it would naturally
+> be a value defined by the codec, but the *configuration* of the codec is
+> part of the sound card because it depends on how everything is connected
+> together. If you used the same codec in a different machine it would
+> have a different configuration.
 
-I see that the mfd patch was accepted into the mfd subsystem,
-so I'll apply this and the next patch in the series to hwmon-next.
 
-Thanks,
-Guenter
+OK, that sounds reasonable. Thank you for explaining this. You still
+need to convince Mark :)
+
+Best regards,
+Krzysztof
+
