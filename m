@@ -2,46 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 338EE60EA10
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB40F60EA16
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235167AbiJZUNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 16:13:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51336 "EHLO
+        id S235192AbiJZUOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 16:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235123AbiJZUNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:13:08 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DD3148F46
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 13:13:07 -0700 (PDT)
-Received: from [192.168.31.208] (unknown [194.29.137.22])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id E5E433F291;
-        Wed, 26 Oct 2022 22:13:04 +0200 (CEST)
-Message-ID: <1765192b-30f4-eeac-76b4-5b52b3a27813@somainline.org>
-Date:   Wed, 26 Oct 2022 22:13:03 +0200
+        with ESMTP id S235239AbiJZUOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:14:03 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9404F148F57;
+        Wed, 26 Oct 2022 13:14:03 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so10709094otb.8;
+        Wed, 26 Oct 2022 13:14:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HXzbeLcKBqkTorVo8+Zfos/3G48Sy4NmsXxFj9BHm4s=;
+        b=FEnYUn0DCoSCWHvoXyXAqzskXwwWWRZ1DXu7j2xsiizmQKRUn6wH4WOCXzy0s8+wS3
+         winpS7JQttSFA5oolmMnvA5KMMmde/RaXpsz/S8Uv6lvOrnQIxl2ZbHBYGQvSUPFtRmb
+         D5rkuEZV+pOFyTZqxj04Chv9NIwdbifNI89juCr2IXChHVZWlYppw7TUQnM/NCKdJOas
+         sbwbs3Pkz1Sexz5FT9KYCCsyNyF6+C3/vTi/3a+zpX2VLWinGvfOC4DyRupDTJ/U7WiJ
+         vhcisrSUuJqNLQd5WVqxsLYKrj0ZLoROeZCj2x+UOItIZ1mosm/akthGuXAS9Nio/G/R
+         Z2Vw==
+X-Gm-Message-State: ACrzQf0kwxopcVKn9SWxbpgI5lplIcecBQ13DmRT77JRnojeswSmFH6Q
+        GUrY6lHV21TnN6uSm4WbH7xVU2t10A==
+X-Google-Smtp-Source: AMsMyM7Zwol/YU/IWL2xizOWU3LR7EWtDOR4FhrFEny1tsGGtP5+wWG0o4VTMRg+N4Vj1hYfAmxtcQ==
+X-Received: by 2002:a9d:74c8:0:b0:661:d66e:c2c0 with SMTP id a8-20020a9d74c8000000b00661d66ec2c0mr22390323otl.117.1666815242828;
+        Wed, 26 Oct 2022 13:14:02 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z8-20020a056871014800b0013125e6a60fsm3514895oab.58.2022.10.26.13.14.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Oct 2022 13:14:01 -0700 (PDT)
+Received: (nullmailer pid 1161110 invoked by uid 1000);
+        Wed, 26 Oct 2022 20:14:03 -0000
+Date:   Wed, 26 Oct 2022 15:14:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     linux-arm-kernel@lists.infradead.org, dan.carpenter@oracle.com,
+        linux-phy@lists.infradead.org, krzysztof.kozlowski@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        linux-kernel@vger.kernel.org, rogerq@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org, lee@kernel.org,
+        kishon@kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: phy: ti: phy-gmii-sel: Add bindings
+ for J721e
+Message-ID: <166681524182.1160710.10531302688571765618.robh@kernel.org>
+References: <20221026074532.109220-1-s-vadapalli@ti.com>
+ <20221026074532.109220-2-s-vadapalli@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8450-qrd: add SDHCI for microSD
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20221026200357.391635-1-krzysztof.kozlowski@linaro.org>
- <20221026200357.391635-5-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221026200357.391635-5-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221026074532.109220-2-s-vadapalli@ti.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,59 +68,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 26/10/2022 22:03, Krzysztof Kozlowski wrote:
-> Based on downstream DTS, it seems that SM8450 QRD has microSD card slot.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
+On Wed, 26 Oct 2022 13:15:30 +0530, Siddharth Vadapalli wrote:
+> TI's J721e SoC supports additional PHY modes like QSGMII and SGMII
+> that are not supported on earlier SoCs. Add a compatible for it.
+> 
+> Extend ti,qsgmii-main-ports property to support selection of upto
+> two main ports at once across the two QSGMII interfaces.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 > ---
->
-> Not tested.
-> ---
+>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 48 ++++++++++++++++---
+>  1 file changed, 42 insertions(+), 6 deletions(-)
+> 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-
-Konrad
-
->   arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-> index 017bc48430ba..c9a08608ccf4 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-> @@ -427,6 +427,18 @@ &remoteproc_slpi {
->   	firmware-name = "qcom/sm8450/slpi.mbn";
->   };
->   
-> +&sdhc_2 {
-> +	cd-gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_default_state &sdc2_card_det_n>;
-> +	pinctrl-1 = <&sdc2_sleep_state &sdc2_card_det_n>;
-> +	vmmc-supply = <&vreg_l9c_2p96>;
-> +	vqmmc-supply = <&vreg_l6c_1p8>;
-> +	no-sdio;
-> +	no-mmc;
-> +	status = "okay";
-> +};
-> +
->   &spi4 {
->   	status = "okay";
->   };
-> @@ -474,6 +486,13 @@ pinconf {
->   			bias-pull-down;
->   		};
->   	};
-> +
-> +	sdc2_card_det_n: sd-card-det-n-state {
-> +		pins = "gpio92";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-up;
-> +	};
->   };
->   
->   &uart7 {
+Reviewed-by: Rob Herring <robh@kernel.org>
