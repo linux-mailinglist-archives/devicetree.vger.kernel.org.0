@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3610D60E921
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ABA060E954
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234984AbiJZTla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 15:41:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37404 "EHLO
+        id S235182AbiJZTow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 15:44:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234980AbiJZTl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:41:27 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FCBFB7EDA;
-        Wed, 26 Oct 2022 12:41:19 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-12c8312131fso21612780fac.4;
-        Wed, 26 Oct 2022 12:41:19 -0700 (PDT)
+        with ESMTP id S234108AbiJZTo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:44:26 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BF710DE67;
+        Wed, 26 Oct 2022 12:43:52 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id h9so17117671wrt.0;
+        Wed, 26 Oct 2022 12:43:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ORoQDh2bzxbybTBIICtiM6Bx1pQkzrw52vv9hk0I9Po=;
+        b=BOPdWFtXsbOjApuxxFp/AXYwOkGyCX8muLb77Xw8wCbL9CHgQLXGLFnO0D2YL+I5cr
+         nuHYDS0LxklbZUVjnk6rh9gCErC41oEPZksXW1/r/+1S9HGLRNEoflo2tkmJuMjboezG
+         nzwDF1HsLhV88SLMS/+NJtkuUzZWnN0usRjpZ3sHfw1NDTIvXlIfSzkJAjQVdBd6XS1t
+         39bG/ZASeAXjGjF5Rz1WctwUYmbbpZfAFz02xin9R1x/lXNaRvMRonVi/271J4oJUzaJ
+         QYbNQ8teYyR4G0reiuTl1xL0tJGwfUPW3ZVUsREYnVKh+nj9fhyAE/D7564rcSpj1Zvd
+         w5nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TPHONoWIoiJZTFgcTi0/G6lMn83E2o6AmOqzxyIw2bs=;
-        b=wIH3a7zC8AuUkw0n38RRFk9KmPRnM7N5MBZWrpX5rMD1F/4tSN4w90JNS+Wf4Ae7LQ
-         4BrsPQJ6QEYde6sHMVnJ3+Jg+R9L5GpA4KRLtlod6FyEk5acHlc5RrfSGfKIa87dh78r
-         d1SRzbsw3hZeSK7GbXwXwgy4R7BykmpHuNF986GS5z9APiDqYPqCYozxlecToo2Pjicm
-         N5kjmJNCoU//25FFeYfmcpzK5fQSTimtZ6ztd4HxgaGpo0O+wlWxI1ommczng9pP7OC9
-         ostkJYBCVrXsVm0Xhr7Ew4BVUxbzoZs8tQDAFi8fXM3KZjWwQ4zzivOpMFw6vE168x4I
-         Fazg==
-X-Gm-Message-State: ACrzQf1MORvuvbhBBJbm1yLb5FfAKQkEanJxj6C+fMasO8KfdmAPoyR0
-        S2L00k3Kc84qntP6tjPqIQ==
-X-Google-Smtp-Source: AMsMyM4QwTUCtNMwN5OtnKfodKO29IN4opAIzj4qcr/bDuqdr1/vA0ZASc7FopWtKVyVaVnnMpIatA==
-X-Received: by 2002:a05:6870:f59e:b0:132:bcd:565f with SMTP id eh30-20020a056870f59e00b001320bcd565fmr3169738oab.254.1666813279179;
-        Wed, 26 Oct 2022 12:41:19 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y18-20020a056870429200b0010c727a3c79sm3630583oah.26.2022.10.26.12.41.18
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ORoQDh2bzxbybTBIICtiM6Bx1pQkzrw52vv9hk0I9Po=;
+        b=CRgyXfl80/W2A+u32Ij3lPoe6JiSagQROBaOw0MfEHCohYtu/40MNWBZYu3gl4+cWO
+         vsYldeMxSWIhtQNrBdthXDK/iOOBQZHokaO2OldzZOR9HBI4nWBfAm70mTUH0yYpL5jk
+         QRtar7TMPpQ6v8i8gtinMazVUg2SPbjGG0ju86DnsyW1CpSKoat+PwJu09Cnip8p1B7M
+         qN19P52qXuoP2xFXRoIe/XEFbLuGhMt5GT3Kz2S1xz9aW86xiS4YQjkYTafEwPMK1t8e
+         QS7Q3Rbm7cz4btmp4y4O6gs2v840qWExXK+qCoclonasL14IvUEn8kqW0jWyAd6Lp4O7
+         eflA==
+X-Gm-Message-State: ACrzQf3QJg91sdh6p5FDHVFousmafpc4AiMuUzz/3K7qRfi2npV4m977
+        uqBs8q+gQeNzTLZga/QqNyg=
+X-Google-Smtp-Source: AMsMyM74qPQyGVBqHv8D8V4H1TUz0Gg0/3rYN3LVednYEsyCeCLcsp6FNlDQn0ZGTR8UlbyLLyl7kA==
+X-Received: by 2002:a5d:6d8e:0:b0:22e:60ae:8875 with SMTP id l14-20020a5d6d8e000000b0022e60ae8875mr30435324wrs.676.1666813431237;
+        Wed, 26 Oct 2022 12:43:51 -0700 (PDT)
+Received: from localhost (188.28.0.84.threembb.co.uk. [188.28.0.84])
+        by smtp.gmail.com with ESMTPSA id y5-20020adfd085000000b002364c77bcacsm6021198wrh.38.2022.10.26.12.43.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 12:41:18 -0700 (PDT)
-Received: (nullmailer pid 1046234 invoked by uid 1000);
-        Wed, 26 Oct 2022 19:41:20 -0000
-Date:   Wed, 26 Oct 2022 14:41:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mikhail Zhilkin <csharper2005@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Chaitanya Kulkarni <kch@nvidia.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: mtd: partitions: support marking
- rootfs partition
-Message-ID: <166681327937.1046171.12755634067676619192.robh@kernel.org>
-References: <20221022211318.32009-1-zajec5@gmail.com>
+        Wed, 26 Oct 2022 12:43:50 -0700 (PDT)
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     paul@crapouillou.net, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     zhouyu@wanyeetech.com, linux-mips@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] Add support for X1000 audio clocks
+Date:   Wed, 26 Oct 2022 20:43:39 +0100
+Message-Id: <20221026194345.243007-1-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221022211318.32009-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,29 +69,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 Oct 2022 23:13:17 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Linux needs to know what to use as root device. On embedded devices with
-> flash the only common way to specify that is cmdline & root= parameter.
-> 
-> That solution works with U-Boot which is Linux & cmdline aware but isn't
-> available with all market bootloaders. Also that method is fragile:
-> 1. Requires specific probing order on multi-flash devices
-> 2. Uses hardcoded partitions indexes
-> 
-> A lot of devices use different partitioning methods. It may be
-> "fixed-partitions" or some dynamic partitioning (e.g. based on parts
-> table). For such cases allow "linux,rootfs" property to mark correct
-> flash partition.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> V2: Use "linux,rootfs" as more accurate. Thanks Rob.
-> ---
->  .../devicetree/bindings/mtd/partitions/fixed-partitions.yaml  | 1 +
->  .../devicetree/bindings/mtd/partitions/partition.yaml         | 4 ++++
->  2 files changed, 5 insertions(+)
-> 
+The first three patches of this series modify the Ingenic CGU driver to
+allow the X1000's I2S divider to be modeled as a PLL clock. This is not
+really true -- it's just a fractional divider -- but doing it this way
+maximizes code reuse and avoids the need for a custom clock. (Thanks to
+Zhou Yanjie & Paul Cercueil for the idea.)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Patches 04-05 actually add the X1000 SoC's audio clocks. The last patch
+is just a cosmetic cleanup, feel free to take it or leave it.
+
+Aidan MacDonald (6):
+  clk: ingenic: Make PLL clock "od" field optional
+  clk: ingenic: Make PLL clock enable_bit and stable_bit optional
+  clk: ingenic: Add .set_rate_hook() for PLL clocks
+  dt-bindings: ingenic,x1000-cgu: Add audio clocks
+  clk: ingenic: Add X1000 audio clocks
+  clk: ingenic: Minor cosmetic fixups for X1000
+
+ drivers/clk/ingenic/cgu.c                     |  38 ++++--
+ drivers/clk/ingenic/cgu.h                     |  17 ++-
+ drivers/clk/ingenic/x1000-cgu.c               | 119 ++++++++++++++----
+ include/dt-bindings/clock/ingenic,x1000-cgu.h |   4 +
+ 4 files changed, 141 insertions(+), 37 deletions(-)
+
+-- 
+2.38.1
+
