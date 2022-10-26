@@ -2,329 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 263E760DE4A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 11:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15C9A60DE84
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 12:01:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233436AbiJZJht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 05:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47464 "EHLO
+        id S232994AbiJZKA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 06:00:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233417AbiJZJhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 05:37:37 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580C5BC78C;
-        Wed, 26 Oct 2022 02:37:17 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8446360010;
-        Wed, 26 Oct 2022 09:37:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1666777035;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4O7WbxTl92ukABCViXrkm449xOwu9xVNaNk5r6fPFbU=;
-        b=cSCo38xueLYMZhwUZWF6NRobYJjQ7N5WiuauFIULU0ldBKRvTZZQJXYhA7ADM2KcXC5VpQ
-        YxsDYixZbmv9LysGSzRHsbC7Kgkzozu/bduWBtMpk+gLTIk+WK4ivFNi7kh1JisFCtGL2T
-        vqX8gOOfwXT6nKwFHnw6gCiUfokfy/P/L/vZVgoptYJ8AX15MZbx4CEiqWoJx3tJoIQXMl
-        iR+whqG86BTFRhZZpR5aAQo/bmmN3Ei1Zm66jTHu8fSWfubSvI1oVlqxpcdb/VM1pR3Qwi
-        0j7VaEGJfy7jzL6cj73GodJS0XT2i+/KmLtybKqoqPrWR/UUfaqBnuf+YWLfwQ==
-Date:   Wed, 26 Oct 2022 11:37:11 +0200
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Sean Anderson <seanga2@gmail.com>
-Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 3/5] net: pcs: add new PCS driver for altera
- TSE PCS
-Message-ID: <20221026113711.2b740c7a@pc-8.home>
-In-Reply-To: <68b3dfbf-9bab-2554-254e-bffd280ba97e@gmail.com>
-References: <20220901143543.416977-1-maxime.chevallier@bootlin.com>
-        <20220901143543.416977-4-maxime.chevallier@bootlin.com>
-        <68b3dfbf-9bab-2554-254e-bffd280ba97e@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
+        with ESMTP id S233150AbiJZKAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 06:00:50 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F833EA4B;
+        Wed, 26 Oct 2022 03:00:48 -0700 (PDT)
+Received: by mail-qt1-f175.google.com with SMTP id h24so9484891qta.7;
+        Wed, 26 Oct 2022 03:00:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U8LvCK++n55cbxj2o8qBhHtjgRizigCkASGdE2lWyhM=;
+        b=P0H2G9Bw9aYgFB+sd90mCYAF76WIuEVokenRH3n9J3eOlM27w7QV9P0DbXUZm2LEOl
+         TciuFshQIlst0HNA7G9//rbbwtmFHaLXDQU6mzdEUD5hJIFkyTJDbWOUXq+UuJYKh23E
+         Uax3XEHcfzDbuI61JFpsoE4CsRPtECUhiqQ7koG4JIVE0ewy/o5h4+fL7m59y365QDje
+         Xn4vQseYYD2k/1RUsiBQ5faM9a25DKVWU6s+f0hah4HwgGdOHjogRCFkiHvbHTw9ry5X
+         dVFR5hcT95uN0Jb13Zx2cDhgIlfoak0fpAu+C90yQA4TCLtBbbAw2VbflPRyjXAK/1Jm
+         xkKQ==
+X-Gm-Message-State: ACrzQf1EcG6Pyn5L3OXbnIlP5M2m5erBCWXfBP2cFzUO5634oPeV5nIQ
+        nhhvkQ9zczntys8WJ1bFycOkoB1DDp5c9w==
+X-Google-Smtp-Source: AMsMyM4N0ePC9nC4yucnVsR/eWn9oBQduhEEuqWyhF4o0nqvKX+0MRCiOhnhG6fs+E2P5Ql71ZmD4g==
+X-Received: by 2002:a05:622a:3d2:b0:3a4:ecf9:1a2d with SMTP id k18-20020a05622a03d200b003a4ecf91a2dmr2481543qtx.589.1666778447043;
+        Wed, 26 Oct 2022 03:00:47 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id y13-20020a05620a25cd00b006e6a7c2a269sm3765408qko.22.2022.10.26.03.00.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 03:00:46 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id f205so18200191yba.2;
+        Wed, 26 Oct 2022 03:00:46 -0700 (PDT)
+X-Received: by 2002:a25:cd01:0:b0:6c2:6f0d:f4ce with SMTP id
+ d1-20020a25cd01000000b006c26f0df4cemr36041683ybf.365.1666778446165; Wed, 26
+ Oct 2022 03:00:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20220930102259.21918-1-shubhrajyoti.datta@amd.com> <20220930102259.21918-3-shubhrajyoti.datta@amd.com>
+In-Reply-To: <20220930102259.21918-3-shubhrajyoti.datta@amd.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 Oct 2022 12:00:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
+Message-ID: <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] gpio: pca9570: add a platform data structure
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc:     linux-gpio@vger.kernel.org, git@amd.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, brgl@bgdev.pl, linus.walleij@linaro.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sean,
+Hi Shubhrajyoti,
 
-On Sun, 9 Oct 2022 01:38:15 -0400
-Sean Anderson <seanga2@gmail.com> wrote:
+On Fri, Sep 30, 2022 at 12:41 PM Shubhrajyoti Datta
+<shubhrajyoti.datta@amd.com> wrote:
+> Add struct pca9570_platform_data for adding the platform data
+> structure. Also modify the existing structs for pca9570 and pca9571
+>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+>
+> (no changes since v3)
+>
+> Changes in v3:
+> split the new patch
+> Suggested by Andy Shevchenko
+
+Thanks for your patch, which is now commit 35a4bc94a47f2ea6 ("gpio:
+pca9570: add a platform data structure") in gpio/gpio/for-next
+linux-next/master next-20221026
+
+> --- a/drivers/gpio/gpio-pca9570.c
+> +++ b/drivers/gpio/gpio-pca9570.c
+> @@ -15,6 +15,16 @@
+>  #include <linux/mutex.h>
+>  #include <linux/property.h>
+>
+> +/**
+> + * struct pca9570_platform_data - GPIO platformdata
+> + * @ngpio: no of gpios
+> + * @command: Command to be sent
+> + */
+> +struct pca9570_platform_data {
+> +       u16 ngpio;
+> +       u32 command;
+> +};
+> +
+>  /**
+>   * struct pca9570 - GPIO driver data
+>   * @chip: GPIO controller chip
+> @@ -119,16 +129,24 @@ static int pca9570_probe(struct i2c_client *client)
+>         return devm_gpiochip_add_data(&client->dev, &gpio->chip, gpio);
+>  }
+>
+> +static const struct pca9570_platform_data pca9570_gpio = {
+> +       .ngpio = 4,
+> +};
+> +
+> +static const struct pca9570_platform_data pca9571_gpio = {
+> +       .ngpio = 8,
+> +};
+> +
+>  static const struct i2c_device_id pca9570_id_table[] = {
+> -       { "pca9570", 4 },
+> -       { "pca9571", 8 },
+> +       { "pca9570", (kernel_ulong_t)&pca9570_gpio},
+> +       { "pca9571", (kernel_ulong_t)&pca9571_gpio },
+>         { /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(i2c, pca9570_id_table);
+>
+>  static const struct of_device_id pca9570_of_match_table[] = {
+> -       { .compatible = "nxp,pca9570", .data = (void *)4 },
+> -       { .compatible = "nxp,pca9571", .data = (void *)8 },
+> +       { .compatible = "nxp,pca9570", .data = &pca9570_gpio },
+> +       { .compatible = "nxp,pca9571", .data = &pca9571_gpio },
+
+This breaks bisection, as .data is still considered to be the number
+of GPIOs:
+
+    gpio->chip.ngpio = (uintptr_t)device_get_match_data(&client->dev);
 
 
-> > +#define   SGMII_PCS_LINK_TIMER_REG(x)		(0x12 + (x))  
-> 
-> Not used.
+>         { /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, pca9570_of_match_table);
 
-Right, I'll remove that in a followup patch
+Gr{oetje,eeting}s,
 
-> > +#define SGMII_PCS_LINK_TIMER_1	0x13
-> > +#define SGMII_PCS_IF_MODE	0x14
-> > +#define   PCS_IF_MODE_SGMII_ENA		BIT(0)
-> > +#define   PCS_IF_MODE_USE_SGMII_AN	BIT(1)
-> > +#define   PCS_IF_MODE_SGMI_SPEED_MASK	GENMASK(3, 2)
-> > +#define   PCS_IF_MODE_SGMI_SPEED_10	(0 << 2)
-> > +#define   PCS_IF_MODE_SGMI_SPEED_100	(1 << 2)
-> > +#define   PCS_IF_MODE_SGMI_SPEED_1000	(2 << 2)  
-> 
-> You can use FIELD_PREP if you're so inclined. I assume SGMI is from
-> the datasheet.
+                        Geert
 
-Will do ! thanks :)
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> > +#define   PCS_IF_MODE_SGMI_HALF_DUPLEX	BIT(4)
-> > +#define   PCS_IF_MODE_SGMI_PHY_AN	BIT(5)
-> > +#define SGMII_PCS_DIS_READ_TO	0x15
-> > +#define SGMII_PCS_READ_TO	0x16
-> > +#define SGMII_PCS_SW_RESET_TIMEOUT 100 /* usecs */
-> > +
-> > +struct altera_tse_pcs {
-> > +	struct phylink_pcs pcs;
-> > +	void __iomem *base;
-> > +	int reg_width;
-> > +};
-> > +
-> > +static struct altera_tse_pcs *phylink_pcs_to_tse_pcs(struct
-> > phylink_pcs *pcs) +{
-> > +	return container_of(pcs, struct altera_tse_pcs, pcs);
-> > +}
-> > +
-> > +static u16 tse_pcs_read(struct altera_tse_pcs *tse_pcs, int regnum)
-> > +{
-> > +	if (tse_pcs->reg_width == 4)
-> > +		return readl(tse_pcs->base + regnum * 4);
-> > +	else
-> > +		return readw(tse_pcs->base + regnum * 2);
-> > +}
-> > +
-> > +static void tse_pcs_write(struct altera_tse_pcs *tse_pcs, int
-> > regnum,
-> > +			  u16 value)
-> > +{
-> > +	if (tse_pcs->reg_width == 4)
-> > +		writel(value, tse_pcs->base + regnum * 4);
-> > +	else
-> > +		writew(value, tse_pcs->base + regnum * 2);
-> > +}
-> > +
-> > +static int tse_pcs_reset(struct altera_tse_pcs *tse_pcs)
-> > +{
-> > +	int i = 0;
-> > +	u16 bmcr;
-> > +
-> > +	/* Reset PCS block */
-> > +	bmcr = tse_pcs_read(tse_pcs, MII_BMCR);
-> > +	bmcr |= BMCR_RESET;
-> > +	tse_pcs_write(tse_pcs, MII_BMCR, bmcr);
-> > +
-> > +	for (i = 0; i < SGMII_PCS_SW_RESET_TIMEOUT; i++) {
-> > +		if (!(tse_pcs_read(tse_pcs, MII_BMCR) &
-> > BMCR_RESET))
-> > +			return 0;
-> > +		udelay(1);
-> > +	}  
-> 
-> read_poll_timeout?
-
-Oh yeah definitely, I didn't know about this helper.
-
-> > +
-> > +	return -ETIMEDOUT;
-> > +}
-> > +
-> > +static int alt_tse_pcs_validate(struct phylink_pcs *pcs,
-> > +				unsigned long *supported,
-> > +				const struct phylink_link_state
-> > *state) +{
-> > +	if (state->interface == PHY_INTERFACE_MODE_SGMII ||
-> > +	    state->interface == PHY_INTERFACE_MODE_1000BASEX)
-> > +		return 1;
-> > +
-> > +	return -EINVAL;
-> > +}
-> > +
-> > +static int alt_tse_pcs_config(struct phylink_pcs *pcs, unsigned
-> > int mode,
-> > +			      phy_interface_t interface,
-> > +			      const unsigned long *advertising,
-> > +			      bool permit_pause_to_mac)
-> > +{
-> > +	struct altera_tse_pcs *tse_pcs =
-> > phylink_pcs_to_tse_pcs(pcs);
-> > +	u32 ctrl, if_mode;
-> > +
-> > +	ctrl = tse_pcs_read(tse_pcs, MII_BMCR);
-> > +	if_mode = tse_pcs_read(tse_pcs, SGMII_PCS_IF_MODE);
-> > +
-> > +	/* Set link timer to 1.6ms, as per the MegaCore Function
-> > User Guide */
-> > +	tse_pcs_write(tse_pcs, SGMII_PCS_LINK_TIMER_0, 0x0D40);
-> > +	tse_pcs_write(tse_pcs, SGMII_PCS_LINK_TIMER_1, 0x03);  
-> 
-> Shouldn't this be different for SGMII vs 1000BASE-X?
-
-I've dug a bit and indeed you're right. The value of 1.6ms works for
-SGMII, but for 1000BaseX it should be set to 10ms. I'll send a fix for
-this too.
-
-> > +
-> > +	if (interface == PHY_INTERFACE_MODE_SGMII) {
-> > +		if_mode |= PCS_IF_MODE_USE_SGMII_AN |
-> > PCS_IF_MODE_SGMII_ENA;  
-> 
-> I think PCS_IF_MODE_USE_SGMII_AN should be cleared if
-> mode=MLO_AN_FIXED.
-
-Correct.
-
-> > +	} else if (interface == PHY_INTERFACE_MODE_1000BASEX) {
-> > +		if_mode &= ~(PCS_IF_MODE_USE_SGMII_AN |
-> > PCS_IF_MODE_SGMII_ENA);
-> > +		if_mode |= PCS_IF_MODE_SGMI_SPEED_1000;  
-> 
-> I don't think you need to set this for 1000BASE-X.
-
-You're correct too.
-
-> > +	}
-> > +
-> > +	ctrl |= (BMCR_SPEED1000 | BMCR_FULLDPLX | BMCR_ANENABLE);  
-> 
-> BMCR_FULLDPLX is read-only, so you don't have to set it. Same for the
-> speed.
-
-Thanks, that's true
-
-> > +
-> > +	tse_pcs_write(tse_pcs, MII_BMCR, ctrl);
-> > +	tse_pcs_write(tse_pcs, SGMII_PCS_IF_MODE, if_mode);
-> > +
-> > +	return tse_pcs_reset(tse_pcs);
-> > +}
-> > +
-> > +static void alt_tse_pcs_get_state(struct phylink_pcs *pcs,
-> > +				  struct phylink_link_state *state)
-> > +{
-> > +	struct altera_tse_pcs *tse_pcs =
-> > phylink_pcs_to_tse_pcs(pcs);
-> > +	u16 bmsr, lpa;
-> > +
-> > +	bmsr = tse_pcs_read(tse_pcs, MII_BMSR);
-> > +	lpa = tse_pcs_read(tse_pcs, MII_LPA);
-> > +
-> > +	phylink_mii_c22_pcs_decode_state(state, bmsr, lpa);
-> > +}
-> > +
-> > +static void alt_tse_pcs_an_restart(struct phylink_pcs *pcs)
-> > +{
-> > +	struct altera_tse_pcs *tse_pcs =
-> > phylink_pcs_to_tse_pcs(pcs);
-> > +	u16 bmcr;
-> > +
-> > +	bmcr = tse_pcs_read(tse_pcs, MII_BMCR);
-> > +	bmcr |= BMCR_ANRESTART;
-> > +	tse_pcs_write(tse_pcs, MII_BMCR, bmcr);
-> > +
-> > +	/* This PCS seems to require a soft reset to re-sync the
-> > AN logic */
-> > +	tse_pcs_reset(tse_pcs);  
-> 
-> This is kinda strange since c22 phys are supposed to reset the other
-> registers to default values when BMCR_RESET is written. Good thing
-> this is a PCS...
-
-Indeed. This soft reset will not affect the register configuration, it
-will only reset all internal state machines.
-
-The datasheet actually recommends performing a reset after any
-configuration change...
-
-That's one thing with this IP, it tries to re-use the C22 register
-layout but it's not fully consistent with it...
-
-> > +}
-> > +
-> > +static const struct phylink_pcs_ops alt_tse_pcs_ops = {
-> > +	.pcs_validate = alt_tse_pcs_validate,
-> > +	.pcs_get_state = alt_tse_pcs_get_state,
-> > +	.pcs_config = alt_tse_pcs_config,
-> > +	.pcs_an_restart = alt_tse_pcs_an_restart,
-> > +};  
-> 
-> Don't you need link_up to set the speed/duplex for MLO_AN_FIXED?
-
-I'll give it a test and confirm it
-
-> > +
-> > +struct phylink_pcs *alt_tse_pcs_create(struct net_device *ndev,
-> > +				       void __iomem *pcs_base, int
-> > reg_width) +{
-> > +	struct altera_tse_pcs *tse_pcs;
-> > +
-> > +	if (reg_width != 4 && reg_width != 2)
-> > +		return ERR_PTR(-EINVAL);
-> > +
-> > +	tse_pcs = devm_kzalloc(&ndev->dev, sizeof(*tse_pcs),
-> > GFP_KERNEL);
-> > +	if (!tse_pcs)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	tse_pcs->pcs.ops = &alt_tse_pcs_ops;
-> > +	tse_pcs->base = pcs_base;
-> > +	tse_pcs->reg_width = reg_width;
-> > +
-> > +	return &tse_pcs->pcs;
-> > +}
-> > +EXPORT_SYMBOL_GPL(alt_tse_pcs_create);
-> > diff --git a/include/linux/pcs-altera-tse.h
-> > b/include/linux/pcs-altera-tse.h new file mode 100644
-> > index 000000000000..92ab9f08e835
-> > --- /dev/null
-> > +++ b/include/linux/pcs-altera-tse.h
-> > @@ -0,0 +1,17 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright (C) 2022 Bootlin
-> > + *
-> > + * Maxime Chevallier <maxime.chevallier@bootlin.com>
-> > + */
-> > +
-> > +#ifndef __LINUX_PCS_ALTERA_TSE_H
-> > +#define __LINUX_PCS_ALTERA_TSE_H
-> > +
-> > +struct phylink_pcs;
-> > +struct net_device;
-> > +
-> > +struct phylink_pcs *alt_tse_pcs_create(struct net_device *ndev,
-> > +				       void __iomem *pcs_base, int
-> > reg_width); +
-> > +#endif /* __LINUX_PCS_ALTERA_TSE_H */  
-> 
-> --Sean
-
-Thanks a lot for the review ! I'll do a round of tests with the
-comments and send follow-up patches.
-
-Best regards,
-
-Maxime
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
