@@ -2,242 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC32E60E1A6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 15:12:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C73660E1BB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 15:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233603AbiJZNMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 09:12:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40970 "EHLO
+        id S233603AbiJZNQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 09:16:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233506AbiJZNMe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 09:12:34 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE1B9FB730;
-        Wed, 26 Oct 2022 06:12:33 -0700 (PDT)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29QAemMa025728;
-        Wed, 26 Oct 2022 09:12:05 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3kcac8vfcq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 26 Oct 2022 09:12:04 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 29QDC3SL001642
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Oct 2022 09:12:03 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 26 Oct
- 2022 09:12:02 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 26 Oct 2022 09:12:02 -0400
-Received: from IST-LT-39247.ad.analog.com (IST-LT-39247.ad.analog.com [10.25.16.24])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 29QDBY6n014246;
-        Wed, 26 Oct 2022 09:11:52 -0400
-From:   Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        <linux-rtc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-Subject: [PATCH v2 2/2] dt-bindings: rtc: add bindings for max313xx RTCs
-Date:   Wed, 26 Oct 2022 16:11:24 +0300
-Message-ID: <20221026131124.289-3-Ibrahim.Tilki@analog.com>
+        with ESMTP id S233390AbiJZNQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 09:16:35 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21AA4A99D5;
+        Wed, 26 Oct 2022 06:16:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666790194; x=1698326194;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=mjFPBPmpLWz/562nklZTla4ladz+0IGVjIOFuv2LArA=;
+  b=g2Yh5SKETTVgbyXjbhuqHF8wiqtjMF3HD/VnrHDKwvzXNmYOJDKFQxw/
+   3u4XyEyUFqjIzr9LsK68QWeHA1zswcujuWJ5/ALwhaaqvcWdeqxVY3pE5
+   1S0ZcUXDUtrKbdf9EfaNk4dAN4tkZe5ch89w0J4F4DeCGExBBX5vyDmcf
+   V2+b5DSxKMaJ9phlsHoyAC+D7mTjnzt/QzDHpweZbj+1UxWhBXBWjgt3A
+   EEL8Sweo/izH6dickrdNPA1t2ng/I78+hLL0y4aIz/v3knfSAimXt6Bj+
+   FJJJVGRn6pu+pJnmZs0clvlRzh3eDVJHl3UTuGJxtwTWbTURlmaEL4wTj
+   g==;
+X-IronPort-AV: E=Sophos;i="5.95,214,1661810400"; 
+   d="scan'208";a="26988467"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 26 Oct 2022 15:16:31 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 26 Oct 2022 15:16:31 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 26 Oct 2022 15:16:31 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1666790191; x=1698326191;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=mjFPBPmpLWz/562nklZTla4ladz+0IGVjIOFuv2LArA=;
+  b=VkLkxiFpxIRXSvtH9mdheulw/zvTruyrS/vc9L0P69NBK8JYa8AMRgYJ
+   hEHrAkXwDGTMCnRVT3yX3frv80r/tPy4dAIfcw4LCm38awoH0Vhb8HOH7
+   YWwetleT4ujenU/RvxoXQ2C85ybsZxE9caxuoY89vpapB+JyO7UZ1W99U
+   PtlWKjo/aWDCmUwiVMye0cDfpowfV51SzGDFO0X55SBjdxO9w/SHuDvJV
+   M1RBKlZ/FcnataEHlp2nlFDAKxqKcuATaVjAdDKZ0HTFh4LAjsqvh6DQL
+   RlQz/n1KCzIVoVXfO6kMdVolcnzFfap1Mu/4efFQ76vsoduJJfNx5J87C
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,214,1661810400"; 
+   d="scan'208";a="26988466"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 26 Oct 2022 15:16:31 +0200
+Received: from localhost.localdomain (SCHIFFERM-M2.tq-net.de [10.121.49.14])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id BFB01280056;
+        Wed, 26 Oct 2022 15:16:29 +0200 (CEST)
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Amitkumar Karwar <amitkarwar@gmail.com>,
+        Ganapathi Bhat <ganapathi017@gmail.com>,
+        Sharvari Harisangam <sharvari.harisangam@nxp.com>,
+        Xinming Hu <huxinming820@gmail.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux@ew.tq-group.com,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [RFC 0/5] "notify-device" for cross-driver readiness notification
+Date:   Wed, 26 Oct 2022 15:15:29 +0200
+Message-Id: <cover.1666786471.git.matthias.schiffer@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221026131124.289-1-Ibrahim.Tilki@analog.com>
-References: <20221026131124.289-1-Ibrahim.Tilki@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Cd9uiJ48XtnCxwht-Nkz_Q8ixsTspG44
-X-Proofpoint-GUID: Cd9uiJ48XtnCxwht-Nkz_Q8ixsTspG44
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-26_06,2022-10-26_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 phishscore=0 malwarescore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 adultscore=0 mlxscore=0 bulkscore=0 spamscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2209130000 definitions=main-2210260074
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Devicetree binding documentation for Analog Devices MAX313XX RTCs
+This patch series is obviously missing documentation, MAINTAINERS
+entries, etc., but I'd like to solicit some basic feedback on whether
+this approach makes sense at all before I proceed. If it does, the
+naming is also very much open for bikeshedding - I'm not too happy with
+"notify-device".
 
-Signed-off-by: Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-Signed-off-by: Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
----
- .../devicetree/bindings/rtc/adi,max313xx.yaml | 151 ++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
+The basic problem that the notify-device tries to solve is the
+synchronization of firmware loading readiness between the Marvell/NXP
+WLAN and Bluetooth drivers, but it may also be applicable to other
+drivers.
 
-diff --git a/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
-new file mode 100644
-index 000000000..7fa28d9d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/adi,max313xx.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2022 Analog Devices Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/adi,max313xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices MAX313XX series I2C RTCs
-+
-+maintainers:
-+  - Ibrahim Tilki <Ibrahim.Tilki@analog.com>
-+  - Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
-+
-+description: Analog Devices MAX313XX series I2C RTCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,max31328
-+      - adi,max31329
-+      - adi,max31331
-+      - adi,max31334
-+      - adi,max31341
-+      - adi,max31342
-+      - adi,max31343
-+
-+  reg:
-+    description: I2C address of the RTC
-+    items:
-+      - enum: [0x68, 0x69]
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupt-names:
-+    description: |
-+      Name of the interrupt pin of the RTC used for IRQ. Not required for
-+      RTCs that only have single interrupt pin available. Some of the RTCs
-+      share interrupt pins with clock input/output pins.
-+    minItems: 1
-+    items:
-+      - enum: [INTA, INTB]
-+      - enum: [INTA, INTB]
-+
-+  "#clock-cells":
-+    description: |
-+      RTC can be used as a clock source through its clock output pin when
-+      supplied.
-+    const: 0
-+
-+  clocks:
-+    description: |
-+      RTC uses this clock for clock input when supplied. Clock has to provide
-+      one of these four frequencies: 1Hz, 50Hz, 60Hz or 32.768kHz.
-+    maxItems: 1
-+
-+  trickle-diode-disable: true
-+
-+  trickle-resistor-ohms:
-+    description: Enables trickle charger with specified resistor value.
-+    enum: [3000, 6000, 11000]
-+
-+  wakeup-source: true
-+
-+additionalProperties: false
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31328
-+              - adi,max31342
-+
-+    then:
-+      properties:
-+        trickle-diode-disable: false
-+        trickle-resistor-ohms: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31328
-+              - adi,max31331
-+              - adi,max31334
-+              - adi,max31343
-+
-+    then:
-+      properties:
-+        clocks: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,max31341
-+              - adi,max31342
-+
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - const: 0x69
-+
-+    else:
-+      properties:
-+        reg:
-+          items:
-+            - const: 0x68
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@68 {
-+            reg = <0x68>;
-+            compatible = "adi,max31329";
-+            clocks = <&clkin>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-names = "INTB";
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@68 {
-+            reg = <0x68>;
-+            compatible = "adi,max31331";
-+            #clock-cells = <0>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <25 IRQ_TYPE_EDGE_FALLING>, <26 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-names = "INTA", "INTB";
-+        };
-+    };
+The WLAN and Bluetooth adapters are handled by separate drivers, and may
+be connected to the CPU using different interfaces (for example SDIO for
+WLAN and UART for Bluetooth). However, both adapters share a single
+firmware that may be uploaded via either interface.
+
+For the SDIO+UART case, uploading the firmware via SDIO is usually
+preferable, but even when the interface doesn't matter, it seems like a
+good idea to clearly define which driver should handle it. To avoid
+making the Bluetooth driver more complicated than necessary in this case,
+we'd like to defer the probing of the driver until the firmware is ready.
+
+For this purpose, we are introducing a notify-device, with the following
+properties:
+
+- The device is created by a driver as soon as some "readiness
+  condition" is satisfied
+- Creating the device also binds a stub driver, so deferred probes are
+  triggered
+- Looking up the notify device is possible via OF node / phandle reference
+
+This approach avoids a hard dependency between the WLAN and Bluetooth
+driver, and works regardless of the driver load order.
+
+The first patch implementes the notify-device driver itself, and the
+rest shows how the device could be hooked up to the mwifiex and hci_mrvl
+drivers. A device tree making use of the notify-device could look like
+the following:
+
+    &sdhci1 {
+        wifi@1 {
+            compatible = "marvell,sd8987";
+            reg = <1>;
+    
+            wifi_firmware: firmware-notifier {};
+        };
+    };
+
+    &main_uart3 {
+        bluetooth {
+            compatible = "marvell,sd8987-bt";
+            firmware-ready = <&wifi_firmware>;
+        };
+    };
+
+
+Matthias Schiffer (5):
+  misc: introduce notify-device driver
+  wireless: mwifiex: signal firmware readiness using notify-device
+  bluetooth: hci_mrvl: select firmwares to load by match data
+  bluetooth: hci_mrvl: add support for SD8987
+  bluetooth: hci_mrvl: allow waiting for firmware load using
+    notify-device
+
+ drivers/bluetooth/hci_mrvl.c                |  77 ++++++++++++--
+ drivers/misc/Kconfig                        |   4 +
+ drivers/misc/Makefile                       |   1 +
+ drivers/misc/notify-device.c                | 109 ++++++++++++++++++++
+ drivers/net/wireless/marvell/mwifiex/main.c |  14 +++
+ drivers/net/wireless/marvell/mwifiex/main.h |   1 +
+ include/linux/notify-device.h               |  33 ++++++
+ 7 files changed, 228 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/misc/notify-device.c
+ create mode 100644 include/linux/notify-device.h
+
 -- 
 2.25.1
 
