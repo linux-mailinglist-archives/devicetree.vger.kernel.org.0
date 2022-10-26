@@ -2,185 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F5F60E36A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:34:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7185E60E37C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:38:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233717AbiJZOeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44060 "EHLO
+        id S234371AbiJZOiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:38:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234083AbiJZOel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:34:41 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F71BE0F5
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:34:40 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id c23so9981620qtw.8
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Aue1n5CdddDvk+uG+qHnNwSRlkDsHeAwN2g8IgZTjZc=;
-        b=ZpdLrONk4T6DRMobcv1MM1zbz53uAK5KlJ8hgYZAUAJvkLvs4p6HTb9Vjl7PS72DnZ
-         QkzWf0/9/43kJ5xqNpPlMdGbeMnd57IUjvglfjgrPoXwsXv/4OeF3mJ3XkqXFi0KxGS+
-         A+tMkaNxlmLYrkZuf1wEYuFoKFa9dSn1ugeKoDBO8Wrpz0ijxgm34ejLn+yrwnKvSbyb
-         Bng7/dtj+ITU0xggXXST+qFO4YQ1ft4FBxYZ9Hl9O0oY08Lp2ptdruM2T/ZIuRLLcL8J
-         MUwW7+WZlhkQP5QR6n7EqeqCK/F3CTVRRUuUUkSr014OsGYPC6/qm8Lp8HA1/6neaeWA
-         OnHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Aue1n5CdddDvk+uG+qHnNwSRlkDsHeAwN2g8IgZTjZc=;
-        b=SHcKLCbXs7KBPHfnI3Mf4JS5+7sP8OFYeJu4jULq7FQLijJoKM+/crpCIkTbZ/5N45
-         5r6/gjqTyQKo933r7NL1D79TCETRb2ew0BXDaDJbEBPZ8DMpM/vo9POPJnMmh3Fi82fd
-         Zgu6lGWgpdNgE/vhVDbT+OIkg2No2myEtGI87dpL77bJ+HWhz5ZdxmuU5DfmSXluZ1cG
-         nKsegjxCo+S9ExNvKe031SXgtszAq22sebtc2IkG2EDLm8MXNNYrHo4/GDaACvHX6nvw
-         93z+1RfGNl993qhRdEykN5xV6fKMEGD+TKEjXJJAZIxUD1gkLCtxGAd7KrSooWkg3Wx4
-         A/lQ==
-X-Gm-Message-State: ACrzQf0KpvfxZh/gimeT/M7qxS04DsLOqYljX/3+aJRQhtngtd06EaXI
-        9fmtAgqaZ2oSUluVSxcfK0QCIw==
-X-Google-Smtp-Source: AMsMyM7c1sgYx5YIZenvo5DDl/wD/h249LQ6L6+sQqdnyE+pVe7N1cKfoDBZBVAAPrt8rMe2PLHswA==
-X-Received: by 2002:ac8:5849:0:b0:39a:8e35:1bfa with SMTP id h9-20020ac85849000000b0039a8e351bfamr36305054qth.573.1666794879194;
-        Wed, 26 Oct 2022 07:34:39 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id c27-20020a05620a269b00b006ee7923c187sm4013390qkp.42.2022.10.26.07.34.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:34:38 -0700 (PDT)
-Message-ID: <7ceca209-9361-e811-8fe0-282639f9e967@linaro.org>
-Date:   Wed, 26 Oct 2022 10:34:36 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
- subnodes
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S234358AbiJZOh4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:37:56 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63466BA25B;
+        Wed, 26 Oct 2022 07:37:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id AC0E9CE2295;
+        Wed, 26 Oct 2022 14:37:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7462EC433C1;
+        Wed, 26 Oct 2022 14:37:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1666795072;
+        bh=y2U35Pk+CmD/Ks0JVJ0GmzyJIulw6nH1nLCwcfBn04Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RuU5wBDipXRYa4nCxyKvqv0eTq2JoVlhhjn5FTT7ZmDJrG8uF2LJt1LAf/00IMyuO
+         BG8py7QRzsNGuuIE9EJScbHsBRmNbQCSiQ/YUqthNMOUTnnUj3LTKjUCbj7slPVU5u
+         xaFztWPUG8uKYghyJAWiJyNg+pqleuh0WkzIY9o0=
+Date:   Wed, 26 Oct 2022 16:37:49 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Amitkumar Karwar <amitkarwar@gmail.com>,
+        Ganapathi Bhat <ganapathi017@gmail.com>,
+        Sharvari Harisangam <sharvari.harisangam@nxp.com>,
+        Xinming Hu <huxinming820@gmail.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221021171055.85888-1-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux@ew.tq-group.com
+Subject: Re: [RFC 1/5] misc: introduce notify-device driver
+Message-ID: <Y1lGPRvKMbNDs1iK@kroah.com>
+References: <cover.1666786471.git.matthias.schiffer@ew.tq-group.com>
+ <db30127ab4741d4e71b768881197f4791174f545.1666786471.git.matthias.schiffer@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <db30127ab4741d4e71b768881197f4791174f545.1666786471.git.matthias.schiffer@ew.tq-group.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 13:10, Sebastian Reichel wrote:
-> The queue configuration is referenced by snps,mtl-rx-config and
-> snps,mtl-tx-config. Most in-tree DTs put the referenced object
-> as child node of the dwmac node.
+On Wed, Oct 26, 2022 at 03:15:30PM +0200, Matthias Schiffer wrote:
+> A notify-device is a synchronization facility that allows to query
+> "readiness" across drivers, without creating a direct dependency between
+> the driver modules. The notify-device can also be used to trigger deferred
+> probes.
 > 
-> This adds proper description for this setup, which has the
-> advantage of properly making sure only known properties are
-> used.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   | 154 ++++++++++++------
->  1 file changed, 108 insertions(+), 46 deletions(-)
+>  drivers/misc/Kconfig          |   4 ++
+>  drivers/misc/Makefile         |   1 +
+>  drivers/misc/notify-device.c  | 109 ++++++++++++++++++++++++++++++++++
+>  include/linux/notify-device.h |  33 ++++++++++
+>  4 files changed, 147 insertions(+)
+>  create mode 100644 drivers/misc/notify-device.c
+>  create mode 100644 include/linux/notify-device.h
 > 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 13b984076af5..0bf6112cec2f 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -167,56 +167,118 @@ properties:
->    snps,mtl-rx-config:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description:
-> -      Multiple RX Queues parameters. Phandle to a node that can
-> -      contain the following properties
-> -        * snps,rx-queues-to-use, number of RX queues to be used in the
-> -          driver
-> -        * Choose one of these RX scheduling algorithms
-> -          * snps,rx-sched-sp, Strict priority
-> -          * snps,rx-sched-wsp, Weighted Strict priority
-> -        * For each RX queue
-> -          * Choose one of these modes
-> -            * snps,dcb-algorithm, Queue to be enabled as DCB
-> -            * snps,avb-algorithm, Queue to be enabled as AVB
-> -          * snps,map-to-dma-channel, Channel to map
-> -          * Specifiy specific packet routing
-> -            * snps,route-avcp, AV Untagged Control packets
-> -            * snps,route-ptp, PTP Packets
-> -            * snps,route-dcbcp, DCB Control Packets
-> -            * snps,route-up, Untagged Packets
-> -            * snps,route-multi-broad, Multicast & Broadcast Packets
-> -          * snps,priority, bitmask of the tagged frames priorities assigned to
-> -            the queue
-> +      Multiple RX Queues parameters. Phandle to a node that
-> +      implements the 'rx-queues-config' object described in
-> +      this binding.
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 358ad56f6524..63559e9f854c 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -496,6 +496,10 @@ config VCPU_STALL_DETECTOR
+>  
+>  	  If you do not intend to run this kernel as a guest, say N.
+>  
+> +config NOTIFY_DEVICE
+> +	tristate "Notify device"
+> +	depends on OF
 > +
-> +  rx-queues-config:
-> +    type: object
-> +    properties:
-> +      snps,rx-queues-to-use:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: number of RX queues to be used in the driver
-> +      snps,rx-sched-sp:
-> +        type: boolean
-> +        description: Strict priority
-> +      snps,rx-sched-wsp:
-> +        type: boolean
-> +        description: Weighted Strict priority
-> +    patternProperties:
-> +      "^queue[0-9]$":
-> +        description: Each subnode represents a queue.
-> +        type: object
-> +        properties:
-> +          snps,dcb-algorithm:
-> +            type: boolean
-> +            description: Queue to be enabled as DCB
-> +          snps,avb-algorithm:
-> +            type: boolean
-> +            description: Queue to be enabled as AVB
-> +          snps,map-to-dma-channel:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: DMA channel id to map
-> +          snps,route-avcp:
-> +            type: boolean
-> +            description: AV Untagged Control packets
-> +          snps,route-ptp:
-> +            type: boolean
-> +            description: PTP Packets
-> +          snps,route-dcbcp:
-> +            type: boolean
-> +            description: DCB Control Packets
-> +          snps,route-up:
-> +            type: boolean
-> +            description: Untagged Packets
-> +          snps,route-multi-broad:
-> +            type: boolean
-> +            description: Multicast & Broadcast Packets
-> +          snps,priority:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            description: Bitmask of the tagged frames priorities assigned to the queue
+>  source "drivers/misc/c2port/Kconfig"
+>  source "drivers/misc/eeprom/Kconfig"
+>  source "drivers/misc/cb710/Kconfig"
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index ac9b3e757ba1..1e8012112b43 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -62,3 +62,4 @@ obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
+>  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+>  obj-$(CONFIG_GP_PCI1XXXX)	+= mchp_pci1xxxx/
+>  obj-$(CONFIG_VCPU_STALL_DETECTOR)	+= vcpu_stall_detector.o
+> +obj-$(CONFIG_NOTIFY_DEVICE)	+= notify-device.o
+> diff --git a/drivers/misc/notify-device.c b/drivers/misc/notify-device.c
+> new file mode 100644
+> index 000000000000..42e0980394ea
+> --- /dev/null
+> +++ b/drivers/misc/notify-device.c
+> @@ -0,0 +1,109 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +#include <linux/device/class.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/notify-device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +static void notify_device_release(struct device *dev)
+> +{
+> +	of_node_put(dev->of_node);
+> +	kfree(dev);
+> +}
+> +
+> +static struct class notify_device_class = {
+> +	.name = "notify-device",
+> +	.owner = THIS_MODULE,
+> +	.dev_release = notify_device_release,
+> +};
+> +
+> +static struct platform_driver notify_device_driver = {
 
-If we are not going to fix it, at least let's improve the constraints,
-so add allOf:if:then here (with proper indentation) which disallows
-mixing mutually exclusive properties.
-Here's example:
-https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml#L155
+Ick, wait, this is NOT a platform device, nor driver, so it shouldn't be
+either here.  Worst case, it's a virtual device on the virtual bus.
 
-Best regards,
-Krzysztof
+But why is this a class at all?  Classes are a representation of a type
+of device that userspace can see, how is this anything that userspace
+cares about?
 
+Doesn't the device link stuff handle all of this type of "when this
+device is done being probed, now I can" problems?  Why is a whole new
+thing needed?
+
+thanks,
+
+greg k-h
