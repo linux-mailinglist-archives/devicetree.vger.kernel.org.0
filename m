@@ -2,278 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE3D60DAE4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FCE860DA9D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 07:34:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232896AbiJZGCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 02:02:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33950 "EHLO
+        id S231597AbiJZFeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 01:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232768AbiJZGBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:01:47 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C852D2BE06;
-        Tue, 25 Oct 2022 23:01:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666764105; x=1698300105;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zmD0kxt0R4vUUSaUB+bUhlFkoSbFxMeO9O8HddzYL1Y=;
-  b=X1rW6M5c+x67gIOQavoceUMFlZoVEiEdq6rtwSeM/XVaGojJspGj4N07
-   KmnLX8yagKSewZOWTHjMdNEFseBk/Xm0FinWEFlOb8jyz+xIsGtGxzU25
-   s+wVfbPcDDcdxzz4imt4NQqIrg79QTGosuqjMft1bqTK+XDGI1+AIFaMp
-   RH9yk3KTRJwQ7u2cvzN3pmGQb9CpN0qtxRXfVhSIcUoxyEPiOb9nIhUU6
-   FKI+evsze5GPbofeoSr1U7vK90kyH2/WOdf29vC8Ztv3htZGWhntYx3hW
-   CKow7JtcDE714MqE4usL+a0JjmS94UhBE+v9f731GYhi0O48Aj/MkdPZY
-   w==;
-X-IronPort-AV: E=Sophos;i="5.95,213,1661810400"; 
-   d="scan'208";a="26973016"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 26 Oct 2022 08:01:43 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 26 Oct 2022 08:01:43 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 26 Oct 2022 08:01:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666764103; x=1698300103;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zmD0kxt0R4vUUSaUB+bUhlFkoSbFxMeO9O8HddzYL1Y=;
-  b=TzmdZSgIPfOeQuO/SZqfLWNI/h7Ti6dHSu4W/HoptizZ7B0yGLX3lKhu
-   nUrJneTU/kST3pO7BFfBQvpU3CbGyu8v+1DDu8UHimj1u3ZSMB5RybVDl
-   gcFHZZ+8Ep3fwalPw7UTsXi23GbecI2hb432yLgdpCPEN58IQ13uFPG6O
-   qvMiiv5hbdA5/JDb4qkseUK8dEhp22Ochg1KQ/BDXaaE2Vc/DSFvKx6km
-   qocLSACtK5uoKtec6xtcqu1kcua+TNY8G4x98R3UrLexp/ddnMm1yeCG9
-   WKlcMao/0dR9uvQeLk+P2/zYNqOlrLcQ6KvDoUP/tKYVDoKFULQXL07Ig
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,213,1661810400"; 
-   d="scan'208";a="26973015"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 26 Oct 2022 08:01:42 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A0287280056;
-        Wed, 26 Oct 2022 08:01:42 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
-Date:   Wed, 26 Oct 2022 08:01:38 +0200
-Message-ID: <2201746.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <56af1cc3-c10e-5694-d25f-252304732568@norik.com>
-References: <20221025072533.2980154-1-andrej.picej@norik.com> <13126397.uLZWGnKmhe@steina-w> <56af1cc3-c10e-5694-d25f-252304732568@norik.com>
+        with ESMTP id S231341AbiJZFeG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 01:34:06 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80075.outbound.protection.outlook.com [40.107.8.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBE8ABF2E;
+        Tue, 25 Oct 2022 22:34:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L84i+e0mKixAq+gxS3Ozf1ehnL3/os//hVg+NLPUOI/wxhLSIuTCHhfGXaLeC7cq4Yh8JmGS2onSMJMwfnaAdwWgfHPyZWKR1KLG013RFNyMH5n9U810BLFSpBQb/WpCfzIe5jPcj3rAgQETB2XWHcVl848fcd6kW6bswPAnWPzlSKNd1lrszgip1CQo33dHBGIZU6tJUIWKhjUSRHEOlYoISm87sIODhRJ2KaFDwbokKTryAMD6voiTNm45wAy63bb5sXuWsa+DnlRrO+iyCR8BIg/NwwA0qzAcT7g3ktMFCQAgK/qibIH5nYwrKaAZ1n9vXBWXwg0ErNbw6qoxuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cdxg55/7N1nGO6CRu6XTsjRG64aTcb9o3lcUQ2BvpBQ=;
+ b=VL5Defte44F2U8mAaqKE45lJK43D+EjFLYOeQxP6Vys2shdu86jhhALL3SBBgfQDVxbB2NIWiyb4SEJFwKUwiqIb8COmPSHudHnz+aXM3bNgXmMx5bdeOCW2n7qNowABfq7Mq+tW2krZR8ZbokUIKm2+f2c9k1aJlfqhSeEstt9I0cjsowHYqVKc+EBZibISJV7Gbo+Z1maZvnKAMw9SEkz4td72f1xqdoX2xkdvrlUpUytSC2UYCjweGDF6xUidnORJXmVehPllxl6lJGWUmzb+JS/88V4qg3i0OThEmBDtEc1ui8O87llLZqNM+La9O7NbCElcH/krCSnFslZV/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cdxg55/7N1nGO6CRu6XTsjRG64aTcb9o3lcUQ2BvpBQ=;
+ b=kH8OzoUlgAsrTSf2hvwJ/6Y8jo+4oNRJNb9rvbjqQv5TrxbOEDZbVr5KIDvEtmf7SOA+hE5CgzHw7znKySzt20a5QBprPv7jPScGzs4cejVqQqHB+LqaIKaF8VhkVm4x0r6DWEPLMhE7M5CKb2VK2wRYvZG5xszNGcUxXJjbDj8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS8PR04MB8739.eurprd04.prod.outlook.com (2603:10a6:20b:42c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.21; Wed, 26 Oct
+ 2022 05:34:00 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1587:379:da06:2f18]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1587:379:da06:2f18%5]) with mapi id 15.20.5746.028; Wed, 26 Oct 2022
+ 05:34:00 +0000
+Date:   Wed, 26 Oct 2022 14:20:11 +0800
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Shenwei Wang <shenwei.wang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, imx@lists.linux.dev
+Subject: Re: [PATCH v3 5/5] gpio: mxc: enable pad wakeup on i.MX8x platforms
+Message-ID: <20221026062011.GA18160@linux-1xn6>
+References: <20221025183244.615318-1-shenwei.wang@nxp.com>
+ <20221025183244.615318-6-shenwei.wang@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221025183244.615318-6-shenwei.wang@nxp.com>
+X-ClientProxiedBy: SI2PR02CA0052.apcprd02.prod.outlook.com
+ (2603:1096:4:196::18) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS8PR04MB8739:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6077a7e9-b25c-464d-ae92-08dab713af27
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HbaW83QB38af+mTula1tbBL0qBFmN/SlQ8S523rwp+9iA1i83DvFx6T73ma3zMMfcCIz+RXvBdvGAq1rjgHDGPcKd/tqESnLOu2m6/F0agh2PSqY5t9JYth6iV1so9gBG3j4CYGVKubO0ckp+nvg91KIO3kitKvdo6qSb/0VkuvE4XO7aO0+Er/MAxHtkb5h+SIQc8bFVwRigdzd8pNgahGRHkNzZbRjvYg5X2Mk/eAOL734P8YX1Zn32XYYPf5fI7NES4NQk5gDOoBagZE5xhEHTH/4eow7g6BFcVWzs1tkPuqfWxjywZdB0sY0DxMQHReVbAsp6ENfBjqODEI8H5mCEABWn2p1HTj1UhC70z56ZIuvGtWWda5myy9coTMNvVleE9omHIkTynDUWBHqcR6hWNnR+Kk1xr6KWPYpAxU6VY+N9MwOxh45A8dpXnzty1o0hXwILYN3w30mLvvsRcsp+9+xdLuTr6TS9rHxfoYP5Bdt0QNJfSaMv+lprSAmM7vg1m0084aouG5VWuc1NVMP8TIJ95x1WHGipvzBX7E/bSO84D8l0ZKYZB8OMlJ6XxMd4VfpWXTaxw8yU4Aa7NxRZqFWmf6fjxiAymQTC+K+jx5/ZAeeiAjZ2T2wiGeKzffGY6RVyH8swfOm6I2pthYH1UzgftLimqlkSroaXGFzguDkEyCO6sr26fvg5e/lGqJaoD08jJgIQtCAQCOxnbw+226HaqEk4ByZsbPbqTmjhryLR2Dn0YG8cNTqrnY+VwIpCiYMCYO3epzyOdyg2Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(4636009)(396003)(346002)(39860400002)(366004)(136003)(376002)(451199015)(33656002)(316002)(7416002)(5660300002)(2906002)(4326008)(41300700001)(8676002)(38350700002)(66556008)(478600001)(6486002)(44832011)(6636002)(83380400001)(6862004)(6512007)(54906003)(66476007)(38100700002)(6666004)(52116002)(26005)(86362001)(1076003)(9686003)(186003)(6506007)(8936002)(66946007)(33716001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?if3sKptwQDo7tLiGNLkLuBGkNLyWQg2lfEpV757VLdh232XyqNPQrqP3e3mQ?=
+ =?us-ascii?Q?YzPAoRvBiUVg80++rYz/VnBo8249ucML8k8Ib8yEtNGbANUDmXwhTwJJHsPX?=
+ =?us-ascii?Q?l5+lI6ZbKgDUA2hNroY5jNaEdpjOebZoKgBtP+AH+fKUcH8iT+EyfpDxj6Mv?=
+ =?us-ascii?Q?ZxUeIxPrJywIiGpv1DzEhIlb5dSq9nCjuqtg3pmGAB5uj+OfIm35Cvp7lEAd?=
+ =?us-ascii?Q?9sWssPVrHK5zObkUx4NvP70EB8HUTPplVIDRLB0gRWyFEG9J+0neWEfg7YQ+?=
+ =?us-ascii?Q?y4a6KXl5w2ZjijCDuQ5jmDp+56enWzI7fSYsZ5ZZ2ChFl9v3CecnwoMt/Umk?=
+ =?us-ascii?Q?mVqL9Wxg+PU4A1EwW6u261YNIb20BsnZaDNGgKMEdhP0bMDQKIVmzcroFsS/?=
+ =?us-ascii?Q?GsCw2D74S6ZWH5rvHCtYKlSOZ0+DQVLhWyR8NRty8vtS2cXXhZOop89ygvnL?=
+ =?us-ascii?Q?knnIHsG6UWIGvqYs0s/9iNCD/g8yMv7L8/mujSY9dp00FAB8PglFF6xtnL21?=
+ =?us-ascii?Q?VMhThve40GhNCFyAtW3n9c+sFD5mR1SrmFUtRiH6dTN5n8krFq4lgLPv95X8?=
+ =?us-ascii?Q?L+n7EkrOw2Pb9zMVnltVLnC3uKGgtvFcr9aXxzWt6Hv7mCYIwh2DGffOSRTj?=
+ =?us-ascii?Q?ju4Si23u6oFHN6GivwcUI1F7exyAZrNs8xED3XyQ2+RWarONu7EPgPNwy6v6?=
+ =?us-ascii?Q?AnDhLjmInZLas0TMfbIFegPOBl3oUNSTSR2gXTN9SSggTkmLmVHFyVW8fu00?=
+ =?us-ascii?Q?RRsZxgfDEgIuLQbvoEABi7dv77mrWgD/Q5S0Hj9LKJ4iwn+P7r90DH69NdmX?=
+ =?us-ascii?Q?rd32PVNnFWmDI9kiepmwo5Ref10GE3le2P5kb7QNHnOClhxG4A58IW8mbWrE?=
+ =?us-ascii?Q?tsCAEV9/LARGhebF5hLiaS8KPwNgm1isAKarGiPyc8CRjmt9gyRst4cHzPtI?=
+ =?us-ascii?Q?6XEOndaKsZBQDmjgDd7zya8Fwglkqr2rrPsLZP2h9Eu+gdK11hFz+jXfFygE?=
+ =?us-ascii?Q?ItBcDL6UA0Ul+Zq8l9wkm84cb8s9R04WG+srrlFJbl5DexxX5kXKZdtl/7ai?=
+ =?us-ascii?Q?1EejDVsoNI2GsjN3tsRM4cErjIE8uKd6r7E/3bd4vNO79MKwqWHFeyIBy05E?=
+ =?us-ascii?Q?t5tNLYjUSa6kZBIDsbc6KMMvsVs6ZCjO6ISCP1NH5jHO3DS6EDNQCEanQYV6?=
+ =?us-ascii?Q?/0zGC6pQsJCcTMxP9HZofZZ2ipBPm4wX/z/rrGqz4fRaOY7jBpIvliwppJk3?=
+ =?us-ascii?Q?RN9kYdjnmWqsugF1vsOR4uGR7wWNs6FZMNBvksO42xOOQYzmCJUJrBjPD2Oh?=
+ =?us-ascii?Q?ytltbGmi6G7vmAnPSmEunDeudaVuUa8Ca75L330ELbjrpy5hcmmmNbsFU3J/?=
+ =?us-ascii?Q?R5j8ExGUd4pjFrSmRyFF9hBAjraBRz7MdE8LdBJ5I30QP7mXc6PT78TIuKWX?=
+ =?us-ascii?Q?N6OqvQJO/fh+4DV9CSnAWFI6xulrOqW7K5Z03btHIKYle7zgbfw5yZfI4s5W?=
+ =?us-ascii?Q?6oBlD3d2HCbaybbBUwLei3lE3eQ/+301Ldlkiuk8rKxb89s0y+HKXnsIgGh/?=
+ =?us-ascii?Q?dtg3hPCKP9eNe3G+4NDvQEVaesonWgbv1QZyXxdJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6077a7e9-b25c-464d-ae92-08dab713af27
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2022 05:33:59.8783
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Bp185UxY4beit4P++Y7+X2x5mGG6+XciyZd4QEgdBZfQQs8bV4jF/NXoIDb8zZ5iBgLriksfKeNQCT8obOWfQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8739
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrej,
-
-Am Dienstag, 25. Oktober 2022, 13:21:18 CEST schrieb Andrej Picej:
-> Hi Alexander,
+On Tue, Oct 25, 2022 at 01:32:44PM -0500, Shenwei Wang wrote:
+>On i.MX8QM/QXP/DXL SoCs, even a GPIO is selected as the wakeup source,
+>the GPIO block will be powered off when system enters into suspend
+>state. This can greatly reduce the power consumption of suspend state
+>because the whole partition can be shutdown. This is called PAD wakeup
+>feature on i.MX8x platform.
+>
+>This patch adds the noirq suspend/resume hooks and uses the pad wakeup
+>feature as the default wakeup method for GPIO modules on
+>i.MX8QM/QXP/DXL platforms.
+>
+>Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+>---
+> drivers/gpio/gpio-mxc.c | 91 ++++++++++++++++++++++++++++++++++++++++-
+> 1 file changed, 90 insertions(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpio/gpio-mxc.c b/drivers/gpio/gpio-mxc.c
+>index c871602fc5ba..a6fe5ed3d320 100644
+>--- a/drivers/gpio/gpio-mxc.c
+>+++ b/drivers/gpio/gpio-mxc.c
+>@@ -24,6 +24,12 @@
+> #include <linux/of_device.h>
+> #include <linux/bug.h>
 > 
-> On 25. 10. 22 11:38, Alexander Stein wrote:
-> > Am Dienstag, 25. Oktober 2022, 09:25:31 CEST schrieb Andrej Picej:
-> >> Putting device into the "Suspend-To-Idle" mode causes watchdog to
-> >> trigger and reset the board after set watchdog timeout period elapses.
-> >> 
-> >> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
-> >> watchdog in WAIT mode. This is done by setting WDW bit in WCR
-> >> (Watchdog Control Register) Watchdog operation is restored after exiting
-> >> WAIT mode as expected. WAIT mode coresponds with Linux's
-> >> "Suspend-To-Idle".
-> >> 
-> >> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> >> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> >> ---
-> >> 
-> >> Changes in v2:
-> >>   - validate the property with compatible string, as this functionality
-> >>   
-> >>     is not supported by all devices.
-> >> 
-> >> ---
-> >> 
-> >>   drivers/watchdog/imx2_wdt.c | 37 +++++++++++++++++++++++++++++++++++++
-> >>   1 file changed, 37 insertions(+)
-> >> 
-> >> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
-> >> index d0c5d47ddede..dd9866c6f1e5 100644
-> >> --- a/drivers/watchdog/imx2_wdt.c
-> >> +++ b/drivers/watchdog/imx2_wdt.c
-> >> @@ -35,6 +35,7 @@
-> >> 
-> >>   #define IMX2_WDT_WCR		0x00		/* Control
-> > 
-> > Register */
-> > 
-> >>   #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* ->
-> > 
-> > Watchdog Timeout Field */
-> > 
-> >> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable
-> > 
-> > for WAIT */
-> > 
-> >>   #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset
-> > 
-> > WDOG_B */
-> > 
-> >>   #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset
-> > 
-> > Signal */
-> > 
-> >>   #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable
-> > 
-> > */
-> > 
-> >> @@ -67,6 +68,27 @@ struct imx2_wdt_device {
-> >> 
-> >>   	bool ext_reset;
-> >>   	bool clk_is_on;
-> >>   	bool no_ping;
-> >> 
-> >> +	bool sleep_wait;
-> >> +};
-> >> +
-> >> +static const char * const wdw_boards[] __initconst = {
-> >> +	"fsl,imx25-wdt",
-> >> +	"fsl,imx35-wdt",
-> >> +	"fsl,imx50-wdt",
-> >> +	"fsl,imx51-wdt",
-> >> +	"fsl,imx53-wdt",
-> >> +	"fsl,imx6q-wdt",
-> >> +	"fsl,imx6sl-wdt",
-> >> +	"fsl,imx6sll-wdt",
-> >> +	"fsl,imx6sx-wdt",
-> >> +	"fsl,imx6ul-wdt",
-> >> +	"fsl,imx7d-wdt",
-> >> +	"fsl,imx8mm-wdt",
-> >> +	"fsl,imx8mn-wdt",
-> >> +	"fsl,imx8mp-wdt",
-> >> +	"fsl,imx8mq-wdt",
-> >> +	"fsl,vf610-wdt",
-> >> +	NULL
-> >> 
-> >>   };
-> > 
-> > So the models listed in
-> > Documentation/devicetree/bindings/watchdog/fsl-imx-
-> > wdt.yaml not supporting this feature are
-> > * fsl,imx21-wdt
-> > * fsl,imx27-wdt
-> > * fsl,imx31-wdt
-> > * fsl,ls1012a-wdt
-> > * fsl,ls1043a-wdt
-> > ?
+>+#define IMX_SCU_WAKEUP_OFF		0
+>+#define IMX_SCU_WAKEUP_LOW_LVL		4
+>+#define IMX_SCU_WAKEUP_FALL_EDGE	5
+>+#define IMX_SCU_WAKEUP_RISE_EDGE	6
+>+#define IMX_SCU_WAKEUP_HIGH_LVL		7
+>+
+> /* device type dependent stuff */
+> struct mxc_gpio_hwdata {
+> 	unsigned dr_reg;
+>@@ -61,6 +67,9 @@ struct mxc_gpio_port {
+> 	u32 both_edges;
+> 	struct mxc_gpio_reg_saved gpio_saved_reg;
+> 	bool power_off;
+>+	u32 wakeup_pads;
+>+	bool is_pad_wakeup;
+>+	u32 pad_type[32];
+> 	const struct mxc_gpio_hwdata *hwdata;
+> };
 > 
-> yes, you are correct.
+>@@ -130,6 +139,9 @@ static const struct of_device_id mxc_gpio_dt_ids[] = {
+> 	{ .compatible = "fsl,imx31-gpio", .data = &imx31_gpio_hwdata },
+> 	{ .compatible = "fsl,imx35-gpio", .data = &imx35_gpio_hwdata },
+> 	{ .compatible = "fsl,imx7d-gpio", .data = &imx35_gpio_hwdata },
+>+	{ .compatible = "fsl,imx8dxl-gpio", .data = &imx35_gpio_hwdata },
+>+	{ .compatible = "fsl,imx8qm-gpio", .data = &imx35_gpio_hwdata },
+>+	{ .compatible = "fsl,imx8qxp-gpio", .data = &imx35_gpio_hwdata },
+> 	{ /* sentinel */ }
+> };
+> MODULE_DEVICE_TABLE(of, mxc_gpio_dt_ids);
+>@@ -203,6 +215,7 @@ static int gpio_set_irq_type(struct irq_data *d, u32 type)
+> 	}
 > 
-> > But all models are listed as compatible to fsl,imx21-wdt. So there is
-> > something wrong here. IMHO this sounds like the compatible list has to be
-> > split and updated. Depending on that this feature can be detected.
-> > Maintaining another list seems error prone to me.
+> 	writel(1 << gpio_idx, port->base + GPIO_ISR);
+>+	port->pad_type[gpio_idx] = type;
 > 
-> So basically the compatible lists would be split into two groups, one
-> for the devices which support this WDW bit and the rest which don't
-> support this?
-
-This was my idea, so only one set has to be maintained.
-
-> You got a point here, but...this means that every processors
-> device-tree, which has two compatible strings (with "fsl,imx21-wdt")
-> should be updated, right? That sounds like quite a lot of changes, which
-> I'd like to avoid if possible.
-
-Well, the compatible list right now doesn't reflect the hardware features/
-compatibility correctly, so IMHO it should be fixed.
-But apparently Krzysztof is okay having the special property only applicable 
-for a specific set of devices. But in this case you will have to maintain two 
-sets of device models (bindings + driver) to which WDW applies/does not apply 
-to.
-
-Best regards,
-Alexander
-
-> Best regards,
-> Andrej
+> 	return 0;
+> }
+>@@ -254,6 +267,9 @@ static void mx3_gpio_irq_handler(struct irq_desc *desc)
+> 	struct mxc_gpio_port *port = irq_desc_get_handler_data(desc);
+> 	struct irq_chip *chip = irq_desc_get_chip(desc);
 > 
-> > Best regards,
-> > Alexander
-> > 
-> >>   static bool nowayout = WATCHDOG_NOWAYOUT;
-> >> 
-> >> @@ -129,6 +151,9 @@ static inline void imx2_wdt_setup(struct
-> >> watchdog_device *wdog)
-> >> 
-> >>   	/* Suspend timer in low power mode, write once-only */
-> >>   	val |= IMX2_WDT_WCR_WDZST;
-> >> 
-> >> +	/* Suspend timer in low power WAIT mode, write once-only */
-> >> +	if (wdev->sleep_wait)
-> >> +		val |= IMX2_WDT_WCR_WDW;
-> >> 
-> >>   	/* Strip the old watchdog Time-Out value */
-> >>   	val &= ~IMX2_WDT_WCR_WT;
-> >>   	/* Generate internal chip-level reset if WDOG times out */
-> >> 
-> >> @@ -313,6 +338,18 @@ static int __init imx2_wdt_probe(struct
-> >> platform_device *pdev)
-> >> 
-> >>   	wdev->ext_reset = of_property_read_bool(dev->of_node,
-> >>   	
-> >>   						"fsl,ext-
-> > 
-> > reset-output");
-> > 
-> >> +
-> >> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait"))
-> >> +		if (of_device_compatible_match(dev->of_node,
-> > 
-> > wdw_boards))
-> > 
-> >> +			wdev->sleep_wait = 1;
-> >> +		else {
-> >> +			dev_warn(dev, "Warning: Suspending watchdog
-> > 
-> > during " \
-> > 
-> >> +				"WAIT mode is not supported for
-> > 
-> > this device.\n");
-> > 
-> >> +			wdev->sleep_wait = 0;
-> >> +		}
-> >> +	else
-> >> +		wdev->sleep_wait = 0;
-> >> +
-> >> 
-> >>   	/*
-> >>   	
-> >>   	 * The i.MX7D doesn't support low power mode, so we need to ping
-> > 
-> > the
-> > 
-> >> watchdog * during suspend.
+>+	if (port->is_pad_wakeup)
+>+		return;
+>+
+> 	chained_irq_enter(chip, desc);
+> 
+> 	irq_stat = readl(port->base + GPIO_ISR) & readl(port->base + GPIO_IMR);
+>@@ -306,11 +322,13 @@ static int gpio_set_wake_irq(struct irq_data *d, u32 enable)
+> 			ret = enable_irq_wake(port->irq_high);
+> 		else
+> 			ret = enable_irq_wake(port->irq);
+>+		port->wakeup_pads |= (1<<gpio_idx);
+
+"1 << gpio_idx"
+
+> 	} else {
+> 		if (port->irq_high && (gpio_idx >= 16))
+> 			ret = disable_irq_wake(port->irq_high);
+> 		else
+> 			ret = disable_irq_wake(port->irq);
+>+		port->wakeup_pads &= ~(1<<gpio_idx);
+
+"1 << gpio_idx"
+
+> 	}
+> 
+> 	return ret;
+>@@ -365,7 +383,6 @@ static int mxc_gpio_probe(struct platform_device *pdev)
+> 		return -ENOMEM;
+> 
+> 	port->dev = &pdev->dev;
+>-
+> 	port->hwdata = device_get_match_data(&pdev->dev);
+> 
+> 	port->base = devm_platform_ioremap_resource(pdev, 0);
+>@@ -498,6 +515,77 @@ static void mxc_gpio_restore_regs(struct mxc_gpio_port *port)
+> 	writel(port->gpio_saved_reg.dr, port->base + GPIO_DR);
+> }
+> 
+>+static int mxc_gpio_generic_config(struct mxc_gpio_port *port,
+>+		unsigned int offset, unsigned long config)
+>+{
+>+	struct device_node *np = port->dev->of_node;
+>+
+>+	if (of_device_is_compatible(np, "fsl,imx8dxl-gpio") ||
+>+		of_device_is_compatible(np, "fsl,imx8qxp-gpio") ||
+>+		of_device_is_compatible(np, "fsl,imx8qm-gpio"))
+>+		return gpiochip_generic_config(&port->gc, offset, config);
+
+checkpatch should report warning.
+
+>+
+>+	return 0;
+>+}
+>+
+>+static void mxc_gpio_set_pad_wakeup(struct mxc_gpio_port *port, bool enable)
+>+{
+>+	unsigned long config;
+>+	int i, type;
+>+
+>+	static const u32 pad_type_map[] = {
+>+		IMX_SCU_WAKEUP_OFF,		/* 0 */
+>+		IMX_SCU_WAKEUP_RISE_EDGE,	/* IRQ_TYPE_EDGE_RISING */
+>+		IMX_SCU_WAKEUP_FALL_EDGE,	/* IRQ_TYPE_EDGE_FALLING */
+>+		IMX_SCU_WAKEUP_FALL_EDGE,	/* IRQ_TYPE_EDGE_BOTH */
+>+		IMX_SCU_WAKEUP_HIGH_LVL,	/* IRQ_TYPE_LEVEL_HIGH */
+>+		IMX_SCU_WAKEUP_OFF,		/* 5 */
+>+		IMX_SCU_WAKEUP_OFF,		/* 6 */
+>+		IMX_SCU_WAKEUP_OFF,		/* 7 */
+>+		IMX_SCU_WAKEUP_LOW_LVL,		/* IRQ_TYPE_LEVEL_LOW */
+>+	};
+>+
+>+	for (i = 0; i < 32; i++) {
+>+		if ((port->wakeup_pads & (1<<i))) {
+>+			type = port->pad_type[i];
+>+			if (enable)
+>+				config = pad_type_map[type];
+>+			else
+>+				config = IMX_SCU_WAKEUP_OFF;
+>+			mxc_gpio_generic_config(port, i, config);
+>+		}
+>+	}
+>+}
+>+
+>+static int __maybe_unused mxc_gpio_noirq_suspend(struct device *dev)
+>+{
+>+	struct platform_device *pdev = to_platform_device(dev);
+>+	struct mxc_gpio_port *port = platform_get_drvdata(pdev);
+>+
+>+	if (port->wakeup_pads > 0) {
+>+		mxc_gpio_set_pad_wakeup(port, true);
+>+		port->is_pad_wakeup = true;
+>+	}
+>+
+>+	return 0;
+>+}
+>+
+>+static int __maybe_unused mxc_gpio_noirq_resume(struct device *dev)
+>+{
+>+	struct platform_device *pdev = to_platform_device(dev);
+>+	struct mxc_gpio_port *port = platform_get_drvdata(pdev);
+>+
+>+	if (port->wakeup_pads > 0)
+>+		mxc_gpio_set_pad_wakeup(port, false);
+>+	port->is_pad_wakeup = false;
+>+
+>+	return 0;
+>+}
+>+
+>+static const struct dev_pm_ops mxc_gpio_dev_pm_ops = {
+>+	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(mxc_gpio_noirq_suspend, mxc_gpio_noirq_resume)
+>+};
+>+
+> static int mxc_gpio_syscore_suspend(void)
+> {
+> 	struct mxc_gpio_port *port;
+>@@ -537,6 +625,7 @@ static struct platform_driver mxc_gpio_driver = {
+> 		.name	= "gpio-mxc",
+> 		.of_match_table = mxc_gpio_dt_ids,
+> 		.suppress_bind_attrs = true,
+>+		.pm = &mxc_gpio_dev_pm_ops,
+> 	},
+> 	.probe		= mxc_gpio_probe,
+> };
 
 
+Except the format issue, patch looks good to me.
 
+Regards,
+Peng.
 
+>-- 
+>2.34.1
+>
+
+-- 
