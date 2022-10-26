@@ -2,120 +2,350 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB6E60E8FD
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B6360E916
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234094AbiJZT1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 15:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57032 "EHLO
+        id S234624AbiJZTjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 15:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233985AbiJZT1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:27:10 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A65F8768D;
-        Wed, 26 Oct 2022 12:27:08 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id k8so19477532wrh.1;
-        Wed, 26 Oct 2022 12:27:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:date:in-reply-to:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=GGmY+Tp0PCWgfcXh6CFFXtUnB9FaG+fCvf/13WVSk0w=;
-        b=WF0x0DYfw1EI99+cBa5oo2iwSMWXe2cHrN+NQTQWWhx3YAjYadG+nCo8pOKXeTv6ER
-         kdsVNLpzsIugaP0uY9u7cxWLIVrzKRylGKo7jIJapbyRzJ0Q/iP97n+E7mTBOuhIlrIm
-         R5ZyuDLHloa6t6WmBeaW+xVELUsisof0vhNXv0JcDoHQzOEkuyaKKHklOnM+YQIA8jy5
-         kw/ipuY32LTF6BEUgZhvBpVkihdst96J4YFyq13kpH6GtITdEq/8KlcYcoLPRdDihg8B
-         kRuTklblvwf0eTIwWgirSPMx2ZD4Yb2A7qCWaYkjdcHMaGAxOqi4ZFW2tpRIB+VNcUwd
-         s8zA==
+        with ESMTP id S234489AbiJZTjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:39:08 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEB9480BC3;
+        Wed, 26 Oct 2022 12:39:06 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id s206so6649777oie.3;
+        Wed, 26 Oct 2022 12:39:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:in-reply-to:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GGmY+Tp0PCWgfcXh6CFFXtUnB9FaG+fCvf/13WVSk0w=;
-        b=5mil4Dy+QjjsULtyZZ/45o3HPvOEDMj2uu+dJJ6Xh5btlMu2D0cK219aNu19FwYgzP
-         KHyjkNk7e2D9ZrECuHtPoZEyYX2GxVSU2EiA6IoomQIY5sRr+QQPMGvZn5vcjGhh6UF+
-         1dfjijeh9LlNggmIeAWuWHVE/ERkM/mPu06n7OMrcDkQZY7ki3rlf1bx7w0I5FAcZPgY
-         upZbGPAxziIlCSEDraOhnbhWINAEcQ4HC04JT8FM1O9kxrjyHvxdcp1FHkgxD4UMT84q
-         2w5tpJAVlgC4VUXgJA1Bu3VRkqntEhUh1pbBa+rzpJd/dEJ2K8sHBx7pb6F27sDXkspf
-         uuDA==
-X-Gm-Message-State: ACrzQf3yrNWg6MVjfBJdskDH7g9L6vxi3zyyHsNntZXu4a5RlQ4mWrsE
-        vV7mV9yR6xGRYVMqJIqPFnA=
-X-Google-Smtp-Source: AMsMyM7vylDfJxSJa8D8rTUC1YTGqz2fYScD5Gm+yB1SSIakSHtk+3ViLyMzAIt8dcdPdH+0SDGKaQ==
-X-Received: by 2002:a5d:4b51:0:b0:236:88a2:267f with SMTP id w17-20020a5d4b51000000b0023688a2267fmr4789242wrs.461.1666812427161;
-        Wed, 26 Oct 2022 12:27:07 -0700 (PDT)
-Received: from localhost (188.28.0.84.threembb.co.uk. [188.28.0.84])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05600c4e8c00b003b95ed78275sm3082902wmq.20.2022.10.26.12.27.06
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ufoNLifu/8j2ACtS3DBPUqi5tqSlwhmjBXaNllVOyFA=;
+        b=XRkY2xMVXYNwV/jtykz0nua3gdI9S+pEcZCgsKJptBZNbA8BRlVULAXDKL5GNlnoB/
+         /JWahYEx1X5KLuw14veIj7kM4X3I0GHlq/jjhwoHIsbIOGZX04i9i/FfYcUpXrSrPwhC
+         +D+MmmwnOO0tULimty2RgNUFLuUu71VGdtSpNbv8fndNqQ1TqhoEebb87xBeM+hgozRt
+         wvHIpNXi5lJUFwi6YquAal95y4QKEttoJ/D1cEVicYJJsO/zmNmuxQIE7WHBp9gXFrJC
+         iYyzw+EwSNS264qCV0Fw6bH59FtDUbIZhLO7iZK5IaT6+eC4xsd5n7bHvQHRWYYh8q53
+         2Diw==
+X-Gm-Message-State: ACrzQf38bn7izeCXVnOkBUT92OM3emgDqGog88Gm1cNcCIKNxahFSvKu
+        pQff60TCctpTurwROZenOQ==
+X-Google-Smtp-Source: AMsMyM6PKPHEoNUgi/IyslltI+QO9kWqw70qsL4YeJBSYUMBVVC7ezM+oyp7JCwlsRS7iQFV0i/xtg==
+X-Received: by 2002:a05:6808:1395:b0:359:b4bb:9826 with SMTP id c21-20020a056808139500b00359b4bb9826mr1530886oiw.162.1666813146050;
+        Wed, 26 Oct 2022 12:39:06 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id eq37-20020a056870a92500b00136c20b1c59sm3524846oab.43.2022.10.26.12.39.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 12:27:06 -0700 (PDT)
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
- <20221022162742.21671-2-aidanmacdonald.0x0@gmail.com>
- <ef6a326b-5c61-988b-2ec2-cd8e233e5d28@linaro.org>
- <GMvEU8xVTkjIoQ518XWAaLkhldSZHlk7@localhost>
- <4ef59d94-d045-55fc-d531-c84e7edb8333@linaro.org>
- <hXRpArckbrXUelDdaJ3Y2SErmKiuycXt@localhost>
- <66c1a100-922e-4a33-e80c-fc80866acf03@linaro.org>
- <jZCUALhj8PoqVkuWdtLf8LnPAj1wDakF@localhost>
- <38205667-d36f-e7a9-21b0-2e8597a662ff@linaro.org>
- <qNdQQJRLFWJ6gNfwM73oJ8EH56Y5nWgd@localhost>
- <874e74ae-86bb-7950-1615-36e1a326e177@linaro.org>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] dt-bindings: ASoC: simple-card: Add
- system-clock-id property
-In-reply-to: <874e74ae-86bb-7950-1615-36e1a326e177@linaro.org>
-Date:   Wed, 26 Oct 2022 20:27:07 +0100
-Message-ID: <PkzdCCuz9l2wB7cV6ioHPIEYBXflo86N@localhost>
+        Wed, 26 Oct 2022 12:39:05 -0700 (PDT)
+Received: (nullmailer pid 1043578 invoked by uid 1000);
+        Wed, 26 Oct 2022 19:39:07 -0000
+Date:   Wed, 26 Oct 2022 14:39:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, frowand.list@gmail.com,
+        helgaas@kernel.org, clement.leger@bootlin.com, max.zhen@amd.com,
+        sonal.santan@amd.com, larry.liu@amd.com, brian.xu@amd.com,
+        stefano.stabellini@xilinx.com, trix@redhat.com
+Subject: Re: [PATCH RFC V2 3/3] PCI: Add basic properties for dynamically
+ generated PCI OF node
+Message-ID: <20221026193907.GA902790-robh@kernel.org>
+References: <1665598440-47410-1-git-send-email-lizhi.hou@amd.com>
+ <1665598440-47410-4-git-send-email-lizhi.hou@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1665598440-47410-4-git-send-email-lizhi.hou@amd.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Oct 12, 2022 at 11:14:00AM -0700, Lizhi Hou wrote:
+> This patch addes 'reg', 'compatible' and 'device_typ' properties for
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+typo
 
-> On 26/10/2022 10:48, Aidan MacDonald wrote:
->>
->> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
->>
->>> And the remaining piece I don't get is that these are not bindings for
->>> codec, but for sound audio card. You want to set "system-clock-id"
->>> property for audio card, while putting clock from codec, which will be
->>> used to pass back to the codec... so it is a property of the codec, not
->>> of the audio card. IOW, NAU8821_CLK_* does not configure here the clock
->>> of the system, but only, only clock of the codec.
->>
->> The system clock is controlled at the DAI level, it's specific to one
->> DAI on one component. The simple-card device node has sub-nodes for the
->> DAI links, and each DAI link node has sub-nodes for the DAIs within the
->> link. "system-clock-id" is a property on the DAI nodes, so it's not a
->> card-level property, just one part of the overall card definition.
->>
->> Since the clock ID is something defined by the codec it would naturally
->> be a value defined by the codec, but the *configuration* of the codec is
->> part of the sound card because it depends on how everything is connected
->> together. If you used the same codec in a different machine it would
->> have a different configuration.
->
-> OK, that sounds reasonable. Thank you for explaining this. You still
-> need to convince Mark :)
+Please read submitting-patches.rst and what it says about 'This patch'.
 
-No problem, thanks for bearing with all my explanations! Mark raised
-some good points, and I have to agree with him. This could create too
-many future issues, and the problem might be better solved with the
-clock API -- but unfortunately that's not yet feasible.
+> dynamically generated PCI device tree node
+> 
+> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+> Signed-off-by: Sonal Santan <sonal.santan@amd.com>
+> Signed-off-by: Max Zhen <max.zhen@amd.com>
+> Signed-off-by: Brian Xu <brian.xu@amd.com>
+> ---
+>  drivers/pci/Makefile      |   1 +
+>  drivers/pci/of.c          |  10 ++-
+>  drivers/pci/of_property.c | 177 ++++++++++++++++++++++++++++++++++++++
 
-Regards,
-Aidan
+I don't think we need a separate file here and patches 2 and 3 should be 
+combined. Patch 2 alone doesn't really make sense.
+
+
+>  drivers/pci/pci.h         |   3 +-
+>  4 files changed, 189 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/pci/of_property.c
+> 
+> diff --git a/drivers/pci/Makefile b/drivers/pci/Makefile
+> index 2680e4c92f0a..cc8b4e01e29d 100644
+> --- a/drivers/pci/Makefile
+> +++ b/drivers/pci/Makefile
+> @@ -32,6 +32,7 @@ obj-$(CONFIG_PCI_P2PDMA)	+= p2pdma.o
+>  obj-$(CONFIG_XEN_PCIDEV_FRONTEND) += xen-pcifront.o
+>  obj-$(CONFIG_VGA_ARB)		+= vgaarb.o
+>  obj-$(CONFIG_PCI_DOE)		+= doe.o
+> +obj-$(CONFIG_PCI_DYNAMIC_OF_NODES) += of_property.o
+>  
+>  # Endpoint library must be initialized before its users
+>  obj-$(CONFIG_PCI_ENDPOINT)	+= endpoint/
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index 83e042f495a6..00d716589660 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -619,6 +619,7 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>  {
+>  	struct device_node *parent, *dt_node;
+>  	const char *pci_type = "dev";
+> +	struct property *props;
+>  	char *full_name;
+>  
+>  	/*
+> @@ -645,10 +646,15 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>  	if (!full_name)
+>  		goto failed;
+>  
+> -	dt_node = of_create_node(parent, full_name, NULL);
+> +	props = of_pci_props_create(pdev);
+> +	if (!props)
+> +		goto failed;
+> +
+> +	dt_node = of_create_node(parent, full_name, props);
+>  	if (!dt_node)
+>  		goto failed;
+>  
+> +	of_pci_props_destroy(props);
+>  	kfree(full_name);
+>  
+>  	pdev->dev.of_node = dt_node;
+> @@ -656,6 +662,8 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
+>  	return;
+>  
+>  failed:
+> +	if (props)
+> +		of_pci_props_destroy(props);
+>  	kfree(full_name);
+>  }
+>  #endif
+> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> new file mode 100644
+> index 000000000000..693a08323aa4
+> --- /dev/null
+> +++ b/drivers/pci/of_property.c
+> @@ -0,0 +1,177 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (C) 2022, Advanced Micro Devices, Inc.
+> + */
+> +
+> +#include <linux/pci.h>
+> +#include <linux/of.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +
+> +struct of_pci_prop {
+> +	char *name;
+> +	int (*prop_val)(struct pci_dev *pdev, void **val, u32 *len);
+> +};
+> +
+> +struct of_pci_addr_pair {
+> +	__be32		phys_hi;
+> +	__be32		phys_mid;
+> +	__be32		phys_lo;
+> +	__be32		size_hi;
+> +	__be32		size_lo;
+> +};
+> +
+> +#define OF_PCI_ADDR_SPACE_CONFIG	0x0
+> +#define OF_PCI_ADDR_SPACE_IO		0x1
+> +#define OF_PCI_ADDR_SPACE_MEM32		0x2
+> +#define OF_PCI_ADDR_SPACE_MEM64		0x3
+> +
+> +#define OF_PCI_ADDR_FIELD_SS		GENMASK(25, 24)
+> +#define OF_PCI_ADDR_FIELD_PREFETCH	BIT(30)
+> +#define OF_PCI_ADDR_FIELD_BUS		GENMASK(23, 16)
+> +#define OF_PCI_ADDR_FIELD_DEV		GENMASK(15, 11)
+> +#define OF_PCI_ADDR_FIELD_FUNC		GENMASK(10, 8)
+> +#define OF_PCI_ADDR_FIELD_REG		GENMASK(7, 0)
+> +
+> +#define OF_PCI_SIZE_HI			GENMASK_ULL(63, 32)
+> +#define OF_PCI_SIZE_LO			GENMASK_ULL(31, 0)
+> +
+> +#define OF_PCI_PROP_COMPAT_LEN_MAX	256
+> +static int of_pci_prop_device_type(struct pci_dev *pdev, void **val, u32 *len)
+> +{
+> +	if (!pci_is_bridge(pdev))
+> +		return 0;
+> +
+> +	*val = kasprintf(GFP_KERNEL, "pci");
+> +	if (!*val)
+> +		return -ENOMEM;
+> +
+> +	*len = strlen(*val) + 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static int of_pci_prop_reg(struct pci_dev *pdev, void **val, u32 *len)
+> +{
+> +	struct of_pci_addr_pair *reg;
+> +	u32 reg_val, base_addr, ss;
+> +	resource_size_t sz;
+> +	int i = 1, resno;
+> +
+> +	reg = kzalloc(sizeof(*reg) * (PCI_STD_NUM_BARS + 1), GFP_KERNEL);
+> +	if (!reg)
+> +		return -ENOMEM;
+> +
+> +	reg_val = FIELD_PREP(OF_PCI_ADDR_FIELD_SS, OF_PCI_ADDR_SPACE_CONFIG) |
+> +		FIELD_PREP(OF_PCI_ADDR_FIELD_BUS, pdev->bus->number) |
+> +		FIELD_PREP(OF_PCI_ADDR_FIELD_DEV, PCI_SLOT(pdev->devfn)) |
+> +		FIELD_PREP(OF_PCI_ADDR_FIELD_FUNC, PCI_FUNC(pdev->devfn));
+> +	reg[0].phys_hi = cpu_to_be32(reg_val);
+> +
+> +	base_addr = PCI_BASE_ADDRESS_0;
+> +	for (resno = PCI_STD_RESOURCES; resno <= PCI_STD_RESOURCE_END;
+> +	     resno++, base_addr += 4) {
+> +		sz = pci_resource_len(pdev, resno);
+> +		if (!sz)
+> +			continue;
+> +
+> +		if (pci_resource_flags(pdev, resno) & IORESOURCE_IO)
+> +			ss = OF_PCI_ADDR_SPACE_IO;
+> +		else if (pci_resource_flags(pdev, resno) & IORESOURCE_MEM_64)
+> +			ss = OF_PCI_ADDR_SPACE_MEM64;
+> +		else
+> +			ss = OF_PCI_ADDR_SPACE_MEM32;
+> +
+> +		reg_val &= ~(OF_PCI_ADDR_FIELD_SS | OF_PCI_ADDR_FIELD_PREFETCH |
+> +				OF_PCI_ADDR_FIELD_REG);
+> +		reg_val |= FIELD_PREP(OF_PCI_ADDR_FIELD_SS, ss) |
+> +			FIELD_PREP(OF_PCI_ADDR_FIELD_REG, base_addr);
+> +		if (pci_resource_flags(pdev, resno) & IORESOURCE_PREFETCH)
+> +			reg_val |= OF_PCI_ADDR_FIELD_PREFETCH;
+> +		reg[i].phys_hi = cpu_to_be32(reg_val);
+> +		reg[i].size_hi = cpu_to_be32(FIELD_GET(OF_PCI_SIZE_HI, sz));
+> +		reg[i].size_lo = cpu_to_be32(FIELD_GET(OF_PCI_SIZE_LO, sz));
+> +		i++;
+> +	}
+> +
+> +	*val = reg;
+> +	*len = i * sizeof(*reg);
+> +
+> +	return 0;
+> +}
+> +
+> +static int of_pci_prop_compatible(struct pci_dev *pdev, void **val, u32 *len)
+> +{
+> +	char *compat;
+> +
+> +	compat = kzalloc(OF_PCI_PROP_COMPAT_LEN_MAX, GFP_KERNEL);
+
+The size here looks pretty arbitrary yet we should be able to calculate 
+the worst case.
+
+> +	if (!compat)
+> +		return -ENOMEM;
+> +
+> +	*val = compat;
+> +	if (pdev->subsystem_vendor) {
+> +		compat += sprintf(compat, "pci%x,%x.%x.%x.%x",
+> +				  pdev->vendor, pdev->device,
+> +				  pdev->subsystem_vendor,
+> +				  pdev->subsystem_device,
+> +				  pdev->revision) + 1;
+> +		compat += sprintf(compat, "pci%x,%x.%x.%x",
+> +				  pdev->vendor, pdev->device,
+> +				  pdev->subsystem_vendor,
+> +				  pdev->subsystem_device) + 1;
+> +		compat += sprintf(compat, "pci%x,%x",
+> +				  pdev->subsystem_vendor,
+> +				  pdev->subsystem_device) + 1;
+> +	}
+> +	compat += sprintf(compat, "pci%x,%x.%x",
+> +			  pdev->vendor, pdev->device, pdev->revision) + 1;
+> +	compat += sprintf(compat, "pci%x,%x", pdev->vendor, pdev->device) + 1;
+> +	compat += sprintf(compat, "pciclass,%06x", pdev->class) + 1;
+> +	compat += sprintf(compat, "pciclass,%04x", pdev->class >> 8) + 1;
+
+No checking/preventing overrunning the compat buffer?
+
+I don't think we need all these compatible strings. One with VID/PID and 
+one with the class should be sufficient. But I'm not sure offhand what 
+subsystem_vendor/device device is...
+
+> +
+> +	*len = (u32)(compat - (char *)*val);
+> +
+> +	return 0;
+> +}
+> +
+> +struct of_pci_prop of_pci_props[] = {
+> +	{ .name = "device_type", .prop_val = of_pci_prop_device_type },
+
+This only only applies to bridge nodes.
+
+> +	{ .name = "reg", .prop_val = of_pci_prop_reg },
+> +	{ .name = "compatible", .prop_val = of_pci_prop_compatible },
+> +	{},
+> +};
+> +
+> +struct property *of_pci_props_create(struct pci_dev *pdev)
+> +{
+> +	struct property *props, *pp;
+> +	void *val;
+> +	u32 len;
+> +	int i;
+> +
+> +	props = kcalloc(ARRAY_SIZE(of_pci_props), sizeof(*props), GFP_KERNEL);
+> +	if (!props)
+> +		return NULL;
+> +
+> +	pp = props;
+> +	for (i = 0; of_pci_props[i].name; i++) {
+> +		len = 0;
+> +		of_pci_props[i].prop_val(pdev, &val, &len);
+> +		if (!len)
+> +			continue;
+> +		props->name = of_pci_props[i].name;
+> +		props->value = val;
+> +		props->length = len;
+> +		props++;
+
+This creates an array of properties and then copies each one, and it 
+also exposes the internals of 'struct property' which we want to make 
+opaque. Neither of these is great.
+
+I'd rather see the of_changeset API expanded to handle specific types of 
+properties. Something like this:
+
+of_changeset_add_prop_string(cset, node, "device_type", "pci");
+of_changeset_add_prop_string_array(cset, node, "compatible", compats, cnt);
+of_changeset_add_prop_u32_array(cset, node, "reg", reg, cnt);
+
+And perhaps these functions just wrap similar non-changeset functions 
+that produce a struct property.
+
+IOW, it should be similar to the of_property_read_* APIs, but to 
+set/add rather than get.
+
+
+You are also missing 'ranges', '#address-cells, and '#size-cells' in 
+bridge nodes.
+
+Rob
