@@ -2,128 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D336160E70A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 20:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58EA60E723
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 20:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233819AbiJZSOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 14:14:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49158 "EHLO
+        id S234138AbiJZS1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 14:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233972AbiJZSOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 14:14:03 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70811ACA30
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 11:14:01 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id j6so7798175qvn.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 11:14:01 -0700 (PDT)
+        with ESMTP id S234141AbiJZS07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 14:26:59 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE482D2B;
+        Wed, 26 Oct 2022 11:26:58 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id i21so21917737edj.10;
+        Wed, 26 Oct 2022 11:26:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=euZ0kBBCpAPq2o8o5kLMLvRDLb511ZyIjxtr+z8U4AU=;
-        b=JFIQznT+VayHy813HE35wzoCULmXeSGZsYdxBB0KdX/u4Pc+Q9vAOH6PseCmf/9PuI
-         7poinWgz1maFdbtXcp6votEdiJvQ0a83Lz+d6BM+WtbDYQT9gw2DmpU+cO2P6zCNmKwS
-         agTJ0yKxHnOdOaHIL8vTKPpNIBlq84Mr8BtcXjs3zyrl1VcAnKpH7/+DiWsedJqeVl8d
-         h36gxPEmS1hKeiotvGihliL/0qMcq6jMjQdguwbgcyglBKw7sH91Vl4IQ6C7mDfYiz9Y
-         aY2HKQhMbiSFSzOYyZts2DpqNW1w3DvLJPC+jgsv2s/eLwODhoi+FwrPs3YDk6F4E/81
-         2QkQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=t6vJDW3tWb5ACOdSohfrX6/ZlY8c1ETchJHmlCQfqJg=;
+        b=mfdQHeqFLvG4EvMGmF+03bmVQd85/xlfIr6cKm9gFtiUGprtmcUiZeqU3Od1wOkuRw
+         PhLdEN3RyVYl2oTHi7XH1jEkBABJnesNTlbmAOZfwbIBwwvO05wNW4DSdhi9kDcWR6fW
+         SjQha77hmybz7o6oZuxLUabiFCRuGpsW+tLJ7VbnRaPUt8BHr7db9imof0HsUDsVIOYg
+         z1egrRbBCoKaf9XllFg/77Duse5aa+hlGeUS1CC28a9CcEPcRd5QfQGa/6UZcJKuZvly
+         Rgm5MLkfUdMViALP97tdvy1Asd2KQECZJzQWgGLGftpsHfHpG4LsXs8OG4nR950ZOezf
+         74SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=euZ0kBBCpAPq2o8o5kLMLvRDLb511ZyIjxtr+z8U4AU=;
-        b=71+8QOdS65bb8Gj0a17w4VO5g6HFo8SWeI/F79oKyASJNWAJZrvxpI5GJoLMfshEKd
-         KY/m//kmm+URMdJca4ZJD6+RVHcyaHOvVe0J+m+iZh6sdiAGId0nl/94OnYn8m/5PIX9
-         uvhI6ohYXQhXm5+SgT9ObpVBtgmD8azrE08a2iaryLp6tJe3CxPSuxWMQE35N1zbM4qF
-         p9AV6trSksoX2iC7sA4A8apmvuYncvFMKDmmH2iSWIlU0hzMNlzMHIsteZUCjrMrG1yb
-         S+eC+VglqxeIJNH6EvO4v8IPQfiqE23ChOJ6YGA5tHMgt4UcYELVWp8QYrXdhrB1eL4K
-         dqug==
-X-Gm-Message-State: ACrzQf2+QrwrZa0GE2H9ozltYzm2fRmQftOpHU1kn48DoxoQD0G+VTFw
-        Blsu/90qz4CmmmKe+HCsE3SKbg==
-X-Google-Smtp-Source: AMsMyM76BykD9PyEu+Dx7/PEElgAS1+kldlvdT8ESxptB6jpdmKm3iSesHHTQG42Y0t3JnNgw6YzRA==
-X-Received: by 2002:a05:6214:e6f:b0:4b3:f41c:a59 with SMTP id jz15-20020a0562140e6f00b004b3f41c0a59mr37424438qvb.59.1666808040577;
-        Wed, 26 Oct 2022 11:14:00 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05622a114c00b0039cde2cd510sm3574544qty.28.2022.10.26.11.13.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 11:13:59 -0700 (PDT)
-Message-ID: <3cc78884-79f1-0f08-e555-9b46f46d54f5@linaro.org>
-Date:   Wed, 26 Oct 2022 14:13:57 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t6vJDW3tWb5ACOdSohfrX6/ZlY8c1ETchJHmlCQfqJg=;
+        b=fZtU7em1Qflz5aupYdxLVVldaTkE082QH9q9rTY5qEDbWMxrlTDtB3aGD+7wkvVGAG
+         StJZbvjYCn/BOzsMNq8Ii9v4+DKf6eEMiv6jC0EJ8tLheZevis5PwiOhjygzREKs0Qx4
+         8aIkCRT3lLlVB06yCi4sCmX6m+eCjDc/nwQqnw35XgSU/4QoJ0SqL5t12DItAnDnfZfQ
+         4xhF7ZvVs8e2SQcUA6+wkXrb4xQsWrDIDlouFbqU1zZVMDcZSTQ7HgOzw/076jDLjgEC
+         lmI3RtLxVfMff15S7Cg5L6pptcy1DzX8WulA0GfEcbyUU+vmLYFc3Fk85xm23K9gh0lW
+         j44g==
+X-Gm-Message-State: ACrzQf3+TqtIkGTwzDl6kguEexBMIC0nVrysk5Fz61c1qEBjgWMMBc2W
+        d63N2xEcy+ixQcNJ3MajbsQF2g6lLbcPnZbrGYo=
+X-Google-Smtp-Source: AMsMyM5H36B31dnAuAKEoO2jKeWDGvA8Paz2NZ3mgXcz/BdjOfm2PpuNIO3++jh2TObcJkvmbTzV7e5ZzL70C0juzv8=
+X-Received: by 2002:a05:6402:26cf:b0:45d:48d7:928e with SMTP id
+ x15-20020a05640226cf00b0045d48d7928emr40737493edd.275.1666808816957; Wed, 26
+ Oct 2022 11:26:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH] arm: dts: imx: e60k02: Add touchscreen
-Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alistair Francis <alistair@alistair23.me>
-References: <20221026173015.1172816-1-andreas@kemnade.info>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026173015.1172816-1-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221026171721.4nfvhamguwnrw6zf@pengutronix.de> <CA+V-a8urKEjEKP0n9mki8xx1B9JLOMTYM4F1aXC3h_5Ne0+tCw@mail.gmail.com>
+ <20221026173519.bm22im7uov6b4nnp@pengutronix.de>
+In-Reply-To: <20221026173519.bm22im7uov6b4nnp@pengutronix.de>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 26 Oct 2022 19:26:30 +0100
+Message-ID: <CA+V-a8sehSzH-xe_Xm-YC97+CbjLROLrTauEKv-wWNTjGAmxKw@mail.gmail.com>
+Subject: Re: [PATCH v3 8/9] media: i2c: ov5645: Don't return early on failures
+ for s_stream(0)
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>, devicetree@vger.kernel.org,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 13:30, Andreas Kemnade wrote:
-> Add the touchscreen now, since the driver is available.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
-> runtime/dtbs_check depends
-> https://lore.kernel.org/linux-devicetree/20221026114908.191472-1-alistair@alistair23.me/T/#t
->  arch/arm/boot/dts/e60k02.dtsi              | 12 +++++++++++-
->  arch/arm/boot/dts/imx6sl-tolino-shine3.dts | 14 ++++++++++++++
->  arch/arm/boot/dts/imx6sll-kobo-clarahd.dts | 14 ++++++++++++++
->  3 files changed, 39 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/e60k02.dtsi b/arch/arm/boot/dts/e60k02.dtsi
-> index 935e2359f8df..4f36cc181a52 100644
-> --- a/arch/arm/boot/dts/e60k02.dtsi
-> +++ b/arch/arm/boot/dts/e60k02.dtsi
-> @@ -104,7 +104,17 @@ &i2c2 {
->  	clock-frequency = <100000>;
->  	status = "okay";
->  
-> -	/* TODO: CYTTSP5 touch controller at 0x24 */
-> +	touchscreen@24 {
-> +		compatible = "cypress,tt21000";
-> +		reg = <0x24>;
-> +		pinctrl-names = "default","sleep";
-> +		pinctrl-0 = <&pinctrl_cyttsp5_gpio>;
-> +		pinctrl-1 = <&pinctrl_cyttsp5_gpio_sleep>;
-> +		interrupt-parent = <&gpio5>;
-> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-> +		vdd-supply = <&ldo5_reg>;
-> +	};
->  
->  	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
->  
-> diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
-> index e3f1e8d79528..82d9ed91df92 100644
-> --- a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
-> +++ b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
-> @@ -52,6 +52,20 @@ &iomuxc {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_hog>;
->  
-> +	pinctrl_cyttsp5_gpio: cyttsp5_gpio_grp {
+Hi Marco,
 
-No underscores in node names.
+On Wed, Oct 26, 2022 at 6:35 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+>
+> On 22-10-26, Lad, Prabhakar wrote:
+> > Hi Marco,
+> >
+> > Thank you for the review.
+> >
+> > On Wed, Oct 26, 2022 at 6:17 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > >
+> > > Hi Prabhakar,
+> > >
+> > > thanks for the patch, please see below my comments.
+> > >
+> > > On 22-10-26, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Make sure we dont stop the code flow in case of errors while stopping
+> > > > the stream and return the error code of the first error case if any.
+> > > >
+> > > > v4l2-core takes care of warning the user so no need to add a warning
+> > > > message in the driver.
+> > > >
+> > > > Suggested-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > > v2->v3
+> > > > * Now propagating the first error code in case of failure.
+> > > >
+> > > > v1->v2
+> > > > * New patch
+> > > > ---
+> > > >  drivers/media/i2c/ov5645.c | 11 ++++++++---
+> > > >  1 file changed, 8 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
+> > > > index eea3067ddc8b..5702a55607fc 100644
+> > > > --- a/drivers/media/i2c/ov5645.c
+> > > > +++ b/drivers/media/i2c/ov5645.c
+> > > > @@ -996,17 +996,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
+> > > >               if (ret < 0)
+> > > >                       goto err_rpm_put;
+> > > >       } else {
+> > > > +             int stream_off_ret = 0;
+> > > > +
+> > > >               ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
+> > >
+> > > If this write failed..
+> > >
+> > > >               if (ret < 0)
+> > > > -                     return ret;
+> > > > +                     stream_off_ret = ret;
+> > > >
+> > > >               ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
+> > > >                                      OV5645_SYSTEM_CTRL0_STOP);
+> > >
+> > > why should this write be successful?
+> > >
+> > Indeed that will fail unless I have a lucky day ;-)
+> >
+> > But it seemed to be an overkill for adding an additional check to see
+> > if the previous write succeeded. Do you think this will create an
+> > issue?
+>
+> Why not just say?
+>
+>         ret = ov5645_write_reg();
+>         if (ret < 0)
+>                 goto out;
+>
+>         ...
+>
+>         out:
+>
+>         dev_pm_xxx();
+>
+>         return ret;
+>
+Thanks for the suggestion, I will rework this in the next version.
 
-Best regards,
-Krzysztof
-
+Cheers,
+Prabhakar
