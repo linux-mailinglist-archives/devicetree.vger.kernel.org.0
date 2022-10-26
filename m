@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7923060E0CC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 564F860E0DF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233563AbiJZMgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47592 "EHLO
+        id S233577AbiJZMjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:39:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233565AbiJZMgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:36:07 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E378D86F96;
-        Wed, 26 Oct 2022 05:36:04 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id r83so663067oih.2;
-        Wed, 26 Oct 2022 05:36:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rm41MowY05sJRqfXfoxzAmqqrLaTLbUM9gClxYnyOow=;
-        b=PpHtfvsYLHborqDA20hRoLhVN13YglXgOCBq9jYcsmMd1ViDvKdb40EwORO2uctoGt
-         Rx3XDWxGPgHaZ9h0aGOL8XZRAP/ucesZNNlgM3ZRTAwsSs/RTTdXKZctsGLsaAbbPbwP
-         ETfoBH6VW7lGtCDDvB9YnPKe1uJiFyApzCswm2UpWIATmL3o7CeEkkBR0UnzwX4rVMPP
-         aWU2QWLfQORm1can2+mrfy/06NqDWelnxE6f2+ErsT6tmb1qg6dRJ9+eVnFfPVgD9uhh
-         bXq5UdFrQecj6TYcKNVFVuEN1MGzr08FwjNsJrIWCpADX/vrcojes9sUpWB8uFBOE80F
-         roRA==
-X-Gm-Message-State: ACrzQf2EfLDMZ8YQzgPzG7jqLrHlncD87oUXpFrECAJZUS8bQAzKv50t
-        aPq0XUdnPSL81RDOBmUZgxhnpUT/Yw==
-X-Google-Smtp-Source: AMsMyM6duJO0gmR8nZl6HIMYUcghPQyMdR8djOWJsGUC4WlydXSFxuJPtsjlClzbZvqef+U12QY7jA==
-X-Received: by 2002:a05:6808:1404:b0:355:4cd4:b10b with SMTP id w4-20020a056808140400b003554cd4b10bmr1667530oiv.207.1666787764113;
-        Wed, 26 Oct 2022 05:36:04 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r26-20020a4ae51a000000b0047f8ceca22bsm2129712oot.15.2022.10.26.05.36.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 05:36:03 -0700 (PDT)
-Received: (nullmailer pid 277723 invoked by uid 1000);
-        Wed, 26 Oct 2022 12:36:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-kernel@vger.kernel.org, WANG Xuerui <kernel@xen0n.name>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        loongarch@lists.linux.dev
-In-Reply-To: <20221026035752.32681-2-zhuyinbo@loongson.cn>
-References: <20221026035752.32681-1-zhuyinbo@loongson.cn> <20221026035752.32681-2-zhuyinbo@loongson.cn>
-Message-Id: <166678762827.274703.1754327957580321197.robh@kernel.org>
-Subject: Re: [PATCH v4 2/2] dt-bindings: hpet: add loongson2 hpet
-Date:   Wed, 26 Oct 2022 07:36:02 -0500
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+        with ESMTP id S233670AbiJZMjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:39:04 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13C5D8F69;
+        Wed, 26 Oct 2022 05:39:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1666787943; x=1698323943;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=zHMbls1sfBccXhUtDFJopE8ns7Bw0UkRfit7bHE2T5E=;
+  b=yNH6dMLST/Wmg0wjr1wUYSrH7MvyYlVyH8dEUj7GUTu9hjl8afZ7U1nN
+   Eu8dBJu/ZA+cfduWit+ANazDc0V6Uh3FmmusSz2I2GH1VdsLe0P6olTUb
+   T0JTntj4unoEEgmH+6AvzI0uxU4K0b2/rluc53VAz6ICmnShYBLYePz4a
+   5dXurj80wk2FxHQAE2l0jm23puM+yn+K1OqEukgq2rmGVknk3oskvigJ7
+   z3BgYPNYITkpiPnazGAoXRJnQAyJZNRmYhaBSWmd3VJ8Tt6+KmHep/ovV
+   6mTDPrAq5SVdBuIbMYCZBXdSixUIqV/07fgm6aPXz9kAlJKQL8bFHfVLY
+   g==;
+X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; 
+   d="scan'208";a="120430613"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Oct 2022 05:39:02 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 26 Oct 2022 05:39:02 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.12 via Frontend Transport; Wed, 26 Oct 2022 05:39:00 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux@armlinux.org.uk>, <arnd@arndb.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 00/11] ARM: at91: fixes and enhancement
+Date:   Wed, 26 Oct 2022 15:41:03 +0300
+Message-ID: <20221026124114.985876-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,49 +62,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Oct 2022 11:57:52 +0800, Yinbo Zhu wrote:
-> Add the loongson2 High Precision Event Timer (HPET) binding
-> with DT schema format using json-schema.
-> 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-> Change in v4:
->                 1. Fixup the clock-names that replace apb-clk with apb.
->                 2. This patch need rely on clock patch, which patchwork
->                    link was "https://patchwork.kernel.org/project/linux-clk/list/?series=688892".
-> 
->  .../bindings/timer/loongson,ls2k-hpet.yaml    | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
-> 
+Hi,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The following series adds:
+- one fix for self-refresh on SAMA7G5 (patch 1/11)
+- thermal management support for SAMA7G5 (patches 2/11-9/11)
+- 2 cleanup patches (patches 10/11, 11/11)
 
-yamllint warnings/errors:
+Thank you,
+Claudiu Beznea
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.example.dts:21:18: fatal error: dt-bindings/clock/loongson,ls2k-clk.h: No such file or directory
-   21 |         #include <dt-bindings/clock/loongson,ls2k-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
+Claudiu Beznea (11):
+  ARM: at91: pm: avoid soft resetting AC DLL
+  ARM: dts: at91: sama7g5: add otpc node
+  ARM: dts: at91: add io-channel-cells to adc node
+  ARM: dts: at91: sama7g5: add cells for temperature calibration
+  ARM: dts: at91: sama7g5: add temperature sensor
+  ARM: dts: at91: sama7g5: add thermal zones node
+  ARM: configs: at91: sama7: use make savedefconfig
+  ARM: configs: at91: sama7: add config for microchip otpc
+  ARM: configs: at91: sama7: add config for thermal management
+  ARM: dts: at91: sama7g5: use generic name for securam
+  ARM: dts: at91: sam9x60ek: remove status = "okay" for regulators
 
-doc reference errors (make refcheckdocs):
+ arch/arm/boot/dts/at91-sam9x60ek.dts |  4 --
+ arch/arm/boot/dts/sama7g5.dtsi       | 67 +++++++++++++++++++++++++++-
+ arch/arm/configs/sama7_defconfig     |  9 +++-
+ arch/arm/mach-at91/pm_suspend.S      |  7 ++-
+ include/soc/at91/sama7-ddr.h         |  5 ++-
+ 5 files changed, 83 insertions(+), 9 deletions(-)
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.34.1
 
