@@ -2,113 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4560960E01A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4708560E02A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231937AbiJZL77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 07:59:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
+        id S233485AbiJZMER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:04:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231681AbiJZL75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:59:57 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C966013DC6;
-        Wed, 26 Oct 2022 04:59:55 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id t15so6348214edd.4;
-        Wed, 26 Oct 2022 04:59:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Dbff/IBDtjjnRXywEoj6LRjme/A3fCnG3Sdfp4DfP4=;
-        b=faksOE5hQ3vCGif6dOF5DkpAAnJTHvrwrTfGzKNlmxD9OGF9wWCjPeik8O/jhghQDd
-         mpR40Sq1zOrb1d/SFO/YolN26bTUHI5pNApTvLNJu+82Q0jPhQjZ787qkm8g3/6BR2IK
-         uqa+GIS5ai6cQYidnvHs8Edb3/qrnT69BOEgTZqFoiztlxrIfYmfGFxKQStAVS0h9wUO
-         JaZlRgq13LKM3izzA25phlsneJdoUIo6sPWFQjv5WjWaINzWQ95ORbXM/7hr1+m2Axf1
-         G95GQ90bXFKwmcGPwUbCguXn6ZUzENUNVL43fmL+zU5umla+IGgHY9mjiBRxUnlLuLz0
-         +QdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2Dbff/IBDtjjnRXywEoj6LRjme/A3fCnG3Sdfp4DfP4=;
-        b=Uj6Wkx+Nhip86poZwuHe/tkPscRuuHeajlCaN3GFehBGvlLWD8XxBMmzMknB2tKIsh
-         h7JtJRYmqfWP/kds1bbCXrkaMlQ9/3SCpHIyBRUoUdsvDrPr+fmTb0vo7+L078fJv/3K
-         a4g9G6kFFEUPuFjXewikKD4H4+NdcGt3kQyEoMHWxiE+7zxBklG6pyhXDbcYecAGbGXk
-         Fdn33OmASCunC/0frTv2cCpFoLqKgmOHFFUgKRGZxNJbO5iWJhNZ9lV0gWII4Gdl43jm
-         hZn0bjFUZgJ37OFfztBVdufZJF54VtuMcTa8MNVewbw9sZYVLaMpngBo13CGPPsuZMK2
-         2nzw==
-X-Gm-Message-State: ACrzQf04Tbi8jGlDKtJHxRjlL4U43ynFnWv2YPV/3yeg4V8t/5yO09sK
-        R6c8IFBeN0NURCNCYX1toWKxUC5OVRzxWv0bhVw=
-X-Google-Smtp-Source: AMsMyM5Tp8QwQQhN7fOAlLWSg2jSmcNamZNqvKXoR7rgN58leG2RUPDwRlkuSaVsyxZ7iF3NbdI8nBB/gG7oIOLJZoc=
-X-Received: by 2002:a05:6402:40cd:b0:462:7b99:d40d with SMTP id
- z13-20020a05640240cd00b004627b99d40dmr277928edb.319.1666785594409; Wed, 26
- Oct 2022 04:59:54 -0700 (PDT)
+        with ESMTP id S231926AbiJZMEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:04:16 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB0121EAC7;
+        Wed, 26 Oct 2022 05:04:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 61453B82033;
+        Wed, 26 Oct 2022 12:04:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB3B7C43141;
+        Wed, 26 Oct 2022 12:04:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666785853;
+        bh=6LTuX/xQ6IMZD8m/CLE4a7GdIxVNvlWbr19szbGf1QI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dBIkrKlpZIrs7WEu4uvfJbkp+tGD7CpMplVUIJpjTbuvUtn8swhzoEVpt590lywyl
+         ijkRYpN6ie87eUZb9mwiSiz34UPOZj274H13DduEmgkXs/A4ztPYruEeY+O5hO8Bph
+         iA2xfKOEGpahAwkyo/5bhGSia5tL89QSNGd1N0Sj9wIznTfC0qmozFAvD6Hh1HFEVd
+         i2Q4Uhi18cnImrXDWC0VOgEKcYemUOvLoZBqvqmMY/DqIflQBKzKGTxejJl9mlmTd4
+         oOldE//5xKH0fcTB74SVTZr6YLn6ypI+XFkTXC591HMD+X1hB2kqCtdOrFoGmHTbx3
+         Yf20MAvPc7JUw==
+Received: by mail-ej1-f45.google.com with SMTP id t25so15048763ejb.8;
+        Wed, 26 Oct 2022 05:04:12 -0700 (PDT)
+X-Gm-Message-State: ACrzQf1l96CWUjzEBkKjHv4oZsJK0+PU8IGHpKLCIzeWxLRvoFpiToNy
+        hO88y9cpWLspZv+6jdvWUVM/ieawpWZTGH+E0+I=
+X-Google-Smtp-Source: AMsMyM6b4UIXWLoTsQpMjRB4UKQywbOMmW91BTJZlw7mq+lzs5nHy5Q4XTZdyDvnaIupM/uAgrsH5IkA6cfbPB+q4JI=
+X-Received: by 2002:a17:907:2cf7:b0:78d:c7fc:29ff with SMTP id
+ hz23-20020a1709072cf700b0078dc7fc29ffmr38046370ejc.748.1666785851109; Wed, 26
+ Oct 2022 05:04:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <Y0pSnKREW0pjtPYI@pendragon.ideasonboard.com>
-In-Reply-To: <Y0pSnKREW0pjtPYI@pendragon.ideasonboard.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 26 Oct 2022 12:59:28 +0100
-Message-ID: <CA+V-a8tzFqvW+9dTpowAzJdhfe4WtwnY9Y+KddqUC6oR5uBxjA@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] media: i2c: ov5645: Call ov5645_entity_init_cfg()
- before registering the subdev
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+References: <20221026030256.30512-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20221026030256.30512-1-zhuyinbo@loongson.cn>
+From:   Huacai Chen <chenhuacai@kernel.org>
+Date:   Wed, 26 Oct 2022 20:03:22 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H7jSMei+EDJ_vhoBh-kX-MVxs-vtwQwjsDnrx_zCSFAAw@mail.gmail.com>
+Message-ID: <CAAhV-H7jSMei+EDJ_vhoBh-kX-MVxs-vtwQwjsDnrx_zCSFAAw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: clock: add loongson2 clock include file
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi, Yinbo,
 
-Thank you for the review.
+On Wed, Oct 26, 2022 at 11:03 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>
+> This file defines all loongson2 soc clock indexes, it should be
+I suggest to use regular names, i.e., don't use loongson2, Loongson2
+or LOONGSON2, use Loongson-2 instead. (except in C code). And soc may
+be SoC?
 
-On Sat, Oct 15, 2022 at 7:26 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Prabhakar,
->
-> Thank you for the patch.
->
-> On Fri, Oct 14, 2022 at 07:34:59PM +0100, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Make sure we call ov5645_entity_init_cfg() before registering the subdev
-> > to make sure default formats are set up.
-> >
-> > Suggested-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> If you have a few spare cycles, it would be even better to convert the
-> driver to the subdev active state API :-) You could then drop this call
-> entirely.
->
-For v3 I did think of it, but it looks like I'll need to spend more
-time on the subdev state for this driver (as this driver does cropping
-which makes use of TRY/ACTIVE). So for v3 I'll keep this patch as and
-will work on the subdev state switch in parallel and post when
-complete. (Its just I dont want to miss the v6.2 window for RZ/G2L CRU
-driver ;-))
+Huacai
 
-Cheers,
-Prabhakar
+> included in the device tree in which there's device using the
+> clocks.
+>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  MAINTAINERS                                   |  6 ++++
+>  include/dt-bindings/clock/loongson,ls2k-clk.h | 29 +++++++++++++++++++
+>  2 files changed, 35 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/loongson,ls2k-clk.h
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0be0f520c032..b6aae412de9c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11907,6 +11907,12 @@ S:     Maintained
+>  F:     Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+>  F:     drivers/thermal/loongson2_thermal.c
+>
+> +LOONGSON2 SOC SERIES CLOCK DRIVER
+> +M:     Yinbo Zhu <zhuyinbo@loongson.cn>
+> +L:     linux-clk@vger.kernel.org
+> +S:     Maintained
+> +F:     include/dt-bindings/clock/loongson,ls2k-clk.h
+> +
+>  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+>  M:     Sathya Prakash <sathya.prakash@broadcom.com>
+>  M:     Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
+> new file mode 100644
+> index 000000000000..db1e27e792ff
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
+> @@ -0,0 +1,29 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#ifndef __DT_BINDINGS_CLOCK_LOONGSON2_H
+> +#define __DT_BINDINGS_CLOCK_LOONGSON2_H
+> +
+> +#define LOONGSON2_REF_100M                             0
+> +#define LOONGSON2_NODE_PLL                             1
+> +#define LOONGSON2_DDR_PLL                              2
+> +#define LOONGSON2_DC_PLL                               3
+> +#define LOONGSON2_PIX0_PLL                             4
+> +#define LOONGSON2_PIX1_PLL                             5
+> +#define LOONGSON2_NODE_CLK                             6
+> +#define LOONGSON2_HDA_CLK                              7
+> +#define LOONGSON2_GPU_CLK                              8
+> +#define LOONGSON2_DDR_CLK                              9
+> +#define LOONGSON2_GMAC_CLK                             10
+> +#define LOONGSON2_DC_CLK                               11
+> +#define LOONGSON2_APB_CLK                              12
+> +#define LOONGSON2_USB_CLK                              13
+> +#define LOONGSON2_SATA_CLK                             14
+> +#define LOONGSON2_PIX0_CLK                             15
+> +#define LOONGSON2_PIX1_CLK                             16
+> +#define LOONGSON2_CLK_END                              17
+> +
+> +#endif
+> --
+> 2.31.1
+>
+>
