@@ -2,133 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB45D60DF84
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A7F560DFF3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbiJZL0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 07:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49446 "EHLO
+        id S233625AbiJZLrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 07:47:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233439AbiJZL03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:26:29 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE55900C4
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:26:25 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id 192so7793251pfx.5
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:26:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oZbe2wun9Nqu6qN8s5Py+mfA179UedFb0/HlEHAJWEc=;
-        b=EY5krOyeSYND3rduuFqwBBQ44JAqBopN5Xu5jOFIsv72ahGrxHHLp1MfYafE9C5vgw
-         Q3p5dav+LMO9R/ySL7vNZ4zI0AYd1T1YefdjQieSumzAu4KFvD99qresxYYsmm6oIBCU
-         ONpuS5z+0RqbiV1Y5SmSGUv8rBAZhY+ot9DkugNM4FXhamq9ccaxjldh3r78a4ld1/K1
-         63eaAIhTys4cxp+77j/ZUGx+8Uztt19FFFLmRNaWyoxgboxJUvx+mjgJQR6ZJsqBBfWL
-         /GJC9d/VZ8pClzR9BYoWXiXTv/HdVZkyyXDNEe5AS83M9CdKT3LxG97BHA0Jcu+YYG8u
-         oNYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oZbe2wun9Nqu6qN8s5Py+mfA179UedFb0/HlEHAJWEc=;
-        b=gS1savmq1DeIOUfqqYe9bLH37yZIIZschGR/dp7jUxYP8Ndk4GIGxBnqdkWzJMip38
-         TqVMyqjrnLrYXvq2i+UqPwPWlpSpN/qr5FN3ljqeQfXPPm4KuCsV3Uv9GjH5dEuJk0Nc
-         FWueq68z3ijW1Yqg0Xz71ACwijk76WpSPJCAgGWMZabI4G+nULnGqGqWs+i0jy2F+pBz
-         n6S9dXq5hEkaCgQGow5Z+Kh6ii9FbjJ/1kd0Lu9G+O8HsNjCLeOhisSfkspJTjq4enzB
-         Keyv6P+wli5O8PZ9+3OnqtVZ+uhfg0X+pIJAwJWQfgeLvHxKCU/gQ5hlLuKEgkz0g/iu
-         L8Ug==
-X-Gm-Message-State: ACrzQf0pjQE+2VDaZfEzuByrj0bdRdlA5JAbRF1AyOA0BIrsoci0sn+t
-        7dHEAyo7QcHmTn6sOBrCnd72LiNzPQ+67SvOW3OELQ==
-X-Google-Smtp-Source: AMsMyM4MAUEdyO44glc1foFoVeqTE3QX++as8FdjLMcBxQeUfsJYaBq3EgRucpKQzyGQqRc80yatWSut0rZNtR0Sc1g=
-X-Received: by 2002:a63:90c4:0:b0:45f:c571:67eb with SMTP id
- a187-20020a6390c4000000b0045fc57167ebmr35995880pge.541.1666783584883; Wed, 26
- Oct 2022 04:26:24 -0700 (PDT)
+        with ESMTP id S233628AbiJZLrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:47:31 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33353845E;
+        Wed, 26 Oct 2022 04:46:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666784818; x=1698320818;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=b06/ixQTvo4yNJzSWIRRf7XvwhiUnFL1NIt+eXhoE1Q=;
+  b=b9shMvIYO54QiiLYPABV9hm1Q//OY4lnZwQzq1Q+/6SUhl/PlYlHbMBX
+   PzePayvuBpLODVMPpFy8Y8AMQyzrm8PVEoqWUdMrPbFqXaJhEK6djErxu
+   CzHcc+bwynyAdxseBBkMhHqVqvN3aKvZXVoyNcCKTR+penrAS/Ue9+drf
+   stU0uOu/4/heUUSrZ6VVlc7nK0rSack4jthZjGXQh+0EQisIso3wOS/wn
+   Rpa7FAhOtafaX2A2AgOTgR/6UEId+ZpJlAaJs8p9L4tjAKL3pWvnf1IrL
+   H/BaAkjOL3p418rn/DAox8DuVAq5fOanVPbkIa0lkHGhZHDHCQiw26o24
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="288319659"
+X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; 
+   d="scan'208";a="288319659"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2022 04:46:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="634456778"
+X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; 
+   d="scan'208";a="634456778"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007.fm.intel.com with ESMTP; 26 Oct 2022 04:46:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1onerx-002cjx-2j;
+        Wed, 26 Oct 2022 14:46:49 +0300
+Date:   Wed, 26 Oct 2022 14:46:49 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-gpio@vger.kernel.org, git@amd.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, brgl@bgdev.pl, linus.walleij@linaro.org
+Subject: Re: [PATCH v5 2/3] gpio: pca9570: add a platform data structure
+Message-ID: <Y1keKRzBhSDi671j@smile.fi.intel.com>
+References: <20220930102259.21918-1-shubhrajyoti.datta@amd.com>
+ <20220930102259.21918-3-shubhrajyoti.datta@amd.com>
+ <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20221025132953.81286-1-linux@fw-web.de>
-In-Reply-To: <20221025132953.81286-1-linux@fw-web.de>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 26 Oct 2022 13:25:48 +0200
-Message-ID: <CAPDyKFriLmsSsy5LfiJJH-s7uQMD1AycE7R4NtN1_Td3XocyOQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] Add mmc-support for mt7986
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sam Shih <Sam.Shih@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Oct 2022 at 15:29, Frank Wunderlich <linux@fw-web.de> wrote:
->
-> From: Frank Wunderlich <frank-w@public-files.de>
->
-> I've noticed the mtk-sd binding needs a bit more work get into a more
-> clean state.
->
-> There are 2 properties missing that maybe need to be added later or
-> dropped from devicetrees:
-> drv-type (which is used in mt8183-kukui.dtsi and set to <2>)
-> and
-> r_smpl (used in mt7622-rfb1.dts and mt7622-bananapi-bpi-r64.dts, both
-> times set to <1>)
->
-> i don't know their function and boundaries and i do not find them in
-> driver. I guess they are added by accident, so i removing them in the
-> patches 5+6.
->
-> v2:
-> - add compatible based binding
-> v3:
-> - solve "not" statement in binding and reorder if statements,drop mt8183
-> - added patches removing invalid properties (not in driver)
-> v4:
-> - squashed part 1 (compatible) and 3 (SoC specific clock config)
-> - new mt7986 clock bindings based on info from mtk
-> - re-add mt8183 reg boundary
-> v5:
-> - add fixes-tags to Patches 4+5 and reviewed-by to 6
-> - drop quotes from mt7986 clock-names from patch 2
->
-> Frank Wunderlich (3):
->   arm64: dts: mediatek: mt2712e: swap last 2 clocks to match binding
->   arm64: dts: mt8183: drop drv-type from mmc-node
->   arm64: dts: mt7622: drop r_smpl property from mmc node
->
-> N=C3=ADcolas F. R. A. Prado (1):
->   dt-bindings: mmc: mtk-sd: Set clocks based on compatible
->
-> Sam Shih (2):
->   dt-bindings: mmc: Add support for Mediatek MT7986
->   mmc: mediatek: add support for MT7986 SoC
->
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 149 ++++++++++++++----
->  arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |   6 +-
->  .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  |   1 -
->  arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts  |   1 -
->  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   1 -
->  drivers/mmc/host/mtk-sd.c                     |  14 ++
->  6 files changed, 136 insertions(+), 36 deletions(-)
+On Wed, Oct 26, 2022 at 12:00:34PM +0200, Geert Uytterhoeven wrote:
+> Hi Shubhrajyoti,
+> On Fri, Sep 30, 2022 at 12:41 PM Shubhrajyoti Datta
+> <shubhrajyoti.datta@amd.com> wrote:
 
-I have dropped the earlier two patches I have applied for MT7986 and
-applied patch1, 2 and 6 from this series instead, thanks!
+...
 
-Kind regards
-Uffe
+> Thanks for your patch, which is now commit 35a4bc94a47f2ea6 ("gpio:
+> pca9570: add a platform data structure") in gpio/gpio/for-next
+> linux-next/master next-20221026
+
+Dunno if Bart rebases his tree...
+
+...
+
+> >  static const struct of_device_id pca9570_of_match_table[] = {
+> > -       { .compatible = "nxp,pca9570", .data = (void *)4 },
+> > -       { .compatible = "nxp,pca9571", .data = (void *)8 },
+> > +       { .compatible = "nxp,pca9570", .data = &pca9570_gpio },
+> > +       { .compatible = "nxp,pca9571", .data = &pca9571_gpio },
+> 
+> This breaks bisection, as .data is still considered to be the number
+> of GPIOs:
+> 
+>     gpio->chip.ngpio = (uintptr_t)device_get_match_data(&client->dev);
+
+You beat me up to it, I have also noticed this.
+
+> >         { /* sentinel */ }
+> >  };
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
