@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FEE160EC02
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 01:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBDD560ECA2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 01:31:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233551AbiJZXE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 19:04:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52900 "EHLO
+        id S233040AbiJZXbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 19:31:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233416AbiJZXEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 19:04:25 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BC44286E8
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 16:04:24 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id r6-20020a1c4406000000b003cf4d389c41so1804571wma.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 16:04:23 -0700 (PDT)
+        with ESMTP id S233698AbiJZXbk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 19:31:40 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2448452801;
+        Wed, 26 Oct 2022 16:31:40 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id i21so23149118edj.10;
+        Wed, 26 Oct 2022 16:31:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8J4HR94C6CytlEgPPH3UzuFzQgZKA2q0qAfjJCCQDVo=;
-        b=KMOGWKe5pbx2OHD7SeQZ+vmsD5Z2cjqHBl4dT3rpRSXgUKsb31bLjR24AVTRsuktzO
-         MkV+mJppJ2y7o7eOpaKmY6k2uMQlYbRi08g5JqHaX3RgoOgVfQEo5bWkKsSBq8AWKJkW
-         ladODhW1gISm56tz7INFlETjArkfIa6SD41VI=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=blkh6ovMYUp3pDOL1MPn2xwiUyXrUXCvpPiJ5Ef5AB8=;
+        b=OT8jb3uEhHe2gH4MVt3ES3GKG5GA6wEA15RnpL0RqD0/IqFJ9xhYBvs+/zV29yvHDg
+         29M5erUKfU/f48kN2FRDIIYpW6BrA8QAvRz1oX6WxwCUvdci/yjjhVal7Y/Vz/Gtn9KA
+         /u6do+KHnL1xn5chjUngY2dJsuVUbIEdh/gSbqtCYbB343gFb7ehD5wytJ6U/dXorTaW
+         Y3tHWpiu8k0K+5O2z3fY/ljNoph1Ic/JYyf7in/+gX42TOVxKvDUYYU2jJTDIbaGY1nW
+         e6FcCSNc3m3Y2b1CP4PKhduEaP1j3jCU82gqRrZbkPpTeBb3XdtontGzuhekliz8yZE9
+         YG/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8J4HR94C6CytlEgPPH3UzuFzQgZKA2q0qAfjJCCQDVo=;
-        b=74EBGx6SEJYb3FfCr0QgrfHn+RhuRwFGtDCxeyeu7YQdDtwZDz0UPLP4xTxNWkCWIb
-         Da4uzzQjSLjHPODWdlUVX3T5HNjdc3/V34xjdacC/SO4jYbJDG61meI2M5WVhWgtv01c
-         iVXhbyImoIP6fUGwWOsD/6gkg5Yaqbyqwje23C2Y4GyLytSHckwBxwzq9RslcliRWdgu
-         3kNMlFz5YZ4m0RcL7q3RpsufXu7ud3rKVTxc+bXX9mzi1TcPMxL6ZkHsLf9yXzSwTsYs
-         j1oO2aKaNgogM2lAakuK5dDABVPr/SGhL5StSRo2g9UEqFua/gV35rXCS+gB+3hiN2xy
-         52SA==
-X-Gm-Message-State: ACrzQf3uiP0MVWxBPq7+EPh8kyb9beztHpOTSW3wOEdX+UULtPylFjsg
-        cpq9poDUv+qFkmM07/4DRZ/nf3zN+kseK2mB34LMP7BZCgJOdw==
-X-Google-Smtp-Source: AMsMyM6n1CDhA06FDaawyOojqQup/+/t9ECUWMEIUXhTkL0k29z3MqZbywYRmKKHEleWjnQwul0R5/hki+RpLhSWMEw=
-X-Received: by 2002:a05:600c:1d1a:b0:3c6:d715:2d69 with SMTP id
- l26-20020a05600c1d1a00b003c6d7152d69mr3941641wms.145.1666825462508; Wed, 26
- Oct 2022 16:04:22 -0700 (PDT)
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=blkh6ovMYUp3pDOL1MPn2xwiUyXrUXCvpPiJ5Ef5AB8=;
+        b=w2d9oJiT4/4vdu/BwwSgnkOINWWq3rH/lY2gsQ0/effvtHM3noLNImaHKUWNloqz46
+         0uuDjUfGu1/8juja8igYcmiHaNkVZ2CFQWaCbzKDguNIqBHsFcDpButWuy/GGzhAQoxt
+         6SwypsLSSjoF3R08DtOONiwoNrpLfVZgeEz4ZA2KfiDQ8xfbOfrSzlRc1k+dOitOH+m5
+         IpZuM+V9919L9eeVOV0UikY6WBck43Y4cv/TEn0rFV6XO608JBK9z11nvaKcL53kRLTu
+         b9CxtvDPaJzgIcRkNgDF0lHf0RWxmWGP/0DSrWdOz1Pn7asXcuuGnzdHabqzMNJ71j7v
+         CdDg==
+X-Gm-Message-State: ACrzQf08f/7E5O8H8+rUgr8eg6gdzn9e2svnzcDhwdz6LzyAV6HLHJld
+        p0cDW64p98dmwkeRTqq/b/qQTHaJyes=
+X-Google-Smtp-Source: AMsMyM6j7UmHt71hAUz0A38U4asV5X3C3kp7uoTAz6TSkechcXsi82zhOJ0sbad1evndrvSZ1GLvhQ==
+X-Received: by 2002:aa7:d996:0:b0:461:88b8:c581 with SMTP id u22-20020aa7d996000000b0046188b8c581mr22335651eds.111.1666827098764;
+        Wed, 26 Oct 2022 16:31:38 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id i26-20020a05640200da00b00456d2721d93sm4397040edu.64.2022.10.26.16.31.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 16:31:38 -0700 (PDT)
+Message-ID: <7b9c0a6f-626b-07e8-ae74-7e0f08b8d241@gmail.com>
+Date:   Thu, 27 Oct 2022 01:31:37 +0200
 MIME-Version: 1.0
-References: <20220930220606.303395-1-jwerner@chromium.org> <8489ce0a-3278-5509-4f82-f3d9d5ddd4c0@linaro.org>
-In-Reply-To: <8489ce0a-3278-5509-4f82-f3d9d5ddd4c0@linaro.org>
-From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 26 Oct 2022 16:04:10 -0700
-Message-ID: <CAODwPW9S+6Qh1zMxzXWFkd6d1kdOWpTOe4S1sZB8hvQ-36MbNA@mail.gmail.com>
-Subject: Re: [PATCH 1/4 v5] dt-bindings: memory: Factor out common properties
- of LPDDR bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Julius Werner <jwerner@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v1] ARM: dts: rockchip: rk3188: fix lcdc1-rgb24 node name
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> For the future, write cover letter which describes why you are doing
-> this. You explained the "why" some time ago in responses, but all such
-> information should be in cover letter (plus the applicable part in the
-> individual patches).
+The lcdc1-rgb24 node name is out of line with the rest
+of the rk3188 lcdc1 node, so fix it.
 
-Sorry, I did write a cover letter here:
-https://lore.kernel.org/lkml/20220831013359.1807905-1-jwerner@chromium.org/
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3188.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Are you saying I should have kept resending the cover letter on every
-new iteration of the series? I thought since we were already
-discussing detail questions and there seemed to be no general concerns
-on the series as a whole that wouldn't be necessary, but I can keep
-resending it next time if you prefer.
+diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
+index cdd4a0bd5..b8f34bef0 100644
+--- a/arch/arm/boot/dts/rk3188.dtsi
++++ b/arch/arm/boot/dts/rk3188.dtsi
+@@ -379,7 +379,7 @@
+ 				rockchip,pins = <2 RK_PD3 1 &pcfg_pull_none>;
+ 			};
+
+-			lcdc1_rgb24: ldcd1-rgb24 {
++			lcdc1_rgb24: lcdc1-rgb24 {
+ 				rockchip,pins = <2 RK_PA0 1 &pcfg_pull_none>,
+ 						<2 RK_PA1 1 &pcfg_pull_none>,
+ 						<2 RK_PA2 1 &pcfg_pull_none>,
+--
+2.20.1
+
