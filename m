@@ -2,149 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A5660DB6E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 665D960DB79
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:40:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232107AbiJZGil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 02:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34310 "EHLO
+        id S232654AbiJZGkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 02:40:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiJZGik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:38:40 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88CB978BE1;
-        Tue, 25 Oct 2022 23:38:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=02WNvwWbhiZXAK+Og8doakRElfSqkd+xgpF6EcyVeOM=; b=nQR6d81So8H6ulfbWo6w7/62Tt
-        9UIBku5apau5ZsllmmiPChLLKmg2pxmQU7Vwh0mDmmUvSJUruAs3oH6tGup7hPM3fIhPm7ElGJSFm
-        loIwEsEpau1Z2sXlifkO1uBXoexL/1tlUscOzRH2Gn2OogFyejupy6hRPw+s10Jb+yD57lFuRPH4v
-        rA/pw9R0qwNgRz98kheULOFiOl9FBZ09Cryy8CdLdEaoB9anCmzRj7CFfBqYEByudVfjQMIbKECdx
-        wzpuzuFb3voX7p/rU8XrEeYSx+LTx5Wwq/dXdAqdTRlkGqTfvarMCLZbkxdXzAR7Y7BsjnUp1hBIJ
-        MQWXxddQ==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:46054 helo=[192.168.69.85])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.95)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1ona3S-00C9YI-Mx;
-        Wed, 26 Oct 2022 08:38:31 +0200
-Message-ID: <a600b0e3-19ab-47df-4315-48b8554cb12f@norik.com>
-Date:   Wed, 26 Oct 2022 08:38:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/3] dt-bindings: watchdog: fsl-imx: document suspend
- in wait mode
-Content-Language: en-GB
+        with ESMTP id S232197AbiJZGko (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:40:44 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 729E35C9CD;
+        Tue, 25 Oct 2022 23:40:40 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8Cxq9hn1lhjDowCAA--.9939S3;
+        Wed, 26 Oct 2022 14:40:39 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dxd1dn1lhjXC4FAA--.1205S2;
+        Wed, 26 Oct 2022 14:40:39 +0800 (CST)
+Subject: Re: [PATCH v3 1/2] pinctrl: pinctrl-loongson2: add pinctrl driver
+ support
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-watchdog@vger.kernel.org,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221025072533.2980154-1-andrej.picej@norik.com>
- <20221025072533.2980154-3-andrej.picej@norik.com>
- <ca484809-07e4-44ca-0ab3-26947bda7fa8@linaro.org>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <ca484809-07e4-44ca-0ab3-26947bda7fa8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
+References: <20221024014209.5327-1-zhuyinbo@loongson.cn>
+ <a5a5c18f-476c-2f45-8cd0-3c88b3aa509d@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <841bad76-e19c-e400-e46a-2a83986c29eb@loongson.cn>
+Date:   Wed, 26 Oct 2022 14:40:39 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <a5a5c18f-476c-2f45-8cd0-3c88b3aa509d@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dxd1dn1lhjXC4FAA--.1205S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7uw15Ww1ftF1ftF1xXr18Krg_yoW8GF4kpF
+        ZxJanFkFWjgry8X3sxX398Xr4Ikr1DtF13GFyag3yxuF9xJa4xJFWUGF1j9rs5C340yr48
+        ZFZ8GFW5AF4YkFDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bxkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUGVWUXwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
+        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
+        IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
+        Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x
+        8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
+        x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrw
+        CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI
+        42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z2
+        80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8I_M7UUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25. 10. 22 15:48, Krzysztof Kozlowski wrote:
-> On 25/10/2022 03:25, Andrej Picej wrote:
->> Property "fsl,suspend-in-wait" suspends watchdog in "WAIT" mode which
->> corresponds to Linux's Suspend-to-Idle S0 mode. If this property is not
->> set and the device is put into Suspend-to-Idle mode, the watchdog
->> triggers a reset after 128 seconds.
+
+
+在 2022/10/26 上午12:07, Krzysztof Kozlowski 写道:
+> On 23/10/2022 21:42, Yinbo Zhu wrote:
+>> The loongson2 SoC has a few pins that can be used as GPIOs or take
+>> multiple other functions. Add a driver for the pinmuxing.
 >>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->> Reviewed-by: Fabio Estevam <festevam@gmail.com>
->> ---
->> Changes in v2:
->>   - add a commit message,
->>   - add a list of devices which support this functionality
->> ---
->>   .../bindings/watchdog/fsl-imx-wdt.yaml        | 22 +++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->> index fb7695515be1..9289de97859b 100644
->> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
->> @@ -55,6 +55,28 @@ properties:
->>         If present, the watchdog device is configured to assert its
->>         external reset (WDOG_B) instead of issuing a software reset.
->>   
->> +  fsl,suspend-in-wait:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description: |
->> +      If present, the watchdog device is suspended in WAIT mode
->> +      (Suspend-to-Idle). Only supported on following devices:
->> +        - "fsl,imx25-wdt",
+>> There is currently no support for GPIO pin pull-up and pull-down.
 > 
-> You need to define such allow/disallow in allOf:if:then, instead. Like
-> example-schema is doing for foo-supply, just disallow it for some types
-> or use "if: not: ..."
+> Thank you for your patch. There is something to discuss/improve.
+> 
+>> +static const struct pinmux_ops loongson2_pmx_ops = {
+>> +	.set_mux = loongson2_pmx_set_mux,
+>> +	.get_functions_count = loongson2_pmx_get_funcs_count,
+>> +	.get_function_name = loongson2_pmx_get_func_name,
+>> +	.get_function_groups = loongson2_pmx_get_groups,
+>> +};
+>> +
+>> +static int loongson2_pinctrl_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct loongson2_pinctrl *pctrl;
+>> +	struct resource *res;
+>> +
+>> +	pctrl = devm_kzalloc(dev, sizeof(*pctrl), GFP_KERNEL);
+>> +	if (!pctrl)
+>> +		return -ENOMEM;
+>> +
+>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> +	pctrl->reg_base = devm_ioremap_resource(dev, res);
+> 
+> This is still not fixed.
+sorry, I don't get your meaning about "Use combined helper for this."
+please you tell me more specific.
 
-Sorry missed that. So something like that should be added?:
+Thanks.
 
-> allOf:
->   - if:
->       not:
->         properties:
->           compatible:
->             contains:
->               enum:
->                 - fsl,imx25-wdt
->                 - fsl,imx35-wdt
->                 - fsl,imx50-wdt
->                 - fsl,imx51-wdt
->                 - fsl,imx53-wdt
->                 - fsl,imx6q-wdt
->                 - fsl,imx6sl-wdt
->                 - fsl,imx6sll-wdt
->                 - fsl,imx6sx-wdt
->                 - fsl,imx6ul-wdt
->                 - fsl,imx7d-wdt
->                 - fsl,imx8mm-wdt
->                 - fsl,imx8mn-wdt
->                 - fsl,imx8mp-wdt
->                 - fsl,imx8mq-wdt
->                 - fsl,vf610-wdt
->     then:
->       properties:
->         fsl,suspend-in-wait: false
+BRs
+Yinbo
+> 
+>> +	if (IS_ERR(pctrl->reg_base))
+>> +		return dev_err_probe(pctrl->dev, PTR_ERR(pctrl->reg_base),
+>> +				     "unable to map I/O memory");
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-And I'm assuming I can then remove the supported devices list from 
-property description.
-
-Are you fine with this, so we don't have to split the compatible list 
-like Alexander suggested? Basically we have the same list of WDW 
-supported devices in the driver.
-
-Thank you for your review,
-Andrej
