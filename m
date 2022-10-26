@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F8DA60E552
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 18:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7965A60E56F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 18:25:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234675AbiJZQNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 12:13:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41980 "EHLO
+        id S233362AbiJZQZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 12:25:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234672AbiJZQNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 12:13:22 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358EC95267;
-        Wed, 26 Oct 2022 09:13:20 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29QGD49X093126;
-        Wed, 26 Oct 2022 11:13:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666800784;
-        bh=5AJeBJwCUa9BWZZmmaVkzM9xz4RJkm0ZLGTqRR/eOmw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YtGiPvDzyF011cv9vW1Ybp2fhPwkuwc1cl6kROrS64ChDBHA6YdXDe12Syb0ufqkc
-         51qmMzkPj8YY1uY/vgQvpZP//i/XOYsQQGgVCIRRxjCQUtMr70zW9EvohF/5ArO4KU
-         W4ByBsoFUJZvSBrH83f/ucr9Ul+OH9nucUrjammQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29QGD4c6012465
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 26 Oct 2022 11:13:04 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 26
- Oct 2022 11:13:03 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 26 Oct 2022 11:13:04 -0500
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29QGD28D006482;
-        Wed, 26 Oct 2022 11:13:03 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Tang <dt.tangr@gmail.com>,
-        Fabian Vogt <fabian@ritter-vogt.de>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Andrew Davis <afd@ti.com>
-Subject: [PATCH v2 2/2] ARM: nspire: Remove unused header file mmio.h
-Date:   Wed, 26 Oct 2022 11:13:02 -0500
-Message-ID: <20221026161302.5319-3-afd@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221026161302.5319-1-afd@ti.com>
-References: <20221026161302.5319-1-afd@ti.com>
+        with ESMTP id S233290AbiJZQZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 12:25:31 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C4C6C137
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:25:26 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id l9so8400537qkk.11
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:25:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZQcXM3LzUgWshsooUg5clBTBMHsmZQp0/MMqR4cX+P4=;
+        b=lSNvf6A4WkWW5OCLkMXHEgi5PVRpmhUMGOQj+oj0HlOJKE7tQh52O5saaMPQRud5Pc
+         PCLwssgxP/yavcI/WI2HMJwtYAKw36nYPhfQrulTvb8JqVcO2T2GeX9v5aDcL3eu5Qhu
+         boKvr/pZFau68B2ZVi0uSptZzaPDiVxIp/TEvvxOVZCmOUf5TmudGoGsGsqi0Qm6jVQ1
+         du7kLzd0a91NgMATrlvtZyJvf243072+8VmeCSn5TEQGx94HkLFL2q2wzQTgli58hae7
+         +bWyBO0qL4NYCEFDpIZkIS5eucvovXF8yCj2tLOcuwwpyTe0hXUO/pIBPpiHNMjwvKM7
+         CtsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZQcXM3LzUgWshsooUg5clBTBMHsmZQp0/MMqR4cX+P4=;
+        b=4nCeUNXOoeEgcdQPktzJJY2qB8NjWRi3Cp1WQ6inGtC+IEvjvgwPtTQJnOyk5lwDvz
+         lCrQY+ihjkkVY3STg3oyzkr87eipSgh+IdkU7uwQLiO6QdXzq0++1VbL6bXyv0yM8OuL
+         VR6LM6DodnM22qgNSP/UukF2ViLOMXOfIhBljOmQ+R7llOaoOB1PX7rYkewX5VlXgBs3
+         rOnwCsGaganEu7bnugXJefZWbP/sXqlaByl6CZoeVNvLPocCO3ynFnP1TcsY8Ex5HVgw
+         4jHyceGnMinVtnTbQBr9TK/7FvxgAr6080jPwc2pDFf6e99rRLGU/PHiu6BHo0/DTQ/L
+         f12g==
+X-Gm-Message-State: ACrzQf20/+S5fiLRTMGauVKfkTPYsoscC0kY1ugCXcgeiahz7M+vL2Rd
+        sM7grRdJd/Lg2m/L7w5s/HacHg==
+X-Google-Smtp-Source: AMsMyM6CJenk5LXXB6LFdb/D6qObP4CtevYOYwPDOlm4Ek1GFD1nya0PG3ERX5JNELbNFaJXjNbEbg==
+X-Received: by 2002:a05:620a:4626:b0:6ee:b43:d2bc with SMTP id br38-20020a05620a462600b006ee0b43d2bcmr30134768qkb.764.1666801525700;
+        Wed, 26 Oct 2022 09:25:25 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id d2-20020ac80602000000b0039853b7b771sm3321494qth.80.2022.10.26.09.25.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 09:25:23 -0700 (PDT)
+Message-ID: <03447c2c-aba3-ab5a-657e-3604b1d1f695@linaro.org>
+Date:   Wed, 26 Oct 2022 12:25:20 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v4 0/3] arm64/pinctrl: dt-bindings: qcom: sc7180: convert
+ to dtschema
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=VRgEF=bADEKttmtGqrQ6mDqipGZFRh7JKa5mf4ovF2iA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=VRgEF=bADEKttmtGqrQ6mDqipGZFRh7JKa5mf4ovF2iA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,66 +83,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Nspire boardfile platform drivers have all been converted. None
-of the definitions in this header are used anymore. Remove it.
+On 26/10/2022 11:33, Doug Anderson wrote:
+> Bjorn,
+> 
+> On Thu, Oct 20, 2022 at 3:51 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Hi,
+>>
+>> Changes since v3
+>> ================
+>> 1. Drop bindings patch: applied.
+>> 2. Rebase.
+>> 3. Add tags.
+>>
+>> Changes since v2
+>> ================
+>> 1. New patch: revert of glitch SPI CS workaround
+>> 2. dt-bindings: Drop entire drive-strength (not needed, brought by common TLMM
+>>    schema).
+>> 3. Add tags.
+>> v2: https://lore.kernel.org/all/20221013184700.87260-1-krzysztof.kozlowski@linaro.org/
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>> Krzysztof Kozlowski (3):
+>>   arm64: dts: qcom: sc7180-trogdor-homestar: fully configure secondary
+>>     I2S pins
+>>   arm64: dts: qcom: sc7180: revert "arm64: dts: qcom: sc7180: Avoid
+>>     glitching SPI CS at bootup on trogdor"
+>>   arm64: dts: qcom: sc7180: align TLMM pin configuration with DT schema
+>>
+>>  arch/arm64/boot/dts/qcom/sc7180-idp.dts       | 236 +++----
+>>  .../boot/dts/qcom/sc7180-trogdor-coachz.dtsi  |  36 +-
+>>  .../dts/qcom/sc7180-trogdor-homestar.dtsi     |  41 +-
+>>  .../dts/qcom/sc7180-trogdor-kingoftown-r0.dts |  16 +-
+>>  .../dts/qcom/sc7180-trogdor-kingoftown.dtsi   |   8 +-
+>>  .../boot/dts/qcom/sc7180-trogdor-lazor.dtsi   |  16 +-
+>>  .../dts/qcom/sc7180-trogdor-mrbland-rev0.dtsi |  25 +-
+>>  .../boot/dts/qcom/sc7180-trogdor-mrbland.dtsi |  72 +-
+>>  .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  32 +-
+>>  .../boot/dts/qcom/sc7180-trogdor-pazquel.dtsi |   8 +-
+>>  .../boot/dts/qcom/sc7180-trogdor-pompom.dtsi  |  14 +-
+>>  .../qcom/sc7180-trogdor-quackingstick.dtsi    |  56 +-
+>>  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |   8 +-
+>>  .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  16 +-
+>>  .../qcom/sc7180-trogdor-wormdingler-rev0.dtsi |  25 +-
+>>  .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  72 +-
+>>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 650 +++++++-----------
+>>  arch/arm64/boot/dts/qcom/sc7180.dtsi          | 597 ++++++++--------
+>>  18 files changed, 776 insertions(+), 1152 deletions(-)
+> 
+> I'd love to see this series land sooner rather than later. It'll cause
 
-While here lets remove all the other unused headers and the file
-name from in the file itself.
+Yeah, me too...
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm/mach-nspire/mmio.h   | 13 -------------
- arch/arm/mach-nspire/nspire.c | 14 --------------
- 2 files changed, 27 deletions(-)
- delete mode 100644 arch/arm/mach-nspire/mmio.h
+> conflicts with pretty much any other patch to a sc7180 device tree
+> file, so it'd be nice to get it in the tree. ;-)
 
-diff --git a/arch/arm/mach-nspire/mmio.h b/arch/arm/mach-nspire/mmio.h
-deleted file mode 100644
-index 2ce0656139ec..000000000000
---- a/arch/arm/mach-nspire/mmio.h
-+++ /dev/null
-@@ -1,13 +0,0 @@
--/* SPDX-License-Identifier: GPL-2.0-only */
--/*
-- *	linux/arch/arm/mach-nspire/mmio.h
-- *
-- *	Copyright (C) 2013 Daniel Tang <tangrs@tangrs.id.au>
-- */
--
--#define NSPIRE_PWR_PHYS_BASE		0x900B0000
--#define NSPIRE_PWR_VIRT_BASE		0xFEEB0000
--#define NSPIRE_PWR_BUS_DISABLE1		0x18
--#define NSPIRE_PWR_BUS_DISABLE2		0x20
--
--#define NSPIRE_LCD_PHYS_BASE		0xC0000000
-diff --git a/arch/arm/mach-nspire/nspire.c b/arch/arm/mach-nspire/nspire.c
-index 1e13337972dd..2fbfc23237ff 100644
---- a/arch/arm/mach-nspire/nspire.c
-+++ b/arch/arm/mach-nspire/nspire.c
-@@ -1,23 +1,9 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- *	linux/arch/arm/mach-nspire/nspire.c
-- *
-  *	Copyright (C) 2013 Daniel Tang <tangrs@tangrs.id.au>
-  */
--#include <linux/init.h>
--#include <linux/of_irq.h>
--#include <linux/of_address.h>
--#include <linux/of_platform.h>
--#include <linux/irqchip.h>
--#include <linux/irqchip/arm-vic.h>
--#include <linux/clkdev.h>
--#include <linux/amba/bus.h>
- 
- #include <asm/mach/arch.h>
--#include <asm/mach-types.h>
--#include <asm/mach/map.h>
--
--#include "mmio.h"
- 
- static const char *const nspire_dt_match[] __initconst = {
- 	"ti,nspire",
--- 
-2.37.3
+It's not only about these series but a bunch of others:
+ARM: dts: qcom: msm8974: align TLMM pin configuration with DT schema
+
+
+... although I see now that some were applied and I did not get any
+notification from patchwork.
+
+Best regards,
+Krzysztof
 
