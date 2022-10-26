@@ -2,106 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A55D60EAA1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B762B60EABA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 23:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234101AbiJZU7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 16:59:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47048 "EHLO
+        id S232528AbiJZVRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 17:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233706AbiJZU7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:59:15 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0FAD1217F6;
-        Wed, 26 Oct 2022 13:59:13 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id 46-20020a9d0631000000b00666823da25fso3855132otn.0;
-        Wed, 26 Oct 2022 13:59:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9SGTpGJ14IzV3mTWmW98EDecB40xRhD+qIv4J7Ibrzc=;
-        b=YPIlQzxmQNLVhT9Iq6roNrPwOMlfCCFpekAVKLwJyKZChoJhsHdqxBSa1TuTQV/V03
-         tBnfKKWFVmdTYHQybSESDQIK/srCKuxQyDEm+5a/cZWbM7mcNPTtBLo6FH3/2DrQxJEO
-         p6AGoe0ZPw6uJfie4xbiVBGFDaKNMVLFkQOzn/tY2K0RLzoJSLRcev3glTVCb6uenCvu
-         vV9YEeG71GqiMo12QuNppmGAz8T/TPxR3iBPuZtLyM8kPU4XLT0YzUrGaZQBqwp2YIqu
-         KGEmQfJDvVU08ENHANqwMj3Puc75iQOOwbJbmrXTan/gROP50P12nCsaqKPEb6US6whS
-         PYNQ==
-X-Gm-Message-State: ACrzQf3QrJQCGz5j1cplYkzgAKGa14WGRp6pB+dPcwoeL2M4fF0VBRaP
-        gWqQP5t1umJ3XW8xHBvddA==
-X-Google-Smtp-Source: AMsMyM5kHygF1C7avKvdsYNEhsTiUfv1gpzHowhVZYUGRV2ZVyQ3RIJeLUWjNOlgHtBfx6JMZxuF2g==
-X-Received: by 2002:a05:6830:3987:b0:661:b516:6a61 with SMTP id bs7-20020a056830398700b00661b5166a61mr22873954otb.303.1666817953187;
-        Wed, 26 Oct 2022 13:59:13 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p1-20020a4a95c1000000b0047f72b6988fsm2563862ooi.45.2022.10.26.13.59.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 13:59:12 -0700 (PDT)
-Received: (nullmailer pid 1303800 invoked by uid 1000);
-        Wed, 26 Oct 2022 20:59:14 -0000
-Date:   Wed, 26 Oct 2022 15:59:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, marex@denx.de,
-        jirislaby@kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
- controls Rx enable during Tx
-Message-ID: <20221026205914.GA1294440-robh@kernel.org>
-References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
- <20221026165049.9541-2-cniedermaier@dh-electronics.com>
+        with ESMTP id S231628AbiJZVRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 17:17:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23AA10CFBC;
+        Wed, 26 Oct 2022 14:16:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6B8E8B8243C;
+        Wed, 26 Oct 2022 21:16:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0162FC43145;
+        Wed, 26 Oct 2022 21:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666819016;
+        bh=eXNYsyHrjfkj168/GLzMtKplVFDcKDxriIybCsmll4Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rtgM/mh5CDlkpSmwzvcKBbhfpYEk/Y5oWnhBJlt2AWf/j0eJmNK1iGpz/mBT2+Pp/
+         etMbGppanoU7sUeYHaaxD44JOS88dHK2XPxcBIB/wbfS7YP1GA7VEZ1/TwyPTh1nFY
+         z3fZ3NgEIG7AWD6omfOK5jZ9Gc38MSXus3wVUKVMcI1esIewtArzL0ArgywqYKGwkP
+         Poz3u4CxCWbGhPk/n+YKpb6swHACaoGd8XWH1EMPv6iEIREmRrMvZKrVSGRIH9F0XL
+         74Nz8I1KGG6QwuhoPc4DjJ0L3t4kOtrRSbkRLrgy4ZpiBQHerYbai0/JgWcp1GHd5J
+         bRL6X4aytNcJQ==
+Received: by mail-lf1-f48.google.com with SMTP id r14so31494323lfm.2;
+        Wed, 26 Oct 2022 14:16:55 -0700 (PDT)
+X-Gm-Message-State: ACrzQf0RGxkF/CGFQ3bz20BOCZGsSkGqDQYLfS+d/0nQqc3S7F892MoZ
+        fnJGy2mvs3aMasPpsUCQagfVIGZ6D+7G8MsWdA==
+X-Google-Smtp-Source: AMsMyM68r1z6vDi1lrxqvnE4FImJ7MkTnCRg99ilWEyfO4MoJUdjzznRRdfEUQrx5J9gYr8/D1cKKZfj81WvAqCZowI=
+X-Received: by 2002:a05:6512:3f0e:b0:4a0:45b7:a8dc with SMTP id
+ y14-20020a0565123f0e00b004a045b7a8dcmr16365342lfa.368.1666819013968; Wed, 26
+ Oct 2022 14:16:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221026165049.9541-2-cniedermaier@dh-electronics.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20221011000840.289033-1-quic_eberman@quicinc.com>
+ <20221011000840.289033-3-quic_eberman@quicinc.com> <20221012155645.GA2173829-robh@kernel.org>
+ <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
+In-Reply-To: <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 26 Oct 2022 16:16:44 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
+Message-ID: <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
+Subject: Re: [PATCH v5 02/13] dt-bindings: Add binding for gunyah hypervisor
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 06:50:46PM +0200, Christoph Niedermaier wrote:
-> Add the binding for a generic definition of a GPIO, that controls whether Rx
-> is connected or disconnected by an electrical circuit to have the ability
-> to receive the signals on the bus during sending or disable receiving during
-> sending.
-> 
-> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> ---
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: devicetree@vger.kernel.org
-> To: linux-serial@vger.kernel.org
-> To: linux-arm-kernel@lists.infradead.org
-> ---
->  Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-> index 90a1bab40f05..0ebd7690f85d 100644
-> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
-> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-> @@ -51,6 +51,10 @@ properties:
->      description: GPIO pin to enable RS485 bus termination.
->      maxItems: 1
->  
-> +  rs485-rx-during-tx-gpios:
-> +    description: GPIO pin to control RS485 Rx enable during Tx.
+On Thu, Oct 13, 2022 at 6:59 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+>
+>
+> On 10/12/2022 8:56 AM, Rob Herring wrote:
+> > On Mon, Oct 10, 2022 at 05:08:29PM -0700, Elliot Berman wrote:
+> >> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
+> >> Resource Manager applies a devicetree overlay describing the virtual
+> >> platform configuration of the guest VM, such as the message queue
+> >> capability IDs for communicating with the Resource Manager. This
+> >> information is not otherwise discoverable by a VM: the Gunyah hypervisor
+> >> core does not provide a direct interface to discover capability IDs nor
+> >> a way to communicate with RM without having already known the
+> >> corresponding message queue capability ID. Add the DT bindings that
+> >> Gunyah adheres for the hypervisor node and message queues.
+> >>
+> >> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> >> ---
+> >>   .../bindings/firmware/gunyah-hypervisor.yaml  | 87 +++++++++++++++++++
+> >>   MAINTAINERS                                   |  1 +
+> >>   2 files changed, 88 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+> >> new file mode 100644
+> >> index 000000000000..f0a14101e2fd
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+> >> @@ -0,0 +1,87 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Gunyah Hypervisor
+> >> +
+> >> +maintainers:
+> >> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
+> >> +  - Elliot Berman <quic_eberman@quicinc.com>
+> >> +
+> >> +description: |+
+> >> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
+> >
+> > How you end up with the node (applying an overlay) is not relavent to
+> > the binding.
+> >
+> >> +  describes the basic configuration of the hypervisor. Virtual machines use this information to determine
+> >> +  the capability IDs of the message queues used to communicate with the Gunyah Resource Manager.
+> >
+> > Wrap at 80. That is the coding standard still though 100 is deemed
+> > allowed. And yamllint only complains at 110 because I didn't care to fix
+> > everyones lines over 100.
+> >
+> >> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    items:
+> >> +      - const: gunyah-hypervisor-1.0
+> >> +      - const: gunyah-hypervisor
+> >
+> > 2 compatibles implies a difference between the 2. What's the difference?
+> > Where does '1.0' come from?
+> >
+>
+> There's no difference. I thought the convention was to have
+> device-specific compatible and the generic compatible. "device-specific"
+> here would be specific to version of Gunyah since it's software.
 
-Active state means do what? And inactive? This is an output gating the 
-RX signal or an input telling the receiver what to do during tx? The 
-description is not adequate.
+No, that's just what people do because "vendor,new-soc",
+"vendor,old-soc" seems to bother them for some reason. At the end of
+the day, it's just a string identifier that means something. If
+there's no difference in that 'something', then there is no point in
+having more than one string.
 
-How does this property relate to 'rs485-rx-during-tx' Any combination of 
-the 2 being present or not is okay? If not, you need some constraints.
+You only need something specific enough to discover the rest from the
+firmware. When that changes, then you add a new compatible. Of course,
+if you want existing OSs to work, then better not change the
+compatible.
+
+> We do similar for firmware in the qcom,scm bindings and following that
+> principle.
+
+Always poor examples to follow...
 
 Rob
