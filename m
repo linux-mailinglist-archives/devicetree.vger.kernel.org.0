@@ -2,148 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4708560E02A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23CC060E04F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233485AbiJZMER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
+        id S233806AbiJZMI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231926AbiJZMEQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:04:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB0121EAC7;
-        Wed, 26 Oct 2022 05:04:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 61453B82033;
-        Wed, 26 Oct 2022 12:04:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB3B7C43141;
-        Wed, 26 Oct 2022 12:04:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666785853;
-        bh=6LTuX/xQ6IMZD8m/CLE4a7GdIxVNvlWbr19szbGf1QI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dBIkrKlpZIrs7WEu4uvfJbkp+tGD7CpMplVUIJpjTbuvUtn8swhzoEVpt590lywyl
-         ijkRYpN6ie87eUZb9mwiSiz34UPOZj274H13DduEmgkXs/A4ztPYruEeY+O5hO8Bph
-         iA2xfKOEGpahAwkyo/5bhGSia5tL89QSNGd1N0Sj9wIznTfC0qmozFAvD6Hh1HFEVd
-         i2Q4Uhi18cnImrXDWC0VOgEKcYemUOvLoZBqvqmMY/DqIflQBKzKGTxejJl9mlmTd4
-         oOldE//5xKH0fcTB74SVTZr6YLn6ypI+XFkTXC591HMD+X1hB2kqCtdOrFoGmHTbx3
-         Yf20MAvPc7JUw==
-Received: by mail-ej1-f45.google.com with SMTP id t25so15048763ejb.8;
-        Wed, 26 Oct 2022 05:04:12 -0700 (PDT)
-X-Gm-Message-State: ACrzQf1l96CWUjzEBkKjHv4oZsJK0+PU8IGHpKLCIzeWxLRvoFpiToNy
-        hO88y9cpWLspZv+6jdvWUVM/ieawpWZTGH+E0+I=
-X-Google-Smtp-Source: AMsMyM6b4UIXWLoTsQpMjRB4UKQywbOMmW91BTJZlw7mq+lzs5nHy5Q4XTZdyDvnaIupM/uAgrsH5IkA6cfbPB+q4JI=
-X-Received: by 2002:a17:907:2cf7:b0:78d:c7fc:29ff with SMTP id
- hz23-20020a1709072cf700b0078dc7fc29ffmr38046370ejc.748.1666785851109; Wed, 26
- Oct 2022 05:04:11 -0700 (PDT)
+        with ESMTP id S233807AbiJZMIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:08:00 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47498DED13;
+        Wed, 26 Oct 2022 05:07:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=B/Gu8lEakeE0xZHUuCf+CKOgyX/EB7IG70Xl2GMpx+4=; b=tVG/8D65+b6EPoGSurRmyoakPV
+        k/z/kQVzFoO6BOAhXTAiYYKN12ad/IH+vJaD+fvSYYOFW81JmqxoRjYhDEiWPAK57JOK8HlPGn7wG
+        qf0CYIasYqAaMpVTdPUIIRb1kYgLgpkbDzAelOz0d0KvV68XH3hIfLdsnRK65bU1BwL8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1onf9x-000cVd-SM; Wed, 26 Oct 2022 14:05:25 +0200
+Date:   Wed, 26 Oct 2022 14:05:25 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     Sean Anderson <seanga2@gmail.com>, davem@davemloft.net,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v3 3/5] net: pcs: add new PCS driver for altera
+ TSE PCS
+Message-ID: <Y1kihVfwglzOD2uE@lunn.ch>
+References: <20220901143543.416977-1-maxime.chevallier@bootlin.com>
+ <20220901143543.416977-4-maxime.chevallier@bootlin.com>
+ <68b3dfbf-9bab-2554-254e-bffd280ba97e@gmail.com>
+ <20221026113711.2b740c7a@pc-8.home>
 MIME-Version: 1.0
-References: <20221026030256.30512-1-zhuyinbo@loongson.cn>
-In-Reply-To: <20221026030256.30512-1-zhuyinbo@loongson.cn>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Wed, 26 Oct 2022 20:03:22 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H7jSMei+EDJ_vhoBh-kX-MVxs-vtwQwjsDnrx_zCSFAAw@mail.gmail.com>
-Message-ID: <CAAhV-H7jSMei+EDJ_vhoBh-kX-MVxs-vtwQwjsDnrx_zCSFAAw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: clock: add loongson2 clock include file
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221026113711.2b740c7a@pc-8.home>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yinbo,
+> > > +	/* This PCS seems to require a soft reset to re-sync the
+> > > AN logic */
+> > > +	tse_pcs_reset(tse_pcs);  
+> > 
+> > This is kinda strange since c22 phys are supposed to reset the other
+> > registers to default values when BMCR_RESET is written. Good thing
+> > this is a PCS...
+> 
+> Indeed. This soft reset will not affect the register configuration, it
+> will only reset all internal state machines.
+> 
+> The datasheet actually recommends performing a reset after any
+> configuration change...
 
-On Wed, Oct 26, 2022 at 11:03 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
->
-> This file defines all loongson2 soc clock indexes, it should be
-I suggest to use regular names, i.e., don't use loongson2, Loongson2
-or LOONGSON2, use Loongson-2 instead. (except in C code). And soc may
-be SoC?
+The Marvell PHYs work like this. Many of its registers won't take
+effect until you do a soft reset. I think the thinking behind this is
+that changing many registers is disruptive to the link and slow. It
+takes over a second to perform auto-neg etc. So ideally you want to
+make all your register changes, and then trigger them into operation.
+And a soft reset is this trigger.
 
-Huacai
-
-> included in the device tree in which there's device using the
-> clocks.
->
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  MAINTAINERS                                   |  6 ++++
->  include/dt-bindings/clock/loongson,ls2k-clk.h | 29 +++++++++++++++++++
->  2 files changed, 35 insertions(+)
->  create mode 100644 include/dt-bindings/clock/loongson,ls2k-clk.h
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0be0f520c032..b6aae412de9c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11907,6 +11907,12 @@ S:     Maintained
->  F:     Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
->  F:     drivers/thermal/loongson2_thermal.c
->
-> +LOONGSON2 SOC SERIES CLOCK DRIVER
-> +M:     Yinbo Zhu <zhuyinbo@loongson.cn>
-> +L:     linux-clk@vger.kernel.org
-> +S:     Maintained
-> +F:     include/dt-bindings/clock/loongson,ls2k-clk.h
-> +
->  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->  M:     Sathya Prakash <sathya.prakash@broadcom.com>
->  M:     Sreekanth Reddy <sreekanth.reddy@broadcom.com>
-> diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
-> new file mode 100644
-> index 000000000000..db1e27e792ff
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
-> @@ -0,0 +1,29 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
-> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLOCK_LOONGSON2_H
-> +#define __DT_BINDINGS_CLOCK_LOONGSON2_H
-> +
-> +#define LOONGSON2_REF_100M                             0
-> +#define LOONGSON2_NODE_PLL                             1
-> +#define LOONGSON2_DDR_PLL                              2
-> +#define LOONGSON2_DC_PLL                               3
-> +#define LOONGSON2_PIX0_PLL                             4
-> +#define LOONGSON2_PIX1_PLL                             5
-> +#define LOONGSON2_NODE_CLK                             6
-> +#define LOONGSON2_HDA_CLK                              7
-> +#define LOONGSON2_GPU_CLK                              8
-> +#define LOONGSON2_DDR_CLK                              9
-> +#define LOONGSON2_GMAC_CLK                             10
-> +#define LOONGSON2_DC_CLK                               11
-> +#define LOONGSON2_APB_CLK                              12
-> +#define LOONGSON2_USB_CLK                              13
-> +#define LOONGSON2_SATA_CLK                             14
-> +#define LOONGSON2_PIX0_CLK                             15
-> +#define LOONGSON2_PIX1_CLK                             16
-> +#define LOONGSON2_CLK_END                              17
-> +
-> +#endif
-> --
-> 2.31.1
->
->
+    Andrew
