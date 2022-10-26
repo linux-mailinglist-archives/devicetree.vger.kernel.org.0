@@ -2,148 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA9D760DB5A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D5D60DAFF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232823AbiJZGde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 02:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49426 "EHLO
+        id S232403AbiJZGMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 02:12:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233181AbiJZGdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:33:31 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60079.outbound.protection.outlook.com [40.107.6.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91098AC3A0;
-        Tue, 25 Oct 2022 23:33:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DJGA9TEObVP+9jfC4Hfdv5JDcgoQW/X+KxlfyrZOezDvyY2C4eC38LSKGqg3w9XpSo+yjT+SiE+m2lw4ui6fkR3tKVY6Tz7c00aoqMni8/oX2C4roZkEtNONIC3JBg0283Q1NmMAhwBLc+koxJ3ylcNKsxPRNBAR0VBXTfuOA6CY7NQgEeOW4tJVtLymgL+FD0Omvxs9TX2U38tjGnOmuZ5yOoVq7f+XY92cE3rVpnJ0vYpphVgrUoDVt5uQOi7QcNmWNG9GnvKElwdXxz6FKAihKUcgI/Mw/H5xVVjz6DcdT35cKrPSDJikKHjbWPj43GfVnrb6XxeD+1kUrK8OvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=daT8jiD13HyFZbUY1k1LuqglIJN2jfWzXCVPebGlPx4=;
- b=OXaudbY6G8hpvARlU+fMdsuIXXtzsgqMYoSUogsxIi1yU+1HMB7ktTZh/96kvmY14i0Atys6Y4dVUXeyKPu0g28bhNlN9YHSh6UOPyezumBcavlxItiqNfEZwkFC8xjENo+zywf/uwIk45MEETtVRMKX9ukdWIC3e7r9OiSXg1pBMNQwEL1yCyyZQdTvP5rmBT3a8ggCQjW7FtEO7tzOlGMXgeoj873iYCz0u+P0A0+5ehZwv0/oxwOHNZW11diX9BVm//tGUmlIz6mjZAlflUUkDcaJ6+nQyx67qKBiCF9+3SEiqsROYEjbamcUj6ojJ7/UVzxjJai1yaOa6ZToJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=daT8jiD13HyFZbUY1k1LuqglIJN2jfWzXCVPebGlPx4=;
- b=QmGfuSOswDJHbMX+iMlXKqgRjTHtUQvPk+zhs+7kmv8sJK0MWpheyez5WenuVfAbaAKVz5IpqG9J1QtAG2GP6H2WI71Edsos6YWt986ooWA4QHdoUG9Qaj6FT4n1Z7oEVjoiBna13dwNZPLlgobzdDAmFYSUuYRJ9dRRtdFHt5I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com (2603:10a6:102:261::21)
- by PAXPR04MB9232.eurprd04.prod.outlook.com (2603:10a6:102:2ba::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.34; Wed, 26 Oct
- 2022 06:33:18 +0000
-Received: from PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::cc4:c5c2:db97:1313]) by PA4PR04MB9640.eurprd04.prod.outlook.com
- ([fe80::cc4:c5c2:db97:1313%7]) with mapi id 15.20.5746.026; Wed, 26 Oct 2022
- 06:33:18 +0000
-From:   Li Jun <jun.li@nxp.com>
-To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, xu.yang_2@nxp.com, jun.li@nxp.com
-Subject: [PATCH v2 2/2] usb: phy: generic: Add wakeup capability
-Date:   Wed, 26 Oct 2022 14:12:22 +0800
-Message-Id: <1666764742-4201-2-git-send-email-jun.li@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1666764742-4201-1-git-send-email-jun.li@nxp.com>
-References: <1666764742-4201-1-git-send-email-jun.li@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR06CA0238.apcprd06.prod.outlook.com
- (2603:1096:4:ac::22) To PA4PR04MB9640.eurprd04.prod.outlook.com
- (2603:10a6:102:261::21)
+        with ESMTP id S229995AbiJZGMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:12:35 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9E4AF1A8;
+        Tue, 25 Oct 2022 23:12:34 -0700 (PDT)
+Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10FEA4F8;
+        Wed, 26 Oct 2022 08:12:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1666764751;
+        bh=HSs5W5rAkgz8WIXvHYt4lOm8uZkza4r5C6jJL61qhlk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=vZLRHq7c/khDXlqhtrEOoxThsTt0tBrrx9+D/qTJvMat++2bufT7x00DUW1ZRBs7f
+         +OwgnO4wpb89x/4wMBe7Ztz7/V6pc6qWPrQZo33rXAdUlsapX74lXOJlPOjDT42173
+         sxWFqe2L5ataVGNM3ZfZnFfEaU0qClBvrWsFM7R4=
+Message-ID: <ec3be93c-fcc1-e0f9-807e-d7fa790c60ad@ideasonboard.com>
+Date:   Wed, 26 Oct 2022 09:12:27 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9640:EE_|PAXPR04MB9232:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1120e01-ca4f-4f12-eb83-08dab71bf810
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: n0a1/5wkKxvBb5oevZRCxuymu636qzlo4JRlOLZoirJ7aIGkDW48U4C2BhcbI37olCrLYjLg0hgpgmAnbxmNETqf0SdTstDCCJvN+SSq1jGUbkhftozVIjg+0SF2r3RRxf+oHYeifvWKG/Lw5Jnihzja0KRFLKSnYcCwnmE7mzSBEMaJeAUkYFWMI2Wd5qrgjsL2/PTbKwmZeKX3FWofy76FpHV7alXyGVFX1mvZllt43Tnyt71VmK4qIUbbbV6p7mLXHQOBSwAxVY2UlzhbW3FBhyOr3ADS9HDuTv2qapL8jylsYJEqP7EHc0GK4MW6FbuI9AQ3OChVeo0Eo1mVHFpEzr0bdQalUqHJVhfDPJWt4mNSuSz5cEDwY914WTtZsKJF0XP4Ix2AZ2Ncckc0yBrreD5hUBngZycLftlTiO8znIpZGznql8XLCR9fN0tk4Yo31dcsRz51NwKvUmXF4ag3XmGRmSGeuJg9OsOw4IAs0Qx8X1sEp5zAfbkIYg9sp751WFD+my1Zryfe2pgNrr2yHjOU9SIo8wlZXLv4YaUS4smjQ5BenZSrBFc7Ixw4zXWShktVkWbktrPC7h0NFtCahYzhQHhevRP5P5OIvMdJJyq2xgSAYrVpTGy7HdwkAvhIkTbxkdnZXMP0S9uOjd7aZyKboyx9rBZj2722ls83YTtU4C8a07H3Ti0aoRLBvLOtGGTIH+DEbdv2X1QK8Mz+/rQP7EDCYWgRvlkmchNk3BQqeSZ3ejVjgqdLS4IO4I6+Uyhwh4a1WQBjNsgbsmMN9bExMlm2rUEYj7dNwVI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9640.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(136003)(396003)(366004)(346002)(39860400002)(451199015)(86362001)(6506007)(26005)(52116002)(36756003)(4326008)(41300700001)(66556008)(66946007)(6512007)(8676002)(66476007)(5660300002)(6666004)(8936002)(316002)(4744005)(2906002)(6486002)(186003)(38100700002)(38350700002)(2616005)(478600001)(41533002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iT0JIlcaTnO1vLZ57LIp5tA10rVBUO1jct9aok4teyKE174YPYJCON1hqmY7?=
- =?us-ascii?Q?sAtHYkp1Ar9aU1GttahG673MFpXGGu/7CYlWsZYTVBuFDjYT7xPlvZEMsomC?=
- =?us-ascii?Q?Rf9fj93QT1TIrXrG3CBRaqzjDQ0Iq2bY9bgPE8+YZ4T0cM4O2t636MPpbPu/?=
- =?us-ascii?Q?pt2Iml+te6awK1sMgv431tEfm0BQETgiigPbJHpI9PCc5aIU621MFXvsmca+?=
- =?us-ascii?Q?Z/QZ0rka+MHm8sZOXHZG7UO017h+hpmZJdxS0NXRMNEH9kr5JI8wv1Z6Nueq?=
- =?us-ascii?Q?is1wUcVZwQtxiXACqQQiVEAC+aeh+jDXBet2pFUVVpK7zIkIrVZOqKiWJ5qT?=
- =?us-ascii?Q?eirZ+Dxr0c9qgAmOxdbPXWVGLWRt1pCfYM7azHiiE8VKlNv5jq0Xl42apT2s?=
- =?us-ascii?Q?yz2OWKfajht6yBlf/DyRdMj97blF2m0AEbcVQa+GVkB7/iJ9A4BZS9I451lB?=
- =?us-ascii?Q?A9weJUkHzfCjgJm8dgXbRCUUkTweTGtsbgkZZrdhZQRNFvSAywdPoh30qOxX?=
- =?us-ascii?Q?TYxmR9xczn/fF+kRcCkRFvsOAFK3a1ebrJW6pXNkkBZo3NGUQU7fVbXjxd7z?=
- =?us-ascii?Q?72PW82KnSrC319zFRHYSFyn2ODeGvWhm6ETY4HCya1mtR+1iV8drJVVxyRpr?=
- =?us-ascii?Q?AZjnlklJZYJgZS3KDKSugSM2t5RLU3wBp+/4mGPGeBIv9TXUGuMO70FeqnIX?=
- =?us-ascii?Q?/T0xS0527qbzLAJCb+p0ka47OlZOg06edwtJqenwzm42yvpcgqH+RmP1SZIX?=
- =?us-ascii?Q?8D+vfb3hdS5jFvWyd1YjuJsNpLekVPw8tJD7GLqN9l9LE+twCqcjr1feZ5z9?=
- =?us-ascii?Q?4vn2Y8jD4piFSQBpypu8YcHeTH1RAF+IDaqRrf5yIRH/EQ9IQmpA3tqxJmba?=
- =?us-ascii?Q?XZAdLWStpOPuS4mhmTzVTwAO/N33E36pT/WbskdMCifpHIYrH1Bk8CoRmoZc?=
- =?us-ascii?Q?psgtydMwXsvumppDTcezmUm1b39iS+7cjX8vr4vkUoMxTbOjPUo/fCIckyXn?=
- =?us-ascii?Q?3rBaCC/wa0ljElEmyKm6nxrFoUOK+EOWzjvXxe2UL5s7KZo9h2hWqjNW0plV?=
- =?us-ascii?Q?UHvZZSLCkbYizpx8VFW/QE4+2jjVGZpOlRBs78NAMW6JWdQ8qTRXvfMahchL?=
- =?us-ascii?Q?cG/Su0nkcmCBURi1LcOdwazg0M/fdMdTTjJwMq7kHA+Cni94wzKGljtcJLpu?=
- =?us-ascii?Q?pqC5lJHP2dT5SzD/DJwbtoaD54+nAEqu+jaFu7T88HDWWE5R1/ud1/XvULj+?=
- =?us-ascii?Q?AA9uZLF/st61sJ7aNPwQaMll+4gpqwn38Eywi1fXzeiJr0GUD8FalIVYmNI2?=
- =?us-ascii?Q?epurNzEs5UNeUVgQVS9RMRiYJ0t1aQu281yjUxZgcRGCw4BDedLT+c2kYsFt?=
- =?us-ascii?Q?Mt4R1PcAV8aDLJhnP0dxXHIkS6VfbAcp3FtqsIIi10GK+5UmDJbeH+67QGmV?=
- =?us-ascii?Q?/2YzqmKuKM8Aw3ccIpM6Y+BekrJ9ALv29xE/MscMYqXYDwn1X5UlvE/y5NZl?=
- =?us-ascii?Q?nQ5hxC+i2QvXdRz8jbB6e0T7y28bKk2KS4c6pcHvEIW0cr32LZPkBNV/G2xJ?=
- =?us-ascii?Q?2j9QlyBRHlUm6bBa0pG3JhODvYO5decNvmx1e1rJ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1120e01-ca4f-4f12-eb83-08dab71bf810
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9640.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2022 06:33:18.3653
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mxS0nC94cKroZQwncMmEF6pfSibK9HETqZoGhHukffej8eELT44LaeEK599X0Yib
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9232
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v8 5/5] drm/bridge: cdns-dsi: Add support for J721E
+ wrapper
+To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+        airlied@linux.ie, daniel@ffwll.ch, p.zabel@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
+        jpawar@cadence.com, sjakhade@cadence.com, mparab@cadence.com,
+        a-bhatia1@ti.com, devicetree@vger.kernel.org, vigneshr@ti.com,
+        lee.jones@linaro.org
+References: <20221021171820.15984-1-r-ravikumar@ti.com>
+ <20221021171820.15984-6-r-ravikumar@ti.com>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20221021171820.15984-6-r-ravikumar@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In case USB phy is the wakeup source, enable its wakeup
-capability.
+Hi,
 
-Signed-off-by: Li Jun <jun.li@nxp.com>
----
-No change for v2.
+On 21/10/2022 20:18, Rahul T R wrote:
+> Add support for wrapper settings for DSI bridge on
+> j721e. Also set the DPI input to DPI0
 
- drivers/usb/phy/phy-generic.c | 4 ++++
- 1 file changed, 4 insertions(+)
+I think a few more words on the HW layout would be nice. What does the 
+wrapper do and how is it connected to the DSS.
 
-diff --git a/drivers/usb/phy/phy-generic.c b/drivers/usb/phy/phy-generic.c
-index 8ed9327cc4a5..c1309ea24a52 100644
---- a/drivers/usb/phy/phy-generic.c
-+++ b/drivers/usb/phy/phy-generic.c
-@@ -286,6 +286,7 @@ EXPORT_SYMBOL_GPL(usb_phy_gen_create_phy);
- static int usb_phy_generic_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct device_node *dn = dev->of_node;
- 	struct usb_phy_generic	*nop;
- 	int err;
- 
-@@ -323,6 +324,9 @@ static int usb_phy_generic_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, nop);
- 
-+	device_set_wakeup_capable(&pdev->dev,
-+				  of_property_read_bool(dn, "wakeup-source"));
-+
- 	return 0;
- }
- 
--- 
-2.34.1
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> ---
+>   drivers/gpu/drm/bridge/cadence/Kconfig        | 10 ++++
+>   drivers/gpu/drm/bridge/cadence/Makefile       |  1 +
+>   .../gpu/drm/bridge/cadence/cdns-dsi-core.c    | 37 +++++++++++++-
+>   .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 13 +++++
+>   .../gpu/drm/bridge/cadence/cdns-dsi-j721e.c   | 51 +++++++++++++++++++
+>   .../gpu/drm/bridge/cadence/cdns-dsi-j721e.h   | 18 +++++++
+>   6 files changed, 129 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+>   create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+> 
+> diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig b/drivers/gpu/drm/bridge/cadence/Kconfig
+> index 8fbb46c66094..663a02d96420 100644
+> --- a/drivers/gpu/drm/bridge/cadence/Kconfig
+> +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
+> @@ -36,3 +36,13 @@ config DRM_CDNS_DSI
+>   	help
+>   	  Support Cadence DPI to DSI bridge. This is an internal
+>   	  bridge and is meant to be directly embedded in a SoC.
+> +
+> +if DRM_CDNS_DSI
+> +
+> +config DRM_CDNS_DSI_J721E
+> +	bool "J721E Cadence DPI/DSI wrapper support"
+> +	default y
+> +	help
+> +	  Support J721E Cadence DPI/DSI wrapper. This wrapper adds
+> +	  support to select which DPI input to use for the bridge.
+
+I'm not sure if the above is quite necessary here. If I understand 
+right, there's only one way on J721E to mux the DPI signal going to the 
+DSI. If you write "adds support to select DPI input" it sounds like 
+there's something to select, and this config somehow enables that 
+selection for the user.
+
+Perhaps instead just say something like "Support J721E Cadence DPI/DSI 
+wrapper. The wrapper manages the routing of the DSS DPI signal to the 
+Cadence DSI.", or something along those lines.
+
+Also, you say "DPI/DSI wrapper". How does this wrap DPI? Isn't this just 
+a DSI wrapper?
+
+> +endif
+> diff --git a/drivers/gpu/drm/bridge/cadence/Makefile b/drivers/gpu/drm/bridge/cadence/Makefile
+> index e3d8e9a40784..4cffc8ff71c4 100644
+> --- a/drivers/gpu/drm/bridge/cadence/Makefile
+> +++ b/drivers/gpu/drm/bridge/cadence/Makefile
+> @@ -4,3 +4,4 @@ cdns-mhdp8546-y := cdns-mhdp8546-core.o cdns-mhdp8546-hdcp.o
+>   cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) += cdns-mhdp8546-j721e.o
+>   obj-$(CONFIG_DRM_CDNS_DSI) += cdns-dsi.o
+>   cdns-dsi-y := cdns-dsi-core.o
+> +cdns-dsi-$(CONFIG_DRM_CDNS_DSI_J721E) += cdns-dsi-j721e.o
+> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
+> index cba91247ab26..4b7de38ef1b0 100644
+> --- a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
+> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.c
+> @@ -15,12 +15,16 @@
+>   #include <linux/iopoll.h>
+>   #include <linux/module.h>
+>   #include <linux/of_address.h>
+> +#include <linux/of_device.h>
+>   #include <linux/of_graph.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_runtime.h>
+>   #include <linux/reset.h>
+>   
+>   #include "cdns-dsi-core.h"
+> +#ifdef CONFIG_DRM_CDNS_DSI_J721E
+> +#include "cdns-dsi-j721e.h"
+> +#endif
+>   
+>   static inline struct cdns_dsi *input_to_dsi(struct cdns_dsi_input *input)
+>   {
+> @@ -265,6 +269,10 @@ static void cdns_dsi_bridge_disable(struct drm_bridge *bridge)
+>   
+>   	val = readl(dsi->regs + MCTL_MAIN_EN) & ~IF_EN(input->id);
+>   	writel(val, dsi->regs + MCTL_MAIN_EN);
+> +
+> +	if (dsi->platform_ops && dsi->platform_ops->disable)
+> +		dsi->platform_ops->disable(dsi);
+> +
+>   	pm_runtime_put(dsi->base.dev);
+>   }
+>   
+> @@ -360,6 +368,9 @@ static void cdns_dsi_bridge_enable(struct drm_bridge *bridge)
+>   	if (WARN_ON(pm_runtime_get_sync(dsi->base.dev) < 0))
+>   		return;
+>   
+> +	if (dsi->platform_ops && dsi->platform_ops->enable)
+> +		dsi->platform_ops->enable(dsi);
+> +
+>   	mode = &bridge->encoder->crtc->state->adjusted_mode;
+>   	nlanes = output->dev->lanes;
+>   
+> @@ -800,6 +811,8 @@ static int cdns_dsi_drm_probe(struct platform_device *pdev)
+>   		goto err_disable_pclk;
+>   	}
+>   
+> +	dsi->platform_ops = of_device_get_match_data(&pdev->dev);
+> +
+>   	val = readl(dsi->regs + IP_CONF);
+>   	dsi->direct_cmd_fifo_depth = 1 << (DIRCMD_FIFO_DEPTH(val) + 2);
+>   	dsi->rx_fifo_depth = RX_FIFO_DEPTH(val);
+> @@ -835,14 +848,27 @@ static int cdns_dsi_drm_probe(struct platform_device *pdev)
+>   	dsi->base.dev = &pdev->dev;
+>   	dsi->base.ops = &cdns_dsi_ops;
+>   
+> +	if (dsi->platform_ops && dsi->platform_ops->init) {
+> +		ret = dsi->platform_ops->init(dsi);
+> +		if (ret != 0) {
+> +			dev_err(&pdev->dev, "platform initialization failed: %d\n",
+> +				ret);
+> +			goto err_disable_runtime_pm;
+> +		}
+> +	}
+> +
+>   	ret = mipi_dsi_host_register(&dsi->base);
+>   	if (ret)
+> -		goto err_disable_runtime_pm;
+> +		goto err_deinit_platform;
+>   
+>   	clk_disable_unprepare(dsi->dsi_p_clk);
+>   
+>   	return 0;
+>   
+> +err_deinit_platform:
+> +	if (dsi->platform_ops && dsi->platform_ops->exit)
+> +		dsi->platform_ops->exit(dsi);
+> +
+>   err_disable_runtime_pm:
+>   	pm_runtime_disable(&pdev->dev);
+>   
+> @@ -857,6 +883,10 @@ static int cdns_dsi_drm_remove(struct platform_device *pdev)
+>   	struct cdns_dsi *dsi = platform_get_drvdata(pdev);
+>   
+>   	mipi_dsi_host_unregister(&dsi->base);
+> +
+> +	if (dsi->platform_ops && dsi->platform_ops->exit)
+> +		dsi->platform_ops->exit(dsi);
+> +
+>   	pm_runtime_disable(&pdev->dev);
+>   
+>   	return 0;
+> @@ -864,6 +894,11 @@ static int cdns_dsi_drm_remove(struct platform_device *pdev)
+>   
+>   static const struct of_device_id cdns_dsi_of_match[] = {
+>   	{ .compatible = "cdns,dsi" },
+> +#ifdef CONFIG_DRM_CDNS_DSI_J721E
+> +	{ .compatible = "ti,j721e-dsi",
+> +	  .data = &dsi_ti_j721e_ops,
+> +	},
+
+I find the above formatting a bit odd. I think this should do fine:
+
+{ .compatible = "ti,j721e-dsi", .data = &dsi_ti_j721e_ops, },
+
+If you want multi-line, then I think the opening { should be on its own 
+line, similarly to the closing }.
+
+> +#endif
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(of, cdns_dsi_of_match);
+> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+> index 65cc77f19b39..37568b547fbe 100644
+> --- a/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+> @@ -439,9 +439,22 @@ struct cdns_dsi_input {
+>   	struct drm_bridge bridge;
+>   };
+>   
+> +struct cdns_dsi;
+> +
+> +struct dsi_platform_ops {
+> +	int (*init)(struct cdns_dsi *dsi);
+> +	void (*exit)(struct cdns_dsi *dsi);
+
+I don't think init and exit are the opposites, but rather init and 
+deinit/uninit.
+
+> +	void (*enable)(struct cdns_dsi *dsi);
+> +	void (*disable)(struct cdns_dsi *dsi);
+> +};
+> +
+>   struct cdns_dsi {
+>   	struct mipi_dsi_host base;
+>   	void __iomem *regs;
+> +#ifdef CONFIG_DRM_CDNS_DSI_J721E
+> +	void __iomem *j721e_regs;
+> +#endif
+> +	const struct dsi_platform_ops *platform_ops;
+>   	struct cdns_dsi_input input;
+>   	struct cdns_dsi_output output;
+>   	unsigned int direct_cmd_fifo_depth;
+> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+> new file mode 100644
+> index 000000000000..b5216acb333e
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.c
+> @@ -0,0 +1,51 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * TI j721e Cadence DSI wrapper
+> + *
+> + * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
+> + * Author: Rahul T R <r-ravikumar@ti.com>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "cdns-dsi-j721e.h"
+> +
+> +#define DSI_WRAP_REVISION		0x0
+> +#define DSI_WRAP_DPI_CONTROL		0x4
+> +#define DSI_WRAP_DSC_CONTROL		0x8
+> +#define DSI_WRAP_DPI_SECURE		0xc
+> +#define DSI_WRAP_DSI_0_ASF_STATUS	0x10
+> +
+> +#define DSI_WRAP_DPI_0_EN		BIT(0)
+> +#define DSI_WRAP_DSI2_MUX_SEL		BIT(4)
+> +
+> +static int cdns_dsi_j721e_init(struct cdns_dsi *dsi)
+> +{
+> +	struct platform_device *pdev = to_platform_device(dsi->base.dev);
+> +
+> +	dsi->j721e_regs = devm_platform_ioremap_resource(pdev, 1);
+> +	return PTR_ERR_OR_ZERO(dsi->j721e_regs);
+> +}
+> +
+> +static void cdns_dsi_j721e_enable(struct cdns_dsi *dsi)
+> +{
+> +	/*
+> +	 * Enable DPI0 as its input. DSS0 DPI2 is connected
+> +	 * to DSI DPI0. This is the only supported configuration on
+> +	 * J721E.
+> +	 */
+> +	writel(DSI_WRAP_DPI_0_EN, dsi->j721e_regs + DSI_WRAP_DPI_CONTROL);
+> +}
+> +
+> +static void cdns_dsi_j721e_disable(struct cdns_dsi *dsi)
+> +{
+> +	/* Put everything to defaults  */
+> +	writel(0, dsi->j721e_regs + DSI_WRAP_DPI_CONTROL);
+> +}
+> +
+> +const struct dsi_platform_ops dsi_ti_j721e_ops = {
+> +	.init = cdns_dsi_j721e_init,
+> +	.enable = cdns_dsi_j721e_enable,
+> +	.disable = cdns_dsi_j721e_disable,
+> +};
+> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+> new file mode 100644
+> index 000000000000..01f3dbd92db2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/cadence/cdns-dsi-j721e.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * TI j721e Cadence DSI wrapper
+> + *
+> + * Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com/
+> + * Author: Rahul T R <r-ravikumar@ti.com>
+> + */
+> +
+> +#ifndef CDNS_DSI_J721E_H
+> +#define CDNS_DSI_J721E_H
+> +
+> +#include "cdns-dsi-core.h"
+> +
+> +struct dsi_platform_ops;
+
+You don't need the above line as you already include the cdns-dsi-core.h
+
+> +extern const struct dsi_platform_ops dsi_ti_j721e_ops;
+> +
+> +#endif /* !CDNS_DSI_J721E_H */
 
