@@ -2,469 +2,408 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C9E060E032
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:06:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5876860E05D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:10:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233683AbiJZMGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:06:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47490 "EHLO
+        id S233768AbiJZMKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:10:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233671AbiJZMGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:06:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9346886F89;
-        Wed, 26 Oct 2022 05:06:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 45E07B81CF1;
-        Wed, 26 Oct 2022 12:06:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1A3CC43470;
-        Wed, 26 Oct 2022 12:06:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666785984;
-        bh=9/pt6cvIMT2kjajWWK1+2BhTygA31Z0Vhh+eUHAPOTA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KWFrAjy5183/rWYKbrwgcP92CnH/283qY8g6eeD8gohTUbGbRPtAWLz3d73vj3F0F
-         vfO/3qbzxnG7WaXWidxEE+aWJ6+Z3757QBESx1cVe0GW/rSiGem9VvFXgV59b/TSka
-         O2kYyF3su61GGtnf57t/wrSY+oiVNoNS4tR94RmGYtX4UFaxJAHwSOVHxXvhJTwbM+
-         oThtxco5EJJODLiZKs0T6PbBog2NmW4ahqPwh+TikGr635RjIItSCO+9M11eNW6UTV
-         m2O++kLVSy0GAIFxWXrn/e3Jw42O37vCi7lc+uPSBScRmUJbEyvAd1dP6EeDL0vP7k
-         tT2EEesr6UVbg==
-Received: by mail-ej1-f49.google.com with SMTP id y14so20578691ejd.9;
-        Wed, 26 Oct 2022 05:06:23 -0700 (PDT)
-X-Gm-Message-State: ACrzQf0PADkb+gokQsrcUlginEiMkUqEBiVQIcUqViIkbrwQtgzf10tl
-        TZfq1Je1yymGPOk/H1Xm7yoGBHMYUFXhGfUQI50=
-X-Google-Smtp-Source: AMsMyM7+iuZhZY6uasj6Cgupw9IelO0e2oUQFge+5pjQybB95WR6cnGKXe0bFiluy58Iel9hWHQ2u6RbsigiSbG9AyY=
-X-Received: by 2002:a17:907:31c3:b0:770:852b:71a2 with SMTP id
- xf3-20020a17090731c300b00770852b71a2mr37312080ejb.557.1666785981981; Wed, 26
- Oct 2022 05:06:21 -0700 (PDT)
+        with ESMTP id S233770AbiJZMJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:09:18 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06438D9975;
+        Wed, 26 Oct 2022 05:08:20 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id a67so41041031edf.12;
+        Wed, 26 Oct 2022 05:08:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2+sFgXU272HAzKHMb/kYeJV2N/Mo4JiF4D4k4UprARA=;
+        b=fzEn+CmvIJyhIRGwFqLt44V5e6YtCKWJe6uFUNDfViuWX7SatpNXsPijOQz3UeF4dE
+         vaapxdyEpr7dibMIA4MdZ2IzgbZktcyLHiskJfisGXRS05X8CWMo1iPoRF2PVrSI4xLe
+         Th3wPzgpPosZ2bbL0njaUjSOwXlrSD8bVwqDB/eBxj9UbKGuhC5mZ321jZVGMgzn5ucM
+         CXJMbNVnWW8kaj7+G4MRNmOSy/9qv7UHK9uajffee1LRvEaHERZIp6oquVSpLyhxspqi
+         7k3gs4InSSGac+46G8+KzpLf96c5Ug0ThOlCQlii4dH97hFglrpfJKMppcU14lFo4UZa
+         zWXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2+sFgXU272HAzKHMb/kYeJV2N/Mo4JiF4D4k4UprARA=;
+        b=SxAhJthpRwuOfjwd4lW+vjo41Q4mp6MXJfOpK9ulCRgAkpVxVWSHUhbQiqHxEtRTgr
+         RXf7hLfcSlTn76gWhpPCd9QuSmLNSwK0cqPT5R1T9wCiwc3Iz7LyO2OUlq/nRPrqbAIc
+         +v3/NgHxAi0yFeffGVYvNhyxEz2HFuwpXv76zCMW7d3r0ZxU+904QkCLpTJmEF1N8zON
+         1jkc7CtxRzCvtVKvNjYvLSlSDql7OT+ySL7L8dd27Gjn9zZvWu07bA4yklFL7lK9slP6
+         TMtzwS7oBqHeTCYIXAOuBUjyQJjkNBVpG2boTzsAY6yysgSfAEfHuiMhESUaL7oEr1ub
+         EiKA==
+X-Gm-Message-State: ACrzQf1X+bDj8zDgCd4gGfFFZNHam+KBx6V3p6jYWmq+Mb89m7+PDzG6
+        rHe/2+KxOmAv6fRzRW3OdSu6VmArQmrh5zry5iM=
+X-Google-Smtp-Source: AMsMyM4uQcHACnDYbCpSVLGK6r2/1lQQH7yJt8RKJJJ3m09SvKWD63tUH5pVnggP0JMYooCH4Zy0CdKo4gAHJyYU6fA=
+X-Received: by 2002:a05:6402:2552:b0:45d:ecf:b23 with SMTP id
+ l18-20020a056402255200b0045d0ecf0b23mr40976114edb.255.1666786098436; Wed, 26
+ Oct 2022 05:08:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221026030256.30512-1-zhuyinbo@loongson.cn> <20221026030256.30512-2-zhuyinbo@loongson.cn>
-In-Reply-To: <20221026030256.30512-2-zhuyinbo@loongson.cn>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Wed, 26 Oct 2022 20:06:08 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H76oz2hNGu06JkQGkVzPZW5u-MbcX3HuxCpMGXgBkahgw@mail.gmail.com>
-Message-ID: <CAAhV-H76oz2hNGu06JkQGkVzPZW5u-MbcX3HuxCpMGXgBkahgw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] clk: clk-loongson2: add clock controller driver support
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y0m180wwV9CiNNTf@paasikivi.fi.intel.com> <Y0pNkiK2IZP4Ipey@pendragon.ideasonboard.com>
+ <Y0pSP3fwM8pEeD1e@pendragon.ideasonboard.com>
+In-Reply-To: <Y0pSP3fwM8pEeD1e@pendragon.ideasonboard.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 26 Oct 2022 13:07:51 +0100
+Message-ID: <CA+V-a8s6JmM+DYYdzCoQt9h_OXCLt5iuEGi-RvtJkY-5QQhjgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yinbo,
+Hi Laurent,
 
-On Wed, Oct 26, 2022 at 11:03 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
->
-> This driver provides support for clock controller on Loongson2 SoC
-> , the Loongson2 SoC uses a 100MHz clock as the PLL reference clock
-Use Loongson-2, including in commit message, Kconfig description and comments.
+Thank you for the review.
 
-> , there are five independent PLLs inside, each of which PLL can
-> provide up to three sets of frequency dependent clock outputs.
+On Sat, Oct 15, 2022 at 7:25 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
 >
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
-> Change in v4:
->                 1. Fixup clock-names that replace "xxx-clk" with "xxx".
+> One more comment.
 >
->  MAINTAINERS                  |   1 +
->  arch/loongarch/Kconfig       |   1 +
->  arch/loongarch/kernel/time.c |   3 +
->  drivers/clk/Kconfig          |   9 ++
->  drivers/clk/Makefile         |   1 +
->  drivers/clk/clk-loongson2.c  | 285 +++++++++++++++++++++++++++++++++++
->  6 files changed, 300 insertions(+)
->  create mode 100644 drivers/clk/clk-loongson2.c
+> On Sat, Oct 15, 2022 at 09:05:08AM +0300, Laurent Pinchart wrote:
+> > On Fri, Oct 14, 2022 at 07:18:11PM +0000, Sakari Ailus wrote:
+> > > On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Switch to using runtime PM for power management.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > > v1->v2
+> > > > * Moved pm_runtime_*_autosuspend() calls after registering the subdev.
+> > > > ---
+> > > >  drivers/media/i2c/Kconfig  |   2 +-
+> > > >  drivers/media/i2c/ov5645.c | 137 +++++++++++++++++++------------------
+> > > >  2 files changed, 70 insertions(+), 69 deletions(-)
+> > > >
+> > > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> > > > index 7806d4b81716..c0edd1017fe8 100644
+> > > > --- a/drivers/media/i2c/Kconfig
+> > > > +++ b/drivers/media/i2c/Kconfig
+> > > > @@ -459,7 +459,7 @@ config VIDEO_OV5640
+> > > >  config VIDEO_OV5645
+> > > >   tristate "OmniVision OV5645 sensor support"
+> > > >   depends on OF
+> > > > - depends on I2C && VIDEO_DEV
+> > > > + depends on I2C && PM && VIDEO_DEV
+> > > >   select MEDIA_CONTROLLER
+> > > >   select VIDEO_V4L2_SUBDEV_API
+> > > >   select V4L2_FWNODE
+> > > > diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
+> > > > index 81e4e87e1821..1551690a94e0 100644
+> > > > --- a/drivers/media/i2c/ov5645.c
+> > > > +++ b/drivers/media/i2c/ov5645.c
+> > > > @@ -27,6 +27,7 @@
+> > > >  #include <linux/module.h>
+> > > >  #include <linux/of.h>
+> > > >  #include <linux/of_graph.h>
+> > > > +#include <linux/pm_runtime.h>
+> > > >  #include <linux/regulator/consumer.h>
+> > > >  #include <linux/slab.h>
+> > > >  #include <linux/types.h>
+> > > > @@ -108,7 +109,6 @@ struct ov5645 {
+> > > >   u8 timing_tc_reg21;
+> > > >
+> > > >   struct mutex power_lock; /* lock to protect power state */
+> > > > - int power_count;
+> > > >
+> > > >   struct gpio_desc *enable_gpio;
+> > > >   struct gpio_desc *rst_gpio;
+> > > > @@ -635,8 +635,24 @@ static int ov5645_set_register_array(struct ov5645 *ov5645,
+> > > >   return 0;
+> > > >  }
+> > > >
+> > > > -static int ov5645_set_power_on(struct ov5645 *ov5645)
+> > > > +static int ov5645_set_power_off(struct device *dev)
+> > > >  {
+> > > > + struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> > > > + struct ov5645 *ov5645 = to_ov5645(sd);
+> > > > +
+> > > > + ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x58);
+> >
+> > I'm not sure this belongs here, but it can be addressed later.
+> >
+> > > > + gpiod_set_value_cansleep(ov5645->rst_gpio, 1);
+> > > > + gpiod_set_value_cansleep(ov5645->enable_gpio, 0);
+> > > > + clk_disable_unprepare(ov5645->xclk);
+> > > > + regulator_bulk_disable(OV5645_NUM_SUPPLIES, ov5645->supplies);
+> > > > +
+> > > > + return 0;
+> > > > +}
+> > > > +
+> > > > +static int ov5645_set_power_on(struct device *dev)
+> > > > +{
+> > > > + struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> > > > + struct ov5645 *ov5645 = to_ov5645(sd);
+> > > >   int ret;
+> > > >
+> > > >   ret = regulator_bulk_enable(OV5645_NUM_SUPPLIES, ov5645->supplies);
+> > > > @@ -658,57 +674,19 @@ static int ov5645_set_power_on(struct ov5645 *ov5645)
+> > > >
+> > > >   msleep(20);
+> > > >
+> > > > - return 0;
+> > > > -}
+> > > > -
+> > > > -static void ov5645_set_power_off(struct ov5645 *ov5645)
+> > > > -{
+> > > > - gpiod_set_value_cansleep(ov5645->rst_gpio, 1);
+> > > > - gpiod_set_value_cansleep(ov5645->enable_gpio, 0);
+> > > > - clk_disable_unprepare(ov5645->xclk);
+> > > > - regulator_bulk_disable(OV5645_NUM_SUPPLIES, ov5645->supplies);
+> > > > -}
+> > > > -
+> > > > -static int ov5645_s_power(struct v4l2_subdev *sd, int on)
+> > > > -{
+> > > > - struct ov5645 *ov5645 = to_ov5645(sd);
+> > > > - int ret = 0;
+> > > > -
+> > > > - mutex_lock(&ov5645->power_lock);
+> > > > -
+> > > > - /* If the power count is modified from 0 to != 0 or from != 0 to 0,
+> > > > -  * update the power state.
+> > > > -  */
+> > > > - if (ov5645->power_count == !on) {
+> > > > -         if (on) {
+> > > > -                 ret = ov5645_set_power_on(ov5645);
+> > > > -                 if (ret < 0)
+> > > > -                         goto exit;
+> > > > -
+> > > > -                 ret = ov5645_set_register_array(ov5645,
+> > > > -                                 ov5645_global_init_setting,
+> > > > + ret = ov5645_set_register_array(ov5645, ov5645_global_init_setting,
+> > > >                                   ARRAY_SIZE(ov5645_global_init_setting));
+> > > > -                 if (ret < 0) {
+> > > > -                         dev_err(ov5645->dev,
+> > > > -                                 "could not set init registers\n");
+> > > > -                         ov5645_set_power_off(ov5645);
+> > > > -                         goto exit;
+> > > > -                 }
+> > > > -
+> > > > -                 usleep_range(500, 1000);
+> > > > -         } else {
+> > > > -                 ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x58);
+> > > > -                 ov5645_set_power_off(ov5645);
+> > > > -         }
+> > > > + if (ret < 0) {
+> > > > +         dev_err(ov5645->dev, "could not set init registers\n");
+> > > > +         goto exit;
+> > > >   }
+> > > >
+> > > > - /* Update the power count. */
+> > > > - ov5645->power_count += on ? 1 : -1;
+> > > > - WARN_ON(ov5645->power_count < 0);
+> > > > + usleep_range(500, 1000);
+> > > >
+> > > > -exit:
+> > > > - mutex_unlock(&ov5645->power_lock);
+> > > > + return 0;
+> > > >
+> > > > +exit:
+> > > > + ov5645_set_power_off(dev);
+> > > >   return ret;
+> > > >  }
+> > > >
+> > > > @@ -795,7 +773,7 @@ static int ov5645_s_ctrl(struct v4l2_ctrl *ctrl)
+> > > >   int ret;
+> > > >
+> > > >   mutex_lock(&ov5645->power_lock);
+> > > > - if (!ov5645->power_count) {
+> > > > + if (!pm_runtime_get_if_in_use(ov5645->dev)) {
+> > > >           mutex_unlock(&ov5645->power_lock);
+> > > >           return 0;
+> > > >   }
+> > > > @@ -827,6 +805,7 @@ static int ov5645_s_ctrl(struct v4l2_ctrl *ctrl)
+> > > >           break;
+> > > >   }
+> > > >
+> > > > + pm_runtime_put_autosuspend(ov5645->dev);
+> > >
+> > > I think you'll need pm_runtime_mark_last_busy() before this. I missed this
+> > > on the last round. Maybe in probe() too. Feel free to resend just this
+> > > patch.
+> > >
+> > > >   mutex_unlock(&ov5645->power_lock);
+> > > >
+> > > >   return ret;
+> > > > @@ -991,6 +970,10 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
+> > > >   int ret;
+> > > >
+> > > >   if (enable) {
+> > > > +         ret = pm_runtime_resume_and_get(ov5645->dev);
+> > > > +         if (ret < 0)
+> > > > +                 return ret;
+> > > > +
+> > > >           ret = ov5645_set_register_array(ov5645,
+> > > >                                   ov5645->current_mode->data,
+> > > >                                   ov5645->current_mode->data_size);
+> > > > @@ -998,22 +981,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
+> > > >                   dev_err(ov5645->dev, "could not set mode %dx%d\n",
+> > > >                           ov5645->current_mode->width,
+> > > >                           ov5645->current_mode->height);
+> > > > -                 return ret;
+> > > > +                 goto err_rpm_put;
+> > > >           }
+> > > >           ret = v4l2_ctrl_handler_setup(&ov5645->ctrls);
+> > > >           if (ret < 0) {
+> > > >                   dev_err(ov5645->dev, "could not sync v4l2 controls\n");
+> > > > -                 return ret;
+> > > > +                 goto err_rpm_put;
+> > > >           }
+> > > >
+> > > >           ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x45);
+> > > >           if (ret < 0)
+> > > > -                 return ret;
+> > > > +                 goto err_rpm_put;
+> > > >
+> > > >           ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
+> > > >                                  OV5645_SYSTEM_CTRL0_START);
+> > > >           if (ret < 0)
+> > > > -                 return ret;
+> > > > +                 goto err_rpm_put;
+> > > >   } else {
+> > > >           ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
+> > > >           if (ret < 0)
+> > > > @@ -1023,14 +1006,15 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
+> > > >                                  OV5645_SYSTEM_CTRL0_STOP);
+> > > >           if (ret < 0)
+> > > >                   return ret;
+> > > > +         pm_runtime_put(ov5645->dev);
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b6aae412de9c..f01d60cd5c3b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11911,6 +11911,7 @@ LOONGSON2 SOC SERIES CLOCK DRIVER
->  M:     Yinbo Zhu <zhuyinbo@loongson.cn>
->  L:     linux-clk@vger.kernel.org
->  S:     Maintained
-> +F:     drivers/clk/clk-loongson2.c
->  F:     include/dt-bindings/clock/loongson,ls2k-clk.h
+> This should be pm_runtime_put_autosuspend(), with a
+> pm_runtime_mark_last_busy() call too.
 >
->  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
-> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
-> index 26aeb1408e56..8b65f349cd6e 100644
-> --- a/arch/loongarch/Kconfig
-> +++ b/arch/loongarch/Kconfig
-> @@ -122,6 +122,7 @@ config LOONGARCH
->         select USE_PERCPU_NUMA_NODE_ID
->         select USER_STACKTRACE_SUPPORT
->         select ZONE_DMA32
-> +       select COMMON_CLK
->
->  config 32BIT
->         bool
-> diff --git a/arch/loongarch/kernel/time.c b/arch/loongarch/kernel/time.c
-> index 786735dcc8d6..09f20bc81798 100644
-> --- a/arch/loongarch/kernel/time.c
-> +++ b/arch/loongarch/kernel/time.c
-> @@ -12,6 +12,7 @@
->  #include <linux/kernel.h>
->  #include <linux/sched_clock.h>
->  #include <linux/spinlock.h>
-> +#include <linux/of_clk.h>
->
->  #include <asm/cpu-features.h>
->  #include <asm/loongarch.h>
-> @@ -214,6 +215,8 @@ int __init constant_clocksource_init(void)
->
->  void __init time_init(void)
->  {
-> +       of_clk_init(NULL);
-> +
->         if (!cpu_has_cpucfg)
->                 const_clock_freq = cpu_clock_freq;
->         else
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 48f8f4221e21..88620f86373f 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -428,6 +428,15 @@ config COMMON_CLK_K210
->         help
->           Support for the Canaan Kendryte K210 RISC-V SoC clocks.
->
-> +config COMMON_CLK_LOONGSON2
-> +       bool "Clock driver for Loongson2 SoC"
-> +       depends on COMMON_CLK && OF
-> +       help
-> +         This driver provides support for Clock Controller that base on
-> +         Common Clock Framework Controller (CCF) on Loongson2 SoC.  The
-> +         Clock Controller can generates and supplies clock to various
-> +         peripherals within the SoC.
-> +
->  source "drivers/clk/actions/Kconfig"
->  source "drivers/clk/analogbits/Kconfig"
->  source "drivers/clk/baikal-t1/Kconfig"
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index d5db170d38d2..8ccc7436052f 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -75,6 +75,7 @@ obj-$(CONFIG_COMMON_CLK_RS9_PCIE)     += clk-renesas-pcie.o
->  obj-$(CONFIG_COMMON_CLK_VC5)           += clk-versaclock5.o
->  obj-$(CONFIG_COMMON_CLK_WM831X)                += clk-wm831x.o
->  obj-$(CONFIG_COMMON_CLK_XGENE)         += clk-xgene.o
-> +obj-$(CONFIG_COMMON_CLK_LOONGSON2)     += clk-loongson2.o
->
->  # please keep this section sorted lexicographically by directory path name
->  obj-y                                  += actions/
-> diff --git a/drivers/clk/clk-loongson2.c b/drivers/clk/clk-loongson2.c
-> new file mode 100644
-> index 000000000000..359fede40112
-> --- /dev/null
-> +++ b/drivers/clk/clk-loongson2.c
-> @@ -0,0 +1,285 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
-> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
-Why 2023?
+OK.
 
-Huacai
-> + */
-> +
-> +#include <linux/clkdev.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <dt-bindings/clock/loongson,ls2k-clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/slab.h>
-> +#include <linux/clk.h>
-> +
-> +#define LOONGSON2_PLL_MULT_SHIFT               32
-> +#define LOONGSON2_PLL_MULT_WIDTH               10
-> +#define LOONGSON2_PLL_DIV_SHIFT                        26
-> +#define LOONGSON2_PLL_DIV_WIDTH                        6
-> +#define LOONGSON2_APB_FREQSCALE_SHIFT          20
-> +#define LOONGSON2_APB_FREQSCALE_WIDTH          3
-> +#define LOONGSON2_USB_FREQSCALE_SHIFT          16
-> +#define LOONGSON2_USB_FREQSCALE_WIDTH          3
-> +#define LOONGSON2_SATA_FREQSCALE_SHIFT         12
-> +#define LOONGSON2_SATA_FREQSCALE_WIDTH         3
-> +
-> +void __iomem *loongson2_pll_base;
-> +static DEFINE_SPINLOCK(loongson2_clk_lock);
-> +static struct clk_hw **hws;
-> +static struct clk_hw_onecell_data *clk_hw_data;
-> +
-> +static struct clk_hw *loongson2_clk_register(struct device *dev,
-> +                                         const char *name,
-> +                                         const char *parent_name,
-> +                                         const struct clk_ops *ops,
-> +                                         unsigned long flags)
-> +{
-> +       int ret;
-> +       struct clk_hw *hw;
-> +       struct clk_init_data init;
-> +
-> +       /* allocate the divider */
-> +       hw = kzalloc(sizeof(*hw), GFP_KERNEL);
-> +       if (!hw)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       init.name = name;
-> +       init.ops = ops;
-> +       init.flags = flags | CLK_IS_BASIC;
-> +       init.parent_names = (parent_name ? &parent_name : NULL);
-> +       init.num_parents = (parent_name ? 1 : 0);
-> +       hw->init = &init;
-> +
-> +       /* register the clock */
-> +       ret = clk_hw_register(dev, hw);
-> +       if (ret) {
-> +               kfree(hw);
-> +               hw = ERR_PTR(ret);
-> +       }
-> +
-> +       return hw;
-> +}
-> +
-> +static struct clk_hw *loongson2_clk_pll_register(const char *name,
-> +                               const char *parent, void __iomem *reg)
-> +{
-> +       u64 val;
-> +       u32 mult = 1, div = 1;
-> +
-> +       val = readq((void *)reg);
-> +
-> +       mult = (val >> LOONGSON2_PLL_MULT_SHIFT) &
-> +                       clk_div_mask(LOONGSON2_PLL_MULT_WIDTH);
-> +       div = (val >> LOONGSON2_PLL_DIV_SHIFT) &
-> +                       clk_div_mask(LOONGSON2_PLL_DIV_WIDTH);
-> +
-> +       return clk_hw_register_fixed_factor(NULL, name, parent,
-> +                               CLK_SET_RATE_PARENT, mult, div);
-> +}
-> +
-> +static unsigned long loongson2_apb_recalc_rate(struct clk_hw *hw,
-> +                                         unsigned long parent_rate)
-> +{
-> +       u64 val;
-> +       u32 mult;
-> +       unsigned long rate;
-> +
-> +       val = readq((void *)(loongson2_pll_base + 0x50));
-> +
-> +       mult = (val >> LOONGSON2_APB_FREQSCALE_SHIFT) &
-> +                       clk_div_mask(LOONGSON2_APB_FREQSCALE_WIDTH);
-> +
-> +       rate = parent_rate * (mult + 1);
-> +       do_div(rate, 8);
-> +
-> +       return rate;
-> +}
-> +
-> +static const struct clk_ops loongson2_apb_clk_ops = {
-> +       .recalc_rate = loongson2_apb_recalc_rate,
-> +};
-> +
-> +static unsigned long loongson2_usb_recalc_rate(struct clk_hw *hw,
-> +                                         unsigned long parent_rate)
-> +{
-> +       u64 val;
-> +       u32 mult;
-> +       unsigned long rate;
-> +
-> +       val = readq((void *)(loongson2_pll_base + 0x50));
-> +
-> +       mult = (val >> LOONGSON2_USB_FREQSCALE_SHIFT) &
-> +                       clk_div_mask(LOONGSON2_USB_FREQSCALE_WIDTH);
-> +
-> +       rate = parent_rate * (mult + 1);
-> +       do_div(rate, 8);
-> +
-> +       return rate;
-> +}
-> +
-> +static const struct clk_ops loongson2_usb_clk_ops = {
-> +       .recalc_rate = loongson2_usb_recalc_rate,
-> +};
-> +
-> +static unsigned long loongson2_sata_recalc_rate(struct clk_hw *hw,
-> +                                         unsigned long parent_rate)
-> +{
-> +       u64 val;
-> +       u32 mult;
-> +       unsigned long rate;
-> +
-> +       val = readq((void *)(loongson2_pll_base + 0x50));
-> +
-> +       mult = (val >> LOONGSON2_SATA_FREQSCALE_SHIFT) &
-> +                       clk_div_mask(LOONGSON2_SATA_FREQSCALE_WIDTH);
-> +
-> +       rate = parent_rate * (mult + 1);
-> +       do_div(rate, 8);
-> +
-> +       return rate;
-> +}
-> +
-> +static const struct clk_ops loongson2_sata_clk_ops = {
-> +       .recalc_rate = loongson2_sata_recalc_rate,
-> +};
-> +
-> +static void loongson2_check_clk_hws(struct clk_hw *clks[], unsigned int count)
-> +{
-> +       unsigned int i;
-> +
-> +       for (i = 0; i < count; i++)
-> +               if (IS_ERR(clks[i]))
-> +                       pr_err("Loongson2 clk %u: register failed with %ld\n"
-> +                               , i, PTR_ERR(clks[i]));
-> +}
-> +
-> +static struct clk_hw *loongson2_obtain_fixed_clk_hw(
-> +                                       struct device_node *np,
-> +                                       const char *name)
-> +{
-> +       struct clk *clk;
-> +
-> +       clk = of_clk_get_by_name(np, name);
-> +       if (IS_ERR(clk))
-> +               return ERR_PTR(-ENOENT);
-> +
-> +       return __clk_get_hw(clk);
-> +}
-> +
-> +static void __init loongson2_clocks_init(struct device_node *np)
-> +{
-> +       loongson2_pll_base = of_iomap(np, 0);
-> +
-> +       if (!loongson2_pll_base) {
-> +               pr_err("clk: unable to map loongson2 clk registers\n");
-> +               goto err;
-> +       }
-> +
-> +       clk_hw_data = kzalloc(struct_size(clk_hw_data, hws, LOONGSON2_CLK_END),
-> +                                       GFP_KERNEL);
-> +       if (WARN_ON(!clk_hw_data))
-> +               goto err;
-> +
-> +       clk_hw_data->num = LOONGSON2_CLK_END;
-> +       hws = clk_hw_data->hws;
-> +
-> +       hws[LOONGSON2_REF_100M] = loongson2_obtain_fixed_clk_hw(np,
-> +                                               "ref_100m");
-> +
-> +       hws[LOONGSON2_NODE_PLL] = loongson2_clk_pll_register("node_pll",
-> +                                               "ref_100m",
-> +                                               loongson2_pll_base);
-> +
-> +       hws[LOONGSON2_DDR_PLL] = loongson2_clk_pll_register("ddr_pll",
-> +                                               "ref_100m",
-> +                                               loongson2_pll_base + 0x10);
-> +
-> +       hws[LOONGSON2_DC_PLL] = loongson2_clk_pll_register("dc_pll",
-> +                                               "ref_100m",
-> +                                               loongson2_pll_base + 0x20);
-> +
-> +       hws[LOONGSON2_PIX0_PLL] = loongson2_clk_pll_register("pix0_pll",
-> +                                               "ref_100m",
-> +                                               loongson2_pll_base + 0x30);
-> +
-> +       hws[LOONGSON2_PIX1_PLL] = loongson2_clk_pll_register("pix1_pll",
-> +                                               "ref_100m",
-> +                                               loongson2_pll_base + 0x40);
-> +
-> +       hws[LOONGSON2_NODE_CLK] = clk_hw_register_divider(NULL, "node",
-> +                                               "node_pll", 0,
-> +                                               loongson2_pll_base + 0x8, 0,
-> +                                               6, CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       /*
-> +        * The hda clk divisor in the upper 32bits and the clk-prodiver
-> +        * layer code doesn't support 64bit io operation thus a conversion
-> +        * is required that subtract shift by 32 and add 4byte to the hda
-> +        * address
-> +        */
-> +       hws[LOONGSON2_HDA_CLK] = clk_hw_register_divider(NULL, "hda",
-> +                                               "ddr_pll", 0,
-> +                                               loongson2_pll_base + 0x22, 12,
-> +                                               7, CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       hws[LOONGSON2_GPU_CLK] = clk_hw_register_divider(NULL, "gpu",
-> +                                               "ddr_pll", 0,
-> +                                               loongson2_pll_base + 0x18, 22,
-> +                                               6, CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       hws[LOONGSON2_DDR_CLK] = clk_hw_register_divider(NULL, "ddr",
-> +                                               "ddr_pll", 0,
-> +                                               loongson2_pll_base + 0x18, 0,
-> +                                               6, CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       hws[LOONGSON2_GMAC_CLK] = clk_hw_register_divider(NULL, "gmac",
-> +                                               "dc_pll", 0,
-> +                                               loongson2_pll_base + 0x28, 22,
-> +                                               6, CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       hws[LOONGSON2_DC_CLK] = clk_hw_register_divider(NULL, "dc",
-> +                                               "dc_pll", 0,
-> +                                               loongson2_pll_base + 0x28, 0,
-> +                                               6, CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       hws[LOONGSON2_APB_CLK] = loongson2_clk_register(NULL, "apb",
-> +                                               "gmac",
-> +                                               &loongson2_apb_clk_ops, 0);
-> +
-> +       hws[LOONGSON2_USB_CLK] = loongson2_clk_register(NULL, "usb",
-> +                                               "gmac",
-> +                                               &loongson2_usb_clk_ops, 0);
-> +
-> +       hws[LOONGSON2_SATA_CLK] = loongson2_clk_register(NULL, "sata",
-> +                                               "gmac",
-> +                                               &loongson2_sata_clk_ops, 0);
-> +
-> +       hws[LOONGSON2_PIX0_CLK] = clk_hw_register_divider(NULL, "pix0",
-> +                                               "pix0_pll", 0,
-> +                                               loongson2_pll_base + 0x38, 0, 6,
-> +                                               CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       hws[LOONGSON2_PIX1_CLK] = clk_hw_register_divider(NULL, "pix1",
-> +                                               "pix1_pll", 0,
-> +                                               loongson2_pll_base + 0x48, 0, 6,
-> +                                               CLK_DIVIDER_ONE_BASED,
-> +                                               &loongson2_clk_lock);
-> +
-> +       loongson2_check_clk_hws(hws, LOONGSON2_CLK_END);
-> +
-> +       of_clk_add_hw_provider(np, of_clk_hw_onecell_get, clk_hw_data);
-> +
-> +err:
-> +       iounmap(loongson2_pll_base);
-> +}
-> +
-> +CLK_OF_DECLARE(loongson2_clk, "loongson,ls2k-clk", loongson2_clocks_init);
-> --
-> 2.31.1
+> > > >   }
+> > > >
+> > > >   return 0;
+> > > > -}
+> > > >
+> > > > -static const struct v4l2_subdev_core_ops ov5645_core_ops = {
+> > > > - .s_power = ov5645_s_power,
+> > > > -};
+> > > > +err_rpm_put:
+> > > > + pm_runtime_put(ov5645->dev);
 >
+> Here I would go for pm_runtime_put_sync(), as a failure to start the
+> stream would benefit from forcing power being cut off before the user
+> tries again.
+>
+Agreed.
+
+> > > > + return ret;
+> > > > +}
+> > > >
+> > > >  static const struct v4l2_subdev_video_ops ov5645_video_ops = {
+> > > >   .s_stream = ov5645_s_stream,
+> > > > @@ -1046,7 +1030,6 @@ static const struct v4l2_subdev_pad_ops ov5645_subdev_pad_ops = {
+> > > >  };
+> > > >
+> > > >  static const struct v4l2_subdev_ops ov5645_subdev_ops = {
+> > > > - .core = &ov5645_core_ops,
+> > > >   .video = &ov5645_video_ops,
+> > > >   .pad = &ov5645_subdev_pad_ops,
+> > > >  };
+> > > > @@ -1188,11 +1171,9 @@ static int ov5645_probe(struct i2c_client *client)
+> > > >           goto free_ctrl;
+> > > >   }
+> > > >
+> > > > - ret = ov5645_s_power(&ov5645->sd, true);
+> > > > - if (ret < 0) {
+> > > > -         dev_err(dev, "could not power up OV5645\n");
+> > > > + ret = ov5645_set_power_on(dev);
+> > > > + if (ret)
+> > > >           goto free_entity;
+> > > > - }
+> > > >
+> > > >   ret = ov5645_read_reg(ov5645, OV5645_CHIP_ID_HIGH, &chip_id_high);
+> > > >   if (ret < 0 || chip_id_high != OV5645_CHIP_ID_HIGH_BYTE) {
+> > > > @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
+> > > >
+> > > >   dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
+> > > >
+> > > > + pm_runtime_set_active(dev);
+> > > > + pm_runtime_get_noresume(dev);
+> > > > + pm_runtime_enable(dev);
+> > > > +
+> > > >   ret = ov5645_read_reg(ov5645, OV5645_AEC_PK_MANUAL,
+> > > >                         &ov5645->aec_pk_manual);
+> >
+> > Totally unrelated to this patch, can we drop all these register reads ?
+> > The registers are written through he ov5645_global_init_setting array,
+> > we know what the values are.
+> >
+Indeed, I'll have a closer look while working on the subdev state for
+this driver.
+
+> > > >   if (ret < 0) {
+> > > >           dev_err(dev, "could not read AEC/AGC mode\n");
+> > > >           ret = -ENODEV;
+> > > > -         goto power_down;
+> > > > +         goto err_pm_runtime;
+> > > >   }
+> > > >
+> > > >   ret = ov5645_read_reg(ov5645, OV5645_TIMING_TC_REG20,
+> > > > @@ -1222,7 +1207,7 @@ static int ov5645_probe(struct i2c_client *client)
+> > > >   if (ret < 0) {
+> > > >           dev_err(dev, "could not read vflip value\n");
+> > > >           ret = -ENODEV;
+> > > > -         goto power_down;
+> > > > +         goto err_pm_runtime;
+> > > >   }
+> > > >
+> > > >   ret = ov5645_read_reg(ov5645, OV5645_TIMING_TC_REG21,
+> > > > @@ -1230,23 +1215,30 @@ static int ov5645_probe(struct i2c_client *client)
+> > > >   if (ret < 0) {
+> > > >           dev_err(dev, "could not read hflip value\n");
+> > > >           ret = -ENODEV;
+> > > > -         goto power_down;
+> > > > +         goto err_pm_runtime;
+> > > >   }
+> > > >
+> > > > - ov5645_s_power(&ov5645->sd, false);
+> > > > -
+> > > >   ret = v4l2_async_register_subdev(&ov5645->sd);
+> > > >   if (ret < 0) {
+> > > >           dev_err(dev, "could not register v4l2 device\n");
+> > > > +         pm_runtime_disable(dev);
+> > > > +         pm_runtime_set_suspended(dev);
+> > > >           goto free_entity;
+> >
+> > This looks weird, why do we need special handling of runtime PM here,
+> > instead of just jumping to err_pm_runtime ?
+> >
+Agreed, I have fixed that now.
+
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >
+Cheers,
+Prabhakar
