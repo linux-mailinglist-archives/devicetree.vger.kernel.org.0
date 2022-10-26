@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD8A60E34F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAFB60E361
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:32:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232946AbiJZO3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:29:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58238 "EHLO
+        id S233775AbiJZOca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:32:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234315AbiJZO3D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:29:03 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A34B1119F4
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:29:02 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id 8so10637101qka.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:29:02 -0700 (PDT)
+        with ESMTP id S233663AbiJZOc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:32:29 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436EAFF243
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:32:28 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id u7so11564613qvn.13
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:32:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HepF+4A2/3ZWV1tTO7JvfOk/wi0W7kiAoRviokUEQWk=;
-        b=xmhb1LPv6lF+utwsSzmBJo6aHeftPiH2Kyv4Bvr4KAlYL2U4tSNzSstC39opm1m5Rs
-         Aszx1vnXqIpzkkRmAtd22JdQo95UE/RT1/6x0tAhvHJ4YwrJj38vaAv/uGIvh9sESCX6
-         LIaVQCQHFwjJNL6ZhbLZfFEyHVG+XE47c0AoymmQS5/pkgVunpLDSldYJHlsbUivK3n+
-         OPsEEcb5gI0GbyofsB8lEcGs5BcpWZJDpHwkM6DUicGJ6YJHxnAg7gQ8HtvxqurK917c
-         8lXs2vckc72kTJN2aHETO3eVnL+u5khewCIpyjaqZmDTxILwvBAkGxklGQRLTfLUD7KC
-         VIAQ==
+        bh=KsmuzRKKaUB6WHX3gUEBWTikPz5Qncyumloh3N+8ABA=;
+        b=M5TMAE5sy7A990nf/BNmAXdCy+OZXswI3aLNx44wSvxa2Y60r0ELrzDm3S9EHsmdWV
+         EHNqy45ATprsi1/E6kyz6IFjn7NnZaFYRy8LKapINhJ53iEZWSIXB5rPzJIlURwIZA1u
+         I+PtqFrvah0JQNLCBCU3HhfsTgoz3GfUIyFGN02loxIwOMNaR9oNihA0A4wArJCc+FRw
+         jXx1ie+3Ig8MvAevrS7w/qbEKHBp/N+mOWBs5bXxWuGgN/YJh+1w4/rYGJ1qdpk+g+bl
+         TLY7Yx3dGGqfNZgu2uDO9QLVIQ0ItizjvZlcRoePz1Bz1MSQd3bn7xzgxo2Hh6/SCk1E
+         IKzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HepF+4A2/3ZWV1tTO7JvfOk/wi0W7kiAoRviokUEQWk=;
-        b=U1zNPS2WaBr+BlylOQ5Akh4zkldCCBJGHZ3nAiqT6PTyd6UmogSahktseMUJSvhOMz
-         fgqZZ9Ti7tScUQQSGCUPOZTP8BZGdT1QF6FrvDs+hCp/IXYt2DWCCI2fBqB2Btfr0C/H
-         L8poxoWwwLwsodsSqWJH5thRklUeJpQRfV/l8OjN0V1gcMntIPlHXonu0ceX3vTlL9Tf
-         ETav5mCAwLKf33E3HCqsVzBsC1VPeYw7ZYxPmy1bbjT+68atjFTHM0Rtg47h80BePVnk
-         UFCV3z7EWM0zaHaBmBPHk2KgBl/EGBIrO7/JfDWGINltuxq7MESy2P4pZVJVHrLk2Pjw
-         hO0w==
-X-Gm-Message-State: ACrzQf1RTSWAAnBlLCb4MxCdd8bQ18i/QEhgQq/d3veIlzbID7IER21X
-        DllOz+CzXu/g5gs33QMIF/6G9A==
-X-Google-Smtp-Source: AMsMyM6lpu83qpTJZs3g3pyaL3a9mQY9MGnGVNyB0/eSs1gGWO65GWGZ6/h84n2kWseHL1Vvyk1gdQ==
-X-Received: by 2002:a05:620a:370c:b0:6ee:cece:c779 with SMTP id de12-20020a05620a370c00b006eececec779mr29445511qkb.727.1666794541727;
-        Wed, 26 Oct 2022 07:29:01 -0700 (PDT)
+        bh=KsmuzRKKaUB6WHX3gUEBWTikPz5Qncyumloh3N+8ABA=;
+        b=3iizdAvrcC8gSKfcCQWl6slAcZu8IDdcxacVskyK2+67RxQZz+zX8oSazqWiWm6aRu
+         KlnI/P4mOM4TtIqHD7bxon0yYv19S1xIP9YqNm7nlQomRzpngfrN9T0JB6Xl8+qcvfLF
+         txPWnso70K49dmJxmCJWEGFI1FyC2AoClKi3zVYS9NcfyFaY3Z/KK8+AdvswqGQEYFuH
+         6w729VkbLCnaL0oT8nVuZd4brjMeJ32BuWNKA43E0ayyHyFqQF+iYEVzADr7F+VWGTpF
+         /a/8Lo3fykrbS8I4n4MhQvxSCQgTTdBbZD56eldpsYQJl6a0t7AyVQCvNZECJ1MXQDjP
+         bYfA==
+X-Gm-Message-State: ACrzQf3CCuzhdyU9+9apAu1E36OpdgjbaxSdAkEZL7HSDyXVKyZZoewD
+        +L9EpH0zdHJXQSSSvAFzwVZU1A==
+X-Google-Smtp-Source: AMsMyM6qnlgeQVjneuzws0s2FvSzmE2JFy9e4/CGKLWbwVCK6VTNr/ZP7ZvzbpLEUl6qkHxFmQyavw==
+X-Received: by 2002:ad4:5ca7:0:b0:4bb:97ea:27b5 with SMTP id q7-20020ad45ca7000000b004bb97ea27b5mr1910488qvh.104.1666794747320;
+        Wed, 26 Oct 2022 07:32:27 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id s16-20020a05620a255000b006cbe3be300esm4011966qko.12.2022.10.26.07.29.00
+        by smtp.gmail.com with ESMTPSA id cj20-20020a05622a259400b0039cc665d60fsm3202443qtb.64.2022.10.26.07.32.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:29:01 -0700 (PDT)
-Message-ID: <5264f9e1-b67e-479d-843c-c92230cfd0c3@linaro.org>
-Date:   Wed, 26 Oct 2022 10:28:59 -0400
+        Wed, 26 Oct 2022 07:32:26 -0700 (PDT)
+Message-ID: <be1984de-b69e-3124-3b80-e977578e06c4@linaro.org>
+Date:   Wed, 26 Oct 2022 10:32:24 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 5/6] dt-bindings: soundwire: qcom: add v1.7.0 support
+Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
+ subnodes
 Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        vkoul@kernel.org, yung-chuan.liao@linux.intel.com
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20221026110210.6575-1-srinivas.kandagatla@linaro.org>
- <20221026110210.6575-6-srinivas.kandagatla@linaro.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
+ <761d6ae2-e779-2a4b-a735-960c716c3024@linaro.org>
+ <20221024222850.5zq426cnn75twmvn@mercury.elektranox.org>
+ <aa146042-2130-9fc3-adcd-c6d701084b4a@linaro.org>
+ <20221025141732.z65kswaptgeuz2cl@mercury.elektranox.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026110210.6575-6-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221025141732.z65kswaptgeuz2cl@mercury.elektranox.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,13 +88,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 07:02, Srinivas Kandagatla wrote:
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 1 +
+On 25/10/2022 10:17, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Mon, Oct 24, 2022 at 07:28:29PM -0400, Krzysztof Kozlowski wrote:
+>> Old binding did not document "tx-queues-config". Old binding had
+>> "snps,mtl-tx-config" which was a phandle, so this is an ABI break of
+>> bindings.
+>>
+>> You are changing the binding - adding new properties.
+> 
+> The new binding still has the phandle. The only thing I changed is
+> explicitly allowing the referenced node to be a subnode of the dwmac
+> node. This is 100% compatible, since the binding does not specify
+> where the referenced node should be. Only the example suggested it
+> could be next to the ethernet node. But changing any properties in
+> the config node means a ABI break requiring code changes.
+> 
+> Note, that right now 4/7 devicetrees with snps,mtl-tx-config already
+> follow the scheme I documented. The other 3 have the queue config
+> below the root node like the current example:
+> 
+> has the queues config in /:
+>  * arch/arm/boot/dts/artpec6.dtsi
+>  * arch/arm64/boot/dts/mediatek/mt2712e.dtsi
+>  * arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> 
+> has the queues config in the ethernet node:
+>  * arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
+>  * arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+>  * arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>  * arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> 
+> After my change both are considered valid. Anyways I'm doing this
+> for rk3588 and planned to follow the subnode style. But if I have
+> to fully fix this mess I will just put the queue config to the
+> root node instead and let somebody else figure this out.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yeah, let it be.
 
 Best regards,
 Krzysztof
