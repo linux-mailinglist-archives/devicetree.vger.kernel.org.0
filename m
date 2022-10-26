@@ -2,89 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB85660E39C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC6AF60E3A6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233645AbiJZOnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:43:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42706 "EHLO
+        id S233067AbiJZOqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:46:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233928AbiJZOna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:43:30 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C92E104D35
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:43:29 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id ml12so10576968qvb.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:43:29 -0700 (PDT)
+        with ESMTP id S233671AbiJZOqt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:46:49 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8972EB56DE
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:46:48 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id h2so8901414pgp.4
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:46:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mnKhLwyZDqcY5dVO7btuDF3qFwXKi9mIT4FnRXd/4qY=;
-        b=E64LSXiDE1iS0OwMpwYqL+Rw3NRn7/xCVYsJaVtttR167s4XYoTSmuWWovnkByK7wf
-         4zmzTsUGLebfCK2866jVmp/XsbFQZQG8EbOLFV6PPQ97zdcXs1q6AlBWLPEIez4IM98b
-         Y5vrnxER1o/pvBuKLKDf22JH6zxm+koxQmjOq7LAg5eIIDnbI2Izy1wVwlwzzFcn6Ztp
-         f7OTc3Zwt0GouOkT4GHqUj6LVWasCHF7hCmlr7RIjyO2VUQLYPO8VWdZz5V7Lk1sSBsH
-         tFBcVdsfoqzB81DXwZzQ1tqECjryEdrjWKYwoM6vyjpEp7kTSqruyYAaDXiPrNFExBlJ
-         BZSQ==
+        bh=ZDoFbRmpFybio1qcLHY0tDGGsYUITlP7lC7AmzHBMGM=;
+        b=ErjcaOkv9A46t8SE5ZuZYqWKYgxYU75Xn13yXsVaU5LHB7gHdONvR2sFcvOw8AWc0W
+         fIPqi4JoNgoKnKqqU5szIVXZLtX0VkOJOf/YLRrtNOO2scUbyXe6Oi92ajQuJ40154br
+         zLynY1TTM2qoqp67CLdL3UViRqFtsysf5KHh7qCz6vNdgOu4Y8XzwnfMq/8hWBQUnOdP
+         oK3W3ue69CjfJQfNeiLF531tKavZ8icMLSkfYMbaV7IKC+DnBl2rKuoOwpIZzofsp53z
+         faCmggwwoUjw7Wl/QdZLRviaun8Fnfn/o3eG+w9fsn1oSqfqVo0k4NVS8MJVrmbQjoS/
+         H9xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mnKhLwyZDqcY5dVO7btuDF3qFwXKi9mIT4FnRXd/4qY=;
-        b=bX1H++im/FahnlroI0cTPIhmTMtEZd0jgZfscFvmdxjQls4Tz0yyOiEnMuH6eBj5um
-         dCfnRvfQPi367SXvTxjzv3IH1K9qrFavg3AMV6K/VVKMkfZMY6oI79MO2rcGUJrcFlJH
-         fOMZI0uXxHW+JL5nFFihh+A3gI4K0ktQpmdE1vEciis+DEwmnPccN8CJD8SJoRY3S8s5
-         sz7nRyl5ZIMFBBJiW2kBFmvk5wGCdveKo5yXN6PPQhBJGt2t5iWAla7appBkB+oMJ6WC
-         cYvyc1YljMRhclNAcG9woCv6sRjjt1VbQ0Z4BNb/jbBFIsG4J2Nodad1erdPker5aqcc
-         j6gA==
-X-Gm-Message-State: ACrzQf0iS6yOx8MMMA8RusP8aNGrGsuCF0SQgYIcRmDVsTxbLkL9+rm6
-        XFQA3TciQiCvpp7SUpCHSHVSpA==
-X-Google-Smtp-Source: AMsMyM4DiPwZGmgr+yX2eV+ULd0XPcgczVt+E8OuTN4Qzt8bYS3gBQ3a4d550DCzrmMwghVLuXu/ug==
-X-Received: by 2002:a0c:e18f:0:b0:4bb:5b84:fb2c with SMTP id p15-20020a0ce18f000000b004bb5b84fb2cmr21374733qvl.28.1666795408467;
-        Wed, 26 Oct 2022 07:43:28 -0700 (PDT)
+        bh=ZDoFbRmpFybio1qcLHY0tDGGsYUITlP7lC7AmzHBMGM=;
+        b=dGfTO/pwDeJkMAXD58qNXIJmVxCPMjQYK6meCJoMyI11gVN30+fwvkKt9AlQgnaHvN
+         gfrDKVJc8MjNudk0oJaehbBksaVmW8OP4VkVAJ2chBThy0DfMGR2HIU2dorIcyRFVnj+
+         aLUKzobuiIfYtl8X/SXT/zqO3BXAJIv4veC2eokrRlFbsWC/bV1tjghYZhJY7IA7o1SX
+         hJikNcnVudJxZOKRE4sG3L4rv+jLAKsEYsJpri4V+LRwY/13eYAU2G7gzOaHjhkvddvb
+         8JcvaDgQrM+r1ql3Z84p92349y/+G+r/I+PuAUmIigv4RApgfAajMq3qZn0O2kqkiO2A
+         CSWg==
+X-Gm-Message-State: ACrzQf24sUiX/c2vh1OcBMGsKVJXwTkiMrSS1EP3AxeewB2BpfHG4KR+
+        JxO0Ws6RP+XCnFoWE3uJCFi73xxaINyMRA==
+X-Google-Smtp-Source: AMsMyM6tLMgDzhVuBp730Vc4cqg8QdTyjhTznsNLsPIIhXXYp6fgBJ1sbSEQDjUxH62sokrHC0E+Pw==
+X-Received: by 2002:a05:6214:20aa:b0:4b3:e0de:cbc2 with SMTP id 10-20020a05621420aa00b004b3e0decbc2mr35685060qvd.91.1666795596881;
+        Wed, 26 Oct 2022 07:46:36 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id a25-20020a05620a16d900b006b615cd8c13sm3785645qkn.106.2022.10.26.07.43.27
+        by smtp.gmail.com with ESMTPSA id o18-20020a05620a111200b006ec9f5e3396sm3935338qkk.72.2022.10.26.07.46.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:43:27 -0700 (PDT)
-Message-ID: <b6ee06f9-8ea6-60f5-a670-42e9e1f1ddbe@linaro.org>
-Date:   Wed, 26 Oct 2022 10:43:26 -0400
+        Wed, 26 Oct 2022 07:46:36 -0700 (PDT)
+Message-ID: <30b95e7b-b902-babc-ea78-a2112c80ec7e@linaro.org>
+Date:   Wed, 26 Oct 2022 10:46:34 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: usb-nop-xceiv: add wakeup-source
- property
-To:     Li Jun <jun.li@nxp.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, xu.yang_2@nxp.com
-References: <1666764742-4201-1-git-send-email-jun.li@nxp.com>
+Subject: Re: [PATCH next 2/2] dt-bindings: gpio: add entry for
+ hisilicon,gpio-ascend910
 Content-Language: en-US
+To:     Weilong Chen <chenweilong@huawei.com>, f.fangjian@huawei.com,
+        linus.walleij@linaro.org, yangyicong@hisilicon.com,
+        xuwei5@huawei.com, robh+dt@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221026034219.172880-1-chenweilong@huawei.com>
+ <20221026034219.172880-2-chenweilong@huawei.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1666764742-4201-1-git-send-email-jun.li@nxp.com>
+In-Reply-To: <20221026034219.172880-2-chenweilong@huawei.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 02:12, Li Jun wrote:
-> USB phy may be a system wakeup source, so add wakeup source property
-> to keep its resource (e.g. power domain) active to make USB remote
-> wakeup work.
+On 25/10/2022 23:42, Weilong Chen wrote:
+> Add the new compatible for HiSilicon gpio controller driver.
 > 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> ---
+>  .../gpio/hisilicon,gpio-ascend910.yaml        | 54 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml b/Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml
+> new file mode 100644
+> index 000000000000..912e4b808cae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/hisilicon,gpio-ascend910.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/hisilicon,gpio-ascend910.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HiSilicon common GPIO controller Device Tree Bindings
 
+Drop "Device Tree Bindings"
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +maintainers:
+> +  - Jay Fang <f.fangjian@huawei.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: hisilicon,gpio-ascend910
+> +    description:
+> +      The HiSilicon common GPIO controller can be used for many different
+> +      types of SoC such as Huawei Ascend AI series chips.
+
+Put this description in top-level description.
+
+> +
+> +  reg:
+> +    description:
+> +      Address and length of the register set for the device.
+
+Drop description.
+
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  ngpios:
+> +    minimum: 1
+> +    maximum: 32
+> +
+> +required:
+> +  - compatible
+> +  - gpio-controller
+
+gpio-cells are not required?
+
+> +  - reg
+> +  - interrupts
+> +  - ngpios
+> +
+> +unevaluatedProperties: false
+
+Instead:
+additionalProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    gpio@840d0000 {
+> +      compatible = "hisilicon,gpio-ascend910";
+> +      reg = <0x840d0000 0x1000>;
+> +      ngpios = <0x20>;
+
+Convention for counting is to use decimal numbers.
+
+> +      gpio-controller;
+> +      #gpio-cells = <2>;
+> +      interrupts = <0x0 33 0x4>;
+
+This looks like standard IRQ flags, so use respective defines.
+
 
 Best regards,
 Krzysztof
