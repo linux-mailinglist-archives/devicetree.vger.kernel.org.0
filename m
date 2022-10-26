@@ -2,210 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 074E460E679
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92FA160E680
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbiJZR35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 13:29:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43106 "EHLO
+        id S233406AbiJZRaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 13:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234220AbiJZR3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:29:47 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27DFA32EF8;
-        Wed, 26 Oct 2022 10:29:38 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id y69so23714957ede.5;
-        Wed, 26 Oct 2022 10:29:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7AA9h8SmdIJH6hpfSaQ1dsYeLBKSIK0Dj9U7LImgfDg=;
-        b=GEAxVKOtuirXdsRDTvEMEotHUyxwYr1Iu9/ZqJKdAmUoqPCxTnr3Zq/2aRaKDkqrIA
-         INabHPdOdnZc2DB+ZC9YB2RKlCd8qATeZjqxC16bRjR4ShmWummnyJ/6Fv35YUY4cCwu
-         vjYx7HLi5qwgoag6GUicDNb+mP/g948GWBO9g7IB3TwQzAgz8PnT6HFwjSibiwgLDU1f
-         +kNvO6+Bnl0mkylu2ydieM5IZ5YoiT9g2U0BP78Fo3zkYVOTohSUHuROG1g2Dy3glMRu
-         PvX/X08H2vwdmPRZ+fwYDCS5oMJoR8ChM9poMOMQruGDudHIso0aMGRjek9+Bs899yAH
-         jwTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7AA9h8SmdIJH6hpfSaQ1dsYeLBKSIK0Dj9U7LImgfDg=;
-        b=0d0krf8T67uKTf+sK0c9OOJooL9mLb9pEBsvhdc9vmSdds7FPrZX/rYmxKPnGKWJdH
-         CFEceu7Nv6F11B1S8ugIzFYCbhUsqUPknUyrt4dPnUEtMsBax2ibOVj2FZ064YueCDU9
-         oneIh7V8TCGe4pslIJy8NLAHA1dF2Td4Z6deqBtK4+lufB2P1bhqPSwUW4c1WbGR/7MP
-         gvEun8e/ofRvC0pekOiLTWY5kNlaUhWuYMUC4A9gj90nB++shnfuyWXB6LgDTTHBAQCl
-         JF4XLtpxItI1O4n4CEqS2k+Gj5sXSNM2pSxh3BGg8rbOiOW0vShT5w9HgAOW5QUILpyZ
-         kR8A==
-X-Gm-Message-State: ACrzQf0IkfqEhc8czXlO1cawV75nCbCaXeaB4Lmr0h7Y5JUyDQtzbK+7
-        E0PmFjPXrtzIXHDyNQp5eIRwK9fDhW01gOBOHsQ=
-X-Google-Smtp-Source: AMsMyM4sHeGBjgie6YkH1gVHxtNyumuvzPz/rT9VWOzyzxvJEZU1tSV8A+2mn0zsFx4kB3dIVkpNlykixMy810f0lYI=
-X-Received: by 2002:a05:6402:2552:b0:45d:ecf:b23 with SMTP id
- l18-20020a056402255200b0045d0ecf0b23mr42421584edb.255.1666805376698; Wed, 26
- Oct 2022 10:29:36 -0700 (PDT)
+        with ESMTP id S233712AbiJZRao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:30:44 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EC288D22D;
+        Wed, 26 Oct 2022 10:30:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=HiYVn9aMwL/cWE4Pz4ri7pgwUgzFfzrAUVxWFAzu0XU=; b=lbgn16i1S9eaojGWW0u6VDtvT6
+        wZ9+ttvwf2RdDDlT0lVZa2xUuvLZbKtiIrXT99Wg/lEVBRkcbdJ6ZdoiwIn+OuloJyKayizfL8R/w
+        DJyjHEzUevenSvxxpa56SpisTwUO5GUs3GpJmL8z9CrVolq5ZEHoqv9qpfbfeMaaMYv7VQoiGs/6Q
+        e4v79x2YsjQeRLjoI7QaHXVp/SSVF3knBAdSz91AjFO5DtbTxY9iDz4Yvr6T0FImlTz1FYGTPfF3q
+        db0o9hMIjyGgECPV1x8gZCPfDCzLttLkdPv7aUc0i7R9awbd/ntqBkuCmMWm9wP5be6SpodQ7ZMFg
+        DtsG4M4Q==;
+Received: from p200300ccff073f001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff07:3f00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1onkER-00017B-Q5; Wed, 26 Oct 2022 19:30:24 +0200
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1onkEQ-004v7B-W7; Wed, 26 Oct 2022 19:30:23 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Alistair Francis <alistair@alistair23.me>
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH] arm: dts: imx: e60k02: Add touchscreen
+Date:   Wed, 26 Oct 2022 19:30:15 +0200
+Message-Id: <20221026173015.1172816-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20221004234343.54777-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221004234343.54777-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <Y1hkG6NVFS08WTIg@paasikivi.fi.intel.com>
-In-Reply-To: <Y1hkG6NVFS08WTIg@paasikivi.fi.intel.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 26 Oct 2022 18:29:10 +0100
-Message-ID: <CA+V-a8vdcG51mHBV4C8nC7Ad9YWEfKD=jiy5KXVgSWVR_UvNfQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] media: platform: Add Renesas RZ/G2L CRU driver
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Add the touchscreen now, since the driver is available.
 
-Thank you for the review.
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+runtime/dtbs_check depends
+https://lore.kernel.org/linux-devicetree/20221026114908.191472-1-alistair@alistair23.me/T/#t
+ arch/arm/boot/dts/e60k02.dtsi              | 12 +++++++++++-
+ arch/arm/boot/dts/imx6sl-tolino-shine3.dts | 14 ++++++++++++++
+ arch/arm/boot/dts/imx6sll-kobo-clarahd.dts | 14 ++++++++++++++
+ 3 files changed, 39 insertions(+), 1 deletion(-)
 
-On Tue, Oct 25, 2022 at 11:33 PM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Prabhakar,
->
-> A few comments below... apologies for not reviewing this earlier. Looks
-> good in general but there are a few points that need some attention.
->
-> On Wed, Oct 05, 2022 at 12:43:43AM +0100, Prabhakar wrote:
-> ...
-> > +static int rzg2l_cru_ip_pre_streamon(struct v4l2_subdev *sd, u32 flags)
-> > +{
-> > +     struct rzg2l_cru_dev *cru;
-> > +     int ret;
-> > +
-> > +     cru = v4l2_get_subdevdata(sd);
-> > +
-> > +     if (!cru->is_csi)
-> > +             return -EINVAL;
-> > +
-> > +     ret = v4l2_subdev_call(cru->ip.remote, video, pre_streamon, 0);
->
-> If you're calling pre_streamon successfully, you'll have to have an
-> equivalent number of post_streamoff calls.
->
-Agreed, I will implement the post_streamoff()
+diff --git a/arch/arm/boot/dts/e60k02.dtsi b/arch/arm/boot/dts/e60k02.dtsi
+index 935e2359f8df..4f36cc181a52 100644
+--- a/arch/arm/boot/dts/e60k02.dtsi
++++ b/arch/arm/boot/dts/e60k02.dtsi
+@@ -104,7 +104,17 @@ &i2c2 {
+ 	clock-frequency = <100000>;
+ 	status = "okay";
+ 
+-	/* TODO: CYTTSP5 touch controller at 0x24 */
++	touchscreen@24 {
++		compatible = "cypress,tt21000";
++		reg = <0x24>;
++		pinctrl-names = "default","sleep";
++		pinctrl-0 = <&pinctrl_cyttsp5_gpio>;
++		pinctrl-1 = <&pinctrl_cyttsp5_gpio_sleep>;
++		interrupt-parent = <&gpio5>;
++		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&ldo5_reg>;
++	};
+ 
+ 	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
+ 
+diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+index e3f1e8d79528..82d9ed91df92 100644
+--- a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
++++ b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+@@ -52,6 +52,20 @@ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
++	pinctrl_cyttsp5_gpio: cyttsp5_gpio_grp {
++		fsl,pins = <
++			MX6SL_PAD_SD1_DAT3__GPIO5_IO06                0x17059 /* TP_INT */
++			MX6SL_PAD_SD1_DAT2__GPIO5_IO13                0x10059 /* TP_RST */
++		>;
++	};
++
++	pinctrl_cyttsp5_gpio_sleep: cyttsp5_gpio_grp_sleep {
++		fsl,pins = <
++			MX6SL_PAD_SD1_DAT3__GPIO5_IO06                0x10059 /* TP_INT */
++			MX6SL_PAD_SD1_DAT2__GPIO5_IO13                0x10059 /* TP_RST */
++		>;
++	};
++
+ 	pinctrl_gpio_keys: gpio-keysgrp {
+ 		fsl,pins = <
+ 			MX6SL_PAD_SD1_DAT1__GPIO5_IO08	0x17059	/* PWR_SW */
+diff --git a/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts b/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+index 90b32f5eb529..d743bf4fd8e6 100644
+--- a/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
++++ b/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+@@ -62,6 +62,20 @@ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
++	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
++		fsl,pins = <
++			MX6SLL_PAD_SD1_DATA3__GPIO5_IO06                0x17059 /* TP_INT */
++			MX6SLL_PAD_SD1_DATA2__GPIO5_IO13                0x10059 /* TP_RST */
++		>;
++	};
++
++	pinctrl_cyttsp5_gpio_sleep: cyttsp5-gpiogrp-sleep {
++		fsl,pins = <
++			MX6SLL_PAD_SD1_DATA3__GPIO5_IO06                0x10059 /* TP_INT */
++			MX6SLL_PAD_SD1_DATA2__GPIO5_IO13                0x10059 /* TP_RST */
++		>;
++	};
++
+ 	pinctrl_gpio_keys: gpio-keysgrp {
+ 		fsl,pins = <
+ 			MX6SLL_PAD_SD1_DATA1__GPIO5_IO08	0x17059	/* PWR_SW */
+-- 
+2.30.2
 
-> ...
->
-> > +static int rzg2l_cru_set_stream(struct rzg2l_cru_dev *cru, int on)
-> > +{
-> > +     struct media_pipeline *pipe;
-> > +     struct v4l2_subdev *sd;
-> > +     struct media_pad *pad;
-> > +     unsigned long flags;
-> > +     int ret;
-> > +
-> > +     pad = media_pad_remote_pad_first(&cru->pad);
-> > +     if (!pad)
-> > +             return -EPIPE;
-> > +
-> > +     sd = media_entity_to_v4l2_subdev(pad->entity);
-> > +
-> > +     if (!on) {
-> > +             media_pipeline_stop(&cru->vdev.entity);
-> > +             return v4l2_subdev_call(sd, video, s_stream, 0);
->
-> Ditto.
->
-OK.
-
-> > +     }
-> > +
-> > +     ret = rzg2l_cru_mc_validate_format(cru, sd, pad);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret = v4l2_subdev_call(sd, video, pre_streamon, 0);
-> > +     if (ret == -ENOIOCTLCMD)
-> > +             ret = 0;
-> > +     if (ret)
-> > +             return ret;
->
-> For all cases below where streaming on doesn't succeed, you'll have to have
-> a call of post_streamoff.
->
-Agreed, I missed that I will call post_streamoff in the error paths.
-
-> > +
-> > +     spin_lock_irqsave(&cru->qlock, flags);
-> > +
-> > +     /* Select a video input */
-> > +     if (cru->is_csi)
-> > +             rzg2l_cru_write(cru, CRUnCTRL, CRUnCTRL_VINSEL(0));
-> > +
-> > +     /* Cancel the software reset for image processing block */
-> > +     rzg2l_cru_write(cru, CRUnRST, CRUnRST_VRESETN);
-> > +
-> > +     /* Disable and clear the interrupt before using */
-> > +     rzg2l_cru_write(cru, CRUnIE, 0);
-> > +     rzg2l_cru_write(cru, CRUnINTS, 0x001f000f);
-> > +
-> > +     /* Initialize the AXI master */
-> > +     rzg2l_cru_initialize_axi(cru);
-> > +
-> > +     /* Initialize image convert */
-> > +     ret = rzg2l_cru_initialize_image_conv(cru);
-> > +     if (ret) {
-> > +             spin_unlock_irqrestore(&cru->qlock, flags);
-> > +             return ret;
-> > +     }
-> > +
-> > +     /* Enable interrupt */
-> > +     rzg2l_cru_write(cru, CRUnIE, CRUnIE_EFE);
-> > +
-> > +     /* Enable image processing reception */
-> > +     rzg2l_cru_write(cru, ICnEN, ICnEN_ICEN);
-> > +
-> > +     spin_unlock_irqrestore(&cru->qlock, flags);
-> > +
-> > +     pipe = sd->entity.pipe ? sd->entity.pipe : &cru->vdev.pipe;
-> > +     ret = media_pipeline_start(&cru->vdev.entity, pipe);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     clk_disable_unprepare(cru->vclk);
-> > +
-> > +     ret = v4l2_subdev_call(sd, video, s_stream, 1);
-> > +     if (ret == -ENOIOCTLCMD)
-> > +             ret = 0;
-> > +     if (ret) {
-> > +             /* enable back vclk so that release() disables it */
-> > +             clk_prepare_enable(cru->vclk);
-> > +             media_pipeline_stop(&cru->vdev.entity);
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret = clk_prepare_enable(cru->vclk);
->
-> What will happen if enabling vclk will fail here? (Or above?)
->
-Hmm, I will have to undo the stuff here. I will fix that in the next
-version and for the above failure I'll add a warning message as
-s_stream(1) itself has failed.
-
-Cheers
-Prabhakar
