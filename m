@@ -2,87 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B07760E2F4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AEEA60E304
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:16:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234187AbiJZONL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:13:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54698 "EHLO
+        id S233067AbiJZOQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233373AbiJZONK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:13:10 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E21010D684
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:13:09 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id s17so10553494qkj.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:13:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3BJkQ2Lvx038FbiNzpk9wcXe4nIQwkZdE8UfXIihqNk=;
-        b=QhFXvTvNJUlIUlpQDnzeAFmF6+ln6IFY1BFH21RP3EDt2LD6+1BYjRCN8caiSBm9uE
-         CPrOIRLVIOU+Xb1tuA5uzcHXRF7ZgVxAc3k82P8Mz5y9pR/HX2TepOaNrgwIXyEfqtfl
-         QsEycG67flPJyLlIIpQxjnPapaGi5xAXZNMh5iU8UZ+zTDI3D5A9QIQQMOFjr9FUJEx5
-         ep/+BMxyL5A6mYuUnVqMPJX0r7bnvvrSfWFLqz1HyLxOhEAIlz6nj4ZNidzji5N/SsPi
-         fc+x4k16tPOTNEtcw7GO9Dlfd2ijEz1Dxx7dGrYQsJjNfiEKfoRKjwN5btuyQQQnNAfu
-         mjfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3BJkQ2Lvx038FbiNzpk9wcXe4nIQwkZdE8UfXIihqNk=;
-        b=D5cNeUooouo4O+Cc+L/sOi4K52Zs5SP1jbAUbyXz/cLbJd1YsTcU1iKgExE0pqkFrP
-         +ikodgvNMmUVZL7eBSKqgbLGRMXgk9ckuhVpcslWMbuJK/JFKzO//L0Y72+n8L4iVIQW
-         Gj9iWN9CHk6BX6OUdIhJ6BdwR/chg3lI/K7SOT9aFOU27o5haTf9QcNdp3ZN1KTv9ILX
-         b5HjkChMpSwV2EbMkXBGouB/VbhGD9qm4jDKwi43pD0t/zNOMIcoAmRc43RrtXSQOqDD
-         uj7nxxw/BQSF5Y3dpt1qK5icV27EM7SfBoTy6LH7P1hEa5BaAySyCoUMrFNT+9zvO1S+
-         jz6Q==
-X-Gm-Message-State: ACrzQf1bDDNABnS0sgPYjIfJgMjrY7tOBH0T8LMs6mwvdCSylNEaxiVK
-        qtnFXtwBDgncdsS/EolOdFCdAA==
-X-Google-Smtp-Source: AMsMyM5HJOoGv/K2f7op+AS1jKZWgMgm9sMjTfvjwWkv3/yGR1lYtHuWo60wwCaoDlDuxiFnqa7Rig==
-X-Received: by 2002:a05:620a:28d3:b0:6ee:cffb:21ef with SMTP id l19-20020a05620a28d300b006eecffb21efmr30529027qkp.123.1666793588691;
-        Wed, 26 Oct 2022 07:13:08 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id o14-20020a05620a2a0e00b006cbc00db595sm4164494qkp.23.2022.10.26.07.13.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:13:07 -0700 (PDT)
-Message-ID: <bcf5ef3c-a17d-e174-2b97-cef4d728cb35@linaro.org>
-Date:   Wed, 26 Oct 2022 10:13:05 -0400
+        with ESMTP id S232906AbiJZOQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:16:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54FC8F682C;
+        Wed, 26 Oct 2022 07:16:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E5E6561F08;
+        Wed, 26 Oct 2022 14:16:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F146C433D6;
+        Wed, 26 Oct 2022 14:16:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666793802;
+        bh=4sbYQ1JjOf2cO851WHCHY1Zq78kCtJj8OQbcl0ns6Wc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tRcZLhtkJvU8yKeyyubVEGg+DXBbc1HY/0UNCdAgOpzQyoUF1OazH9+UOZf1nehfR
+         qWqlGu07+4CP+8J3jordoCgUepnM4owBzenmDpn5/nAVkfLmHbHtLE9Hedht+dTRkv
+         RLxilEJYU2bjy3FqWtntfgVvR8DOrglOeWkW0f60TQSKYJicGaXnkzP7aQkI/8wq6P
+         XNExJVm9vn0+pV75FFAdwnXj83n+Jzx0TsIfvE+4RRUnl7mZ1bW5aabFEqAqrT7Wtl
+         plM4OJfyOxQzAQH3s+ef3X6wWee/s9WMopIa+naIPDoOxx8yiqiDnL6jocMzTw4Ecd
+         tTtOhw9yzIy/Q==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     jh80.chung@samsung.com
+Cc:     dinguyen@kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCHv6 1/6] dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
+Date:   Wed, 26 Oct 2022 09:16:26 -0500
+Message-Id: <20221026141631.696863-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: cpufreq: apple,soc-cpufreq: Add
- binding for Apple SoC cpufreq
-Content-Language: en-US
-To:     Hector Martin <marcan@marcan.st>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221024043925.25379-1-marcan@marcan.st>
- <20221024043925.25379-3-marcan@marcan.st>
- <5c3126fb-8fdb-5163-95a8-136a4a7ee2ce@linaro.org>
- <97d3d6d4-b19c-a194-de41-f17e65bf3eb6@marcan.st>
- <21602556-8312-fb7a-1981-cd03a314d904@linaro.org>
- <0f76c1b5-8fe5-e3dc-dc9a-7b0ad9660275@marcan.st>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0f76c1b5-8fe5-e3dc-dc9a-7b0ad9660275@marcan.st>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,22 +54,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 00:18, Hector Martin wrote:
->>>> With the first one (t8103) - it's an enum.
->>>
->>> This is deliberate. t6000 is compatible with t8103, but t8112 is not
->>> (though all are compatible with what the generic apple,cluster-cpufreq
->>> compatible implies).
->>
->> I was not talking about t6000. I was talking about two entries - first
->> and last - which should be just an enum. There is no compatibility, so
->> what is here deliberate? To not make enum things which are an enum?
-> 
-> Sorry, I didn't understand what you meant. You mean that the two entries
-> should be merged, with an enum for the first item listing both SoCs, right?
+Document the optional "altr,sysmgr-syscon" binding that is used to
+access the System Manager register that controls the SDMMC clock
+phase.
 
-Yes
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+v6: make "altr,sysmgr-syscon" optional
+v5: document reg shift
+v4: add else statement
+v3: document that the "altr,sysmgr-syscon" binding is only applicable to
+    "altr,socfpga-dw-mshc"
+v2: document "altr,sysmgr-syscon" in the MMC section
+---
+ .../bindings/mmc/synopsys-dw-mshc.yaml        | 23 ++++++++++++++++---
+ 1 file changed, 20 insertions(+), 3 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+index ae6d6fca79e2..0e2024eb9018 100644
+--- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
++++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+@@ -6,9 +6,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Synopsys Designware Mobile Storage Host Controller Binding
+ 
+-allOf:
+-  - $ref: "synopsys-dw-mshc-common.yaml#"
+-
+ maintainers:
+   - Ulf Hansson <ulf.hansson@linaro.org>
+ 
+@@ -38,6 +35,26 @@ properties:
+       - const: biu
+       - const: ciu
+ 
++allOf:
++  - $ref: synopsys-dw-mshc-common.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: altr,socfpga-dw-mshc
++    then:
++      properties:
++        altr,sysmgr-syscon:
++          $ref: /schemas/types.yaml#/definitions/phandle-array
++          items:
++            - description: phandle to the sysmgr node
++            - description: register offset that controls the SDMMC clock phase
++            - description: register shift for the smplsel(drive in) setting
++    else:
++      properties:
++        altr,sysmgr-syscon: false
++
+ required:
+   - compatible
+   - reg
+-- 
+2.25.1
 
