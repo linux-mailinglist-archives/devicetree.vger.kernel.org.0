@@ -2,105 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EA360EA1C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB8D60EA21
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235192AbiJZURE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 16:17:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34230 "EHLO
+        id S235231AbiJZURp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 16:17:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235166AbiJZURD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:17:03 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C817510C4DC;
-        Wed, 26 Oct 2022 13:17:01 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id ud5so21048132ejc.4;
-        Wed, 26 Oct 2022 13:17:01 -0700 (PDT)
+        with ESMTP id S235219AbiJZURo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:17:44 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE904523B
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 13:17:43 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id hh9so10852835qtb.13
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 13:17:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZJ8nTWipM2h43z45/cmbXzTIVENawNHsahNhS9RcpVE=;
-        b=Kxqstm7VQ9wJy7Ij2ipPmH5DZw1MvmdzzW9yPfk91cw2h4QdjBThnTPeMOzrAy7vUt
-         fIQwhFtefVZHjmFrYkHiSQj7GVwA4MmCgt/kL/K2koy/z97sLiocW9pv49IL56xXhslK
-         kzeRNugZhIHgDhF0MB0lfKw1Bv0S8654fVbc505y+FjRWS8b13OYNSsRTZ9uv/gaT3D2
-         KRYrvgtjZlx8VHvuQsAxWFftkpXNgd8+TArKt5ZWGNam2vCZM5U7Fb0bymsxwgbfPHFr
-         hzkEIt4jof0kgWZy4kGAYkp6u7fVizqSSl5furJGZbzgv7eJdYCLAIOxlPI5+D/YT/Dl
-         btRA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jwFPxGxPfVVpNpjuRcsPri9IbxTzSGaVNATnsuh89zE=;
+        b=E/BwIPo6nQhc+q+igGJ2p3j48Siqll4xzQwvYXktwnme/8uNEuKpx0qEP6YsvVIDTF
+         lcR76/wync2XxNHLTQQ67yEJ3Lizgtfv9ud3YsQuTvOlaCnPJt78eNM9laZYlniNgM5f
+         xJhoJzaQ4lQoZkQdOXr38Lag4775HXVLOydkopV4r67/pt4MzU+kbbe6IbG05rTgAG5T
+         1jaO6M0fIoppLroyQtei94jBHl/L+QCY9GLdLT92e8Ulnoh3FIP6bEmm+GKiUB90aOum
+         nhXsl79usbGTPYYKu3Mg/x1Y7iJG7yGLX+CL7JlHMBAsM3C6nlg296MlJvYRbgcY4mIV
+         0bWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZJ8nTWipM2h43z45/cmbXzTIVENawNHsahNhS9RcpVE=;
-        b=iXzy5gp76HhoBOI7aImVW+Pv7d+H11jWCGvclk3j/m7bIZ/rfIsE6143Mc7b60kh8j
-         0oKs0iodB2Q3NVh30xm5qDCPV/fXpDV+u7bVPPvOtE6CKmVJGS0Q9VRV8QbBy4P+TNvr
-         oEpc2pgRdXz9CIucgZlROSQmwvvxY7LfgpdzKTVWdk6mJSS9DfcunR2ab0I4QPgXlNzG
-         jT0eNUgtzIica9yDWv9qa/OKkX/ly2kKDMOUBnsNzTULt7Lg2VQgoW4Kmn/davPENdKO
-         hXOwhX62G4xqsavP2yk8kFvPIQyrE20a0OM9gqDjxFq2TkQw8c7Fvp4uzLZiSiiD216J
-         rQcg==
-X-Gm-Message-State: ACrzQf3XarfENupgaBVJd0hWzQ+yFSRDCCv09ZTzfea1vMvAhRo189TX
-        8zjzgawzOwAqgDi9jWw0dB8QBTurRl0=
-X-Google-Smtp-Source: AMsMyM5NohsjVMEM5se+lXt/+p7Lnxf45BGjphkLILdcCuAYQ4mJbYM2qqJrIcdYTHRO9Be0F2zNhA==
-X-Received: by 2002:a17:906:478d:b0:7a3:cf5e:9027 with SMTP id cw13-20020a170906478d00b007a3cf5e9027mr19336206ejc.718.1666815420388;
-        Wed, 26 Oct 2022 13:17:00 -0700 (PDT)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id bv1-20020a170906b1c100b007aacfce2a91sm3517868ejb.27.2022.10.26.13.16.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 13:16:59 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 0/2] AXP221/AXP223/AXP809 GPIO support
-Date:   Wed, 26 Oct 2022 22:16:58 +0200
-Message-ID: <5870583.lOV4Wx5bFT@kista>
-In-Reply-To: <20220916042751.47906-1-samuel@sholland.org>
-References: <20220916042751.47906-1-samuel@sholland.org>
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jwFPxGxPfVVpNpjuRcsPri9IbxTzSGaVNATnsuh89zE=;
+        b=pCBk4m8wI1ddOjVT4NJZ2R+A7E1zwEgIO3ylZ9wHVC4KJW69679LcY0xUb7eiHjgWy
+         NlndjfF1OWgUQ2k1W8xazR0zf0TwjD54uhvc0yNBr77t8cvQ9bUaVPZaqtEfbftuowXU
+         RT7KUjSb0U011jMphPpOn+G3YJ29rA/Alul3IMKfKrvhNxYbKj828oPJWuIIyaKQ7Lll
+         062EtTkEQrsSC5SqgEPeKHVXn1qxrNDz8apIUn8McGGt5AlXGc2iPdQ1rz1AzilVK52L
+         ZHHzKcHzoWO20U70SXsSacXV00FLc0mE1ZVNeJihouafTBzNqMc3XH9OcqedwSLYH5ND
+         /SNQ==
+X-Gm-Message-State: ACrzQf0xMcoVrqiQxbiG6kIBJxryxo3O+VCw2+CarAtOzYtd0gIHlwys
+        GlMfAEa/E5fCFxq73mhQE5o2Ug==
+X-Google-Smtp-Source: AMsMyM5pMxY4O29rvMBzRYtt7Ly8gGBDt0f6mfdm0pumler1SteY6CKQSiRMCMXiBqKnnjnMREfSgw==
+X-Received: by 2002:a05:622a:cf:b0:39c:f2a5:7374 with SMTP id p15-20020a05622a00cf00b0039cf2a57374mr37262969qtw.600.1666815462933;
+        Wed, 26 Oct 2022 13:17:42 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id m8-20020a05620a290800b006ce40fbb8f6sm4603413qkp.21.2022.10.26.13.17.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 13:17:42 -0700 (PDT)
+Message-ID: <9314a458-0fd9-c645-bb55-5f28b961ea5f@linaro.org>
+Date:   Wed, 26 Oct 2022 16:17:40 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 1/2] ARM: nspire: Use syscon-reboot to handle restart
+Content-Language: en-US
+To:     Andrew Davis <afd@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20221026161302.5319-1-afd@ti.com>
+ <20221026161302.5319-2-afd@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221026161302.5319-2-afd@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne petek, 16. september 2022 ob 06:27:49 CEST je Samuel Holland napisal(a):
-> This series hooks up the GPIO controller found in some older X-Powers
-> PMICs. The main motivation is converting the U-Boot driver over to use
-> devicetree, but Linux might as well gain support for the hardware too.
+On 26/10/2022 12:13, Andrew Davis wrote:
+> Writing this bit can be handled by the syscon-reboot driver. Add the
+> info to DT and remove the machine_desc version.
 > 
-> Changes in v3:
->  - Added patch to remove existing "ldo" pinctrl nodes
->  - Drop already-merged binding and driver patches
->  - Remove "ldo" pinctrl children from new nodes
-> 
-> Samuel Holland (2):
->   ARM: dts: axp803/axp81x: Drop GPIO LDO pinctrl nodes
->   ARM: dts: axp22x/axp809: Add GPIO controller nodes
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  arch/arm/boot/dts/nspire.dtsi |  7 +++++++
 
-Merged both, thanks!
+DTS cannot go with code.
+
+Additionally, this breaks people's filtering as there is no "dts" prefix
+in the subject.
+
+>  arch/arm/mach-nspire/Kconfig  |  2 ++
+>  arch/arm/mach-nspire/mmio.h   |  3 ---
+>  arch/arm/mach-nspire/nspire.c | 10 ----------
+>  4 files changed, 9 insertions(+), 13 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/nspire.dtsi b/arch/arm/boot/dts/nspire.dtsi
+> index bb240e6a3a6f..6357b803521e 100644
+> --- a/arch/arm/boot/dts/nspire.dtsi
+> +++ b/arch/arm/boot/dts/nspire.dtsi
+> @@ -172,7 +172,14 @@ rtc: rtc@90090000 {
+>  			};
+>  
+>  			misc: misc@900a0000 {
+> +				compatible = "syscon", "simple-mfd";
+
+These are not allowed on their own (need specific compatible) and you
+should have warnings when running dtbs_check.
 
 Best regards,
-Jernej
-
-> 
->  arch/arm/boot/dts/axp22x.dtsi             |  6 ++++++
->  arch/arm/boot/dts/axp809.dtsi             |  7 +++++++
->  arch/arm/boot/dts/axp81x.dtsi             | 14 --------------
->  arch/arm64/boot/dts/allwinner/axp803.dtsi | 10 ----------
->  4 files changed, 13 insertions(+), 24 deletions(-)
-> 
-> --
-> 2.35.1
-
+Krzysztof
 
