@@ -2,105 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A7F560DFF3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE8760DFF6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233625AbiJZLrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 07:47:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
+        id S231681AbiJZLta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 07:49:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233628AbiJZLrb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:47:31 -0400
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33353845E;
-        Wed, 26 Oct 2022 04:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666784818; x=1698320818;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=b06/ixQTvo4yNJzSWIRRf7XvwhiUnFL1NIt+eXhoE1Q=;
-  b=b9shMvIYO54QiiLYPABV9hm1Q//OY4lnZwQzq1Q+/6SUhl/PlYlHbMBX
-   PzePayvuBpLODVMPpFy8Y8AMQyzrm8PVEoqWUdMrPbFqXaJhEK6djErxu
-   CzHcc+bwynyAdxseBBkMhHqVqvN3aKvZXVoyNcCKTR+penrAS/Ue9+drf
-   stU0uOu/4/heUUSrZ6VVlc7nK0rSack4jthZjGXQh+0EQisIso3wOS/wn
-   Rpa7FAhOtafaX2A2AgOTgR/6UEId+ZpJlAaJs8p9L4tjAKL3pWvnf1IrL
-   H/BaAkjOL3p418rn/DAox8DuVAq5fOanVPbkIa0lkHGhZHDHCQiw26o24
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="288319659"
-X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; 
-   d="scan'208";a="288319659"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2022 04:46:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10511"; a="634456778"
-X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; 
-   d="scan'208";a="634456778"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 26 Oct 2022 04:46:51 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1onerx-002cjx-2j;
-        Wed, 26 Oct 2022 14:46:49 +0300
-Date:   Wed, 26 Oct 2022 14:46:49 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        linux-gpio@vger.kernel.org, git@amd.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, brgl@bgdev.pl, linus.walleij@linaro.org
-Subject: Re: [PATCH v5 2/3] gpio: pca9570: add a platform data structure
-Message-ID: <Y1keKRzBhSDi671j@smile.fi.intel.com>
-References: <20220930102259.21918-1-shubhrajyoti.datta@amd.com>
- <20220930102259.21918-3-shubhrajyoti.datta@amd.com>
- <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
+        with ESMTP id S230090AbiJZLt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:49:29 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CA8764B;
+        Wed, 26 Oct 2022 04:49:27 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 8A17A32003CE;
+        Wed, 26 Oct 2022 07:49:25 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 26 Oct 2022 07:49:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-transfer-encoding:content-type:date:date:from
+        :from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1666784965; x=1666871365; bh=Fs
+        O0gPfX2wHmErfPj9SmHjSOURVfbrKHD0GjwO7ZwVk=; b=wguQpGpJB+dw8/sOY7
+        LLeySXpRG3RP0n5L14JU/FaYJiN3r0kUN6jw2eGYikDd93TOsJVIkoVXFEOtVE5Z
+        uDMU4CJoBph8oPHuYLXSGFaKgDEXMq5cHExDcvYEs7WEtqE/UT+RBLqvQ7VAZ+3v
+        CCYevACGdoWityOQsXB9PiuO31Dv7fbrBX521juoWjTrF4lQrjxbVxqcPadVthuR
+        eeosC508IAqq5g7ocvRmy9QFYcYpateK9DaXAuyYHT4GPSw89aa/a/hP8kRmwFq4
+        zgbkr9K3dS7JpaTePv+ne1o9CiLR5mlVqnQ1Iij1cTjcPKpz1JLjpUUyDVCA+D1F
+        u3Xg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1666784965; x=1666871365; bh=FsO0gPfX2wHmE
+        rfPj9SmHjSOURVfbrKHD0GjwO7ZwVk=; b=kKXNGot4HwX9HZLQpWN2eO25Rn4Aw
+        8KMBK7puUOgt9RAl95V/dAzpuw4x1bYOMogRuSZPrVO7+/NB1ShRblVme+Pow0Jr
+        b6JGyva8vSaIbqyT0gGDsj9+msQvV6+kFH5tF3CJ+vz7NVTDUkA7dkqxOLhVHY5Q
+        saQ4DnOlrEPijwKiWMZHgFov5Pg+vVCWpBtPc6ckZanUZXjUOesG5CsUVN6k30eA
+        6RXQNPbUO1QHC+JQHccazuZMKvHySq1fCZPwZHPigDkL1uj8WQutwb7oesHU+LlA
+        2nQ1UG9mCHLuHIqon1rtL8UWGGUXRZupYN3y6tdbQPatz/+HCzsBPt2/g==
+X-ME-Sender: <xms:xB5ZY10wOzL_asfqoRU2gGJOBBPgs8EYOF6ryjrc9XVoHIDUlWyUyw>
+    <xme:xB5ZY8FBWRTdKLxb9ETcrV0yQSa_ngy9Mgcv_ODLL0SceQDJ5TCZQDKuloeTHeT6U
+    FdD5Tp5TFvyby969l8>
+X-ME-Received: <xmr:xB5ZY169YM56KXh70yXZYRlN-7ZblnX5J3Y9IE4iHYejSSWOH35OGMwl7jU-PeOL840RM96HwZMj>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtddvgdeggecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvvefufffkofggtgfgsehtkeertd
+    ertdejnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
+    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepgedtvdfffeffje
+    ekgefggeetfffftdeuveekfedvjeevtedvueduvddvtdeigfelnecuffhomhgrihhnpehl
+    fihnrdhnvghtpdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhm
+    vg
+X-ME-Proxy: <xmx:xB5ZYy2B3iT3LecU9CWDtv7qA9DTdYxNTv22nszU-vFkxPSAkZZFUg>
+    <xmx:xB5ZY4Eyi_LlYQPqaCe19NYT3IP3O06vvaCnutA0fUOz0n6EsRXLCA>
+    <xmx:xB5ZYz8Dd0JRwW54laQDQwhE16rSzQ1VDpndUj_GMDXXRLdM_slpGQ>
+    <xmx:xR5ZY_eVhgJMCA9WIW0jcQhc_WZAlUnMU0gqpBUltsjnZiNCCagwXA>
+Feedback-ID: ifd214418:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 26 Oct 2022 07:49:15 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com, shawnguo@kernel.org,
+        rydberg@bitmath.org, alistair23@gmail.com, s.hauer@pengutronix.de,
+        andreas@kemnade.info, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v10 0/4] Add support for the Cypress cyttsp5
+Date:   Wed, 26 Oct 2022 21:49:04 +1000
+Message-Id: <20221026114908.191472-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 12:00:34PM +0200, Geert Uytterhoeven wrote:
-> Hi Shubhrajyoti,
-> On Fri, Sep 30, 2022 at 12:41 PM Shubhrajyoti Datta
-> <shubhrajyoti.datta@amd.com> wrote:
+This patch series builds on top of [1] and adds support for the cyttsp5
+touchscreen controller for the reMarkable 2.
 
-...
+I first tried to add an I2C HID device. Although the cyttsp5 has some HID
+looking aspects it is not HID compatible. Just in trying to probe the device
+I found:
+ - The HID descriptor has extra padding
+ - The HID descriptor sets the high bytes of the descriptor length
+ - The HID descriptor has extra unrecognised tags
+ - The HID reset command doesn't appear to work
 
-> Thanks for your patch, which is now commit 35a4bc94a47f2ea6 ("gpio:
-> pca9570: add a platform data structure") in gpio/gpio/for-next
-> linux-next/master next-20221026
+I don't think there is a way to use the I2C HID framework with the cyttsp5.
+For anyone interested you can see the work here [2]. In that branch though I
+can only obtain a HID descriptor, nothing else works without more core
+changes.
 
-Dunno if Bart rebases his tree...
+So instead I rebased the series from [1]. Converted to the new yaml DTS
+documentation, added regulator support and fixed a x/y miscalculation bug.
 
-...
+1: https://lwn.net/ml/linux-kernel/20180703094309.18514-1-mylene.josserand@bootlin.com/
+2: https://github.com/alistair23/linux/commits/rM2-mainline-cyttsp5-hid
 
-> >  static const struct of_device_id pca9570_of_match_table[] = {
-> > -       { .compatible = "nxp,pca9570", .data = (void *)4 },
-> > -       { .compatible = "nxp,pca9571", .data = (void *)8 },
-> > +       { .compatible = "nxp,pca9570", .data = &pca9570_gpio },
-> > +       { .compatible = "nxp,pca9571", .data = &pca9571_gpio },
-> 
-> This breaks bisection, as .data is still considered to be the number
-> of GPIOs:
-> 
->     gpio->chip.ngpio = (uintptr_t)device_get_match_data(&client->dev);
+v10:
+ - Fix device tree binding errors
+ - Add commit message about defcofig cahnges
+v9:
+ - Fixup kernel robot failures
+v8:
+ - Rebase and resend
+v7:
+ - Fix device tree warnings
+v6:
+ - Use reg for the button properties
+v5:
+ - Address review comments from v4
 
-You beat me up to it, I have also noticed this.
+Alistair Francis (4):
+  Input: Add driver for Cypress Generation 5 touchscreen
+  dt-bindings: input: Add Cypress TT21000 touchscreen controller
+  ARM: imx_v6_v7_defconfig: Enable the cyttsp5 touchscreen
+  ARM: dts: imx7d-remarkable2: Enable the cyttsp5
 
-> >         { /* sentinel */ }
-> >  };
+ .../input/touchscreen/cypress,tt21000.yaml    | 106 ++
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 100 ++
+ arch/arm/configs/imx_v6_v7_defconfig          |   1 +
+ drivers/input/touchscreen/Kconfig             |  16 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/cyttsp5.c           | 902 ++++++++++++++++++
+ 6 files changed, 1126 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+ create mode 100644 drivers/input/touchscreen/cyttsp5.c
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.37.3
 
