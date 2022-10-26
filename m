@@ -2,179 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B6A360DC04
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 09:22:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D7660DC0F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 09:29:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232371AbiJZHWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 03:22:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43300 "EHLO
+        id S232954AbiJZH3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 03:29:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbiJZHWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 03:22:18 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DEE0E57BD1;
-        Wed, 26 Oct 2022 00:22:14 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8AxDdkl4FhjTo0CAA--.9934S3;
-        Wed, 26 Oct 2022 15:22:13 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxLeAh4FhjNzEFAA--.19404S2;
-        Wed, 26 Oct 2022 15:22:09 +0800 (CST)
-Subject: Re: [PATCH v2 2/2] dt-bindings: soc: add loongson2 guts
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S231649AbiJZH3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 03:29:09 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19CB7B8C37;
+        Wed, 26 Oct 2022 00:29:09 -0700 (PDT)
+Received: by mail-qk1-f169.google.com with SMTP id a5so9955784qkl.6;
+        Wed, 26 Oct 2022 00:29:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e5m59W7ETiWbAx79mryLE4tSpYnn+RzXpvnV18OsjtU=;
+        b=bY0+o/EriSjklpvLfCtxL4UtkKnTdSZTrzhX35amBYtsjGRyRCRxNGLnmKzJDn5Dfe
+         nCuCDqlAWFv2QS7yFCP91rqwA871OH7fPuFL/WPBDyqR+3VUpgUBpKPRwCi85COpfHuF
+         In2WyYbV+5cEsyyaOfqK/FL9EnN74yAULGJIJzThF7j2EuiR3sS/NWcYMGqrbxls6tZf
+         yOOzoPluJZjcwnKg3H6glOckpB/Bs1co3HYqTk6lA0hWi1TvYZ0LkBAEi/+QqqgSlfWV
+         zfsC+XhOos61+ED7QtOY4KFlIQsPl02nkNhrLKiZ4Cr8EhRBS0m6qLDxuu+ds1TNBvmI
+         sONg==
+X-Gm-Message-State: ACrzQf0VFwL/lBNHIvop3fkPmButmvvfWstHW0cLrWTZ5hgPOH0ApvhX
+        8HRWbP6LSKQyLJ3e/gn0kE3xN6C81f8j+g==
+X-Google-Smtp-Source: AMsMyM5VIePux2m3QepPlT7MWBQbMbHlejiXM5fOjcH+PJoAiKfAGf4ufY51GAOBtMLVb3UZHgjfPQ==
+X-Received: by 2002:a37:8981:0:b0:6f1:1560:ac7d with SMTP id l123-20020a378981000000b006f11560ac7dmr16157125qkd.659.1666769347955;
+        Wed, 26 Oct 2022 00:29:07 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id f14-20020a05620a280e00b006eec09eed39sm3534288qkp.40.2022.10.26.00.29.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 00:29:07 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-369426664f9so138742927b3.12;
+        Wed, 26 Oct 2022 00:29:07 -0700 (PDT)
+X-Received: by 2002:a81:5a57:0:b0:353:6de6:3263 with SMTP id
+ o84-20020a815a57000000b003536de63263mr37779589ywb.358.1666769347215; Wed, 26
+ Oct 2022 00:29:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220915165256.352843-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220915165256.352843-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdVJ4gp=kT2S+5bhjdZACSbEX=3pP7mmmi_GEbeAOxtHGw@mail.gmail.com> <CA+V-a8sidwGQVSb7UV56opqE9ViS_y7nVPWx8Krx7t6P1BExCg@mail.gmail.com>
+In-Reply-To: <CA+V-a8sidwGQVSb7UV56opqE9ViS_y7nVPWx8Krx7t6P1BExCg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 Oct 2022 09:28:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWkg-k2efZoy=U+j-xji0Agp38qRy-8cjb7K7QiJrL-ZQ@mail.gmail.com>
+Message-ID: <CAMuHMdWkg-k2efZoy=U+j-xji0Agp38qRy-8cjb7K7QiJrL-ZQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg2ul-smarc: Add
+ /omit-if-no-ref/ to pinmux
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        zhuyinbo@loongson.cn, Arnd Bergmann <arnd@arndb.de>,
-        Hector Martin <marcan@marcan.st>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Brian Norris <briannorris@chromium.org>,
-        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221025035128.21068-1-zhuyinbo@loongson.cn>
- <20221025035128.21068-2-zhuyinbo@loongson.cn>
- <7c67c721-685a-fa0e-ab4b-41b7de3ea0a0@linaro.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <52de60bd-8aa5-a461-9bca-ce8e6f82ead8@loongson.cn>
-Date:   Wed, 26 Oct 2022 15:22:09 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <7c67c721-685a-fa0e-ab4b-41b7de3ea0a0@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxLeAh4FhjNzEFAA--.19404S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxWFy7ZF43WF4UuFyUJF1rCrg_yoW5Kr13p3
-        WxCFW5KFWvqF129wsIq3WxAF13urZ7C3WDWr9rJ3429FyDCasaqwsxKas8Za1xJr97WFW2
-        9FW0g3yF9F4DAFJanT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bq8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUtVW8ZwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUtVW8ZwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26F4j6r4UJwCI42IY6I8E87Iv
-        6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUciL0UUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
+On Wed, Oct 26, 2022 at 12:39 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Tue, Oct 25, 2022 at 9:13 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Thu, Sep 15, 2022 at 6:53 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > In preparation to re-use the RZ/G2UL SMARC SoM and carrier DTS/I with the
+> > > RZ/Five add /omit-if-no-ref/ keyword to pinmux entries as the support for
+> > > RZ/Five SMARC EVK will be gradually added.
+> > >
+> > > Once we have full blown support for RZ/Five SMARC EVK we can get rid of
+> > > the /omit-if-no-ref/ keyword.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > I finally had a deeper look at this...
+> >
+> > Why do you want to disable these nodes? While they are indeed not
+> > used yet on RZ/Five, they are valid hardware descriptions for the
+> > RZ/Five SMARC EVK, and their presence doesn't harm anything.
+> >
+> > I do see a valid use case for marking pin control subnodes with
+> > /omit-if-no-ref/: you can provide all possible configurations as a
+> > convenience for the user, so the user no longer has to look up the
+> > numeric parameters of the RZG2L_PORT_PINMUX() macros.
+> > But IMHO those would belong in the SoC-specific .dtsi, not in a
+> > board .dtsi.  See e.g. the massive use of /omit-if-no-ref/ in sunxi
+> > and rockchip .dtsi files.
+> >
+> > Am I missing something?
+> >
+> My intention was to keep the DTB as minimal as possible so that it
+> includes just the required pinmuxes which were enabled on the RZ/Five.
+> For example [0], [1] we do delete the pinctrl for the nodes which are
+> marked as disabled. Do you think we should drop it?
 
-在 2022/10/26 上午3:40, Krzysztof Kozlowski 写道:
-> On 24/10/2022 23:51, Yinbo Zhu wrote:
->> Add the loongson2 soc guts driver binding with DT schema format
->> using json-schema.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../soc/loongson/loongson,ls2k-guts.yaml      | 37 +++++++++++++++++++
-> 
-> Looks like wrong location, although difficult to judge because you did
-> not describe the hardware at all. If this is chipinfo-like device, then
-> Documentation/devicetree/bindings/hwinfo/.
-My guts driver is refer fsl platform. It was was to manage and access
-global utilities register block for SoC and it was only used in SoC
-platform. when driver need use Soc ops to do some function the this 
-driver was needed.  the dcfg (device config) was a function in guts 
-(global utilities) block.
-For these type of driver, other platforms were initially placed on
-Documentation/devicetree/bindings/arm/   if it is arm/arm64
-architecture. Later, move it to the soc directory.
+You mean
 
-Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
+    /delete-property/ pinctrl-0;
+    /delete-property/ pinctrl-names;
 
-So, do you still think it is inappropriate to place it in the soc dir?
-> 
-> 
->>   MAINTAINERS                                   |  1 +
->>   2 files changed, 38 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
->> new file mode 100644
->> index 000000000000..2502f8aeb74d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
->> @@ -0,0 +1,37 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-guts.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson2 GUTS driver.
-> 
-> Drop "driver." unless you refer to some hardware (like motor driver?).
-this need refer hardware soc datasheet to gain soc register (global 
-utilities register block ).
-so keep "driver" string that whether was more appropriate?
-> 
->> +
->> +maintainers:
->> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->> +
->> +description: |
->> +  GUTS driver was to manage and access global utilities block. Initially
-> 
-> Drop "driver" and describe instead what is GUTS, including its acronym,
-> 
->> +  only reading SVR and registering soc device are supported.
-> 
-> Entire sentence describe Linux driver - drop it. Instead describe the
-> device, the hardware.
-> 
->> +
->> +properties:
->> +  compatible:
->> +    const: loongson,ls2k-guts
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  little-endian: true
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    guts: guts@1fe00000 {
-> 
-> Node names should be generic.
-dcfg/scfg (device cfg/ soc cfg)was the key function of guts (global 
-utilities) block. and guts name I was refer fsl soc driver. 
-"drivers/soc/fsl/guts.c"
-this binding file was follows of fsl guts.
-Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
-Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
+?
+These do not delete pinctrl subnodes, but pinctrl properties in disabled
+device nodes pointing to pinctrl subnodes.  The actual pinctrl subnodes
+are still present.
 
-or, I was use scfg as node name, Do you think it's appropriate?
+> But now that things are falling in place for RZ/Five we can ignore this patch.
 
+Agreed.
 
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> [0] arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+> [1] arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
