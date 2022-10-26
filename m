@@ -2,41 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C7D60E276
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 15:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 458A760E249
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 15:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233836AbiJZNrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 09:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
+        id S232946AbiJZNho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 09:37:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233440AbiJZNqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 09:46:35 -0400
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC32167073;
-        Wed, 26 Oct 2022 06:46:33 -0700 (PDT)
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3020B1A81C5;
-        Wed, 26 Oct 2022 15:46:32 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id BA5371A81C2;
-        Wed, 26 Oct 2022 15:46:31 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id DC7CC183486A;
-        Wed, 26 Oct 2022 21:46:29 +0800 (+08)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     shengjiu.wang@gmail.com, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, marex@denx.de
-Subject: [PATCH] clk: imx8mp: Add audio shared gate
-Date:   Wed, 26 Oct 2022 21:26:01 +0800
-Message-Id: <1666790761-4685-1-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        with ESMTP id S232842AbiJZNhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 09:37:43 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 066FC31F87;
+        Wed, 26 Oct 2022 06:37:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B016DB8212F;
+        Wed, 26 Oct 2022 13:37:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62FA5C433D7;
+        Wed, 26 Oct 2022 13:37:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666791460;
+        bh=UL2LVpGMXmV0M4vv+QD2QvanVwPYtHQCP3mM8/DFWPA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Fq5bs9HS5e+GaFM8oZ9fQp/meOdajrvz46zeTC+ULT8qOkEkXYJBlfZD8vfelMLJJ
+         eNFd5WOk+QpsVZjlSHQVn0XC9dklP4XuaMvUqAkJTwE3FF1wp/ea6BfBvnd5G6r+NA
+         2iRNR875hR/DanzkFrRNgGwU5LkAnFnAos2wMg0bD1X2R0BsQg++1R/BbfQwserQbd
+         g9SB8hAGEP8Di146ESs7yu88zqIlg9/pOuqrSpc8+dctFyBJVUYnfJ6fPDcPQ2dx1k
+         AfQvh6nZULc8qV9gIaXoJFidPKiylIoAjL/vufeoGa3O/tHBnp9H5JS/xDpJzxi4Os
+         QEZ94s7A3Jxzg==
+Received: by mail-lj1-f172.google.com with SMTP id s24so11451026ljs.11;
+        Wed, 26 Oct 2022 06:37:40 -0700 (PDT)
+X-Gm-Message-State: ACrzQf03h6ZcSfXe2UHPUR0UVqTNoMGKok/X2ubBcpNZ0Ue7ucWoZbCz
+        dWW3BaMcuhjlr+sXevsbAL1CR0YEqHmkJQs7Zg==
+X-Google-Smtp-Source: AMsMyM5kpW7MAdB7VpnGWrfcHXb1OJGlN7V6fN1CwSlI6dgAnhKep1S3QF4Mt0l8icI+mQSAGvQ6t48c8gLOjFDgMl4=
+X-Received: by 2002:a2e:a44c:0:b0:26b:e70f:a026 with SMTP id
+ v12-20020a2ea44c000000b0026be70fa026mr15457816ljn.94.1666791458417; Wed, 26
+ Oct 2022 06:37:38 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
+ <20221013094838.1529153-2-Naresh.Solanki@9elements.com> <20221024161806.GA1855651-robh@kernel.org>
+ <dcd22f70-e51c-290e-c11f-9a5ce32748c1@9elements.com>
+In-Reply-To: <dcd22f70-e51c-290e-c11f-9a5ce32748c1@9elements.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 26 Oct 2022 08:37:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKT52ULEZjKo9emEAt74nH2OpMO8ymLLKM_T-NzAwqGog@mail.gmail.com>
+Message-ID: <CAL_JsqKT52ULEZjKo9emEAt74nH2OpMO8ymLLKM_T-NzAwqGog@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,80 +65,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Abel Vesa <abel.vesa@nxp.com>
+On Tue, Oct 25, 2022 at 4:16 AM Naresh Solanki
+<naresh.solanki@9elements.com> wrote:
+>
+>
+>
+> On 24-10-2022 09:48 pm, Rob Herring wrote:
+> > So if we unload and reload the driver module, it should go back to the
+> > default?
+> This is RPM to be set during probe if desired.
+> >
+> > I think it is really, 'target RPM if not already configured' which could
+> > be keep the setting from a register (e.g. what the bootloader set) or
+> > perhaps you already have temperature information to use...
+> Yes. missed it. It should be target-rpm will correct this. in next version.
+> >
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +  pwm-frequency:
+> >> +    description:
+> >> +      PWM frequency for fan in Hertz(Hz).
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +
+> >> +  pwm-polarity-inverse:
+> >> +    description:
+> >> +      Inverse PWM polarity for fan.
+> >> +    type: boolean
+> > As I said before, the PWM binding handles these 2 settings. Use it. Yes,
+> > it's a bit of an overkill when the child is the consumer of the parent.
+> > Until some 'clever' h/w engineer decides to use one of the PWMs for
+> > something else like a backlight.
+> I would like you to consider this as something recommended by fan
+> datasheet for the given fan instance.
+> This info can be used by fan controller driver to configure PWM
+> source/provider accordingly.
+>
+> If you still feel that may not make sense then I'll remove this property.
 
-According to the RM, the CCGR101 is shared for the following root clocks:
-- AUDIO_AHB_CLK_ROOT
-- AUDIO_AXI_CLK_ROOT
-- SAI1_CLK_ROOT
-- SAI2_CLK_ROOT
-- SAI3_CLK_ROOT
-- SAI5_CLK_ROOT
-- SAI6_CLK_ROOT
-- SAI7_CLK_ROOT
-- PDM_CLK_ROOT
+You evidently don't understand my comments. My suggestion is to do this:
 
-And correct clock MX8MP_CLK_AUDIO_ROOT to be IMX8MP_CLK_AUDIO_AHB_ROOT.
+fanc: fan-controller {
+  #pwm-cells = <3>;
+  ...
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- drivers/clk/imx/clk-imx8mp.c             | 11 ++++++++++-
- include/dt-bindings/clock/imx8mp-clock.h | 11 ++++++++++-
- 2 files changed, 20 insertions(+), 2 deletions(-)
+  fan {
+    pwms = <&fanc 0 500000  PWM_POLARITY_INVERTED>;
+    ...
+  };
+};
 
-diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-index 652ae58c2735..0ae3bc7bf8a1 100644
---- a/drivers/clk/imx/clk-imx8mp.c
-+++ b/drivers/clk/imx/clk-imx8mp.c
-@@ -17,6 +17,7 @@
- 
- static u32 share_count_nand;
- static u32 share_count_media;
-+static u32 share_count_audio;
- 
- static const char * const pll_ref_sels[] = { "osc_24m", "dummy", "dummy", "dummy", };
- static const char * const audio_pll1_bypass_sels[] = {"audio_pll1", "audio_pll1_ref_sel", };
-@@ -699,7 +700,15 @@ static int imx8mp_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MP_CLK_HDMI_ROOT] = imx_clk_hw_gate4("hdmi_root_clk", "hdmi_axi", ccm_base + 0x45f0, 0);
- 	hws[IMX8MP_CLK_TSENSOR_ROOT] = imx_clk_hw_gate4("tsensor_root_clk", "ipg_root", ccm_base + 0x4620, 0);
- 	hws[IMX8MP_CLK_VPU_ROOT] = imx_clk_hw_gate4("vpu_root_clk", "vpu_bus", ccm_base + 0x4630, 0);
--	hws[IMX8MP_CLK_AUDIO_ROOT] = imx_clk_hw_gate4("audio_root_clk", "audio_ahb", ccm_base + 0x4650, 0);
-+	hws[IMX8MP_CLK_AUDIO_AHB_ROOT] = imx_clk_hw_gate2_shared2("audio_ahb_root", "audio_ahb", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_AUDIO_AXI_ROOT] = imx_clk_hw_gate2_shared2("audio_axi_root", "audio_axi", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI1_ROOT] = imx_clk_hw_gate2_shared2("sai1_root", "sai1", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI2_ROOT] = imx_clk_hw_gate2_shared2("sai2_root", "sai2", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI3_ROOT] = imx_clk_hw_gate2_shared2("sai3_root", "sai3", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI5_ROOT] = imx_clk_hw_gate2_shared2("sai5_root", "sai5", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI6_ROOT] = imx_clk_hw_gate2_shared2("sai6_root", "sai6", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_SAI7_ROOT] = imx_clk_hw_gate2_shared2("sai7_root", "sai7", ccm_base + 0x4650, 0, &share_count_audio);
-+	hws[IMX8MP_CLK_PDM_ROOT] = imx_clk_hw_gate2_shared2("pdm_root", "pdm", ccm_base + 0x4650, 0, &share_count_audio);
- 
- 	hws[IMX8MP_CLK_ARM] = imx_clk_hw_cpu("arm", "arm_a53_core",
- 					     hws[IMX8MP_CLK_A53_CORE]->clk,
-diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindings/clock/imx8mp-clock.h
-index 9d5cc2ddde89..2f6fec299662 100644
---- a/include/dt-bindings/clock/imx8mp-clock.h
-+++ b/include/dt-bindings/clock/imx8mp-clock.h
-@@ -324,8 +324,17 @@
- #define IMX8MP_CLK_CLKOUT2_SEL			317
- #define IMX8MP_CLK_CLKOUT2_DIV			318
- #define IMX8MP_CLK_CLKOUT2			319
-+#define IMX8MP_CLK_AUDIO_AHB_ROOT		320
-+#define IMX8MP_CLK_AUDIO_AXI_ROOT		321
-+#define IMX8MP_CLK_SAI1_ROOT			322
-+#define IMX8MP_CLK_SAI2_ROOT			323
-+#define IMX8MP_CLK_SAI3_ROOT			324
-+#define IMX8MP_CLK_SAI5_ROOT			325
-+#define IMX8MP_CLK_SAI6_ROOT			326
-+#define IMX8MP_CLK_SAI7_ROOT			327
-+#define IMX8MP_CLK_PDM_ROOT			328
- 
--#define IMX8MP_CLK_END				320
-+#define IMX8MP_CLK_END				329
- 
- #define IMX8MP_CLK_AUDIOMIX_SAI1_IPG		0
- #define IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1		1
--- 
-2.34.1
+0 is PWM number and 500000 is the PWM frequency. The 3rd cell are per
+consumer flags. See pwm.txt for more details.
 
+Rob
