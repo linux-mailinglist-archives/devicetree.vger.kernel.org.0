@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B51960E333
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EF260E33C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233731AbiJZOVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:21:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42260 "EHLO
+        id S234275AbiJZOXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:23:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233983AbiJZOU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:20:59 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2AD10EA0F
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:20:59 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id b25so10588947qkk.7
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:20:59 -0700 (PDT)
+        with ESMTP id S234311AbiJZOXb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:23:31 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F97111BA9
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:23:30 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id f22so9966009qto.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:23:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sy6g+vLLQvXjf5HeMT0nB82DeyV0IzT0a5m7Og326KA=;
-        b=kqWHgM0TtbYnT+VGk2G0985LVrw6573v0G8yLnv4MUbg6OJoAxvEI+1IYOutsyx7pR
-         Udq5eVMqzhxgVIM9RQsxVTJFy5Kxl+7HvEI3R50KgkV7ztvWJM5WH+t1pDJdqO12noVx
-         3OYPHEGHMosO/etTmHhC2BDSHgLvoUFqcOHWRj3747uqTzeYcdnQHeiUaYA9Ce1Mf4+X
-         Xbg4n/x1/D8jOo/Pu5vsIDDYuX32PZcHAGBrPIS3xnV5UTUgL8DZxqwr76MJS3XynSMt
-         og5jO19h5ngEGgG3ufHVn0b/LNl5GM5XcDplOEX546aTgEOi8w6/rQCEcMHt9dCBvc1d
-         mRGw==
+        bh=BqMNLvHQ2hWVKlzHSd00UW0qgFnV5U+Ku1OTYpudEo4=;
+        b=JRWZV4zzj1C+QUy3o4Hg6Hl7KAVINoB/ig04Wx9mFze3OHESDYG41Aydp3LBDYor4d
+         Cu35M805+/LwGTGokYH+Scm79ho14Wog0i1F8urzeGXB6Abzd4feOpyXO71Q/gT1dWgF
+         zQtzscBAeNFCZ5wVaV0c+x7Jb+2Fl1Fehaz6UG2hlxNXh6mS55d6DoK/W+Ro9ha5t2nM
+         Xcfss3pXHHJqDZo5CrTY3UIjIQL5ESexHBYfLHfObpzEJWGYnmySDvjncisGEVLqDCFV
+         4zztOnLiroyJ3oKNKaRYYNxTN8XlhdSjLIPwJ8l7M8WH8kVjghLlSAFFXJQwdUnXGJ6Q
+         kXEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sy6g+vLLQvXjf5HeMT0nB82DeyV0IzT0a5m7Og326KA=;
-        b=XoOcZ+Ts2R+1gLchyQVQhMG7FKJ396YSfCqZ6V4PbibM0RqSuvWsvkwgNkxoAZeBiR
-         li2uYKwpcC/Ulk3+LeO0HGYnzHZjWYHj5kYB0lyKLh6ExVxolTNRwHpDFS3nOsLWXPYn
-         GhMCuQDaWFee5npog6ZLhXPKuIgdqDsB1tn0B2J2YLBXHNdgLO96Ila7BpAyd+4tblnA
-         YjRe+RB9tZbeHIduQwsn7QMru6cq2z3htkrQQFpSkKsZ09MT3SwKTuNkVig7kj/+JqCh
-         RuBZbD0/bWOs2dEhWv0jSHBis3aAc3mfFaTa9o7+fd0L1XmFg3pdFhPy7A0N0YToBomm
-         9AWg==
-X-Gm-Message-State: ACrzQf2C3gq70IPVnzfCsqIYXKo3zxUX1E2wNZrLw/WVSX/7BGOfFnK2
-        1y15zjU0jHegb0AZZomljVZROg==
-X-Google-Smtp-Source: AMsMyM67z/vs5deHpQrLUuxUi9zO4BPnIquP5aPQgFh05WhAqMhT2FBusEI/KZzRvVoj0Y2kLD7l3A==
-X-Received: by 2002:a05:620a:796:b0:6ee:80b6:2eae with SMTP id 22-20020a05620a079600b006ee80b62eaemr30617333qka.17.1666794058191;
-        Wed, 26 Oct 2022 07:20:58 -0700 (PDT)
+        bh=BqMNLvHQ2hWVKlzHSd00UW0qgFnV5U+Ku1OTYpudEo4=;
+        b=FqU1sx1qBOxk5CMEFjrMgQ8Zj/kk7Vqw9B3ybcCug2wwOKQAhqKp9P11RJ5p1dEt6K
+         1EOpYuGTmI8HI+Q2O/1av4lb8ZipMr0thfjdK5rhcH1jr888htsnSkxqWKnLZYDEzziu
+         tpXkSdbnNjorMDR8Sf+1Ky661dt9zPaJGvChhao/Hc4iBaPcmvPXaYsxWqpjp2lvVfXG
+         BQ8jMSdY4i7gUA5lYYAMFBWRU9f9uP26cE3K5HDMv2kJA6YJQjAZ9cLNiqxrlU1zGUSJ
+         R8EAjU+IT2yyVLWhNjHCywCfeZ3bYg195AszaUZ9hVRPBhEgfPHgTlZs8y+4VWmVNKke
+         +uHg==
+X-Gm-Message-State: ACrzQf3dC79tf/JMQbjiT+aakgveSfZscXZ7jOeSVFuNro1KL9LJx2cA
+        maezJ9+cBVkIjtwX4fwyZ4OCgyXh6e7oFg==
+X-Google-Smtp-Source: AMsMyM4wVzLveUDs8MwkkI2QdIMLJxr4YRBhsXq+G3qow0kiGcjCJ274Q7QbwW3pfuvcl/dTGbs56w==
+X-Received: by 2002:a05:620a:e87:b0:6f4:9c2c:c04b with SMTP id w7-20020a05620a0e8700b006f49c2cc04bmr12407111qkm.60.1666794198489;
+        Wed, 26 Oct 2022 07:23:18 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id s10-20020a05620a29ca00b006eea4b5abcesm3988882qkp.89.2022.10.26.07.20.56
+        by smtp.gmail.com with ESMTPSA id 3-20020ac85903000000b00399d5d564b7sm3335859qty.56.2022.10.26.07.23.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:20:57 -0700 (PDT)
-Message-ID: <438f5df4-b076-4920-7bb3-095041c27eef@linaro.org>
-Date:   Wed, 26 Oct 2022 10:20:55 -0400
+        Wed, 26 Oct 2022 07:23:17 -0700 (PDT)
+Message-ID: <fd4132ce-fad8-bd33-689c-e8358b587d28@linaro.org>
+Date:   Wed, 26 Oct 2022 10:23:15 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
@@ -77,8 +77,8 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -94,9 +94,6 @@ On 25/10/2022 23:57, Yinbo Zhu wrote:
 > 
 > The loongson2 HPET module includes a main count and three comparators
 > , all of which are 32 bits wide. Among the three comparators, only
-
-No blank line before coma.
-
 > one comparator supports periodic interrupt, all three comparators
 > support non periodic interrupts.
 > 
@@ -107,9 +104,10 @@ No blank line before coma.
 >                 2. This patch need rely on clock patch, which patchwork  
 >                    link was "https://patchwork.kernel.org/project/linux-clk/list/?series=688892".
 
-Link to lore.
+Your dependency does not apply. You based it on some other tree, so we
+cannot even test this.
 
-The point 2 should go to cover letter. It's easy to miss it.
+Fix your clock patchset.
 
 Best regards,
 Krzysztof
