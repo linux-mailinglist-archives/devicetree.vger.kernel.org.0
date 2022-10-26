@@ -2,103 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44A7A60E34A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD8A60E34F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233818AbiJZO2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:28:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57674 "EHLO
+        id S232946AbiJZO3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233318AbiJZO2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:28:21 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBC11119DF
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:28:21 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id c23so9966000qtw.8
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:28:21 -0700 (PDT)
+        with ESMTP id S234315AbiJZO3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:29:03 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A34B1119F4
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:29:02 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id 8so10637101qka.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=l439+0R5hO/yRk1J+3UmLizSxKZrKGZyR0O124ef93c=;
-        b=ZfFHFEdLr++H9TznwXfWaSgfrldon+JVu4ZhPk/fPCUtsE8Odks2IPXyMZC9/hQCt1
-         wUj4yNGIgo1aL1o6wV+5hLweYQwPX/NpmTGrGEsya8CDudaIWVmeuvqUUdHw5C4dHrc+
-         cCfItGQTwsx+PRh4FlH2H35POSGMxx5ToenlLbccOVeaFM7luoSLwnOoL2owPWVg9Z6K
-         xBDEOYwreHgWchDVxKu9Tgn0B8ZbZFznjMSOE9OLjqQ/0jjEBKd6V+YcF8p7aQCVVme6
-         FN+lgF9IcXEoEdUfZWM2S6CLb3d0zxsyuH6atEL9n5Bu46K7OymWzEQzzO67TBZeXMuf
-         hxdg==
+        bh=HepF+4A2/3ZWV1tTO7JvfOk/wi0W7kiAoRviokUEQWk=;
+        b=xmhb1LPv6lF+utwsSzmBJo6aHeftPiH2Kyv4Bvr4KAlYL2U4tSNzSstC39opm1m5Rs
+         Aszx1vnXqIpzkkRmAtd22JdQo95UE/RT1/6x0tAhvHJ4YwrJj38vaAv/uGIvh9sESCX6
+         LIaVQCQHFwjJNL6ZhbLZfFEyHVG+XE47c0AoymmQS5/pkgVunpLDSldYJHlsbUivK3n+
+         OPsEEcb5gI0GbyofsB8lEcGs5BcpWZJDpHwkM6DUicGJ6YJHxnAg7gQ8HtvxqurK917c
+         8lXs2vckc72kTJN2aHETO3eVnL+u5khewCIpyjaqZmDTxILwvBAkGxklGQRLTfLUD7KC
+         VIAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l439+0R5hO/yRk1J+3UmLizSxKZrKGZyR0O124ef93c=;
-        b=sexzsOdxd5eMzjwOWe/lBo/QH5ogkefVl6jiqdRg9YeesHWOwD5kx3vM7ij7ZjV8AZ
-         AGtt265WkgUL1GVRnR6UFBOQ5eillA7MzdZdoxyKTSJrBRmlsqsxpN3V1osPW3i5Re7W
-         d7zneKZNzMryrChl1Re6OgIqi2a0lBjMUkBvSXSrRV4G2CMKL/18PXr3ZULLXNeXGjds
-         KQDRET0iqWJvZPpivuk8gpJxoEMpIyfYgUIGmJmiN2t0USbrb0V1awhmKxAI5Gov4JjW
-         6/uXm/4pS2+UxpitwXXQq+xs1fzB2voQtV3Zx9c/ndVfGfXWaFOBSde0ZmaiFFYEFZKM
-         u3Xw==
-X-Gm-Message-State: ACrzQf2byzS82sympuduFSylAgCLJHTLkg5kqzAQFj+ikFF80pMyPu79
-        VZz12aCleSoDx0MTvMW6gBCTyA==
-X-Google-Smtp-Source: AMsMyM5m1uinfI4UXc8SZtse1r7FwSlklruraaJd/xVhVOs+Tk2bRefK0Tu45oSL6DAaO2OGvJc6EQ==
-X-Received: by 2002:a05:622a:138b:b0:39c:eb5a:5c33 with SMTP id o11-20020a05622a138b00b0039ceb5a5c33mr37048294qtk.412.1666794500218;
-        Wed, 26 Oct 2022 07:28:20 -0700 (PDT)
+        bh=HepF+4A2/3ZWV1tTO7JvfOk/wi0W7kiAoRviokUEQWk=;
+        b=U1zNPS2WaBr+BlylOQ5Akh4zkldCCBJGHZ3nAiqT6PTyd6UmogSahktseMUJSvhOMz
+         fgqZZ9Ti7tScUQQSGCUPOZTP8BZGdT1QF6FrvDs+hCp/IXYt2DWCCI2fBqB2Btfr0C/H
+         L8poxoWwwLwsodsSqWJH5thRklUeJpQRfV/l8OjN0V1gcMntIPlHXonu0ceX3vTlL9Tf
+         ETav5mCAwLKf33E3HCqsVzBsC1VPeYw7ZYxPmy1bbjT+68atjFTHM0Rtg47h80BePVnk
+         UFCV3z7EWM0zaHaBmBPHk2KgBl/EGBIrO7/JfDWGINltuxq7MESy2P4pZVJVHrLk2Pjw
+         hO0w==
+X-Gm-Message-State: ACrzQf1RTSWAAnBlLCb4MxCdd8bQ18i/QEhgQq/d3veIlzbID7IER21X
+        DllOz+CzXu/g5gs33QMIF/6G9A==
+X-Google-Smtp-Source: AMsMyM6lpu83qpTJZs3g3pyaL3a9mQY9MGnGVNyB0/eSs1gGWO65GWGZ6/h84n2kWseHL1Vvyk1gdQ==
+X-Received: by 2002:a05:620a:370c:b0:6ee:cece:c779 with SMTP id de12-20020a05620a370c00b006eececec779mr29445511qkb.727.1666794541727;
+        Wed, 26 Oct 2022 07:29:01 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05622a114c00b0039cde2cd510sm3279219qty.28.2022.10.26.07.28.18
+        by smtp.gmail.com with ESMTPSA id s16-20020a05620a255000b006cbe3be300esm4011966qko.12.2022.10.26.07.29.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:28:19 -0700 (PDT)
-Message-ID: <1405ff3d-7d20-b604-189b-6730b8231ed4@linaro.org>
-Date:   Wed, 26 Oct 2022 10:28:17 -0400
+        Wed, 26 Oct 2022 07:29:01 -0700 (PDT)
+Message-ID: <5264f9e1-b67e-479d-843c-c92230cfd0c3@linaro.org>
+Date:   Wed, 26 Oct 2022 10:28:59 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: hpet: add loongson2 hpet
+Subject: Re: [PATCH 5/6] dt-bindings: soundwire: qcom: add v1.7.0 support
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev
-References: <20221026035752.32681-1-zhuyinbo@loongson.cn>
- <20221026035752.32681-2-zhuyinbo@loongson.cn>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        vkoul@kernel.org, yung-chuan.liao@linux.intel.com
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20221026110210.6575-1-srinivas.kandagatla@linaro.org>
+ <20221026110210.6575-6-srinivas.kandagatla@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026035752.32681-2-zhuyinbo@loongson.cn>
+In-Reply-To: <20221026110210.6575-6-srinivas.kandagatla@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 23:57, Yinbo Zhu wrote:
-> Add the loongson2 High Precision Event Timer (HPET) binding
-> with DT schema format using json-schema.
-> 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+On 26/10/2022 07:02, Srinivas Kandagatla wrote:
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
-> Change in v4: 
->                 1. Fixup the clock-names that replace apb-clk with apb.
->                 2. This patch need rely on clock patch, which patchwork  
->                    link was "https://patchwork.kernel.org/project/linux-clk/list/?series=688892".
-> 
+>  Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 1 +
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
