@@ -2,67 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC7E60E135
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C4B760E179
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 15:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233807AbiJZMvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:51:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57912 "EHLO
+        id S233664AbiJZNHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 09:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbiJZMvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:51:32 -0400
-Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6C05DD899
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 05:51:30 -0700 (PDT)
-Received: by mail-vk1-xa2c.google.com with SMTP id g26so731224vkm.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 05:51:30 -0700 (PDT)
+        with ESMTP id S232823AbiJZNHV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 09:07:21 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C574FAA46;
+        Wed, 26 Oct 2022 06:07:17 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso1456909wma.1;
+        Wed, 26 Oct 2022 06:07:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MsB4qBPjpgcHYx8+lcYwIXJdnA7utXxH3W08banDjGA=;
-        b=cUNXi01PsdzbRkMp5m1ITjc2gBs2EHihS/51UX4cHPIkUj1fpNEpEHKaBMn2m35GsU
-         uzSPYP81x/0SLimTifYkmX6MTJ+++X4sDUoOllxjzcyBDFTB2V/sc227exQrVW7e39UH
-         baUqytjfMAZpVFxGgqL52HXnZyJMoRhbLyF9qcYO5KApbotQoFDpoPI7qXlANSqWmS6c
-         7Xma+cyEeGFm+xzEQs0wQgHY1p7Bqc4/qUpjJwYLJOkKi4892Oy2BVmglpD93Wx6YeW1
-         06FV8bABkl+I0DrlaKDYEF9VnV4yg+BwxQ0QH2wJpG7Lbn6lMrIU1VkStIGge0XWy0qz
-         mM+Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=U4gTLQJXz8CMD4MLdfjgD1120eev/1EzGcTrgRnh7XU=;
+        b=aXDDaKjTkIvcxKodmX/+BaVYCdDTU7FaI3gq/pU7TC2XjKNFpp/AHW+uYK8oP9xRVY
+         4/PoYLl2z4sh4Y/pCgKIQWYKVh3QCrPFTDnhLzPR/IjY6MX10weZ4Bc7cGAuwIo1LKYB
+         XlhIoL9uOSxkSbSFx1gs/y4OOafXKeZtubOE3GRqLTbF1chhS3LeAdI10G8eAg0/cQwS
+         hbIJQCNj+JeVVKyaBMkd7HW7w/oPltgUbLEXLBZ3ftIA7WogWr8CAe3QHdaQgbI4BOyh
+         6EDw4nhON1NoZl0AWE7scf/eByvEDw6NlvBR1EkOnzW8GvgUt+ObhBKDNHo1NyJYJNvU
+         vKRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=MsB4qBPjpgcHYx8+lcYwIXJdnA7utXxH3W08banDjGA=;
-        b=vsAUj6bBBL03HnJqii0LyDxvXWIBX6acSOHWqIx/xV7WENkz3XSxWvTbHnhlLkP7T9
-         3QSKLBj7/k2j1PpplWkMiJ/CqlEE/YE6BXRSNk0tb7IkJdlVGDa5o1cBmRM0XyuBQKZJ
-         D80aPx8Yy99khWAkQhltmePGGlKEt0DJtKTVU4A3DQjOWfRaMbKeLwtS30OhOtrbKs/b
-         KqmOJoNLkqzfsn/ZpueERnuCpdpBVwmMACDvoHFNstCfYOPz2NFSdKtONJMS8zV8v8yP
-         a13EquG+/fz8XyOImfwre7/Ege6GStii8V0PVvCxRyhGv6+Rm7rA4+QjY0w9eyOjlCVa
-         jKTw==
-X-Gm-Message-State: ACrzQf2EN/8P+0dqqci+QmvjcMJOWL3BXmBrxhPaf5VBMg+JkNc/UHN3
-        w4nV6O40zci/6jgk6ddOhJ0QrF4ukAMmF+tbNwNVRw==
-X-Google-Smtp-Source: AMsMyM5GucTb1XadTqwakxDzlyW8r6GrVuewHRaRjn8hZX0HjTZCuTijjuXPgFxsmpOVQtP+q5ZH6O3f+Hfa0Ds0KCM=
-X-Received: by 2002:a1f:2455:0:b0:3b7:88a4:c121 with SMTP id
- k82-20020a1f2455000000b003b788a4c121mr5738060vkk.1.1666788689808; Wed, 26 Oct
- 2022 05:51:29 -0700 (PDT)
+        bh=U4gTLQJXz8CMD4MLdfjgD1120eev/1EzGcTrgRnh7XU=;
+        b=s2rcbYcPAxyyfInZu/J2C5mfQG80hfatyk+jJa+zhlj5CDpO0DPwQ3zNFLebhqclgg
+         +7LMhS/n2BGkg0hq5wq7uIwTp9PzB2YjG97TzRuAl22EYtX7siTD7fhCNiWI4ZXa+kCF
+         cDJ3UBZ3QygQJTXxcQ0N3EsEDijBCFZO3piML9t7+RZ/l4jX7MRLf5UN1a4RnIEnYfgA
+         fTiJq6WidKb5fgW3zJHHqwY5Fck1DPnaGXcYh60X8ccTUG3eO999AFET2FWWpM7oQgGt
+         8ApI5qL/NLaSkhWcXcUsVayChK3WGaVnT2ubNYl8h4Ko26KsOh67QfwVUP5ezeIAJrS6
+         reTA==
+X-Gm-Message-State: ACrzQf0rPd62mYqMf3wzVrZ6CJcUq8UndZB/NqOzL2MrR8zpD6YBDpRq
+        EZnxv+rCb2wyIc8O7rSXJ54=
+X-Google-Smtp-Source: AMsMyM48kddrD6lp9ckBPpw7UY4pEAXskQBW0gVtLLEqOUJGtxCXskiv0N20wQEPWzQJKQgfPomwJA==
+X-Received: by 2002:a7b:cc15:0:b0:3b4:ca90:970d with SMTP id f21-20020a7bcc15000000b003b4ca90970dmr2458810wmh.198.1666789635445;
+        Wed, 26 Oct 2022 06:07:15 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:cc:c67c:46e:319e])
+        by smtp.gmail.com with ESMTPSA id l3-20020adfa383000000b002366eb01e07sm5245433wrb.114.2022.10.26.06.07.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Oct 2022 06:07:14 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Shawn Tu <shawnx.tu@intel.com>, Jacopo Mondi <jacopo@jmondi.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/9] media: i2c: ov5645 driver enhancements
+Date:   Wed, 26 Oct 2022 14:06:49 +0100
+Message-Id: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220930102259.21918-1-shubhrajyoti.datta@amd.com>
- <20220930102259.21918-3-shubhrajyoti.datta@amd.com> <CAMuHMdUAcA=4Xcgr9hHgT5cro=s0mvAQqHmco0-e-NvWKJmrCA@mail.gmail.com>
- <Y1keKRzBhSDi671j@smile.fi.intel.com>
-In-Reply-To: <Y1keKRzBhSDi671j@smile.fi.intel.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 26 Oct 2022 14:51:18 +0200
-Message-ID: <CAMRc=MfR14_Pd57AgqyGTRsghb7OjyPNOyoWmvnae5i=Fnznug@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] gpio: pca9570: add a platform data structure
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        linux-gpio@vger.kernel.org, git@amd.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, linus.walleij@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,48 +86,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 1:46 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Wed, Oct 26, 2022 at 12:00:34PM +0200, Geert Uytterhoeven wrote:
-> > Hi Shubhrajyoti,
-> > On Fri, Sep 30, 2022 at 12:41 PM Shubhrajyoti Datta
-> > <shubhrajyoti.datta@amd.com> wrote:
->
-> ...
->
-> > Thanks for your patch, which is now commit 35a4bc94a47f2ea6 ("gpio:
-> > pca9570: add a platform data structure") in gpio/gpio/for-next
-> > linux-next/master next-20221026
->
-> Dunno if Bart rebases his tree...
->
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I will back it out of next. Shubhrajyoti: can you send a fixed version
-of this series?
+Hi All,
 
-Bart
+The main aim of this series is to add Runtime PM support to the sensor
+driver alongside some cleanups and fixes.
 
-> ...
->
-> > >  static const struct of_device_id pca9570_of_match_table[] = {
-> > > -       { .compatible = "nxp,pca9570", .data = (void *)4 },
-> > > -       { .compatible = "nxp,pca9571", .data = (void *)8 },
-> > > +       { .compatible = "nxp,pca9570", .data = &pca9570_gpio },
-> > > +       { .compatible = "nxp,pca9571", .data = &pca9571_gpio },
-> >
-> > This breaks bisection, as .data is still considered to be the number
-> > of GPIOs:
-> >
-> >     gpio->chip.ngpio = (uintptr_t)device_get_match_data(&client->dev);
->
-> You beat me up to it, I have also noticed this.
->
-> > >         { /* sentinel */ }
-> > >  };
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
+v2 -> v3
+- Included patch#1 [2] as part of this series
+- Patched all in-tree DTS for dropping the clock preoperty to
+  avoid dt warnings
+- Fixed review comments pointed by Sakari and Laurent for the Runtime
+  PM patch
+- Now sending the error code of first error while stream off.
+- Included RB tags from Laurent
+
+v1-> v2
+- patch #1 is infact a v3 [1] no changes
+- patch #2 fixed review comments pointed by Sakari
+- patch #3 [0] no changes 
+- patches #4 and #5 are new
+
+[0] https://patchwork.linuxtv.org/project/linux-media/patch/20220927202005.750621-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[1] https://patchwork.linuxtv.org/project/linux-media/patch/20220919153540.178732-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[2] https://patchwork.kernel.org/project/linux-media/patch/20220919143350.176746-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Lad Prabhakar (9):
+  media: i2c: ov5645: Drop fetching the clk reference by name
+  ARM: dts: imx6qdl-pico: Drop clock-names property
+  ARM: dts: imx6qdl-wandboard: Drop clock-names property
+  arm64: dts: renesas: aistarvision-mipi-adapter-2.1: Drop clock-names
+    property
+  media: dt-bindings: ov5645: Convert OV5645 binding to a schema
+  media: i2c: ov5645: Use runtime PM
+  media: i2c: ov5645: Drop empty comment
+  media: i2c: ov5645: Don't return early on failures for s_stream(0)
+  media: i2c: ov5645: Call ov5645_entity_init_cfg() before registering
+    the subdev
+
+ .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ------
+ .../bindings/media/i2c/ovti,ov5645.yaml       | 104 ++++++++++++
+ arch/arm/boot/dts/imx6qdl-pico.dtsi           |   1 -
+ arch/arm/boot/dts/imx6qdl-wandboard.dtsi      |   1 -
+ .../aistarvision-mipi-adapter-2.1.dtsi        |   1 -
+ drivers/media/i2c/Kconfig                     |   2 +-
+ drivers/media/i2c/ov5645.c                    | 157 +++++++++---------
+ 7 files changed, 186 insertions(+), 134 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
+
+-- 
+2.25.1
+
