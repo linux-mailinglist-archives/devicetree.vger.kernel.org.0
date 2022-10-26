@@ -2,120 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49ECC60E2EB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8BD60E2EF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233893AbiJZOLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:11:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
+        id S233301AbiJZOMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233648AbiJZOLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:11:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41B22A3AAD;
-        Wed, 26 Oct 2022 07:11:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CF95761EC1;
-        Wed, 26 Oct 2022 14:11:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35B4DC43142;
-        Wed, 26 Oct 2022 14:11:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666793493;
-        bh=YMIF5UCWISG2ob0vvfFQtpNcUPd+lX4YhYyWt0PFYPw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dCCnkTS6zQYXpli9FHZ3e7+Dogw8PaXYNgjsWYWZcuPL0kREvUpGKJtP4qBggBodN
-         2AMODGNDYnn4B7/vXd8sq4gdpeRhscDJp4UaGXRNI6dLkAm0M1nQoSnemavqR6+4QG
-         c73C/TQ3Hn86w+Boor+bUecKVVhFzNbQ/EgtI85Skrhrt5/7ee69/w98i9SqgdGl3e
-         ZTYZ88KE3ZHmD8BwhFwr5fDAJnjNVr9haOpBqvrko0bS1YFjFiepe+nz31iSFkSA3+
-         jgMnKrdWPQzTBG1pUCicthhiwteujQHpqXOIhjUGVfrfJKwr+nOKQKcF7MlZ/KFOuL
-         7hfJ51haA9kKw==
-Received: by mail-lj1-f169.google.com with SMTP id o4so17267156ljp.8;
-        Wed, 26 Oct 2022 07:11:33 -0700 (PDT)
-X-Gm-Message-State: ACrzQf3pDNHafGb3fNm4dnGpXq6wki8FvI5gB5lOW6UBLTEphwHB4x0g
-        7PzvvbvIDAvGVJNodLXBPCpcGbT5PF8UK9sD3g==
-X-Google-Smtp-Source: AMsMyM6i/jjuNFCIcusJ8ZdpQuFHkRapKnNvN0juosoob6Nyxuo+jLAbTwN/yM4+V2v4zQPVryPgNoBO+QR4ZVRpbGk=
-X-Received: by 2002:a05:651c:114a:b0:25d:5ae6:42a4 with SMTP id
- h10-20020a05651c114a00b0025d5ae642a4mr16242008ljo.255.1666793491191; Wed, 26
- Oct 2022 07:11:31 -0700 (PDT)
+        with ESMTP id S233648AbiJZOMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:12:16 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDDDA106E28
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:12:15 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id g16so9948340qtu.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:12:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pGbHuCEYdpPdrNmRy3KRJXWEMPpe/Yl4yYbiL7G5pI4=;
+        b=aI3SgU/o1B2M/H6X1N1ybICwefhQuyMnMU+xDhAda4rQ9GF9Hn7lTutEP2dSljFwDm
+         LNGUaLiXZkIFCetzK0stTLFVY5xkl+5x4+O2aE1xzGKzPEnjThfdaH5mdD8wRlGQF3Ar
+         zdLQGyIpYGveQVdB3InsYbQgbhjDfjY9o6Op7+cXJ8NDgmla2LaU4k/EJ8GfvJ1Kvdjp
+         kNzeeCsxiTkNZoTXEydWORLk54L2rnVam0Iv3Cm8mkk8TevcoUuWl8R1ODrD4aoAa/Bz
+         BgtAulbiOtieEdpBIEDG1iZQdBLcOsEXG7Rc1H1V+bRFaL3Tct4sayaA68UEvuJbRN/M
+         lTqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pGbHuCEYdpPdrNmRy3KRJXWEMPpe/Yl4yYbiL7G5pI4=;
+        b=e+RjN6kHt5dQWDd9QSr6ryn9ogyzLJnNgu35UWKcMRHUP6bKJj/V1f8qCXn0yZDQvx
+         5CFFemGq7zavsQXhkrTj7MuVnLlSlND5hjKEhonQc/nQezRMd2F9PD3lhuFVyUDC5fSL
+         d+K/T4dExjbIQ1nXsvHtuO8omR1ba9v2slBFlFgu58G39vsbzVTGbx6xWobzsMhNeCeo
+         mqkkl1/Wl5nFL/pGVr5E2cQgMnhM1Sjy/gQf5MhcKslG2r8Ifto8PZHulr4VAjiysvBO
+         pfTEVfEslEiTIQvTmRNbgeJ00GnQqgxiA7qFT+iQunKsSjh5xT92soSRnJ+VQbHgm54R
+         LKJw==
+X-Gm-Message-State: ACrzQf1zQRoJh3zV9dHmT8NgRU60NthjY9pLWxV/JluYZsHAx0iIrvhu
+        XD18ABXdGt48XYDOXW+ID6eFjQ==
+X-Google-Smtp-Source: AMsMyM7b/EkQh+RWqeoLHn2b9Hjxnnpl67n8IyVDCyNP1zMzoVmRnoUDP8KhxgY6DseThPc6o+7mNA==
+X-Received: by 2002:ac8:5cc6:0:b0:3a4:e3a6:5dd5 with SMTP id s6-20020ac85cc6000000b003a4e3a65dd5mr5599860qta.468.1666793535009;
+        Wed, 26 Oct 2022 07:12:15 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id de30-20020a05620a371e00b006e99290e83fsm2417302qkb.107.2022.10.26.07.12.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 07:12:14 -0700 (PDT)
+Message-ID: <91e83eeb-24b5-4602-c132-c23a2fb5d756@linaro.org>
+Date:   Wed, 26 Oct 2022 10:12:12 -0400
 MIME-Version: 1.0
-References: <20221024173434.32518-1-afd@ti.com>
-In-Reply-To: <20221024173434.32518-1-afd@ti.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 26 Oct 2022 09:11:21 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
-Message-ID: <CAL_JsqJxgVwsjKnkCEkZeoSsDgaRD+DVPkHRBc2SrcSq69PBNw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] Rename DTB overlay source files
-To:     Andrew Davis <afd@ti.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: watchdog: fsl-imx: document suspend
+ in wait mode
+Content-Language: en-US
+To:     Andrej Picej <andrej.picej@norik.com>,
+        linux-watchdog@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20221025072533.2980154-1-andrej.picej@norik.com>
+ <20221025072533.2980154-3-andrej.picej@norik.com>
+ <ca484809-07e4-44ca-0ab3-26947bda7fa8@linaro.org>
+ <a600b0e3-19ab-47df-4315-48b8554cb12f@norik.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a600b0e3-19ab-47df-4315-48b8554cb12f@norik.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 24, 2022 at 12:34 PM Andrew Davis <afd@ti.com> wrote:
->
-> Hello all,
->
-> This is a series based on my patch here[0]. As suggested by Rob
-> I've resurrected Frank's patch and appended it to mine as a series.
->
-> First patch here is my original patch, 3rd is Frank's patch but with
-> the unittest changes pulled out into the 2nd patch. That was re-worked
-> moving the source building macro into scripts/Makefile.lib.
->
-> Patches 4, 5, and 6 are an attempt at renaming all the existing DTB
-> overlays. Split out by platform so they could be taken by platform
-> maintainers or if easier ACK'd here and taken all together.
->
-> This should cover all the DTB overlays so we can remove the old .dts
-> rule for overlays and make .dtso the only supported way, let me know
-> if we want that this cycle and I can post that too.
->
-> Thanks,
-> Andrew
->
-> Changes from v1[1]:
->  - Added patch to rename pi433 overlay.
->  - Cleaned wording on patch 4-6.
->  - Collected some ACKs
->
-> [0] https://www.spinics.net/lists/kernel/msg4548509.html
-> [1] https://www.spinics.net/lists/arm-kernel/msg1020165.html
->
-> Andrew Davis (6):
->   kbuild: Allow DTB overlays to built from .dtso named source files
->   kbuild: Allow DTB overlays to built into .dtso.S files
->   arm64: dts: freescale: Rename DTB overlay source files from .dts to
->     .dtso
->   arm64: dts: renesas: Rename DTB overlay source files from .dts to
->     .dtso
->   arm64: dts: xilinx: Rename DTB overlay source files from .dts to .dtso
->   staging: pi433: overlay: Rename overlay source file from .dts to .dtso
->
-> Frank Rowand (1):
->   of: overlay: rename overlay source files from .dts to .dtso
+On 26/10/2022 02:38, Andrej Picej wrote:
+> On 25. 10. 22 15:48, Krzysztof Kozlowski wrote:
+>> On 25/10/2022 03:25, Andrej Picej wrote:
+>>> Property "fsl,suspend-in-wait" suspends watchdog in "WAIT" mode which
+>>> corresponds to Linux's Suspend-to-Idle S0 mode. If this property is not
+>>> set and the device is put into Suspend-to-Idle mode, the watchdog
+>>> triggers a reset after 128 seconds.
+>>>
+>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+>>> ---
+>>> Changes in v2:
+>>>   - add a commit message,
+>>>   - add a list of devices which support this functionality
+>>> ---
+>>>   .../bindings/watchdog/fsl-imx-wdt.yaml        | 22 +++++++++++++++++++
+>>>   1 file changed, 22 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>> index fb7695515be1..9289de97859b 100644
+>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>> @@ -55,6 +55,28 @@ properties:
+>>>         If present, the watchdog device is configured to assert its
+>>>         external reset (WDOG_B) instead of issuing a software reset.
+>>>   
+>>> +  fsl,suspend-in-wait:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description: |
+>>> +      If present, the watchdog device is suspended in WAIT mode
+>>> +      (Suspend-to-Idle). Only supported on following devices:
+>>> +        - "fsl,imx25-wdt",
+>>
+>> You need to define such allow/disallow in allOf:if:then, instead. Like
+>> example-schema is doing for foo-supply, just disallow it for some types
+>> or use "if: not: ..."
+> 
+> Sorry missed that. So something like that should be added?:
+> 
+>> allOf:
+>>   - if:
+>>       not:
+>>         properties:
+>>           compatible:
+>>             contains:
+>>               enum:
+>>                 - fsl,imx25-wdt
+>>                 - fsl,imx35-wdt
+>>                 - fsl,imx50-wdt
+>>                 - fsl,imx51-wdt
+>>                 - fsl,imx53-wdt
+>>                 - fsl,imx6q-wdt
+>>                 - fsl,imx6sl-wdt
+>>                 - fsl,imx6sll-wdt
+>>                 - fsl,imx6sx-wdt
+>>                 - fsl,imx6ul-wdt
+>>                 - fsl,imx7d-wdt
+>>                 - fsl,imx8mm-wdt
+>>                 - fsl,imx8mn-wdt
+>>                 - fsl,imx8mp-wdt
+>>                 - fsl,imx8mq-wdt
+>>                 - fsl,vf610-wdt
 
-I've applied patches 1-3 and 7. I'll send a PR for the branch to the
-platform maintainers after a few days in linux-next.
+Yes.
 
-Rob
+>>     then:
+>>       properties:
+>>         fsl,suspend-in-wait: false
+> 
+> And I'm assuming I can then remove the supported devices list from 
+> property description.
+
+Yes.
+
+> 
+> Are you fine with this, so we don't have to split the compatible list 
+> like Alexander suggested? Basically we have the same list of WDW 
+> supported devices in the driver.
+
+I don't know to what you refer.
+
+Best regards,
+Krzysztof
+
