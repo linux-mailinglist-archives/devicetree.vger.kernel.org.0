@@ -2,136 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30AFC60E64A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7126760E658
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233305AbiJZRSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 13:18:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
+        id S233760AbiJZRWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 13:22:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbiJZRSG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:18:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DBC1844D2
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:18:05 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1onk1s-0003AO-MF; Wed, 26 Oct 2022 19:17:24 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1onk1p-0005PJ-NT; Wed, 26 Oct 2022 19:17:21 +0200
-Date:   Wed, 26 Oct 2022 19:17:21 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>, devicetree@vger.kernel.org,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 8/9] media: i2c: ov5645: Don't return early on
- failures for s_stream(0)
-Message-ID: <20221026171721.4nfvhamguwnrw6zf@pengutronix.de>
-References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        with ESMTP id S233757AbiJZRWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:22:14 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB0E9A2A7
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:22:11 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id s17so11070961qkj.12
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:22:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oLlW1kscCZqIaTOlPcJH/jgt0YbKOWqVS01M6qgp7Uw=;
+        b=w/j7e/fNOCN2iVFnKD8fD8BvhEM2bJk4xOdewSXDEFnHOZGff4bZ5IRRwFooNK/vjC
+         RLiABqYXJAOzFl9nB1Ripgvl6j73RDhtXxtZxKy1HUQjPS3roj9630mO1NdwfExyW2+d
+         HXxquLZV361r+bxmEtPw3jUC5jkvTL0RwdZfeF/BIEMyFD2OGfDjeVP8ynKMTEyvvx+F
+         hHREYvY8RKqLJB1wC9fMSMlldzP0FJ6airbjaRnek0EUrBeMRv08K247pG/GijAS5za6
+         K8+QAhtZhWb5xN/OVXIvTs3nJOuGnDqodc1MNQjfwsDZeWnnHRUSNK5VNxWL/P4yUdAd
+         3sLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oLlW1kscCZqIaTOlPcJH/jgt0YbKOWqVS01M6qgp7Uw=;
+        b=LLQuvsffZiHku05a4Ch0GEdiYz8cqWcdZHaFrSlNkqWsoj0muP1ZDWnm7cj+Aqv1X9
+         RoZjWv/iTFLXZMsbd8hZdl2NJtEmy6GjXzXVj4jhjBiHpIv4JD0buvTBYcJZTdbHbfJj
+         xdWltsLwvYJofu76PZ9hkrGfuhxALrDy8uqnn1hUnaShldufeyuqgLWq7K4LcH7lSw6u
+         2/6V7OVsWIcRQ4KFl5u1n8U7ru+tFIysn/yxTJHWWmUFxMNr3vgIB9UkPOxYBm0Xemtf
+         VPdxGwqePsa9FgBypvpOohxlrv1BuGMY4XDVaOFDqfZZB5IC/EBovFyIUdsDcTdO8WJv
+         zGrA==
+X-Gm-Message-State: ACrzQf0NDf5lBP/lQ1wTu8EX+bC+T8r7EdozNeA3iQJkq6ctMXnGPbsE
+        zOmHCEpiUlV3+IRLkp40ilbtlQ==
+X-Google-Smtp-Source: AMsMyM6Kf2jYy3iJqZeqVyXShFrqXF8kTcxCcGJu4mG93deokS9fXIamGA2nuPqOdQnS49zUo6CUpQ==
+X-Received: by 2002:ae9:dd04:0:b0:6e0:ae86:b4 with SMTP id r4-20020ae9dd04000000b006e0ae8600b4mr31724032qkf.146.1666804930281;
+        Wed, 26 Oct 2022 10:22:10 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id x22-20020a05620a0ed600b006b61b2cb1d2sm4130569qkm.46.2022.10.26.10.22.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 10:22:09 -0700 (PDT)
+Message-ID: <fe9b34f9-68f8-0d5d-4085-33a227b7c363@linaro.org>
+Date:   Wed, 26 Oct 2022 13:22:07 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [RFC 5/5] bluetooth: hci_mrvl: allow waiting for firmware load
+ using notify-device
+Content-Language: en-US
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Amitkumar Karwar <amitkarwar@gmail.com>,
+        Ganapathi Bhat <ganapathi017@gmail.com>,
+        Sharvari Harisangam <sharvari.harisangam@nxp.com>,
+        Xinming Hu <huxinming820@gmail.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux@ew.tq-group.com
+References: <cover.1666786471.git.matthias.schiffer@ew.tq-group.com>
+ <fa9cdbe5906fdcfcb37dbe682f3f46ce4b2e1b73.1666786471.git.matthias.schiffer@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <fa9cdbe5906fdcfcb37dbe682f3f46ce4b2e1b73.1666786471.git.matthias.schiffer@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-thanks for the patch, please see below my comments.
-
-On 22-10-26, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Make sure we dont stop the code flow in case of errors while stopping
-> the stream and return the error code of the first error case if any.
-> 
-> v4l2-core takes care of warning the user so no need to add a warning
-> message in the driver.
-> 
-> Suggested-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 26/10/2022 09:15, Matthias Schiffer wrote:
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > ---
-> v2->v3
-> * Now propagating the first error code in case of failure.
+>  drivers/bluetooth/hci_mrvl.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> v1->v2
-> * New patch
-> ---
->  drivers/media/i2c/ov5645.c | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
-> index eea3067ddc8b..5702a55607fc 100644
-> --- a/drivers/media/i2c/ov5645.c
-> +++ b/drivers/media/i2c/ov5645.c
-> @@ -996,17 +996,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
->  		if (ret < 0)
->  			goto err_rpm_put;
->  	} else {
-> +		int stream_off_ret = 0;
+> diff --git a/drivers/bluetooth/hci_mrvl.c b/drivers/bluetooth/hci_mrvl.c
+> index b7d764e6010f..dc55053574a9 100644
+> --- a/drivers/bluetooth/hci_mrvl.c
+> +++ b/drivers/bluetooth/hci_mrvl.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/skbuff.h>
+>  #include <linux/firmware.h>
+>  #include <linux/module.h>
+> +#include <linux/notify-device.h>
+>  #include <linux/tty.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> @@ -433,9 +434,25 @@ static int mrvl_serdev_probe(struct serdev_device *serdev)
+>  		return -ENOMEM;
+>  
+>  	if (IS_ENABLED(CONFIG_OF)) {
+> +		struct device_node *firmware_ready_node;
+> +		struct device *firmware_ready;
 > +
->  		ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
-
-If this write failed..
-
->  		if (ret < 0)
-> -			return ret;
-> +			stream_off_ret = ret;
->  
->  		ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
->  				       OV5645_SYSTEM_CTRL0_STOP);
-
-why should this write be successful?
-
-Regards,
-  Marco
-
-> -		if (ret < 0)
-> -			return ret;
-> +		if (ret < 0 && !stream_off_ret)
-> +			stream_off_ret = ret;
->  
->  		pm_runtime_mark_last_busy(ov5645->dev);
->  		pm_runtime_put_autosuspend(ov5645->dev);
+>  		mrvldev->info = of_device_get_match_data(&serdev->dev);
+>  		if (!mrvldev->info)
+>  			return -ENODEV;
 > +
-> +		if (stream_off_ret)
-> +			return stream_off_ret;
->  	}
->  
->  	return 0;
-> -- 
-> 2.25.1
-> 
-> 
-> 
+> +		firmware_ready_node = of_parse_phandle(serdev->dev.of_node,
+> +						       "firmware-ready", 0);
+
+So you want us to go through five patches, find properties and OF-code,
+create in our minds bindings you think about and comment on that
+imaginary bindings.
+
+I think it should work otherwise - send bindings for all of your DT
+properties.
+
+Best regards,
+Krzysztof
+
