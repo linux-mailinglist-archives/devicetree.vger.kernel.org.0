@@ -2,146 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9DA60E695
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0202A60E690
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233886AbiJZRfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 13:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
+        id S233517AbiJZRdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 13:33:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233859AbiJZRfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:35:48 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D16F59AC32
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:35:47 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1onkJG-0005YF-1O; Wed, 26 Oct 2022 19:35:22 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1onkJD-00060f-7f; Wed, 26 Oct 2022 19:35:19 +0200
-Date:   Wed, 26 Oct 2022 19:35:19 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>, devicetree@vger.kernel.org,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 8/9] media: i2c: ov5645: Don't return early on
- failures for s_stream(0)
-Message-ID: <20221026173519.bm22im7uov6b4nnp@pengutronix.de>
-References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221026171721.4nfvhamguwnrw6zf@pengutronix.de>
- <CA+V-a8urKEjEKP0n9mki8xx1B9JLOMTYM4F1aXC3h_5Ne0+tCw@mail.gmail.com>
+        with ESMTP id S229995AbiJZRdg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:33:36 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3071057F9;
+        Wed, 26 Oct 2022 10:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1666805614; x=1698341614;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=O261lLQiLqPVrCWlpXCG39uNCbVIJ7+DxA1Gv8LAvJg=;
+  b=zP0ZKPtSX0axz/gs1TpNHwKXL+ewqJgV/YW/iQZKRcAO1KXqYZvFDoSr
+   YXQcUf9uswzadXVEpNyTs2oBP4DPv7oFPlI4k//NHjw+OQR3bvf74cfhC
+   HWpGq4jZKAlre1cspxU61LFKcIpGK98J4Opw5t4ZK1HESKi9gyWMl93ZN
+   QGuu6VbltsVTTwXAfD7PXGk4vG7OPCdxJt0LNU5dcVvUfpEzbYmyiV/nZ
+   PFacxC3yJP4Kp1gVbCRYan8QBw/awzh2VI2Vt9CC7xngU3ZmIrZctt/Uz
+   0UU0+lkmh94/bLGJD997rP45dFwcht1jjXqSdqychpeiwmSn55r6xKljF
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.95,215,1661842800"; 
+   d="scan'208";a="186409655"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Oct 2022 10:33:33 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Wed, 26 Oct 2022 10:33:32 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.12 via Frontend
+ Transport; Wed, 26 Oct 2022 10:33:32 -0700
+Date:   Wed, 26 Oct 2022 19:38:13 +0200
+From:   Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
+To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
+        UNGLinuxDriver <UNGLinuxDriver@microchip.com>
+Subject: Re: [PATCH] ARM: dts: lan966x: Enable sgpio on pcb8291
+Message-ID: <20221026173813.wdpueueziirxdgq5@soft-dev3-1>
+References: <20221019075154.2555054-1-horatiu.vultur@microchip.com>
+ <fb12f594-5d71-dc35-c37e-b357e51b6b3c@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8urKEjEKP0n9mki8xx1B9JLOMTYM4F1aXC3h_5Ne0+tCw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <fb12f594-5d71-dc35-c37e-b357e51b6b3c@microchip.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-26, Lad, Prabhakar wrote:
-> Hi Marco,
+The 10/26/2022 07:47, Claudiu Beznea - M18063 wrote:
+> Hi, Horatiu,
+
+Hi Claudiu,
+
 > 
-> Thank you for the review.
+> On 19.10.2022 10:51, Horatiu Vultur wrote:
+> > Enable sgpio node on pcb8291 as this is needed to be able to control
+> > the LEDs on this board. Otherwise the LEDs support on the board will
+> > not be available.
 > 
-> On Wed, Oct 26, 2022 at 6:17 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > thanks for the patch, please see below my comments.
-> >
-> > On 22-10-26, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Make sure we dont stop the code flow in case of errors while stopping
-> > > the stream and return the error code of the first error case if any.
-> > >
-> > > v4l2-core takes care of warning the user so no need to add a warning
-> > > message in the driver.
-> > >
-> > > Suggested-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > v2->v3
-> > > * Now propagating the first error code in case of failure.
-> > >
-> > > v1->v2
-> > > * New patch
-> > > ---
-> > >  drivers/media/i2c/ov5645.c | 11 ++++++++---
-> > >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
-> > > index eea3067ddc8b..5702a55607fc 100644
-> > > --- a/drivers/media/i2c/ov5645.c
-> > > +++ b/drivers/media/i2c/ov5645.c
-> > > @@ -996,17 +996,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
-> > >               if (ret < 0)
-> > >                       goto err_rpm_put;
-> > >       } else {
-> > > +             int stream_off_ret = 0;
-> > > +
-> > >               ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
-> >
-> > If this write failed..
-> >
-> > >               if (ret < 0)
-> > > -                     return ret;
-> > > +                     stream_off_ret = ret;
-> > >
-> > >               ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
-> > >                                      OV5645_SYSTEM_CTRL0_STOP);
-> >
-> > why should this write be successful?
-> >
-> Indeed that will fail unless I have a lucky day ;-)
+> Do we need a fixes tag for this?
+
+I was not 100% sure that I need to add the tag, but I will send
+another version where I will add the tag.
+
 > 
-> But it seemed to be an overkill for adding an additional check to see
-> if the previous write succeeded. Do you think this will create an
-> issue?
+> > On the other board pcb8309 the sgpio is already enabled because it
+> > needed to access the SFP ports.
+> > 
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  arch/arm/boot/dts/lan966x-pcb8291.dts | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
+> > index f4f054cdf2a87..3a3d76af86122 100644
+> > --- a/arch/arm/boot/dts/lan966x-pcb8291.dts
+> > +++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
+> > @@ -69,6 +69,12 @@ can0_b_pins:  can0-b-pins {
+> >  		pins = "GPIO_35", "GPIO_36";
+> >  		function = "can0_b";
+> >  	};
+> > +
+> > +	sgpio_a_pins: sgpio-a-pins {
+> > +		/* SCK, D0, D1, LD */
+> > +		pins = "GPIO_32", "GPIO_33", "GPIO_34", "GPIO_35";
+> > +		function = "sgpio_a";
+> > +	};
+> >  };
+> >  
+> >  &can0 {
+> > @@ -118,6 +124,20 @@ &serdes {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&sgpio {
+> > +	pinctrl-0 = <&sgpio_a_pins>;
+> > +	pinctrl-names = "default";
+> > +	microchip,sgpio-port-ranges = <0 3>, <8 11>;
+> > +	status = "okay";
+> > +
+> > +	gpio@0 {
+> > +		ngpios = <64>;
+> > +	};
+> > +	gpio@1 {
+> > +		ngpios = <64>;
+> > +	};
+> > +};
+> > +
+> >  &switch {
+> >  	status = "okay";
+> >  };
+> 
 
-Why not just say?
-
-	ret = ov5645_write_reg();
-	if (ret < 0)
-		goto out;
-
-	...
-
-	out:
-
-	dev_pm_xxx();
-
-	return ret;
-
-Regards,
-  Marco
+-- 
+/Horatiu
