@@ -2,60 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A11360E43E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 17:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65CC460E448
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 17:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234205AbiJZPLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 11:11:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
+        id S234490AbiJZPQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 11:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233319AbiJZPLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 11:11:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9BA127BCB;
-        Wed, 26 Oct 2022 08:11:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4B869B82256;
-        Wed, 26 Oct 2022 15:11:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3C25C433C1;
-        Wed, 26 Oct 2022 15:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666797108;
-        bh=4Z5zLso9XNCBCHEEuJMM/rcAgVuqzF4fw0BCdufFO5Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XbUqWf/UNHlwTkNxQkTZ1K6W0GJk+JvCByByAYT51qdtLQpqEpX602AOL0P95C/sD
-         CY73cmiO8ktDHurGqpaMAY5PlkDfrAfpHNGU5INpNLac6CNVx10EBPknWx0UYEMKhw
-         uTuz+pKi+5Pkj3xjY4oIl/+Yrfy7yZchBQmf12bB4vvhC6AEgEprC/MI7ZUuTrNPpv
-         25KGRiiF/D0PVka6WdMYU/fU1vdOwqwLLY3fsvUnMwSRnJa9MhIdlEYn3FO3EoNQX2
-         3RpPu6fTs/ziU8Tz4+xVLlkQxF7eBviR8ZilkIUhv3F5R+SdneQMGdULvZc3gn0k5i
-         zWRfnsWMWBuFA==
-Date:   Wed, 26 Oct 2022 16:11:42 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] ASoC: simple-card: Support custom DAI system
- clock IDs
-Message-ID: <Y1lOLgLNDgsmvfe5@sirena.org.uk>
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
- <Y1Z74/vKHbnaCLrX@sirena.org.uk>
- <XaoRSEMyUlabAR8wEJITmm2lGCjwfPZg@localhost>
- <Y1fCfej+/WH8TI39@sirena.org.uk>
- <FgO8Xz5MtaEBdBidpT8So4X5posjL95Y@localhost>
+        with ESMTP id S233378AbiJZPQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 11:16:21 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2080.outbound.protection.outlook.com [40.107.237.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C0211DAA3;
+        Wed, 26 Oct 2022 08:16:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TJddlv3VQb7Of55+Uqd+QioxStyKCHxP2Guu4RISTd7bERqYGrAi0sVuQ/xzB3BsVPBFlm+16/mvIhEUqqRwraSOMNx9MfYYpr/ss+12H2NjfP8ojD2oCIoeOTOk7pAYQe5nlvzyx7Uqv+m5HpccGgvfuCkSmaVstaNmgO/SG4NS0G+Xcc6HlEmtdXNvhOszxvtccItM/q4aYRpc1KdEtYEvzdI1wokRxO1ZB0LN80obdGgsUWUdM6KTZPegZZJlkA9eRab43ljXLReV2f/3mrxKC7fCmdoo+WS714K0MHLOgC0PwYLcR9QITRZT4Cqr9fORwlNqy8vWQjpb0ngggQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uayaKzliWFGFd1fiVivIsu8CLKJj+cmxb4IpX+5da5g=;
+ b=eJ06wbk7Atcr8gDsa2IZ7Swy9ctC4Y10B4ZtOxmRDNkQPp2JRfSxcTfztNhh6Q9788gS9ThZkO9DQ0ybc4/IfbXdbYm6Rwgq0wkbdYUHS835lQfIl0IKh7IAxJEBlVRj1YxLCr9ZGe3NV+WE3EarsJClb5cYUYl4J4RxaNniw1RmD6T0jLcYs545RWeQtAziP6HHSuTJnxgizoGseLodcw8p1l6HCIyj5pA62f6hYQVDIRgvm4siaqfpK0UAIpjKkrx3RR3Nusx/aFiuGUl/6ggQsGcYhA2QOW2JgFeZz086+pu/qEEqQTJQje8FeJK+HbepfnZ+0GpuJp4AboLH/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uayaKzliWFGFd1fiVivIsu8CLKJj+cmxb4IpX+5da5g=;
+ b=1zmeuStYQthReLVCd9L0AR3LbMT6KLY/EltCF4at5/xI3c56R+mpK5CmXBSH5fgJWh4+YYa+dYtRUmtBkGRKXaRsvZa4KuvUH2pQ9hIBUfMz2Lo56JpyH65I+4Js1AAi4tzFRYOCVLwzUkelOyDNuleZEp0UhD3Svdgr+bYjVY8=
+Received: from BN9PR03CA0927.namprd03.prod.outlook.com (2603:10b6:408:107::32)
+ by MN0PR12MB6001.namprd12.prod.outlook.com (2603:10b6:208:37d::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5723.32; Wed, 26 Oct
+ 2022 15:16:16 +0000
+Received: from BN8NAM11FT006.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:107:cafe::7) by BN9PR03CA0927.outlook.office365.com
+ (2603:10b6:408:107::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28 via Frontend
+ Transport; Wed, 26 Oct 2022 15:16:16 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT006.mail.protection.outlook.com (10.13.177.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5746.16 via Frontend Transport; Wed, 26 Oct 2022 15:16:16 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 26 Oct
+ 2022 10:16:12 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Wed, 26 Oct
+ 2022 08:15:46 -0700
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
+ Transport; Wed, 26 Oct 2022 10:15:44 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <linux-gpio@vger.kernel.org>
+CC:     <git@amd.com>, <devicetree@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <geert@linux-m68k.org>
+Subject: [PATCH v6 0/3] gpio: pca9570: add slg7xl45106 support
+Date:   Wed, 26 Oct 2022 20:45:40 +0530
+Message-ID: <20221026151543.20695-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="STgcsZayb3dhE5DX"
-Content-Disposition: inline
-In-Reply-To: <FgO8Xz5MtaEBdBidpT8So4X5posjL95Y@localhost>
-X-Cookie: Prunes give you a run for your money.
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT006:EE_|MN0PR12MB6001:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5dbd98db-1396-4f73-3672-08dab765071d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oLkJZrH0OHnwDQSdknvVeIwMjamZJ3gqLqMj0oWvLwFzDKGhaNPAwv78Ckf2dpalzg85zwd2070+dVMj/wN9NADhUNsO6tjQamDuwol9GclnokBWFKJ0ERekpBVYkm1e18ZMo2OcG3eLCb3XpubVRQNj5smaG5fdetwlVZUo299mVhsgiVJxopQZfADNBZfkqMeqBBIbcxge+VqYgsW4ln6FL299Ixq+rIPvvRtKkN8HktPA85oyMJcHyOqnNg6JmGMBnPP8UoQfpOs8XdoAgltcOAmNMlvvdyakvuaAFoeZXEpSU0ft2VsateI6CbzYkocqRhbKDl4Z4RXEufEaq/QrlX4H7rXl+TEhqNp9gJjCZ25vxQa97mkCtYx/gx2b4pLzyFSfix5qtaDbxEU7soDcnwYz2GWRSKxIq+zYzbAqRLG7A6IP+pVFlB5b0Ym+8NEk6eigrtRs47G16Pai5zZZotLRDTM1cKLGKW8OXNDT863ymFzovQRPQOlTKqId0aqbuDFpygIQEItgDYVKmFdo4vaeQfSyKh7nGjkrNOFnyPSxY1WBFj4fPYDEYYbkiB0jl60mb2M7RR45uFqNiXhaG6Aa13leJAT7GVLIc0gbuFUibGI4W8UXNN+Vrb1UkDvpm+H4+PWXJCDrpfYSVozpt5QhaLPS/C71et9+/pntZg31lDWHlbY5xYmEqDcCycIpkxNKuP4xmkA98CAwJn+Lem06dIB4ExE+pO+13NMYOYQ7/Mv03boKhlagbk16FmfY0Cr+NP7MAdaNGU5ztcqh71dQf/D42gutOIE9qvs=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(136003)(396003)(376002)(451199015)(46966006)(40470700004)(36840700001)(86362001)(82740400003)(2906002)(54906003)(70206006)(83380400001)(1076003)(2616005)(8936002)(47076005)(356005)(4744005)(81166007)(82310400005)(186003)(44832011)(40480700001)(8676002)(41300700001)(426003)(316002)(336012)(6916009)(478600001)(70586007)(5660300002)(4326008)(26005)(6666004)(40460700003)(36756003)(36860700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2022 15:16:16.4812
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5dbd98db-1396-4f73-3672-08dab765071d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT006.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6001
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -63,53 +101,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---STgcsZayb3dhE5DX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Add Dialog semiconductors SLG7XL45106 GPO expander
 
-On Wed, Oct 26, 2022 at 03:42:31PM +0100, Aidan MacDonald wrote:
-> Mark Brown <broonie@kernel.org> writes:
 
-> > There is a strong case for saying that all the clocking in CODECs might
-> > fit into the clock API, especially given the whole DT thing.
+Changes in v6:
+Fix the bisectablity reported by Geert Uytterhoeven
 
-> The ASoC APIs don't speak "struct clk", which seems (to me) like a
-> prerequisite before we can think about doing anything with clocks.
+v4 and v5:
+Resend as the patches were mangled.
 
-Right, they probably should.
+Changes in v3:
+Add ack
+split the new patch
+Suggested by Andy Shevchenko
 
-> Even if ASoC began to use the clock API for codec clocking, it's not
-> clear how you maintain backward compatibility with the existing
-> simple-card bindings. You'd have to go over all DAIs and mimic the
-> effects of "snd_soc_dai_set_sysclk(dai, 0, freq, dir)" because there
-> could be a device tree relying on it somewhere.
+Changes in v2:
+add alphabetically
 
-Of course, you'd need to define bindings for devices with multiple
-clocks such that things continue to work out compatibly.
+Shubhrajyoti Datta (3):
+  dt-bindings: gpio: pca9570: Add compatible for slg7xl45106
+  gpio: pca9570: add a platform data structure
+  gpio: pca9570: add slg7xl45106 support
 
-> So... given you're already stuck maintaining .set_sysclk() behavior
-> forever, is there much harm in exposing the sysclock ID to the DT?
+ .../bindings/gpio/gpio-pca9570.yaml           |  1 +
+ drivers/gpio/gpio-pca9570.c                   | 49 ++++++++++++++++---
+ 2 files changed, 44 insertions(+), 6 deletions(-)
 
-Yes, it's ABI and the more baked in this stuff gets the more issues we
-have when trying to integrate with the wider clock tree in the system -
-for example when devices are able to output their system clock to be
-used as a master clock for a device which can use the clock API as an
-input.  It's fine in kernel but we should be trying to keep it out of
-ABI.
+-- 
+2.17.1
 
---STgcsZayb3dhE5DX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNZTi0ACgkQJNaLcl1U
-h9D/qgf/YOsJbQ4nQ75FNpRwHXAqvJR2rYBAW8fcMr3YrbLRTFOb03bpLFqa26nB
-tfJdkMrYr61OwPJY57vjlxoEJjSgdMHNuk7wB/Jo+n1PoPiHTg2SiLVbbG/pOqfw
-iENggEi02xvC4zGMmdEqzewObfbACRu0ZdIeKl4cXmFarL4/INkruO9WgABAFjtF
-ER7DoDv7Klfk28I6fP49gzEGIV8Omn6qHViJkz4fcrPbGpQcJzJtLU45amKZi/Eu
-NAy0T5bI48u/fcOZYup5lQYK/QyOb7XiI5CjLnd/MOjsBUjzUlukyeKnD/RLT6o2
-Sd7w6TFggE4pjNnE6GfxQ15P+Iw1Rg==
-=hC+q
------END PGP SIGNATURE-----
-
---STgcsZayb3dhE5DX--
