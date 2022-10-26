@@ -2,69 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1269E60E96A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F29B060E97D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235225AbiJZTpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 15:45:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
+        id S235265AbiJZTrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 15:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235139AbiJZTon (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:44:43 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7537B119BFC;
-        Wed, 26 Oct 2022 12:44:00 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5so3193306wmo.1;
-        Wed, 26 Oct 2022 12:44:00 -0700 (PDT)
+        with ESMTP id S235185AbiJZTrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:47:07 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE511D98D
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:46:21 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id f37so30895311lfv.8
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:46:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tgTbY0wb7NEE8wsfRVlRc/ObdS/WC2z2i1h/J+MWlCI=;
-        b=KY7cMPd1GFfcrGv0PtiHQ5CIfXDiI+sstPxdDLC0fKy9ZpCkfKTaukI07g1MBrNmVA
-         zL77VTcV1eiCDazbQjF8hfvixA5jyXmPdIl6gJNgatTKiCOVq1IiLMVEjDlFQcxp9f+h
-         Mw5VTwQ4zBarNl911bm/OChOqRHUH6l5cvtcqO/eErY8TeudrfdCiYhAUFADRTsRHH/r
-         8l8NxMwp6+PoKWUV2eKqZ9ZmQNj1HNXOB70qziXt9gVT1uvhJMfgfaEN+uv4hYwy8Ni1
-         PzRlDSBmUxYZhjJvVZhKB4Vy4haShFsol9Gy8MeNj7Udp9BMEaF7Usip/JLL1o3bi3CC
-         H/5g==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WFjZUwg9kkHrdeWfJ5ahCLFcRDkAGeHiMWgq9vVh9Ps=;
+        b=PkYZcfy5WMquWospUQFh7cJpJo4V6wkPaXLJ+W6HivXj3w49ZeLEO8i24izYjxeJzG
+         zRJ/RCfo8mUZzDqGtvoSKR9JZ9RKUY7AEh/cic+6wn7MtLZ7PzFTsJTz4KFzOI+rnz8B
+         BjE8MjFSCSjl+Arttw6PQIqvVmdd0X2q+bNb7LjStezGyMy5ya9RCS1rJm5e5f1vt4hH
+         l3hPWeD3i/dkNIaGPGCsVKuYAQWepXoaYL8QnKpGpEgWpwMoOmNdaq5XQGq4UjIv/zOR
+         /ubN28kFhv9jFCj/bYUHXt4GiyEOS8sE7BVj8K/E5hohb+ch+uNU1PNfAMw4RRQ7mO+F
+         A0lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tgTbY0wb7NEE8wsfRVlRc/ObdS/WC2z2i1h/J+MWlCI=;
-        b=4tli4QnkRi8MQuFELRdII8TouQFPe5hCdRqzH5ROcD8FU/o8IUXK84V/1VCKqLKfH0
-         258XHVRdkUEXqWHv0N7nbOvgjNg1fX/mtHSDMx1RGjxYVoatdPKw0L/f7W4NVgPiPgRv
-         BW34k802pxeXPgE9OTGrLojaJFzItZ11kBlLedgZKo5SrO0/VmUHycyoGzNPWPi7myj4
-         O4UYP3maaT2VQWA6fn4pBHUaFXLMJMxYXkM9GrUMzbFrlzsEO+6hu3bMYort+uaIFIjc
-         zgn6WdYdYoFHT0dHcENUeswxuUGZrfbWqrOZazvhIjMLddzoXIoIYxgo+xtWi4V7+3w/
-         YNZg==
-X-Gm-Message-State: ACrzQf33E6HAvJN236fwVAPaAzxcjRZCA3WnMiDKbxwlJMiizk33M03p
-        Y2dlSWeejKFjz9/4C9R1zZw=
-X-Google-Smtp-Source: AMsMyM7Ilr1r8KPJxosCeQz1/nn4rtexXjzOkrLF8BsmDihsFZPMCGK61eqqOXZToHLPYQwpcNjG2A==
-X-Received: by 2002:a05:600c:4e8f:b0:3c9:9657:9c0a with SMTP id f15-20020a05600c4e8f00b003c996579c0amr3725394wmq.157.1666813438756;
-        Wed, 26 Oct 2022 12:43:58 -0700 (PDT)
-Received: from localhost (188.28.0.84.threembb.co.uk. [188.28.0.84])
-        by smtp.gmail.com with ESMTPSA id n5-20020a05600c304500b003a84375d0d1sm2492662wmh.44.2022.10.26.12.43.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 12:43:58 -0700 (PDT)
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     paul@crapouillou.net, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     zhouyu@wanyeetech.com, linux-mips@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] clk: ingenic: Minor cosmetic fixups for X1000
-Date:   Wed, 26 Oct 2022 20:43:45 +0100
-Message-Id: <20221026194345.243007-7-aidanmacdonald.0x0@gmail.com>
-In-Reply-To: <20221026194345.243007-1-aidanmacdonald.0x0@gmail.com>
-References: <20221026194345.243007-1-aidanmacdonald.0x0@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WFjZUwg9kkHrdeWfJ5ahCLFcRDkAGeHiMWgq9vVh9Ps=;
+        b=oBq7U60pXT7u/Y9jlRZvWZiIdDBKnxtw0LH4fJGAHdXaKyEv6w9AKFDzfFwM2j3kiV
+         dT4xLTIiFs0YbebP6x6PQAJeiZUhmDLtK4ZB2nZKeVeEmH5RHKX5MGoXUj+J8ZjscPO0
+         dK0si+5Vz7N0fpi/lE28RXkVL49bD6zU1IsDiyM7Iy9ZAHqLVgMMtaYmAuVvZV7YvDmo
+         zlWMqMf/ibNIvyd6bY2q4Nbk6F51ut9hmTd45i5iUu77GrZo8WMLyyf0PPMxcNypybQ4
+         ejpG/X/FSlKEwNFCG89aK2MRKTyBR/sK8k+ZRDXBgrOJvqlUhfDBa9FIMtD5BU/Hkxca
+         hzBg==
+X-Gm-Message-State: ACrzQf0KW/ksBnrwRfneOwojM2YLh/1QPRaeAEC1l353i24SB4uLSb/v
+        VPKBuZLqxJ09BnlVQBayKeD1cA==
+X-Google-Smtp-Source: AMsMyM7Sc9bm+ICPknqGgF6givhaCtNofBIUTNotmKABmE9Zv5ip/cKuOpnhFd8xARGFACdSOJBk1Q==
+X-Received: by 2002:a05:6512:3f8c:b0:4a1:8d5:d75b with SMTP id x12-20020a0565123f8c00b004a108d5d75bmr18369184lfa.670.1666813579744;
+        Wed, 26 Oct 2022 12:46:19 -0700 (PDT)
+Received: from [10.27.10.248] ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id s5-20020a05651c048500b002770e531535sm1051653ljc.55.2022.10.26.12.46.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 12:46:19 -0700 (PDT)
+Message-ID: <56a47a6c-29b9-b8f3-e39b-a5841ddf7394@linaro.org>
+Date:   Wed, 26 Oct 2022 22:46:17 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v6 04/21] arm64: smccc: Include alternative-macros.h
+Content-Language: en-GB
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Kalle Valo <kvalo@kernel.org>, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
+ <20221026185846.3983888-5-quic_eberman@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221026185846.3983888-5-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,209 +98,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove redundant -1 entries from the parents array and fix
-a couple indentation / whitespace issues.
+On 26/10/2022 21:58, Elliot Berman wrote:
+> Fix build error when CONFIG_ARM64_SVE is selected and
+> asm/alternative-macros.h wasn't implicitly included by another header.
 
-Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
----
- drivers/clk/ingenic/x1000-cgu.c | 49 ++++++++++++++++-----------------
- 1 file changed, 24 insertions(+), 25 deletions(-)
+Please include the build error into the commit message to help anybody 
+looking for the solution for the same issue.
 
-diff --git a/drivers/clk/ingenic/x1000-cgu.c b/drivers/clk/ingenic/x1000-cgu.c
-index 95d5e3a44cee..feb03eed4fe8 100644
---- a/drivers/clk/ingenic/x1000-cgu.c
-+++ b/drivers/clk/ingenic/x1000-cgu.c
-@@ -216,7 +216,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_APLL] = {
- 		"apll", CGU_CLK_PLL,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.pll = {
- 			.reg = CGU_REG_APLL,
- 			.rate_multiplier = 1,
-@@ -239,7 +239,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_MPLL] = {
- 		"mpll", CGU_CLK_PLL,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.pll = {
- 			.reg = CGU_REG_MPLL,
- 			.rate_multiplier = 1,
-@@ -289,7 +289,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 		 * system; mark it critical.
- 		 */
- 		.flags = CLK_IS_CRITICAL,
--		.parents = { X1000_CLK_CPUMUX, -1, -1, -1 },
-+		.parents = { X1000_CLK_CPUMUX },
- 		.div = { CGU_REG_CPCCR, 0, 1, 4, 22, -1, -1 },
- 		.gate = { CGU_REG_CLKGR, 30 },
- 	},
-@@ -301,7 +301,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 		 * disabling it or any parent clocks will hang the system.
- 		 */
- 		.flags = CLK_IS_CRITICAL,
--		.parents = { X1000_CLK_CPUMUX, -1, -1, -1 },
-+		.parents = { X1000_CLK_CPUMUX },
- 		.div = { CGU_REG_CPCCR, 4, 1, 4, 22, -1, -1 },
- 	},
- 
-@@ -320,13 +320,13 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_AHB2] = {
- 		"ahb2", CGU_CLK_DIV,
--		.parents = { X1000_CLK_AHB2PMUX, -1, -1, -1 },
-+		.parents = { X1000_CLK_AHB2PMUX },
- 		.div = { CGU_REG_CPCCR, 12, 1, 4, 20, -1, -1 },
- 	},
- 
- 	[X1000_CLK_PCLK] = {
- 		"pclk", CGU_CLK_DIV | CGU_CLK_GATE,
--		.parents = { X1000_CLK_AHB2PMUX, -1, -1, -1 },
-+		.parents = { X1000_CLK_AHB2PMUX },
- 		.div = { CGU_REG_CPCCR, 16, 1, 4, 20, -1, -1 },
- 		.gate = { CGU_REG_CLKGR, 28 },
- 	},
-@@ -393,13 +393,13 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_MSCMUX] = {
- 		"msc_mux", CGU_CLK_MUX,
--		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL},
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
- 		.mux = { CGU_REG_MSC0CDR, 31, 1 },
- 	},
- 
- 	[X1000_CLK_MSC0] = {
- 		"msc0", CGU_CLK_DIV | CGU_CLK_GATE,
--		.parents = { X1000_CLK_MSCMUX, -1, -1, -1 },
-+		.parents = { X1000_CLK_MSCMUX },
- 		.div = { CGU_REG_MSC0CDR, 0, 2, 8, 29, 28, 27 },
- 		.gate = { CGU_REG_CLKGR, 4 },
- 	},
-@@ -413,8 +413,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_OTG] = {
- 		"otg", CGU_CLK_DIV | CGU_CLK_GATE | CGU_CLK_MUX,
--		.parents = { X1000_CLK_EXCLK, -1,
--					 X1000_CLK_APLL, X1000_CLK_MPLL },
-+		.parents = { X1000_CLK_EXCLK, -1, X1000_CLK_APLL, X1000_CLK_MPLL },
- 		.mux = { CGU_REG_USBCDR, 30, 2 },
- 		.div = { CGU_REG_USBCDR, 0, 1, 8, 29, 28, 27 },
- 		.gate = { CGU_REG_CLKGR, 3 },
-@@ -422,7 +421,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_SSIPLL] = {
- 		"ssi_pll", CGU_CLK_MUX | CGU_CLK_DIV,
--		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
- 		.mux = { CGU_REG_SSICDR, 31, 1 },
- 		.div = { CGU_REG_SSICDR, 0, 1, 8, 29, 28, 27 },
- 	},
-@@ -435,7 +434,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_SSIMUX] = {
- 		"ssi_mux", CGU_CLK_MUX,
--		.parents = { X1000_CLK_EXCLK, X1000_CLK_SSIPLL_DIV2, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK, X1000_CLK_SSIPLL_DIV2 },
- 		.mux = { CGU_REG_SSICDR, 30, 1 },
- 	},
- 
-@@ -456,37 +455,37 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_EMC] = {
- 		"emc", CGU_CLK_GATE,
--		.parents = { X1000_CLK_AHB2, -1, -1, -1 },
-+		.parents = { X1000_CLK_AHB2 },
- 		.gate = { CGU_REG_CLKGR, 0 },
- 	},
- 
- 	[X1000_CLK_EFUSE] = {
- 		"efuse", CGU_CLK_GATE,
--		.parents = { X1000_CLK_AHB2, -1, -1, -1 },
-+		.parents = { X1000_CLK_AHB2 },
- 		.gate = { CGU_REG_CLKGR, 1 },
- 	},
- 
- 	[X1000_CLK_SFC] = {
- 		"sfc", CGU_CLK_GATE,
--		.parents = { X1000_CLK_SSIPLL, -1, -1, -1 },
-+		.parents = { X1000_CLK_SSIPLL },
- 		.gate = { CGU_REG_CLKGR, 2 },
- 	},
- 
- 	[X1000_CLK_I2C0] = {
- 		"i2c0", CGU_CLK_GATE,
--		.parents = { X1000_CLK_PCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_PCLK },
- 		.gate = { CGU_REG_CLKGR, 7 },
- 	},
- 
- 	[X1000_CLK_I2C1] = {
- 		"i2c1", CGU_CLK_GATE,
--		.parents = { X1000_CLK_PCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_PCLK },
- 		.gate = { CGU_REG_CLKGR, 8 },
- 	},
- 
- 	[X1000_CLK_I2C2] = {
- 		"i2c2", CGU_CLK_GATE,
--		.parents = { X1000_CLK_PCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_PCLK },
- 		.gate = { CGU_REG_CLKGR, 9 },
- 	},
- 
-@@ -498,43 +497,43 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_UART0] = {
- 		"uart0", CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.gate = { CGU_REG_CLKGR, 14 },
- 	},
- 
- 	[X1000_CLK_UART1] = {
- 		"uart1", CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK},
- 		.gate = { CGU_REG_CLKGR, 15 },
- 	},
- 
- 	[X1000_CLK_UART2] = {
- 		"uart2", CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.gate = { CGU_REG_CLKGR, 16 },
- 	},
- 
- 	[X1000_CLK_TCU] = {
- 		"tcu", CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.gate = { CGU_REG_CLKGR, 18 },
- 	},
- 
- 	[X1000_CLK_SSI] = {
- 		"ssi", CGU_CLK_GATE,
--		.parents = { X1000_CLK_SSIMUX, -1, -1, -1 },
-+		.parents = { X1000_CLK_SSIMUX },
- 		.gate = { CGU_REG_CLKGR, 19 },
- 	},
- 
- 	[X1000_CLK_OST] = {
- 		"ost", CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.gate = { CGU_REG_CLKGR, 20 },
- 	},
- 
- 	[X1000_CLK_PDMA] = {
- 		"pdma", CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
-+		.parents = { X1000_CLK_EXCLK },
- 		.gate = { CGU_REG_CLKGR, 21 },
- 	},
- };
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> ---
+>   include/linux/arm-smccc.h | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/linux/arm-smccc.h b/include/linux/arm-smccc.h
+> index 220c8c60e021..6a627cdbbdec 100644
+> --- a/include/linux/arm-smccc.h
+> +++ b/include/linux/arm-smccc.h
+> @@ -383,6 +383,7 @@ asmlinkage void __arm_smccc_hvc(unsigned long a0, unsigned long a1,
+>   
+>   /* nVHE hypervisor doesn't have a current thread so needs separate checks */
+>   #if defined(CONFIG_ARM64_SVE) && !defined(__KVM_NVHE_HYPERVISOR__)
+> +#include <asm/alternative-macros.h>
+>   
+>   #define SMCCC_SVE_CHECK ALTERNATIVE("nop \n",  "bl __arm_smccc_sve_check \n", \
+>   				    ARM64_SVE)
+
 -- 
-2.38.1
+With best wishes
+Dmitry
 
