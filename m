@@ -2,84 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A58EA60E723
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 20:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A5160E781
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 20:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234138AbiJZS1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 14:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54230 "EHLO
+        id S229949AbiJZSgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 14:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234141AbiJZS07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 14:26:59 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE482D2B;
-        Wed, 26 Oct 2022 11:26:58 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id i21so21917737edj.10;
-        Wed, 26 Oct 2022 11:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=t6vJDW3tWb5ACOdSohfrX6/ZlY8c1ETchJHmlCQfqJg=;
-        b=mfdQHeqFLvG4EvMGmF+03bmVQd85/xlfIr6cKm9gFtiUGprtmcUiZeqU3Od1wOkuRw
-         PhLdEN3RyVYl2oTHi7XH1jEkBABJnesNTlbmAOZfwbIBwwvO05wNW4DSdhi9kDcWR6fW
-         SjQha77hmybz7o6oZuxLUabiFCRuGpsW+tLJ7VbnRaPUt8BHr7db9imof0HsUDsVIOYg
-         z1egrRbBCoKaf9XllFg/77Duse5aa+hlGeUS1CC28a9CcEPcRd5QfQGa/6UZcJKuZvly
-         Rgm5MLkfUdMViALP97tdvy1Asd2KQECZJzQWgGLGftpsHfHpG4LsXs8OG4nR950ZOezf
-         74SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t6vJDW3tWb5ACOdSohfrX6/ZlY8c1ETchJHmlCQfqJg=;
-        b=fZtU7em1Qflz5aupYdxLVVldaTkE082QH9q9rTY5qEDbWMxrlTDtB3aGD+7wkvVGAG
-         StJZbvjYCn/BOzsMNq8Ii9v4+DKf6eEMiv6jC0EJ8tLheZevis5PwiOhjygzREKs0Qx4
-         8aIkCRT3lLlVB06yCi4sCmX6m+eCjDc/nwQqnw35XgSU/4QoJ0SqL5t12DItAnDnfZfQ
-         4xhF7ZvVs8e2SQcUA6+wkXrb4xQsWrDIDlouFbqU1zZVMDcZSTQ7HgOzw/076jDLjgEC
-         lmI3RtLxVfMff15S7Cg5L6pptcy1DzX8WulA0GfEcbyUU+vmLYFc3Fk85xm23K9gh0lW
-         j44g==
-X-Gm-Message-State: ACrzQf3+TqtIkGTwzDl6kguEexBMIC0nVrysk5Fz61c1qEBjgWMMBc2W
-        d63N2xEcy+ixQcNJ3MajbsQF2g6lLbcPnZbrGYo=
-X-Google-Smtp-Source: AMsMyM5H36B31dnAuAKEoO2jKeWDGvA8Paz2NZ3mgXcz/BdjOfm2PpuNIO3++jh2TObcJkvmbTzV7e5ZzL70C0juzv8=
-X-Received: by 2002:a05:6402:26cf:b0:45d:48d7:928e with SMTP id
- x15-20020a05640226cf00b0045d48d7928emr40737493edd.275.1666808816957; Wed, 26
- Oct 2022 11:26:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221026171721.4nfvhamguwnrw6zf@pengutronix.de> <CA+V-a8urKEjEKP0n9mki8xx1B9JLOMTYM4F1aXC3h_5Ne0+tCw@mail.gmail.com>
- <20221026173519.bm22im7uov6b4nnp@pengutronix.de>
-In-Reply-To: <20221026173519.bm22im7uov6b4nnp@pengutronix.de>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 26 Oct 2022 19:26:30 +0100
-Message-ID: <CA+V-a8sehSzH-xe_Xm-YC97+CbjLROLrTauEKv-wWNTjGAmxKw@mail.gmail.com>
-Subject: Re: [PATCH v3 8/9] media: i2c: ov5645: Don't return early on failures
- for s_stream(0)
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S233699AbiJZSgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 14:36:22 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2816A50EA;
+        Wed, 26 Oct 2022 11:36:20 -0700 (PDT)
+Received: from fabians-envy.localnet ([84.167.206.69]) by
+ mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MNso2-1oPT6s04Pw-00OFWf; Wed, 26 Oct 2022 20:35:58 +0200
+From:   Fabian Vogt <fabian@ritter-vogt.de>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>, devicetree@vger.kernel.org,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Daniel Tang <dt.tangr@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v2 1/2] ARM: nspire: Use syscon-reboot to handle restart
+Date:   Wed, 26 Oct 2022 20:35:52 +0200
+Message-ID: <4750364.GXAFRqVoOG@fabians-envy>
+In-Reply-To: <20221026161302.5319-2-afd@ti.com>
+References: <20221026161302.5319-1-afd@ti.com> <20221026161302.5319-2-afd@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="ISO-8859-1"
+X-Provags-ID: V03:K1:hLePCTnLfGCqdPeOJbHL/d/IYxK0n7hZ4Rjwu0vVpkB6KS8ePho
+ f0YuVo702j3Il5Ygms5NROXe30Zi6C9Lv7dCAJjM5RwqCAf/RbZNKM5Yn1vAuEsyHUdXJm2
+ X6I/Twr9flRSh+weOGsTIvJRW9/Bq4vnhO/3kv2HPt8fHjZ3h1rIS8zehC6uqQpgv9urJcz
+ cuo6hgoE2i97P31dPR3Eg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:d+7iQcA1o5M=:5Lwg2tg18+FQ0mfQop7/yN
+ YZvt44e9rJQezCUlVkL/YW45SKHRYdAeKzbLhC9DHetsRU/WOPClb1eEvTnuDx+0C8MPTNUZ+
+ 9ZKi5odJtSNrZY9vs559SHwfz+vb8Z0ujxLVm0zjT5s2ME5mUa+P2fuOGLcFwui+Gy/VZGM4P
+ LzFBYNtDR0OFGpc2XJbsrSh+2IPcQbQtPL0gjzrpoKfOmfp+0jowdmhHYJn94OqFu6cc50a/9
+ QfWdAGdfW3gyVZ73gKTW1tHuaUiJIumQjN2/EdUKvNw4ipIH7pFiPA8wM0a8oAhVdUjXHxAJU
+ JGMQFKFb3bX/ErtKhoZTebyJktGaUdoVmB13rByOaokSd98Y+eZELO0chzu2j0pVbyT/iRZbc
+ ebsaofaSF77QQNinf/QBoj3TvyBoa2K3MQepJgbLfHAVEmLyoAJ2+GLG3GKwatKY8wgcA3QmH
+ 5o3ez/FTTvnYKpXK6hBW9kgyJjJni6U4hpEPxMsvRBsUEDeKQUXl9+NAClu6DqzQ3PM/7nCd+
+ WINiQE9k7KJZ2R/KxxuZNHEekYjWeirHH4gHzfjgogUk+TykF6TRlDXLl1lLpRfd82fktOeuR
+ EKxB8U8NAonBl+Yg8AGmMtEktpYFrz/1KfNlesFFy5ep71hguM2QEgI++ujVPhAULDCWLv3wV
+ ls6AOaHlcy4uWzt02XrALwaEVcNYWHd0LBH9MA9NSIuQk7u5WnwCeFxEeporvjRgab3q58R3G
+ nizrhfM6TaXlWFLGnG8/HnKaFQyV5b0WLGtd5czrsK0lW0gJ+Fgxe91hi+4PAlivXnLlToqW2
+ aGhBVAL+bbVzB3YyBvTa+G4VwlWtA==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,86 +58,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Hi,
 
-On Wed, Oct 26, 2022 at 6:35 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
->
-> On 22-10-26, Lad, Prabhakar wrote:
-> > Hi Marco,
-> >
-> > Thank you for the review.
-> >
-> > On Wed, Oct 26, 2022 at 6:17 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > thanks for the patch, please see below my comments.
-> > >
-> > > On 22-10-26, Prabhakar wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Make sure we dont stop the code flow in case of errors while stopping
-> > > > the stream and return the error code of the first error case if any.
-> > > >
-> > > > v4l2-core takes care of warning the user so no need to add a warning
-> > > > message in the driver.
-> > > >
-> > > > Suggested-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > > v2->v3
-> > > > * Now propagating the first error code in case of failure.
-> > > >
-> > > > v1->v2
-> > > > * New patch
-> > > > ---
-> > > >  drivers/media/i2c/ov5645.c | 11 ++++++++---
-> > > >  1 file changed, 8 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
-> > > > index eea3067ddc8b..5702a55607fc 100644
-> > > > --- a/drivers/media/i2c/ov5645.c
-> > > > +++ b/drivers/media/i2c/ov5645.c
-> > > > @@ -996,17 +996,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
-> > > >               if (ret < 0)
-> > > >                       goto err_rpm_put;
-> > > >       } else {
-> > > > +             int stream_off_ret = 0;
-> > > > +
-> > > >               ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
-> > >
-> > > If this write failed..
-> > >
-> > > >               if (ret < 0)
-> > > > -                     return ret;
-> > > > +                     stream_off_ret = ret;
-> > > >
-> > > >               ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
-> > > >                                      OV5645_SYSTEM_CTRL0_STOP);
-> > >
-> > > why should this write be successful?
-> > >
-> > Indeed that will fail unless I have a lucky day ;-)
-> >
-> > But it seemed to be an overkill for adding an additional check to see
-> > if the previous write succeeded. Do you think this will create an
-> > issue?
->
-> Why not just say?
->
->         ret = ov5645_write_reg();
->         if (ret < 0)
->                 goto out;
->
->         ...
->
->         out:
->
->         dev_pm_xxx();
->
->         return ret;
->
-Thanks for the suggestion, I will rework this in the next version.
+Am Mittwoch, 26. Oktober 2022, 18:13:01 CEST schrieb Andrew Davis:
+> Writing this bit can be handled by the syscon-reboot driver. Add the
+> info to DT and remove the machine_desc version.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Cheers,
-Prabhakar
+finally got this to run on real HW after reverting to an older .config
+and refreshing options. Rebooting works fine here. Thanks a lot!
+
+Tested-by: Fabian Vogt <fabian@ritter-vogt.de>
+Reviewed-by: Fabian Vogt <fabian@ritter-vogt.de>
+
+> ---
+>  arch/arm/boot/dts/nspire.dtsi |  7 +++++++
+>  arch/arm/mach-nspire/Kconfig  |  2 ++
+>  arch/arm/mach-nspire/mmio.h   |  3 ---
+>  arch/arm/mach-nspire/nspire.c | 10 ----------
+>  4 files changed, 9 insertions(+), 13 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/nspire.dtsi b/arch/arm/boot/dts/nspire.dtsi
+> index bb240e6a3a6f..6357b803521e 100644
+> --- a/arch/arm/boot/dts/nspire.dtsi
+> +++ b/arch/arm/boot/dts/nspire.dtsi
+> @@ -172,7 +172,14 @@ rtc: rtc@90090000 {
+>  			};
+>  
+>  			misc: misc@900a0000 {
+> +				compatible = "syscon", "simple-mfd";
+>  				reg = <0x900a0000 0x1000>;
+> +
+> +				reboot {
+> +					compatible = "syscon-reboot";
+> +					offset = <0x08>;
+> +					value = <0x02>;
+> +				};
+>  			};
+>  
+>  			pwr: pwr@900b0000 {
+> diff --git a/arch/arm/mach-nspire/Kconfig b/arch/arm/mach-nspire/Kconfig
+> index b7a3871876d7..0ffdcaca1e6b 100644
+> --- a/arch/arm/mach-nspire/Kconfig
+> +++ b/arch/arm/mach-nspire/Kconfig
+> @@ -9,5 +9,7 @@ config ARCH_NSPIRE
+>  	select ARM_VIC
+>  	select ARM_TIMER_SP804
+>  	select NSPIRE_TIMER
+> +	select POWER_RESET
+> +	select POWER_RESET_SYSCON
+>  	help
+>  	  This enables support for systems using the TI-NSPIRE CPU
+> diff --git a/arch/arm/mach-nspire/mmio.h b/arch/arm/mach-nspire/mmio.h
+> index 48e32f13f311..2ce0656139ec 100644
+> --- a/arch/arm/mach-nspire/mmio.h
+> +++ b/arch/arm/mach-nspire/mmio.h
+> @@ -5,9 +5,6 @@
+>   *	Copyright (C) 2013 Daniel Tang <tangrs@tangrs.id.au>
+>   */
+>  
+> -#define NSPIRE_MISC_PHYS_BASE		0x900A0000
+> -#define NSPIRE_MISC_HWRESET		0x08
+> -
+>  #define NSPIRE_PWR_PHYS_BASE		0x900B0000
+>  #define NSPIRE_PWR_VIRT_BASE		0xFEEB0000
+>  #define NSPIRE_PWR_BUS_DISABLE1		0x18
+> diff --git a/arch/arm/mach-nspire/nspire.c b/arch/arm/mach-nspire/nspire.c
+> index 2d4abb0288b9..1e13337972dd 100644
+> --- a/arch/arm/mach-nspire/nspire.c
+> +++ b/arch/arm/mach-nspire/nspire.c
+> @@ -27,16 +27,6 @@ static const char *const nspire_dt_match[] __initconst = {
+>  	NULL,
+>  };
+>  
+> -static void nspire_restart(enum reboot_mode mode, const char *cmd)
+> -{
+> -	void __iomem *base = ioremap(NSPIRE_MISC_PHYS_BASE, SZ_4K);
+> -	if (!base)
+> -		return;
+> -
+> -	writel(2, base + NSPIRE_MISC_HWRESET);
+> -}
+> -
+>  DT_MACHINE_START(NSPIRE, "TI-NSPIRE")
+>  	.dt_compat	= nspire_dt_match,
+> -	.restart	= nspire_restart,
+>  MACHINE_END
+
+
