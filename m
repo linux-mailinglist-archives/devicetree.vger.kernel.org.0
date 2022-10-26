@@ -2,90 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0229A60E999
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C03C60E9A0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 21:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234720AbiJZTvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 15:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35636 "EHLO
+        id S234106AbiJZTwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 15:52:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234717AbiJZTvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:51:09 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A51B900C7
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:51:07 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id o4so18936544ljp.8
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 12:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kl2nAO5gy8gHX4P+zkYYuzR2j2HMszdyI0HmA3G3Bnc=;
-        b=R1stc9QNfLnbxcxfkLORrgbpZ/mok3CtKuqE8VQVvzf3iIbPBg7c94FRZfAVCa6y7t
-         ya0/7JuIltoLG9E2HdFQZyweeZT8l01mXCHveZpdhKiEISaNMy7qvRjIacjULL46fgHD
-         2Y0+7JXBqQqUPBZCExLJiKTNo0/G6F0BTa1jY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:user-agent:from:references:in-reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Kl2nAO5gy8gHX4P+zkYYuzR2j2HMszdyI0HmA3G3Bnc=;
-        b=UNF/qlLoGIqoE2D2y55CMgKEXYIEjx8f0mLHMhRLIqcj0HGL3FcpANdgJfbWFAzNcl
-         XV5qXMOaR8yjAq4NBn+8Ls/9nvnRBev5jFAKCKquFzIpVXw3IC4jQ6U8UFg8z0l1p/mt
-         pWO+JOrRHwPysWO+V/X4eCYTYWNxY1z/+bWR7XeByZbe09u3QBW0jQV4PZDNIxYr2UTk
-         bysIwMqNeNxUPKoormQhQJTU23Zd+DqytinWCCUg3/HGShhxbE95ydMu68NkjKSEKrJ1
-         tCiJ5j3nfulb+BsBmpM3izoYfSUQR5eppUs8N00gUd4NaFKRKC+/ulcd3kjcdPRflvtT
-         Gpwg==
-X-Gm-Message-State: ACrzQf1vo8LDYB6GfmbZN4BhwMfxGqYG0fnv5f+5O6WtcXIBcrfL3OAk
-        +JAWFiGgOf3isYsrSUp/KN8J6dgTf6HsS2jYfK5DQQ==
-X-Google-Smtp-Source: AMsMyM55CS75cu8NCEEPadabnoMEL99YmG6yPMjuNP5NL1tM/On6r7BFU8Sbpa+YufOLkxQaZK5M9EqTtc6+ppTty1w=
-X-Received: by 2002:a2e:a98b:0:b0:26f:c755:ae8e with SMTP id
- x11-20020a2ea98b000000b0026fc755ae8emr16098044ljq.27.1666813865392; Wed, 26
- Oct 2022 12:51:05 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 26 Oct 2022 15:51:04 -0400
+        with ESMTP id S234516AbiJZTwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 15:52:40 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F91F63D6;
+        Wed, 26 Oct 2022 12:52:40 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29QJm37f027235;
+        Wed, 26 Oct 2022 19:52:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=OmBwWhQGh7YtiLbeVb/rH4Mt1uj9aXGUgjRU9w21yZw=;
+ b=OEg9Y0UCfsYB8WpjchI/kBXFpOjxx+nkoo8YXUxa2feFkI2zYsiAeYbMqwX3EzEBh6pW
+ pdAbj4o664iE2paGB/D3epkZM0DCRWBeadao3xLj/NWdJnttKJ2k7aEhcO2D42n2FuPR
+ IVoX5vf/84BKRNOEitRnSxBlaNGFtSvf3EYQnRK7GZ/iMcedqHFRHrXSkXYcrkSdheXo
+ vSttQbkyA7xWKywCJMQWHIjBz0RszOX1FGp8VSeIUKzn31TDAM1UaiV2MYWo8tNo+Ut+
+ Iu26BmAGN8+yuyH6il8313t5F3TrNKj0lXG39j8XQ10CJ8tIi/s0An65kKrCxl9RJOgs 4Q== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kfahvr3tg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Oct 2022 19:52:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29QJqWNB026962
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Oct 2022 19:52:32 GMT
+Received: from hu-subbaram-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Wed, 26 Oct 2022 12:52:31 -0700
+From:   Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+To:     <bjorn.andersson@linaro.org>
+CC:     <agross@kernel.org>, <devicetree@vger.kernel.org>,
+        <konrad.dybcio@somainline.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <robh+dt@kernel.org>, <sre@kernel.org>
+Subject: [PATCH 2/4] soc: qcom: pmic_glink: Introduce base PMIC GLINK driver
+Date:   Wed, 26 Oct 2022 12:52:26 -0700
+Message-ID: <1666813946-21569-1-git-send-email-quic_subbaram@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <20220818031512.319310-3-bjorn.andersson@linaro.org>
+References: <20220818031512.319310-3-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20221020225135.31750-2-krzysztof.kozlowski@linaro.org>
-References: <20221020225135.31750-1-krzysztof.kozlowski@linaro.org> <20221020225135.31750-2-krzysztof.kozlowski@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 26 Oct 2022 15:51:04 -0400
-Message-ID: <CAE-0n51d82iShZKanS6e+-yrctm03k+w6HPm=g8B+1SKTN_C2g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7180-trogdor-homestar: fully
- configure secondary I2S pins
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: j6kq3teLL9aL6JIybqHYPH5sYIeWecHw
+X-Proofpoint-GUID: j6kq3teLL9aL6JIybqHYPH5sYIeWecHw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-26_08,2022-10-26_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 mlxlogscore=661
+ spamscore=0 phishscore=0 bulkscore=0 malwarescore=0 clxscore=1011
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2210260110
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2022-10-20 15:51:33)
-> The Trogdor Homestar DTSI adds additional GPIO52 pin to secondary I2S pins
-> ("sec_mi2s_active") and configures it to "mi2s_1" function.
->
-> The Trogdor DTSI (which is included by Homestar) configures drive
-> strength and bias for all "sec_mi2s_active" pins, thus the intention was
-> to apply this configuration also to GPIO52 on Homestar.
->
-> Reported-by: Doug Anderson <dianders@chromium.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Fixes: be0416a3f917 ("arm64: dts: qcom: Add sc7180-trogdor-homestar")
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->
-> ---
+> +static struct pmic_glink *__pmic_glink;
+> +static DEFINE_MUTEX(__pmic_glink_lock);
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Having this global device and lock to update pmic_glink struct pointer
+might not work well if there are multiple pmic_glink devices that
+corresponds to multiple pmic_glink channels (or rpmsg devices). This
+is fine for the primary pmic_glink channel that supports mission mode
+clients. However, to support debugging, there could be a secondary
+pmic_glink channel and some clients under it.
+
+> +struct pmic_glink_client {
+> +	struct list_head node;
+> +
+> +	struct pmic_glink *pmic;
+
+It would be good to name this pointer as "pg" or something.
