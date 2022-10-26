@@ -2,91 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31DB060E9DA
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EAA960E9F0
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234560AbiJZUGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 16:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S234205AbiJZUJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 16:09:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234031AbiJZUGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:06:07 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB739DD9B;
-        Wed, 26 Oct 2022 13:05:47 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-13b103a3e5dso21738078fac.2;
-        Wed, 26 Oct 2022 13:05:47 -0700 (PDT)
+        with ESMTP id S234583AbiJZUJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:09:32 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C19D2CE;
+        Wed, 26 Oct 2022 13:09:32 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id u132so7107048oib.0;
+        Wed, 26 Oct 2022 13:09:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=S8qncsC9xPu94G/T5fG+zgjmNukegSk/8gNgKQ5y1M0=;
-        b=cyFqBu1mkDx7uEdn9zkCZOJovCzCl9KWa/WpUPzBapaBEH0s5XX/tPMyV3Ww7ivQ9D
-         pyepfe5B3vBSoFwzcb74E1h03zZSCzJt0jX0VfZJqdlq8NBXUi9dymZ5Y/RbsZ544JY4
-         a9VKl6x/zTXA0wYk7pdFJkb2iPIzsh+2OfvMf0HRHnHRNOL5DVnj0dvWoVXPxaeZiyB5
-         3e2TJ5c+SNZmXGZTIM9KQ1b73qCbTaS3hFnWrBEjT1gorSX2LVWUN8F+V6hV46I54IH8
-         EcpS0zGw31KJLOIXj2nK/fCpfO6yvajfYkDfPrdz8CYj2svKhruWP2KBAEAvhiPEp+FC
-         A66w==
-X-Gm-Message-State: ACrzQf2LZf8CKhtRVytLFs6Aun4cSGK9Y9Hr1z4f3IBYXOO79adbUaf9
-        OYniBnWhfAkzP3CQApwWbw==
-X-Google-Smtp-Source: AMsMyM70mglyRsxqAETtVdkw+wTL6ksgSKf2Ku8kFNVix9+hRc9gP3Y5EtRgcR4KDuQavTwAPufMGA==
-X-Received: by 2002:a05:6870:f59e:b0:132:bcd:565f with SMTP id eh30-20020a056870f59e00b001320bcd565fmr3231569oab.254.1666814746869;
-        Wed, 26 Oct 2022 13:05:46 -0700 (PDT)
+        bh=dSvnZNFrY/t8hO+otMGCt6SYXbtg48WlbzdEKm92cOU=;
+        b=2ZEgHfTwt8hV0VbpyZzqciIfiWJkBHJXhYWiOUOsXSH2hC8WwFjxYYaTXndXjQlE7p
+         3LmQSEmNmNoarxroFkDJfOycJNFZk3zRkW+WR29MwTOEOCqEAVR3IACa9S/4JPlxEMmJ
+         CO3FowK6oICRzh8gssHk6yinOnwd74FHbc9vFCyMUo4wB0hewQEuFLPkOzIrpho0z3CY
+         CmygEERux7NvQ3NWI/SBRcmJiEqJs61ao5C4aXi+zJoXlgMSLsswvL85daeyrDsGJI1G
+         lUEKelWn5KeGQe0ZUUP9wxiBBsEeHw5KbMlG1htflpVVcZ6BbsnICT1hm4ZnINcgIpot
+         talw==
+X-Gm-Message-State: ACrzQf11YKBgk4uI/o25LexLhjibdbTAneI1S9J1ueveCThP4e5esNMC
+        mB4V43yJFRP7SXKMmefLQg==
+X-Google-Smtp-Source: AMsMyM6ntSDBnaABx1qDKv9FZuOk6gTVL2XjZEhmCAZh+IkqC1YfWA1d8IotgbNQZ/dmGPF9Q1UpYg==
+X-Received: by 2002:a05:6808:10d6:b0:355:526b:fc0d with SMTP id s22-20020a05680810d600b00355526bfc0dmr2896689ois.258.1666814971774;
+        Wed, 26 Oct 2022 13:09:31 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y18-20020a056870429200b0010c727a3c79sm3665071oah.26.2022.10.26.13.05.45
+        by smtp.gmail.com with ESMTPSA id x35-20020a056870b42300b0012752d3212fsm3653703oap.53.2022.10.26.13.09.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 13:05:46 -0700 (PDT)
-Received: (nullmailer pid 1077392 invoked by uid 1000);
-        Wed, 26 Oct 2022 20:05:47 -0000
-Date:   Wed, 26 Oct 2022 15:05:47 -0500
+        Wed, 26 Oct 2022 13:09:30 -0700 (PDT)
+Received: (nullmailer pid 1103965 invoked by uid 1000);
+        Wed, 26 Oct 2022 20:09:32 -0000
+Date:   Wed, 26 Oct 2022 15:09:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: iio: temperature: ltc2983: support
- more parts
-Message-ID: <166681474700.1077088.13998072512445461947.robh@kernel.org>
-References: <20221025081842.1896748-1-demonsingur@gmail.com>
- <20221025081842.1896748-4-demonsingur@gmail.com>
+        patches@lists.linux.dev, Craig Hesling <hesling@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        chrome-platform@lists.linux.dev
+Subject: Re: [PATCH v7 2/2] dt-bindings: cros-ec: Add ChromeOS fingerprint
+ binding
+Message-ID: <166681497103.1103616.12500217142449534506.robh@kernel.org>
+References: <20221026003641.2688765-1-swboyd@chromium.org>
+ <20221026003641.2688765-3-swboyd@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221025081842.1896748-4-demonsingur@gmail.com>
+In-Reply-To: <20221026003641.2688765-3-swboyd@chromium.org>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Oct 2022 11:18:41 +0300, Cosmin Tanislav wrote:
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+On Tue, 25 Oct 2022 17:36:41 -0700, Stephen Boyd wrote:
+> Add a binding to describe the fingerprint processor found on Chromebooks
+> with a fingerprint sensor. Previously we've been describing this with
+> the google,cros-ec-spi binding but it lacks gpio and regulator control
+> used during firmware flashing.
 > 
-> Add support for the following parts:
->  * LTC2984
->  * LTC2986
->  * LTM2985
-> 
-> The LTC2984 is a variant of the LTC2983 with EEPROM.
-> The LTC2986 is a variant of the LTC2983 with only 10 channels,
-> EEPROM and support for active analog temperature sensors.
-> The LTM2985 is software-compatible with the LTC2986.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: <devicetree@vger.kernel.org>
+> Cc: <chrome-platform@lists.linux.dev>
+> Cc: Guenter Roeck <groeck@chromium.org>
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Cc: Craig Hesling <hesling@chromium.org>
+> Cc: Tom Hughes <tomhughes@chromium.org>
+> Cc: Alexandru M Stan <amstan@chromium.org>
+> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
+> Cc: Matthias Kaehlcke <mka@chromium.org>
+> Cc: Benson Leung <bleung@chromium.org>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  .../bindings/iio/temperature/adi,ltc2983.yaml | 59 +++++++++++++++++--
->  1 file changed, 55 insertions(+), 4 deletions(-)
+>  .../bindings/mfd/google,cros-ec.yaml          | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
