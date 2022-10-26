@@ -2,65 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEAFB60E361
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F5F60E36A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233775AbiJZOca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:32:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
+        id S233717AbiJZOeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:34:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233663AbiJZOc3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:32:29 -0400
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436EAFF243
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:32:28 -0700 (PDT)
-Received: by mail-qv1-xf30.google.com with SMTP id u7so11564613qvn.13
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:32:28 -0700 (PDT)
+        with ESMTP id S234083AbiJZOel (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:34:41 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F71BE0F5
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:34:40 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id c23so9981620qtw.8
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:34:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KsmuzRKKaUB6WHX3gUEBWTikPz5Qncyumloh3N+8ABA=;
-        b=M5TMAE5sy7A990nf/BNmAXdCy+OZXswI3aLNx44wSvxa2Y60r0ELrzDm3S9EHsmdWV
-         EHNqy45ATprsi1/E6kyz6IFjn7NnZaFYRy8LKapINhJ53iEZWSIXB5rPzJIlURwIZA1u
-         I+PtqFrvah0JQNLCBCU3HhfsTgoz3GfUIyFGN02loxIwOMNaR9oNihA0A4wArJCc+FRw
-         jXx1ie+3Ig8MvAevrS7w/qbEKHBp/N+mOWBs5bXxWuGgN/YJh+1w4/rYGJ1qdpk+g+bl
-         TLY7Yx3dGGqfNZgu2uDO9QLVIQ0ItizjvZlcRoePz1Bz1MSQd3bn7xzgxo2Hh6/SCk1E
-         IKzA==
+        bh=Aue1n5CdddDvk+uG+qHnNwSRlkDsHeAwN2g8IgZTjZc=;
+        b=ZpdLrONk4T6DRMobcv1MM1zbz53uAK5KlJ8hgYZAUAJvkLvs4p6HTb9Vjl7PS72DnZ
+         QkzWf0/9/43kJ5xqNpPlMdGbeMnd57IUjvglfjgrPoXwsXv/4OeF3mJ3XkqXFi0KxGS+
+         A+tMkaNxlmLYrkZuf1wEYuFoKFa9dSn1ugeKoDBO8Wrpz0ijxgm34ejLn+yrwnKvSbyb
+         Bng7/dtj+ITU0xggXXST+qFO4YQ1ft4FBxYZ9Hl9O0oY08Lp2ptdruM2T/ZIuRLLcL8J
+         MUwW7+WZlhkQP5QR6n7EqeqCK/F3CTVRRUuUUkSr014OsGYPC6/qm8Lp8HA1/6neaeWA
+         OnHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KsmuzRKKaUB6WHX3gUEBWTikPz5Qncyumloh3N+8ABA=;
-        b=3iizdAvrcC8gSKfcCQWl6slAcZu8IDdcxacVskyK2+67RxQZz+zX8oSazqWiWm6aRu
-         KlnI/P4mOM4TtIqHD7bxon0yYv19S1xIP9YqNm7nlQomRzpngfrN9T0JB6Xl8+qcvfLF
-         txPWnso70K49dmJxmCJWEGFI1FyC2AoClKi3zVYS9NcfyFaY3Z/KK8+AdvswqGQEYFuH
-         6w729VkbLCnaL0oT8nVuZd4brjMeJ32BuWNKA43E0ayyHyFqQF+iYEVzADr7F+VWGTpF
-         /a/8Lo3fykrbS8I4n4MhQvxSCQgTTdBbZD56eldpsYQJl6a0t7AyVQCvNZECJ1MXQDjP
-         bYfA==
-X-Gm-Message-State: ACrzQf3CCuzhdyU9+9apAu1E36OpdgjbaxSdAkEZL7HSDyXVKyZZoewD
-        +L9EpH0zdHJXQSSSvAFzwVZU1A==
-X-Google-Smtp-Source: AMsMyM6qnlgeQVjneuzws0s2FvSzmE2JFy9e4/CGKLWbwVCK6VTNr/ZP7ZvzbpLEUl6qkHxFmQyavw==
-X-Received: by 2002:ad4:5ca7:0:b0:4bb:97ea:27b5 with SMTP id q7-20020ad45ca7000000b004bb97ea27b5mr1910488qvh.104.1666794747320;
-        Wed, 26 Oct 2022 07:32:27 -0700 (PDT)
+        bh=Aue1n5CdddDvk+uG+qHnNwSRlkDsHeAwN2g8IgZTjZc=;
+        b=SHcKLCbXs7KBPHfnI3Mf4JS5+7sP8OFYeJu4jULq7FQLijJoKM+/crpCIkTbZ/5N45
+         5r6/gjqTyQKo933r7NL1D79TCETRb2ew0BXDaDJbEBPZ8DMpM/vo9POPJnMmh3Fi82fd
+         Zgu6lGWgpdNgE/vhVDbT+OIkg2No2myEtGI87dpL77bJ+HWhz5ZdxmuU5DfmSXluZ1cG
+         nKsegjxCo+S9ExNvKe031SXgtszAq22sebtc2IkG2EDLm8MXNNYrHo4/GDaACvHX6nvw
+         93z+1RfGNl993qhRdEykN5xV6fKMEGD+TKEjXJJAZIxUD1gkLCtxGAd7KrSooWkg3Wx4
+         A/lQ==
+X-Gm-Message-State: ACrzQf0KpvfxZh/gimeT/M7qxS04DsLOqYljX/3+aJRQhtngtd06EaXI
+        9fmtAgqaZ2oSUluVSxcfK0QCIw==
+X-Google-Smtp-Source: AMsMyM7c1sgYx5YIZenvo5DDl/wD/h249LQ6L6+sQqdnyE+pVe7N1cKfoDBZBVAAPrt8rMe2PLHswA==
+X-Received: by 2002:ac8:5849:0:b0:39a:8e35:1bfa with SMTP id h9-20020ac85849000000b0039a8e351bfamr36305054qth.573.1666794879194;
+        Wed, 26 Oct 2022 07:34:39 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id cj20-20020a05622a259400b0039cc665d60fsm3202443qtb.64.2022.10.26.07.32.25
+        by smtp.gmail.com with ESMTPSA id c27-20020a05620a269b00b006ee7923c187sm4013390qkp.42.2022.10.26.07.34.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 07:32:26 -0700 (PDT)
-Message-ID: <be1984de-b69e-3124-3b80-e977578e06c4@linaro.org>
-Date:   Wed, 26 Oct 2022 10:32:24 -0400
+        Wed, 26 Oct 2022 07:34:38 -0700 (PDT)
+Message-ID: <7ceca209-9361-e811-8fe0-282639f9e967@linaro.org>
+Date:   Wed, 26 Oct 2022 10:34:36 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
 Subject: Re: [PATCH 1/1] dt-bindings: net: snps,dwmac: Document queue config
  subnodes
 Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
@@ -70,62 +70,116 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         kernel@collabora.com
 References: <20221021171055.85888-1-sebastian.reichel@collabora.com>
- <761d6ae2-e779-2a4b-a735-960c716c3024@linaro.org>
- <20221024222850.5zq426cnn75twmvn@mercury.elektranox.org>
- <aa146042-2130-9fc3-adcd-c6d701084b4a@linaro.org>
- <20221025141732.z65kswaptgeuz2cl@mercury.elektranox.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221025141732.z65kswaptgeuz2cl@mercury.elektranox.org>
+In-Reply-To: <20221021171055.85888-1-sebastian.reichel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2022 10:17, Sebastian Reichel wrote:
-> Hi,
+On 21/10/2022 13:10, Sebastian Reichel wrote:
+> The queue configuration is referenced by snps,mtl-rx-config and
+> snps,mtl-tx-config. Most in-tree DTs put the referenced object
+> as child node of the dwmac node.
 > 
-> On Mon, Oct 24, 2022 at 07:28:29PM -0400, Krzysztof Kozlowski wrote:
->> Old binding did not document "tx-queues-config". Old binding had
->> "snps,mtl-tx-config" which was a phandle, so this is an ABI break of
->> bindings.
->>
->> You are changing the binding - adding new properties.
+> This adds proper description for this setup, which has the
+> advantage of properly making sure only known properties are
+> used.
 > 
-> The new binding still has the phandle. The only thing I changed is
-> explicitly allowing the referenced node to be a subnode of the dwmac
-> node. This is 100% compatible, since the binding does not specify
-> where the referenced node should be. Only the example suggested it
-> could be next to the ethernet node. But changing any properties in
-> the config node means a ABI break requiring code changes.
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   | 154 ++++++++++++------
+>  1 file changed, 108 insertions(+), 46 deletions(-)
 > 
-> Note, that right now 4/7 devicetrees with snps,mtl-tx-config already
-> follow the scheme I documented. The other 3 have the queue config
-> below the root node like the current example:
-> 
-> has the queues config in /:
->  * arch/arm/boot/dts/artpec6.dtsi
->  * arch/arm64/boot/dts/mediatek/mt2712e.dtsi
->  * arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> 
-> has the queues config in the ethernet node:
->  * arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
->  * arch/arm64/boot/dts/freescale/imx8mp-evk.dts
->  * arch/arm64/boot/dts/rockchip/rk3568.dtsi
->  * arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> 
-> After my change both are considered valid. Anyways I'm doing this
-> for rk3588 and planned to follow the subnode style. But if I have
-> to fully fix this mess I will just put the queue config to the
-> root node instead and let somebody else figure this out.
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 13b984076af5..0bf6112cec2f 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -167,56 +167,118 @@ properties:
+>    snps,mtl-rx-config:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> -      Multiple RX Queues parameters. Phandle to a node that can
+> -      contain the following properties
+> -        * snps,rx-queues-to-use, number of RX queues to be used in the
+> -          driver
+> -        * Choose one of these RX scheduling algorithms
+> -          * snps,rx-sched-sp, Strict priority
+> -          * snps,rx-sched-wsp, Weighted Strict priority
+> -        * For each RX queue
+> -          * Choose one of these modes
+> -            * snps,dcb-algorithm, Queue to be enabled as DCB
+> -            * snps,avb-algorithm, Queue to be enabled as AVB
+> -          * snps,map-to-dma-channel, Channel to map
+> -          * Specifiy specific packet routing
+> -            * snps,route-avcp, AV Untagged Control packets
+> -            * snps,route-ptp, PTP Packets
+> -            * snps,route-dcbcp, DCB Control Packets
+> -            * snps,route-up, Untagged Packets
+> -            * snps,route-multi-broad, Multicast & Broadcast Packets
+> -          * snps,priority, bitmask of the tagged frames priorities assigned to
+> -            the queue
+> +      Multiple RX Queues parameters. Phandle to a node that
+> +      implements the 'rx-queues-config' object described in
+> +      this binding.
+> +
+> +  rx-queues-config:
+> +    type: object
+> +    properties:
+> +      snps,rx-queues-to-use:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: number of RX queues to be used in the driver
+> +      snps,rx-sched-sp:
+> +        type: boolean
+> +        description: Strict priority
+> +      snps,rx-sched-wsp:
+> +        type: boolean
+> +        description: Weighted Strict priority
+> +    patternProperties:
+> +      "^queue[0-9]$":
+> +        description: Each subnode represents a queue.
+> +        type: object
+> +        properties:
+> +          snps,dcb-algorithm:
+> +            type: boolean
+> +            description: Queue to be enabled as DCB
+> +          snps,avb-algorithm:
+> +            type: boolean
+> +            description: Queue to be enabled as AVB
+> +          snps,map-to-dma-channel:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: DMA channel id to map
+> +          snps,route-avcp:
+> +            type: boolean
+> +            description: AV Untagged Control packets
+> +          snps,route-ptp:
+> +            type: boolean
+> +            description: PTP Packets
+> +          snps,route-dcbcp:
+> +            type: boolean
+> +            description: DCB Control Packets
+> +          snps,route-up:
+> +            type: boolean
+> +            description: Untagged Packets
+> +          snps,route-multi-broad:
+> +            type: boolean
+> +            description: Multicast & Broadcast Packets
+> +          snps,priority:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: Bitmask of the tagged frames priorities assigned to the queue
 
-Yeah, let it be.
+If we are not going to fix it, at least let's improve the constraints,
+so add allOf:if:then here (with proper indentation) which disallows
+mixing mutually exclusive properties.
+Here's example:
+https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml#L155
 
 Best regards,
 Krzysztof
