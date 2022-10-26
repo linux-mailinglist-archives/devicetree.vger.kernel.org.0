@@ -2,408 +2,508 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5876860E05D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51AD060E066
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233768AbiJZMKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49058 "EHLO
+        id S233541AbiJZMLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:11:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233770AbiJZMJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:09:18 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06438D9975;
-        Wed, 26 Oct 2022 05:08:20 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id a67so41041031edf.12;
-        Wed, 26 Oct 2022 05:08:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2+sFgXU272HAzKHMb/kYeJV2N/Mo4JiF4D4k4UprARA=;
-        b=fzEn+CmvIJyhIRGwFqLt44V5e6YtCKWJe6uFUNDfViuWX7SatpNXsPijOQz3UeF4dE
-         vaapxdyEpr7dibMIA4MdZ2IzgbZktcyLHiskJfisGXRS05X8CWMo1iPoRF2PVrSI4xLe
-         Th3wPzgpPosZ2bbL0njaUjSOwXlrSD8bVwqDB/eBxj9UbKGuhC5mZ321jZVGMgzn5ucM
-         CXJMbNVnWW8kaj7+G4MRNmOSy/9qv7UHK9uajffee1LRvEaHERZIp6oquVSpLyhxspqi
-         7k3gs4InSSGac+46G8+KzpLf96c5Ug0ThOlCQlii4dH97hFglrpfJKMppcU14lFo4UZa
-         zWXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2+sFgXU272HAzKHMb/kYeJV2N/Mo4JiF4D4k4UprARA=;
-        b=SxAhJthpRwuOfjwd4lW+vjo41Q4mp6MXJfOpK9ulCRgAkpVxVWSHUhbQiqHxEtRTgr
-         RXf7hLfcSlTn76gWhpPCd9QuSmLNSwK0cqPT5R1T9wCiwc3Iz7LyO2OUlq/nRPrqbAIc
-         +v3/NgHxAi0yFeffGVYvNhyxEz2HFuwpXv76zCMW7d3r0ZxU+904QkCLpTJmEF1N8zON
-         1jkc7CtxRzCvtVKvNjYvLSlSDql7OT+ySL7L8dd27Gjn9zZvWu07bA4yklFL7lK9slP6
-         TMtzwS7oBqHeTCYIXAOuBUjyQJjkNBVpG2boTzsAY6yysgSfAEfHuiMhESUaL7oEr1ub
-         EiKA==
-X-Gm-Message-State: ACrzQf1X+bDj8zDgCd4gGfFFZNHam+KBx6V3p6jYWmq+Mb89m7+PDzG6
-        rHe/2+KxOmAv6fRzRW3OdSu6VmArQmrh5zry5iM=
-X-Google-Smtp-Source: AMsMyM4uQcHACnDYbCpSVLGK6r2/1lQQH7yJt8RKJJJ3m09SvKWD63tUH5pVnggP0JMYooCH4Zy0CdKo4gAHJyYU6fA=
-X-Received: by 2002:a05:6402:2552:b0:45d:ecf:b23 with SMTP id
- l18-20020a056402255200b0045d0ecf0b23mr40976114edb.255.1666786098436; Wed, 26
- Oct 2022 05:08:18 -0700 (PDT)
+        with ESMTP id S233661AbiJZMK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:10:58 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0204A1262C;
+        Wed, 26 Oct 2022 05:09:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6E4B7B82218;
+        Wed, 26 Oct 2022 12:09:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 041D9C433D7;
+        Wed, 26 Oct 2022 12:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666786190;
+        bh=T5gZRpFWlBKDyv8ncqwaYHbkyfyyv8ZVB76OXMJ34S0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=u4tN0LWTm2VPhCTcWVfR+Pkydn/KMw6wZxRbyLsGmYsK9RaaHVmQQfWa9lxv2kjP6
+         N3v0TxM5njD2xKWj+IBbVwYWjQfcm53fDPUsqPjwCkc+tHnV7VqNH+jLMccg+USVGJ
+         IgIiwrX5DP0s6ILM+BsDvAbDBc4SQTN1ClQpoGzZeFYMLxI/jdQtdx4DCThIukvM7Y
+         cssd+aH8W65WyCV+6pLxhoq+ZGxqcnnbyRQVmUeMjtRZVXLSAd/86WBmh7LHZDdrY2
+         4S6L3IZPJMWAEsvOzQ3FPKttUajPQqBavEuuncb6zp/JB+VAwCja6T7CNBL52q/gw2
+         QHKh+7KDyacbg==
+Received: by mail-ed1-f53.google.com with SMTP id t15so6393274edd.4;
+        Wed, 26 Oct 2022 05:09:49 -0700 (PDT)
+X-Gm-Message-State: ACrzQf14KRd8LRBgtWMpUyyig7D6/T5J/Q/5nawJdiDT0D8PcUo16fcU
+        CErDjO/3UwdmcgE6YqNdf1yp/R129YUjH4yNs4s=
+X-Google-Smtp-Source: AMsMyM4sPyDY8U/rtsq3yTTTm7yKZdA9k4J4EICbmaM9P/ePohFg70owW/p6wVK/5MQnbtYOemYhQ7TL2gBPSuOHskc=
+X-Received: by 2002:a05:6402:34cd:b0:462:5382:c3a9 with SMTP id
+ w13-20020a05640234cd00b004625382c3a9mr4033445edc.298.1666786188210; Wed, 26
+ Oct 2022 05:09:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y0m180wwV9CiNNTf@paasikivi.fi.intel.com> <Y0pNkiK2IZP4Ipey@pendragon.ideasonboard.com>
- <Y0pSP3fwM8pEeD1e@pendragon.ideasonboard.com>
-In-Reply-To: <Y0pSP3fwM8pEeD1e@pendragon.ideasonboard.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 26 Oct 2022 13:07:51 +0100
-Message-ID: <CA+V-a8s6JmM+DYYdzCoQt9h_OXCLt5iuEGi-RvtJkY-5QQhjgQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+References: <20221026035752.32681-1-zhuyinbo@loongson.cn>
+In-Reply-To: <20221026035752.32681-1-zhuyinbo@loongson.cn>
+From:   Huacai Chen <chenhuacai@kernel.org>
+Date:   Wed, 26 Oct 2022 20:09:35 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H4dfz1iCOyxZbBPsH+V5n8iUXc70G_yeB5BYtOxd9PFoQ@mail.gmail.com>
+Message-ID: <CAAhV-H4dfz1iCOyxZbBPsH+V5n8iUXc70G_yeB5BYtOxd9PFoQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] clocksource: loongson2_hpet: add hpet driver support
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi, Yinbo,
 
-Thank you for the review.
+On Wed, Oct 26, 2022 at 11:58 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
+>
+> HPET (High Precision Event Timer) defines a new set of timers, which
+> are used by the operating system to schedule threads, interrupt the
+> kernel and interrupt the multimedia timer server. The operating
+> system can assign different timers to different applications. By
+> configuration, each timer can generate interrupt independently.
+>
+> The loongson2 HPET module includes a main count and three comparators
+The naming issue, which has been pointed out in another thread.
 
-On Sat, Oct 15, 2022 at 7:25 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
+> , all of which are 32 bits wide. Among the three comparators, only
+> one comparator supports periodic interrupt, all three comparators
+> support non periodic interrupts.
 >
-> One more comment.
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+> Change in v4:
+>                 1. Use common clock framework ops to gain apb clock.
+>                 2. This patch need rely on clock patch, which patchwork
+>                    link was "https://patchwork.kernel.org/project/linux-clk/list/?series=688892".
 >
-> On Sat, Oct 15, 2022 at 09:05:08AM +0300, Laurent Pinchart wrote:
-> > On Fri, Oct 14, 2022 at 07:18:11PM +0000, Sakari Ailus wrote:
-> > > On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Switch to using runtime PM for power management.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > > v1->v2
-> > > > * Moved pm_runtime_*_autosuspend() calls after registering the subdev.
-> > > > ---
-> > > >  drivers/media/i2c/Kconfig  |   2 +-
-> > > >  drivers/media/i2c/ov5645.c | 137 +++++++++++++++++++------------------
-> > > >  2 files changed, 70 insertions(+), 69 deletions(-)
-> > > >
-> > > > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> > > > index 7806d4b81716..c0edd1017fe8 100644
-> > > > --- a/drivers/media/i2c/Kconfig
-> > > > +++ b/drivers/media/i2c/Kconfig
-> > > > @@ -459,7 +459,7 @@ config VIDEO_OV5640
-> > > >  config VIDEO_OV5645
-> > > >   tristate "OmniVision OV5645 sensor support"
-> > > >   depends on OF
-> > > > - depends on I2C && VIDEO_DEV
-> > > > + depends on I2C && PM && VIDEO_DEV
-> > > >   select MEDIA_CONTROLLER
-> > > >   select VIDEO_V4L2_SUBDEV_API
-> > > >   select V4L2_FWNODE
-> > > > diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
-> > > > index 81e4e87e1821..1551690a94e0 100644
-> > > > --- a/drivers/media/i2c/ov5645.c
-> > > > +++ b/drivers/media/i2c/ov5645.c
-> > > > @@ -27,6 +27,7 @@
-> > > >  #include <linux/module.h>
-> > > >  #include <linux/of.h>
-> > > >  #include <linux/of_graph.h>
-> > > > +#include <linux/pm_runtime.h>
-> > > >  #include <linux/regulator/consumer.h>
-> > > >  #include <linux/slab.h>
-> > > >  #include <linux/types.h>
-> > > > @@ -108,7 +109,6 @@ struct ov5645 {
-> > > >   u8 timing_tc_reg21;
-> > > >
-> > > >   struct mutex power_lock; /* lock to protect power state */
-> > > > - int power_count;
-> > > >
-> > > >   struct gpio_desc *enable_gpio;
-> > > >   struct gpio_desc *rst_gpio;
-> > > > @@ -635,8 +635,24 @@ static int ov5645_set_register_array(struct ov5645 *ov5645,
-> > > >   return 0;
-> > > >  }
-> > > >
-> > > > -static int ov5645_set_power_on(struct ov5645 *ov5645)
-> > > > +static int ov5645_set_power_off(struct device *dev)
-> > > >  {
-> > > > + struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > > > + struct ov5645 *ov5645 = to_ov5645(sd);
-> > > > +
-> > > > + ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x58);
-> >
-> > I'm not sure this belongs here, but it can be addressed later.
-> >
-> > > > + gpiod_set_value_cansleep(ov5645->rst_gpio, 1);
-> > > > + gpiod_set_value_cansleep(ov5645->enable_gpio, 0);
-> > > > + clk_disable_unprepare(ov5645->xclk);
-> > > > + regulator_bulk_disable(OV5645_NUM_SUPPLIES, ov5645->supplies);
-> > > > +
-> > > > + return 0;
-> > > > +}
-> > > > +
-> > > > +static int ov5645_set_power_on(struct device *dev)
-> > > > +{
-> > > > + struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > > > + struct ov5645 *ov5645 = to_ov5645(sd);
-> > > >   int ret;
-> > > >
-> > > >   ret = regulator_bulk_enable(OV5645_NUM_SUPPLIES, ov5645->supplies);
-> > > > @@ -658,57 +674,19 @@ static int ov5645_set_power_on(struct ov5645 *ov5645)
-> > > >
-> > > >   msleep(20);
-> > > >
-> > > > - return 0;
-> > > > -}
-> > > > -
-> > > > -static void ov5645_set_power_off(struct ov5645 *ov5645)
-> > > > -{
-> > > > - gpiod_set_value_cansleep(ov5645->rst_gpio, 1);
-> > > > - gpiod_set_value_cansleep(ov5645->enable_gpio, 0);
-> > > > - clk_disable_unprepare(ov5645->xclk);
-> > > > - regulator_bulk_disable(OV5645_NUM_SUPPLIES, ov5645->supplies);
-> > > > -}
-> > > > -
-> > > > -static int ov5645_s_power(struct v4l2_subdev *sd, int on)
-> > > > -{
-> > > > - struct ov5645 *ov5645 = to_ov5645(sd);
-> > > > - int ret = 0;
-> > > > -
-> > > > - mutex_lock(&ov5645->power_lock);
-> > > > -
-> > > > - /* If the power count is modified from 0 to != 0 or from != 0 to 0,
-> > > > -  * update the power state.
-> > > > -  */
-> > > > - if (ov5645->power_count == !on) {
-> > > > -         if (on) {
-> > > > -                 ret = ov5645_set_power_on(ov5645);
-> > > > -                 if (ret < 0)
-> > > > -                         goto exit;
-> > > > -
-> > > > -                 ret = ov5645_set_register_array(ov5645,
-> > > > -                                 ov5645_global_init_setting,
-> > > > + ret = ov5645_set_register_array(ov5645, ov5645_global_init_setting,
-> > > >                                   ARRAY_SIZE(ov5645_global_init_setting));
-> > > > -                 if (ret < 0) {
-> > > > -                         dev_err(ov5645->dev,
-> > > > -                                 "could not set init registers\n");
-> > > > -                         ov5645_set_power_off(ov5645);
-> > > > -                         goto exit;
-> > > > -                 }
-> > > > -
-> > > > -                 usleep_range(500, 1000);
-> > > > -         } else {
-> > > > -                 ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x58);
-> > > > -                 ov5645_set_power_off(ov5645);
-> > > > -         }
-> > > > + if (ret < 0) {
-> > > > +         dev_err(ov5645->dev, "could not set init registers\n");
-> > > > +         goto exit;
-> > > >   }
-> > > >
-> > > > - /* Update the power count. */
-> > > > - ov5645->power_count += on ? 1 : -1;
-> > > > - WARN_ON(ov5645->power_count < 0);
-> > > > + usleep_range(500, 1000);
-> > > >
-> > > > -exit:
-> > > > - mutex_unlock(&ov5645->power_lock);
-> > > > + return 0;
-> > > >
-> > > > +exit:
-> > > > + ov5645_set_power_off(dev);
-> > > >   return ret;
-> > > >  }
-> > > >
-> > > > @@ -795,7 +773,7 @@ static int ov5645_s_ctrl(struct v4l2_ctrl *ctrl)
-> > > >   int ret;
-> > > >
-> > > >   mutex_lock(&ov5645->power_lock);
-> > > > - if (!ov5645->power_count) {
-> > > > + if (!pm_runtime_get_if_in_use(ov5645->dev)) {
-> > > >           mutex_unlock(&ov5645->power_lock);
-> > > >           return 0;
-> > > >   }
-> > > > @@ -827,6 +805,7 @@ static int ov5645_s_ctrl(struct v4l2_ctrl *ctrl)
-> > > >           break;
-> > > >   }
-> > > >
-> > > > + pm_runtime_put_autosuspend(ov5645->dev);
-> > >
-> > > I think you'll need pm_runtime_mark_last_busy() before this. I missed this
-> > > on the last round. Maybe in probe() too. Feel free to resend just this
-> > > patch.
-> > >
-> > > >   mutex_unlock(&ov5645->power_lock);
-> > > >
-> > > >   return ret;
-> > > > @@ -991,6 +970,10 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
-> > > >   int ret;
-> > > >
-> > > >   if (enable) {
-> > > > +         ret = pm_runtime_resume_and_get(ov5645->dev);
-> > > > +         if (ret < 0)
-> > > > +                 return ret;
-> > > > +
-> > > >           ret = ov5645_set_register_array(ov5645,
-> > > >                                   ov5645->current_mode->data,
-> > > >                                   ov5645->current_mode->data_size);
-> > > > @@ -998,22 +981,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
-> > > >                   dev_err(ov5645->dev, "could not set mode %dx%d\n",
-> > > >                           ov5645->current_mode->width,
-> > > >                           ov5645->current_mode->height);
-> > > > -                 return ret;
-> > > > +                 goto err_rpm_put;
-> > > >           }
-> > > >           ret = v4l2_ctrl_handler_setup(&ov5645->ctrls);
-> > > >           if (ret < 0) {
-> > > >                   dev_err(ov5645->dev, "could not sync v4l2 controls\n");
-> > > > -                 return ret;
-> > > > +                 goto err_rpm_put;
-> > > >           }
-> > > >
-> > > >           ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x45);
-> > > >           if (ret < 0)
-> > > > -                 return ret;
-> > > > +                 goto err_rpm_put;
-> > > >
-> > > >           ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
-> > > >                                  OV5645_SYSTEM_CTRL0_START);
-> > > >           if (ret < 0)
-> > > > -                 return ret;
-> > > > +                 goto err_rpm_put;
-> > > >   } else {
-> > > >           ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
-> > > >           if (ret < 0)
-> > > > @@ -1023,14 +1006,15 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
-> > > >                                  OV5645_SYSTEM_CTRL0_STOP);
-> > > >           if (ret < 0)
-> > > >                   return ret;
-> > > > +         pm_runtime_put(ov5645->dev);
+>  MAINTAINERS                          |   6 +
+>  arch/loongarch/kernel/time.c         |   4 +-
+>  drivers/clocksource/Kconfig          |   9 +
+>  drivers/clocksource/Makefile         |   1 +
+>  drivers/clocksource/loongson2_hpet.c | 335 +++++++++++++++++++++++++++
+>  5 files changed, 354 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/clocksource/loongson2_hpet.c
 >
-> This should be pm_runtime_put_autosuspend(), with a
-> pm_runtime_mark_last_busy() call too.
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index f61a431ad8ca..db29c1dc2d89 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11915,6 +11915,12 @@ F:     Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+>  F:     drivers/clk/clk-loongson2.c
+>  F:     include/dt-bindings/clock/loongson,ls2k-clk.h
 >
-OK.
+> +LOONGSON2 SOC SERIES HPET DRIVER
+> +M:     Yinbo Zhu <zhuyinbo@loongson.cn>
+> +L:     linux-kernel@vger.kernel.org
+> +S:     Maintained
+> +F:     drivers/clocksource/loongson2_hpet.c
+> +
+>  LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+>  M:     Sathya Prakash <sathya.prakash@broadcom.com>
+>  M:     Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+> diff --git a/arch/loongarch/kernel/time.c b/arch/loongarch/kernel/time.c
+> index 09f20bc81798..0d8b37763086 100644
+> --- a/arch/loongarch/kernel/time.c
+> +++ b/arch/loongarch/kernel/time.c
+> @@ -216,7 +216,9 @@ int __init constant_clocksource_init(void)
+>  void __init time_init(void)
+>  {
+>         of_clk_init(NULL);
+> -
+> +#ifdef CONFIG_TIMER_PROBE
+> +       timer_probe();
+> +#endif
+>         if (!cpu_has_cpucfg)
+>                 const_clock_freq = cpu_clock_freq;
+>         else
+> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+> index 4f2bb7315b67..1c7ab3541d81 100644
+> --- a/drivers/clocksource/Kconfig
+> +++ b/drivers/clocksource/Kconfig
+> @@ -721,4 +721,13 @@ config GOLDFISH_TIMER
+>         help
+>           Support for the timer/counter of goldfish-rtc
+>
+> +config LOONGSON2_HPET
+> +       bool "Loongson2 High Precision Event Timer (HPET)"
+> +       select TIMER_PROBE
+> +       select TIMER_OF
+> +       help
+> +         This option enables Loongson2 High Precision Event Timer
+> +         (HPET) module driver. It supports the oneshot, the periodic
+> +         modes and high resolution. It is used as a clocksource and
+> +         a clockevent.
+>  endmenu
+> diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
+> index 64ab547de97b..1a3abb770f11 100644
+> --- a/drivers/clocksource/Makefile
+> +++ b/drivers/clocksource/Makefile
+> @@ -88,3 +88,4 @@ obj-$(CONFIG_MICROCHIP_PIT64B)                += timer-microchip-pit64b.o
+>  obj-$(CONFIG_MSC313E_TIMER)            += timer-msc313e.o
+>  obj-$(CONFIG_GOLDFISH_TIMER)           += timer-goldfish.o
+>  obj-$(CONFIG_GXP_TIMER)                        += timer-gxp.o
+> +obj-$(CONFIG_LOONGSON2_HPET)           += loongson2_hpet.o
+> diff --git a/drivers/clocksource/loongson2_hpet.c b/drivers/clocksource/loongson2_hpet.c
+> new file mode 100644
+> index 000000000000..fbcf69f0204f
+> --- /dev/null
+> +++ b/drivers/clocksource/loongson2_hpet.c
+> @@ -0,0 +1,335 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
+> + * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
+> + */
+> +
+> +#include <linux/init.h>
+> +#include <linux/percpu.h>
+> +#include <linux/delay.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/interrupt.h>
+> +#include <asm/time.h>
+Please include asm headers after all linux headers.
 
-> > > >   }
-> > > >
-> > > >   return 0;
-> > > > -}
-> > > >
-> > > > -static const struct v4l2_subdev_core_ops ov5645_core_ops = {
-> > > > - .s_power = ov5645_s_power,
-> > > > -};
-> > > > +err_rpm_put:
-> > > > + pm_runtime_put(ov5645->dev);
+Huacai
+> +#include <linux/of_irq.h>
+> +#include <linux/of_address.h>
+> +#include <linux/clk.h>
+> +
+> +/* HPET regs */
+> +#define HPET_CFG                0x010
+> +#define HPET_STATUS             0x020
+> +#define HPET_COUNTER            0x0f0
+> +#define HPET_T0_IRS             0x001
+> +#define HPET_T0_CFG             0x100
+> +#define HPET_T0_CMP             0x108
+> +#define HPET_CFG_ENABLE         0x001
+> +#define HPET_TN_LEVEL           0x0002
+> +#define HPET_TN_ENABLE          0x0004
+> +#define HPET_TN_PERIODIC        0x0008
+> +#define HPET_TN_SETVAL          0x0040
+> +#define HPET_TN_32BIT           0x0100
+> +
+> +#define HPET_MIN_CYCLES                16
+> +#define HPET_MIN_PROG_DELTA    (HPET_MIN_CYCLES * 12)
+> +#define HPET_COMPARE_VAL       ((hpet_freq + HZ / 2) / HZ)
+> +
+> +void __iomem                   *hpet_mmio_base;
+> +unsigned int                   hpet_freq;
+> +unsigned int                   hpet_t0_irq;
+> +unsigned int                   hpet_irq_flags;
+> +unsigned int                   hpet_t0_cfg;
+> +
+> +static DEFINE_SPINLOCK(hpet_lock);
+> +DEFINE_PER_CPU(struct clock_event_device, hpet_clockevent_device);
+> +
+> +static int hpet_read(int offset)
+> +{
+> +       return readl(hpet_mmio_base + offset);
+> +}
+> +
+> +static void hpet_write(int offset, int data)
+> +{
+> +       writel(data, hpet_mmio_base + offset);
+> +}
+> +
+> +static void hpet_start_counter(void)
+> +{
+> +       unsigned int cfg = hpet_read(HPET_CFG);
+> +
+> +       cfg |= HPET_CFG_ENABLE;
+> +       hpet_write(HPET_CFG, cfg);
+> +}
+> +
+> +static void hpet_stop_counter(void)
+> +{
+> +       unsigned int cfg = hpet_read(HPET_CFG);
+> +
+> +       cfg &= ~HPET_CFG_ENABLE;
+> +       hpet_write(HPET_CFG, cfg);
+> +}
+> +
+> +static void hpet_reset_counter(void)
+> +{
+> +       hpet_write(HPET_COUNTER, 0);
+> +       hpet_write(HPET_COUNTER + 4, 0);
+> +}
+> +
+> +static void hpet_restart_counter(void)
+> +{
+> +       hpet_stop_counter();
+> +       hpet_reset_counter();
+> +       hpet_start_counter();
+> +}
+> +
+> +static void hpet_enable_legacy_int(void)
+> +{
+> +       /* Do nothing on Loongson2 */
+> +}
+> +
+> +static int hpet_set_state_periodic(struct clock_event_device *evt)
+> +{
+> +       int cfg;
+> +
+> +       spin_lock(&hpet_lock);
+> +
+> +       pr_info("set clock event to periodic mode!\n");
+> +       /* stop counter */
+> +       hpet_stop_counter();
+> +       hpet_reset_counter();
+> +       hpet_write(HPET_T0_CMP, 0);
+> +
+> +       /* enables the timer0 to generate a periodic interrupt */
+> +       cfg = hpet_read(HPET_T0_CFG);
+> +       cfg &= ~HPET_TN_LEVEL;
+> +       cfg |= HPET_TN_ENABLE | HPET_TN_PERIODIC | HPET_TN_SETVAL |
+> +               HPET_TN_32BIT | hpet_irq_flags;
+> +       hpet_write(HPET_T0_CFG, cfg);
+> +
+> +       /* set the comparator */
+> +       hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
+> +       udelay(1);
+> +       hpet_write(HPET_T0_CMP, HPET_COMPARE_VAL);
+> +
+> +       /* start counter */
+> +       hpet_start_counter();
+> +
+> +       spin_unlock(&hpet_lock);
+> +       return 0;
+> +}
+> +
+> +static int hpet_set_state_shutdown(struct clock_event_device *evt)
+> +{
+> +       int cfg;
+> +
+> +       spin_lock(&hpet_lock);
+> +
+> +       cfg = hpet_read(HPET_T0_CFG);
+> +       cfg &= ~HPET_TN_ENABLE;
+> +       hpet_write(HPET_T0_CFG, cfg);
+> +
+> +       spin_unlock(&hpet_lock);
+> +       return 0;
+> +}
+> +
+> +static int hpet_set_state_oneshot(struct clock_event_device *evt)
+> +{
+> +       int cfg;
+> +
+> +       spin_lock(&hpet_lock);
+> +
+> +       pr_info("set clock event to one shot mode!\n");
+> +       cfg = hpet_read(HPET_T0_CFG);
+> +       /*
+> +        * set timer0 type
+> +        * 1 : periodic interrupt
+> +        * 0 : non-periodic(oneshot) interrupt
+> +        */
+> +       cfg &= ~HPET_TN_PERIODIC;
+> +       cfg |= HPET_TN_ENABLE | HPET_TN_32BIT |
+> +               hpet_irq_flags;
+> +       hpet_write(HPET_T0_CFG, cfg);
+> +
+> +       /* start counter */
+> +       hpet_start_counter();
+> +
+> +       spin_unlock(&hpet_lock);
+> +       return 0;
+> +}
+> +
+> +static int hpet_tick_resume(struct clock_event_device *evt)
+> +{
+> +       spin_lock(&hpet_lock);
+> +       hpet_enable_legacy_int();
+> +       spin_unlock(&hpet_lock);
+> +
+> +       return 0;
+> +}
+> +
+> +static int hpet_next_event(unsigned long delta,
+> +               struct clock_event_device *evt)
+> +{
+> +       u32 cnt;
+> +       s32 res;
+> +
+> +       cnt = hpet_read(HPET_COUNTER);
+> +       cnt += (u32) delta;
+> +       hpet_write(HPET_T0_CMP, cnt);
+> +
+> +       res = (s32)(cnt - hpet_read(HPET_COUNTER));
+> +
+> +       return res < HPET_MIN_CYCLES ? -ETIME : 0;
+> +}
+> +
+> +static irqreturn_t hpet_irq_handler(int irq, void *data)
+> +{
+> +       int is_irq;
+> +       struct clock_event_device *cd;
+> +       unsigned int cpu = smp_processor_id();
+> +
+> +       is_irq = hpet_read(HPET_STATUS);
+> +       if (is_irq & HPET_T0_IRS) {
+> +               /* clear the TIMER0 irq status register */
+> +               hpet_write(HPET_STATUS, HPET_T0_IRS);
+> +               cd = &per_cpu(hpet_clockevent_device, cpu);
+> +               cd->event_handler(cd);
+> +               return IRQ_HANDLED;
+> +       }
+> +       return IRQ_NONE;
+> +}
+> +
+> +static struct irqaction hpet_irq_str = {
+> +       .handler = hpet_irq_handler,
+> +       .flags = IRQD_NO_BALANCING | IRQF_TIMER,
+> +       .name = "hpet",
+> +};
+> +
+> +/*
+> + * HPET address assignation and irq setting should be done in bios.
+> + * But, sometimes bios don't do this, we just setup here directly.
+> + */
+> +static void hpet_setup(void)
+> +{
+> +       hpet_enable_legacy_int();
+> +}
+> +
+> +static int hpet_setup_irq(struct clock_event_device *cd)
+> +{
+> +       setup_irq(cd->irq, &hpet_irq_str);
+> +
+> +       disable_irq(cd->irq);
+> +       irq_set_affinity(cd->irq, cd->cpumask);
+> +       enable_irq(cd->irq);
+> +
+> +       return 0;
+> +}
+> +
+> +static int __init loongson2_hpet_clockevent_init(void)
+> +{
+> +       unsigned int cpu = smp_processor_id();
+> +       struct clock_event_device *cd;
+> +
+> +       hpet_setup();
+> +
+> +       cd = &per_cpu(hpet_clockevent_device, cpu);
+> +       cd->name = "hpet";
+> +       cd->rating = 300;
+> +       cd->features = CLOCK_EVT_FEAT_PERIODIC | CLOCK_EVT_FEAT_ONESHOT;
+> +       cd->set_state_shutdown = hpet_set_state_shutdown;
+> +       cd->set_state_periodic = hpet_set_state_periodic;
+> +       cd->set_state_oneshot = hpet_set_state_oneshot;
+> +       cd->tick_resume = hpet_tick_resume;
+> +       cd->set_next_event = hpet_next_event;
+> +       cd->irq = hpet_t0_irq;
+> +       cd->cpumask = cpumask_of(cpu);
+> +       clockevent_set_clock(cd, hpet_freq);
+> +       cd->max_delta_ns = clockevent_delta2ns(0x7fffffff, cd);
+> +       cd->max_delta_ticks = 0x7fffffff;
+> +       cd->min_delta_ns = clockevent_delta2ns(HPET_MIN_PROG_DELTA, cd);
+> +       cd->min_delta_ticks = HPET_MIN_PROG_DELTA;
+> +
+> +       clockevents_register_device(cd);
+> +       hpet_setup_irq(cd);
+> +
+> +       pr_info("hpet clock event device register\n");
+> +
+> +       return 0;
+> +}
+> +
+> +static u64 hpet_read_counter(struct clocksource *cs)
+> +{
+> +       return (u64)hpet_read(HPET_COUNTER);
+> +}
+> +
+> +static void hpet_suspend(struct clocksource *cs)
+> +{
+> +       hpet_t0_cfg = hpet_read(HPET_T0_CFG);
+> +}
+> +
+> +static void hpet_resume(struct clocksource *cs)
+> +{
+> +       hpet_write(HPET_T0_CFG, hpet_t0_cfg);
+> +       hpet_setup();
+> +       hpet_restart_counter();
+> +}
+> +
+> +struct clocksource csrc_hpet = {
+> +       .name = "hpet",
+> +       .rating = 300,
+> +       .read = hpet_read_counter,
+> +       .mask = CLOCKSOURCE_MASK(32),
+> +       /* oneshot mode work normal with this flag */
+> +       .flags = CLOCK_SOURCE_IS_CONTINUOUS,
+> +       .suspend = hpet_suspend,
+> +       .resume = hpet_resume,
+> +       .mult = 0,
+> +       .shift = 10,
+> +};
+> +
+> +static int __init loongson2_hpet_clocksource_init(void)
+> +{
+> +       csrc_hpet.mult = clocksource_hz2mult(hpet_freq, csrc_hpet.shift);
+> +
+> +       /* start counter */
+> +       hpet_start_counter();
+> +
+> +       return clocksource_register_hz(&csrc_hpet, hpet_freq);
+> +}
+> +
+> +static int __init loongson2_hpet_init(struct device_node *np)
+> +{
+> +       int ret;
+> +       struct clk *clk;
+> +
+> +       hpet_mmio_base = of_iomap(np, 0);
+> +       if (!hpet_mmio_base) {
+> +               pr_err("hpet: unable to map loongson2 hpet registers\n");
+> +               goto err;
+> +       }
+> +
+> +       ret = -EINVAL;
+> +       hpet_t0_irq = irq_of_parse_and_map(np, 0);
+> +       if (hpet_t0_irq <= 0) {
+> +               pr_err("hpet: unable to get IRQ from DT, %d\n", hpet_t0_irq);
+> +               goto err;
+> +       }
+> +
+> +       clk = of_clk_get(np, 0);
+> +       if (!IS_ERR(clk)) {
+> +               hpet_freq = clk_get_rate(clk);
+> +               clk_put(clk);
+> +       } else
+> +               goto err;
+> +
+> +       hpet_irq_flags = HPET_TN_LEVEL;
+> +
+> +       loongson2_hpet_clocksource_init();
+> +
+> +       loongson2_hpet_clockevent_init();
+> +
+> +       return 0;
+> +
+> +err:
+> +       iounmap(hpet_mmio_base);
+> +       return ret;
+> +}
+> +
+> +TIMER_OF_DECLARE(loongson2_hpet, "loongson,ls2k-hpet", loongson2_hpet_init);
+> --
+> 2.31.1
 >
-> Here I would go for pm_runtime_put_sync(), as a failure to start the
-> stream would benefit from forcing power being cut off before the user
-> tries again.
->
-Agreed.
-
-> > > > + return ret;
-> > > > +}
-> > > >
-> > > >  static const struct v4l2_subdev_video_ops ov5645_video_ops = {
-> > > >   .s_stream = ov5645_s_stream,
-> > > > @@ -1046,7 +1030,6 @@ static const struct v4l2_subdev_pad_ops ov5645_subdev_pad_ops = {
-> > > >  };
-> > > >
-> > > >  static const struct v4l2_subdev_ops ov5645_subdev_ops = {
-> > > > - .core = &ov5645_core_ops,
-> > > >   .video = &ov5645_video_ops,
-> > > >   .pad = &ov5645_subdev_pad_ops,
-> > > >  };
-> > > > @@ -1188,11 +1171,9 @@ static int ov5645_probe(struct i2c_client *client)
-> > > >           goto free_ctrl;
-> > > >   }
-> > > >
-> > > > - ret = ov5645_s_power(&ov5645->sd, true);
-> > > > - if (ret < 0) {
-> > > > -         dev_err(dev, "could not power up OV5645\n");
-> > > > + ret = ov5645_set_power_on(dev);
-> > > > + if (ret)
-> > > >           goto free_entity;
-> > > > - }
-> > > >
-> > > >   ret = ov5645_read_reg(ov5645, OV5645_CHIP_ID_HIGH, &chip_id_high);
-> > > >   if (ret < 0 || chip_id_high != OV5645_CHIP_ID_HIGH_BYTE) {
-> > > > @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
-> > > >
-> > > >   dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
-> > > >
-> > > > + pm_runtime_set_active(dev);
-> > > > + pm_runtime_get_noresume(dev);
-> > > > + pm_runtime_enable(dev);
-> > > > +
-> > > >   ret = ov5645_read_reg(ov5645, OV5645_AEC_PK_MANUAL,
-> > > >                         &ov5645->aec_pk_manual);
-> >
-> > Totally unrelated to this patch, can we drop all these register reads ?
-> > The registers are written through he ov5645_global_init_setting array,
-> > we know what the values are.
-> >
-Indeed, I'll have a closer look while working on the subdev state for
-this driver.
-
-> > > >   if (ret < 0) {
-> > > >           dev_err(dev, "could not read AEC/AGC mode\n");
-> > > >           ret = -ENODEV;
-> > > > -         goto power_down;
-> > > > +         goto err_pm_runtime;
-> > > >   }
-> > > >
-> > > >   ret = ov5645_read_reg(ov5645, OV5645_TIMING_TC_REG20,
-> > > > @@ -1222,7 +1207,7 @@ static int ov5645_probe(struct i2c_client *client)
-> > > >   if (ret < 0) {
-> > > >           dev_err(dev, "could not read vflip value\n");
-> > > >           ret = -ENODEV;
-> > > > -         goto power_down;
-> > > > +         goto err_pm_runtime;
-> > > >   }
-> > > >
-> > > >   ret = ov5645_read_reg(ov5645, OV5645_TIMING_TC_REG21,
-> > > > @@ -1230,23 +1215,30 @@ static int ov5645_probe(struct i2c_client *client)
-> > > >   if (ret < 0) {
-> > > >           dev_err(dev, "could not read hflip value\n");
-> > > >           ret = -ENODEV;
-> > > > -         goto power_down;
-> > > > +         goto err_pm_runtime;
-> > > >   }
-> > > >
-> > > > - ov5645_s_power(&ov5645->sd, false);
-> > > > -
-> > > >   ret = v4l2_async_register_subdev(&ov5645->sd);
-> > > >   if (ret < 0) {
-> > > >           dev_err(dev, "could not register v4l2 device\n");
-> > > > +         pm_runtime_disable(dev);
-> > > > +         pm_runtime_set_suspended(dev);
-> > > >           goto free_entity;
-> >
-> > This looks weird, why do we need special handling of runtime PM here,
-> > instead of just jumping to err_pm_runtime ?
-> >
-Agreed, I have fixed that now.
-
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >
-Cheers,
-Prabhakar
