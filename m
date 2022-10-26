@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 072A760DF2C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B99560DF23
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 13:02:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232733AbiJZLCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 07:02:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39272 "EHLO
+        id S233476AbiJZLCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 07:02:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233467AbiJZLC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:02:29 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B384B5FCC
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:02:28 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id c3-20020a1c3503000000b003bd21e3dd7aso1205082wma.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:02:28 -0700 (PDT)
+        with ESMTP id S233484AbiJZLCa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 07:02:30 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE206B5FCA
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:02:29 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id k8so17041174wrh.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 04:02:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9qO/JbNRzACWJ+/BPqzyo1ybZ7r6Vd9pEOf9FoOyjmc=;
-        b=RWGT62z0OrUByMt9GrSpD27EAROj86fo8TCkjjtRrXYNZ6HPIPQ5r5t5vpxfZQi0hd
-         QoBX2qHvro7m4+uOucRRcVawjJZD8M+NXwqHESqMKuVmPmFN0EEJpFUOxhi1Tv0NCQvq
-         5oSkrVszv1SKhJb5bc/UmpozOVeaCe01pKmr0hMCFKF5at8bs0Knx/L0vEg055RsahMi
-         5wgwPKOvh22s18cE2oZvGjSg0h3z1hhDKNPe22z3CxTt/ntFrf2/3Q0Ltzl2YLpErooj
-         3tdAEwQyKaSdYqfroQEnF+6gxG0O9YEFrAL35sjVpftNC6WinLATzAZHFZ5sNgad9J+r
-         /Dcw==
+        bh=M5yIrMJGpCUVHY5GfvEg2i8ek5laLkQGA9zDhfgH9W8=;
+        b=O0WFoE7vynG5KsDSLBTFaIikesyRanRpjq1Fbxh8BuIkEZPvwoh44dIJul80ph+gwD
+         rZwgeujH8Jrqy5sdsHIof+RuuAV1KqKL3KvfAiG9wLOC8xAfKuEGIHPtn06ySffpqZeN
+         aumbCJgl4ls0yXf6bpilHRmPTXLhy5a6pUOkhhqlLa+tzfaJYuttbymXSDmZojdGgdlt
+         oloWKlyka5phBa9RRrNKMY1mQ2Uf65iVjz7uBeQzrvMXrP+GScvYRgOY+e9rSC36yBBz
+         ed77qagUS1Rob8EEX/CWe50WoKf67T7rcO0R7hgkdOJFEpDEWF0MT5e7ysaxAynioCu8
+         9Sqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9qO/JbNRzACWJ+/BPqzyo1ybZ7r6Vd9pEOf9FoOyjmc=;
-        b=dJ0eURGh78mwk+QQqniF7YxEwvD1W/nxXkNwZyqbyzxv5zETLD3JDWLfS2W0mEUvzW
-         2f3p63nObc8c0LdT0muIe4SVl8gTdDB25M6guOLbKl0OjMk6tHCTnxb5q5qxht5cmtiw
-         wifOJpJlXHa4VhnzqMSGxybJoyYDD9hukWw25gytML14Qe4F5LFZ9Zz42KTsPc2ZsbXL
-         m63d4ReRhkHBqwwomEgrSfjx+A9mX9zXGDH8M6qh2ljZPn5Oqxd4db+PwMcZk9MEp+cv
-         gJFCVJFhZSrsHZF1I8RlN2/UxdB7rEzvd/NNH3oWbAX32AtS0B9LUnJ8eb80Ak0jFKY4
-         AP4Q==
-X-Gm-Message-State: ACrzQf1M6grN/6qj6izi2eIQtUKArpI7iFNcWKtWhg8XVCAqogs5qJIG
-        1Oy8UK2Vuj/zpDc6s3YFT3bVTQ==
-X-Google-Smtp-Source: AMsMyM7mBIWMKyJj6QToByEpy/WDyizCwqeWxSIBwY9ABO0T5YGw9F9xu21lVTuRnTh2c2ivzL82Bg==
-X-Received: by 2002:a7b:cc15:0:b0:3b4:ca90:970d with SMTP id f21-20020a7bcc15000000b003b4ca90970dmr2043088wmh.198.1666782147100;
-        Wed, 26 Oct 2022 04:02:27 -0700 (PDT)
+        bh=M5yIrMJGpCUVHY5GfvEg2i8ek5laLkQGA9zDhfgH9W8=;
+        b=vPZkavAFkLmqV48sp9DIwyDyqy5Dltimq6IV+XCodukHfVL5syXDpGZjsShnguSoqe
+         AiX50g57CqnF4Y581xdQ2Wt9D/Xq19BMkdt6V6H+qBzVWoE96JSXHq0SXFPPmhF1cw0I
+         t5FoCpGgwhcIeXsoymKEFJSKKN3BR5wPf+v6ZLE5GMCnqACWr2EXFXJe3U2ksxG2jtxn
+         wxAleuko8NpJ/+OfZWzsezcz8+2TBrmEiiP8T0Ajj+INYvIL4keDVJSKTGFVg9k7BeGY
+         acNhwVfjHLovcLbokw4QZJ6dnWoP1ZIjasH0xpVH+PIIzgJc7U7tANB112062L6HY801
+         EuYQ==
+X-Gm-Message-State: ACrzQf0vYBG3SbY2VtW3UJ1URpifWmORH+v7QRwrMoC+wjS25sYEYJs4
+        lv1ue5ZxkmjyFKKJAyrqV/XE4A==
+X-Google-Smtp-Source: AMsMyM5yubBRK+wTdLXV82WHsx/yLGwYXhc+1W6ivTLWBc2NSpO2f9tW06JksBg6fsNSAz3QPdSJTQ==
+X-Received: by 2002:a05:6000:1f87:b0:236:7683:e5c0 with SMTP id bw7-20020a0560001f8700b002367683e5c0mr9178434wrb.193.1666782148331;
+        Wed, 26 Oct 2022 04:02:28 -0700 (PDT)
 Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id z7-20020a5d44c7000000b0023672104c24sm5237415wrr.74.2022.10.26.04.02.25
+        by smtp.gmail.com with ESMTPSA id z7-20020a5d44c7000000b0023672104c24sm5237415wrr.74.2022.10.26.04.02.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 04:02:26 -0700 (PDT)
+        Wed, 26 Oct 2022 04:02:27 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     vkoul@kernel.org, yung-chuan.liao@linux.intel.com
 Cc:     andersson@kernel.org, robh+dt@kernel.org,
@@ -57,9 +57,9 @@ Cc:     andersson@kernel.org, robh+dt@kernel.org,
         srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         alsa-devel@alsa-project.org
-Subject: [PATCH 4/6] soundwire: qcom: make reset optional for v1.6 controller
-Date:   Wed, 26 Oct 2022 12:02:08 +0100
-Message-Id: <20221026110210.6575-5-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 5/6] dt-bindings: soundwire: qcom: add v1.7.0 support
+Date:   Wed, 26 Oct 2022 12:02:09 +0100
+Message-Id: <20221026110210.6575-6-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20221026110210.6575-1-srinivas.kandagatla@linaro.org>
 References: <20221026110210.6575-1-srinivas.kandagatla@linaro.org>
@@ -75,29 +75,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Some Qualcomm SOCs like sc8280xp which uses v1.6 soundwire controller
-reset is not mandatory, so make this an optional one.
-
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/soundwire/qcom.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 7bc8cd0e906b..54d370f4b291 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -1330,8 +1330,8 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 	}
- 
- 	if (data->sw_clk_gate_required) {
--		ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
--		if (IS_ERR_OR_NULL(ctrl->audio_cgcr)) {
-+		ctrl->audio_cgcr = devm_reset_control_get_optional_exclusive(dev, "swr_audio_cgcr");
-+		if (IS_ERR(ctrl->audio_cgcr)) {
- 			dev_err(dev, "Failed to get cgcr reset ctrl required for SW gating\n");
- 			ret = PTR_ERR(ctrl->audio_cgcr);
- 			goto err_init;
+diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+index c85c25779e3f..e0faed8dceac 100644
+--- a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
++++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+@@ -13,6 +13,7 @@ board specific bus parameters.
+ 			"qcom,soundwire-v1.5.0"
+ 			"qcom,soundwire-v1.5.1"
+ 			"qcom,soundwire-v1.6.0"
++			"qcom,soundwire-v1.7.0"
+ - reg:
+ 	Usage: required
+ 	Value type: <prop-encoded-array>
 -- 
 2.21.0
 
