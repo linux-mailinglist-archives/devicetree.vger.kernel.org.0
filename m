@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 395DE60E0EA
+	by mail.lfdr.de (Postfix) with ESMTP id 8467760E0EB
 	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233645AbiJZMjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:39:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53692 "EHLO
+        id S233825AbiJZMjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:39:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233758AbiJZMj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:39:28 -0400
+        with ESMTP id S233816AbiJZMj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:39:29 -0400
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C05EB768;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B093EC1EA;
         Wed, 26 Oct 2022 05:39:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1666787961; x=1698323961;
+  t=1666787962; x=1698323962;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=frQgPdhR6+K9jjNm5bd+NjScO8XoXbn1bdTrKlRyHtk=;
-  b=Mt9UR7W6cEJVORCZSYHr6rsOLz10FjOvLln6qnZ5JNnjyKmgKonRGokS
-   CSP6NjTa21sP5mrtj4NDmtdR0g8XhHAuQu6XUj4IeHmFCRcjlW24zowA9
-   w9rhiDdIDQSfkmG2ZyNuQVjzUYK3sN1z93++NqDIVHAtctyaZZvky5w+P
-   Tz8VbVN2/Sml4IibkaTJOGnvaLOdOgNqOsDlQnS/oo39aDkCwrDfhaFrp
-   GCKdwAlJPBWcbY73N30VZ6WquF22OlDnFDKL91lMQmqmA8kC/OaaVUxAE
-   6nkopT1rww8TVpWc9AEFrNlhUsh8T74g1WDCf0/rHfEC6XGDnQACr7bAY
-   A==;
+  bh=2wFwP5DO/Q0M+PToFWR6iInwUsotX6p9IkR/irjoawA=;
+  b=LuXoipBD/7Qrz7TLGl76RgbE+INWKTlemQOVdsHkqCDZebM/bNfY5FTA
+   M7J3kjRetHlKz3vfkwNvePNxA+CuFc1+u0pJpXLytwbORU/SkZ1WioqMC
+   0uSK7ueIpt64ItKeT8vYpFmJa/Ey8juQvIyBLQOH/lMSrXLtQW/GsjxVB
+   USHlOAG6brpp2ZAi3MiCVWKESt0/2i8O+qBFWi0Td96vDWC2jWlUk2gly
+   02s5sSgz6d8hbdjRWpMmdvcyItmTsbq40GG4YyxWDuH7qFTJytNCaalu4
+   Y5leLVFn7HqZeMNKbLeoOc5gCjOU3IKK4HFme1fK6UdeMNwqPiC+yBmFQ
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.95,214,1661842800"; 
-   d="scan'208";a="183984528"
+   d="scan'208";a="180590465"
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Oct 2022 05:39:20 -0700
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Oct 2022 05:39:21 -0700
 Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Wed, 26 Oct 2022 05:39:15 -0700
+ 15.1.2507.12; Wed, 26 Oct 2022 05:39:18 -0700
 Received: from localhost.localdomain (10.10.115.15) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.12 via Frontend Transport; Wed, 26 Oct 2022 05:39:13 -0700
+ 15.1.2507.12 via Frontend Transport; Wed, 26 Oct 2022 05:39:16 -0700
 From:   Claudiu Beznea <claudiu.beznea@microchip.com>
 To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
         <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
@@ -45,9 +45,9 @@ To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
 CC:     <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 05/11] ARM: dts: at91: sama7g5: add temperature sensor
-Date:   Wed, 26 Oct 2022 15:41:08 +0300
-Message-ID: <20221026124114.985876-6-claudiu.beznea@microchip.com>
+Subject: [PATCH 06/11] ARM: dts: at91: sama7g5: add thermal zones node
+Date:   Wed, 26 Oct 2022 15:41:09 +0300
+Message-ID: <20221026124114.985876-7-claudiu.beznea@microchip.com>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20221026124114.985876-1-claudiu.beznea@microchip.com>
 References: <20221026124114.985876-1-claudiu.beznea@microchip.com>
@@ -64,39 +64,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add temperature sensor node.
+Add thermal zones node with its associated trips and cooling-maps.
+It uses CPUFreq as cooling device for temperatures in the interval
+[90, 100) degrees Celsius and describe the temperature of 100 degrees
+Celsius as critical temperature. System will be is shutting down when
+reaching critical temperature.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- arch/arm/boot/dts/sama7g5.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm/boot/dts/sama7g5.dtsi | 42 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
 diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-index 1094c0afc0c5..52829be04427 100644
+index 52829be04427..fb517f9aff30 100644
 --- a/arch/arm/boot/dts/sama7g5.dtsi
 +++ b/arch/arm/boot/dts/sama7g5.dtsi
-@@ -9,6 +9,7 @@
-  *
-  */
+@@ -17,6 +17,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/mfd/at91-usart.h>
+ #include <dt-bindings/nvmem/microchip,sama7g5-otpc.h>
++#include <dt-bindings/thermal/thermal.h>
  
-+#include <dt-bindings/iio/adc/at91-sama5d2_adc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/at91.h>
-@@ -109,6 +110,13 @@ ns_sram: sram@100000 {
- 		ranges;
+ / {
+ 	model = "Microchip SAMA7G5 family SoC";
+@@ -36,6 +37,7 @@ cpu0: cpu@0 {
+ 			clocks = <&pmc PMC_TYPE_CORE PMC_CPUPLL>;
+ 			clock-names = "cpu";
+ 			operating-points-v2 = <&cpu_opp_table>;
++			#cooling-cells = <2>; /* min followed by max */
+ 		};
  	};
  
-+	thermal_sensor: thermal-sensor {
-+		compatible = "generic-adc-thermal";
-+		#thermal-sensor-cells = <0>;
-+		io-channels = <&adc AT91_SAMA7G5_ADC_TEMP_CHANNEL>;
-+		io-channel-names = "sensor-channel";
+@@ -74,6 +76,46 @@ opp-1000000002 {
+ 		};
+ 	};
+ 
++	thermal-zones {
++		cpu_thermal: cpu-thermal {
++			polling-delay-passive = <1000>;
++			polling-delay = <5000>;
++			thermal-sensors = <&thermal_sensor>;
++
++			trips {
++				cpu_normal: cpu-alert0 {
++					temperature = <90000>;
++					hysteresis = <0>;
++					type = "passive";
++				};
++
++				cpu_hot: cpu-alert1 {
++					temperature = <95000>;
++					hysteresis = <0>;
++					type = "passive";
++				};
++
++				cpu_critical: cpu-critical {
++					temperature = <100000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu_normal>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++
++				map1 {
++					trip = <&cpu_hot>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
 +	};
 +
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
+ 	clocks {
+ 		slow_xtal: slow_xtal {
+ 			compatible = "fixed-clock";
 -- 
 2.34.1
 
