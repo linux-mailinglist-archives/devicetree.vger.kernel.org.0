@@ -2,62 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B6460DBF0
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 09:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B6A360DC04
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 09:22:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232489AbiJZHQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 03:16:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59042 "EHLO
+        id S232371AbiJZHWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 03:22:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231706AbiJZHQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 03:16:05 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA41398CB8
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 00:16:03 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1onade-00048m-FD; Wed, 26 Oct 2022 09:15:46 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 7F7C0109F4C;
-        Wed, 26 Oct 2022 07:15:43 +0000 (UTC)
-Date:   Wed, 26 Oct 2022 09:15:41 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S230134AbiJZHWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 03:22:18 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DEE0E57BD1;
+        Wed, 26 Oct 2022 00:22:14 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8AxDdkl4FhjTo0CAA--.9934S3;
+        Wed, 26 Oct 2022 15:22:13 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxLeAh4FhjNzEFAA--.19404S2;
+        Wed, 26 Oct 2022 15:22:09 +0800 (CST)
+Subject: Re: [PATCH v2 2/2] dt-bindings: soc: add loongson2 guts
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20221026071541.ydvvtreum242he6w@pengutronix.de>
-References: <20221012062558.732930-1-matej.vasilevski@seznam.cz>
- <20221012062558.732930-3-matej.vasilevski@seznam.cz>
- <20221024200238.tgqkjjyagklglshu@pengutronix.de>
- <20221025222237.GA4635@hopium>
+        zhuyinbo@loongson.cn, Arnd Bergmann <arnd@arndb.de>,
+        Hector Martin <marcan@marcan.st>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221025035128.21068-1-zhuyinbo@loongson.cn>
+ <20221025035128.21068-2-zhuyinbo@loongson.cn>
+ <7c67c721-685a-fa0e-ab4b-41b7de3ea0a0@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <52de60bd-8aa5-a461-9bca-ce8e6f82ead8@loongson.cn>
+Date:   Wed, 26 Oct 2022 15:22:09 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2l67orfrxkjniwtd"
-Content-Disposition: inline
-In-Reply-To: <20221025222237.GA4635@hopium>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+In-Reply-To: <7c67c721-685a-fa0e-ab4b-41b7de3ea0a0@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxLeAh4FhjNzEFAA--.19404S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxWFy7ZF43WF4UuFyUJF1rCrg_yoW5Kr13p3
+        WxCFW5KFWvqF129wsIq3WxAF13urZ7C3WDWr9rJ3429FyDCasaqwsxKas8Za1xJr97WFW2
+        9FW0g3yF9F4DAFJanT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bq8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUtVW8ZwAS0I0E0xvYzxvE
+        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
+        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUtVW8ZwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26F4j6r4UJwCI42IY6I8E87Iv
+        6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUciL0UUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,122 +76,105 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2l67orfrxkjniwtd
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On 26.10.2022 00:22:37, Matej Vasilevski wrote:
-> On Mon, Oct 24, 2022 at 10:02:38PM +0200, Marc Kleine-Budde wrote:
-> > On 12.10.2022 08:25:56, Matej Vasilevski wrote:
-> > > This patch adds support for retrieving hardware timestamps to RX and
-> >=20
-> > Later in the code you set struct ethtool_ts_info::tx_types but the
-> > driver doesn't set TX timestamps, does it?
->=20
-> No, it doesn't explicitly. Unless something changed and I don't know abou=
-t it,
-> all the drivers using can_put_echo_skb() (includes ctucanfd) now report
-> software (hardware if available) tx timestamps thanks to Vincent's patch.
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/co=
-mmit/?id=3D12a18d79dc14c80b358dbd26461614b97f2ea4a6
+在 2022/10/26 上午3:40, Krzysztof Kozlowski 写道:
+> On 24/10/2022 23:51, Yinbo Zhu wrote:
+>> Add the loongson2 soc guts driver binding with DT schema format
+>> using json-schema.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+>>   .../soc/loongson/loongson,ls2k-guts.yaml      | 37 +++++++++++++++++++
+> 
+> Looks like wrong location, although difficult to judge because you did
+> not describe the hardware at all. If this is chipinfo-like device, then
+> Documentation/devicetree/bindings/hwinfo/.
+My guts driver is refer fsl platform. It was was to manage and access
+global utilities register block for SoC and it was only used in SoC
+platform. when driver need use Soc ops to do some function the this 
+driver was needed.  the dcfg (device config) was a function in guts 
+(global utilities) block.
+For these type of driver, other platforms were initially placed on
+Documentation/devicetree/bindings/arm/   if it is arm/arm64
+architecture. Later, move it to the soc directory.
 
-Yes, since that patch, drivers using can_put_echo_skb() support software
-TX timestamps. But you have to set the HW timestamp on the TX'ed CAN
-frame prior to the can_rx_offload_get_echo_skb() call for HW TX
-timestamps, e.g.:
+Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
 
-| https://elixir.bootlin.com/linux/v6.0.3/source/drivers/net/can/spi/mcp251=
-xfd/mcp251xfd-tef.c#L112
+So, do you still think it is inappropriate to place it in the soc dir?
+> 
+> 
+>>   MAINTAINERS                                   |  1 +
+>>   2 files changed, 38 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+>> new file mode 100644
+>> index 000000000000..2502f8aeb74d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+>> @@ -0,0 +1,37 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-guts.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Loongson2 GUTS driver.
+> 
+> Drop "driver." unless you refer to some hardware (like motor driver?).
+this need refer hardware soc datasheet to gain soc register (global 
+utilities register block ).
+so keep "driver" string that whether was more appropriate?
+> 
+>> +
+>> +maintainers:
+>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>> +
+>> +description: |
+>> +  GUTS driver was to manage and access global utilities block. Initially
+> 
+> Drop "driver" and describe instead what is GUTS, including its acronym,
+> 
+>> +  only reading SVR and registering soc device are supported.
+> 
+> Entire sentence describe Linux driver - drop it. Instead describe the
+> device, the hardware.
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: loongson,ls2k-guts
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  little-endian: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    guts: guts@1fe00000 {
+> 
+> Node names should be generic.
+dcfg/scfg (device cfg/ soc cfg)was the key function of guts (global 
+utilities) block. and guts name I was refer fsl soc driver. 
+"drivers/soc/fsl/guts.c"
+this binding file was follows of fsl guts.
+Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
+Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
 
-[...]
+or, I was use scfg as node name, Do you think it's appropriate?
 
-> > > +	/* Setup conversion constants and work delay */
-> > > +	if (priv->timestamp_possible) {
-> > > +		u64 max_cycles;
-> > > +		u64 work_delay_ns;
-> > > +		u32 maxsec;
-> > > +
-> > > +		priv->cc.read =3D ctucan_read_timestamp_cc_wrapper;
-> > > +		priv->cc.mask =3D CYCLECOUNTER_MASK(timestamp_bit_size);
-> > > +		maxsec =3D min_t(u32, CTUCANFD_MAX_WORK_DELAY_SEC,
-> > > +			       div_u64(priv->cc.mask, timestamp_clk_rate));
-> > > +		clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift,
-> > > +				       timestamp_clk_rate, NSEC_PER_SEC, maxsec);
-> > > +
-> > > +		/* shortened copy of clocks_calc_max_nsecs() */
-> > > +		max_cycles =3D div_u64(ULLONG_MAX, priv->cc.mult);
-> > > +		max_cycles =3D min(max_cycles, priv->cc.mask);
-> > > +		work_delay_ns =3D clocksource_cyc2ns(max_cycles, priv->cc.mult,
-> > > +						   priv->cc.shift) >> 2;
-> >=20
-> > I think we can use cyclecounter_cyc2ns() for this, see:
-> >=20
-> > | https://elixir.bootlin.com/linux/v6.0.3/source/drivers/net/ethernet/t=
-i/cpts.c#L642
-> >=20
-> > BTW: This is the only networking driver using clocks_calc_mult_shift()
-> > (so far) :D
-> >=20
->=20
-> I don't really see the benefit at the moment (I have to include
-> clocksource.h anyway due to the clocks_calc_mult_shift()), but sure,
-> I'll use cyclecounter_cyc2ns().
->=20
-> Fun fact :-D I might look into the cpts.c
 
-The benefit is less variance in the kernel tree, use the same pattern to
-calculate the delay if both register width and frequency are unknown at
-compile time.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-[...]
-
-> >Regarding the timestamp_clk handling:
-> >
-> >If you prepare_enable the timestamp_clk during probe_common() and don't
-> >disable_unprepare it, it stays on the whole lifetime of the driver. So
-> >there's no need/reason for the runtime suspend/resume functions.
-> >
-> >So either keep the clock powered and remove the suspend/resume functions
-> >or shut down the clock after probe.
-> >
-> >If you want to make things 1000% clean, you can get the timestamp's
-> >clock rate during open() and re-calculate the mult and shift. The
-> >background is that the clock rate might change if the clock is not
-> >enabled (at least that's not guaranteed by the common clock framework).
-> >Actual HW implementations might differ.
->=20
-> Hmm, I thought that pm_runtime_put() will eventually run runtime suspend
-> callback, but now I see that it will run only the idle callback (which
-> I haven't defined).
-> I'll remove the runtime suspend/resume callbacks.
-
-If your clock stays enabled the whole driver lifetime you can use
-devm_clk_get_enabled(), devm will take care of the disable & unprepare.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---2l67orfrxkjniwtd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmNY3psACgkQrX5LkNig
-012JVQf+Kmtl9VwlhnbuQxUaQTfLZYcHTNpnfpLQqwdY3D0eVghiAKzQY5CJScB2
-nzwYYsTgJd4wFm2a8hJQkOmtvo2dyqiQlwzEFomuoj2z5qHfz+IQy3xyGyc1hUZZ
-tHFg40Rr7YuD/gp/uWZAP6+wF0fFlhFj5+NFiYrSOpSUQ7j+xos3Q19Xwsyl0r8z
-UV8q0gA1wKI1Ii3H5oTrokGiQY0nTxjsVLfxgv7ruy0l+sGGjWRtYUisg2xl1SZm
-pWVeFPvW52E+l9Wgkrevtcnxc2iDR5oWXBPy7sC8Z8BpUnjlFR1/2CB8U9o2II6h
-stAqS8Fy+tBB5RoHoS9DPDe9LFp97A==
-=lPhI
------END PGP SIGNATURE-----
-
---2l67orfrxkjniwtd--
