@@ -2,200 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D9F160D8B5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 03:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D99960D8BB
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 03:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229544AbiJZBHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Oct 2022 21:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37176 "EHLO
+        id S229800AbiJZBJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Oct 2022 21:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230345AbiJZBHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 21:07:12 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E157B72EC2;
-        Tue, 25 Oct 2022 18:07:11 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-12c8312131fso18187050fac.4;
-        Tue, 25 Oct 2022 18:07:11 -0700 (PDT)
+        with ESMTP id S230012AbiJZBJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Oct 2022 21:09:46 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5304E1B796;
+        Tue, 25 Oct 2022 18:09:45 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id i7so3433907oif.4;
+        Tue, 25 Oct 2022 18:09:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/fJTKt940eth1OpdSb2WO5kQsdZXgZfQJNIIFcYi3Hg=;
-        b=BmGbVSVUK9aDTMFJcMtBV0XUhBmVNvyJshwvcQ9oEaXJO8EZiio2vS36fMjs43UgF1
-         BcxwOepTj7zM+WCW9pa2pVyufCkOABMpKmxn3J9NCNSRBW5Z0KhZays8yzDfDJ0i+GzY
-         GtB7gEDZQAufR+lUCya0ZQikAE7QLnMLPtoEV9RENSoXM0v1Zbac/QyLdwfnG/sSYWPF
-         7jT3U9pMYaAUuqMCVkfu25giNehnI/RBIzVJRAlDvM2+osEeY5XxmAHV8gPtdDIepOt9
-         4+aC+6veP5H56NbvK85drsk4AmGUefHQq6wv1NRI/Odq5fWsQEcbtBz+l9zps7tZubyE
-         YQ3w==
-X-Gm-Message-State: ACrzQf2YdTzf93WtEswb0Lzwq85rOhhQ7Z1hW/AwMNnHGA1z0B0Sydg2
-        FSYozrBIE6/5rydpm+THEg==
-X-Google-Smtp-Source: AMsMyM4xjqa65NuztevNo6tGxHSfTJvxr9edT4ZFZekBByytP213dGKQEHdsVIKhYYUVG0yHCYQwLA==
-X-Received: by 2002:a05:6870:c58d:b0:136:7f6a:1e5a with SMTP id ba13-20020a056870c58d00b001367f6a1e5amr717425oab.24.1666746431099;
-        Tue, 25 Oct 2022 18:07:11 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HG4VVkS24N9P28wqi2fW2XTbUe425KORd603IoTp6S0=;
+        b=dIdwHT/FVqJhsyGNVUSbfd25nmnmOCNARATqU8YczBM7DQAtbARGCKrQc+6IYIT2nR
+         cjGPuERbPS2SkhNk1gShUSIyRL1FsP8ACycnW47nVdAn47068cIRPkbiJq5ffCucgMr5
+         0tXc74oDTZxDVYPJoLO9+9JAly3vTwj65uYRw5qGxJendXViFpBZoFdXIO88NPp0Be3q
+         EkLxeoSPlpIwXhofNtam3xrdkx77oe+Y3/17EjHfTnB8riF1cx1fjEx781NjxLCQicKh
+         RV5BZ5BkzXH7YVff2NLPgLp1xYbjXwKRTSzV6kMZASEM8SL8SSzdBoTHWw65rY+v7rm3
+         LSyQ==
+X-Gm-Message-State: ACrzQf1WLmUNigYIdN+FasYA8Iqk9uFBIEPsSegjOGDk5TXKHo9r3wUx
+        LOmEEZCJ8stfFJNUFH93fw==
+X-Google-Smtp-Source: AMsMyM6ZtYFMnBkpqKM2x3pzwsH/yh/j7SGFOypJpp0NROCfS3lVPoCuxyWMxk5quff+xl9pBCy9rw==
+X-Received: by 2002:a05:6808:1893:b0:354:b5bc:cd0d with SMTP id bi19-20020a056808189300b00354b5bccd0dmr598596oib.244.1666746584580;
+        Tue, 25 Oct 2022 18:09:44 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d63-20020a9d2945000000b006618bbede10sm1626853otb.53.2022.10.25.18.07.09
+        by smtp.gmail.com with ESMTPSA id i25-20020a9d6259000000b006619533d1ddsm1603477otk.76.2022.10.25.18.09.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Oct 2022 18:07:10 -0700 (PDT)
-Received: (nullmailer pid 3522397 invoked by uid 1000);
-        Wed, 26 Oct 2022 01:07:11 -0000
-Date:   Tue, 25 Oct 2022 20:07:11 -0500
+        Tue, 25 Oct 2022 18:09:44 -0700 (PDT)
+Received: (nullmailer pid 3525382 invoked by uid 1000);
+        Wed, 26 Oct 2022 01:09:45 -0000
+Date:   Tue, 25 Oct 2022 20:09:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Wayne Chang <waynec@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org,
-        treding@nvidia.com, jonathanh@nvidia.com, thierry.reding@gmail.com,
-        heikki.krogerus@linux.intel.com, ajayg@nvidia.com, kishon@ti.com,
-        vkoul@kernel.org, p.zabel@pengutronix.de, balbi@kernel.org,
-        mathias.nyman@intel.com, jckuo@nvidia.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, singhanc@nvidia.com,
-        linux-i2c@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 03/11] dt-bindings: usb: Add binding for Cypress cypd4226
- I2C driver
-Message-ID: <20221026010711.GA3438928-robh@kernel.org>
-References: <20221024074128.1113554-1-waynec@nvidia.com>
- <20221024074128.1113554-4-waynec@nvidia.com>
+To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        kernel@collabora.com, Rob Herring <robh+dt@kernel.org>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Shane Chien <shane.chien@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: mt8192-mt6359: Set maxItems, not
+ type, for sound-dai
+Message-ID: <166674658480.3525343.6807644531936287296.robh@kernel.org>
+References: <20221024230658.1772907-1-nfraprado@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221024074128.1113554-4-waynec@nvidia.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221024230658.1772907-1-nfraprado@collabora.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 24, 2022 at 03:41:20PM +0800, Wayne Chang wrote:
-> add device-tree binding documentation for Cypress cypd4226 type-C
-> controller's I2C interface. It is a standard i2c slave with GPIO
-> input as IRQ interface.
+On Mon, 24 Oct 2022 19:06:57 -0400, Nícolas F. R. A. Prado wrote:
+> sound-dai is a standard property whose type is already set to
+> phandle-array by sound-dai.yaml, so there's no need to set it (and
+> wrongly so for headset-codec) in this binding. What should be set
+> however is the maximum number of items, which for headset-codec should
+> be 1.
 > 
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
 > ---
->  .../bindings/usb/cypress,cypd4226.yaml        | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> new file mode 100644
-> index 000000000000..5ac28ab4e7a1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/cypress,cypd4226.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cypress cypd4226 UCSI I2C Type-C Controller
-> +
-> +maintainers:
-> +  - Wayne Chang <waynec@nvidia.com>
-> +
-> +description: |
-
-Don't need '|'.
-
-> +  The Cypress cypd4226 UCSI I2C type-C controller is a I2C interface type-C
-> +  controller.
-> +
-> +properties:
-> +  compatible:
-> +    const: cypress,cypd4226
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  reg:
-> +    const: 0x08
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  cypress,firmware-build:
-> +    enum:
-> +      - nv
-> +      - gn
-> +    description: |
-> +      the name of the CCGx firmware built for product series.
-> +      should be set one of following:
-> +      - "nv" for the RTX product series
-> +      - "gn" for the Jetson product series
-> +
-> +patternProperties:
-> +  '^connector@[0-9a-f]+$':
-
-Looks like the part only has 2 PD controllers, so 2 connectors only, 
-right?
-
-> +    $ref: /schemas/connector/usb-connector.yaml#
-
-       unevaluatedProperties: false
-
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-
-maximum: 1
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: true
-
-false
-
-true is only for incomplete, common schemas.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/tegra194-gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      #interrupt-cells = <2>;
-> +
-> +      ucsi_ccg: ucsi_ccg@8 {
-> +        compatible = "cypress,cypd4226";
-> +        interrupt-parent = <&gpio_aon>;
-> +        interrupts = <TEGRA194_AON_GPIO(BB, 2) IRQ_TYPE_LEVEL_LOW>;
-> +        reg = <0x08>;
-> +        cypress,firmware-build = "gn";
-> +        status = "okay";
-
-Don't need status in examples.
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        ccg_typec_con0: connector@0 {
-> +          compatible = "usb-c-connector";
-> +          reg = <0>;
-> +          label = "USB-C";
-> +          data-role = "dual";
-> +          port {
-> +            ucsi_ccg_p0: endpoint {
-> +              remote-endpoint = <&usb_role_switch0>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.25.1
+>  .../devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
