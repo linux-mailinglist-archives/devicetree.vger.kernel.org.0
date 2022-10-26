@@ -2,136 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4785060EA91
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A55D60EAA1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 22:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234650AbiJZUu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 16:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56960 "EHLO
+        id S234101AbiJZU7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 16:59:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234615AbiJZUuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:50:24 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74A0631F9;
-        Wed, 26 Oct 2022 13:50:21 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id g10so20306870oif.10;
-        Wed, 26 Oct 2022 13:50:21 -0700 (PDT)
+        with ESMTP id S233706AbiJZU7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 16:59:15 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0FAD1217F6;
+        Wed, 26 Oct 2022 13:59:13 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id 46-20020a9d0631000000b00666823da25fso3855132otn.0;
+        Wed, 26 Oct 2022 13:59:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HykrIfDGj0Emwb0ltWiGLZGl2PcTl3HkdAqnWg1OeHs=;
-        b=gyJn1LwtZnto6T6KX5woSq3gTSjAP8sei/VgtHJkcCAoA6dcXE33Gu9quK/nmCyhJj
-         WqWRNLBppkVn22akepRle2YdQIU9adqSvpTPApbpT/cjitrjtNJUo67D9rjQ/zKRziFH
-         /BOVYYtzK3Gvl0bHP1WTWnOBsfHfZSxoD1rkQBGBeC8hzs3WvXoQmdrZGL2NgF9Z6dn/
-         kiP/Adatjt0gjfzN3C9Cf5phsYqUJpKGtP1BuzrwjozBOoAGpioy8uisSaMJJBrS4nyQ
-         sahlNsDBD2zPAwXhjIlv8/ibuAdzfNno4ekCTE0GjnletwO5sBEHxAz7HzTi1Gu6VA99
-         N26Q==
-X-Gm-Message-State: ACrzQf2V3B4R4WvIOAPrmSa1DG7AEZ+qMQz2l27qXkDcZ4gbriE0B2ZQ
-        6zHhEpsmDcQ+Ms4029L5Rg==
-X-Google-Smtp-Source: AMsMyM6KS8E4GJgpsN95NTujJva07W8KKKeA3reyNOFR2b1fz7WjG1LUzrKyh0h31G0KPSeL8vLmTg==
-X-Received: by 2002:aca:c155:0:b0:355:1aa6:d7ad with SMTP id r82-20020acac155000000b003551aa6d7admr3004216oif.0.1666817421025;
-        Wed, 26 Oct 2022 13:50:21 -0700 (PDT)
+        bh=9SGTpGJ14IzV3mTWmW98EDecB40xRhD+qIv4J7Ibrzc=;
+        b=YPIlQzxmQNLVhT9Iq6roNrPwOMlfCCFpekAVKLwJyKZChoJhsHdqxBSa1TuTQV/V03
+         tBnfKKWFVmdTYHQybSESDQIK/srCKuxQyDEm+5a/cZWbM7mcNPTtBLo6FH3/2DrQxJEO
+         p6AGoe0ZPw6uJfie4xbiVBGFDaKNMVLFkQOzn/tY2K0RLzoJSLRcev3glTVCb6uenCvu
+         vV9YEeG71GqiMo12QuNppmGAz8T/TPxR3iBPuZtLyM8kPU4XLT0YzUrGaZQBqwp2YIqu
+         KGEmQfJDvVU08ENHANqwMj3Puc75iQOOwbJbmrXTan/gROP50P12nCsaqKPEb6US6whS
+         PYNQ==
+X-Gm-Message-State: ACrzQf3QrJQCGz5j1cplYkzgAKGa14WGRp6pB+dPcwoeL2M4fF0VBRaP
+        gWqQP5t1umJ3XW8xHBvddA==
+X-Google-Smtp-Source: AMsMyM5kHygF1C7avKvdsYNEhsTiUfv1gpzHowhVZYUGRV2ZVyQ3RIJeLUWjNOlgHtBfx6JMZxuF2g==
+X-Received: by 2002:a05:6830:3987:b0:661:b516:6a61 with SMTP id bs7-20020a056830398700b00661b5166a61mr22873954otb.303.1666817953187;
+        Wed, 26 Oct 2022 13:59:13 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z3-20020a4ad583000000b00480816a5b8csm1268377oos.18.2022.10.26.13.50.20
+        by smtp.gmail.com with ESMTPSA id p1-20020a4a95c1000000b0047f72b6988fsm2563862ooi.45.2022.10.26.13.59.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 13:50:20 -0700 (PDT)
-Received: (nullmailer pid 1294279 invoked by uid 1000);
-        Wed, 26 Oct 2022 20:50:22 -0000
-Date:   Wed, 26 Oct 2022 15:50:22 -0500
+        Wed, 26 Oct 2022 13:59:12 -0700 (PDT)
+Received: (nullmailer pid 1303800 invoked by uid 1000);
+        Wed, 26 Oct 2022 20:59:14 -0000
+Date:   Wed, 26 Oct 2022 15:59:14 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     jh80.chung@samsung.com, ulf.hansson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCHv6 1/6] dt-bindings: mmc: synopsys-dw-mshc: document
- "altr,sysmgr-syscon"
-Message-ID: <20221026205022.GA1291041-robh@kernel.org>
-References: <20221026141631.696863-1-dinguyen@kernel.org>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, marex@denx.de,
+        jirislaby@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
+ controls Rx enable during Tx
+Message-ID: <20221026205914.GA1294440-robh@kernel.org>
+References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
+ <20221026165049.9541-2-cniedermaier@dh-electronics.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221026141631.696863-1-dinguyen@kernel.org>
+In-Reply-To: <20221026165049.9541-2-cniedermaier@dh-electronics.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 09:16:26AM -0500, Dinh Nguyen wrote:
-> Document the optional "altr,sysmgr-syscon" binding that is used to
-> access the System Manager register that controls the SDMMC clock
-> phase.
+On Wed, Oct 26, 2022 at 06:50:46PM +0200, Christoph Niedermaier wrote:
+> Add the binding for a generic definition of a GPIO, that controls whether Rx
+> is connected or disconnected by an electrical circuit to have the ability
+> to receive the signals on the bus during sending or disable receiving during
+> sending.
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
 > ---
-> v6: make "altr,sysmgr-syscon" optional
-> v5: document reg shift
-> v4: add else statement
-> v3: document that the "altr,sysmgr-syscon" binding is only applicable to
->     "altr,socfpga-dw-mshc"
-> v2: document "altr,sysmgr-syscon" in the MMC section
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: devicetree@vger.kernel.org
+> To: linux-serial@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
 > ---
->  .../bindings/mmc/synopsys-dw-mshc.yaml        | 23 ++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> index ae6d6fca79e2..0e2024eb9018 100644
-> --- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-> @@ -6,9 +6,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
+> index 90a1bab40f05..0ebd7690f85d 100644
+> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
+> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+> @@ -51,6 +51,10 @@ properties:
+>      description: GPIO pin to enable RS485 bus termination.
+>      maxItems: 1
 >  
->  title: Synopsys Designware Mobile Storage Host Controller Binding
->  
-> -allOf:
-> -  - $ref: "synopsys-dw-mshc-common.yaml#"
-> -
->  maintainers:
->    - Ulf Hansson <ulf.hansson@linaro.org>
->  
-> @@ -38,6 +35,26 @@ properties:
->        - const: biu
->        - const: ciu
->  
-> +allOf:
-> +  - $ref: synopsys-dw-mshc-common.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: altr,socfpga-dw-mshc
-> +    then:
-> +      properties:
-> +        altr,sysmgr-syscon:
-> +          $ref: /schemas/types.yaml#/definitions/phandle-array
-> +          items:
-> +            - description: phandle to the sysmgr node
-> +            - description: register offset that controls the SDMMC clock phase
-> +            - description: register shift for the smplsel(drive in) setting
+> +  rs485-rx-during-tx-gpios:
+> +    description: GPIO pin to control RS485 Rx enable during Tx.
 
-This goes in the top-level. Use if/then schema to add constraints, not 
-define properties.
+Active state means do what? And inactive? This is an output gating the 
+RX signal or an input telling the receiver what to do during tx? The 
+description is not adequate.
 
-> +    else:
+How does this property relate to 'rs485-rx-during-tx' Any combination of 
+the 2 being present or not is okay? If not, you need some constraints.
 
-Then you'll need to negate the if:  if: { not: { properties: ... }}
-
-> +      properties:
-> +        altr,sysmgr-syscon: false
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.25.1
-> 
-> 
+Rob
