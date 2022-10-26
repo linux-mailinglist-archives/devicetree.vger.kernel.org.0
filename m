@@ -2,115 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA0D660E123
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E858C60E12C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 14:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233689AbiJZMsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 08:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49758 "EHLO
+        id S233657AbiJZMt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 08:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230090AbiJZMsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:48:03 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCB9E8C42;
-        Wed, 26 Oct 2022 05:48:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=8KIIctAa0VqNOSQ/2ZbNb/5Sjk32KtswvNRHKfRZHe8=; b=k4U0wbAzgdk0ibRqzdOrNyT5ks
-        GY0QL65LsETSsuMMjMZ1mA45Y/vRqzSUSz77zT+WpXS8KmwT8mddef2EuvCro6OnzjxekiAlEro3M
-        evU1A61xB5wh1d4nJuQWrTNwCaou0XAmMM8C3nwZyvmoE/8ZsUVZh9XmOCqmktF6A1XljPGBErHtz
-        McVaF+xWBq25wpNctc4HENh72+4LsBtod98Ppb1lv1RApYH3seMvj6XqSbJjaHmbDkTP5/E6Lp+0a
-        sq411EGaG5VIFNMBWJXlBpQM400dstEgepBOrlgLoeSzEPGiDCrBNAow4O0MiBVn8net0ZjukS3yC
-        UtezbUgQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34960)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1onfp5-0005bZ-5S; Wed, 26 Oct 2022 13:47:55 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1onfp2-0000cY-Jm; Wed, 26 Oct 2022 13:47:52 +0100
-Date:   Wed, 26 Oct 2022 13:47:52 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     Sean Anderson <seanga2@gmail.com>, davem@davemloft.net,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v3 3/5] net: pcs: add new PCS driver for altera
- TSE PCS
-Message-ID: <Y1kseONzzimgWQP3@shell.armlinux.org.uk>
-References: <20220901143543.416977-1-maxime.chevallier@bootlin.com>
- <20220901143543.416977-4-maxime.chevallier@bootlin.com>
- <68b3dfbf-9bab-2554-254e-bffd280ba97e@gmail.com>
- <20221026113711.2b740c7a@pc-8.home>
+        with ESMTP id S233386AbiJZMt5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 08:49:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82A0758046;
+        Wed, 26 Oct 2022 05:49:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7F73CB821D9;
+        Wed, 26 Oct 2022 12:49:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0473C433D6;
+        Wed, 26 Oct 2022 12:49:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666788592;
+        bh=wwcloTob6ie8tz5qopW+PLurg6OWyL6eKN6MA1+Xs6s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ju/p43pK7hPQJaIF7nJ1R2GsqT3DIHUa5vG3D7i5tSDDRrrG4bqAWT3Za50If1kxJ
+         cvsNrSzuTmwd4sTOb6bpH74w70yTkQ3MhzXa2NdXd40HJz3Lt03FVkXPU0VKnZ8Ken
+         Tp6TRHIIkb2rwnrnUqxKW+ln4wSzfPVGIM1f0M5w9UeRZx2RXXbWRWmglFLxSeJFb1
+         OxGFryVcLpeG//Q7d7FHWbJXtIzkY9qQsPUAySTq0hATpDfL0LLCNLktUefh/JAxJX
+         tsM3pr/sB+9sU2MxPYZgjTgpWHtdfAfBLS3rWOhViRfueOGD+ZWorJ4BxeQlMNINWE
+         OReMoTgPh7qHg==
+Date:   Wed, 26 Oct 2022 13:49:46 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Derek Fang <derek.fang@realtek.com>,
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek, rt5682s: Add AVDD and
+ MICVDD supplies
+Message-ID: <Y1ks6n7wCfhArza/@sirena.org.uk>
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com>
+ <CAGXv+5HJo5x2ieOegmv5vkfh+rTevdR_fri-7PeK+Gd+GXVjNw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6ws0GFWnXGiIRAF8"
 Content-Disposition: inline
-In-Reply-To: <20221026113711.2b740c7a@pc-8.home>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAGXv+5HJo5x2ieOegmv5vkfh+rTevdR_fri-7PeK+Gd+GXVjNw@mail.gmail.com>
+X-Cookie: Prunes give you a run for your money.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 11:37:11AM +0200, Maxime Chevallier wrote:
-> Hello Sean,
-> 
-> On Sun, 9 Oct 2022 01:38:15 -0400
-> Sean Anderson <seanga2@gmail.com> wrote:
-> 
-> 
-> > > +#define   SGMII_PCS_LINK_TIMER_REG(x)		(0x12 + (x))  
-> > 
-> > Not used.
-> 
-> Right, I'll remove that in a followup patch
-> 
-> > > +#define SGMII_PCS_LINK_TIMER_1	0x13
-> > > +#define SGMII_PCS_IF_MODE	0x14
-> > > +#define   PCS_IF_MODE_SGMII_ENA		BIT(0)
-> > > +#define   PCS_IF_MODE_USE_SGMII_AN	BIT(1)
-> > > +#define   PCS_IF_MODE_SGMI_SPEED_MASK	GENMASK(3, 2)
-> > > +#define   PCS_IF_MODE_SGMI_SPEED_10	(0 << 2)
-> > > +#define   PCS_IF_MODE_SGMI_SPEED_100	(1 << 2)
-> > > +#define   PCS_IF_MODE_SGMI_SPEED_1000	(2 << 2)  
-> > 
-> > You can use FIELD_PREP if you're so inclined. I assume SGMI is from
-> > the datasheet.
-> 
-> Will do ! thanks :)
-> 
-> > > +#define   PCS_IF_MODE_SGMI_HALF_DUPLEX	BIT(4)
-> > > +#define   PCS_IF_MODE_SGMI_PHY_ANi	BIT(5)
 
-The definitions up to here look very similar to pcs-lynx.c when it comes
-to 1000base-X and SGMII. I wonder whether regmap can help here to
-abstract the register access differences and then maybe code can be
-shared.
+--6ws0GFWnXGiIRAF8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-What value is in registers 2 and 3 (the ID registers) for this PCS?
+On Tue, Oct 25, 2022 at 01:12:49PM -0700, Chen-Yu Tsai wrote:
+> On Mon, Oct 24, 2022 at 3:01 PM N=EDcolas F. R. A. Prado
 
-On the link timer value setting, I have a patch to add a phylink helper
-which returns the link timer in nanoseconds. May be a good idea if we
-get that queued up so drivers can make use of it rather than hard-coding
-a register value everywhere.
+> > The rt5682s codec can have two supplies: AVDD and MICVDD. They are
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> Neither does the datasheet specify the ordering of AVDD, DBVDD, and
+> LDO1_IN for power sequencing, just that three should be toggled together.
+
+> Should we model these? Or wait until some design actually splits these?
+
+Yes, the driver for a chip should be a driver for the chip not for some
+specific board.
+
+--6ws0GFWnXGiIRAF8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNZLOkACgkQJNaLcl1U
+h9B/zgf9EephDS7CV9faIUtycitCDpOJIbYZYIhjrW6esmg6J2Kt5y00+V7/DQta
+zIHGZ9GXpX1DDlleJSrm3AgC03rKRub8VV75SwGvRGwuiSA5oaslFPiRPcYbBSEX
+B1TrN9NfwUYvJnaFVlXPoCxoVhrB0t2Mp4bltVVqfKFzkEoBRD+PeuCpIIM7OzSL
+d4kdyDLF/5L9hW5WQVCMH33zkmf02p1z8SWT/4KHFzqtuHc4f8Md9qzCLlbl0AY7
+WMv+pah7enDvFw/Uvr9adIYrWIwLEfMP4DiTZO4a8JjT03wAwgdC+A2aTeMyle9P
+fPnVMh6XtsDxs0KKcKD2p5ihwKlF4w==
+=Rizo
+-----END PGP SIGNATURE-----
+
+--6ws0GFWnXGiIRAF8--
