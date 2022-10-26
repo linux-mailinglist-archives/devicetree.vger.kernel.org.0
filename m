@@ -2,101 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51EDF60E668
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79ACF60E5CD
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 18:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233775AbiJZRZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 13:25:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37700 "EHLO
+        id S233972AbiJZQvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 12:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233567AbiJZRZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:25:20 -0400
-X-Greylist: delayed 598 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 26 Oct 2022 10:25:18 PDT
-Received: from mx2.securetransport.de (mx2.securetransport.de [188.68.39.254])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 85C476B672;
-        Wed, 26 Oct 2022 10:25:16 -0700 (PDT)
-Received: from mail.dh-electronics.com (unknown [77.24.89.57])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx2.securetransport.de (Postfix) with ESMTPSA id CAF475E898;
-        Wed, 26 Oct 2022 19:07:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1666804052;
-        bh=ZyqBHi0qzZwUyvfT3QboVMHj6xLTnCn8xFrtj9J/hwk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=hLqRmxCNpFO+6liZwMXIb5SVN5jpOh6FG/0zLNsGRYa1OGHbQ5ikup6X+orq0erIW
-         oUt5HkVCSIuYvUCzKGHeAsy8IzIE9/fxoe4XbG98DV9Wg9BaSCss6Hp55KciDOeejJ
-         lf7ISmEztIvdj4lQaQFp1dOC+1QXJiwirRTsMcNr1rMBiciC1voR3+NQYky+JvkrIL
-         dxd4jcqAMP8OLss56FSTEUb7xCNq3aZOR4SqOaqEwtzfBl/tid0h0mJx42JvIRJZlk
-         xyVQF1ngHkJIBgrurcYR/yb3oRt4DrcC5WlinRB7SYGmaQIc4JIWG39A/K9GQ4QN49
-         Te1E+fFfuHxMA==
-Received: from DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.15; Wed, 26 Oct 2022 18:52:18 +0200
-Received: from localhost.localdomain (172.16.51.8) by
- DHPWEX01.DH-ELECTRONICS.ORG (10.64.2.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.15 via Frontend Transport; Wed, 26 Oct 2022 18:52:18 +0200
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-To:     <linux-serial@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <marex@denx.de>,
-        <jirislaby@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that controls Rx enable during Tx
-Date:   Wed, 26 Oct 2022 18:50:46 +0200
-Message-ID: <20221026165049.9541-2-cniedermaier@dh-electronics.com>
-X-Mailer: git-send-email 2.11.0
-X-klartext: yes
-In-Reply-To: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
-References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
+        with ESMTP id S233881AbiJZQvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 12:51:41 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BF7ABD7A
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:51:34 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id j6so7549692qvn.12
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VmS+uedq9rzycs24wj1ycZpaKGAK2vI/UBOPK1atnrA=;
+        b=QtKakQTVufItu5vl/8R42Qnn9Wzs/hChZ09yA7FjmJ9mpKgNVXRrg2X1M5yl/PP9OZ
+         HMq1+RaeaaRsj+hRYQ3TsmQv4nytH4Ahp08Z47qG/6AA+DgeXWAk1DSJ7TBODGiXf5xr
+         VEGAFdIgRFtBRj6UrUa1yf0RJEKNYpwKCDmJO1rCrowfmgnqrBLA8HZA1Xjw9HpNwm80
+         GjvTIrqN7n/378lvmq0khEiatP3JO9PKwD+NRK6RduFf0Pzeihrr1AVzWqFpW+XpGvGV
+         zbjCSp2IzLfDLjCY/r9wXv9kaRqOQUXKXvZrn1P106jOC7BFyH1ev/Q4WGLQrPGV4xWR
+         FfOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VmS+uedq9rzycs24wj1ycZpaKGAK2vI/UBOPK1atnrA=;
+        b=nb03yIdPDkBwEP3bamz3bf8eOWZPcuQkiEqv3dftCfmx34NjafMS/BjKA3oXdEaVDK
+         LuzMyG0tH0aAMYws678vExagwzqfO8qQvDbv1jAaS1ewilryUblpctuSGbMc9a7gyz9g
+         CF5IwDmurJ8mebyBYnzd4Tn03kU95z4xs0x4lMVJM8cBY6V9YVzz2KmFsQ8dfWyUfHIh
+         rX1QQ2vR1MoofvXUdYsfQ00rNVCRcekYWjP+DBKWVsAC1fQY1gRYaZYf6KajrxzPLerx
+         9GSLezdO6LOZ5Llz+Z+8HmE6pDi3ovBiFGG7sbkXIcXEkyqx6h4GK6yKSmDhvSt7b/gG
+         Jz6g==
+X-Gm-Message-State: ACrzQf02NsQLwzs6UHK0U+myIgnDALR+MO6MjMvTapjdnbizVXBwVnsR
+        mqRhkRVqeUZ7id+Nrxm+fspeYw==
+X-Google-Smtp-Source: AMsMyM5NHLEVxZiJLk0E6mFpOZw493Bl8ApQVclF6CiyclewbLeaFtb/1NUY4DjOq2pM8MRNEg/I0g==
+X-Received: by 2002:a05:6214:5710:b0:4bb:8e33:560c with SMTP id lt16-20020a056214571000b004bb8e33560cmr6878068qvb.122.1666803093278;
+        Wed, 26 Oct 2022 09:51:33 -0700 (PDT)
+Received: from krzk-bin.. ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id h2-20020ac81382000000b0038b684a1642sm3440438qtj.32.2022.10.26.09.51.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Oct 2022 09:51:32 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [RESEND PATCH] dt-bindings: pci: qcom,pcie-ep: correct qcom,perst-regs
+Date:   Wed, 26 Oct 2022 12:51:29 -0400
+Message-Id: <20221026165129.48405-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the binding for a generic definition of a GPIO, that controls whether Rx
-is connected or disconnected by an electrical circuit to have the ability
-to receive the signals on the bus during sending or disable receiving during
-sending.
+qcom,perst-regs is an phandle array of one item with a phandle and its
+arguments.
 
-Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: devicetree@vger.kernel.org
-To: linux-serial@vger.kernel.org
-To: linux-arm-kernel@lists.infradead.org
----
- Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-index 90a1bab40f05..0ebd7690f85d 100644
---- a/Documentation/devicetree/bindings/serial/rs485.yaml
-+++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-@@ -51,6 +51,10 @@ properties:
-     description: GPIO pin to enable RS485 bus termination.
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+index 977c976ea799..5aa590957ee4 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+@@ -47,8 +47,10 @@ properties:
+                  enable registers
+     $ref: "/schemas/types.yaml#/definitions/phandle-array"
+     items:
+-      minItems: 3
+-      maxItems: 3
++      - items:
++          - description: Syscon to TCSR system registers
++          - description: Perst enable offset
++          - description: Perst separateion enable offset
  
-+  rs485-rx-during-tx-gpios:
-+    description: GPIO pin to control RS485 Rx enable during Tx.
-+    maxItems: 1
-+
- additionalProperties: true
- 
- ...
+   interrupts:
+     items:
 -- 
-2.11.0
+2.34.1
 
