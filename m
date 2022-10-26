@@ -2,140 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 236CA60E5DB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 18:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18F6360E5E1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 18:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233807AbiJZQ4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 12:56:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46444 "EHLO
+        id S233893AbiJZQ5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 12:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233893AbiJZQ4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 12:56:53 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1869AC11;
-        Wed, 26 Oct 2022 09:56:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D5B2CB82389;
-        Wed, 26 Oct 2022 16:56:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81CAAC43147;
-        Wed, 26 Oct 2022 16:56:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666803409;
-        bh=Vi8sx4aHNpojzRYzXmqjTrqY6mW5GyQ8eA3RJ1HlulQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=anP5j2gqPlA0CJUatDTr2DdhObFHUzWHqJfMkJ2XwAhpxjrmo9+g3+huQbX1jq544
-         dNvq+Lj+aO/+ADOWr3wMz3fPM3StPYP/BfgTuiuQtLGzqen1ftnp7HbBCH7mIJ3YjD
-         LnkRpUl4PufDhzyKpxewCF7hyXIuLHL+s9037D29o1S/gtMMd+BQhzQeHEjgvKnNXL
-         XC3CiCVHG8umwyfVnrYHjNUl+hfoeFRHSvUpYOAqUjajznc5qyqe+Ky8taqLCzy2Mf
-         C2t7zJBY/wlYUluEPXIfKLsZcWgUnTeZMCwe8V6Biv91Yv6X/JzJBoaZ3Eu2KI7QGg
-         BNbjBnSBRx0Og==
-Received: by mail-lf1-f46.google.com with SMTP id j4so30022202lfk.0;
-        Wed, 26 Oct 2022 09:56:49 -0700 (PDT)
-X-Gm-Message-State: ACrzQf2EELtfqnjpRayPEpG6FYES/RVUNYGAwI8WIm5TYRk9X7y6R1OH
-        LaUkqKnpk1NSyvtzIrN8Iwn6zGfpsqA+kEWz7g==
-X-Google-Smtp-Source: AMsMyM6LrfSRjX/HUKVBgz4AtfsuMXbX9k+asKJtcIXDWCakd6ADGIkff/pXR6/xCmQI+exsymHAHErxpqcm1TMu7Gw=
-X-Received: by 2002:a05:6512:3f0e:b0:4a0:45b7:a8dc with SMTP id
- y14-20020a0565123f0e00b004a045b7a8dcmr16030816lfa.368.1666803407497; Wed, 26
- Oct 2022 09:56:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAL_JsqKC_BJDJLLFck_0CbQ-0rZ0oVWMAdiwwGep23nh2pP19g@mail.gmail.com>
- <CA+V-a8vMLuzJ8h5UDNXUiZRXPV1vJ9gguUMywe_+sPcU8tK+tA@mail.gmail.com>
- <20221014214029.GA2937999-robh@kernel.org> <Y0pLDFMsFmHhC/R8@pendragon.ideasonboard.com>
-In-Reply-To: <Y0pLDFMsFmHhC/R8@pendragon.ideasonboard.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 26 Oct 2022 11:56:38 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+K72HEEqA2inRRgk4wHjLsueJhvrLPTXFpfhnGK3HJiQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+K72HEEqA2inRRgk4wHjLsueJhvrLPTXFpfhnGK3HJiQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] media: dt-bindings: ov5645: Convert OV5645 binding
- to a schema
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        with ESMTP id S233520AbiJZQ5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 12:57:51 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ED21A3AA7
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:57:50 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id w29so3267848qtv.9
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 09:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SMH8yy0K5bjEVyDE5fQG7VLZrpH6VjDBSTXM9KXwwlM=;
+        b=P81nZevgmYL2bPtSvUe4m5gPskkpK50V39SxUOLOClE4XtiMninGSwcah33MKucLTD
+         +xvtP0gw2lQxDx9tvWt+jiqT+W+CM8s60sszqToHUtwt1WdGfGabMTvVMQ9CkABVqQrV
+         aGXTkf+byIia/LBDKAU10K2IIJpy3RDBEEgttY/I5SCrkGpSootnZ6OY6l15Mn0j8PFW
+         1V1n66alusQoaQzWuIhYULr1Uipz84f+Xx3uGqMIs99wjVS7Xtna8QFLdtWU7dGbQB2T
+         0eXKPB2sZytkpbMZVbPDNaz+y9QtCER0trUT2au22M2Q50Wzx86qeGiH2tzeZBWSRv9O
+         zZEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SMH8yy0K5bjEVyDE5fQG7VLZrpH6VjDBSTXM9KXwwlM=;
+        b=sTvFer61V5r3LP/DVb9cMUiMB3Oafb8F7FRczX4wOWrkk0i4NyEAmA6HuVVsl+x2QU
+         AJ4IuVuNpWTPp/NmKJIsG8s+Mf1la37/agdZwzxRgGz+VlNOKoyWIifeAk3hGjXiZ50+
+         el7BywhjNrxjqzJMsB1Y0rznqZt5o4Kh3vmI5Zph5FPs7rfLCXx8Jx3olHyl1Z1o9oqS
+         gOWLzztUbcDzAXzQ6OfUfLH8OEr4iBUyLSmwsyQb8S8p2Jnu1jHtNQWpQdnaFM+TkAAP
+         vQriSIAl5DSiWSO5x7RvivGf1v6mtH86P+InPJr95dC9kqDaEJTSIUIBfqzBCQ9ov8ui
+         R9UQ==
+X-Gm-Message-State: ACrzQf29wyQK8EP42TKn6aOEGyYX+9pIa6OqqZu/lBeY8cAW8nrzeN/8
+        KKt1iPkxmmtQCSmgLQgexjcnBku/qbidBg==
+X-Google-Smtp-Source: AMsMyM52kSo4dwe98KsHb5B/S2GCroXLBYzzgP/n4SM7/4xO2UyexwU8NZBrIReXZn5PgBSiTxoyzg==
+X-Received: by 2002:a05:622a:2488:b0:3a4:ec00:2811 with SMTP id cn8-20020a05622a248800b003a4ec002811mr5170836qtb.487.1666803469255;
+        Wed, 26 Oct 2022 09:57:49 -0700 (PDT)
+Received: from krzk-bin.. ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id g21-20020a05620a40d500b006ee8874f5fasm4360759qko.53.2022.10.26.09.57.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Oct 2022 09:57:48 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>
+Subject: Re: (subset) [PATCH 1/2] dt-bindings: pinctrl: qcom,msm8916: convert to dtschema
+Date:   Wed, 26 Oct 2022 12:57:40 -0400
+Message-Id: <166680346262.49767.13769629485836334119.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221024002356.28261-1-krzysztof.kozlowski@linaro.org>
+References: <20221024002356.28261-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 15, 2022 at 12:54 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Rob,
->
-> On Fri, Oct 14, 2022 at 04:40:29PM -0500, Rob Herring wrote:
-> > On Fri, Oct 14, 2022 at 10:27:53PM +0100, Lad, Prabhakar wrote:
-> > > On Fri, Oct 14, 2022 at 10:05 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > > On Fri, Oct 14, 2022 at 1:35 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> > > > >
-> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > >
-> > > > > Convert the simple OV5645 Device Tree binding to json-schema.
-> > > > >
-> > > > > The previous binding marked the below properties as required which was a
-> > > > > driver requirement and not the device requirement so just drop them from
-> > > > > the required list during the conversion.
-> > > > > - clock-frequency
-> > > > > - enable-gpios
-> > > > > - reset-gpios
-> > > > >
-> > > > > Also drop the "clock-names" property as we have a single clock source for
-> > > > > the sensor and the driver has been updated to drop the clk referencing by
-> > > > > name.
-> > > >
-> > > > Driver requirements are the ABI!
-> > > >
-> > > > This breaks a kernel without the driver change and a DTB that has
-> > > > dropped the properties.
-> > > >
-> > > I already have a patch for the driver [0] which I missed to include
-> > > along with the series.
-> >
-> > You completely miss the point. Read the first sentence again. Changing
-> > driver requirements changes the ABI.
-> >
-> > This breaks the ABI. The driver patch does not help that.
->
-> I'm not following you here. If the DT binding makes a mandatory property
-> optional, it doesn't break any existing platform. The only thing that
-> would not work is a new DT that doesn't contain the now optional
-> property combined with an older driver that makes it required. That's
-> not a regression, as it would be a *new* DT.
->
-> > > > Also, with 'clock-names' dropped, you've just introduced a bunch of
-> > > > warnings on other people's platforms. Are you going to 'fix' all of
-> > > > them?
-> > > >
-> > > Yes I will fix them, once the patch driver patch [0] is merged in.
-> >
-> > Why? You are just making extra work. We have enough warnings as-is to
-> > fix.
->
-> I agree that a DT binding change should patch all in-tree DTS to avoid
-> introducing new warnings.
+On Sun, 23 Oct 2022 20:23:55 -0400, Krzysztof Kozlowski wrote:
+> Convert Qualcomm MSM8916 pin controller bindings to DT schema.  Keep the
+> parsing of pin configuration subnodes consistent with other Qualcomm
+> schemas (children named with '-state' suffix, their children with
+> '-pins').
+> 
+> 
 
-That is not what I was saying. Why not just keep 'clock-names' and go
-spend the DTS fixing time fixing some other warnings that we already
-have. Also, there is no requirement that converting bindings also fix
-DTS files. The only wish is that any warnings we do see are ones
-deemed needing to be fixed in the DTS file.
+Applied, thanks!
 
-Anyways, there's patches now for the new warnings, so nevermind on this one.
+[1/2] dt-bindings: pinctrl: qcom,msm8916: convert to dtschema
+      https://git.kernel.org/krzk/linux-dt/c/70af922b7f23bc03b89b3f80b679d11d5e7c2045
 
-Rob
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
