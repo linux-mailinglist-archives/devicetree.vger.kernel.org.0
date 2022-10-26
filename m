@@ -2,102 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D51560E61E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30AFC60E64A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 19:18:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234101AbiJZREA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 13:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36550 "EHLO
+        id S233305AbiJZRSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 13:18:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234115AbiJZRD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:03:57 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58253B48A6
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:03:56 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id cr19so10428175qtb.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:03:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9ROnzP60siuGiHzqktFDOH9iIayLn915GOnQp0HlYMk=;
-        b=WQN/OgLrj+21hWgl0AVRGD2GRCYZM/+eVGjYLm+PL0W+/M5AYvJu2JA3QwOeSWqUG3
-         yZoYkar/trbILSiiM454yG5TDe7VG2jn32cernhij6R+PYvCKZinC+eAsc/Yigm6Zpyq
-         WOZ6hs3eLa8DBEWAvSBYP3gZRa4KfvDpOmig9dkbs9+BLfr+Bmkl5nLAD5lqVdSarHlP
-         PbpaWM+2UySH0L6qnzlnj/fCp1G6BRupJxXGDheKcJCbgtIMEbW3hJFwD0Tj0t+TCagE
-         U+EwMOH7aqsGXgcc58irIvTsaPEPo1bVQcBnKQssg4qUJIw/fTKURsblVC2YeC2TlzlQ
-         dOIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9ROnzP60siuGiHzqktFDOH9iIayLn915GOnQp0HlYMk=;
-        b=7vPhSS+jct05eSceiipv1zwn1vWAv7pSIZj0cPXHABaCGITWqAVkO9na9ekeQQnm5N
-         jMDTmbitDyWUazRM4/OQt0Uo2Uf+OZvmCiQ2/hZ9sBoa6p5exHDe2hvgIhidnuX9nvip
-         GYjKeTcTZKLuoOjFhgkEQzqJDnGSkQsW7WElTtXh7lVJKxiVDjHTV62+gqXquIv39cqz
-         7ODyBWBoh+DYwAl4lQ6Z6rqFp+IRKqMYT4iQvLtOxWoYO054ZAoWeepwa/yx2kXIaGVv
-         UYbc8IlLfLsMgUimmVwab9bovuHuC09a4zyT+9CFBVOzt2cn1s0kq/fw0Jm53tQ7NLG+
-         eSWg==
-X-Gm-Message-State: ACrzQf0+DpfMF5fahw2vFAfIn/FCMzZMuJ0GntlXgWm28uzvriIHOK2u
-        0FlUl8qUt8rUKqWY01+KpWU32iMsC6ez5A==
-X-Google-Smtp-Source: AMsMyM4/C8rJdAsxQ9fxA3y4D0gF4T14Lak//zBKHECuv+eNLlugXnt6NnEZ+GqZGk9vdGO2+bKo8w==
-X-Received: by 2002:a05:622a:1713:b0:39c:e41e:2b27 with SMTP id h19-20020a05622a171300b0039ce41e2b27mr36484122qtk.45.1666803835511;
-        Wed, 26 Oct 2022 10:03:55 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id g21-20020a05620a40d500b006ee8874f5fasm4370163qko.53.2022.10.26.10.03.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 10:03:53 -0700 (PDT)
-Message-ID: <8489ce0a-3278-5509-4f82-f3d9d5ddd4c0@linaro.org>
-Date:   Wed, 26 Oct 2022 13:03:52 -0400
+        with ESMTP id S230090AbiJZRSG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 13:18:06 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DBC1844D2
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 10:18:05 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1onk1s-0003AO-MF; Wed, 26 Oct 2022 19:17:24 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1onk1p-0005PJ-NT; Wed, 26 Oct 2022 19:17:21 +0200
+Date:   Wed, 26 Oct 2022 19:17:21 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>, devicetree@vger.kernel.org,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 8/9] media: i2c: ov5645: Don't return early on
+ failures for s_stream(0)
+Message-ID: <20221026171721.4nfvhamguwnrw6zf@pengutronix.de>
+References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 1/4 v5] dt-bindings: memory: Factor out common properties
- of LPDDR bindings
-Content-Language: en-US
-To:     Julius Werner <jwerner@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Jian-Jia Su <jjsu@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-References: <20220930220606.303395-1-jwerner@chromium.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220930220606.303395-1-jwerner@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221026130658.45601-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/09/2022 18:06, Julius Werner wrote:
-> The bindings for different LPDDR versions mostly use the same kinds of
-> properties, so in order to reduce duplication when we're adding support
-> for more versions, this patch creates a new lpddr-props subschema that
-> can be referenced by the others to define these common parts. (This will
-> consider a few smaller I/O width and density numbers "legal" for LPDDR3
-> that are usually not used there, but this should be harmless.)
+Hi Prabhakar,
+
+thanks for the patch, please see below my comments.
+
+On 22-10-26, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Julius Werner <jwerner@chromium.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Make sure we dont stop the code flow in case of errors while stopping
+> the stream and return the error code of the first error case if any.
+> 
+> v4l2-core takes care of warning the user so no need to add a warning
+> message in the driver.
+> 
+> Suggested-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v2->v3
+> * Now propagating the first error code in case of failure.
+> 
+> v1->v2
+> * New patch
+> ---
+>  drivers/media/i2c/ov5645.c | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/ov5645.c b/drivers/media/i2c/ov5645.c
+> index eea3067ddc8b..5702a55607fc 100644
+> --- a/drivers/media/i2c/ov5645.c
+> +++ b/drivers/media/i2c/ov5645.c
+> @@ -996,17 +996,22 @@ static int ov5645_s_stream(struct v4l2_subdev *subdev, int enable)
+>  		if (ret < 0)
+>  			goto err_rpm_put;
+>  	} else {
+> +		int stream_off_ret = 0;
+> +
+>  		ret = ov5645_write_reg(ov5645, OV5645_IO_MIPI_CTRL00, 0x40);
 
-Julius,
+If this write failed..
 
-For the future, write cover letter which describes why you are doing
-this. You explained the "why" some time ago in responses, but all such
-information should be in cover letter (plus the applicable part in the
-individual patches).
+>  		if (ret < 0)
+> -			return ret;
+> +			stream_off_ret = ret;
+>  
+>  		ret = ov5645_write_reg(ov5645, OV5645_SYSTEM_CTRL0,
+>  				       OV5645_SYSTEM_CTRL0_STOP);
 
-Grepping through past emails to find "why" is unnecessary burden.
+why should this write be successful?
 
-Best regards,
-Krzysztof
+Regards,
+  Marco
 
+> -		if (ret < 0)
+> -			return ret;
+> +		if (ret < 0 && !stream_off_ret)
+> +			stream_off_ret = ret;
+>  
+>  		pm_runtime_mark_last_busy(ov5645->dev);
+>  		pm_runtime_put_autosuspend(ov5645->dev);
+> +
+> +		if (stream_off_ret)
+> +			return stream_off_ret;
+>  	}
+>  
+>  	return 0;
+> -- 
+> 2.25.1
+> 
+> 
+> 
