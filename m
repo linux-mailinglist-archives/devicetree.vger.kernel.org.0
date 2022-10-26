@@ -2,206 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDE0A60DCB3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 10:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 733CD60DCEC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 10:18:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233055AbiJZICw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 04:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45782 "EHLO
+        id S233212AbiJZISx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 04:18:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233303AbiJZICv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 04:02:51 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43283A98D1
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 01:02:50 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id y16so14532606wrt.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 01:02:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YyPwO7rl+gX39UNWAmiOxo6E2JYfZJtVX93jxGyGRgU=;
-        b=PuRDg6g8vE/Kmsy/HXW2aR4DBNamMoZxiJHU4GN0BUDeWEzc4IgxUwgy7Ixwjz4Ofw
-         8x3MXAzIIB3n1TmHVTwoTcdDMby6OcEsRQAmxt1/qpkoouMO71atWLSLm9ox614DP4Eu
-         x1lpKX834t/hf4dWr6qS8KhQgWWSxoxKQ1MUw+lJcx+pRJ6ayE7ig4zeUSub6t40aeMw
-         aArsBRynHmBpxkTCqYLCHORe/tqFJmciiSPRbm/jZ8grRTY78VSpj0dMhZfsDtlDLTSS
-         PIcMVWAHuqkSMu0ajNpolEaYdB/IqDFIUkZ6dM0z00AWTxdKduOtW5U8DHK9cxkw+M4z
-         mfrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YyPwO7rl+gX39UNWAmiOxo6E2JYfZJtVX93jxGyGRgU=;
-        b=uKwxVZuILhiGNu06u6cxsD6G4OGlRu9nThfcr0UOjRFGeFWbK2/EINA0AlKpiO0Tmo
-         kVczGaEm/nskGEJftdtHNTXrQnRC7O+2GgmEkQeF+n6SiiHk7EPV+bqFhR6RF6pfLBIU
-         Tly/N7obpplxiyebB0H66hzfDW1BG4marw8l9Y8tCQ0ucAW5fhbdWF83IXo962rpwDOR
-         9U4Q/NbztCVURWc8eD/mqIbK473+vrtbMgRQAgWZO07xTIi7DlQlbkrOGQqtTqvqbDSt
-         JJnSMpERTu/r6anIfd5whi00ahfa77/mv76PKFAgMC6emaoDqJ+hkWsy7zCWqE8W3/Yw
-         VVZQ==
-X-Gm-Message-State: ACrzQf0IuIjhjWq2VqPJOizAckp+SCILF5JReFx2vsVEdPNloeucKrdz
-        SAOdKM2YMdo/H8IbFlqsLlkFTl28HL7PUA9/
-X-Google-Smtp-Source: AMsMyM66kvpQWFo5u0OfUq/T3nHMOYZKy3o5Z+LNI+SLBAqxTTBw+3OHccmEWCRwfakgmYIBIojMlA==
-X-Received: by 2002:a5d:5f03:0:b0:22f:8ad4:bd46 with SMTP id cl3-20020a5d5f03000000b0022f8ad4bd46mr27097794wrb.120.1666771368745;
-        Wed, 26 Oct 2022 01:02:48 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ce41:a140:b67e:6c4b? ([2a01:e0a:982:cbb0:ce41:a140:b67e:6c4b])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05600c4e8c00b003b95ed78275sm1201579wmq.20.2022.10.26.01.02.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 01:02:46 -0700 (PDT)
-Message-ID: <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org>
-Date:   Wed, 26 Oct 2022 10:02:44 +0200
+        with ESMTP id S233256AbiJZISu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 04:18:50 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F7889C7D6;
+        Wed, 26 Oct 2022 01:18:47 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BB742660283B;
+        Wed, 26 Oct 2022 09:18:44 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666772325;
+        bh=NYCXP6RyBtf3ScHpt1tBvUYys3xwjCxOteKAWeBtIPg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Ou91Zpf3cGsseLbii8xWViLSeSsjqLIStMuD4Hcro5p0gSbeAFBPLfIhd7qr0YCgM
+         og6rB/s8syWWTz40ihoOKkG/XRNlh0Hj3GgScRIVz+zW3XWDuJsp7VeCwnN7fY9jor
+         KclpR6TWiNKvRydsdMIgI1HI9nX94vtqgzpE1nOJlCsYwJ5MgYXmr0oFS2nlMkp9+N
+         yHX5Lxmgf6LD+t4adseWCQjJOUHG89I4sBQ5vkqHP5gqLq6MdmMHbC6FwUDlDQ4KdP
+         OBaoCQB4evzQEkuCKDOmmIqA+EN93RWMIVuyFAxYjKQazybq4Hg5frHeMPK1GkA71O
+         4C2PQBUTIYBzw==
+Message-ID: <360a5f27-8abc-938c-04c7-13ea65b5a89f@collabora.com>
+Date:   Wed, 26 Oct 2022 10:18:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
- on Odroid N2/N2+
-To:     Anand Moon <linux.amoon@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221022084737.1028-1-linux.amoon@gmail.com>
- <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
- <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
- <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
- <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v2 03/12] ASoC: mediatek: mt8188: support audsys clock
+To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "broonie@kernel.org" <broonie@kernel.org>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20221021082719.18325-1-trevor.wu@mediatek.com>
+ <20221021082719.18325-4-trevor.wu@mediatek.com>
+ <de66f0e3-7694-7315-c896-9211259a1a17@collabora.com>
+ <776557c0fda5a538549ee0d4f4b7f482b0d69934.camel@mediatek.com>
+ <473d67ed-198f-82c6-9f32-5827c1f8c852@collabora.com>
+ <500f80b1ac84101af482bdfcb46671d523d51068.camel@mediatek.com>
 Content-Language: en-US
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <500f80b1ac84101af482bdfcb46671d523d51068.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,URI_HEX autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 25/10/2022 20:06, Anand Moon wrote:
-> Hi Martin,
-> 
-> On Sat, 22 Oct 2022 at 17:22, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->>
->> Hi Anand,
->>
->> On Sat, Oct 22, 2022 at 1:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
->> [...]
->>>>> @@ -1982,7 +1982,6 @@ pwm_ao_d_10_pins: pwm-ao-d-10 {
->>>>>                                                  mux {
->>>>>                                                          groups = "pwm_ao_d_10";
->>>>>                                                          function = "pwm_ao_d";
->>>>> -                                                       bias-disable;
->>>> &pwm_ao_d_10_pins is not referenced anywhere so it seems that this
->>>> change has no impact on controlling the fan on Odroid-N2(+).
->>>> How did you test this change?
+Il 26/10/22 06:10, Trevor Wu (吳文良) ha scritto:
+> On Tue, 2022-10-25 at 12:18 +0200, AngeloGioacchino Del Regno wrote:
+>> Il 21/10/22 11:58, Trevor Wu (吳文良) ha scritto:
+>>> On Fri, 2022-10-21 at 10:41 +0200, AngeloGioacchino Del Regno
+>>> wrote:
+>>>> Il 21/10/22 10:27, Trevor Wu ha scritto:
+>>>>> Add mt8188 audio cg clock control. Audio clock gates are
+>>>>> registered
+>>>>> to CCF
+>>>>> for reference count and clock parent management.
+>>>>>
+>>>>> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+>>>>> ---
+>>>>>     sound/soc/mediatek/mt8188/mt8188-audsys-clk.c | 206
+>>>>> ++++++++++++++++++
+>>>>>     sound/soc/mediatek/mt8188/mt8188-audsys-clk.h |  15 ++
+>>>>>     .../soc/mediatek/mt8188/mt8188-audsys-clkid.h |  83 +++++++
+>>>>>     3 files changed, 304 insertions(+)
+>>>>>     create mode 100644 sound/soc/mediatek/mt8188/mt8188-audsys-
+>>>>> clk.c
+>>>>>     create mode 100644 sound/soc/mediatek/mt8188/mt8188-audsys-
+>>>>> clk.h
+>>>>>     create mode 100644 sound/soc/mediatek/mt8188/mt8188-audsys-
+>>>>> clkid.h
+>>>>>
+>>>>> diff --git a/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
+>>>>> b/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
+>>>>> new file mode 100644
+>>>>> index 000000000000..1f294231d4c2
+>>>>> --- /dev/null
+>>>>> +++ b/sound/soc/mediatek/mt8188/mt8188-audsys-clk.c
+>>>>> @@ -0,0 +1,206 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>>> +/*
+>>>>> + * mt8188-audsys-clk.c  --  MediaTek 8188 audsys clock control
+>>>>> + *
+>>>>> + * Copyright (c) 2022 MediaTek Inc.
+>>>>> + * Author: Chun-Chia Chiu <chun-chia.chiu@mediatek.com>
+>>>>> + */
+>>>>> +
+>>>>> +#include <linux/clk.h>
+>>>>> +#include <linux/clk-provider.h>
+>>>>> +#include <linux/clkdev.h>
+>>>>> +#include "mt8188-afe-common.h"
+>>>>> +#include "mt8188-audsys-clk.h"
+>>>>> +#include "mt8188-audsys-clkid.h"
+>>>>> +#include "mt8188-reg.h"
+>>>>> +
+>>>>> +struct afe_gate {
+>>>>> +	int id;
+>>>>> +	const char *name;
+>>>>> +	const char *parent_name;
+>>>>> +	int reg;
+>>>>> +	u8 bit;
+>>>>> +	const struct clk_ops *ops;
+>>>>> +	unsigned long flags;
+>>>>> +	u8 cg_flags;
+>>>>> +};
+>>>>> +
+>>>>> +#define GATE_AFE_FLAGS(_id, _name, _parent, _reg, _bit,
+>>>>> _flags,
+>>>>> _cgflags) {\
+>>>>> +		.id = _id,					
+>>>>> \
+>>>>> +		.name = _name,					
+>>>>> \
+>>>>> +		.parent_name = _parent,				
+>>>>> \
+>>>>> +		.reg = _reg,					
+>>>>> \
+>>>>> +		.bit = _bit,					
+>>>>> \
+>>>>> +		.flags = _flags,				
+>>>>> \
+>>>>> +		.cg_flags = _cgflags,				
+>>>>> \
+>>>>> +	}
+>>>>> +
+>>>>> +#define GATE_AFE(_id, _name, _parent, _reg, _bit)		
+>>>>> \
+>>>>> +	GATE_AFE_FLAGS(_id, _name, _parent, _reg, _bit,		
+>>>>> \
+>>>>> +		       CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
+>>>>> CLK_GATE_SET_TO_DISABLE)
 >>>>
->>> Ok I felt these changes affect the behavior of the pinctrl
+>>>> Can you please explain what's the reason for CLK_IGNORE_UNUSED
+>>>> here?
+>>>> Maybe we can solve some issue that you're facing in a cleaner
+>>>> way.
+>>>>
+>>>> Regards,
+>>>> Angelo
 >>>
->>>    * @PIN_CONFIG_BIAS_DISABLE: disable any pin bias on the pin, a
->>>   *  transition from say pull-up to pull-down implies that you disable
->>>   *  pull-up in the process, this setting disables all biasing.
+>>> Hi Angelo,
 >>>
->>> I mapped this is linked in pinctrl driver, pwm_ao_d_10_pins GPIOAO_10 see below
->> Yes, I understand this part.
->> My concern is: &pwm_ao_d_10_pins settings only become active when this
->> node is actively referenced. You can even see it in your output
->> below...
+>>> Because clk_disable_unused() calls clk_core_is_enabled(), register
+>>> access happens in is_enabled() ops.
+>>> At the moment, the power for register access is not enabled, so the
+>>> register read results in CPU hang.
+>>>
+>>> That's why I added CLK_IGNORE_UNUSED here, but it can't resolve all
+>>> issues. Actually, we met same problem when "cat
+>>> /sys/kernel/debug/clk/clk_summary" is used. We are still suffering
+>>> the
+>>> problem.
+>>>
+>>> I'm not sure if I can implement clk ops by myself, and exclude the
+>>> registration of is_enabled() ops.
+>>>
 >>
->> [...]
->>> pin 10 (GPIOAO_10): (MUX UNCLAIMED) aobus-banks:1958
->> This shows that it's used as a GPIO. If the &pwm_ao_d_10_pins setting
->> was used then it would show "function pwm_ao_d group pwm_ao_d_10"
->> (similar to what GPIOE_1 shows in your output)
+>> Is the power for register access enabled with a power domain?
 >>
->> If you want to know if a pull-up/down is enabled you can look at the output of:
->> $ cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinconf-pins
->> (I'm sure this can also be retrieved from some userspace tools, but I
->> don't know how)
+>> Check drivers/clk/clk.c, grep for core->rpm_enabled.
+>>
+>> If you enable runtime PM before registering the clocks, and you
+>> register them
+>> with the right struct device, the clock API will enable power for you
+>> before
+>> trying to read the clock enable status.
+>>
+>> Regards,
+>> Angelo
 >>
 > 
-> I now switch using pwm-fan with the local changes I am able to link
-> pwm_ao_d_10_pins
-> but now the issue is fan keeps on spinning on boot-up and stays on.
+> Hi Angelo,
 > 
-> I can manually turn on off by using
-> $ sudo gpioset gpiochip1 10=1   // fan on
-> $ sudo gpioset gpiochip1 10=0   // fan off
+> I tried the way in MT8195, but it caused circular lock problem.
+> 
+> Because mtcmos depends on some clocks, clk_bulk_prepare_enable is also
+> used in scpsys_power_on()[1].
+> If the clock also depends on the power domain, this results in the
+> circular lock problem.
+> That's why I don't bind the power domain with these clocks.
+> 
 
-By doing that actually override the PWM function of the pin and set it as a GPIO.
+This is not supposed to happen... can you please give me a (MT8195) patch to
+reproduce the issue that you're seeing?
 
-> 
-> It is not controlled by the thermal tip as expected.
-> I feel some configuration is missing in pwm-meson driver.
-> Any input for me?
-> 
-> $ sudo cat /sys/kernel/debug/pinctrl/ff800000.sys-ctrl\:pinctrl@14-pinctrl-meson/pinmux-pins
-> [sudo] password for alarm:
-> Pinmux settings per pin
-> Format: pin (name): mux_owner gpio_owner hog?
-> pin 0 (GPIOAO_0): ff803000.serial (GPIO UNCLAIMED) function uart_ao_a
-> group uart_ao_a_tx
-> pin 1 (GPIOAO_1): ff803000.serial (GPIO UNCLAIMED) function uart_ao_a
-> group uart_ao_a_rx
-> pin 2 (GPIOAO_2): (MUX UNCLAIMED) aobus-banks:1950
-> pin 3 (GPIOAO_3): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-> pin 4 (GPIOAO_4): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-> pin 5 (GPIOAO_5): ff808000.ir (GPIO UNCLAIMED) function
-> remote_ao_input group remote_ao_input
-> pin 6 (GPIOAO_6): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-> pin 7 (GPIOAO_7): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-> pin 8 (GPIOAO_8): (MUX UNCLAIMED) aobus-banks:1956
-> pin 9 (GPIOAO_9): (MUX UNCLAIMED) aobus-banks:1957
-> pin 10 (GPIOAO_10): ff807000.pwm (GPIO UNCLAIMED) function pwm_ao_d
-> group pwm_ao_d_10
-> pin 11 (GPIOAO_11): (MUX UNCLAIMED) aobus-banks:1959
-> pin 12 (GPIOE_0): (MUX UNCLAIMED) (GPIO UNCLAIMED)
-> pin 13 (GPIOE_1): ff802000.pwm (GPIO UNCLAIMED) function pwm_ao_d
-> group pwm_ao_d_e
-> pin 14 (GPIOE_2): ffd1b000.pwm (GPIO UNCLAIMED) function pwm_a_e group pwm_a_e
-> 
-> $ sudo cat /sys/kernel/debug/pwm
-> platform/ffd1b000.pwm, 2 PWM devices
->   pwm-0   (regulator-vddcpu-a  ): requested enabled period: 1250 ns
-> duty: 838 ns polarity: normal
->   pwm-1   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
-> 
-> platform/ff807000.pwm, 2 PWM devices
->   pwm-0   (pwm-fan             ): requested period: 1250 ns duty: 0 ns
-> polarity: normal
->   pwm-1   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
+I would like to investigate that to check if I can come up with a good solution.
 
-This should be on the pwm-1, hence the "pwm_AO_cd" name, "c" and "d" and the
-names of the outputs.
+Thanks,
+Angelo
 
-So you need to use 1 as first PWM phandle argument instead of 0.
-
+> [1]
+> https://elixir.bootlin.com/linux/v6.1-rc2/source/drivers/soc/mediatek/mtk-pm-domains.c
 > 
-> platform/ff802000.pwm, 2 PWM devices
->   pwm-0   ((null)              ): period: 0 ns duty: 0 ns polarity: normal
->   pwm-1   (regulator-vddcpu-b  ): requested enabled period: 1250 ns
-> duty: 1213 ns polarity: normal
+> Thanks,
+> Trevor
 > 
-> I could observe a change in duty when we have stress testing the CPU.
-
-Can you share the complete change you did here ?
-
 > 
-> Thanks
-> 
-> -Anand
 
-Neil
+
+
