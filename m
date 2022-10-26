@@ -2,72 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D1960DB0A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:16:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C07860DB5B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 08:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbiJZGQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 02:16:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37102 "EHLO
+        id S233174AbiJZGdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 02:33:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233006AbiJZGQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:16:31 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45732B97B9;
-        Tue, 25 Oct 2022 23:16:31 -0700 (PDT)
-Received: from [192.168.1.15] (91-154-32-225.elisa-laajakaista.fi [91.154.32.225])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CFEFC4F8;
-        Wed, 26 Oct 2022 08:16:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1666764989;
-        bh=LDd8LyBDCaecAwc7cjAu82arEqV1+W/A2kaOAkJvoqE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=qC546QuqpKKimkHGcyQqJFYkbXES8AbpnIXBtMdTrQJx9Pv6y+wN4R5kSZX1eL8p1
-         J6p5k7pk4ueK4qXfi+wrralYPXsFb+qPLK6KAk6pA7C6qUqQ7ZPYRs2uWsben53p4O
-         zjrVdIe7qRdWWgE5BhqBzF/Z9MNbYJmbmAIkTUUA=
-Message-ID: <6504f023-3df3-ac5c-8a8d-fef1bd715948@ideasonboard.com>
-Date:   Wed, 26 Oct 2022 09:16:26 +0300
+        with ESMTP id S233180AbiJZGdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 02:33:31 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C71FAC392;
+        Tue, 25 Oct 2022 23:33:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1666766000; x=1698302000;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YSQ0taVVnmjRJNC9c/piCsW0RLRL2qeZ0FLqsRlzPpU=;
+  b=MIL9DccK0p0AeRXcCnwZJsL2l/b5rwdDlsPcmdZqtSPYAVZBzlndmaJ+
+   v13bkkYbllStTkMxzf6wKvJ3HEH3x/MonwXAwcNqz1Fzw98ldWk6xtL/U
+   1CMAqZnDjF1u/2JX/y9sJENA30MEiUzvtsaZwKbHu1G2iQb/UTINnxTLF
+   a93LkwyV/TQVAhzhfWxJCktS5JtW2FuP/TrI/eIBIaSza9+vPL3oPXeb/
+   +j6viFTJdzu80TU+Be1tPhIwGc0SlOa5I5AVgGRnoDKcNRGdIX1Slzl1r
+   404Pv+diyIIuWRw1U9NpkqPRdCnBC0Jgu7OSF/SRXC3v1z3/zlBeeMPl8
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.95,213,1661842800"; 
+   d="scan'208";a="120386793"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Oct 2022 23:33:19 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Tue, 25 Oct 2022 23:33:18 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Tue, 25 Oct 2022 23:33:16 -0700
+Date:   Wed, 26 Oct 2022 07:33:02 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <Padmarao.Begari@microchip.com>
+CC:     <conor@kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <paul.walmsley@sifive.com>,
+        <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
+        <linux-kernel@vger.kernel.org>, <Daire.McNamara@microchip.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [RFC] riscv: dts: microchip: add OPPs to mpfs
+Message-ID: <Y1jUnrzH9sCW/kIi@wendy>
+References: <20221024193647.1089769-1-conor@kernel.org>
+ <bf68f00675b5cbc6ba8099496ddb68ed20e84f05.camel@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v8 4/5] drm/bridge: cdns-dsi: Create a header file
-Content-Language: en-US
-To:     Rahul T R <r-ravikumar@ti.com>, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
-        airlied@linux.ie, daniel@ffwll.ch, p.zabel@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, linux-kernel@vger.kernel.org,
-        jpawar@cadence.com, sjakhade@cadence.com, mparab@cadence.com,
-        a-bhatia1@ti.com, devicetree@vger.kernel.org, vigneshr@ti.com,
-        lee.jones@linaro.org
-References: <20221021171820.15984-1-r-ravikumar@ti.com>
- <20221021171820.15984-5-r-ravikumar@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20221021171820.15984-5-r-ravikumar@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <bf68f00675b5cbc6ba8099496ddb68ed20e84f05.camel@microchip.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2022 20:18, Rahul T R wrote:
-> Create a header file for cdns dsi and move
-> register offsets and structure to header,
-> to prepare for adding j721e wrapper support
+On Wed, Oct 26, 2022 at 05:54:16AM +0000, Padmarao.Begari@microchip.com wrote:
+> Hi Conor,
+> > On Mon, 2022-10-24 at 20:36 +0100, Conor Dooley wrote:
+> > 
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > The U-Boot dts for mpfs defines three OPPs which are missing from the
+> > Linux dts. For ease of synchronisation of the two, add the missing
+> > OPPs
+> > to the Linux dt too.
+> > 
+> > CC: Padmarao Begari <padmarao.begari@microchip.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > 
+> > Hey Padmarao,
+> > I've been trying to pick off the bits that're different between the
+> > Linux
+> > & U-Boot dts. Do you remember why we added OPPs to the U-Boot dts but
+> > didn't propagate them elsewhere?
+> > 
 > 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> ---
->   .../gpu/drm/bridge/cadence/cdns-dsi-core.c    | 446 +----------------
->   .../gpu/drm/bridge/cadence/cdns-dsi-core.h    | 458 ++++++++++++++++++
->   2 files changed, 459 insertions(+), 445 deletions(-)
->   create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-dsi-core.h
+> Initially We added OPPs to the Linux dts for the CPU Frequency and
+> Voltage scaling while bringing up the Linux on an Emulation Platform
+> and the Icicle Kit for PolarFire SoC and same dts used for the U-Boot
+> but the U-Boot dts upstreamed first.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Right. So do we know if they're even correct values for an actual
+PolarFire SoC?
 
-  Tomi
-
+> >  arch/riscv/boot/dts/microchip/mpfs.dtsi | 23 +++++++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> > 
+> > diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> > b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> > index 0a9bb84af438..9d9ff7174341 100644
+> > --- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> > +++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+> > @@ -23,6 +23,7 @@ cpu0: cpu@0 {
+> >                         reg = <0>;
+> >                         riscv,isa = "rv64imac";
+> >                         clocks = <&clkcfg CLK_CPU>;
+> > +                       operating-points-v2 = <&cluster0_opps>;
+> >                         status = "disabled";
+> > 
+> >                         cpu0_intc: interrupt-controller {
+> > @@ -51,6 +52,7 @@ cpu1: cpu@1 {
+> >                         clocks = <&clkcfg CLK_CPU>;
+> >                         tlb-split;
+> >                         next-level-cache = <&cctrllr>;
+> > +                       operating-points-v2 = <&cluster0_opps>;
+> >                         status = "okay";
+> > 
+> >                         cpu1_intc: interrupt-controller {
+> > @@ -79,6 +81,7 @@ cpu2: cpu@2 {
+> >                         clocks = <&clkcfg CLK_CPU>;
+> >                         tlb-split;
+> >                         next-level-cache = <&cctrllr>;
+> > +                       operating-points-v2 = <&cluster0_opps>;
+> >                         status = "okay";
+> > 
+> >                         cpu2_intc: interrupt-controller {
+> > @@ -107,6 +110,7 @@ cpu3: cpu@3 {
+> >                         clocks = <&clkcfg CLK_CPU>;
+> >                         tlb-split;
+> >                         next-level-cache = <&cctrllr>;
+> > +                       operating-points-v2 = <&cluster0_opps>;
+> >                         status = "okay";
+> > 
+> >                         cpu3_intc: interrupt-controller {
+> > @@ -136,6 +140,7 @@ cpu4: cpu@4 {
+> >                         tlb-split;
+> >                         next-level-cache = <&cctrllr>;
+> >                         status = "okay";
+> > +                       operating-points-v2 = <&cluster0_opps>;
+> >                         cpu4_intc: interrupt-controller {
+> >                                 #interrupt-cells = <1>;
+> >                                 compatible = "riscv,cpu-intc";
+> > @@ -166,6 +171,24 @@ core4 {
+> >                                 };
+> >                         };
+> >                 };
+> > +
+> > +               cluster0_opps: opp-table {
+> > +                       compatible = "operating-points-v2";
+> > +                       opp-shared;
+> > +
+> > +                       opp-600000000 {
+> > +                           opp-hz = /bits/ 64 <600000000>;
+> > +                           opp-microvolt = <1100000>;
+> > +                       };
+> > +                       opp-300000000 {
+> > +                           opp-hz = /bits/ 64 <300000000>;
+> > +                           opp-microvolt = <950000>;
+> > +                       };
+> > +                       opp-150000000 {
+> > +                           opp-hz = /bits/ 64 <150000000>;
+> > +                           opp-microvolt = <750000>;
+> > +                       };
+> > +               };
+> >         };
+> > 
+> >         refclk: mssrefclk {
+> > --
+> > 2.38.0
+> > 
