@@ -2,106 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E67160E3B3
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:48:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 468D060E3B6
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 16:49:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233817AbiJZOs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 10:48:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56504 "EHLO
+        id S230522AbiJZOtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 10:49:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234042AbiJZOsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:48:25 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3AD111D9BD;
-        Wed, 26 Oct 2022 07:48:23 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id bg9-20020a05600c3c8900b003bf249616b0so1758491wmb.3;
-        Wed, 26 Oct 2022 07:48:23 -0700 (PDT)
+        with ESMTP id S234392AbiJZOsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 10:48:54 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BAC311D982
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:48:54 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id g11so10055350qts.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 07:48:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:message-id:date:in-reply-to:subject:cc:to:from
-         :references:from:to:cc:subject:date:message-id:reply-to;
-        bh=+0mLvxSPXOxhgnQzcFMi44GsxzESgWZ7ht0/PY/f89Q=;
-        b=EizPam+fpHG85pFQytUCkvubWoOhztt1iDv7VIlV0p3BBuAKUvT9hosMERDmg/DVSX
-         rGgPIUdwttDbqz65VTg+selFcbgULI2Ugxc4PXlZRe19qetJZFv0GbuGVRjxj6YB8Wkt
-         olkVowxyzveNPp5DDAnfgIZXT1+1GTWoNsW6J6pLq8787yhJ4/tGI/syWZ3M95EUWw/I
-         t3LwED8PUSp9hmsR30iIzkeLkgwgBWWJXqKq1TmYj/U2sui2cmX614eukMR8mLViyKe8
-         mefhw2zImZlMn06SPxWgCKWJUWFbvaJQbJHChdLqJF+KWeQKyqFTg/bDxRZdukQVfduJ
-         TsGw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EyiTlyJ01pSvgi3tVsGtomDjKxV6caRV7vZmxm6jAcI=;
+        b=Zr/RD7yYaeTI1USXg8ctU/s8v2Bv7ifrh1KugVqcPcaIvngY+Im9ImHTsrY8TNaUPK
+         T//pVbtxSmjkF+fizGBzC+MdQhRrGXbYEa7H63zOg+d+EZgxgi1n9lIGmp5mUUwEkw8U
+         8lfsIpuAyNJFlgzFxBg86ck2FHh7HpL9vyTQKA1stMObAyyUXfNMJDRz502JRwXlIYAZ
+         UA737suO8xfal+556Q66Hv85ItNb6r/dTK/IJk8l7FZU6aTBwz8U0Bd3pFPSuH8EWP1X
+         tJr5HnrXJHWZNYJ9+5a5uZ1cb8rCtTkcpIxKlylN83+PaouMh6q+mskFJMW3kE3zHKjq
+         NTxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:in-reply-to:subject:cc:to:from
-         :references:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+0mLvxSPXOxhgnQzcFMi44GsxzESgWZ7ht0/PY/f89Q=;
-        b=5xVWHEmSfxDZhJjfUP5FftjDBuP1ibeb2i/55WJ03K1an6yoeIcJS5NeZWF/W1lrep
-         HsqY1LpkpGLfj53eqqDyiXKw7Pa27Gac8TzmDF/qR4WBYUzjijYQNXpv4hHb/eCjC4ze
-         rBVXHF+6D6e2CMKXmbPfl7MXcmRot6lZjiSWAsVpuCGOwZYFOuQjil/3AOJ+9/12aTlK
-         lHjI+6g1TVFXXmxzs8fJdYwaZABOmjaT43gRh1iKiBD7+u0TJT5+c0a0qltCsZ0W1rwg
-         G8v44/hAXuYX8vVVaEEusmhwCUVptGMoUvekndbcTId8jqJ6h3ey7yejGE7ER0EyrDIq
-         jY9g==
-X-Gm-Message-State: ACrzQf3TbX7H8CzuUxx5bETKVIONa2PioPCMHihKYFAlRTuDOiWDAcuI
-        Z1H6Ultrx2B0SHP7DcWaOWzbcL8TDoXOug==
-X-Google-Smtp-Source: AMsMyM7/vD0TkY3/qBDwvfDXp6IepRYUm5MsPEZ2Jot0Pj+rXJATGYpR57v7l1I9iMk6NOBsUPoGMg==
-X-Received: by 2002:a05:600c:35cf:b0:3c6:e957:b403 with SMTP id r15-20020a05600c35cf00b003c6e957b403mr2893717wmq.162.1666795702227;
-        Wed, 26 Oct 2022 07:48:22 -0700 (PDT)
-Received: from localhost (94.197.44.200.threembb.co.uk. [94.197.44.200])
-        by smtp.gmail.com with ESMTPSA id l3-20020adfa383000000b002366eb01e07sm5455698wrb.114.2022.10.26.07.48.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 07:48:21 -0700 (PDT)
-References: <20221022162742.21671-1-aidanmacdonald.0x0@gmail.com>
- <20221022162742.21671-2-aidanmacdonald.0x0@gmail.com>
- <ef6a326b-5c61-988b-2ec2-cd8e233e5d28@linaro.org>
- <GMvEU8xVTkjIoQ518XWAaLkhldSZHlk7@localhost>
- <4ef59d94-d045-55fc-d531-c84e7edb8333@linaro.org>
- <hXRpArckbrXUelDdaJ3Y2SErmKiuycXt@localhost>
- <66c1a100-922e-4a33-e80c-fc80866acf03@linaro.org>
- <jZCUALhj8PoqVkuWdtLf8LnPAj1wDakF@localhost>
- <38205667-d36f-e7a9-21b0-2e8597a662ff@linaro.org>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        kuninori.morimoto.gx@renesas.com, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] dt-bindings: ASoC: simple-card: Add
- system-clock-id property
-In-reply-to: <38205667-d36f-e7a9-21b0-2e8597a662ff@linaro.org>
-Date:   Wed, 26 Oct 2022 15:48:21 +0100
-Message-ID: <qNdQQJRLFWJ6gNfwM73oJ8EH56Y5nWgd@localhost>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EyiTlyJ01pSvgi3tVsGtomDjKxV6caRV7vZmxm6jAcI=;
+        b=gc9d83BfnNonYMwAihhFV4kpf/+tMx2dzLuseCNIwO7nw1jq2Eewzuwc9cWca5rkdP
+         UxWRJBBJsO6B+zifwyyoYAH/Hoz0ggrAuKMf2kU/imuJFwUw1Oc4eTU/7Y6vtuA16YKP
+         TfcesETv8hsY7toPDq8xhey5KzOI5A6QY5RXccJTF7Yyva0tWpMdl48dl7wNKkmiry/0
+         J9YqO+bndgtHfUfr2hBZScm+Om+zYVDQvunUvEkk+ShNEEUL2VjPWtIdBbK3M4Siifnb
+         NjaCCQ2Je9kXgOTXMbYFYIzqNC+/6aG1yefshL88DYAk7ApT6f2ZWouglnbVsTIXWJcl
+         MnXQ==
+X-Gm-Message-State: ACrzQf2lpjqtf3oSXQm+5VlmfKHCIZySpdouLlagrpTCntyYwv+6yoxr
+        GG+ti0NKTcbnd6XUlt1d1es0ccv3koM0PA==
+X-Google-Smtp-Source: AMsMyM6k7MmKnk41e8lRpCBFrGkW5W6dmu5xM86aVn7Lh2FqBrwtTSNse/IpBp3m5R2hdy4w6J7xrA==
+X-Received: by 2002:ac8:59c1:0:b0:39c:d5c3:6859 with SMTP id f1-20020ac859c1000000b0039cd5c36859mr37884295qtf.230.1666795733380;
+        Wed, 26 Oct 2022 07:48:53 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id l10-20020ac84cca000000b0039d0366af44sm3307247qtv.1.2022.10.26.07.48.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Oct 2022 07:48:52 -0700 (PDT)
+Message-ID: <ee427afa-ea1f-5537-abfe-22386d3be4b8@linaro.org>
+Date:   Wed, 26 Oct 2022 10:48:51 -0400
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH RESEND v2 1/2] dt-bindings: mfd:
+ ti,j721e-system-controller: add compatible strings for other platforms
+Content-Language: en-US
+To:     Matt Ranostay <mranostay@ti.com>, nm@ti.com, vigneshr@ti.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lee@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20221024035405.366208-1-mranostay@ti.com>
+ <20221024035405.366208-2-mranostay@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024035405.366208-2-mranostay@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/10/2022 23:54, Matt Ranostay wrote:
+> There are multiple J7 based platforms, and the j721e-system-controller
+> shouldn't be define in non-j721e devices device trees.
+> 
+> This is mainly for clarity; but also useful in case there are future
+> erratas that need to be fixed for a specific platform.
+> 
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+This is a friendly reminder during the review process.
 
-> And the remaining piece I don't get is that these are not bindings for
-> codec, but for sound audio card. You want to set "system-clock-id"
-> property for audio card, while putting clock from codec, which will be
-> used to pass back to the codec... so it is a property of the codec, not
-> of the audio card. IOW, NAU8821_CLK_* does not configure here the clock
-> of the system, but only, only clock of the codec.
+It looks like you received a tag and forgot to add it.
 
-The system clock is controlled at the DAI level, it's specific to one
-DAI on one component. The simple-card device node has sub-nodes for the
-DAI links, and each DAI link node has sub-nodes for the DAIs within the
-link. "system-clock-id" is a property on the DAI nodes, so it's not a
-card-level property, just one part of the overall card definition.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
 
-Since the clock ID is something defined by the codec it would naturally
-be a value defined by the codec, but the *configuration* of the codec is
-part of the sound card because it depends on how everything is connected
-together. If you used the same codec in a different machine it would
-have a different configuration.
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
-Regards,
-Aidan
+If a tag was not added on purpose, please state why and what changed.
+
+Best regards,
+Krzysztof
+
