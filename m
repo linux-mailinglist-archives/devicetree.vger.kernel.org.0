@@ -2,81 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D10E60DD89
-	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 10:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C675A60DDBF
+	for <lists+devicetree@lfdr.de>; Wed, 26 Oct 2022 11:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233210AbiJZIvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 04:51:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
+        id S233207AbiJZJKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 05:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233044AbiJZIvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 04:51:53 -0400
-Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C5729620D;
-        Wed, 26 Oct 2022 01:51:50 -0700 (PDT)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout2.routing.net (Postfix) with ESMTP id 9F0A3618E4;
-        Wed, 26 Oct 2022 08:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1666774308;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=DWV64hIs6KNcV3ZMh0mTUcgJBUFmsuupZkeJjORjcjQ=;
-        b=kjNm7rHk1I1u0W3ORgYXv3iylQjLIDyc2V2w33+9K4CoUKlnp1+qgsvk/JD1Pgdc6Gs6V5
-        Ea3oqgjS+lB6uOGwpLgYwicmmKneX7V0dOfz/RBqs2u2Gv7fAfpcoGy+LHhAqtGIhLx564
-        uVSQKI7tccpqJ6TpnqLlK+DWZEyt5e0=
-Received: from frank-G5.. (fttx-pool-80.245.72.174.bambit.de [80.245.72.174])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id D62DD1008E6;
-        Wed, 26 Oct 2022 08:51:47 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mt7986: fix trng node name
-Date:   Wed, 26 Oct 2022 10:51:44 +0200
-Message-Id: <20221026085144.107430-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233158AbiJZJKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 05:10:38 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD823FF18;
+        Wed, 26 Oct 2022 02:10:31 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29Q9A3VM024236;
+        Wed, 26 Oct 2022 04:10:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666775403;
+        bh=PFseUz2FLH0+SJbEiSZOFucKInC/j7Az10LCI3tDJFo=;
+        h=From:To:CC:Subject:Date;
+        b=UDUKE/pvFMfTyFEqi23gX5PfuMwvAVan2z60pkqQaBeCYWwFqgZI9r+IkiX8a0zcv
+         JRWke3fPR2iImYwjXm/ffKSbityaG9m3yY9Meej/cOkbvYZCHmSpBnGyKOk3qzjv9a
+         6bcx3CxcUpXFW8XoUeclZnj08xnCT98sKlc9fku4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29Q9A3jZ017215
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 26 Oct 2022 04:10:03 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 26
+ Oct 2022 04:10:03 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 26 Oct 2022 04:10:03 -0500
+Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29Q99wxp005870;
+        Wed, 26 Oct 2022 04:09:58 -0500
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
+        <vladimir.oltean@nxp.com>, <vigneshr@ti.com>, <nsekhar@ti.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>
+Subject: [PATCH v3 0/3] Add support for QSGMII mode for J721e CPSW9G to am65-cpsw driver
+Date:   Wed, 26 Oct 2022 14:39:54 +0530
+Message-ID: <20221026090957.180592-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: 95f709b3-5d67-4463-868b-b118ca0adf85
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Add compatible to am65-cpsw driver for J721e CPSW9G, which contains 8
+external ports and 1 internal host port.
 
-Binding requires node name to be rng not trng:
+Add support to power on and power off the SERDES PHY which is used by the
+CPSW MAC.
 
-trng@1020f000: $nodename:0: 'trng@1020f000' does not match '^rng@[0-9a-f]+$'
+=========
+Changelog
+=========
+v2 -> v3:
+1. Run 'make DT_CHECKER_FLAGS=-m dt_binding_check' and fix errors and
+   warnings corresponding to the patch for:
+   Documentation/devicetree/bindings/net/ti,k3-am654-cpsw-nuss.yaml
+   with the latest dt-schema and yamllint.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v1 -> v2:
+1. Drop all patches corresponding to SGMII mode. This is done since I do
+   not have a method to test SGMII in the standard mode which uses an
+   SGMII PHY. The previous series used SGMII in a fixed-link mode,
+   bypassing the SGMII PHY. I will post the SGMII patches in a future
+   series after testing them.
+2. Drop all patches corresponding to fixed-link in the am65-cpsw driver.
+   This is done since PHYLINK takes care of fixed-link automatically and
+   there is no need to deal with fixed-link in a custom fashion.
+3. Fix indentation errors in k3-am65-cpsw-nuss.yaml.
+4. Remove the stale code which tries to power on and power off the CPSW
+   MAC's phy, since the CPSW MAC's phy driver does not support it.
+5. Rename the function "am65_cpsw_init_phy()" to
+   "am65_cpsw_init_serdes_phy()", to indicate that the phy corresponds to
+   the SERDES.
+6. Invoke "am65_cpsw_disable_serdes_phy()" as a part of the cleanup that
+   is associated with the "am65_cpsw_nuss_remove()" function.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index 72e0d9722e07..226648f48df2 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -168,7 +168,7 @@ sgmiisys1: syscon@10070000 {
- 			#clock-cells = <1>;
- 		};
- 
--		trng: trng@1020f000 {
-+		trng: rng@1020f000 {
- 			compatible = "mediatek,mt7986-rng",
- 				     "mediatek,mt7623-rng";
- 			reg = <0 0x1020f000 0 0x100>;
+v2:
+https://lore.kernel.org/r/20221018085810.151327-1-s-vadapalli@ti.com/
+v1:
+https://lore.kernel.org/r/20220914095053.189851-1-s-vadapalli@ti.com/
+
+Siddharth Vadapalli (3):
+  dt-bindings: net: ti: k3-am654-cpsw-nuss: Update bindings for J721e
+    CPSW9G
+  net: ethernet: ti: am65-cpsw: Enable QSGMII mode for J721e CPSW9G
+  net: ethernet: ti: am65-cpsw: Add support for SERDES configuration
+
+ .../bindings/net/ti,k3-am654-cpsw-nuss.yaml   | 33 ++++++++-
+ drivers/net/ethernet/ti/am65-cpsw-nuss.c      | 73 +++++++++++++++++++
+ 2 files changed, 102 insertions(+), 4 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
