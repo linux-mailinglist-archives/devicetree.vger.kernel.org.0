@@ -2,233 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D56460FF7A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 19:40:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B92D60FF8A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 19:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236021AbiJ0Rkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 13:40:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34660 "EHLO
+        id S235566AbiJ0Rsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 13:48:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235984AbiJ0Rkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 13:40:43 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2135E5FAC4
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 10:40:38 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id b8so4402322ljf.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 10:40:38 -0700 (PDT)
+        with ESMTP id S235495AbiJ0Rsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 13:48:39 -0400
+Received: from mail-vk1-xa2d.google.com (mail-vk1-xa2d.google.com [IPv6:2607:f8b0:4864:20::a2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D1915ECCE
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 10:48:38 -0700 (PDT)
+Received: by mail-vk1-xa2d.google.com with SMTP id g26so1182952vkm.12
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 10:48:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5dQ5iXYypgbJC6JVuTz64YgEiNayZPBEIXcuhjY1RiA=;
-        b=MUdxN8jBJLvEPpz4xRlWyHx+U+2qnlG1s2vyNGymS4IA5POKPvoEx4n8I29061lwWR
-         FOXns6ZJ9464gxWK9dYzFKPTmEAihozFtmpEUqe5jhpzMlkDKggwUaBJZjphPTzvrIGX
-         sJWcGp9GYAe4GNTJXaE5hlQselL5I28H6+3CfuUvSJ43oMt6uf98C4nLNS5n0Y7Btse9
-         h/K6ixcbTaJmDBBo+4ZcGrU3NWVzvi3YbN2mrkF8Wf6rKg25WGdVFdo1gC8IDaMt187N
-         069vQ70kpRoLR5f/9QzZZ8jaxFnlXJ48RwD8BWYyqsd7GXpw8lzG7WeC/6eGYJZmkqKo
-         8COw==
+        d=chromium.org; s=google;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6KCnP92hVg2b4OPU8MtnSYIJzA7N3h0NpJJjHHoL8P8=;
+        b=F2omDsoPpXXQur7mSB0dnyaFLhNZV4z5D7DchgCW6Bha04vnZBiTMnkZ0HojExFiPS
+         KdBMG91XUVNUEYIc8uUkbTBBivETBLA08Oj1gsphbMKBc12iKgM/ePnqZYxnOBw1Gl5D
+         jYiWDihIbAWf/Epw952HJ2d3CWz00/Qtm9/8M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5dQ5iXYypgbJC6JVuTz64YgEiNayZPBEIXcuhjY1RiA=;
-        b=TukjweTuINFKMnBuMrGxEGuaoXclzGd34cvUqF+mk3fc492Aof62jYmZh0/jGWy+Jt
-         CJkAwuRGd5iSjtYiXB65puMO474FwQaq9HKTF96MjwPXsqibhhYOwRw+u5nW2gPxtrLI
-         MKjoD07ROSzXwJFb2Jh/GakQ2CjDhBczcL7nJfD/7mK5La6Nd43yWE1f1N2Ntuw1Fw2c
-         kgU+p50he941Z4uC9sLuWuLEWHOrwrKb02URrAM05PEx1V4oRGKpFw+sNFQeoEdZx+8g
-         lSjAoOx1DxtTqTLcSPPMaElj0q1H7DjpzA72TkRxPJl5JbhnB1NB7rle6OZI10jWQLCW
-         C6Ag==
-X-Gm-Message-State: ACrzQf0vOic1hl2V0JZ70bSOTZivIVWZ+jW0QGVXqPBGJVRuczx5L2e7
-        TcfnVpzi2tkMnbXG/fBy+ZMoSQ==
-X-Google-Smtp-Source: AMsMyM7il5IkwmWr4mwznK/xwHIcZqOrxqV6QhIQMw5WDa6TNpHUypqnTGu3qs9hDYuZTcnPGMVQtA==
-X-Received: by 2002:a05:651c:b13:b0:277:2a88:6995 with SMTP id b19-20020a05651c0b1300b002772a886995mr1748143ljr.516.1666892437114;
-        Thu, 27 Oct 2022 10:40:37 -0700 (PDT)
-Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id 142-20020a2e0994000000b0027706d22878sm306643ljj.94.2022.10.27.10.40.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 10:40:36 -0700 (PDT)
-Message-ID: <780a3aeb-2e7f-b3ca-be58-ab24bd06d805@linaro.org>
-Date:   Thu, 27 Oct 2022 20:40:35 +0300
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6KCnP92hVg2b4OPU8MtnSYIJzA7N3h0NpJJjHHoL8P8=;
+        b=QBQuKjPN+PFX56Z6uHJPt7BKeibv6P5znNKoVQUJ7P9FHWKPw6bBf5P/f0fpMDll5B
+         kKVxqEeYyR7/UB7nLJILz9EnGWyap3/FGPKNd6PhgZVcwfGZAG4qqhmzKMQ2OvwMEq5R
+         glpUJ/WVEip15I64dU20AqsWpKO8+YSByWNLXTQZ8Y0NquChyLOpi9Aeg+VeziwOwag+
+         NX4XSBcwPI7coRJ58SKh+jsjZoxnQtuQJDCBscsVAS6aknBcuRWJnN7ABhZTtzj3DDqo
+         dZeYrGcJ662hIhvbzBL8OBMLAAA2pHE+luHIl2BOHfDhZFAMZDTUiGwUeqHyE4LPm/vK
+         6kvw==
+X-Gm-Message-State: ACrzQf1+aLEtUqHeWFRmnbBVr5kBSEiNECWduFrupvPEEbfcBoqed/Wa
+        tkf1grI19l500fnME44ijOI+PAdjZQS77MDrJCAtYA==
+X-Google-Smtp-Source: AMsMyM6fdbfm1xIT3CDDeYdHZqjTpKCb0UWp+jaha25OIvK5KR4BPj1fdpFAXxmgHFlAMdNMl+znMaqyHInybaIOGMg=
+X-Received: by 2002:a1f:9116:0:b0:3a2:362b:fea9 with SMTP id
+ t22-20020a1f9116000000b003a2362bfea9mr26689153vkd.11.1666892917792; Thu, 27
+ Oct 2022 10:48:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v8 01/15] drm/msm/disp/dpu: clear dpu_assign_crtc and get
- crtc from connector state instead of dpu_enc
-Content-Language: en-GB
-To:     Vinod Polimera <vpolimer@qti.qualcomm.com>,
-        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        "swboyd@chromium.org" <swboyd@chromium.org>,
-        "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
-        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>
-References: <1665576159-3749-1-git-send-email-quic_vpolimer@quicinc.com>
- <1665576159-3749-2-git-send-email-quic_vpolimer@quicinc.com>
- <52e7a83b-bd83-ba63-55f9-a75cf549546d@linaro.org>
- <BN0PR02MB8173F084DD0DDAD2E312CA6DE4339@BN0PR02MB8173.namprd02.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <BN0PR02MB8173F084DD0DDAD2E312CA6DE4339@BN0PR02MB8173.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com> <CAGXv+5HJo5x2ieOegmv5vkfh+rTevdR_fri-7PeK+Gd+GXVjNw@mail.gmail.com>
+ <20221027143627.nbbketezqunkclxh@notapiano>
+In-Reply-To: <20221027143627.nbbketezqunkclxh@notapiano>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 27 Oct 2022 10:48:26 -0700
+Message-ID: <CAGXv+5Hki=VsvZrtANujFYseBp0Lxj4WVf3nzT7cx1kkMmWPFg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek, rt5682s: Add AVDD and
+ MICVDD supplies
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Derek Fang <derek.fang@realtek.com>,
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 16:34, Vinod Polimera wrote:
->> -----Original Message-----
->> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Sent: Monday, October 24, 2022 8:52 PM
->> To: Vinod Polimera (QUIC) <quic_vpolimer@quicinc.com>; dri-
->> devel@lists.freedesktop.org; linux-arm-msm@vger.kernel.org;
->> freedreno@lists.freedesktop.org; devicetree@vger.kernel.org
->> Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
->> dianders@chromium.org; swboyd@chromium.org; Kalyan Thota (QUIC)
->> <quic_kalyant@quicinc.com>; Kuogee Hsieh (QUIC)
->> <quic_khsieh@quicinc.com>; Vishnuvardhan Prodduturi (QUIC)
->> <quic_vproddut@quicinc.com>; Bjorn Andersson (QUIC)
->> <quic_bjorande@quicinc.com>; Aravind Venkateswaran (QUIC)
->> <quic_aravindh@quicinc.com>; Abhinav Kumar (QUIC)
->> <quic_abhinavk@quicinc.com>; Sankeerth Billakanti (QUIC)
->> <quic_sbillaka@quicinc.com>
->> Subject: Re: [PATCH v8 01/15] drm/msm/disp/dpu: clear dpu_assign_crtc and
->> get crtc from connector state instead of dpu_enc
->>
->> WARNING: This email originated from outside of Qualcomm. Please be wary
->> of any links or attachments, and do not enable macros.
->>
->> On 12/10/2022 15:02, Vinod Polimera wrote:
->>> Update crtc retrieval from dpu_enc to dpu_enc connector state,
->>> since new links get set as part of the dpu enc virt mode set.
->>> The dpu_enc->crtc cache is no more needed, hence cleaning it as
->>> part of this change.
->>>
->>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
->>> ---
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  4 ---
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 42 +++++++++---------
->> -----------
->>>    drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |  8 ------
->>>    3 files changed, 13 insertions(+), 41 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->> b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>> index 13ce321..8ec9a13 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
->>> @@ -1029,7 +1029,6 @@ static void dpu_crtc_disable(struct drm_crtc *crtc,
->>>                 */
->>>                if (dpu_encoder_get_intf_mode(encoder) == INTF_MODE_VIDEO)
->>>                        release_bandwidth = true;
->>> -             dpu_encoder_assign_crtc(encoder, NULL);
->>>        }
->>>
->>>        /* wait for frame_event_done completion */
->>> @@ -1099,9 +1098,6 @@ static void dpu_crtc_enable(struct drm_crtc *crtc,
->>>        trace_dpu_crtc_enable(DRMID(crtc), true, dpu_crtc);
->>>        dpu_crtc->enabled = true;
->>>
->>> -     drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state-
->>> encoder_mask)
->>> -             dpu_encoder_assign_crtc(encoder, crtc);
->>> -
->>>        /* Enable/restore vblank irq handling */
->>>        drm_crtc_vblank_on(crtc);
->>>    }
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> index 9c6817b..d05b353 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>> @@ -132,11 +132,6 @@ enum dpu_enc_rc_states {
->>>     * @intfs_swapped:  Whether or not the phys_enc interfaces have been
->> swapped
->>>     *                  for partial update right-only cases, such as pingpong
->>>     *                  split where virtual pingpong does not generate IRQs
->>> - * @crtc:            Pointer to the currently assigned crtc. Normally you
->>> - *                   would use crtc->state->encoder_mask to determine the
->>> - *                   link between encoder/crtc. However in this case we need
->>> - *                   to track crtc in the disable() hook which is called
->>> - *                   _after_ encoder_mask is cleared.
->>>     * @connector:              If a mode is set, cached pointer to the active
->> connector
->>>     * @crtc_kickoff_cb:                Callback into CRTC that will flush & start
->>>     *                          all CTL paths
->>> @@ -181,7 +176,6 @@ struct dpu_encoder_virt {
->>>
->>>        bool intfs_swapped;
->>>
->>> -     struct drm_crtc *crtc;
->>>        struct drm_connector *connector;
->>>
->>>        struct dentry *debugfs_root;
->>> @@ -1288,7 +1282,7 @@ static void dpu_encoder_vblank_callback(struct
->> drm_encoder *drm_enc,
->>>                struct dpu_encoder_phys *phy_enc)
->>>    {
->>>        struct dpu_encoder_virt *dpu_enc = NULL;
->>> -     unsigned long lock_flags;
->>> +     struct drm_crtc *crtc;
->>>
->>>        if (!drm_enc || !phy_enc)
->>>                return;
->>> @@ -1296,12 +1290,13 @@ static void dpu_encoder_vblank_callback(struct
->> drm_encoder *drm_enc,
->>>        DPU_ATRACE_BEGIN("encoder_vblank_callback");
->>>        dpu_enc = to_dpu_encoder_virt(drm_enc);
->>>
->>> -     atomic_inc(&phy_enc->vsync_cnt);
->>> +     if (!dpu_enc->connector || !dpu_enc->connector->state ||
->>> +         !dpu_enc->connector->state->crtc)
->>> +             return;
->>>
->>> -     spin_lock_irqsave(&dpu_enc->enc_spinlock, lock_flags);
->>> -     if (dpu_enc->crtc)
->>> -             dpu_crtc_vblank_callback(dpu_enc->crtc);
->>> -     spin_unlock_irqrestore(&dpu_enc->enc_spinlock, lock_flags);
->>> +     atomic_inc(&phy_enc->vsync_cnt);
->>> +     crtc = dpu_enc->connector->state->crtc;
->>> +     dpu_crtc_vblank_callback(crtc);
->>
->> So, what if the user commits the mode setting change on another CPU,
->> while we are handling the vblank callback here? Can this happen?
->>
-> If user issues a commit on another CPU, it will wait in the drm_atomic_helper_swap_state
-> as drm_atomic_helper_commit_hw_done which does the complete_all(&commit->hw_done)
-> for the current commit didn't finish yet.
+On Thu, Oct 27, 2022 at 7:36 AM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> On Tue, Oct 25, 2022 at 01:12:49PM -0700, Chen-Yu Tsai wrote:
+> > On Mon, Oct 24, 2022 at 3:01 PM N=C3=ADcolas F. R. A. Prado
+> > <nfraprado@collabora.com> wrote:
+> > >
+> > > The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+> >
+> > The actual chip also has LDO1_IN (for digital core and charge pump)
+> > and DBVDD (for I/O). However in the Chromebook designs these two
+> > and AVDD are all provided from the same power rail, through separate
+> > filter banks.
+>
+> What about rt5682 (no s), does that chip also have these same supplies?
+>
+> Also, since you already gave the purpose of these other supplies, could y=
+ou also
+> tell the purpose of AVDD, MICVDD and (for rt5682) VBAT? That way I could =
+add
+> some description for them in the binding.
 
-Yes. But there is no interlock between commit->hw_done and vblank IRQ 
-processing, isn't it? This call happens when DPU processes the vblank 
-IRQ, so nobody stops other core from swapping the encode state on 
-another core.
+As Mark mentioned in his reply, these are quite standard names.
 
->>>
->>>        DPU_ATRACE_END("encoder_vblank_callback");
->>>    }
->> --
->> With best wishes
->> Dmitry
-> 
+AVDD is for the analog bits. MICVDD is for the microphone bias.
+VBAT is called battery power in the datasheet. The block diagram
+shows it going through an internal controllable LDO whose output
+then powers MICVDD. This could be used in designs that don't
+include a suitable external supply for MICVDD. If MICVDD is provided,
+then one would turn the internal LDO off.
+
+So either VBAT or MICVDD has to be provided.
+
+ChenYu
+
 > Thanks,
-> Vinod P.
-
--- 
-With best wishes
-Dmitry
-
+> N=C3=ADcolas
+>
+> >
+> > Neither does the datasheet specify the ordering of AVDD, DBVDD, and
+> > LDO1_IN for power sequencing, just that three should be toggled togethe=
+r.
+> >
+> > Should we model these? Or wait until some design actually splits these?
+> [..]
