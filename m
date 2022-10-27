@@ -2,99 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95D4560F19F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 09:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5C660F1BA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 10:02:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233971AbiJ0H4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 03:56:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34438 "EHLO
+        id S234652AbiJ0ICC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 04:02:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234150AbiJ0Hz6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 03:55:58 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D42C28D220;
-        Thu, 27 Oct 2022 00:55:54 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id w189so743220pfw.4;
-        Thu, 27 Oct 2022 00:55:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OJAEKndr3m6wkfHwUrnC0w/oTWY26XXJ7PxMYSqorLA=;
-        b=F0KKv+ad3qoKlO1BO7vEexO8niWP4K3suGfjq2soz7HeZjjCp+RCqX69vAAE4H0l3G
-         JjRa2lEKbrZ87cgPlqasGGxBPQOV1Sb8CRg9wJZh4wtTWP7jZXV1ogOeNLWzVibP7s/O
-         8TdEh2sP0bsFR/CyDsJD8HrOnHaVsRFRtTCC5nnaaT9e7CJChFvkkoTr9i1lZbImstoP
-         w0F8fNhT6nkeLNW9cHUP7qt7bPkGjWc6p9Jtq+twr0JcBEZA0Cw5H86toRxrWoYjt3za
-         Mpyme/IvITrGdk2wRYtxyTI5B3S3ayYvYMnimGqEQX/8wJT43/6Jkq5hh2MvMOHuhwTU
-         pf8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OJAEKndr3m6wkfHwUrnC0w/oTWY26XXJ7PxMYSqorLA=;
-        b=dBvRN1/AJeuG8esA3uWSPZCmix8na1RNrTpbFxHQYJHCjwTEoACG3Ft8QHc7LwQWul
-         R49DbnYcZlgmpvZNdyJUxCWDuzbM2uy/eRfPUfsqLhueIMcJrh4BHmgzoocu0L8lFX0K
-         iuOohWZxdt/ASS/y1/a0rLJfQeHO54576dfDmqMp49af3dxM1c0OXtY9yT79XH7OsCQq
-         Jg4Jmp+IRyadsTHqBq2CLwjfJh/RW/Q3DhGBd0Wg6HngoUr4mCeUcvVTvE3WWoHJYuFR
-         wUaywvjZ/SoG8NVLTQ+OKy2OljD5rVcbp3TQzE+mGqS32wFCHRqs1hHnV4cQRxrRUnX2
-         dS1w==
-X-Gm-Message-State: ACrzQf3Xt1LKrS9Lhezy68yqsUdW4/72cF8kkReSrAw2Fkt+kPjv8LI4
-        b2V9G3VGGrI2LirB2A37RUA=
-X-Google-Smtp-Source: AMsMyM4RuXf3SFWGHbEF/qs8moP9zk6bojXHDwIAw0jrPBotzHFLCqlixCAZlEmHMoAsFj6N/fwnpw==
-X-Received: by 2002:a63:4307:0:b0:464:a24d:8201 with SMTP id q7-20020a634307000000b00464a24d8201mr41524700pga.116.1666857353905;
-        Thu, 27 Oct 2022 00:55:53 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:99d6:ae15:f9aa:1819])
-        by smtp.gmail.com with ESMTPSA id s24-20020a170902b19800b0017b264a2d4asm588191plr.44.2022.10.27.00.55.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 00:55:53 -0700 (PDT)
-Date:   Thu, 27 Oct 2022 00:55:49 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Lee Jones <lee@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Gross <agross@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 06/11] dt-bindings: input: qcom,pm8921-pwrkey: convert
- to dt-schema
-Message-ID: <Y1o5hYAnBuf1akJ9@google.com>
-References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v4-6-dac2dfaac703@linaro.org>
+        with ESMTP id S234704AbiJ0IB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 04:01:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453CEB7F43;
+        Thu, 27 Oct 2022 01:01:55 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 57CC666028B1;
+        Thu, 27 Oct 2022 09:01:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666857714;
+        bh=yO43O0Ij5pmMAVoNrtoBuu/v1iop62RTKlB3zDlmtFI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fnfBf668GgwNgOd61OHpD1e7l3E3f/czncjPulg7zCxCDAKPTVLIz4/fWOFQnTL5c
+         BZuGegg9913uoUEJD0IYYGpH+8W6eFKz8auaO3HuNq68UGmIHoVIdvBuM3iS1k3uDn
+         zvna4RQVZFCV+rIh30aTcK1Oxtc7M7/mkjddsWbXSWIuQpUcq6D3B9iUU1eiI/LeZe
+         uFkrQL7B1oh0qh0sl+T3PUjUc16M+3oVx84S4WCxK9HuT7zUiyWqw+7KQ008hNMSoy
+         qBWbvWppyFcYub0uosEEgHQlvsfHkI3rct0+qq1KTKGOddIiOX6wfuXkPfFa+mIPce
+         k3pz8oJHAokEg==
+Message-ID: <49dda9b5-9b19-81f6-46fe-3264c210d76a@collabora.com>
+Date:   Thu, 27 Oct 2022 10:01:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220928-mdm9615-dt-schema-fixes-v4-6-dac2dfaac703@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v5 4/6] arm64: dts: mt8183: drop drv-type from mmc-node
+Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Sam Shih <Sam.Shih@mediatek.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>
+References: <20221025132953.81286-1-linux@fw-web.de>
+ <20221025132953.81286-5-linux@fw-web.de>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221025132953.81286-5-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 11:06:42AM +0200, Neil Armstrong wrote:
-> Convert input/qcom,pm8xxx-pwrkey.txt to YAML, and take in account that
-> the PM8921 pwrkey compatible is used as fallback for the PM8018 pwrkey.
+Il 25/10/22 15:29, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> This property is not defined in binding and driver.
+> 
+> Fixes: cd894e274b74 ("arm64: dts: mt8183: Add krane-sku176 board")
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Should I merge this through my tree or you want all these changes to go
-together through some particular tree?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Thanks.
 
--- 
-Dmitry
