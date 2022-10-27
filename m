@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1002B60F6C6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E6560F6DB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:10:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235067AbiJ0MHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 08:07:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59640 "EHLO
+        id S234802AbiJ0MKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 08:10:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235547AbiJ0MHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:07:52 -0400
-Received: from mx2.securetransport.de (mx2.securetransport.de [IPv6:2a03:4000:13:6c7::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90F8DB03E8;
-        Thu, 27 Oct 2022 05:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-        s=dhelectronicscom; t=1666872427;
-        bh=0Q4WJMmZYsuUKZ8ySwv4DXKxGRJk55X3Hf7mKSpKNDQ=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=B6sUo8Km4GOi1Cb8DX0wdQbr9d9j/oO4cihb4EKeFqhOztCdkXXbKsrodZjSMvHuB
-         m56S6k0LrwTs5esNtNyEneTHJ85SWnLIzOE4g+uYpZLiiWd8/lafnMsDAyjz2aD+Y2
-         kv4/2iaMY4sY11XiNbiDVRmlu/N4eKFYz/9mkEz1OGToJCm5YjMrThghkkqCemgckZ
-         /AqwKN/HxqhVAdCCuSUaK0UCsBdLgbPCdKnvoyNcVjsDyKRiJnAvEOGdNGG1TWTDEt
-         jzakv2BgzP+FLIqgO5RWv1lU9FegwN5hZfssOMMV4ralfZYuFlIMznIfcFrGwcJo64
-         bsKrPCqDkIsdA==
-X-secureTransport-forwarded: yes
-From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marex@denx.de" <marex@denx.de>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
- controls Rx enable during Tx
-Thread-Topic: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
- controls Rx enable during Tx
-Thread-Index: AQHY6VtPL1dpKjxCfE69ES0JgWopKq4hB10AgADJ5GA=
-Date:   Thu, 27 Oct 2022 12:06:56 +0000
-Message-ID: <f04351971a5c4b5e8930000addb06398@dh-electronics.com>
-References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
- <20221026165049.9541-2-cniedermaier@dh-electronics.com>
- <20221026205914.GA1294440-robh@kernel.org>
-In-Reply-To: <20221026205914.GA1294440-robh@kernel.org>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S233867AbiJ0MKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:10:48 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EBE9C770;
+        Thu, 27 Oct 2022 05:10:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=UbrorHxjgzyWbWmyo9e7FtpsOHgSgay7NTrAxgHSw9I=; b=e935+JrxMWPMNbRRtFmmNCi7Gk
+        xrtVCipZvb0R4GUc7qh7uNUErCgajtfzoqYfbO0acfEa1bzhzLGAavJPare0BENmY4sIkqmVwar29
+        GXhTx7QCQfeFhyS+EyaYMhlTwyEWx9xd1xqV7ElOXz8ZVRac868a1KgYqhJ+Ol8bLGSg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oo1hA-000hfO-Kf; Thu, 27 Oct 2022 14:09:12 +0200
+Date:   Thu, 27 Oct 2022 14:09:12 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Camel Guo <camelg@axis.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Camel Guo <Camel.Guo@axis.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, kernel <kernel@axis.com>
+Subject: Re: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX
+ switch
+Message-ID: <Y1p06HrFMEDP8ud/@lunn.ch>
+References: <20221025135243.4038706-1-camel.guo@axis.com>
+ <20221025135243.4038706-3-camel.guo@axis.com>
+ <d942c724-4520-4a7b-8c36-704032c68a36@linaro.org>
+ <Y1f5HU9crkPGX3SB@lunn.ch>
+ <128467d6-8249-9f25-21a7-777fff9854d9@axis.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <128467d6-8249-9f25-21a7-777fff9854d9@axis.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,50 +65,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogUm9iIEhlcnJpbmcgW21haWx0bzpyb2JoQGtlcm5lbC5vcmddDQpTZW50OiBXZWRuZXNk
-YXksIE9jdG9iZXIgMjYsIDIwMjIgMTA6NTkgUE0NCj4gT24gV2VkLCBPY3QgMjYsIDIwMjIgYXQg
-MDY6NTA6NDZQTSArMDIwMCwgQ2hyaXN0b3BoIE5pZWRlcm1haWVyIHdyb3RlOg0KPj4gQWRkIHRo
-ZSBiaW5kaW5nIGZvciBhIGdlbmVyaWMgZGVmaW5pdGlvbiBvZiBhIEdQSU8sIHRoYXQgY29udHJv
-bHMgd2hldGhlciBSeA0KPj4gaXMgY29ubmVjdGVkIG9yIGRpc2Nvbm5lY3RlZCBieSBhbiBlbGVj
-dHJpY2FsIGNpcmN1aXQgdG8gaGF2ZSB0aGUgYWJpbGl0eQ0KPj4gdG8gcmVjZWl2ZSB0aGUgc2ln
-bmFscyBvbiB0aGUgYnVzIGR1cmluZyBzZW5kaW5nIG9yIGRpc2FibGUgcmVjZWl2aW5nIGR1cmlu
-Zw0KPj4gc2VuZGluZy4NCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggTmllZGVybWFp
-ZXIgPGNuaWVkZXJtYWllckBkaC1lbGVjdHJvbmljcy5jb20+DQo+PiAtLS0NCj4+IENjOiBHcmVn
-IEtyb2FoLUhhcnRtYW4gPGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPg0KPj4gQ2M6IFJvYiBI
-ZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+DQo+PiBDYzogS3J6eXN6dG9mIEtvemxvd3NraSA8
-a3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPg0KPj4gQ2M6IE1hcmVrIFZhc3V0IDxt
-YXJleEBkZW54LmRlPg0KPj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+PiBUbzog
-bGludXgtc2VyaWFsQHZnZXIua2VybmVsLm9yZw0KPj4gVG86IGxpbnV4LWFybS1rZXJuZWxAbGlz
-dHMuaW5mcmFkZWFkLm9yZw0KPj4gLS0tDQo+PiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL3NlcmlhbC9yczQ4NS55YW1sIHwgNCArKysrDQo+PiAgMSBmaWxlIGNoYW5nZWQsIDQg
-aW5zZXJ0aW9ucygrKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3Mvc2VyaWFsL3JzNDg1LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3Mvc2VyaWFsL3JzNDg1LnlhbWwNCj4+IGluZGV4IDkwYTFiYWI0MGYwNS4uMGViZDc2
-OTBmODVkIDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L3NlcmlhbC9yczQ4NS55YW1sDQo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3Mvc2VyaWFsL3JzNDg1LnlhbWwNCj4+IEBAIC01MSw2ICs1MSwxMCBAQCBwcm9wZXJ0aWVz
-Og0KPj4gICAgICBkZXNjcmlwdGlvbjogR1BJTyBwaW4gdG8gZW5hYmxlIFJTNDg1IGJ1cyB0ZXJt
-aW5hdGlvbi4NCj4+ICAgICAgbWF4SXRlbXM6IDENCj4+DQo+PiArICByczQ4NS1yeC1kdXJpbmct
-dHgtZ3Bpb3M6DQo+PiArICAgIGRlc2NyaXB0aW9uOiBHUElPIHBpbiB0byBjb250cm9sIFJTNDg1
-IFJ4IGVuYWJsZSBkdXJpbmcgVHguDQo+IA0KPiBBY3RpdmUgc3RhdGUgbWVhbnMgZG8gd2hhdD8g
-QW5kIGluYWN0aXZlPyBUaGlzIGlzIGFuIG91dHB1dCBnYXRpbmcgdGhlDQo+IFJYIHNpZ25hbCBv
-ciBhbiBpbnB1dCB0ZWxsaW5nIHRoZSByZWNlaXZlciB3aGF0IHRvIGRvIGR1cmluZyB0eD8gVGhl
-DQo+IGRlc2NyaXB0aW9uIGlzIG5vdCBhZGVxdWF0ZS4NCj4gDQo+IEhvdyBkb2VzIHRoaXMgcHJv
-cGVydHkgcmVsYXRlIHRvICdyczQ4NS1yeC1kdXJpbmctdHgnIEFueSBjb21iaW5hdGlvbiBvZg0K
-PiB0aGUgMiBiZWluZyBwcmVzZW50IG9yIG5vdCBpcyBva2F5PyBJZiBub3QsIHlvdSBuZWVkIHNv
-bWUgY29uc3RyYWludHMuDQo+IA0KPiBSb2INCg0KDQpIaSBSb2IsDQoNCkkgaGF2ZSBpbXByb3Zl
-ZCB0aGUgbWVzc2FnZToNCg0KVGhlIHN0YW5kYXJkIFJTNDg1IGlzIGEgaGFsZi1kdXBsZXggYnVz
-IHRoYXQgaW4gbW9zdCBjYXNlZCBpcyBkcml2ZW4gYnkgYW4NClVBUlQgY29udHJvbGxlci4gVGhl
-IGludGVyZmFjZSB0byB0aGUgYnVzIGlzIGNvbnRyb2xsZWQgYnkgYSB0cmFuc2NlaXZlciwgdGhh
-dA0KaGFzIGEgcGluIGNhbGxlZCBSRSAoUnggZW5hYmxlKSBvciBzaW1pbGFyLCB3aGljaCBjb25u
-ZWN0cyB0aGUgYnVzIHRvIFJ4IHNpZ25hbA0Kb2YgdGhlIFVBUlQgY29udHJvbGxlci4gVGhpcyBw
-YXRjaCBhZGRzIGEgYmluZGluZyBmb3IgYSBnZW5lcmljIGRlZmluaXRpb24gb2YgYQ0KR1BJTyB0
-aGF0IGNhbiBzd2l0Y2ggYmV0d2VlbiB0d28gc3RhdGVzIHRvIGNvbnRyb2wgdGhlIFJFIHBpbiB2
-aWEgYW4gZWxlY3RyaWNhbA0KY2lyY3VpdDoNCi0gQWN0aXZlOg0KICBUaGUgUkUgcGluIGlzIGFs
-d2F5cyBhY3RpdmUuIFRoZSBVQVJUIFJ4IHNlZSBldmVyeXRoaW5nIG9uIHRoZSBidXMgYW5kDQog
-IHRoZXJlZm9yZSBhbHNvIHdoYXQgaGFwcGVucyB3aXRoIHRoZSBUeCBzaWduYWwgb24gdGhlIGJ1
-cy4NCi0gSW5hY3RpdmU6DQogIFRoZSBSRSBwaW4gaXMgYWx3YXlzIGFjdGl2ZSwgYnV0IGR1cmlu
-ZyBzZW5kaW5nIG9uIHRoZSBidXMgdGhlIHBpbiBSRSBpcw0KICBpbmFjdGl2ZS4gU28gYmFzaWNh
-bGx5IHRoZSByZWNlaXZpbmcgZHVyaW5nIHNlbmRpbmcgaXMgc3VwcHJlc3NlZC4NCg0KSXMgaXQg
-bm93IG1vcmUgdW5kZXJzdGFuZGFibGUsIG9yIGhhdmUgSSBzdGlsbCBub3QgY29uc2lkZXJlZCBh
-biBhc3BlY3Q/DQoNCg0KVGhhbmtzIGFuZCByZWdhcmRzDQpDaHJpc3RvcGgNCg==
+On Thu, Oct 27, 2022 at 08:35:17AM +0200, Camel Guo wrote:
+> On 10/25/22 16:56, Andrew Lunn wrote:
+> > > > +EXPORT_SYMBOL(gsw1xx_shutdown);
+> > > 
+> > > 1. EXPORT_SYMBOL_GPL
+> > > 2. Why do you do it in the first place? It's one driver, no need for
+> > > building two modules. Same applies to other places.
+> > 
+> > At some point, there is likely to be SPI and UART support. The
+> > communication with the chip and the core driver will then be in
+> > separate modules. But i agree this is not needed at the moment when it
+> > is all linked into one.
+> 
+> Do you suggest that currently we put the content of gsw1xx_core.c and
+> gsw1xx_mdio.c into one file and split them later at the time when another
+> management mode (e,g: spi) is added?
+
+No, keep them separate. But you can remove the module exports, and
+just link them together at compile time into one module. For forward
+compatibility, call that module gsw1xx_mdio.ko. In the future,
+somebody can then split it apart again, add gsw1xx_spi.ko, and module
+dependencies should cause the gsw1xx_core.ko to be loaded first.
+
+     Andrew
