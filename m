@@ -2,141 +2,857 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A72760F933
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B9760F934
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:37:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232844AbiJ0Ngv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 09:36:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43552 "EHLO
+        id S236182AbiJ0NhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 09:37:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236184AbiJ0Ngu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:36:50 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2116.outbound.protection.outlook.com [40.107.113.116])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7F6D180ACF;
-        Thu, 27 Oct 2022 06:36:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RbpnslWKTKJxOSeah+dEOrBdRtoycJy2d9iYCXokg/E/LxYVkwjfgk0TnAEAwqu29gJEqdRS+2izokoONAIFRCYJa+kx+fyV2OTCM2R1rCQUpn7Due9kPcs1XNI3wpRS6ZJMhGnLJe2hncqNg3JOC5BQ4tjlnBqFrfCt9RgSG8UjT1SaGwkT0YWpBPAc0pYenJSPxYmRcMX6/FBwfzkp7xCvDuN6RnQl4w1xeMI1ER/oW7bFCejqboqwYYyfEwRsm+b66sEdkGXKE+7nKOPHRhelcaXIIpRfAPl/XvrvSlQwIDteqRhDIPE5o7Kw+7+J0/PpAJ3wDqYZ3I3p7UMmpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qCQH+6d9S55uq9Mn28A0Gu3oVpcA+RpxI+4qpVaQEFI=;
- b=k6vxOUTdzvQMxmKEeYy+Wxm+IWzUi2h1wRlE1FnCXcUjF5pH5oMALlZ2pJNSbdt9MEGtcLJ09TjWvsdMBvlZmMRpaPNqZ5VLGMyWaxreBjghQcJd7GQkkVqIAS8xjPPtfaFMxfWAo2BHOUOoNp+Rc+pSI8gPopwJu5iCXCidoP1C3lgt6w0eqbT0PiHLug/e1uspgbDNMajL1EVpUDJ71eOvQM2T4aTCMgUwjuZU6Nrn1MkVO9iMlDeZWn86Vuj1yRQ5cYrMCkU9UBtBOh/IyRow90W+pMcaRtVSMcoKl1P7fuC+Q5tKSNPdweE6Cv2ONo2pBlnubaAFuZEkExz2Rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qCQH+6d9S55uq9Mn28A0Gu3oVpcA+RpxI+4qpVaQEFI=;
- b=EcgK4rnmsGQtv7vYG1LIU0FPNDSI6rjxb6h0QdrXechMSuOdGAkIbIwwMnT6BIDz/IItKGm5d8sZ0/aW81PyRCpe90qJVW8+u1vMapiwPHvFzOYd/fZtRjU28ULjvebHiPhjcEFSx5JyhFyCwoYPrsMHxec0IE5wpnfZ/eYYH8Y=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OSZPR01MB8355.jpnprd01.prod.outlook.com
- (2603:1096:604:16d::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.29; Thu, 27 Oct
- 2022 13:36:46 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e28a:8db5:ee6a:34a8]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e28a:8db5:ee6a:34a8%7]) with mapi id 15.20.5746.028; Thu, 27 Oct 2022
- 13:36:46 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v3 0/2] phy: renesas: Add Renesas Ethernet SERDES driver
- for R-Car S4-8
-Thread-Topic: [PATCH v3 0/2] phy: renesas: Add Renesas Ethernet SERDES driver
- for R-Car S4-8
-Thread-Index: AQHY6ggdieoRaSnymEC3zYQhHdikMa4iPbwQ
-Date:   Thu, 27 Oct 2022 13:36:46 +0000
-Message-ID: <TYBPR01MB5341594F19BDBF975365E129D8339@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20221027132907.2342830-1-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20221027132907.2342830-1-yoshihiro.shimoda.uh@renesas.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OSZPR01MB8355:EE_
-x-ms-office365-filtering-correlation-id: 1964fe54-9bdf-45fd-289f-08dab8204b4d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dXiSucWSjkehYevbmlzRrxx/n10quySxJMnX55jDInjHrmBKYaBSjdOEpLrmBZXO8WVY/n8qA4Hzmac1cwXuQ3kc1ZMfn24LRNvyAun68XORRNoxDc8db4M9kGK/SfnXtzWTooKIQ2zzNb370HCxncf2VFnEVM9eey9xmXtRy6/OoIuq3HnjV5sVpqtAH2kynGhUhi4AeO0QLur1UbJT/R+FWKBxzTywKEWZthmGvqgegUUTvR+uA7G7yPltJDuBf1yiFhVFFWLcFj9cVsxwhQLhdT+PTsy07HGuLUaJqNSBAzENNOXB8vQ7Z1Csgb1RWB7rJP+NAcstt9E8q1K/19D89SG0qyRxcOsCu4oQY/F1Mv9L9B6cX1vF7IPJ4jvD2Npq1j6KEUS9QzTI33P7yTxEdFsg0Cpl3vPLM+FCq0kMpl/DBxlQvvGZV8foBtyZZNVo26dGgJV8RvrFQgpxTCLQjyakA5q0sH5MAGng5MSWrtUcImU8kHki9hkUfVEtqH1lnQculVwbaD1KoTbw9dHL5AFqu97xjxYM5vTXkNrqo9Wmkf11JiJ/K9S0xwmE6OmyhzVpxdgl4kspluvd2nmJ2ujIMpNGs3fpmcZGp4pYUN/xwZ+ScFj627PvhNN9uLnrYQ7XmIer2iypKvLyImsVKoIhTj/XJu/4n2CZu/HVOcEfwlmJNOzfAGLqrsWU+uJJGUAnKDVQYZ1brb0DdnoWDWF8ylhZeScmbSNHCQIo/3ls3Id8skmCtRfFpyzLoUNzMwHE5q/vPa/eHO5qeg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(39860400002)(136003)(366004)(376002)(396003)(451199015)(33656002)(38070700005)(86362001)(66446008)(55016003)(41300700001)(9686003)(66476007)(4326008)(8676002)(7696005)(6506007)(64756008)(4744005)(52536014)(66556008)(5660300002)(8936002)(66946007)(71200400001)(478600001)(76116006)(110136005)(54906003)(316002)(122000001)(38100700002)(186003)(2906002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?t9KfJ+nMP7cGNsuXrdaugXOQauWuwAuRrsymAa/gRlA8u8Ea3ouzkoDUSo1w?=
- =?us-ascii?Q?8yHSjuSjFkYoQAn1/w0rh5p2HeBSfsoOBHgZlpAyDIMOT+QAtkSc9PP5RXP7?=
- =?us-ascii?Q?/CLk7CmDpIhbBeQfy73xNB2Fo6enruag1iZjXzYKdtEp8ExE1wXZTbDIWvp5?=
- =?us-ascii?Q?UKh1yHT9VOfJp82U+tnG9AOSH6YsnxcrDOPdFj1GCBhvKJNiCwQGlxMy8JH2?=
- =?us-ascii?Q?lYOwWE8AAGO6tbBA8XTB4f0G5B8yeNgJihzaSARF+De70Dd1rnKb7DOJ8Hjh?=
- =?us-ascii?Q?bQXFNFItd+XGvoH2xaHaHYJk0QDpEakQSVHRT0PuMMxsBja6ssGq8kx7j6t3?=
- =?us-ascii?Q?FLt1qA5dEhfxbezIsHN48kPCERZux12QSGb4HceP6HlRT7x9uK6HqFZ95r5u?=
- =?us-ascii?Q?ry7mrf8T2pqMn/8DsGHeMgW7vWSGJPgqlkhbOc12DHMFk/6B6GHKoT1p4TSy?=
- =?us-ascii?Q?GEWQrL9copPLcMjJwqhZB369+yLqilkT1KWQTunNL6arDHCLBqmq7D/jSuGr?=
- =?us-ascii?Q?ac3p8R49+TtZcMSFY09C0oENY1ZBK6D+Lm5JawSMfYgv+tM2IIFsAqwtd31u?=
- =?us-ascii?Q?J3T4pk2lEO6t0fX2jTk+MkLAIJq/jSycI1qvKJVuj28m0u2K7ff+Qr4vZlhI?=
- =?us-ascii?Q?ScSq5O35Gi+mUzVXESTn8hPFGUXRlePFNfh9fJ+6gf9BAeYyQ9AZKkhGe6T7?=
- =?us-ascii?Q?9Fhp4GxL12bymo9IsF38Zbc7bqOHZEDkIlxndEH0eqj4Z6Tiee4zZRr2vDby?=
- =?us-ascii?Q?rpIGrt4m5MpRK+UpISB/B6tT2Ve+2Al7u2DcmflYn+GF/EbA4EafVZ/IKA9x?=
- =?us-ascii?Q?J2k9vtMsYNqAxcZcYbaHMcsc/J+OHpZ9La2GD2dG2/4r2VQo6W5LaQHXN+SK?=
- =?us-ascii?Q?3rVFLpZeH2efBPlMiJkKlKVdi3i4DcjYb9q2G/W1Xq6OCPVNnH6xi68zMW25?=
- =?us-ascii?Q?YMwV62dR+rrY4Pj0SElxVVsLGZL+o38WkBbMzAnteXpRTje3BMJ/EYk/v0bI?=
- =?us-ascii?Q?Z8cWawfF6KI48JRbJIAMLZQfHN8dcX34pbz3xo6RZjujkGQgiQnnyYnPwESF?=
- =?us-ascii?Q?s7C0GYDW/kXOmZrcszk0iWV2a7hNZ9KRZ8AfY3YZE2GlNGFfirYhxKvAobIb?=
- =?us-ascii?Q?LtTzJWP4VY/l03/Fn0dWgej+XgHzuf+WHGBgGZvNCRjKoMkeRU8tnTjVSubP?=
- =?us-ascii?Q?jf1FxXNc4ijNY0vesNJMB/ppb8KWLIltSqNe2v9WPuD3yzLa0nWDaG4VlY4M?=
- =?us-ascii?Q?aifz8gn9QbjUQIN4bjaILTKbnp4IDqhoQZ5zp6pizZfHi4SPferx6Q6EZpz3?=
- =?us-ascii?Q?AdrSLo8/bikYfUYCDibE7OTBV8duuGOZNkp6y2aiXz4s/30OIS3nJSaZb9Ff?=
- =?us-ascii?Q?5DMSwujGcQm0z1SvIIsK1V3yLgOYmYUcgT+DulSggdI7g69awZ2nmopm8Eqn?=
- =?us-ascii?Q?CHkZH3U435e4Wlaqb+x0kX+n1J9RmiiorEztFXjlldoKfZBX9GxogB6PJU+F?=
- =?us-ascii?Q?DFiWBBCgYSdkxWr1J1qqXmuLoHCdeEPL3khpWWz3zZvoQlZNqyXX3T1fKs2I?=
- =?us-ascii?Q?36LHUm7IybRDI8XyfRx7CRMTqIykT5+tWgwHO7OEI4PPRsA5KnZNzMbm4OAD?=
- =?us-ascii?Q?2ttMlgJeYretnipQjLFWBH1AEJERUh/vSYLTFVF1Z3uV38o7GZj5d3D5BM5W?=
- =?us-ascii?Q?u2eFCw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S236184AbiJ0NhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:37:02 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F3F180AFC
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 06:37:00 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id c8so1250108qvn.10
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 06:37:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i2GnhnNDCyIBLFVOQg7DgSoVuXf9UreqHVmB6/UwdfA=;
+        b=OLoIsgmBdxgAiGARPBR+7qMxJ/o9iFqUadWyIIMd8AaDPnFWat4uJE7ZV4wVBkbnJP
+         cmyJzj1afELExUEs8YuT82EqLa7hZnP3BWgizDYsr0eFDOkteukVMrUg4oKEp3kiOc7A
+         4+PvlfsKo5B9LmZiKkO12SSh6Y1MgV1mid+fWvIcDszdV/vsORMEmJPH3oX5CXNh+nNv
+         zxlAFm3zJgYJ2P8+9G3LUGoUCeAxSCKLxyWomZvmCy3hZY4iJfxZ+VdtovLsb4zPGrC4
+         e1aj8klmDJ5lcfZxYfbymLh4tXfEb6p1bVcu9nS/gwnG83p4IXnJtKFjEDjVR/O3JrFf
+         IBrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i2GnhnNDCyIBLFVOQg7DgSoVuXf9UreqHVmB6/UwdfA=;
+        b=Oq/wzDdhefTg+dtnoA+1NE4XqOoLDNHhVsA/T/5jQLDBpcIStYdfQB+dkKyITLIq/4
+         8msHM56PH6iEdjxwKleE33I0htPlXE6wSMxub3zUSUdCmDW7B3qi+v+crI07DFkpZXmh
+         ubgPk0wJ8+zRYNaFkMhJ/v7oCwrngNlMgNNaPmJ5M7b5/ZBn71zNCn8swBDY02+gY/1x
+         ShQ2LXI0pdz2fpAbFFKoIjLZ+AqUy95dVFEfrUCTr+JeKoVBpp4bxKWgGEW4lmF2SA/Z
+         vqp41Ym4mShLu4TyvWXtr4QgClgzT8j+ukW0i55pDnOWD1FFLkltOLsZL+wy38CvMsWd
+         4KxQ==
+X-Gm-Message-State: ACrzQf3BVk8nFH/6inlMzh6ZR2OanI7m2idZTNtk4QDz2Wxs65m/oCnx
+        Dh0ofToaesh3g2rHrv3O/x1i2g==
+X-Google-Smtp-Source: AMsMyM6eM3CbvgHfXpxbKm4Dxk1AfkCFjTjNBUWsKVT3knCJXw4HktFheUouQKDo95dPiPVkMQXqqQ==
+X-Received: by 2002:a0c:e651:0:b0:4bb:a726:3392 with SMTP id c17-20020a0ce651000000b004bba7263392mr1214478qvn.0.1666877819292;
+        Thu, 27 Oct 2022 06:36:59 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id x3-20020a05620a448300b006bbc09af9f5sm954213qkp.101.2022.10.27.06.36.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 06:36:58 -0700 (PDT)
+Message-ID: <a05535bc-ba18-0296-b387-d2c9c759d6f2@linaro.org>
+Date:   Thu, 27 Oct 2022 09:36:57 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1964fe54-9bdf-45fd-289f-08dab8204b4d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2022 13:36:46.7533
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wAnHkb2nfd3cTVG3OyaXEr0zaCX3qsZzh+SVKi/9MRRvYH6OjVzqgn9p2jUW5U6IE69kP2Xch9iSgEu74yqHEBxD4vJc5ltdiAZbyLy+vctDffAGP+gILK3TXdzH/g+q
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB8355
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 4/4] arm64: dts: uniphier: Add NX1 SoC and boards support
+Content-Language: en-US
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221027045157.23325-1-hayashi.kunihiko@socionext.com>
+ <20221027045157.23325-5-hayashi.kunihiko@socionext.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027045157.23325-5-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 27/10/2022 00:51, Kunihiko Hayashi wrote:
+> Initial version of devicetree sources for NX1 SoC and boards.
+> 
 
-> From: Yoshihiro Shimoda, Sent: Thursday, October 27, 2022 10:29 PM
->=20
-> This patch series is based on next-20221027.
-> Add support for R-Car S4-8 Etherent SERDES as a Generic PHY.
+Thank you for your patch. There is something to discuss/improve.
 
-I'm sorry, I should have changed the email address of Kishon Vijay Abraham =
-I.
-So, I'll send this series soon.
+> diff --git a/arch/arm64/boot/dts/socionext/uniphier-nx1.dtsi b/arch/arm64/boot/dts/socionext/uniphier-nx1.dtsi
+> new file mode 100644
+> index 000000000000..e401763de86e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/socionext/uniphier-nx1.dtsi
+> @@ -0,0 +1,704 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +//
+> +// Device Tree Source for UniPhier NX1 SoC
+> +//
+> +// Copyright (C) 2021 Socionext Inc.
+> +//   Author: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/gpio/uniphier-gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +/ {
+> +	compatible = "socionext,uniphier-nx1";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	interrupt-parent = <&gic>;
+> +
+> +	cpus {
+> +		#address-cells = <2>;
+> +		#size-cells = <0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0 0x000>;
+> +			clocks = <&sys_clk 33>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +			operating-points-v2 = <&cluster0_opp>;
+> +			#cooling-cells = <2>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0 0x001>;
+> +			clocks = <&sys_clk 33>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +			operating-points-v2 = <&cluster0_opp>;
+> +			#cooling-cells = <2>;
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0 0x002>;
+> +			clocks = <&sys_clk 33>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +			operating-points-v2 = <&cluster0_opp>;
+> +			#cooling-cells = <2>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0 0x003>;
+> +			clocks = <&sys_clk 33>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +			operating-points-v2 = <&cluster0_opp>;
+> +			#cooling-cells = <2>;
+> +		};
+> +
+> +		l2: l2-cache {
+> +			compatible = "cache";
+> +		};
+> +	};
+> +
+> +	cluster0_opp: opp-table {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp-78125000 {
+> +			opp-hz = /bits/ 64 <78125000>;
+> +			clock-latency-ns = <300>;
+> +		};
+> +		opp-156250000 {
+> +			opp-hz = /bits/ 64 <156250000>;
+> +			clock-latency-ns = <300>;
+> +		};
+> +		opp-312500000 {
+> +			opp-hz = /bits/ 64 <312500000>;
+> +			clock-latency-ns = <300>;
+> +		};
+> +		opp-625000000 {
+> +			opp-hz = /bits/ 64 <625000000>;
+> +			clock-latency-ns = <300>;
+> +		};
+> +		opp-1250000000 {
+> +			opp-hz = /bits/ 64 <1250000000>;
+> +			clock-latency-ns = <300>;
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	clocks {
+> +		refclk: ref {
+
+Generic node name, so at least "clock" prefix or suffix.
+
+> +			compatible = "fixed-clock";
+> +			#clock-cells = <0>;
+> +			clock-frequency = <25000000>;
+
+Are you sure the clock is a property of a SoC? IOW, it is physically on
+the SoC? If not, define entire clock or its frequency by boards.
+
+> +		};
+> +	};
+> +
+> +	emmc_pwrseq: emmc-pwrseq {
+> +		compatible = "mmc-pwrseq-emmc";
+> +		reset-gpios = <&gpio UNIPHIER_GPIO_PORT(3, 0) GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+> +
+> +	thermal-zones {
+> +		cpu-thermal {
+> +			polling-delay-passive = <250>;	/* 250ms */
+> +			polling-delay = <1000>;		/* 1000ms */
+> +			thermal-sensors = <&pvtctl>;
+> +
+> +			trips {
+> +				cpu_crit: cpu-crit {
+> +					temperature = <120000>;	/* 120C */
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +				cpu_alert: cpu-alert {
+> +					temperature = <110000>;	/* 110C */
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_alert>;
+> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		secure-memory@21000000 {
+> +			reg = <0x0 0x21000000 0x0 0x01000000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	soc@0 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0 0 0xffffffff>;
+> +
+> +		sysctrl: sysctrl@11840000 {
+
+Node name: system-controller or syscon
+
+> +			compatible = "socionext,uniphier-nx1-sysctrl",
+
+This looks undocumented.
+
+Did you run `make dtbs_check`?
+
+
+> +				     "simple-mfd", "syscon";
+> +			reg = <0x11840000 0x10000>;
+> +
+> +			sys_clk: clock {
+
+Node name: clock-controller
+
+> +				compatible = "socionext,uniphier-nx1-clock";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			sys_rst: reset {
+
+reset-controller
+
+> +				compatible = "socionext,uniphier-nx1-reset";
+> +				#reset-cells = <1>;
+> +			};
+> +
+> +			watchdog {
+> +				compatible = "socionext,uniphier-wdt";
+> +			};
+> +
+> +			pvtctl: thermal-sensor {
+> +				compatible = "socionext,uniphier-nx1-thermal";
+> +				interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +				#thermal-sensor-cells = <0>;
+> +				socionext,tmod-calibration = <0x0f22 0x68ee>;
+> +			};
+> +		};
+> +
+> +		spi0: spi@14006000 {
+> +			compatible = "socionext,uniphier-scssi";
+> +			status = "disabled";
+> +			reg = <0x14006000 0x100>;
+
+Reg is second property. Status goes last. The same in other nodes.
+
+
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_spi0>;
+> +			clocks = <&peri_clk 11>;
+> +			resets = <&peri_rst 11>;
+> +		};
+> +
+> +		spi1: spi@14006100 {
+> +			compatible = "socionext,uniphier-scssi";
+> +			status = "disabled";
+> +			reg = <0x14006100 0x100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_spi1>;
+> +			clocks = <&peri_clk 12>;
+> +			resets = <&peri_rst 12>;
+> +		};
+> +
+> +		serial0: serial@14006800 {
+> +			compatible = "socionext,uniphier-uart";
+> +			status = "disabled";
+> +			reg = <0x14006800 0x40>;
+> +			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_uart0>;
+> +			clocks = <&peri_clk 0>;
+> +			resets = <&peri_rst 0>;
+> +		};
+> +
+> +		serial1: serial@14006900 {
+> +			compatible = "socionext,uniphier-uart";
+> +			status = "disabled";
+> +			reg = <0x14006900 0x40>;
+> +			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_uart1>;
+> +			clocks = <&peri_clk 1>;
+> +			resets = <&peri_rst 1>;
+> +		};
+> +
+> +		serial2: serial@14006a00 {
+> +			compatible = "socionext,uniphier-uart";
+> +			status = "disabled";
+> +			reg = <0x14006a00 0x40>;
+> +			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_uart2>;
+> +			clocks = <&peri_clk 2>;
+> +			resets = <&peri_rst 2>;
+> +		};
+> +
+> +		serial3: serial@14006b00 {
+> +			compatible = "socionext,uniphier-uart";
+> +			status = "disabled";
+> +			reg = <0x14006b00 0x40>;
+> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_uart3>;
+> +			clocks = <&peri_clk 3>;
+> +			resets = <&peri_rst 3>;
+> +		};
+> +
+> +		gpio: gpio@14007000 {
+> +			compatible = "socionext,uniphier-gpio";
+> +			reg = <0x14007000 0x200>;
+> +			interrupt-parent = <&aidet>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			gpio-ranges = <&pinctrl 0 0 0>,
+> +				      <&pinctrl 49 0 0>,
+> +				      <&pinctrl 53 0 0>,
+> +				      <&pinctrl 96 0 0>,
+> +				      <&pinctrl 120 0 0>;
+> +			gpio-ranges-group-names = "gpio_range0",
+> +						  "gpio_range1",
+> +						  "gpio_range2",
+> +						  "gpio_range3",
+> +						  "gpio_range4";
+> +			ngpios = <126>;
+> +			socionext,interrupt-ranges = <0 48 6>;
+> +		};
+> +
+> +		eth: ethernet@15000000 {
+> +			compatible = "socionext,uniphier-nx1-ave4";
+> +			status = "disabled";
+> +			reg = <0x15000000 0x8500>;
+> +			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_ether_rgmii>;
+> +			clock-names = "ether";
+> +			clocks = <&sys_clk 6>;
+> +			reset-names = "ether";
+> +			resets = <&sys_rst 6>;
+> +			phy-mode = "rgmii-id";
+> +			local-mac-address = [00 00 00 00 00 00];
+> +			socionext,syscon-phy-mode = <&soc_glue 0>;
+> +
+> +			mdio: mdio {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +		};
+> +
+> +		usb: usb@15a00000 {
+> +			compatible = "socionext,uniphier-dwc3", "snps,dwc3";
+> +			status = "disabled";
+> +			reg = <0x15a00000 0xcd00>;
+> +			interrupt-names = "host";
+> +			interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_usb0>, <&pinctrl_usb1>;
+> +			clock-names = "ref", "bus_early", "suspend";
+> +			clocks = <&sys_clk 12>, <&sys_clk 12>, <&sys_clk 12>;
+> +			resets = <&usb_rst 15>;
+> +			phys = <&usb_hsphy0>, <&usb_hsphy1>,
+> +			       <&usb_ssphy0>, <&usb_ssphy1>;
+> +			dr_mode = "host";
+> +		};
+> +
+> +		usb-controller@15b00000 {
+> +			compatible = "socionext,uniphier-nx1-dwc3-glue",
+
+Undocumented compatible.
+
+> +				     "simple-mfd";
+
+
+Missing reg. Did you run `make dtbs_check`? Did you actually check it
+with dtc?
+
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0x15b00000 0x400>;
+> +
+> +			usb_rst: reset@0 {
+
+reset-controller
+
+> +				compatible = "socionext,uniphier-nx1-usb3-reset";
+> +				reg = <0x0 0x4>;
+> +				#reset-cells = <1>;
+> +				clock-names = "link";
+> +				clocks = <&sys_clk 12>;
+> +				reset-names = "link";
+> +				resets = <&sys_rst 12>;
+> +			};
+> +
+> +			usb_vbus0: regulator@100 {
+> +				compatible = "socionext,uniphier-nx1-usb3-regulator";
+> +				reg = <0x100 0x10>;
+> +				clock-names = "link";
+> +				clocks = <&sys_clk 12>;
+> +				reset-names = "link";
+> +				resets = <&sys_rst 12>;
+> +			};
+> +
+> +			usb_vbus1: regulator@110 {
+> +				compatible = "socionext,uniphier-nx1-usb3-regulator";
+> +				reg = <0x110 0x10>;
+> +				clock-names = "link";
+> +				clocks = <&sys_clk 12>;
+> +				reset-names = "link";
+> +				resets = <&sys_rst 12>;
+> +			};
+> +
+> +			usb_hsphy0: hs-phy@200 {
+
+Node name: phy
+
+The same in all other places. It can be also usb-phy and few others
+mentioned iin DT spec:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +				compatible = "socionext,uniphier-nx1-usb3-hsphy";
+> +				reg = <0x200 0x10>;
+> +				#phy-cells = <0>;
+> +				clock-names = "link", "phy", "phy-ext";
+> +				clocks = <&sys_clk 12>, <&sys_clk 16>,
+> +					 <&sys_clk 13>;
+> +				reset-names = "link", "phy";
+> +				resets = <&sys_rst 12>, <&sys_rst 16>;
+> +				vbus-supply = <&usb_vbus0>;
+> +			};
+> +
+> +			usb_hsphy1: hs-phy@210 {
+> +				compatible = "socionext,uniphier-nx1-usb3-hsphy";
+> +				reg = <0x210 0x10>;
+> +				#phy-cells = <0>;
+> +				clock-names = "link", "phy", "phy-ext";
+> +				clocks = <&sys_clk 12>, <&sys_clk 16>,
+> +					 <&sys_clk 13>;
+> +				reset-names = "link", "phy";
+> +				resets = <&sys_rst 12>, <&sys_rst 16>;
+> +				vbus-supply = <&usb_vbus1>;
+> +			};
+> +
+> +			usb_ssphy0: ss-phy@300 {
+> +				compatible = "socionext,uniphier-nx1-usb3-ssphy";
+> +				reg = <0x300 0x10>;
+> +				#phy-cells = <0>;
+> +				clock-names = "link", "phy", "phy-ext";
+> +				clocks = <&sys_clk 12>, <&sys_clk 17>,
+> +					 <&sys_clk 13>;
+> +				reset-names = "link", "phy";
+> +				resets = <&sys_rst 12>, <&sys_rst 17>;
+> +				vbus-supply = <&usb_vbus0>;
+> +			};
+> +
+> +			usb_ssphy1: ss-phy@310 {
+> +				compatible = "socionext,uniphier-nx1-usb3-ssphy";
+> +				reg = <0x310 0x10>;
+> +				#phy-cells = <0>;
+> +				clock-names = "link", "phy", "phy-ext";
+> +				clocks = <&sys_clk 12>, <&sys_clk 18>,
+> +					 <&sys_clk 13>;
+> +				reset-names = "link", "phy";
+> +				resets = <&sys_rst 12>, <&sys_rst 18>;
+> +				vbus-supply = <&usb_vbus1>;
+> +			};
+> +		};
+> +
+> +		pcie: pcie@16000000 {
+> +			compatible = "socionext,uniphier-pcie";
+> +			status = "disabled";
+> +			reg-names = "dbi", "link", "config", "atu";
+> +			reg = <0x16000000 0x1000>, <0x179a0000 0x10000>,
+> +			      <0x0fff0000 0x10000>, <0x16300000 0x1000>;
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			clocks = <&sys_clk 24>;
+> +			resets = <&sys_rst 24>;
+> +			num-lanes = <2>;
+> +			num-viewport = <1>;
+> +			bus-range = <0x0 0xff>;
+> +			device_type = "pci";
+> +			ranges =
+> +			/* downstream I/O */
+> +				<0x81000000 0 0x00000000 0x0ffe0000 0 0x00010000>,
+> +			/* non-prefetchable memory */
+> +				<0x82000000 0 0x20000000 0x04200000 0 0x0bde0000>;
+> +			#interrupt-cells = <1>;
+> +			interrupt-names = "dma", "msi";
+> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-map-mask = <0 0 0 7>;
+> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,	/* INTA */
+> +					<0 0 0 2 &pcie_intc 1>,	/* INTB */
+> +					<0 0 0 3 &pcie_intc 2>,	/* INTC */
+> +					<0 0 0 4 &pcie_intc 3>;	/* INTD */
+> +			phy-names = "pcie-phy";
+> +			phys = <&pcie_phy>;
+> +
+> +			pcie_intc: legacy-interrupt-controller {
+> +				interrupt-controller;
+> +				#interrupt-cells = <1>;
+> +				interrupt-parent = <&gic>;
+> +				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+> +		pcie_ep: pcie-ep@16000000 {
+> +			compatible = "socionext,uniphier-nx1-pcie-ep";
+> +			status = "disabled";
+> +			reg-names = "dbi", "dbi2", "link", "addr_space", "atu";
+> +			reg = <0x16000000 0x1000>, <0x16100000 0x1000>,
+> +			      <0x179a0000 0x10000>, <0x04200000 0xbe00000>,
+> +			      <0x16300000 0x1000>;
+> +			clock-names = "link";
+> +			clocks = <&sys_clk 24>;
+> +			reset-names = "link";
+> +			resets = <&sys_rst 24>;
+> +			num-ib-windows = <16>;
+> +			num-ob-windows = <16>;
+> +			num-lanes = <2>;
+> +			phy-names = "pcie-phy";
+> +			phys = <&pcie_phy>;
+> +		};
+> +
+> +		pcie_phy: phy@179b8000 {
+> +			compatible = "socionext,uniphier-nx1-pcie-phy";
+> +			reg = <0x179b8000 0x4000>;
+> +			#phy-cells = <0>;
+> +			clock-names = "link";
+> +			clocks = <&sys_clk 24>;
+> +			reset-names = "link";
+> +			resets = <&sys_rst 24>;
+> +			socionext,syscon = <&sysctrl>;
+> +		};
+> +
+> +		i2c0: i2c@18780000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18780000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c0>;
+> +			clocks = <&peri_clk 4>;
+> +			resets = <&peri_rst 4>;
+> +			clock-frequency = <400000>;
+> +		};
+> +
+> +		i2c1: i2c@18781000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18781000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c1>;
+> +			clocks = <&peri_clk 5>;
+> +			resets = <&peri_rst 5>;
+> +			clock-frequency = <400000>;
+> +		};
+> +
+> +		i2c2: i2c@18782000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18782000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c2>;
+> +			clocks = <&peri_clk 6>;
+> +			resets = <&peri_rst 6>;
+> +			clock-frequency = <400000>;
+> +		};
+> +
+> +		i2c3: i2c@18783000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18783000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c3>;
+> +			clocks = <&peri_clk 7>;
+> +			resets = <&peri_rst 7>;
+> +			clock-frequency = <400000>;
+> +		};
+> +
+> +		i2c4: i2c@18784000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18784000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c4>;
+> +			clocks = <&peri_clk 8>;
+> +			resets = <&peri_rst 8>;
+> +			clock-frequency = <100000>;
+> +		};
+> +
+> +		i2c5: i2c@18785000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18785000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c5>;
+> +			clocks = <&peri_clk 9>;
+> +			resets = <&peri_rst 9>;
+> +			clock-frequency = <100000>;
+> +		};
+> +
+> +		i2c6: i2c@18786000 {
+> +			compatible = "socionext,uniphier-fi2c";
+> +			status = "disabled";
+> +			reg = <0x18786000 0x80>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_i2c6>;
+> +			clocks = <&peri_clk 10>;
+> +			resets = <&peri_rst 10>;
+> +			clock-frequency = <100000>;
+> +		};
+> +
+> +		sdctrl@19810000 {
+
+Same comment as before...
+
+> +			compatible = "socionext,uniphier-nx1-sdctrl",
+
+Same problem as before...
+
+> +				     "simple-mfd", "syscon";
+> +			reg = <0x19810000 0x400>;
+> +
+> +			sd_clk: clock {
+> +				compatible = "socionext,uniphier-nx1-sd-clock";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			sd_rst: reset {
+> +				compatible = "socionext,uniphier-nx1-sd-reset";
+> +				#reset-cells = <1>;
+> +			};
+> +		};
+> +
+> +		perictrl@19820000 {
+> +			compatible = "socionext,uniphier-nx1-perictrl",
+
+Also undocumented.
+
+> +				     "simple-mfd", "syscon";
+> +			reg = <0x19820000 0x200>;
+> +
+> +			peri_clk: clock {
+
+clock-controller
+
+> +				compatible = "socionext,uniphier-nx1-peri-clock";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			peri_rst: reset {
+
+reset-controller
+
+> +				compatible = "socionext,uniphier-nx1-peri-reset";
+> +				#reset-cells = <1>;
+> +			};
+> +		};
+> +
+> +		emmc: mmc@1a000000 {
+> +			compatible = "socionext,uniphier-sd4hc", "cdns,sd4hc";
+> +			reg = <0x1a000000 0x400>;
+> +			interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_emmc>;
+> +			clocks = <&sys_clk 4>;
+> +			resets = <&sys_rst 4>;
+> +			bus-width = <8>;
+> +			mmc-ddr-1_8v;
+> +			mmc-hs200-1_8v;
+> +			mmc-pwrseq = <&emmc_pwrseq>;
+> +			cdns,phy-input-delay-legacy = <9>;
+> +			cdns,phy-input-delay-mmc-highspeed = <2>;
+> +			cdns,phy-input-delay-mmc-ddr = <3>;
+> +			cdns,phy-dll-delay-sdclk = <21>;
+> +			cdns,phy-dll-delay-sdclk-hsmmc = <21>;
+> +		};
+> +
+> +		sd: mmc@1a400000 {
+> +			compatible = "socionext,uniphier-sd-v3.1.1";
+> +			status = "disabled";
+> +			reg = <0x1a400000 0x800>;
+> +			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pinctrl_sd>;
+> +			clocks = <&sd_clk 0>;
+> +			reset-names = "host";
+> +			resets = <&sd_rst 0>;
+> +			bus-width = <4>;
+> +			cap-sd-highspeed;
+> +		};
+> +
+> +		soc_glue: soc-glue@1f800000 {
+> +			compatible = "socionext,uniphier-nx1-soc-glue",
+
+I am not going to check...
+
+> +				     "simple-mfd", "syscon";
+> +			reg = <0x1f800000 0x2000>;
+> +
+> +			pinctrl: pinctrl {
+> +				compatible = "socionext,uniphier-nx1-pinctrl";
+> +			};
+> +		};
+> +
+> +		soc-glue@1f900000 {
+> +			compatible = "socionext,uniphier-nx1-soc-glue-debug",
+
+Hm...
+
+> +				     "simple-mfd";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0x1f900000 0x2000>;
+> +		};
+> +
+> +		xdmac: dma-controller@1fa10000 {
+> +			compatible = "socionext,uniphier-xdmac";
+> +			reg = <0x1fa10000 0x5300>;
+> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +			dma-channels = <16>;
+> +			#dma-cells = <2>;
+> +		};
+> +
+> +		aidet: aidet@1fb20000 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +			compatible = "socionext,uniphier-nx1-aidet";
+> +			reg = <0x1fb20000 0x200>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+
 
 Best regards,
-Yoshihiro Shimoda
+Krzysztof
 
