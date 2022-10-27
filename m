@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE8596101C1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 21:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A236101EE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 21:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236313AbiJ0Tfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 15:35:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43992 "EHLO
+        id S236549AbiJ0Tny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 15:43:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235973AbiJ0Tfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 15:35:42 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57E0732D9D
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:35:38 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id t25so1869450qkm.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:35:38 -0700 (PDT)
+        with ESMTP id S236513AbiJ0Tnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 15:43:47 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA0780522
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:43:46 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id j6so2339939qvn.12
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:43:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rbyRCm0Gd+FdmeUyOk0cfhcPZPMWQsesg2OqEvdkBMY=;
-        b=j3vz6sFcbQSd0afRiCWntxVUNamj7BKNT3CG8p8boI8cNle6Sh4PTVw09VO/JZIErd
-         qBccPwh1v+Q5HW37rBDQAuwGRAv1vEgzVeoBMKLuadehHckfiIHJfOasJpcR1+21wWuX
-         U+p0QMSok2HhlUGZ/xCVNh7OIyrU4IuHFiURIQv3CvvFq3wTCgVdDYM8f7ay/kuDO6jR
-         bSrg0zapIplvURWvdTahisCfIqmQHQEWCItRR0vsyGT7Vnvf5S+pM8jBX07H8+TcV/XU
-         gtQemTMj9BrnbiDL07902TW5n5/uhthi+fvDAbvCObapTCROmBcHeUXNYa3nF+mn9kE/
-         T/hQ==
+        bh=MK3yOE9pIq7JHkRZwQR/zciky0lrTlCe6u4dRS7btwI=;
+        b=wjlJ0VkwPuAfmg3CW8O14Rz3pG2p4iq+qpritNMiyxTT0EYfCjO4kkqS+MqY6VHsYq
+         6l3JUTmn1M/k3ZqqRDMgynXNEMHxkCgIw1NiqAX+TWhgqNYk15h5zO+4FLFjf6Zx6c9A
+         IpP1Lr7QMNxhuVhOCLrD9ucnaOAJ/eSzTSKtEpa787Af38As15dHXfTEoDASY5bFRidX
+         RPkqQJcThBsXXI+vza1s9X71+WmjkxtVIolrN5j5MpnClToJGH5mTkyKh8nJhTKH1hf6
+         L6dmpDkKq+DjdB5civ79d08DE84CWR5DkvgEbxuQ9VdMrywb78lB5krvF+UgYd123WmT
+         V8+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rbyRCm0Gd+FdmeUyOk0cfhcPZPMWQsesg2OqEvdkBMY=;
-        b=AN6MWXyD65pniPRU8O5JJxppv5WHSahMklhS8UmTejXpmzl4vmoy+j3QhMEwjn7stm
-         OPsaaFNrpY9tZn/WAnnQskt5htgpokrNtptoih4OyjfDNw2qz9Iv1dnSCLy6Ou8PA2XI
-         EFhew3l1iSgkxaIjcqSK8QG1cTADyRe5a45g+oEw0xlSIpJZNKbjioD7p7hxYyMEOlQp
-         1rgGmyEoe26n0h732q3Y+rkrOmBwCAyBffdXryM3Fud6823CR/h4slKvko0gtUN8vVr2
-         lJkdMbNKLMLwPhU05BKZ77Ww28Ri05aPIaJbZS0rG9d7TZnrsg7puICViTUWbkTkftPV
-         bvbA==
-X-Gm-Message-State: ACrzQf3hHyqptBf/PpZ+4HBxXbsFE8VsXAOflDT3bFWLvTi7IU2HW0Hc
-        sc+d0QUoFtgAP9JbiWACsAgJFg==
-X-Google-Smtp-Source: AMsMyM7UyL6+b/aQPAI3CY+Xvkdme18kpF4TO6jo+zW0vg83EZsyIQlHiR3SangdxR7Abxx6CvOWCA==
-X-Received: by 2002:a37:48c:0:b0:6f8:70d5:9a41 with SMTP id 134-20020a37048c000000b006f870d59a41mr9781062qke.676.1666899337987;
-        Thu, 27 Oct 2022 12:35:37 -0700 (PDT)
+        bh=MK3yOE9pIq7JHkRZwQR/zciky0lrTlCe6u4dRS7btwI=;
+        b=DIv+QFI75SoquQ3Hxlud+xqlg2HBkPcEo4KyL+6x0GkttiWB4gy6J8vCT2dlHPoE9+
+         GpKo+HkMfyTXNs4EgAWFhXwTp2fZYfgVeHgmzc2wG2rmzS/AqVKeGdAf0Ja1HelFkC3Q
+         UO2fTBSRT9n/M72k3FEQb+0ghzyYHP5dV4RMeW/cg0GGMDImItA3TN7cb9GlY88Xj6CJ
+         +pQtVE/hZNa7Id5X9xmjToZ7me0KRAPWWOlyhMsv3R4/57cO9+73q8LLzt5jpvt03ojr
+         ceJwHnyvImnm0dakYYOofXsYxWzR7/T78amave0Qt3xpdBqGrIZfsJY21O86ZWfF4NzV
+         pPgQ==
+X-Gm-Message-State: ACrzQf0tQITNdv5PVjK3KOoEy/VI2ug8aEYRiUsopsLCLhE1FTB7/de4
+        FS/tHDtSeiuEnEr7JyshwlT1BQ==
+X-Google-Smtp-Source: AMsMyM5Lp0W//oZxCFeHBdp+E82reM9g6Ux2PnIzsmr9Y5GOCi9DaxUpYh3kmyxYVUMh23jq7NwohQ==
+X-Received: by 2002:a05:6214:2487:b0:4af:a6f9:ace3 with SMTP id gi7-20020a056214248700b004afa6f9ace3mr42252486qvb.78.1666899825892;
+        Thu, 27 Oct 2022 12:43:45 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id g11-20020ac8480b000000b0039cc665d60fsm1289355qtq.64.2022.10.27.12.35.36
+        by smtp.gmail.com with ESMTPSA id x4-20020a05620a258400b006bc192d277csm1571419qko.10.2022.10.27.12.43.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 12:35:37 -0700 (PDT)
-Message-ID: <cb9a2732-0904-4a2b-61a5-a6d65cad58ae@linaro.org>
-Date:   Thu, 27 Oct 2022 15:35:35 -0400
+        Thu, 27 Oct 2022 12:43:45 -0700 (PDT)
+Message-ID: <6fbb01f0-d0d2-bb06-a160-2f8f91ac68ca@linaro.org>
+Date:   Thu, 27 Oct 2022 15:43:43 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: clock: Add QDU1000 and QRU1000 GCC
- clock bindings
+Subject: Re: [PATCH v1 3/4] ARM: dts: rockchip: add rk3128.dtsi
 Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221026190441.4002212-1-quic_molvera@quicinc.com>
- <20221026190441.4002212-2-quic_molvera@quicinc.com>
- <e5009a33-1f71-1fe3-3a06-98bba031fdf0@linaro.org>
- <20221027182449.366AEC433D6@smtp.kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>, kever.yang@rock-chips.com,
+        heiko@sntech.de
+Cc:     sjg@chromium.org, philipp.tomsich@vrull.eu,
+        zhangqing@rock-chips.com, hjc@rock-chips.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <da1252eb-85e9-bdb8-0542-207173523523@gmail.com>
+ <674b875a-0dfa-eff2-5018-eafed851707f@gmail.com>
+ <f45a4dcb-12e6-9a72-dbb3-7ec198ff2b1d@linaro.org>
+ <2dc46681-894d-4521-bfa7-3e9209691e0a@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221027182449.366AEC433D6@smtp.kernel.org>
+In-Reply-To: <2dc46681-894d-4521-bfa7-3e9209691e0a@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,39 +83,214 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 14:24, Stephen Boyd wrote:
-> Quoting Krzysztof Kozlowski (2022-10-27 08:54:51)
->> On 26/10/2022 15:04, Melody Olvera wrote:
->>> +description: |
->>> +  Qualcomm global clock control module which supports the clocks, resets and
->>> +  power domains on QDU1000 and QRU1000
->>> +
->>> +  See also:
->>> +  - include/dt-bindings/clock/qcom,gcc-qdu1000.h
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - const: qcom,gcc-qdu1000
->>> +      - const: syscon
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: Board XO source
->>> +      - description: Sleep clock source
->>> +      - description: PCIE 0 Pipe clock source
->>> +      - description: PCIE 0 Phy Auxiliary clock source
->>> +      - description: USB3 Phy wrapper pipe clock source
->>> +    minItems: 2
->>
->> Why the clocks are optional?
+On 27/10/2022 13:53, Johan Jonker wrote:
+> Hi Krzysztof, Kever, Heiko and others,
 > 
-> They should not be optional. They're always there.
+> On 10/27/22 16:58, Krzysztof Kozlowski wrote:
+>> On 26/10/2022 20:53, Johan Jonker wrote:
+>>> Add basic rk3128 support.
+>>>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+> 
+> Thank you for your review.
+> 
+> Some more questions/comments below.
+> 
+>>
+>>> +#include <dt-bindings/clock/rk3128-cru.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/pinctrl/rockchip.h>
+>>> +
+>>> +/ {
+>>> +	compatible = "rockchip,rk3128";
+>>> +	interrupt-parent = <&gic>;
+>>> +	#address-cells = <1>;
+>>> +	#size-cells = <1>;
+>>> +
+>>> +	aliases {
+>>> +		gpio0 = &gpio0;
+>>> +		gpio1 = &gpio1;
+>>> +		gpio2 = &gpio2;
+>>> +		gpio3 = &gpio3;
+> 
+> Is gpio OK here?
 
-Just to be sure - I refer to last three clocks here as indicated by
-minItems:2.
+Could be, but let me rephrase it - why do you need aliases in DTSI? What
+do these aliases represent?
 
-DTS does not define them, so something here is not complete or correct.
+The SoC pieces (nodes in DTSI) do not rely on aliases.
+
+> 
+>>> +		i2c0 = &i2c0;
+>>> +		i2c1 = &i2c1;
+>>> +		i2c2 = &i2c2;
+>>> +		i2c3 = &i2c3;
+>>> +		spi0 = &spi0;
+>>> +		serial0 = &uart0;
+>>> +		serial1 = &uart1;
+>>> +		serial2 = &uart2;
+>>
+>> Bus aliases are board specific and represent what is actually available
+>> on headers/pins etc. These do not belong to SoC DTSI.
+> 
+> I just follow current Rockchip DT common practice.
+> 
+> Do we need to change all Rockchip boards?
+> Would like to hear from Heiko what's the plan here?
+> Syncing to U-boot is already a mess...
+
+Heiko might have his own preference which then over-rules my
+recommendation here. But in general this applies to all boards, so other
+boards could be fixed as well. Different point is whether it is actually
+worth fixing them...
+
+> 
+> So far only instructions/changes and discussion about mmc nodes.
+> 
+> Can Rockchip specific rules be publicized in a central place? 
+> 
+> ===
+> mmc aliases on reg order, availability and without number gap.
+> ===
+> 
+> Heiko's sort rules:
+> 
+> compatible
+> reg
+> interrupts
+> [alphabetical]
+> status [if needed]
+
+I don't know what does it mean. Do you discuss with my comment? Wasn't
+my comment exactly like this?
+
+> 
+> ===
+> My incomplete list:
+> 
+> For nodes:
+> If exists on top: model, compatible and chosen.
+> Sort things without reg alphabetical first,
+> then sort the rest by reg address.
+> 
+> Inside nodes:
+> If exists on top: compatible, reg and interrupts.
+> In alphabetical order the required properties.
+> Then in alphabetical order the other properties.
+> And as last things that start with '#' in alphabetical order.
+> Add status below all other properties for soc internal components with
+> any board-specifics.
+> Keep an empty line between properties and nodes.
+> 
+> Exceptions:
+> Sort pinctrl-0 above pinctrl-names, so it stays in line with clock-names
+> and dma-names.
+> Sort simple-audio-card,name above other simple-audio-card properties.
+> Sort regulator-name above other regulator properties.
+> Sort regulator-min-microvolt above regulator-max-microvolt.
+
+Is there a question to me?
+
+> 
+>>
+>>> +	};
+>>> +
+>>> +	arm-pmu {
+>>> +		compatible = "arm,cortex-a7-pmu";
+>>> +		interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
+>>> +			     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+>>> +			     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
+>>> +			     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
+>>> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+>>> +	};
+>>> +
+>>> +	cpus {
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		cpu0: cpu@f00 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a7";
+>>> +			reg = <0xf00>;
+>>> +			clock-latency = <40000>;
+>>> +			clocks = <&cru ARMCLK>;
+> 
+>>> +			operating-points = <
+>>> +				/* KHz    uV */
+>>> +				 816000 1000000
+>>> +			>;
+>>
+>> Why not operating-points-v2?
+> 
+> rk3128 doesn't have a tsadc.
+
+And this is related to operating-points-v2?
+
+> As long as this thermal stuff is not implemented with drivers and regulators I would prefer to keep it basic in the DT for now.
+> Just keep things simple for now till someone with hardware can fix that.
+> 
+> https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm/boot/dts/rk312x.dtsi#L315
+> 
+> 	tsadc: tsadc {
+> 		compatible = "rockchip,rk3126-tsadc-virtual";
+> 		nvmem-cells = <&cpu_leakage>;
+> 		nvmem-cell-names = "cpu_leakage";
+> 		#thermal-sensor-cells = <1>;
+> 		status = "disabled";
+> 	};
+
+>>
+>>> +			#cooling-cells = <2>; /* min followed by max */
+>>> +		};
+>>> +
+>>> +		cpu1: cpu@f01 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a7";
+>>> +			reg = <0xf01>;
+>>> +		};
+>>> +
+>>> +		cpu2: cpu@f02 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a7";
+>>> +			reg = <0xf02>;
+>>> +		};
+>>> +
+>>> +		cpu3: cpu@f03 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a7";
+>>> +			reg = <0xf03>;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	timer {
+> 
+>>> +		compatible = "arm,armv7-timer";
+> 
+> Original 2 interrupts:
+
+I have no clue what do you refer now.
+
+I did not comment here, so I guess nothing more to me?
+
+>>> +		usb2phy: usb2phy@17c {
+>>
+> 
+>> Node names should be generic.
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> You are absolutely correct. Except for Rockchip usb2phy nodes ....
+> #phy-cells is located in a sub node, so we keep as it is... ;)
+
+How phy-cells are related?
+
+> 
+> dt-bindings: phy: rename phy nodename in phy-rockchip-inno-usb2.yaml 
+> https://lore.kernel.org/all/20210601164800.7670-2-jbx6244@gmail.com/
+
+You mean parent device bindings expect usb2phy? If so, then it's fine.
 
 Best regards,
 Krzysztof
