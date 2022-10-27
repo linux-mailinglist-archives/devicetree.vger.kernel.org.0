@@ -2,291 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A452460F395
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 11:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9ED960F3AB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 11:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235196AbiJ0JWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 05:22:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50202 "EHLO
+        id S233099AbiJ0J2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 05:28:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235135AbiJ0JWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 05:22:41 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FCC44448A
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 02:22:38 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1onz5p-0007LF-Or; Thu, 27 Oct 2022 11:22:29 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1onz5p-000fr5-4o; Thu, 27 Oct 2022 11:22:28 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1onz5n-00B4Xo-IF; Thu, 27 Oct 2022 11:22:27 +0200
-Date:   Thu, 27 Oct 2022 11:22:27 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] pwm: Add support for the MSTAR MSC313 PWM
-Message-ID: <20221027092227.wkxjsw6mep3o3auc@pengutronix.de>
-References: <20220907131241.31941-1-romain.perier@gmail.com>
- <20220907131241.31941-3-romain.perier@gmail.com>
- <20220927163314.rzfld7sqchsdfvfg@pengutronix.de>
- <CABgxDoJmVRbZEP02QoEhHKXiu127073oK2NE2VgFHBADCBbdog@mail.gmail.com>
+        with ESMTP id S229379AbiJ0J2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 05:28:43 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50187645EC;
+        Thu, 27 Oct 2022 02:28:40 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1DEDF66028C6;
+        Thu, 27 Oct 2022 10:28:37 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666862918;
+        bh=nkLiBVCq8vH0MrkVPppLESgMJQN4ENcJIlUdfoTlX3k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JsMoHSUWjscrjyRcFEI09Vb+4I/iVUwYCNIqSiZu+oYKGyjoBrY7wvwzODTgQvqZS
+         BlkdJnP40hCu6Tt/QcsgC3cMajtRroAE92NvvfSyOQKCCTktYbir0tpMvb4enWVfRb
+         mK1/rhmf6Y34WoMMwqO0JZylDWfZmjec7cO8hgEmc/WEWjL3eodJ59VV7itMzn6CXV
+         XNEsXqiTQGsbzlA175jU0rxY7ImPIEP2BmyzuqEpwkr5xRQ341ftPUKbp3gCdCJLsI
+         1lAsHrnRiJyFajpjqFSQRwFgu0KT9fpQBrT1CVjUgm8aweV39YBZUUeeogZR5Azr1s
+         9h+2YP9BaiCZQ==
+Message-ID: <17139e24-d33c-8240-cd4a-d87fb3b29276@collabora.com>
+Date:   Thu, 27 Oct 2022 11:28:34 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gok45hmzf5nviwgp"
-Content-Disposition: inline
-In-Reply-To: <CABgxDoJmVRbZEP02QoEhHKXiu127073oK2NE2VgFHBADCBbdog@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 7/7] arm64: dts: mediatek: Add support for MT6795 Sony
+ Xperia M5 smartphone
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
+        matthias.bgg@gmail.com, hsinyi@chromium.org,
+        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
+        fparent@baylibre.com, sam.shih@mediatek.com,
+        sean.wang@mediatek.com, long.cheng@mediatek.com,
+        wenbin.mei@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20220729104441.39177-1-angelogioacchino.delregno@collabora.com>
+ <20220729104441.39177-8-angelogioacchino.delregno@collabora.com>
+ <a8fa9e22-8c3f-60b2-a0db-01cfd5c37765@somainline.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <a8fa9e22-8c3f-60b2-a0db-01cfd5c37765@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 29/07/22 14:00, Konrad Dybcio ha scritto:
+> 
+> 
+> On 29.07.2022 12:44, AngeloGioacchino Del Regno wrote:
+>> Add a basic support for the Sony Xperia M5 (codename "Holly")
+>> smartphone, powered by a MediaTek Helio X10 SoC.
+>>
+>> This achieves a console boot.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
---gok45hmzf5nviwgp
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Konrad,
+First of all, I'm sorry for the very late reply.
 
-Hello Romain,
+>> ---
+>>   arch/arm64/boot/dts/mediatek/Makefile         |  1 +
+>>   .../dts/mediatek/mt6795-sony-xperia-m5.dts    | 90 +++++++++++++++++++
+>>   2 files changed, 91 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+>> index af362a085a02..72fd683c9264 100644
+>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt2712-evb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6755-evb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6779-evb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-evb.dtb
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-sony-xperia-m5.dtb
+> -holly.dtb?
+> 
 
-On Thu, Oct 27, 2022 at 10:36:10AM +0200, Romain Perier wrote:
-> Le mar. 27 sept. 2022 =E0 18:33, Uwe Kleine-K=F6nig
-> <u.kleine-koenig@pengutronix.de> a =E9crit :
-> >
-> > Hello Romain, hello Daniel,
-> >
-> > adding Mark Brown to Cc: for the regmap stuff.
-> >
-> > On Wed, Sep 07, 2022 at 03:12:38PM +0200, Romain Perier wrote:
-> > > From: Daniel Palmer <daniel@0x0f.com>
-> > >
-> > > This adds support for the PWM block on the Mstar MSC313e SoCs and new=
-er.
-> > >
-> > > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> > > Co-developed-by: Romain Perier <romain.perier@gmail.com>
-> > > Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> > > ---
-> > >  MAINTAINERS               |   1 +
-> > >  drivers/pwm/Kconfig       |   9 ++
-> > >  drivers/pwm/Makefile      |   1 +
-> > >  drivers/pwm/pwm-msc313e.c | 269 ++++++++++++++++++++++++++++++++++++=
-++
-> > >  4 files changed, 280 insertions(+)
-> > >  create mode 100644 drivers/pwm/pwm-msc313e.c
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 9d7f64dc0efe..c3b39b09097c 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -2439,6 +2439,7 @@ F:      arch/arm/mach-mstar/
-> > >  F:   drivers/clk/mstar/
-> > >  F:   drivers/clocksource/timer-msc313e.c
-> > >  F:   drivers/gpio/gpio-msc313.c
-> > > +F:   drivers/pwm/pwm-msc313e.c
-> > >  F:   drivers/rtc/rtc-msc313.c
-> > >  F:   drivers/watchdog/msc313e_wdt.c
-> > >  F:   include/dt-bindings/clock/mstar-*
-> > > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > > index 60d13a949bc5..8049fd03a821 100644
-> > > --- a/drivers/pwm/Kconfig
-> > > +++ b/drivers/pwm/Kconfig
-> > > @@ -372,6 +372,15 @@ config PWM_MESON
-> > >         To compile this driver as a module, choose M here: the module
-> > >         will be called pwm-meson.
-> > >
-> > > +config PWM_MSC313E
-> > > +     tristate "MStar MSC313e PWM support"
-> > > +     depends on ARCH_MSTARV7 || COMPILE_TEST
-> > > +     help
-> > > +       Generic PWM framework driver for MSTAR MSC313e.
-> > > +
-> > > +       To compile this driver as a module, choose M here: the module
-> > > +       will be called pwm-msc313e.
-> > > +
-> > >  config PWM_MTK_DISP
-> > >       tristate "MediaTek display PWM driver"
-> > >       depends on ARCH_MEDIATEK || COMPILE_TEST
-> > > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> > > index 7bf1a29f02b8..bc285c054f2a 100644
-> > > --- a/drivers/pwm/Makefile
-> > > +++ b/drivers/pwm/Makefile
-> > > @@ -62,4 +62,5 @@ obj-$(CONFIG_PWM_TWL)               +=3D pwm-twl.o
-> > >  obj-$(CONFIG_PWM_TWL_LED)    +=3D pwm-twl-led.o
-> > >  obj-$(CONFIG_PWM_VISCONTI)   +=3D pwm-visconti.o
-> > >  obj-$(CONFIG_PWM_VT8500)     +=3D pwm-vt8500.o
-> > > +obj-$(CONFIG_PWM_MSC313E)    +=3D pwm-msc313e.o
-> > >  obj-$(CONFIG_PWM_XILINX)     +=3D pwm-xilinx.o
-> > > diff --git a/drivers/pwm/pwm-msc313e.c b/drivers/pwm/pwm-msc313e.c
-> > > new file mode 100644
-> > > index 000000000000..a71f39ba66c3
-> > > --- /dev/null
-> > > +++ b/drivers/pwm/pwm-msc313e.c
-> > > @@ -0,0 +1,269 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2021 Daniel Palmer <daniel@thingy.jp>
-> > > + * Copyright (C) 2022 Romain Perier <romain.perier@gmail.com>
-> > > + */
-> > > +
-> > > +#include <linux/clk.h>
-> > > +#include <linux/of_device.h>
-> > > +#include <linux/pwm.h>
-> > > +#include <linux/regmap.h>
-> > > +
-> > > +#define DRIVER_NAME "msc313e-pwm"
-> > > +
-> > > +#define CHANNEL_OFFSET       0x80
-> > > +#define REG_DUTY     0x8
-> > > +#define REG_PERIOD   0x10
-> > > +#define REG_DIV              0x18
-> > > +#define REG_CTRL     0x1c
-> > > +#define REG_SWRST    0x1fc
-> > > +
-> > > +struct msc313e_pwm_channel {
-> > > +     struct regmap_field *clkdiv;
-> > > +     struct regmap_field *polarity;
-> > > +     struct regmap_field *dutyl;
-> > > +     struct regmap_field *dutyh;
-> > > +     struct regmap_field *periodl;
-> > > +     struct regmap_field *periodh;
-> > > +     struct regmap_field *swrst;
-> > > +};
-> > > +
-> > > +struct msc313e_pwm {
-> > > +     struct regmap *regmap;
-> > > +     struct pwm_chip pwmchip;
-> > > +     struct clk *clk;
-> > > +     struct msc313e_pwm_channel channels[];
-> > > +};
-> > > +
-> > > +struct msc313e_pwm_info {
-> > > +     unsigned int channels;
-> > > +};
-> > > +
-> > > +#define to_msc313e_pwm(ptr) container_of(ptr, struct msc313e_pwm, pw=
-mchip)
-> > > +
-> > > +static const struct regmap_config msc313e_pwm_regmap_config =3D {
-> > > +     .reg_bits =3D 16,
-> > > +     .val_bits =3D 16,
-> > > +     .reg_stride =3D 4,
-> > > +};
-> > > +
-> > > +static const struct msc313e_pwm_info msc313e_data =3D {
-> > > +     .channels =3D 8,
-> > > +};
-> > > +
-> > > +static const struct msc313e_pwm_info ssd20xd_data =3D {
-> > > +     .channels =3D 4,
-> > > +};
-> > > +
-> > > +static void msc313e_pwm_writecounter(struct regmap_field *low, struc=
-t regmap_field *high, u32 value)
-> > > +{
-> > > +     /* The bus that connects the CPU to the peripheral registers sp=
-lits 32 bit registers into
-> >
-> > Please fix the comment style to use /* on a line for itself. Also for
-> > comments staying below 80 chars per line is appreciated.
->=20
-> even if check-patch.pl --strict passed ? ^^
+I prefer using the commercial name to identify the device.
+"Holly" is the smartphone project codename and that is mentioned almost nowhere:
+the aim here is to enhance readability as to make it immediately understandable
+that this devicetree is for the Xperia M5 device.
 
-I also already wondered about check-patch not demanding this. *shrug*
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
+>> new file mode 100644
+>> index 000000000000..94d011c4126c
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
+>> @@ -0,0 +1,90 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2022, Collabora Ltd
+>> + * Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "mt6795.dtsi"
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+> Looks unused.
+> 
 
-> > > +      * two 16bit registers placed 4 bytes apart. It's the hardware =
-design they used. The counter
-> > > +      * we are about to write has this contrainst.
-> >
-> > s/contrainst/contraint/
-> >
-> > I wonder if that could be abstracted by regmap?!
->=20
-> I had the same thought, not from what I have read/found, but perhaps
-> the regmap maintainer has an opinion.
->=20
-> >
-> > > +      */
-> > > +     regmap_field_write(low, value & 0xffff);
-> > > +     regmap_field_write(high, value >> 16);
-> > > +}
-> > > +
-> > > +static void msc313e_pwm_readcounter(struct regmap_field *low, struct=
- regmap_field *high, u32 *value)
-> > > +{
-> > > +     unsigned int val =3D 0;
-> > > +
-> > > +     regmap_field_read(low, &val);
-> > > +     *value =3D val;
-> > > +     regmap_field_read(high, &val);
-> > > +     *value =3D (val << 16) | *value;
-> > > +}
-> > > +
-> > > +static int msc313e_pwm_config(struct pwm_chip *chip, struct pwm_devi=
-ce *device,
-> > > +                           int duty_ns, int period_ns)
-> > > +{
-> > > +     struct msc313e_pwm *pwm =3D to_msc313e_pwm(chip);
-> > > +     unsigned long long nspertick =3D DIV_ROUND_DOWN_ULL(NSEC_PER_SE=
-C, clk_get_rate(pwm->clk));
-> > > +     struct msc313e_pwm_channel *channel =3D &pwm->channels[device->=
-hwpwm];
-> > > +     unsigned long long div =3D 1;
-> > > +
-> > > +     /* Fit the period into the period register by prescaling the cl=
-k */
-> > > +     while (DIV_ROUND_DOWN_ULL(period_ns, nspertick) > 0x3ffff) {
-> >
-> > dividing by the result of a division looses precision. Also rounding
-> > down both divisions looks wrong.
->=20
-> Such cases are not supposed to be covered by PWM_DEBUG ? (because
-> everything passed with PWM_DEBUG)
+Right, I'll remove that in v2.
 
-Note that PWM_DEBUG being silent isn't an indicator that everything is
-fine. It cannot catch everything and so doesn't replace human review.
+>> +
+>> +/ {
+>> +	model = "Sony Xperia M5";
+>> +	compatible = "sony,xperia-m5", "mediatek,mt6795";
+> sony,holly?
+> 
 
-If you tell me what clk_get_rate() returns for you, I might be able to
-tell you a procedure that makes PWM_DEBUG unhappy.
+I'm sorry, but I can't understand the sense of adding that compatible string to
+the mix. To the kernel, it doesn't mean anything - and we already have another
+string advertising the specific machine, which is "sony,xperia-m5".
 
-Best regards
-Uwe
+Of course, there is no Xperia M5 with a different SoC and, even if there was a
+xperia-m5 with a different SoC, we anyway have both a machine compatible and a
+SoC compatible in here, so that would still not pose any issue.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+>> +	chassis-type = "handset";
+>> +
+>> +	aliases {
+>> +		mmc0 = &mmc0;
+>> +		mmc1 = &mmc1;
+>> +		serial0 = &uart0;
+>> +		serial1 = &uart1;
+>> +	};
+>> +
+>> +	memory@40000000 {
+>> +		device_type = "memory";
+>> +		reg = <0 0x40000000 0 0x1E800000>;
+> Lowercase hex in size. Also, doesn't the bootloader fill it in?
+> 
 
---gok45hmzf5nviwgp
-Content-Type: application/pgp-signature; name="signature.asc"
+Updating the device to the latest software version will give you a bootloader
+that fills that in, but the first-ever software release contains one that will
+not do that in particular conditions (fastboot boot).
 
------BEGIN PGP SIGNATURE-----
+>> +	};
+>> +
+>> +	reserved_memory: reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		/* 128 KiB reserved for ARM Trusted Firmware (BL31) */
+> Is that true for all devices with this SoC, or..? If so, it may be worth
+> moving this into mt6795.dtsi.
+> 
+>> +		bl31_secmon_reserved: secmon@43000000 {
+> memory@, everywhere. Use labels to name the nodes.
+> 
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNaTdAACgkQwfwUeK3K
-7AnMqgf8DzFsEd9BI2kFodRUCfC6mjEpPasgkBKB6PUykVv8BpgpneGcod1ZuGaf
-mFa8bCcs+2m/KIBKGaO6EXjWd5/8v1jwfTUMi6tArh2KXYcODvyWBDkAFenw5jqX
-3K+dpScgpoD+tBam1wzgkCsDBqH7aS7tk0yTEJZEQd1U0kTiKUTFLHarnmlqQcAZ
-ZaTQdSuA4DXfKVEIsXo+PxMF6VUuW96tvnktN15Q1qe1baW7hymbe5w3sGOLYI3c
-AxQI5QeEshwegQ+CmJNYFE+s96MuMG2tA+Y9C7Jyzb2iooqkIPB65sS3DnJaa4Gh
-NT22oQSFzN+YTPBRGIjPos0kq84n2A==
-=Umol
------END PGP SIGNATURE-----
+I'm afraid that's not possible, as the bootloader is reading the devicetree
+and requires these nodes to follow this naming.
 
---gok45hmzf5nviwgp--
+>> +			no-map;
+> reg goes first.
+
+Will fix in v2.
+
+Best regards,
+Angelo
+
+
