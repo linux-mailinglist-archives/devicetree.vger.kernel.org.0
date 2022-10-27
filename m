@@ -2,143 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB836101FE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 21:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A564861020F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 21:55:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236694AbiJ0Tx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 15:53:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51864 "EHLO
+        id S235691AbiJ0Tz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 15:55:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236693AbiJ0Tx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 15:53:29 -0400
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117D28681E
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:53:28 -0700 (PDT)
-Received: by mail-qv1-xf2b.google.com with SMTP id ml12so2425031qvb.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:53:28 -0700 (PDT)
+        with ESMTP id S236345AbiJ0Tzz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 15:55:55 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115B540E25
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:55:54 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id t25so1923076qkm.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 12:55:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rv+NwcB7Y1yDXTCYeLwyYiNYVuug6DzRn6hIRZBdCUg=;
-        b=aOIi48sLTeaB/rmVmxJkBD94JfMUWgq6PS8ZwjX7+2exH4wccljv1jo1YzB50A8kHT
-         an1Fgb+VXsSl/ExzuheFeXQEkbCBoADkWq7RoSq3seEOFGi0kf39OO+aEqvI47NqnySI
-         qtGP5bY9Q9rSZykvjffToryxmXekwIfCsX4Ybuc08tUZv8BVyV2SYD/G46zOsoo3/xZi
-         Ljid7RBu2+ZXZDONp+UH4G5Q8zyQQyxXQYlc82gTLJy8PajVTdMsbN8kB9jiOh2BhYyq
-         5g6agQmai3Jn37TtubHGDAMk0SX3mqmQZblJwmQg0lKY/mhkf7tTC+4GxUZ0NoGxwKAp
-         py4w==
+        bh=phTE8Hb2ngpgKiU4qEw9Lxs4Tg0Q1IriLkNiuUxWbrA=;
+        b=SLiZgtBtLeK+zXz2D/eNY1D1zV3xsgNeksFqjPCbsKNbPzMla/jRUDugiePENX73ip
+         P/2mXeFdNEpaJrZlcZUZvNsyAuPAnIrZAiC5ALBMHFJUrQ0Rb9CQYk773GYs0q3iGqvh
+         B2WM4HerpmMxEQiSda7hzKWhdXNhkW38WHwUdtBmW2ffVcRHwAL61jvG1h9IwIDmO2vX
+         oor1QPHbN8jVVVS0IvkJKvwW6oaLAZuh1ob7nE2lo9Ot33KloW/Lef7rBSbbH2rf8d7d
+         aE64Y6HQZxtQsonfMDH1nnrRRvM9sIZvb5UWzuvgLq8ZtAJuCbLn9llNBDxt4LydG89z
+         apDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rv+NwcB7Y1yDXTCYeLwyYiNYVuug6DzRn6hIRZBdCUg=;
-        b=YLHbNH4IPAQDAHEiLBnTtJX3CFEemIH/ah42jpvaGN0aAbdVwXo7VYctvGN67l8G49
-         Obmv0uzav3xpnNsBtKBbCva+2dFmCLaWieA5wIbwOlf5vIZYuUbJnKy6sNP2cKmszk+7
-         pWE/xUNbgkdkGx9nD7vyKCal6M5DFp5SvPs7HsAPGYCX2wV4zx3UdH2xH5nwRRQ4ZdTl
-         jCupwEHF2+Ey5bCxdEl9JfXaoJRdw+k5qZ+vFk0p+xXa/26jupA3rRqI11jJHKH5ZZ87
-         75rpR1RcGwcgcJ+vRmBStvsPjbk4rXDEVEYmWwgZaShx8Wo6tqZgMwh5ZQ48oqHi6XG3
-         mZXQ==
-X-Gm-Message-State: ACrzQf1K66bfMPppEAFyCyq4CRh2mAFg2V4hTI5TsMj+ymkW/wJJ8yYF
-        NMytmDj6/cjJEFdL1NoZoqNAjeL9phacXQ==
-X-Google-Smtp-Source: AMsMyM6ct22e5nG9urtpWalWZ+2YwdwI+iPWj7oQCtEY2tAG4vdm4z0F1CwIJOTD6IQ+CLC/tZzp5Q==
-X-Received: by 2002:a05:6214:5098:b0:4b4:2172:dc0 with SMTP id kk24-20020a056214509800b004b421720dc0mr42707171qvb.109.1666900407168;
-        Thu, 27 Oct 2022 12:53:27 -0700 (PDT)
+        bh=phTE8Hb2ngpgKiU4qEw9Lxs4Tg0Q1IriLkNiuUxWbrA=;
+        b=iXqs7tpGK/mMpQxBRpckQuhsjLVvpQfYbfizam6K1mtVWOkRl14sobLpiMEhfGyA0K
+         0Nzx7gfJry88WqbRXX7gOikLVlDC2oUe7IhSX2DSXdRF2T8x7tQnf+HFqAHrT/7MmpJ5
+         OzWziPlgkip8SDYELtxrOQ83hji4ajq+CaDbfRHhsZjscXaBjJyzEkR08Dg0zQl50a1h
+         IwzgQGVJdSR9MV4eb+wFzyh5h5UZXca0f+A1sHhRCS+T+/OXdQQVb8jRPkTkmBaYGVe3
+         D7oiBE9gqT+fj5BQehgV7g1gm5r/KhkeqNx3yRuVFTWFFeLcy4D01o7Docp5eCsi6v9j
+         QuVg==
+X-Gm-Message-State: ACrzQf3xUvSGkYGXOeY96AVATLiJqKKuUxdLM+CW0LQS3CDGsCQa1e5U
+        IU2CiHB1D3T3Xaob+1vRcy6QkQ==
+X-Google-Smtp-Source: AMsMyM5FXOg6GzFfIF0AuRgweoogKXQKTmdDgZJ2PVbtcQn8m9jGg9sXOm3QaqOPYu4qR9rZ5hVLrg==
+X-Received: by 2002:a37:b041:0:b0:6eb:cc8c:e9a9 with SMTP id z62-20020a37b041000000b006ebcc8ce9a9mr34662885qke.573.1666900553202;
+        Thu, 27 Oct 2022 12:55:53 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id m8-20020a05620a24c800b006ce515196a7sm1572362qkn.8.2022.10.27.12.53.25
+        by smtp.gmail.com with ESMTPSA id n14-20020a05620a294e00b006eed094dcdasm1585036qkp.70.2022.10.27.12.55.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 12:53:26 -0700 (PDT)
-Message-ID: <35ed6e48-40e6-eb14-72de-9a0a4f5b38f8@linaro.org>
-Date:   Thu, 27 Oct 2022 15:53:25 -0400
+        Thu, 27 Oct 2022 12:55:52 -0700 (PDT)
+Message-ID: <79673829-a079-201f-91e1-790eb7cc3a4b@linaro.org>
+Date:   Thu, 27 Oct 2022 15:55:50 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: add binding for the GPIO block for
- Apple Mac SMC
+Subject: Re: [PATCH v5 02/13] dt-bindings: Add binding for gunyah hypervisor
 Content-Language: en-US
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <Y1q5jW8ff0aUdjPd@shell.armlinux.org.uk>
- <E1oo6Hw-00HYp8-Sa@rmk-PC.armlinux.org.uk>
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221011000840.289033-1-quic_eberman@quicinc.com>
+ <20221011000840.289033-3-quic_eberman@quicinc.com>
+ <20221012155645.GA2173829-robh@kernel.org>
+ <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
+ <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
+ <75ef3cc5-3b19-9eab-b3eb-56fa254d92bd@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E1oo6Hw-00HYp8-Sa@rmk-PC.armlinux.org.uk>
+In-Reply-To: <75ef3cc5-3b19-9eab-b3eb-56fa254d92bd@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 13:03, Russell King (Oracle) wrote:
-> Add the DT binding for the Apple Mac System Management Controller GPIOs.
+On 27/10/2022 12:17, Elliot Berman wrote:
+> Hi Rob,
 > 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> On 10/26/2022 2:16 PM, Rob Herring wrote:
+>> On Thu, Oct 13, 2022 at 6:59 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+>>>
+>>>
+>>> On 10/12/2022 8:56 AM, Rob Herring wrote:
+>>>> On Mon, Oct 10, 2022 at 05:08:29PM -0700, Elliot Berman wrote:
+>>>>> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
+>>>>> Resource Manager applies a devicetree overlay describing the virtual
+>>>>> platform configuration of the guest VM, such as the message queue
+>>>>> capability IDs for communicating with the Resource Manager. This
+>>>>> information is not otherwise discoverable by a VM: the Gunyah hypervisor
+>>>>> core does not provide a direct interface to discover capability IDs nor
+>>>>> a way to communicate with RM without having already known the
+>>>>> corresponding message queue capability ID. Add the DT bindings that
+>>>>> Gunyah adheres for the hypervisor node and message queues.
+>>>>>
+>>>>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>>>>> ---
+>>>>>    .../bindings/firmware/gunyah-hypervisor.yaml  | 87 +++++++++++++++++++
+>>>>>    MAINTAINERS                                   |  1 +
+>>>>>    2 files changed, 88 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..f0a14101e2fd
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>>>> @@ -0,0 +1,87 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Gunyah Hypervisor
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
+>>>>> +  - Elliot Berman <quic_eberman@quicinc.com>
+>>>>> +
+>>>>> +description: |+
+>>>>> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
+>>>>
+>>>> How you end up with the node (applying an overlay) is not relavent to
+>>>> the binding.
+>>>>
+>>>>> +  describes the basic configuration of the hypervisor. Virtual machines use this information to determine
+>>>>> +  the capability IDs of the message queues used to communicate with the Gunyah Resource Manager.
+>>>>
+>>>> Wrap at 80. That is the coding standard still though 100 is deemed
+>>>> allowed. And yamllint only complains at 110 because I didn't care to fix
+>>>> everyones lines over 100.
+>>>>
+>>>>> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - const: gunyah-hypervisor-1.0
+>>>>> +      - const: gunyah-hypervisor
+>>>>
+>>>> 2 compatibles implies a difference between the 2. What's the difference?
+>>>> Where does '1.0' come from?
+>>>>
+>>>
+>>> There's no difference. I thought the convention was to have
+>>> device-specific compatible and the generic compatible. "device-specific"
+>>> here would be specific to version of Gunyah since it's software.
+>>
+>> No, that's just what people do because "vendor,new-soc",
+>> "vendor,old-soc" seems to bother them for some reason. At the end of
+>> the day, it's just a string identifier that means something. If
+>> there's no difference in that 'something', then there is no point in
+>> having more than one string.
+>>
+>> You only need something specific enough to discover the rest from the
+>> firmware. When that changes, then you add a new compatible. Of course,
+>> if you want existing OSs to work, then better not change the
+>> compatible.
+>>
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
-> new file mode 100644
-> index 000000000000..a3883d62292d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> Thanks for the info, I'll drop the "-1.0" suffix.
 
-
-Filename based on compatible, so "apple,smc-gpio.yaml"
-
-> @@ -0,0 +1,28 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple Mac System Management Controller GPIO
-> +
-> +maintainers:
-> +  - Hector Martin <marcan@marcan.st>
-> +
-> +description:
-> +  This describes the binding for the Apple Mac System Management Controller
-
-Drop "This describes the binding for"
-
-> +  GPIO block.
-> +
-> +properties:
-> +  compatible:
-> +    allOf:
-
-That's not proper syntax. Look at other examples (e.g. Apple bindings)
-doing it. Probably you wanted items here.
-
-> +      - enum:
-> +          - apple,t8103-smc
-> +      - const: apple,smc-gpio
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-
-Missing required properties. Start from new bindings or example-schema.
-
-> +
-> +additionalProperties: false
-
-Missing example, it's necessary to validate these.
+You still did not answer from where does 1.0 come from... Compatibles
+are usually expected to be specific.
 
 Best regards,
 Krzysztof
