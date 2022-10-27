@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8E46610443
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 23:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D54F61045B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 23:27:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235028AbiJ0VTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 17:19:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35120 "EHLO
+        id S236768AbiJ0V1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 17:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236040AbiJ0VS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 17:18:58 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E61244F64D
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 14:18:57 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id w29so2249326qtv.9
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 14:18:57 -0700 (PDT)
+        with ESMTP id S235349AbiJ0V1Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 17:27:24 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE56F62929
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 14:27:22 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id j21so2135658qkk.9
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 14:27:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AyXBa6ykDLTrVOwX6VHEAyki/oYnov9OaiYlYqb8IuQ=;
-        b=pLbMqe+4UWVeCU6n0FJ9i9jlJOD+Bls99Si1E7DHDiqf8j6gvU35pTzDYLXp8xZdjh
-         3BNJIBTjmye5HlRMm7uIgkTr10aZXEA3bs0huAZsaaz0zEfSAojDNueGwBjEcNS73hqh
-         w5z8oSi0fbd6X9qnI2zf7lVucqm/pVOv31sSEDnnCDs7mrqfnpL9aBIscV1mK1DdhAU2
-         oWPkP/zMnYDP6gdWqD7zVIx8x10RrKXhv1jpMeVfMJO9Lw5A+97RRbgcqvEDZElleWkC
-         QZ15KeBuVnIi67gAneE/CfvS90cXMmZWVISethneoUojTxBQ9h0lipW1xl4B6IJIba50
-         0Q1w==
+        bh=TtH1yFO7yFt5dZxug/QRPjwrXsLw7ovhK2UTgaJtf0c=;
+        b=pRXLtQ4JsdT7qc6uLLOpUJqYV9xHKfkYz5HvD5ORQfPcNraYpNaTux2YqAv/VSJoqn
+         WeJ5tQkcwj46JXTegwgmDTs6F4ejSvDWaWAiTi+/Y8/LsQ57lLJmFFcILc2iMA6egGFX
+         jG5gztuexapHx/BKVYZC8eRjSX3Qzkm0aUM5b10N+nFv91zmiGzbGoCbe3rHfARfRsjC
+         J4uxZOP0Ajy0OvH+QedE+M/X5+dng20gjyQoN2VZSR0EVzD1/d7i0bW61a9yjqNaknOs
+         iBnXCnQ6QcjG2Btb7xoYabmhp2C96SgB8eCz9273wVu6PrfMtq4FT83rOmDMdR7SMqda
+         jumg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AyXBa6ykDLTrVOwX6VHEAyki/oYnov9OaiYlYqb8IuQ=;
-        b=UEFnrqwp6v2BayLOLZHNhpFXdg+2VSdoTDN2YVpKECG1+UNmLxAFlDQk5D9ULmYMxi
-         83Hzj2K9hjYYNxkp9zGVxI+ubGUYRBXjK3aHmL+ENVDHw2put14TG431CxUAzNNbRtOa
-         eIisNknvgZpLzUJS7VscATLfSUKh3B3uKqsDwvMU6M4FjcLSIUCXBPXe1eI4hr+LyMqe
-         M82NtqRQdIxQ33Vw6NfPUanA2wAAQVx3nKxHarA6+zkgZVkNE/OtbBEDDvk6eh3EiMB2
-         7rX/TzQbJmUqS9sLlL1ye9B8wzvMkOjIlWMUQiYuGphgCoY+aXokGpB7UqAWOMbKmwQZ
-         JGPg==
-X-Gm-Message-State: ACrzQf1cH1lZgzhykAydH1zFYp2cNtU4jDYTb2x/PekW/6XNtqF6E8yB
-        sFxsYPp44boER2FutJD3ewSXiw==
-X-Google-Smtp-Source: AMsMyM7qg/2i5QkK7AtijeQ9c5/J9SbLD38n65mxcQcdiryVkttLrlIpdZok1V/PQcQekw6KD8lc1g==
-X-Received: by 2002:ac8:5981:0:b0:39c:e03e:86ed with SMTP id e1-20020ac85981000000b0039ce03e86edmr43673054qte.503.1666905535643;
-        Thu, 27 Oct 2022 14:18:55 -0700 (PDT)
+        bh=TtH1yFO7yFt5dZxug/QRPjwrXsLw7ovhK2UTgaJtf0c=;
+        b=uL+2yPRVZCV0ELDr8P4ZkvIglcwko0I2tkWvnDdUiEvxoMf5ss5PoMXqGmXOLqbGId
+         W1f07fo6q7vkpYfcdcufKTd6/FOw5DAGfTeEEM90FiWTUsNT/2qkm9FeyDEpATGaj8rV
+         WgpHse/UtrBpAg6f3c2SlCR62aiBMzVvaybmrJQcE2xiY8EC8QZlZhVyh845n3eHmtpP
+         IQBArHN6qMxEmKzbO9NXWzrnqrs9NKyci89UdTq0wXuKGMceEAUUJ5LDynQiu//MIgyU
+         2zUUMEPIy0ghcM8DEchhwRROBPi5N+TBDT/pLpg6+uld9BlbO7nhub6cR05IExxe8XRO
+         GUUA==
+X-Gm-Message-State: ACrzQf2M3vFyz8x+E9wq1ey/1KLdbj4nyM0XQzlaxefZ7zsgHOzczEiE
+        KCxtM7bFVYHyGgSyMk6UFqu1Kg==
+X-Google-Smtp-Source: AMsMyM4CXAxavR3yE0r2ThkF/G3WLVVqUVxSENxLPGjGRsZiF4RSyIAF6YHFw+TuPkDHVUbQf93E1g==
+X-Received: by 2002:a05:620a:f11:b0:6cf:be4e:e953 with SMTP id v17-20020a05620a0f1100b006cfbe4ee953mr36389565qkl.437.1666906042083;
+        Thu, 27 Oct 2022 14:27:22 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05620a288800b006fa00941e9dsm995562qkp.136.2022.10.27.14.18.54
+        by smtp.gmail.com with ESMTPSA id d13-20020a05620a240d00b006f0fc145ae5sm1762251qkn.15.2022.10.27.14.27.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 14:18:55 -0700 (PDT)
-Message-ID: <4579404d-b3f7-8342-6704-2644f5cd489d@linaro.org>
-Date:   Thu, 27 Oct 2022 17:18:53 -0400
+        Thu, 27 Oct 2022 14:27:15 -0700 (PDT)
+Message-ID: <4236ab07-6ad3-efcd-7d5e-c244581d2944@linaro.org>
+Date:   Thu, 27 Oct 2022 17:27:09 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH V1 1/2] dt-bindings: PCI: tegra234: Add ECAM support
+Subject: Re: [PATCH v3 2/9] ARM: dts: nspire: Use syscon-reboot to handle
+ restart
 Content-Language: en-US
-To:     Vidya Sagar <vidyas@nvidia.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, mperttunen@nvidia.com
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kthota@nvidia.com,
-        mmaddireddy@nvidia.com, sagar.tv@gmail.com
-References: <20221027051214.22003-1-vidyas@nvidia.com>
- <20221027051214.22003-2-vidyas@nvidia.com>
+To:     Andrew Davis <afd@ti.com>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20221027181337.8651-1-afd@ti.com>
+ <20221027181337.8651-3-afd@ti.com>
+ <050f3d65-5720-9c97-1930-bc458c4c2fb8@linaro.org>
+ <a4688f2d-0a0f-dffc-92cc-4fa50938d0d8@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221027051214.22003-2-vidyas@nvidia.com>
+In-Reply-To: <a4688f2d-0a0f-dffc-92cc-4fa50938d0d8@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,37 +84,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 01:12, Vidya Sagar wrote:
-> Add support for ECAM aperture for Tegra234.
+On 27/10/2022 17:07, Andrew Davis wrote:
+> On 10/27/22 2:33 PM, Krzysztof Kozlowski wrote:
+>> On 27/10/2022 14:13, Andrew Davis wrote:
+>>> Writing this bit can be handled by the syscon-reboot driver.
+>>> Add this node to DT.
+>>>
+>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>>> Tested-by: Fabian Vogt <fabian@ritter-vogt.de>
+>>> Reviewed-by: Fabian Vogt <fabian@ritter-vogt.de>
+>>> ---
+>>>   arch/arm/boot/dts/nspire.dtsi | 7 +++++++
+>>>   1 file changed, 7 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/nspire.dtsi b/arch/arm/boot/dts/nspire.dtsi
+>>> index bb240e6a3a6f..48fbc9d533c3 100644
+>>> --- a/arch/arm/boot/dts/nspire.dtsi
+>>> +++ b/arch/arm/boot/dts/nspire.dtsi
+>>> @@ -172,7 +172,14 @@ rtc: rtc@90090000 {
+>>>   			};
+>>>   
+>>>   			misc: misc@900a0000 {
+>>> +				compatible = "ti,nspire-misc", "syscon", "simple-mfd";
+>>
+>> You have syscon and simple-mfd, but bindings in patch #1 say only syscon.
+>>
 > 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
->  .../devicetree/bindings/pci/nvidia,tegra194-pcie.yaml  | 10 ++++++++--
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml          |  2 +-
->  2 files changed, 9 insertions(+), 3 deletions(-)
+> I'm not following, are you just saying my wording in the patch message just
+> wasn't complete?
+
+Your binding patch adds nspire compatible to the list of two items, so
+you have two items in total - nspire followed by syscon.
+
+What you implemented here is different.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> index 75da3e8eecb9..15cc2d2055bb 100644
-> --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> @@ -27,6 +27,7 @@ properties:
->        - nvidia,tegra234-pcie
->  
->    reg:
-> +    minItems: 4
->      items:
->        - description: controller's application logic registers
->        - description: configuration registers
-> @@ -35,13 +36,17 @@ properties:
->            available for software access.
->        - description: aperture where the Root Port's own configuration
->            registers are available.
-> +      - description: aperture to access the configuration space through ECAM.
-> +          This is applicable only for Tegra234.
+> Or are you saying something more about nodes that are both syscon and simple-mfd?
+> In that case, having both syscon and simple-mfd seems rather common, looks like
+> you added the rule for it[0].
+> 
+> Thinking on this, they almost represent the same thing. simple-mfd says "my child
+> nodes should be considered devices", why do we need that? Couldn't we simply state
+> that "syscon" node's children are always devices, I mean what else could they be,
+> syscon is an MFD after all (and lives in drivers/mfd/).
 
-Then restrict it per compatible in allOf
+No, syscon is not an MFD. Syscon means system controller and alone it
+does not have children.
 
->  
+> 
+> "syscon" often just says, others can use the registers within this node, so as a
+> different option, make "syscon" a property of "simple-mfd" nodes. I'm seeing all
+> these examples of devices that should have been children of the "syscon" device,
+> but instead use
+> 
+> regmap = <&x>;
+> syscon = <&x>;
+> 
+> or similar and put the device node out somewhere random. And in those cases,
+> wouldn't it have been more correct to use the normal "reg" and "regions" to
+> define the registers belonging to the child node/device?..
+
+Sorry, I do not follow. How this is even related to your patch?
+
+Your bindings say A, DTS say B. A != B. This needs fixing.
+
+Unless you are asking me what your device is in general. This I don't
+really know, but if you want to use it as regmap provider for system
+registers and as a parent of syscon-based reboot device, then your
+device is syscon and simple-mfd. With a specific compatible. Was this
+your question?
 
 Best regards,
 Krzysztof
