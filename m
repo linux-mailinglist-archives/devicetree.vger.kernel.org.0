@@ -2,101 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F124A60F307
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 10:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F36E360F391
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 11:22:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233978AbiJ0I7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 04:59:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41556 "EHLO
+        id S234290AbiJ0JWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 05:22:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234169AbiJ0I7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 04:59:14 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B9A15F92C;
-        Thu, 27 Oct 2022 01:59:13 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id i21so1528998edj.10;
-        Thu, 27 Oct 2022 01:59:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=w0IUbPjMCAB9XHK86X/OlsKfO5IDtTUMHXt/Hq4ivA4=;
-        b=o0B61ERuf4hfAzCZx6I1fqmQcdEvElx1DFTbZTG2WwCVKN5GCfwIQw+2c1H1YFhb8S
-         l0i0NyzWyJ9V6EuuQJ4rxjJJOxJbYLiA54MMRqqYOGnf97Ecbfzr6/r7u3ALMnvH8gZU
-         95/AQk+fg26STzBaraQfnGpe5jLXteJ9oNGPDxoRfmISlSobdZTAoIrSP/xt8rfN383J
-         HUz0rxyUmh0lAIhRytzv3VQXbQXCRV0TmL0Grt4zW0U1wLlI+RGRANIo59vlysMBtKdW
-         N1jInSqzzJD/xbCfXAQMoT2befDCkf/6HwVNg21skF5J0k5jEKxi75M2pZIdNpjDfx3s
-         S3ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w0IUbPjMCAB9XHK86X/OlsKfO5IDtTUMHXt/Hq4ivA4=;
-        b=TY9zSv9AGsVCWCvvVK/3oGWJpAIj80OsKLoVYvu5HL+mY1ncndrZeui59Xm7ppNgpt
-         ji1uJiRVtOdvu6jndedXFTeoQWB/YCV9nzHagfrlZF86VcevlBtz6F4iO0PEpyDSQ3H8
-         FHJD++MQhFZnMz6iLakJUcb5xBA5HH8r3dJr/2Lm1X1iWWY0uR/GxoGHAncsZbsNDY96
-         qKmOK/AnwtqnLa/YjLfif+Pjv3fq+UjLOcWXC66N3FA5JBI2uM1LsQL12P7XkWwvM9h6
-         +I0X4rC4OuTPYrf75Kfu93IHL5eNwe7S70vDDKSDvgNkhrpglCDsBBlpZMK9vk5yNMmZ
-         K8dw==
-X-Gm-Message-State: ACrzQf2bSoEe3RBgCQ4Rixi2t7aPZ02dlFXky3GYP/svhXh38Ceu3xpN
-        8AFlXdLWVCnla7LJ9hWLV3Y=
-X-Google-Smtp-Source: AMsMyM4BMxqD5i3Nq+gejbtjgCLeW2p17a0i+1GyKoe/S0UBNMWJpCO0m4d2J8f0tJgtDJ1tx1L5ag==
-X-Received: by 2002:aa7:c58a:0:b0:461:fc07:a821 with SMTP id g10-20020aa7c58a000000b00461fc07a821mr14744879edq.19.1666861152049;
-        Thu, 27 Oct 2022 01:59:12 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id v13-20020a50d08d000000b0046146c730easm607498edd.75.2022.10.27.01.59.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 01:59:11 -0700 (PDT)
-Message-ID: <e9764253-8ce8-150b-4820-41f03f845469@gmail.com>
-Date:   Thu, 27 Oct 2022 10:59:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1 2/2] arm64: dts: rockchip: fix ir-receiver node names
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        with ESMTP id S232946AbiJ0JWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 05:22:34 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF92837428;
+        Thu, 27 Oct 2022 02:22:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666862553; x=1698398553;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=B2DWWDfUsiKyktfanKjjzgcDXjdREy8+Y3UB+FVi+Io=;
+  b=DFk7hH2vmc9bjjhe7MczHF/HO92fFQ3BJ6Kv7Q/aN146MvQpU7aSPziL
+   TRuGEfW4teJ0/VkdFt0kSqv4F3+iu0oP/2b6RbRYTaFJ+OWOZ1rFHUgbh
+   tQeo9lqfPhZtswU1TN27KPDDP4a5Ge7ZluRSqDXKZouS1FHId63mkO4tM
+   rPSiUYihK7G2P3IEYFmxTz95NI1h0yUJ//g5+wPxbFw+9GD14zgQZ3A4j
+   M9yZGk8zCOYX5Zi6wg/VrrXkn2e2HAuG85CdF+TXiDxPZwCAMf1Gx2kH7
+   l8FbCUgTfOj5RSh6e50dkUgUgVozjemSv0rUsja2PCJfAnpYKF5luDXTA
+   A==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="308168707"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
+   d="scan'208";a="308168707"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 02:22:33 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="737607691"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
+   d="scan'208";a="737607691"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 02:22:28 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 5C07D2026C;
+        Thu, 27 Oct 2022 12:22:26 +0300 (EEST)
+Date:   Thu, 27 Oct 2022 09:22:26 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <ea5af279-f44c-afea-023d-bb37f5a0d58d@gmail.com>
-Content-Language: en-US
-In-Reply-To: <ea5af279-f44c-afea-023d-bb37f5a0d58d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 6/9] media: i2c: ov5645: Use runtime PM
+Message-ID: <Y1pN0oksKeauTpBA@paasikivi.fi.intel.com>
+References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221026130658.45601-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221026130658.45601-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix ir-receiver node names on Rockchip boards,
-so that they match with regex: '^ir(-receiver)?(@[a-f0-9]+)?$'
+Hi Prabhakar,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for the update.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-index ea6820902..7ea481677 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-@@ -19,7 +19,7 @@
- 		stdout-path = "serial2:1500000n8";
- 	};
+On Wed, Oct 26, 2022 at 02:06:55PM +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Switch to using runtime PM for power management.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> v2->v3
+> * Jumped to err_pm_runtime label in case of sd register failure
+> * Now calling pm_runtime_mark_last_busy() before pm_runtime_put_autosuspend()
+>   call
+> * Now calling pm_runtime_put_sync() in case s_stream(1) fails
+> * In s_stream(0) no calling pm_runtime_mark_last_busy() and
+>   pm_runtime_put_autosuspend()
+> * Included RB tag from Laurent.
+> 
+> v1->v2
+> * Moved pm_runtime_*_autosuspend() calls after registering the subdev.
+> ---
+>  drivers/media/i2c/Kconfig  |   2 +-
+>  drivers/media/i2c/ov5645.c | 141 +++++++++++++++++++------------------
+>  2 files changed, 73 insertions(+), 70 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index 7806d4b81716..c0edd1017fe8 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -459,7 +459,7 @@ config VIDEO_OV5640
+>  config VIDEO_OV5645
+>  	tristate "OmniVision OV5645 sensor support"
+>  	depends on OF
+> -	depends on I2C && VIDEO_DEV
+> +	depends on I2C && PM && VIDEO_DEV
 
--	ir_rx {
-+	ir-receiver {
- 		compatible = "gpio-ir-receiver";
- 		gpios = <&gpio0 RK_PC0 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
---
-2.20.1
+I think you can drop the PM dependency --- the driver will work fine
+without CONFIG_PM.
 
+Although one could question why do we have CONFIG_PM. Some systems won't
+boot without it and who would want to consume more power than necessary?
+
+Could this be removed altogether? Or perhaps we could add CONFIG_PM
+dependency to V4L2 and DVB? :-)
+
+Certainly out of scope of this set though.
+
+-- 
+Kind regards,
+
+Sakari Ailus
