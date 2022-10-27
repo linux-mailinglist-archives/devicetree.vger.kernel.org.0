@@ -2,56 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE77660FC95
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 18:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3653C60FCA2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 18:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235690AbiJ0QAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 12:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43372 "EHLO
+        id S236345AbiJ0QIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 12:08:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236097AbiJ0QAa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 12:00:30 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4681557BC4;
-        Thu, 27 Oct 2022 09:00:29 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id n12so5885026eja.11;
-        Thu, 27 Oct 2022 09:00:29 -0700 (PDT)
+        with ESMTP id S236344AbiJ0QIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 12:08:10 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25F2181DA6
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 09:08:09 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id mi9so1720606qvb.8
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 09:08:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SW4XxAEZl3IlDzbqHTqK+eThF9vGXQHhRs6UmQcYWB4=;
-        b=f6HNIVgObL1o/0Y/lX6C4Gc1jWvL/1pTReopPeHpIKaapHz5+K031UNPkgyvOik34H
-         wZzN6xA7CJY6M2NIo4YKW5twfjiJXioHv4dhvz79PstfVeB2lxUdPOmFymCwRKro4z2u
-         eDplHZXhtCxZNgj1Ce4N69skQstvSYscz9PbE7BMm6cPDY5ZBLW34KFNOy+BAI51BTuk
-         WXGZbDnvY9o3LqOMpWLQjXGO4S1V7xy4HRTZcIChNee1osUemUz0ThessvEzhkBoaGn5
-         KXPGHejyW4fAyxf/hoAoxI9eTX5WqygiTIkqJOuhIoz7nZ4b3ZCsQH892qbMvPRvjPzQ
-         ttYg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+EByezWssNJpDNY0y+L8q4F549C1PMWF7aqVJonq+z0=;
+        b=aAVZaCTCOqatS09ZMKrhBEnOEbQndq2u9CKWDuWcuRP38rqyHCkiTwZh9zPE1q2+mR
+         gVCrlGA4rKcKHf1K8jkfpjSR/pPaLnDDzvrIbCYPTBNc9lncg0QvLmshiuF7Cxm4Gltx
+         uCb8bYZaFFjiT7/PbY6/ZuMUYPXBEPw8I1xqdf2vDQ8xzr6B7vmxhvhJLJvrfImXcL4K
+         X44hEmyBYA8IwWRc/hMhQ2db2BTq2sV17rr1r+/KCnuKEjqJ98Nlt3u1bPvOxe9S8epF
+         3Lii+YEzV+Nbr6Noz/2gnVYU5pU95cPX4XV1D8Jku1vlQEoIOW0NCsQdmSUADbhfr4mA
+         ILCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SW4XxAEZl3IlDzbqHTqK+eThF9vGXQHhRs6UmQcYWB4=;
-        b=uiU0qro1RXTuS5dextsiDMk1V5Gx0GGAjaCyWko64zaEP7lU8isJW/K0SawsKBHdoG
-         7Usjkc6y9hc+gob6Iztw87yPVCuTe7V4y0FOnrq4bS9ihv0ZHzDcCuYWxM4o1Vm98hQO
-         GXM4oYym25ElJkLBZP1tmVsnaZuHCW98peI68nQhgEiAWW0bLbnDIXorkf6aQAhwlgHP
-         qxcPMi44nUMrgoeEZrmPkgn4k+6/PIugoAocW7v7VTqfDzB4yMwljcZdSJKVJfR9oJIl
-         4y9U8R+LaRmKofXGk97Y/h3icLy+ILca1VYMD2BuVlfqXykHTEDMwga+IuLD+FWrCJ0o
-         MaWQ==
-X-Gm-Message-State: ACrzQf1Y57uFWS+RniEmZRMWvF4kIQoYbbRbq68f/2zqU8DxTqYKq/4h
-        XsQkQehvVIr4RZYDZBbbdGU=
-X-Google-Smtp-Source: AMsMyM4DolQOWaHLB7SyNkyZXcXRfDcv/EyomnmMbE5214MgCYDEMxXWWv/9eiQPJWowjHpIGnmy5w==
-X-Received: by 2002:a17:907:c10:b0:7ad:8218:c2a2 with SMTP id ga16-20020a1709070c1000b007ad8218c2a2mr7502889ejc.183.1666886428568;
-        Thu, 27 Oct 2022 09:00:28 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id e2-20020a170906314200b0077e6be40e4asm988748eje.175.2022.10.27.09.00.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 09:00:28 -0700 (PDT)
-Date:   Thu, 27 Oct 2022 19:00:25 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Camel Guo <camel.guo@axis.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+EByezWssNJpDNY0y+L8q4F549C1PMWF7aqVJonq+z0=;
+        b=k88inDW5PPt27gctRCq0XNmhmsKbqgDSiqRYSz8o/0TLUa4OVo3NkSmcftgfGmL/mz
+         oUtIhxJMmbn9VBpVYImLezEBQBaS4cQHAFZr0AKZr1lKoJcxIn6Vlo0b1zJ2Kq88VgnS
+         j1e/w993eMXMZW1WZNFITvDemenPxHKZaXj55eQX6vFlVmmzrGdSrAlAkExxwkn5ZnbY
+         9MM+saXhN86PPtibzl5wo4aWPGO1TZ96JiwmWMUNOKLTD34Ym+Dk6JZDF1EEwLeWuU6o
+         EvvsSUNuoQzFNDB+RW99+rZ+q41Fsnuk9ge1v8eAlYd+3tDMDZM67Vn21sAPVvDlLi8s
+         2xQQ==
+X-Gm-Message-State: ACrzQf2wc5CzwW/3uL+2KKfxaWmNBO9nM4AVSNVc7qXXPCJKkVdQiHff
+        yo3+pysdYSKdyTQHyg0EbOx0Og==
+X-Google-Smtp-Source: AMsMyM5KQ32g/c5YieGNUnfeAUqqnYFAbo62RxNtSDi/P5hmklPmYdfcPmNYo17iNk7me6skE3c8Ow==
+X-Received: by 2002:a05:6214:dac:b0:4bb:5901:38b1 with SMTP id h12-20020a0562140dac00b004bb590138b1mr26687385qvh.18.1666886888990;
+        Thu, 27 Oct 2022 09:08:08 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id g19-20020a05620a40d300b006eeb3165565sm1214137qko.80.2022.10.27.09.08.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 09:08:08 -0700 (PDT)
+Message-ID: <b2844341-d334-27e6-bceb-94914e42131c@linaro.org>
+Date:   Thu, 27 Oct 2022 12:08:06 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [RFC net-next 1/2] dt-bindings: net: dsa: add bindings for GSW
+ Series switches
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Camel Guo <camelg@axis.com>, Camel Guo <Camel.Guo@axis.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -61,278 +68,64 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Russell King <linux@armlinux.org.uk>,
         Vivien Didelot <vivien.didelot@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        kernel@axis.com
-Subject: Re: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX
- switch
-Message-ID: <20221027160025.hjymnt3tzhoyv6ep@skbuf>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, kernel <kernel@axis.com>
 References: <20221025135243.4038706-1-camel.guo@axis.com>
- <20221025135243.4038706-1-camel.guo@axis.com>
- <20221025135243.4038706-3-camel.guo@axis.com>
- <20221025135243.4038706-3-camel.guo@axis.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221025135243.4038706-3-camel.guo@axis.com>
- <20221025135243.4038706-3-camel.guo@axis.com>
+ <20221025135243.4038706-2-camel.guo@axis.com>
+ <16aac887-232a-7141-cc65-eab19c532592@linaro.org>
+ <d0179725-0730-5826-caa4-228469d3bad4@axis.com>
+ <a7f75d47-30e7-d076-a9fd-baa57688bbf7@linaro.org>
+ <20221027135719.pt7rz6dnjvcuqcxv@skbuf>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027135719.pt7rz6dnjvcuqcxv@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Camel,
+On 27/10/2022 09:57, Vladimir Oltean wrote:
+> Hi Camel,
+> 
+> On Thu, Oct 27, 2022 at 08:46:27AM -0400, Krzysztof Kozlowski wrote:
+>>>  >> +      - enum:
+>>>  >> +          - mxl,gsw145-mdio
+>>>  >
+>>>  > Why "mdio" suffix?
+>>>
+>>> Inspired by others dsa chips.
+>>> lan9303.txt:  - "smsc,lan9303-mdio" for mdio managed mode
+>>> lantiq-gswip.txt:- compatible   : "lantiq,xrx200-mdio" for the MDIO bus
+>>> inside the GSWIP
+>>> nxp,sja1105.yaml:                  - nxp,sja1110-base-t1-mdio
+>>
+>> As I replied to Andrew, this is discouraged.
+> 
+> Let's compare apples to apples, shall we?
+> "nxp,sja1110-base-t1-mdio" is the 100Base-T1 MDIO controller of the
+> NXP SJA1110 switch, hence the name. It is not a SJA1110 switch connected
+> over MDIO.
 
-I took a very superficial look. I'm only interested in the API
-perspective for now. Some comments.
+Thanks for clarifying. Then this could be fine. Let me then explain what
+is discouraged:
+1. Adding bus suffixes to the compatible, so for example foo,bar LED
+controller is on I2C bus, so you call it "foo,bar-i2c".
 
-On Tue, Oct 25, 2022 at 03:52:41PM +0200, Camel Guo wrote:
-> +static int gsw1xx_port_enable(struct dsa_switch *ds, int port,
-> +			      struct phy_device *phydev)
-> +{
-> +	struct gsw1xx_priv *priv = ds->priv;
-> +
-> +	if (!dsa_is_user_port(ds, port))
-> +		return 0;
-> +
-> +	/* RMON Counter Enable for port */
-> +	gsw1xx_switch_w(priv, GSW1XX_IP_BM_PCFG_CNTEN,
-> +			GSW1XX_IP_BM_PCFGp(port));
-> +
-> +	/* enable port fetch/store dma */
-> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_FDMA_PCTRL_EN,
-> +			   GSW1XX_IP_FDMA_PCTRLp(port));
-> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_SDMA_PCTRL_EN,
-> +			   GSW1XX_IP_SDMA_PCTRLp(port));
-> +
-> +	if (!dsa_is_cpu_port(ds, port)) {
-> +		u32 mdio_phy = 0;
-> +
-> +		if (phydev)
-> +			mdio_phy =
-> +				phydev->mdio.addr & GSW1XX_MDIO_PHY_ADDR_MASK;
-> +
-> +		gsw1xx_mdio_mask(priv, GSW1XX_MDIO_PHY_ADDR_MASK, mdio_phy,
-> +				 GSW1XX_MDIO_PHYp(port));
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void gsw1xx_port_disable(struct dsa_switch *ds, int port)
-> +{
-> +	struct gsw1xx_priv *priv = ds->priv;
-> +
-> +	if (!dsa_is_user_port(ds, port))
-> +		return;
-> +
-> +	gsw1xx_switch_mask(priv, GSW1XX_IP_FDMA_PCTRL_EN, 0,
-> +			   GSW1XX_IP_FDMA_PCTRLp(port));
-> +	gsw1xx_switch_mask(priv, GSW1XX_IP_SDMA_PCTRL_EN, 0,
-> +			   GSW1XX_IP_SDMA_PCTRLp(port));
-> +}
-> +
-> +static int gsw1xx_setup(struct dsa_switch *ds)
-> +{
-> +	struct gsw1xx_priv *priv = ds->priv;
-> +	unsigned int cpu_port = priv->hw_info->cpu_port;
-> +	int i;
-> +	int err;
-> +
-> +	gsw1xx_switch_w(priv, GSW1XX_IP_SWRES_R0, GSW1XX_IP_SWRES);
-> +	usleep_range(5000, 10000);
-> +	gsw1xx_switch_w(priv, 0, GSW1XX_IP_SWRES);
-> +
-> +	/* disable port fetch/store dma on all ports */
-> +	for (i = 0; i < priv->hw_info->max_ports; i++)
-> +		gsw1xx_port_disable(ds, i);
-> +
-> +	/* enable Switch */
-> +	gsw1xx_mdio_mask(priv, 0, GSW1XX_MDIO_GLOB_ENABLE, GSW1XX_MDIO_GLOB);
-> +
-> +	gsw1xx_switch_w(priv, 0x7F, GSW1XX_IP_PCE_PMAP2);
-> +	gsw1xx_switch_w(priv, 0x7F, GSW1XX_IP_PCE_PMAP3);
-> +
-> +	/* Deactivate MDIO PHY auto polling since it affects mmd read/write.
-> +	 */
-> +	gsw1xx_mdio_w(priv, 0x0, GSW1XX_MDIO_MDC_CFG0);
-> +
-> +	gsw1xx_switch_mask(priv, 1, GSW1XX_IP_MAC_CTRL_2_MLEN,
-> +			   GSW1XX_IP_MAC_CTRL_2p(cpu_port));
-> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_BM_QUEUE_GCTRL_GL_MOD,
-> +			   GSW1XX_IP_BM_QUEUE_GCTRL);
-> +
-> +	/* Flush MAC Table */
-> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_PCE_GCTRL_0_MTFL,
-> +			   GSW1XX_IP_PCE_GCTRL_0);
-> +	err = gsw1xx_switch_r_timeout(priv, GSW1XX_IP_PCE_GCTRL_0,
-> +				      GSW1XX_IP_PCE_GCTRL_0_MTFL);
-> +	if (err) {
-> +		dev_err(priv->dev, "MAC flushing didn't finish\n");
-> +		return err;
-> +	}
-> +
-> +	gsw1xx_port_enable(ds, cpu_port, NULL);
+2. Adding device types to the compatible, if this is the only
+function/variant of the device, so for example calling foo,bar LED
+controller "foo,bar-led". This makes sense in case of multi functional
+devices (PMICs, SoCs), but not standalone ones.
 
-DSA automatically calls this on the CPU port. You have this code which
-ignores the call:
+So what do we have here? Is it one of the cases above?
 
-	if (!dsa_is_user_port(ds, port)) // which the CPU port isn't
-		return 0;
+Best regards,
+Krzysztof
 
-so why do it?!
-
-> +
-> +	return 0;
-> +}
-> +
-> +static enum dsa_tag_protocol gsw1xx_get_tag_protocol(struct dsa_switch *ds,
-> +						     int port,
-> +						     enum dsa_tag_protocol mp)
-> +{
-> +	return DSA_TAG_PROTO_NONE;
-
-Nope, this won't fly for new drivers, please write a protocol driver for
-your switch, or use something based on tag_8021q.c if the switch doesn't
-support something natively.
-
-> +}
-> +
-> +static void gsw1xx_port_stp_state_set(struct dsa_switch *ds, int port, u8 state)
-> +{
-> +	struct gsw1xx_priv *priv = ds->priv;
-> +	u32 stp_state;
-> +
-> +	switch (state) {
-> +	case BR_STATE_DISABLED:
-> +		gsw1xx_switch_mask(priv, GSW1XX_IP_SDMA_PCTRL_EN, 0,
-> +				   GSW1XX_IP_SDMA_PCTRLp(port));
-> +		return;
-> +	case BR_STATE_BLOCKING:
-> +	case BR_STATE_LISTENING:
-> +		stp_state = GSW1XX_IP_PCE_PCTRL_0_PSTATE_LISTEN;
-> +		break;
-> +	case BR_STATE_LEARNING:
-> +		stp_state = GSW1XX_IP_PCE_PCTRL_0_PSTATE_LEARNING;
-> +		break;
-> +	case BR_STATE_FORWARDING:
-> +		stp_state = GSW1XX_IP_PCE_PCTRL_0_PSTATE_FORWARDING;
-> +		break;
-> +	default:
-> +		dev_err(priv->dev, "invalid STP state: %d\n", state);
-> +		return;
-> +	}
-> +
-> +	gsw1xx_switch_mask(priv, 0, GSW1XX_IP_SDMA_PCTRL_EN,
-> +			   GSW1XX_IP_SDMA_PCTRLp(port));
-> +	gsw1xx_switch_mask(priv, GSW1XX_IP_PCE_PCTRL_0_PSTATE_MASK, stp_state,
-> +			   GSW1XX_IP_PCE_PCTRL_0p(port));
-> +}
-> +
-> +static const struct dsa_switch_ops gsw1xx_switch_ops = {
-> +	.get_tag_protocol	= gsw1xx_get_tag_protocol,
-> +	.setup			= gsw1xx_setup,
-> +	.set_mac_eee		= gsw1xx_set_mac_eee,
-> +	.get_mac_eee		= gsw1xx_get_mac_eee,
-> +	.port_enable		= gsw1xx_port_enable,
-> +	.port_disable		= gsw1xx_port_disable,
-> +	.port_stp_state_set	= gsw1xx_port_stp_state_set,
-
-No need to implement .port_stp_state_set() if .port_bridge_join() is
-absent. First get the support for standalone port mode right (hint, need
-to disable address learning and forwarding between ports for standalone mode).
-
-Look inside tools/testing/selftests/drivers/net/dsa/, a bunch of tests
-should pass even with software forwarding. First make sure that switch
-ports can ping each other through a cable in loopback. Then there's
-no_forwarding.sh, a must have. I think bridge_vlan_aware.sh and
-bridge_vlan_unaware.sh should also pass.
-
-As far as local_termination.sh, that also tests for some optional
-optimizations. You can run it, and the goal should be to get "OK" for
-all tests. "FAIL" is also ok, if the reason is "reception succeeded,
-but should have failed". What is not ok is "FAIL" with the reason
-"reception failed". Something like this would be ok:
-
-    TEST: br0: Unicast IPv4 to primary MAC address                      [ OK ]
-    TEST: br0: Unicast IPv4 to macvlan MAC address                      [ OK ]
-    TEST: br0: Unicast IPv4 to unknown MAC address                      [FAIL]
-            reception succeeded, but should have failed
-    TEST: br0: Unicast IPv4 to unknown MAC address, promisc             [ OK ]
-    TEST: br0: Unicast IPv4 to unknown MAC address, allmulti            [FAIL]
-            reception succeeded, but should have failed
-    TEST: br0: Multicast IPv4 to joined group                           [ OK ]
-    TEST: br0: Multicast IPv4 to unknown group                          [FAIL]
-            reception succeeded, but should have failed
-    TEST: br0: Multicast IPv4 to unknown group, promisc                 [ OK ]
-    TEST: br0: Multicast IPv4 to unknown group, allmulti                [ OK ]
-    TEST: br0: Multicast IPv6 to joined group                           [ OK ]
-    TEST: br0: Multicast IPv6 to unknown group                          [FAIL]
-            reception succeeded, but should have failed
-    TEST: br0: Multicast IPv6 to unknown group, promisc                 [ OK ]
-    TEST: br0: Multicast IPv6 to unknown group, allmulti                [ OK ]
-
-The selftest results for unoffloaded mode will stand as a future guide
-for regression testing when you add later support for offloading various
-features. So please try to spend some time running them now, ask
-questions if needed.
-
-> +	.phylink_mac_link_down	= gsw1xx_phylink_mac_link_down,
-> +	.phylink_mac_link_up	= gsw1xx_phylink_mac_link_up,
-> +	.get_strings		= gsw1xx_get_strings,
-> +	.get_ethtool_stats	= gsw1xx_get_ethtool_stats,
-> +	.get_sset_count		= gsw1xx_get_sset_count,
-
-New DSA drivers should first add support for:
-
-	.get_stats64
-	.get_pause_stats
-	.get_rmon_stats
-	.get_eth_ctrl_stats
-	.get_eth_mac_stats
-	.get_eth_phy_stats
-
-Only if there remains something uncovered do we start talking about
-unstructured stats.
-
-> +};
-> +
-> +void gsw1xx_remove(struct gsw1xx_priv *priv)
-> +{
-> +	if (!priv)
-> +		return;
-> +
-> +	/* disable the switch */
-> +	gsw1xx_mdio_mask(priv, GSW1XX_MDIO_GLOB_ENABLE, 0, GSW1XX_MDIO_GLOB);
-> +
-> +	dsa_unregister_switch(priv->ds);
-> +
-> +	if (priv->ds->slave_mii_bus) {
-> +		mdiobus_unregister(priv->ds->slave_mii_bus);
-> +		of_node_put(priv->ds->slave_mii_bus->dev.of_node);
-> +		mdiobus_free(priv->ds->slave_mii_bus);
-> +	}
-> +
-> +	dev_set_drvdata(priv->dev, NULL);
-
-dev_set_drvdata() is no longer required from remove().
-Please keep it in shutdown() though.
-
-> +}
-> +EXPORT_SYMBOL(gsw1xx_remove);
-> +static const struct regmap_range gsw1xx_valid_regs[] = {
-> +	/* GSWIP Core Registers */
-> +	regmap_reg_range(GSW1XX_IP_BASE_ADDR,
-> +			 GSW1XX_IP_BASE_ADDR + GSW1XX_IP_REG_LEN),
-> +	/* Top Level PDI Registers, MDIO Master Reigsters */
-
-s/Reigsters/Registers/
-
-> +	regmap_reg_range(GSW1XX_MDIO_BASE_ADDR,
-> +			 GSW1XX_MDIO_BASE_ADDR + GSW1XX_MDIO_REG_LEN),
-> +};
