@@ -2,110 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A1960F8C8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4305360F8E2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235321AbiJ0NOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 09:14:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
+        id S236090AbiJ0NSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 09:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbiJ0NOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:14:22 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6A664AD5E;
-        Thu, 27 Oct 2022 06:14:21 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id b25so808191qkk.7;
-        Thu, 27 Oct 2022 06:14:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/7yrQv4nD+SX3WfQBwYkM1Zs5RwSPJZfuMM6N6ixuFk=;
-        b=CPqkRzERv8rhDp6QHqjK2t9YY7O9UQaoyO3VeQbxYCBdjQQRiGTpg9hgmHSL28B+JK
-         erTbzBivVpaJu1CZSRWIhD/yB4pHyhi8N4Ikfv/KeWSia/WhsWV2gXH6Kl7z88Ymzga7
-         GTQi9wkinZdx2ot8vt2yqAr7q7+fY+FmMsaq7/Ys1kVqYjlik3sB1JwKT+CXLcDFf/mf
-         NZVAeZfi80bbGqtRm5NQQFIB23Z/0ISg7L8opYDsAQUp5hqPrg3GXM7gizXDYZk19d7S
-         f+EPpPbqYj3HOVLbwkH7DhMJuEEQ2ZXEDuI5FA2Eb3utb8RltEuCbhGc7o/nQUFKBEuK
-         60Ow==
-X-Gm-Message-State: ACrzQf37p7nAzYD5ELk44/JYhRDE5GndAZM2DbWsN/3J0IqrN6hn7kDL
-        M2CdebUJjF7F7gJg33VcApTZVQpo1uHkvg==
-X-Google-Smtp-Source: AMsMyM6tKZwvLfc7CIH+UhU5iN73K7pVTQeoGJPI6/bjtyPkxPsCwiUiqF/buwMkhV3CY7eY2221IQ==
-X-Received: by 2002:a05:620a:2456:b0:6ee:e24f:74f7 with SMTP id h22-20020a05620a245600b006eee24f74f7mr34604285qkn.9.1666876460759;
-        Thu, 27 Oct 2022 06:14:20 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id h17-20020ac87451000000b00398313f286dsm860827qtr.40.2022.10.27.06.14.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 06:14:19 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id i127so1878502ybc.11;
-        Thu, 27 Oct 2022 06:14:19 -0700 (PDT)
-X-Received: by 2002:a5b:52:0:b0:6cb:7584:1b20 with SMTP id e18-20020a5b0052000000b006cb75841b20mr11996441ybp.380.1666876458981;
- Thu, 27 Oct 2022 06:14:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221026130658.45601-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221026130658.45601-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 27 Oct 2022 15:14:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXMvkboWKmNMmb53MjEtmeDgLoeDVOhJ8_Jxrm4M-grgw@mail.gmail.com>
-Message-ID: <CAMuHMdXMvkboWKmNMmb53MjEtmeDgLoeDVOhJ8_Jxrm4M-grgw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/9] arm64: dts: renesas: aistarvision-mipi-adapter-2.1:
- Drop clock-names property
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S236069AbiJ0NSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:18:38 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7188E9B7;
+        Thu, 27 Oct 2022 06:18:32 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 5619FC000C;
+        Thu, 27 Oct 2022 13:18:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666876710;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=uqF5CDn38yx/3Kjsiob6zhNia5VejsygoU+CPgjinFI=;
+        b=cJB3cGS02+Hu+GcXYQ4LKwvNNiuEon/LwyvVz7WhKFkBGOV2vkQIRi5IEw9Yjl2HlhvI0Z
+        dyXW3IkwQezIw9bkXBbrS8dPwC/9zW8G7dNAeFHf8a0PG4dhvqXw9yB1ihVQ3/szoKtwxG
+        48tWs+QUk0I2FeySavoqxJC0PX8oGc/PgjADbgbXijYVoB4cA3yEmGWyMvmOsXFSn8MA5n
+        Mg5IZvqIp5ab4RapF0UsQ4VImW/Hm6ppjLqtFKKBtrcUYlrM+ochPl9cAXyHiWdaNsxKiA
+        SazdG7BORiSbCUavr5D/i+dKHCKLtnR8JJj/e3Hir2ZEZ+bmXNFkfm2KtYn8fQ==
+Date:   Thu, 27 Oct 2022 15:18:25 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Elad Nachman <enachman@marvell.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML
+ DT scheme
+Message-ID: <20221027151825.166a9255@xps-13>
+In-Reply-To: <10581088-e4ff-76db-3c9b-42a7a9c118ee@linaro.org>
+References: <20221026134545.7146-1-vadym.kochan@plvision.eu>
+        <20221026134545.7146-2-vadym.kochan@plvision.eu>
+        <33f04b06-dc00-b7ce-6a24-2282608b40dc@linaro.org>
+        <VI1P190MB0317C739E2D39427CD2A771D95309@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
+        <10581088-e4ff-76db-3c9b-42a7a9c118ee@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 3:07 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Now that the driver has been updated to drop fetching the clk reference by
-> name we no longer need the clock-names property in the ov5645 sensor node.
->
-> This is in preparation for removal for clock-names property from the DT
-> binding.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v3
-> * New patch
+Hi Vadym,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >>> +patternProperties:
+> >>> +  "^nand@[0-3]$":
+> >>> +    type: object
+> >>> +    properties:
+> >>> +      reg:
+> >>> +        minimum: 0
+> >>> +        maximum: 3
+> >>> +
+> >>> +      nand-rb:
+> >>> +        minimum: 0
+> >>> +        maximum: 1
+> >>> +
+> >>> +      nand-ecc-strength:
+> >>> +        enum: [1, 4, 8]
+> >>> +
+> >>> +      nand-on-flash-bbt: true
+> >>> +
+> >>> +      nand-ecc-mode: true
+> >>> +
+> >>> +      nand-ecc-algo:
+> >>> +        description: |
+> >>> +          This property is essentially useful when not using hardwar=
+e ECC.
+> >>> +          Howerver, it may be added when using hardware ECC for clar=
+ification
+> >>> +          but will be ignored by the driver because ECC mode is chos=
+en depending
+> >>> +          on the page size and the strength required by the NAND chi=
+p.
+> >>> +          This value may be overwritten with nand-ecc-strength prope=
+rty.
+> >>> +
+> >>> +      nand-ecc-step-size:
+> >>> +        description: |
+> >>> +          Marvell's NAND flash controller does use fixed strength
+> >>> +          (1-bit for Hamming, 16-bit for BCH), so the actual step si=
+ze
+> >>> +          will shrink or grow in order to fit the required strength.
+> >>> +          Step sizes are not completely random for all and follow ce=
+rtain
+> >>> +          patterns described in AN-379, "Marvell SoC NFC ECC".
+> >>> +
+> >>> +      label:
+> >>> +        $ref: /schemas/types.yaml#/definitions/string
+> >>> +
+> >>> +      partitions:
+> >>> +        type: object =20
+> >>
+> >> That's not what I asked for. Like four times I asked you to add here
+> >> unevaluatedProperties: false and I never said that ref to partition.ya=
+ml
+> >> should be removed and you... instead remove that ref.
+> >>
+> >> You need to define here children and specify their ref.
+> >>
+> >> You must use unevaluatedProperties: false here. So this is fifth time I
+> >> am writing this feedback.
+> >>
+> >> =20
+> >=20
+> > It is a bit confusing that it is needed to define "partitions" and "lab=
+el" rules particulary
+> > in this nand controller instead of some common place like nand-chip.yam=
+l, these properties
+> > are common also for the other nand controllers. =20
+>=20
+> No one speaks about label, I never commented about label, I think...
+>=20
+> If you think the property is really generic and every NAND controller
+> bindings implement it, then feel free to include them there, in a
+> separate patch. It sounds sensible, but I did not check other bindings.
 
-Gr{oetje,eeting}s,
+FYI, label is already defined in mtd/mtd.yaml.
 
-                        Geert
+Partitions do not need to be defined in your binding, just don't put
+any in your example and you'll be fine. These partitions are either
+static and may be described in the DT (see
+mtd/partition/partition.yaml) or there is some dynamic discovery
+involved and a proper parser shall be referenced (parsers have their
+own binding).
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Cheers,
+Miqu=C3=A8l
