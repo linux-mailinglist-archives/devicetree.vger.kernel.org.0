@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4F160FBD6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EE7D60FBD9
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234884AbiJ0PYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 11:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
+        id S233598AbiJ0PZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 11:25:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235292AbiJ0PYt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:24:49 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44D9D1E3F8
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:24:46 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id o8so1590275qvw.5
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:24:46 -0700 (PDT)
+        with ESMTP id S234974AbiJ0PZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:25:51 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F68537E9
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:25:45 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id i12so1607097qvs.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Iv4yihl8R3+MqrWIVJu+D8Wg49pHiLfK8EszmRHeyo=;
-        b=rYo/ycT7Egnx1TQLXOyxX1Hk+6kivX/M0VmYU7ymYjx15dxxEHKP9apakp39s3bKpA
-         M85Mh72GwaMpK4/LaUfsLUOycolZ5nErtUMduT3H5eQ1TRGDwgRry887xbEEBDhzTxGf
-         tPy4ytGIU0a4kZQ3SY/hgzL5pMk8A3dSWNHQLMqqpI25agMwN+RBMuZzYVWXql2J5xqR
-         B2c8o7UWHhwbcvOzM+tMjga4KUrv0sk+7GVmQXovJ7RtMWynySnyYNry2B+ugQI8pn9H
-         oZ6r872cBnWHyG2au7Q5XDOJgaOIAn3DXkgxA6bIlzU2twmlZKTsUqVbVlVp6sbdnGVX
-         FnTg==
+        bh=zOO+F95U9O4jk/n65hYZseHyMe71X6liRCwk6TGsdSk=;
+        b=V/wCu44bsoPCylEk+SGnhNZdWPaiUGmmHtNEouJbCab3WAO33aOTmvlhKsNjxxeEz4
+         Yn9ORCdjtyxGEOxD5TO+5UNQE18MNN4ayd0ccl2I3RCfeLQINlKxBRuIVn1miSJWhu1s
+         b9TmzfUQ0A9szxHYd5ZSfaeaHSZBd+o+gUL2FyG2kKWWo0QSUiRJMK8TPI7GFIbIYcTL
+         voVfzsOw67O6ssYLmkpxwUPjXwd0/5tLisUxd3Rd0oALQZHOoZpXYpRlHZI1TRkj6k6h
+         6cWm7jjpe3tCCjJ1RMKGDKmxNMgMDs3xzdvGNvCqFkzP1SBI5m8N2QyaRDAAH50Z+8Ic
+         0Zxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Iv4yihl8R3+MqrWIVJu+D8Wg49pHiLfK8EszmRHeyo=;
-        b=HKUIxLZYoPFUOvAR5BUyKA49Wve79EFJIVPiERpXivbrraeF1UpAlydpOS9R8+WifT
-         meIvdJu+TDcPcsTUHw1PQD07EvPiRLkIn8AAIdbvCn+XO1SRXGFVsppFP1BZG79QZowL
-         Ds2tURouxenDrIa8tDve1c9wv0PfZbrNwn4qnsRnWeebe09nzd88+wC4v46qp6Umxd//
-         /35bqum/YLND4RJulSwWVOSU4kap9Zn+eG93w8bYo4QhxA2HSolMdafPRt82QB5RfPSI
-         9WEdgDqCrWZlLlb+k2HqIGtxq30vtoeW08C8aerOsd+yCwYP0tbo6slG8x42/P76RjHy
-         6b/g==
-X-Gm-Message-State: ACrzQf3spjWW6lQ06SGMswlj7+Hv4k9h/k7q6z4Eig+91iYQm5TxssB6
-        O0/w3QdfS6D5oLSXBYvPYuwF/g==
-X-Google-Smtp-Source: AMsMyM5PcfyOaaWBzPJbnCh6VCwZ0bHo7Q37fM6oG5KBT7P6CcCtGK+/dpog6JFwhJjRtLq9AH3how==
-X-Received: by 2002:a05:6214:ac7:b0:4bb:6236:e190 with SMTP id g7-20020a0562140ac700b004bb6236e190mr22366552qvi.87.1666884285577;
-        Thu, 27 Oct 2022 08:24:45 -0700 (PDT)
+        bh=zOO+F95U9O4jk/n65hYZseHyMe71X6liRCwk6TGsdSk=;
+        b=12iiJj5yGL99AhJouhQh4YRuNhNgy/oiYY6/+2Kdzj6lGTT/7RtDTpgHz94nt9F/H+
+         LIHpl4nlN1MODoFwVX6fH6H3jXkgNVqJMNJF/y4ZQcvsVm3RApxfwU9kYoC66lb7yL6G
+         sxG+mYpEbri/736BamxGpsIxNKv9iDTGlcwpH66SUAkDF1qK2+K1Wb2tsyIFbzfS2zPF
+         rBCsDy9OSZGPAa+1mlkVKbYUrv8O2ryj2T7XuK0/WXlG745A3KnL7oNPYSpVDIbsEA39
+         xzaeS4bQQR978pwXYvyO9OLvbeTTBHpjshM4iphHNYtBkYZU21WJh6pW8ehDBG5acx1H
+         C0HA==
+X-Gm-Message-State: ACrzQf25eaX3857lyYGWboUiGv/MBGNlMWp06DGHr5imJ18G86mHsZ0J
+        fG5amt/hB9iXJe7FLlHHr1aP4g==
+X-Google-Smtp-Source: AMsMyM4MfDxgroQTsa8xDUFc/TeISESdJgNK6yixrrxj4TWJ4BgeBTO6V8QG/SAS2ggAd0lAqR3mHg==
+X-Received: by 2002:a05:6214:194a:b0:4b8:d7dc:292a with SMTP id q10-20020a056214194a00b004b8d7dc292amr31523057qvk.54.1666884344498;
+        Thu, 27 Oct 2022 08:25:44 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id j3-20020a05620a410300b006eef13ef4c8sm1143237qko.94.2022.10.27.08.24.44
+        by smtp.gmail.com with ESMTPSA id l13-20020a37f90d000000b006ea7f9d8644sm1150571qkj.96.2022.10.27.08.25.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 08:24:45 -0700 (PDT)
-Message-ID: <e607fe3a-b243-fbd4-51a3-d10738d456c4@linaro.org>
-Date:   Thu, 27 Oct 2022 11:24:43 -0400
+        Thu, 27 Oct 2022 08:25:43 -0700 (PDT)
+Message-ID: <23e8a609-345f-a8ce-b0cb-2926fd86a315@linaro.org>
+Date:   Thu, 27 Oct 2022 11:25:42 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: firmware: scm: Add QDU1000/QRU1000
- compatibles
+Subject: Re: [PATCH v3 2/5] dt-bindings: power: rpmpd: Add QDU1000/QRU1000 to
+ rpmpd binding
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -67,15 +67,14 @@ Cc:     Robert Marko <robimarko@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221026190549.4005703-1-quic_molvera@quicinc.com>
- <20221026190549.4005703-2-quic_molvera@quicinc.com>
+ <20221026190549.4005703-3-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026190549.4005703-2-quic_molvera@quicinc.com>
+In-Reply-To: <20221026190549.4005703-3-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,52 +82,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/10/2022 15:05, Melody Olvera wrote:
-> Add compatibles for scm driver for QDU1000 and QRU1000 platforms.
+> Add compatible and constants for the power domains exposed by the RPMH
+> in the Qualcomm QDU1000 and QRU1000 platforms.
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
->  .../devicetree/bindings/firmware/qcom,scm.yaml    | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index be1b5746eddb..5352181aa393 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -38,6 +38,7 @@ properties:
->            - qcom,scm-msm8994
->            - qcom,scm-msm8996
->            - qcom,scm-msm8998
-> +          - qcom,scm-qdu1000
->            - qcom,scm-sc7180
->            - qcom,scm-sc7280
->            - qcom,scm-sc8280xp
-> @@ -81,6 +82,20 @@ properties:
->      description: TCSR hardware block
->  
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,scm-qdu1000
-> +    then:
-> +      properties:
-> +        '#reset-cells':
-> +          maxItems: 1
 
-This is wrong... how can you have here more items?
+Looks good, but you did not Cc maintainers and  they must see this patch.
 
-> +        clocks: false
-> +        clock-names: false
-> +
-> +      required:
-> +        - '#reset-cells'
+Who do you think will review and pick up this patch?
 
-Missing blank line.
-
->    - if:
->        properties:
->          compatible:
 
 Best regards,
 Krzysztof
