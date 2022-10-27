@@ -2,153 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D928660F978
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD4960F985
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236291AbiJ0Nmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 09:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58598 "EHLO
+        id S236284AbiJ0Nox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 09:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236290AbiJ0Nmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:42:49 -0400
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E9D182C4B;
-        Thu, 27 Oct 2022 06:42:43 -0700 (PDT)
-Received: by mail-oo1-xc35.google.com with SMTP id v7-20020a4aa507000000b00496e843fdfeso108112ook.7;
-        Thu, 27 Oct 2022 06:42:43 -0700 (PDT)
+        with ESMTP id S235729AbiJ0Nor (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:44:47 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C05F175B6
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 06:44:44 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id bb5so1089134qtb.11
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 06:44:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=z6W8iPhtqNf0mlij4m5bW+fazzgVgRRAtBqf6PWEhmg=;
-        b=T4OyztRjkpORsyc3m5+KYfpXaAJEx7dS55/YZXVf9GhcGyFP+YGJnNpI5/yS/Bj7Vx
-         +82dq+DUeQ1JPamgSMrUVUxIk4c5nON0uo7en8POpZqjmy6v1GqqZ0QxyZo/y9yHugwX
-         vqUp71h7Wg17x1YzoKhJOHch8CQ83+GJWdKqS6adEVhEROvj2WHe6J7OYhmdy7tK3mEi
-         NPiQsQET/BMbEqWSCSDQzvbrexnvv0b2CPvaZ2ORf2lxUJXt+XTaNdAZBMBwUsy4LfiX
-         fH4hSPrZxjfMnrc0Y9rShmeyY+n5/vTznqZ+vR5bo0z5tCYOLefgr9efIdZUUp9NxSo9
-         k/NA==
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JKn/+G/EIfphW6J6w40w7kIidY+JmH4foL41VvXvhK0=;
+        b=tnCH2v5+9qm1A/Cge35QGKmFbHAPyktM8IUJtXzPD3Ih9NPf9gVw2VtvlhEY5cSvYj
+         FvrZzJyknTReO0yM4nZdOCLvdl1urCFYxFHwurKdfMzt/u897Yp/T1YzmfbNhOudVMzp
+         EWIk0Yp+KguTlbjxA+i7xzLXIkC0VA2ErCOgb5SQVjQxNxiwp2kK0EWQSH2gISqBVhPX
+         Pqpy3Qt2Ff9frcmuZu19q03y2Esoi9CZHlPmIOuDGWRw11OWGxqc/MBltOnIE1nJ5QGW
+         mg/Y4q1vTpzvW90r0FdOblFxiUVqtDYK8TAsnjUpy/uUkJR/H9a2MLSCA1C+fiy77MAP
+         c96A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z6W8iPhtqNf0mlij4m5bW+fazzgVgRRAtBqf6PWEhmg=;
-        b=6Yq2zoPD3Icjs0zbPBAJFV1otHE4YZY0pZNxc4Bjs3npRyucmBix0LAPbtMKxkHwqN
-         jwylHKnheD9xBcHnFMxB2hhZVNUztRN5boHvjI+wk2Wsm2DIJ4zZ10uiL46VHKvbAdoI
-         3/2tiWSDmqzNUhjwqQodjVgZosfFDhfLCIxWopA5mhVKKwcc/Z7RD85tKru4WA2R6pbG
-         Q1WDCjUU8SBWwPBDubun2vHdGuLUg/vpYiftisocYZTP8oljANml/i5osev57ubOfONx
-         vz6Kz0AIBo3Sr+nYLgRJcbc/5S3y0Gr9SFznJ9W+M6TPlEhOzBIrrAdVzrAhRrXUTkyT
-         OVvQ==
-X-Gm-Message-State: ACrzQf3ynD97Qu7DLMN3SSCFdKZaEWgjy0qSFdLiavLn0l7JIz+qQ8TS
-        uXVuWjZRpck1pYt0NgjOtXmzBDkq5l8=
-X-Google-Smtp-Source: AMsMyM6EsoWqLXxFY7D9adCQffkMzr6fGzXbjKo4AM7L8cWrbHc1r7MM6v3VW2G2whThY1OxFNquog==
-X-Received: by 2002:a4a:9c2:0:b0:481:134b:fb50 with SMTP id 185-20020a4a09c2000000b00481134bfb50mr12475812ooa.90.1666878162684;
-        Thu, 27 Oct 2022 06:42:42 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id cv17-20020a056870c69100b0010c727a3c79sm545230oab.26.2022.10.27.06.42.40
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JKn/+G/EIfphW6J6w40w7kIidY+JmH4foL41VvXvhK0=;
+        b=1DJLxCePKb1DnVVbTxQ5mZbARz9rkhk3vUBIBBIgVQvcZa7+xwA/5xVSfa+S7wW/HI
+         yGfs8QUdzQt2KFh0nBbyukWQ65mt9xs09Outr+c6quPBA7r+i/HEnSWVuDPMqJA57tcI
+         IXIfc3ubJRnrOFDXrEJbOWbdT2aGuBO6Ym+WTUyPkamFhHEEaXyK4oReiBBAABk4sjO3
+         LuIYvtP2x8TFF+ERez2eykUzLLLAtwySU7Yz4Kjax02U8zThzomc9FZe1qdniaWw1iKB
+         ZuQ1inDD32arAUoo1MI/QPX3DnyAJlbOQWGLXY0SDh3gTWEe5+Nngcux6MEA7EeCGLRd
+         tkEQ==
+X-Gm-Message-State: ACrzQf3g2nFeQ0XUVzUZID8nIOKTjYoUXlBo6ZPI4mEjLCObgIAk/126
+        duviy+5ZWGm/Kd9JSZJY8/Uo0aZxdgsRCA==
+X-Google-Smtp-Source: AMsMyM4ZGvH92zP1xpXJwpP7nqOtHt9bZ0w2io2q013LPhHPHRoQaGlJDTw0GRDEhVrcXVWMkJn/sA==
+X-Received: by 2002:a05:622a:620a:b0:35c:bf9e:8748 with SMTP id hj10-20020a05622a620a00b0035cbf9e8748mr41479832qtb.494.1666878283534;
+        Thu, 27 Oct 2022 06:44:43 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id br40-20020a05620a462800b006ec9f5e3396sm986099qkb.72.2022.10.27.06.44.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 06:42:42 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <e6035c60-29b7-a03e-29cd-77c37f5375e6@roeck-us.net>
-Date:   Thu, 27 Oct 2022 06:42:40 -0700
+        Thu, 27 Oct 2022 06:44:42 -0700 (PDT)
+Message-ID: <63679d37-8b9d-db52-0f73-5bfd031c353e@linaro.org>
+Date:   Thu, 27 Oct 2022 09:44:41 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [RESEND v3 1/3] dt-bindings: watchdog: Add compatible for
- MediaTek MT8188
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 6/6] ASoC: dt-bindings: wcd938x: fix codec reset line
+ polarity in example
 Content-Language: en-US
-To:     =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        =?UTF-8?B?UnVueWFuZyBDaGVuICjpmYjmtqbmtIsp?= 
-        <Runyang.Chen@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "nfraprado@collabora.com" <nfraprado@collabora.com>
-References: <20221026063327.20037-1-Runyang.Chen@mediatek.com>
- <20221026063327.20037-2-Runyang.Chen@mediatek.com>
- <20221026152645.GA2946818@roeck-us.net>
- <e889728c-13e9-37f8-4d1a-e31332a39498@collabora.com>
- <5abd63240a7890895a6de26a52fc24086f1c8ddb.camel@mediatek.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <5abd63240a7890895a6de26a52fc24086f1c8ddb.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221027074652.1044235-1-dmitry.torokhov@gmail.com>
+ <20221027074652.1044235-6-dmitry.torokhov@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027074652.1044235-6-dmitry.torokhov@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/27/22 01:56, Allen-KH Cheng (程冠勳) wrote:
-> On Thu, 2022-10-27 at 09:54 +0200, AngeloGioacchino Del Regno wrote:
->> Il 26/10/22 17:26, Guenter Roeck ha scritto:
->> > On Wed, Oct 26, 2022 at 02:33:25PM +0800, Runyang Chen wrote:
->> > > From: Runyang Chen <runyang.chen@mediatek.com>
->> > > 
->> > > Add dt-binding documentation of watchdog for MediaTek MT8188 Soc
->> > > 
->> > > Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
->> > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> > > Reviewed-by: AngeloGioacchino Del Regno <
->> > > angelogioacchino.delregno@collabora.com>
->> > 
->> > This conflicts with the ongoing yaml conversion of this file
->> > which is still not accepted.
->> > 
->> > 
-> https://urldefense.com/v3/__https://patchwork.kernel.org/project/linux-watchdog/patch/20221005113517.70628-4-angelogioacchino.delregno@collabora.com/__;!!CTRNKA9wMg0ARbw!zT39OehD4gnyDKPYwMbLdeyGI_oNOfvWa4HIrcooL3Ax8O7-N-BjXBZAolsCOuLb39fJ7Q$
->> >  
->> > 
->> > Nevertheless, I'll apply this series to my watchdog-next branch
->> > and assume that it will be included in the next version of the
->> > yaml conversion patch.
->> > 
->> > For my and Wim's reference:
->> > 
->> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->> > 
->> > Thanks,
->> > Guenter
->> > 
->> 
->> Adding Allen to the Cc's to make him aware of that, as he took over
->> the
->> mtk-wdt yaml conversion.
+On 27/10/2022 03:46, Dmitry Torokhov wrote:
+> The driver for the codec, when resetting the chip, first drives the line
+> low, and then high. This means that the line is active low. Change the
+> annotation in the example DTS accordingly.
 > 
-> Hi Guenter,
-> 
-> I can send the following version of yaml conversion[1] for conflicts
-> after you apply this series. Thanks.
-> 
-> [1]
-> 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20221007093437.12228-6-allen-kh.cheng@mediatek.com/
->
+> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> ---
 
-You did not copy the watchdog mailing list with this patch, causing it to get lost
-from my queue (even though I had a look at it). If there were other watchdog related
-patches in this version of the series, they got lost as well.
 
-Guenter
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
