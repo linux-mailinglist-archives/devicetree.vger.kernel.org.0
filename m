@@ -2,112 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C9560FA29
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:11:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 279A060FA55
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:24:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235786AbiJ0OLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 10:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43142 "EHLO
+        id S236339AbiJ0OYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 10:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235796AbiJ0OLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:11:22 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB00A18499D
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:11:19 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id i12so1378829qvs.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:11:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IEw4hNvQlJyxLY//kxdT/YXZEf32+Z0hEDG2ob9Hm+c=;
-        b=v+9xqj/t6FAcnJCGIOx36Yvj7jRwgybck6cPU5EvyVOVe//JRa1bw+mip9cojQJM7J
-         a6HMU058yYI+Jqlss6VKv+IZJQfktzPc5Vg2KpB0WT643ZNlHXftxYdEG/3wBXImon77
-         Ww/40lzlx49LtbPVUPhLnt9VpL6aMnaBASQe0kBleW8rbnB5zucU70Z5SbVthLanZbfs
-         WEspy7oKxkq+C8S56F5x+BiRVzsMIagJyuaKNDyjKFZT03y4ERp24uTFGprgonyjHlQZ
-         bsmuJ7cpF3pu6evRKzOA4Bl2wX2igUxpM1x3j0vifdQTSEgElYMrDSNC/bSQxZyMtmem
-         4p9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IEw4hNvQlJyxLY//kxdT/YXZEf32+Z0hEDG2ob9Hm+c=;
-        b=EheU96tC+P6eqMId49Q5zh9JzMtb0L6F5cCWQo6aOYk4Y54dPOi31nRhhe1atAnouH
-         ci438HIsm/8NKxb5H76uN+jW/wHtFsZKzVNVN46/fxriZYDPU1IslfzKuYPkGmyRSWEZ
-         cqOLxg095068uAmTSZDCaah0FOoeTPgRdv8WkC7YiAu8719InY1PlgeseDFXK2ZVtoQm
-         eJSIVebQkW0rDLxh1VR0lp1yg5flaaf6b+3lA5+7CmJZr2LqEpgRiL6SU5WmV0JPZDl9
-         X4K+7hvzcNbQ1UGgGYyz0lll4iTMOHXsCCWq/Zy3tvHYszFiktloXLInx75/kJXbOG76
-         C5oA==
-X-Gm-Message-State: ACrzQf2RhTfWqwiRwie+2s9t1RcfEPVSr1tAeACRnBMIMG6bJNuP6e+W
-        ZhaFyYAAoa+ZTUD2G+VR09yK+w==
-X-Google-Smtp-Source: AMsMyM72T02LHQeL5N8n098K7B3VL8oYiQPy7kp82Xn5EPH5OlbKrrnZKU9WZaEt2ljXTjTx4scwWA==
-X-Received: by 2002:a05:6214:da2:b0:4b1:8a49:b492 with SMTP id h2-20020a0562140da200b004b18a49b492mr40500174qvh.8.1666879879054;
-        Thu, 27 Oct 2022 07:11:19 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id bn14-20020a05622a1dce00b0039c37a7914csm913191qtb.23.2022.10.27.07.11.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 07:11:18 -0700 (PDT)
-Message-ID: <d15f9071-4935-1359-8c9c-a8eac6f0aac6@linaro.org>
-Date:   Thu, 27 Oct 2022 10:11:16 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 11/11] arm64: dts: qcom: sc8280xp-x13s: Add PM8280_{1/2}
- ADC_TM5 channels
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S236322AbiJ0OYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:24:06 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CFA17C560;
+        Thu, 27 Oct 2022 07:24:05 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 059F366028EA;
+        Thu, 27 Oct 2022 15:24:01 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666880644;
+        bh=u7zIRu/8QWohIQBCOgJ696m1CJ5uogOYxUrppj/SchU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l+EOaol1JPNqrtg4feZPQfX8BiKhX1f4VFn/rJ97bUuxFzXRYlt39rsyN6UwwpTT0
+         1uV/xQqO73f+O0I9e/yGqB5rIwhhs8dXXqC+4l4YIXkdy6QvS8bpMIE7cOO2AQooQB
+         Ei0LJe0d/Bj3js0z1QEXP819dxRZtGt3/plVqFYusHksepXbUnBj0i2XdBpWxrpOfm
+         VewvOZXVP3l84zq+M2HGCHT3FP48QnpDBwScyFUd6GvHUcGBy+rGHFG66kNKz1NGh9
+         Bdq/9mvkgqQI6JnogXphGntXp+cGo5psFJUxMl3HJXdkvrDkyFS4k673N5MXWY3ksA
+         yuJwgu/mSHR4A==
+Date:   Thu, 27 Oct 2022 10:23:57 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
+        Derek Fang <derek.fang@realtek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221027063006.9056-1-manivannan.sadhasivam@linaro.org>
- <20221027063006.9056-12-manivannan.sadhasivam@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221027063006.9056-12-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
+ MICVDD supplies
+Message-ID: <20221027142357.fefxa2cjthdza4yw@notapiano>
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com>
+ <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 02:30, Manivannan Sadhasivam wrote:
-> Add ADC_TM5 channels of PM8280_{1/2} for monitoring the temperatures from
-> external thermistors connected to AMUX pins. The temperture measurements
-
-temperature
-
-> are collected from the PMK8280's VADC channels that expose the
-> mesasurements from slave PMICs PM8280_{1/2}.
-
-measurements
-slave->secondary
-
-Other comments about node names stay as well, but it depends on the
-previous discussion.
-
+On Tue, Oct 25, 2022 at 12:06:23PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 25/10/22 00:00, Nícolas F. R. A. Prado ha scritto:
+> > The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+> > already used by sc7180-trogdor-kingoftown.dtsi, so document them in the
+> > binding.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > 
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
+> I also don't like these uppercase supply names... I wonder if it's worth changing
+> the driver to get "avdd" *or* "AVDD" (so, if "avdd" fails -> backwards compat)...
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index babf594384f2..fe6b75551ab9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -259,6 +259,74 @@ pmr735a-die-temp@403 {
->  	};
->  };
->  
-Best regards,
-Krzysztof
+> ...this way, we can change the devicetree to use the lowercase names without
+> breaking abi.
+> 
+> Of course, this commit would need to be changed to document only the lowercase
+> supply names.
+> 
+> Driver-wise, we have a rt5682s_supply_names array... we could do something like:
+> 
+> static const char *rt5682s_supply_names_legacy[RT5682S_NUM_SUPPLIES] = {
+> 	[RT5682S_SUPPLY_AVDD] = "AVDD",
+> 	[RT5682S_SUPPLY_MICVDD] = "MICVDD",
+> };
+> 
+> static const char *rt5682s_supply_names[RT5682S_NUM_SUPPLIES] = {
+> 	[RT5682S_SUPPLY_AVDD] = "avdd",
+> 	[RT5682S_SUPPLY_MICVDD] = "micvdd",
+> };
+> 
+> for (...) assign_supply_names;
+> ret = devm_regulator_bulk_get(...);
+> 
+> if (ret) {
+> 	for (...) assign_legacy_supply_names;
+> 	ret = devm_regulator_bulk_get(...)
+> 	if (ret)
+> 		return ret;
+> }
+> 
+> What do you think?
 
+No one seems opposed to it, so I'll add that to the next version.
+
+Thanks,
+Nícolas
