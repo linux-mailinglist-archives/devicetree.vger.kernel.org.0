@@ -2,129 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D8360FA26
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C9560FA29
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235708AbiJ0OLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 10:11:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42052 "EHLO
+        id S235786AbiJ0OLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 10:11:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235524AbiJ0OK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:10:59 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8B017046F;
-        Thu, 27 Oct 2022 07:10:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B440FB824BC;
-        Thu, 27 Oct 2022 14:10:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E46EEC433D6;
-        Thu, 27 Oct 2022 14:10:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666879855;
-        bh=8W4kKXd4CergnMT+SQY5tTnVUGd/JGQkiR+wOCiZWec=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I9OOmPBtKL1YVsFGD2WB54ztbe3jEuKJrbkcArNFpjW36HM7qFAYuqiBx4FKvgCML
-         Rv0XFkQe5OJA3va69RTMauIg7Pu27qeAGho0NO+ja65q4efQVtUEEAZ2hzILXK4qGq
-         73/uym5RWi9LuKKfURNYWC3km7LkNzrut4lBj3T8JJZhOZ183PUdNPmEwYEql2+gzi
-         ntVGtj8m6WRy5ZOLCjNcbBbwStEMzOJU6d8RkRnERphPWvxgYTaJLAGv4bt0M2U3Ak
-         9JBT/27L4iEQSyP982+b16F6AMxSVz0MOAdAXQ/K6Skq8ArAjhT6HV33GKoVrmRFnS
-         DbQpheLvmZk5g==
-Date:   Thu, 27 Oct 2022 16:10:48 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Mauri Sandberg <maukka@ext.kapsi.fi>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/7] PCI: mvebu: add support for orion soc
-Message-ID: <Y1qRaBowB2EBS6Sg@lpieralisi>
-References: <20220718202843.6766-1-maukka@ext.kapsi.fi>
- <20220905192310.22786-1-pali@kernel.org>
+        with ESMTP id S235796AbiJ0OLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:11:22 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB00A18499D
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:11:19 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id i12so1378829qvs.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:11:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IEw4hNvQlJyxLY//kxdT/YXZEf32+Z0hEDG2ob9Hm+c=;
+        b=v+9xqj/t6FAcnJCGIOx36Yvj7jRwgybck6cPU5EvyVOVe//JRa1bw+mip9cojQJM7J
+         a6HMU058yYI+Jqlss6VKv+IZJQfktzPc5Vg2KpB0WT643ZNlHXftxYdEG/3wBXImon77
+         Ww/40lzlx49LtbPVUPhLnt9VpL6aMnaBASQe0kBleW8rbnB5zucU70Z5SbVthLanZbfs
+         WEspy7oKxkq+C8S56F5x+BiRVzsMIagJyuaKNDyjKFZT03y4ERp24uTFGprgonyjHlQZ
+         bsmuJ7cpF3pu6evRKzOA4Bl2wX2igUxpM1x3j0vifdQTSEgElYMrDSNC/bSQxZyMtmem
+         4p9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IEw4hNvQlJyxLY//kxdT/YXZEf32+Z0hEDG2ob9Hm+c=;
+        b=EheU96tC+P6eqMId49Q5zh9JzMtb0L6F5cCWQo6aOYk4Y54dPOi31nRhhe1atAnouH
+         ci438HIsm/8NKxb5H76uN+jW/wHtFsZKzVNVN46/fxriZYDPU1IslfzKuYPkGmyRSWEZ
+         cqOLxg095068uAmTSZDCaah0FOoeTPgRdv8WkC7YiAu8719InY1PlgeseDFXK2ZVtoQm
+         eJSIVebQkW0rDLxh1VR0lp1yg5flaaf6b+3lA5+7CmJZr2LqEpgRiL6SU5WmV0JPZDl9
+         X4K+7hvzcNbQ1UGgGYyz0lll4iTMOHXsCCWq/Zy3tvHYszFiktloXLInx75/kJXbOG76
+         C5oA==
+X-Gm-Message-State: ACrzQf2RhTfWqwiRwie+2s9t1RcfEPVSr1tAeACRnBMIMG6bJNuP6e+W
+        ZhaFyYAAoa+ZTUD2G+VR09yK+w==
+X-Google-Smtp-Source: AMsMyM72T02LHQeL5N8n098K7B3VL8oYiQPy7kp82Xn5EPH5OlbKrrnZKU9WZaEt2ljXTjTx4scwWA==
+X-Received: by 2002:a05:6214:da2:b0:4b1:8a49:b492 with SMTP id h2-20020a0562140da200b004b18a49b492mr40500174qvh.8.1666879879054;
+        Thu, 27 Oct 2022 07:11:19 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id bn14-20020a05622a1dce00b0039c37a7914csm913191qtb.23.2022.10.27.07.11.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 07:11:18 -0700 (PDT)
+Message-ID: <d15f9071-4935-1359-8c9c-a8eac6f0aac6@linaro.org>
+Date:   Thu, 27 Oct 2022 10:11:16 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220905192310.22786-1-pali@kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 11/11] arm64: dts: qcom: sc8280xp-x13s: Add PM8280_{1/2}
+ ADC_TM5 channels
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221027063006.9056-1-manivannan.sadhasivam@linaro.org>
+ <20221027063006.9056-12-manivannan.sadhasivam@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027063006.9056-12-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 05, 2022 at 09:23:03PM +0200, Pali Rohár wrote:
-> Hello! This patch series add support for Orion PCIe controller into
-> pci-mvebu.c driver. V3 version has completely rewritten pci-mvebu.c code
-> to parse all physical addresses from device tree files according to
-> mvebu-pci.txt documentation, allow access to all extended PCIe config
-> space registers and use modern kernel API pci_remap_cfgspace() and
-> mvebu_mbus_add_window_by_id() fir mapping PCIe config space.
-> 
-> Most of Marvell device tree code in pci-mvebu.c is giant magic, but it was
-> there because this change and it is de-facto API between dts files and
-> kernel used for a long time. Note that it is misused according to PCI
-> device tree bindings, but we have to follow this Marvell bindings to do
-> not introduce backward incompatibility issues for other non-Orion
-> platforms.
-> 
-> Mauri tested these changes on DNS323 board with both DT and non-DT builds.
-> PCIe AER is working too (one of the feature which proved that access to
-> extended PCIe config registers is working fine).
-> 
-> After this patch is accepted we are planning to look at existing Orion
-> arch specific code and covert it to use this new DT based pci-mvebu.c
-> code. Later this would allow to kill arch specific Orion PCIe code,
-> which is in arch/arm/plat-orion/pcie.c and parts also in file
-> arch/arm/mach-orion5x/pci.c (shared with old-PCI bus code).
-> 
-> This patch series depends on another patches:
-> https://lore.kernel.org/linux-pci/20220524122817.7199-1-pali@kernel.org/
-> https://lore.kernel.org/linux-pci/20220817230036.817-3-pali@kernel.org/
+On 27/10/2022 02:30, Manivannan Sadhasivam wrote:
+> Add ADC_TM5 channels of PM8280_{1/2} for monitoring the temperatures from
+> external thermistors connected to AMUX pins. The temperture measurements
 
-Can this series be rebased please on top of v6.1-rc1 so that we can merge it ?
+temperature
 
-Thanks,
-Lorenzo
+> are collected from the PMK8280's VADC channels that expose the
+> mesasurements from slave PMICs PM8280_{1/2}.
 
-> Mauri Sandberg (2):
->   bus: mvebu-mbus: add configuration space aperture
->   dt-bindings: PCI: mvebu: Add orion5x compatible
+measurements
+slave->secondary
+
+Other comments about node names stay as well, but it depends on the
+previous discussion.
+
 > 
-> Pali Rohár (5):
->   ARM: orion: Move PCIe mbus window mapping from orion5x_setup_wins() to
->     pcie_setup()
->   PCI: mvebu: Remove unused busn member
->   PCI: mvebu: Cleanup error handling in mvebu_pcie_probe()
->   PCI: mvebu: Add support for Orion PCIe controller
->   ARM: dts: orion5x: Add PCIe node
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
 > 
->  .../devicetree/bindings/pci/mvebu-pci.txt     |   4 +-
->  arch/arm/boot/dts/orion5x.dtsi                |  51 +++++
->  arch/arm/mach-orion5x/common.c                |  13 --
->  arch/arm/mach-orion5x/pci.c                   |  14 ++
->  drivers/bus/mvebu-mbus.c                      |  26 ++-
->  drivers/pci/controller/Kconfig                |   4 +-
->  drivers/pci/controller/pci-mvebu.c            | 202 ++++++++++++++----
->  include/linux/mbus.h                          |   1 +
->  8 files changed, 256 insertions(+), 59 deletions(-)
-> 
-> -- 
-> 2.20.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index babf594384f2..fe6b75551ab9 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -259,6 +259,74 @@ pmr735a-die-temp@403 {
+>  	};
+>  };
+>  
+Best regards,
+Krzysztof
+
