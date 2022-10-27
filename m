@@ -2,92 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FB960FB0C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D6FF60FB15
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234795AbiJ0PAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 11:00:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37952 "EHLO
+        id S233914AbiJ0PDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 11:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235573AbiJ0PAl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:00:41 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDBC7C18A
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:00:39 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id x13so1513412qvn.6
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:00:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oBHDI3Ai6tJ/2wSsx3a8pbGEwv3D3cNXDPZBpWeFWJw=;
-        b=JwsNdMMMJdZSDa+37FVxiNdJIjvu0HSsnrTpAxsDAzXg6WbZz/g3kffdckqKOcpR4f
-         T25EG864kVLWIdpAlgIFWFOBgIoPspfWEFz2dJGFzN6Y2IqZ/bGdoT/k44Kv254AGFEB
-         YhyKxEzhTGJ5sGl8AJ5oWgge02zBjn5NFqKJOD+tNnUiHlMgXCNDLtynq4c149uUO1QX
-         mjM9OhLcd3CXF4GzmN8aEkwHfcRpvT+UfdXt3FbxqPoHZZ90/s4LVDmJ762hA4LFYhru
-         HHYMkFss7u+k/KdOLbq82L1Z/ee+MvJLlUXuhJ8YsSH6Lial5ZAqZ3yueqeNCeKlLSea
-         uYkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oBHDI3Ai6tJ/2wSsx3a8pbGEwv3D3cNXDPZBpWeFWJw=;
-        b=bdb1RRh2MUG8Tc745flP3QcYDCb1MAENmWzC5zn92hT0/B4yT476u30apwzvKb62XU
-         AmeKoPP2KeCN8ArKLAfcI5Kk6BkuYIOMYWuANDNG6f2upTvowUDpLtLNjX64uStU4oAr
-         TZeVX9tZwtWziWxMqvQwm9pvEmISquwTdN6ekC5WkzSLUwqRn9toUc2d2KxRGe4OACoz
-         XZhsdDev8IhQAnqN8OT/pDd28qxBKRqPS/Gt7HyPu/qccWMsVS3gm/bpvTJBR68TBMUY
-         I5CTAYzNhcHK2d0th9CgQpyRSY9aGb1vsI2wmdX9votiYSQ4hsvC7NMREGwJN7symG6N
-         UwGQ==
-X-Gm-Message-State: ACrzQf2w+yW1PEAE78aUVQCOUxxlDkhYTw4gHsM3+yKSmcj4GeblXBwo
-        dH9hiA/aIX9wYY4LtdhVUT6ZNQ==
-X-Google-Smtp-Source: AMsMyM47Cl5/WRHYlqSCVqKZWdt9kqanDgXMtXRMfaHpIxswrzLr7hXGDI7S1pmPhzhOg+w0VKv0aQ==
-X-Received: by 2002:ad4:5ca7:0:b0:4bb:97ea:27b5 with SMTP id q7-20020ad45ca7000000b004bb97ea27b5mr6506429qvh.104.1666882838858;
-        Thu, 27 Oct 2022 08:00:38 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id bl24-20020a05620a1a9800b006ed61f18651sm1123874qkb.16.2022.10.27.08.00.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 08:00:38 -0700 (PDT)
-Message-ID: <00b1b451-5c0f-0749-de80-4b9eacc0b5fb@linaro.org>
-Date:   Thu, 27 Oct 2022 11:00:36 -0400
+        with ESMTP id S233619AbiJ0PDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:03:06 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0FE18DD5D;
+        Thu, 27 Oct 2022 08:03:05 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29RE75TP006304;
+        Thu, 27 Oct 2022 17:02:49 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=+ka7b9dqA75ujNAafgwvotrndDQkoRf5EU7I/cGmtu0=;
+ b=RndY8IyUXdY2UF7lkIGsiCYvWwPQP1sd5ctg7yFENkaNdillsVPEIXtVrx+h1r6WRsfO
+ Y1sb9v8SNHwfweTjQTvVvKLnXX3QCI6Fq+/18yY1dnh2O9SFRL3+PuCfDYc/jEgcu5aN
+ bxEpfaHweZPTQZk+4UlSVhly9aU3scoyZo7DYltWGA0ne2ebjZ1HZ+IwfX71wCEGtyjV
+ VNh9CWKbJ9vIXzgdfgLm+lwlFUyJJIh2BQuebcn3CB7EUaDPnQapQ8VG382tK2PFGX7k
+ TSxoYDdoiD5WlAWS1412ndol/B2InNghxgHY7+v1pcLdf7NQ6wscvfP/5tisw2zG3Aax Zg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kfufh8c08-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 27 Oct 2022 17:02:49 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 76F08100038;
+        Thu, 27 Oct 2022 17:02:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 71F10229A91;
+        Thu, 27 Oct 2022 17:02:44 +0200 (CEST)
+Received: from [10.48.0.157] (10.48.0.157) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 27 Oct
+ 2022 17:02:43 +0200
+Message-ID: <e25bd4c2-c0d1-2884-5bcf-93fe205c06a7@foss.st.com>
+Date:   Thu, 27 Oct 2022 17:02:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v1 2/3] ARM: dts: rockchip: rename "haoyu,hym8563" rtc
- nodes
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] ARM: dts: stm32mp13: fix compatible for BSEC
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <f7127f87-05fd-5e20-eb2d-a3fd04674229@gmail.com>
- <84f14b40-0804-9734-963a-31e200687a8d@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <84f14b40-0804-9734-963a-31e200687a8d@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
+ <c33c5490-c43d-17d5-f0fb-0b930dd46928@linaro.org>
+From:   Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <c33c5490-c43d-17d5-f0fb-0b930dd46928@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.48.0.157]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-27_07,2022-10-27_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 19:00, Johan Jonker wrote:
-> The "haoyu,hym8563" RTC node names should be generic,
-> so change them.
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  arch/arm/boot/dts/rk3036-evb.dts            | 2 +-
+Hi,
 
-Also done.
+On 10/18/22 03:55, Krzysztof Kozlowski wrote:
+> On 17/10/2022 07:44, Patrick Delaunay wrote:
+>> Use the new compatible for stm32mp13 support.
+>>
+>> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+>> ---
+>> This device tree modification depends on the binding modification
+>> introduced by the patch:
+>>
+>> dt-bindings: nvmem: add new stm32mp13 compatible for stm32-romem
+>> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid/
+> This breaks users of DTS. The patch above did not describe devices as
+> compatible and that's the problem sending patches separately, without
+> context.
+>
+> You need to keep compatible.
+>
+> Best regards,
+> Krzysztof
 
-Best regards,
-Krzysztof
+I will sent a V2 patch in a serie with binding change, driver updates 
+and explanations.
+
+Regards
+
+Patrick
 
