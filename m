@@ -2,396 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E75D460FAC8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0563F60FAD4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235851AbiJ0Os7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 10:48:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
+        id S235846AbiJ0Ovf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 10:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235580AbiJ0Os6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:48:58 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 86752BB07C;
-        Thu, 27 Oct 2022 07:48:56 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.95,217,1661785200"; 
-   d="scan'208";a="140606111"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 27 Oct 2022 23:48:55 +0900
-Received: from localhost.localdomain (unknown [10.226.93.45])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 59068430E04F;
-        Thu, 27 Oct 2022 23:48:52 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v5 1/5] dt-bindings: timer: Document RZ/G2L MTU3a bindings
-Date:   Thu, 27 Oct 2022 15:48:40 +0100
-Message-Id: <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221027144844.85149-1-biju.das.jz@bp.renesas.com>
-References: <20221027144844.85149-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S234862AbiJ0Ove (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:51:34 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31C6A027B
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:51:33 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id i12so1499532qvs.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:51:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Bl3WBdt5Y/ZDiD0ewavcbpoZ58FHnW8LScNVv1rwHFE=;
+        b=gqG9/loBZq4cZcaSY39ncOfEA5QP1LgRwg9sSUTuVkPfsQvMsf0X3DnGesW5QwIT/Q
+         ler18mmlaNqc9f/04GPKikOFrYjU7PPwlUsOd4CFSWZE8uWPb7697PkfP2oTXSZQXQPN
+         s/hFJrdmdR7egolG7JZr/nJDBaj1oFYpdA9ziUsX0FqYZNsJxKPYrLwmN08X+YSfk9bx
+         4WriC87fVwmuuCZYOG89lPQz+qSbz7nZ5ZW/kd/EZMkpwOrRbme4iXU4lMti2sucbJhF
+         TqWNJBuPR8U/FvGirUgLx7bt4pOcmyvqFRloG6cUmPcJVQc1poR1RV3hSiVys5diLgoS
+         jMxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bl3WBdt5Y/ZDiD0ewavcbpoZ58FHnW8LScNVv1rwHFE=;
+        b=N2KnEdwPZDaDNgLGnDplYt/HFMxyie2sdkJgzCRzHrtR0hCrTwKuuBgtAGPhxgqbVo
+         X8iGqMIzFCrTcnqRW/BYFUQ+CNX5R2vlekqmJRCeby8wgZLnX+olU0axxzGndXMNTbMH
+         DKxoeKF5o61/BNTbcjryIsNs8py04h++GiM1JuJULsNua7t/D+oZzOSJdVI0wZFNsSSA
+         y/RE6F1DEI4AAqVHl7glFrlr+l9L75+228AsByUF1ib75QANXPgPTR/85J6ufaPzKc7y
+         q0Gl064p4cbAHQDKRWeLuyFr7fhBwIj0+QGVGOVcgWuePUIIn+UXFHKKzBCvJEGyLGeL
+         AQwQ==
+X-Gm-Message-State: ACrzQf1xif5OLz6IsKzFGn9LwO6/5hS6OSkcfITZBu4Tu6+H9QiNGADo
+        hxj/PhWKafMCdaUDurHFWIEqyQ==
+X-Google-Smtp-Source: AMsMyM68BxduWvWCusoa2A9sUOz3NBVsWe0/j5wqiFpsO3aRR2/VCqvmzSaG7SEs9c89t8SIaTXLGg==
+X-Received: by 2002:a0c:cb92:0:b0:4bb:7aa3:d8ce with SMTP id p18-20020a0ccb92000000b004bb7aa3d8cemr15716481qvk.45.1666882292698;
+        Thu, 27 Oct 2022 07:51:32 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id bb11-20020a05622a1b0b00b0035d08c1da35sm968603qtb.45.2022.10.27.07.51.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 07:51:31 -0700 (PDT)
+Message-ID: <683dffbc-744f-80cd-2262-b6deb4200ccc@linaro.org>
+Date:   Thu, 27 Oct 2022 10:51:29 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v5 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Elad Nachman <enachman@marvell.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+References: <20221026134545.7146-1-vadym.kochan@plvision.eu>
+ <20221026134545.7146-2-vadym.kochan@plvision.eu>
+ <33f04b06-dc00-b7ce-6a24-2282608b40dc@linaro.org>
+ <VI1P190MB0317C739E2D39427CD2A771D95309@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
+ <10581088-e4ff-76db-3c9b-42a7a9c118ee@linaro.org>
+ <20221027151825.166a9255@xps-13>
+ <e937b059-4168-3bd4-b294-cbfff0519d1f@linaro.org>
+ <20221027155025.7c04774a@xps-13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027155025.7c04774a@xps-13>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-channels and one 32-bit timer channel. It supports the following
-functions
- - Counter
- - Timer
- - PWM
+On 27/10/2022 09:50, Miquel Raynal wrote:
+> Hi Krzysztof,
+> 
+> krzysztof.kozlowski@linaro.org wrote on Thu, 27 Oct 2022 09:24:24 -0400:
+> 
+>> On 27/10/2022 09:18, Miquel Raynal wrote:
+>>> Hi Vadym,
+>>>   
+>>>>>>> +patternProperties:
+>>>>>>> +  "^nand@[0-3]$":
+>>>>>>> +    type: object
+>>>>>>> +    properties:
+>>>>>>> +      reg:
+>>>>>>> +        minimum: 0
+>>>>>>> +        maximum: 3
+>>>>>>> +
+>>>>>>> +      nand-rb:
+>>>>>>> +        minimum: 0
+>>>>>>> +        maximum: 1
+>>>>>>> +
+>>>>>>> +      nand-ecc-strength:
+>>>>>>> +        enum: [1, 4, 8]
+>>>>>>> +
+>>>>>>> +      nand-on-flash-bbt: true
+>>>>>>> +
+>>>>>>> +      nand-ecc-mode: true
+>>>>>>> +
+>>>>>>> +      nand-ecc-algo:
+>>>>>>> +        description: |
+>>>>>>> +          This property is essentially useful when not using hardware ECC.
+>>>>>>> +          Howerver, it may be added when using hardware ECC for clarification
+>>>>>>> +          but will be ignored by the driver because ECC mode is chosen depending
+>>>>>>> +          on the page size and the strength required by the NAND chip.
+>>>>>>> +          This value may be overwritten with nand-ecc-strength property.
+>>>>>>> +
+>>>>>>> +      nand-ecc-step-size:
+>>>>>>> +        description: |
+>>>>>>> +          Marvell's NAND flash controller does use fixed strength
+>>>>>>> +          (1-bit for Hamming, 16-bit for BCH), so the actual step size
+>>>>>>> +          will shrink or grow in order to fit the required strength.
+>>>>>>> +          Step sizes are not completely random for all and follow certain
+>>>>>>> +          patterns described in AN-379, "Marvell SoC NFC ECC".
+>>>>>>> +
+>>>>>>> +      label:
+>>>>>>> +        $ref: /schemas/types.yaml#/definitions/string
+>>>>>>> +
+>>>>>>> +      partitions:
+>>>>>>> +        type: object    
+>>>>>>
+>>>>>> That's not what I asked for. Like four times I asked you to add here
+>>>>>> unevaluatedProperties: false and I never said that ref to partition.yaml
+>>>>>> should be removed and you... instead remove that ref.
+>>>>>>
+>>>>>> You need to define here children and specify their ref.
+>>>>>>
+>>>>>> You must use unevaluatedProperties: false here. So this is fifth time I
+>>>>>> am writing this feedback.
+>>>>>>
+>>>>>>    
+>>>>>
+>>>>> It is a bit confusing that it is needed to define "partitions" and "label" rules particulary
+>>>>> in this nand controller instead of some common place like nand-chip.yaml, these properties
+>>>>> are common also for the other nand controllers.    
+>>>>
+>>>> No one speaks about label, I never commented about label, I think...
+>>>>
+>>>> If you think the property is really generic and every NAND controller
+>>>> bindings implement it, then feel free to include them there, in a
+>>>> separate patch. It sounds sensible, but I did not check other bindings.  
+>>>
+>>> FYI, label is already defined in mtd/mtd.yaml.  
+>>
+>> Which is not included here and in nand-controller.yaml
+> 
+> Maybe nand-chip.yaml should?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v4->v5:
- * Modelled as timer bindings.
- * Fixed the typo.
-v3->v4:
- * Dropped counter and pwm compatibeles as they don't have any resources.
- * Made rz-mtu3 as pwm provider.
- * Updated the example and description.
-v2->v3:
- * Dropped counter bindings and integrated with mfd as it has only one property.
- * Removed "#address-cells" and "#size-cells" as it do not have children with
-   unit addresses.
- * Removed quotes from counter and pwm.
- * Provided full path for pwm bindings.
- * Updated the example.
-v1->v2:
- * Modelled counter and pwm as a single device that handles
-   multiple channels.
- * Moved counter and pwm bindings to respective subsystems
- * Dropped 'bindings' from MFD binding title.
- * Updated the example
- * Changed the compatible names.
----
- .../bindings/timer/renesas,rz-mtu3.yaml       | 302 ++++++++++++++++++
- 1 file changed, 302 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
+mtd.yaml looks a bit more than that - also allows nvmem nodes. Maybe
+let's just add label to nand-chip?
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml b/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
-new file mode 100644
-index 000000000000..bffdab0b0185
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
-@@ -0,0 +1,302 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/renesas,rz-mtu3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L Multi-Function Timer Pulse Unit 3 (MTU3a)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  This hardware block consists of eight 16-bit timer channels and one
-+  32- bit timer channel. It supports the following specifications:
-+    - Pulse input/output: 28 lines max.
-+    - Pulse input 3 lines
-+    - Count clock 11 clocks for each channel (14 clocks for MTU0, 12 clocks
-+      for MTU2, and 10 clocks for MTU5, four clocks for MTU1-MTU2 combination
-+      (when LWA = 1))
-+    - Operating frequency Up to 100 MHz
-+    - Available operations [MTU0 to MTU4, MTU6, MTU7, and MTU8]
-+        - Waveform output on compare match
-+        - Input capture function (noise filter setting available)
-+        - Counter-clearing operation
-+        - Simultaneous writing to multiple timer counters (TCNT)
-+          (excluding MTU8).
-+        - Simultaneous clearing on compare match or input capture
-+          (excluding MTU8).
-+        - Simultaneous input and output to registers in synchronization with
-+          counter operations           (excluding MTU8).
-+        - Up to 12-phase PWM output in combination with synchronous operation
-+          (excluding MTU8)
-+    - [MTU0 MTU3, MTU4, MTU6, MTU7, and MTU8]
-+        - Buffer operation specifiable
-+    - [MTU1, MTU2]
-+        - Phase counting mode can be specified independently
-+        - 32-bit phase counting mode can be specified for interlocked operation
-+          of MTU1 and MTU2 (when TMDR3.LWA = 1)
-+        - Cascade connection operation available
-+    - [MTU3, MTU4, MTU6, and MTU7]
-+        - Through interlocked operation of MTU3/4 and MTU6/7, the positive and
-+          negative signals in six phases (12 phases in total) can be output in
-+          complementary PWM and reset-synchronized PWM operation.
-+        - In complementary PWM mode, values can be transferred from buffer
-+          registers to temporary registers at crests and troughs of the timer-
-+          counter values or when the buffer registers (TGRD registers in MTU4
-+          and MTU7) are written to.
-+        - Double-buffering selectable in complementary PWM mode.
-+    - [MTU3 and MTU4]
-+        - Through interlocking with MTU0, a mode for driving AC synchronous
-+          motors (brushless DC motors) by using complementary PWM output and
-+          reset-synchronized PWM output is settable and allows the selection
-+          of two types of waveform output (chopping or level).
-+    - [MTU5]
-+        - Capable of operation as a dead-time compensation counter.
-+    - [MTU0/MTU5, MTU1, MTU2, and MTU8]
-+        - 32-bit phase counting mode specifiable by combining MTU1 and MTU2 and
-+          through interlocked operation with MTU0/MTU5 and MTU8.
-+    - Interrupt-skipping function
-+        - In complementary PWM mode, interrupts on crests and troughs of counter
-+          values and triggers to start conversion by the A/D converter can be
-+          skipped.
-+    - Interrupt sources: 43 sources.
-+    - Buffer operation:
-+        - Automatic transfer of register data (transfer from the buffer
-+          register to the timer register).
-+    - Trigger generation
-+        - A/D converter start triggers can be generated
-+        - A/D converter start request delaying function enables A/D converter
-+          to be started with any desired timing and to be synchronized with
-+          PWM output.
-+    - Low power consumption function
-+        - The MTU3a can be placed in the module-stop state.
-+
-+    There are two phase counting modes. 16-bit phase counting mode in which
-+    MTU1 and MTU2 operate independently, and cascade connection 32-bit phase
-+    counting mode in which MTU1 and MTU2 are cascaded.
-+
-+    In phase counting mode, the phase difference between two external input
-+    clocks is detected and the corresponding TCNT is incremented or
-+    decremented.
-+    The below counters are supported
-+      count0 - MTU1 16-bit phase counting
-+      count1 - MTU2 16-bit phase counting
-+      count2 - MTU1+ MTU2 32-bit phase counting
-+
-+    The module supports PWM mode{1,2}, Reset-synchronized PWM mode and
-+    complementary PWM mode{1,2,3}.
-+
-+    In complementary PWM mode, six positive-phase and six negative-phase PWM
-+    waveforms (12 phases in total) with dead time can be output by
-+    combining MTU{3,4} and MTU{6,7}.
-+
-+    The below pwm channels are supported in pwm mode 1.
-+      pwm0  - MTU0.MTIOC0A PWM mode 1
-+      pwm1  - MTU0.MTIOC0C PWM mode 1
-+      pwm2  - MTU1.MTIOC1A PWM mode 1
-+      pwm3  - MTU2.MTIOC2A PWM mode 1
-+      pwm4  - MTU3.MTIOC3A PWM mode 1
-+      pwm5  - MTU3.MTIOC3C PWM mode 1
-+      pwm6  - MTU4.MTIOC4A PWM mode 1
-+      pwm7  - MTU4.MTIOC4C PWM mode 1
-+      pwm8  - MTU6.MTIOC6A PWM mode 1
-+      pwm9  - MTU6.MTIOC6C PWM mode 1
-+      pwm10 - MTU7.MTIOC7A PWM mode 1
-+      pwm11 - MTU7.MTIOC7C PWM mode 1
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-mtu3  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-mtu3  # RZ/V2L
-+      - const: renesas,rz-mtu3
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: MTU0.TGRA input capture/compare match
-+      - description: MTU0.TGRB input capture/compare match
-+      - description: MTU0.TGRC input capture/compare match
-+      - description: MTU0.TGRD input capture/compare match
-+      - description: MTU0.TCNT overflow
-+      - description: MTU0.TGRE compare match
-+      - description: MTU0.TGRF compare match
-+      - description: MTU1.TGRA input capture/compare match
-+      - description: MTU1.TGRB input capture/compare match
-+      - description: MTU1.TCNT overflow
-+      - description: MTU1.TCNT underflow
-+      - description: MTU2.TGRA input capture/compare match
-+      - description: MTU2.TGRB input capture/compare match
-+      - description: MTU2.TCNT overflow
-+      - description: MTU2.TCNT underflow
-+      - description: MTU3.TGRA input capture/compare match
-+      - description: MTU3.TGRB input capture/compare match
-+      - description: MTU3.TGRC input capture/compare match
-+      - description: MTU3.TGRD input capture/compare match
-+      - description: MTU3.TCNT overflow
-+      - description: MTU4.TGRA input capture/compare match
-+      - description: MTU4.TGRB input capture/compare match
-+      - description: MTU4.TGRC input capture/compare match
-+      - description: MTU4.TGRD input capture/compare match
-+      - description: MTU4.TCNT overflow/underflow
-+      - description: MTU5.TGRU input capture/compare match
-+      - description: MTU5.TGRV input capture/compare match
-+      - description: MTU5.TGRW input capture/compare match
-+      - description: MTU6.TGRA input capture/compare match
-+      - description: MTU6.TGRB input capture/compare match
-+      - description: MTU6.TGRC input capture/compare match
-+      - description: MTU6.TGRD input capture/compare match
-+      - description: MTU6.TCNT overflow
-+      - description: MTU7.TGRA input capture/compare match
-+      - description: MTU7.TGRB input capture/compare match
-+      - description: MTU7.TGRC input capture/compare match
-+      - description: MTU7.TGRD input capture/compare match
-+      - description: MTU7.TCNT overflow/underflow
-+      - description: MTU8.TGRA input capture/compare match
-+      - description: MTU8.TGRB input capture/compare match
-+      - description: MTU8.TGRC input capture/compare match
-+      - description: MTU8.TGRD input capture/compare match
-+      - description: MTU8.TCNT overflow
-+      - description: MTU8.TCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: tgia0
-+      - const: tgib0
-+      - const: tgic0
-+      - const: tgid0
-+      - const: tgiv0
-+      - const: tgie0
-+      - const: tgif0
-+      - const: tgia1
-+      - const: tgib1
-+      - const: tgiv1
-+      - const: tgiu1
-+      - const: tgia2
-+      - const: tgib2
-+      - const: tgiv2
-+      - const: tgiu2
-+      - const: tgia3
-+      - const: tgib3
-+      - const: tgic3
-+      - const: tgid3
-+      - const: tgiv3
-+      - const: tgia4
-+      - const: tgib4
-+      - const: tgic4
-+      - const: tgid4
-+      - const: tgiv4
-+      - const: tgiu5
-+      - const: tgiv5
-+      - const: tgiw5
-+      - const: tgia6
-+      - const: tgib6
-+      - const: tgic6
-+      - const: tgid6
-+      - const: tgiv6
-+      - const: tgia7
-+      - const: tgib7
-+      - const: tgic7
-+      - const: tgid7
-+      - const: tgiv7
-+      - const: tgia8
-+      - const: tgib8
-+      - const: tgic8
-+      - const: tgid8
-+      - const: tgiv8
-+      - const: tgiu8
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    mtu3: timer@10001200 {
-+      compatible = "renesas,r9a07g044-mtu3", "renesas,rz-mtu3";
-+      reg = <0x10001200 0xb00>;
-+      interrupts = <GIC_SPI 170 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 171 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 172 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 173 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 174 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 175 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 176 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 178 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 180 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 181 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 182 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 183 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 185 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 186 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 192 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 194 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 195 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 196 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 198 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 200 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 201 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 202 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 204 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 206 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 207 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 208 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 209 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 210 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 211 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 212 IRQ_TYPE_EDGE_RISING>,
-+                   <GIC_SPI 213 IRQ_TYPE_EDGE_RISING>;
-+      interrupt-names = "tgia0", "tgib0", "tgic0", "tgid0", "tgiv0", "tgie0",
-+                        "tgif0",
-+                        "tgia1", "tgib1", "tgiv1", "tgiu1",
-+                        "tgia2", "tgib2", "tgiv2", "tgiu2",
-+                        "tgia3", "tgib3", "tgic3", "tgid3", "tgiv3",
-+                        "tgia4", "tgib4", "tgic4", "tgid4", "tgiv4",
-+                        "tgiu5", "tgiv5", "tgiw5",
-+                        "tgia6", "tgib6", "tgic6", "tgid6", "tgiv6",
-+                        "tgia7", "tgib7", "tgic7", "tgid7", "tgiv7",
-+                        "tgia8", "tgib8", "tgic8", "tgid8", "tgiv8", "tgiu8";
-+      clocks = <&cpg CPG_MOD R9A07G044_MTU_X_MCK_MTU3>;
-+      power-domains = <&cpg>;
-+      resets = <&cpg R9A07G044_MTU_X_PRESET_MTU3>;
-+      #pwm-cells = <2>;
-+    };
--- 
-2.25.1
+> 
+>>> Partitions do not need to be defined in your binding, just don't put
+>>> any in your example and you'll be fine. These partitions are either
+>>> static and may be described in the DT (see
+>>> mtd/partition/partition.yaml) or there is some dynamic discovery
+>>> involved and a proper parser shall be referenced (parsers have their
+>>> own binding).  
+>>
+>> I don't think this is correct. Basically you allow any node to be under
+>> partitions as there is no schema validating them (without compatibles).
+> 
+> Sorry if that was unclear, what I meant is: partitions should not be
+> defined in the bindings for Marvell NAND controller because they should
+> be defined somewhere else already.
+
+Ah, right. Then it seems reasonable.
+
+> 
+> NAND controller subnodes should define the storage devices (the
+> flashes themselves) connected to the controller. "nand-chip.yaml"
+> describes generic properties for these. Additional subnodes are allowed
+> and expected to be partitions (this is not enforced anywhere I think),
+> they should use one of the existing compatibles to define the parser.
+> The most common parser is named fixed-partitions and has its own
+> compatible. Every parser references partitions.yaml.
+> 
+> There are a few controller bindings however which reference
+> partition.yaml anyway, probably to make the examples validation work,
+> I'm not sure it should be done like that though:
+> https://elixir.bootlin.com/linux/v6.0/source/Documentation/devicetree/bindings/mtd/ti,gpmc-nand.yaml
+> https://elixir.bootlin.com/linux/v6.0/source/Documentation/devicetree/bindings/mtd/ti,gpmc-onenand.yaml
+
+
+Yes, so the nand-chip implementation (like Marvell NAND) could reference
+the parser and we would be done. If it doesn't, then we must have
+generic partitions in the nand-chip.
+
+Best regards,
+Krzysztof
 
