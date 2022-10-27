@@ -2,140 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55BBF60EEBE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 05:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8136660EED4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 05:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234327AbiJ0Djy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 23:39:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38836 "EHLO
+        id S233473AbiJ0Dwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 23:52:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234208AbiJ0Djw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 23:39:52 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2135.outbound.protection.outlook.com [40.107.92.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85DD712636;
-        Wed, 26 Oct 2022 20:39:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UWXZvvONFkwD4qZRlFGO4Zwic9s9EEp8zbhQrlPYNCNCZkM7ymzqzrXIsNgrfH92byVzstAPg3+jt60JOR5UfWfWKpeb+aiZnOJ3Rd/ZaF58CBVwfpV5s0c/4yzivWiM8uruvkBg77+3CnVPWbDXTXnLkxwie+I3Kf+1nb7vtyL0G9oek2Aa0fJurpIY2JW1b9sKaLSSIvODP6bfX2BfYr5cjTFkkLHmaTEoojCehmLp6m57DMzDFZB/wpKj61gzZ4e4+GONLxn7hihQ1vqy7AOzCkk0zH97cz4/XP4tx3dTpb/bmvpWpKRd6fiB+Qt7CKlx/QJQdCYcs67bg/mNxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EDWAuiEqNHzVSGN1pS5lXaqUypBb5u9JB4DnRI9rRaE=;
- b=b7vVEL6PZlNvMXFWdR3L2R4RRVx1suZ58ebBy/mJEwkIi/cuGpjXqFyzAtb6vWNp8KlUUdIT9ss1HZiN6VmDiASlUivXSuY5kF/qJJBer/rMLbnzZh1STX0wc4CxtWHsOsMYg2dFQNO4f9qjpkfE1Nw00EdqoURRJ/Dfjm47zCNW108yZdxa14hXfRnM1kcSGrBtQDGkp+JMUcN5eqavAet2lc7I6FKawHvQMEliFKFXbulYRfaIQbO6cL5vLITIrYXDglZ7FedNrArN4MG3XDPlo0Ifp/ioad2bWygH39a4BpFHEFpWoX0JzVk3yt3Y3JAylNTR1UKKuUzFjK1W2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EDWAuiEqNHzVSGN1pS5lXaqUypBb5u9JB4DnRI9rRaE=;
- b=Ye6cLYGYwItu7JZ68L6/yy3LfkUotWrLS8GXSsiNbXk5QXA7fAUf7aKmxON45x1nuhTIm8pToU1Dtrt5WYLKpegjzJXnO4AYG1XS3xqVUHvNEhGtMvALyoZQI8UOy/15PpABICaI91sEndSNEaZJB/ZTKoiz/29g4WMtRLapXbE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SN4PR01MB7455.prod.exchangelabs.com (2603:10b6:806:202::11) by
- SN6PR01MB4992.prod.exchangelabs.com (2603:10b6:805:bf::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5746.28; Thu, 27 Oct 2022 03:39:48 +0000
-Received: from SN4PR01MB7455.prod.exchangelabs.com
- ([fe80::ebe2:243d:ff84:aaa8]) by SN4PR01MB7455.prod.exchangelabs.com
- ([fe80::ebe2:243d:ff84:aaa8%3]) with mapi id 15.20.5746.028; Thu, 27 Oct 2022
- 03:39:48 +0000
-Message-ID: <0887669d-fc6a-1382-a272-e231014a196f@os.amperecomputing.com>
-Date:   Thu, 27 Oct 2022 10:39:36 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.0
-Subject: Re: [PATCH v9 8/9] mfd: Add Ampere's Altra SMpro MFD driver
-Content-Language: en-CA
-To:     Lee Jones <lee@kernel.org>
-Cc:     macro@orcam.me.uk, Bagas Sanjaya <bagasdotme@gmail.com>,
+        with ESMTP id S233987AbiJ0Dwq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 23:52:46 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CBC4D8A7D7;
+        Wed, 26 Oct 2022 20:52:44 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8CxjdqLAFpjv8QCAA--.10763S3;
+        Thu, 27 Oct 2022 11:52:43 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxJleEAFpjbZEFAA--.2104S2;
+        Thu, 27 Oct 2022 11:52:37 +0800 (CST)
+Subject: Re: [PATCH v2 2/2] dt-bindings: soc: add loongson2 guts
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thu Nguyen <thu@os.amperecomputing.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com
-References: <20220929094321.770125-1-quan@os.amperecomputing.com>
- <20220929094321.770125-9-quan@os.amperecomputing.com>
- <Y1aHiaZ1OpHZIzS9@google.com>
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-In-Reply-To: <Y1aHiaZ1OpHZIzS9@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR01CA0015.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::15) To SN4PR01MB7455.prod.exchangelabs.com
- (2603:10b6:806:202::11)
+        zhuyinbo@loongson.cn, Arnd Bergmann <arnd@arndb.de>,
+        Hector Martin <marcan@marcan.st>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221025035128.21068-1-zhuyinbo@loongson.cn>
+ <20221025035128.21068-2-zhuyinbo@loongson.cn>
+ <7c67c721-685a-fa0e-ab4b-41b7de3ea0a0@linaro.org>
+ <52de60bd-8aa5-a461-9bca-ce8e6f82ead8@loongson.cn>
+ <ae7cf416-f7b9-2316-5bb2-0043651ed0fd@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <7bd6db22-210b-d8ff-7476-b2e38dc7c683@loongson.cn>
+Date:   Thu, 27 Oct 2022 11:52:36 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR01MB7455:EE_|SN6PR01MB4992:EE_
-X-MS-Office365-Filtering-Correlation-Id: ec6b9c9c-6df5-4ad0-6380-08dab7cce5f8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QGLYpD6vzWBhYbnzPWVLMwPSuPUqVulIedhR65kEVZnCFRHAJUuq4FowxwfI6yA7KiGVNM7i0k7Sf5qP6NT9s91uQwBuFQQIEJLEs+a1EM7hfedMsUIW2/I6yypz2ACLCMH/KnR8StM5/LuC8y8gr/2sO9YlCZt0rAuwzVKgMqZ8WIDtf63FO3/0WAYt9VKeM25w42juv65WoNIWp+abIQC1fg6um/l2yhPzA8L+PTMkh5yKiRTp83G3XJsP40Ef3pTh3vtyAk+Pi7KMtu0mjJFAIOw8Z4DzsXdrWme/TjwtheDYKm7oTIb0M4u7+4zWnjbn8gS4aEu6QysUjLcHsezIBsIYA6eMAFOMiOOi4rMKbmiBhBqG6g3ob8fsgU//aH5S5rNggnCnw+e6okXlcfLCrgb9vzGCCSgGtBweYXVuRsL+9CQxCjRdnF+07iDF5cdA3vJ+27Jh3ukpiAqJjNn0dq1KQ/wHq637ghOekjW8q6oFVNN0QkewPBGurDjA31vvigmufhaqDVWvjFAcavBnnzN7FpF2LmvSXxNZ/e4QZUuGadCkHhQwo+kpUc45wlbhCf9VjXSJ0h6skw+M/UAX529SCHoItst2UKKTEwEk63VCwcCdG5UdMUN8e0RZOdIK0eMiRjXVO50rjrhrfiiTydiF+RdTPBjGSUNOONyHuJEBTRgfZ0a9hnqO30hsc/anpBinD4H3Q1AtKQSSeYl3geGOJIeaaZuiUFa48gr5qoe6r3Z8cHGP/Rv6B3UHdqm3JhkbwRYDiQP1a4weIW6f8+GVaH89qMER3wilgug=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR01MB7455.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(39850400004)(136003)(396003)(366004)(346002)(376002)(451199015)(83380400001)(31686004)(186003)(478600001)(6486002)(2906002)(7416002)(38350700002)(38100700002)(86362001)(31696002)(6506007)(6512007)(53546011)(52116002)(26005)(2616005)(6666004)(107886003)(66556008)(4326008)(8676002)(54906003)(41300700001)(66946007)(66476007)(8936002)(5660300002)(6916009)(316002)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZGR6Z2ZUTDR6dDdOMStUdkw1Um1sZ1dWQllYMGJpR29UQWsxWFZLeVh3Y2sz?=
- =?utf-8?B?V05QLy8vaGV2MEF4Wk5vdFljR2NXZkpHNXZMRkcxeFp3bGJPNW1jbWFKTmFz?=
- =?utf-8?B?U0xRYUNjd3VmSllkZU11SlBvbEM5cnRGVjQwd2FWdnhtalZTV21NQ3VoUXR5?=
- =?utf-8?B?Y1ppR1NHa0pkeEFrVHI5K1htQjJGbDhCWjQwTitlK21UNkZLREJQaitsVEIz?=
- =?utf-8?B?b1JTcS9obDcxaS9wbzB6aGEyMFBHMTFlWU5qT0wvNEV6K1N6YXRueWU4bTVX?=
- =?utf-8?B?MzdTQkZTQ0hkMkJSM0NrWTlBVWNLV3JpYVR1SndlU1hlTGlwV2krM0VNdmpi?=
- =?utf-8?B?c2tVaFZCU29iUXNXamdDRGR0K1RRVW45VUNsTVYybGpIcFJEU25DbW1aTnJx?=
- =?utf-8?B?VHNHemZ1cWFWMHphZGh1eHh2MUNTNkQ1TE8rbnNuNkVVV2U4bDFic0IxUGQr?=
- =?utf-8?B?V1ZLeFFsYzNsOG4vSDdJTWQzZmNCZWZpTEFXVDgwbW1WL1dYcTNtdG0vbjBB?=
- =?utf-8?B?U3NLNlpkcU9ENk5kOC9MbHpBeUw2dHpFb1lpcHFlb0VIMTM5ak84Q0d2L2hH?=
- =?utf-8?B?Z1BDZnd3WkZmR0N3ZVNIOWdnd2RVdXdVaDlHQkx5UWM4U0lkYnlvbWlaRS9n?=
- =?utf-8?B?OXFYNCtKOWM5cjl5eWhwaldIYWlJb3pDTTAvVGVwVjRnek0rV0svTkZsdFNW?=
- =?utf-8?B?azI1ODJRdVZJbHJXZUVsYUY2aVQrZVhzYzlua3pUTlJXRXhLNGlPYWFMSmM5?=
- =?utf-8?B?WnJteHlBb3Z4NUlHL05JMjl4MWFsUGE1UGE3SER3TzJuL3ByWkxZTXJuMVVQ?=
- =?utf-8?B?eDJET09ZWEgwdFhaa3Y5SGZrU2tmUFI0TFltZnVrUHRDWmF0Y09pUGpHbGdH?=
- =?utf-8?B?WFlhMzFzY3pvMTE4SlZPbjRCL09tNnRXOUQvTUdEOVRxdGdEUEtLQUlIcTNT?=
- =?utf-8?B?RVhDNFZGMmxBYzNqTHJkdTFGUEJ3elhKRW5Ic0ZUWUQzWk8zZEFOZ1huNm0x?=
- =?utf-8?B?S0V6UHJhMXlKMHJlbDlFZzdxdlduNGxxeEpNK2ZFcHJmYWZsRzI1bmtRQUp2?=
- =?utf-8?B?M2tPL0d2MTZwNytBZmdTUmNpZFRvU1BrTTVZc3BaYkFvdFplUTYybDZZVDF3?=
- =?utf-8?B?OEl0TlZiTDJkVXMvWW1ESysxZDh3b0VlSm1RUzBIUFVUcTllWTZSMVl3SzU2?=
- =?utf-8?B?ekoxWkhxZ24yNVRIU3JKd1VxdW8xM0ViWFZqSEZqbXR0V0p2N3RvR3J4RzRu?=
- =?utf-8?B?TG1ndTJFaVllZjFMWHV3NTBGWUhmYXRYaUsybGxpQkxVRXBhai9Nb1kzZFpo?=
- =?utf-8?B?Y3pKcFdaa2lQQ0c4YVFxbENTbkpvVllmaFMvMm5id29tOE5PeWRwQ1ZoTGhY?=
- =?utf-8?B?eTJvZXdJVHBRay9Ca1hXQ1YxQjlXeWh4MjlrZGpqU3NxSlVEY1BzQitpZDVH?=
- =?utf-8?B?WlF0NytEZVRjMkNyWlhGVlBiOUxDODljRzR2cmxHUzFvRldQVXpKTjZRWmVT?=
- =?utf-8?B?SmNPVzQvOGFZMVYyZnlVeC8xNHNISzJ4eGJHZmRQUGZGU1dUQyt0cnFicHd5?=
- =?utf-8?B?MHZUQUs2K2kzSVlzRUs0ZHNEdmw3QkZ6K3NNNHVnYU1Sd0lDNGFWNk1KWGtU?=
- =?utf-8?B?R1BsVFB3Z2Y5YUkwMGpxR3NYMk5hVW0vV1ZFeGRZVVFWZWJIVWN0QmFIcEph?=
- =?utf-8?B?STdTTnAraHJSL1pITHJqLzFZTXRnS0ZjT1pFamlEc3k1K1R4U3d5akZKSkZs?=
- =?utf-8?B?WUM2ZDI5RDVQVzdmVzVycituck5YT1JhS0lVcTVmV3hwOUtYMVI2OGVxV1h6?=
- =?utf-8?B?ck1IalR4aWZGb2NUbVpQMUdRMlpvbTdIeVVOdlRTOFE2akxaNHJIT3RxNXBQ?=
- =?utf-8?B?L0RvZytmWFdnamh1K3FHbENJVVFUSE55Y3RoS2ZXVzE2ZmxBakhoTkpRaDBo?=
- =?utf-8?B?MFVvSmd4L290K0U1WmFkbW1Ua2NobWxzRkdIVVhBeFhOTDljRmJQOGJKcXFt?=
- =?utf-8?B?SVlBM0QzNXY5TkVyRFcvM29wZFRQVjZkOFdtM05UUVUxTUUrZCs5ajJIMllr?=
- =?utf-8?B?V3FEREczaDVXRlBlaFRQUkpsMU9wOXNrN0RWWlBQZTRpVjJ0cVJ2WmtMODBj?=
- =?utf-8?B?UGZHcFpkNDhMTnV3TVR5ZkFUenZYQkFuVTNiSktiSmR5Rmx2UElHb2F3VHF2?=
- =?utf-8?Q?PVRw/z0MTMVv4Ce+PlbRotk=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec6b9c9c-6df5-4ad0-6380-08dab7cce5f8
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR01MB7455.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2022 03:39:48.8181
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5ZJrdj4Ze/Qylcn+Lmn4ZX+vY/HKJuuE+u4KWuMkzHeCfxPZqlZgqVcEdULN9jxcXi/8/RQ01sN2+tGoefuZrvowXg0Xupmk3Sa4fXeLMwY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR01MB4992
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <ae7cf416-f7b9-2316-5bb2-0043651ed0fd@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxJleEAFpjbZEFAA--.2104S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3Jw45Ww4DKrW8GrW5ur45KFg_yoW7XF4fpF
+        4xCFWDKFW8Jr129wsIq3W8AF4a9as7A3WUWrnrG3429Fyq9a4ftwsxKr98uF18JryxXFW2
+        vFWjg3yS9F4DAFJanT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUtVW8ZwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jsWrXUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -144,62 +78,144 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 24/10/2022 19:39, Lee Jones wrote:
-> On Thu, 29 Sep 2022, Quan Nguyen wrote:
+在 2022/10/26 下午10:10, Krzysztof Kozlowski 写道:
+> On 26/10/2022 03:22, Yinbo Zhu wrote:
+>>
+>>
+>> 在 2022/10/26 上午3:40, Krzysztof Kozlowski 写道:
+>>> On 24/10/2022 23:51, Yinbo Zhu wrote:
+>>>> Add the loongson2 soc guts driver binding with DT schema format
+>>>> using json-schema.
+>>>>
+>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>> ---
+>>>>    .../soc/loongson/loongson,ls2k-guts.yaml      | 37 +++++++++++++++++++
+>>>
+>>> Looks like wrong location, although difficult to judge because you did
+>>> not describe the hardware at all. If this is chipinfo-like device, then
+>>> Documentation/devicetree/bindings/hwinfo/.
+yes it is a chipinfo/socinfo device, I will following your advice.
+>> My guts driver is refer fsl platform. It was was to manage and access
+>> global utilities register block for SoC and it was only used in SoC
+>> platform. when driver need use Soc ops to do some function the this
+>> driver was needed.  the dcfg (device config) was a function in guts
+>> (global utilities) block.
 > 
->> Adds Multi-function devices driver for SMpro co-processor found on the
->> Mt.Jade hardware reference platform with Ampere's Altra processor family.
->>
->> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
->> ---
->>
->> Changes in v9:
->>    + Rename smpro-mfd.c to smpro-core.c                   [Lee Jones]
->>    + Fix include files in alphabetical order              [Lee Jones]
->>    + Add defines to avoid using magic numbers             [Lee Jones]
->>    + Return -EINVAL if device does not match              [Lee Jones]
->>    + Remove unneccessary comment                          [Lee Jones]
->>    + Refactor error path handling in smpro_core_read/write()   [Quan]
->>
->> Changes in v8:
->>    + None
->>
->> Changes in v7:
->>    + Smpro-mfd now significant changes in compare with simple-mfd-i2c
->>      driver, remove the copyright note about simple-mfd-i2c    [Quan]
->>    + Install bus->read/write()  to handle multiple types of bus
->>      access.                                                   [Quan]
->>    + Update license to MODULE_LICENSE("GPL")                   [Quan]
->>    + Add others minor refactor the code                        [Quan]
->>
->> Changes in v6:
->>    + Update license part to reflect that this driver is clone from
->>    simple-mfd-i2c driver [Quan]
->>
->> Changes in v5:
->>    + Dropped the use of simple-mfd-i2c driver [Quan]
->>    + Introduced drivers/mfd/smpro-mfd.c driver to instantiate
->>    sub-devices. This is to avoid DT nodes without resource issue [Quan]
->>    + Revised commit message [Quan]
->>
->> Changes in v4:
->>    + Add "depends on I2C" to fix build issue found by kernel test
->>    robot [Guenter]
->>
->> Changes in v3:
->>    + None
->>
->> Changes in v2:
->>    + Used 'struct of_device_id's .data attribute [Lee Jones]
->>
->>   drivers/mfd/Kconfig      |  12 ++++
->>   drivers/mfd/Makefile     |   1 +
->>   drivers/mfd/smpro-core.c | 138 +++++++++++++++++++++++++++++++++++++++
->>   3 files changed, 151 insertions(+)
->>   create mode 100644 drivers/mfd/smpro-core.c
+> I can barely understand it.
+My description is about chipinfo/socinfo definition. and I have a look
+/bindings/hwinfo/, I think move binding file to hwinfo that is okay for me.
+
+Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
+
 > 
-> Applied, thanks.
+>> For these type of driver, other platforms were initially placed on
+>> Documentation/devicetree/bindings/arm/   if it is arm/arm64
+>> architecture. Later, move it to the soc directory.
+>>
+>> Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
+> 
+> How is this related? This is Layerscape, not Loongson2. Describe the
+> hardware you are adding bindings for.
+The driver functions/type are the same, the driver was register a struct 
+soc_device_attribute by soc_device_register then other peripheral driver
+can call SoC ops, such as soc_device_match.
+
+then layerscape guts module bindings are placed in
+Documentation/devicetree/bindings/soc/, the loongson guts module 
+bindings was follow that layerscape and are placed in
+Documentation/devicetree/bindings/soc/
+
+In a words,  It is a question about where the binding file should be 
+placed.  I think move binding file to hwinfo that is okay for me.
+> 
+>>
+>> So, do you still think it is inappropriate to place it in the soc dir?
+>>>
+>>>
+>>>>    MAINTAINERS                                   |  1 +
+>>>>    2 files changed, 38 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..2502f8aeb74d
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-guts.yaml
+>>>> @@ -0,0 +1,37 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-guts.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Loongson2 GUTS driver.
+>>>
+>>> Drop "driver." unless you refer to some hardware (like motor driver?).
+>> this need refer hardware soc datasheet to gain soc register (global
+>> utilities register block ).
+>> so keep "driver" string that whether was more appropriate?
+> 
+> What? I cannot parse it.
+> 
+> Did you understand my comment? If yes, please point to Wikipedia article
+> explaining this "Driver" you refer to.
+I will remove the "driver" string.
+> 
+> 
+>>>
+>>>> +
+>>>> +maintainers:
+>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>> +
+>>>> +description: |
+>>>> +  GUTS driver was to manage and access global utilities block. Initially
+>>>
+>>> Drop "driver" and describe instead what is GUTS, including its acronym,
+>>>
+>>>> +  only reading SVR and registering soc device are supported.
+>>>
+>>> Entire sentence describe Linux driver - drop it. Instead describe the
+>>> device, the hardware.
+>>>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: loongson,ls2k-guts
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  little-endian: true
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    guts: guts@1fe00000 {
+>>>
+>>> Node names should be generic.
+>> dcfg/scfg (device cfg/ soc cfg)was the key function of guts (global
+>> utilities) block. and guts name I was refer fsl soc driver.
+>> "drivers/soc/fsl/guts.c"
+>> this binding file was follows of fsl guts.
+>> Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
+>> Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-scfg.yaml
+>>
+>> or, I was use scfg as node name, Do you think it's appropriate?
+> 
+> No, these are not generic node names.
+I was refer "ti,k3-socinfo.yaml",  Do you think it's appropriate that 
+socinfo as node name?
+> 
+>>
+>>
+>>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Thank you for picking the patch.
-- Quan
