@@ -2,91 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB34610021
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 20:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E349A610093
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 20:45:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235717AbiJ0SZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 14:25:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39782 "EHLO
+        id S235548AbiJ0Spw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 14:45:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235842AbiJ0SYz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 14:24:55 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB4831DED;
-        Thu, 27 Oct 2022 11:24:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BBCCDB82752;
-        Thu, 27 Oct 2022 18:24:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 366AEC433D6;
-        Thu, 27 Oct 2022 18:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666895089;
-        bh=59Pw40a4Cn+LbgrGbl89Wp804IafCpdymwLTbzmtb8Q=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=PwetMeddijuZSfdb3qiz+ALrl6FPHsc1Ei/dIxhQiaQxHCeRRdYV9+Hpiq/qZghfF
-         jcYKLCDWLeYWlzaMjMRMc116RahtvDMmn5AHskY8stRDqNNPRWHfFUtbG7G+iYCglM
-         VtMEI+FWgRCBrujaz+mRJPPa5t7E8pEFJJ2ihiJHqKn42Gk19m82BVaHCAjypsdDeY
-         e7CNhKZU/TtBq5flOmTRUm9xNx/38qUmYnMjpWYMBeryAUNHDynM25IGSn4fQk5pmA
-         VTkcAcoCRwM+2vKazzC52qq71AmrnfB8Oc6KgA+ayo4fhRabQkyDPrEjTbLBkActAQ
-         huWBKCeodfluA==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <e5009a33-1f71-1fe3-3a06-98bba031fdf0@linaro.org>
-References: <20221026190441.4002212-1-quic_molvera@quicinc.com> <20221026190441.4002212-2-quic_molvera@quicinc.com> <e5009a33-1f71-1fe3-3a06-98bba031fdf0@linaro.org>
-Subject: Re: [PATCH v3 1/5] dt-bindings: clock: Add QDU1000 and QRU1000 GCC clock bindings
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S235708AbiJ0Spm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 14:45:42 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B75BCDF;
+        Thu, 27 Oct 2022 11:45:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666896341; x=1698432341;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=YPia0m1f9qEjXnqMsbXsyWcftpr+mF2VBdbIQw7izUc=;
+  b=jnl8WsScImiWyVnSCq/XF6TEh1SJSPtKx4EyQUskaVoXivu610urI6Lx
+   sj8QAEOBGLBP1EDlu3UAp/YGYk8EsOJ1G2f9gSYxabETxGmP/AhxRGCu/
+   JJBn26UPIv2a3eKOJ92/cKD2qDWdgpBZnMrLiDsmQIoROeW8oQjNj10v6
+   8X/nH0uRyIx7bYLRSFHWy/yNgrvsmX+VATcKnSu5eCHHZ8qkv7PKc4FQp
+   6Eoan81RuNW8kjIz+E1L8cY1pg84Ld9c8J0jwUvNOafvb2BPLGPKPHOZ9
+   82V/LOmnhIBC9mWHBNHe4qDx5clwK02IXMFNs/QuL1ntgOKOcp+/LcTji
+   g==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="372523478"
+X-IronPort-AV: E=Sophos;i="5.95,218,1661842800"; 
+   d="scan'208";a="372523478"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 11:45:39 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="663727626"
+X-IronPort-AV: E=Sophos;i="5.95,218,1661842800"; 
+   d="scan'208";a="663727626"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 11:45:35 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 9547020210;
+        Thu, 27 Oct 2022 21:37:58 +0300 (EEST)
+Date:   Thu, 27 Oct 2022 18:37:58 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Date:   Thu, 27 Oct 2022 11:24:45 -0700
-User-Agent: alot/0.10
-Message-Id: <20221027182449.366AEC433D6@smtp.kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
+Message-ID: <Y1rQBmXj71C1RrwB@paasikivi.fi.intel.com>
+References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y1pphVPw0J97AmW4@paasikivi.fi.intel.com>
+ <CA+V-a8szaPjwumrBgOT9gzMKBjY7hk0zfP8RgzUUDfY+BAsogA@mail.gmail.com>
+ <Y1p91+XxPCB9NWwh@paasikivi.fi.intel.com>
+ <CA+V-a8uhYymEVg7jdLVGNLsVD3=O1mk-_NVERu00W+gsv-7QXg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8uhYymEVg7jdLVGNLsVD3=O1mk-_NVERu00W+gsv-7QXg@mail.gmail.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Krzysztof Kozlowski (2022-10-27 08:54:51)
-> On 26/10/2022 15:04, Melody Olvera wrote:
-> > +description: |
-> > +  Qualcomm global clock control module which supports the clocks, rese=
-ts and
-> > +  power domains on QDU1000 and QRU1000
-> > +
-> > +  See also:
-> > +  - include/dt-bindings/clock/qcom,gcc-qdu1000.h
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: qcom,gcc-qdu1000
-> > +      - const: syscon
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Board XO source
-> > +      - description: Sleep clock source
-> > +      - description: PCIE 0 Pipe clock source
-> > +      - description: PCIE 0 Phy Auxiliary clock source
-> > +      - description: USB3 Phy wrapper pipe clock source
-> > +    minItems: 2
->=20
-> Why the clocks are optional?
+Hi Prabhakar,
 
-They should not be optional. They're always there.
+On Thu, Oct 27, 2022 at 05:32:07PM +0100, Lad, Prabhakar wrote:
+> Hi Sakari,
+> 
+> On Thu, Oct 27, 2022 at 1:47 PM Sakari Ailus
+> <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Prabhakar,
+> >
+> > On Thu, Oct 27, 2022 at 01:01:52PM +0100, Lad, Prabhakar wrote:
+> > > Hi Sakari,
+> > >
+> > > On Thu, Oct 27, 2022 at 12:20 PM Sakari Ailus
+> > > <sakari.ailus@linux.intel.com> wrote:
+> > > >
+> > > > Hi Prabhakar,
+> > > >
+> > > > One more comment.
+> > > >
+> > > > On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
+> > > > > @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
+> > > > >
+> > > > >       dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
+> > > > >
+> > > > > +     pm_runtime_set_active(dev);
+> > > > > +     pm_runtime_get_noresume(dev);
+> > > > > +     pm_runtime_enable(dev);
+> > > >
+> > > > You won't gain anything by eanbling runtime PM here. Just move it to the
+> > > > end of the function before the rest of the calls. Error handling becomes
+> > > > more simple.
+> > > >
+> > > If I move the above calls below I get the below warning:
+> > >
+> > > [    2.633386] ov5645 0-003c: Runtime PM usage count underflow!
+> > >
+> > > This is because of the last patch which moves ov5645_entity_init_cfg()
+> > > before registering the subdev. ov5645_entity_init_cfg() calls s_ctrl
+> > > due to which we are seeing the above message. Please let me know how
+> > > to proceed on this.
+> >
+> > Ah. Yes, this is a problem with the usage pattern of
+> > pm_runtime_get_if_in_use(). But please don't change that.
+> >
+> > You can still move enabling runtime PM later in the function.
+> >
+> Agreed, the final version looks like below:
+> 
+>     pm_runtime_set_active(dev);
+>     pm_runtime_get_noresume(dev);
+> 
+
+You'll have to enable runtime PM here, before pm_runtime_get_if_in_use()
+gets called.
+
+I'll see if it could be made to work in a sensible way when runtime PM
+isn't enabled yet.
+
+>     ov5645_entity_init_cfg(&ov5645->sd, NULL);
+> 
+>     ret = v4l2_async_register_subdev(&ov5645->sd);
+>     if (ret < 0) {
+>         dev_err(dev, "could not register v4l2 device\n");
+>         goto err_pm_runtime;
+>     }
+> 
+>     pm_runtime_set_autosuspend_delay(dev, 1000);
+>     pm_runtime_use_autosuspend(dev);
+>     pm_runtime_enable(dev);
+
+-- 
+Kind regards,
+
+Sakari Ailus
