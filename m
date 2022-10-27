@@ -2,57 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB516100C3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 20:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0BA56100EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 20:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234709AbiJ0SzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 14:55:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49628 "EHLO
+        id S234915AbiJ0S7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 14:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236015AbiJ0Sy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 14:54:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45FC323E88;
-        Thu, 27 Oct 2022 11:54:55 -0700 (PDT)
+        with ESMTP id S236402AbiJ0S7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 14:59:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190A03FD7A;
+        Thu, 27 Oct 2022 11:59:15 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E4066B8276C;
-        Thu, 27 Oct 2022 18:54:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B693C433C1;
-        Thu, 27 Oct 2022 18:54:50 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9965462456;
+        Thu, 27 Oct 2022 18:59:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC323C433D6;
+        Thu, 27 Oct 2022 18:59:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666896892;
-        bh=Kun1EPlhNAljLOOaLOtA+3eyTsZ+9G8Vw30cBcFPzrw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gG3+6gQ96c5YkWOO1XAfUf+tlK5NY4nF4uTtmxhAOG9iUO7MH9NjYl9uV+zXmZ6Bm
-         kFj0j3YREptD0FDWmPJ24tgUVBO3t0ApQhzUwcvP9b2hiUTQqC9d47bFYNT1vs8hwQ
-         i/c6SqDjPDKCrAbV6p1kiVsv2/u5agF8eijGbDwULjDnDHxoF0sbAcvBzcfkCtwfnd
-         TSL+BgYXXEBX+dHAAH2unY4GjcdQ6sKFPNi8ZompKDMZwhl0/GacW8Sj5E+kYczgjr
-         cpztnNKpPTfvQHkzReT7E4YAqXTDz3MCDfL0W9XJtJO6W5s9ZgKbivsWxULuzcx8hK
-         kgFA8999iDY4Q==
-Date:   Thu, 27 Oct 2022 19:54:47 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Naresh Solanki <naresh.solanki@9elements.com>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add regulator-output binding
-Message-ID: <Y1rT96QzwIn5pIVn@sirena.org.uk>
-References: <20220925220319.12572-1-zev@bewilderbeest.net>
- <20220925220319.12572-3-zev@bewilderbeest.net>
- <20220929210714.GA2684335-robh@kernel.org>
- <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
+        s=k20201202; t=1666897154;
+        bh=REl37YtuYRtKTr6b/Ay4A3AdEJsHmx1V5gV97WyVEU8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=K67qgXty9/lzuiPZOWprJqtRqwovI0TE6jCrxvO62P89joJaWVm+FtwWpx+dm9jyR
+         mTB0RwAbs7ONH8FmdWS8MYw5AM4J556m8+s5sTfhYDohutJKx/1754JA41LHd1RQy2
+         TS/Zy/LdoqADinB+ikP/lCW6SkkyRZpP9taMt882IPiKbaHiX1iuYhgvr82aNP1vnK
+         To6GyII/5B1znDOFB3SkxAdVNAJzudyyVx7t//39th2GArTEwL2OeKmuzHOJP+Gj3X
+         +vo8s2J8rvftdjAwK1GK1irMJ22m+TLzsIW6+CaTB9bQRZwgodqAEwYphd7QH45Qkw
+         kBO2VRgwP92Ew==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="M3zmNXbrrfzH3Cim"
-Content-Disposition: inline
-In-Reply-To: <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
-X-Cookie: Forgive and forget.
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221026194345.243007-2-aidanmacdonald.0x0@gmail.com>
+References: <20221026194345.243007-1-aidanmacdonald.0x0@gmail.com> <20221026194345.243007-2-aidanmacdonald.0x0@gmail.com>
+Subject: Re: [PATCH v2 1/6] clk: ingenic: Make PLL clock "od" field optional
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     zhouyu@wanyeetech.com, linux-mips@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        paul@crapouillou.net, robh+dt@kernel.org
+Date:   Thu, 27 Oct 2022 11:59:11 -0700
+User-Agent: alot/0.10
+Message-Id: <20221027185913.EC323C433D6@smtp.kernel.org>
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,39 +56,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Aidan MacDonald (2022-10-26 12:43:40)
+> Add support for defining PLL clocks with od_bits =3D 0, meaning that
+> OD is fixed to 1 and there is no OD field in the register. In this
+> case od_max must also be 0, which is enforced with BUG_ON().
+>=20
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> ---
 
---M3zmNXbrrfzH3Cim
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Sep 29, 2022 at 02:27:19PM -0700, Zev Weiss wrote:
-> On Thu, Sep 29, 2022 at 02:07:14PM PDT, Rob Herring wrote:
-
-> never as any sort of default/automatic action.  The two obvious things to
-> guard against there seem to be automatic enablement during initialization
-> and automatic disablement on de-init (shutdown, unbind, etc.).  The former I
-> think can be avoided by simply not setting regulator-boot-on, so I added
-> this as a corresponding property to avoid the latter.
-
-> I'm definitely open to suggestions for a better approach though.
-
-regulator-boot-on mainly exists for handover of state from the
-bootloader where we can't read back the state of the hardware rather
-than as a control for boot purposes.
-
---M3zmNXbrrfzH3Cim
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNa0/YACgkQJNaLcl1U
-h9B8Rgf8Du4thvptLuiv5L6LjqHMUAYet63k3rRYwGIvleliwoEFk8gYQZEKdFGB
-UEvvGOWF+AY0gTKrHEtdHgYUOi2QTwN2quCetFLxTajIVYtluNKZ76hi+9Zt7xaN
-JlSpqehmuCeCHsxzSjMfCgDTPJL7jnVFORAk7azYpQt+22dzgGwimK/QUq0BDwEX
-Sz7moED/aqfH5MiDo9tIS6OoePaXDqlUOBAgoQOe8pDwNN/ZZsvJ8H5AlDMBV7tL
-KbCtshLetmnDzd7a/pbi6zOkagoRhqHkP1TQAdxZXdDN/RThDsMXZ40IK7YEKbLy
-zar4ki4tO6ZqSMJ31ztcMXVgYzaQmg==
-=S//I
------END PGP SIGNATURE-----
-
---M3zmNXbrrfzH3Cim--
+Applied to clk-next
