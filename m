@@ -2,131 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3607F60F632
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 13:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E53D060F643
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 13:33:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235271AbiJ0L2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 07:28:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51682 "EHLO
+        id S235124AbiJ0LdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 07:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233403AbiJ0L2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 07:28:53 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F12B10A7E1;
-        Thu, 27 Oct 2022 04:28:52 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 367935C01D7;
-        Thu, 27 Oct 2022 07:28:49 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Thu, 27 Oct 2022 07:28:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; t=1666870129; x=1666956529; bh=IsY1kEvEYG
-        Njx7tvNwuoNGkxDZVrFMwwBASmVJ2tn3o=; b=CkpnFEmGBwaVOTbhDV0IRXv7N7
-        xPFyaCGZDtG6ROD9CxdHqFKNgFkcYu2a4U3ZLQut2uYJQRwJ6ZGDhXJdWGAJrony
-        nWAFG8zqZWsEBFG7F2GnCpjcNXC6JxaB9vjwZ+ABNGhfKU7gDUlwm2OqJb4dTpX1
-        Rig/fPMt1MY2hrBRnH8LYxCDm7uavciuYTlWZiBfQwQ6dcsV+LVJP7/gJvbpwz72
-        cMBrgRBPFXLnPtzBA7cmXRJTcwA9Ug5kC8B0gULeIa88FFEj7yVIA5Dk4IrOiGWp
-        txnFA9yyIiKmQxh6402UdDtWOFMqm6gRBNyuyrMef22SIxdq4o9YRUAugv2Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1666870129; x=1666956529; bh=IsY1kEvEYGNjx7tvNwuoNGkxDZVr
-        FMwwBASmVJ2tn3o=; b=Wle9Uf20LTzIbD/X59keL08he2hO5EH2lyhjIJ7Uxptl
-        05mCGIfVLtxLyRd4rUXyGEbQGt/ErY/+X9g9RNLiZzv6WAVMz3O2o674/jRGLq/C
-        R2vlXDlAgMuGq0QgzFrLgrt1kxFpS3xlVUDnFFcNcWokWme9I6WONc587XjdSSOq
-        /9IbswHm4kYSc+2dvGfWEatVLYyNbucUv1e66YgfdDT6aJmcKenQiwPVyZYTqOvi
-        1QqQ4i8w3R5ydx7ZPcZm8SBsUUt68oDKp2XPywLfMIwx2cEtAuuuwdeHY64xf4vr
-        V+vL9CkEvXFdH8b1yt+8ZgVL2SgMiv+2EJub8t6XLA==
-X-ME-Sender: <xms:cGtaY0mXm2AS9Vq6wIs4wu_BzD8QhbX8Q-I9DxgImZpFAbyS9RnAVQ>
-    <xme:cGtaYz0cbflU-d8MaX1bMbh2vMhvWy4dcoCZ3bs9jCqFvv6U47LRByLF24VhUzXXm
-    7Un-LXjQUj8u44HlKs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtdeggdefkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
-    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
-    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
-    hnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:cWtaYyoscCAEn-osru8r3Zp0fOEir1pV2GnPV4fQTM01-WGYYzsj_A>
-    <xmx:cWtaYwn2C_-QMWRgUR3ZIe1Lx7h59TtjtB7zrhYbMxWvwB1WGeK4ZQ>
-    <xmx:cWtaYy2cszHW6-Qs3q84P8ZwcHIlHic33WI6yTPu44xCub1oXzlFtg>
-    <xmx:cWtaY8pgMVdL-wF8ODRyFboF69WxORo6UnIpkVXca8nhvsZIOZRopA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E5E92B60086; Thu, 27 Oct 2022 07:28:48 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1087-g968661d8e1-fm-20221021.001-g968661d8
-Mime-Version: 1.0
-Message-Id: <dcbbde62-fcf1-4435-8f65-665b25ec3b0a@app.fastmail.com>
-In-Reply-To: <8c11d7c4-dfc4-b84c-82cd-a9708bd79aab@socionext.com>
-References: <20221027045157.23325-1-hayashi.kunihiko@socionext.com>
- <20221027045157.23325-5-hayashi.kunihiko@socionext.com>
- <b3c4f9ec-ba8e-4af1-b347-e07b06530d6c@app.fastmail.com>
- <8c11d7c4-dfc4-b84c-82cd-a9708bd79aab@socionext.com>
-Date:   Thu, 27 Oct 2022 13:28:28 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Kunihiko Hayashi" <hayashi.kunihiko@socionext.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Olof Johansson" <olof@lixom.net>,
-        "Masami Hiramatsu" <mhiramat@kernel.org>
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: uniphier: Add NX1 SoC and boards support
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235349AbiJ0LdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 07:33:04 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 349EC11E468
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 04:33:02 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id 7E33E1B40;
+        Thu, 27 Oct 2022 13:32:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1666870376;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=86Syqd89b1/HCshZzD+et9Bo2opsZhhVIvgaLhrsOcI=;
+        b=mvJXS1/G8NnG3D8HvhI7aMBDN2AXxviQSZavm7F0DzocELCt0oHdv4/KtBG5eJQ7oGQuHa
+        gmQ4L6B6yEJJ2fneIa9NrNWrDt4jgLaN3G0cIMq56FyxznBTnb78gxVtlUeHys9Pu8q3FD
+        uty1ze5E+RFo9Wcx1tZrZWGBVkLQhp/nPJdxWgSddvpdP3TgpUHll5nFJlAWiBXIdZikHj
+        dmotv999hjgrG09N0X8YkS72kyk1hm2Cw8+06a5oocyBcFw8qyHa/m8WJ+fRWS/rZTsNN/
+        PoMnKhHxwRZ7l6SX4CAWBpRxS6xlhfYycrSjpwtw6/yDINY7LmShYi3ud4N+dQ==
+From:   Michael Walle <michael@walle.cc>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Heiko Thiery <heiko.thiery@gmail.com>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH] Revert "arm64: dts: ls1028a: sl28: use ocelot-8021q tagging by default"
+Date:   Thu, 27 Oct 2022 13:32:48 +0200
+Message-Id: <20221027113248.420216-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 27, 2022, at 13:19, Kunihiko Hayashi wrote:
-> On 2022/10/27 19:01, Arnd Bergmann wrote:
->> On Thu, Oct 27, 2022, at 06:51, Kunihiko Hayashi wrote:
+This reverts commit be0b178c50c37a666d54f435da71cf9f008362a0.
 
->>> +			#interrupt-cells = <1>;
->>> +			interrupt-names = "dma", "msi";
->>> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
->>> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
->>> +			interrupt-map-mask = <0 0 0 7>;
->>> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,	/* INTA */
->>> +					<0 0 0 2 &pcie_intc 1>,	/* INTB */
->>> +					<0 0 0 3 &pcie_intc 2>,	/* INTC */
->>> +					<0 0 0 4 &pcie_intc 3>;	/* INTD */
->>> +			phy-names = "pcie-phy";
->>> +			phys = <&pcie_phy>;
->>> +
->>> +			pcie_intc: legacy-interrupt-controller {
->>> +				interrupt-controller;
->>> +				#interrupt-cells = <1>;
->>> +				interrupt-parent = <&gic>;
->>> +				interrupts = <GIC_SPI 86
->> IRQ_TYPE_LEVEL_HIGH>;
->>> +			};
->>> +		};
->> 
->> Shouldn't there be an "msi-map" or "msi-parent" property pointing at
->> the GIC?
->
-> Since Designware PCIe receives an interrupt from GIC with interrupt-name "msi"
-> and passes the interrupt to the linear irq domain corresponding to MSI,
-> I think there is neither "msi-map" nor "msi-parent" properties.
+This commit will break networking on the sl28 boards if the tagger is
+not compiled into the kernel. If a non-default tagger is used, the
+kernel doesn't do a request_module(). Fixing that is also not that
+trivial because the tagger modules are loaded by ids, not by name.
+Thus for now, just revert to the default tagger until that is fixed.
 
-Usually, you have the choice to use either the built-in
-MSI logic of the PCIe controller, or the one built into the
-GIC itself, assuming you have a modern enough GIC implemetation.
+Fixes: be0b178c50c3 ("arm64: dts: ls1028a: sl28: use ocelot-8021q tagging by default")
+Reported-by: Heiko Thiery <heiko.thiery@gmail.com>
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+Vladimir, I'm not sure how to fix that one. Adding aliases to the tagger
+modules? Something like "MODULE_ALIAS("dsa_tag-ocelot-8021q");" and then do
+a request_module() in dsa_find_tagger_by_name(), too?
 
-Using the GIC is preferred here, because otherwise you lose
-all the benefits that MSIs offer, regarding latency and CPU
-affinity.
+ .../arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts | 8 --------
+ 1 file changed, 8 deletions(-)
 
-     Arnd
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
+index 72429b37a8b4..771c50c7f50a 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
+@@ -324,14 +324,6 @@ &lpuart1 {
+ 	status = "okay";
+ };
+ 
+-&mscc_felix_port4 {
+-	dsa-tag-protocol = "ocelot-8021q";
+-};
+-
+-&mscc_felix_port5 {
+-	dsa-tag-protocol = "ocelot-8021q";
+-};
+-
+ &usb0 {
+ 	status = "okay";
+ };
+-- 
+2.30.2
+
