@@ -2,158 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E4CF60EDBD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 04:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B73D60EDC3
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 04:06:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233517AbiJ0CFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Oct 2022 22:05:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40534 "EHLO
+        id S233775AbiJ0CGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Oct 2022 22:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233598AbiJ0CFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 22:05:43 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25FA6F277;
-        Wed, 26 Oct 2022 19:05:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 971BBB8246D;
-        Thu, 27 Oct 2022 02:05:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00857C433C1;
-        Thu, 27 Oct 2022 02:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666836340;
-        bh=5o6vzyzw4kORXcSRUKvFDhkuq4BIPdiBtHVU0vbK5yE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I+eysOf5i6RobjJnbx9xeokOxOGXzrsLztxLU77iMaXFGg9Mw6Q8dsclig1GsSvkH
-         BkzpTb77Tn005uIAyR9QMsJkXZ0ZLldrinf3JhF2EHtvwNBHE195IDQGofai0cv/5q
-         8xH6BElZOaWcSqV2fB2psm9f1tcPjzsThVsjTomwuU5d1NXfHFQHNcNMzLt//OWlYW
-         vyEV39nKbB7tOmAl+oukKUSWZ2QkJVPv/0HR2BbuhrQpHrYOF7PCr3fNYYmD9gDK63
-         9G3y93r3wjUOdAmzr/GNRNrCwqfJdQyuPlHbbtzepP6DanwujEdWcdcWgiEsz7pxRI
-         0S6VEimAOGBkQ==
-Date:   Wed, 26 Oct 2022 21:05:37 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S233687AbiJ0CGg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Oct 2022 22:06:36 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70072.outbound.protection.outlook.com [40.107.7.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1858DAF194
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 19:06:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nsEgxaIRf6IWjMg9nbygWs4xThCep1Dsv7HRNyYoTmBVqi5bYPQV6mCZcfYbzwF7DgN5gO3MbHmivs8U6Qypq7NOUFWaOqbyPRJfLGk8lbg/RByN/RA2uGFUVIj+D9alplrCTpgaV/NN6Ct3WTb0z7ZqGy+UpY5JWBVoQ5eeTtO4sA7ruMKycs5tNWjFqtaERmyc9KobsEVjbDG4Mn6L5jsMDWlOwWl9Y9dR9tKd3LUANny/I9TGXXJ2jmNzjLzbXWuDfoXjIiR7u1TeMnUjkpjM9S5YNFwXtU2A7fFENzraFkFCpU0PizFnnaFmsAHx4fLe7DawZXh4/QUNR94aJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=B6BYz7Vd3Wfi13rmn5yRQm+7hhMBIuePp7XH+XsmEyY=;
+ b=NCppXanCGK/6FMd371upmQfiUC3fv6v/s7kENBJIE/ge5dIE0IZ8WbcyYlqh8Z07ub714W9cDkxk3CZ5/RjjveEy2xTTJqbHOXcvZpNvB8C6uGmRbvJPO2xlrJoEuDaNl5Zj8qzkP0zFFjzlSpswFhLq5ZIf7taR91fD1vYOvPMZ+EfcfHkIPR5D8XGWjEqNP+XbrsNlY/ibKjRua1occl43I6mBRBkZX9fOw0y+HsRmGW3Vdr1Lsjmk2a6mf/W23APqyjooRaNaudKTORvZWKhJWyRwlgWXDEzljLRELACrw3yG6LQKy/Jk8bfP4Peu8SMt81JjI/wggBpnGTMJlQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B6BYz7Vd3Wfi13rmn5yRQm+7hhMBIuePp7XH+XsmEyY=;
+ b=VPyf5zJYd8w0aPViSL2FGDKwovpGppD5rFb5fjNco8aE18hzBW+USEad7HFw9y9TlrvVEcul+m5dqffE3ZmVLJOCtUEgaK3m/RhquauZfQzaa63WO/jldZp5AbmTga5ScDMSIwQptj4d78EN88xcMG326B5gXyy7dHFzNY34qIc=
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by DU2PR04MB8693.eurprd04.prod.outlook.com (2603:10a6:10:2dc::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28; Thu, 27 Oct
+ 2022 02:06:32 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::4150:173b:56ec:dc6c]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::4150:173b:56ec:dc6c%9]) with mapi id 15.20.5746.028; Thu, 27 Oct 2022
+ 02:06:32 +0000
+From:   Shenwei Wang <shenwei.wang@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 01/12] dt-bindings: display/msm: Add binding for
- SC8280XP MDSS
-Message-ID: <20221027020537.li6nzkrtolsnya4x@builder.lan>
-References: <20221026032624.30871-1-quic_bjorande@quicinc.com>
- <20221026032624.30871-2-quic_bjorande@quicinc.com>
- <20221026175441.GA812056-robh@kernel.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+CC:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>, Ming Qian <ming.qian@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>
+Subject: RE: [PATCH 1/2] arm64: dts: freescale: imx8dxl: add scu_gpio node
+Thread-Topic: [PATCH 1/2] arm64: dts: freescale: imx8dxl: add scu_gpio node
+Thread-Index: AQHY3apWplehc/hxJ0CNnptj3fmxpq4hlgNA
+Date:   Thu, 27 Oct 2022 02:06:32 +0000
+Message-ID: <PAXPR04MB9185EB1BF429479A16CC986189339@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20221011194715.647439-1-shenwei.wang@nxp.com>
+In-Reply-To: <20221011194715.647439-1-shenwei.wang@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|DU2PR04MB8693:EE_
+x-ms-office365-filtering-correlation-id: 5dc071cb-dfaf-4ef5-3c36-08dab7bfde9c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: os3oCphF8dw33SkVE2p3oy+KTAp4jyLPi6O43JtYPNzPycfLis94mQIH7QNSU31lw2e+ZPjNe/z6XgWXBtgr/iS+dJM4QJhLvgFEzG9rK86buI/6X1lUUnAcYLQ7Ttx5YgGriEYTu9lcsJ0QJ/QRCHTcOPCjdxlh8SGW37OKOC5WQSmAhc8jHDBEB5ynxK1S7xX1rOPtGOlM7PFykfx+822raSSYJaJy5CB3xmmKzkQJI43TK4w+LewvQ3x6jFlPo9PSfokOEndaMYPdMsnoOzrnBZkS67tRPXlWHlXum0HMpZIrsflKKogiH2jfBCIC5I9nW6T0cBKxZjPjuplVkO/85mYBg+0KWlZK9I4MD5hHXehQ+IxqsyNow6bBWKPgJAdKcWFVYO4gxgcR4tp7rrTSdCFK2dobcKNWcu1ugenXDuFR+dI6onKK7ar2xirn86LfP92KOasSJe7bYEjOmWt+BaFBF5VL0QK+kw50kKQkNNkGyxHH4kUoNxRV7YVHOBcEfnu8dUE9fwIEiNICRceMF05zgGySUDYzYBdlnc00516idvCWxMa5dI08lsg4XtJbvHRTMrf+4HmkPZ6UdyY1zOcpWTquPpixg0AZSq2WyQDFIMq8pb6xbRlukivjNQ/171TGDkvtqsoGGuwms5nn8YlQtgq1nfybMPp7fCBrZDHXt8+49uNpYlAFRq3ZyjklEVmgBRUYfTLGHZX89gaOz+oHTxa2kIW3NGmmb2T8y6ZaH5RYeLtsZ+gTqGcWgihbBGN66+PHxO4Lwz0hUE4xZ27FL+842NcLV8SBtb4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(376002)(346002)(39860400002)(396003)(136003)(451199015)(55016003)(33656002)(8676002)(38100700002)(4326008)(76116006)(122000001)(110136005)(54906003)(316002)(44832011)(66446008)(64756008)(66556008)(66476007)(66946007)(71200400001)(86362001)(38070700005)(478600001)(83380400001)(55236004)(26005)(9686003)(7696005)(6506007)(53546011)(5660300002)(8936002)(2906002)(41300700001)(186003)(52536014)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JJDpOrKwh84ZMptIdpDxGfrpiLrzmVyOclH0iQRCh/BVIZxiak1UYh3POi7P?=
+ =?us-ascii?Q?BdLTuRY3B693R4Tzqi+7iP1lE1tGuG4Bkk/tvP5BiodAG9ozfabuqXoG6q8u?=
+ =?us-ascii?Q?ZmWXlGaCNZvdy6iD/y9KxFZr1sBZM6xwYb2lZYgiS8rKqGWY5s3Gb28hA68G?=
+ =?us-ascii?Q?YNYtAKqqJZEBwqj24beyQhswsXERAUgZeVPWvv/kvRjdZXbUUbjVJK+YLKHP?=
+ =?us-ascii?Q?+D4omi3w/dmzOJLUJtZpsP8bLIFmYkRbC8HESs5HkUesOYhmTRB8laxwl15M?=
+ =?us-ascii?Q?EBNqp25Z9qV2yCtN7WJFxrdFyyd8fMyL0aBnET7pfGEcyo6Vy5vo2oRM+6PE?=
+ =?us-ascii?Q?29fWJ8k8Q5YoFPAsuKSNcbCJJNBAJhNhb4Khq3lXbOCY++8gZqu7XEIWGxpR?=
+ =?us-ascii?Q?bnezcd4hnLMKZKd3fF3NtoPCYpwVTCpeYZhyGrpymqSblIRAwjtM0RfY5Ott?=
+ =?us-ascii?Q?CD0pZxbTy/74bMbVwRvPAPmPZARp71JQYe3WHtCEHcLhHvRQBlhffhrZRROn?=
+ =?us-ascii?Q?utg5TYgbocmW/gfvonLzrmy4bdKX0q2SKTXJTMN2mbCBDCrNfPatwlu9+Wy/?=
+ =?us-ascii?Q?+sNtH+soCp4kd0Pmyj9RrCzumi8A8W/cLzgfeQq4xTLh6vbq8MAGB+RHSawD?=
+ =?us-ascii?Q?ijl3Q9THNeKavmB9lJVPn7mIvPDpZJU4zxmML6F1ZiYFxnsXsg6KkhxFkyGw?=
+ =?us-ascii?Q?miDDzwrF5fFhLh6xsj3XU5UV39HhbDJm6vVpHuvdUCdcC0/Wpa3AufdNhnOe?=
+ =?us-ascii?Q?Qov77e2hq3VHt77k9rWEsI/lEXexInBdnMS16fIYitzsUYx/tebUNOAoSDSc?=
+ =?us-ascii?Q?tZWY4M86PVG3qQKyrEK4rQuX8ZA9ZXmGUVvRjyRnkB/NKVvUL9BSgThUCT1Z?=
+ =?us-ascii?Q?voCGyMQcFwt7h+ji72c+wtS8JDxBBfG25a0JPTRVJcv9UZF3JEfisqqkbphz?=
+ =?us-ascii?Q?0TkEu4ejlWaIIyah4C9SiFCbinM6+odE3+ejxjKuYZ7Jj7c8q+X/060JQwRU?=
+ =?us-ascii?Q?Y9qf8UUrMrujlYhPxDKvPmrAMQMrHCAPWSD9OOs6SujUIHilAlZo1MFJENLW?=
+ =?us-ascii?Q?D3EztAdavXbp8lK49QEXU2xc15Yl5s+OQRByNT81qxYHB4fPpmagLmS4/DXh?=
+ =?us-ascii?Q?GrWX5Vh+KJgohkbUZt10AUYWWUR3d2Hu3jA7MSTyu0RvTwiu8Acs3NbzFYVm?=
+ =?us-ascii?Q?th7Rn7DhVGUJOKuJ0h89FTOis5rNPILqq6APyEEhPR3f9PGQWhJr59RX9pCY?=
+ =?us-ascii?Q?iXD+OxbgAn/Z3P4rurhEnnLhg5MJeXYNNjuvqSpsI5E18iTqBhA8wWsJHLoh?=
+ =?us-ascii?Q?koY5R+WYoq2nLH9RoTGzZHGTviSG0WH2/ic7gjiCb6xf+0dMUf8YYcLBzRqp?=
+ =?us-ascii?Q?W3Il8018Wg9AnoOcpe38EEatnREsVPtCFrWuusLBQ5yVgV16vQxHgN3pUK1F?=
+ =?us-ascii?Q?OJkg9/Kg9g+3q7Rg/YKsF3WYokmGQj+Fn/UWXPnhJuy5fMoP5G0KPetCGPHQ?=
+ =?us-ascii?Q?zg4L2sFu7iTqZCrMpAbNtcXMFZF7/L9P3oSAQo/ftSTmFjMEGsTFJzGQBLQ5?=
+ =?us-ascii?Q?lMzTpS62vFDd9myqii60rI0QKVxFcIkM7b2s99mA?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221026175441.GA812056-robh@kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5dc071cb-dfaf-4ef5-3c36-08dab7bfde9c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2022 02:06:32.7608
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OZ84ZzhqRuzepG2/HHEOzon+3Jk65/RgEYtjFjK5XkTyoUBW0Sq1XCtg/VkAUWtu+rtiXVA/qtb8d3kV5jwP2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8693
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 26, 2022 at 12:54:41PM -0500, Rob Herring wrote:
-> On Tue, Oct 25, 2022 at 08:26:13PM -0700, Bjorn Andersson wrote:
-> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> > Add binding for the display subsystem and display processing unit in the
-> > Qualcomm SC8280XP platform.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > ---
-> > 
-> > Changes since v2:
-> > - Cleaned up description and interconnect definitions
-> > - Added opp-table
-> > 
-> >  .../bindings/display/msm/dpu-sc8280xp.yaml    | 287 ++++++++++++++++++
-> >  1 file changed, 287 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc8280xp.yaml
-> 
-> Doesn't this need to be reworked to match Dmitry's restructuring?
-> 
-
-I based my patches on linux-next, missed Dmitry's in-flight series.
-Seems like this should be rebased on top of his series and hope it lands
-soon.
+A soft ping to Shawn.
 
 Thanks,
-Bjorn
+Shenwei
 
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc8280xp.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc8280xp.yaml
-> > new file mode 100644
-> > index 000000000000..24e7a1562fe7
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/msm/dpu-sc8280xp.yaml
-> > @@ -0,0 +1,287 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/msm/dpu-sc8280xp.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Display Processing Unit for SC8280XP
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
-> > +
-> > +description:
-> > +  Device tree bindings for MSM Mobile Display Subsystem (MDSS) that encapsulates
-> > +  sub-blocks like DPU display controller, DSI and DP interfaces etc.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,sc8280xp-mdss
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  reg-names:
-> > +    const: mdss
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Display AHB clock from gcc
-> > +      - description: Display AHB clock from dispcc
-> > +      - description: Display core clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: iface
-> > +      - const: ahb
-> > +      - const: core
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> 
-> > +  "#address-cells": true
-> > +
-> > +  "#size-cells": true
-> 
-> enum: [ 1, 2 ]
-> 
-> (Nothing else sets that)
-> 
-> Rob
+> -----Original Message-----
+> From: Shenwei Wang <shenwei.wang@nxp.com>
+> Sent: Tuesday, October 11, 2022 2:47 PM
+> To: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Shawn Guo <shawnguo@kernel.org>;
+> Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; dl-linux-imx <linux-imx@nxp.com>; Shenwei Wang
+> <shenwei.wang@nxp.com>; Viorel Suman <viorel.suman@nxp.com>; Abel Vesa
+> <abelvesa@kernel.org>; Ming Qian <ming.qian@nxp.com>; Peng Fan
+> <peng.fan@nxp.com>; devicetree@vger.kernel.org; imx@lists.linux.dev
+> Subject: [PATCH 1/2] arm64: dts: freescale: imx8dxl: add scu_gpio node
+>=20
+> add scu_gpio node in system-controller.
+>=20
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8dxl.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+> index 5ddbda0b4def..9f79504f9d6a 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
+> @@ -133,6 +133,12 @@ clk: clock-controller {
+>  			clock-names =3D "xtal_32KHz", "xtal_24Mhz";
+>  		};
+>=20
+> +		scu_gpio: gpio {
+> +			compatible =3D "fsl,imx8qxp-sc-gpio";
+> +			gpio-controller;
+> +			#gpio-cells =3D <2>;
+> +		};
+> +
+>  		iomuxc: pinctrl {
+>  			compatible =3D "fsl,imx8dxl-iomuxc";
+>  		};
+> --
+> 2.34.1
+
