@@ -2,198 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D85A60FA76
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF61260FA7E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:36:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234974AbiJ0Oeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 10:34:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33926 "EHLO
+        id S230441AbiJ0Ogi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 10:36:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234985AbiJ0Oee (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:34:34 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F309264F6
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:34:31 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id ml12so1478875qvb.0
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:34:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gZo8y3T1IwmVEyZfktrXan3as4gJ0RmGr8oerP5joyY=;
-        b=Gx0nB6zxtpGH17ebvf0fGyH9Kf66KGlOwRBi4OOc/uRL0/ehmchmTLkQbLC9dK1Hkg
-         GiC0MiVeFpZSky3YOe8a2VhE/SrsZCs/iM/z0VaCNpvFIDpbJUfI/F8mKmT33Wn7abGa
-         chpRWlcQc3RVMq1RCj1XzvCe8of+vCQ1W/rsMr9634oYMoZkBvRl1Ns43IvHggq4A/P3
-         goYLPlaI/EfEOZeTsFTmdUJ1mff/ESOu+onM8L5x9D44ZwxqnHI2wcnBKVz7ZAZSWVIu
-         +WlmzwzJJNZVqbtGbpQHYVoffaCKbdHFNW9EjOcpf/lt7EmT70UcBVoBRTJlj/g23I7e
-         fstw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gZo8y3T1IwmVEyZfktrXan3as4gJ0RmGr8oerP5joyY=;
-        b=0bDdguB8zCxx/7jHxMmFh/RTr3bLxjA0iVCHHJ2cTjY0dFnMnmrZNq4USEjNHlOr1w
-         2wGGmj1m34KJSG9nEvUFvlaT5/1eA8YdgGc3uyORVJkMYmKuJiP81DLLcSEe+IsxN5i7
-         WMOWkUsS9PVYQQKfT2vIxo1P3G98Dp5qMQVjYAABpapCsIIbQ2/kAEq3f0o57nj3GNVZ
-         DoC7tk3oQMc8KpKKPASkG83zg6X5IIIky5AkcBwY5K1ANzl8EJWEha5CB5LPsfXKqB7b
-         bXMpBEdobHSaXzRW9NhxzXaS64gkwSSe35DtmumpIP3X5PTMY/9dQ5bKKV8uCQhPDwjr
-         AOzQ==
-X-Gm-Message-State: ACrzQf0+I6ZzAKWzDgaCwcY5Qk1DFs3lYORHoTOUwH4YL1doiyFkNHdn
-        MSEO/Bas1s+7XMYhRMWdr/qhKA==
-X-Google-Smtp-Source: AMsMyM6w5pR1N+8+jwkfd3fB44RJoWs/BEJIBH6MzBKIAZFYWzpKrfgIgc/Io3BAA/QEfdpGzdUcig==
-X-Received: by 2002:a05:6214:20e6:b0:4b1:996d:c1f2 with SMTP id 6-20020a05621420e600b004b1996dc1f2mr40924700qvk.11.1666881271116;
-        Thu, 27 Oct 2022 07:34:31 -0700 (PDT)
-Received: from krzk-bin.. ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id w10-20020a05620a444a00b006f9e103260dsm1076749qkp.91.2022.10.27.07.34.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 07:34:30 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S234642AbiJ0Ogg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:36:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5887217F98E;
+        Thu, 27 Oct 2022 07:36:35 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9232166028E8;
+        Thu, 27 Oct 2022 15:36:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666881393;
+        bh=YX3+dAZyM+hPoq4NUY7Nf//cJ/p1JRqJiGGTie6F7GI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OpxeoDGDZGKCCzDEz8rBV+Oi97nVmRZA8hazKDB2IPC4iFaSvMu7s8ZaM7Jk8OD1N
+         dRorTKNdfoiJNBTTFffh3b6ey51VoOyU+r5qO/8xwlUOfqfsBOTghOSOvHRx6W0mAh
+         cqXI5xjC5tuDkv85nExx5COO0c9FMtEa7/bab54vSlFwXlzv6NF832RvFLfnymtiuP
+         diXs+sWLXuCT8ee4fAAdHdLRIvjHbfH+qZDx4QVJzbLkDi3Cf+i4o3x5uGAYCpxq9U
+         sWgMH/AAgGLl71lJkJaFOmr/zAEcr00DH7uxuNaeklkhMyU5PEr0P/H3X5baleAjLl
+         ky0sWIhlmuJwg==
+Date:   Thu, 27 Oct 2022 10:36:27 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: iio: adc: qcom,spmi-vadc: extend example
-Date:   Thu, 27 Oct 2022 10:34:11 -0400
-Message-Id: <20221027143411.277980-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221027143411.277980-1-krzysztof.kozlowski@linaro.org>
-References: <20221027143411.277980-1-krzysztof.kozlowski@linaro.org>
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Derek Fang <derek.fang@realtek.com>,
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek, rt5682s: Add AVDD and
+ MICVDD supplies
+Message-ID: <20221027143627.nbbketezqunkclxh@notapiano>
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com>
+ <CAGXv+5HJo5x2ieOegmv5vkfh+rTevdR_fri-7PeK+Gd+GXVjNw@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAGXv+5HJo5x2ieOegmv5vkfh+rTevdR_fri-7PeK+Gd+GXVjNw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cleanup existing example (generic node name for spmi, use 4-space
-indentation) and add example for ADCv7 copied from
-Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml.
+On Tue, Oct 25, 2022 at 01:12:49PM -0700, Chen-Yu Tsai wrote:
+> On Mon, Oct 24, 2022 at 3:01 PM Nícolas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+> >
+> > The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+> 
+> The actual chip also has LDO1_IN (for digital core and charge pump)
+> and DBVDD (for I/O). However in the Chromebook designs these two
+> and AVDD are all provided from the same power rail, through separate
+> filter banks.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/iio/adc/qcom,spmi-vadc.yaml      | 94 ++++++++++++-------
- 1 file changed, 62 insertions(+), 32 deletions(-)
+What about rt5682 (no s), does that chip also have these same supplies?
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-index a848df37db06..f1522196042d 100644
---- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-@@ -236,42 +236,72 @@ additionalProperties: false
- 
- examples:
-   - |
--    spmi_bus {
--      #address-cells = <1>;
--      #size-cells = <0>;
--      /* VADC node */
--      pmic_vadc: adc@3100 {
--        compatible = "qcom,spmi-vadc";
--        reg = <0x3100>;
--        interrupts = <0x0 0x31 0x0 0x1>;
-+    spmi {
-         #address-cells = <1>;
-         #size-cells = <0>;
--        #io-channel-cells = <1>;
--
--        /* Channel node */
--        adc-chan@39 {
--          reg = <0x39>;
--          qcom,decimation = <512>;
--          qcom,ratiometric;
--          qcom,hw-settle-time = <200>;
--          qcom,avg-samples = <1>;
--          qcom,pre-scaling = <1 3>;
--        };
--
--        adc-chan@9 {
--          reg = <0x9>;
--        };
--
--        adc-chan@a {
--          reg = <0xa>;
-+        /* VADC node */
-+        pmic_vadc: adc@3100 {
-+            compatible = "qcom,spmi-vadc";
-+            reg = <0x3100>;
-+            interrupts = <0x0 0x31 0x0 0x1>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            #io-channel-cells = <1>;
-+
-+            /* Channel node */
-+            adc-chan@39 {
-+                reg = <0x39>;
-+                qcom,decimation = <512>;
-+                qcom,ratiometric;
-+                qcom,hw-settle-time = <200>;
-+                qcom,avg-samples = <1>;
-+                qcom,pre-scaling = <1 3>;
-+            };
-+
-+            adc-chan@9 {
-+                reg = <0x9>;
-+            };
-+
-+            adc-chan@a {
-+                reg = <0xa>;
-+            };
-+
-+            adc-chan@e {
-+                reg = <0xe>;
-+            };
-+
-+            adc-chan@f {
-+                reg = <0xf>;
-+            };
-         };
-+    };
- 
--        adc-chan@e {
--          reg = <0xe>;
--        };
-+  - |
-+    #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-+    #include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
- 
--        adc-chan@f {
--          reg = <0xf>;
-+    spmi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        adc@3100 {
-+            reg = <0x3100>;
-+            compatible = "qcom,spmi-adc7";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            #io-channel-cells = <1>;
-+
-+            /* Other properties are omitted */
-+            xo-therm@44 {
-+                reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
-+                qcom,ratiometric;
-+                qcom,hw-settle-time = <200>;
-+            };
-+
-+            conn-therm@47 {
-+                reg = <PM8350_ADC7_AMUX_THM4_100K_PU>;
-+                qcom,ratiometric;
-+                qcom,hw-settle-time = <200>;
-+            };
-         };
--      };
-     };
--- 
-2.34.1
+Also, since you already gave the purpose of these other supplies, could you also
+tell the purpose of AVDD, MICVDD and (for rt5682) VBAT? That way I could add
+some description for them in the binding.
 
+Thanks,
+Nícolas
+
+> 
+> Neither does the datasheet specify the ordering of AVDD, DBVDD, and
+> LDO1_IN for power sequencing, just that three should be toggled together.
+> 
+> Should we model these? Or wait until some design actually splits these?
+[..]
