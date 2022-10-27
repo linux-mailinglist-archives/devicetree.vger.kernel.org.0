@@ -2,83 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8AB60F7EC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D82560F7EF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235827AbiJ0MtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 08:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
+        id S235851AbiJ0MtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 08:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235824AbiJ0Msw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:48:52 -0400
-Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1FE16EA0F
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:48:50 -0700 (PDT)
-Received: from [192.168.31.208] (unknown [194.29.137.22])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 95269201D5;
-        Thu, 27 Oct 2022 14:48:47 +0200 (CEST)
-Message-ID: <1be5f419-0c03-9c57-8776-9e448c9f8441@somainline.org>
-Date:   Thu, 27 Oct 2022 14:48:44 +0200
+        with ESMTP id S235848AbiJ0MtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:49:18 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D0016F421
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:49:15 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id b20-20020a05600c4e1400b003cc28585e2fso1127897wmq.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:49:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
+        b=OQyezL4cGU1S6Th8YVxCSmmKg8MDodYMD5HBV7ElzJz4DtRh+iegPU5J4dVfdCItuH
+         dH97BHd68JdE3Jo/G/zHfYvNNSReIHiHCRWAFXj8kofujxZxdQnVrTmj28ukfotkS3MN
+         HCvGo5DIIw9WZcsyGtfu66qsxa1g6nBLzRhprzhByHv8I7+eMkYkxlU1B5D3xq3I4KOf
+         /28vnmmORF0AvfXt4fvhe9ftj7JGy12h86+fvleBteEpTJrSSCwPNZW1SuahFhQyjGJu
+         Cv4MvPWxyx1NHB3qoqVJeBCgSm0DwTbCnQCRHfUpV2PaPjloUpfwAxtiC3iz5FqnGXB7
+         6YrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
+        b=75ZVoZTjEEsKP/HZ8YjrANMETzueRTZp16bvAGFcI64SVEsCVv9NyKlcrpYUhKtO+M
+         YGah4/UUut0fRVa3E2GNTj0q32AWPJJI8JvTlVukIokNUYiSuRsBbAoLHqlTt86MZ4zR
+         9twtY4fgHue6bd3WQcJpYG6B9w37Vus6BGnwZfKAjMl6vubTQuDT/a9yje8LRe5X+QQQ
+         4KSr8Fo7y+70aGv7g3eX7fK3BRqBxoGlTHlOpIVKZh9gm51mRR5TotkvtTmJEih0/djG
+         vf8CP1pB4chTV+05b0MlitOWee4CvC7ZS+oJeYVNzqDpEnkGumgQIf6LrQRu/0OgV3R+
+         rntQ==
+X-Gm-Message-State: ACrzQf0tcW01KsOTLM670ULMovxfmyusgYorR3jwfsJIgwhE8faoHMuJ
+        weV4NiuTfCN7nNv+X+LOmDmR0w==
+X-Google-Smtp-Source: AMsMyM7H83+TH22aHNQ6HRVyJaoDi39AW5Sf28cYzigPPM7qK21FcZrwDuemt/vdFqzRpl+/R7UhNg==
+X-Received: by 2002:a05:600c:4f45:b0:3c7:176b:2505 with SMTP id m5-20020a05600c4f4500b003c7176b2505mr5771448wmq.185.1666874954196;
+        Thu, 27 Oct 2022 05:49:14 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:898:f380:1cb7:f7ba:a36e:de10? ([2a01:e0a:898:f380:1cb7:f7ba:a36e:de10])
+        by smtp.gmail.com with ESMTPSA id bg33-20020a05600c3ca100b003b49bd61b19sm4977299wmb.15.2022.10.27.05.49.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 05:49:13 -0700 (PDT)
+Message-ID: <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org>
+Date:   Thu, 27 Oct 2022 14:49:12 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.0
-Subject: Re: [PATCH v1 2/5] clk: qcom: dispcc-sm8250: Add RETAIN_FF_ENABLE
- flag for mdss_gdsc
-To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        dmitry.baryshkov@linaro.org, Jonathan Marek <jonathan@marek.ca>
-References: <20221027123432.1818530-1-robert.foss@linaro.org>
- <20221027123432.1818530-2-robert.foss@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221027123432.1818530-2-robert.foss@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
+ on Odroid N2/N2+
+Content-Language: en-US
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221022084737.1028-1-linux.amoon@gmail.com>
+ <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
+ <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
+ <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
+ <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
+ <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org>
+ <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 27/10/2022 14:34, Robert Foss wrote:
-> All SoC supported by this driver supports the RETAIN_FF_ENABLE flag,
-> so it should be enabled here.
->
-> This feature enables registers to maintain their state after
-> dis/re-enabling the GDSC.
->
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> ---
+On 26/10/2022 18:02, Anand Moon wrote:
+> Hi Neil,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+<snip>
 
+> 
+> When I try to use pwm_AO_cd,,
+> Either one of the PWM binds will fail to get the following error.
+> 
+>   &pwm_AO_cd {
+> -       pinctrl-0 = <&pwm_ao_d_e_pins>;
+> +       pinctrl-0 = <&pwm_ao_d_e_pins>, <&pwm_ao_d_10_pins>;
+>          pinctrl-names = "default";
+>          clocks = <&xtal>;
+>          clock-names = "clkin1";
+> 
+> [    3.941700] pwm-regulator regulator-vddcpu-b: error -EBUSY: Failed to get PWM
+> [    3.943198] pwm-regulator: probe of regulator-vddcpu-b failed with error -16
+> 
+> [    3.956356] pwm-fan pwm-fan: error -EBUSY: Could not get PWM
+> [    3.956396] pwm-fan: probe of pwm-fan failed with error -16
 
-Konrad
+Yeah because PWM "D" is already used by the "pwm_AO_ab" controller, so you can't use it for the FAN.
 
->   drivers/clk/qcom/dispcc-sm8250.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-> index 180ac2726f7e..a7606580cf22 100644
-> --- a/drivers/clk/qcom/dispcc-sm8250.c
-> +++ b/drivers/clk/qcom/dispcc-sm8250.c
-> @@ -1137,7 +1137,7 @@ static struct gdsc mdss_gdsc = {
->   		.name = "mdss_gdsc",
->   	},
->   	.pwrsts = PWRSTS_OFF_ON,
-> -	.flags = HW_CTRL,
-> +	.flags = HW_CTRL | RETAIN_FF_ENABLE,
->   };
->   
->   static struct clk_regmap *disp_cc_sm8250_clocks[] = {
+> 
+> Below are my changes with  pwm_AO_ab
+> ---------------------------------------------------------------------------------------------
+> alarm@odroid-n2:~/linux-amlogic-5.y-devel$ git diff
+> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> index fd3fa82e4c33..d038ba1e2453 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> @@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
+>                  reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
+>          };
+> 
+> +       fan: pwm-fan {
+> +               compatible = "pwm-fan";
+> +               pwms = <&pwm_AO_ab 1 1250 0>;
+
+Here you use the "B" PWM signal, not the D.
+
+> +               fan-supply = <&vcc_5v>;
+> +               #cooling-cells = <2>;
+> +               cooling-levels = <0 100 170 230>;
+> +       };
+> +
+>          leds {
+
+<snip>
+
+> 
+> +&pwm_AO_ab {
+> +       pinctrl-0 = <&pwm_ao_d_10_pins>;
+
+The "pwm_AO_ab" controller only controls the PWM "A" & "B signals, not the "D" !
+
+This basically enables the PWM "D" pin function to GPIOAO_10, it doesn't assign it to the "pwm_AO_ab" controller.
+
+So by enabling this pinctrl, it will duplicate the pwm_ao_d_e_pins signal to pwm_ao_d_10_pins, this is why the FAN spins non-stop.
+
+> +       pinctrl-names = "default";
+> +       clocks = <&xtal>;
+> +       clock-names = "clkin1";
+> +       status = "okay";
+> +};
+> +
+>   &pwm_AO_cd {
+>          pinctrl-0 = <&pwm_ao_d_e_pins>;
+>          pinctrl-names = "default";
+> -------------------------------------------------------------------------------------------
+>>>
+>>> Thanks
+>>>
+>>> -Anand
+>>
+>> Neil
+
+Neil
