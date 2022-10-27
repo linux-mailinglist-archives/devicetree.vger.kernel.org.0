@@ -2,58 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9F9460F1BC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 10:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3567F60F1C7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 10:05:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233968AbiJ0ICE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 04:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49916 "EHLO
+        id S229379AbiJ0IFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 04:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234755AbiJ0IB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 04:01:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E313E070B;
-        Thu, 27 Oct 2022 01:01:56 -0700 (PDT)
+        with ESMTP id S233785AbiJ0IFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 04:05:06 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7152FFE7;
+        Thu, 27 Oct 2022 01:05:02 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A561E66028BD;
-        Thu, 27 Oct 2022 09:01:54 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E5E8C66028BE;
+        Thu, 27 Oct 2022 09:05:00 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666857715;
-        bh=60an4lyuQrcFiwvQr7KjO4WvCnKliT3qbSJMBKCJ2hs=;
+        s=mail; t=1666857901;
+        bh=+smk67yhakV3hxipjrUTxVzYtY9GIM7JZQJ3ATTLcC4=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=WUhuwEY0sPYrVwvg5lheWsZAJQlO3d1syGPDWoZl9dogyrx6TBoM0WXDBnOlCrxtG
-         0gv1eYbJeiIU5fX+Z5xcOB2EsxW6H1FamY0fg2k4UMpE7F4+Ra5INRwRCphYxz8eGc
-         0HlOmZ5o9CpO+WCcfk8901ofU16LohU5N5NzBuMIzlJl+/u3F46E0jYunu5uDYSghx
-         X0osKSjK2jYMgcUaWjgQZYzc3bt2ke2YHuZLm+gfDuYWYXJUKZFiybf4WqHqCD1ldG
-         wCM0X2iIvYNyZQTRW6ZDzR8j0ac7WXCUFgPYw1WbEr045MvooFbMzvhLnTL8qMyie0
-         vXJRm5zOaJjHA==
-Message-ID: <e64ad829-be27-e1ff-e667-77a90596fb29@collabora.com>
-Date:   Thu, 27 Oct 2022 10:01:52 +0200
+        b=fZyAlKQ9ZfkMh7FjaFL7A0bmOftuz1Hsmk/Hsx363FPFZHFRcuuylkKfKH1uRhy4U
+         M9c0lJm/xckvYQ/UdNlwWx1+FHx0mPKmXLdJkR9NJLy7B+4bCs5+doTLjUgbqfCrMq
+         VM9dThe+A38pfRr2zAr7rdr93yZCqFFo0Vsg/pnDifwROdlvaPESbFtQ+n105OfNAs
+         FIwJaVxvPuBP0ffeMs8Suz2uIGxSab1CPa8buiY7Uy6/I2yh8eaLPg7V2zWkbc96+v
+         YQO72qEr1VOU8voxRXja4sPz2zjg0x47pcf6b4bm1z9NMVCI4odbrH7nA9X5uHztFi
+         TzyMjTOfHDGHQ==
+Message-ID: <bc89b373-8ece-8d58-6ab4-3e474d3265d8@collabora.com>
+Date:   Thu, 27 Oct 2022 10:04:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v5 5/6] arm64: dts: mt7622: drop r_smpl property from mmc
- node
+Subject: Re: [PATCH] arm64: dts: mt7986: fix trng node name
 Content-Language: en-US
 To:     Frank Wunderlich <linux@fw-web.de>,
         linux-mediatek@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Sam Shih <Sam.Shih@mediatek.com>, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>
-References: <20221025132953.81286-1-linux@fw-web.de>
- <20221025132953.81286-6-linux@fw-web.de>
+        linux-arm-kernel@lists.infradead.org
+References: <20221026085144.107430-1-linux@fw-web.de>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221025132953.81286-6-linux@fw-web.de>
+In-Reply-To: <20221026085144.107430-1-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -65,15 +60,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/10/22 15:29, Frank Wunderlich ha scritto:
+Il 26/10/22 10:51, Frank Wunderlich ha scritto:
 > From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> This property is not defined in binding and driver.
+> Binding requires node name to be rng not trng:
 > 
-> Fixes: 2c002a3049f7 ("arm64: dts: mt7622: add mmc related device nodes")
-> Fixes: 0b6286dd96c0 ("arm64: dts: mt7622: add bananapi BPI-R64 board")
+> trng@1020f000: $nodename:0: 'trng@1020f000' does not match '^rng@[0-9a-f]+$'
+> 
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Please add:
 
+Fixes: 50137c150f5f ("arm64: dts: mediatek: add basic mt7986 support")
+
+After which,
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
