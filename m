@@ -2,188 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637D760FCC5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 18:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B76460FD0A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 18:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235124AbiJ0QRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 12:17:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52954 "EHLO
+        id S235943AbiJ0Q0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 12:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234241AbiJ0QRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 12:17:37 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC1F181CAA;
-        Thu, 27 Oct 2022 09:17:35 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29RFKlX5018412;
-        Thu, 27 Oct 2022 16:17:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=RBZCC6G8ERwNbA38K8u8HBs61MikUan4bfhNGgb5WeY=;
- b=eeFKWhd0rzBd+CbQg4uAsSscNXtCIJC8gSg48BTZGwYLLLJgPqVwbHYrUSm+R6vdbuUx
- nYXmieWXvNnoTAR/La0dp7YxQhGNdmqk3RiVUDBkd5Qa/3Vlx8ATERuEMh7AJ3mQA9iL
- l30iF3YxuJitg6RgsgR+Va1mEWugckgefpGco03TQJ5jndI5akOn7QVL8nUnyTfQ1Bex
- VDXHDFOzUaAHqxDaXglBfXO8B780P3Sizk89p17KAiSTr0VOnVp1/TEH5q6VwU2/04cD
- qkI232OIGQBY3YB8r4qQag4RlU38hq2Xrz1B88ZsaGdVd17+fYwmE/CSr0N0M0Nzlk5O hw== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kfaj1amc8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Oct 2022 16:17:16 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29RGHFVB008181
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Oct 2022 16:17:15 GMT
-Received: from [10.110.54.85] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Thu, 27 Oct
- 2022 09:17:14 -0700
-Message-ID: <75ef3cc5-3b19-9eab-b3eb-56fa254d92bd@quicinc.com>
-Date:   Thu, 27 Oct 2022 09:17:13 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v5 02/13] dt-bindings: Add binding for gunyah hypervisor
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        with ESMTP id S235213AbiJ0Q0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 12:26:54 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10499A449;
+        Thu, 27 Oct 2022 09:26:52 -0700 (PDT)
+Received: from mercury (dyndsl-091-096-035-205.ewe-ip-backbone.de [91.96.35.205])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id ED58D6602395;
+        Thu, 27 Oct 2022 17:26:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666888011;
+        bh=4mcg24t9AjJNzQ806Gbikq/czDGpzAU9xHPk2spH4KI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=F6qskPNbfIp5J5LYfBzEocQDyMIYQRpbjRzm8pWGOvNgLoRHSN1Uq6nPsIxs59Pvh
+         GNCau0kov+9zLKz08poBrrYzSYdCPVfeFxIQAPSR8K7yya3C5Pi6+kk0UJWSFRlzBq
+         Lah90qDwyULFaEyA+9s6idK9Vmc5DpuMVwO9rNmIeYtlxP5KPdSUpjCqTd1v+Ui4jF
+         w7BQcZazoB/xp5Sv0+Xjvn5vyAKC2WdHMQznPlM0nNpjpczfQnE29u4LDKLFFXzaX4
+         JpM13Eowk3Ud5e+qoBOo7wj9xkpDJYHtwomGDH2A4bKZuXn6B5cOS3n0IZyVjszjNn
+         2lOSdYz4NdAZQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 64F7D10607E8; Thu, 27 Oct 2022 18:26:48 +0200 (CEST)
+Date:   Thu, 27 Oct 2022 18:26:48 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-3-quic_eberman@quicinc.com>
- <20221012155645.GA2173829-robh@kernel.org>
- <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
- <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
-Content-Language: en-US
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mygc-R9Eu-uIu0M5bs6K3wMWg97ZzIfb
-X-Proofpoint-ORIG-GUID: mygc-R9Eu-uIu0M5bs6K3wMWg97ZzIfb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-27_07,2022-10-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- suspectscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 lowpriorityscore=0
- phishscore=0 clxscore=1015 malwarescore=0 impostorscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2210270090
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 1/1] dt-bindings: rtc: convert hym8563 bindings to
+ json-schema
+Message-ID: <20221027162648.mowz2lefcajv3s2q@mercury.elektranox.org>
+References: <20221021170605.85163-1-sebastian.reichel@collabora.com>
+ <a5db8a34-acd0-e262-36f0-0b904468bd1f@linaro.org>
+ <20221024185049.GA2034297-robh@kernel.org>
+ <20221024220559.dddihmq4xg55h26w@mercury.elektranox.org>
+ <1a9e1bfb-0437-fcd9-8d41-a1e07aced0e3@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="i5gncsormhwaemm6"
+Content-Disposition: inline
+In-Reply-To: <1a9e1bfb-0437-fcd9-8d41-a1e07aced0e3@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On 10/26/2022 2:16 PM, Rob Herring wrote:
-> On Thu, Oct 13, 2022 at 6:59 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>
->>
->> On 10/12/2022 8:56 AM, Rob Herring wrote:
->>> On Mon, Oct 10, 2022 at 05:08:29PM -0700, Elliot Berman wrote:
->>>> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
->>>> Resource Manager applies a devicetree overlay describing the virtual
->>>> platform configuration of the guest VM, such as the message queue
->>>> capability IDs for communicating with the Resource Manager. This
->>>> information is not otherwise discoverable by a VM: the Gunyah hypervisor
->>>> core does not provide a direct interface to discover capability IDs nor
->>>> a way to communicate with RM without having already known the
->>>> corresponding message queue capability ID. Add the DT bindings that
->>>> Gunyah adheres for the hypervisor node and message queues.
->>>>
->>>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->>>> ---
->>>>    .../bindings/firmware/gunyah-hypervisor.yaml  | 87 +++++++++++++++++++
->>>>    MAINTAINERS                                   |  1 +
->>>>    2 files changed, 88 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>> new file mode 100644
->>>> index 000000000000..f0a14101e2fd
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>> @@ -0,0 +1,87 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Gunyah Hypervisor
->>>> +
->>>> +maintainers:
->>>> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
->>>> +  - Elliot Berman <quic_eberman@quicinc.com>
->>>> +
->>>> +description: |+
->>>> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
->>>
->>> How you end up with the node (applying an overlay) is not relavent to
->>> the binding.
->>>
->>>> +  describes the basic configuration of the hypervisor. Virtual machines use this information to determine
->>>> +  the capability IDs of the message queues used to communicate with the Gunyah Resource Manager.
->>>
->>> Wrap at 80. That is the coding standard still though 100 is deemed
->>> allowed. And yamllint only complains at 110 because I didn't care to fix
->>> everyones lines over 100.
->>>
->>>> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>>> +      - const: gunyah-hypervisor-1.0
->>>> +      - const: gunyah-hypervisor
->>>
->>> 2 compatibles implies a difference between the 2. What's the difference?
->>> Where does '1.0' come from?
->>>
->>
->> There's no difference. I thought the convention was to have
->> device-specific compatible and the generic compatible. "device-specific"
->> here would be specific to version of Gunyah since it's software.
-> 
-> No, that's just what people do because "vendor,new-soc",
-> "vendor,old-soc" seems to bother them for some reason. At the end of
-> the day, it's just a string identifier that means something. If
-> there's no difference in that 'something', then there is no point in
-> having more than one string.
-> 
-> You only need something specific enough to discover the rest from the
-> firmware. When that changes, then you add a new compatible. Of course,
-> if you want existing OSs to work, then better not change the
-> compatible.
-> 
+--i5gncsormhwaemm6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the info, I'll drop the "-1.0" suffix.
+Hi,
 
+On Thu, Oct 27, 2022 at 06:11:19PM +0200, Johan Jonker wrote:
+> On 10/25/22 00:05, Sebastian Reichel wrote:
+> > On Mon, Oct 24, 2022 at 01:50:49PM -0500, Rob Herring wrote:
+> >> On Fri, Oct 21, 2022 at 07:59:26PM -0400, Krzysztof Kozlowski wrote:
+> >>> On 21/10/2022 13:06, Sebastian Reichel wrote:
+> >>>> Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
+> >>>> Schema format.
+> >>>>
+> >>>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> >>>> ---
+> >>>>  .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+> >>>>  .../bindings/rtc/haoyu,hym8563.yaml           | 55 ++++++++++++++++=
++++
+> >>>>  2 files changed, 55 insertions(+), 30 deletions(-)
+> >>>>  delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8=
+563.txt
+> >>>>  create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8=
+563.yaml
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt=
+ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+> >>>> deleted file mode 100644
+> >>>> index a8934fe2ab4c..000000000000
+> >>>> --- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+> >>>> +++ /dev/null
+> >>>> @@ -1,30 +0,0 @@
+> >>>> -Haoyu Microelectronics HYM8563 Real Time Clock
+> >>>> -
+> >>>> -The HYM8563 provides basic rtc and alarm functionality
+> >>>> -as well as a clock output of up to 32kHz.
+> >>>> -
+> >>>> -Required properties:
+> >>>> -- compatible: should be: "haoyu,hym8563"
+> >>>> -- reg: i2c address
+> >>>> -- #clock-cells: the value should be 0
+> >>>> -
+> >>>> -Optional properties:
+> >>>> -- clock-output-names: From common clock binding
+> >>>> -- interrupts: rtc alarm/event interrupt
+> >>>> -
+> >>>> -Example:
+> >>>> -
+> >>>> -hym8563: hym8563@51 {
+> >>>> -	compatible =3D "haoyu,hym8563";
+> >>>> -	reg =3D <0x51>;
+> >>>> -
+> >>>> -	interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
+> >>>> -
+> >>>> -	#clock-cells =3D <0>;
+> >>>> -};
+> >>>> -
+> >>>> -device {
+> >>>> -...
+> >>>> -	clocks =3D <&hym8563>;
+> >>>> -...
+> >>>> -};
+> >>>> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yam=
+l b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..b0b6126b12dd
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> >>>> @@ -0,0 +1,55 @@
+> >>>> +# SPDX-License-Identifier: GPL-2.0
+> >>>
+> >>> Dual license please. I don't think you copied any content from origin=
+al
+> >>> bindings... unless the example?
+> >>>
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Haoyu Microelectronics HYM8563 RTC
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    const: haoyu,hym8563
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  "#clock-cells":
+> >>>> +    const: 0
+> >>>> +
+> >>>> +  clock-output-names:
+> >>>> +    description: From common clock binding to override the default =
+output clock name.
+> >>>
+> >>> You need maxItems for this.
+> >>>
+> >>>> +
+> >>>> +  wakeup-source:
+> >>>> +    description: Enables wake up of host system on alarm.
+> >>>> +
+> >>>> +allOf:
+> >>>> +  - $ref: rtc.yaml
+> >>>> +
+> >>>> +unevaluatedProperties: false
+> >>>> +
+> >>>
+>=20
+> >>> Would be great if you could also correct DTS using these bindings (see
+> >>> warning from Rob).
+> >>
+> >> It looked to me like 'clock-frequency' should be added to the schema.
+> >=20
+> > I've sent PATCHv2, which removes clock-frequency from all hym8563
+> > users. My reasoning is, that the old txt binding does not describe
+> > it and the current Linux driver does not handle it as far as I can
+> > see.
+>=20
+> Didn't note you were doing a conversion as well...
+> From my abandonment patch serie
+>=20
+>   clock-frequency:
+>     enum: [1, 32, 1024, 32768]
+>=20
+> The data sheet shows that it can generate 4 different frequencies.
+> Rockchip mostly uses 32768, but that doesn't mean someone else is
+> not alowed to set what he/she prefers.
+
+As far as I can tell 32768 has been cargo copied by everyone, but
+the driver is not parsing this at all and I would expect the clock
+API to be used for requesting a specific frequency.
+
+-- Sebastian
+
+--i5gncsormhwaemm6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmNasT8ACgkQ2O7X88g7
++poQUw//bQfdjxGXbjRBq+lN70cB2SjuiDFxd1XPTJL6y/FKW62jsNJFy3E/urDl
+stP6I+dxmcc0OOflL8MkliHFR9+DD3Brfv8hmRexfhL/nTauQ+jeV2b6QEe7NFcS
+QbC4EgRPUn+4mgJMDVel6ZNllBPXJwnw3bjx/bYDOSdi+tQMvIw38qkZ5v+2Aw8W
+nWw0USHSLoUBHg1Lon6Sx5A/H2BSFpg+xNH8A9ufNei4u6wjT1cGvRVgS3chtfX+
+VD/QIeYt34ubJI7X+Y+xGeJJ1+yFPVyhNAS6TqQePrJrsTbt7eXmnjhtg8QsnVYO
+GgDVp3DiWceC/CVXH3zSXsWk13pemDQUr+lXd9olSOsB6a1PDrHck72aaKXpk2UF
+00Ytx3KjHToYLaKbmLZrHDFP/0RfxCoMuSkaeKbzImt51VLzz9Sx6oWA8OfEfpss
+YopFtMG2JE1fghtP3LpPAiLi2UNihBvGJ4uxER1q7yVILLoEPc1PpdN1tp+DTqGL
+bTQbZvnz/LzJBdr1I4nhKGgssrr2aWthejbQQbjdNi+7SfjDf9K5RpwzRg0qQiOC
+s/0TtOe0JqiqXM15p+MjXH6Nz2/GgLCi78NvZjFLvoYs6IGoqBbSlakgG5TvOeEZ
+QLfydVH9Fd8NtshY9yBqm1fiZKpngWer8BbB5zjRUtIzo1LxqIM=
+=lqdc
+-----END PGP SIGNATURE-----
+
+--i5gncsormhwaemm6--
