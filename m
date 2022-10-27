@@ -2,81 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B04960F0FA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 09:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB1B60F10B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 09:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233773AbiJ0HNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 03:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55134 "EHLO
+        id S233669AbiJ0HRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 03:17:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234410AbiJ0HNb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 03:13:31 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADDC4153E16;
-        Thu, 27 Oct 2022 00:13:30 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id n12so1933267eja.11;
-        Thu, 27 Oct 2022 00:13:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MDxbGJrw6ODYsB7ZdyD4/84nlR1jBff/NV+grX5V3Bs=;
-        b=Tz5mhNIF+/mpMprs4Y6gUBmDWkzyVobMrFo5/UU48sEYvCG2FuZ2moCLwMtBpu1uSk
-         fckgdxFABiXavxRr7zTImcwYGTYN2MIY/gJRsxupEMvy5nJ/Q5r5MdR3qB3GLLRo14p/
-         3rusLtUVUMllo4RQhR7IpNTOD2fLAWcFS+a8fFw6mIO60CBTPDyOurQnnTP+4vLZT6+G
-         ttDQxem84uINniF9Ha279HH1ni9dtTODY7Fa6jZ51uMsvzMTfRBwQKWswy264TMs16pZ
-         5ooze8s8MrIR0L+WDIVDVfKYYVglYkWDUn+CRk2ANAXvB+nLCRFjcjLDWOK0CikJBk+q
-         uPSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MDxbGJrw6ODYsB7ZdyD4/84nlR1jBff/NV+grX5V3Bs=;
-        b=GNav3QR0u93wUH0U5LbTSUoP60DS12piIVqrG/tykjl/CxwXAetZSEv6fcjvIB1Gxo
-         4QoB52xtQgV3IlEUYXIzO+vLT41RaSuKbOqFQxc2Py5hmaRtZVW3DJu9WXIyIt5q6HzF
-         +4RaRcn9EJ0jIVWQ2fQRIGJmmdUPL+LDPBZ0uLW/MeRbfL2d8qgFwpxPfa3wx0dSjd+2
-         G/0qclEuC+nmPN6x/nTtzR5jEgMl0wHZK8fLDoXuNukIjhcrga6vT9Vs2PMW4S8DZ6SZ
-         bpFXQ6qNdhRPDi8kSvIpX5087Rsq99er17xuP4a1W6D903Zm/XfGlU5sd1DRMFIFlgGg
-         D2UQ==
-X-Gm-Message-State: ACrzQf3jLUj6gQaJIthjV0jPhJclasJR+q84FdQr+jWYVV4LzS0vbAck
-        DoOgIZDxyjgXrD0zQl1DlXy9n0ylONgfYw3eV80=
-X-Google-Smtp-Source: AMsMyM7SJjmDy81uIp59EMVnOgbrq10xzO0jl74Jy5bcQqegFeZgsV1CK7dqzobdLEyH6QNX7eaGJJ3NXd7r0cBwTDQ=
-X-Received: by 2002:a17:907:31c3:b0:770:852b:71a2 with SMTP id
- xf3-20020a17090731c300b00770852b71a2mr40960769ejb.557.1666854809089; Thu, 27
- Oct 2022 00:13:29 -0700 (PDT)
+        with ESMTP id S234100AbiJ0HRG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 03:17:06 -0400
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF22F86FBC;
+        Thu, 27 Oct 2022 00:17:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=0S6rJiuhX8jNXI0rbgaAdCOGhsxaVNHZlzXhEJsPRHk=; b=VA6GdLu0uh+/tqe7+tLJIUzK6h
+        MSzZK1GfYQh4DIuYWKAcPjU1VrdFOmkEa+yMEt+FVtifayp3gNcIecnDudnukj0JAosXut90+ql5u
+        zqJkO+VdyyArKVfpkvmVae/NEXcO1o/lRoVfQF2vLzGvxG/GjjMZi5g0qhGbvqpqa+88JybWVqz69
+        y/7IxmtvqKSezNnIGpRSCTa6Crha+mFK34zuZCjUAWzfc8OndnMXUE+vngSAf8BsBCdOihnBAkd0v
+        tBtb34AU+OKFdUGlVTR//ysLDLk78an07EkiC0cAcjF2og/TmLPZ9+di7NE1hPGYfOX+PQp2X/GCv
+        3oCxHjlw==;
+Received: from [89.212.21.243] (port=48966 helo=[192.168.69.85])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.95)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1onx8E-0011CT-M0;
+        Thu, 27 Oct 2022 09:16:58 +0200
+Message-ID: <3909608a-9725-5bfa-a9ac-ca7546479dc2@norik.com>
+Date:   Thu, 27 Oct 2022 09:16:59 +0200
 MIME-Version: 1.0
-References: <20221027060311.2549711-1-chancel.liu@nxp.com>
-In-Reply-To: <20221027060311.2549711-1-chancel.liu@nxp.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Thu, 27 Oct 2022 10:13:17 +0300
-Message-ID: <CAEnQRZAr9HQ6LNAdwOnvAKUrazr1Q0CognQfd-+67Sfo1zoOHw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Add support for SAI on i.MX93 platform
-To:     Chancel Liu <chancel.liu@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        nicoleotsuka@gmail.com, linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 2/3] dt-bindings: watchdog: fsl-imx: document suspend
+ in wait mode
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-watchdog@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221025072533.2980154-1-andrej.picej@norik.com>
+ <20221025072533.2980154-3-andrej.picej@norik.com>
+ <ca484809-07e4-44ca-0ab3-26947bda7fa8@linaro.org>
+ <a600b0e3-19ab-47df-4315-48b8554cb12f@norik.com>
+ <91e83eeb-24b5-4602-c132-c23a2fb5d756@linaro.org>
+From:   Andrej Picej <andrej.picej@norik.com>
+In-Reply-To: <91e83eeb-24b5-4602-c132-c23a2fb5d756@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 27, 2022 at 9:14 AM Chancel Liu <chancel.liu@nxp.com> wrote:
->
-> This patchset supports SAI on i.MX93 platform.
->
-> Chancel Liu (3):
->   ASoC: dt-bindings: fsl,sai: Add compatible string for i.MX93 platform
->   ASoC: fsl_sai: Add support for i.MX93 platform
->   ASoC: fsl_sai: Specify the maxburst to 8 on i.MX93 platform
+On 26. 10. 22 16:12, Krzysztof Kozlowski wrote:
+> On 26/10/2022 02:38, Andrej Picej wrote:
+>> On 25. 10. 22 15:48, Krzysztof Kozlowski wrote:
+>>> On 25/10/2022 03:25, Andrej Picej wrote:
+>>>> Property "fsl,suspend-in-wait" suspends watchdog in "WAIT" mode which
+>>>> corresponds to Linux's Suspend-to-Idle S0 mode. If this property is not
+>>>> set and the device is put into Suspend-to-Idle mode, the watchdog
+>>>> triggers a reset after 128 seconds.
+>>>>
+>>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>>> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+>>>> ---
+>>>> Changes in v2:
+>>>>    - add a commit message,
+>>>>    - add a list of devices which support this functionality
+>>>> ---
+>>>>    .../bindings/watchdog/fsl-imx-wdt.yaml        | 22 +++++++++++++++++++
+>>>>    1 file changed, 22 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>> index fb7695515be1..9289de97859b 100644
+>>>> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
+>>>> @@ -55,6 +55,28 @@ properties:
+>>>>          If present, the watchdog device is configured to assert its
+>>>>          external reset (WDOG_B) instead of issuing a software reset.
+>>>>    
+>>>> +  fsl,suspend-in-wait:
+>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>> +    description: |
+>>>> +      If present, the watchdog device is suspended in WAIT mode
+>>>> +      (Suspend-to-Idle). Only supported on following devices:
+>>>> +        - "fsl,imx25-wdt",
+>>>
+>>> You need to define such allow/disallow in allOf:if:then, instead. Like
+>>> example-schema is doing for foo-supply, just disallow it for some types
+>>> or use "if: not: ..."
+>>
+>> Sorry missed that. So something like that should be added?:
+>>
+>>> allOf:
+>>>    - if:
+>>>        not:
+>>>          properties:
+>>>            compatible:
+>>>              contains:
+>>>                enum:
+>>>                  - fsl,imx25-wdt
+>>>                  - fsl,imx35-wdt
+>>>                  - fsl,imx50-wdt
+>>>                  - fsl,imx51-wdt
+>>>                  - fsl,imx53-wdt
+>>>                  - fsl,imx6q-wdt
+>>>                  - fsl,imx6sl-wdt
+>>>                  - fsl,imx6sll-wdt
+>>>                  - fsl,imx6sx-wdt
+>>>                  - fsl,imx6ul-wdt
+>>>                  - fsl,imx7d-wdt
+>>>                  - fsl,imx8mm-wdt
+>>>                  - fsl,imx8mn-wdt
+>>>                  - fsl,imx8mp-wdt
+>>>                  - fsl,imx8mq-wdt
+>>>                  - fsl,vf610-wdt
+> 
+> Yes.
+> 
+>>>      then:
+>>>        properties:
+>>>          fsl,suspend-in-wait: false
+>>
+>> And I'm assuming I can then remove the supported devices list from
+>> property description.
+> 
+> Yes.
+> 
+>>
+>> Are you fine with this, so we don't have to split the compatible list
+>> like Alexander suggested? Basically we have the same list of WDW
+>> supported devices in the driver.
+> 
+> I don't know to what you refer.
+> 
+I'm referring to this comment by Alexander Stein: 
+(https://lore.kernel.org/all/13126397.uLZWGnKmhe@steina-w/)
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> So the models listed in Documentation/devicetree/bindings/watchdog/fsl-imx-
+> wdt.yaml not supporting this feature are
+> * fsl,imx21-wdt
+> * fsl,imx27-wdt
+> * fsl,imx31-wdt
+> * fsl,ls1012a-wdt
+> * fsl,ls1043a-wdt
+> ?
+> 
+> But all models are listed as compatible to fsl,imx21-wdt. So there is 
+> something wrong here. IMHO this sounds like the compatible list has to be 
+> split and updated. Depending on that this feature can be detected. Maintaining 
+> another list seems error prone to me.
+
+Best regards,
+Andrej.
