@@ -2,98 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E53D060F643
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 13:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80BA660F69C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 13:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235124AbiJ0LdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 07:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34312 "EHLO
+        id S235439AbiJ0L6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 07:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235349AbiJ0LdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 07:33:04 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 349EC11E468
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 04:33:02 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id 7E33E1B40;
-        Thu, 27 Oct 2022 13:32:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1666870376;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=86Syqd89b1/HCshZzD+et9Bo2opsZhhVIvgaLhrsOcI=;
-        b=mvJXS1/G8NnG3D8HvhI7aMBDN2AXxviQSZavm7F0DzocELCt0oHdv4/KtBG5eJQ7oGQuHa
-        gmQ4L6B6yEJJ2fneIa9NrNWrDt4jgLaN3G0cIMq56FyxznBTnb78gxVtlUeHys9Pu8q3FD
-        uty1ze5E+RFo9Wcx1tZrZWGBVkLQhp/nPJdxWgSddvpdP3TgpUHll5nFJlAWiBXIdZikHj
-        dmotv999hjgrG09N0X8YkS72kyk1hm2Cw8+06a5oocyBcFw8qyHa/m8WJ+fRWS/rZTsNN/
-        PoMnKhHxwRZ7l6SX4CAWBpRxS6xlhfYycrSjpwtw6/yDINY7LmShYi3ud4N+dQ==
-From:   Michael Walle <michael@walle.cc>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235407AbiJ0L6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 07:58:10 -0400
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5DC1C297;
+        Thu, 27 Oct 2022 04:58:09 -0700 (PDT)
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 27 Oct 2022 20:58:08 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id C7D9920584CE;
+        Thu, 27 Oct 2022 20:58:08 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 27 Oct 2022 20:58:08 +0900
+Received: from [10.212.157.173] (unknown [10.212.157.173])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id C09C2B62A4;
+        Thu, 27 Oct 2022 20:58:07 +0900 (JST)
+Subject: Re: [PATCH 4/4] arm64: dts: uniphier: Add NX1 SoC and boards support
+To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] Revert "arm64: dts: ls1028a: sl28: use ocelot-8021q tagging by default"
-Date:   Thu, 27 Oct 2022 13:32:48 +0200
-Message-Id: <20221027113248.420216-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        Olof Johansson <olof@lixom.net>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221027045157.23325-1-hayashi.kunihiko@socionext.com>
+ <20221027045157.23325-5-hayashi.kunihiko@socionext.com>
+ <b3c4f9ec-ba8e-4af1-b347-e07b06530d6c@app.fastmail.com>
+ <8c11d7c4-dfc4-b84c-82cd-a9708bd79aab@socionext.com>
+ <dcbbde62-fcf1-4435-8f65-665b25ec3b0a@app.fastmail.com>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <fdf94c6b-0293-5dd0-1717-176d1a2056de@socionext.com>
+Date:   Thu, 27 Oct 2022 20:58:07 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <dcbbde62-fcf1-4435-8f65-665b25ec3b0a@app.fastmail.com>
+Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit be0b178c50c37a666d54f435da71cf9f008362a0.
+On 2022/10/27 20:28, Arnd Bergmann wrote:
+> On Thu, Oct 27, 2022, at 13:19, Kunihiko Hayashi wrote:
+>> On 2022/10/27 19:01, Arnd Bergmann wrote:
+>>> On Thu, Oct 27, 2022, at 06:51, Kunihiko Hayashi wrote:
+> 
+>>>> +			#interrupt-cells = <1>;
+>>>> +			interrupt-names = "dma", "msi";
+>>>> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +			interrupt-map-mask = <0 0 0 7>;
+>>>> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,	/* INTA */
+>>>> +					<0 0 0 2 &pcie_intc 1>,	/* INTB */
+>>>> +					<0 0 0 3 &pcie_intc 2>,	/* INTC */
+>>>> +					<0 0 0 4 &pcie_intc 3>;	/* INTD */
+>>>> +			phy-names = "pcie-phy";
+>>>> +			phys = <&pcie_phy>;
+>>>> +
+>>>> +			pcie_intc: legacy-interrupt-controller {
+>>>> +				interrupt-controller;
+>>>> +				#interrupt-cells = <1>;
+>>>> +				interrupt-parent = <&gic>;
+>>>> +				interrupts = <GIC_SPI 86
+>>> IRQ_TYPE_LEVEL_HIGH>;
+>>>> +			};
+>>>> +		};
+>>>
+>>> Shouldn't there be an "msi-map" or "msi-parent" property pointing at
+>>> the GIC?
+>>
+>> Since Designware PCIe receives an interrupt from GIC with interrupt-name
+> "msi"
+>> and passes the interrupt to the linear irq domain corresponding to MSI,
+>> I think there is neither "msi-map" nor "msi-parent" properties.
+> 
+> Usually, you have the choice to use either the built-in
+> MSI logic of the PCIe controller, or the one built into the
+> GIC itself, assuming you have a modern enough GIC implemetation.
 
-This commit will break networking on the sl28 boards if the tagger is
-not compiled into the kernel. If a non-default tagger is used, the
-kernel doesn't do a request_module(). Fixing that is also not that
-trivial because the tagger modules are loaded by ids, not by name.
-Thus for now, just revert to the default tagger until that is fixed.
+I recognize ITS built into GICv3 can perform the parent of MSI.
 
-Fixes: be0b178c50c3 ("arm64: dts: ls1028a: sl28: use ocelot-8021q tagging by default")
-Reported-by: Heiko Thiery <heiko.thiery@gmail.com>
-Signed-off-by: Michael Walle <michael@walle.cc>
+> Using the GIC is preferred here, because otherwise you lose
+> all the benefits that MSIs offer, regarding latency and CPU
+> affinity.
+
+I understand, however, unfortunately GIC-ITS (or something alternative)
+isn't supported in this SoC, so I think it is difficult to use the GIC
+itself as msi-parent.
+
+Thank you,
+
 ---
-Vladimir, I'm not sure how to fix that one. Adding aliases to the tagger
-modules? Something like "MODULE_ALIAS("dsa_tag-ocelot-8021q");" and then do
-a request_module() in dsa_find_tagger_by_name(), too?
-
- .../arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts | 8 --------
- 1 file changed, 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-index 72429b37a8b4..771c50c7f50a 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-@@ -324,14 +324,6 @@ &lpuart1 {
- 	status = "okay";
- };
- 
--&mscc_felix_port4 {
--	dsa-tag-protocol = "ocelot-8021q";
--};
--
--&mscc_felix_port5 {
--	dsa-tag-protocol = "ocelot-8021q";
--};
--
- &usb0 {
- 	status = "okay";
- };
--- 
-2.30.2
-
+Best Regards
+Kunihiko Hayashi
