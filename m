@@ -2,109 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 279A060FA55
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:24:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74AC360FA74
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236339AbiJ0OYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 10:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
+        id S235142AbiJ0Oeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 10:34:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236322AbiJ0OYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:24:06 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CFA17C560;
-        Thu, 27 Oct 2022 07:24:05 -0700 (PDT)
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 059F366028EA;
-        Thu, 27 Oct 2022 15:24:01 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666880644;
-        bh=u7zIRu/8QWohIQBCOgJ696m1CJ5uogOYxUrppj/SchU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l+EOaol1JPNqrtg4feZPQfX8BiKhX1f4VFn/rJ97bUuxFzXRYlt39rsyN6UwwpTT0
-         1uV/xQqO73f+O0I9e/yGqB5rIwhhs8dXXqC+4l4YIXkdy6QvS8bpMIE7cOO2AQooQB
-         Ei0LJe0d/Bj3js0z1QEXP819dxRZtGt3/plVqFYusHksepXbUnBj0i2XdBpWxrpOfm
-         VewvOZXVP3l84zq+M2HGCHT3FP48QnpDBwScyFUd6GvHUcGBy+rGHFG66kNKz1NGh9
-         Bdq/9mvkgqQI6JnogXphGntXp+cGo5psFJUxMl3HJXdkvrDkyFS4k673N5MXWY3ksA
-         yuJwgu/mSHR4A==
-Date:   Thu, 27 Oct 2022 10:23:57 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
-        Derek Fang <derek.fang@realtek.com>,
+        with ESMTP id S234290AbiJ0Oee (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:34:34 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623146158
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:34:30 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id w10so1444813qvr.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Elgx/yfm289sAtkCYegANchVqYKxAF2vr4d85UGafk=;
+        b=qe2yzrEfB6gYDu97LZwQjj8l1w5YksJdkQuZJRNijntprQa6U6HSXv5tsDs7aCuFPo
+         cmpqdfBvFiLWtJp/lBumeuvsP3Y8aRChyg5VnnZTA2R0FGCrBtseoY+x0WUTibasrIJC
+         WHdWALtH0uPoTT9k70bzSaO50tkgUYWYQarzkzLvfFMnn6qVRfxQ3aqWoC3Of7KHCebc
+         ZoqyOPXscRD+LiXlVBXvF1s2Xeipvv6lwopSUoqH3eld9CVDmZubKY1ZMtI73RoRf0yD
+         iGv0QlCXLdXvmWSPBcsJ0WBDhnMCFUBru1/sPzd0oTdORVRMwSqR23HONbnHMsR/eVpY
+         WoJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Elgx/yfm289sAtkCYegANchVqYKxAF2vr4d85UGafk=;
+        b=u0bGCl+1O/wV3IR4Q53dNtfIDRvZGEOgurURHHHoH9VuE7TnGtohe+DpHNtWw4kKjr
+         pPQCCiD9FcJ+a7d/eBYH+y/AuH0beEa9/6KKWRHFSoF0SoohCI7SwyPT+Oi0u9SihPaP
+         pw69uyDMBSjXsQbtCrnBXK9LyQa4XyHV42aDiqVnVkQMm0hgaA3k1Q/3JGtxS52T+6pj
+         tfT/PH/+S2MR2uYNTddKhDIpi1Y7qQUpKvCEW3ilf5HWuy4fKuKpVjwYIYQETv6IgEK9
+         zIh/7cEK7Thgrjx0/ugOR4Y13QzenBu+KWtT5b0ht1vANZu6gzuGSnDucVZIAbUqNUql
+         5yCA==
+X-Gm-Message-State: ACrzQf2qSuu+ZHyibXZnh+U+EEIpX+edtBKv1NNo/klO25llhGRkoV7q
+        Fn8C3PyIO7cIXTJ+r3DPhMgpbw==
+X-Google-Smtp-Source: AMsMyM46cXvgjnQPpBH112h9LLu7kzNk/O4CQ0zeyEfk4ob+MF+ZhGEsvn9O6xNqUxB/arblHia0CA==
+X-Received: by 2002:ad4:4ea7:0:b0:4b9:365b:2a86 with SMTP id ed7-20020ad44ea7000000b004b9365b2a86mr31544620qvb.58.1666881269483;
+        Thu, 27 Oct 2022 07:34:29 -0700 (PDT)
+Received: from krzk-bin.. ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id w10-20020a05620a444a00b006f9e103260dsm1076749qkp.91.2022.10.27.07.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Oct 2022 07:34:28 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
- MICVDD supplies
-Message-ID: <20221027142357.fefxa2cjthdza4yw@notapiano>
-References: <20221024220015.1759428-1-nfraprado@collabora.com>
- <20221024220015.1759428-3-nfraprado@collabora.com>
- <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: iio: adc: qcom,spmi-vadc: simplify compatible enum
+Date:   Thu, 27 Oct 2022 10:34:10 -0400
+Message-Id: <20221027143411.277980-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 25, 2022 at 12:06:23PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 25/10/22 00:00, Nícolas F. R. A. Prado ha scritto:
-> > The rt5682s codec can have two supplies: AVDD and MICVDD. They are
-> > already used by sc7180-trogdor-kingoftown.dtsi, so document them in the
-> > binding.
-> > 
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
-> 
-> I also don't like these uppercase supply names... I wonder if it's worth changing
-> the driver to get "avdd" *or* "AVDD" (so, if "avdd" fails -> backwards compat)...
-> 
-> ...this way, we can change the devicetree to use the lowercase names without
-> breaking abi.
-> 
-> Of course, this commit would need to be changed to document only the lowercase
-> supply names.
-> 
-> Driver-wise, we have a rt5682s_supply_names array... we could do something like:
-> 
-> static const char *rt5682s_supply_names_legacy[RT5682S_NUM_SUPPLIES] = {
-> 	[RT5682S_SUPPLY_AVDD] = "AVDD",
-> 	[RT5682S_SUPPLY_MICVDD] = "MICVDD",
-> };
-> 
-> static const char *rt5682s_supply_names[RT5682S_NUM_SUPPLIES] = {
-> 	[RT5682S_SUPPLY_AVDD] = "avdd",
-> 	[RT5682S_SUPPLY_MICVDD] = "micvdd",
-> };
-> 
-> for (...) assign_supply_names;
-> ret = devm_regulator_bulk_get(...);
-> 
-> if (ret) {
-> 	for (...) assign_legacy_supply_names;
-> 	ret = devm_regulator_bulk_get(...)
-> 	if (ret)
-> 		return ret;
-> }
-> 
-> What do you think?
+The second compatible item in oneOf is just an enum, not a list.
 
-No one seems opposed to it, so I'll add that to the next version.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml  | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-Thanks,
-Nícolas
+diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+index 8bac0c4120dd..a848df37db06 100644
+--- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
+@@ -22,13 +22,11 @@ properties:
+       - items:
+           - const: qcom,pms405-adc
+           - const: qcom,spmi-adc-rev2
+-
+-      - items:
+-          - enum:
+-              - qcom,spmi-vadc
+-              - qcom,spmi-adc5
+-              - qcom,spmi-adc-rev2
+-              - qcom,spmi-adc7
++      - enum:
++          - qcom,spmi-vadc
++          - qcom,spmi-adc5
++          - qcom,spmi-adc-rev2
++          - qcom,spmi-adc7
+ 
+   reg:
+     description: VADC base address in the SPMI PMIC register map
+-- 
+2.34.1
+
