@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73747610551
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 00:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E837610567
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 00:13:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234438AbiJ0WG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 18:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35948 "EHLO
+        id S235081AbiJ0WNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 18:13:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234030AbiJ0WG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 18:06:26 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA369F77B
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 15:06:24 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id mi9so2746160qvb.8
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 15:06:24 -0700 (PDT)
+        with ESMTP id S234327AbiJ0WMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 18:12:55 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9387FA52D3
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 15:12:54 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id x13so2767513qvn.6
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 15:12:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=khyfMgYhWnHU1C8vhk7oesv4M67eeooFQKmFtEtxeyQ=;
-        b=UBbqwAxg6b1dMM2aUxsElTtlC909JDQ56Ckv62ybPcnAU4A2b+r6Gf7vjF5yCXgG0g
-         s3qFmxPp+ICNmY+qQvOgjlSVf3XBWuRAFqEXLLz6nTDf3Q/X3ZNUZhmf6VGlSzojo+SN
-         g5HOfdnbdsR5bDEs3kQQWiAXcqUqOgH6MuDIyy0IqaQaCW62a+4MDe+DA2oLO5AOa/3i
-         B1dmZMZPgu75VJvBvrTA3Fit2uMCh/20jLUHZdg/5hGOoMUTJ19RxbvvK31R1mQzurWC
-         vNj87NT9Go/y7cSc3uMiRekLoRHM/RoItDyLgGphXceG2Ic4lXgNTJZxaFRfpn1bf89e
-         6pUw==
+        bh=eVhx7mgT+CVk5bKjBjI+5XvBoPbMSGCTA36IBpxQ1Dw=;
+        b=GlATrHR3ms+zGVAblXm+SiNyD8N9stZ6iKV8V4kEyuWzyranSTDCsk4u1Chwn24JeK
+         x0g7H1Fd4JDPOGZgGJ634iskgF+JDeXIug8LoslxXBRilJ5GhXSEQfelYOIHRx5AnxhB
+         4YkRAqRUXtYJuH4ebbpbXSrsMlWxlTs/vQ5rTxqlsBuBnrZqcj+E35lYCSddQQoMTZ/m
+         bp5iX9nyavQNBk4ssB+IDjhTgRhMaLRV4GvFzucZUUTsSutmIq3n3+v3S+ov/I2OmXWg
+         7iGb/8zGTXPJibCyFA3arxkyGrp7b2g8C9kK1nvKBAo+fEDCEbTqHrGjFxf35TYxnR/F
+         kalA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=khyfMgYhWnHU1C8vhk7oesv4M67eeooFQKmFtEtxeyQ=;
-        b=TRyApYcRVaz9sY56WXx2auY6DzgpwIVnmX/cTVetrfo69IAWNU20E5N9YsgTXliRKW
-         sc/pxuPmN5FclTShx8HnpksU8wQBn31bFJQWq+ZRV0MFGMs9ywRL0D2js6vicY3X00bn
-         Ou4zg/goO42ulI7rmqvfdxwrwJ9xup+ud+wkNePn1PdcFqRVvEoSG+Dabo0w3/I3DE21
-         aojghFx9EXxZHjML+beS5KsOVdefiSMFoDIHSidFNAX4A416ZVpCM4678DZPo4GNuG7Q
-         9tENy+i4cuzirAS4vJ+9SHs17F+tWcPUKbhYjhTL/INLX6OFUPQOvZgHEErTXLwFVnXX
-         je9w==
-X-Gm-Message-State: ACrzQf0mK2PjBF1YA1ZksH5nNxZA4Y6R7LDLoEYplQS5K5q/4FEcwGUk
-        xhGeSlyIjb+VTYJc6nFJbFdpzg==
-X-Google-Smtp-Source: AMsMyM6Vjzffkok7FANXyrYkuNc/JwlUfL3sBCQQMxhDZ11BI6Ve3WWL8iBqMxD/nwD7o0yco3CbZw==
-X-Received: by 2002:a05:6214:19cc:b0:4b7:768:aca1 with SMTP id j12-20020a05621419cc00b004b70768aca1mr37024711qvc.40.1666908383889;
-        Thu, 27 Oct 2022 15:06:23 -0700 (PDT)
+        bh=eVhx7mgT+CVk5bKjBjI+5XvBoPbMSGCTA36IBpxQ1Dw=;
+        b=d6LkObiEh3MG1Bhgmkbb+AjkFzTNQrjLt6V5ghShy1DwMvyZoIDZNeicwVcqQkn7Gj
+         ah5526b2DTtlRySnArqImzTjlboc7VdqARzpovGTDnVtZnSowN//tp2SX5WjMrbaEBxT
+         iZvHqmxbc2abl5jd+e1hXzUO+e9UIb8h1NVzptPUM4ZcsXCDvjzTVUFRHGF+9jEx+GdL
+         lde4L45HLI43abuyG57/e8+HxJgz8Ci3p2/qMUDl2XybCrCbURjQAzpxs/6i2fmFEKqR
+         EYZGaUgsLnW+QS3z25krymDxRVrcpPRDXf7TuQwxpbEL2SP0rCw5WRHPWsX3/AXDlNMS
+         z8Ig==
+X-Gm-Message-State: ACrzQf34omKFMKXKA/nadFM+QvSUhkWT6SbVDX+M7dYPFPhs2sLzcYUE
+        QlIUkSQijpqz3MpSJdNPSnZmRg==
+X-Google-Smtp-Source: AMsMyM4DSzWsbaz7UdKjTZ+Ghy21FWwvjj/SHawjZ2RjUEwbO8bdspC1C49Pd7uIzZITyqojguKa2Q==
+X-Received: by 2002:a05:6214:5286:b0:4b3:bd06:e0ac with SMTP id kj6-20020a056214528600b004b3bd06e0acmr42814950qvb.129.1666908773817;
+        Thu, 27 Oct 2022 15:12:53 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id p11-20020a05620a112b00b006cbc6e1478csm1725840qkk.57.2022.10.27.15.06.22
+        by smtp.gmail.com with ESMTPSA id de13-20020a05620a370d00b006f9ddaaf01esm1764649qkb.102.2022.10.27.15.12.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 15:06:23 -0700 (PDT)
-Message-ID: <c285538f-8fce-c723-7430-675d91876f6b@linaro.org>
-Date:   Thu, 27 Oct 2022 18:06:21 -0400
+        Thu, 27 Oct 2022 15:12:53 -0700 (PDT)
+Message-ID: <548fda02-21da-718b-7ac4-f610db6ec15e@linaro.org>
+Date:   Thu, 27 Oct 2022 18:12:51 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: add binding for the GPIO block for
- Apple Mac SMC
+Subject: Re: [PATCH v5 1/5] dt-bindings: timer: Document RZ/G2L MTU3a bindings
 Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hector Martin <marcan@marcan.st>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <Y1q5jW8ff0aUdjPd@shell.armlinux.org.uk>
- <E1oo6Hw-00HYp8-Sa@rmk-PC.armlinux.org.uk>
- <35ed6e48-40e6-eb14-72de-9a0a4f5b38f8@linaro.org>
- <Y1rxdEjJox3HOqtp@shell.armlinux.org.uk>
- <2e2356f2-ded1-3cbf-4456-20054a8defda@linaro.org>
- <Y1r8zZif6FUIA73J@shell.armlinux.org.uk>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <chris.paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20221027144844.85149-1-biju.das.jz@bp.renesas.com>
+ <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y1r8zZif6FUIA73J@shell.armlinux.org.uk>
+In-Reply-To: <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,193 +81,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 17:49, Russell King (Oracle) wrote:
-> On Thu, Oct 27, 2022 at 05:31:49PM -0400, Krzysztof Kozlowski wrote:
->> On 27/10/2022 17:00, Russell King (Oracle) wrote:
->>> On Thu, Oct 27, 2022 at 03:53:25PM -0400, Krzysztof Kozlowski wrote:
->>>> On 27/10/2022 13:03, Russell King (Oracle) wrote:
->>>>> Add the DT binding for the Apple Mac System Management Controller GPIOs.
->>>>>
->>>>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
->>>>> ---
->>>>>  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 28 +++++++++++++++++++
->>>>>  1 file changed, 28 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..a3883d62292d
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->>>>
->>>> Filename based on compatible, so "apple,smc-gpio.yaml"
->>>
->>> Many of the other yaml files in gpio/ are named as such.
->>
->> Poor patterns, inconsistencies or even bugs like to copy themselves and
->> it is never an argument.
->>
->> The convention for all bindings is to use vendor,device.yaml, matching
->> the compatible when applicable.
->>
->>>
->>>>> @@ -0,0 +1,28 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Apple Mac System Management Controller GPIO
->>>>> +
->>>>> +maintainers:
->>>>> +  - Hector Martin <marcan@marcan.st>
->>>>> +
->>>>> +description:
->>>>> +  This describes the binding for the Apple Mac System Management Controller
->>>>
->>>> Drop "This describes the binding for"
->>>>
->>>>> +  GPIO block.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    allOf:
->>>>
->>>> That's not proper syntax. Look at other examples (e.g. Apple bindings)
->>>> doing it. Probably you wanted items here.
->>>
->>> Really? You're joking. 
->>
->> No. If you look at example-schema then answer should be obvious, so why
->> do you think I am joking?
->>
->>> I had sent an email to Rob to ask how this should
->>> be done because my first guess spat out unhelpful error messages from
->>> dt_bindings_check, and this is the best I could come up with based on
->>> other "examples".
->>>
->>> I tried "- items:" but that made no difference - dt_bindings_check spat
->>> errors, so that's clearly incorrect. Specifically, I tried:
->>>
->>> properties:
->>>   compatible:
->>>     - items:
->>>         - enum:
->>> 	    - apple,t8103-smc
->>> 	- const: apple,smc-gpio
->>>
->>> That doesn't work:
->>
->> Of course, because "-" means list, so "- items" is not correct.
->>
->> Where do you see such pattern? Anywhere following compatible? No. There
->> is no. You just invented something instead of using many, many existing
->> examples.
+On 27/10/2022 10:48, Biju Das wrote:
+> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> channels and one 32-bit timer channel. It supports the following
+> functions
+>  - Counter
+>  - Timer
+>  - PWM
 > 
-> No, I did not "invent" something here. I tried to copy it from other
-> examples, but I couldn't find something that matched exactly.
-> 
-> In any case, relying on examples rather than a proper description of
-> how this should be done is utterly rediculous. There should be a formal
-> definition of the language used to describe this - but there doesn't
-> seem to be.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v4->v5:
+>  * Modelled as timer bindings.
+>  * Fixed the typo.
 
-There is...
-
-> 
-> So, stuff like "-" means list is just not obvious, and the error
-
-"-" is defined by YAML, so I do not understand what is here not obvious?
-
-> messages make it totally unobvious that's what the problem was.
-
-The error messages could indeed be improved, I agree.
-
-> 
->>>>> +
->>>>> +additionalProperties: false
->>>>
->>>> Missing example, it's necessary to validate these.
->>>
->>> Documentation states that examples are optional according to the
->>> "writing-schema" documentation.
->>
->> Yes, but without it we cannot validate the bindings.
-> 
-> Please update the writing-schema documentation to state that it's now
-> required to validate bindings, so that the documentation is no longer
-> stating something that's different from the required process.
-> 
->>> Honestly, I find this YAML stuff extremely difficult, especially given
->>> the lack of documentation on how to write it and the cryptic error
->>> messages from the tooling. It's impossible to get it right before
->>> submitting it - and I suspect from what I see above, it's impossible
->>> for reviewers to know what is correct either, since some of what you've
->>> said above appears to be wrong!
->>
->> I would say it is doable - copy example-schema or recent device specific
->> schema and customize it... But you started adding some weird stuff which
->> was never, never in other bindings.
-> 
-> "weird stuff"? What weird stuff? What wasn't in other bindings? You
-
-The "allOf" in compatible is the weird stuff.
-
-There is basically just one case with it, a special case. There are no
-other bindings using such pattern.
-
-> make no sense when you make this accusations, because they are totally
-> untrue.
-> 
-> I started with:
-> 
-> properties:
->   compatible:
->     - enum:
->        - ...
->     - const: ...
-> 
-> and dt_bindings_check thew it out. So I looked again at
-> Documentation/bindings/gpio/*.yaml. I decided maybe the - enum
-> containing one entry could be confusing matters, so I tried converting
-> that to a - const. Still failed.
-
-Fourth YAML binding (counting alphabetically) in gpios has it:
-Documentation/devicetree/bindings/gpio/brcm,brcmstb-gpio.yaml
-
-> 
-> So I had another look at other *.yaml files, and I then tried adding
-> - items: and indenting the following. Failed.
-> 
-> So then I tried allOf: which passed the checks. That's the evolution
-> there - trial and error.
-
-I understand your process. I still think that easier is to start from
-example-schema as it has this case exactly.
-
-> 
-> Cryptic error messages, nothing else in gpio/ that follows the pattern
-> I wanted and trial and error led me to what I had in this patch. This
-> is *no* way to develop bindings.
-> 
-> There has to be a formal definition of this schema language - and
-> something better than pointing people at other bindings that may or
-> may not be correct.
-> 
-> So, I repeat myself: writing yaml stuff is utterly horrid and a total
-> hit and miss affair whether one gets it correct or not.
-> 
-> It seems to me that the problem of validating .dts files hasn't been
-> solved - the problem has merely been moved to a whole set of different
-> problems trying to write .yaml files that allow .dts files to be
-> validated, some of which could be solved by a better understanding of
-> the syntax, if only it were documented properly.
-
-I repeat also myself, writing C is also difficult and horrid :)
-
-Anyway, your feedback is of course appreciated. Happy to help if you
-have some more questions.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
