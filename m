@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EE7D60FBD9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:25:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4958D60FBDC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233598AbiJ0PZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 11:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52820 "EHLO
+        id S235285AbiJ0P1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 11:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234974AbiJ0PZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:25:51 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F68537E9
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:25:45 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id i12so1607097qvs.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:25:45 -0700 (PDT)
+        with ESMTP id S235447AbiJ0P07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:26:59 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D32172B72
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:26:56 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id z6so1373472qtv.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:26:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zOO+F95U9O4jk/n65hYZseHyMe71X6liRCwk6TGsdSk=;
-        b=V/wCu44bsoPCylEk+SGnhNZdWPaiUGmmHtNEouJbCab3WAO33aOTmvlhKsNjxxeEz4
-         Yn9ORCdjtyxGEOxD5TO+5UNQE18MNN4ayd0ccl2I3RCfeLQINlKxBRuIVn1miSJWhu1s
-         b9TmzfUQ0A9szxHYd5ZSfaeaHSZBd+o+gUL2FyG2kKWWo0QSUiRJMK8TPI7GFIbIYcTL
-         voVfzsOw67O6ssYLmkpxwUPjXwd0/5tLisUxd3Rd0oALQZHOoZpXYpRlHZI1TRkj6k6h
-         6cWm7jjpe3tCCjJ1RMKGDKmxNMgMDs3xzdvGNvCqFkzP1SBI5m8N2QyaRDAAH50Z+8Ic
-         0Zxg==
+        bh=9LPbSDa+MBywOmjjYSQBrIxZtqwfqdklED3LdicRb30=;
+        b=f1pJAPwVik75oeO3R9Cfh95P3uRLmnpTBaXmTyyd/nK6BAF40G2FI6QJQseH0ZpaMG
+         o8NjePfWROUjrYN/H1rYKeLUwFQkzzMlrqHw5CHZuXIXpTQiDep23SYO8hpzqckGzVOu
+         IJ38tor/aLMUvF9rtEfUHXoZrYNBli/Rk4gOxXN/r5qxiBk9JgB2tovGeHA0pG8ushbI
+         eUQvauYPA9quKmhnbZhgksHvliu1Iy28aOmQWAq4ZppJJepsipSsNtdL+vXiPFLXR/wZ
+         Ow3djaDWx0/1L85XReUGe10at7Z2g7e1P5rQHsuYAdIcRpUSEBlsB9kdjd6dqWQXgUic
+         Yd+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zOO+F95U9O4jk/n65hYZseHyMe71X6liRCwk6TGsdSk=;
-        b=12iiJj5yGL99AhJouhQh4YRuNhNgy/oiYY6/+2Kdzj6lGTT/7RtDTpgHz94nt9F/H+
-         LIHpl4nlN1MODoFwVX6fH6H3jXkgNVqJMNJF/y4ZQcvsVm3RApxfwU9kYoC66lb7yL6G
-         sxG+mYpEbri/736BamxGpsIxNKv9iDTGlcwpH66SUAkDF1qK2+K1Wb2tsyIFbzfS2zPF
-         rBCsDy9OSZGPAa+1mlkVKbYUrv8O2ryj2T7XuK0/WXlG745A3KnL7oNPYSpVDIbsEA39
-         xzaeS4bQQR978pwXYvyO9OLvbeTTBHpjshM4iphHNYtBkYZU21WJh6pW8ehDBG5acx1H
-         C0HA==
-X-Gm-Message-State: ACrzQf25eaX3857lyYGWboUiGv/MBGNlMWp06DGHr5imJ18G86mHsZ0J
-        fG5amt/hB9iXJe7FLlHHr1aP4g==
-X-Google-Smtp-Source: AMsMyM4MfDxgroQTsa8xDUFc/TeISESdJgNK6yixrrxj4TWJ4BgeBTO6V8QG/SAS2ggAd0lAqR3mHg==
-X-Received: by 2002:a05:6214:194a:b0:4b8:d7dc:292a with SMTP id q10-20020a056214194a00b004b8d7dc292amr31523057qvk.54.1666884344498;
-        Thu, 27 Oct 2022 08:25:44 -0700 (PDT)
+        bh=9LPbSDa+MBywOmjjYSQBrIxZtqwfqdklED3LdicRb30=;
+        b=baN3wu9fmhVPliPEzBIHjaKkTMF1y+hqzhE9RPauNgDuvwCRy7/kVCz8hPMFJrrklb
+         8Ad3ka6n8k7YPAKsDcvZCGcGj5IK0kkqI3StMGnnLw7IBYqOwrTWFMAn6nOu8bIJUMAv
+         dCnlPG4c5yICkfUcN04Kb7DBg/rdkSDhTUkx/Sa+GczzCBNUaHVWc92jqyF969ki7iqx
+         pcjtztk2bCeXm9hk02BYNnxRToV6u53QSjX7MncfSyYbI5/kJebWBdjVen5Uf2R2tktR
+         1fgDvftoqUXmnqmm0Mk5Q64djCZNl/dtOsPb3ENxXGYZJlqK+N3jHTkdjSHt/HHOzjP8
+         gkjA==
+X-Gm-Message-State: ACrzQf2c7bE3d7hPrEupLQzq/Ug+VglAiltd7O4CwQncrPm5xJwzucTL
+        NsN4x+Y1VrbJoH7xZDw/IdkK9Q==
+X-Google-Smtp-Source: AMsMyM4V1nmDJiKVYlT4rp0C1d+f84x0+W0srdAfp3Co9LNggnrL3zdamZcPPzCK4mwZ/oGlcxTqMw==
+X-Received: by 2002:a05:622a:1313:b0:39c:ff31:21e0 with SMTP id v19-20020a05622a131300b0039cff3121e0mr9149632qtk.274.1666884415437;
+        Thu, 27 Oct 2022 08:26:55 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id l13-20020a37f90d000000b006ea7f9d8644sm1150571qkj.96.2022.10.27.08.25.43
+        by smtp.gmail.com with ESMTPSA id o24-20020a05620a229800b006ee7923c187sm1140355qkh.42.2022.10.27.08.26.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 08:25:43 -0700 (PDT)
-Message-ID: <23e8a609-345f-a8ce-b0cb-2926fd86a315@linaro.org>
-Date:   Thu, 27 Oct 2022 11:25:42 -0400
+        Thu, 27 Oct 2022 08:26:54 -0700 (PDT)
+Message-ID: <b999144e-5137-6363-9792-8e6cf67e6a82@linaro.org>
+Date:   Thu, 27 Oct 2022 11:26:53 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: power: rpmpd: Add QDU1000/QRU1000 to
- rpmpd binding
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm-smmu: Add compatible bindings for
+ QDU1000 and QRU1000
 Content-Language: en-US
 To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221026190549.4005703-1-quic_molvera@quicinc.com>
- <20221026190549.4005703-3-quic_molvera@quicinc.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221026190534.4004945-1-quic_molvera@quicinc.com>
+ <20221026190534.4004945-2-quic_molvera@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221026190549.4005703-3-quic_molvera@quicinc.com>
+In-Reply-To: <20221026190534.4004945-2-quic_molvera@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,15 +80,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/10/2022 15:05, Melody Olvera wrote:
-> Add compatible and constants for the power domains exposed by the RPMH
-> in the Qualcomm QDU1000 and QRU1000 platforms.
+> Add compatible bindings for Qualcomm QDU1000 and QRU1000 platforms.
 > 
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 
-Looks good, but you did not Cc maintainers and  they must see this patch.
+Drop second, redundant "bindings" from subject.
 
-Who do you think will review and pick up this patch?
-
+This applies to all your patches and all your patchsets which are for
+the bindings subsystem.
 
 Best regards,
 Krzysztof
