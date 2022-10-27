@@ -2,82 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E61D760F048
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 08:31:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F319260F059
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 08:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234619AbiJ0Gbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 02:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46252 "EHLO
+        id S233892AbiJ0Gdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 02:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234623AbiJ0GbM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 02:31:12 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6171D16252D;
-        Wed, 26 Oct 2022 23:31:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666852262; x=1698388262;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nKoamIA8wUbcHKiEZbUCm28Kcvfx9jQu3oj0e+ov70w=;
-  b=OPDu8juHpHnDd/pt7n8p0UAlLfv9Cg6HLfbfl71duI+LHKCrZNe0Ncae
-   qepcC6u1IMPvbugmFrKio7jxPce4ub2thNJ9sWzU1qftTbHQgYlmJbJkk
-   TnJwBpsP8ZAcqO+LTsoGDm3gUMSN8RD/680j4uA+v7etWFWOX3SYyEQ2r
-   Odi8HsMCb5vuKcGJD94ZfYw9loyQlZf/YhMQ58viFeoOcQ2Tt9z1OflqX
-   Uka7yboQUhYjvRjL18AiEvPuw4IvINudidvbQqZi3UzYZMybzXAURtlhP
-   I14GOwV5jiLbkF39T2WC4CppXmRWfrH+EEMJA9PiWmy7UYk493g/CUkSf
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,215,1661810400"; 
-   d="scan'208";a="27000477"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 27 Oct 2022 08:30:59 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 27 Oct 2022 08:30:59 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 27 Oct 2022 08:30:59 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1666852259; x=1698388259;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nKoamIA8wUbcHKiEZbUCm28Kcvfx9jQu3oj0e+ov70w=;
-  b=dpIIzne24/4fXnib6g1gT+ey5C/OoEqngXd1aR2YkOU0IHVlxqpp7OXs
-   yT2zeGmojx28bg8zPPvsGlXiq9VzPGzni4TBMwOfah6GcncGF/TScU1b8
-   BMNzjTGaO9OvmhV4kGpyWQaUErtrpVTD4x07E+ZrvOvXajEc23aawZxCj
-   siefY6PUEkTk+r9gmP2UVe73LglBU94T1EIntbLNNmo7dFw65bxEEvjZg
-   cG/K7QmAw0Jb1Obosr/rcV68YWMSaafIAoUWHTojve+E5bj9zN1fFBoDj
-   5w5mIYQmxc4zxMIF198p1jof5HGRd/0d3CQmujumurqwAe85qmN868sVl
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,215,1661810400"; 
-   d="scan'208";a="27000476"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 27 Oct 2022 08:30:59 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 5B39E280056;
-        Thu, 27 Oct 2022 08:30:59 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     shengjiu.wang@gmail.com
-Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, marex@denx.de,
-        Shengjiu Wang <shengjiu.wang@nxp.com>
-Subject: Re: [PATCH v2 2/2] clk: imx8mp: Add audio shared gate
-Date:   Thu, 27 Oct 2022 08:30:55 +0200
-Message-ID: <12087191.O9o76ZdvQC@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <1666834442-5609-2-git-send-email-shengjiu.wang@nxp.com>
-References: <1666834442-5609-1-git-send-email-shengjiu.wang@nxp.com> <1666834442-5609-2-git-send-email-shengjiu.wang@nxp.com>
+        with ESMTP id S230330AbiJ0Gdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 02:33:38 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9797162532;
+        Wed, 26 Oct 2022 23:33:35 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29R6XOPm112818;
+        Thu, 27 Oct 2022 01:33:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666852404;
+        bh=ffuBEshoz466q3ZWFLWrO+vd2ntG6q+18jkXACuEZWU=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=Xw8j0bf74jDKZbJzTEYWRaO6WOH+04O4Nhbg5G5NWCHb1K+Iyxz+w33rkSvCZsEg6
+         jhGCDYPJI5ldld8YQ4H2IO3kUKMOGVTRJe/pUTDNIj7Sk1Y9wxU9aQJm+w/AWfj32R
+         89g9rl6nwBJGpJU4a0ppx4L/p2DwQye9ZTKAdzAo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29R6XOeb008892
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 27 Oct 2022 01:33:24 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 27
+ Oct 2022 01:33:24 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 27 Oct 2022 01:33:24 -0500
+Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29R6XK5D029046;
+        Thu, 27 Oct 2022 01:33:21 -0500
+Message-ID: <6abd122d-aacd-ca47-916d-142b68058a69@ti.com>
+Date:   Thu, 27 Oct 2022 12:03:20 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH 00/10] AM64x Disable Incomplete DT Nodes
+Content-Language: en-US
+To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221017192532.23825-1-afd@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20221017192532.23825-1-afd@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,79 +68,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 27. Oktober 2022, 03:34:02 CEST schrieb Shengjiu Wang:
-> From: Abel Vesa <abel.vesa@nxp.com>
-> 
-> According to the RM, the CCGR101 is shared for the following root clocks:
-> - AUDIO_AHB_CLK_ROOT
-> - AUDIO_AXI_CLK_ROOT
-> - SAI1_CLK_ROOT
-> - SAI2_CLK_ROOT
-> - SAI3_CLK_ROOT
-> - SAI5_CLK_ROOT
-> - SAI6_CLK_ROOT
-> - SAI7_CLK_ROOT
-> - PDM_CLK_ROOT
-> 
-> And correct clock MX8MP_CLK_AUDIO_ROOT to be IMX8MP_CLK_AUDIO_AHB_ROOT.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
-> changes in v2:
-> - split dt-binding to separate patch
-> 
->  drivers/clk/imx/clk-imx8mp.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/imx/clk-imx8mp.c b/drivers/clk/imx/clk-imx8mp.c
-> index 652ae58c2735..0ae3bc7bf8a1 100644
-> --- a/drivers/clk/imx/clk-imx8mp.c
-> +++ b/drivers/clk/imx/clk-imx8mp.c
-> @@ -17,6 +17,7 @@
-> 
->  static u32 share_count_nand;
->  static u32 share_count_media;
-> +static u32 share_count_audio;
-> 
->  static const char * const pll_ref_sels[] = { "osc_24m", "dummy", "dummy",
-> "dummy", }; static const char * const audio_pll1_bypass_sels[] =
-> {"audio_pll1", "audio_pll1_ref_sel", }; @@ -699,7 +700,15 @@ static int
-> imx8mp_clocks_probe(struct platform_device *pdev) hws[IMX8MP_CLK_HDMI_ROOT]
-> = imx_clk_hw_gate4("hdmi_root_clk", "hdmi_axi", ccm_base + 0x45f0, 0);
-> hws[IMX8MP_CLK_TSENSOR_ROOT] = imx_clk_hw_gate4("tsensor_root_clk",
-> "ipg_root", ccm_base + 0x4620, 0); hws[IMX8MP_CLK_VPU_ROOT] =
-> imx_clk_hw_gate4("vpu_root_clk", "vpu_bus", ccm_base + 0x4630, 0);
-> -	hws[IMX8MP_CLK_AUDIO_ROOT] = imx_clk_hw_gate4("audio_root_clk",
-> "audio_ahb", ccm_base + 0x4650, 0); +	hws[IMX8MP_CLK_AUDIO_AHB_ROOT] =
-> imx_clk_hw_gate2_shared2("audio_ahb_root", "audio_ahb", ccm_base + 0x4650,
-> 0, &share_count_audio); +	hws[IMX8MP_CLK_AUDIO_AXI_ROOT] =
-> imx_clk_hw_gate2_shared2("audio_axi_root", "audio_axi", ccm_base + 0x4650,
-> 0, &share_count_audio); +	hws[IMX8MP_CLK_SAI1_ROOT] =
-> imx_clk_hw_gate2_shared2("sai1_root", "sai1", ccm_base + 0x4650, 0,
-> &share_count_audio); +	hws[IMX8MP_CLK_SAI2_ROOT] =
-> imx_clk_hw_gate2_shared2("sai2_root", "sai2", ccm_base + 0x4650, 0,
-> &share_count_audio); +	hws[IMX8MP_CLK_SAI3_ROOT] =
-> imx_clk_hw_gate2_shared2("sai3_root", "sai3", ccm_base + 0x4650, 0,
-> &share_count_audio); +	hws[IMX8MP_CLK_SAI5_ROOT] =
-> imx_clk_hw_gate2_shared2("sai5_root", "sai5", ccm_base + 0x4650, 0,
-> &share_count_audio); +	hws[IMX8MP_CLK_SAI6_ROOT] =
-> imx_clk_hw_gate2_shared2("sai6_root", "sai6", ccm_base + 0x4650, 0,
-> &share_count_audio); +	hws[IMX8MP_CLK_SAI7_ROOT] =
-> imx_clk_hw_gate2_shared2("sai7_root", "sai7", ccm_base + 0x4650, 0,
-> &share_count_audio); +	hws[IMX8MP_CLK_PDM_ROOT] =
-> imx_clk_hw_gate2_shared2("pdm_root", "pdm", ccm_base + 0x4650, 0,
-> &share_count_audio);
-> 
->  	hws[IMX8MP_CLK_ARM] = imx_clk_hw_cpu("arm", "arm_a53_core",
->  					     
-hws[IMX8MP_CLK_A53_CORE]->clk,
-
-Now IMX8MP_CLK_AUDIO_ROOT is unused. Should it be removed? Or should the 
-rename be done in a separate commit before this one?
-
-Best regards,
-Alexander
 
 
+On 18/10/22 00:55, Andrew Davis wrote:
+> Andrew Davis (10):
+>   arm64: dts: ti: k3-am64: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable I2C nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable SPI nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable EPWM nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable ECAP nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable PCIe nodes at the board level
+>   arm64: dts: ti: k3-am64: MDIO pinmux should belong to the MDIO node
+>   arm64: dts: ti: k3-am64: Enable MDIO nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable MCAN nodes at the board level
+>   arm64: dts: ti: k3-am64: Enable GPMC and ELM nodes at the board level
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi |  37 ++++++
+>  arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  |   6 +
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 119 ++-----------------
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 142 ++---------------------
+>  4 files changed, 63 insertions(+), 241 deletions(-)
 
+Acked-by: Vignesh Raghavendra <vigneshr@ti.com>
+
+
+-- 
+Regards
+Vignesh
