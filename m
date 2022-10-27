@@ -2,88 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B69FF6104A5
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 23:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E0C6104AF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 23:49:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236887AbiJ0VnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 17:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49084 "EHLO
+        id S237034AbiJ0VtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 17:49:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236694AbiJ0VnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 17:43:07 -0400
-X-Greylist: delayed 8586 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 27 Oct 2022 14:43:06 PDT
-Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch [185.70.40.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A1518322E
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 14:43:06 -0700 (PDT)
-Date:   Thu, 27 Oct 2022 21:43:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-        s=protonmail3; t=1666906984; x=1667166184;
-        bh=BoreT82M7Y58XugDlJ1ukW07dJYIn5lrrJR7s8sgmZM=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=mkflbTKYICEGBLv0z7mIUuXyCiPvj7WwPZdS+LJz6rweQ8S5nsOYGP6KDZWSUQF2B
-         46nAIR6UNJf73/+tHvuJa1p3qJ08TuPWvLT/U/2bKqXcMENTAhaS/GQlPhCruIowcM
-         3L78pwQlUu9BbBQ+LursuO8qnzNOC8xEBAon+7LQni5/3NhYzayI4zaqaux4r5bG0y
-         JuUjL1QqHtOv4C8LChlH1zEfaAHKqXgjrA3wVZxCBvXTX0Lxs/zC57kj8HmuOqDKBp
-         JZBguydfKTfr35fdvz7no4Y469Pa9vv1gWqDjP/gC6u8PZ7vHAaP0BEq35o09xW0SQ
-         1O9RNDyvuPjfA==
-To:     Saravana Kannan <saravanak@google.com>
-From:   mcpratt@pm.me
-Cc:     devicetree@vger.kernel.org, rafal@milecki.pl, ansuelsmth@gmail.com,
-        srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH] of: property: fw_devlink: Fix support for nvmem-cells
-Message-ID: <m08h9-9Spey2RcSxfM2vJLYwEAfuVJWBpQrAEqkopJLwv7Hen59r00F7C5TjKC32EsTG9eooMpfdcpumczlBjgYZv-2sqzCLIhRjnKbbcww=@pm.me>
-In-Reply-To: <CAGETcx8N8TPMuOFBhJ0kgBfxa74YpeZXTFM3QRrbdz5bVj2x3Q@mail.gmail.com>
-References: <20221027191939.13106-1-mcpratt@pm.me> <CAGETcx8N8TPMuOFBhJ0kgBfxa74YpeZXTFM3QRrbdz5bVj2x3Q@mail.gmail.com>
-Feedback-ID: 27397442:user:proton
+        with ESMTP id S229998AbiJ0VtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 17:49:06 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2A786FA9;
+        Thu, 27 Oct 2022 14:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=1ry49BdJFIYIjpEYQSw9wgWdTj6hfZpiO61BTbR6rd4=; b=BZozZ07RrFocNPLGj9pnS3IrZd
+        ElHsueZxoxF/BjncQdyK0Vcu/N1zZ5W9qfZWx4E5QDOwq+v/oh+MnrIxg2ArFEctS6Ysk72aUq/i8
+        Kwc763oprg/6zUOmUnUsDjCVbLzDhuxO0w54bxbbsLVrntNJxxH7HkkRIrVi/AFpBCGfjQSS+qqZJ
+        hC2rnpbBPMImq6EaLZqiQcWjqEDQkUWd9aEtnXlYXvhOycYFosRqH3tdwJanfrGv/4uBYL9jgCRzY
+        nV/ljjfaE+yEdzsyGmiRA6aHSUGd/Og7M4tpa9nKv82Td56mrK2kRGuAMNz7XuohqhRPzQvSA+aR0
+        GdLx2o5Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34990)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ooAkJ-0007YR-5I; Thu, 27 Oct 2022 22:49:03 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ooAkH-0001tE-S2; Thu, 27 Oct 2022 22:49:01 +0100
+Date:   Thu, 27 Oct 2022 22:49:01 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hector Martin <marcan@marcan.st>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: add binding for the GPIO block
+ for Apple Mac SMC
+Message-ID: <Y1r8zZif6FUIA73J@shell.armlinux.org.uk>
+References: <Y1q5jW8ff0aUdjPd@shell.armlinux.org.uk>
+ <E1oo6Hw-00HYp8-Sa@rmk-PC.armlinux.org.uk>
+ <35ed6e48-40e6-eb14-72de-9a0a4f5b38f8@linaro.org>
+ <Y1rxdEjJox3HOqtp@shell.armlinux.org.uk>
+ <2e2356f2-ded1-3cbf-4456-20054a8defda@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e2356f2-ded1-3cbf-4456-20054a8defda@linaro.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Oct 27, 2022 at 05:31:49PM -0400, Krzysztof Kozlowski wrote:
+> On 27/10/2022 17:00, Russell King (Oracle) wrote:
+> > On Thu, Oct 27, 2022 at 03:53:25PM -0400, Krzysztof Kozlowski wrote:
+> >> On 27/10/2022 13:03, Russell King (Oracle) wrote:
+> >>> Add the DT binding for the Apple Mac System Management Controller GPIOs.
+> >>>
+> >>> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> >>> ---
+> >>>  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 28 +++++++++++++++++++
+> >>>  1 file changed, 28 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..a3883d62292d
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> >>
+> >> Filename based on compatible, so "apple,smc-gpio.yaml"
+> > 
+> > Many of the other yaml files in gpio/ are named as such.
+> 
+> Poor patterns, inconsistencies or even bugs like to copy themselves and
+> it is never an argument.
+> 
+> The convention for all bindings is to use vendor,device.yaml, matching
+> the compatible when applicable.
+> 
+> > 
+> >>> @@ -0,0 +1,28 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Apple Mac System Management Controller GPIO
+> >>> +
+> >>> +maintainers:
+> >>> +  - Hector Martin <marcan@marcan.st>
+> >>> +
+> >>> +description:
+> >>> +  This describes the binding for the Apple Mac System Management Controller
+> >>
+> >> Drop "This describes the binding for"
+> >>
+> >>> +  GPIO block.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    allOf:
+> >>
+> >> That's not proper syntax. Look at other examples (e.g. Apple bindings)
+> >> doing it. Probably you wanted items here.
+> > 
+> > Really? You're joking. 
+> 
+> No. If you look at example-schema then answer should be obvious, so why
+> do you think I am joking?
+> 
+> > I had sent an email to Rob to ask how this should
+> > be done because my first guess spat out unhelpful error messages from
+> > dt_bindings_check, and this is the best I could come up with based on
+> > other "examples".
+> > 
+> > I tried "- items:" but that made no difference - dt_bindings_check spat
+> > errors, so that's clearly incorrect. Specifically, I tried:
+> > 
+> > properties:
+> >   compatible:
+> >     - items:
+> >         - enum:
+> > 	    - apple,t8103-smc
+> > 	- const: apple,smc-gpio
+> > 
+> > That doesn't work:
+> 
+> Of course, because "-" means list, so "- items" is not correct.
+> 
+> Where do you see such pattern? Anywhere following compatible? No. There
+> is no. You just invented something instead of using many, many existing
+> examples.
 
->=20
-> Hi Michael,
->=20
-> Thanks a lot for submitting a patch to fix issues in fw_devlink. I
-> think my other patch series[1] should fix this in a generic way for
-> all such cases where the phandle doesn't actually point to the
-> supplier struct device. The series itself has some bugs, but there are
-> "try this if it fixes it" code snippets in the thread that I need to
-> roll into a v2.
->=20
-> Give it a shot if you can. I'll try to get back to the series soon.
->=20
-> [1] - https://lore.kernel.org/lkml/20220810060040.321697-1-saravanak@goog=
-le.com/
-> -Saravana
+No, I did not "invent" something here. I tried to copy it from other
+examples, but I couldn't find something that matched exactly.
 
-Hi Saravana,
+In any case, relying on examples rather than a proper description of
+how this should be done is utterly rediculous. There should be a formal
+definition of the language used to describe this - but there doesn't
+seem to be.
 
-It's definitely good to hear that someone is working on it already :D
+So, stuff like "-" means list is just not obvious, and the error
+messages make it totally unobvious that's what the problem was.
 
-It looks like the "dangling consumers" function would probably fix
-the issue in Openwrt with fw_devlink. However, I noticed that in your serie=
-s
-the function of_get_compat_node_parent() is still there. I'm not sure wheth=
-er
-or not that could be simplified as well, since that is how I got the idea
-for this patch. I understand your goal is to remove the dependency on
-the "compatible" properties in total (at least for supplier devices).
+> > Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml: properties:compatible: [{'items': [{'const': 'apple,t8103-smc'}, {'const': 'apple,smc-gpio'}]}] is not of type 'object', 'boolean'  from schema $id: http://json-schema.org/draft-07/schema#
+> > 
+> >>> +      - enum:
+> >>> +          - apple,t8103-smc
+> >>> +      - const: apple,smc-gpio
+> >>> +
+> >>> +  gpio-controller: true
+> >>> +
+> >>> +  '#gpio-cells':
+> >>> +    const: 2
+> >>
+> >> Missing required properties. Start from new bindings or example-schema.
+> > 
+> > What's missing? All the other bindings that I see follow this pattern.
+> 
+> No. All other bindings have list of required properties. Only yours do
+> not have.
 
-I'll try the series and let you know how it goes (unless your V2 is coming =
-soon).
+Oh, you don't mean there are required properties missing from
+#gpio-cells, you mean the list of required properties is missing,
+which is something _entirely_ different. Your comment was utterly
+ambiguous.
 
-FYI the device I test this on is Engenius EPG600 (MT7620A + QCA8337)
+> >>> +
+> >>> +additionalProperties: false
+> >>
+> >> Missing example, it's necessary to validate these.
+> > 
+> > Documentation states that examples are optional according to the
+> > "writing-schema" documentation.
+> 
+> Yes, but without it we cannot validate the bindings.
 
---=20
-Thanks,
-MCP
+Please update the writing-schema documentation to state that it's now
+required to validate bindings, so that the documentation is no longer
+stating something that's different from the required process.
+
+> > Honestly, I find this YAML stuff extremely difficult, especially given
+> > the lack of documentation on how to write it and the cryptic error
+> > messages from the tooling. It's impossible to get it right before
+> > submitting it - and I suspect from what I see above, it's impossible
+> > for reviewers to know what is correct either, since some of what you've
+> > said above appears to be wrong!
+> 
+> I would say it is doable - copy example-schema or recent device specific
+> schema and customize it... But you started adding some weird stuff which
+> was never, never in other bindings.
+
+"weird stuff"? What weird stuff? What wasn't in other bindings? You
+make no sense when you make this accusations, because they are totally
+untrue.
+
+I started with:
+
+properties:
+  compatible:
+    - enum:
+       - ...
+    - const: ...
+
+and dt_bindings_check thew it out. So I looked again at
+Documentation/bindings/gpio/*.yaml. I decided maybe the - enum
+containing one entry could be confusing matters, so I tried converting
+that to a - const. Still failed.
+
+So I had another look at other *.yaml files, and I then tried adding
+- items: and indenting the following. Failed.
+
+So then I tried allOf: which passed the checks. That's the evolution
+there - trial and error.
+
+Cryptic error messages, nothing else in gpio/ that follows the pattern
+I wanted and trial and error led me to what I had in this patch. This
+is *no* way to develop bindings.
+
+There has to be a formal definition of this schema language - and
+something better than pointing people at other bindings that may or
+may not be correct.
+
+So, I repeat myself: writing yaml stuff is utterly horrid and a total
+hit and miss affair whether one gets it correct or not.
+
+It seems to me that the problem of validating .dts files hasn't been
+solved - the problem has merely been moved to a whole set of different
+problems trying to write .yaml files that allow .dts files to be
+validated, some of which could be solved by a better understanding of
+the syntax, if only it were documented properly.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
