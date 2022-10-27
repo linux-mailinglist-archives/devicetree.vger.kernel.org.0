@@ -2,595 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC49860F96A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:41:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DEB660F971
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236273AbiJ0NlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 09:41:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56224 "EHLO
+        id S236175AbiJ0Nmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 09:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236253AbiJ0NlA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:41:00 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D90DCABFB;
-        Thu, 27 Oct 2022 06:40:58 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.95,217,1661785200"; 
-   d="scan'208";a="138151486"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 27 Oct 2022 22:40:56 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E12BA40083E4;
-        Thu, 27 Oct 2022 22:40:55 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v5 3/3] net: ethernet: renesas: rswitch: Add R-Car Gen4 gPTP support
-Date:   Thu, 27 Oct 2022 22:40:34 +0900
-Message-Id: <20221027134034.2343230-4-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221027134034.2343230-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20221027134034.2343230-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S236254AbiJ0Nmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:42:31 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E441826C9
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 06:42:30 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id z17so873452qkj.8
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 06:42:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wM4Vw2+6axRvXSbyEhTxGQ1M8jgYDY7F1JmeCqi4DtA=;
+        b=Qfmd16a8rPHB6gP9KngqB+MAJCh40aoEVl+VKG4LpOIsMyTMaJ6kekLbXfGHrYzmHh
+         KP7sZEmrYaQ1YbQmwiphZcVbt41l5UarqZdInVDlS68bXkj5d7nhTshuUWSj+G6QG5mG
+         KLIqEEExuoPrM6DYxSsdUosuaPcGKko102+WOCVQjFnND6Sdk+Bu1IFmYdCym3i8SBsq
+         /UGu0KmViUYC68f1T1aFCvBIIIGsZKsGnny8W8IFbVCC59KDbKps8lzJafe8vieLSsBf
+         GcELwM40nNCymCIr9DTqE8+EfP9CJavpm1s5zuq9IHWnL6+dzwXjAoogWOiblGBnUzJY
+         bEMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wM4Vw2+6axRvXSbyEhTxGQ1M8jgYDY7F1JmeCqi4DtA=;
+        b=MZ68zeb6lCz2LI7yfAxY2y9ZjaBKSQOy15IjqxgUVeHNDjNl7jJlKadMLk/Juwub0F
+         6Pl8lBovQo8wE7l6PkA/oWBn/Q671V2auAuj7Ngw4j8Uhh4bV28tE3hnLDD66tdvVgya
+         2EUeVLfxPIBhaEXBOJxj+ZeWb6qXg4BX668OtpoLidLOhzcGhvcqDYz4dI92bi8r86rl
+         cpBNKiL8pID9vUK+kFiLrayJoLj1zvP1d+L7A/XueRtWeMCKcW8GCHfLE1GOfdyptUWr
+         x8UW6Mw/FRUOzR4kPWAmoUG+tunQjrBFWw40p7a/23+4wP5mFW0nSAqZXjlI+B9GgudB
+         G/Wg==
+X-Gm-Message-State: ACrzQf3rbZZ556Da9d8XzsInWf9GoMt1CDAT3qx8dxyLGIwd8DYFtCm8
+        14/0CRyjHUfz9UXs3GcKQyOQHQ==
+X-Google-Smtp-Source: AMsMyM44mwyfkNK9FKOzm1Oey82nDiu8X5Aw1J4Tb80n2Y//lc1hB0Auwc45uma1QaXmEIeuuzdP9A==
+X-Received: by 2002:a37:98c2:0:b0:6f8:6a62:a195 with SMTP id a185-20020a3798c2000000b006f86a62a195mr8265251qke.245.1666878150053;
+        Thu, 27 Oct 2022 06:42:30 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id q11-20020a37f70b000000b006ce0733caebsm995698qkj.14.2022.10.27.06.42.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 06:42:29 -0700 (PDT)
+Message-ID: <9092152a-35c9-1f80-8674-ea4124a1bb36@linaro.org>
+Date:   Thu, 27 Oct 2022 09:42:27 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 01/19] dt-bindings: ARM: MediaTek: Add new document
+ bindings of MT8188 clock
+Content-Language: en-US
+To:     "Garmin.Chang" <Garmin.Chang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20221024094254.29218-1-Garmin.Chang@mediatek.com>
+ <20221024094254.29218-2-Garmin.Chang@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221024094254.29218-2-Garmin.Chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add R-Car Gen4 gPTP support into the rswitch driver.
+On 24/10/2022 05:42, Garmin.Chang wrote:
+> Add the new binding documentation for system clock
+> and functional clock on MediaTek MT8188.
+> 
+> Signed-off-by: Garmin.Chang <Garmin.Chang@mediatek.com>
+> ---
+>  .../arm/mediatek/mediatek,mt8188-clock.yaml   |  70 ++
+>  .../mediatek/mediatek,mt8188-sys-clock.yaml   |  55 ++
+>  .../dt-bindings/clock/mediatek,mt8188-clk.h   | 733 ++++++++++++++++++
+>  3 files changed, 858 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/mediatek,mt8188-clk.h
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml
+> new file mode 100644
+> index 000000000000..49dc681e6601
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-clock.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Functional Clock Controller for MT8188
+> +
+> +maintainers:
+> +  - Garmin Chang <garmin.chang@mediatek.com>
+> +
+> +description: |
+> +  The clock architecture in MediaTek like below
+> +  PLLs -->
+> +          dividers -->
+> +                      muxes
+> +                           -->
+> +                              clock gate
+> +
+> +  The devices provide clock gate control in different IP blocks.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8188-adsp_audio26m
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- drivers/net/ethernet/renesas/Makefile        |   2 +-
- drivers/net/ethernet/renesas/rcar_gen4_ptp.c | 181 +++++++++++++++++++
- drivers/net/ethernet/renesas/rcar_gen4_ptp.h |  72 ++++++++
- drivers/net/ethernet/renesas/rswitch.c       | 144 ++++++++++++++-
- drivers/net/ethernet/renesas/rswitch.h       |   1 +
- 5 files changed, 398 insertions(+), 2 deletions(-)
- create mode 100644 drivers/net/ethernet/renesas/rcar_gen4_ptp.c
- create mode 100644 drivers/net/ethernet/renesas/rcar_gen4_ptp.h
+No underscores in compatibles.
 
-diff --git a/drivers/net/ethernet/renesas/Makefile b/drivers/net/ethernet/renesas/Makefile
-index 32845ba53970..592005893464 100644
---- a/drivers/net/ethernet/renesas/Makefile
-+++ b/drivers/net/ethernet/renesas/Makefile
-@@ -9,6 +9,6 @@ ravb-objs := ravb_main.o ravb_ptp.o
- 
- obj-$(CONFIG_RAVB) += ravb.o
- 
--rswitch_drv-objs := rswitch.o
-+rswitch_drv-objs := rswitch.o rcar_gen4_ptp.o
- 
- obj-$(CONFIG_RENESAS_ETHER_SWITCH) += rswitch_drv.o
-diff --git a/drivers/net/ethernet/renesas/rcar_gen4_ptp.c b/drivers/net/ethernet/renesas/rcar_gen4_ptp.c
-new file mode 100644
-index 000000000000..c007e33c47e1
---- /dev/null
-+++ b/drivers/net/ethernet/renesas/rcar_gen4_ptp.c
-@@ -0,0 +1,181 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Renesas R-Car Gen4 gPTP device driver
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corporation
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/etherdevice.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include "rcar_gen4_ptp.h"
-+#define ptp_to_priv(ptp)	container_of(ptp, struct rcar_gen4_ptp_private, info)
-+
-+static const struct rcar_gen4_ptp_reg_offset s4_offs = {
-+	.enable = PTPTMEC,
-+	.disable = PTPTMDC,
-+	.increment = PTPTIVC0,
-+	.config_t0 = PTPTOVC00,
-+	.config_t1 = PTPTOVC10,
-+	.config_t2 = PTPTOVC20,
-+	.monitor_t0 = PTPGPTPTM00,
-+	.monitor_t1 = PTPGPTPTM10,
-+	.monitor_t2 = PTPGPTPTM20,
-+};
-+
-+static int rcar_gen4_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
-+{
-+	struct rcar_gen4_ptp_private *ptp_priv = ptp_to_priv(ptp);
-+	bool neg_adj = scaled_ppm < 0 ? true : false;
-+	s64 addend = ptp_priv->default_addend;
-+	s64 diff;
-+
-+	if (neg_adj)
-+		scaled_ppm = -scaled_ppm;
-+	diff = div_s64(addend * scaled_ppm_to_ppb(scaled_ppm), NSEC_PER_SEC);
-+	addend = neg_adj ? addend - diff : addend + diff;
-+
-+	iowrite32(addend, ptp_priv->addr + ptp_priv->offs->increment);
-+
-+	return 0;
-+}
-+
-+/* Caller must hold the lock */
-+static void _rcar_gen4_ptp_gettime(struct ptp_clock_info *ptp,
-+				   struct timespec64 *ts)
-+{
-+	struct rcar_gen4_ptp_private *ptp_priv = ptp_to_priv(ptp);
-+
-+	ts->tv_nsec = ioread32(ptp_priv->addr + ptp_priv->offs->monitor_t0);
-+	ts->tv_sec = ioread32(ptp_priv->addr + ptp_priv->offs->monitor_t1) |
-+		     ((s64)ioread32(ptp_priv->addr + ptp_priv->offs->monitor_t2) << 32);
-+}
-+
-+static int rcar_gen4_ptp_gettime(struct ptp_clock_info *ptp,
-+				 struct timespec64 *ts)
-+{
-+	struct rcar_gen4_ptp_private *ptp_priv = ptp_to_priv(ptp);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ptp_priv->lock, flags);
-+	_rcar_gen4_ptp_gettime(ptp, ts);
-+	spin_unlock_irqrestore(&ptp_priv->lock, flags);
-+
-+	return 0;
-+}
-+
-+/* Caller must hold the lock */
-+static void _rcar_gen4_ptp_settime(struct ptp_clock_info *ptp,
-+				   const struct timespec64 *ts)
-+{
-+	struct rcar_gen4_ptp_private *ptp_priv = ptp_to_priv(ptp);
-+
-+	iowrite32(1, ptp_priv->addr + ptp_priv->offs->disable);
-+	iowrite32(0, ptp_priv->addr + ptp_priv->offs->config_t2);
-+	iowrite32(0, ptp_priv->addr + ptp_priv->offs->config_t1);
-+	iowrite32(0, ptp_priv->addr + ptp_priv->offs->config_t0);
-+	iowrite32(1, ptp_priv->addr + ptp_priv->offs->enable);
-+	iowrite32(ts->tv_sec >> 32, ptp_priv->addr + ptp_priv->offs->config_t2);
-+	iowrite32(ts->tv_sec, ptp_priv->addr + ptp_priv->offs->config_t1);
-+	iowrite32(ts->tv_nsec, ptp_priv->addr + ptp_priv->offs->config_t0);
-+}
-+
-+static int rcar_gen4_ptp_settime(struct ptp_clock_info *ptp,
-+				 const struct timespec64 *ts)
-+{
-+	struct rcar_gen4_ptp_private *ptp_priv = ptp_to_priv(ptp);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ptp_priv->lock, flags);
-+	_rcar_gen4_ptp_settime(ptp, ts);
-+	spin_unlock_irqrestore(&ptp_priv->lock, flags);
-+
-+	return 0;
-+}
-+
-+static int rcar_gen4_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
-+{
-+	struct rcar_gen4_ptp_private *ptp_priv = ptp_to_priv(ptp);
-+	struct timespec64 ts;
-+	unsigned long flags;
-+	s64 now;
-+
-+	spin_lock_irqsave(&ptp_priv->lock, flags);
-+	_rcar_gen4_ptp_gettime(ptp, &ts);
-+	now = ktime_to_ns(timespec64_to_ktime(ts));
-+	ts = ns_to_timespec64(now + delta);
-+	_rcar_gen4_ptp_settime(ptp, &ts);
-+	spin_unlock_irqrestore(&ptp_priv->lock, flags);
-+
-+	return 0;
-+}
-+
-+static int rcar_gen4_ptp_enable(struct ptp_clock_info *ptp,
-+				struct ptp_clock_request *rq, int on)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static struct ptp_clock_info rcar_gen4_ptp_info = {
-+	.owner = THIS_MODULE,
-+	.name = "rcar_gen4_ptp",
-+	.max_adj = 50000000,
-+	.adjfine = rcar_gen4_ptp_adjfine,
-+	.adjtime = rcar_gen4_ptp_adjtime,
-+	.gettime64 = rcar_gen4_ptp_gettime,
-+	.settime64 = rcar_gen4_ptp_settime,
-+	.enable = rcar_gen4_ptp_enable,
-+};
-+
-+static void rcar_gen4_ptp_set_offs(struct rcar_gen4_ptp_private *ptp_priv,
-+				   enum rcar_gen4_ptp_reg_layout layout)
-+{
-+	WARN_ON(layout != RCAR_GEN4_PTP_REG_LAYOUT_S4);
-+
-+	ptp_priv->offs = &s4_offs;
-+}
-+
-+int rcar_gen4_ptp_register(struct rcar_gen4_ptp_private *ptp_priv,
-+			   enum rcar_gen4_ptp_reg_layout layout, u32 clock)
-+{
-+	if (ptp_priv->initialized)
-+		return 0;
-+
-+	spin_lock_init(&ptp_priv->lock);
-+
-+	rcar_gen4_ptp_set_offs(ptp_priv, layout);
-+
-+	ptp_priv->default_addend = clock;
-+	iowrite32(ptp_priv->default_addend, ptp_priv->addr + ptp_priv->offs->increment);
-+	ptp_priv->clock = ptp_clock_register(&ptp_priv->info, NULL);
-+	if (IS_ERR(ptp_priv->clock))
-+		return PTR_ERR(ptp_priv->clock);
-+
-+	iowrite32(0x01, ptp_priv->addr + ptp_priv->offs->enable);
-+	ptp_priv->initialized = true;
-+
-+	return 0;
-+}
-+
-+int rcar_gen4_ptp_unregister(struct rcar_gen4_ptp_private *ptp_priv)
-+{
-+	iowrite32(1, ptp_priv->addr + ptp_priv->offs->disable);
-+
-+	return ptp_clock_unregister(ptp_priv->clock);
-+}
-+
-+struct rcar_gen4_ptp_private *rcar_gen4_ptp_alloc(struct platform_device *pdev)
-+{
-+	struct rcar_gen4_ptp_private *ptp;
-+
-+	ptp = devm_kzalloc(&pdev->dev, sizeof(*ptp), GFP_KERNEL);
-+	if (!ptp)
-+		return NULL;
-+
-+	ptp->info = rcar_gen4_ptp_info;
-+
-+	return ptp;
-+}
-diff --git a/drivers/net/ethernet/renesas/rcar_gen4_ptp.h b/drivers/net/ethernet/renesas/rcar_gen4_ptp.h
-new file mode 100644
-index 000000000000..b1bbea8d3a52
---- /dev/null
-+++ b/drivers/net/ethernet/renesas/rcar_gen4_ptp.h
-@@ -0,0 +1,72 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/* Renesas R-Car Gen4 gPTP device driver
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corporation
-+ */
-+
-+#ifndef __RCAR_GEN4_PTP_H__
-+#define __RCAR_GEN4_PTP_H__
-+
-+#include <linux/ptp_clock_kernel.h>
-+
-+#define PTPTIVC_INIT			0x19000000	/* 320MHz */
-+#define RCAR_GEN4_PTP_CLOCK_S4		PTPTIVC_INIT
-+#define RCAR_GEN4_GPTP_OFFSET_S4	0x00018000
-+
-+/* for rcar_gen4_ptp_init */
-+enum rcar_gen4_ptp_reg_layout {
-+	RCAR_GEN4_PTP_REG_LAYOUT_S4
-+};
-+
-+/* driver's definitions */
-+#define RCAR_GEN4_RXTSTAMP_ENABLED		BIT(0)
-+#define RCAR_GEN4_RXTSTAMP_TYPE_V2_L2_EVENT	BIT(1)
-+#define RCAR_GEN4_RXTSTAMP_TYPE_ALL		(RCAR_GEN4_RXTSTAMP_TYPE_V2_L2_EVENT | BIT(2))
-+#define RCAR_GEN4_RXTSTAMP_TYPE			RCAR_GEN4_RXTSTAMP_TYPE_ALL
-+
-+#define RCAR_GEN4_TXTSTAMP_ENABLED		BIT(0)
-+
-+#define PTPRO				0
-+
-+enum rcar_gen4_ptp_reg_s4 {
-+	PTPTMEC		= PTPRO + 0x0010,
-+	PTPTMDC		= PTPRO + 0x0014,
-+	PTPTIVC0	= PTPRO + 0x0020,
-+	PTPTOVC00	= PTPRO + 0x0030,
-+	PTPTOVC10	= PTPRO + 0x0034,
-+	PTPTOVC20	= PTPRO + 0x0038,
-+	PTPGPTPTM00	= PTPRO + 0x0050,
-+	PTPGPTPTM10	= PTPRO + 0x0054,
-+	PTPGPTPTM20	= PTPRO + 0x0058,
-+};
-+
-+struct rcar_gen4_ptp_reg_offset {
-+	u16 enable;
-+	u16 disable;
-+	u16 increment;
-+	u16 config_t0;
-+	u16 config_t1;
-+	u16 config_t2;
-+	u16 monitor_t0;
-+	u16 monitor_t1;
-+	u16 monitor_t2;
-+};
-+
-+struct rcar_gen4_ptp_private {
-+	void __iomem *addr;
-+	struct ptp_clock *clock;
-+	struct ptp_clock_info info;
-+	const struct rcar_gen4_ptp_reg_offset *offs;
-+	spinlock_t lock;	/* For multiple registers access */
-+	u32 tstamp_tx_ctrl;
-+	u32 tstamp_rx_ctrl;
-+	s64 default_addend;
-+	bool initialized;
-+};
-+
-+int rcar_gen4_ptp_register(struct rcar_gen4_ptp_private *ptp_priv,
-+			   enum rcar_gen4_ptp_reg_layout layout, u32 clock);
-+int rcar_gen4_ptp_unregister(struct rcar_gen4_ptp_private *ptp_priv);
-+struct rcar_gen4_ptp_private *rcar_gen4_ptp_alloc(struct platform_device *pdev);
-+
-+#endif	/* #ifndef __RCAR_GEN4_PTP_H__ */
-diff --git a/drivers/net/ethernet/renesas/rswitch.c b/drivers/net/ethernet/renesas/rswitch.c
-index 121d3c3b1842..eae0b9eb6abf 100644
---- a/drivers/net/ethernet/renesas/rswitch.c
-+++ b/drivers/net/ethernet/renesas/rswitch.c
-@@ -10,6 +10,7 @@
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/net_tstamp.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/of_irq.h>
-@@ -123,6 +124,13 @@ static void rswitch_fwd_init(struct rswitch_private *priv)
- 	iowrite32(GENMASK(RSWITCH_NUM_PORTS - 1, 0), priv->addr + FWPBFC(priv->gwca.index));
- }
- 
-+/* gPTP timer (gPTP) */
-+static void rswitch_get_timestamp(struct rswitch_private *priv,
-+				  struct timespec64 *ts)
-+{
-+	priv->ptp_priv->info.gettime64(&priv->ptp_priv->info, ts);
-+}
-+
- /* Gateway CPU agent block (GWCA) */
- static int rswitch_gwca_change_mode(struct rswitch_private *priv,
- 				    enum rswitch_gwca_mode mode)
-@@ -663,6 +671,7 @@ static bool rswitch_rx(struct net_device *ndev, int *quota)
- 	struct sk_buff *skb;
- 	dma_addr_t dma_addr;
- 	u16 pkt_len;
-+	u32 get_ts;
- 
- 	boguscnt = min_t(int, gq->ring_size, *quota);
- 	limit = boguscnt;
-@@ -677,6 +686,17 @@ static bool rswitch_rx(struct net_device *ndev, int *quota)
- 		gq->skbs[gq->cur] = NULL;
- 		dma_addr = rswitch_desc_get_dptr(&desc->desc);
- 		dma_unmap_single(ndev->dev.parent, dma_addr, PKT_BUF_SZ, DMA_FROM_DEVICE);
-+		get_ts = rdev->priv->ptp_priv->tstamp_rx_ctrl & RCAR_GEN4_RXTSTAMP_TYPE_V2_L2_EVENT;
-+		if (get_ts) {
-+			struct skb_shared_hwtstamps *shhwtstamps;
-+			struct timespec64 ts;
-+
-+			shhwtstamps = skb_hwtstamps(skb);
-+			memset(shhwtstamps, 0, sizeof(*shhwtstamps));
-+			ts.tv_sec = __le32_to_cpu(desc->ts_sec);
-+			ts.tv_nsec = __le32_to_cpu(desc->ts_nsec & cpu_to_le32(0x3fffffff));
-+			shhwtstamps->hwtstamp = timespec64_to_ktime(ts);
-+		}
- 		skb_put(skb, pkt_len);
- 		skb->protocol = eth_type_trans(skb, ndev);
- 		netif_receive_skb(skb);
-@@ -725,6 +745,15 @@ static int rswitch_tx_free(struct net_device *ndev, bool free_txed_only)
- 		size = le16_to_cpu(desc->desc.info_ds) & TX_DS;
- 		skb = gq->skbs[gq->dirty];
- 		if (skb) {
-+			if (skb_shinfo(skb)->tx_flags & SKBTX_HW_TSTAMP) {
-+				struct skb_shared_hwtstamps shhwtstamps;
-+				struct timespec64 ts;
-+
-+				rswitch_get_timestamp(rdev->priv, &ts);
-+				memset(&shhwtstamps, 0, sizeof(shhwtstamps));
-+				shhwtstamps.hwtstamp = timespec64_to_ktime(ts);
-+				skb_tstamp_tx(skb, &shhwtstamps);
-+			}
- 			dma_addr = rswitch_desc_get_dptr(&desc->desc);
- 			dma_unmap_single(ndev->dev.parent, dma_addr,
- 					 size, DMA_TO_DEVICE);
-@@ -1402,6 +1431,75 @@ static struct net_device_stats *rswitch_get_stats(struct net_device *ndev)
- 	return &ndev->stats;
- }
- 
-+static int rswitch_hwstamp_get(struct net_device *ndev, struct ifreq *req)
-+{
-+	struct rswitch_device *rdev = netdev_priv(ndev);
-+	struct rcar_gen4_ptp_private *ptp_priv;
-+	struct hwtstamp_config config;
-+
-+	ptp_priv = rdev->priv->ptp_priv;
-+
-+	config.flags = 0;
-+	config.tx_type = ptp_priv->tstamp_tx_ctrl ? HWTSTAMP_TX_ON :
-+						    HWTSTAMP_TX_OFF;
-+	switch (ptp_priv->tstamp_rx_ctrl & RCAR_GEN4_RXTSTAMP_TYPE) {
-+	case RCAR_GEN4_RXTSTAMP_TYPE_V2_L2_EVENT:
-+		config.rx_filter = HWTSTAMP_FILTER_PTP_V2_L2_EVENT;
-+		break;
-+	case RCAR_GEN4_RXTSTAMP_TYPE_ALL:
-+		config.rx_filter = HWTSTAMP_FILTER_ALL;
-+		break;
-+	default:
-+		config.rx_filter = HWTSTAMP_FILTER_NONE;
-+		break;
-+	}
-+
-+	return copy_to_user(req->ifr_data, &config, sizeof(config)) ? -EFAULT : 0;
-+}
-+
-+static int rswitch_hwstamp_set(struct net_device *ndev, struct ifreq *req)
-+{
-+	struct rswitch_device *rdev = netdev_priv(ndev);
-+	u32 tstamp_rx_ctrl = RCAR_GEN4_RXTSTAMP_ENABLED;
-+	struct hwtstamp_config config;
-+	u32 tstamp_tx_ctrl;
-+
-+	if (copy_from_user(&config, req->ifr_data, sizeof(config)))
-+		return -EFAULT;
-+
-+	if (config.flags)
-+		return -EINVAL;
-+
-+	switch (config.tx_type) {
-+	case HWTSTAMP_TX_OFF:
-+		tstamp_tx_ctrl = 0;
-+		break;
-+	case HWTSTAMP_TX_ON:
-+		tstamp_tx_ctrl = RCAR_GEN4_TXTSTAMP_ENABLED;
-+		break;
-+	default:
-+		return -ERANGE;
-+	}
-+
-+	switch (config.rx_filter) {
-+	case HWTSTAMP_FILTER_NONE:
-+		tstamp_rx_ctrl = 0;
-+		break;
-+	case HWTSTAMP_FILTER_PTP_V2_L2_EVENT:
-+		tstamp_rx_ctrl |= RCAR_GEN4_RXTSTAMP_TYPE_V2_L2_EVENT;
-+		break;
-+	default:
-+		config.rx_filter = HWTSTAMP_FILTER_ALL;
-+		tstamp_rx_ctrl |= RCAR_GEN4_RXTSTAMP_TYPE_ALL;
-+		break;
-+	}
-+
-+	rdev->priv->ptp_priv->tstamp_tx_ctrl = tstamp_tx_ctrl;
-+	rdev->priv->ptp_priv->tstamp_rx_ctrl = tstamp_rx_ctrl;
-+
-+	return copy_to_user(req->ifr_data, &config, sizeof(config)) ? -EFAULT : 0;
-+}
-+
- static int rswitch_eth_ioctl(struct net_device *ndev, struct ifreq *req, int cmd)
- {
- 	struct rswitch_device *rdev = netdev_priv(ndev);
-@@ -1409,7 +1507,14 @@ static int rswitch_eth_ioctl(struct net_device *ndev, struct ifreq *req, int cmd
- 	if (!netif_running(ndev))
- 		return -EINVAL;
- 
--	return phylink_mii_ioctl(rdev->phylink, req, cmd);
-+	switch (cmd) {
-+	case SIOCGHWTSTAMP:
-+		return rswitch_hwstamp_get(ndev, req);
-+	case SIOCSHWTSTAMP:
-+		return rswitch_hwstamp_set(ndev, req);
-+	default:
-+		return phylink_mii_ioctl(rdev->phylink, req, cmd);
-+	}
- }
- 
- static const struct net_device_ops rswitch_netdev_ops = {
-@@ -1422,6 +1527,27 @@ static const struct net_device_ops rswitch_netdev_ops = {
- 	.ndo_set_mac_address = eth_mac_addr,
- };
- 
-+static int rswitch_get_ts_info(struct net_device *ndev, struct ethtool_ts_info *info)
-+{
-+	struct rswitch_device *rdev = netdev_priv(ndev);
-+
-+	info->phc_index = ptp_clock_index(rdev->priv->ptp_priv->clock);
-+	info->so_timestamping = SOF_TIMESTAMPING_TX_SOFTWARE |
-+				SOF_TIMESTAMPING_RX_SOFTWARE |
-+				SOF_TIMESTAMPING_SOFTWARE |
-+				SOF_TIMESTAMPING_TX_HARDWARE |
-+				SOF_TIMESTAMPING_RX_HARDWARE |
-+				SOF_TIMESTAMPING_RAW_HARDWARE;
-+	info->tx_types = BIT(HWTSTAMP_TX_OFF) | BIT(HWTSTAMP_TX_ON);
-+	info->rx_filters = BIT(HWTSTAMP_FILTER_NONE) | BIT(HWTSTAMP_FILTER_ALL);
-+
-+	return 0;
-+}
-+
-+static const struct ethtool_ops rswitch_ethtool_ops = {
-+	.get_ts_info = rswitch_get_ts_info,
-+};
-+
- static const struct of_device_id renesas_eth_sw_of_table[] = {
- 	{ .compatible = "renesas,r8a779f0-ether-switch", },
- 	{ }
-@@ -1466,6 +1592,7 @@ static int rswitch_device_alloc(struct rswitch_private *priv, int index)
- 	ndev->base_addr = (unsigned long)rdev->addr;
- 	snprintf(ndev->name, IFNAMSIZ, "tsn%d", index);
- 	ndev->netdev_ops = &rswitch_netdev_ops;
-+	ndev->ethtool_ops = &rswitch_ethtool_ops;
- 
- 	netif_napi_add(ndev, &rdev->napi, rswitch_poll);
- 
-@@ -1550,6 +1677,11 @@ static int rswitch_init(struct rswitch_private *priv)
- 
- 	rswitch_fwd_init(priv);
- 
-+	err = rcar_gen4_ptp_register(priv->ptp_priv, RCAR_GEN4_PTP_REG_LAYOUT_S4,
-+				     RCAR_GEN4_PTP_CLOCK_S4);
-+	if (err < 0)
-+		goto err_ptp_register;
-+
- 	err = rswitch_gwca_request_irqs(priv);
- 	if (err < 0)
- 		goto err_gwca_request_irq;
-@@ -1586,6 +1718,9 @@ static int rswitch_init(struct rswitch_private *priv)
- 
- err_gwca_hw_init:
- err_gwca_request_irq:
-+	rcar_gen4_ptp_unregister(priv->ptp_priv);
-+
-+err_ptp_register:
- 	for (i = 0; i < RSWITCH_NUM_PORTS; i++)
- 		rswitch_device_free(priv, i);
- 
-@@ -1611,12 +1746,18 @@ static int renesas_eth_sw_probe(struct platform_device *pdev)
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	priv->ptp_priv = rcar_gen4_ptp_alloc(pdev);
-+	if (!priv->ptp_priv)
-+		return -ENOMEM;
-+
- 	platform_set_drvdata(pdev, priv);
- 	priv->pdev = pdev;
- 	priv->addr = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(priv->addr))
- 		return PTR_ERR(priv->addr);
- 
-+	priv->ptp_priv->addr = priv->addr + RCAR_GEN4_GPTP_OFFSET_S4;
-+
- 	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(40));
- 	if (ret < 0) {
- 		ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-@@ -1647,6 +1788,7 @@ static void rswitch_deinit(struct rswitch_private *priv)
- 	int i;
- 
- 	rswitch_gwca_hw_deinit(priv);
-+	rcar_gen4_ptp_unregister(priv->ptp_priv);
- 
- 	for (i = 0; i < RSWITCH_NUM_PORTS; i++) {
- 		struct rswitch_device *rdev = priv->rdev[i];
-diff --git a/drivers/net/ethernet/renesas/rswitch.h b/drivers/net/ethernet/renesas/rswitch.h
-index 3c58a7ca8b8a..778177ec8d4f 100644
---- a/drivers/net/ethernet/renesas/rswitch.h
-+++ b/drivers/net/ethernet/renesas/rswitch.h
-@@ -8,6 +8,7 @@
- #define __RSWITCH_H__
- 
- #include <linux/platform_device.h>
-+#include "rcar_gen4_ptp.h"
- 
- #define RSWITCH_MAX_NUM_QUEUES	128
- 
--- 
-2.25.1
+> +      - mediatek,mt8188-imp_iic_wrap_c
+> +      - mediatek,mt8188-imp_iic_wrap_en
+> +      - mediatek,mt8188-imp_iic_wrap_w
+> +      - mediatek,mt8188-mfgcfg
+> +      - mediatek,mt8188-vppsys0
+> +      - mediatek,mt8188-wpesys
+> +      - mediatek,mt8188-wpesys_vpp0
+> +      - mediatek,mt8188-vppsys1
+> +      - mediatek,mt8188-imgsys
+> +      - mediatek,mt8188-imgsys_wpe1
+> +      - mediatek,mt8188-imgsys_wpe2
+> +      - mediatek,mt8188-imgsys_wpe3
+> +      - mediatek,mt8188-imgsys1_dip_top
+> +      - mediatek,mt8188-imgsys1_dip_nr
+> +      - mediatek,mt8188-ipesys
+> +      - mediatek,mt8188-camsys
+> +      - mediatek,mt8188-camsys_rawa
+> +      - mediatek,mt8188-camsys_yuva
+> +      - mediatek,mt8188-camsys_rawb
+> +      - mediatek,mt8188-camsys_yuvb
+> +      - mediatek,mt8188-ccusys
+> +      - mediatek,mt8188-vdecsys_soc
+> +      - mediatek,mt8188-vdecsys
+> +      - mediatek,mt8188-vencsys
+
+Blank line here
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    imp_iic_wrap_c: clock-controller@11283000 {
+
+Drop the label, not used,
+
+> +        compatible = "mediatek,mt8188-imp_iic_wrap_c";
+> +        reg = <0x11283000 0x1000>;
+> +        #clock-cells = <1>;
+> +    };
+> +
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml
+> new file mode 100644
+> index 000000000000..35962b3746e1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8188-sys-clock.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt8188-sys-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek System Clock Controller for MT8188
+> +
+> +maintainers:
+> +  - Garmin Chang <garmin.chang@mediatek.com>
+> +
+> +description: |
+> +  The clock architecture in MediaTek like below
+> +  PLLs -->
+> +          dividers -->
+> +                      muxes
+> +                           -->
+> +                              clock gate
+> +
+> +  The apmixedsys provides most of PLLs which generated from SoC 26m.
+> +  The topckgen provides dividers and muxes which provide the clock source to other IP blocks.
+> +  The infracfg_ao provides clock gate in peripheral and infrastructure IP blocks.
+> +  The mcusys provides mux control to select the clock source in AP MCU.
+> +  The device nodes also provide the system control capacity for configuration.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt8188-topckgen
+> +          - mediatek,mt8188-infracfg_ao
+
+Same comment.
+
+> +          - mediatek,mt8188-apmixedsys
+> +          - mediatek,mt8188-pericfg_ao
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    topckgen: syscon@10000000 {
+
+Drop label.
+
+> +        compatible = "mediatek,mt8188-topckgen", "syscon";
+> +        reg = <0x10000000 0x1000>;
+> +        #clock-cells = <1>;
+Best regards,
+Krzysztof
 
