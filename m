@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F76660F032
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 08:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 111D960F035
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 08:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234509AbiJ0Gas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 02:30:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
+        id S234605AbiJ0Gaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 02:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234210AbiJ0Gam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 02:30:42 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92A9A15A30C
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 23:30:31 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id ez6so643802pjb.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 23:30:31 -0700 (PDT)
+        with ESMTP id S234428AbiJ0Gap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 02:30:45 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9CA5160EC1
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 23:30:35 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id k22so575947pfd.3
+        for <devicetree@vger.kernel.org>; Wed, 26 Oct 2022 23:30:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ewp7WVPU21yPtwhSSVCjsPaCneME+6WwPEVVpVqunaw=;
-        b=QKwnaVlmWSdqZH1nyo9MS5awPPgttmfmIPNBpqPSogH21caXuTdoLYqMgIr0qbylgD
-         yyfWrIoi+X010DsOxnLxFllBfn9t+6Fq5bzAHh6xLmEfalaa8x/NHFNnpBT954WXMBgi
-         l0tiSMAmgVAPhkPB4Y3wJKCcHM1rlnnjLnQT5KdCnWc58d6LJlCtz4fOEF/H2nZD141p
-         EfZe/Aj4/aJR7sU2+aLQbYJVDopZVt7+hhcXtxdOT9ubOwAzPhS3/SKaT8M4HmjG4mrl
-         cjgsFLVPzXu83DCO0+B8oitBWBLQ5psRtWpfyac3vOY4Gx6mPwdrDYKnRu63kDgV2XuQ
-         3uqg==
+        bh=+oNMWjwF5SpspioafdolHZIqZWxnCSDsNsWJlArBnr0=;
+        b=JJheuPFrZj1MnqzU6PMWCSrD8v+QV387IuiqqR2iAiaQ/gYzyf/do0vznbussRzQti
+         ynIRsPmYNdm2KCDwPRYDVkjy++9JVIpdIkJ4/BSVoWF4nVh5uVSTHvIFJ4xL8wVvWTho
+         96Z9POS8G/YhIZYINKRsknfo1DieqEV3+H8DrUcb4hr/LpWhlNODoqrqXppIccpvmYTa
+         YJQZKBBhPSORBNz9X/63lsa8ua93V1vqPw9zNJgWWzl/2PMCpaI9+AHgqu81LCons3cR
+         Ctee1yK+fGiZXY+B6rQmBmFXaPX5YcwvLo96qZWmp+5zFNIa4OpmHxE7W43yEOQnMcEv
+         4Tog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ewp7WVPU21yPtwhSSVCjsPaCneME+6WwPEVVpVqunaw=;
-        b=vXS2A2Np361BjxWAqcQqv+LLi98lZTYDKVW+T+YA6Q4Un8uaVOx16wt+EFpgO9w+It
-         8Ua7MI066cTiXL47MT6aUPnDbrapMxiyo1lHPQLv2Lry3fiG00uLcx5vs6rd1h0Pzm7m
-         bz+tawTT+5fgRyGMW7UBVRymzLMgKz44oYOW8Nw2e4WjpcRZjitmyRBysvCtvRhU1s4H
-         MFDS/83Cdrzsftlb2gAPu7ZFWqUB4WQhAvj5SK/aHDFx6FZ3B7E6r7M7ptY5aUPmQ0Du
-         m67sjk3SxhEyscf9RdwGhf+9rChUSLgF/qW78FrlReeRoF2ZI4MdGNkpF5kcKnaiQsHf
-         VxCQ==
-X-Gm-Message-State: ACrzQf10MhLK4CxQBHwnEzQUPtxnrtl9tp+R1mSIgunKYRfIfB+B+0Ab
-        b6VKqQQvJFp+7rkkyAUDj+Aq
-X-Google-Smtp-Source: AMsMyM6CftFsfShRPrtMvRCSSZ8ID1q8F3mI75KdHUpS59KEJ5+xKiWYrVHsyE+7Ikkuk8LEQPzsrg==
-X-Received: by 2002:a17:90b:314b:b0:20d:a462:b996 with SMTP id ip11-20020a17090b314b00b0020da462b996mr8321768pjb.39.1666852231025;
-        Wed, 26 Oct 2022 23:30:31 -0700 (PDT)
+        bh=+oNMWjwF5SpspioafdolHZIqZWxnCSDsNsWJlArBnr0=;
+        b=YErAgOv96nt4zlI38YB548SsPmrVulpED8lQNaTYQjJnkW6C0T4zEXRJBVTk0+j5rb
+         Zqjt6owzFLaBfzKGGVQfl74wOVSxLouDpFgpt8kzY566SB1YOTtYBxSHaNtDFcNXEJFG
+         h9WadGkr6weShbXULbgzi1mkK7NYKLSsRrQ0NyQBfil/sC2crPImpLmK2y4lGH5st7rb
+         zU9B55oH6blZDApJLaZCC0Rh7sN71fun1eYeMB4cIoQjMglHlfyVCDBXco7RiecQESX1
+         R+LOIC8RhPHDNzhpNM87xhbQd5qxSJExLzqAXcUEkmgaeAI2mJtCzVu9zzIhlF3gNvLt
+         g9IA==
+X-Gm-Message-State: ACrzQf30+qvNlTuCFL6o7wtX7z0FZ2RewsWdBMKHyoKnaOc7AufmKEiN
+        N5524YvAe3Vzw9ZSrl6xRUra
+X-Google-Smtp-Source: AMsMyM5/tWR2zz635iZSAUZwHbIsDVTedFVDiQrgA4jSnvJxRhMNeHm+jF+4gq1xzsO04w0zWkMHCQ==
+X-Received: by 2002:a63:5425:0:b0:450:738:9a78 with SMTP id i37-20020a635425000000b0045007389a78mr39812555pgb.429.1666852235394;
+        Wed, 26 Oct 2022 23:30:35 -0700 (PDT)
 Received: from localhost.localdomain ([117.193.208.123])
-        by smtp.gmail.com with ESMTPSA id i126-20020a626d84000000b00561d79f1064sm446041pfc.57.2022.10.26.23.30.26
+        by smtp.gmail.com with ESMTPSA id i126-20020a626d84000000b00561d79f1064sm446041pfc.57.2022.10.26.23.30.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Oct 2022 23:30:30 -0700 (PDT)
+        Wed, 26 Oct 2022 23:30:34 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org
 Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
@@ -56,9 +56,9 @@ Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
         quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 03/11] arm64: dts: qcom: sc8280xp-pmics: Add thermal zones for PM8280_{1/2} PMICs
-Date:   Thu, 27 Oct 2022 11:59:58 +0530
-Message-Id: <20221027063006.9056-4-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 04/11] arm64: dts: qcom: sc8280xp-pmics: Add support for PMK8280 RESIN input
+Date:   Thu, 27 Oct 2022 11:59:59 +0530
+Message-Id: <20221027063006.9056-5-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221027063006.9056-1-manivannan.sadhasivam@linaro.org>
 References: <20221027063006.9056-1-manivannan.sadhasivam@linaro.org>
@@ -73,70 +73,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones for the PM8280_{1/2} PMICs by using the temperature
-alarm blocks as the thermal sensors. Temperature trip points are
-inheried from PM8350 PMIC.
+The RESIN input can be used to reset the PMK8280 PMIC. Enabling the
+RESIN block allows the PMK8280 to detect reset input via RESIN_N pin.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 44 ++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-index 5de47b1434a4..397ff4995003 100644
+index 397ff4995003..4a3464f5e6e9 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-@@ -7,6 +7,50 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
+@@ -68,6 +68,12 @@ pmk8280_pon_pwrkey: pwrkey {
+ 				linux,code = <KEY_POWER>;
+ 				status = "disabled";
+ 			};
++
++			pmk8280_pon_resin: resin {
++				compatible = "qcom,pmk8350-resin";
++				interrupts = <0x0 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
++				status = "disabled";
++			};
+ 		};
+ 	};
  
-+/ {
-+	thermal-zones {
-+		pm8280_1_thermal: pm8280-1-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8280_1_temp_alarm>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				trip1 {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		pm8280_2_thermal: pm8280-2-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8280_2_temp_alarm>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				trip1 {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &spmi_bus {
- 	pmk8280: pmic@0 {
- 		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
 -- 
 2.25.1
 
