@@ -2,75 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6FF60FB15
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC3160FB31
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233914AbiJ0PDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 11:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42916 "EHLO
+        id S235752AbiJ0PIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 11:08:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233619AbiJ0PDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:03:06 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0FE18DD5D;
-        Thu, 27 Oct 2022 08:03:05 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29RE75TP006304;
-        Thu, 27 Oct 2022 17:02:49 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=+ka7b9dqA75ujNAafgwvotrndDQkoRf5EU7I/cGmtu0=;
- b=RndY8IyUXdY2UF7lkIGsiCYvWwPQP1sd5ctg7yFENkaNdillsVPEIXtVrx+h1r6WRsfO
- Y1sb9v8SNHwfweTjQTvVvKLnXX3QCI6Fq+/18yY1dnh2O9SFRL3+PuCfDYc/jEgcu5aN
- bxEpfaHweZPTQZk+4UlSVhly9aU3scoyZo7DYltWGA0ne2ebjZ1HZ+IwfX71wCEGtyjV
- VNh9CWKbJ9vIXzgdfgLm+lwlFUyJJIh2BQuebcn3CB7EUaDPnQapQ8VG382tK2PFGX7k
- TSxoYDdoiD5WlAWS1412ndol/B2InNghxgHY7+v1pcLdf7NQ6wscvfP/5tisw2zG3Aax Zg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kfufh8c08-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Oct 2022 17:02:49 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 76F08100038;
-        Thu, 27 Oct 2022 17:02:44 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 71F10229A91;
-        Thu, 27 Oct 2022 17:02:44 +0200 (CEST)
-Received: from [10.48.0.157] (10.48.0.157) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 27 Oct
- 2022 17:02:43 +0200
-Message-ID: <e25bd4c2-c0d1-2884-5bcf-93fe205c06a7@foss.st.com>
-Date:   Thu, 27 Oct 2022 17:02:42 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH] ARM: dts: stm32mp13: fix compatible for BSEC
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235875AbiJ0PIh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:08:37 -0400
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C006718F0E9;
+        Thu, 27 Oct 2022 08:08:33 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id D77B232007F9;
+        Thu, 27 Oct 2022 11:08:31 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 27 Oct 2022 11:08:33 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-transfer-encoding:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1666883311; x=1666969711; bh=vC4EJLdx4T
+        Hqc58ycxGM/foR8da3d1iXJ0tw75QGCxM=; b=P4Y9IkypgiQFH2P4QbCJdfibEw
+        sym3gHqN0WnfXFlua3ywxKU52tv24gAQHkiBixMnfw8O+W9aRZHCXe+NgH5g0I6w
+        RWa9HTZinjcSImobmPGJXvFIWa18gv7y/iEyClKj3VHav3S5ZcrGcDEf3rLPZJ//
+        wKMIpJkgQL8xlLh5z9R84M+jKIWVezwXQFCo18xfC3X7u4PODu4C5X0IjghdxXW0
+        qPUAFwuR0WEUEEyNvcCBsgNaojSpm+1a0QpdioYRmypCTYbw1Erz2V3nL0/PiY4t
+        n44/QY75bwlCLRt7PTrEREx/b07a2B3IeqO7E5c+0jspMtPLNShQ03RVBwqA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1666883311; x=1666969711; bh=vC4EJLdx4THqc58ycxGM/foR8da3d1iXJ0t
+        w75QGCxM=; b=oTLERddpI5B6yecHwlVQA4APnAUOMqQTVdRSHvmsFIOJ2QJZxBd
+        aXJVIVQW4yCr5CBYu3FuhOknknE5lVWe8gDOOySWUOfE+n2pQHBNoGY7S+CjEiTF
+        BB+T/l4sKsFjMoK+hNDpZoAowH64wP/2FtAsHgDrIXr6M74DYqcvDFaBROmST33Z
+        K9R+27oGvA4FyA0Nj3ZnkxXqvx/VmVTb7gPCwRqw4aih8fwuEj0iO9xt8r44w/nj
+        /TM4l7eRpFK8shYF04EJkghdYn6MW+TlF445rh8rMFHFgFDcocn1EqKpsLcCPjYI
+        KmGCdO1r64hFBpkY4rVuV9O/K66hUu+q/fA==
+X-ME-Sender: <xms:7J5aYzCqjdEffKZIPz13VojvXF_6sCIbJsRnS6H3hdw1VFwdjz3rhA>
+    <xme:7J5aY5iybkyXc-yxoyHq017XEKq6ZiSzCBSN2hBAjmwIGGoXoMk7wAVWCreyfcQfF
+    7lz3ZZJAII7awgXLgk>
+X-ME-Received: <xmr:7J5aY-nyFmsyJiUAlZJYLd7nZeBJOd2-5gUA42WHjppRctgZq-2ABZdKXI8fdsFMp43TQmKdWLM0IAJwsBii3L_NDpOgGXjA96TgqHd3eR5iU2NZm_Ex5DA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtdeggdekfecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcurfgv
+    thgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvghrnh
+    epgfegudffudelfeeugedtjeeugeehueffudevveegveektdfhueehueeufeelheevnecu
+    ffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:7J5aY1wvsnjLBTpLMsc0RV8XRxk7GH_KepDE6MBwFsT8cw2WDEbsOg>
+    <xmx:7J5aY4SWfiduWwA0ZDOJE0FFIXCBs69wp05dckwxQpal57ThwBNZFA>
+    <xmx:7J5aY4ZKt0ZEhfPTP234B8wk734AVsdjrovLVS-mU5JpDOg2hF54-A>
+    <xmx:755aYxC3KxmlMAQPPW8-jSRVEAoBEvKxKueYodMNG4luFOZ0nUqUuQ>
+Feedback-ID: i51094778:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 27 Oct 2022 11:08:26 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid>
- <c33c5490-c43d-17d5-f0fb-0b930dd46928@linaro.org>
-From:   Patrick DELAUNAY <patrick.delaunay@foss.st.com>
-In-Reply-To: <c33c5490-c43d-17d5-f0fb-0b930dd46928@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.48.0.157]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-27_07,2022-10-27_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        asahi@lists.linux.dev, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/7] Broadcom/Apple Bluetooth driver for Apple Silicon
+Date:   Thu, 27 Oct 2022 17:08:15 +0200
+Message-Id: <20221027150822.26120-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,30 +94,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 10/18/22 03:55, Krzysztof Kozlowski wrote:
-> On 17/10/2022 07:44, Patrick Delaunay wrote:
->> Use the new compatible for stm32mp13 support.
->>
->> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
->> ---
->> This device tree modification depends on the binding modification
->> introduced by the patch:
->>
->> dt-bindings: nvmem: add new stm32mp13 compatible for stm32-romem
->> https://patchwork.kernel.org/project/linux-arm-kernel/patch/20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid/
-> This breaks users of DTS. The patch above did not describe devices as
-> compatible and that's the problem sending patches separately, without
-> context.
->
-> You need to keep compatible.
->
-> Best regards,
-> Krzysztof
+v1: https://lore.kernel.org/asahi/20220801103633.27772-1-sven@svenpeter.dev/
+v2: https://lore.kernel.org/asahi/20220907170935.11757-1-sven@svenpeter.dev/
+v3: https://lore.kernel.org/asahi/20220919164834.62739-1-sven@svenpeter.dev/
 
-I will sent a V2 patch in a serie with binding change, driver updates 
-and explanations.
+Here's v4 of the Apple/Broadcom Bluetooth series. Not many changes this
+time: I rebased on 6.1, added Rob's r-b tags and fixed bcm4377_send_ptb
+for newer firmware versions where that command claims to fail but is
+still sent by macOS.
 
-Regards
 
-Patrick
+Best,
+
+
+Sven
+
+Sven Peter (7):
+  dt-bindings: net: Add generic Bluetooth controller
+  dt-bindings: net: Add Broadcom BCM4377 family PCIe Bluetooth
+  arm64: dts: apple: t8103: Add Bluetooth controller
+  Bluetooth: hci_event: Ignore reserved bits in LE Extended Adv Report
+  Bluetooth: Add quirk to disable extended scanning
+  Bluetooth: Add quirk to disable MWS Transport Configuration
+  Bluetooth: hci_bcm4377: Add new driver for BCM4377 PCIe boards
+
+ .../devicetree/bindings/net/bluetooth.txt     |    5 -
+ .../net/bluetooth/bluetooth-controller.yaml   |   29 +
+ .../net/bluetooth/brcm,bcm4377-bluetooth.yaml |   81 +
+ .../{ => bluetooth}/qualcomm-bluetooth.yaml   |    6 +-
+ .../bindings/soc/qcom/qcom,wcnss.yaml         |    8 +-
+ MAINTAINERS                                   |    2 +
+ arch/arm64/boot/dts/apple/t8103-j274.dts      |    4 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts      |    4 +
+ arch/arm64/boot/dts/apple/t8103-j313.dts      |    4 +
+ arch/arm64/boot/dts/apple/t8103-j456.dts      |    4 +
+ arch/arm64/boot/dts/apple/t8103-j457.dts      |    4 +
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi     |    8 +
+ drivers/bluetooth/Kconfig                     |   12 +
+ drivers/bluetooth/Makefile                    |    1 +
+ drivers/bluetooth/hci_bcm4377.c               | 2514 +++++++++++++++++
+ include/net/bluetooth/hci.h                   |   21 +
+ include/net/bluetooth/hci_core.h              |    4 +-
+ net/bluetooth/hci_event.c                     |    2 +-
+ net/bluetooth/hci_sync.c                      |    2 +
+ 19 files changed, 2700 insertions(+), 15 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/bluetooth.txt
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/bluetooth-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/brcm,bcm4377-bluetooth.yaml
+ rename Documentation/devicetree/bindings/net/{ => bluetooth}/qualcomm-bluetooth.yaml (96%)
+ create mode 100644 drivers/bluetooth/hci_bcm4377.c
+
+-- 
+2.25.1
 
