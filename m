@@ -2,117 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841D860F7DF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 788F360F7E6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:48:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235775AbiJ0Mr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 08:47:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34356 "EHLO
+        id S235799AbiJ0Msq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 08:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234874AbiJ0Mr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:47:27 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 003A252FCB;
-        Thu, 27 Oct 2022 05:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1666874847; x=1698410847;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4i12he+deeRnF8xkAn6beuOyKTTgyW/CZlwDz1jI4YI=;
-  b=Xs9QnggXj1KoyEYuFylQkJhFhmK6t0dDBskNUXjHDUOvm2g3P/rx+xp8
-   asLLOEYGifKNGqntofx6gWfyJLu+qBeVfSkLSgN3km4FEcSQd39hKWFra
-   PTUSz5qQbiR/ri9jQErZAXGmXdoOQA26vJbSM3oD0VgJH1qtR+CUFXqRT
-   KElQnQtuDVkrAfEkhj95aGZUdOwQRJKVYMZso3NPeq2tqqqTG+qLal3Jc
-   HZyqvcybkUfxG/NSA1wkWEiR/cuatVaWKtAQcpEhCCrYeqQ5DKaqwa5OD
-   NT8PZrErMAspwPPIZPxwLcgvw1CzPuzio6Uz6zlPvo+JFpb0xHRV/avSS
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="309908133"
-X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
-   d="scan'208";a="309908133"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 05:47:25 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="757686035"
-X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
-   d="scan'208";a="757686035"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 05:47:21 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 796102026C;
-        Thu, 27 Oct 2022 15:47:19 +0300 (EEST)
-Date:   Thu, 27 Oct 2022 12:47:19 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
-Message-ID: <Y1p91+XxPCB9NWwh@paasikivi.fi.intel.com>
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y1pphVPw0J97AmW4@paasikivi.fi.intel.com>
- <CA+V-a8szaPjwumrBgOT9gzMKBjY7hk0zfP8RgzUUDfY+BAsogA@mail.gmail.com>
+        with ESMTP id S235725AbiJ0Msp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:48:45 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065AB16DC0E
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:48:45 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id e15so1140156qvo.4
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:48:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ivr3WQ9zDX9Y22oat/ojEdcP2jI5Jp64wFrkCI45QPU=;
+        b=X9+Dqqb+6eCq2gOlGFQdxBEM9fMVjIiMtkhbinWXMgvolMLdOEAZ0uhDT8nZLOuSJw
+         y2/iEMvLvOsW7qfalSwQGdCtUXAoXilBM8hGiKGl2ykX/DvUEm7lURDB9/iZKV5RYFgU
+         09mQ0X0ygNe4d2S9QaKbAoFjOBZDYDCLv8rWGOYzZhigpaJeXc0kYA7ab6CMBo88GYW1
+         crqToUC6YK3UyhyEmQgvQhc5LLCWWuZXptSUxGtgc+Wij+HVrSvoHghx27RJ0a6owXb1
+         5kIV6oGOSHeeRpnm74+qO3qMln5n2TpSgXYQFYaAPKQdRgoi4To/Y+dQosDl/L/dsmPf
+         m2BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ivr3WQ9zDX9Y22oat/ojEdcP2jI5Jp64wFrkCI45QPU=;
+        b=tI50BkhBZDmEr7OgupSn4OierUKvqQTwU8fF10Ioe480s7U6Hf0tfy8EM5eCduo6GL
+         5XsUU9HUTn7f+RcJVNtVYxm+R2KJL2KDNAMuVUMCUSVVXkg5Q9ili0Qe3JV3SUji2XuJ
+         7TgM4LXTGMM/pOv9HwegZ0eeZWArplKb1bjXI+qK8PU0f8g5byKaZ4FlHIjNsIBodB2x
+         TlU0EPBMhB7sXR21BwaH4FFd/HZ0HkprJ1k9tiw3YHrxD3hv7WtKDJxrwWPp7zUGWdh5
+         /rRuxi0/T9T4fd4qyrHozHlOUC2DJt4AwXL4TeRkcEGr8ODDa+Z5scq29IQ32UJLduSO
+         CCmg==
+X-Gm-Message-State: ACrzQf35OF4H1o5hpTXRN9aDsz9ktm6asJnA2ssBIWrEkbKAtjnxgX9s
+        iVr3oNg4bU4yJGrI8rKH14iJBw==
+X-Google-Smtp-Source: AMsMyM6NYajlewJo1rx9NQm0NgImM/f60WhI72FLmeO1JCXGB5Br56/FA9bm1X0JwH+22uADv73HRw==
+X-Received: by 2002:a0c:979a:0:b0:4b7:4a8c:a80d with SMTP id l26-20020a0c979a000000b004b74a8ca80dmr34679342qvd.42.1666874924180;
+        Thu, 27 Oct 2022 05:48:44 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id u14-20020a05622a17ce00b0039bde72b14asm777902qtk.92.2022.10.27.05.48.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 05:48:43 -0700 (PDT)
+Message-ID: <b353f6a2-57ab-0b70-e23e-77753fe6d767@linaro.org>
+Date:   Thu, 27 Oct 2022 08:48:41 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8szaPjwumrBgOT9gzMKBjY7hk0zfP8RgzUUDfY+BAsogA@mail.gmail.com>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [RFC net-next 2/2] net: dsa: Add driver for Maxlinear GSW1XX
+ switch
+Content-Language: en-US
+To:     Camel Guo <camelg@axis.com>, Camel Guo <Camel.Guo@axis.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>, kernel <kernel@axis.com>
+References: <20221025135243.4038706-1-camel.guo@axis.com>
+ <20221025135243.4038706-3-camel.guo@axis.com>
+ <d942c724-4520-4a7b-8c36-704032c68a36@linaro.org>
+ <55da4718-4422-745a-8880-95adc8e0abd9@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <55da4718-4422-745a-8880-95adc8e0abd9@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Thu, Oct 27, 2022 at 01:01:52PM +0100, Lad, Prabhakar wrote:
-> Hi Sakari,
+On 27/10/2022 02:35, Camel Guo wrote:
+utdown(priv->ds);
+>  >> +
+>  >> +     dev_set_drvdata(priv->dev, NULL);
+>  >> +}
+>  >> +EXPORT_SYMBOL(gsw1xx_shutdown);
+>  >
+>  > 1. EXPORT_SYMBOL_GPL
 > 
-> On Thu, Oct 27, 2022 at 12:20 PM Sakari Ailus
-> <sakari.ailus@linux.intel.com> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > One more comment.
-> >
-> > On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
-> > > @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
-> > >
-> > >       dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
-> > >
-> > > +     pm_runtime_set_active(dev);
-> > > +     pm_runtime_get_noresume(dev);
-> > > +     pm_runtime_enable(dev);
-> >
-> > You won't gain anything by eanbling runtime PM here. Just move it to the
-> > end of the function before the rest of the calls. Error handling becomes
-> > more simple.
-> >
-> If I move the above calls below I get the below warning:
+> Will update in v2
 > 
-> [    2.633386] ov5645 0-003c: Runtime PM usage count underflow!
+>  > 2. Why do you do it in the first place? It's one driver, no need for
+>  > building two modules. Same applies to other places.
 > 
-> This is because of the last patch which moves ov5645_entity_init_cfg()
-> before registering the subdev. ov5645_entity_init_cfg() calls s_ctrl
-> due to which we are seeing the above message. Please let me know how
-> to proceed on this.
+> All stuff in drivers/net/dsa/gsw1xx_core.c is supposed to be generic and
+> totally independent of the actual management interface (mdio, spi, uart,
+> maybe memory-mapped IO). This way, I think the gsw1xx_core.ko can be 
+> reused in
+> gsw1xx_spi.ko, gsw1xx_uart.ko and so on.
+> 
+> I don't how similar the chips that lantiq_gswip.c supports are due to
+> no datasheet. If not too much, maybe someone the gsw1xx_core.ko can also
+> be reused in lantiq_gswip as well.
 
-Ah. Yes, this is a problem with the usage pattern of
-pm_runtime_get_if_in_use(). But please don't change that.
+Keep the files separate but there is no need to make two modules and
+exprt this. Your patch should stand on its own, not prepare for some
+imaginary future work which might or might not bring more modules.
 
-You can still move enabling runtime PM later in the function.
+Once these future modules appear, it will be easy to change existing
+file to a module.
 
--- 
-Kind regards,
+Best regards,
+Krzysztof
 
-Sakari Ailus
