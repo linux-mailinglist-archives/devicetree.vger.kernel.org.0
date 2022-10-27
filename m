@@ -2,111 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D71C960F9D8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 15:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE0DE60F9F0
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233701AbiJ0N5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 09:57:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
+        id S235974AbiJ0OBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 10:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233858AbiJ0N5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 09:57:25 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86A3B1863D1;
-        Thu, 27 Oct 2022 06:57:24 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id b12so2876570edd.6;
-        Thu, 27 Oct 2022 06:57:24 -0700 (PDT)
+        with ESMTP id S234862AbiJ0OBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:01:39 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2947B170452
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:01:33 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id a24so1132296qto.10
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:01:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BgGH6TofYD/rywKyhWW+67Sd2MLqM/FPkdY/So3sHD4=;
-        b=QYNHhJ0Q5odDV5Znrq7Z4C0wb996yCM3sI+sSoeb894XyTEdPwfJUI+KaxuTDF+9gK
-         QFwt8X3/iA6uLP4ScXCa8K6VkokbdfVemVw8moeqTlKM0JUYNp62EprtNx0j4cAnjtMb
-         LymqnSjQbg3pmQLwFec8Ga/ldYqugf4wKKtY8OgKTyWqEcJQ0sHZfa+31rIRnrJUWgmN
-         uc+n41S3QkamQukeCzF583FfUfNuscLaerBHYrcv9mYlXNgGFw81eSujBdG9SIGxavjN
-         diT3F5f+/W0TU3z9rBR1ioHNc7j+zHi3GMkQ3MryCQHfxbXdltbiNb/C0HNQ4I82hDOn
-         KI9A==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9BIM9AP/v/YdcTWJm3DuGMdy8t+tc52c5MKOBGgfU4M=;
+        b=R3vQ58xpuvPRsK/v1rJtbV1VrnwALFfPqAvm4KnkYe5QVUjkIG55wUQC6WvBsmbvQV
+         MukottTOxv3hByPXVcPVFcbAm8K27k37BU7P7L8wxo0LgyCBPpJ0XbdnQGd1jf3OM8qT
+         ewTEzBB1cAVdL0YYaPT0B97Y67X7++zULD3iB+AgVuJp0AuXCbcV+1Bdly1ogBWbndUF
+         58VqzLGojrPt5DJeCemEvU46KqjlbPcPncPWQSBcU3pfKu9j3uneSTpjgZgI1SB0zw6Z
+         v/N7ZN9w6Le7+Ii+X0o9z/LQjimx3mW6DGOd/GteSyk5LIb4y1PXaqRNoz08/Kw+n42J
+         rZLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BgGH6TofYD/rywKyhWW+67Sd2MLqM/FPkdY/So3sHD4=;
-        b=tDe50LS3qPEJHUeTQ3vIqUSZh0biW57PdyNHrtoRqsmPtyBTq0fYezzEgz/U1Q0okL
-         GwkGyswQvR4bq9ocSObgaq8QOYSEex8vqXHK3dMGhNqYJ2uh70SulRcxLJy4SHlZaVGJ
-         SXGazHqPCFYMtQey6mJHGDo2U8tmmufhdwd6RlojDdQ0cYH9RWCvJhB7aBS2LbcFOo1X
-         J56MyuLnO4sE3dTGN32/pvTUcMsl4P9ra8t50me78+fWjXO/1aHWkuCBv2xWOnFEXKcf
-         l995eQgO5wXtw8hJf9lkasbNfg24BXYLUixXrKxXnKyvCDiAMeNwg03k9pvFw1bwOnkH
-         SVaA==
-X-Gm-Message-State: ACrzQf0FmUJVbtCVg1UVq+wMIsAfIjfWWhLlkpDdJAGvQn5EgQAwGvU6
-        BNwTuAAHoG2tSt4kDJ1gF9Y=
-X-Google-Smtp-Source: AMsMyM7znxxuJfWua4nVUntiZGhW/BW+/Ph8zaQrDns4Gxtt/ED7QjMyb8B76QNY6qSRPIyhw3Dd0Q==
-X-Received: by 2002:a05:6402:3789:b0:461:3ae6:8d73 with SMTP id et9-20020a056402378900b004613ae68d73mr33173388edb.229.1666879043022;
-        Thu, 27 Oct 2022 06:57:23 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id n30-20020a50935e000000b004575085bf18sm974968eda.74.2022.10.27.06.57.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 06:57:22 -0700 (PDT)
-Date:   Thu, 27 Oct 2022 16:57:19 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Camel Guo <camelg@axis.com>, Camel Guo <Camel.Guo@axis.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>, kernel <kernel@axis.com>
-Subject: Re: [RFC net-next 1/2] dt-bindings: net: dsa: add bindings for GSW
- Series switches
-Message-ID: <20221027135719.pt7rz6dnjvcuqcxv@skbuf>
-References: <20221025135243.4038706-1-camel.guo@axis.com>
- <20221025135243.4038706-2-camel.guo@axis.com>
- <16aac887-232a-7141-cc65-eab19c532592@linaro.org>
- <d0179725-0730-5826-caa4-228469d3bad4@axis.com>
- <a7f75d47-30e7-d076-a9fd-baa57688bbf7@linaro.org>
+        bh=9BIM9AP/v/YdcTWJm3DuGMdy8t+tc52c5MKOBGgfU4M=;
+        b=vc+naAwphGn4D2kh/xJT77GvJn6JTbjF8LGnJlqicvua1elhtnWRWw6PX19l3mmBb/
+         fYAndP3MrU1lgQ9Cdpqx6JpoG/dQJ74GSOqqaW6DhWFIk3LIvcOCQ7Fx8rI4Sg4MaIFt
+         emddWKZawGRosBau5ZPatvwhYEx9iwvn6YG7KIktOLxzNN7lpCFAELBpvFcKY0SizVuU
+         X3YjFYwtokgr5Rmfq9v/ad5dI8l5uOADeL8+PR5t52pxMMvlaAKsay45lhpizBxeZUbJ
+         1V5nJyB4rwJ0XCNqJV/uRWqjjryel0oEVtH4AVJPVrOU4tqqeh1DkTfUpWwhG0JuxYXC
+         PVww==
+X-Gm-Message-State: ACrzQf0XAarZ9DKx1d09+WULPbcma/kLbh3wq/QEZE73SHWTb6mXqn2l
+        aSq06rBKHLdGJiQJGxSgnLhi7g==
+X-Google-Smtp-Source: AMsMyM7xZFWRL6Ie5t5hA8Zm48nyfRGc08IHmbxDYgQBF5smoCBBh1JWYehyB1TePUCLr3nTXSS+1A==
+X-Received: by 2002:a05:622a:250:b0:3a4:f664:16be with SMTP id c16-20020a05622a025000b003a4f66416bemr4144613qtx.86.1666879292179;
+        Thu, 27 Oct 2022 07:01:32 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id q11-20020a05620a0d8b00b006ee9d734479sm1029140qkl.33.2022.10.27.07.01.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 07:01:31 -0700 (PDT)
+Message-ID: <e5240681-6382-b354-ae7e-5fef016f2716@linaro.org>
+Date:   Thu, 27 Oct 2022 10:01:29 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a7f75d47-30e7-d076-a9fd-baa57688bbf7@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 06/11] arm64: dts: qcom: sc8280xp-pmics: Add support for
+ TM5 block in PMK8280
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221027063006.9056-1-manivannan.sadhasivam@linaro.org>
+ <20221027063006.9056-7-manivannan.sadhasivam@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027063006.9056-7-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Camel,
-
-On Thu, Oct 27, 2022 at 08:46:27AM -0400, Krzysztof Kozlowski wrote:
-> >  >> +      - enum:
-> >  >> +          - mxl,gsw145-mdio
-> >  >
-> >  > Why "mdio" suffix?
-> > 
-> > Inspired by others dsa chips.
-> > lan9303.txt:  - "smsc,lan9303-mdio" for mdio managed mode
-> > lantiq-gswip.txt:- compatible   : "lantiq,xrx200-mdio" for the MDIO bus
-> > inside the GSWIP
-> > nxp,sja1105.yaml:                  - nxp,sja1110-base-t1-mdio
+On 27/10/2022 02:30, Manivannan Sadhasivam wrote:
+> Thermal Monitoring block ADC5 (TM5) in PMK8280 can be used to monitor the
+> temperature from slave PMICs like PM8280.
 > 
-> As I replied to Andrew, this is discouraged.
 
-Let's compare apples to apples, shall we?
-"nxp,sja1110-base-t1-mdio" is the 100Base-T1 MDIO controller of the
-NXP SJA1110 switch, hence the name. It is not a SJA1110 switch connected
-over MDIO.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
