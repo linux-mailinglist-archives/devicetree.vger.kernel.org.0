@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C348860F772
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5182860F776
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235701AbiJ0MfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 08:35:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
+        id S235574AbiJ0Mf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 08:35:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235704AbiJ0MfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:35:10 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 875DC32DA7
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:35:06 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id t25so4097982ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:35:05 -0700 (PDT)
+        with ESMTP id S235725AbiJ0MfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:35:22 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C87386B5
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:35:10 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id z97so2440741ede.8
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:35:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lIJ03Xw0TJ9vybpwIm3D1pwjE8baT2lTF928XHppw+c=;
-        b=UDJHQX5F1+HJfrDukPs3mJ/PyfNV71XB5EAcXSt6rRnM68geyipM6er0gGDj8PJtTY
-         PR9jabiZ01oV1zU2O6bN4md/MhXCoSbu4PXkcaxaC/t3dJg29yWc3hn90f4GFURT9kmO
-         qlHkV4ifi5DiMosbPzDpO990BI6sk7z2831VvQLYWEwAvIzQ19jHpcVeiW3R5EhK+zVi
-         vvLd9uWkwNlGvDQbx4S8lMLymIwZWGRGta3GW9SRvuTwx6PelnyHSKI+X5bZY9hkOhkR
-         FjtKWurGLzuLAcS5TJGATLBIaUTtDJe//VY5vWDbbrQmOVfC1TpUedZQW7obm2TcmXAB
-         fbzA==
+        bh=ixsyTYSU3qrk9nu6zgLYYDmntPbxw0EqXI+jxfXWgbg=;
+        b=eGI+nghoKIXTvxIUbAMX/UGn0FUTy6saar5V+Xm0lbVg8DFfBppUhTHZTI4cZfKwsi
+         udcabToxL2QqymNMtZ84C8e+33nabNHXvzXGDoHEwDUP8fzIu7MGXCbCXZAzV7lRE5Rq
+         6Bhedbx3qkoMuG54hlwnamXHE+9eQpsUL6MUiBSwidzUYO9IauyfuZdWBzezNr+VvPMl
+         2mbko/nxXeXBW+TCxK7o1w5e6UaiDymbLV9lzzCbLzZyPkDo50HDGLsm7lpyuuxp6IPs
+         wlGTQj636LIZV/bJE9Tnf3dpch3CCGBeQ+7fJ8A36s+fRTozI/oNKcjxbreKCzsOZbzW
+         TxlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lIJ03Xw0TJ9vybpwIm3D1pwjE8baT2lTF928XHppw+c=;
-        b=eHQZRC7HMPAcXZN6bLb0q/l8dnOxjiy4jkyrD6oVbS6diSuB8uiPZL73lGBL4NEdjJ
-         1guXUbf00QJ4Mm5dc+z0teBthYz9aTdv04q1mM/OECW1ZoAsnYT9+AciNsD9PYvjJxAh
-         05oXHZ+cg7jMonIstlCR4N6xxySYtRCfy3kSWJ+KL4dKMYziekBQiuYKVJuTuc6CD+4N
-         QKuSyD2GkKgHZD9ZcPQWe5dohk93/N1EJleXtJjYx3rI5oSI7keD8I0NhNOr8rxx7h5V
-         HWBEecCiY1MBiCD1Eo4Kg6OzZPjk62hQfdvb9XFvmeUaxbSOnaX91sPEg45cvpS587BP
-         dbMg==
-X-Gm-Message-State: ACrzQf0SIXbF6ZK84l9AxfLmybAjebqwSUe4dw8mcnImbsgITBHfNuem
-        zgAoRL8rmXndnHonS5Fmp4YHEg==
-X-Google-Smtp-Source: AMsMyM5v+wIehh3xMHkm3Xq4njARTH8MwPQOyhlQaPRd0/CiAivhPlxuCeckHTp1JM6stAj4gVnA6Q==
-X-Received: by 2002:a17:906:9750:b0:798:9ccc:845d with SMTP id o16-20020a170906975000b007989ccc845dmr32913588ejy.760.1666874104546;
-        Thu, 27 Oct 2022 05:35:04 -0700 (PDT)
+        bh=ixsyTYSU3qrk9nu6zgLYYDmntPbxw0EqXI+jxfXWgbg=;
+        b=kIWy/FwHq7k0o0nGKbancP8yzoej57J0gZDylYPykT4w7kwDvCSaaCsSYh8Q3YHKxJ
+         D07S8OZoOexr4fXILPym5pqzz19HcN33u3YkZV1qqfNhZUd0DpcqNEEmYQ0oqe+bQ1+s
+         oc6QlVSf6SdrM/i1TFnQ6ErLkWfSOtogEZkjjAqVyIihe8eVPX3TVfOnh8S5cfJlNJfm
+         qYgOfrKRyVoEgkAGkau5DeZVUf+TpVd+dZvXuR0l5n9GF/JTJ65YiFoTZJpLn3FsEesQ
+         uKR52itJoTifYkbQ7DqGUQU7ElqsN78jQX/Z6wk24YTdy5kvVnO0NHOmLlf0SPTEMAkW
+         kBbw==
+X-Gm-Message-State: ACrzQf3B34McfeSEKCyqNiWwjVB7BNLS2/L7HCn9G8CxZngSJWxI7RAA
+        IP7wZ0UQPA+kr+z9t0Yx++Wo2g==
+X-Google-Smtp-Source: AMsMyM7NCdoe+eiHzPhUQn0V4ikeEhZgjzF/EuqAC/E5mPZSh7/Os1mIKFocWtifRDJqFs/BoOcjDA==
+X-Received: by 2002:aa7:ce09:0:b0:461:5406:20e4 with SMTP id d9-20020aa7ce09000000b00461540620e4mr29636811edv.5.1666874109556;
+        Thu, 27 Oct 2022 05:35:09 -0700 (PDT)
 Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id p22-20020aa7d316000000b00461c1804cdasm942868edq.3.2022.10.27.05.34.59
+        by smtp.gmail.com with ESMTPSA id p22-20020aa7d316000000b00461c1804cdasm942868edq.3.2022.10.27.05.35.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 05:35:01 -0700 (PDT)
+        Thu, 27 Oct 2022 05:35:07 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         konrad.dybcio@somainline.org, mturquette@baylibre.com,
@@ -59,9 +59,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
         Bjorn Andersson <quic_bjorande@quicinc.com>,
         dmitry.baryshkov@linaro.org, Jonathan Marek <jonathan@marek.ca>
 Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v1 4/5] clk: qcom: dispcc-sm8250: Add missing EDP clocks for sm8350
-Date:   Thu, 27 Oct 2022 14:34:31 +0200
-Message-Id: <20221027123432.1818530-4-robert.foss@linaro.org>
+Subject: [PATCH v1 5/5] clk: qcom: dispcc-sm8250: Disable link_div_clk_src for sm8150
+Date:   Thu, 27 Oct 2022 14:34:32 +0200
+Message-Id: <20221027123432.1818530-5-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221027123432.1818530-1-robert.foss@linaro.org>
 References: <20221027123432.1818530-1-robert.foss@linaro.org>
@@ -77,76 +77,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM8350 supports embedded displayport, but the clocks for this
-were previously not enabled.
+SM8150 does not have any of the link_div_clk_src clocks, so
+let's disable them for this SoC.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- drivers/clk/qcom/dispcc-sm8250.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/clk/qcom/dispcc-sm8250.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-index a7606580cf22..d2aaa44ed3d4 100644
+index d2aaa44ed3d4..f6f719616f63 100644
 --- a/drivers/clk/qcom/dispcc-sm8250.c
 +++ b/drivers/clk/qcom/dispcc-sm8250.c
-@@ -462,6 +462,20 @@ static struct clk_branch disp_cc_mdss_edp_link_clk = {
- 	},
- };
- 
-+static struct clk_regmap_div disp_cc_mdss_edp_link_div_clk_src = {
-+	.reg = 0x2288,
-+	.shift = 0,
-+	.width = 2,
-+	.clkr.hw.init = &(struct clk_init_data) {
-+		.name = "disp_cc_mdss_edp_link_div_clk_src",
-+		.parent_hws = (const struct clk_hw*[]){
-+			&disp_cc_mdss_edp_link_clk_src.clkr.hw,
-+		},
-+		.num_parents = 1,
-+		.ops = &clk_regmap_div_ro_ops,
-+	},
-+};
+@@ -1289,6 +1289,10 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
+ 		disp_cc_pll1_config.config_ctl_hi1_val = 0x00000024;
+ 		disp_cc_pll1_config.user_ctl_hi1_val = 0x000000D0;
+ 		disp_cc_pll1_init.ops = &clk_alpha_pll_trion_ops;
 +
- static struct clk_branch disp_cc_mdss_edp_link_intf_clk = {
- 	.halt_reg = 0x2074,
- 	.halt_check = BRANCH_HALT,
-@@ -471,7 +485,7 @@ static struct clk_branch disp_cc_mdss_edp_link_intf_clk = {
- 		.hw.init = &(struct clk_init_data){
- 			.name = "disp_cc_mdss_edp_link_intf_clk",
- 			.parent_hws = (const struct clk_hw*[]){
--				&disp_cc_mdss_edp_link_clk_src.clkr.hw,
-+				&disp_cc_mdss_edp_link_div_clk_src.clkr.hw,
- 			},
- 			.num_parents = 1,
- 			.flags = CLK_GET_RATE_NOCACHE,
-@@ -1175,6 +1189,7 @@ static struct clk_regmap *disp_cc_sm8250_clocks[] = {
- 	[DISP_CC_MDSS_EDP_GTC_CLK_SRC] = &disp_cc_mdss_edp_gtc_clk_src.clkr,
- 	[DISP_CC_MDSS_EDP_LINK_CLK] = &disp_cc_mdss_edp_link_clk.clkr,
- 	[DISP_CC_MDSS_EDP_LINK_CLK_SRC] = &disp_cc_mdss_edp_link_clk_src.clkr,
-+	[DISP_CC_MDSS_EDP_LINK_DIV_CLK_SRC] = &disp_cc_mdss_edp_link_div_clk_src.clkr,
- 	[DISP_CC_MDSS_EDP_LINK_INTF_CLK] = &disp_cc_mdss_edp_link_intf_clk.clkr,
- 	[DISP_CC_MDSS_EDP_PIXEL_CLK] = &disp_cc_mdss_edp_pixel_clk.clkr,
- 	[DISP_CC_MDSS_EDP_PIXEL_CLK_SRC] = &disp_cc_mdss_edp_pixel_clk_src.clkr,
-@@ -1285,7 +1300,11 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
- 			&disp_cc_mdss_dp_pixel1_clk_src,
- 			&disp_cc_mdss_dp_pixel2_clk_src,
- 			&disp_cc_mdss_dp_pixel_clk_src,
-+			&disp_cc_mdss_edp_aux_clk_src,
-+			&disp_cc_mdss_edp_link_clk_src,
-+			&disp_cc_mdss_edp_pixel_clk_src,
- 			&disp_cc_mdss_esc0_clk_src,
-+			&disp_cc_mdss_esc1_clk_src,
- 			&disp_cc_mdss_mdp_clk_src,
- 			&disp_cc_mdss_pclk0_clk_src,
- 			&disp_cc_mdss_pclk1_clk_src,
-@@ -1297,6 +1316,7 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
- 			&disp_cc_mdss_byte1_div_clk_src,
- 			&disp_cc_mdss_dp_link1_div_clk_src,
- 			&disp_cc_mdss_dp_link_div_clk_src,
-+			&disp_cc_mdss_edp_link_div_clk_src,
- 		};
- 		unsigned int i;
- 		static bool offset_applied;
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_DP_LINK1_DIV_CLK_SRC] = NULL;
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_DP_LINK_DIV_CLK_SRC] = NULL;
++		disp_cc_sm8250_clocks[DISP_CC_MDSS_EDP_LINK_DIV_CLK_SRC] = NULL;
+ 	} else if (of_device_is_compatible(pdev->dev.of_node, "qcom,sm8350-dispcc")) {
+ 		static struct clk_rcg2 * const rcgs[] = {
+ 			&disp_cc_mdss_byte0_clk_src,
 -- 
 2.34.1
 
