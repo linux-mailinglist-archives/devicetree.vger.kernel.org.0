@@ -2,229 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8807F60FB03
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 16:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB6360FB09
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234721AbiJ0O7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 10:59:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60740 "EHLO
+        id S233473AbiJ0PAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 11:00:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235707AbiJ0O7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 10:59:36 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89D6F48
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:59:28 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id m6so1094147qkm.4
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 07:59:28 -0700 (PDT)
+        with ESMTP id S236044AbiJ0PAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:00:16 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDCB12AEA
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:00:14 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id d13so1099246qko.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:00:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FsQVftKSeBAc1FbMNJ35HF2pgqCq1gNRi3OVMUbJA30=;
-        b=H6mjRFz9bKTBGET0cIaEajnv1a9/LQ6ojXq8xpg3JdPEvWTzteKUm8ggA8TNOTqip+
-         NvTeAzaBYcGBmNclHrqexy/c1jDbht/2LK76s9cCVKJTrsq/M26MpH9SAr/q6TsvYXE4
-         B1BeD1A/JBohH2FvRqeoX/kHniSnk8Uh9IfFhX3TRMhlgLl4sfTUClUsm5UkOG8YvJwZ
-         FZGFvkoc2UsuK7bE2kqg0nfSaf5X41YxRtpPobxCVRNRO9Qbi4ERufAfJoXOzqnymK0p
-         ADQR2T0jn9jOmvfNDb5d48CO/MCJY9hWj7RfTuJproiTSGoXLBQAOebTIzkVMFwyn4ic
-         Ra0A==
+        bh=EmShqsgjReuSlQ39YbD/kmka875yPOjELnt/kPrlVCU=;
+        b=Z48pJJ47oTLq8C2Vx3cKEumhdQ6iM4gOlUrK8dIDkDeTO14ftEvPo06sR3x/kpRUr+
+         jzYqKKpp5DOl9NjjkpzL4wI4T4spuqKBNdxQnH9BTxf9KMkx8WVwiswrhWJsWOSLllai
+         3yVhi77oClci8RQCCreVzg/bABGMqpGdELUgII8I971onXiWl56vnlDv0fq914OByYY+
+         9H8JJFt8+amwGnSPGxkI+VKiRfFLVeV5p9VGl1cVkBv9oG9KvL6ArfyVkBmKzA3BcFjM
+         DG/9OAjUGQ0vhxyO9RO2trk4GTzzcxU2ZQMGo2LPDxI2z04igXalS2Aopu3/zC5epkba
+         J8Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FsQVftKSeBAc1FbMNJ35HF2pgqCq1gNRi3OVMUbJA30=;
-        b=tpcnfrL4/Z7T9xcTxi7oVBue/xt+NmrQvIAIeMlTMbSTGQvtg1Zh5VboRMFA/MISMf
-         wETokZIERxfK/JkDLfJIpRYq0F7GcJf5c9B8VLHYnlmEp0usux359ZceZUXNOwKM1N3/
-         vXqZKNfYdYzXqf5tP7hdzGQgosgAWl81KzL4OnQEp27cC9RU79+8w+dghq5+vqKNWl7B
-         eNiSQAb+iQ/aQ5B5blb2uMJK3/gBu5fwqiKO1hrrsDICfU6P/RKqEH91wUB6WnU2OXzt
-         lfQwMDI/FSafRvlvoVei0ilggbY5SS8BY7v0c2BdOcUtBXf0XrhRZF2WaaPUodQg3/Jn
-         B4NQ==
-X-Gm-Message-State: ACrzQf3DG+IB3+v3QC1KzQTiSvq9XFhuCoCuJBTMp8FqPmjMMU+tVr5I
-        47DlFpWIfcrgZt4OSvt71TcuUg==
-X-Google-Smtp-Source: AMsMyM55HGtvEs91o/AnOm1jyLgdQjFebhs2S+lDBlp0J8R+GXQThXx6GckPGpFjWXZu/LjC33Chow==
-X-Received: by 2002:a05:620a:45ac:b0:6f8:7c0c:20f with SMTP id bp44-20020a05620a45ac00b006f87c0c020fmr8425800qkb.270.1666882767987;
-        Thu, 27 Oct 2022 07:59:27 -0700 (PDT)
+        bh=EmShqsgjReuSlQ39YbD/kmka875yPOjELnt/kPrlVCU=;
+        b=Hn/IFr6qPo+q/et01npERwhTLFsGg7O/sySKiUm1c/EdUeicaIkYdBw+y1mnn4u29u
+         jQlHMD4xZJd3aOwxYYVRISTxfjxaK2i4ZYIqn2ZNdJMS0z9JzB0dmQU89ooQHYvvnWPT
+         oFZ5SOEiHVgyiXNtO+JTxuwMNN/zhc/i3B21ykKpcP5kIPzZFTh3JLQZWrjqoz4QODnS
+         GgszhaIj+cDNlotRAvEvWfdjP9bLToDEPKAzlnGVLpNpC7LXRhqiCfdf0qsPREOvm2Ll
+         tNl0pckL4nuk8AeGFTvcYyKC3hxj0mBoxSm6odGiz/B8VTyk+s572ERIUS5LTMPrhisU
+         vY1Q==
+X-Gm-Message-State: ACrzQf2oOHo62F75jbjIyiXuyQ+UtLAAjTnu01l96PX4GAjIlOP/yZNH
+        cbFsf4qv2SGrQW7SygNmxmHAUA==
+X-Google-Smtp-Source: AMsMyM6wb7umR/R2rOX8AUcsRn7/fxrKV4r3sUFfTg81TBymC2MmGlahWia9RE9wrnaKeN+womk7aw==
+X-Received: by 2002:a05:620a:4548:b0:6ee:deba:2795 with SMTP id u8-20020a05620a454800b006eedeba2795mr35412612qkp.621.1666882813995;
+        Thu, 27 Oct 2022 08:00:13 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id j4-20020a05620a410400b006cfc01b4461sm1091819qko.118.2022.10.27.07.59.26
+        by smtp.gmail.com with ESMTPSA id bs15-20020a05620a470f00b006ec09d7d357sm1134232qkb.47.2022.10.27.08.00.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 07:59:27 -0700 (PDT)
-Message-ID: <35ed0b8f-04f1-d544-a0d8-19d12e7c0ef8@linaro.org>
-Date:   Thu, 27 Oct 2022 10:59:25 -0400
+        Thu, 27 Oct 2022 08:00:13 -0700 (PDT)
+Message-ID: <2a09aec9-96c3-0ea9-a2b5-4a04c9982bb5@linaro.org>
+Date:   Thu, 27 Oct 2022 11:00:12 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v1 4/4] ARM: dts: rockchip: add rk3128-evb.dts
+Subject: Re: [PATCH v1 1/3] dt-bindings: rtc: convert haoyu,hym8563.txt to
+ yaml
 Content-Language: en-US
-To:     Johan Jonker <jbx6244@gmail.com>, kever.yang@rock-chips.com,
-        heiko@sntech.de
-Cc:     sjg@chromium.org, philipp.tomsich@vrull.eu,
-        zhangqing@rock-chips.com, hjc@rock-chips.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-References: <da1252eb-85e9-bdb8-0542-207173523523@gmail.com>
- <e0679728-7a15-50e1-8a5e-847db1528726@gmail.com>
+References: <f7127f87-05fd-5e20-eb2d-a3fd04674229@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e0679728-7a15-50e1-8a5e-847db1528726@gmail.com>
+In-Reply-To: <f7127f87-05fd-5e20-eb2d-a3fd04674229@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 20:54, Johan Jonker wrote:
-> Add rk3128-evb.dts
+On 26/10/2022 18:58, Johan Jonker wrote:
+> Convert haoyu,hym8563.txt to yaml.
+> 
+> Changed:
+>   Add clock-frequency property
 > 
 > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->  arch/arm/boot/dts/Makefile       |   1 +
->  arch/arm/boot/dts/rk3128-evb.dts | 105 +++++++++++++++++++++++++++++++
->  2 files changed, 106 insertions(+)
->  create mode 100644 arch/arm/boot/dts/rk3128-evb.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 68ac9b360..0f26539d2 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1127,6 +1127,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
->  	rk3066a-marsboard.dtb \
->  	rk3066a-mk808.dtb \
->  	rk3066a-rayeager.dtb \
-> +	rk3128-evb.dtb \
->  	rk3188-bqedison2qc.dtb \
->  	rk3188-px3-evb.dtb \
->  	rk3188-radxarock.dtb \
-> diff --git a/arch/arm/boot/dts/rk3128-evb.dts b/arch/arm/boot/dts/rk3128-evb.dts
-> new file mode 100644
-> index 000000000..6ad4549d5
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rk3128-evb.dts
-> @@ -0,0 +1,105 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * (C) Copyright 2017 Rockchip Electronics Co., Ltd
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "rk3128.dtsi"
-> +
-> +/ {
-> +	model = "Rockchip RK3128 Evaluation board";
-> +	compatible = "rockchip,rk3128-evb", "rockchip,rk3128";
-> +
-> +	aliases {
-> +		mmc0 = &emmc;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &uart2;
-> +	};
-> +
-> +	memory@60000000 {
-> +		device_type = "memory";
-> +		reg = <0x60000000 0x40000000>;
-> +	};
-> +
-> +	vcc5v0_otg: vcc5v0-otg-drv {
+>  .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+>  .../bindings/rtc/haoyu,hym8563.yaml           | 60 +++++++++++++++++++
 
-Generic node names, so at least regulator prefix or suffix.
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_otg";
-> +		gpio = <&gpio0 26 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&otg_vbus_drv>;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	vcc5v0_host: vcc5v0-host-drv {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_host";
-> +		gpio = <&gpio2 23 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&host_vbus_drv>;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&emmc {
-> +	bus-width = <8>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	status = "okay";
-> +
-> +	hym8563: rtc@51 {
-> +		compatible = "haoyu,hym8563";
-> +		reg = <0x51>;
-> +		#clock-cells = <0>;
-> +		clock-frequency = <32768>;
-> +		clock-output-names = "xin32k";
-> +	};
-> +};
-> +
-> +&usb2phy {
-> +	status = "okay";
-> +};
-> +
-> +&usb2phy_host {
-> +	status = "okay";
-> +};
-> +
-> +&usb2phy_otg {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host_ehci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host_ohci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_otg {
-> +	vbus-supply = <&vcc5v0_otg>;
-> +	status = "okay";
-> +};
-> +
-> +&pinctrl {
-> +	usb_otg {
-
-No underscores in node names
-
-> +		otg_vbus_drv: otg-vbus-drv {
-> +			rockchip,pins = <0 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +
-> +	usb_host {
-
-Ditto
-
-> +		host_vbus_drv: host-vbus-drv {
-> +			rockchip,pins = <2 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +	};
-> +};
-> --
-> 2.20.1
-> 
+https://lore.kernel.org/all/20221024165549.74574-7-sebastian.reichel@collabora.com/
 
 Best regards,
 Krzysztof
