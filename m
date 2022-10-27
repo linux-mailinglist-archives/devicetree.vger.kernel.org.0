@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C55A260F7A8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88B4660F7AF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:43:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234884AbiJ0Mmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 08:42:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49426 "EHLO
+        id S235430AbiJ0MnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 08:43:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234193AbiJ0Mmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:42:37 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A7AE4054A
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:42:36 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id d3so2310914ljl.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:42:36 -0700 (PDT)
+        with ESMTP id S235030AbiJ0MnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:43:14 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDE06050F
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:43:12 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id g12so2605826lfh.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:43:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v3Nc72b690gEq9FOu83an5jQGVVWDfDu6QhQ6g28Bd4=;
-        b=YIevQDdkUH92m6ggfbFjUI64CpKuLAFwlOWzcaYHGh0VVMllHDXXMZyDK1IUS9SPc8
-         zzemPdeA1rMSr4hr7aVxpbbh/RbV+nW8jySItcpWrKRK7/MQzhDT6lcuDIjc5SERIpw6
-         7ML+exxhMjrPr2vNyfWJKEd4uftJQ0re3zxC3xz5tu2HOx1Gn9MnILv5MGfiFs8sYYle
-         gMEwZnkDU61el0zrC5QYWB/9plxm5F+g82/Bej/ABnxi75mLseToZOutZdAgAxY3NnCV
-         yI4d4k7UxLu1ou4K0LPmillYJK6KQUm5pkyqcXiHLXZL5g8JEUEy+JMXst7yL5lB8XNx
-         RaEQ==
+        bh=zjus4Lr0mUJgIUezKjrW0GVyYQEzhhCvXjhUecntBY4=;
+        b=aBnkL+Gocmi/zSZlxJoPrpTqFzaxt4RPjqGteTNMBjULBg0HQ80YWiJScZMc8/ZAmA
+         N/1wckLU8mEmU/f++51N7+jIryV+kisI3lHsKEzOPYSWExce1pjoUYAyURvx1sSn8PJS
+         TRBxx837VgQTzbULNsgU5VnrRHQF5CUo8e0gPX/eaZsx93bj+O1z9a7ozELkMpy6HW0z
+         vmi1VaaE9NaOr0qdwApEObm7gg2ubkcMxhdDvG5RK5KEsLW+vXob0czrdnMEf4KWWG1p
+         0oVtL1gntGc022FmYgnfBjeErgNAE4HdarBEWFqhC9fF/Hinx+2FUwIF9IMxGlxeuzmZ
+         nUkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v3Nc72b690gEq9FOu83an5jQGVVWDfDu6QhQ6g28Bd4=;
-        b=3OYM8YrD+tsNJmUynSuALYclwdzbZYavoe0ift+Sk7eNh3WtNLWPipRBTv/M54IJEH
-         6D+MyuNfP9RoBPPeQEPY0H4qLL19zlXHoIDtITAOwvke+tgrkhdm9lzwNOyckqrfI1qT
-         CKjdeXZ0gyxk1n6ZS+ICGIYhgB5jzw9bzNsGQ/0PJJ0l+FYWmhEoFmoQYsdfCaS0FjpE
-         1aveIrSMiL9A4hwHMzFIvKNGu/168cjXqQKE2PHaVJTFInd3qC9szrwFbTkpWblLV9S/
-         eRxlMj7j3Zs3jT+R35yr29MaM8RHXV7q8yIqui63fib89GXO0gsEVJUShFoJyqgocE3v
-         9Diw==
-X-Gm-Message-State: ACrzQf0Z5TPK/M21STGPfAxB3KyOzYh1Jv2wdSmt87BjtXhVqK78eRr0
-        fuSw/dIF6TvXJ39g/qXBw1HvRA==
-X-Google-Smtp-Source: AMsMyM70UthF0zhGlnOpSzC2royUK9/b1nvq2imdjfg07dDz5E+Jw4jlKPOynqljuxkrJfi/nGcelQ==
-X-Received: by 2002:a2e:a44a:0:b0:26e:177:d166 with SMTP id v10-20020a2ea44a000000b0026e0177d166mr18373949ljn.520.1666874554427;
-        Thu, 27 Oct 2022 05:42:34 -0700 (PDT)
+        bh=zjus4Lr0mUJgIUezKjrW0GVyYQEzhhCvXjhUecntBY4=;
+        b=pNgjzEVS7IrK3S7S2mddfrAYXeyPiMwFJwgCy1s4z8rtuATwmTEvp6W/2v8ZDYp/8o
+         BxvnT4pBWFx79zaNB5RYnKIIRcmg/vjBTre6SXqIbIU8wOAGGYK9s0WouCQSjWhcsfnr
+         n3Deb3PCsLuIr6f5otE1skRT4O0cRdPbszSReP9HYuieSxuxKAQdlSYzFBowdl7tEwx/
+         a4tmCkTPznqBdCHV2kwyoS0sju2NSDPF4qE5FCFcGTGrlYOfsdjEVHA/qhw+ymPjPHgP
+         A74mDhvUtGVPlU/Inyrin/TKAh7eeOnxd5nzhiQLxIz69JzikQRErEwpfmhoIuWIjr/v
+         sviQ==
+X-Gm-Message-State: ACrzQf2paZluIgtyykxSQKa0G0kbpmfHkj3MNknmT8rNVBUi3LvtupWo
+        T0xJlqEvKGMT6hcCokN3v2CbRQ==
+X-Google-Smtp-Source: AMsMyM50yf2JWdGhQGJTPH/iX4++QAjFltwPWNfb0to5tRN6b9WvutsNUTgmYquih5lM+wQAlU3tcg==
+X-Received: by 2002:a05:6512:3503:b0:496:55d:a186 with SMTP id h3-20020a056512350300b00496055da186mr17549123lfs.340.1666874590962;
+        Thu, 27 Oct 2022 05:43:10 -0700 (PDT)
 Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id r6-20020a2e8e26000000b0026acfbbcb7esm221355ljk.12.2022.10.27.05.42.33
+        by smtp.gmail.com with ESMTPSA id x25-20020a19f619000000b0049ad2619becsm173970lfe.131.2022.10.27.05.43.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 05:42:34 -0700 (PDT)
-Message-ID: <e32be4c0-56ea-6999-92e6-3b51792a5255@linaro.org>
-Date:   Thu, 27 Oct 2022 15:42:33 +0300
+        Thu, 27 Oct 2022 05:43:10 -0700 (PDT)
+Message-ID: <e6e410f4-5417-0ad8-7d99-2af75f97980e@linaro.org>
+Date:   Thu, 27 Oct 2022 15:43:09 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH v1 4/5] clk: qcom: dispcc-sm8250: Add missing EDP clocks
- for sm8350
+Subject: Re: [PATCH v1 1/5] clk: qcom: dispcc-sm8250: Disable EDP_GTC for
+ sm8350
 Content-Language: en-GB
 To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
@@ -66,15 +66,13 @@ To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
         Bjorn Andersson <quic_bjorande@quicinc.com>,
         Jonathan Marek <jonathan@marek.ca>
 References: <20221027123432.1818530-1-robert.foss@linaro.org>
- <20221027123432.1818530-4-robert.foss@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221027123432.1818530-4-robert.foss@linaro.org>
+In-Reply-To: <20221027123432.1818530-1-robert.foss@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,81 +80,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/10/2022 15:34, Robert Foss wrote:
-> SM8350 supports embedded displayport, but the clocks for this
-> were previously not enabled.
-
-I'd say 'not accounted for' instead. Bjorn has added eDP clocks, but 
-they were following the 8150 (no div_clk_src) and the offsets were not 
-updated.
-
+> SM8350 does not have the EDP_GTC clock, so let's disable it
+> for this SoC.
 > 
 > Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
->   drivers/clk/qcom/dispcc-sm8250.c | 22 +++++++++++++++++++++-
->   1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-> index a7606580cf22..d2aaa44ed3d4 100644
-> --- a/drivers/clk/qcom/dispcc-sm8250.c
-> +++ b/drivers/clk/qcom/dispcc-sm8250.c
-> @@ -462,6 +462,20 @@ static struct clk_branch disp_cc_mdss_edp_link_clk = {
->   	},
->   };
->   
-> +static struct clk_regmap_div disp_cc_mdss_edp_link_div_clk_src = {
-> +	.reg = 0x2288,
-> +	.shift = 0,
-> +	.width = 2,
-> +	.clkr.hw.init = &(struct clk_init_data) {
-> +		.name = "disp_cc_mdss_edp_link_div_clk_src",
-> +		.parent_hws = (const struct clk_hw*[]){
-> +			&disp_cc_mdss_edp_link_clk_src.clkr.hw,
-> +		},
-> +		.num_parents = 1,
-> +		.ops = &clk_regmap_div_ro_ops,
-> +	},
-> +};
-> +
->   static struct clk_branch disp_cc_mdss_edp_link_intf_clk = {
->   	.halt_reg = 0x2074,
->   	.halt_check = BRANCH_HALT,
-> @@ -471,7 +485,7 @@ static struct clk_branch disp_cc_mdss_edp_link_intf_clk = {
->   		.hw.init = &(struct clk_init_data){
->   			.name = "disp_cc_mdss_edp_link_intf_clk",
->   			.parent_hws = (const struct clk_hw*[]){
-> -				&disp_cc_mdss_edp_link_clk_src.clkr.hw,
-> +				&disp_cc_mdss_edp_link_div_clk_src.clkr.hw,
->   			},
->   			.num_parents = 1,
->   			.flags = CLK_GET_RATE_NOCACHE,
-> @@ -1175,6 +1189,7 @@ static struct clk_regmap *disp_cc_sm8250_clocks[] = {
->   	[DISP_CC_MDSS_EDP_GTC_CLK_SRC] = &disp_cc_mdss_edp_gtc_clk_src.clkr,
->   	[DISP_CC_MDSS_EDP_LINK_CLK] = &disp_cc_mdss_edp_link_clk.clkr,
->   	[DISP_CC_MDSS_EDP_LINK_CLK_SRC] = &disp_cc_mdss_edp_link_clk_src.clkr,
-> +	[DISP_CC_MDSS_EDP_LINK_DIV_CLK_SRC] = &disp_cc_mdss_edp_link_div_clk_src.clkr,
->   	[DISP_CC_MDSS_EDP_LINK_INTF_CLK] = &disp_cc_mdss_edp_link_intf_clk.clkr,
->   	[DISP_CC_MDSS_EDP_PIXEL_CLK] = &disp_cc_mdss_edp_pixel_clk.clkr,
->   	[DISP_CC_MDSS_EDP_PIXEL_CLK_SRC] = &disp_cc_mdss_edp_pixel_clk_src.clkr,
-> @@ -1285,7 +1300,11 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
->   			&disp_cc_mdss_dp_pixel1_clk_src,
->   			&disp_cc_mdss_dp_pixel2_clk_src,
->   			&disp_cc_mdss_dp_pixel_clk_src,
-> +			&disp_cc_mdss_edp_aux_clk_src,
-> +			&disp_cc_mdss_edp_link_clk_src,
-> +			&disp_cc_mdss_edp_pixel_clk_src,
->   			&disp_cc_mdss_esc0_clk_src,
-> +			&disp_cc_mdss_esc1_clk_src,
->   			&disp_cc_mdss_mdp_clk_src,
->   			&disp_cc_mdss_pclk0_clk_src,
->   			&disp_cc_mdss_pclk1_clk_src,
-> @@ -1297,6 +1316,7 @@ static int disp_cc_sm8250_probe(struct platform_device *pdev)
->   			&disp_cc_mdss_byte1_div_clk_src,
->   			&disp_cc_mdss_dp_link1_div_clk_src,
->   			&disp_cc_mdss_dp_link_div_clk_src,
-> +			&disp_cc_mdss_edp_link_div_clk_src,
->   		};
->   		unsigned int i;
->   		static bool offset_applied;
+>   drivers/clk/qcom/dispcc-sm8250.c | 3 +++
+>   1 file changed, 3 insertions(+)
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
