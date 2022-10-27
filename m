@@ -2,117 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 422FA610009
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 20:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52C3C610018
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 20:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235537AbiJ0SQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 14:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47496 "EHLO
+        id S235489AbiJ0SWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 14:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235659AbiJ0SQj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 14:16:39 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7043678D;
-        Thu, 27 Oct 2022 11:16:37 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29RIGLH0037720;
-        Thu, 27 Oct 2022 13:16:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666894581;
-        bh=/zj3g63JhQDHegIxQO0BLz+KSVsmlonxodsKrtWMvcg=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=lfPMG+cvYIxoBAkM0+DXQherZgSGwsW8587eLYBmme9zo/1pZdp0ikE3G8S7zzXVC
-         64Sn9Bd0aIN0QcrQVf8elePQQ2/TFFmGX9J8ybdc9sa4RcyRQWFEpwulUQPQ0iOq6J
-         w+MTVAMjfeCBb+iLvJdakUtmjHtath07zeMikDXM=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29RIGLfJ067267
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Oct 2022 13:16:21 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 27
- Oct 2022 13:16:21 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 27 Oct 2022 13:16:21 -0500
-Received: from [10.250.35.234] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29RIGKXe112488;
-        Thu, 27 Oct 2022 13:16:20 -0500
-Message-ID: <e25a5f89-42bb-f97b-4b84-e7609ee00139@ti.com>
-Date:   Thu, 27 Oct 2022 13:16:19 -0500
+        with ESMTP id S235517AbiJ0SWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 14:22:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091504621A;
+        Thu, 27 Oct 2022 11:22:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 987FD6243A;
+        Thu, 27 Oct 2022 18:22:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FA0C433D6;
+        Thu, 27 Oct 2022 18:22:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666894961;
+        bh=UvYccBMXQpd8jcmhcnu+u0g9XscsdMXPp/rPJPdrT+I=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=PnKrsKLWA8Gxu55XbI/ou+wUMB0AoPZQ13su9+TW8hCpGMLTTrv618XuWK7PUMVN2
+         KqIdMbpbIpdA2Migoh/gxwam0JIlcJDIbz7SuSyTuX2ZpTfub4vpUBGl0nODFY2c4s
+         FbWHekrEvrd7rFK/fRc5EghvrwNNo0DFo/9Y9YhGoL2AXaqdwt9ZDHfNalX/ILM/Nl
+         C2n8udSbyJg/7Q74KalZPqOHSNEKWpBTUmTrJ3rO6I7IJ99NZl3VVAFpwxxqVA1sgU
+         P1svdD4nZeNMISZknPmtqjpAtin4drW2I8V2Do+NlY4Gr+3MlyRhJy0aCYytkihao4
+         ZjsMUiLz0Ij3Q==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 1/2] ARM: nspire: Use syscon-reboot to handle restart
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Tang <dt.tangr@gmail.com>,
-        Fabian Vogt <fabian@ritter-vogt.de>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026161302.5319-1-afd@ti.com>
- <20221026161302.5319-2-afd@ti.com>
- <9314a458-0fd9-c645-bb55-5f28b961ea5f@linaro.org>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <9314a458-0fd9-c645-bb55-5f28b961ea5f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221026190441.4002212-6-quic_molvera@quicinc.com>
+References: <20221026190441.4002212-1-quic_molvera@quicinc.com> <20221026190441.4002212-6-quic_molvera@quicinc.com>
+Subject: Re: [PATCH v3 5/5] dt-bindings: qcom,pdc: Introduce pdc bindings for QDU1000 and QRU1000
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Melody Olvera <quic_molvera@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Date:   Thu, 27 Oct 2022 11:22:37 -0700
+User-Agent: alot/0.10
+Message-Id: <20221027182240.E9FA0C433D6@smtp.kernel.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/26/22 3:17 PM, Krzysztof Kozlowski wrote:
-> On 26/10/2022 12:13, Andrew Davis wrote:
->> Writing this bit can be handled by the syscon-reboot driver. Add the
->> info to DT and remove the machine_desc version.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->> ---
->>   arch/arm/boot/dts/nspire.dtsi |  7 +++++++
-> 
-> DTS cannot go with code.
-> 
-> Additionally, this breaks people's filtering as there is no "dts" prefix
-> in the subject.
-> 
->>   arch/arm/mach-nspire/Kconfig  |  2 ++
->>   arch/arm/mach-nspire/mmio.h   |  3 ---
->>   arch/arm/mach-nspire/nspire.c | 10 ----------
->>   4 files changed, 9 insertions(+), 13 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/nspire.dtsi b/arch/arm/boot/dts/nspire.dtsi
->> index bb240e6a3a6f..6357b803521e 100644
->> --- a/arch/arm/boot/dts/nspire.dtsi
->> +++ b/arch/arm/boot/dts/nspire.dtsi
->> @@ -172,7 +172,14 @@ rtc: rtc@90090000 {
->>   			};
->>   
->>   			misc: misc@900a0000 {
->> +				compatible = "syscon", "simple-mfd";
-> 
-> These are not allowed on their own (need specific compatible) and you
-> should have warnings when running dtbs_check.
-> 
+Quoting Melody Olvera (2022-10-26 12:04:41)
+> Add compatible fields for QDU1000 and QRU1000 pdcs.
+>=20
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
 
-Ah, my bad, must have gotten lost in the other existing warnings.
-Sent v3 with the above fixes, and tried to remove some existing warnings.
-
-Thanks,
-Andrew
-
-> Best regards,
-> Krzysztof
-> 
+Is there a reason why this patch continues to be included in what is
+otherwise a clk driver patch series? Can this patch be sent separately
+from the clk patches (and not Cced to clk maintainers/list) in the
+future?
