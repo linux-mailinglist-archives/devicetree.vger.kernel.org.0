@@ -2,108 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92CF860FC2F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 711E560FC5E
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 17:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236239AbiJ0PmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 11:42:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34436 "EHLO
+        id S236329AbiJ0Pwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 11:52:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235608AbiJ0PmC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:42:02 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BC4C6954;
-        Thu, 27 Oct 2022 08:42:01 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id ud5so5817821ejc.4;
-        Thu, 27 Oct 2022 08:42:01 -0700 (PDT)
+        with ESMTP id S234890AbiJ0Pwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 11:52:47 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD004192DA9
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:52:41 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id z30so1225149qkz.13
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 08:52:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Foe3NaxZvpwgbIwWLGZVEAQzzIpp6zxIwx25sYmkf4U=;
-        b=XTXK7tjqoiAMq5OJ2BI3Ue+mXD2T4Ihcfep1IxX1JNjE1zfAgKQDWCXBCKTavCasQr
-         CSP6UfEyH0nYnrpeMmLRxDZ3jKL8M2IItTjyk0E28ALTAl4lMT+MCiCRP8YRWCjnUkmC
-         n8htJH9ZrIioOlxyFX1B7sOoa0jZf1afDGy5kzzluyZKK77+2sfJLLUXZ4AUntH+L3LR
-         VNDIfaJ3azos1WX1KbVaYG1ERviugCQozqYxF3Ra3/i9rDXZamra1bBLQHBFKamTK7pl
-         3vVNhwkL/ACt1oKlOZzAF5AweaMErjX1bcGmsKJtcQJFjwjrEA/u6nMY8Ot1dHC3WEB0
-         1wEw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3gIoXxiDmfLBwHjIKOLcfrxpt8ArE5iNwkoMZ1If8W0=;
+        b=nKQA1LYfKxriWZ9VvH4IRAzSzXZpDjetbvw6Mb0yTTAuBBjXbGKaOOpY3TF6R+B+sO
+         qPsi7jAPz1Xy0qZMrpZay0ch2wE/iqkXzGlh9JmKNfeWAnEPZJFPiCgTRRriZbRqT3iF
+         c0Uvc0GXPvacdv5Ut3KtsVnod9NbvzPloug1graWwscVQZSsKiUo5NEhFGTH3lbEpvK4
+         GExnUdbaI4fMxapMW9ndrnSJBt276TGOGmBFoFeppyPUkgHYaoLPcDTMuIF3XFrQq7i3
+         iXq43/5wIDdL0Cs8Ss7v0P0Lqk9XQkOtXKGy3Jz/IQ6UbmgJGt1NMe3DhAvUNF1KESIK
+         sNew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Foe3NaxZvpwgbIwWLGZVEAQzzIpp6zxIwx25sYmkf4U=;
-        b=n95Cop2/w08ibnGErYhlnzwiia2Kee2IW8wlS5wgh4CDfKnLqGBK87O6E9MbcB0Uay
-         0uZ0aWcAb2rYXrnBYBV2Kcc4PgpC0yCe8LlsgalROWkd3Zkx+6+HCa9Qz3JKnM6NkYrO
-         7XAlzvlrwFCq4BQF1lPwNfkMV0BQA9bvYpZnuq670tijblGKoYcO5R2C41FTeE1Ht9tM
-         2NlaVIhxGl51TW3PFR+nqPwTQsQpZiAhoXV9lFHP4dYolCtcAmutm46cYwCHXPyu9WQg
-         lgKpeFGsJvVcZTOoZuwD7y2B0ahpP3Ew+rueAceLjngRU4i/iLOkNg8lEFj/GodvJ/LM
-         gMSQ==
-X-Gm-Message-State: ACrzQf2N7z/nMQyTAG2UKCjsy06nhdpOPD5W5Ii8DaJMXrRk4tus2E0F
-        sGVYiGeqYWtD+65EK2zAjdY=
-X-Google-Smtp-Source: AMsMyM6eAhx24hELhlVVAeMi+1qb9jjHHsECANFN/IOPuukLQKFzJF4HGkTq1LAl2rlZTw+eQKjPwQ==
-X-Received: by 2002:a17:907:983:b0:77b:6e40:8435 with SMTP id bf3-20020a170907098300b0077b6e408435mr40638628ejc.570.1666885319692;
-        Thu, 27 Oct 2022 08:41:59 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id p25-20020a056402075900b00457b5ba968csm1166237edy.27.2022.10.27.08.41.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 08:41:59 -0700 (PDT)
-Date:   Thu, 27 Oct 2022 18:41:56 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Camel Guo <camel.guo@axis.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        kernel@axis.com
-Subject: Re: [RFC net-next 1/2] dt-bindings: net: dsa: add bindings for GSW
- Series switches
-Message-ID: <20221027154156.wdi2ka52xwdgm7cj@skbuf>
-References: <20221025135243.4038706-1-camel.guo@axis.com>
- <20221025135243.4038706-2-camel.guo@axis.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3gIoXxiDmfLBwHjIKOLcfrxpt8ArE5iNwkoMZ1If8W0=;
+        b=H3JUYJ1+z/jaa4NjuxtJRbq0vpXyJ9HmauUQdBiS2z4pCT+oJZJgMSoKM5rVF4eX1j
+         942XKTKpdvDq0Z3XZSCKhujbRHqr2FQKcVXOJ1OMxaT+X5YcZPw8rWMFFgZx0pV66o8M
+         mSgD7B3vil1M8kOaqaDLnlfetIEgS6IyVH1J1o0IN5UK0lBmuwIIvjRVda4DrMOqT6VX
+         C8ohOTseJ56tqEmR9kLLsxC4XUFzFom1nUaaiE0og0ZaZo6hzvY/jp6LNhf+XSIh0p/j
+         1PKfnKV4DeyFSRRjqHrxpvUvVUOt8lYSW+RbPtDRuirMDjJZVbtL9bebbzfeK3cwhu+B
+         Byqg==
+X-Gm-Message-State: ACrzQf3WrC3/HN8+tszcNkGWE2LA9x+FGyrRyJVBN+Ls0Mt9njBeAwHb
+        XxdeQyczW2WLXREpWY/ONkCbgg==
+X-Google-Smtp-Source: AMsMyM69+ighMCJFVZ5PyILef6TBCOJVDKpNzjTR4VbSGgNOa7WUffx36huom6eVW9hFG1DTA1W7vw==
+X-Received: by 2002:a05:620a:17a9:b0:6ee:e098:b2c7 with SMTP id ay41-20020a05620a17a900b006eee098b2c7mr6601418qkb.113.1666885960753;
+        Thu, 27 Oct 2022 08:52:40 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id y27-20020a37f61b000000b006cf19068261sm1139776qkj.116.2022.10.27.08.52.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 08:52:40 -0700 (PDT)
+Message-ID: <37c53d8c-2810-509a-7404-7ca24d79fed8@linaro.org>
+Date:   Thu, 27 Oct 2022 11:52:38 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221025135243.4038706-2-camel.guo@axis.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add QDU1000 and
+ QRU1000 pinctrl bindings
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221026190457.4003037-1-quic_molvera@quicinc.com>
+ <20221026190457.4003037-2-quic_molvera@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221026190457.4003037-2-quic_molvera@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Camel,
+On 26/10/2022 15:04, Melody Olvera wrote:
+> Add documentation details for device tree bindings for QDU1000 and QRU1000
+> TLMM devices.
 
-On Tue, Oct 25, 2022 at 03:52:40PM +0200, Camel Guo wrote:
-> +additionalProperties: true
+Just "Add Devicetree bindings for QDU1000 and QRU1000 TLMM devices."
 
-I don't think the switch schema should have additionalProperties: true.
-Only shared schemas should. WHat should be here is "unevaluatedProperties: false".
+Subject - drop redundant second bindings.
 
-> +                port@5 {
-> +                    reg = <5>;
-> +                    label = "cpu";
-
-Please drop label = "cpu" for the CPU port, it is not needed/not parsed.
-
-> +                    ethernet = <&eth0>;
-> +                    phy-mode = "rgmii-id";
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  .../bindings/pinctrl/qcom,qdu1000-tlmm.yaml   | 135 ++++++++++++++++++
+>  1 file changed, 135 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+> new file mode 100644
+> index 000000000000..a2ca4d59e2e0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qdu1000-tlmm.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,qdu1000-tlmm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +                    fixed-link {
-> +                        speed = <1000>;
-> +                        full-duplex;
-> +                        pause;
-> +                    };
-> +                };
-> +            };
+> +title: Qualcomm Technologies, Inc. QDU1000/QRU1000 TLMM block
+> +
+> +maintainers:
+> +  - Melody Olvera <quic_molvera@quicinc.com>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer block (TLMM) found
+
+Drop "This binding describes"
+
+IOW, just take a peak at current bindings in next.
+
+
+> +  in the QDU1000 and QRU1000 platforms.
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+
+No items.
+
+> +      - const: qcom,qdu1000-tlmm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  "#interrupt-cells": true
+> +  gpio-controller: true
+> +
+> +  gpio-reserved-ranges:
+> +    minItems: 1
+> +    maxItems: 75
+> +
+> +  gpio-line-names:
+> +    maxItems: 151
+> +
+> +  "#gpio-cells": true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +patternProperties:
+> +  "-state$":
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-qdu1000-tlmm-state"
+> +      - patternProperties:
+> +          "-pins$":
+> +            $ref: "#/$defs/qcom-qdu1000-tlmm-state"
+> +        additionalProperties: false
+> +
+> +$defs:
+> +  qcom-qdu1000-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-4][0-9])$"
+
+This is not fixed.
+
+> +            - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+Best regards,
+Krzysztof
+
