@@ -2,191 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9ED960F3AB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 11:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 264F060F3BF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 11:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233099AbiJ0J2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 05:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33670 "EHLO
+        id S235227AbiJ0JdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 05:33:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiJ0J2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 05:28:43 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50187645EC;
-        Thu, 27 Oct 2022 02:28:40 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1DEDF66028C6;
-        Thu, 27 Oct 2022 10:28:37 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666862918;
-        bh=nkLiBVCq8vH0MrkVPppLESgMJQN4ENcJIlUdfoTlX3k=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=JsMoHSUWjscrjyRcFEI09Vb+4I/iVUwYCNIqSiZu+oYKGyjoBrY7wvwzODTgQvqZS
-         BlkdJnP40hCu6Tt/QcsgC3cMajtRroAE92NvvfSyOQKCCTktYbir0tpMvb4enWVfRb
-         mK1/rhmf6Y34WoMMwqO0JZylDWfZmjec7cO8hgEmc/WEWjL3eodJ59VV7itMzn6CXV
-         XNEsXqiTQGsbzlA175jU0rxY7ImPIEP2BmyzuqEpwkr5xRQ341ftPUKbp3gCdCJLsI
-         1lAsHrnRiJyFajpjqFSQRwFgu0KT9fpQBrT1CVjUgm8aweV39YBZUUeeogZR5Azr1s
-         9h+2YP9BaiCZQ==
-Message-ID: <17139e24-d33c-8240-cd4a-d87fb3b29276@collabora.com>
-Date:   Thu, 27 Oct 2022 11:28:34 +0200
+        with ESMTP id S234826AbiJ0Jcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 05:32:47 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06CB7240BF;
+        Thu, 27 Oct 2022 02:32:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666863149; x=1698399149;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oglNlZd03blw6ctUoQlZFxomNHxkVQMJcNNs7El2KW8=;
+  b=KqGdysen+iKYuo9g7+SwmvZVMb479EvbQs/lUuGikegaSOgZtonYD1Ab
+   y8XCUvFsOwiJrUneexhRnRKz7qxLto8vpN4YS0xeBnJL1WZ2um63AsOxK
+   fsgGj8t9l0uYpmv814/nP4yOlIwtZ0oXw0/Ad6FjI7/OTkQioWBgqLXew
+   oZsthy1pFxXsYKVy0Ov7ijhVu9jcVrN5pvdWFYi6H2LLNTazZypbV8lay
+   ZpaR+pgripWeKbhfi7MmggWi+HNRYMkING75A55B2z+b/oXFJJvQCHsMO
+   giDq+0CrUmorCEoapzkE8f8AXNZqGokETxbZ6neP857Pl7ZO85LQDpg68
+   Q==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="370243980"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
+   d="scan'208";a="370243980"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 02:32:28 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10512"; a="737610971"
+X-IronPort-AV: E=Sophos;i="5.95,217,1661842800"; 
+   d="scan'208";a="737610971"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2022 02:32:23 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id CFE5D2026C;
+        Thu, 27 Oct 2022 12:32:20 +0300 (EEST)
+Date:   Thu, 27 Oct 2022 09:32:20 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 0/9] media: i2c: ov5645 driver enhancements
+Message-ID: <Y1pQJP1DMZvdioZF@paasikivi.fi.intel.com>
+References: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 7/7] arm64: dts: mediatek: Add support for MT6795 Sony
- Xperia M5 smartphone
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>, robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
-        matthias.bgg@gmail.com, hsinyi@chromium.org,
-        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
-        fparent@baylibre.com, sam.shih@mediatek.com,
-        sean.wang@mediatek.com, long.cheng@mediatek.com,
-        wenbin.mei@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220729104441.39177-1-angelogioacchino.delregno@collabora.com>
- <20220729104441.39177-8-angelogioacchino.delregno@collabora.com>
- <a8fa9e22-8c3f-60b2-a0db-01cfd5c37765@somainline.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <a8fa9e22-8c3f-60b2-a0db-01cfd5c37765@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221026130658.45601-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/07/22 14:00, Konrad Dybcio ha scritto:
-> 
-> 
-> On 29.07.2022 12:44, AngeloGioacchino Del Regno wrote:
->> Add a basic support for the Sony Xperia M5 (codename "Holly")
->> smartphone, powered by a MediaTek Helio X10 SoC.
->>
->> This achieves a console boot.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Hello,
 
-Hello Konrad,
-First of all, I'm sorry for the very late reply.
+On Wed, Oct 26, 2022 at 02:06:49PM +0100, Prabhakar wrote:
+>   ARM: dts: imx6qdl-pico: Drop clock-names property
+>   ARM: dts: imx6qdl-wandboard: Drop clock-names property
+>   arm64: dts: renesas: aistarvision-mipi-adapter-2.1: Drop clock-names
+>     property
 
->> ---
->>   arch/arm64/boot/dts/mediatek/Makefile         |  1 +
->>   .../dts/mediatek/mt6795-sony-xperia-m5.dts    | 90 +++++++++++++++++++
->>   2 files changed, 91 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
->> index af362a085a02..72fd683c9264 100644
->> --- a/arch/arm64/boot/dts/mediatek/Makefile
->> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt2712-evb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6755-evb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6779-evb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-evb.dtb
->> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-sony-xperia-m5.dtb
-> -holly.dtb?
-> 
+Are Freescale/Renesas arch maintainers fine with me taking these patches
+or should they be merged through another tree?
 
-I prefer using the commercial name to identify the device.
-"Holly" is the smartphone project codename and that is mentioned almost nowhere:
-the aim here is to enhance readability as to make it immediately understandable
-that this devicetree is for the Xperia M5 device.
+Thanks.
 
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
->>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
->> diff --git a/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
->> new file mode 100644
->> index 000000000000..94d011c4126c
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/mediatek/mt6795-sony-xperia-m5.dts
->> @@ -0,0 +1,90 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2022, Collabora Ltd
->> + * Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> + */
->> +
->> +/dts-v1/;
->> +#include "mt6795.dtsi"
->> +
->> +#include <dt-bindings/gpio/gpio.h>
-> Looks unused.
-> 
+-- 
+Kind regards,
 
-Right, I'll remove that in v2.
-
->> +
->> +/ {
->> +	model = "Sony Xperia M5";
->> +	compatible = "sony,xperia-m5", "mediatek,mt6795";
-> sony,holly?
-> 
-
-I'm sorry, but I can't understand the sense of adding that compatible string to
-the mix. To the kernel, it doesn't mean anything - and we already have another
-string advertising the specific machine, which is "sony,xperia-m5".
-
-Of course, there is no Xperia M5 with a different SoC and, even if there was a
-xperia-m5 with a different SoC, we anyway have both a machine compatible and a
-SoC compatible in here, so that would still not pose any issue.
-
->> +	chassis-type = "handset";
->> +
->> +	aliases {
->> +		mmc0 = &mmc0;
->> +		mmc1 = &mmc1;
->> +		serial0 = &uart0;
->> +		serial1 = &uart1;
->> +	};
->> +
->> +	memory@40000000 {
->> +		device_type = "memory";
->> +		reg = <0 0x40000000 0 0x1E800000>;
-> Lowercase hex in size. Also, doesn't the bootloader fill it in?
-> 
-
-Updating the device to the latest software version will give you a bootloader
-that fills that in, but the first-ever software release contains one that will
-not do that in particular conditions (fastboot boot).
-
->> +	};
->> +
->> +	reserved_memory: reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		/* 128 KiB reserved for ARM Trusted Firmware (BL31) */
-> Is that true for all devices with this SoC, or..? If so, it may be worth
-> moving this into mt6795.dtsi.
-> 
->> +		bl31_secmon_reserved: secmon@43000000 {
-> memory@, everywhere. Use labels to name the nodes.
-> 
-
-I'm afraid that's not possible, as the bootloader is reading the devicetree
-and requires these nodes to follow this naming.
-
->> +			no-map;
-> reg goes first.
-
-Will fix in v2.
-
-Best regards,
-Angelo
-
-
+Sakari Ailus
