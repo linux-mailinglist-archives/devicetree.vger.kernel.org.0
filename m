@@ -2,174 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D82560F7EF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493B760F7FD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Oct 2022 14:50:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235851AbiJ0MtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 08:49:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38022 "EHLO
+        id S235701AbiJ0Muk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 08:50:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235848AbiJ0MtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:49:18 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D0016F421
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:49:15 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id b20-20020a05600c4e1400b003cc28585e2fso1127897wmq.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:49:15 -0700 (PDT)
+        with ESMTP id S234434AbiJ0Mui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 08:50:38 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2190948A27
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:50:37 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id h24so976379qta.7
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 05:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
-        b=OQyezL4cGU1S6Th8YVxCSmmKg8MDodYMD5HBV7ElzJz4DtRh+iegPU5J4dVfdCItuH
-         dH97BHd68JdE3Jo/G/zHfYvNNSReIHiHCRWAFXj8kofujxZxdQnVrTmj28ukfotkS3MN
-         HCvGo5DIIw9WZcsyGtfu66qsxa1g6nBLzRhprzhByHv8I7+eMkYkxlU1B5D3xq3I4KOf
-         /28vnmmORF0AvfXt4fvhe9ftj7JGy12h86+fvleBteEpTJrSSCwPNZW1SuahFhQyjGJu
-         Cv4MvPWxyx1NHB3qoqVJeBCgSm0DwTbCnQCRHfUpV2PaPjloUpfwAxtiC3iz5FqnGXB7
-         6YrA==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ybgHkyPF+h7dJ20qYdKfKJv6J92DUAxMTSyFP2z5UJQ=;
+        b=p2QnzXhclEA1PPVQOaTd00ydj0ppMq36WsuzwzleJlv1hDxYCc2YUUj61cmyodPgFR
+         /WOHBYv5NUDLqM+RiQ7r6e+go6BSrrTYbFYADycuCbsbzp7Y+tfqN5UqG5WMPX194zC5
+         2cg3B6OHPmkJsAfI/2DxmVEcOSY390ZthE1I47MvPQHDR7JPA9TVqCcMY09DqzyzrCWm
+         iOwiwCdkmWkszLJ4MFIJkA85Q+nhaMmYChvC8DFdW2vZlUy/uAe+aNX7RNc0AUduuZ7y
+         5aez2rY4+uRci600k1OkhWBxCTIoMMArPI1HfE7WEo5QD6giN/1E/8q9pNy55bjkEOSa
+         l6+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q36OlMnP3Ys/6ybhANV3Apdof3npa1Vh+Mgsx1pBVWU=;
-        b=75ZVoZTjEEsKP/HZ8YjrANMETzueRTZp16bvAGFcI64SVEsCVv9NyKlcrpYUhKtO+M
-         YGah4/UUut0fRVa3E2GNTj0q32AWPJJI8JvTlVukIokNUYiSuRsBbAoLHqlTt86MZ4zR
-         9twtY4fgHue6bd3WQcJpYG6B9w37Vus6BGnwZfKAjMl6vubTQuDT/a9yje8LRe5X+QQQ
-         4KSr8Fo7y+70aGv7g3eX7fK3BRqBxoGlTHlOpIVKZh9gm51mRR5TotkvtTmJEih0/djG
-         vf8CP1pB4chTV+05b0MlitOWee4CvC7ZS+oJeYVNzqDpEnkGumgQIf6LrQRu/0OgV3R+
-         rntQ==
-X-Gm-Message-State: ACrzQf0tcW01KsOTLM670ULMovxfmyusgYorR3jwfsJIgwhE8faoHMuJ
-        weV4NiuTfCN7nNv+X+LOmDmR0w==
-X-Google-Smtp-Source: AMsMyM7H83+TH22aHNQ6HRVyJaoDi39AW5Sf28cYzigPPM7qK21FcZrwDuemt/vdFqzRpl+/R7UhNg==
-X-Received: by 2002:a05:600c:4f45:b0:3c7:176b:2505 with SMTP id m5-20020a05600c4f4500b003c7176b2505mr5771448wmq.185.1666874954196;
-        Thu, 27 Oct 2022 05:49:14 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:898:f380:1cb7:f7ba:a36e:de10? ([2a01:e0a:898:f380:1cb7:f7ba:a36e:de10])
-        by smtp.gmail.com with ESMTPSA id bg33-20020a05600c3ca100b003b49bd61b19sm4977299wmb.15.2022.10.27.05.49.13
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ybgHkyPF+h7dJ20qYdKfKJv6J92DUAxMTSyFP2z5UJQ=;
+        b=rnorIZDK+munVEc1eqg7npzTj/wflv8RsfWwLTiYvttjqv7Ua4yE0GnXf8q426y0ex
+         s9mwUCtUq+zEV7qKJrp5i81jCW0gZhjgbBVnyg66c1+l71e845QDnWtDhbeLuZjPoxvp
+         wg0Mav+o6/G7I+5H43KSMnupRPVVgHyo1U80VdQADaAqyLF9VAh517DS00/VkkmgDjYI
+         Nftdju30VUQJfnlHGajRsK1bmaNhZZ3suVLRulT/emnT1FSduiRf81M96DaK3AFB/kVm
+         kDM1pmROOu0NkQ3dvhGlTq+7Oyb7f0QLfJFtGHhTHnlRDLjoUES8n5dzrWKXh0iOXRxj
+         i/jA==
+X-Gm-Message-State: ACrzQf1k0h8bwXSHUJFEn6rwxEIL1jv1IKNHAGqUTAjyrhcWgX6u16cn
+        n2MSqc/4urBmQnCNQrBCsivtew==
+X-Google-Smtp-Source: AMsMyM43k6BYP8KnvoNas5bRzwItpSUpFoE8MGkV6xELRyB+O4EgiMZLav4IFjTOal7En6y1teBwqQ==
+X-Received: by 2002:ac8:7d55:0:b0:39b:ef52:a79e with SMTP id h21-20020ac87d55000000b0039bef52a79emr41084801qtb.658.1666875036305;
+        Thu, 27 Oct 2022 05:50:36 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id q11-20020a37f70b000000b006bb0f9b89cfsm895839qkj.87.2022.10.27.05.50.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 05:49:13 -0700 (PDT)
-Message-ID: <18ae0876-2d37-cde9-183f-894dfcdf4be9@linaro.org>
-Date:   Thu, 27 Oct 2022 14:49:12 +0200
+        Thu, 27 Oct 2022 05:50:35 -0700 (PDT)
+Message-ID: <bfeefd8a-4ffa-70a3-b0df-48bfb8cd7124@linaro.org>
+Date:   Thu, 27 Oct 2022 08:50:34 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCHv3] arm64: dts: meson: Enable active coling using gpio-fan
- on Odroid N2/N2+
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 1/2] pinctrl: pinctrl-loongson2: add pinctrl driver
+ support
 Content-Language: en-US
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221022084737.1028-1-linux.amoon@gmail.com>
- <CAFBinCBu_-0m9JeAr5kd-v7Z5LTi7w0WmmUYybW_kL4KJXXpOQ@mail.gmail.com>
- <CANAwSgRzdD0FWg+z6hTFs7KvpsD64bChX-k0dPXJfACXZH2zbQ@mail.gmail.com>
- <CAFBinCCNJiL-ZKRYesQAwys6bBMpYHJbUDK-Zi_VhGDVSvF7uQ@mail.gmail.com>
- <CANAwSgTLTCA9=WvWXcR-40baauN3kAk2qx9k4FQOPCa1+_O0Yw@mail.gmail.com>
- <5d2ffeca-b41c-20b4-454b-703c39bbb29e@linaro.org>
- <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CANAwSgR1CN=Gho6NGMoM1bH92KyeGqoAphmT6NqtnL=+3Zg_jQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20221024014209.5327-1-zhuyinbo@loongson.cn>
+ <a5a5c18f-476c-2f45-8cd0-3c88b3aa509d@linaro.org>
+ <841bad76-e19c-e400-e46a-2a83986c29eb@loongson.cn>
+ <9dfb7434-dd62-64e8-7831-b797687827e7@linaro.org>
+ <542e661c-5aa3-a855-889f-6deb8a74584f@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <542e661c-5aa3-a855-889f-6deb8a74584f@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 26/10/2022 18:02, Anand Moon wrote:
-> Hi Neil,
-
-<snip>
-
+On 27/10/2022 04:20, Yinbo Zhu wrote:
+> You can find these code has a change in this code conext.  I have a 
+> feedback on this code.  but I mistakenly thought helper is dev_err_probe.
+>          res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>          pctrl->reg_base = devm_ioremap_resource(dev, res);
+>          if (IS_ERR(pctrl->reg_base))
+> -               return PTR_ERR(pctrl->reg_base);
+> +               return dev_err_probe(pctrl->dev, PTR_ERR(pctrl->reg_base),
+> +                               "unable to map I/O memory");
 > 
-> When I try to use pwm_AO_cd,,
-> Either one of the PWM binds will fail to get the following error.
+>          raw_spin_lock_init(&pctrl->lock);
 > 
->   &pwm_AO_cd {
-> -       pinctrl-0 = <&pwm_ao_d_e_pins>;
-> +       pinctrl-0 = <&pwm_ao_d_e_pins>, <&pwm_ao_d_10_pins>;
->          pinctrl-names = "default";
->          clocks = <&xtal>;
->          clock-names = "clkin1";
-> 
-> [    3.941700] pwm-regulator regulator-vddcpu-b: error -EBUSY: Failed to get PWM
-> [    3.943198] pwm-regulator: probe of regulator-vddcpu-b failed with error -16
-> 
-> [    3.956356] pwm-fan pwm-fan: error -EBUSY: Could not get PWM
-> [    3.956396] pwm-fan: probe of pwm-fan failed with error -16
-
-Yeah because PWM "D" is already used by the "pwm_AO_ab" controller, so you can't use it for the FAN.
-
-> 
-> Below are my changes with  pwm_AO_ab
-> ---------------------------------------------------------------------------------------------
-> alarm@odroid-n2:~/linux-amlogic-5.y-devel$ git diff
-> arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> index fd3fa82e4c33..d038ba1e2453 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-> @@ -39,6 +39,14 @@ emmc_pwrseq: emmc-pwrseq {
->                  reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
->          };
-> 
-> +       fan: pwm-fan {
-> +               compatible = "pwm-fan";
-> +               pwms = <&pwm_AO_ab 1 1250 0>;
-
-Here you use the "B" PWM signal, not the D.
-
-> +               fan-supply = <&vcc_5v>;
-> +               #cooling-cells = <2>;
-> +               cooling-levels = <0 100 170 230>;
-> +       };
-> +
->          leds {
-
-<snip>
-
-> 
-> +&pwm_AO_ab {
-> +       pinctrl-0 = <&pwm_ao_d_10_pins>;
-
-The "pwm_AO_ab" controller only controls the PWM "A" & "B signals, not the "D" !
-
-This basically enables the PWM "D" pin function to GPIOAO_10, it doesn't assign it to the "pwm_AO_ab" controller.
-
-So by enabling this pinctrl, it will duplicate the pwm_ao_d_e_pins signal to pwm_ao_d_10_pins, this is why the FAN spins non-stop.
-
-> +       pinctrl-names = "default";
-> +       clocks = <&xtal>;
-> +       clock-names = "clkin1";
-> +       status = "okay";
-> +};
-> +
->   &pwm_AO_cd {
->          pinctrl-0 = <&pwm_ao_d_e_pins>;
->          pinctrl-names = "default";
-> -------------------------------------------------------------------------------------------
->>>
->>> Thanks
->>>
->>> -Anand
 >>
->> Neil
+>> There is a helper combining two calls into one. Grep for it in headers
+>> and use it.
+>>
+> You said is that use "devm_platform_get_and_ioremap_resource" as a 
+> helper? sorry, I will do it.
 
-Neil
+I believe the helper is devm_platform_ioremap_resource(), but I never
+remember the names so just check in the sources.
+
+Best regards,
+Krzysztof
+
