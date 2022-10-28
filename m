@@ -2,175 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4300D611452
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D074611458
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbiJ1ORQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47272 "EHLO
+        id S229455AbiJ1OTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 10:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230099AbiJ1ORM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:17:12 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0A01D73EA;
-        Fri, 28 Oct 2022 07:17:11 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id a67so8045455edf.12;
-        Fri, 28 Oct 2022 07:17:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m3/GkIErCyzssYh0dHI9LFVDVbU/HUlq9/DKH07MncQ=;
-        b=GbEhx6IFXg+Xf9x6uG0h5tHbOXDLTKOPMiGIsyp5BF5gNenpOhdy7F30UCgpdV2w7U
-         g1qQHlSPzF3VEkrTpzHswBGZ7XEofJsrPD+i/FZUior3HH+bLNbxcjIK13g/oD4HVOBI
-         rEvkq2lZPjQ8YTzjy9xleQwvYlJO4zfCItbxv5tYJSyHLJMY2efvyss+clw5AGHeVcr+
-         Y9L0d9gxEPS7z1mjUXLnb8/gM9P8JjMHSESTmJJRB70UVeR099MdfZGCqFnpQpFtQjUU
-         XBrgxA5B2iuD3KZlAGqkcckJ2N0ven6NjatRSuQkIye1L6R086ht7svBjVId3FtLfc6W
-         ddig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m3/GkIErCyzssYh0dHI9LFVDVbU/HUlq9/DKH07MncQ=;
-        b=kiaLZ2IKU18iKZXRDn1GwWdkl9Y7g2zggj2kJ1LH/7mRG4/WIe8Tw8z2qsdoBKjQnW
-         ZL4Etcd6Pu4tUYJI7/ziMt7IBPHdoGAckcpRuhZ9xaJfHQz0wITUvH8CERYtjmjDAvwV
-         BN8NFZ51fk6Y0aom/Zx3c07qkBnEbj+gLFCYO9fKE00FjLQED2C6KzQ10lDAXGNm4/M+
-         4lefJp7Btz84AmPwZZUkIxig/4OOgp8SbZkJMbA/qFjLI+BPGzeW5r5ZelnT3tBG/5ln
-         vC90Ul7eYKJ0YZ+qTyaEpPEJhDrQHst0mDt1SRU02T1Fz84W1F9A8uQXSDGF4j9x7ucv
-         TL6g==
-X-Gm-Message-State: ACrzQf04EidJRk5tZGEFbyQF2B4uMOZ+dJhS4KHFCT5QvT4AOTQSqr7X
-        7h/1COS2fZaNxYML6ScvQNM=
-X-Google-Smtp-Source: AMsMyM7lJm4/7PiwRFn+PDhbJ/FqhLMhs8uSBaHjk3EZyrns4NYIdWr0UlYQfxwVEHwMoaTkk2a5dg==
-X-Received: by 2002:a50:fe99:0:b0:45c:329a:40f6 with SMTP id d25-20020a50fe99000000b0045c329a40f6mr51286685edt.425.1666966629887;
-        Fri, 28 Oct 2022 07:17:09 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id p20-20020a1709060dd400b0077077c62cadsm2225369eji.31.2022.10.28.07.17.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 07:17:09 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 16:17:07 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
+        with ESMTP id S230367AbiJ1OTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:19:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6A21E3EFA;
+        Fri, 28 Oct 2022 07:19:08 -0700 (PDT)
+Received: from Falcon9.mtl.collabora.ca (mtl.collabora.ca [66.171.169.34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: detlev)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DFF796602929;
+        Fri, 28 Oct 2022 15:19:05 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666966747;
+        bh=m/1hch4d/QsPLuNqP8lJpPMkiEIjR7tmyE3F0XJH+GA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NO0A98iXxE24KM+jOU28FC8gP4S/ntjkLRyOYis5wAj6kOy4bYhTasScC4Ah+kOF3
+         FZJLC15vrNq5O6iiKWgHfVKXPoGYmTcZzaK+DDxCB12tV01UyP9pSRq6IzaSsIc0KY
+         F4AeVy2qu/eD6dRk8AH0oXeavAJl7UHnepA5AFh2mcBqBPgv299BGUBwGI/fCX4fKi
+         2A4fdKU8OP9pQOqIgIVLJxeI4psydrJewiAmqHwcAxluSjvRSYwLterpz0j4dq1Sg0
+         EYSKG3FDmPbmPp9iwySnzOGQreiyimrYpLYZt9B/9ytbZJAUbO92FWktIdVWp05qWP
+         JEIb5it3rXqyw==
+From:   Detlev Casanova <detlev.casanova@collabora.com>
+To:     linux-kernel@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Update console for Jetson Xavier and Orin
-Message-ID: <Y1vkYyuCPoLLCXDO@orome>
-References: <20221028123556.134435-1-jonathanh@nvidia.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
+        / MXC ARM ARCHITECTURE),
+        Detlev Casanova <detlev.casanova@collabora.com>
+Subject: [PATCH] ARM: dts: imx6qdl-sabre: Add mmc aliases
+Date:   Fri, 28 Oct 2022 10:18:11 -0400
+Message-Id: <20221028141811.101122-1-detlev.casanova@collabora.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fuEfujF2Fen1v13o"
-Content-Disposition: inline
-In-Reply-To: <20221028123556.134435-1-jonathanh@nvidia.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+If not specified, the mmc0 and mmc1 devices will be the devices
+mmc@2190000 and mmc@2194000, which are in disabled state on the iMX.6
+Sabrelite devices.
 
---fuEfujF2Fen1v13o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The actual SD card reader devices are the ones at mmc@2198000 and
+mmc@219c000.
 
-On Fri, Oct 28, 2022 at 01:35:56PM +0100, Jon Hunter wrote:
-> The Tegra Combined UART (TCU) is the default serial interface for Jetson
-> Xavier and Orin platforms and so update the bootargs for these platforms
-> to use the TCU.
->=20
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi                | 2 +-
->  arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi                | 2 +-
->  arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
+Set aliases to use the correct mmc devices order.
 
-I'm a little confused now. You're certainly right that the TCU is the
-serial interface, but then why haven't we seen any fallout from this?
-That is, why does console=3DttyS0,115200n8 still work just fine?
+Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+---
+ arch/arm/boot/dts/imx6qdl-sabrelite.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Looking a little more into stdout-path (which we already point to the
-TCU), that ends up adding TCU as the preferred console already. So I
-wonder if we really need to set the console here at all.
+diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+index 22f8e2783cdf..12573e1f917c 100644
+--- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+@@ -14,6 +14,11 @@ chosen {
+ 		stdout-path = &uart2;
+ 	};
+ 
++	aliases {
++		mmc0 = &usdhc3;
++		mmc1 = &usdhc4;
++	};
++
+ 	memory@10000000 {
+ 		device_type = "memory";
+ 		reg = <0x10000000 0x40000000>;
+-- 
+2.38.1
 
-Do you see any difference in behavior after this patch? Does it fix
-anything? Could you perhaps try to remove this option altogether and see
-if that makes a difference?
-
-Thierry
-
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/=
-boot/dts/nvidia/tegra194-p2888.dtsi
-> index 3837ebc67c8e..ccdb32c67861 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-> @@ -23,7 +23,7 @@ aliases {
->  	};
-> =20
->  	chosen {
-> -		bootargs =3D "console=3DttyS0,115200n8";
-> +		bootargs =3D "console=3DttyTCU0,115200n8";
->  		stdout-path =3D "serial0:115200n8";
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi b/arch/arm64/=
-boot/dts/nvidia/tegra194-p3668.dtsi
-> index 916ea3419ee5..f147324d72f3 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi
-> @@ -20,7 +20,7 @@ aliases {
->  	};
-> =20
->  	chosen {
-> -		bootargs =3D "console=3DttyS0,115200n8";
-> +		bootargs =3D "console=3DttyTCU0,115200n8";
->  		stdout-path =3D "serial0:115200n8";
->  	};
-> =20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dt=
-s b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> index df703fb0cfff..96aa2267b06d 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-> @@ -2025,7 +2025,7 @@ hda@3510000 {
->  	};
-> =20
->  	chosen {
-> -		bootargs =3D "console=3DttyS0,115200n8";
-> +		bootargs =3D "console=3DttyTCU0,115200n8";
->  		stdout-path =3D "serial0:115200n8";
->  	};
-> =20
-> --=20
-> 2.25.1
->=20
-
---fuEfujF2Fen1v13o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNb5GMACgkQ3SOs138+
-s6FT8Q/9FRGiLl3za9jRfzpxJYQ0zfSvxZKi8+V24dlEff/iTGllZlIaSOJ60njE
-+sIbUMlSYWrsNdD7IItW2qwsfdePshtEWyXPvWCe3IsES5UEtXdNASXrbaK3aCq6
-DJcOx3AWptP3VgntdljEkcDNbEnyewtdwtVamXZ35leDPfOfor7aHZP/89LdROKf
-R8IXLsl2u7CvkrEVXKnh9zLVLTECWcPct50s6kGNXDKqhhGWaFXyAZfNtjHbVFee
-1IvhbRLCxr4x3TSpPiHAjqktMX4gj63r3BqmWQIZWe8ZlcuK/IpIi11nnwTEzfb0
-nsdYCAqCgiyaWE3XMnwc93NoSu+9JXifFX08o5iyiHiwR8ZyYkBeGDrmrsIva3Oy
-A9QiWX0J1trgl5rkY30sR5Omi84LqhvP4KmaDzLF+QTQzdovO8yG3OvsdMbCuowu
-sMLEjx2HDyHUpt0rLIk14VSzPXB3W98WyeM8RwUU71ash9aRMLwzHdnuE9dBFT9k
-DD68OqBI8Uu1R3YYZZgsntMGlkcz8ae35FnAaYv+o51bnEykmxXcyjynVFZ8bzOo
-wLFeImgiCsyI2KMd0GN+mMtvZ6SlkzbR5rQLEGV2zAUJFWwLUpxz4MOH2XFwXfqx
-KLGdwtoOO8pppkgAWDHLeP3yKbbq0jDH/6iN3o9Lx1Lpfska2Lo=
-=Szkj
------END PGP SIGNATURE-----
-
---fuEfujF2Fen1v13o--
