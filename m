@@ -2,130 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C90461115D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08706611170
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:31:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbiJ1M3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:29:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43608 "EHLO
+        id S229949AbiJ1Mbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbiJ1M3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:29:35 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4031B60CB
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:29:29 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id s24so8127356ljs.11
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:29:29 -0700 (PDT)
+        with ESMTP id S230018AbiJ1Mbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:31:36 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC87190E51;
+        Fri, 28 Oct 2022 05:31:34 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id y69so7653067ede.5;
+        Fri, 28 Oct 2022 05:31:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xhh2GfNPqccqHt9z7S0/T4lVRI1pm6I0GIyqBlDEE6Q=;
-        b=Gv3mhdHv4vTqTawNHz1Bsh6DyvFILad7+MCdXJ/Kg9Hu8zE08m6fZ8RGYRwg76Qt7h
-         xiVKcxSf9tQQxNOF007MpB2BTQUVbn3dCwuaS2V+PFtS2nPi0x0fe7DPKouC0o8+IPtF
-         aKKWJX/UxIDkAf7/FTMYLYItVomf7DtW17XMYNjmxuMmB6cerpTlO1ofsONDt2eJoXSR
-         peDoWokbyIryddPi1EUHNAj8obcrkfrzSmbmaEYDSy8nNcGWxisgLP0d77xdEaUIfyjX
-         AC5eXEc1PmLjCOg7c3rOVB0LocXqV6ephnuD692n+5j0VW3Kfs6fluKoG3wpY47ezLvl
-         cluA==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N+hgVsFfIHOn2i92zfvFuxronhUcGA0Jyj434tyBrgU=;
+        b=QiRNzg7+FZFB6qrZ5IwQOaSWRlbnwey0IIWL0aK0meEYRhb+D20T+FO65mjI6pFvBZ
+         vZ+41PJz6j+vBQ+UfqV3QIxPlB4BGYIceAjIQfRi2DgXozx/dGPydJZTb6XZ+SEQCNNV
+         3ESHmEbJmYNahV1n6oDm2+DdcsxvJSTrwUCERXwvopR4Au+FASHHVk9NHBLmhllqnvCS
+         kCWZsa3Gjl78Et7VRmVeIRl68wxBL0mYIi7t9rveFn8rnvYNNqV7W2PV/sMu0ai44uyw
+         LhPPefTq/BiJGzQfmyfS3WWn7nSFiN9uo4MJY+IoemZdVL5i+hYCpBCELTMp4LUdm6d8
+         Hg7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xhh2GfNPqccqHt9z7S0/T4lVRI1pm6I0GIyqBlDEE6Q=;
-        b=jNZaLdDrF/yMTCaFmfQpwo1GDEFoiJic1o1AB2lLUqSOe6LdQSEOXLG2kB9JrtXM8r
-         hflEXw1JSF04XmHzpjG2/yNYwg/APzxd15EL1WuMCpXJT0j6KU7e/r8wqCiKK9dXXG5y
-         UlPmA0HrmwvcKuefk4n4RibS6Yk7njxnCsIfF0dvk8PcIcv9JerNphK9SGap38rHHCl8
-         DZNMvCsD7oVtLtur+2E8s+ljedOfC8Hx2bRaslFSN88tNOUDdniT/q8/ZcDEE289YPHE
-         cpFMvA5f9XoafgUBeA7p74teXf5Nvqrmjpw/INoWKAmI3zVopnoSDjmDCder8fIqzeYA
-         owzA==
-X-Gm-Message-State: ACrzQf3CCeyajvk7Bpsw+wVqAK9O5+OqMWKBCF60cmIyXy9zdz1zDExZ
-        9eAINnBXbMHfiXjAzp7Awvp8TQ==
-X-Google-Smtp-Source: AMsMyM4cqflCH7VKbXl6GhfGyt9BzQJBZMw3rl9thrFiCIpESo5T+Xin/zo7hOdtAxup19xhLpLF2w==
-X-Received: by 2002:a05:651c:111:b0:277:2451:816c with SMTP id a17-20020a05651c011100b002772451816cmr4467514ljb.17.1666960167619;
-        Fri, 28 Oct 2022 05:29:27 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z10-20020a05651c11ca00b00277074c12ddsm621018ljo.125.2022.10.28.05.29.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 05:29:27 -0700 (PDT)
-Message-ID: <09a049cc-0514-2db3-0e8b-ff3dfa61d585@linaro.org>
-Date:   Fri, 28 Oct 2022 15:29:26 +0300
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N+hgVsFfIHOn2i92zfvFuxronhUcGA0Jyj434tyBrgU=;
+        b=vjqXz63QR1qCaKP2gfw0VR/0GgozFfWPL9CHjUVK0jOxUdVeXUAH5b/6vxqri37bqh
+         wnxzoNtz2/DOsDSyMFiSnJxW9ErgmN44tc0zhXIPaTQvDdJSA9XOrFP4yU4OrSIMB+D6
+         lFl0wRJXj4GKHJA6Lbem8wLDbXC1K33Q36zKhtq8HGEjY7lHPc0btzRZAhhi+NznS9TM
+         6Fiuiz8WyqKy8sn04A2Mp/HW9I7lFfKXOzx5qQSLPup5BTtVToyf3uDmmEJuKfjNb6vk
+         VBgggx73xbmVRbaDcP/Haw5zagle0i0+TPKO+vEY5KzoZ4EZfaVH1Ea7+RRZe3z45eCT
+         TobQ==
+X-Gm-Message-State: ACrzQf3KvMAot2pSlnaBSZYkKMuC2ztEnboHwA3MIc2kP5g4ic3yIUaO
+        kKfXY5RkdkPovEIXAlTI5B4=
+X-Google-Smtp-Source: AMsMyM6iCHrDVGRWRro91KRlEzXgqCGqlUwxT/cAIMfxY0kwsfsJaBK/myV34+ft4dKYZAo+Ren9dQ==
+X-Received: by 2002:a05:6402:4148:b0:440:cb9f:d10f with SMTP id x8-20020a056402414800b00440cb9fd10fmr50292473eda.77.1666960293282;
+        Fri, 28 Oct 2022 05:31:33 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id r19-20020aa7cfd3000000b004611c230bd0sm2639373edy.37.2022.10.28.05.31.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 05:31:32 -0700 (PDT)
+Date:   Fri, 28 Oct 2022 14:31:29 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Wayne Chang <waynec@nvidia.com>, gregkh@linuxfoundation.org,
+        treding@nvidia.com, heikki.krogerus@linux.intel.com,
+        ajayg@nvidia.com, kishon@ti.com, vkoul@kernel.org,
+        p.zabel@pengutronix.de, balbi@kernel.org, mathias.nyman@intel.com,
+        jckuo@nvidia.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        singhanc@nvidia.com, linux-i2c@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 03/11] dt-bindings: usb: Add binding for Cypress cypd4226
+ I2C driver
+Message-ID: <Y1vLoT+/dgOgrxjD@orome>
+References: <20221024074128.1113554-1-waynec@nvidia.com>
+ <20221024074128.1113554-4-waynec@nvidia.com>
+ <f8eeeebc-e635-9c97-b97b-46df38f06002@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v1 1/9] drm/msm: Add compatibles for SM8350 display
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
-        airlied@linux.ie, daniel@ffwll.ch, quic_kalyant@quicinc.com,
-        swboyd@chromium.org, angelogioacchino.delregno@somainline.org,
-        loic.poulain@linaro.org, quic_vpolimer@quicinc.com,
-        vkoul@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
-        quic_jesszhan@quicinc.com
-References: <20221028120812.339100-1-robert.foss@linaro.org>
- <20221028120812.339100-2-robert.foss@linaro.org>
- <0f8e73f6-d005-7e0b-ba38-c4d0161c1acd@linaro.org>
-In-Reply-To: <0f8e73f6-d005-7e0b-ba38-c4d0161c1acd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="h3NQArSPnjsazpQi"
+Content-Disposition: inline
+In-Reply-To: <f8eeeebc-e635-9c97-b97b-46df38f06002@nvidia.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 15:19, Dmitry Baryshkov wrote:
-> On 28/10/2022 15:08, Robert Foss wrote:
->> Add compatible string for "qcom,sm8350-dpu" and
->> "qcom,sm8350-mdss".
->>
->> Signed-off-by: Robert Foss <robert.foss@linaro.org>
->> ---
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 1 +
->>   drivers/gpu/drm/msm/msm_mdss.c          | 1 +
->>   2 files changed, 2 insertions(+)
-> 
-> [skipped]
-> 
->> diff --git a/drivers/gpu/drm/msm/msm_mdss.c 
->> b/drivers/gpu/drm/msm/msm_mdss.c
->> index e13c5c12b775..fd5a95cace16 100644
->> --- a/drivers/gpu/drm/msm/msm_mdss.c
->> +++ b/drivers/gpu/drm/msm/msm_mdss.c
->> @@ -447,6 +447,7 @@ static const struct of_device_id mdss_dt_match[] = {
->>       { .compatible = "qcom,sc8180x-mdss" },
->>       { .compatible = "qcom,sm8150-mdss" },
->>       { .compatible = "qcom,sm8250-mdss" },
->> +    { .compatible = "qcom,sm8350-mdss" },
->>       {}
->>   };
->>   MODULE_DEVICE_TABLE(of, mdss_dt_match);
-> 
-> 
-> BTW: you probably also have to update the msm_mdss_enable() function 
-> with the 8350-specific code.
-> 
 
-For mdss changes you can depend on [1], I plan to merge this patch in 
-this window.
+--h3NQArSPnjsazpQi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] https://patchwork.freedesktop.org/patch/489578/?series=105162&rev=1
+On Wed, Oct 26, 2022 at 08:13:57AM +0100, Jon Hunter wrote:
+>=20
+> On 24/10/2022 08:41, Wayne Chang wrote:
+> > add device-tree binding documentation for Cypress cypd4226 type-C
+> > controller's I2C interface. It is a standard i2c slave with GPIO
+> > input as IRQ interface.
+> >=20
+> > Signed-off-by: Wayne Chang <waynec@nvidia.com>
+> > ---
+> >   .../bindings/usb/cypress,cypd4226.yaml        | 86 +++++++++++++++++++
+> >   1 file changed, 86 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/usb/cypress,cypd=
+4226.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/usb/cypress,cypd4226.yam=
+l b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> > new file mode 100644
+> > index 000000000000..5ac28ab4e7a1
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/cypress,cypd4226.yaml
+> > @@ -0,0 +1,86 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/cypress,cypd4226.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Cypress cypd4226 UCSI I2C Type-C Controller
+> > +
+> > +maintainers:
+> > +  - Wayne Chang <waynec@nvidia.com>
+> > +
+> > +description: |
+> > +  The Cypress cypd4226 UCSI I2C type-C controller is a I2C interface t=
+ype-C
+> > +  controller.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: cypress,cypd4226
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  reg:
+> > +    const: 0x08
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  cypress,firmware-build:
+> > +    enum:
+> > +      - nv
+> > +      - gn
+> > +    description: |
+> > +      the name of the CCGx firmware built for product series.
+> > +      should be set one of following:
+> > +      - "nv" for the RTX product series
+>=20
+> Please add 'NVIDIA' so that it is 'for the NVIDIA RTX product series'
+>=20
+> > +      - "gn" for the Jetson product series
+>=20
+> Same here please add 'NVIDIA' so that it is 'for the NVIDIA Jetson product
+> series'.
+>=20
+> Rob, any concerns about this property in general? Unfortunately, ACPI cho=
+ose
+> a 16-bit type for this and used 'nv' for the RTX product. I don't find 'g=
+n'
+> for Jetson very descriptive but we need a way to differentiate from RTX.
+>=20
+> This is needed in the Cypress CCGX driver for the following ...
+>=20
+> https://lore.kernel.org/lkml/20220928150840.3804313-1-waynec@nvidia.com/
+>=20
+> Ideally, this should have been included in this series but was sent befor=
+e.
+> We can always re-work/update the above patch even though it has been queu=
+ed
+> up now.
 
-Also with the mdss changes, it would be good to split this patch into 
-dpu and mdss parts.
+The driver seems to use this 16-bit value only to compare with a
+corresponding field in the firmware headers. How exactly we obtain this
+value is therefore not important. However, since this 16-bit value is
+embedded in firmware images, we also cannot substitute them with
+something more sensible.
 
--- 
-With best wishes
-Dmitry
+However, I'm also a little confused as to the meaning of the property.
+Looking at the driver, the fw_build field is used to check for
+"supported vendors". "nv" and "gn" are clearly the same vendor (NVIDIA),
+so that's at least not 100% accurate. The DT bindings say that this
+denotes the product series, which seems to be more in line with how the
+driver uses it.
 
+The driver also uses it to implement changes in behavior across
+different variants, which is something that we would typically describe
+using compatible strings. So I wonder if we should, at least for device
+tree, switch to using different compatible strings rather than this
+separate matching mechanism. We could then associate a "product series"
+with the compatible string rather than having this extra field.
+
+There's also an argument to be made for keeping the interface the same
+between ACPI and DT.
+
+Rob, Krzysztof?
+
+Thierry
+
+--h3NQArSPnjsazpQi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIyBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNby54ACgkQ3SOs138+
+s6E4fg/3R0pKH9akh9kvP2t0sZWoPkiERl9cABlNizWtx2cy0gI7OGgZ89iorCa0
+0vJV2G1eOEBkuCCEOd+L8X9C3QaIZV/MF1l1dwnaiZBagtCw6UNE+WkAN+I/ifBx
+ISyjta7Mz94FVzG8lMK+IaVEewvLMXOM4jm32BCtqgveWe6g3FBscC1ugu0po5iJ
+kMDQcrBuaqoZ2gAK1NJdw1vBR2XMfKzwUTS2GcugLUl2ZmzHRGiF8T5+UpagY7Pv
+otwtss8jKnINh8VS7WFGooMMQrB/0C6PnPSqnCf2R7yi/0gFq9wtJ6arBwIkKTI/
+t3XhAN5Fh86GFBCHMbPbT2EO7uC/71jtaaHwXFH3fiqKh91uqDnR1BgvR4bJEUNa
+Xs9LXoVkmJKXro1/3dgr3e6EhwB+mBTRA8WLVS4poR2CAI33ajHzjcvLpnZyltvL
+CeZJF2OfawWMdUWJTcMX23K2xh93q7e5vkveceNX2y15+yV066iOiI9P7GPVKOoJ
+8zbLfOJq6Ds5bW+4FhY81A9R9ib24whF3TNj5XJUy8B1YAjxVdETjxXe4kMnkut6
+4/4klVkO+koS4zU0MwZdg5lL6ZfLbHLQS8okQvtnOEbXsCSKq/aTB4jr0riCyw9o
+zVH7RBtyfYVdaPbItBeVbJPxMxcL9Ex0M/w8LUnbLXD8JZdIAw==
+=Cf+J
+-----END PGP SIGNATURE-----
+
+--h3NQArSPnjsazpQi--
