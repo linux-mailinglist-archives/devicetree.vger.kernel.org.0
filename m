@@ -2,340 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 584B2611B54
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF478611B69
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:10:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbiJ1UCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 16:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38370 "EHLO
+        id S230174AbiJ1UKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 16:10:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbiJ1UCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:02:07 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13451DE3DD
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:02:01 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id x26so4186730qki.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:02:01 -0700 (PDT)
+        with ESMTP id S229750AbiJ1UKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:10:35 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513B43B979;
+        Fri, 28 Oct 2022 13:10:14 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id r18so5720562pgr.12;
+        Fri, 28 Oct 2022 13:10:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bdMQ1e2RSiY0iFjHTnOY+ZoLlVTTLqoC3Ptqc5DqK0I=;
-        b=PcqZ7PtW5MlDoiLP2IwcD+4RGCbeVZgP8Ksej6kiYupCJ8j+Ee9znOOhCKCd+Xs5m9
-         vHlrKzRJTBMnvo+aNvaGBudhEltguTzoc8Cjo2zBRrlX4Fa0sAuPbHHoHwbF1XXrhIpC
-         uMDPzyHpUpDGsJ7C67l22jfaKS6nIdticRTNFiIZpA1AMRM9Ug3ZQ4oGLGV259rLUVBG
-         6yZwkCzCDTG8IFGZc7HVfOgdCUNE6lGJnd62PKYU08DJA++91R1ZZ3F8cWlWjMRNGtPS
-         5aexMW7upmnpRE6YqJRp5EAYSHk5+YM6N1LumIhWeFSIY8j4fasxqCM5RwRkqgSQMX/F
-         lngg==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iBZo/dC6Q+wzhKtQTU3L9ZaF2Ionm1WRsDT9YBpa+v4=;
+        b=HHgnF2o76kVgjWHDEvsyd4pt+m4CEWY6TJyfGzouGmxQhaqpaUo4TlBRwKT5oyCZ9Q
+         LQU+MNHbJBf9ZCeXGiVlO7xVcnePGEI6msSjHnqPEqFr4rIJnycFJci5T/bNDJHpxJ8X
+         HT+rnD6u2SgZdr9lpoiu4YJ3aCzQllFGR9T9q00IyubQrEGtC/7q4VcvGb9cl73w/w+E
+         ziSj+ViVR9kZ0Z4E7SpjF/74TCQBh8ssbF2UefHi8CN+rGl1yX0t1YExnLU7Cj2GFQ30
+         FqbEKeWTtmvBS0lgd0d7jpTcPNkSKT4ubrn+Bn18NwJtEIB6LglvOMEp3CLAchCYFvLm
+         6myA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bdMQ1e2RSiY0iFjHTnOY+ZoLlVTTLqoC3Ptqc5DqK0I=;
-        b=qBAE+aWlnjJ06RCGFNFtvGq7BoA0ystcjCtmNy6RqixQafkH7JheRFJIu5xWsZJjib
-         QpE1EEZMU8u9uyyO1oI4kp67QPokdUmha6DNvy9VMAAOhSN4Aov/ei/wMtgSJCXjAGbq
-         g8XDSZTZ7Sxi1hYUjRTfdZ3pvA1yz/Pg/eKJnOQJ8lY1Fr/TrAk+gUh1up4vxnT0fv+5
-         TNIBPE7Pu6jiw+jWlVHctJBCVBwYL9yhi6CNQcjvvBtkuP9qmOHabDLawx+axwdTlyHZ
-         6NjY/8zwK2NjOBsWsNu5i3GjmNqonFV12flYdJ4/zoIynOety29AObsmny5uxxjX6saP
-         +U6A==
-X-Gm-Message-State: ACrzQf2pqwQIz/g4EvsDOYY5vVcVw/X6+AQWQb3feDXmyAqIGUYwu+Qu
-        i9vx6Px7gz9qCdm8M98y8yHx8A==
-X-Google-Smtp-Source: AMsMyM5YpeL94Iw48e5O3aOG/3SA+rFA4qewOF0lq3w+vTmwLbFf7lZKx0HynAPmLDSOr4u3Ran9sA==
-X-Received: by 2002:a37:2d02:0:b0:6f1:15cd:1493 with SMTP id t2-20020a372d02000000b006f115cd1493mr769971qkh.131.1666987320813;
-        Fri, 28 Oct 2022 13:02:00 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id v6-20020a05622a014600b003999d25e772sm2839124qtw.71.2022.10.28.13.01.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 13:02:00 -0700 (PDT)
-Message-ID: <e34b35f4-4197-3973-0947-14ee577494e9@linaro.org>
-Date:   Fri, 28 Oct 2022 16:01:58 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iBZo/dC6Q+wzhKtQTU3L9ZaF2Ionm1WRsDT9YBpa+v4=;
+        b=IqcCGPtPRUXPc5yn11M1cMFAEzxN/Q//LVRxaN2yuOo1exC4eZVg9iiOpYviJ0DPL1
+         iPH+LnCHStKTR2uEuB60zcbuWMsyjoOw/la2M+it7bPlIG0bI7NZM+IeHhhNC1sLOwCX
+         l2C4czypySuiZ69UyzHJxPtMuMKxUpnjqfvZwQ3i89RYmUb6CC0osx0RCFkYzrBtsIBS
+         EjjKGVJqaVeCZJkZZPzV6RJ17fTD7tscx2x7lLXPb2PbDLfDjVo/x1yk1QR0Eg+rpbwx
+         uc6j6CE5XAvNg6WBOv8IB1yFhALhUt54ceqIEWJ3aj2JpHebozcdndgBE+JqfaoCFWpT
+         K9tQ==
+X-Gm-Message-State: ACrzQf0lEA0ucZGvjGlmUKfzzcu0Do8jLk5ewlx6+TICwkHaHqX7qgKG
+        LBmUzAQt+0FJHgT+/8EqG9w=
+X-Google-Smtp-Source: AMsMyM6YSVyP0C6lt5etyLKbRx3bv0C6jh4sqOTHVjcTTF8i+MafKMFEPfFVg7i56XZsRJZSDQ+vhQ==
+X-Received: by 2002:aa7:888b:0:b0:563:aa1:adae with SMTP id z11-20020aa7888b000000b005630aa1adaemr852470pfe.15.1666987813673;
+        Fri, 28 Oct 2022 13:10:13 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:ea9a:801b:ed52:2db1])
+        by smtp.gmail.com with ESMTPSA id m5-20020a170902bb8500b00186a8beec78sm3453919pls.52.2022.10.28.13.10.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 13:10:12 -0700 (PDT)
+Date:   Fri, 28 Oct 2022 13:10:09 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, jeff@labundy.com,
+        neil.armstrong@linaro.org, arnd@arndb.de, robert.jarzmik@free.fr,
+        Jonathan.Cameron@huawei.com, christianshewitt@gmail.com,
+        stano.jakubek@gmail.com, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v3 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
+Message-ID: <Y1w3IZniJ/4otMDX@google.com>
+References: <20221010153522.17503-1-macroalpha82@gmail.com>
+ <20221010153522.17503-4-macroalpha82@gmail.com>
+ <87sfjhp9f6.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 09/13] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
- Add MT6795
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Andy Teng <andy.teng@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20221028153505.23741-1-y.oudjana@protonmail.com>
- <20221028153505.23741-10-y.oudjana@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028153505.23741-10-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87sfjhp9f6.fsf@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 11:35, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
+On Fri, Oct 21, 2022 at 03:56:29PM +0200, Mattijs Korpershoek wrote:
+> Hi Chris,
 > 
-> Combine MT6795 pin controller document into MT6779 one. In the
-> process, amend the example with comments and additional pinctrl
-> nodes from the MT6795 example, replace the current interrupts
-> property description with the one from the MT6795 document since
-> it makes more sense and define its items using conditionals
-> as they now vary between variants. Also use conditionals to define
-> valid values for the drive-strength property for each variant.
+> Thank you for your patch.
 > 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->  .../pinctrl/mediatek,mt6779-pinctrl.yaml      | 189 ++++++++++-----
->  .../pinctrl/mediatek,pinctrl-mt6795.yaml      | 227 ------------------
->  2 files changed, 127 insertions(+), 289 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+> On Mon, Oct 10, 2022 at 10:35, Chris Morgan <macroalpha82@gmail.com> wrote:
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-> index 70e4ffa2d897..6f2cffe50b11 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6779-pinctrl.yaml
-> @@ -8,6 +8,7 @@ title: Mediatek MT6779 Pin Controller
->  
->  maintainers:
->    - Andy Teng <andy.teng@mediatek.com>
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->    - Sean Wang <sean.wang@kernel.org>
->  
->  description:
-> @@ -18,6 +19,7 @@ properties:
->    compatible:
->      enum:
->        - mediatek,mt6779-pinctrl
-> +      - mediatek,mt6795-pinctrl
->        - mediatek,mt6797-pinctrl
->  
->    reg:
-> @@ -43,9 +45,7 @@ properties:
->    interrupt-controller: true
->  
->    interrupts:
-> -    maxItems: 1
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> >
+> > Add support for the Hynitron cst3xx controller found on devices such
+> > as the Anbernic RG353P and RG353V (the Hynitron CST340). This driver
+> > was built from sources provided by Hynitron to Anbernic (possibly
+> > via Rockchip as an intermediary) and marked as GPLv2 in the code.
+> > This driver was written strictly for the cst3xx series, but in
+> > most places was left somewhat generic so support could be easily
+> > added to other devices in the future.
+> >
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  drivers/input/touchscreen/Kconfig           |  12 +
+> >  drivers/input/touchscreen/Makefile          |   1 +
+> >  drivers/input/touchscreen/hynitron_cstxxx.c | 508 ++++++++++++++++++++
+> >  3 files changed, 521 insertions(+)
+> >  create mode 100644 drivers/input/touchscreen/hynitron_cstxxx.c
+> >
+> > diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> > index 2d70c945b20a..9a9528e59c36 100644
+> > --- a/drivers/input/touchscreen/Kconfig
+> > +++ b/drivers/input/touchscreen/Kconfig
+> > @@ -422,6 +422,18 @@ config TOUCHSCREEN_HYCON_HY46XX
+> >  	  To compile this driver as a module, choose M here: the
+> >  	  module will be called hycon-hy46xx.
+> >  
+> > +config TOUCHSCREEN_HYNITRON_CSTXXX
+> > +	tristate "Hynitron touchscreen support"
+> > +	depends on I2C
+> 
+> Since we include linux/of.h, I think we should also add:
+> depends on OF
 
-Leave the constraints.
+I think the driver should easily work on a non-OF system (ACPI for
+example). Including OF is fine, but I'd rather we did not use
+of_device.h and instead used device_get_match_data() from property.h
 
-Why? Because now you dropped it for mt6797... You bring here some random
-changes and it is difficult to review it.
+Thanks.
 
-> -    description: |
-> -      Specifies the summary IRQ.
-> +    description: Interrupt outputs to the system interrupt controller (sysirq).
->  
->    "#interrupt-cells":
->      const: 2
-> @@ -57,59 +57,6 @@ required:
->    - gpio-controller
->    - "#gpio-cells"
->  
-> -allOf:
-> -  - $ref: "pinctrl.yaml#"
-> -  - if:
-> -      properties:
-
-Make the move of this hunk in your description cleanup patch. Don't mix
-functional changes and some cleanups.
-
-> -        compatible:
-> -          contains:
-> -            const: mediatek,mt6779-pinctrl
-> -    then:
-> -      properties:
-> -        reg:
-> -          minItems: 9
-> -          maxItems: 9
-> -
-> -        reg-names:
-> -          items:
-> -            - const: gpio
-> -            - const: iocfg_rm
-> -            - const: iocfg_br
-> -            - const: iocfg_lm
-> -            - const: iocfg_lb
-> -            - const: iocfg_rt
-> -            - const: iocfg_lt
-> -            - const: iocfg_tl
-> -            - const: eint
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            const: mediatek,mt6797-pinctrl
-> -    then:
-> -      properties:
-> -        reg:
-> -          minItems: 5
-> -          maxItems: 5
-> -
-> -        reg-names:
-> -          items:
-> -            - const: gpio
-> -            - const: iocfgl
-> -            - const: iocfgb
-> -            - const: iocfgr
-> -            - const: iocfgt
-> -  - if:
-> -      properties:
-> -        reg-names:
-> -          contains:
-> -            const: eint
-> -    then:
-> -      required:
-> -        - interrupts
-> -        - interrupt-controller
-> -        - "#interrupt-cells"
-> -
->  patternProperties:
->    '-pins$':
->      type: object
-> @@ -169,8 +116,7 @@ patternProperties:
->  
->            input-schmitt-disable: true
->  
-> -          drive-strength:
-> -            enum: [2, 4, 8, 12, 16]
-> +          drive-strength: true
->  
->            slew-rate:
->              enum: [0, 1]
-> @@ -202,6 +148,110 @@ patternProperties:
->  
->          additionalProperties: false
->  
-> +allOf:
-> +  - $ref: "pinctrl.yaml#"
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt6779-pinctrl
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 9
-> +          maxItems: 9
-> +
-> +        reg-names:
-> +          items:
-> +            - const: gpio
-> +            - const: iocfg_rm
-> +            - const: iocfg_br
-> +            - const: iocfg_lm
-> +            - const: iocfg_lb
-> +            - const: iocfg_rt
-> +            - const: iocfg_lt
-> +            - const: iocfg_tl
-> +            - const: eint
-> +
-> +        interrupts:
-> +          items:
-> +            - description: EINT interrupt
-> +
-> +      patternProperties:
-> +        '-pins$':
-> +          patternProperties:
-> +            '^pins':
-> +              properties:
-> +                drive-strength:
-> +                  enum: [2, 4, 8, 12, 16]
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt6795-pinctrl
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +          maxItems: 2
-> +
-> +        reg-names:
-> +          items:
-> +            - const: base
-> +            - const: eint
-> +
-> +        interrupts:
-> +          items:
-> +            - description: EINT interrupt
-> +            - description: EINT event_b interrupt
-> +
-> +      patternProperties:
-> +        '-pins$':
-> +          patternProperties:
-> +            '^pins':
-> +              properties:
-> +                drive-strength:
-> +                  enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt6797-pinctrl
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 5
-> +          maxItems: 5
-> +
-> +        reg-names:
-> +          items:
-> +            - const: gpio
-> +            - const: iocfgl
-> +            - const: iocfgb
-> +            - const: iocfgr
-> +            - const: iocfgt
-> +
-> +      patternProperties:
-> +        '-pins$':
-> +          patternProperties:
-> +            '^pins':
-> +              properties:
-> +                drive-strength:
-> +                  enum: [2, 4, 8, 12, 16]
-> +
-> +  - if:
-> +      properties:
-> +        reg-names:
-> +          contains:
-> +            const: eint
-> +    then:
-> +      required:
-> +        - interrupts
-> +        - interrupt-controller
-> +        - "#interrupt-cells"
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -237,8 +287,9 @@ examples:
->              #interrupt-cells = <2>;
->              interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>;
->  
-> -            mmc0_pins_default: mmc0-0 {
-> -                cmd-dat-pins {
-
-How this is related to the patch?
-
-Organize the patches so they are easy for review.
-
-Best regards,
-Krzysztof
-
+-- 
+Dmitry
