@@ -2,261 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F28C61187B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 18:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3558C61188E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbiJ1Q7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 12:59:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
+        id S230450AbiJ1RAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:00:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230345AbiJ1Q6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 12:58:30 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C7B822D59A
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 09:58:19 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id c23so3832632qtw.8
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 09:58:19 -0700 (PDT)
+        with ESMTP id S230344AbiJ1Q76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 12:59:58 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70ED5DF4F;
+        Fri, 28 Oct 2022 09:59:31 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id k8so7442381wrh.1;
+        Fri, 28 Oct 2022 09:59:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=58GOvMV52uUxymQqy5aVEfV+16WqrWo4mtephS1+1JE=;
-        b=TfsR+4Q8amUxOC/VIrn26+llDPbMbmr0tVb/4VNpnntTnGkZAbztx7/NYxVHCFEAzb
-         4uIcVrmnIUpgFpryo3NVtdThUvoqZl626HnTt4uLMA6cbCJVSah8KLoXpU7rfM6gL0ru
-         n44aQHuG1mCqYNF0dCoi2/raBOwLrijnsSzZqHs8RYYpbQYIvIL2vPgVPM1hN5rkS9I7
-         S/IxFYUZ89QCwK2nfK6krgFOp90GfVdQGYwYzAw9qKSRz6IACl5k1liMk3cw1FQ1NqBq
-         r+KDuzkbH7s2WtIhoXDCn3Q+gxJI2i/0vG3t2ZWoo7cJPRvZ92qdZcppYOkp2ffYrWx9
-         WcKw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YSDOqIdoNlOlB0ihcZOzgF+vJpmvbenipcGLouNqGrE=;
+        b=H6v3TvORnhmLtG/Z0/dp3UNn0K+loybSBe4K2NdETJrcV97iYyZALucUeHVwnKkmi2
+         iGxpbd0IgBBdACgEXU3YsPravInJUgIM/UtikWB2aW2op0az/WOPja/dGbTH7K60CjNL
+         tEuVdvU21PPFwdzhfaRW0Lcj4QTZCixDqOMwXASKUNQlYibNtb3B031cpwrYZDRS0JI7
+         M5XOcYE0+eig38tMa3euBSmEH5LrMS1hC0GPNbRmoVPbfRWdVsyQF/YEBVphRAk3jbnW
+         LUgf29x/53RVaUI7NSxgIbEmHgEhbAcBJOGbXo5YN3x4VLrXsC2xXoauAArgo0UY5eBS
+         uYBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=58GOvMV52uUxymQqy5aVEfV+16WqrWo4mtephS1+1JE=;
-        b=eKax5HZTlMdtWpzORU5DzkWTIZbl6AYWO/5wLxG0qrNjoAsCk/eTChtzihAAKkDoqg
-         OrHpi/tfm1rUJ4D+2lqChcVIHqtpF1aBXZUgcV/loctyr0DgR3/XivAhqNWdLL1oWYg2
-         udTmxm+5L3mHK8aQU4mehktiBmWSinlQDhO1O1P1Ydr2l49s5SMLafyQ59DNAmjLSgMe
-         xkp4BE44lzuMrhz4o+VietMYSyHI7ZvZMMwR4p5wASNx7b6dbJpNv+MnwVcY5wPHwY+I
-         tXzhjvqjKzWKyTbUTK2ZzGvu4vwpouGNkF1gko84KthnEDImzt3Aixq6VA4GMQVg019G
-         /kIg==
-X-Gm-Message-State: ACrzQf2n8ah9qv22UASKmx/06gTYIGL+wjMFyZKXxVUyZyq0c4sEEos8
-        qrTGABAfGNUERzCnk3e3W9jvTg==
-X-Google-Smtp-Source: AMsMyM7QDV4uNhKRw3MgZMaE0KjQ2UyAsevxvY+yJec6Rce4EyZVk3duRZFCxbpuEPeaJ55jJPdTDg==
-X-Received: by 2002:a05:622a:58d:b0:39c:d5e3:2346 with SMTP id c13-20020a05622a058d00b0039cd5e32346mr348259qtb.227.1666976298720;
-        Fri, 28 Oct 2022 09:58:18 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id r22-20020ac84256000000b0039467aadeb8sm2315719qtm.13.2022.10.28.09.58.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 09:58:18 -0700 (PDT)
-Message-ID: <7522b13d-ad50-f2bc-1242-97a23d15c3b1@linaro.org>
-Date:   Fri, 28 Oct 2022 12:58:11 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YSDOqIdoNlOlB0ihcZOzgF+vJpmvbenipcGLouNqGrE=;
+        b=JGDhGbUHQXM1cJZ5jBW6fqzxLfPJWPsYge7edjDlJ+0nXar6WqRM1BUjRQ3Y75Bk4t
+         yqh4aXcumYZ058ry/Zt34i61cA2WuLc7YAv3jBBscTz/+zm6eq9p2bZgyfWb2+zNEQPD
+         7AtwQghRcpJIJZqdlDAunitZdYzwSckGqoqtlKLQrbLd1Tf9SVTApxAgJUsOfWus8+Y3
+         x7RegcLJXQRvZo8OBmtVr2W0JiAaAnWqzcPP0cyoUHqzBfSACDoQo3MDXnfm9p2qiyYs
+         BcDXtkgjecMPIrXJWII6ultwwVz6Ga101eXXKEo329xWx0fWtc694U1bRZiqfpQ5YkNW
+         SAXQ==
+X-Gm-Message-State: ACrzQf0VwXdloPZfaL/ENYT67it7bs0oabup/0nR7HP9UY6J/zGawbCz
+        NsbuVsr5XUQX2RRE6zBItUQ=
+X-Google-Smtp-Source: AMsMyM4dwZtboFNwFZjWL4Xywo1a0JjqVS4MtFb794S2KqmixnAYk1B9iWZLCHrXSK1tFOUItkJkAA==
+X-Received: by 2002:a5d:4811:0:b0:236:7077:e3c3 with SMTP id l17-20020a5d4811000000b002367077e3c3mr191677wrq.368.1666976370328;
+        Fri, 28 Oct 2022 09:59:30 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:d53b:eaf9:15f:6a8a])
+        by smtp.gmail.com with ESMTPSA id h2-20020adfe982000000b002322bff5b3bsm4939689wrm.54.2022.10.28.09.59.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 09:59:29 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v5 0/7] Add support for Renesas RZ/Five SoC
+Date:   Fri, 28 Oct 2022 17:59:14 +0100
+Message-Id: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 3/4] dt-bindings: thermal: Add qcom,qmi-tmd-device and
- qcom,tmd-device yaml bindings
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        daniel.lezcano@linaro.org, robh@kernel.org, andersson@kernel.org,
-        rafael@kernel.org, bhupesh.linux@gmail.com
-References: <20220912085049.3517140-1-bhupesh.sharma@linaro.org>
- <20220912085049.3517140-4-bhupesh.sharma@linaro.org>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220912085049.3517140-4-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2022 04:50, Bhupesh Sharma wrote:
-> Add qcom,qmi-tmd-device and qcom,tmd-device yaml bindings.
-> 
-> Qualcomm QMI based TMD cooling device(s) are used for various
-> mitigations for remote subsystem(s) including remote processor
-> mitigation, rail voltage restriction etc.
-> 
-> Each child node represents one remote subsystem and each child
-> of this subsystem in-turn represents separate TMD cooling device.
-> 
-> Cc: daniel.lezcano@linaro.org
-> Cc: rafael@kernel.org
-> Cc: andersson@kernel.org
-> Cc: robh@kernel.org
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  .../bindings/thermal/qcom,qmi-tmd-device.yaml |  78 +++++++++++
->  .../bindings/thermal/qcom,tmd-device.yaml     | 122 ++++++++++++++++++
->  include/dt-bindings/thermal/qcom,tmd.h        |  14 ++
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+Hi All,
 
->  3 files changed, 214 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
->  create mode 100644 include/dt-bindings/thermal/qcom,tmd.h
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml b/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
-> new file mode 100644
-> index 000000000000..dfda5b611a93
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/qcom,qmi-tmd-device.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/thermal/qcom,qmi-tmd-device.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+The RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP Single)
+1.0 GHz, 16-bit DDR3L/DDR4 interface. And it also has many interfaces such
+as Gbit-Ether, CAN, and USB 2.0, making it ideal for applications such as
+entry-class social infrastructure gateway control and industrial gateway
+control.
 
-Drop quotes.
+This patch series adds initial SoC DTSi support for Renesas RZ/Five
+(R9A07G043) SoC. Below is the list of IP blocks enabled in the initial
+board DTS which can be used to boot via initramfs on RZ/Five SMARC EVK:
+- AX45MP CPU
+- CPG
+- PINCTRL
+- PLIC
+- SCIF0
+- SYSC
 
-> +
-> +title: Qualcomm QMI based thermal mitigation (TMD) cooling devices.
-> +
-> +maintainers:
-> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> +
-> +description:
-> +  Qualcomm QMI based TMD cooling device(s) are used for various
-> +  mitigations for remote subsystem(s) including remote processor
-> +  mitigation, rail voltage restriction etc.
-> +
-> +properties:
-> +  $nodename:
-> +    const: qmi-tmd-devices
+Useful links:
+-------------
+[0] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzfive-risc-v-general-purpose-microprocessors-risc-v-cpu-core-andes-ax45mp-single-10-ghz-2ch-gigabit-ethernet
+[1] http://www.andestech.com/en/products-solutions/andescore-processors/riscv-ax45mp/
 
-Why enforcing node name?
-> +
-> +  compatible:
-> +    items:
-> +      - const: qcom,qmi-tmd-devices
-> +
-> +  modem0:
+Patch series depends on the below patches (which are queued in the Renesas tree for v6.2):
+------------------------------------------------------------------------------------
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-dt-bindings-for-v6.2&id=c27ce08b806d606cd5cd0e8252d1ed2b729b5b55
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-dt-bindings-for-v6.2&id=7dd1d57c052e88f98b9e9145461b13bca019d108
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-soc-for-v6.2&id=b3acbca3c80e612478b354e43c1480c3fc15873e
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-dt-for-v6.2&id=49669da644cf000eb79dbede55bd04acf3f2f0a0
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git/commit/?h=renesas-arm-dt-for-v6.2&id=b9a0be2054964026aa58966ce9724b672f210835
 
-Why 0? Do you think it will grow for more devices?
+v4 -> v5:
+---------
+* Rebased patches on -next
+* Included RB tags
+* Dropped patches #1 and #4 (form v4) as they are queued up by Renesas trees
+* Patch #7 from v4 was not needed anymore so dropped it
+* Patches #4 and #5 are new
 
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +  adsp:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +  cdsp:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +  slpi:
-> +    $ref: /schemas/thermal/qcom,tmd-device.yaml#
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/thermal/qcom,tmd.h>
-> +    qmi-tmd-devices {
-> +      compatible = "qcom,qmi-tmd-devices";
-> +
-> +      modem0 {
-> +        qcom,instance-id = <MODEM0_INSTANCE_ID>;
-> +
-> +        modem0_pa: tmd-device0 {
-> +          label = "pa";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_proc: tmd-device1 {
-> +          label = "modem";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_current: tmd-device2 {
-> +          label = "modem_current";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_skin: tmd-device3 {
-> +          label = "modem_skin";
-> +          #cooling-cells = <2>;
-> +        };
-> +
-> +        modem0_vdd: tmd-device4 {
-> +          label = "cpuv_restriction_cold";
-> +          #cooling-cells = <2>;
-> +        };
-> +      };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml b/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
-> new file mode 100644
-> index 000000000000..38ac62f03376
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/qcom,tmd-device.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/thermal/qcom,tmd-device.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm thermal mitigation (TMD) cooling devices
-> +
-> +maintainers:
-> +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> +
-> +description:
-> +  Qualcomm thermal mitigation (TMD) cooling devices. Each child node
-> +  represents one remote subsystem and each child of this subsystem in-turn
-> +  represents separate cooling devices.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^(modem|adsp|cdsp|slpi[0-9])?$"
+v4: https://lore.kernel.org/all/20220920184904.90495-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+v3: https://lore.kernel.org/lkml/20220915181558.354737-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+v2: https://lore.kernel.org/all/20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+v1: https://lore.kernel.org/lkml/20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
 
-No need to enforce node name.
+Below are the logs from RZ/Five SMARC EVK:
+------------------------------------------
 
-> +
-> +  qcom,instance-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Remote subsystem QMI server instance id to be used for communicating with QMI.
-> +
-> +patternProperties:
-> +  "^tmd-device[0-9]?$":
-> +    type: object
-> +    description:
-> +      Subnodes indicating tmd cooling device of a specific category.
-> +    properties:
-> +      label:
-> +        maxItems: 1
-> +        description: |
-> +          Remote subsystem device identifier. Acceptable device names -
-> +          "pa" -> for pa cooling device,
-> +          "cpuv_restriction_cold" -> for vdd restriction,
-> +          "cx_vdd_limit" -> for vdd limit,
-> +          "modem" -> for processor passive cooling device,
-> +          "modem_current" -> for current limiting device,
-> +          "modem_bw" ->  for bus bandwidth limiting device,
-> +          "cpr_cold" -> for cpr restriction.
+/ # uname -ra;
+Linux (none) 6.1.0-rc2-00036-gbad82a074f62 #145 SMP Fri Oct 28 17:18:41 BST 2022 riscv64 GNU/Linux
+/ # cat /proc/cpuinfo;
+processor       : 0
+hart            : 0
+isa             : rv64imafdc
+mmu             : sv39
+uarch           : andestech,ax45mp
+mvendorid       : 0x31e
+marchid         : 0x8000000000008a45
+mimpid          : 0x500
 
-Why these are acceptable and others are not? What does it mean here the
-"acceptable"?
+/ # for i in machine family soc_id revision; do echo -n "$i: ";cat /sys/devices/
+soc0/$i; done
+machine: Renesas SMARC EVK based on r9a07g043f01
+family: RZ/Five
+soc_id: r9a07g043
+revision: 0
+/ #
+/ # cat /proc/interrupts
+           CPU0
+  1:          0  SiFive PLIC 412 Level     1004b800.serial:rx err
+  2:         16  SiFive PLIC 414 Level     1004b800.serial:rx full
+  3:        402  SiFive PLIC 415 Level     1004b800.serial:tx empty
+  4:          0  SiFive PLIC 413 Level     1004b800.serial:break
+  5:      41826  RISC-V INTC   5 Edge      riscv-timer
+  6:         10  SiFive PLIC 416 Level     1004b800.serial:rx ready
+IPI0:         0  Rescheduling interrupts
+IPI1:         0  Function call interrupts
+IPI2:         0  CPU stop interrupts
+IPI3:         0  IRQ work interrupts
+IPI4:         0  Timer broadcast interrupts
+/ #
+/ # cat /proc/meminfo
+MemTotal:         882252 kB
+MemFree:          860848 kB
+MemAvailable:     858608 kB
+Buffers:               0 kB
+Cached:             1796 kB
+SwapCached:            0 kB
+Active:                0 kB
+Inactive:             72 kB
+Active(anon):          0 kB
+Inactive(anon):       72 kB
+Active(file):          0 kB
+Inactive(file):        0 kB
+Unevictable:        1796 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:           108 kB
+Mapped:             1200 kB
+Shmem:                 0 kB
+KReclaimable:       6760 kB
+Slab:              12360 kB
+SReclaimable:       6760 kB
+SUnreclaim:         5600 kB
+KernelStack:         620 kB
+PageTables:           32 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      441124 kB
+Committed_AS:        592 kB
+VmallocTotal:   67108864 kB
+VmallocUsed:        1132 kB
+VmallocChunk:          0 kB
+Percpu:               84 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+/ #
+/ #
 
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
+
+Lad Prabhakar (7):
+  dt-bindings: riscv: Sort the CPU core list alphabetically
+  dt-bindings: riscv: Add Andes AX45MP core to the list
+  riscv: Kconfig.socs: Add ARCH_RENESAS kconfig option
+  riscv: dts: renesas: Add initial devicetree for Renesas RZ/Five SoC
+  riscv: dts: renesas: Add minimal DTS for Renesas RZ/Five SMARC EVK
+  MAINTAINERS: Add entry for Renesas RISC-V
+  riscv: configs: defconfig: Enable Renesas RZ/Five SoC
+
+ .../devicetree/bindings/riscv/cpus.yaml       | 11 ++-
+ MAINTAINERS                                   |  3 +-
+ arch/riscv/Kconfig.socs                       |  5 +
+ arch/riscv/boot/dts/Makefile                  |  1 +
+ arch/riscv/boot/dts/renesas/Makefile          |  2 +
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi   | 57 ++++++++++++
+ .../boot/dts/renesas/r9a07g043f01-smarc.dts   | 27 ++++++
+ .../boot/dts/renesas/rzfive-smarc-som.dtsi    | 58 ++++++++++++
+ arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 91 +++++++++++++++++++
+ arch/riscv/configs/defconfig                  |  3 +
+ 10 files changed, 252 insertions(+), 6 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/renesas/Makefile
+ create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
+ create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dts
+ create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+ create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
+
+-- 
+2.25.1
 
