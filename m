@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1423561077E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FC8A610780
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235898AbiJ1BzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 21:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36420 "EHLO
+        id S234492AbiJ1B4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 21:56:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234810AbiJ1BzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:55:15 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2892AE23
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:55:08 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id b29so3566325pfp.13
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:55:08 -0700 (PDT)
+        with ESMTP id S234657AbiJ1B4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:56:22 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4E8C7F098
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:56:20 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id bb5so2698230qtb.11
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:56:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2bW2zopTlg25jDOdqXgCYa9SYjwIlYLKzQ7Rf0QVa04=;
-        b=uI3ltAYZAP8NoIfYF9BFEMoMJ7D97b1+QqthrWkKCU7dXaoT1abWklIUuN7W1JgOQd
-         GjkudrHR5lP10j6XjwqHIIrvISOE+Gh8hx0EolZiPSYHBU/+KaL3/7XNhE7D8kz5bTE9
-         CG8Lmy2GhCO1xySyJ8A8zSxkD8wvM+N6jCuc8xB1sBTlXNIbYOXjYQC1NMmpzjH4B6Qu
-         RajDjRnp9CkXaRtMHjLDkR7k3hF5xKmhALXHDPueVk1bZ8I3PxOG4uxZWAHrswZrMLXs
-         tGN334gJOnp5V3OMr4wKdIx2joqMYF9kbd1iQRH4u91OWC0o/ERNmjeynXomL7iIIFuB
-         S5fw==
+        bh=QFSp8Gx4w5A/kz9i8MLnQOAGdc+1wRun3PEnvhLdY94=;
+        b=Y6RrE+pmTF/dQH8SABMBeNtSpSRZA2e6R+brGqO9hQZMeYaaEVPHhfS71KE8VnvegY
+         OxbHVdCaYLpPLqJgvzjptumMzCEIo8V9aEUscBDIHrSgD1YSRi2rLCtjDApfcx9KkM2s
+         C8FG5iVGmQtXIyBs3yFPyk7b+qQ5vQGzvtFzuHGWvBU1JfCencMOJnL4n7Za7f6oqUJ/
+         IB07lhkV94YIVVCkZVnUfSfIuPBH2DzBM16E35SA/Gj5TlTxSZw4jxDcv17J9rXzItx6
+         qMo1t5Zf6fL1Y/G5Ji7PupJGMAZVhiI7OrXzlLGNkPfvmK6i+bCvPBo/UO2Bj3HSsT+k
+         htog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2bW2zopTlg25jDOdqXgCYa9SYjwIlYLKzQ7Rf0QVa04=;
-        b=qvesojGYknBwolTGamSep7VMefT1TaplvVrT6Doj06iLHl45b1p0KgpovztuXJY9Q5
-         2OOqIOV90a/x2j87f4DxzN3JiueqyEGPS11ckj4uEhaw7nHyKP4BWigo+eBFGiOvQqbl
-         2AovcP84vb15wvyrgS36XFygCPN+Of4ElEwktYFQHY9PwZdGAnraJggZPHHhABPkYPx6
-         xUzrxSemigmhwFyRWCvWRRAHvbCeptKTxtaVOojjM+eOkMRUHKjI3tLYRqxI4XI5Vmox
-         psWX0+BoYVSPWyDHgTBF7uQ2RPjDIvW33GwliQ+2/lUP1v8SK7qimQ5H7qKknf4csi/R
-         Ppuw==
-X-Gm-Message-State: ACrzQf3goNepX/StpMrli3xPs3KBKjg92hDr0WDri710QCr4SaYTsDQj
-        AYiZNAE7BWAR1T9ceGLwfjKbxLSntAhFnA==
-X-Google-Smtp-Source: AMsMyM75QUav7tBwGMpChuFcCrl4I7ooRQZeT0bj+c7r0BGWeRmtlCvrL6E6OPOdePWKh+nOepUJNw==
-X-Received: by 2002:a05:6214:19c9:b0:4b2:fe6f:90f9 with SMTP id j9-20020a05621419c900b004b2fe6f90f9mr43025226qvc.66.1666922097007;
-        Thu, 27 Oct 2022 18:54:57 -0700 (PDT)
+        bh=QFSp8Gx4w5A/kz9i8MLnQOAGdc+1wRun3PEnvhLdY94=;
+        b=7Mtk9bXvc5BBqzA/7V+XZSnnemcjOFDkJNcMPWd5rLiss+DVD7qXxwADIOff3EBtku
+         TU6uGB8BJ3ahzaEtqDBHFqdWEP0KS5ib5f6awGTtmTKddC11C0c/D/igFjoUQvq5gjLZ
+         BvRBP//xTe34+KezI/+V8OK8AATtowEplNNtxNRaEQEkt8JJHWBnhQrBl+mwM4nrYq2B
+         nz7DgG5BSZRzrPXRDSERbJEeCdn2X6y5r420F6byCtf2lvMYnuf3eS3fwCpljv//Y2dW
+         CTPq1gCQv0NW2h463UtsxM3nSsUDq1EKrRPv709aTevrSD5RTj8udbVCkuocdnvSpq9b
+         qQmw==
+X-Gm-Message-State: ACrzQf3aEODWDXDZs1ey/YUyojwXWLUVnx5it2r24aLMTgugnoLdjcB/
+        DF21PAfQmx+vKl+ImyHUnDFTgg==
+X-Google-Smtp-Source: AMsMyM7Xo9W5zqlgQeOl61qFWDZWAQZKaYla7Bady0M41BCekgMax0lwbN7ph8twDwnM/cI9vq0i3g==
+X-Received: by 2002:a05:622a:15d3:b0:39d:dd6:3a31 with SMTP id d19-20020a05622a15d300b0039d0dd63a31mr34285810qty.37.1666922179821;
+        Thu, 27 Oct 2022 18:56:19 -0700 (PDT)
 Received: from krzk-bin.. ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id l15-20020ac84a8f000000b0035cd6a4ba3csm1714720qtq.39.2022.10.27.18.54.54
+        by smtp.gmail.com with ESMTPSA id ay17-20020a05620a179100b006bb78d095c5sm2021816qkb.79.2022.10.27.18.56.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 18:54:56 -0700 (PDT)
+        Thu, 27 Oct 2022 18:56:19 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
@@ -58,27 +58,24 @@ To:     "David S. Miller" <davem@davemloft.net>,
         Lars Povlsen <lars.povlsen@microchip.com>,
         Steen Hegelund <Steen.Hegelund@microchip.com>,
         Daniel Machon <daniel.machon@microchip.com>,
-        UNGLinuxDriver@microchip.com, Sergey Shtylyov <s.shtylyov@omp.ru>,
+        UNGLinuxDriver@microchip.com,
         Oleksij Rempel <linux@rempel-privat.de>,
         Horatiu Vultur <horatiu.vultur@microchip.com>,
         Vladimir Oltean <vladimir.oltean@nxp.com>,
         Claudiu Manoil <claudiu.manoil@nxp.com>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: net: constrain number of 'reg' in ethernet ports
-Date:   Thu, 27 Oct 2022 21:54:53 -0400
-Message-Id: <20221028015453.101251-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: net: constrain number of 'reg' in ethernet ports
+Date:   Thu, 27 Oct 2022 21:56:16 -0400
+Message-Id: <20221028015616.101750-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -92,6 +89,9 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
+Changes since v1:
+1. Drop change to non-accepted renesas,r8a779f0-ether-switch.
+
 Please give it a time for Rob's bot to process this.
 ---
  Documentation/devicetree/bindings/net/asix,ax88178.yaml       | 4 +++-
@@ -99,8 +99,7 @@ Please give it a time for Rob's bot to process this.
  .../devicetree/bindings/net/microchip,lan966x-switch.yaml     | 4 ++--
  .../devicetree/bindings/net/microchip,sparx5-switch.yaml      | 3 ++-
  .../devicetree/bindings/net/mscc,vsc7514-switch.yaml          | 3 ++-
- .../bindings/net/renesas,r8a779f0-ether-switch.yaml           | 4 ++--
- 6 files changed, 14 insertions(+), 8 deletions(-)
+ 5 files changed, 12 insertions(+), 6 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/net/asix,ax88178.yaml b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
 index 1af52358de4c..a81dbc4792f6 100644
@@ -175,21 +174,6 @@ index ee0a504bdb24..1cf82955d75e 100644
  
            phy-handle: true
  
-diff --git a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
-index 581fff8902f4..0eba66a29c6c 100644
---- a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
-@@ -106,8 +106,8 @@ properties:
- 
-         properties:
-           reg:
--            description:
--              Port number of ETHA (TSNA).
-+            items:
-+              - description: Port number of ETHA (TSNA).
- 
-           phys:
-             maxItems: 1
 -- 
 2.34.1
 
