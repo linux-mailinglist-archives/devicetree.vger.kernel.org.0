@@ -2,132 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4296961196B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EB1C6119A9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229962AbiJ1RkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 13:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
+        id S230190AbiJ1Rxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbiJ1Rj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:39:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9A922B0C;
-        Fri, 28 Oct 2022 10:39:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E31D1629E7;
-        Fri, 28 Oct 2022 17:39:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F741C433C1;
-        Fri, 28 Oct 2022 17:39:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666978795;
-        bh=ijO6aXAOytrnNWFvN6FIBPIF9fWaDeLYuPg+SmXzcW0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=XlmX7AbLOlzcuDycIMTqQo5Msl/O1UrlY9QhSC6rGdeKF9JUjr3yrR9NpcHe2TYM+
-         5suxjBt+Zv56j2cJU/oSN2Rahek8/rTW3NlgC9YBMu3vbyyg+IhXjKhjmvkhmwtAuP
-         H+WDYNUQADpwXTt2AHYU66l28ZAbVfxwVvcfyurSOdWvYTYLSLAmOqWoKEaF0CGXQv
-         MSBOUzEDFqrU4NM2XAp6iS6vNsOkEaPg2Nnllrq2Pk4hVjQk6CGstuMijgXCdnBLTZ
-         qu/Law20CAgJeDQjTdRk1ob/7vgoAUmxchqimhuDnH231xMHziRaQRDrkzyPjqkUrp
-         kGHDZ0Y2vmiBw==
-Message-ID: <eeeb3895-4eed-ab2f-10e7-111a6275b8e7@kernel.org>
-Date:   Fri, 28 Oct 2022 13:39:49 -0400
+        with ESMTP id S229891AbiJ1Rxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:53:32 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871441DF409
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:53:30 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id x26so3939977qki.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:53:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4sSUMxC+XoR1FPr8npnNSTCNLao0xyHEAmVsF1JSBMw=;
+        b=L9PXBLBok6GO/WjEyWHwQpjkaqr5A4I+OdiQZ9eXtj4tjjSw+v++H2W2TZpzKrKmnR
+         m848j5p8APXRGHG8A/QGKtjCpobD6gHUUUOeABDqTtlo/dGxC2/tjXCAWyXfAGEsyKf6
+         ZRl5rhOIkTScMsw2xhk89iWGNeTPIDp+AzBwHruICZnP5dcXiL65OHjhQA4eyqdiTmHD
+         KtJ9I4hz7pCTfko4I5PH9ha4Q+yDYJSc2CagTchuHz2/pSyaQZ7OTPvOcUXK0UQA5uyK
+         BSJV/q6b045d9HZOqbts5HpSheJflGhipXQaVeD0l/l8x+z5K6/lhMhnUOzYfvOO8TBF
+         Xn/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4sSUMxC+XoR1FPr8npnNSTCNLao0xyHEAmVsF1JSBMw=;
+        b=05fVQHBGBOcDxZLidl55OS1esQDcmgs9azrvjzBs9vIQY90jMETBOlfAlnh8aoDv+d
+         MIAROs8daJOOAH0HOacOQPQfNKV3+ZDEGUrEJ5ZkXIQMQOrmDPS81wRao7cf7oDGk6s5
+         +EXOUeJyfcQZIe00/YaaCr9vSyjj5SLmq/ST5rpIqysHd9Fw4bfhUcLaHpFCeXvvf5wv
+         4mlCCLTDIGThwcJ1NjWLcTZ+PEf+dRU0mGmeHd3feun4JY/Oqt78i/Lwa4Rlwlf7Jdzu
+         pjG3QXHSaUbZcyPbS/4etqHGi8/QeoKKDedhd/bOFIF6+ITIvEKIXo2WDjsGzRmdJuuA
+         8Vhw==
+X-Gm-Message-State: ACrzQf3bmiwdALr1yIQmt6DjmTkQue+Cz3oktEzQTsDsNuZ1EsFIxQ1m
+        Dxpw/aCw1uzuqrs0WKtf0tYDyQ==
+X-Google-Smtp-Source: AMsMyM4WPfiepokFOhnKcfOJr85HYlGFsNw/KONl4h2U9SmIK533puCOo9utatMjhaQcmut8ayM6Ig==
+X-Received: by 2002:a05:620a:284a:b0:6ab:9cc5:cb4c with SMTP id h10-20020a05620a284a00b006ab9cc5cb4cmr319450qkp.609.1666979609475;
+        Fri, 28 Oct 2022 10:53:29 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id w17-20020a05620a425100b006cec8001bf4sm3438042qko.26.2022.10.28.10.53.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 10:53:28 -0700 (PDT)
+Message-ID: <5b194c93-48df-055a-f532-abd98657dc41@linaro.org>
+Date:   Fri, 28 Oct 2022 13:53:22 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v5 2/2] dt-bindings: Document common device controller
- bindings
+Subject: Re: [PATCH 1/4] dt-bindings: pwm: Add Apple PWM controller
 Content-Language: en-US
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
-        "alexandre.torgue@st.com" <alexandre.torgue@st.com>,
-        "peng.fan@oss.nxp.com" <peng.fan@oss.nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "a.fatoum@pengutronix.de" <a.fatoum@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "tomase@xilinx.com" <tomase@xilinx.com>,
-        "benjamin.gaignard@st.com" <benjamin.gaignard@st.com>,
-        "loic.pallardy@st.com" <loic.pallardy@st.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>
-References: <cover.1666806317.git.oleksii_moisieiev@epam.com>
- <ab68324eea3c788a369260f5a1e5da843a960cde.1666806317.git.oleksii_moisieiev@epam.com>
- <166682078099.1353934.10574272333105424439.robh@kernel.org>
- <Y1omrFVw0FbC3YTc@EPUAKYIW015D>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <Y1omrFVw0FbC3YTc@EPUAKYIW015D>
+To:     Sasha Finkelstein <fnkl.kernel@gmail.com>,
+        thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221028165215.43662-1-fnkl.kernel@gmail.com>
+ <20221028165215.43662-2-fnkl.kernel@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221028165215.43662-2-fnkl.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 02:35, Oleksii Moisieiev wrote:
-> On Wed, Oct 26, 2022 at 04:51:15PM -0500, Rob Herring wrote:
->> On Wed, 26 Oct 2022 17:51:27 +0000, Oleksii Moisieiev wrote:
->>> Introducing of the common device controller bindings for the controller
->>> provider and consumer devices. Those bindings are intended to allow
->>> divided system on chip into muliple domains, that can be used to
->>> configure hardware permissions.
->>>
->>> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
->>> ---
->>>  .../feature-domain-controller.yaml            | 80 +++++++++++++++++++
->>>  1 file changed, 80 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/feature-domains/feature-domain-controller.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/feature-domains/feature-domain-controller.example.dtb: foo@0: feature-domain-names: ['default', 'unbind'] is too long
->> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/feature-domains/feature-domain-controller.yaml
->>
->> doc reference errors (make refcheckdocs):
->>
->>
->> See https://urldefense.com/v3/__https://patchwork.ozlabs.org/project/devicetree-bindings/patch/ab68324eea3c788a369260f5a1e5da843a960cde.1666806317.git.oleksii_moisieiev@epam.com/__;!!GF_29dbcQIUBPA!y6dnIrQEa4gr2RDYPf2_Oc7JsKHJrAKtl69xg0Jlf-Qri5BP9kBzqIknprWXaikX5y2Yz_UWCW5yYv_9Hw$  [patchwork[.]ozlabs[.]org]
->>
->> This check can fail if there are any dependencies. The base for a patch
->> series is generally the most recent rc1.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit.
->>
+On 28/10/2022 12:52, Sasha Finkelstein wrote:
+> Apple SoCs such as the M1 contain a PWM controller used
+> among other things to control the keyboard backlight.
 > 
-> Hello,
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> ---
+>  .../devicetree/bindings/pwm/pwm-apple.yaml    | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 > 
-> Thank you for the response. I would recheck and resubmit patch series if there
-> will be no additional comments.
->
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-apple.yaml b/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+> new file mode 100644
+> index 000000000000..39dc32e00a3f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 
-when resubmitting, Cc necessary maintainers as pointed out by
-scripts/get_maintainer.pl. Or base your tree on something decent...
+Filename matching compatible, so apple,s5l-fpwm.yaml
+
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-apple.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple FPWM controller
+> +
+> +maintainers:
+> +  - asahi@lists.linux.dev
+> +  - Sasha Finkelstein <fnkl.kernel@gmail.com>
+> +
+> +description: |+
+
+Drop |+
+
+> +  PWM controller used for keyboard backlight on ARM Macs
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-fpwm
+> +          - apple,t6000-fpwm
+> +          - apple,t8112-fpwm
+> +      - const: apple,s5l-fpwm
+
+Is it then derived from Samsung platform? If yes, it is candidate for
+merging.
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pwm: fpwm@235044000 {
+
+Generic node name, so just "pwm". Drop also label - it's not used in the
+example.
+
 
 Best regards,
 Krzysztof
