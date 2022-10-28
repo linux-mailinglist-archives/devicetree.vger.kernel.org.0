@@ -2,113 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E11BF610C2D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 10:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0154F610C32
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 10:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230058AbiJ1I2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 04:28:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50140 "EHLO
+        id S229549AbiJ1I3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 04:29:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230064AbiJ1I2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 04:28:48 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60068.outbound.protection.outlook.com [40.107.6.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F23A81C4910;
+        with ESMTP id S230033AbiJ1I3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 04:29:43 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 169E81C492F
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 01:28:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1666945724;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=eYvTqJzZRhXZcmDQGfvWqV+LWUYCoBA0yMtYA0vrjX8=;
+        b=O4CB3KKr35kmbH/fszQdvAHZfyf+mAMRFMeY5OK8tacNcjCyVX915MxIogQJi4YkU261GN
+        QJLcz5L5xPPZdEm1ET77l3O8CRIZQOmVPLzS4+VR6rWzXe+dT8MjRA74gvh8N9OHqFI3VI
+        hT7RymS8erIjGVdyrp/VEBgtuTUmRfo=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-50-xyTXWqe6PE2zvoPU2AVZ6Q-1; Fri, 28 Oct 2022 04:28:42 -0400
+X-MC-Unique: xyTXWqe6PE2zvoPU2AVZ6Q-1
+Received: by mail-qv1-f69.google.com with SMTP id d8-20020a0cfe88000000b004bb65193fdcso2557255qvs.12
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 01:28:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eYvTqJzZRhXZcmDQGfvWqV+LWUYCoBA0yMtYA0vrjX8=;
+        b=aEFc9pQJBTr+GncZf8RBxaE/S/B/B2DE47YgF3tL8MT3KtXnhfZsIiabcJbYDENcWm
+         BZpyNge+B0QrTmvWZNBi3Ct2tCfYQ/0LSuS30HNBiUr1v4Hp6mH8VOzTLoF9/LZrJLkA
+         DQ2M79VKYqv6VuEVQzfnGtBUy17n4I5ZUFTXuU+ARVJi2i0vErrr6br/qGbC6T5W0jtq
+         iaf2fPQRzk6ZQwE+M/IviHOotc25FtDXXOdp4sIb/4AmqDMjw54xPPAJMwnRF4aLHj/B
+         EU6RQTvBdbDfeYo8hKfysvZswcAxE8sB4X+LO9F1EwS2vr8rXaDiKJdLBhXZCs2pkc4q
+         P16Q==
+X-Gm-Message-State: ACrzQf1nI/aBfV9Df+t+wD9NQIPLmXGdiHKZOnv/0tCS8pBUa0F3pahE
+        yc53NVH163HANHxd6ymCOJ3yLntgMPD+8eBC8Z8vUR8imjeqJV44I/KyO1yRT+ZKHmV46xUgAZl
+        oa5g+9Fhw8lI2LCxPyCiWgg==
+X-Received: by 2002:a05:620a:51c6:b0:6f9:feea:3a53 with SMTP id cx6-20020a05620a51c600b006f9feea3a53mr4128063qkb.425.1666945722083;
         Fri, 28 Oct 2022 01:28:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GCr377OGilpmaJia824H4Y+mzXtFngxQ3nN0nV/IQOmBSEZ2K0u5TA4V5TWjkqUlwft2x4Uz8RH3hkJSL0TGbpIHbqEkwYLHsD2ej4y52M+bOc2MjBjCrJaq/k6J5BiN+OPajSPQmUsx/6aqoYaksAIqG8Wa9Gzw0GeH0FSIWD2EzNuQkcBm4mfBM2zEwXwxRy8qRWbKm2hWqtfgr36v4IZiiwx0y2Flx57aZ56N8txu94Vdg+WwsGlxCJ0HxlSI0ptudV2z7PlSpZ1cwxkfLoGYdutBx77sxua7E0I/duUa9xQGYg2bTsv2qpefzFIEaY5BBJTd4+lw+H87kZh4zQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bG25X3TBSZ6y14VSB3Ru83bnz6KcYCxEkoykgD8sPuc=;
- b=JthegQQmRC6LxNInhR2xWcFX4z1waEYNwEwV2vVb6R2G2nFvd38wukkEBbOzByWGOjbKgCIIPMGv6Wn0f9R2qyKyUPtMjg+Ib82v8c0hqx18K9N7hnUz2jgkRy/wmGLwZ2x70gQHcYZPBMscud4N2wxHSL+gssv2smt7Hkzf3vr2CF03Ri1TCNtqf4n5njT7ppudPYr/GpBeBYBdJxOjPyobH6o5x2c8BVTe/n/VNxRhArWd8jcTL6TyfBFCQxatEhGzWUG0aGDckYbv6e6EAOkfH7UIHBU7Bq1DVlBTfTSfak0IQvIR4FUHo5bUKDq3EPrXL00hlDiG2saifIvjHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bG25X3TBSZ6y14VSB3Ru83bnz6KcYCxEkoykgD8sPuc=;
- b=gtaj0VMofBoSvgY2tXz/h78wyJOZzKzzPxjiAJ91H4yBKMyI6rNE88s3WJzzEhddKWmYCx9jQHKLmoyLX3nawMtJgUDQ52Fzshb5qVqkCc4BnKWwcwFEFoA1SMoT/dhBL/6h2M4hmHqDlcXiDMPqYZT7ua3k1RAjSmcJzQ4PE5o=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4213.eurprd04.prod.outlook.com (2603:10a6:209:4a::21)
- by DBBPR04MB7755.eurprd04.prod.outlook.com (2603:10a6:10:1e7::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28; Fri, 28 Oct
- 2022 08:28:40 +0000
-Received: from AM6PR04MB4213.eurprd04.prod.outlook.com
- ([fe80::1991:3060:d022:a541]) by AM6PR04MB4213.eurprd04.prod.outlook.com
- ([fe80::1991:3060:d022:a541%4]) with mapi id 15.20.5746.021; Fri, 28 Oct 2022
- 08:28:40 +0000
-From:   Chancel Liu <chancel.liu@nxp.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com,
-        nicoleotsuka@gmail.com, linuxppc-dev@lists.ozlabs.org
-Cc:     Chancel Liu <chancel.liu@nxp.com>
-Subject: [PATCH 3/3] ASoC: fsl_micfil: Add support when using eDMA
-Date:   Fri, 28 Oct 2022 16:27:50 +0800
-Message-Id: <20221028082750.991822-4-chancel.liu@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221028082750.991822-1-chancel.liu@nxp.com>
-References: <20221028082750.991822-1-chancel.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0210.apcprd04.prod.outlook.com
- (2603:1096:4:187::7) To AM6PR04MB4213.eurprd04.prod.outlook.com
- (2603:10a6:209:4a::21)
+X-Google-Smtp-Source: AMsMyM6lPZseY0YX+Knkpt2FrP+30Epj8TvUR5e8NY8W69ZnO6N8AkrenE+W50V8u4lMSiNkZpmDgQ==
+X-Received: by 2002:a05:620a:51c6:b0:6f9:feea:3a53 with SMTP id cx6-20020a05620a51c600b006f9feea3a53mr4128051qkb.425.1666945721891;
+        Fri, 28 Oct 2022 01:28:41 -0700 (PDT)
+Received: from x1 (c-73-214-169-22.hsd1.pa.comcast.net. [73.214.169.22])
+        by smtp.gmail.com with ESMTPSA id s4-20020ac85284000000b0039c7b9522ecsm2088432qtn.35.2022.10.28.01.28.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 01:28:41 -0700 (PDT)
+Date:   Fri, 28 Oct 2022 04:28:40 -0400
+From:   Brian Masney <bmasney@redhat.com>
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>
+Cc:     konrad.dybcio@somainline.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
+Message-ID: <Y1uSuBNhAL/YMEVc@x1>
+References: <20221020073036.16656-1-quic_ppareek@quicinc.com>
+ <20221020073036.16656-3-quic_ppareek@quicinc.com>
+ <7a62dd552c02e2b83fabaf9ff55a7c6c@somainline.org>
+ <20221028075059.GA15101@hu-ppareek-blr.qualcomm.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4213:EE_|DBBPR04MB7755:EE_
-X-MS-Office365-Filtering-Correlation-Id: b05104df-1d8f-4593-73c3-08dab8be6ab1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1edV7p4dFbHom1YSQ+awu/9on4pEpH6VyROJzx20c26CYb8IT2R7okH9RFt31ICcDAqxR82uaKwmqn1WMTikiWwBDgrZKiyvMckJxFxoYDJriBXSLN+qQYIobxD/ZoEsdUnrskvgcxvL1hPRxO6DIPnj8ZIfig8PHtk1fmVOAUByEbq/mumfm4PuOgD8LGKBqVJrMH0fLmHMjZjwSu4XDjmPV2Ln5qYOUsjtNZfYSYD6LjRta4uQilK8+tOZCytdsarmNzclO8tlUx5KivaCDEgCKrmmeVJzxUXnadjL9lPbswPVQXEmYJ0gefo9yfR9CXwyMjcQ/A5sdy4BjOQ5L1hrOnz9eP6l+CDNbVIb45AvUFxQV/N6qwTh3VbSwb21a+CDm5YG4SR49fZ+dec6nuwUVtiBWYaS225P2h3PiJuhzm1hhCyM+qBrUI8RuwlaV6FiS5+D7S7i32xIu8iUbFidZjoTDZOBek66Y469gVm/QM+LW0tyroJHQtzQvOvRemMTcDXVTrM+9qe6SWuEb0yYfO2oBwdwj0/LMJ4y7iI8BxDxPTMqlnFu/cp6I4K6f553w9CN/hlVfVQUSiQ9AGuK+r7u+UDsCN49V8boFxsePCq0e+G3ib8ed/Ud29OaglH5PCPaq2KonS26owf+RshNKNID+eyfogpGCQJqHSj9mECBi2FAk0vqFv401Pj8BgIjLVzwclOnKfwPk/fTOeQc+RbuWGGN6QnZt/cHdNDP6cvO+aQzVhOoNut+By3M85bjhzGa8NTR6QX97gDmb609dyzf1AwbHtAdoWsUcOo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4213.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(376002)(366004)(346002)(136003)(451199015)(44832011)(66946007)(7416002)(38100700002)(4326008)(2906002)(66556008)(316002)(8936002)(41300700001)(66476007)(5660300002)(478600001)(8676002)(921005)(36756003)(38350700002)(6506007)(6486002)(2616005)(26005)(52116002)(6666004)(1076003)(186003)(6512007)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3XKWK6PWRAEQoXhimgT7lxRJhvwiG70wuISezaw+qLrfiuBNNcxbJF63G49J?=
- =?us-ascii?Q?Kh4kaQ9A39jlOJUMPA7Jb97ltIDe1yTp3w+Pxlns+BIEzyFKTfrzNB6uLbWM?=
- =?us-ascii?Q?WQz+EHPWnKm7Z1G6DabGWePQg9HQoh+CU3P4IZtjylApXx7/eYgL+DqxlOil?=
- =?us-ascii?Q?qzvadnM4rIYcgnTsqj+LT2vPxPxerwTik3dcyGXFmF9huJee7mR8kIudoUSJ?=
- =?us-ascii?Q?Th27nNnLCKkE/CYcEghPLKHynHjfqxlVq3K3VUh7h52SjB8ZM5PLDZ2l6alA?=
- =?us-ascii?Q?Fu9OpZp0wRMIqbJT97ZGR8VeEvsApdL9aEYxpf0wXMUQsl+YV1jhJXOHs/gE?=
- =?us-ascii?Q?Z2oAxup7LtVPbgeEIzVqrwUfjn43gDMCHARypclN0nQI/WI7jNnDVlyl71G0?=
- =?us-ascii?Q?fefsjq4Xge8SpEDb+PkZfLrb1ly+9gy37VcJG+xVRVPeImiO1fx1a4yZvLcT?=
- =?us-ascii?Q?GPNDyW1sYS+FkfFwwzGVtHLbTY9XUp2shnALMD31AM2a/cGKc2jTU+PfAp8Q?=
- =?us-ascii?Q?5yMe5OUD67skxetG9ewMP4tVn2zhSjp/UkxDqNFBhcuEuXPjPjTVOVNb7Syh?=
- =?us-ascii?Q?Tl9nx2Dg97VmtqsWBCk4wLf8aTWTVxJ4VVkMlCGEgHs13V32xhIs9DVQ5Fid?=
- =?us-ascii?Q?uZSaz+E3f0JX9UGHiicRAxR/bSF6tSOe6w01D+hYTbMVOgL3+bhFG4dYQhHM?=
- =?us-ascii?Q?su2UQE1f99COYWwAFYqVPVHBER4e8HWyN2197cYiVhzOMiO3MI9xcTnqPNgh?=
- =?us-ascii?Q?CFaZr8yumqTIv1zOEh3PuahPotwLQJuqj/TZHpnNOuciMiql4/DfBR33/pC5?=
- =?us-ascii?Q?vBFGTY3beNJEMvvXlf3Tzotm2YzB8fALISyJ5/LSScNkQtehJt0515slJw25?=
- =?us-ascii?Q?yFkR5IRakdiUtCno06Wz9UjKguBMznzSI41IgqPjgoETLqNI3ShXTofKDM8s?=
- =?us-ascii?Q?gulyQ5jmSG7V9Yt+WD3ZZUnMugDy/0tFs/C/oV9vguSBpp+QAyoBsBdSJ64G?=
- =?us-ascii?Q?FrOSL1i4R+OCwdWIhyuJ3ywiRue1zr8VNzGNKamduz1r9QSVZY1CXIB3bTF4?=
- =?us-ascii?Q?88SQ2sWDElrHH1n9aCSHjBP8ft/QYAUeE2O/GJ35sM8D86rI631NDgLzCi2V?=
- =?us-ascii?Q?asMCAfbCt9FJR5rIrK3orp5VomEzEV8MXB+EOnKqKeOrrFaYP77n6Dcvx71a?=
- =?us-ascii?Q?UZTzgfHJJh5pClNvk7lrzsEsjpHKMxnqUjEfq3RK26Sh+FMi1uvwyouc3+59?=
- =?us-ascii?Q?2oocudyEe+4l5J5TOwcR5DqJvXtnlcrP4P16MUALv8ux0bhXdB0KJidZ9i6f?=
- =?us-ascii?Q?UQxill3Ea8cMsdwuteSBrCoh0vjdoK9CEOjUs9kU7zXr00k03FAAhVndWy4M?=
- =?us-ascii?Q?+bmZyhd7Ma6TIq4E6iP78f7T8jE8Y/LrVxkLboFLgIySWTnKSJMRKcqpIC/U?=
- =?us-ascii?Q?jA9dtIO8OFL+e3FFcu6eIC3JCO8MPdovsDxws4yigkFy4esTZs8Q2ZBtRSix?=
- =?us-ascii?Q?krecogWCENX4kJG/7SzxH5X4BJJIpoEe+BBeXwI6/wAUjYyKpnQvUsMn3KlF?=
- =?us-ascii?Q?3cpD1DvLTw9vR0SnrQ0xQwBpybQ61NnvGacGoY+g?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b05104df-1d8f-4593-73c3-08dab8be6ab1
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4213.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 08:28:40.4345
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4iUvFlCxbxgB6SGSV3z5DumEOsJ9JVWj63MVCt/gCYdduMuYEgULPeqFO4ybPZBw8cAgeJ8eIAwyrZjsIoFTew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7755
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221028075059.GA15101@hu-ppareek-blr.qualcomm.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -116,43 +86,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On i.MX93 platform MICFIL uses eDMA. The maxburst should be set to the
-number of channels in eDMA multiple FIFO mode.
+On Fri, Oct 28, 2022 at 01:20:59PM +0530, Parikshit Pareek wrote:
+> > > +		vreg_l3c: ldo3 {
+> > > +			regulator-name = "vreg_l3c";
+> > > +			regulator-min-microvolt = <1200000>;
+> > > +			regulator-max-microvolt = <1200000>;
+> > > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > > +			regulator-allow-set-load;
+> > Not sure if setting load is desired after recent rpmh regulator changes.
+>
+> May I know the exact patch being refered here?
 
-Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
----
- sound/soc/fsl/fsl_micfil.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Hi Parikshit,
 
-diff --git a/sound/soc/fsl/fsl_micfil.c b/sound/soc/fsl/fsl_micfil.c
-index b8a9504441df..22e75c14cac4 100644
---- a/sound/soc/fsl/fsl_micfil.c
-+++ b/sound/soc/fsl/fsl_micfil.c
-@@ -63,6 +63,7 @@ struct fsl_micfil_soc_data {
- 	unsigned int fifo_depth;
- 	unsigned int dataline;
- 	bool imx;
-+	bool use_edma;
- 	u64  formats;
- };
- 
-@@ -88,6 +89,7 @@ static struct fsl_micfil_soc_data fsl_micfil_imx93 = {
- 	.fifo_depth = 32,
- 	.dataline =  0xf,
- 	.formats = SNDRV_PCM_FMTBIT_S32_LE,
-+	.use_edma = true,
- };
- 
- static const struct of_device_id fsl_micfil_dt_ids[] = {
-@@ -690,6 +692,8 @@ static int fsl_micfil_hw_params(struct snd_pcm_substream *substream,
- 	micfil->sdmacfg.n_fifos_src = channels;
- 	micfil->sdmacfg.sw_done = true;
- 	micfil->dma_params_rx.maxburst = channels * MICFIL_DMA_MAXBURST_RX;
-+	if (micfil->soc->use_edma)
-+		micfil->dma_params_rx.maxburst = channels;
- 
- 	return 0;
- }
--- 
-2.25.1
+You now need to specify a regulator-allowed-modes. Here's some links
+with more information:
+
+https://lore.kernel.org/all/20220907204924.173030-1-ahalaney@redhat.com/
+https://lore.kernel.org/all/20220824142229.RFT.v2.2.I6f77860e5cd98bf5c67208fa9edda4a08847c304@changeid/
+
+Brian
 
