@@ -2,94 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D074611458
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D676611567
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:03:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbiJ1OTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:19:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
+        id S229864AbiJ1PDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbiJ1OTJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:19:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6A21E3EFA;
-        Fri, 28 Oct 2022 07:19:08 -0700 (PDT)
-Received: from Falcon9.mtl.collabora.ca (mtl.collabora.ca [66.171.169.34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: detlev)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DFF796602929;
-        Fri, 28 Oct 2022 15:19:05 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666966747;
-        bh=m/1hch4d/QsPLuNqP8lJpPMkiEIjR7tmyE3F0XJH+GA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=NO0A98iXxE24KM+jOU28FC8gP4S/ntjkLRyOYis5wAj6kOy4bYhTasScC4Ah+kOF3
-         FZJLC15vrNq5O6iiKWgHfVKXPoGYmTcZzaK+DDxCB12tV01UyP9pSRq6IzaSsIc0KY
-         F4AeVy2qu/eD6dRk8AH0oXeavAJl7UHnepA5AFh2mcBqBPgv299BGUBwGI/fCX4fKi
-         2A4fdKU8OP9pQOqIgIVLJxeI4psydrJewiAmqHwcAxluSjvRSYwLterpz0j4dq1Sg0
-         EYSKG3FDmPbmPp9iwySnzOGQreiyimrYpLYZt9B/9ytbZJAUbO92FWktIdVWp05qWP
-         JEIb5it3rXqyw==
-From:   Detlev Casanova <detlev.casanova@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE),
-        Detlev Casanova <detlev.casanova@collabora.com>
-Subject: [PATCH] ARM: dts: imx6qdl-sabre: Add mmc aliases
-Date:   Fri, 28 Oct 2022 10:18:11 -0400
-Message-Id: <20221028141811.101122-1-detlev.casanova@collabora.com>
-X-Mailer: git-send-email 2.38.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229519AbiJ1PDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:03:54 -0400
+Received: from spamfilter04.delta.nl (spamfilter04.delta.nl [217.102.255.204])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F69207532;
+        Fri, 28 Oct 2022 08:03:49 -0700 (PDT)
+Received: from host-ubmmyvj.static.zeelandnet.nl ([217.102.255.198] helo=mail.zeelandnet.nl)
+        by spamfilter04.delta.nl with esmtp (Exim 4.92)
+        (envelope-from <glasveze@delta.nl>)
+        id 1ooQDC-0000TK-P7; Fri, 28 Oct 2022 16:19:58 +0200
+X-Sender-IP: 204.168.188.16
+Received: from phenom.domain_not_set.invalid (016-188-168-204.dynamic.caiway.nl [204.168.188.16])
+        (Authenticated sender: glasveze@delta.nl)
+        by mail.zeelandnet.nl (Postfix) with ESMTPA;
+        Fri, 28 Oct 2022 16:19:42 +0200 (CEST)
+From:   glasveze@delta.nl
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        linux-rtc@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Mike Looijmans <mike.looijmans@topic.nl>
+Subject: [PATCH 1/2] dt-bindings: rtc: ds1307: Add support for Epson RX8111
+Date:   Fri, 28 Oct 2022 16:19:41 +0200
+Message-Id: <20221028141942.10442-1-glasveze@delta.nl>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: 217.102.255.198
+X-DELTA-Domain: zeelandnet.nl
+X-DELTA-Username: 217.102.255.198
+Authentication-Results: delta.nl; auth=pass smtp.auth=217.102.255.198@zeelandnet.nl
+X-DELTA-Outgoing-Class: ham
+X-DELTA-Outgoing-Evidence: SB/global_tokens (0.00196518661148)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+JXbjng4B8KCaTq3NTvS14PUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wr4cCRmG2oKTFnKAAvDWJPvjDSqTwBCKJA01U6S0IF3CG1
+ TXgY2TYLA02EG+6b19hUwqWpTVihCNBf6Y0ngLN9W55S5Odoi2XRRfrzh43Mii9G2t8Q2UJdUrYK
+ bqcQwkqhSENMlzwkX5dwDoKhqGrqW1ZaarE32k/fZS9WDJcJpYZGB+n268qSza3XvlKKEFTbC8dt
+ /CV3fELBVC/AS5PvDdqpp0PwvA0T6h+PF2lQM+UptZeMWqwM87Sr86NOUNNXJcphKwwtkJ0il/aM
+ E1JAuAZvvM53msAYiwEKD8v9MuKVse1sVhWabI0/+PN3sIJkYWvWNZaZ0U+2WAj4IohtB5Wku8Z+
+ HjscnTdG7OzuuhO9UWZR6DygHL2uL+fpoKfkmbmoofKALtn/uXeLjRifqraCXgGgCDOczZcC0s+1
+ rMP5P71XxSY6Bud0I4P+npSUhdUKb/ejZlGAm5aYDC522S9lxf1W0a5eEMc7eunFGmvh9GiopPC0
+ UD6wcbWJMl9n+3TblTAKGom+tz90NlkS2XisTmNxpUcDTKRyhJJrVG18n/RbDuZUqQqTgt7VC9CP
+ AtwL+re6Uz43RIVa9gaV9SxdNCEKGT/Znx3aa/MYykHvm3Pq/TMVhLiLVSlbDnIwjZjn7QogpmK0
+ eNWmS0n931/E3ahF5MMcDI7KdpjQKTxLZ9y9gIsjefalsT+at7OgkXa3w91ZfeRDvUeK4qGp36oy
+ bTZpB4Wv6ElyTZU8c8TJRwRvw2AEVD26W3GQDiXO7ujGdCQPoAa02/HGzYqRDuOlu0DGJJ/yi3xl
+ Qv+7Ye5iAwG6iqW74zZvnRHNN8yRiVjjk+nqGoPj2ahc7Nr7g8f4ANeGelsjxQhkhOscjNc7xQ2h
+ dHEckmcQGOuBPq9rt4dOEn9WJA7yfGK6BkBGG0mLtmuzbfeFGb2hZWsDt/fmCo6d12yvI0wed/0Q
+ udAWg/9etw9TIOEergZFaJ91hnCJ4odIJjOae1BAYoct5kI/cxiIQMFEDBGcoZ8K51uNKuJ4zqgJ
+ 4SeU8y5Ph884ctgzcDoFd+96Xw4QUNtTnctHmbpOK0RKd6E2YmmZo3u87jDsfKYWdCAewd7hjSHD
+ v1yU8GDv9kO7wH7K9y8hX1+STHELjwkcdmgWo2JoBLv+psOGtMjI9qGEbmhFtfi+crcUX31Co0Zg
+ NRr7F4I7T5HIIbgqOGhNKCbnOkqTNOYxCCw6fqSlOTqlv1QhfFxXVbH+G+02TrybDOP2Co+U5w==
+X-Report-Abuse-To: spam@spamfilter03.delta.nl
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If not specified, the mmc0 and mmc1 devices will be the devices
-mmc@2190000 and mmc@2194000, which are in disabled state on the iMX.6
-Sabrelite devices.
+From: Mike Looijmans <mike.looijmans@topic.nl>
 
-The actual SD card reader devices are the ones at mmc@2198000 and
-mmc@219c000.
+The rx_8111 is quite similar to the rx_8030. This adds support for this
+chip to the ds1307 driver.
 
-Set aliases to use the correct mmc devices order.
+This adds the entry to the devicetree bindings.
 
-Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 ---
- arch/arm/boot/dts/imx6qdl-sabrelite.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
-index 22f8e2783cdf..12573e1f917c 100644
---- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
-@@ -14,6 +14,11 @@ chosen {
- 		stdout-path = &uart2;
- 	};
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+index 98d10e680144..a9590da64b84 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
++++ b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+@@ -30,6 +30,7 @@ properties:
+           - pericom,pt7c4338
+           - epson,rx8025
+           - isil,isl12057
++          - epson,rx8111
+           - epson,rx8130
  
-+	aliases {
-+		mmc0 = &usdhc3;
-+		mmc1 = &usdhc4;
-+	};
-+
- 	memory@10000000 {
- 		device_type = "memory";
- 		reg = <0x10000000 0x40000000>;
+       - items:
 -- 
-2.38.1
+2.17.1
 
