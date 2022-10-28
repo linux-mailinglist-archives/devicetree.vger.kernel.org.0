@@ -2,141 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A06DD61189F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94BF86118AC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230366AbiJ1RBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 13:01:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42058 "EHLO
+        id S231270AbiJ1REK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230482AbiJ1RAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:00:02 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52236183AF;
-        Fri, 28 Oct 2022 09:59:40 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id bh7-20020a05600c3d0700b003c6fb3b2052so4280703wmb.2;
-        Fri, 28 Oct 2022 09:59:40 -0700 (PDT)
+        with ESMTP id S230269AbiJ1RD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:03:56 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A9E77559
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:02:24 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id h10so4459236qvq.7
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:02:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LKcaGbOXyklscEgGaVZeABkCmiJQn+cua48lgHGMfSM=;
-        b=XktKVyJAuhuTpNR50IVXpi86/f94SIWNs0zsXo+KJ65lgHjA881DzW/wOJXK/1NGc2
-         0vkKWNR6w4FpkETSCedXeeprIXWBMiL0fGkeqZkV1X4nW7QgeZu8YrsRg4j0oNJJoDOD
-         lJFRSxAahXLc8XpGSkCGmZOvlEo1ogXWzGZQwpVfvtTs+0bwszHZCdLTjkd9CmaF9kVR
-         yHPkAyWqdTogWDLkOKOOXOZ1qpEJZdmTsEoBlyhHrzxJ20bI3iIECOMZIQ8ZyifX4M83
-         K6C73Law77r6z7dCI039sPXzxm3FSRo1d95BOSOB6WWKH5+Zi08rRYTzXpJr3QCKZfYW
-         yJKg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8Vt2NRfPYoZ2LtBVbnQGBt2MOSimjRuiE+rlZh3+5+g=;
+        b=jPdqWef5RqLJJwMWlMCL6Yputv2Coc+NkBGsrEHXX6tbmnDpP2NtnvxtTSP6fRdSq3
+         9Kqz/c71UIa4gQ+A2LP6PMOTjv0toDO9Wbv24q8Hi0vvzBmXumFDNfw9ZLYIwiEjZOJ8
+         tWNjQ3tHwc9WfYtIkV9WiIhYUQunkYzUK40ZvlMd1aAkb7yjfS8eWBVm04flWli+1qZa
+         LsSLi79kWqEp7HNoQgl4Fari2Zxp91qcZm24d/SnU/0pvHXGnlsVVzcCi79dUNo/9tVG
+         JqDBVt9Yu1hENE81e2/abORwdPlEIwgnb9Sked0wA9H4R3ttr5u75sNyIpAQ/PXngxml
+         Sazg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LKcaGbOXyklscEgGaVZeABkCmiJQn+cua48lgHGMfSM=;
-        b=fWLQYM+R9T5hGdbxaGJfmEanQd7rxdV4VVThBoU4mlY2irl+6HCNgntb4tAuJsrUnk
-         cdrTE2c25jZEl1gvh5T+LFBAVkXcVArU/JCs+bmDCzRY11cC4Jn5X1LTsoZ3HheTutpM
-         eakjHNHjcc3i747eP0S7iTbCpJtFXDJ1J86xzAedrT2HH9utMjpJ1YT+M0r40TY1c8N/
-         G1n3rEpohb4ieiyWqlrK2q8aZQrYZsWFG5vpYY3ucpg3McKlfehAcPs9QGVSLH8Ttnbj
-         OZlBIxSdNxDCUCj6JGKHXARFKkjLIJCg5bHBk41quBs9JOvuHG4OK0T+zOVKyfgxWiPA
-         2LIw==
-X-Gm-Message-State: ACrzQf2tiYK8E9e6t7uIJiePRfVeREGJ3u7s1OYEf4eIX09J3Ba0/zKv
-        qeBo1x8txevlXp61FLRJFLo=
-X-Google-Smtp-Source: AMsMyM7SrqgUatgxtKzxUbci+TsYWLGOUnEsW59p/P1BaS1TwA7Vn45N9ioYHZP45iv2M+iI+IDVrg==
-X-Received: by 2002:a05:600c:230d:b0:3c4:2975:321a with SMTP id 13-20020a05600c230d00b003c42975321amr10195946wmo.155.1666976379388;
-        Fri, 28 Oct 2022 09:59:39 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2501:c701:d53b:eaf9:15f:6a8a])
-        by smtp.gmail.com with ESMTPSA id h2-20020adfe982000000b002322bff5b3bsm4939689wrm.54.2022.10.28.09.59.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 09:59:38 -0700 (PDT)
-From:   Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v5 7/7] riscv: configs: defconfig: Enable Renesas RZ/Five SoC
-Date:   Fri, 28 Oct 2022 17:59:21 +0100
-Message-Id: <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Vt2NRfPYoZ2LtBVbnQGBt2MOSimjRuiE+rlZh3+5+g=;
+        b=GIFKGvhfhMd6EECVvn/+G1kZh6V7DHUCHGwvy62My/zIiSMfeCyb55UvMYDS5uEr98
+         aK/IuNRVf6TjJBtIpBKcaQrTG1BNvX5RWkEOvN7WMmwMHzhWvoeU5RVdyKgSNyaD4XEP
+         2qdTZDpY7+YxE64aeKJaWjbPXpf9CcH4bqFFT6/K5ooeKh/q6rJytc6L/JoGFRu1IDAX
+         tltgyGkAkePwaOU+6RMEPoFQ9S0W0tfQECpHs+cGYOJfFhKMoYrXtx7Cit7L32Mjw7XS
+         buP5gNOQViY4AkBM12E/mY3Gr3Z7YT2cclIhEKXpFinr7Ceg2HX6eboELepiI90AuqYr
+         mV+A==
+X-Gm-Message-State: ACrzQf3PrwvTxhNkvbz+QGc1qhIPcVfPF62d21XblSm1LBhfoQRjk/Yl
+        vFEcP0Ee0WVKnhPblGf9y3k5+w==
+X-Google-Smtp-Source: AMsMyM7WI6/C5Bbg8LE38AWlmWBGVBzI2D+TeBS/UIIXN5bby8fjbj0k0m/zk8IVDHE2noidzevKhw==
+X-Received: by 2002:a05:6214:2b06:b0:4bb:5716:d1c3 with SMTP id jx6-20020a0562142b0600b004bb5716d1c3mr365680qvb.85.1666976543183;
+        Fri, 28 Oct 2022 10:02:23 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id bn1-20020a05620a2ac100b006b5c061844fsm3223584qkb.49.2022.10.28.10.02.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 10:02:22 -0700 (PDT)
+Message-ID: <97b462ea-e283-60ee-e272-b136ca08a251@linaro.org>
+Date:   Fri, 28 Oct 2022 13:02:13 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v10 1/7] dt-bindings: remoteproc: qcom: Add SC7280 ADSP
+ support
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        linux-remoteproc@vger.kernel.org, agross@kernel.org,
+        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, devicetree@vger.kernel.org
+References: <1664368073-13659-1-git-send-email-quic_srivasam@quicinc.com>
+ <1664368073-13659-2-git-send-email-quic_srivasam@quicinc.com>
+ <a1a78c72-2067-1ea8-a50e-0dcf4ae4bb83@linaro.org>
+In-Reply-To: <a1a78c72-2067-1ea8-a50e-0dcf4ae4bb83@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 29/09/2022 03:32, Krzysztof Kozlowski wrote:
+> On 28/09/2022 14:27, Srinivasa Rao Mandadapu wrote:
+>> Add ADSP PIL loading support for SC7280 SoCs.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+>> ---
+>> Changes since V9:
+>> 	-- Add missing unevaluatedProperties in glink-edge.
+>> Changes since V8:
+>> 	-- Add glink-edge reference.
+>> 	-- Remove redundant glinke-edge properties.
+> 
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 
-Enable Renesas RZ/Five SoC config in defconfig. It allows the default
-upstream kernel to boot on RZ/Five SMARC EVK board.
+Actually not... you still do not Cc all necessary maintainers. I don't
+understand why.
 
-Alongside enable SERIAL_SH_SCI config so that the serial driver used by
-RZ/Five SoC is built-in.
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v4 -> v5
-* No change
-
-v3 -> v4
-* Explicitly enabled ARCH_R9A07G043 config (note I have restored the RB
-  tags with this change)
-* Used riscv instead of RISC-V in subject line
-
-v2 -> v3
-* Included RB tags
-* Updated commit description
-
-v1 -> v2
-* New patch
----
- arch/riscv/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 05fd5fcf24f9..97fba7884d7a 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -29,6 +29,8 @@ CONFIG_SOC_MICROCHIP_POLARFIRE=y
- CONFIG_SOC_SIFIVE=y
- CONFIG_SOC_STARFIVE=y
- CONFIG_SOC_VIRT=y
-+CONFIG_ARCH_RENESAS=y
-+CONFIG_ARCH_R9A07G043=y
- CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
- CONFIG_PM=y
-@@ -123,6 +125,7 @@ CONFIG_INPUT_MOUSEDEV=y
- CONFIG_SERIAL_8250=y
- CONFIG_SERIAL_8250_CONSOLE=y
- CONFIG_SERIAL_OF_PLATFORM=y
-+CONFIG_SERIAL_SH_SCI=y
- CONFIG_VIRTIO_CONSOLE=y
- CONFIG_HW_RANDOM=y
- CONFIG_HW_RANDOM_VIRTIO=y
--- 
-2.25.1
+Best regards,
+Krzysztof
 
