@@ -2,71 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B34C6119B4
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C10CA6119BA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbiJ1R5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 13:57:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53778 "EHLO
+        id S229842AbiJ1R6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiJ1R5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:57:06 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA691EA57D
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:57:05 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id z30so3909032qkz.13
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:57:05 -0700 (PDT)
+        with ESMTP id S229661AbiJ1R6U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:58:20 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9451A20B12D
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:58:19 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id c8so4548532qvn.10
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:58:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=t2UMRrA6hypBk9YLVdB4VW5wHm8QCbjxxyhhAxXjkNU=;
-        b=TMNb3V8AhX9WhX05Du+3fglf9uLfI9wB0ttrU8VotGjsWLsy0okAKTSDVz0xxOl8KF
-         zNuPQHvd/kR3PyvJoVDXGlZtmmk79Al8rAIDjUZyXF2Fwu7ZOCYkfl5ZskGskw3M8Adl
-         gC7ELE1lGzbXcSs2WJt6lNDm6lNeNGq0jdYSgh6kyvUGi+XiO9yfdeBb9hSvNqt4p6XE
-         7cYKcAKDhAm76ea3Id6NcO6HkOhNkOf1EF+yN/P/F49LixWucVnI8O6FH+NX4iFeUohn
-         JPi7sntU7rQcbCaIGTlRQNzUto/VcBquWadXxkhogBRtiHbE+sM4Zo6UgCkKuNuJQJXQ
-         ppog==
+        bh=Z2rrxegvFg2FU9tdiMVnm2F7JFLebLK8/DzrkdwOia8=;
+        b=fraNEttcjrbsQWUwMp/J+ZIx1bUNFBiwkQcyDOQ95PrT/Ks0L8ibhqyrNNhv+O299F
+         A6ygkQQlI+xYVk440AFZ+hE3xghWHIBwToMAOFiBqv/00BlolCA8DouG4Mu54Y9tTKh+
+         xlROBBFVesNR5GN94eEclsuL2A8mFYnWaSuk/1e0Q+jgACzlyq2SoWxUu0YDy6Rr9UpC
+         lMPibTya5CqLdgxez8XUv2QadYFSuD9hDqNRnZeAWrPgM5hEjvGBBTsU1xE6tQEepu4L
+         4QXW0AsPMWadTl/iAoAiaK53L8EMsKWejyZGupqUJKGuH1ANvotGiMJZ3O1kVuLOan+K
+         7UFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t2UMRrA6hypBk9YLVdB4VW5wHm8QCbjxxyhhAxXjkNU=;
-        b=KP7HcDsqCMxy82jobiIfL95iJtcCbvLmXM3ljIp0tzI6omKLa1moGE0mey+zW5MXB6
-         OhRxLshCwSd18OlHzZcbN8e0nlYA1EHDcy+ZCk2lSgGA7UBT5qBORJnKUAetSEteG1mj
-         lsvxfsc74wwjZGEqB0GkQ6/pr3wH5I3JLeri5zA8PGrphS6IFBCR0fcUhsf9GQJIloPl
-         sfek6XA3pL++pyqmYlS5C4PQUNCLJlkZ5KiJ2Sv7LLvfpo67OBiH402vg701tx70EiaY
-         DsBt00Psmr7fya6Gz20I0dJlqqhsWUvrBq6/rByOZOYZtx2Xv6SMKxNUC08Gaiw1RmYJ
-         bWOA==
-X-Gm-Message-State: ACrzQf0eo94sGS4je8X19PLZyw8t8WZIjoHGczdgb6e6i524R6rNwxkf
-        PjH3YC35TlfvJSbQ9tMwdTwz2uZ/AUJCLQ==
-X-Google-Smtp-Source: AMsMyM6wLJNrR/80ICPG10nSm5Sgvsux4rOEUB/kGaglkjyZjg2hrXmZEnVbBBIKg8Bp7Mg07JvVuQ==
-X-Received: by 2002:a05:620a:d4b:b0:6f6:b34a:53cb with SMTP id o11-20020a05620a0d4b00b006f6b34a53cbmr351470qkl.662.1666979824237;
-        Fri, 28 Oct 2022 10:57:04 -0700 (PDT)
+        bh=Z2rrxegvFg2FU9tdiMVnm2F7JFLebLK8/DzrkdwOia8=;
+        b=QCbuOPaCaIWT+5Z5KlYFUmfQLn+qFNAjS3L9OuL1rW4vDewckkDQ0BG3W2ij8CGidU
+         cPwJS3Q1JqsuPcyobomKmOg7ByH6syyywq9FFH3rXlz0IWe5SbzYjd8N8m9mJcou9J5C
+         6lUfvMb4VxD864zEXxUzEgwMKzWacWu6vlAT/u8IKIn5edP7hqA1LB2CVxsuV7aI04/K
+         XfB4Y/LWDUJ5pMpOZxbj8qWAa3clBdOeTpmRT99cXGCaLV053KqJZc2yekQtwKud9kic
+         qLnxOgFTYijPnaeAK/nxVsNjpQMkkPZSmb7xlcEQFrWdSGbLs/4WIQ9mvjpamq9/yFnc
+         NOgg==
+X-Gm-Message-State: ACrzQf0O9ZmHylKckhFe6CYkx7VAVBdZlJj3sPkxXXQMgjEM+df80C+H
+        K6xsF2mP2SF+J7rWx/qX3KRgiA==
+X-Google-Smtp-Source: AMsMyM6quImhJlk5cn6eegtdWzH8grrjs4wtY1GdGHe9oHTnd9M/5Z7LjS0jMuspsFZFxBZYG0eHRg==
+X-Received: by 2002:a05:6214:3005:b0:4ad:8042:128a with SMTP id ke5-20020a056214300500b004ad8042128amr545569qvb.66.1666979898742;
+        Fri, 28 Oct 2022 10:58:18 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id s9-20020ac85ec9000000b0039ccbf75f92sm2668431qtx.11.2022.10.28.10.56.59
+        by smtp.gmail.com with ESMTPSA id w26-20020a05620a0e9a00b006bb82221013sm3426268qkm.0.2022.10.28.10.58.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 10:57:03 -0700 (PDT)
-Message-ID: <55b03c70-cc77-43e7-7ca2-8a0445a40cea@linaro.org>
-Date:   Fri, 28 Oct 2022 13:56:57 -0400
+        Fri, 28 Oct 2022 10:58:18 -0700 (PDT)
+Message-ID: <628ac98c-0755-e6f6-e010-f1e772c4b71a@linaro.org>
+Date:   Fri, 28 Oct 2022 13:58:10 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 3/4] arm64: dts: apple: t8103: Add PWM controller
+Subject: Re: [PATCH v2 1/2] ASoC: mediatek: dt-bindings: modify machine
+ bindings for two MICs case
 Content-Language: en-US
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>,
-        thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
         linux-kernel@vger.kernel.org
-References: <20221028165215.43662-1-fnkl.kernel@gmail.com>
- <20221028165215.43662-4-fnkl.kernel@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        "chunxu . li" <chunxu.li@mediatek.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
+        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20221028172215.1471235-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028172215.1471235-2-ajye_huang@compal.corp-partner.google.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028165215.43662-4-fnkl.kernel@gmail.com>
+In-Reply-To: <20221028172215.1471235-2-ajye_huang@compal.corp-partner.google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,117 +90,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 12:52, Sasha Finkelstein wrote:
-> Adds PWM controller and keyboard backlight bindings for M1 MacBooks
+On 28/10/2022 13:22, Ajye Huang wrote:
+> Add a property "dmic-gpios" for switching between two MICs.
+
+Use subject prefixes matching the subsystem (git log --oneline -- ...).
+
 > 
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
 > ---
->  arch/arm64/boot/dts/apple/t8103-j293.dts | 20 ++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8103-j313.dts | 20 ++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi     |  9 +++++++++
->  3 files changed, 49 insertions(+)
+>  .../bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml        | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> index ecb10d237a05..5652cd41730a 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-> +++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> @@ -11,6 +11,7 @@
+> diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+> index 4fc5b045d3cf..212d2982590a 100644
+> --- a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+> @@ -21,6 +21,10 @@ properties:
+>      $ref: "/schemas/types.yaml#/definitions/phandle"
+>      description: The phandle of MT8186 ASoC platform.
 >  
->  #include "t8103.dtsi"
->  #include "t8103-jxxx.dtsi"
-> +#include <dt-bindings/leds/common.h>
->  
->  / {
->  	compatible = "apple,j293", "apple,t8103", "apple,arm-platform";
-> @@ -43,3 +44,22 @@ &i2c2 {
->  &i2c4 {
->  	status = "okay";
->  };
+> +  dmic-gpios:
+> +    maxItems: 1
+> +    description: GPIO for switching between DMICs
+
+Switching how? Enabling? What is the meaning of each GPIO pin value?
+
 > +
-> +/ {
-> +	pwmleds {
-
-Node names should be generic: led-controller
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +		compatible = "pwm-leds";
-> +		kbd-backlight {
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-> +			pwms = <&fpwm1 0 40000>;
-> +			label = "kbd_backlight";
-> +			function = LED_FUNCTION_KBD_BACKLIGHT;
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			max-brightness = <255>;
-> +			default-state = "keep";
-> +			pwm-names = "kbd-backlight";
-
-This goes just after pwms.
-
-> +		};
-> +	};
-> +};
-> +
-> +&fpwm1 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j313.dts b/arch/arm64/boot/dts/apple/t8103-j313.dts
-> index df741737b8e6..cff53f8770f3 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-j313.dts
-> +++ b/arch/arm64/boot/dts/apple/t8103-j313.dts
-> @@ -11,6 +11,7 @@
+>    headset-codec:
+>      type: object
+>      additionalProperties: false
+> @@ -72,6 +76,8 @@ examples:
+>          pinctrl-0 = <&aud_clk_mosi_off>;
+>          pinctrl-1 = <&aud_clk_mosi_on>;
 >  
->  #include "t8103.dtsi"
->  #include "t8103-jxxx.dtsi"
-> +#include <dt-bindings/leds/common.h>
->  
->  / {
->  	compatible = "apple,j313", "apple,t8103", "apple,arm-platform";
-> @@ -35,3 +36,22 @@ &pcie0_dart_2 {
->  
->  /delete-node/ &port01;
->  /delete-node/ &port02;
-> +
-> +/ {
-> +	pwmleds {
+> +        dmic-gpios = <&pio 23 0>;
 
-Same comments
-
-> +		compatible = "pwm-leds";
-> +		kbd-backlight {
-> +			pwms = <&fpwm1 0 40000>;
-> +			label = "kbd_backlight";
-> +			function = LED_FUNCTION_KBD_BACKLIGHT;
-> +			color = <LED_COLOR_ID_WHITE>;
-> +			max-brightness = <255>;
-> +			default-state = "keep";
-> +			pwm-names = "kbd-backlight";
-> +		};
-> +	};
-> +};
-> +
-> +&fpwm1 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 51a63b29d404..a95dc482102e 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -191,6 +191,15 @@ i2c4: i2c@235020000 {
->  			status = "disabled"; /* only used in J293 */
->  		};
->  
-> +		fpwm1: fpwm@235044000 {
-
-Node names should be generic, so pwm.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +			compatible = "apple,t8103-fpwm", "apple,s5l-fpwm";
-> +			reg = <0x2 0x35044000 0x0 0x4000>;
+Use defines for flags.
 
 Best regards,
 Krzysztof
