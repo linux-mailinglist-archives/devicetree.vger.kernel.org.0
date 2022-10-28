@@ -2,53 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1B6611217
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:00:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D6F61121D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiJ1NAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:00:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
+        id S229926AbiJ1NBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbiJ1NAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:00:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00CE998C89;
-        Fri, 28 Oct 2022 06:00:46 -0700 (PDT)
+        with ESMTP id S230094AbiJ1NBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:01:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585C55FDD2;
+        Fri, 28 Oct 2022 06:01:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A6053B82A02;
-        Fri, 28 Oct 2022 13:00:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78BA6C433C1;
-        Fri, 28 Oct 2022 13:00:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E8E286284E;
+        Fri, 28 Oct 2022 13:01:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E99C433D6;
+        Fri, 28 Oct 2022 13:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666962044;
-        bh=ePeMsjxXdLiOOfUUzNUw3FJDyNeX4zvzgeUxZV88UCM=;
+        s=k20201202; t=1666962106;
+        bh=sZ4ZNjf/cBaX1w4dLi8MwgTB0O0ug+mmFH/68/wbeBQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dn+wSexzopWxdmzMsf7LuHWXqxeG0MYEp/zawI/K8pl0nbOdoVRBD27i4Z2ls8RK6
-         ysPuZIoeq2hcMYpPv8CEX+DMrMSmX1RVwEZjQu2IPyKm3Y6AzOdOMQjlgaafnH/av4
-         6FhJGopEYEAVFMQwgDynqx9HSlHygir2z0U9hBcqEZbliOjiJFgLlztZ940qDHrbq8
-         Cc802FXXlEr/QjZJ8+HOMkpJWbtOK71l2CZshSCOKTtQva7jhlf/AA65Otzxd1Rn5Q
-         K++OYCTqh4iWsZ0kLsduLdcVR45mzJCaAiDtufMVkoVExwvxFdbJX+P0P33UqGQvKx
-         s3tkrk0IMjeXA==
-Date:   Fri, 28 Oct 2022 18:30:40 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=gmUDYsblOxDs80NsXHKuUFuycP2tAGkpdpu10+draWkdkiUZ9AwyxOazRzfYhivhP
+         QHOekOla/y0+0tCm547GHITIA842fwUeDRAJBTfxek8v3gDl0zyC2mIQJdDAmsBtWj
+         1Gd+Y4t/wxGQH9lGrkpz7qfS4gcIw/BFhrDlC9w+iEFaRaE+wbR7wvO8sNEJGHuz1i
+         WXpbN6IkUx+va3SVtdlUsDi2rlHkuHl0dI+ur7XU3hzBwQ+1/OkPzQulJz6cnG8BRC
+         dleOZqSyzenWbcT6flZ00TbZeFX9voP/cjdxzG4dzZ8RynxARP9FeNXhVcqm2B1TIX
+         OzjdgDtCYavSw==
+Date:   Fri, 28 Oct 2022 14:01:40 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/10] phy: qcom-qmp-ufs: fix sc8280xp binding
-Message-ID: <Y1vSeMpXqLsPBOLZ@matsya>
-References: <20221024090041.19574-1-johan+linaro@kernel.org>
+        Rob Herring <robh+dt@kernel.org>, robh@kernel.org,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        angelogioacchino.delregno@collabora.corp-partner.google.com,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v1 2/2] ASoC: dmic: Add optional dmic selection
+Message-ID: <Y1vStD8vNYmdvPH1@sirena.org.uk>
+References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028102450.1161382-3-ajye_huang@compal.corp-partner.google.com>
+ <Y1vDxtdNGURAT850@sirena.org.uk>
+ <CALprXBbTkj0Q_-3AL81Q1okRD5ZyDf_c=daPrkQstkM4_CNgGQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Fc5e//HBGfgKdc7B"
 Content-Disposition: inline
-In-Reply-To: <20221024090041.19574-1-johan+linaro@kernel.org>
+In-Reply-To: <CALprXBbTkj0Q_-3AL81Q1okRD5ZyDf_c=daPrkQstkM4_CNgGQ@mail.gmail.com>
+X-Cookie: Life -- Love It or Leave It.
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -58,15 +65,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-10-22, 11:00, Johan Hovold wrote:
-> This series fixes the UFS PHY devicetree binding for SC8280XP and adds
-> support for the new updated binding to the driver.
-> 
-> The first half of the series clean up the driver in preparation for
-> supporting SC8280XP and its new binding that drops the legacy child node
-> and the (incomplete) description of register subregions.
 
-Applied, thanks
+--Fc5e//HBGfgKdc7B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-~Vinod
+On Fri, Oct 28, 2022 at 08:59:54PM +0800, Ajye Huang wrote:
+
+> Thank you for review,
+> I think it is appropriate to implement on audio machine side, like
+> this I did before,
+> commit 3cfbf07c6d27
+> ("ASoC: qcom: sc7180: Modify machine driver for 2mic")
+
+> What is your suggestion?  Thank you.
+
+Doing that seems fine.
+
+Please don't top post, reply in line with needed context.  This allows
+readers to readily follow the flow of conversation and understand what
+you are talking about and also helps ensure that everything in the
+discussion is being addressed.
+
+--Fc5e//HBGfgKdc7B
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNb0rMACgkQJNaLcl1U
+h9A95Qf/RAWnE6Y2m+kzFQRiw0jEfmsInSLiQXOqfF8ByYGq5HxCsEoOJQUz8FCT
+OrYN6znnN0/Cj2vZP6ZMCyQP+Tawetbrn1XX2YU9RUgLQS35sPUrSTMXgyBuXEn6
+2xrSN0IwzRR3TpmTGKUdDb3YtzvrFUCsQXvlbt37/CIlI3xSEPVSQCych7yUEnt3
+yVEKP2kg8G2aHN+3aEygCNC8OvH98gUYPTil2wHAou2sa8/WBD5yP0+iJHKs5tY2
+Uni784arkAKm5Pr2CYhS79Swx/Wzrf+r0skHgoEL/Ml4Gu2Y6xTbHaVfBITd+v1L
+kGiIgWVmSbPSTv+jt6CjGcaj66zzVQ==
+=iTcB
+-----END PGP SIGNATURE-----
+
+--Fc5e//HBGfgKdc7B--
