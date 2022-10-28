@@ -2,117 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA073611C73
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D12D1611C8E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbiJ1Vf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 17:35:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56220 "EHLO
+        id S229998AbiJ1Vna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 17:43:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiJ1Vf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:35:57 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8CDB1911DB;
-        Fri, 28 Oct 2022 14:35:56 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id r83so7483173oih.2;
-        Fri, 28 Oct 2022 14:35:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZNCjs9nw/UlRpwc17oK4dkQqAKQBmKykfu9gcnjsiHY=;
-        b=6d+uBKIcCXLeO+xDHaYVfRzJtgCI0dZ9FusNjXzzwjGgZcflOLepj0HxHefkD6FXnC
-         Ek1JirF6unyH77RerQnkLYXt+ngSgizyedyOXZ90yR8w8FLyTPqdEatEn49j+/be3RAg
-         umCUh3RtlPIpvC/C3dqPaBVJRLeAEKZoym+7ktAPD9TLvPTNw2NCnPFYNaFpf6hbphuL
-         KWWqog78Is2Ub9AGl/72JGoz85W3yeP9a1YjeE6ybmBlPAWOKhAdmuA5zqkCbwZgK7Yj
-         CHGa8V42J+34A1LXtUmlrcJ08SnWxjTt4ajh+eDbkZNGNqRg01lg8qpH1rTZgKkd/rd/
-         RpUA==
-X-Gm-Message-State: ACrzQf1pE8zcobNjuvNCh8hw8SIUWjhcymbWaIEbue6rI2tgn8T17hzN
-        SkrXl4mWU5ne+nfWiiZaFw==
-X-Google-Smtp-Source: AMsMyM66nlzhdxlsYZ4j0fr5qO5pjmvShA4sDx12vlzhDk6+7SKtQLNrxqxZijEFaF630V8HsyD7RQ==
-X-Received: by 2002:a05:6808:1823:b0:359:bf5e:7649 with SMTP id bh35-20020a056808182300b00359bf5e7649mr5758748oib.54.1666992955931;
-        Fri, 28 Oct 2022 14:35:55 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j22-20020a4ad2d6000000b00480dac71228sm2007344oos.24.2022.10.28.14.35.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 14:35:55 -0700 (PDT)
-Received: (nullmailer pid 2317054 invoked by uid 1000);
-        Fri, 28 Oct 2022 21:35:56 -0000
-Date:   Fri, 28 Oct 2022 16:35:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Paolo Abeni <pabeni@redhat.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-kernel@vger.kernel.org, Marcin Wojtas <mw@semihalf.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: nvmem: add YAML schema for the ONIE tlv
- layout
-Message-ID: <20221028213556.GA2310662-robh@kernel.org>
-References: <20221028092337.822840-1-miquel.raynal@bootlin.com>
- <20221028092337.822840-3-miquel.raynal@bootlin.com>
- <166695949292.1076993.16137208250373047416.robh@kernel.org>
- <20221028154431.0096ab70@xps-13>
-MIME-Version: 1.0
+        with ESMTP id S229457AbiJ1Vn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:43:27 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2065.outbound.protection.outlook.com [40.92.42.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3ADD24B332;
+        Fri, 28 Oct 2022 14:43:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BpAheyfP50r0ZMsbXZnBYv4YcQaW3hflxvC9pERmbCarmUtYkkOnCd1LShN1pfpoDct/MYjhGe3IGoP1zrGD1HJCrG2LW2rUOY5u2Ia85z8gNPenun54Sd9WonQyu5oWlvpmsyPjIg4DA/Y5x1wL7ryEcEyjEl4JwYy5jEHfrcFSKDysq4BKH+Dy+GRrNwGAyKmDkN1cIXXMJHWwqV6RkoRHIq0FStOK7Xavv6IlyRCyqEvzRyLXocVYkb1pAR85surlQVgFkOI/bejvg5fJOD0MiN9V8EhCFxq0feYI1VucvLC9o9VVHWO9NaDTgV9exgciVbS5pTtOGhIw9ne10Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tMTTbsKpFtfUHMUrzZDjBajnfKCTdggyXDut1go0A94=;
+ b=Wjkj8cntY6QOCyLUDkhd7qQWjzi6/vCJcOJYa3TL614dPFFYSfsF+AlJyQMmfdlNFaBNXoCauegRoQ6gIYV/Y3AXrypWXu48FtoYbFTJy6XhpRFK1joeR2Cp67sSl31Iz9JNPlEcxTaPztk4qyfbXdTeSJo2q428nv5g7vv3It50OkUHw03ofQ0MTtOWQvqsqtttaAcO32E1NY24OIrVeKhpaZ08RB9t4lbkbLoS+t+q+UexmETP0YZa2AGXLqyD5viiRpg4LPklrpTOtZtmhPCr2+MaLaI4chpzFk1nJ9ms7dP95wDmsqi9JzMU1OjKT69slv1ewPZjCQpCiox8QA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tMTTbsKpFtfUHMUrzZDjBajnfKCTdggyXDut1go0A94=;
+ b=at0+dbQZR3dJ1Dc3JUGvm1NV+j3UzBhEGA3V+gID4qqFNh18Dh3KD1jiPv09z1wPAsIERqX8gGi7eSAoYzl1t/ce/kU9hHodzIQC0KNOZ4+DCYWPGl8hvJV7eKg7NqueGRAfzq/RrEgWQ6mdbQCHC9Dw+7gDF5PPXo3+g6lyHZW1RIk9JXZgo2S1DSokZcmWOcmQENx8hPEW+Ymv+uhcIRwdivKHE92q6k4L+UNoMdcsmjF4LpSSay4VVFZIIYqNKN9i15zD92OEMH51oOWtxTO+YUC+JoOFtgm5hRO90YHgwhv/gPJsOMVeWY+0NTPVChOs0RiMv8eIOS/F9/mPvg==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by BN7PR06MB4098.namprd06.prod.outlook.com (2603:10b6:406:92::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.27; Fri, 28 Oct
+ 2022 21:43:20 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::b849:682e:6222:2b2d]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::b849:682e:6222:2b2d%5]) with mapi id 15.20.5746.021; Fri, 28 Oct 2022
+ 21:43:20 +0000
+Date:   Fri, 28 Oct 2022 16:43:16 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        mkorpershoek@baylibre.com
+Subject: Re: [PATCH V4 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
+Message-ID: <SN6PR06MB5342E823C4FF82E974724AF3A5329@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20221028202636.14341-1-macroalpha82@gmail.com>
+ <20221028202636.14341-4-macroalpha82@gmail.com>
+ <Y1xGIykG5H5QmtZa@google.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221028154431.0096ab70@xps-13>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <Y1xGIykG5H5QmtZa@google.com>
+X-TMN:  [tpf/OQMaexVbEvpjy04fD1a20b7B7GLC]
+X-ClientProxiedBy: SA0PR11CA0023.namprd11.prod.outlook.com
+ (2603:10b6:806:d3::28) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <20221028214316.GA20830@wintermute.localdomain>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|BN7PR06MB4098:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c65a5ed-5731-49ef-9302-08dab92d6e55
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cHn7jMrCiLv4k+Fj4voIX0BZBqqk1qZ14TR4/0P33A2MS+ch1H5JP99HaSxLFnf0hU1KH1/C9smzqH+tL5O6NPwdrDpLSFAHJSinM+BitR6bgBhptWKXQGQHgqX3EQ9yfl+d0spbcRfyDzjmQVI3w7SRXtmx9UOB0KXjMFf2pOLsZB1kzBIFHoUZiPDHV6O85UuMPkAGwKS+OHQAOjnLzlYb7RlUMbTFHVsFzbR+mVFZtGhf0B9SdMKLYBId2LKJ0HE3AuMmngEEnZ7WvSb1wGOGcRe0EKZ0NdADRYEIGLLmGCZqjIYMlm3TEucGY27v7+7SnkPUCnuW5xtmkW7zdUOLjuskyrGt+nNvTGnZZ6R0HSQP/CiuvVdP7Y7a3eeKG1h4+FcUpiz/70EnMtUiqCpPsVq1uAVUphYZs0B5xZyp836CVYBhddCVdZBndkBMZx1oawY3h2R/hRYa0a/veOHOHhX0Vs6TNOBis9U7IezJCGxoPgZxPf9+tRylvQIiOYm5huT5RBdMyT5cLw0/kKVvRE8C/BlDrnob+jsSpNkwVCfQHB+CX5TYsmzpZYXII4+8uz45FUbx3L7COUl2WSFyIp+l4iRr3qtN857JIqX0fctnVpU3hAVrcZxo7Npfjab5KTwhLipG7BrtvoOMm+Rdos9tF7e+2Ll3ZfGXbnzmQuJtIu8jjlZIKL1ljo6X
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FqB6n8kDl7Ug4QqnJECsYxFZexTok7xUs9NP7dOuA7Pxxi/OJe1nuD6xDr/m?=
+ =?us-ascii?Q?nB2kdXiMX7/SK75NPm1rVhiNKbNdvetVPVivFWESdXn+j6zLZM5SgfLEBDLR?=
+ =?us-ascii?Q?TPIgCt/vtOPF1G3nldcZ7GL6cHAGQ4OqlfoZaPTCoc3Mq2stKPPDy5ExKUMc?=
+ =?us-ascii?Q?1OryKOzZPLYvIIObOJGf/xjBMXrighs4xBIEQaYD1xrIN0E0igHpe/pZuiR4?=
+ =?us-ascii?Q?+vkbrIV1wGJapVTvfgtSDNFRJE3qYAL1lHQxS2l7zuvfZs3UbjFCyM7SC88J?=
+ =?us-ascii?Q?VaSlUvda9TpJiTIrb4kXnGactxTs7+WJUxQUGpcpoUy9QW+Ogmv39R7fP2ub?=
+ =?us-ascii?Q?b4QxW5L00NjjjrIDqUFE64L9MlMmf6rDnBycOruspeSGFx4W0/cbOxKbFIig?=
+ =?us-ascii?Q?JAJ+IbxWqOSBH2+4rSCuLR7Eom6/yp5lPUrvBtdmdu3JCqvZbqoCsyD4Lvez?=
+ =?us-ascii?Q?SSZsaH4H75B+M1IFtHJP5KWkxLzfs/pDEaH5dNGG8rlUgfUTZlgSJdEAbCHZ?=
+ =?us-ascii?Q?GYhBnu6qVZtFm1I7nQAkOC64znz23CWRyTCzcpN68iD1GdUhBjkFbc8nzWBY?=
+ =?us-ascii?Q?/6inaXwyW5Jqg3XzxjgUFIYK8JdzydY2wZqhZXyhxVwTRGHgSNKjE99/DrqI?=
+ =?us-ascii?Q?YpNsnIAcvCEhk158JncJOoUUbQ1HkH1MiCOK1ZudE+xIlOMemaGAFo0/XjyK?=
+ =?us-ascii?Q?zcuaunKtjXUKeFbGN8V7YidA0APxRrd13bGESQYUN6SwGzLrW8sIMjYftWq6?=
+ =?us-ascii?Q?Die0tQlofIOwxI4HV1ozIYbT8sGf4pkLrZTfRBNgq72tDRtP616Ez532xx4b?=
+ =?us-ascii?Q?5IPnABxWYZwHvMVKXz/6PHLoeZ6g0bTZXIX2v19vHDAXpVlZTTpZ6IjYYXLm?=
+ =?us-ascii?Q?O8BuYNZVPY/Q7T5BGd2M1X469KXQsq1gu+3/Ibi90yEdo2jhhdCBS/AlRPtP?=
+ =?us-ascii?Q?3/rZS4kRc7ABeSzxVTIfYaN4HGCkwkjYiNWWLogMZ1ktoY1UD5jIyBX9S1eO?=
+ =?us-ascii?Q?RiFzeeo9gv+erlXNbkoSf00jCeXCdNxpByOvgsdcRVR3AitzcEayQCx3MNwj?=
+ =?us-ascii?Q?sIP7mVNtdADDiZ+ZLfG/556NtKSCLeHMCEbo+VFTJJrhAKRRXY9LgQvjnNbz?=
+ =?us-ascii?Q?2aPE2DZbLpAHHMXd2tT9mB1fOngSI33UPKWW2dgNFZBTIRM4X3Mh42nF4R4b?=
+ =?us-ascii?Q?RX4DxrN/FYXqVAbRPKzHaOXigk6tJg/etr83xIyQyQADQRiLoEo+pENDT+2+?=
+ =?us-ascii?Q?aiOeP3cHR2SIxSVStAqysYijOybRpgy/q3JvDrG8XQ=3D=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c65a5ed-5731-49ef-9302-08dab92d6e55
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 21:43:20.5708
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR06MB4098
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 28, 2022 at 03:44:31PM +0200, Miquel Raynal wrote:
-> Hi Rob & Krzysztof,
+On Fri, Oct 28, 2022 at 02:14:11PM -0700, Dmitry Torokhov wrote:
+> Hi Chris,
 > 
-> robh@kernel.org wrote on Fri, 28 Oct 2022 07:20:05 -0500:
+> On Fri, Oct 28, 2022 at 03:26:36PM -0500, Chris Morgan wrote:
+> > +static void hyn_reset_proc(struct i2c_client *client, int delay)
+> > +{
+> > +	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
+> > +
+> > +	gpiod_set_value_cansleep(ts_data->reset_gpio, 1);
+> > +	mdelay(20);
+> > +	gpiod_set_value_cansleep(ts_data->reset_gpio, 0);
+> > +	if (delay)
+> > +		mdelay(delay);
 > 
-> > On Fri, 28 Oct 2022 11:23:34 +0200, Miquel Raynal wrote:
-> > > Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
-> > > compatible networking device.
-> > > 
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  .../nvmem/layouts/onie,tlv-layout.yaml        | 96 +++++++++++++++++++
-> > >  1 file changed, 96 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-> > >   
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.example.dtb:0:0: /example-0/onie: failed to match any schema with compatible: ['onie,tlv-layout', 'vendor,device']
-> 
-> Oh right, I wanted to ask about this under the three --- but I forgot.
-> Here was my question:
-> 
-> How do we make the checker happy with an example where the second
-> compatible can be almost anything (any nvmem-compatible device) but the
-> first one should be the layout? (this is currently what Michael's
-> proposal uses).
+> Just wanted to ask - you do not really want to spin for 20+ msecs here,
+> right? I think changing mdelay() to msleep()/usleep() should be OK
+> throughout the driver...
 
-That seems like mixing 2 different meanings for compatibles. Perhaps 
-that should be split with the nvmem stuff going into a child container 
-node.
+I just tested changing all instances of mdelay to msleep and msleep works
+just fine. Do you want me to resubmit or can you change that as well?
 
-Rob
+Thank you.
 
-P.S. Any compatible string starting with 'foo' will pass, but I probably 
-won't be happy to see that used.
+> 
+> Thanks.
+> 
+> -- 
+> Dmitry
