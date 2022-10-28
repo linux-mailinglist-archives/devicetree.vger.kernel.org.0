@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2546107A3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CF16107A9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235291AbiJ1CJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 22:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36632 "EHLO
+        id S235563AbiJ1CLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 22:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235252AbiJ1CJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:09:56 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F07D30555
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:09:54 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id o2so2619608qkk.10
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:09:54 -0700 (PDT)
+        with ESMTP id S229998AbiJ1CLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:11:50 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DBCA5986
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:11:48 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id cr19so2760393qtb.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:11:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9jNJ5gOLssvCtUC1P5RUZaaZppmGVFIyqlwWASYBtXQ=;
-        b=bCtABFgHMifCesxcGWQZdPCTWQcA3y4oG4YgukH0ljbdjbLLPX7CwURykfEbBel5vE
-         tF8uZubpBMW3VurhcJMKhPxXGMtCG4/qBW4ysU0fj08VQelK6YzOBaBcZthUcjBNUpWY
-         oGu13YRR/IbD4ZGH1zITOWJ7SJmrJNpWOjRCzBo+cnhEis4iRo5xaEq+L4TdW/qL88Pn
-         K53cApjLbrB0bAsiOxFR705sFxXeYbGIbW8QOfVpDQ9fANJw5gzzZkhG7SDri8JEYLSj
-         tDnDzpgLs1MCHyi3vTk7yW3OTYhtDfONHCevq8fTtnprvvKOjgQTfiP5a3N62nhHz90v
-         lKZg==
+        bh=lqkEG8O3RdCF5eSvHKs0ga0ET4B9mitFOaFUTFXCGVs=;
+        b=Os6Q0T1dUfoGYOL+6+RHujbdE1xr2+yaX9hBMWBZ66Q5Yje9NwiDTXLvy/Tc3e2i6J
+         aCO869dpnTUdEGmRLapfQllkH8T/5hZ+uH4waY8sU4K379SDEaxA1Sd5LEX0wSVh9cS6
+         Ehq6hJ1/EfTsvdOCzu2gpMLRf1AdaAzMYtm6PeQHODOtMHyxgC2q5n8MGtCR5Xo4HjCE
+         gHnrHA8ZrzRqffjpo0DTUGQ3ZSSmGfBLKz5x1DyAlDnfYXLfi/nyoS89eKPogh8cjRgF
+         N6YGOrtQkIQlTbCWPNU2C3cQyBnT4t1DbJqpeTg58oCraThO618HyM5QWCEbr90iIY/Z
+         iZgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9jNJ5gOLssvCtUC1P5RUZaaZppmGVFIyqlwWASYBtXQ=;
-        b=ve58btn3iz7CIqfXFHr7CPXaVLcK+DmpeM8ZAY3iL4OK9Pk1ztCxVcyMipy0eTAByk
-         hl0DmbwAHE64V8kwfU46KAzhTHpmui4exzkCfq1nZn0D9hJto20m5WafjBQpTIG8WHDq
-         ICIKIAQMulrO4OjbpYXTmOw5qH0CkgJgk6iczhkyTncf6myYULa/Wu7zw6c2O1xSbljw
-         a87ZYkw5xJ0Wh520UdxqZNkF2WY3TA1QtCjT/VqCpJ38DABcIul4FODaQ9ExAeqsJj8Z
-         GGaeROpucc9sTuhj7UnKou8xrw0TNhxwsDr/XV1sy89MYLVPdccQ/SaP/LYGH8cidwUq
-         YCLA==
-X-Gm-Message-State: ACrzQf143Im9TduFmdhNq/iXSEUcztERcvvH6YhbOt7LmwM1sgz3LM+t
-        +YbOEYXK598btM4kadKiEODmbw==
-X-Google-Smtp-Source: AMsMyM4qjbXnWs4itU5ETbByGpSQukQHpsIH9pz8x+xIboSz3IUDYw/PyRUwdINHbb33IsO1DKG7AA==
-X-Received: by 2002:a05:620a:bc2:b0:6cf:468e:b8ce with SMTP id s2-20020a05620a0bc200b006cf468eb8cemr35944988qki.699.1666922993832;
-        Thu, 27 Oct 2022 19:09:53 -0700 (PDT)
+        bh=lqkEG8O3RdCF5eSvHKs0ga0ET4B9mitFOaFUTFXCGVs=;
+        b=U4WCG+Bx6Q7gPbHJZDLjaeKLHka++uNkaTQrnR/stV662ncLn151cMYmtYOtXsyvBk
+         ER8hqzE58drx55OGNgP60HXJWH0dGtLf+9pBcoOYJV1moTdMLNp30cEMtQlDrSpEqsNn
+         PqVClYrAsea0/zfo0xZjUoDemB0nKnlNrtljVlZwdIK4TjUU9mKwLgJ7Ii9BeTIHMPVI
+         74I2a+9PhnAA7oH1UUhp3eUxfawRJbNZBH27iYNnqDhLJUbCA7+MLE35VclUtl3vDLWh
+         dCu8Ijks3ZnQuZ7zTBZNKwvIhp//u+iXKcfnqBQtfFzY/00PLvkV32tI2KRbnipjrYLF
+         tR+Q==
+X-Gm-Message-State: ACrzQf37jnhFIYa5DQe/ltVJ9O1Wd4XZMdq8TULPY7vZrqvlvll92utY
+        P7qHV/aX4LNA149AfoVSRD7zAQ==
+X-Google-Smtp-Source: AMsMyM43BQ6Snvnq1Jm5XGjqmIIYgdUbbV/PbFBr7Z4M0tReDOXXdXfhlrYUPbuq0dweZtOuAkTDtA==
+X-Received: by 2002:a05:622a:1b8e:b0:39c:ec9e:46c0 with SMTP id bp14-20020a05622a1b8e00b0039cec9e46c0mr43512951qtb.329.1666923107683;
+        Thu, 27 Oct 2022 19:11:47 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id w8-20020a05620a424800b006ed30a8fb21sm2096915qko.76.2022.10.27.19.09.52
+        by smtp.gmail.com with ESMTPSA id w187-20020a3794c4000000b006ee957439f2sm2033202qkd.133.2022.10.27.19.11.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 19:09:53 -0700 (PDT)
-Message-ID: <be3d4533-5f4e-d93e-dfec-1eaa1c7c4c8b@linaro.org>
-Date:   Thu, 27 Oct 2022 22:09:51 -0400
+        Thu, 27 Oct 2022 19:11:47 -0700 (PDT)
+Message-ID: <02bf2278-a204-f258-48ff-18aeec4d2858@linaro.org>
+Date:   Thu, 27 Oct 2022 22:11:45 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 07/10] dt-bindings: phy: qcom,qmp-ufs: rename current
- bindings
+Subject: Re: [PATCH 08/10] dt-bindings: phy: qcom,qmp-ufs: fix sc8280xp
+ binding
 Content-Language: en-US
 To:     Johan Hovold <johan+linaro@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
@@ -68,14 +68,15 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221024090041.19574-1-johan+linaro@kernel.org>
- <20221024090041.19574-8-johan+linaro@kernel.org>
+ <20221024090041.19574-9-johan+linaro@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221024090041.19574-8-johan+linaro@kernel.org>
+In-Reply-To: <20221024090041.19574-9-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -100,12 +101,15 @@ On 24/10/2022 05:00, Johan Hovold wrote:
 > arguable also incomplete as they only the describe register blocks used
 > by the current Linux drivers.
 > 
-> In preparation for adding new bindings for SC8280XP which further
-> bindings can be based on, rename the current bindings after MSM8996 and
-> add a reference to the SC8280XP bindings.
+> Add a new binding for the UFS QMP PHYs found on SC8280XP which further
+> bindings can be based on.
+> 
+> Note that the current binding is simply removed instead of being
+> deprecated as it was only recently merged and support for SC8280XP is
+> still under development.
 > 
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
+
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
