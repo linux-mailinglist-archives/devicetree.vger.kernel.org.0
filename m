@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD16A6111ED
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED5B26111F1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbiJ1MxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:53:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56892 "EHLO
+        id S230039AbiJ1MyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiJ1MxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:53:01 -0400
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C708E1D5873
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:52:59 -0700 (PDT)
-Received: by mail-qv1-xf30.google.com with SMTP id j6so3946209qvn.12
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:52:59 -0700 (PDT)
+        with ESMTP id S229572AbiJ1MyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:54:03 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65441D587A
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:54:02 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id j21so3296803qkk.9
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:54:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SvMIyVrlfo0PpbnIiKoJgiYaRHpIFVaYpSA/Hr/fnK4=;
-        b=ApG6HXRY3Xmw3jBNfYhpgBF+5HWTCTCb7v+aKr2BCJsRWKieCj5+OLT0KtgwJ7k0DB
-         cS/YW6r/GVqVasapGU7ZW/AEdEhKVM6qv4x4S2LsKrXVXAzJHUGVXvFxAbi1Asd3fw4i
-         K4BeNtEoC7LWjPbLyJQmW7Jb52NL9+8eJMV9qw+LeMVzSLvxgYKMp5P5Ku7l/tcQmal3
-         6klkY1D0xRxtM2+o388eH4m4czmsEG3/rpQxBWm+myJ45Rq5ENSHaGie9V9VxTF4CZmb
-         SoeD4L4hlp0Qhwk788zVD0ObzpqVCtuixcIlpynW1lCimERjwclK9hd8OlCb/M7x1+1h
-         kfGw==
+        bh=kEeSrSRoauh4yP6EtE63olcINHeLEQ9QpJOqvMuL25U=;
+        b=wUtro+1EZHfw5B4/3J09EsyjapRcGWtQS0GdIy4KCwofTMwvNKVwHQxOy/QQ76U7V/
+         AAKvUUlVm78Hv/OhIIk3FbNSN7dWrqCeTrxWkGU1/FRjw6P0WCzzgr4FjwXVNp3xpI4X
+         e5983iUNbXyLkFkxxUKsJ95UeyQi8Kw0emxlhx1H60GnVKfNGLkdRPHswa9ASbBpYvG3
+         Q79egLiYv1wbaEAHfc/nSPckRbO+Nq0MQ6LuvAnnKtOn2qAASPaU/7HW2OAxXUk8ca1W
+         E0cHwqyNQwp47j2xFNSHiW67S/UfUZ8QGm54z4umvYUHr1VXealuahR1SIarbTjafu84
+         Qg1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SvMIyVrlfo0PpbnIiKoJgiYaRHpIFVaYpSA/Hr/fnK4=;
-        b=iXGOwFu6Z64jl4Yqh366GjCpo+BdE/XiGMKV3zK4VKAg4RRqO2i2Vl8JdLQ5cZJCqA
-         FIgU5SUFEMGcvMgk+P7Oc2+BPbUR40YeWdhhaBztKJsCetWngAgZ0gEEyUe1BPaIxO0z
-         5B406hdOV40kcDLa2W/OsCPCfJm34qkBBzmD+aeUtgJLqr7AUQgcMrgwEXF0V9294dtP
-         tx5YRu2U9WM7KuliXoNSJH/Mo34GTcs1zP7NzFMsUi9cpJPkhO7QJkBl7hSatHIEmZP7
-         6YNh4lPz/5YQQ1lh5UkyYUYN0t9SslSixRdgP31YwfXvAraGv1v8WNcdB6LwHwu3cEcU
-         ZAsw==
-X-Gm-Message-State: ACrzQf3BPInNGdrwGtVCZnCKCC9IFW6lIUhTsbEtK5JPXydpIpIoSwBR
-        GhTE5HFamTokMSWIjFBjaq9NdQ==
-X-Google-Smtp-Source: AMsMyM7NZUJbRL3RhB7eEJMFnW4vuxNDkSL7kCSrHLMyPoPgahOvBZv3KdQ1EFEgrSHVL82Kq/tHoA==
-X-Received: by 2002:a0c:b295:0:b0:4ba:b9b4:5159 with SMTP id r21-20020a0cb295000000b004bab9b45159mr32471128qve.19.1666961578957;
-        Fri, 28 Oct 2022 05:52:58 -0700 (PDT)
+        bh=kEeSrSRoauh4yP6EtE63olcINHeLEQ9QpJOqvMuL25U=;
+        b=RAP6ojl94smep5FMyftJR3HqYlX4m7HBZUveBg9BGof/8np7ZjTHPZtOKl96M82q0d
+         +KJvMLDzY93Z9V0ujN2gseMPWVLUaYWAuqo+YPiN0DDcRoYtwEmR457QwB9f01vNQbdn
+         ePuEkmXSWbR3sKA0uWZ8uk3+QFvVaq6y+Gk9gF31z1f+xRogWSLkPXg5BZ03P7FRayDu
+         Rn8MeJrCWCcweuKnR8KM+LKfJTkUHgapYW8ImTb/5ADhN5svMhSh5jeY6qbHZ/UH8OwG
+         BryoI1A+x2+YoK+Zk5gnS4CV5wRamAwOgHmxr4cTFJGZKVeguj2L5hfbyV51g2GZIqzE
+         4zeA==
+X-Gm-Message-State: ACrzQf2Z9nYNy7VH2zheLFxUk5KOQtfQf+2gIRaJSq9fc2uErbLU+80u
+        FS9aHs0dAYFw0VyzhTI0D0ICkw==
+X-Google-Smtp-Source: AMsMyM6C/1c9UBXeRkD69IYMnNOe1rCNATWrDwGIPoBN/c1AuHDUKAi80WQb5qcIwppBiCVSl/3eiQ==
+X-Received: by 2002:a05:620a:318b:b0:6ef:1a8e:bb3b with SMTP id bi11-20020a05620a318b00b006ef1a8ebb3bmr27849682qkb.248.1666961641869;
+        Fri, 28 Oct 2022 05:54:01 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id l20-20020a05620a28d400b006ce813bb306sm2898090qkp.125.2022.10.28.05.52.57
+        by smtp.gmail.com with ESMTPSA id k26-20020ac8605a000000b0039a55f78792sm2302072qtm.89.2022.10.28.05.54.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 05:52:58 -0700 (PDT)
-Message-ID: <c1465ec3-a903-f1d1-621f-2cbe95ae53e7@linaro.org>
-Date:   Fri, 28 Oct 2022 08:52:56 -0400
+        Fri, 28 Oct 2022 05:54:01 -0700 (PDT)
+Message-ID: <4555c84a-4c3d-031d-4961-d4a46a1fdd50@linaro.org>
+Date:   Fri, 28 Oct 2022 08:53:59 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 2/2] memory: tegra: Add DLA clients for Tegra234
+Subject: Re: [PATCH v8 0/2] gpmc wait pin additions
 Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20221028123741.134880-1-jonathanh@nvidia.com>
- <20221028123741.134880-2-jonathanh@nvidia.com>
- <ce3fdd20-248f-4fdd-fe83-2aa79fd297c5@linaro.org>
- <073073ae-d921-e11f-8ff4-67f1a61760d0@nvidia.com>
+To:     Roger Quadros <rogerq@kernel.org>,
+        "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org
+Cc:     robh+dt@kernel.org, tony@atomide.com
+References: <20221021081612.591613-1-benedikt.niedermayr@siemens.com>
+ <b80c95e5-6615-25b1-93b5-2db52b7d5ebe@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <073073ae-d921-e11f-8ff4-67f1a61760d0@nvidia.com>
+In-Reply-To: <b80c95e5-6615-25b1-93b5-2db52b7d5ebe@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,41 +75,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 08:51, Jon Hunter wrote:
+On 28/10/2022 07:56, Roger Quadros wrote:
+> Hello Benedikt,
 > 
-> On 28/10/2022 13:46, Krzysztof Kozlowski wrote:
->> On 28/10/2022 08:37, Jon Hunter wrote:
->>> Add the memory clients on Tegra234 which are needed for initialising the
->>> SMMU for the Deep Learning Accelerator (DLA).
->>>
->>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->>> ---
->>>   drivers/memory/tegra/tegra234.c | 160 ++++++++++++++++++++++++++++++++
->>>   1 file changed, 160 insertions(+)
->>>
->>> diff --git a/drivers/memory/tegra/tegra234.c b/drivers/memory/tegra/tegra234.c
->>> index a9e8fd99730f..9bdaf8af8c97 100644
->>> --- a/drivers/memory/tegra/tegra234.c
->>> +++ b/drivers/memory/tegra/tegra234.c
->>> @@ -170,6 +170,166 @@ static const struct tegra_mc_client tegra234_mc_clients[] = {
->>>   				.security = 0x504,
->>>   			},
->>>   		},
->>> +	}, {
->>> +		.id = TEGRA234_MEMORY_CLIENT_DLA0RDA,
->>> +		.name = "dla0rda",
->>> +		.sid = TEGRA234_SID_NVDLA0,
+> On 21/10/2022 11:16, B. Niedermayr wrote:
+>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 >>
->> This is now not applicable because you sent dependencies separate, mixed
->> with other subsystems... Split pieces based on subsystems.
+>> Currently it is not possible to configure the WAIT0PINPOLARITY and
+>> WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via
+>> device tree properties.
+>>
+>> It is also not possible to use the same wait-pin for different
+>> cs-regions.
+>>
+>> While the current implementation may fullfill most usecases, it may not
+>> be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where
+>> more complex interfacing options where possible.
+>>
+>> For example interfacing an ASIC which offers multiple cs-regions but
+>> only one waitpin the current driver and dt-bindings are not sufficient.
+>>
+>> While using the same waitpin for different cs-regions worked for older
+>> kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
+>> newer kernels (>5.10).
 > 
-> Sorry I don't understand. This patch is dependent upon the first. I have 
-> not sent anything separate.
+> This series does not apply on v6.0 nor on v6.1-rc1.
+> Could you please rebase on v6.1-rc1 and send? Thanks!
 
-You sent mixed between subsystems patches adding TEGRA234_SID_NVDLA0.
-That one should have been sent separate so maintainers can pick it up.
-
-Now, it's not possible for me to pick this patch.
+I am still kind of expecting your review of these. Shall I not?
 
 Best regards,
 Krzysztof
