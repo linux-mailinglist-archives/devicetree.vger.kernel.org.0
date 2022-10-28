@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB7B4611D1C
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFBF7611D28
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbiJ1WDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 18:03:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56678 "EHLO
+        id S230104AbiJ1WGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 18:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbiJ1WDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:03:19 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F5924C137
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:03:17 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id l9so4357518qkk.11
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:03:17 -0700 (PDT)
+        with ESMTP id S229965AbiJ1WGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:06:32 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDAE224D894
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:06:27 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id f8so4377539qkg.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:06:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JEh1m2BZsGPhLegWl0gI6K0SksICnbu5WCO4CkZ7SZk=;
-        b=iE2tyRua7hVzAgJU0AOezFIvb6TZDPJ6VKUc5wp+v6b3b6bkutzeyAx7RK+dUY20eW
-         Fkhu3wmRBT3HgfhLdAj+oA/cxL602LVDLS4yf2/KX66HwRRIxCJfEczlUOmx1fZ1RN3D
-         2JgCU4HW5mpEJV9D20hzgBpEBWFcJC8aRi2X7zOJRKzNfktPm8myGxKXqpvaH1b03CAf
-         ROP6ZbS/Pi9LudbS/GoxMADywODGedJhyEEWR78ZcF756lb6AW6MDglWYRNg4kc3aELx
-         J2dy+C+6/SfWmVTyadbHNvZYoj5O2fhHzW3fgO4a5rdmfMB0Ia74FA3o1J/r4IJVBinl
-         pPJA==
+        bh=Oe9YWMLOYbkHnGM5Ih1wEVQ8dEjEkrZVtdAltI46+v4=;
+        b=ZBRvD+MDACsUIyIxrcrpKl7fS0lCVLwbEcXBNJ54M1bmTkZ8aukcIcVjUzFcxgGQKn
+         Vg0VAdVvwXsh6edKd2XanDxQor/9m7eq4UvNiSk3VbLVeDg8xX1lZuODUlVHDgk5PWpc
+         evlWLZ5cyZ0sEbjG1sPlYV7smBcSW/ELW2r335IqMBAk/CqDHG5opLLsTCFuefRVtOnA
+         TItz0WXLBUcevzMUF35AaKuBKJGdNkjS/SiimgKYyd718R6bCNq7P7HqcfC08mWfAhAW
+         HOEurebBkUkT+RhYDvylYcw677raCx5pfiEP7Z8EwQN3mak+YW4qBaGCxKvAZXHU5di6
+         2vTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JEh1m2BZsGPhLegWl0gI6K0SksICnbu5WCO4CkZ7SZk=;
-        b=jMkEEhJjMJqt9pJSXeduuuisbJt3PbfX8q3bhnVCYThqiGc4kzB+yc5cb6eCWsxBt1
-         b7mibHcRu7vnOgNXewqMBCc2Gf+y95Et655yoZM+DAZswdqbDa8+wcS3L0nbrMHG3VdF
-         uQFGcz3Y8/S6JWyqgaX5/N1OFTQDg/OqciGZfhjRQLtWhvnxf8/VJdLa2B0hgx2340sf
-         RbLzCYSctMZnb7gP/5eVkf25/sumFuV4xEqxtzWnor/x/fcDSF4rwkEGXVo/BqgFqSt3
-         y0DwhxFUg0nJL9SELaqOYtVPWDIia7tHms9Z/Hv/Lz9peP3BCokMgU5Bt8F7Ozl+9JUd
-         J0Uw==
-X-Gm-Message-State: ACrzQf21CVradoKkTfpmXuLyF4fkDmoYjimL7bX4UygVFX/2q/Zp2yy5
-        0VS2Iy1nhISrfIV69+99cgPsZg==
-X-Google-Smtp-Source: AMsMyM4w5sAgV/4A4vdJFca6Nzd/ep28S3kElmPq1FpynnhrFrhjL8xYOXuVz2Rtf4HQ6enD2yiZFg==
-X-Received: by 2002:a37:f50b:0:b0:6fa:12f2:974c with SMTP id l11-20020a37f50b000000b006fa12f2974cmr698344qkk.171.1666994596489;
-        Fri, 28 Oct 2022 15:03:16 -0700 (PDT)
+        bh=Oe9YWMLOYbkHnGM5Ih1wEVQ8dEjEkrZVtdAltI46+v4=;
+        b=Jn2AEHj3u5iinEqYXm5jxWZCAdxHb73pJcvS2UJDaV+RBtzd3Yq4Ok2VpNH4zFEHwW
+         Cm2ebzZWOSudTO74k6v94Qe8F20MrxxVMhrjM9EGkvbfn7yToILq1Ch8svg7wzhiJRxz
+         W2cESs88RKH1obmEgcbjTVLxCfEDaB0H9VekizFJxIWraPXxiy44aWKkL9bLcTiIoSRx
+         308bB+pzkyLga/TdIzeRQYqWaQlUvI9y2wZ6lYnhwP/6bv1WUgavRETJNnCdc6xyockr
+         H5Jlo8hkhEmYksx/W4WeZ5o2srcvM7y0wEosAxhEb4pm/1YQ1YiixzKXIWXgcBTxs1t4
+         C9Mw==
+X-Gm-Message-State: ACrzQf3vYzv1pdtmOjxqTO7O0F24mI3dVgl60AJ1ZTjVVGeOZ0u19x32
+        SeNJ5jJ+UrgS3AatlxOFfCYcsA==
+X-Google-Smtp-Source: AMsMyM4YrU1iBJT16PSlUcyx2agQqx/l8uxg+PwKzjNI22EFwmj+Nt9RZ9CXjFpopTjLH+jsaFNawA==
+X-Received: by 2002:a05:620a:845:b0:6f9:df58:1ef5 with SMTP id u5-20020a05620a084500b006f9df581ef5mr1186792qku.238.1666994759245;
+        Fri, 28 Oct 2022 15:05:59 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id m8-20020a05620a24c800b006ce515196a7sm3787913qkn.8.2022.10.28.15.03.14
+        by smtp.gmail.com with ESMTPSA id x4-20020a05620a258400b006bc192d277csm3830094qko.10.2022.10.28.15.05.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 15:03:15 -0700 (PDT)
-Message-ID: <eeeefa55-1782-2768-8d47-0f315ed9888b@linaro.org>
-Date:   Fri, 28 Oct 2022 18:03:13 -0400
+        Fri, 28 Oct 2022 15:05:57 -0700 (PDT)
+Message-ID: <408b7b0c-ce30-134e-9b1f-f77c1f03f5c9@linaro.org>
+Date:   Fri, 28 Oct 2022 18:05:55 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v1 8/9] arm64: dts: qcom: sm8350-hdk: Enable display & dsi
- nodes
+Subject: Re: [PATCH v1 9/9] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc
+ dsi-hdmi bridge
 Content-Language: en-US
 To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
@@ -71,9 +71,9 @@ To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
         Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
         quic_jesszhan@quicinc.com
 References: <20221028120812.339100-1-robert.foss@linaro.org>
- <20221028120812.339100-9-robert.foss@linaro.org>
+ <20221028120812.339100-10-robert.foss@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028120812.339100-9-robert.foss@linaro.org>
+In-Reply-To: <20221028120812.339100-10-robert.foss@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,31 +86,190 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 28/10/2022 08:08, Robert Foss wrote:
-> Enable the display subsystem and the dsi0 output for
-> the sm8350-hdk board.
+> The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
+> 
+> In order to toggle the board to enable the HDMI output,
+> switch #7 & #8 on the rightmost multi-switch package have
+> to be toggled to On.
 > 
 > Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+>  arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 106 ++++++++++++++++++++++++
+>  1 file changed, 106 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> index e6deb08c6da0..6e07feb4b3b2 100644
+> index 6e07feb4b3b2..6666b38b58f8 100644
 > --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
 > +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> @@ -213,10 +213,32 @@ &cdsp {
->  	firmware-name = "qcom/sm8350/cdsp.mbn";
+> @@ -20,6 +20,17 @@ chosen {
+>  		stdout-path = "serial0:115200n8";
+>  	};
+>  
+> +	hdmi-out {
+
+Generic node names, so hdmi-connector or just connector.
+
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_con: endpoint {
+> +				remote-endpoint = <&lt9611_out>;
+> +			};
+> +		};
+> +	};
+> +
+>  	vph_pwr: vph-pwr-regulator {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "vph_pwr";
+> @@ -29,6 +40,32 @@ vph_pwr: vph-pwr-regulator {
+>  		regulator-always-on;
+>  		regulator-boot-on;
+>  	};
+> +
+> +	lt9611_1v2: lt9611-1v2 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "LT9611_1V2";
+> +
+> +		vin-supply = <&vph_pwr>;
+> +		regulator-min-microvolt = <1200000>;
+> +		regulator-max-microvolt = <1200000>;
+> +		gpio = <&tlmm 49 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	lt9611_3v3: lt9611-3v3 {
+
+Ditto
+
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "LT9611_3V3";
+> +
+> +		vin-supply = <&vreg_bob>;
+> +		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
 >  };
 >  
-> +&dispcc {
+>  &adsp {
+> @@ -220,6 +257,15 @@ &dispcc {
+>  &dsi0 {
+>  	status = "okay";
+>  	vdda-supply = <&vreg_l6b_1p2>;
+> +
+> +	ports {
+> +		port@1 {
+> +			endpoint {
+> +				remote-endpoint = <&lt9611_a>;
+> +				data-lanes = <0 1 2 3>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &dsi0_phy  {
+> @@ -231,6 +277,48 @@ &gpi_dma1 {
+>  	status = "okay";
+>  };
+>  
+> +&i2c15 {
+> +	status = "okay";
+
+status is the last property
+
+> +	clock-frequency = <400000>;
+> +
+> +	lt9611_codec: hdmi-bridge@2b {
+> +		compatible = "lontium,lt9611uxc";
+> +		reg = <0x2b>;
+> +		status = "okay";
+
+Why status?
+
+> +
+> +		interrupts-extended = <&tlmm 50 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
+> +
+> +		vdd-supply = <&lt9611_1v2>;
+> +		vcc-supply = <&lt9611_3v3>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				lt9611_a: endpoint {
+> +					remote-endpoint = <&dsi0_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +
+> +				lt9611_out: endpoint {
+> +					remote-endpoint = <&hdmi_con>;
+> +				};
+> +			};
+> +
+
+No need for blank line
+
+> +		};
+> +	};
+> +};
+> +
+>  &mdss {
+>  	status = "okay";
+>  };
+> @@ -248,6 +336,10 @@ &qupv3_id_0 {
+>  	status = "okay";
+>  };
+>  
+> +&qupv3_id_2 {
 > +	status = "okay";
 > +};
 > +
-> +&dsi0 {
-> +	status = "okay";
+>  &slpi {
+>  	status = "okay";
+>  	firmware-name = "qcom/sm8350/slpi.mbn";
+> @@ -544,4 +636,18 @@ usb_hub_enabled_state: usb-hub-enabled-state {
+>  		drive-strength = <2>;
+>  		output-low;
+>  	};
+> +
+> +	lt9611_rst_pin: lt9611-rst-state {
+> +		pins = "gpio48";
+> +		function = "normal";
+> +
+> +		output-high;
+> +		input-disable;
+> +	};
+> +
+> +	lt9611_irq_pin: lt9611-irq {
 
-Status is the last property.
+Missing suffix 'state'.
 
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
+
+Rebase your changes on last linux-next.
 
 Best regards,
 Krzysztof
