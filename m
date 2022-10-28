@@ -2,101 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AFAE610A19
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB628610A36
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbiJ1GN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 02:13:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55616 "EHLO
+        id S229610AbiJ1GTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 02:19:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiJ1GN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:13:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014031B7F03;
-        Thu, 27 Oct 2022 23:13:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9077162672;
-        Fri, 28 Oct 2022 06:13:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D82E3C433D7;
-        Fri, 28 Oct 2022 06:13:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666937606;
-        bh=4CqAhmzska+zzYLW4aongWkFXFBMvigrTx+gYITPknc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z6eCy8hir0S58TiK/kcwLHlj+03InJp83Lz6JQZe8LjzvTbuC9THnZoyAnuXOnFMU
-         OGNByaMKlMlFwswkRReYkxJfB5JUkGQo5UtiPzXeV64wXT7wthwbyBOr6QyqrQq4JF
-         hPmVB6TugYmwTExukSPq+QLbdXlJ+dWE9wFtUlAWlaXGRD6C4qxqpLMxD73rYLiB3b
-         /feBI0g+bgjZyZRTu1hA8f6Zv0FDb2UzIUYoAZcsKy9HX0/HHiQEXXQ+6MvH3RwIqx
-         RYWmQ0E/Z9gbDIAv65wU1UsYzI+LKfAN50GAnGLJKkVDs7F6LHURL8cyB2rTAeJcjF
-         gfZSrQFpxdvhQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1ooIcC-0005Sw-8T; Fri, 28 Oct 2022 08:13:12 +0200
-Date:   Fri, 28 Oct 2022 08:13:12 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229544AbiJ1GTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:19:35 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6DB4F2AC3;
+        Thu, 27 Oct 2022 23:19:29 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8CxjdpwdFtjBwgDAA--.11638S3;
+        Fri, 28 Oct 2022 14:19:28 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Axf+BrdFtj_zQGAA--.22314S2;
+        Fri, 28 Oct 2022 14:19:27 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/13] dt-bindings: phy: qcom,qmp-usb: fix sc8280xp
- binding
-Message-ID: <Y1ty+E2qyxlniIsV@hovoldconsulting.com>
-References: <20221024100632.20549-1-johan+linaro@kernel.org>
- <20221024100632.20549-12-johan+linaro@kernel.org>
- <c9940701-8486-5a0c-4c7d-9c85b9460a7f@linaro.org>
- <Y1tyBw2iQvV89+UB@hovoldconsulting.com>
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 1/3] dt-bindings: clock: add loongson-2 clock include file
+Date:   Fri, 28 Oct 2022 14:19:20 +0800
+Message-Id: <20221028061922.19045-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y1tyBw2iQvV89+UB@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Axf+BrdFtj_zQGAA--.22314S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7Wry3AFyUJryUKr4kWr13XFb_yoW8KF1xpr
+        s5CFWfKry2yF4IkwsYgF13Kr13uw4xJ3W7AFW7uF1jyF17Jw18JwnruF1fAa9xXrWkGFWx
+        ZaykCw409a9rX3DanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUAVWUZwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x
+        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
+        xVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
+        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_JFI_
+        Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
+        WUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIY
+        CTnIWIevJa73UjIFyTuYvjxUcxwIDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 28, 2022 at 08:09:11AM +0200, Johan Hovold wrote:
-> On Thu, Oct 27, 2022 at 10:15:45PM -0400, Krzysztof Kozlowski wrote:
-> > On 24/10/2022 06:06, Johan Hovold wrote:
-> > > The current QMP USB PHY bindings are based on the original MSM8996 PCIe
-> > > PHY binding which provided multiple PHYs per IP block and these in turn
-> > > were described by child nodes.
-> > > 
-> > > The QMP USB PHY block only provide a single PHY and the remnant child
-> > > node does not really reflect the hardware.
-> > > 
-> > > The original MSM8996 binding also ended up describing the individual
-> > > register blocks as belonging to either the wrapper node or the PHY child
-> > > nodes.
-> > > 
-> > 
-> > (...)
-> > 
-> > >      then:
-> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb-phy.yaml
-> > > new file mode 100644
-> > > index 000000000000..95ee81d782f9
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb-phy.yaml
-> > 
-> > Filename based on compatible, so in this case
-> > "qcom,sc8280xp-qmp-usb3-uni-phy.yaml", unless it's like the PCI case?
-> 
-> Yes, you're right. Thanks for catching that. This should be the only
-> sc8280xp USB PHY compatible so the file name should be updates as you
-> suggested.
+This file defines all Loongson-2 SoC clock indexes, it should be
+included in the device tree in which there's device using the
+clocks.
 
-Looks like I missed the '3' in 'usb3' in the previous patch as well.
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Change in v6:
+		1. Replace string LOONGSON2 with LOONGSON-2 in MAINTAINERS.
 
-Johan
+ MAINTAINERS                                   |  6 ++++
+ include/dt-bindings/clock/loongson,ls2k-clk.h | 29 +++++++++++++++++++
+ 2 files changed, 35 insertions(+)
+ create mode 100644 include/dt-bindings/clock/loongson,ls2k-clk.h
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6ae50b1257e9..14af7ebf2be1 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11907,6 +11907,12 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
+ F:	drivers/thermal/loongson2_thermal.c
+ 
++LOONGSON-2 SOC SERIES CLOCK DRIVER
++M:	Yinbo Zhu <zhuyinbo@loongson.cn>
++L:	linux-clk@vger.kernel.org
++S:	Maintained
++F:	include/dt-bindings/clock/loongson,ls2k-clk.h
++
+ LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+ M:	Sathya Prakash <sathya.prakash@broadcom.com>
+ M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+diff --git a/include/dt-bindings/clock/loongson,ls2k-clk.h b/include/dt-bindings/clock/loongson,ls2k-clk.h
+new file mode 100644
+index 000000000000..db1e27e792ff
+--- /dev/null
++++ b/include/dt-bindings/clock/loongson,ls2k-clk.h
+@@ -0,0 +1,29 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Author: Yinbo Zhu <zhuyinbo@loongson.cn>
++ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
++ */
++
++#ifndef __DT_BINDINGS_CLOCK_LOONGSON2_H
++#define __DT_BINDINGS_CLOCK_LOONGSON2_H
++
++#define LOONGSON2_REF_100M				0
++#define LOONGSON2_NODE_PLL				1
++#define LOONGSON2_DDR_PLL				2
++#define LOONGSON2_DC_PLL				3
++#define LOONGSON2_PIX0_PLL				4
++#define LOONGSON2_PIX1_PLL				5
++#define LOONGSON2_NODE_CLK				6
++#define LOONGSON2_HDA_CLK				7
++#define LOONGSON2_GPU_CLK				8
++#define LOONGSON2_DDR_CLK				9
++#define LOONGSON2_GMAC_CLK				10
++#define LOONGSON2_DC_CLK				11
++#define LOONGSON2_APB_CLK				12
++#define LOONGSON2_USB_CLK				13
++#define LOONGSON2_SATA_CLK				14
++#define LOONGSON2_PIX0_CLK				15
++#define LOONGSON2_PIX1_CLK				16
++#define LOONGSON2_CLK_END				17
++
++#endif
+-- 
+2.31.1
+
