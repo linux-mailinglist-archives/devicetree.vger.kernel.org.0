@@ -2,105 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6959D611E07
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 01:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09DA4611E28
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 01:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbiJ1XTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 19:19:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
+        id S229777AbiJ1Xc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 19:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbiJ1XTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 19:19:42 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC76E09B
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:19:41 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id e129so6058843pgc.9
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:19:41 -0700 (PDT)
+        with ESMTP id S229681AbiJ1Xc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 19:32:57 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536D018DD40
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:32:53 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id i9so1702307qki.10
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:32:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vdbgZ8+Fu6n0HK4tgOaOYq43eN2AjNjj/Lhga+VAiyM=;
-        b=aMw3oUjEz8KxyX5NRy8i43+HJNi8jXjsGtcRnti8nSdP4d/D/7x/NYETkIaL+23EEd
-         37AA/MvumskK4g5anPHvbmKTEazSBxU8xWFpbfzNfVoHL8XP0rk5+6xe+EiYp19r4lgg
-         3E2+1UsnCFUXhBv/6PElhfyEisP2ddRRJSTJQBGQiJch9HkvDg9XowGTYV86BxzccqYz
-         woDM+lrq8UDV+DZZ021IjdtLqgVhH6v9U57om+imUTcuJkGHkuke/Q/IBc/q3cH2Vblp
-         rbMzYHQKFrzrAiJ7g5Rku+VyVCcvidbHmCvRJM8e14ayWyUZFgykrPs9tabdGTJCZyeb
-         IAZw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p/JONS14sR6Y7vp4o4d79QghiC8/pLCjQntTzO9qLD0=;
+        b=GgYzrGqLc2vdB88vqTDV5Q4ta5r4Cxy0BnuVGeKRgN8NFFSFROCj+eKu7RDJlKzRE/
+         lPtu1y2NE35wd2lyrDPBa5TgyTIIqI8qyOLNMj0F7hT4oDmm16+k6L8bzQ3fUwVtYvXV
+         X1RtA1ltGex/O1PP9/X3ffzTKkseCtK1horJXfCAC18XT38N8c1qLpJPdcAPi0+35daG
+         GvBeBWbFVTL0mTaPiPOJISCkL+shzSyGSeBuScJkOOXafJcC1KJnKEQegfs8pLzb6Ty1
+         MGlGmQetK9a/z4v/a7pQ13DOqCTg2RVf3s5CEm+R/x+2oBbO5LNRynEbJUGlSfvkVCoU
+         azIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vdbgZ8+Fu6n0HK4tgOaOYq43eN2AjNjj/Lhga+VAiyM=;
-        b=G+PUlwvcw7HufOK8vzKqv0eyBImparQugYlvLNHxPrFkE3Ep+X3a9iE/DHDRyUqDF7
-         ovzVgL7kvjheeXY0rmsZoDG77OeYpbvCfSo00GUplTHTOH5BG+ip3qokUqq7+HDkJ1Ug
-         HBV/8M2FXv3ZCuFEoO6yHsCrunCyrkq7RmBNvdenIK7J3N+0dcZ6cL4W+MNktSVyqteh
-         WsoVrQmC1J4Amw6mqs4qFP2nKrxVS+zs+QCcXjGmDCYiQbjBPY4YyXRzCWJ1sg1DwL4L
-         ufnYJO0MAOci1ANoXazIpEENjH+Du0uuDIMPW2I1YWlL7ieqj5OiwBO5tuxB39hsvJj5
-         MbTQ==
-X-Gm-Message-State: ACrzQf2wYcm58aDndFTuI6rlka+yky1VjwJCAEmx0bzgfZRq0jAb96w7
-        Gl6ANeWJ8Hr5KeQUyCljcss04g==
-X-Google-Smtp-Source: AMsMyM7kBxRafshIfMOooOPKNBPhtCi9z2rUeho/arEVqJ9+3KvlGJVZHHufukrQPzCdagMN4rm8IQ==
-X-Received: by 2002:a63:69c2:0:b0:46a:eeb1:e784 with SMTP id e185-20020a6369c2000000b0046aeeb1e784mr1617170pgc.589.1666999180528;
-        Fri, 28 Oct 2022 16:19:40 -0700 (PDT)
-Received: from rivos-atish.hq.rivosinc.com ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id jb5-20020a170903258500b00176ea6ce0efsm1335plb.109.2022.10.28.16.19.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 16:19:40 -0700 (PDT)
-From:   Atish Patra <atishp@rivosinc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH] RISC-V: Do not issue remote fences until smp is available
-Date:   Fri, 28 Oct 2022 16:19:29 -0700
-Message-Id: <20221028231929.347918-1-atishp@rivosinc.com>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=p/JONS14sR6Y7vp4o4d79QghiC8/pLCjQntTzO9qLD0=;
+        b=xBPaKzZL6VNykio1izikoBBVbfiIFHm3Zb3AeIQqV8nFiZohhHlvMY/pOHsPhX2fCe
+         ++3Zw3AKQFlgEkQR2R1sMx9VHa9nlI7J1ZI+uB3DD7a/DZZK2dLzE8+5Rw+PlKE2mlCW
+         xmjC5mytRUNXNBrohKPG6wvHQSegg1l6pgoVg3rbwQptjIpjWdKtzScBhQVhrgRN4mn2
+         l+zBcx627mcIwcxWJXVnAiMVWJL8eaNVX/iyWwJnuH09E2s4X/XjXcrBJFi+lEMOwsFS
+         NZYXadBjPz8ft4ztlUzfEbeYRgtxLmGnbMY2GxTPTJtrxi7UYtA0hoG6RCwpk1Vqqmt1
+         QIlQ==
+X-Gm-Message-State: ACrzQf2pAUpRVPAjzEuQq88tlpVaU3IHDrTP1f5LKSwYRAOUzJe9y7ip
+        3NG54iCCUAWyzHkt7l70Vsedag==
+X-Google-Smtp-Source: AMsMyM5h+piJZy1yW3lpw1EdYKId/NcgvPlYP21Z5bFe8FV3psdcZYOejGm+vHjk3xZZhwcj+ejBpQ==
+X-Received: by 2002:a05:620a:24c3:b0:6ee:d4bb:e5b0 with SMTP id m3-20020a05620a24c300b006eed4bbe5b0mr1364269qkn.471.1666999972509;
+        Fri, 28 Oct 2022 16:32:52 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id m8-20020ac84448000000b00397e97baa96sm43946qtn.0.2022.10.28.16.32.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 16:32:51 -0700 (PDT)
+Message-ID: <fdeeeb4e-c66c-5c18-41f0-41a9f27ad8e3@linaro.org>
+Date:   Fri, 28 Oct 2022 19:32:49 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 0/5] Add PWM for MStar SoCs
+Content-Language: en-US
+To:     Romain Perier <romain.perier@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220907131241.31941-1-romain.perier@gmail.com>
+ <CABgxDoKeJrVK2NxJXd=MicdBWUyusf1aGbgKvyrOyB7m0xbPaQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CABgxDoKeJrVK2NxJXd=MicdBWUyusf1aGbgKvyrOyB7m0xbPaQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is useless to issue remote fences if there is a single core
-available. It becomes a bottleneck for sbi based rfences where
-we will be making those ECALLs for no reason. Early code patching
-because of static calls end up in this path.
+On 27/09/2022 02:41, Romain Perier wrote:
+> ping ;)
+> 
 
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
----
- arch/riscv/mm/cacheflush.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
-diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
-index f10cb47eac3a..7fafc8c26505 100644
---- a/arch/riscv/mm/cacheflush.c
-+++ b/arch/riscv/mm/cacheflush.c
-@@ -19,6 +19,10 @@ void flush_icache_all(void)
- {
- 	local_flush_icache_all();
- 
-+	/* No need to issue remote fence if only 1 cpu is online */
-+	if (num_online_cpus() == 1)
-+		return;
-+
- 	if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
- 		sbi_remote_fence_i(NULL);
- 	else
--- 
-2.34.1
+Best regards,
+Krzysztof
 
