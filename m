@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB1C6119A9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 007EB6119AC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbiJ1Rxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 13:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
+        id S229887AbiJ1Ryw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:54:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbiJ1Rxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:53:32 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871441DF409
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:53:30 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id x26so3939977qki.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:53:30 -0700 (PDT)
+        with ESMTP id S230031AbiJ1Ryv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:54:51 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14BCA19030
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:54:45 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id r19so3932553qtx.6
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:54:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4sSUMxC+XoR1FPr8npnNSTCNLao0xyHEAmVsF1JSBMw=;
-        b=L9PXBLBok6GO/WjEyWHwQpjkaqr5A4I+OdiQZ9eXtj4tjjSw+v++H2W2TZpzKrKmnR
-         m848j5p8APXRGHG8A/QGKtjCpobD6gHUUUOeABDqTtlo/dGxC2/tjXCAWyXfAGEsyKf6
-         ZRl5rhOIkTScMsw2xhk89iWGNeTPIDp+AzBwHruICZnP5dcXiL65OHjhQA4eyqdiTmHD
-         KtJ9I4hz7pCTfko4I5PH9ha4Q+yDYJSc2CagTchuHz2/pSyaQZ7OTPvOcUXK0UQA5uyK
-         BSJV/q6b045d9HZOqbts5HpSheJflGhipXQaVeD0l/l8x+z5K6/lhMhnUOzYfvOO8TBF
-         Xn/Q==
+        bh=WPPPi5v6XuLB3813cqcFBuR57ngCmvkcFB0jTGQyiig=;
+        b=MtUAzGVb7iDR7Oyu4rO0rQnr0CDw4RrVC6fi5JNA7E1JYz4QUhrfTwZ7LT81G5F78S
+         4DqjtVFwDvlSWdH/IxpMEkYOVu4Ptw+o554zDvnnAVBDypTzLi8aamLaq0iNRAUBN+7s
+         0dPZ6TydUDC/UZJoGx8hyF6yZKQSlm6kLdoPQ5ZBDV+kCRL5WtzZMas6BsZlnpPrxio+
+         BGkvwnxY57bLnLV83ik68NmD8t1lwurBEhyFlSVktAjDU1jOo965kGYPAjGTvc8X5RO5
+         xRw7K0QibSG1T15JTUfFhM6bDIZMG5GyGCBKm/CC4RSWnO/LrSh9tPjqkO7GBBS4GYK1
+         vTFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4sSUMxC+XoR1FPr8npnNSTCNLao0xyHEAmVsF1JSBMw=;
-        b=05fVQHBGBOcDxZLidl55OS1esQDcmgs9azrvjzBs9vIQY90jMETBOlfAlnh8aoDv+d
-         MIAROs8daJOOAH0HOacOQPQfNKV3+ZDEGUrEJ5ZkXIQMQOrmDPS81wRao7cf7oDGk6s5
-         +EXOUeJyfcQZIe00/YaaCr9vSyjj5SLmq/ST5rpIqysHd9Fw4bfhUcLaHpFCeXvvf5wv
-         4mlCCLTDIGThwcJ1NjWLcTZ+PEf+dRU0mGmeHd3feun4JY/Oqt78i/Lwa4Rlwlf7Jdzu
-         pjG3QXHSaUbZcyPbS/4etqHGi8/QeoKKDedhd/bOFIF6+ITIvEKIXo2WDjsGzRmdJuuA
-         8Vhw==
-X-Gm-Message-State: ACrzQf3bmiwdALr1yIQmt6DjmTkQue+Cz3oktEzQTsDsNuZ1EsFIxQ1m
-        Dxpw/aCw1uzuqrs0WKtf0tYDyQ==
-X-Google-Smtp-Source: AMsMyM4WPfiepokFOhnKcfOJr85HYlGFsNw/KONl4h2U9SmIK533puCOo9utatMjhaQcmut8ayM6Ig==
-X-Received: by 2002:a05:620a:284a:b0:6ab:9cc5:cb4c with SMTP id h10-20020a05620a284a00b006ab9cc5cb4cmr319450qkp.609.1666979609475;
-        Fri, 28 Oct 2022 10:53:29 -0700 (PDT)
+        bh=WPPPi5v6XuLB3813cqcFBuR57ngCmvkcFB0jTGQyiig=;
+        b=AB4zAMcrQ5An3lRhBC6gSY2ayS0KTQlnwiE5lX0lJK1JlxqXJLIYzhXJzqJX8uDAN5
+         xxwHdHs7szQDAlIG73lRHo86eLJqzMV/6F+RXIpxif4wLR5AHQaRQaWgWTFhJb9WXx1l
+         JpePDfoyCrPT4vOf1AIXpBq2FUr4gfDkHjRHxY0Xqe93hgdAGeMdeqrcCtG35OipiZlO
+         HUJ7uKMsxwQNsybP67aN39AXIH4DUP8Gz3kV0bEtuEIieY9aO+V74nJc9kJ1gklIoR4c
+         9ruCDqtUaUguYFQTXImIPtAR118tmu5JYYCw9RgSTUWnrQFVPSN2I/K6UlIKxyZPLvE6
+         ZZDA==
+X-Gm-Message-State: ACrzQf2rytR5PqzQC5yhoxU5NhlEEWHJp3jw+jDw16dWE+Y9cXzsHC28
+        bMbgTYezYkLfqhiRqIUuXg6llA==
+X-Google-Smtp-Source: AMsMyM4YYymK8nVKNzn3BsrohpPL4lv5XFK9f/hpOwucaO1bp0vfJ0Co8mIT/DF3/5QGSVcLmXdDIg==
+X-Received: by 2002:a05:622a:44e:b0:39d:c1a:3282 with SMTP id o14-20020a05622a044e00b0039d0c1a3282mr601872qtx.75.1666979684180;
+        Fri, 28 Oct 2022 10:54:44 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id w17-20020a05620a425100b006cec8001bf4sm3438042qko.26.2022.10.28.10.53.24
+        by smtp.gmail.com with ESMTPSA id d13-20020a05620a240d00b006f0fc145ae5sm3488976qkn.15.2022.10.28.10.54.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 10:53:28 -0700 (PDT)
-Message-ID: <5b194c93-48df-055a-f532-abd98657dc41@linaro.org>
-Date:   Fri, 28 Oct 2022 13:53:22 -0400
+        Fri, 28 Oct 2022 10:54:43 -0700 (PDT)
+Message-ID: <02523fe5-bf99-9891-d00c-347893d5dabe@linaro.org>
+Date:   Fri, 28 Oct 2022 13:54:37 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 1/4] dt-bindings: pwm: Add Apple PWM controller
+Subject: Re: [PATCH 2/4] pwm: Add Apple PWM controller
 Content-Language: en-US
 To:     Sasha Finkelstein <fnkl.kernel@gmail.com>,
         thierry.reding@gmail.com, robh+dt@kernel.org,
@@ -64,9 +64,9 @@ Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
         linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221028165215.43662-1-fnkl.kernel@gmail.com>
- <20221028165215.43662-2-fnkl.kernel@gmail.com>
+ <20221028165215.43662-3-fnkl.kernel@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028165215.43662-2-fnkl.kernel@gmail.com>
+In-Reply-To: <20221028165215.43662-3-fnkl.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,80 +80,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 28/10/2022 12:52, Sasha Finkelstein wrote:
-> Apple SoCs such as the M1 contain a PWM controller used
-> among other things to control the keyboard backlight.
+> Adds the Apple PWM controller driver.
 > 
 > Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-apple.yaml    | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+>  drivers/pwm/Kconfig     |  12 ++++
+>  drivers/pwm/Makefile    |   1 +
+>  drivers/pwm/pwm-apple.c | 124 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 137 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-apple.c
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-apple.yaml b/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-> new file mode 100644
-> index 000000000000..39dc32e00a3f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 60d13a949bc5..ec6acb368073 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -51,6 +51,18 @@ config PWM_AB8500
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-ab8500.
+>  
+> +config PWM_APPLE
+> +	tristate "Apple SoC PWM support"
+> +	depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
 
-Filename matching compatible, so apple,s5l-fpwm.yaml
+Why this code cannot be build on 32-bit?
 
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-apple.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +	help
+> +	  Generic PWM framework driver for PWM controller present on
+> +	  Apple SoCs
 > +
-> +title: Apple FPWM controller
-> +
-> +maintainers:
-> +  - asahi@lists.linux.dev
-> +  - Sasha Finkelstein <fnkl.kernel@gmail.com>
-> +
-> +description: |+
-
-Drop |+
-
-> +  PWM controller used for keyboard backlight on ARM Macs
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - apple,t8103-fpwm
-> +          - apple,t6000-fpwm
-> +          - apple,t8112-fpwm
-> +      - const: apple,s5l-fpwm
-
-Is it then derived from Samsung platform? If yes, it is candidate for
-merging.
-
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwm: fpwm@235044000 {
-
-Generic node name, so just "pwm". Drop also label - it's not used in the
-example.
-
 
 Best regards,
 Krzysztof
