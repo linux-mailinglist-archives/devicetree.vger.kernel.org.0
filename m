@@ -2,356 +2,469 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6FD861137F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0893F611392
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:51:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231409AbiJ1NrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:47:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35042 "EHLO
+        id S229648AbiJ1NvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231441AbiJ1Nqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:46:45 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 033FB1DC4D6;
-        Fri, 28 Oct 2022 06:45:41 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29SCkkNx006251;
-        Fri, 28 Oct 2022 09:45:39 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3kfagcw9r7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Oct 2022 09:45:38 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 29SDjbKD062361
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Oct 2022 09:45:37 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Fri, 28 Oct 2022 09:45:36 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Fri, 28 Oct 2022 09:45:35 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 28 Oct 2022 09:45:35 -0400
-Received: from rbolboac.ad.analog.com ([10.48.65.139])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 29SDjIQM013050;
-        Fri, 28 Oct 2022 09:45:27 -0400
-From:   Ramona Bolboaca <ramona.bolboaca@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Ramona Bolboaca <ramona.bolboaca@analog.com>
-Subject: [PATCH 2/2] drivers:iio:accel: Add support for ADXL359 device
-Date:   Fri, 28 Oct 2022 16:44:54 +0300
-Message-ID: <20221028134454.669509-3-ramona.bolboaca@analog.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221028134454.669509-1-ramona.bolboaca@analog.com>
-References: <20221028134454.669509-1-ramona.bolboaca@analog.com>
+        with ESMTP id S229674AbiJ1Nus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:50:48 -0400
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3204AD59;
+        Fri, 28 Oct 2022 06:50:01 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1ooPk8-0000YI-IJ; Fri, 28 Oct 2022 15:49:52 +0200
+Date:   Fri, 28 Oct 2022 14:49:43 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     "Frank Wunderlich (linux)" <linux@fw-web.de>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, Felix Fietkau <nbd@nbd.name>
+Subject: Re: [RFC v2 7/7] arm64: dts: mt7986: add Bananapi R3
+Message-ID: <Y1vd9+q2PzG5DIKa@makrotopia.org>
+References: <20221026093650.110290-1-linux@fw-web.de>
+ <20221026093650.110290-8-linux@fw-web.de>
+ <64daf96b-b2b5-6f02-91aa-58d19083ee01@collabora.com>
+ <a97aa98a6230e7f33a6b5f5e2c9e54ce@fw-web.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 9KqOfA4veNgq4gyAITCVchtQTuMDIKlA
-X-Proofpoint-ORIG-GUID: 9KqOfA4veNgq4gyAITCVchtQTuMDIKlA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-28_07,2022-10-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- suspectscore=0 adultscore=0 mlxlogscore=999 clxscore=1015 impostorscore=0
- spamscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2210280085
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a97aa98a6230e7f33a6b5f5e2c9e54ce@fw-web.de>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for ADXL359 device in already existing ADXL355 driver.
+On Fri, Oct 28, 2022 at 12:57:44PM +0200, Frank Wunderlich (linux) wrote:
+> Am 2022-10-28 11:19, schrieb AngeloGioacchino Del Regno:
+> > Il 26/10/22 11:36, Frank Wunderlich ha scritto:
+> > > From: Frank Wunderlich <frank-w@public-files.de>
+> > > 
+> > > Add support for Bananapi R3 SBC.
+> > > 
+> > > - SD/eMMC support (switching first 4 bits of data-bus with sw6/D)
+> > > - all rj45 ports and both SFP working (eth1/lan4)
+> > > - all USB-Ports + SIM-Slot tested
+> > > - i2c and all uarts tested
+> > > - wifi tested
+> > > 
+> > > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > > ---
+> > > SPI-NAND/NOR switched (CS by sw5/C) not yet included
+> > >    this is done with DT-Overlays in my tree, but i have no idea yet,
+> > >    how to upstream
+> > > 
+> > > break some lines in wifi-eeprom-data because of checkpatch warnings.
+> > > originally there were 8 x int32 per line
+> > > 
+> > > changes:
+> > > 
+> > > v2:
+> > > - remove pcie to be added later (discussion about clocks)
+> > > - some fixes based on suggestions on ML
+> > >    - add key suffix like it's done in mt7622-bpi-r64 devicetree
+> > >    - add dash in sfp node names
+> > >    - use reg as unit for switch-node
+> > >    - drop "-3-4" suffix from i2c-pins node name
+> > >    - fix order in Makefile
+> > > ---
+> > >   arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+> > >   .../mediatek/mt7986a-bananapi-bpi-r3-emmc.dts |  34 +
+> > >   .../mediatek/mt7986a-bananapi-bpi-r3-sd.dts   |  29 +
+> > >   .../dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi | 593
+> > > ++++++++++++++++++
+> > >   4 files changed, 658 insertions(+)
+> > >   create mode 100644
+> > > arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+> > >   create mode 100644
+> > > arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+> > >   create mode 100644
+> > > arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/Makefile
+> > > b/arch/arm64/boot/dts/mediatek/Makefile
+> > > index 0ec90cb3ef28..e8902f2cc58f 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/Makefile
+> > > +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> > > @@ -7,6 +7,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+> > >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+> > >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+> > >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+> > > +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtb
+> > > +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtb
+> > >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+> > >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
+> > >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+> > > diff --git
+> > > a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+> > > b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+> > > new file mode 100644
+> > > index 000000000000..859b4180ca11
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+> > > @@ -0,0 +1,34 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > +/*
+> > > + * Copyright (C) 2021 MediaTek Inc.
+> > > + * Author: Sam.Shih <sam.shih@mediatek.com>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include <dt-bindings/input/input.h>
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +#include "mt7986a-bananapi-bpi-r3.dtsi"
+> > > +
+> > > +/ {
+> > > +	model = "Bananapi BPI-R3 (emmc)";
+> > > +};
+> > > +
+> > > +&mmc0 {
+> > > +	pinctrl-names = "default", "state_uhs";
+> > > +	pinctrl-0 = <&mmc0_pins_default>;
+> > > +	pinctrl-1 = <&mmc0_pins_uhs>;
+> > 
+> > pinctrl properties and power supply properties can go to the shared
+> > mt7986a-bananapi-bpi-r3.dtsi file.
+> 
+> OK
+> 
+> > Also, I have a question here... so your hardware can take either eMMC
+> > or MicroSD... and... is there really no way to build in both devicetrees
+> > and having the bootloader to select the right one based on hardware
+> > version
+> > or on machine compatible?
+> 
+> as i wrote in description the board has both, an emmc-chip and microsd-slot,
+> but they cannot be used simultanously as mt7986 has only 1 mmc-controller.
+> BPI-R3 has a switch that changes the first 4 data-lines either to emmc or
+> microsd-slot. You have only 1 mmc-node that has to be configured to which
+> mmc-device you have connected, so i have to use 2 different devicetrees
+> here.
 
-Signed-off-by: Ramona Bolboaca <ramona.bolboaca@analog.com>
----
- drivers/iio/accel/adxl355.h      | 14 ++++++-
- drivers/iio/accel/adxl355_core.c | 67 +++++++++++++++++++++++++-------
- drivers/iio/accel/adxl355_i2c.c  | 22 +++++++++--
- drivers/iio/accel/adxl355_spi.c  | 19 +++++++--
- 4 files changed, 101 insertions(+), 21 deletions(-)
+You could also use device tree overlays to select SDMMC or eMMC just
+like for the NOR vs. NAND choice on this board.
 
-diff --git a/drivers/iio/accel/adxl355.h b/drivers/iio/accel/adxl355.h
-index 6dd49b13e4fd..c02106cbd745 100644
---- a/drivers/iio/accel/adxl355.h
-+++ b/drivers/iio/accel/adxl355.h
-@@ -10,12 +10,24 @@
- 
- #include <linux/regmap.h>
- 
-+enum adxl355_device_type {
-+	ADXL355,
-+	ADXL359,
-+};
-+
- struct device;
- 
-+struct adxl355_chip_info {
-+	const char			*name;
-+	u8				part_id;
-+	enum adxl355_device_type	type;
-+};
-+
- extern const struct regmap_access_table adxl355_readable_regs_tbl;
- extern const struct regmap_access_table adxl355_writeable_regs_tbl;
-+extern const struct adxl355_chip_info adxl35x_chip_info[];
- 
- int adxl355_core_probe(struct device *dev, struct regmap *regmap,
--		       const char *name);
-+		       const struct adxl355_chip_info *chip_info);
- 
- #endif /* _ADXL355_H_ */
-diff --git a/drivers/iio/accel/adxl355_core.c b/drivers/iio/accel/adxl355_core.c
-index 4bc648eac8b2..069c945aebde 100644
---- a/drivers/iio/accel/adxl355_core.c
-+++ b/drivers/iio/accel/adxl355_core.c
-@@ -60,6 +60,7 @@
- #define ADXL355_DEVID_AD_VAL		0xAD
- #define ADXL355_DEVID_MST_VAL		0x1D
- #define ADXL355_PARTID_VAL		0xED
-+#define ADXL359_PARTID_VAL		0xE9
- #define ADXL355_RESET_CODE		0x52
- 
- static const struct regmap_range adxl355_read_reg_range[] = {
-@@ -83,6 +84,20 @@ const struct regmap_access_table adxl355_writeable_regs_tbl = {
- };
- EXPORT_SYMBOL_NS_GPL(adxl355_writeable_regs_tbl, IIO_ADXL355);
- 
-+const struct adxl355_chip_info adxl35x_chip_info[] = {
-+	[ADXL355] = {
-+		.name = "adxl355",
-+		.part_id = ADXL355_PARTID_VAL,
-+		.type = ADXL355,
-+	},
-+	[ADXL359] = {
-+		.name = "adxl359",
-+		.part_id = ADXL359_PARTID_VAL,
-+		.type = ADXL359,
-+	},
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl35x_chip_info, IIO_ADXL355);
-+
- enum adxl355_op_mode {
- 	ADXL355_MEASUREMENT,
- 	ADXL355_STANDBY,
-@@ -162,6 +177,7 @@ static const struct adxl355_chan_info adxl355_chans[] = {
- };
- 
- struct adxl355_data {
-+	const struct adxl355_chip_info *chip_info;
- 	struct regmap *regmap;
- 	struct device *dev;
- 	struct mutex lock; /* lock to protect op_mode */
-@@ -262,7 +278,7 @@ static int adxl355_setup(struct adxl355_data *data)
- 	if (ret)
- 		return ret;
- 
--	if (regval != ADXL355_PARTID_VAL) {
-+	if (regval != data->chip_info->part_id) {
- 		dev_err(data->dev, "Invalid DEV ID 0x%02x\n", regval);
- 		return -ENODEV;
- 	}
-@@ -459,31 +475,55 @@ static int adxl355_read_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_SCALE:
- 		switch (chan->type) {
- 		/*
--		 * The datasheet defines an intercept of 1885 LSB at 25 degC
--		 * and a slope of -9.05 LSB/C. The following formula can be used
-+		 * The datasheet defines an intercept of 1885 LSB for ADXL355 and of 1852 for ADXL359
-+		 * at 25 degC and a slope of -9.05 LSB/C. The following formula can be used
- 		 * to find the temperature:
--		 * Temp = ((RAW - 1885)/(-9.05)) + 25 but this doesn't follow
-+		 * Temp = ((RAW - 1885)/(-9.05)) + 25 for ADXL355
-+		 * Temp = ((RAW - 1852)/(-9.05)) + 25 for ADXL359
-+		 * but this doesn't follow
- 		 * the format of the IIO which is Temp = (RAW + OFFSET) * SCALE.
- 		 * Hence using some rearranging we get the scale as -110.497238
--		 * and offset as -2111.25.
-+		 * and offset as -2111.25 for ADXL355 and -2079.25 for ADXL359
- 		 */
- 		case IIO_TEMP:
- 			*val = -110;
- 			*val2 = 497238;
- 			return IIO_VAL_INT_PLUS_MICRO;
--		/*
--		 * At +/- 2g with 20-bit resolution, scale is given in datasheet
--		 * as 3.9ug/LSB = 0.0000039 * 9.80665 = 0.00003824593 m/s^2.
--		 */
- 		case IIO_ACCEL:
-+			switch (data->chip_info->type) {
-+			case ADXL355:
-+				/*
-+				 * At +/- 2g with 20-bit resolution, scale is given in datasheet
-+				 * as 3.9ug/LSB = 0.0000039 * 9.80665 = 0.00003824593 m/s^2.
-+				 */
-+				*val2 = 38245;
-+				break;
-+			case ADXL359:
-+				/*
-+				 * At +/- 10g with 20-bit resolution, scale is given in datasheet
-+				 * as 19.5ug/LSB = 0.0000195 * 9.80665 = 0.0.00019122967 m/s^2.
-+				 */
-+				*val2 = 191229;
-+				break;
-+			default:
-+				return -EINVAL;
-+			}
- 			*val = 0;
--			*val2 = 38245;
- 			return IIO_VAL_INT_PLUS_NANO;
- 		default:
- 			return -EINVAL;
- 		}
- 	case IIO_CHAN_INFO_OFFSET:
--		*val = -2111;
-+		switch (data->chip_info->type) {
-+		case ADXL355:
-+			*val = -2111;
-+			break;
-+		case ADXL359:
-+			*val = -2079;
-+			break;
-+		default:
-+			return -EINVAL;
-+		}
- 		*val2 = 250000;
- 		return IIO_VAL_INT_PLUS_MICRO;
- 	case IIO_CHAN_INFO_CALIBBIAS:
-@@ -707,7 +747,7 @@ static int adxl355_probe_trigger(struct iio_dev *indio_dev, int irq)
- }
- 
- int adxl355_core_probe(struct device *dev, struct regmap *regmap,
--		       const char *name)
-+		       const struct adxl355_chip_info *chip_info)
- {
- 	struct adxl355_data *data;
- 	struct iio_dev *indio_dev;
-@@ -722,9 +762,10 @@ int adxl355_core_probe(struct device *dev, struct regmap *regmap,
- 	data->regmap = regmap;
- 	data->dev = dev;
- 	data->op_mode = ADXL355_STANDBY;
-+	data->chip_info = chip_info;
- 	mutex_init(&data->lock);
- 
--	indio_dev->name = name;
-+	indio_dev->name = chip_info->name;
- 	indio_dev->info = &adxl355_info;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->channels = adxl355_channels;
-diff --git a/drivers/iio/accel/adxl355_i2c.c b/drivers/iio/accel/adxl355_i2c.c
-index f67d57921c81..4cf38625fc27 100644
---- a/drivers/iio/accel/adxl355_i2c.c
-+++ b/drivers/iio/accel/adxl355_i2c.c
-@@ -23,6 +23,20 @@ static const struct regmap_config adxl355_i2c_regmap_config = {
- static int adxl355_i2c_probe(struct i2c_client *client)
- {
- 	struct regmap *regmap;
-+	const struct adxl355_chip_info *chip_data;
-+	const struct i2c_device_id *adxl355;
-+
-+	adxl355 = to_i2c_driver(client->dev.driver)->id_table;
-+	if (!adxl355)
-+		return -EINVAL;
-+
-+	chip_data = device_get_match_data(&client->dev);
-+	if (!chip_data) {
-+		chip_data = (void *)i2c_match_id(adxl355, client)->driver_data;
-+
-+		if (!chip_data)
-+			return -EINVAL;
-+	}
- 
- 	regmap = devm_regmap_init_i2c(client, &adxl355_i2c_regmap_config);
- 	if (IS_ERR(regmap)) {
-@@ -32,17 +46,19 @@ static int adxl355_i2c_probe(struct i2c_client *client)
- 		return PTR_ERR(regmap);
- 	}
- 
--	return adxl355_core_probe(&client->dev, regmap, client->name);
-+	return adxl355_core_probe(&client->dev, regmap, chip_data);
- }
- 
- static const struct i2c_device_id adxl355_i2c_id[] = {
--	{ "adxl355", 0 },
-+	{ "adxl355", (kernel_ulong_t)&adxl35x_chip_info[ADXL355] },
-+	{ "adxl359", (kernel_ulong_t)&adxl35x_chip_info[ADXL359] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, adxl355_i2c_id);
- 
- static const struct of_device_id adxl355_of_match[] = {
--	{ .compatible = "adi,adxl355" },
-+	{ .compatible = "adi,adxl355", .data = &adxl35x_chip_info[ADXL355] },
-+	{ .compatible = "adi,adxl359", .data = &adxl35x_chip_info[ADXL359] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, adxl355_of_match);
-diff --git a/drivers/iio/accel/adxl355_spi.c b/drivers/iio/accel/adxl355_spi.c
-index 5fe986ae03f6..fc99534d91ff 100644
---- a/drivers/iio/accel/adxl355_spi.c
-+++ b/drivers/iio/accel/adxl355_spi.c
-@@ -9,6 +9,7 @@
- #include <linux/mod_devicetable.h>
- #include <linux/regmap.h>
- #include <linux/spi/spi.h>
-+#include <linux/property.h>
- 
- #include "adxl355.h"
- 
-@@ -24,9 +25,17 @@ static const struct regmap_config adxl355_spi_regmap_config = {
- 
- static int adxl355_spi_probe(struct spi_device *spi)
- {
--	const struct spi_device_id *id = spi_get_device_id(spi);
-+	const struct adxl355_chip_info *chip_data;
- 	struct regmap *regmap;
- 
-+	chip_data = device_get_match_data(&spi->dev);
-+	if (!chip_data) {
-+		chip_data = (void *)spi_get_device_id(spi)->driver_data;
-+
-+		if (!chip_data)
-+			return -EINVAL;
-+	}
-+
- 	regmap = devm_regmap_init_spi(spi, &adxl355_spi_regmap_config);
- 	if (IS_ERR(regmap)) {
- 		dev_err(&spi->dev, "Error initializing spi regmap: %ld\n",
-@@ -35,17 +44,19 @@ static int adxl355_spi_probe(struct spi_device *spi)
- 		return PTR_ERR(regmap);
- 	}
- 
--	return adxl355_core_probe(&spi->dev, regmap, id->name);
-+	return adxl355_core_probe(&spi->dev, regmap, chip_data);
- }
- 
- static const struct spi_device_id adxl355_spi_id[] = {
--	{ "adxl355", 0 },
-+	{ "adxl355", (kernel_ulong_t)&adxl35x_chip_info[ADXL355] },
-+	{ "adxl359", (kernel_ulong_t)&adxl35x_chip_info[ADXL359] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, adxl355_spi_id);
- 
- static const struct of_device_id adxl355_of_match[] = {
--	{ .compatible = "adi,adxl355" },
-+	{ .compatible = "adi,adxl355", .data = &adxl35x_chip_info[ADXL355] },
-+	{ .compatible = "adi,adxl359", .data = &adxl35x_chip_info[ADXL359] },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, adxl355_of_match);
--- 
-2.25.1
+> 
+> > I can see, on the wiki, that both bootloader and ATF can be customized
+> > (so,
+> > can be compiled and flashed just fine), so I would say that even if the
+> > "original" U-Boot doesn't distinguish devicetrees, you can definitely
+> > easily
+> > implement that.
+> 
+> i already boot a fit-image with 2 dts (and 2 overlays for spi-nand/nor) and
+> my uboot can check with "mmc partconf" if emmc is available and if not
+> choose the sd-dts.
 
+Exactly. This is how it's done in OpenWrt as well.
+
+> 
+> > If you have no idea how to recognize the boards, from a fast look at the
+> > board schematics, I can see that there's a bootstrap setting based on
+> > the
+> > state of GPIO0 and GPIO1... you can perhaps use that somehow?
+> > Otherwise, remember that, most of the times, there are other ways to
+> > determine
+> > the board version, like Board ID resistors...
+> 
+> but how should this effect the dts files here? originally i had the sd-card
+> dts as base and the emmc had overridden/deleted some properties there (so
+> only 2 dts-files). Had talked to Matthias and he suggested having a base
+> dtsi and 2 dts for the 2 mmc-configs.
+> 
+> > Also, still on the wiki, I can't see any no-eMMC version of this board:
+> > is
+> > the sd-only a pre-production version or..?
+> 
+> no sd/emmc-only version...1 board with 1 mmc-controller, but 2 "storages"
+> connected (only 1 functional based on hw switch setting)
+> 
+> > > +	bus-width = <8>;
+> > > +	max-frequency = <200000000>;
+> > > +	cap-mmc-highspeed;
+> > > +	mmc-hs200-1_8v;
+> > > +	mmc-hs400-1_8v;
+> > > +	hs400-ds-delay = <0x14014>;
+> > > +	vmmc-supply = <&reg_3p3v>;
+> > > +	vqmmc-supply = <&reg_1p8v>;
+> > > +	non-removable;
+> > > +	no-sd;
+> > > +	no-sdio;
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > > diff --git
+> > > a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+> > > b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+> > > new file mode 100644
+> > > index 000000000000..57200407ab86
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+> > > @@ -0,0 +1,29 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > +/*
+> > > + * Copyright (C) 2021 MediaTek Inc.
+> > > + * Author: Sam.Shih <sam.shih@mediatek.com>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include <dt-bindings/input/input.h>
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +#include "mt7986a-bananapi-bpi-r3.dtsi"
+> > > +
+> > > +/ {
+> > > +	model = "Bananapi BPI-R3 (sdmmc)";
+> > > +};
+> > > +
+> > > +&mmc0 {
+> > > +	//sdcard
+> > 
+> > C-style comments please
+> 
+> ok
+> 
+> > > +	pinctrl-names = "default", "state_uhs";
+> > > +	pinctrl-0 = <&mmc0_pins_default>;
+> > > +	pinctrl-1 = <&mmc0_pins_uhs>;
+> > > +	bus-width = <4>;
+> > > +	max-frequency = <52000000>;
+> > > +	cap-sd-highspeed;
+> > > +	vmmc-supply = <&reg_3p3v>;
+> > > +	vqmmc-supply = <&reg_1p8v>;
+> > > +	status = "okay";
+> > > +};
+> > > +
+> > > diff --git
+> > > a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+> > > b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+> > > new file mode 100644
+> > > index 000000000000..fc100c3a6415
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+> > > @@ -0,0 +1,593 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > +/*
+> > > + * Copyright (C) 2021 MediaTek Inc.
+> > > + * Authors: Sam.Shih <sam.shih@mediatek.com>
+> > > + *          Frank Wunderlich <frank-w@public-files.de>
+> > > + *          Daniel Golle <daniel@makrotopia.org>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include <dt-bindings/input/input.h>
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/leds/common.h>
+> > > +
+> > > +#include "mt7986a.dtsi"
+> > > +
+> > > +/ {
+> > > +	model = "Bananapi BPI-R3";
+> > > +	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+> > > +
+> > > +	aliases {
+> > > +		serial0 = &uart0;
+> > > +		ethernet0 = &gmac0;
+> > > +		ethernet1 = &gmac1;
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		stdout-path = "serial0:115200n8";
+> > > +	};
+> > > +
+> > > +	gpio-keys {
+> > > +		compatible = "gpio-keys";
+> > > +
+> > > +		factory-key {
+> > 
+> > I'd say that this is not "factory-key" but "reset-key"?
+> 
+> okay i rename it.
+> 
+> > > +			label = "reset";
+> > > +			linux,code = <KEY_RESTART>;
+> > > +			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
+
+At least on my V1.0 board and reportedly also on V1.1 boards the RST
+button doesn't work. As soon as a NVME/M.2 module is inserted this
+also connects the GPIO just like if the button was pressed all the
+time. This issue has also been discussed in BananaPi forums.
+
+
+> > > +		};
+> > > +
+> > > +		wps-key {
+> > > +			label = "wps";
+> > > +			linux,code = <KEY_WPS_BUTTON>;
+> > > +			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
+> > > +		};
+> > > +	};
+> > > +
+> > 
+> > ..snip..
+> > 
+> > > +
+> > > +	memory@40000000 {
+> > > +		device_type = "memory";
+> > > +		reg = <0 0x40000000 0 0x40000000>;
+> > 
+> > Doesn't your bootloader fill-in the memory size automatically?
+> 
+> have not tried yet.
+> 
+> > > +	};
+> > > +
+> > > +	reg_1p8v: regulator-1p8v {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "fixed-1.8V";
+> > 
+> > This is "avdd18", isn't it?
+> 
+> need to check
+> 
+> > > +		regulator-min-microvolt = <1800000>;
+> > > +		regulator-max-microvolt = <1800000>;
+> > > +		regulator-boot-on;
+> > > +		regulator-always-on;
+> > 
+> > All these regulators have a vin-supply: please fill it in.
+> > Moreover, in the schematics, I can also see other LDOs: 0.9VD (input
+> > +12VD),
+> > AVDD12 (input 1.8VD), DDRV_VPP (input 3.3VD)...
+> 
+> ok
+> 
+> > Of course, this means that you have one more 1.8V regulator, called
+> > 1.8vd.
+> > 
+> > > +	};
+> > > +
+> > > +	reg_3p3v: regulator-3p3v {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "fixed-3.3V";
+> > 
+> > regulator-name = "3.3vd";
+> > 
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +		regulator-boot-on;
+> > > +		regulator-always-on;
+> > 
+> > vin-supply = <&dcin>; (dcin: regulator-12vd { ... })
+> > 
+> > > +	};
+> > > +
+> > > +	reg_5v: regulator-5v {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "fixed-5V";
+> > 
+> > regulator-name  = "fixed-5p1";
+> > 
+> > > +		regulator-min-microvolt = <5000000>;
+> > > +		regulator-max-microvolt = <5000000>;
+> > 
+> > Schematics say "+5V: 5.1V/3A", so this is not 5000000.
+> > 
+> > > +		regulator-boot-on;
+> > > +		regulator-always-on;
+> > 
+> > 
+> > vin-supply = <&dcin>;
+> > 
+> > > +	};
+> > > +
+> > 
+> > ..snip..
+> > 
+> > > +
+> > > +&pio {
+> > > +	i2c_pins: i2c-pins {
+> > > +		mux {
+> > > +			function = "i2c";
+> > > +			groups = "i2c";
+> > > +		};
+> > > +	};
+> > > +
+> > > +	mmc0_pins_default: mmc0-pins {
+> > > +		mux {
+> > > +			function = "emmc";
+> > > +			groups = "emmc_51";
+> > > +		};
+> > > +		conf-cmd-dat {
+> > > +			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
+> > > +			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
+> > > +			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
+> > > +			input-enable;
+> > > +			drive-strength = <4>;
+> > > +			mediatek,pull-up-adv = <1>;	/* pull-up 10K */
+> > 
+> > Can we please stop using these custom pull-{up,down}-adv properties?
+> > Check what was done on pinctrl-mt8192.c (and dt schema) for more
+> > information
+> > and examples.
+> 
+> need to check these with MTK.
+> 
+> > > +		};
+> > > +		conf-clk {
+> > 
+> > ..snip..
+> > 
+> > > +
+> > > +&wifi {
+> > > +	status = "okay";
+> > > +	pinctrl-names = "default", "dbdc";
+> > > +	pinctrl-0 = <&wf_2g_5g_pins>, <&wf_led_pins>;
+> > > +	pinctrl-1 = <&wf_dbdc_pins>, <&wf_led_pins>;
+> > > +
+> > > +	mediatek,eeprom-data = <0x86790900 0xc4326 0x60000000 0x00 0x00
+> > > 0x00 0x00 0x00
+> > 
+> > Ouch! This looks like firmware unrolled in a devicetree property - that
+> > can't
+> > be right.
+> > 
+> > Please dump that in a binary file and load it as firmware from
+> > userspace.
+> 
+> it uses the mt76 driver and here eeprom can only be loaded from
+> mtd-partition or from device tree. Previous attempts loading eeprom data
+> from userspace file (like it's done for "normal" firmware) were rejected.
+
+Note that strictly speaking this is not firmware but rather calibration
+data (ie. board-specific configuration, not code).
+
+In case you don't like the large amount of data in the DTS file, you
+can use the /incbin/ statement to include it from a file instead.
+
+As there is no physical EEPROM nor calibration data stored anywhere in
+he flash there is no easy way the driver could request a board-specific
+filename, unlike e.g. ath10k requesting BDF from userspace.
+In the past (e.g. out-of-tree patches for rt2x00 driver allowing it's
+use on Rt305x WiSoC) this lack of a board-specific filename has lead to
+people treating the file just like a generic firmware file: ignoring
+the board-specific nature of calibration data and just copying it from
+another board... As a work-around to prevent that, we could at least
+embed the filename in the dts or hack the driver to request a filename
+based on the top level 'compatible' string of the board's device tree.
+
+I've added Felix to Cc: as he suggested that solution back then.
+
+
+Cheers
+
+
+Daniel
