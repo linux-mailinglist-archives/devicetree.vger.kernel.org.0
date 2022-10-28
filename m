@@ -2,154 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9979A61165B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E54A61168C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbiJ1PwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 11:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60688 "EHLO
+        id S230202AbiJ1P6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:58:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbiJ1PwD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:52:03 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7B6D422E5;
-        Fri, 28 Oct 2022 08:52:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 640C1B82A02;
-        Fri, 28 Oct 2022 15:52:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5D3CC433D6;
-        Fri, 28 Oct 2022 15:51:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666972320;
-        bh=YuD9edLwCKn8/1OHDoLVRahTHEgWClfCgIAXeXZRoSY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j8UEdhNzF8n6KQcXq89uYZwAHbJEAUUJhEpnNKFzYI8s10zxSitlX9EOVW7Cq2hy0
-         CXLbwnBJTZ+VhmkI2CnYNkKdvgYC81sTjuzanUbbAe0i7+iNR55FDKaH32zAWCRRfW
-         gl7BdQdSH/4n+/HelSLGU7DRW5kYvA2OFPUgubJYqCbgRlDpwxLQXaRJNgyEHPakLc
-         wZ7l9uS2h9D+cBtoyvzjm17Llg24l0pjFxpVEJTssTbSOm0uGHN1a2BNHjB4Xj9ZkO
-         VizvUDXmZ39UiAXEo12EwnLAeOeYxNvALbcoCPhHAYDa0L15TYix0rNAflH6WHFgDf
-         p7mTcP8UEHdfQ==
-Date:   Fri, 28 Oct 2022 16:51:54 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Naresh Solanki <naresh.solanki@9elements.com>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add regulator-output bindingg
-Message-ID: <Y1v6migO2PNV4ksW@sirena.org.uk>
-References: <20220925220319.12572-1-zev@bewilderbeest.net>
- <20220925220319.12572-3-zev@bewilderbeest.net>
- <20220929210714.GA2684335-robh@kernel.org>
- <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
- <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
- <ee37b5a1-5afc-71b3-f777-add295d9ce17@linaro.org>
- <Y1tWpikPogEtV0+x@hatter.bewilderbeest.net>
+        with ESMTP id S230209AbiJ1P5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:57:34 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 003D1214679;
+        Fri, 28 Oct 2022 08:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1666972632;
+        bh=nRKXV0qvwDL9I8bHXNjzoNeda8BPvLXBGzFqDz1CBK0=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=rbdqX0YrRDhoPFb7Rzty7m/2TwVTiEmuqegCUaWnjajspXIGzxAqR0sBNVTklGYp/
+         seNtpuvwXZsVLeaGkIHFEeqA27n9KL8Lpd6go9uD8nniqtb3wEMfvqtG+MZXFwZoBx
+         5qAoNbX1TtepJS/NSA1oFOInNc+xeVloVGeuWdQUXIg2liPBUjiytR8lRxs/k3OfNh
+         HqecD3mbYI7rN89yQE1oAvVby1zVDfkdkgK6bwMqURn6llgTuCzdgLpnTPN7jG5++M
+         ww+ta3SZXtWw/WtyPTsDA4PIXm3qRs9Se6CrdIsJvdliHUx6au7Roha8xYhk2XPZ+f
+         eMUbXULfOVYaQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.151.20] ([217.61.151.20]) by web-mail.gmx.net
+ (3c-app-gmx-bs17.server.lan [172.19.170.69]) (via HTTP); Fri, 28 Oct 2022
+ 17:57:12 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7NOnigghnnBn635q"
-Content-Disposition: inline
-In-Reply-To: <Y1tWpikPogEtV0+x@hatter.bewilderbeest.net>
-X-Cookie: Life -- Love It or Leave It.
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <trinity-6e94e8e9-4b31-4d93-ac21-f51aee3b790a-1666972632153@3c-app-gmx-bs17>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     "Frank Wunderlich (linux)" <linux@fw-web.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, Felix Fietkau <nbd@nbd.name>
+Subject: Aw: Re: [RFC v2 7/7] arm64: dts: mt7986: add Bananapi R3
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 28 Oct 2022 17:57:12 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <Y1vd9+q2PzG5DIKa@makrotopia.org>
+References: <20221026093650.110290-1-linux@fw-web.de>
+ <20221026093650.110290-8-linux@fw-web.de>
+ <64daf96b-b2b5-6f02-91aa-58d19083ee01@collabora.com>
+ <a97aa98a6230e7f33a6b5f5e2c9e54ce@fw-web.de>
+ <Y1vd9+q2PzG5DIKa@makrotopia.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:2Jf5uCm93TCrRRVMUpsdNxtQIL/d0QsSjHv7fNClGY/TTCHAn9Z0DqfxZ2UnKkGFaRMbG
+ m/W0B1uIQqbknKQHn8cnuQ1KJAUggdcFYIo6FlnjkelLLU38iBMHEtuby6EEklxe94weXDWyj91Q
+ 68/ZaLszOjo5pAScv4TowYn4zT6gBhVehcUUZePjdhFVFAW4qYe4c+gUBaJUNGiVp1Xg8AkrKCz4
+ z5i3HTCKoGF99/aY/WMNmvKXbdk47WSPj2RZnl2SDJkzjVfo2ZRtOGrT0EzZ9heO/mwME/v3NQ+l
+ p0=
+UI-OutboundReport: notjunk:1;M01:P0:YkrS8YEqMno=;IIodNu81S8JdrNW4QABw2sg5KjV
+ dhBUui4yBhUJI/hH9bhssPgbGD0f/g0lhJQ52kEM9aHpCf4QJTyW/S38L7hWdc8tVdQRYLwEx
+ sYgoKRXtiuXRnclg/8jTwYGjGWmdxQKmmOEOwXSWv9URD/95gTUPz0ecsbtgCHV8pd1AJVx98
+ b2BMoTFddpvEqFfEyIUs2V0waGT/C4xD5I5F/fogsrAXw5Dll6K6Vz3cdE9FrvcPljfdc2PjM
+ ZuqMNjVh+OzdlYs35NcgDTa4qm5VR4S9A2HPhXLz5couWxDpJiQVATrX8L9rx9gyBNLOEshN/
+ 1/uecBn+t2oPJTOGqXHM2mmajoc4IAiee7J5PsL8PRH9+4Zd9XmA17+Me0NSza1iIkdlpQ03j
+ XlDgf/V7AE0BOmq7Vw7vniEiZ/UnKGvWjkWGoQwd8TJIiB0dlcKit0j5oasb34314goa7exof
+ j+MMxrxzgNEoEwcQICMvAROfrQkvqzkSTDs4+poz5lPMAYWLtpmYdCBMUBjtmA7YA6oM0iuZe
+ xYxuD+EJREfASLq+paHx66VKQf7J2+UbvFGvv8dW86pmz6CNrKraslXIjT8t/T3mwEMolPe8t
+ N7W0mn5lZm48ss+rAS8nDOgvqvtd3ge8mRuzieq8Xgx2QA5FJpFotKB9KOuoPweGONVxltcri
+ oLEahQpfCt7NSFl7FPDhe8s64zsgy3y1N2Ngzmk9WLHbAunS9X7LJO++JBgk1raf3AtCMWKi4
+ oxOH7rR5Yhc6WHthsorbIMCPODY/7tIM+m9cYtx5HebgoFOrNBHEHf/WbQd1cgF+Om2+PPrXn
+ 3GgqxKTXG194m5iWYYhUT0MQ==
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi
+> Gesendet: Freitag, 28. Oktober 2022 um 15:49 Uhr
+> Von: "Daniel Golle" <daniel@makrotopia.org>
 
---7NOnigghnnBn635q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On Fri, Oct 28, 2022 at 12:57:44PM +0200, Frank Wunderlich (linux) wrote=
+:
+> > Am 2022-10-28 11:19, schrieb AngeloGioacchino Del Regno:
+> > > Il 26/10/22 11:36, Frank Wunderlich ha scritto:
+> > > > From: Frank Wunderlich <frank-w@public-files.de>
 
-On Thu, Oct 27, 2022 at 09:12:22PM -0700, Zev Weiss wrote:
+> You could also use device tree overlays to select SDMMC or eMMC just
+> like for the NOR vs. NAND choice on this board.
 
-> I can see why it might look that way, but I'd argue it's actually not.  The
-> systems this is intended to support provide power to entirely separate
-> external devices -- think of a power distribution unit that might have
-> arbitrary things plugged into it.  It seems to me like a property of the
-> hardware that those things shouldn't have their power supply turned off (or
-> on) just because a controller in the PDU rebooted.
+i recently found a way to compile dtbo via kernel compile-tools
 
-We don't turn things off on reboot?  We don't do anything in particular
-on reboot...
+https://github.com/frank-w/BPI-R2-4.14/commit/8a0d96d0932e71dd226b4cca641d=
+cc097b23247c
 
-> > I guess it easy
-> > to understand in case of Linux which disables unclaimed regulators
-> > during. But what if other system/firmware does not behave like that?
+is this the right way?
 
-> In this case, then no change would be needed -- a system that (unlike Linux)
-> doesn't twiddle regulator state on its own would just continue to not do
-> that.
+imho adding the mmc-node in base dts is better than getting device to boot=
+ only
+with at least one overlay.
 
-We don't turn unclaimed regulators off until userspace has had a chance
-to start, if there's some problem with system integrators arranging to
-do this we can look into how that works, for example making the delay
-tunable.  I don't think this is really meaningfully different from a
-driver deciding to turn things off from a binding point of view.
+> > > > +		factory-key {
+> > >
+> > > I'd say that this is not "factory-key" but "reset-key"?
+> >
+> > okay i rename it.
+> >
+> > > > +			label =3D "reset";
+> > > > +			linux,code =3D <KEY_RESTART>;
+> > > > +			gpios =3D <&pio 9 GPIO_ACTIVE_LOW>;
+>
+> At least on my V1.0 board and reportedly also on V1.1 boards the RST
+> button doesn't work. As soon as a NVME/M.2 module is inserted this
+> also connects the GPIO just like if the button was pressed all the
+> time. This issue has also been discussed in BananaPi forums.
 
-> > And what is the "external actor"? OS is not an external actor?
+maybe drop it for now till we can test it?
 
-> It's admittedly a bit vague, but I couldn't think of a clearer way to
-> express what is a sort of nebulous concept -- essentially, some entity
-> outside the "driver" (or analogous software component) using the information
-> in the device-tree.  In many common cases this would essentially mean "a
-> human user", since in the PDU-like systems I'm targeting here the only thing
-> that should ever be deciding to turn the regulator on or off is an operator
-> logged in to the system to manually enable or disable an outlet.  I was
-> aiming to leave the wording a bit more general though, since in some other
-> context I could imagine some other piece of software toggling things
-> automatedly (e.g. lights getting turned on and off on a schedule or
-> something, if that's what happens to be plugged in).
+> > > > +	mmc0_pins_default: mmc0-pins {
+> > > > +		mux {
+> > > > +			function =3D "emmc";
+> > > > +			groups =3D "emmc_51";
+> > > > +		};
+> > > > +		conf-cmd-dat {
+> > > > +			pins =3D "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
+> > > > +			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
+> > > > +			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
+> > > > +			input-enable;
+> > > > +			drive-strength =3D <4>;
+> > > > +			mediatek,pull-up-adv =3D <1>;	/* pull-up 10K */
+> > >
+> > > Can we please stop using these custom pull-{up,down}-adv properties?
+> > > Check what was done on pinctrl-mt8192.c (and dt schema) for more
+> > > information
+> > > and examples.
 
-This is policy stuff, it doesn't translate into DTs at all.
+as far as i see it defines array mt8192_pull_type with multiple MTK_PULL_P=
+U_PD_TYPE / MTK_PULL_PUPD_R1R0_TYPE / MTK_PULL_PU_PD_RSEL_TYPE, but have n=
+ot yet found out how it is working (array only put into mt8192_data.pull_t=
+ype, no usage of this memeber, see no reference in mt8192.dtsi).
 
-> > I could not get the problem you want to solve with this property - I
-> > looked at cover letter and at commit msg.
+maybe with the
 
-> The problem is that a driver deciding on its own to enable or disable the
-> regulator (e.g. during boot or shutdown) would be a critical failure for the
-> kind of systems I'm aiming to support.
+bias-pull-up =3D <MTK_PULL_SET_RSEL_011>;
 
-If the driver is doing something like this it should be addressed in the
-driver.
+in arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi is pointing to this ar=
+ray?
 
-> > I can only imagine that you want to keep regulator on, after last its
-> > user disappears... but for what purpose? Do you expect that after system
-> > shutdown the pin will stay high so regulator will be also on? If so, you
-> > need hardware design, e.g. with some pull up (if control is over GPIO).
+> > need to check these with MTK.
+> >
+> > > > +		};
+> > > > +		conf-clk {
 
-> As described above, the regulators involved here (in these sorts of PDU-like
-> systems) provide power for external systems and devices.  It is critical
-> that the controller's boot and shutdown sequences not alter the state of the
-> regulator.
+> > > > +&wifi {
+> > > > +	status =3D "okay";
+> > > > +	pinctrl-names =3D "default", "dbdc";
+> > > > +	pinctrl-0 =3D <&wf_2g_5g_pins>, <&wf_led_pins>;
+> > > > +	pinctrl-1 =3D <&wf_dbdc_pins>, <&wf_led_pins>;
+> > > > +
+> > > > +	mediatek,eeprom-data =3D <0x86790900 0xc4326 0x60000000 0x00 0x0=
+0
+> > > > 0x00 0x00 0x00
+> > >
+> > > Ouch! This looks like firmware unrolled in a devicetree property - t=
+hat
+> > > can't
+> > > be right.
+> > >
+> > > Please dump that in a binary file and load it as firmware from
+> > > userspace.
+> >
+> > it uses the mt76 driver and here eeprom can only be loaded from
+> > mtd-partition or from device tree. Previous attempts loading eeprom da=
+ta
+> > from userspace file (like it's done for "normal" firmware) were reject=
+ed.
+>
+> Note that strictly speaking this is not firmware but rather calibration
+> data (ie. board-specific configuration, not code).
+>
+> In case you don't like the large amount of data in the DTS file, you
+> can use the /incbin/ statement to include it from a file instead.
 
-This really sounds like a full stack system integration problem, not
-something that can be resolved with one software component.
+but this file needs to be inside the kernels tree to get the dts compiled.
+As this is basicly a blob (and firmware is stored outside) this is tricky.
 
---7NOnigghnnBn635q
-Content-Type: application/pgp-signature; name="signature.asc"
+> As there is no physical EEPROM nor calibration data stored anywhere in
+> he flash there is no easy way the driver could request a board-specific
+> filename, unlike e.g. ath10k requesting BDF from userspace.
+> In the past (e.g. out-of-tree patches for rt2x00 driver allowing it's
+> use on Rt305x WiSoC) this lack of a board-specific filename has lead to
+> people treating the file just like a generic firmware file: ignoring
+> the board-specific nature of calibration data and just copying it from
+> another board... As a work-around to prevent that, we could at least
+> embed the filename in the dts or hack the driver to request a filename
+> based on the top level 'compatible' string of the board's device tree.
+>
+> I've added Felix to Cc: as he suggested that solution back then.
 
------BEGIN PGP SIGNATURE-----
+maybe i should drop it for now to get basic support of the board without w=
+ifi till this is solved?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNb+pkACgkQJNaLcl1U
-h9AmNwf+PU1nGinh9Sa0B+FKy242nXvLwhyaRVwk0UbA1tzlYICW0ZG5rfK9hAC+
-EPLyzaA9o4xfgY7ghbvBCKgvxuNsooPzcqO4Qroe5G+EMn+iWUEkTIHbIElxaRAW
-SucCtYBzqvyw4ZiJ4fPeGAnmD0FXQru3QbUrnfHWN+lFpBUFYFawuk7OrioIbBIn
-Vybk6Q+4PfuWDORXU35NExOeAkXJpFOd6rTVe+pL7FObV8hJOEelqLYoipCw2J0w
-7a/tuDF0Jd7QJM1+qS/2cWtQikWTh4ndiPOmx+zxsUth3jPg8/ZcQip+TCqy+z9J
-u+Xd/9ueAkcRHDQjRFGeN/TcXASmJA==
-=Fa5f
------END PGP SIGNATURE-----
+or adding wifi without the eeprom-data property and add firmware (file or =
+directly like now) in my
+own repo, but this needs to be done in every sourcebase as mainline is the=
+n non-functional.
 
---7NOnigghnnBn635q--
+regards Frank
