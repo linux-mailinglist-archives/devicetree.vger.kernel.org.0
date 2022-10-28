@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFBF7611D28
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F0D611D33
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230104AbiJ1WGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 18:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34770 "EHLO
+        id S229632AbiJ1WHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 18:07:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbiJ1WGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:06:32 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDAE224D894
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:06:27 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id f8so4377539qkg.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:06:27 -0700 (PDT)
+        with ESMTP id S230182AbiJ1WHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:07:20 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B39F724D88C
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:07:19 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id n18so4955442qvt.11
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:07:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Oe9YWMLOYbkHnGM5Ih1wEVQ8dEjEkrZVtdAltI46+v4=;
-        b=ZBRvD+MDACsUIyIxrcrpKl7fS0lCVLwbEcXBNJ54M1bmTkZ8aukcIcVjUzFcxgGQKn
-         Vg0VAdVvwXsh6edKd2XanDxQor/9m7eq4UvNiSk3VbLVeDg8xX1lZuODUlVHDgk5PWpc
-         evlWLZ5cyZ0sEbjG1sPlYV7smBcSW/ELW2r335IqMBAk/CqDHG5opLLsTCFuefRVtOnA
-         TItz0WXLBUcevzMUF35AaKuBKJGdNkjS/SiimgKYyd718R6bCNq7P7HqcfC08mWfAhAW
-         HOEurebBkUkT+RhYDvylYcw677raCx5pfiEP7Z8EwQN3mak+YW4qBaGCxKvAZXHU5di6
-         2vTw==
+        bh=l4Zjzz+NmO6ZHHFaizEHCjrG04Xj0VbUFmDsHVrZ9aU=;
+        b=c4nDWMablbhQJCxDEPvgkxypSIQLq4xcT3gmYe+nK6OTGhNY2Zs7Bgsqtm4O/X4ARV
+         yyIfgh3doG28AvK52GL9kW1jyEs5Y/yCN9afEoKZ/sXD/M4/L96Idojf52gCL86lqnzi
+         ilK/0+BQGchPX2PRvQMgnbaryCSBhc78Jf+rHpsR1PlHxuAh4DxSV+YvqMd3NNR5kldW
+         Ij+Ffn3jV7ZGomF3l7PRSZLyzmsdl/pPCblv8Fr4gWHOZa0x1k2lvwugbULp/Z+MkJWw
+         smF6wiUEMmDg7MguA6JBrvarjDBgF4+oVgVYE9o24y+bmYUWgrV5sYpiIXJbrVjkMuKi
+         Fixw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Oe9YWMLOYbkHnGM5Ih1wEVQ8dEjEkrZVtdAltI46+v4=;
-        b=Jn2AEHj3u5iinEqYXm5jxWZCAdxHb73pJcvS2UJDaV+RBtzd3Yq4Ok2VpNH4zFEHwW
-         Cm2ebzZWOSudTO74k6v94Qe8F20MrxxVMhrjM9EGkvbfn7yToILq1Ch8svg7wzhiJRxz
-         W2cESs88RKH1obmEgcbjTVLxCfEDaB0H9VekizFJxIWraPXxiy44aWKkL9bLcTiIoSRx
-         308bB+pzkyLga/TdIzeRQYqWaQlUvI9y2wZ6lYnhwP/6bv1WUgavRETJNnCdc6xyockr
-         H5Jlo8hkhEmYksx/W4WeZ5o2srcvM7y0wEosAxhEb4pm/1YQ1YiixzKXIWXgcBTxs1t4
-         C9Mw==
-X-Gm-Message-State: ACrzQf3vYzv1pdtmOjxqTO7O0F24mI3dVgl60AJ1ZTjVVGeOZ0u19x32
-        SeNJ5jJ+UrgS3AatlxOFfCYcsA==
-X-Google-Smtp-Source: AMsMyM4YrU1iBJT16PSlUcyx2agQqx/l8uxg+PwKzjNI22EFwmj+Nt9RZ9CXjFpopTjLH+jsaFNawA==
-X-Received: by 2002:a05:620a:845:b0:6f9:df58:1ef5 with SMTP id u5-20020a05620a084500b006f9df581ef5mr1186792qku.238.1666994759245;
-        Fri, 28 Oct 2022 15:05:59 -0700 (PDT)
+        bh=l4Zjzz+NmO6ZHHFaizEHCjrG04Xj0VbUFmDsHVrZ9aU=;
+        b=X6c/Yk8Wc7mbFuAfqNsu418PVC6ViyZ0C+kZG3TQ0ceOjFEH92hxxwfc94dcvVKrq/
+         pg/2MOly/b0mehlC3w3pIsCQdNcqBI4RUindrrgWMfRCKnybSBK5P8Ju5mzCxff7QOZL
+         d+Tf8p9Ry9fkItsqecfP+hGSPofrLbBxMKX13fpaGDpWfr9p/3rstKpj1Tse4eWHqo8Y
+         C3YJDk3fhsdHdWWwfBosDiNoq3qudi5kWaXHa0hY1UbZHnrEPXnQJaBzm67ObnJqGwaO
+         A1jMwwuFRgcBsRq6CPey/W7M+5pKyANgYYxjd6loDCUxBGh+sK5MMEb0GsRi/4fCTXzm
+         CFhA==
+X-Gm-Message-State: ACrzQf0mKzaceJFH9D+m0ovMv7L9MYqJfXT65cVM6abb+kH2KVeS3c90
+        sCeDpSM7wPJvnlDX4/XUrhBLnA==
+X-Google-Smtp-Source: AMsMyM7qdsCaCR3n2UT1c8MifaiLfbwiITEqLguFAdOAnkkneQ5LNEJtabdAtXUtryo2KVicgQHefA==
+X-Received: by 2002:a05:6214:c2a:b0:4ba:170c:1929 with SMTP id a10-20020a0562140c2a00b004ba170c1929mr1435139qvd.21.1666994838746;
+        Fri, 28 Oct 2022 15:07:18 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id x4-20020a05620a258400b006bc192d277csm3830094qko.10.2022.10.28.15.05.56
+        by smtp.gmail.com with ESMTPSA id br16-20020a05620a461000b006bbb07ebd83sm3701555qkb.108.2022.10.28.15.07.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 15:05:57 -0700 (PDT)
-Message-ID: <408b7b0c-ce30-134e-9b1f-f77c1f03f5c9@linaro.org>
-Date:   Fri, 28 Oct 2022 18:05:55 -0400
+        Fri, 28 Oct 2022 15:07:18 -0700 (PDT)
+Message-ID: <34c4037b-d152-412d-e551-dd3ea27b6b46@linaro.org>
+Date:   Fri, 28 Oct 2022 18:07:16 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v1 9/9] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc
- dsi-hdmi bridge
+Subject: Re: [PATCH 1/2] dt-bindings: leds-lp55xx: add ti,disable-charge-pump
 Content-Language: en-US
-To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robdclark@gmail.com, quic_abhinavk@quicinc.com,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, quic_kalyant@quicinc.com, swboyd@chromium.org,
-        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
-        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
-        quic_jesszhan@quicinc.com
-References: <20221028120812.339100-1-robert.foss@linaro.org>
- <20221028120812.339100-10-robert.foss@linaro.org>
+To:     Maarten Zanders <maarten.zanders@mind.be>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221028133501.95833-1-maarten.zanders@mind.be>
+ <20221028133501.95833-2-maarten.zanders@mind.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028120812.339100-10-robert.foss@linaro.org>
+In-Reply-To: <20221028133501.95833-2-maarten.zanders@mind.be>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,191 +77,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 08:08, Robert Foss wrote:
-> The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
+On 28/10/2022 09:34, Maarten Zanders wrote:
+> Add a binding to disable the internal charge pump for lp55xx.
 > 
-> In order to toggle the board to enable the HDMI output,
-> switch #7 & #8 on the rightmost multi-switch package have
-> to be toggled to On.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> Signed-off-by: Maarten Zanders <maarten.zanders@mind.be>
 > ---
->  arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 106 ++++++++++++++++++++++++
->  1 file changed, 106 insertions(+)
+>  Documentation/devicetree/bindings/leds/leds-lp55xx.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> index 6e07feb4b3b2..6666b38b58f8 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-> @@ -20,6 +20,17 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> index 7ec676e53851..9eb8d1017402 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> @@ -64,6 +64,11 @@ properties:
+>    '#size-cells':
+>      const: 0
 >  
-> +	hdmi-out {
+> +  ti,disable-charge-pump:
+> +    description: |
 
-Generic node names, so hdmi-connector or just connector.
+Drop |
 
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con: endpoint {
-> +				remote-endpoint = <&lt9611_out>;
-> +			};
-> +		};
-> +	};
-> +
->  	vph_pwr: vph-pwr-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vph_pwr";
-> @@ -29,6 +40,32 @@ vph_pwr: vph-pwr-regulator {
->  		regulator-always-on;
->  		regulator-boot-on;
->  	};
-> +
-> +	lt9611_1v2: lt9611-1v2 {
+> +      Disable the internal charge pump.
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LT9611_1V2";
-> +
-> +		vin-supply = <&vph_pwr>;
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		gpio = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	lt9611_3v3: lt9611-3v3 {
-
-Ditto
-
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LT9611_3V3";
-> +
-> +		vin-supply = <&vreg_bob>;
-> +		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &adsp {
-> @@ -220,6 +257,15 @@ &dispcc {
->  &dsi0 {
->  	status = "okay";
->  	vdda-supply = <&vreg_l6b_1p2>;
-> +
-> +	ports {
-> +		port@1 {
-> +			endpoint {
-> +				remote-endpoint = <&lt9611_a>;
-> +				data-lanes = <0 1 2 3>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &dsi0_phy  {
-> @@ -231,6 +277,48 @@ &gpi_dma1 {
->  	status = "okay";
->  };
->  
-> +&i2c15 {
-> +	status = "okay";
-
-status is the last property
-
-> +	clock-frequency = <400000>;
-> +
-> +	lt9611_codec: hdmi-bridge@2b {
-> +		compatible = "lontium,lt9611uxc";
-> +		reg = <0x2b>;
-> +		status = "okay";
-
-Why status?
-
-> +
-> +		interrupts-extended = <&tlmm 50 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&tlmm 48 GPIO_ACTIVE_HIGH>;
-> +
-> +		vdd-supply = <&lt9611_1v2>;
-> +		vcc-supply = <&lt9611_3v3>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				lt9611_a: endpoint {
-> +					remote-endpoint = <&dsi0_out>;
-> +				};
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +
-> +				lt9611_out: endpoint {
-> +					remote-endpoint = <&hdmi_con>;
-> +				};
-> +			};
-> +
-
-No need for blank line
-
-> +		};
-> +	};
-> +};
-> +
->  &mdss {
->  	status = "okay";
->  };
-> @@ -248,6 +336,10 @@ &qupv3_id_0 {
->  	status = "okay";
->  };
->  
-> +&qupv3_id_2 {
-> +	status = "okay";
-> +};
-> +
->  &slpi {
->  	status = "okay";
->  	firmware-name = "qcom/sm8350/slpi.mbn";
-> @@ -544,4 +636,18 @@ usb_hub_enabled_state: usb-hub-enabled-state {
->  		drive-strength = <2>;
->  		output-low;
->  	};
-> +
-> +	lt9611_rst_pin: lt9611-rst-state {
-> +		pins = "gpio48";
-> +		function = "normal";
-> +
-> +		output-high;
-> +		input-disable;
-> +	};
-> +
-> +	lt9611_irq_pin: lt9611-irq {
-
-Missing suffix 'state'.
-
-Does not look like you tested the DTS against bindings. Please run `make
-dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-for instructions).
-
-Rebase your changes on last linux-next.
+Does it mean that it is enabled by default?
 
 Best regards,
 Krzysztof
