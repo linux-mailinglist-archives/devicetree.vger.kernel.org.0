@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A9E611A16
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 20:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA41A611A45
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 20:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbiJ1S0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 14:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35418 "EHLO
+        id S229870AbiJ1Sk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 14:40:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbiJ1S0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 14:26:38 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162911DC4CD
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 11:26:38 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-35befab86a4so54644517b3.8
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 11:26:38 -0700 (PDT)
+        with ESMTP id S229889AbiJ1Sk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 14:40:56 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95ECA1C69F2
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 11:40:55 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-13bd2aea61bso7306051fac.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 11:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=j5EifIBTTA4Q9MeGr5GuWpo/RfwKB+MeKNIB/9GceQo=;
-        b=YUvbU1PpsyUC0xVCXSieAxZ6vYr4VEA8nHXSk5P4lFHIX6oEJWc5mCr/kQzfazyxZD
-         GXNWik6tau12kCTYEtG1jEVTFeQ8x2qsmTErDuLDS3JTMIFWDf8nxG1b/6dipQTGLJDZ
-         Vmh5w9sxSDqx20AH76/n/mZCllNsxjdto+XjXyH2pLBkhk5AAyNVtb82L74Zrfh8BQ9j
-         5I5JyxrW5aKRKrFTZL09I9LT2rrVoBduaQRJ6UoFj7kE4yZFAnImYiKzm68Y07t0xrIr
-         GURnBWhN2u0b90BaMv1cNUkOopljZM/G4Od+GmpmM0L+7JizDwTdNnOGIZa1IUmsjlA5
-         GcHw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=31+stykkUZ4/Nnbkeu0GbJDIFpFhChj+cNfEHMQOYCI=;
+        b=Idd1MDTAQXdraD4CVDaNCxXX85ZFyWnwiww0KNHkeBlmfRLmFIYEyhB791eiLjMqaj
+         HbokQrbWhDnjcy60gXfrpXzXGpuQKP6CbVts9A+gBQO9nPUTIq3fI9Py4D1CBOAY44k/
+         Q8r5C1t7SNvEC3K74pVIfg+pmhdx0GYPeD4sdQcH/XJCt96pILsi/N8av7sarDd3eAEe
+         qj+ebLLVuUMPutQ+OPnHd/v1OhQcl+JalC4XsSliZJSgZcUHoebzm/H4y5ONU14oepuD
+         Wlz33VrqyphQxd3ZJHdHdPTiXDSlw6C9K40AKHPMj9lRUu9zBZL+raOAxach6nwkQVn/
+         LOzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=j5EifIBTTA4Q9MeGr5GuWpo/RfwKB+MeKNIB/9GceQo=;
-        b=R4aMRuooQxTaPk7Fx3M4U0HcE69RCWC2xBGG9x6CUwIjrL/01ZbBT09wP1s16XfjO/
-         sBat43bN/F8V1Q2D/2YbDBO7d3JSy5Jyp37ZqdqKDyyib8GHgDaRiPlxyqmswV2MnFb8
-         NKM0Fdh/yUWbLaBO9Vvv0nbCgUYWX9n/wd0r/FqPxeSENreJ54HCQQHX6RyGTK/2bzEW
-         1poFOYNGm5hJ/+vwcPE+MRUSSukqfaycLzkb5ZeS3LBHFhsNT5a0mfB3J0bCNGyhVfuQ
-         gwxMQFxe45Z8t0Q7333v8gjd9KgsuB1snyouPB94m22SsopGXoiopVJjb+SELff1geZm
-         rsfQ==
-X-Gm-Message-State: ACrzQf2mXOpbEpLbTtfKncZP9PJwOUTd7Jnri0S5BvuFPELp+YBOCNDC
-        gcsyHEq6GQ9RTTDxr/iTuSoblBc20hYuD+AXgW6/TA==
-X-Google-Smtp-Source: AMsMyM7UOWyL2Dv6r9TIrvrO+niGjVrF9GXwAEmH7LXG29idxrg8+LTErqg85FMT3mLbPbDQ2bGc6ZQBpNv9Bl1DiMA=
-X-Received: by 2002:a81:164b:0:b0:36f:ced7:985f with SMTP id
- 72-20020a81164b000000b0036fced7985fmr773896yww.360.1666981597226; Fri, 28 Oct
- 2022 11:26:37 -0700 (PDT)
+        bh=31+stykkUZ4/Nnbkeu0GbJDIFpFhChj+cNfEHMQOYCI=;
+        b=1KGC5gSPa9eZ2yIEkq7/PEqfejuJqeFD1lVtsBjVt2VxPE04R5wuC4/jxY11zfVp4k
+         DHALpukm0jygwmctETW6ImzSvVD3BHmCcF/wg5Cqgu+7wNLPNgJoZbxJSud3L61bBzSG
+         da/4qXMtcztE4C1v/ET9HbAIG+9bbAQoibMaAyriajjV7qK6nQC3Y8DvtW7GsJwZnw+X
+         X3tmRC14CLc7Bm0EuhnLJnqCtbHuAi0M5pO4LkqT+SjQgrh88lDOcd+4uIrWXnypq1Zf
+         ct1T6edq96pKUpv+FhgMt8HE60SYubDq3FX7N3xiuMlJ2hftMSG/mkux6cleUHiXbxPK
+         07Lg==
+X-Gm-Message-State: ACrzQf36k2TmExUjTVFsq3w5sh23qDn3Ox/FJ7jE/Cq8IBPnfamm8veT
+        BRQCZxc2eJXryLlfCOw32z9VtAe8tDE=
+X-Google-Smtp-Source: AMsMyM4sCvcEQtsJXPR4XpFx0rkgWJka0bNRN0TI2IpQmRBNrZvKyL1vAch33hThmUqp34xleoxe3A==
+X-Received: by 2002:a05:6870:968c:b0:13b:cb3c:67b9 with SMTP id o12-20020a056870968c00b0013bcb3c67b9mr341778oaq.250.1666982454595;
+        Fri, 28 Oct 2022 11:40:54 -0700 (PDT)
+Received: from wintermute.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id z7-20020a056830290700b0066c34486aa7sm575288otu.73.2022.10.28.11.40.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 11:40:53 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        pgwipeout@gmail.com, michael.riesch@wolfvision.net,
+        frattaroli.nicolas@gmail.com, jagan@amarulasolutions.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/4] Add Anbernic RG353V and RG353VS
+Date:   Fri, 28 Oct 2022 13:40:41 -0500
+Message-Id: <20221028184045.13113-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20221028172215.1471235-1-ajye_huang@compal.corp-partner.google.com>
- <20221028172215.1471235-2-ajye_huang@compal.corp-partner.google.com> <628ac98c-0755-e6f6-e010-f1e772c4b71a@linaro.org>
-In-Reply-To: <628ac98c-0755-e6f6-e010-f1e772c4b71a@linaro.org>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Sat, 29 Oct 2022 02:26:30 +0800
-Message-ID: <CALprXBY8FUc_w=JO3bp9m1e=1d5Fcvrou_En1JG8Hx0BYuETKw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: mediatek: dt-bindings: modify machine
- bindings for two MICs case
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        "chunxu . li" <chunxu.li@mediatek.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 29, 2022 at 1:58 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+From: Chris Morgan <macromorgan@hotmail.com>
 
+Add support for the Anbernic RG353V and RG353VS handheld gaming
+consoles. These devices are extremely similar to the existing
+Anbernic RG353P.
 
-> >
-> > +  dmic-gpios:
-> > +    maxItems: 1
-> > +    description: GPIO for switching between DMICs
->
-> Switching how? Enabling? What is the meaning of each GPIO pin value?
->
-I think I should add more like an example,
-  description: dmic-gpios optional prop for switching between two DMICs.
-                    Ex, the GPIO can control a MUX HW component to
-                    select dmic clk and data form a Front or Rear dmic.
+Add support for the battery of the existing RG353P and RG503 too
+as part of this change, as to keep things compact we must first split
+the 353p devicetree into attributes common to all 353 devices and
+attributes that only exist for the 353P, 353V, and 353VS devices
+(which includes a different battery in the V and VS).
 
-Do you agree with that or have other suggestions? If do, I will send
-the v3 patch for you to check, thanks
-> >
-> > +        dmic-gpios = <&pio 23 0>;
->
-> Use defines for flags.
+Lastly, add poll-interval to the parent tree so that it affects all
+existing Anbernic RGxx3 devices.
 
-Yes, you are right, I will change it to
-dmic-gpios = <&pio 23 GPIO_ACTIVE_HIGH>;
+Chris Morgan (4):
+  dt-bindings: arm: rockchip: Add Anbernic RG353V and RG353VS
+  arm64: dts: rockchip: add Anbernic RG353V and RG353VS
+  arm64: dts: rockchip: add rk817 chg to RG353P and RG503
+  arm64: dts: rockchip: add poll-interval to RGxx3 devices
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  10 ++
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/rk3566-anbernic-rg353p.dts   | 109 +++++++++++------
+ .../dts/rockchip/rk3566-anbernic-rg353v.dts   | 114 ++++++++++++++++++
+ .../dts/rockchip/rk3566-anbernic-rg353vs.dts  |  87 +++++++++++++
+ .../dts/rockchip/rk3566-anbernic-rg353x.dtsi  |  60 +++++++++
+ .../dts/rockchip/rk3566-anbernic-rg503.dts    |  79 ++++++++++++
+ .../dts/rockchip/rk3566-anbernic-rgxx3.dtsi   |  47 +-------
+ 8 files changed, 424 insertions(+), 84 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353v.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353vs.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
+
+-- 
+2.25.1
+
