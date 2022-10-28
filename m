@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F4DF611B7A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74EF1611B80
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbiJ1UTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 16:19:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44716 "EHLO
+        id S229738AbiJ1U1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 16:27:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbiJ1UTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:19:46 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 979DB19C23
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:19:44 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SKJcdK078421;
-        Fri, 28 Oct 2022 15:19:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666988378;
-        bh=QbTS87/zUE8Lvzn57MwnUDAFi6q1mfhG7tpfYG4DR8I=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=iaTn7KUcwB7yShJiL87FXduA7Hxaw6aCpN2BfaQ293XBLjN5RvCYM+GV3xm0Q03/e
-         3sjhxVtrbYbxaWhr+00ge4JJRVEMvyKfabViDg5XzdjkxdSHzRgSa4IQo6eonf5L3F
-         oQTbCQUZT3ae3+xnOwdxy3K8qw9r9bdpN8zRPXi8=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SKJcGF123872
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Oct 2022 15:19:38 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
- Oct 2022 15:19:38 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 28 Oct 2022 15:19:38 -0500
-Received: from [10.250.135.52] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SKJXLM107420;
-        Fri, 28 Oct 2022 15:19:34 -0500
-Message-ID: <fbd9755c-6a06-9fc0-5e11-50a0bb8aa33f@ti.com>
-Date:   Fri, 28 Oct 2022 23:19:32 +0300
+        with ESMTP id S229739AbiJ1U1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:27:02 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7C11DC0B8;
+        Fri, 28 Oct 2022 13:26:58 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-13be3ef361dso7514855fac.12;
+        Fri, 28 Oct 2022 13:26:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pYeicBb6Ktx/qXuyY0v8J9BOCMD+rBtMFSIuHFZrlWM=;
+        b=AJfI1orcrXdVjwjgLOdhlvliU3t7+pKRMmQd3wH7E+kD/7F7jubSHGHysCBYc+QAzx
+         GSwaJ5RpabQuV901sSxez+s57B2ixFkJapiqii6BKOR4vnZ2sa/4tgvBBJZ/pV3GwBpP
+         l0bUXnrvTWImoc+VGNK+wJxCI9ljeshma4V4IuqIii4U42K2al6IucI+QoFU7znDWUAu
+         wj+ahE3U0WrVC3cTaWGkJJ6wolg4S2Rex4o+crNeLsW3rAn4omjcMNXYZnC8kMqS8fhc
+         AiEAOhKe2qPGmfyU6T/HTiZx7OdBW3n1N3sN2O6/Q3n4XcPiBTaHH1I+NLARXc6ZDctq
+         RRkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pYeicBb6Ktx/qXuyY0v8J9BOCMD+rBtMFSIuHFZrlWM=;
+        b=X97FMxiRWQM1x1n+PmLtZ36eIm8JV6gH+9sf+piJc2dQ5/KSO9uwmJlnANVR2Jl3LZ
+         vgubhHk6MO7W1UqKso/RFbmvJBF0cP8u2v9W44fOYSUjp41s6a91/4o69VQbGvplEfe9
+         ++xjaDDXsE9YlhuXN30zyNzfgKwu2FHP5jp4vSzNS/HC2FGZ5xjvZZVT0C/xy5nOfhVV
+         oAj8taCRBm2qyUHdNdIQwuJBAG4Wvcp+N/R33Uxutl5LGo4mhlG5OAsXmozDMnAmY+y8
+         V8q0R+Gx/6wqlfFX5eLnshM/FgNL9CrFTGwBnyJ253Nc1eKM7leme244jXSczJszj6eu
+         HobQ==
+X-Gm-Message-State: ACrzQf0vMzbTdM610I4OeN0qmnUeDhAF2OcHRo6z9NNwl65gATzA5qON
+        BZ9pnfBXfVkUd2I+moLWp1znE0236JQ=
+X-Google-Smtp-Source: AMsMyM7MzVsmuuaszKF1v7tGOktSQmFmbaRnoxG22BBwGQZWqnnh4fxccPbLwrVpIQfpFZZWdXIGrA==
+X-Received: by 2002:a05:6870:b491:b0:133:b1f:b948 with SMTP id y17-20020a056870b49100b001330b1fb948mr564044oap.290.1666988816950;
+        Fri, 28 Oct 2022 13:26:56 -0700 (PDT)
+Received: from wintermute.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id u43-20020a4a972e000000b004728e64dc0fsm1914744ooi.38.2022.10.28.13.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 13:26:56 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, rydberg@bitmath.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        dmitry.torokhov@gmail.com, mkorpershoek@baylibre.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V4 0/3] Add Hynitron cstxxx Touchscreen
+Date:   Fri, 28 Oct 2022 15:26:33 -0500
+Message-Id: <20221028202636.14341-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am625-sk: Use pwm-led instead of
- gpio-led
-Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Keerthy <j-keerthy@ti.com>
-References: <20220914074224.44786-1-tony@atomide.com>
- <20220914074224.44786-2-tony@atomide.com>
-From:   Georgi Vlaev <g-vlaev@ti.com>
-In-Reply-To: <20220914074224.44786-2-tony@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,74 +70,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On 9/14/22 10:42, Tony Lindgren wrote:
-> On am625, pad c17 can be used either in gpio mode or pwm mode to control
-> the connected led. Let's change to use pwm-led for additional brighness
-> control.
-> 
-> The pwm controller is dmtimer7 for pad C17. We configure it for 128 Hz
-> rate (1000000000 / 7812500) similar to what has been done elsewhere for
-> pwm-leds.
-> 
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am625-sk.dts | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-> @@ -131,18 +131,25 @@ vdd_sd_dv: regulator-4 {
->  	};
->  
->  	leds {
-> -		compatible = "gpio-leds";
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&usr_led_pins_default>;
-> +		compatible = "pwm-leds";
->  
->  		led-0 {
->  			label = "am62-sk:green:heartbeat";
-> -			gpios = <&main_gpio1 49 GPIO_ACTIVE_HIGH>;
-> +			pwms = <&main_pwm7 0 7812500 0>;
-> +			max-brightness = <255>;
->  			linux,default-trigger = "heartbeat";
->  			function = LED_FUNCTION_HEARTBEAT;
->  			default-state = "off";
->  		};
->  	};
-> +
-> +	main_pwm7: dmtimer-main-pwm-7 {
-> +		pinctrl-0 = <&usr_led_pins_default>;
-> +		pinctrl-names = "default";
-> +		compatible = "ti,omap-dmtimer-pwm";
-> +		#pwm-cells = <3>;
-> +		ti,timers = <&main_timer7>;
-> +	};
->  };
->  
->  &main_pmx0 {
-> @@ -203,7 +210,7 @@ AM62X_IOPAD(0x240, PIN_INPUT, 0) /* (D17) MMC1_SDCD */
->  
->  	usr_led_pins_default: usr-led-pins-default {
->  		pinctrl-single,pins = <
-> -			AM62X_IOPAD(0x244, PIN_OUTPUT, 7) /* (C17) MMC1_SDWP.GPIO1_49 */
-> +			AM62X_IOPAD(0x244, PIN_OUTPUT, 2) /* (C17) MMC1_SDWP.TIMER_IO7 */
->  		>;
->  	};
->  
+This series adds support for the Hynitron cstxxx (specifically
+the cst3xx series). The cst3xx supports 5 point multitouch with
+hardware tracking of touch points.
 
-Looking good on SK-AM625 E3. 
+Note that a datasheet was unavailable for this device, so it was
+built based on vendor provided source code that was tagged as GPLv2.
+Some of the register functions were discovered via trial and error
+and labelled as such.
 
-Just for a reference, I also checked the PWM output for TIMER_IO2 (C15) and TIMER_IO3 (E15).
+Changes from V3:
+ - Removed of includes and changed from of_device_get_match_data() to
+   device_get_match_data().
+ - Print checkcode read from the device in the event of an error.
+ - Removed extra dev_err() print functions.
 
-Tested-by: Georgi Vlaev <g-vlaev@ti.com>
+Changes from V2:
+ - Fix issue identified by Intel Kernel Test Robot. Changed functions
+   in driver to static. Reported-by: kernel test robot <lkp@intel.com>
+
+Changes from V1:
+ - Updated binding to specify cst340 instead of generic cst3xx.
+ - Defined various registers and commands to enhance code readability.
+ - Changed name of chip specific struct to hynitron_ts_chip_data.
+ - Removed unused and redundant values from driver data.
+ - Switch to gpiod cansleep functions in reset.
+ - Refactored read/write i2c functions.
+ - Changed variable names of ret to err in certain functions and added
+   additional error handling in input registration function.
+
+Chris Morgan (3):
+  dt-bindings: vendor-prefixes: add Hynitron vendor prefix
+  dt-bindings: input: touchscreen: Add Hynitron cstxxx
+  input/touchscreen: Add Hynitron cstxxx touchscreen
+
+ .../input/touchscreen/hynitron,cstxxx.yaml    |  65 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/hynitron_cstxxx.c   | 505 ++++++++++++++++++
+ 5 files changed, 585 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml
+ create mode 100644 drivers/input/touchscreen/hynitron_cstxxx.c
 
 -- 
-Regards,
-Georgi
+2.25.1
+
