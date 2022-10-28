@@ -2,79 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0F50611204
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B552E61120D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbiJ1M5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35894 "EHLO
+        id S229544AbiJ1M7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbiJ1M5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:57:13 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C4A1C2EB9;
-        Fri, 28 Oct 2022 05:57:11 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id p8so8102102lfu.11;
-        Fri, 28 Oct 2022 05:57:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xlgtcNEkHLSQxefrkLYDw2NI8A0VX2rYADSe4gp+IWI=;
-        b=D6FMWgHVGm2MYqfbdj0u7uO5JT3gly5wkvLMYoc6KhZFvUtbMnX5WjaXdFUzqOaXoU
-         YuB+Px71m/4/RzDdCnm6a8ZQXgiyQXYXkqkWZFlXnF5CqOlxR3Zja3XrjiF8B4S5py39
-         b10lnlEbDnaT4cA776AOOUkpzOjD8s6sghfU2bsnLi7+L3WsM78WP6nU7ogn7NxYJ+IS
-         YEREx1IauNmb2f0n/5EKjze2Ryq1aCosxgiAmddNq2BnyyLluONUsey51gzP+VWJbOAA
-         t/uw93tPxSXBBddWx9foO18esl9c1fXG2ZJgD5P/AKdSSveuSRRXSo9wnZ8pXU6BPJSa
-         aW3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xlgtcNEkHLSQxefrkLYDw2NI8A0VX2rYADSe4gp+IWI=;
-        b=aMxoLfo7XpHvRNjHftFYVGetoRcMXY/l99aHvSbpNjojHb+VpztJPDWWNjfMlkr1jK
-         pmhiY1P+nrL0Q8PPa5ZX6GgPmk3XOBmdH2TNwgVERFdsy6+nyVSeVKPv62bM8LCE12Nk
-         fYlcmELk6mlcBqUYmUwfihka5XDE5SgMA32C/F+De9B6/8Y6OkNAyfIBp9AU1KFltxvM
-         zsDN3edrm9D3APWOE7NAfMPndLJ8H5i0ufpY5+qSkk6rpn1jLpTj7AStiH2dP5cz64v+
-         OUxinmzhZyzSfI+OPhL6HmYdPFELqtVvt4SrEI7lElnoOs7AUroEqx34g8yyv3f2lWS3
-         NCPA==
-X-Gm-Message-State: ACrzQf2dyZ7lY9WAmnCuWHcB7uj/TiqLPmUXtIA9mGC+T8rGF5JNLNzu
-        POEzhVbZbaTZOai9yZ36tsaISiqgjYw=
-X-Google-Smtp-Source: AMsMyM5YC5NBUNMVLvqpGOhKxFPABiSIffwZ0JUtOGTuxf/IrQHJu+GkhJXcz7H9cWgYw2s9wH8WPw==
-X-Received: by 2002:a17:907:3f04:b0:741:4bf4:fe42 with SMTP id hq4-20020a1709073f0400b007414bf4fe42mr47994915ejc.664.1666961818654;
-        Fri, 28 Oct 2022 05:56:58 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id oz13-20020a170906cd0d00b007ad2da5668csm2134066ejb.112.2022.10.28.05.56.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 05:56:57 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 14:56:56 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Wayne Chang <waynec@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, treding@nvidia.com,
-        jonathanh@nvidia.com, heikki.krogerus@linux.intel.com,
-        ajayg@nvidia.com, kishon@ti.com, vkoul@kernel.org,
-        p.zabel@pengutronix.de, balbi@kernel.org, mathias.nyman@intel.com,
-        jckuo@nvidia.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        singhanc@nvidia.com, linux-i2c@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 09/11] phy: tegra: xusb: Add Tegra234 support
-Message-ID: <Y1vRmGss43zEcN/I@orome>
-References: <20221024074128.1113554-1-waynec@nvidia.com>
- <20221024074128.1113554-10-waynec@nvidia.com>
+        with ESMTP id S229535AbiJ1M7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:59:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 006271D6386;
+        Fri, 28 Oct 2022 05:59:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9E694B82A02;
+        Fri, 28 Oct 2022 12:59:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F43C433D6;
+        Fri, 28 Oct 2022 12:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666961941;
+        bh=0OuRNaJ78R/mLvCq80DBKbhmiV+fSFGKAstd5WM5vug=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qKQNetHJydStVEqBe9ZNgpMuy9y/d0TgcvmXrEmO892sy0/lkzS3WSuFqE6XnL7mU
+         lILcEyYWTOhRLn7aAwI+UjLN1UBYcoSflxfY9NJOWRH3GaYAlcD5szjoAz1ZfM4Obw
+         CygTTp3g3aByqlK1wbJQ1zzYSQvoFWnESbuclLeJoxy6m/hT5MSD5QbBWTCqgKpLSE
+         XJXl9NnbOGaGMJR2fPs5U/Fky679BJdxiIepuIhkMBg6hermIsXJVTgmAo/7PpSMwN
+         M7e8ACMgamfmlUyH2bVLiI5tZ9wshOuF2iwzbwtyffRTYrPAtK4i9dmvDbKTMBzeWR
+         rcl90ExEBwWGw==
+Date:   Fri, 28 Oct 2022 13:58:55 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Cc:     Amadeusz =?utf-8?B?U8WCYXdpxYRza2k=?= 
+        <amadeuszx.slawinski@linux.intel.com>,
+        linux-kernel@vger.kernel.org, robh@kernel.org,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        devicetree@vger.kernel.org,
+        angelogioacchino.delregno@collabora.corp-partner.google.com,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: Re: [PATCH v1 2/2] ASoC: dmic: Add optional dmic selection
+Message-ID: <Y1vSDyZlZBaGyJyb@sirena.org.uk>
+References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028102450.1161382-3-ajye_huang@compal.corp-partner.google.com>
+ <a7275ee4-c6ec-c0e8-c49d-dec9ca367d9f@linux.intel.com>
+ <CALprXBavrYqWxKUgEJMWNXGCuBnKNjKk1n_4eFOeo+=6=juHYQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="EpD9Cm4/iJG55pEf"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="n8nKVFG6JPSjBYcl"
 Content-Disposition: inline
-In-Reply-To: <20221024074128.1113554-10-waynec@nvidia.com>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CALprXBavrYqWxKUgEJMWNXGCuBnKNjKk1n_4eFOeo+=6=juHYQ@mail.gmail.com>
+X-Cookie: Life -- Love It or Leave It.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,272 +69,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---EpD9Cm4/iJG55pEf
+--n8nKVFG6JPSjBYcl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 24, 2022 at 03:41:26PM +0800, Wayne Chang wrote:
-> From: Sing-Han Chen <singhanc@nvidia.com>
->=20
-> Add support for the XUSB pad controller found on Tegra234 SoCs. It is
-> mostly similar to the same IP found on Tegra194, because most of
-> the Tegra234 XUSB PADCTL registers definition and programming sequence
-> are the same as Tegra194, Tegra234 XUSB PADCTL can share the same
-> driver with Tegra186 and Tegra194 XUSB PADCTL.
->=20
-> Introduce a new feature, USB2 HW tracking, for Tegra234.
-> The feature is to enable HW periodical PAD tracking which measure
-> and capture the electric parameters of USB2.0 PAD.
->=20
-> Signed-off-by: Sing-Han Chen <singhanc@nvidia.com>
-> Co-developed-by: Wayne Chang <waynec@nvidia.com>
-> Signed-off-by: Wayne Chang <waynec@nvidia.com>
-> ---
->  drivers/phy/tegra/Makefile        |  1 +
->  drivers/phy/tegra/xusb-tegra186.c | 65 +++++++++++++++++++++++++++++--
->  drivers/phy/tegra/xusb.c          |  6 +++
->  drivers/phy/tegra/xusb.h          | 23 +++++++++++
->  4 files changed, 92 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/phy/tegra/Makefile b/drivers/phy/tegra/Makefile
-> index 89b84067cb4c..eeeea72de117 100644
-> --- a/drivers/phy/tegra/Makefile
-> +++ b/drivers/phy/tegra/Makefile
-> @@ -7,4 +7,5 @@ phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_132_SOC) +=3D xusb-teg=
-ra124.o
->  phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_210_SOC) +=3D xusb-tegra210.o
->  phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_186_SOC) +=3D xusb-tegra186.o
->  phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_194_SOC) +=3D xusb-tegra186.o
-> +phy-tegra-xusb-$(CONFIG_ARCH_TEGRA_234_SOC) +=3D xusb-tegra186.o
->  obj-$(CONFIG_PHY_TEGRA194_P2U) +=3D phy-tegra194-p2u.o
-> diff --git a/drivers/phy/tegra/xusb-tegra186.c b/drivers/phy/tegra/xusb-t=
-egra186.c
-> index f121b4ffbbfd..cc02cea65a21 100644
-> --- a/drivers/phy/tegra/xusb-tegra186.c
-> +++ b/drivers/phy/tegra/xusb-tegra186.c
-> @@ -89,6 +89,11 @@
->  #define  USB2_TRK_START_TIMER(x)		(((x) & 0x7f) << 12)
->  #define  USB2_TRK_DONE_RESET_TIMER(x)		(((x) & 0x7f) << 19)
->  #define  USB2_PD_TRK				BIT(26)
-> +#define  USB2_TRK_COMPLETED			BIT(31)
-> +
-> +#define XUSB_PADCTL_USB2_BIAS_PAD_CTL2		0x28c
-> +#define  USB2_TRK_HW_MODE			BIT(0)
-> +#define  CYA_TRK_CODE_UPDATE_ON_IDLE		BIT(31)
-> =20
->  #define XUSB_PADCTL_HSIC_PADX_CTL0(x)		(0x300 + (x) * 0x20)
->  #define  HSIC_PD_TX_DATA0			BIT(1)
-> @@ -609,9 +614,32 @@ static void tegra186_utmi_bias_pad_power_on(struct t=
-egra_xusb_padctl *padctl)
->  	value &=3D ~USB2_PD_TRK;
->  	padctl_writel(padctl, value, XUSB_PADCTL_USB2_BIAS_PAD_CTL1);
-> =20
-> -	udelay(100);
-> +	if (padctl->soc->poll_trk_completed) {
-> +		err =3D padctl_readl_poll(padctl, XUSB_PADCTL_USB2_BIAS_PAD_CTL1,
-> +					USB2_TRK_COMPLETED, USB2_TRK_COMPLETED, 100);
-> +		if (err) {
-> +			/* The failure with polling on trk complete will not
-> +			 * cause the failure of powering on the bias pad.
-> +			 */
-> +			dev_warn(dev, "failed to poll USB2 trk completed: %d\n",
-> +				err);
-> +		}
-> =20
-> -	clk_disable_unprepare(priv->usb2_trk_clk);
-> +		value =3D padctl_readl(padctl, XUSB_PADCTL_USB2_BIAS_PAD_CTL1);
-> +		value |=3D USB2_TRK_COMPLETED;
-> +		padctl_writel(padctl, value, XUSB_PADCTL_USB2_BIAS_PAD_CTL1);
-> +	} else {
-> +		udelay(100);
-> +	}
-> +
-> +	if (padctl->soc->trk_hw_mode) {
-> +		value =3D padctl_readl(padctl, XUSB_PADCTL_USB2_BIAS_PAD_CTL2);
-> +		value |=3D USB2_TRK_HW_MODE;
-> +		value &=3D ~CYA_TRK_CODE_UPDATE_ON_IDLE;
-> +		padctl_writel(padctl, value, XUSB_PADCTL_USB2_BIAS_PAD_CTL2);
-> +	} else {
-> +		clk_disable_unprepare(priv->usb2_trk_clk);
-> +	}
-> =20
->  	mutex_unlock(&padctl->lock);
->  }
-> @@ -637,6 +665,13 @@ static void tegra186_utmi_bias_pad_power_off(struct =
-tegra_xusb_padctl *padctl)
->  	value |=3D USB2_PD_TRK;
->  	padctl_writel(padctl, value, XUSB_PADCTL_USB2_BIAS_PAD_CTL1);
-> =20
-> +	if (padctl->soc->trk_hw_mode) {
-> +		value =3D padctl_readl(padctl, XUSB_PADCTL_USB2_BIAS_PAD_CTL2);
-> +		value &=3D ~USB2_TRK_HW_MODE;
-> +		padctl_writel(padctl, value, XUSB_PADCTL_USB2_BIAS_PAD_CTL2);
-> +		clk_disable_unprepare(priv->usb2_trk_clk);
-> +	}
-> +
->  	mutex_unlock(&padctl->lock);
->  }
-> =20
-> @@ -1560,7 +1595,8 @@ const struct tegra_xusb_padctl_soc tegra186_xusb_pa=
-dctl_soc =3D {
->  EXPORT_SYMBOL_GPL(tegra186_xusb_padctl_soc);
->  #endif
-> =20
-> -#if IS_ENABLED(CONFIG_ARCH_TEGRA_194_SOC)
-> +#if IS_ENABLED(CONFIG_ARCH_TEGRA_194_SOC) || \
-> +	IS_ENABLED(CONFIG_ARCH_TEGRA_234_SOC)
->  static const char * const tegra194_xusb_padctl_supply_names[] =3D {
->  	"avdd-usb",
->  	"vclamp-usb",
-> @@ -1616,8 +1652,31 @@ const struct tegra_xusb_padctl_soc tegra194_xusb_p=
-adctl_soc =3D {
->  	.supply_names =3D tegra194_xusb_padctl_supply_names,
->  	.num_supplies =3D ARRAY_SIZE(tegra194_xusb_padctl_supply_names),
->  	.supports_gen2 =3D true,
-> +	.poll_trk_completed =3D true,
->  };
->  EXPORT_SYMBOL_GPL(tegra194_xusb_padctl_soc);
-> +
-> +const struct tegra_xusb_padctl_soc tegra234_xusb_padctl_soc =3D {
-> +	.num_pads =3D ARRAY_SIZE(tegra194_pads),
-> +	.pads =3D tegra194_pads,
-> +	.ports =3D {
-> +		.usb2 =3D {
-> +			.ops =3D &tegra186_usb2_port_ops,
-> +			.count =3D 4,
-> +		},
-> +		.usb3 =3D {
-> +			.ops =3D &tegra186_usb3_port_ops,
-> +			.count =3D 4,
-> +		},
-> +	},
-> +	.ops =3D &tegra186_xusb_padctl_ops,
-> +	.supply_names =3D tegra194_xusb_padctl_supply_names,
-> +	.num_supplies =3D ARRAY_SIZE(tegra194_xusb_padctl_supply_names),
-> +	.supports_gen2 =3D true,
-> +	.poll_trk_completed =3D true,
-> +	.trk_hw_mode =3D true,
-> +};
-> +EXPORT_SYMBOL_GPL(tegra234_xusb_padctl_soc);
+On Fri, Oct 28, 2022 at 08:54:31PM +0800, Ajye Huang wrote:
 
-I'm beginning to wonder if we perhaps went a bit overboard with this.
-These symbols are used exclusively by drivers/phy/tegra/xusb.c, which
-ends up in the same link unit as xusb-tegra186.c, so the export should
-not be necessary.
+> Yes, the original version I tried the implementation on audio machine
+> driver, but one person gave me an idea for this dmic.c
+> Do you think it is appropriate on dmic.c?
+>  If it isn't, I will add kcontrol into audio machine driver.  thanks
 
-Not necessarily something that needs fixing right now, but certainly
-something to circle back to eventually.
+It's definitely a better fit somewhere else - like I said in reply to
+the DT binding it's really a mux that sits between the DMICs and the DAI
+so that's probably where a generic version should be implemented.
 
->  #endif
-> =20
->  MODULE_AUTHOR("JC Kuo <jckuo@nvidia.com>");
-> diff --git a/drivers/phy/tegra/xusb.c b/drivers/phy/tegra/xusb.c
-> index 95091876c422..23d179b1a5b5 100644
-> --- a/drivers/phy/tegra/xusb.c
-> +++ b/drivers/phy/tegra/xusb.c
-> @@ -71,6 +71,12 @@ static const struct of_device_id tegra_xusb_padctl_of_=
-match[] =3D {
->  		.compatible =3D "nvidia,tegra194-xusb-padctl",
->  		.data =3D &tegra194_xusb_padctl_soc,
->  	},
-> +#endif
-> +#if defined(CONFIG_ARCH_TEGRA_234_SOC)
-> +	{
-> +		.compatible =3D "nvidia,tegra234-xusb-padctl",
-> +		.data =3D &tegra234_xusb_padctl_soc,
-> +	},
->  #endif
->  	{ }
->  };
-> diff --git a/drivers/phy/tegra/xusb.h b/drivers/phy/tegra/xusb.h
-> index 8cfbbdbd6e0c..ec0b5b023ad1 100644
-> --- a/drivers/phy/tegra/xusb.h
-> +++ b/drivers/phy/tegra/xusb.h
-> @@ -8,6 +8,7 @@
->  #define __PHY_TEGRA_XUSB_H
-> =20
->  #include <linux/io.h>
-> +#include <linux/iopoll.h>
->  #include <linux/mutex.h>
->  #include <linux/workqueue.h>
-> =20
-> @@ -433,6 +434,8 @@ struct tegra_xusb_padctl_soc {
->  	unsigned int num_supplies;
->  	bool supports_gen2;
->  	bool need_fake_usb3_port;
-> +	bool poll_trk_completed;
-> +	bool trk_hw_mode;
->  };
-> =20
->  struct tegra_xusb_padctl {
-> @@ -475,6 +478,23 @@ static inline u32 padctl_readl(struct tegra_xusb_pad=
-ctl *padctl,
->  	return value;
->  }
-> =20
-> +static inline u32 padctl_readl_poll(struct tegra_xusb_padctl *padctl,
-> +	unsigned long offset, u32 val, u32 mask, int us)
-> +{
-> +	u32 regval;
-> +	int err;
-> +
-> +	err =3D readl_poll_timeout_atomic(padctl->regs + offset, regval,
-> +					 (regval & mask) =3D=3D val, 1, us);
+Please don't top post, reply in line with needed context.  This allows
+readers to readily follow the flow of conversation and understand what
+you are talking about and also helps ensure that everything in the
+discussion is being addressed.
 
-Do we really need the atomic variant here? The function that calls this
-already uses a mutex for protection, so it can already sleep anyway.
-
-Also, do we really need the helper here? We use this exactly once and
-this doesn't make the invocation more readable, either.
-
-Thierry
-
-> +	dev_dbg(padctl->dev, "%08lx poll > %08x\n", offset, regval);
-> +	if (err) {
-> +		dev_err(padctl->dev, "%08lx poll timeout > %08x\n", offset,
-> +			regval);
-> +	}
-> +
-> +	return err;
-> +}
-> +
->  struct tegra_xusb_lane *tegra_xusb_find_lane(struct tegra_xusb_padctl *p=
-adctl,
->  					     const char *name,
->  					     unsigned int index);
-> @@ -491,5 +511,8 @@ extern const struct tegra_xusb_padctl_soc tegra186_xu=
-sb_padctl_soc;
->  #if defined(CONFIG_ARCH_TEGRA_194_SOC)
->  extern const struct tegra_xusb_padctl_soc tegra194_xusb_padctl_soc;
->  #endif
-> +#if defined(CONFIG_ARCH_TEGRA_234_SOC)
-> +extern const struct tegra_xusb_padctl_soc tegra234_xusb_padctl_soc;
-> +#endif
-> =20
->  #endif /* __PHY_TEGRA_XUSB_H */
-> --=20
-> 2.25.1
->=20
-
---EpD9Cm4/iJG55pEf
+--n8nKVFG6JPSjBYcl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNb0ZUACgkQ3SOs138+
-s6E1aw//crfqY/5h5onKaE4z03lnf4wf7h/85cKbxHTyLFhR98XdmCX22+FJmwbl
-lXrf5GVPv/GUtdTnUdVs/7wErNgwGpkAPA7w3sIw6e/U1RpGqeLPgU9DB24Kcl6V
-rYa84SwrFtKeVuIEK9jYWUz1GGBP9VNgqclESvxqxtiS483+/tfT8YqB6hZL0SYh
-fqL/Ve6WMSP63YPIDhDRUSSH+UjK8bjbabU0tCPf/bw8nw9Q9/QLv15KCAPhtjAv
-P4UocDKIC5znZWokFn54kaxpBjla6cugK8mym7NISF+WsCptwfnezMs0XGaTlwhN
-0hyiqspCaOKJnZxVD7lEKtIiFZIplY39xQypL2O8KfiKAPL1waPKyypgrUNRM5pe
-oUKOA7FbsZq0fDn2gi6jrIX2jQXPuj8xY5/PWWq5J6ZR1c3KhfSm2s3X6Fu0Amfg
-ielsTghZiaNa8oysxCmh1sLnwwyHx3cfLQjghl8mzW+uqgnDiK3z5WXM2qKmSF6d
-oo/d9srqpcISk+GxyxpOMu8dvxeUv62dVXdtlP3S5ixle+uBD1hf1+dM7QLBbpxU
-OETl2JIw69eqPMJTqLwHsm3t915GkINmSDUk9+HrObSNIO6cuSI+znAprGo+Jvyi
-Jyfa8SFhriQu2MhaRikXVthS7gp33gkqjAyW3qAp/lDcfFFKXtY=
-=W2tL
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNb0g4ACgkQJNaLcl1U
+h9CD0gf/VGTxWpUIDsoJ4AUiYKI4vSNrXJ0zpMUqTQlqcYkQzsq+SdksyZCL4pOW
+RQFIU00TL4GhmrO8To/dUu1hSCA3RbjPu/otwIk/xc6jPtp5G9Ui3jVBUkpcdySH
+CIgURtbgD07Yb9KUA6Vvh1E6UoHS6K8WzJUmKslYaRFuWGTgdix7BNN1qKxvUuF6
+37vfN1YFz69sxPCaKLbai0OztLxt5J7LV3OCDObnA2MRifSpcPum/iVoB59YndOj
+fZOPU8mPBnqP/dKAPALq1eonmXcJ1ckVZafYKOKShECXIhhcrMN8EqVzRho9HIpw
+dwNl6exiTpQC28EYMk0EdA2y/ULU6w==
+=wipj
 -----END PGP SIGNATURE-----
 
---EpD9Cm4/iJG55pEf--
+--n8nKVFG6JPSjBYcl--
