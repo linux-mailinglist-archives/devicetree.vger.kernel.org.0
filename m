@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B14F611B2F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 21:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 480E7611B36
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 21:52:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiJ1TuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 15:50:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46540 "EHLO
+        id S229696AbiJ1TwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 15:52:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiJ1Ttv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 15:49:51 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023A42ED62
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 12:49:47 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id z6so4146304qtv.5
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 12:49:47 -0700 (PDT)
+        with ESMTP id S229608AbiJ1TwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 15:52:10 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DE05237971
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 12:52:08 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id f8so4154197qkg.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 12:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CrrbK6WiWXkWTKLU/KfAO4hvX9jlvOUQaHzqnu/h4mc=;
-        b=OjL/nt1Dp1/VP/e3v0ZKs5p2qQeXHV5NgNI3Rd1KnjbGfaOka7Px+PjzCXyw6sMhOb
-         Znl96YHjoXR8U+pjzIeYs6DN8AKLlo6cvi0dTe2+LgJHGHv3LCpVIH1MQeDhtmEPsvm6
-         /krya6K6d/PsZkEPdGrIWhzgi7h8uQjIE6pbs1Koqkmn/39Qmz7YD9WgOEQVSYw8VMyX
-         AAaGUef+kLxg1y8D0YWjgvGdW6wu/CiwHy1MTxa9tpyD3+nHHZIr3lZYYWp95WCFY9bX
-         AAHAMVwPs173OC4AjQzRzIF2lNkV/5P0OtNQ7mSTACrf1vEa7jpFW32+MzcYWQFWn4nu
-         MxRA==
+        bh=CsD9s1yvz639ptfKfuBHdoorUpS4Rm79rq4T8AYZWSU=;
+        b=i4klOO3g+5sHwqNlxCA/zCDOf09j3n3rdI0YsZaBjt3KKeNdKuKpksJ4tQ3/zh1Zpj
+         +JqWZcj6htHQRG/hEKqXveWXHGGQ7f1kvv/III+A802AsQx1FN9PU0PjxUffR2f9V7HX
+         IaazjiMzB/sUOnrCRaiBV2+QXXDHjnyBRcsmYdznQFzA8hYDq8q7qEe6NLCneTdLdb61
+         /3hxCQHTr6TAqXjcvRsRvIj4/BVuxlnYBzVIwQ6KMWJioXtFEz6U1qJ8z1lqaI6UvWvS
+         M1dzGJAtjUPxHbIZZM0zSV6aDbQ/HpHkBhtge7VHgNTgegz6m6wjpYmGVwWgHXUZLpdZ
+         u07A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CrrbK6WiWXkWTKLU/KfAO4hvX9jlvOUQaHzqnu/h4mc=;
-        b=wTEUjMGvGT1cqj2cLzLFov0w/K0LMcHCE7RGZZKq7/ihutcSXHQFZs+xvkdsQ3uGW6
-         whKAvB1d8TZTHs0Z8k+ooQm49Sl9w6KkWULY7ZvC1jWKnZXfv+/SM7J/MUwPJvjHUkXp
-         Ea/sESQSkkpw8t0FvIxg4KR9E0hiJC0rwDUC4ps5fAsQZfaHh9nz5FcuGrPeC7AD25YJ
-         C6zdyJnMQNbTjFoevmJkW17JaU/Y3EQk+7qQURv7ponDyL1dTUYnJwPkyUdxpsb9E12Y
-         qZssHiKF6Ffuc0YNFp9/yHMffxXvqX362nbuftv5BeSsyeR+M2wUo8h9D7QL/sgaK4Ua
-         +OSw==
-X-Gm-Message-State: ACrzQf1VqvMBmGsS7grsQnMMLMfmNdz9wM3E2vq52diW2HgmeAc+SXYX
-        1kKBOnBsaJ/0cmMMNv0JIbhOHA==
-X-Google-Smtp-Source: AMsMyM7nMFuwEm0OvAIGlJiOgSag125RW6TO1KxEjVBRpjyHvfL07vawyBpzddMrC11skIJGMBMAig==
-X-Received: by 2002:ac8:5ac5:0:b0:39c:f8f5:c432 with SMTP id d5-20020ac85ac5000000b0039cf8f5c432mr1022780qtd.33.1666986585310;
-        Fri, 28 Oct 2022 12:49:45 -0700 (PDT)
+        bh=CsD9s1yvz639ptfKfuBHdoorUpS4Rm79rq4T8AYZWSU=;
+        b=IsyFm75tM49yiFpSsXr1Hp/r6G3uzGicpUush8eP6eyv1NgS2mhqNsrzM6wnFLxL7r
+         oDUdjIWsDQQw8PLpMGoANeMIGs19yVj5ImLEwpS41Ui4HZcBhpeDgq6b4BU3kzFrwPSi
+         mmZ+0NdIkkRoEqkm9vxTyFEuLSTc1y93FE+hrqXMrUVFJIZbk8sqMxXcMV7Z9PsF8xnV
+         PmTZ6E3VsUHjVC8sqhlh3eobURs2oU6RDzak6UfOLf0ed6Zl7V8J/keVyeOOcp9P62tw
+         lTIIxB33TTH5KoXw1Ymioi/Nt0kN2qiFly9tc+XW6Ao//+OAb4Y95Wtp4IE9f1ZTE94D
+         4wyw==
+X-Gm-Message-State: ACrzQf1awsXYv/GnFteT0VIl7IzZJZuL5XAszUlymqTjqGgEh3QYt1SZ
+        i4Katky4cXiUxS27XpweAurEnQ==
+X-Google-Smtp-Source: AMsMyM6NvkY9RwSA9ZQAQcXVqzQ7ep7mS6/5StIor3UEUXnGRCCtPj/cxgTUo3gRq6WHzNCvlcOeuw==
+X-Received: by 2002:a37:308:0:b0:6f9:389a:3a49 with SMTP id 8-20020a370308000000b006f9389a3a49mr730869qkd.301.1666986727188;
+        Fri, 28 Oct 2022 12:52:07 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id t1-20020a05620a450100b006ee7e223bb8sm3622607qkp.39.2022.10.28.12.49.42
+        by smtp.gmail.com with ESMTPSA id i16-20020a05620a405000b006eeb25369e9sm3604337qko.25.2022.10.28.12.52.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 12:49:44 -0700 (PDT)
-Message-ID: <3b8441da-31af-2414-1362-0efb05cbf8c0@linaro.org>
-Date:   Fri, 28 Oct 2022 15:49:40 -0400
+        Fri, 28 Oct 2022 12:52:06 -0700 (PDT)
+Message-ID: <7e3b3e91-386b-a6aa-6247-42600248a8cb@linaro.org>
+Date:   Fri, 28 Oct 2022 15:52:05 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 2/4] pwm: Add Apple PWM controller
+Subject: Re: [PATCH 1/4] dt-bindings: arm: rockchip: Add Anbernic RG353V and
+ RG353VS
 Content-Language: en-US
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
-        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221028165215.43662-1-fnkl.kernel@gmail.com>
- <20221028165215.43662-3-fnkl.kernel@gmail.com>
- <02523fe5-bf99-9891-d00c-347893d5dabe@linaro.org>
- <CAMT+MTTE84XDf8c0D3MLxZ92HiDP6DhXfpHVyQZ7hfYMUkL7dg@mail.gmail.com>
+To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        pgwipeout@gmail.com, michael.riesch@wolfvision.net,
+        frattaroli.nicolas@gmail.com, jagan@amarulasolutions.com,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20221028184045.13113-1-macroalpha82@gmail.com>
+ <20221028184045.13113-2-macroalpha82@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMT+MTTE84XDf8c0D3MLxZ92HiDP6DhXfpHVyQZ7hfYMUkL7dg@mail.gmail.com>
+In-Reply-To: <20221028184045.13113-2-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,25 +78,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 14:51, Sasha Finkelstein wrote:
-> On Fri, 28 Oct 2022 at 20:54, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 28/10/2022 12:52, Sasha Finkelstein wrote:
->>> +config PWM_APPLE
->>> +     tristate "Apple SoC PWM support"
->>> +     depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
->>
->> Why this code cannot be build on 32-bit?
-> It uses 64-bit divisions, which causes it to fail to build on 32-bit
-> mips. It should not be a
-> problem, since this hardware is only present on 64-bit SoCs.
+On 28/10/2022 14:40, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add entry for the Anbernic RG353V and RG353VS handheld devices.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
 
-Does not matter, code should be portable and buildable on 32-bit. If it
-does not build then your code is not correct.
-
-You need to investigate the failure. Maybe using do_div would solve (or
-other macros from div64.h)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
