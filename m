@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7243A611BED
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B48C611BEF
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbiJ1U4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 16:56:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35712 "EHLO
+        id S230070AbiJ1U4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 16:56:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbiJ1Uz6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:55:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F591EA541;
-        Fri, 28 Oct 2022 13:55:56 -0700 (PDT)
+        with ESMTP id S230081AbiJ1U4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:56:04 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BF8B2413D7;
+        Fri, 28 Oct 2022 13:56:02 -0700 (PDT)
 Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9DDD76602946;
-        Fri, 28 Oct 2022 21:55:53 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E34E06602944;
+        Fri, 28 Oct 2022 21:55:59 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1666990555;
-        bh=kjJv2wI4r1COdPJDLysFujzo37yIvD0eiCbT/D7WY8Q=;
+        s=mail; t=1666990561;
+        bh=qWdkIlb4uY0ldwod8O1L1+MBmgoTBnCHuEAzyFzvduk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gVADpfkI9YN8wvlcRgrsvTvdm8VyxolhpHN7+2z3ao+LKiotKKSHsYNVuoUFAh/X5
-         ncUKhS0W2QJK0rnAK9M2Sp2D6+GfW+EtzDfDgpQyywPigP79gyWm1kGgGYzFhydyMP
-         kjYlMenwb/GMAlTOrL1tgeoPOoLr7LMJPPIu4xH9IvcsHqDk6AXdcxs5SI4Mgc0OOw
-         xxUN+QMiWsSbzESkpU+7viNdCpv1BUrC0GXVNOezS/xbb2CyuLjhaisxxTmgBgDqqc
-         /M8/Awa1tJIQTDSnYKD1ENE4fwv8exUmDkeFZPoln8BPcQ5AFYuMIrp8nO2cb/Z/3n
-         WH75CERAEuSFA==
+        b=CatTo8ntRCB35RCQqr7MIKSSx49eqvxGewJ+wINf+RK1+ORKjUX9Jor0ULSHiw3du
+         078Gf8xZKL8H2a42ftkNkxwapfbRuBgz+naGO1Fqj/+yejaSKFbODdUlgyLK6/bBuM
+         QnVAmZ6WZdyzTi3RgW1t15Idv734HsfKlIJy8uT11CaKLrVyTN3baPzMTWjvyffsFA
+         f75fckeGkna97+EeEwgZKv7ftpnpRDVf26MS00Tj+vfRT0a4jZ4gvlINr8bl0aAA0I
+         GJW8AoaH3p+WmY6SO5gqw5a+bRjwTKrThJaewc40QRwSUNPov0GUEfj1wyA6VsMBcq
+         x/Xfbo/bpB24Q==
 From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
         <nfraprado@collabora.com>
 To:     Mark Brown <broonie@kernel.org>,
@@ -39,14 +39,14 @@ Cc:     kernel@collabora.com,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
         =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
+        <nfraprado@collabora.com>, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/8] ASoC: dt-bindings: rt5682: Add dbvdd and ldo1-in supplies
-Date:   Fri, 28 Oct 2022 16:55:36 -0400
-Message-Id: <20221028205540.3197304-5-nfraprado@collabora.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 7/8] arm64: dts: qcom: sc7180-trogdor: Add missing supplies for rt5682
+Date:   Fri, 28 Oct 2022 16:55:39 -0400
+Message-Id: <20221028205540.3197304-8-nfraprado@collabora.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221028205540.3197304-1-nfraprado@collabora.com>
 References: <20221028205540.3197304-1-nfraprado@collabora.com>
@@ -62,39 +62,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rt5682 codec has two additional power supply pins, DBVDD and
-LDO1_IN, that aren't currently described in the binding. Add them.
+The dbvdd and ldo1-in supplies for rt5682 are required but are missing.
+They are supplied by the same power rail as AVDD. Add them.
 
 Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 ---
 
- Documentation/devicetree/bindings/sound/rt5682.txt | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/rt5682.txt b/Documentation/devicetree/bindings/sound/rt5682.txt
-index 89e6245b870e..948109ff0db3 100644
---- a/Documentation/devicetree/bindings/sound/rt5682.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5682.txt
-@@ -17,6 +17,12 @@ Required properties:
- - VBAT-supply: phandle to the regulator supplying battery power through the
-   VBAT pin. Either MICVDD or VBAT should be present.
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 1a1c346d619c..1df507ffb267 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -768,6 +768,8 @@ alc5682: codec@1a {
+ 		interrupts = <28 IRQ_TYPE_EDGE_BOTH>;
  
-+- dbvdd-supply: phandle to the regulator supplying I/O power through the DBVDD
-+  pin.
-+
-+- ldo1-in-supply: phandle to the regulator supplying power to the digital core
-+  and charge pump through the LDO1_IN pin.
-+
- Optional properties:
+ 		AVDD-supply = <&pp1800_alc5682>;
++		dbvdd-supply = <&pp1800_alc5682>;
++		ldo1-in-supply = <&pp1800_alc5682>;
+ 		MICVDD-supply = <&pp3300_codec>;
+ 		VBAT-supply = <&pp3300_audio>;
  
- - interrupts : The CODEC's interrupt output.
-@@ -87,4 +93,6 @@ rt5682 {
- 
- 	AVDD-supply = <&avdd_reg>;
- 	MICVDD-supply = <&micvdd_reg>;
-+	dbvdd-supply = <&dbvdd_reg>;
-+	ldo1-in-supply = <&ldo1_in_reg>;
- };
 -- 
 2.38.1
 
