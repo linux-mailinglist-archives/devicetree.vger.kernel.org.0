@@ -2,148 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A923B611C1C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A35611C41
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbiJ1VFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 17:05:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51048 "EHLO
+        id S229895AbiJ1VMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 17:12:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiJ1VFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:05:35 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A041CEC0C;
-        Fri, 28 Oct 2022 14:05:29 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id y14so15778004ejd.9;
-        Fri, 28 Oct 2022 14:05:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pmg59QEvCvB7YDZ5n3GJNoCUMN1VloPth+aIiSQIEsA=;
-        b=pawWAwhqMyDCLnAVREPTezgYxlot5ZLzUpBs82QzdJOwckdBUMPBSiWgoIgUWa6fOJ
-         bIkM+9IKt8z5zMWOfkqWC62e9jD9hPznmpZAiF3Z92MZeXjZ2EXdp79mQFBCVVKX5RHA
-         d2+zNLKJGhTS2ZdBMoMOC3imBv8nkKsrN3MK3CQ6+UkRqm3/aNDa95JS30+KbnxYRv0I
-         ZRpzqO4bUs5sp2EoczKmCzdTqoi0W8aA3bAe8P19r7+WOjoga/3Q1KJpuX2TrSLngx4P
-         3YOqmp/4U7VJu2FpNwNJ5OSnzfiqISZTaXfAdz3kbaDigz3pxNYlsXc5UJu5iSmCMXFf
-         TjAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pmg59QEvCvB7YDZ5n3GJNoCUMN1VloPth+aIiSQIEsA=;
-        b=SfXKwpz1NAfJPACS4cvPk66RBifzVMAK6MdiMt1UJJoZSaf3FRpS/FAcAnkymSre0F
-         Lyi87WHJdhnF0ADB8Gfkk8gAOGJ78xUJSQ/P62CI4lMc4yO0mla0r1yIdOLOrWx/E/6w
-         VXHrAOteHPs2Q2o8tIzQTP4ZIMWUZgTFz0yle4vz0Css63chFoeETxfNEp5LswAxEQdz
-         7UT5APXcvIAlatD84cMLq/6Pa0+itpxvbQ1ukFNGWIPy8U1016iE6fe4NA7Imjq2wDY7
-         mcl3hI3HUa9P24ruHkojV9ivCxWhzS7lGC4nXGsb7euZ8fFowu5ZSuCAf+Zi1aNZOTJO
-         Kafg==
-X-Gm-Message-State: ACrzQf1+MpkBw23tAVrDvLuzvMbSh3KAmYvcxb2ml9wdPD1u2hV1qRde
-        9Yh0MmjXggrUqmuHRzV+gvUiPSH5wJdB4BUwxhw=
-X-Google-Smtp-Source: AMsMyM75Y5FZ82YEH9D4k42+Gt58baqs7YVwanOze6jxdEHQSjcNXVZn9yXWnEE31Trw2DPx1IUYVmLsER+xQW6KzNU=
-X-Received: by 2002:a17:906:c14f:b0:793:30e1:96be with SMTP id
- dp15-20020a170906c14f00b0079330e196bemr1129553ejc.447.1666991127780; Fri, 28
- Oct 2022 14:05:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y1pphVPw0J97AmW4@paasikivi.fi.intel.com> <CA+V-a8szaPjwumrBgOT9gzMKBjY7hk0zfP8RgzUUDfY+BAsogA@mail.gmail.com>
- <Y1p91+XxPCB9NWwh@paasikivi.fi.intel.com> <CA+V-a8uhYymEVg7jdLVGNLsVD3=O1mk-_NVERu00W+gsv-7QXg@mail.gmail.com>
- <Y1rQBmXj71C1RrwB@paasikivi.fi.intel.com>
-In-Reply-To: <Y1rQBmXj71C1RrwB@paasikivi.fi.intel.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 28 Oct 2022 22:05:01 +0100
-Message-ID: <CA+V-a8urGG-m-gn_sOhTJHhHws3X8zdgjq+YY8W7qy42VAdXgQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        with ESMTP id S229544AbiJ1VMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:12:32 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDFA31C6BC1;
+        Fri, 28 Oct 2022 14:12:31 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0A1AE660293A;
+        Fri, 28 Oct 2022 22:12:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666991550;
+        bh=jWH2LrnqWW5APGbbB92HHtgOVN1H5O4Iz1A6yQQbztQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AbnKzSlM5MhWsrz6HZMY8Of9YqK3wQcRMyA638IBdoUP3HWFgP9yCIZhlid6vpqBA
+         p+h8CbHTHlhMVes6h6Dx1AIX74TPARgb33JHEShviB5Q8c9fqINOfLXtSjxPq5Lv4F
+         h4fYIy2yAyuh/L+biqA//QjZ5XZLnIqLDSAEcnoK9N/piV7XkpOUDHqTL+efGF1/Re
+         NaxIWugspY9CgiSeHYUtXEgKX0iygcpyHXtJjqYXgCx2qy84OpJ+2LjUfTr/2yR9Tt
+         6W6JvTWYME/id7nqtpHyZjqjunk4A9PrvXEp1l9SjcHMXNGTQfm//K4TwSY9uFwXqa
+         q3LMVGZ0fE8qw==
+Date:   Fri, 28 Oct 2022 17:12:24 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
+        Derek Fang <derek.fang@realtek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: realtek,rt5682s: Add AVDD and
+ MICVDD supplies
+Message-ID: <20221028211224.iiphmwrpqqs27jr4@notapiano>
+References: <20221024220015.1759428-1-nfraprado@collabora.com>
+ <20221024220015.1759428-3-nfraprado@collabora.com>
+ <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dcf284c6-dee5-d726-7f8f-c4ff1be99ddb@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+On Tue, Oct 25, 2022 at 12:06:23PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 25/10/22 00:00, Nícolas F. R. A. Prado ha scritto:
+> > The rt5682s codec can have two supplies: AVDD and MICVDD. They are
+> > already used by sc7180-trogdor-kingoftown.dtsi, so document them in the
+> > binding.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > 
+> 
+> I also don't like these uppercase supply names... I wonder if it's worth changing
+> the driver to get "avdd" *or* "AVDD" (so, if "avdd" fails -> backwards compat)...
+> 
+> ...this way, we can change the devicetree to use the lowercase names without
+> breaking abi.
+> 
+> Of course, this commit would need to be changed to document only the lowercase
+> supply names.
+> 
+> Driver-wise, we have a rt5682s_supply_names array... we could do something like:
+> 
+> static const char *rt5682s_supply_names_legacy[RT5682S_NUM_SUPPLIES] = {
+> 	[RT5682S_SUPPLY_AVDD] = "AVDD",
+> 	[RT5682S_SUPPLY_MICVDD] = "MICVDD",
+> };
+> 
+> static const char *rt5682s_supply_names[RT5682S_NUM_SUPPLIES] = {
+> 	[RT5682S_SUPPLY_AVDD] = "avdd",
+> 	[RT5682S_SUPPLY_MICVDD] = "micvdd",
+> };
+> 
+> for (...) assign_supply_names;
+> ret = devm_regulator_bulk_get(...);
+> 
+> if (ret) {
+> 	for (...) assign_legacy_supply_names;
+> 	ret = devm_regulator_bulk_get(...)
+> 	if (ret)
+> 		return ret;
+> }
+> 
+> What do you think?
 
-On Thu, Oct 27, 2022 at 7:45 PM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Prabhakar,
->
-> On Thu, Oct 27, 2022 at 05:32:07PM +0100, Lad, Prabhakar wrote:
-> > Hi Sakari,
-> >
-> > On Thu, Oct 27, 2022 at 1:47 PM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > On Thu, Oct 27, 2022 at 01:01:52PM +0100, Lad, Prabhakar wrote:
-> > > > Hi Sakari,
-> > > >
-> > > > On Thu, Oct 27, 2022 at 12:20 PM Sakari Ailus
-> > > > <sakari.ailus@linux.intel.com> wrote:
-> > > > >
-> > > > > Hi Prabhakar,
-> > > > >
-> > > > > One more comment.
-> > > > >
-> > > > > On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
-> > > > > > @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
-> > > > > >
-> > > > > >       dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
-> > > > > >
-> > > > > > +     pm_runtime_set_active(dev);
-> > > > > > +     pm_runtime_get_noresume(dev);
-> > > > > > +     pm_runtime_enable(dev);
-> > > > >
-> > > > > You won't gain anything by eanbling runtime PM here. Just move it to the
-> > > > > end of the function before the rest of the calls. Error handling becomes
-> > > > > more simple.
-> > > > >
-> > > > If I move the above calls below I get the below warning:
-> > > >
-> > > > [    2.633386] ov5645 0-003c: Runtime PM usage count underflow!
-> > > >
-> > > > This is because of the last patch which moves ov5645_entity_init_cfg()
-> > > > before registering the subdev. ov5645_entity_init_cfg() calls s_ctrl
-> > > > due to which we are seeing the above message. Please let me know how
-> > > > to proceed on this.
-> > >
-> > > Ah. Yes, this is a problem with the usage pattern of
-> > > pm_runtime_get_if_in_use(). But please don't change that.
-> > >
-> > > You can still move enabling runtime PM later in the function.
-> > >
-> > Agreed, the final version looks like below:
-> >
-> >     pm_runtime_set_active(dev);
-> >     pm_runtime_get_noresume(dev);
-> >
->
-> You'll have to enable runtime PM here, before pm_runtime_get_if_in_use()
-> gets called.
->
-> I'll see if it could be made to work in a sensible way when runtime PM
-> isn't enabled yet.
->
-Agreed, I'll send out v3 after fixing the comments.
+Hi,
 
-Cheers,
-Prabhakar
+I took a stab at this, but the resulting code wasn't as elegant. The default
+behavior of the regulator core when a regulator is missing is to just print
+a warning and give a dummy regulator in its place. A way around this is the
+"optional" variant, but it doesn't have a bulk version (in fact seems like it
+was added and then removed a few years back, but I haven't dug out the reason).
+
+So the result was a code block that wasn't nearly as neat as your draft above
+and it didn't seem worth it to add this complexity just to gain the usage of
+lowercase properties, which is why in the end I decided to not include this in
+the series I just sent [1]. 
+
+I've included the patch below. If you do think there's a more reasonable
+approach or if having the lowercase supplies is worth it, let me know.
+
+Thanks,
+Nícolas
+
+[1] https://lore.kernel.org/all/20221028205540.3197304-1-nfraprado@collabora.com
+
+
+From 8de4a86f10ba2e13458afe63fe658df685b21b45 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?=
+ <nfraprado@collabora.com>
+Date: Thu, 27 Oct 2022 16:10:22 -0400
+Subject: [PATCH] ASoC: rt5682s: Handle lowercase supply name and fallback if
+ needed
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Supply names provided by devicetree are conventionally lowercase. In
+order to be able to use lowercase names without breaking existing
+setups, detect if any of the older names are used and if so fallback to
+them.
+
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+ sound/soc/codecs/rt5682s.c | 40 ++++++++++++++++++++++++++++++--------
+ 1 file changed, 32 insertions(+), 8 deletions(-)
+
+diff --git a/sound/soc/codecs/rt5682s.c b/sound/soc/codecs/rt5682s.c
+index 466a37f3500c..3cefa016be77 100644
+--- a/sound/soc/codecs/rt5682s.c
++++ b/sound/soc/codecs/rt5682s.c
+@@ -41,11 +41,16 @@ static const struct rt5682s_platform_data i2s_default_platform_data = {
+ 	.dai_clk_names[RT5682S_DAI_BCLK_IDX] = "rt5682-dai-bclk",
+ };
+
+-static const char *rt5682s_supply_names[RT5682S_NUM_SUPPLIES] = {
++static const char *rt5682s_legacy_supply_names[RT5682S_NUM_SUPPLIES] = {
+ 	[RT5682S_SUPPLY_AVDD] = "AVDD",
+ 	[RT5682S_SUPPLY_MICVDD] = "MICVDD",
+ };
+
++static const char *rt5682s_supply_names[RT5682S_NUM_SUPPLIES] = {
++	[RT5682S_SUPPLY_AVDD] = "avdd",
++	[RT5682S_SUPPLY_MICVDD] = "micvdd",
++};
++
+ static const struct reg_sequence patch_list[] = {
+ 	{RT5682S_I2C_CTRL,			0x0007},
+ 	{RT5682S_DIG_IN_CTRL_1,			0x0000},
+@@ -3090,7 +3095,9 @@ static int rt5682s_i2c_probe(struct i2c_client *i2c)
+ 	struct rt5682s_platform_data *pdata = dev_get_platdata(&i2c->dev);
+ 	struct rt5682s_priv *rt5682s;
+ 	int i, ret;
++	struct regulator *reg;
+ 	unsigned int val;
++	bool using_legacy_supply_names = false;
+
+ 	rt5682s = devm_kzalloc(&i2c->dev, sizeof(struct rt5682s_priv), GFP_KERNEL);
+ 	if (!rt5682s)
+@@ -3112,14 +3119,31 @@ static int rt5682s_i2c_probe(struct i2c_client *i2c)
+ 		return ret;
+ 	}
+
+-	for (i = 0; i < ARRAY_SIZE(rt5682s->supplies); i++)
+-		rt5682s->supplies[i].supply = rt5682s_supply_names[i];
++	for (i = 0; i < ARRAY_SIZE(rt5682s_supply_names); i++) {
++		reg = devm_regulator_get_optional(&i2c->dev, rt5682s_supply_names[i]);
++		if (IS_ERR(reg)) {
++			if (PTR_ERR(reg) == -ENODEV) {
++				using_legacy_supply_names = true;
++				break;
++			} else {
++				dev_err(&i2c->dev, "Failed to request supplies: %d\n", ret);
++				return PTR_ERR(reg);
++			}
++		}
+
+-	ret = devm_regulator_bulk_get(&i2c->dev,
+-			ARRAY_SIZE(rt5682s->supplies), rt5682s->supplies);
+-	if (ret) {
+-		dev_err(&i2c->dev, "Failed to request supplies: %d\n", ret);
+-		return ret;
++		rt5682s->supplies[i].consumer = reg;
++	}
++
++	if (using_legacy_supply_names) {
++		for (i = 0; i < ARRAY_SIZE(rt5682s->supplies); i++)
++			rt5682s->supplies[i].supply = rt5682s_legacy_supply_names[i];
++
++		ret = devm_regulator_bulk_get(&i2c->dev, ARRAY_SIZE(rt5682s->supplies),
++					      rt5682s->supplies);
++		if (ret) {
++			dev_err(&i2c->dev, "Failed to request supplies: %d\n", ret);
++			return ret;
++		}
+ 	}
+
+ 	ret = devm_add_action_or_reset(&i2c->dev, rt5682s_i2c_disable_regulators, rt5682s);
+--
+2.38.1
