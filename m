@@ -2,174 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F9A611576
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C9F5611586
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230000AbiJ1PF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 11:05:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50532 "EHLO
+        id S229792AbiJ1PJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:09:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbiJ1PFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:05:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AFC21BC145
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 08:05:52 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ooQvb-0005o4-9u; Fri, 28 Oct 2022 17:05:47 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ooQva-0002bp-U5; Fri, 28 Oct 2022 17:05:46 +0200
-Date:   Fri, 28 Oct 2022 17:05:46 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2 12/15] arm64: dts: imx8mn-evk: enable usdhc1
-Message-ID: <20221028150546.cavkbayw6jakd2d6@pengutronix.de>
-References: <20221024031351.4135651-1-peng.fan@oss.nxp.com>
- <20221024031351.4135651-13-peng.fan@oss.nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221024031351.4135651-13-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229740AbiJ1PJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:09:22 -0400
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B351320B104;
+        Fri, 28 Oct 2022 08:09:21 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 279445C0063;
+        Fri, 28 Oct 2022 11:09:21 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Fri, 28 Oct 2022 11:09:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1666969761; x=1667056161; bh=Sy
+        6FI25zRCehPukmtH7/3V5knsC4JumJoR5V84h5kaM=; b=G+cOvYkJUUuGPABiFE
+        zjECEj6bJ8KF8IJsUGHKSG0kkvtJ2VGlxHt/vHL3ot1tcHvmCSHq8Yxsn4jmlio7
+        b87XcMRi/qNN2Hb+sQrrIZ/MprY+gQcSbAB1QGBlp6tKIsdFXVmWzpQXjwkBy+xO
+        4NvUlBVNiARkhbYcP5kRP5B0zXk8MJkJINm4XJm8NEnr4Qzbl7givGBykTZzep89
+        cUxHoMgh2r033YFDu1ONbt6pohcKPJwCy45muRy6CLnu6U5L9/8q6rm0UoXVOE4f
+        JDMshM/hm6kmL+pRMQ9aVtqAhwjY2GOiTOFxCdJtIFMMe1NV8rq+RTaTz7G9SCGw
+        O0AQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1666969761; x=1667056161; bh=Sy6FI25zRCehPukmtH7/3V5knsC4
+        JumJoR5V84h5kaM=; b=TsctoJvwFdAcmmgfHHKeVjmT4R7aNkVhe6oQqMfWMVbJ
+        5eenZ0qnr+0i+VeZ4wJBz8Vh/koB0kDeIK1jZa+7vK5IVeaOZdE+MA8+s4RxrBZ+
+        X592De5wmxSVbMZkK3U06Bco6tBH2UULWY+GgRgGJdh0HdjwVinsImTnjLXK3bAJ
+        Kvn9Ot2VuqzkO4U05kBK9GNBs4Ul0H1ednZr4yCjeLd8Qn7ZYGyCGJvEBWRxUmSn
+        ow91pTIwYpEuEIFXibkL7lxzaZ977U4bzMrtl2gCdWegTSLYhVw5uyD2RhX3rB1A
+        3yrcm+/abvZP9pUGBNFqCI2vjfocyFju8Dr4PVuyjQ==
+X-ME-Sender: <xms:n_BbY5q9PM5WcB2nasCymuRAfsH5P_socO5xgz8nev3Qz577tghQMg>
+    <xme:n_BbY7oyIwDdM-bSjSjqj4cCpDS2JGnPeg9RIC0TEUut5aaeH8DTzvXVTGvqiV-xP
+    k58Tbpa6Z9GUzsD3y4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtdeigdekgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeelvefggeffheevtdeivefhkeehfeettdejteduveeiheevveeilefghfei
+    veeiueenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:oPBbY2MNaLXplfXAKqaolwa_6NaHLJ0Ptmad9_r4hec89t2_VdM70w>
+    <xmx:oPBbY04RfC88foBNrWOloMJshDEZKbin3RfvfhkZRJoLcpJj_2C5dQ>
+    <xmx:oPBbY442i4NZAMcpqZQCBHKaiD37HPyZZa7a9dcqmIt7_vtzC4goUg>
+    <xmx:ofBbY3TVaZqRl7-HOh0h5ylgzJPy1WpKCeDbgQNMvtPaN1kDZyXdtg>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id EDD5AA6007C; Fri, 28 Oct 2022 11:09:19 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1087-g968661d8e1-fm-20221021.001-g968661d8
+Mime-Version: 1.0
+Message-Id: <587611e4-eb08-4b86-a8e8-aaa10f8efee6@app.fastmail.com>
+In-Reply-To: <CABBYNZKJnmfWfvxdgpxNFUGc7jTKP+BGv6CiZc2MsR970L35MA@mail.gmail.com>
+References: <20221027150822.26120-1-sven@svenpeter.dev>
+ <20221027150822.26120-7-sven@svenpeter.dev>
+ <CABBYNZKJnmfWfvxdgpxNFUGc7jTKP+BGv6CiZc2MsR970L35MA@mail.gmail.com>
+Date:   Fri, 28 Oct 2022 17:08:59 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>
+Cc:     "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 6/7] Bluetooth: Add quirk to disable MWS Transport Configuration
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-24, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Enable usdhc1 for wlan usage, the wifi device node not included.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> index f137eb406c24..50553359401f 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> @@ -28,6 +28,13 @@ memory@40000000 {
->  		reg = <0x0 0x40000000 0 0x80000000>;
->  	};
->  
-> +	usdhc1_pwrseq: usdhc1_pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_usdhc1_gpio>;
-> +		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
-> +	};
-> +
->  	reg_usdhc2_vmmc: regulator-usdhc2 {
->  		compatible = "regulator-fixed";
->  		pinctrl-names = "default";
-> @@ -271,6 +278,22 @@ &uart3 {
->  	status = "okay";
->  };
->  
-> +&usdhc1 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
+Hi Luiz,
 
-Nit: it is rather uncommon, to place it on-top if you have more than
-these two properties to add.
+On Thu, Oct 27, 2022, at 20:59, Luiz Augusto von Dentz wrote:
+> Hi Sven,
+>
+> On Thu, Oct 27, 2022 at 8:09 AM Sven Peter <sven@svenpeter.dev> wrote:
+>>
+>> Broadcom 4378/4387 controllers found in Apple Silicon Macs claim to
+>> support getting MWS Transport Layer Configuration,
+>>
+>> < HCI Command: Read Local Supported... (0x04|0x0002) plen 0
+>> > HCI Event: Command Complete (0x0e) plen 68
+>>       Read Local Supported Commands (0x04|0x0002) ncmd 1
+>>         Status: Success (0x00)
+>> [...]
+>>           Get MWS Transport Layer Configuration (Octet 30 - Bit 3)]
+>> [...]
+>>
+>> , but then don't actually allow the required command:
+>>
+>> > HCI Event: Command Complete (0x0e) plen 15
+>>       Get MWS Transport Layer Configuration (0x05|0x000c) ncmd 1
+>>         Status: Command Disallowed (0x0c)
+>>         Number of transports: 0
+>>         Baud rate list: 0 entries
+>>         00 00 00 00 00 00 00 00 00 00
+>>
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>>  include/net/bluetooth/hci.h | 10 ++++++++++
+>>  net/bluetooth/hci_sync.c    |  2 ++
+>>  2 files changed, 12 insertions(+)
+>>
+>> diff --git a/include/net/bluetooth/hci.h b/include/net/bluetooth/hci.h
+>> index 8cd89948f961..110d6df1299b 100644
+>> --- a/include/net/bluetooth/hci.h
+>> +++ b/include/net/bluetooth/hci.h
+>> @@ -273,6 +273,16 @@ enum {
+>>          * during the hdev->setup vendor callback.
+>>          */
+>>         HCI_QUIRK_BROKEN_EXT_SCAN,
+>> +
+>> +       /*
+>> +        * When this quirk is set, the HCI_OP_GET_MWS_TRANSPORT_CONFIG command is
+>> +        * disabled. This is required for some Broadcom controllers which
+>> +        * erroneously claim to support MWS Transport Layer Configuration.
+>> +        *
+>> +        * This quirk can be set before hci_register_dev is called or
+>> +        * during the hdev->setup vendor callback.
+>> +        */
+>> +       HCI_QUIRK_BROKEN_MWS_TRANSPORT_CONFIG,
+>>  };
+>>
+>>  /* HCI device flags */
+>> diff --git a/net/bluetooth/hci_sync.c b/net/bluetooth/hci_sync.c
+>> index 76c3107c9f91..91788d356748 100644
+>> --- a/net/bluetooth/hci_sync.c
+>> +++ b/net/bluetooth/hci_sync.c
+>> @@ -4260,6 +4260,8 @@ static int hci_get_mws_transport_config_sync(struct hci_dev *hdev)
+>>  {
+>>         if (!(hdev->commands[30] & 0x08))
+>>                 return 0;
+>> +       if (test_bit(HCI_QUIRK_BROKEN_MWS_TRANSPORT_CONFIG, &hdev->quirks))
+>> +               return 0;
+>
+> Let's add a macro that tests both the command and the quirk so we
+> don't have to test them separately.
 
-Regards,
-  Marco
+Sure, I'll add a macro for v5.
 
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_wlan>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_wlan>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_wlan>;
-> +	bus-width = <4>;
-> +	keep-power-in-suspend;
-> +	non-removable;
-> +	wakeup-source;
-> +	fsl,sdio-async-interrupt-enabled;
-> +	mmc-pwrseq = <&usdhc1_pwrseq>;
-> +	status = "okay";
-> +};
-> +
->  &usbotg1 {
->  	dr_mode = "otg";
->  	hnp-disable;
-> @@ -474,6 +497,45 @@ MX8MN_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x140
->  		>;
->  	};
->  
-> +	pinctrl_usdhc1_gpio: usdhc1grpgpio {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD1_RESET_B_GPIO2_IO10	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
-> +			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
-> +			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
-> +			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
-> +			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
-> +			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
-> +			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
-> +			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d4
-> +			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d4
-> +			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d4
-> +			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
-> +			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
-> +			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d6
-> +			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d6
-> +			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d6
-> +			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d6
-> +		>;
-> +	};
-> +
->  	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
->  		fsl,pins = <
->  			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x1c4
-> @@ -569,4 +631,11 @@ pinctrl_wdog: wdoggrp {
->  			MX8MN_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0x166
->  		>;
->  	};
-> +
-> +	pinctrl_wlan: wlangrp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K	0x141
-> +			MX8MN_IOMUXC_SD1_DATA7_GPIO2_IO9		0x159
-> +		>;
-> +	};
->  };
-> -- 
-> 2.37.1
-> 
-> 
-> 
+
+Best,
+
+
+Sven
