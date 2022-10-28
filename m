@@ -2,160 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C32B2611E5E
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 01:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA37611E6F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 01:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbiJ1X4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 19:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45652 "EHLO
+        id S229489AbiJ1X7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 19:59:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiJ1X4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 19:56:19 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE994161FF9
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:56:02 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id w29so4471930qtv.9
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8w2NYwcU/LxoZeA70fFUf8Snmsz0a/FEvB2F4yg5rzI=;
-        b=RS9HoOWqVyRPdi4iPukjXDBFWBHpBP+0R3pRGgU1YY0THtRKCGBm5+TvZe/Y7tqf4W
-         WmAnDLLOfK1tAVDJS6tTqjW5D4YCnPxAuDGxBXvqcVcm35aXhBSscbEQrS+bUo7MVXeY
-         HFn3q6CnpBg5EwMKeQ8hosbhPRbpnZ/dRNFUOSzWkb7z4ED525yYK3sC4Lig2GblI23S
-         PG7D3d8rlIrKNWvNrtcq/M6FOflJ/xRA7D5dm2eFUwz9kASav0ny4OklPZo8vPoIIlT2
-         7GTsH1bv4guGVz/o53yS6/pe4dw1k3AZPbYjUmQkPuoQNSuYDex5qn7X6WbZGUcHWLRf
-         u1yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8w2NYwcU/LxoZeA70fFUf8Snmsz0a/FEvB2F4yg5rzI=;
-        b=ISYOQRlMzbMptpj+C98ZC+NPSpG5oMPXHh1SNlC/8EOWwI4ccl151VzJNebvVnoUFQ
-         At6zMeJ6IpBFQmQum7THmyWpC+FsJd+H5erBGvd1DSLl8LDkUapnMrn894PnPCWPdrkv
-         +sBObwIGW/7EmnCljE0fu50J8TxorO7es8r847xlGDZTJFLHaCyNBsHU1uZmX2sL8PwC
-         diBzJBam9bGl9U5DquJlyvz63XFeAwgtsoOzvECsDLdaEAPnlSErwbyd5ShJMG9Hhc/u
-         VryzgN3yLhYTCGoBCpRnBqvNcP1bVA+ExlYqLjE2+XPxZT48AFP9Qmnn31qgRNPQCy+9
-         Sz4w==
-X-Gm-Message-State: ACrzQf3PKBL1cOnqlMC/dWxzcCFsjVLSiy73GtQxRWt43UrAjzxj+2Lh
-        oX1B0ugME+ICRUhl+gfbQJoyNg==
-X-Google-Smtp-Source: AMsMyM7fMyqhfK46Jxy9MvJOiMmlZBT+lsFy9twv/ntI4E00t092YTyfoMwUSvVgDhAOeV9pu7xWtQ==
-X-Received: by 2002:ac8:5e54:0:b0:399:e614:3b0b with SMTP id i20-20020ac85e54000000b00399e6143b0bmr1803085qtx.89.1667001361886;
-        Fri, 28 Oct 2022 16:56:01 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id i21-20020a05620a249500b006a6ebde4799sm33564qkn.90.2022.10.28.16.56.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 16:56:01 -0700 (PDT)
-Message-ID: <fdbde791-b0d9-7cb8-c028-5e4466ae3d81@linaro.org>
-Date:   Fri, 28 Oct 2022 19:55:59 -0400
+        with ESMTP id S229450AbiJ1X7n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 19:59:43 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A585F9B
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:59:38 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id BBAFCFF802;
+        Fri, 28 Oct 2022 23:59:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1667001576;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=zC82iFrlIYbSsP6fbExDAPio+9uwFvsxm72+V19fmUQ=;
+        b=R2AMi4l+N69yWcGSR7WvtK5yF4dZv9jT7XFuGPsfTZl22MAuEiTIBoq5ZcYVpqLHufCBMH
+        e2IofCj9i7rtK3BGWV0yZZnqn//kfOwsYzyqgqd16lV9dEZ6ypbVyJN4B0a5iSxt0JzUcq
+        A+5tFYsb4c7LVz1GM1LHFyesQiWAevQh+zUhv8AVIKcg2EcqtU6zjGlgf0w9pR0/7fjwyk
+        kO8qv+n9lGxo6+o9nGZMcXBaptnZf7N86lEOR3mxhGGloq7BsVnScVuWWo2G69SdHBrMXY
+        Eyrb+XiexTTSaOXf7XXa2/8X7p+t1hEdyrhcGWSMacC4LFRokRqXEpXPOEVnNg==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH 00/12] Improve MTD bindings
+Date:   Sat, 29 Oct 2022 01:59:21 +0200
+Message-Id: <20221028235933.934850-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
-Content-Language: en-US
-To:     Alex Helms <alexander.helms.jy@renesas.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, sboyd@kernel.org,
-        mturquette@baylibre.com, geert+renesas@glider.be
-References: <20220914211809.22500-1-alexander.helms.jy@renesas.com>
- <20220914211809.22500-2-alexander.helms.jy@renesas.com>
- <20220915120844.GA996386-robh@kernel.org>
- <8d71b849-7226-09ec-d099-ae5c172e1a17@renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8d71b849-7226-09ec-d099-ae5c172e1a17@renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/2022 14:06, Alex Helms wrote:
-> On 9/15/2022 5:08 AM, Rob Herring wrote:
->> On Wed, Sep 14, 2022 at 02:18:08PM -0700, Alex Helms wrote:
->>> Add dt bindings for the Renesas ProXO oscillator.
->>>
->>> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+Hello,
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+During a yaml conversion review, Krzysztof opened the discussion about
+the links and references made between the different files in the mtd
+bindings. I figured out some minimal changes might be needed to properly
+reference everything correctly and ensure we constrain as much as
+possible the existing bindings. That is what I tried to do here.
 
->>> ---
->>>  .../bindings/clock/renesas,proxo.yaml         | 50 +++++++++++++++++++
->>>  MAINTAINERS                                   |  5 ++
->>>  2 files changed, 55 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,proxo.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/renesas,proxo.yaml b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
->>> new file mode 100644
->>> index 000000000..2ae131431
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fclock%2Frenesas%2Cversaclock7.yaml%23&amp;data=05%7C01%7Calexander.helms.jy%40renesas.com%7C34ce960b2542459b61d408da97130b50%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637988405289843575%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=izvR%2FXbUNVXknaODSnMmcetPnn%2Ff3Jk%2F6RuBdZ7uSa0%3D&amp;reserved=0
->>> +$schema: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Calexander.helms.jy%40renesas.com%7C34ce960b2542459b61d408da97130b50%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637988405289843575%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=dQ7nZtgfTE5DrXB1iavJuOhSWmGl4tYI1m6iZpkPAhA%3D&amp;reserved=0
->>> +
->>> +title: Renesas ProXO Oscillator Device Tree Bindings
->>> +
->>> +maintainers:
->>> +  - Alex Helms <alexander.helms.jy@renesas.com>
->>> +
->>> +description: |
->>
->> Don't need '|' if no formatting to preserve.
->>
->>> +  Renesas ProXO is a family of programmable ultra-low phase noise 
->>> +  quartz-based oscillators.
->>
->> Are they all the same from a s/w standpoint. If not you need specific 
->> compatibles for the differences. 
-> 
-> At this time only the XP variant is supported and this is reflected in
-> the "compatible" string.
+The idea is:
+* partition.yaml defines one MTD partition
+* parsers/*.yaml define partition parsers (mainly compatibles)
+* mtd.yaml contains the generic definition of any mtd device (nand,
+  spi-nand, spi-nor, nor, sram, etc), in particular, it defines the
+  various partition formats (legacy and current) and references
+  partition.yaml as well as a list of all the possible parsers within a
+  "partitions" node.
+* nand-chip.yaml, jedec,spi-nor, mtd-physmap.yaml all describe real
+  instances of mtd device, each of them with a different underlying
+  technology, they reference mtd.yaml 
+* nand-controller.yaml has subnodes which reference nand-chip.yaml.
+* Specific NAND controller bindings reference nand-controller.yaml.
 
-You should document everything, if possible, not what is supported by
-some version of some system/driver/firmware.
+I've tested with the following command and it worked okay:
+$ make dt_binding_check -j10 DT_CHECKER_FLAG=-m DT_SCHEMA_FILES=mtd/
 
-> 
->>
->>> +
->>> +properties:
->>> +  '#clock-cells':
->>> +    const: 0
->>> +
->>> +  compatible:
->>> +    enum:
->>> +      - renesas,proxo-xp
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  renesas,xtal:
->>> +    description: Internal crystal frequency, default is 50000000 (50MHz)
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>
->> Use 'clock-frequency'.
-> 
-> I think "crystal-frequency" would make more sense. The parts come
-> programmed to a factory clock frequency which is different than the
-> internal crystal frequency.
+Comments welcome of course :-)
 
-We have a standard property and it should be used, when applicable.
-Don't encode here frequency for something else than the driving clock.
+Cheers,
+Miquèl
 
-Best regards,
-Krzysztof
+Miquel Raynal (12):
+  dt-bindings: mtd: Clarify all partition subnodes
+  dt-bindings: mtd: Mention basic properties
+  dt-bindings: mtd: Remove useless file about partitions
+  dt-bindings: mtd: ingenic: Mark partitions in the controller node as
+    deprecated
+  dt-bindings: mtd: onenand: Mention the expected node name
+  dt-bindings: mtd: nand-chip: Reference mtd.yaml
+  dt-bindings: mtd: Drop common properties from NAND controllers
+  dt-bindings: mtd: spi-nor: Drop common properties
+  dt-bindings: mtd: phymap: Reuse the generic definitions
+  dt-bindings: mtd: Drop object types when referencing other files
+  dt-bindings: mtd: Argue in favor of keeping additionalProperties set
+    to true
+  dt-bindings: mtd: Constrain the list of parsers
+
+ .../mtd/allwinner,sun4i-a10-nand.yaml         |  3 --
+ .../bindings/mtd/arasan,nand-controller.yaml  |  3 --
+ .../devicetree/bindings/mtd/ingenic,nand.yaml | 13 +-----
+ .../bindings/mtd/intel,lgm-ebunand.yaml       | 10 +----
+ .../bindings/mtd/jedec,spi-nor.yaml           | 14 -------
+ .../devicetree/bindings/mtd/mtd-physmap.yaml  |  7 ++--
+ .../devicetree/bindings/mtd/mtd.yaml          | 41 ++++++++++++++++++-
+ .../devicetree/bindings/mtd/nand-chip.yaml    |  4 ++
+ .../bindings/mtd/nand-controller.yaml         |  1 -
+ .../devicetree/bindings/mtd/partition.txt     | 33 ---------------
+ .../bindings/mtd/partitions/partition.yaml    |  1 +
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   |  3 --
+ .../bindings/mtd/ti,gpmc-onenand.yaml         |  3 ++
+ 13 files changed, 52 insertions(+), 84 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/partition.txt
+
+-- 
+2.34.1
 
