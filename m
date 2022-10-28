@@ -2,190 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B2D610D14
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 11:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00BC9610D1A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 11:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbiJ1JZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 05:25:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36438 "EHLO
+        id S230136AbiJ1JZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 05:25:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230153AbiJ1JZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 05:25:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9056445063;
-        Fri, 28 Oct 2022 02:24:46 -0700 (PDT)
-X-UUID: 35275e1cbcb14f7da379c244e72f9504-20221028
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ufhGul3EHDWt6vGqX7ebDIkN1/wWifIISfjdZ6no5xY=;
-        b=grNzHjgJuxZmbVZ7R7lEWtBSoxPv1TzgR2jwaLNavK6X+cy4N5x2PgM0nvhI8GgjrugHH0NBorEUEKPyrvAlw8BMCxDVbQYKtVAc8uJdLXHu0TO7FnsrngEoOsn/UEViKrh3PFF5ndtXmcWnpIGsYyZ3Ex8agQW+CVPOcK8HcwY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:6107df12-ef3e-413f-b84e-87eecb3bcb7e,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:40
-X-CID-INFO: VERSION:1.1.12,REQID:6107df12-ef3e-413f-b84e-87eecb3bcb7e,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:45,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:40
-X-CID-META: VersionHash:62cd327,CLOUDID:7d74ef80-3116-4fbc-b86b-83475c3df513,B
-        ulkID:221028172441ZCOWV2TN,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48|102,
-        TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:
-        0
-X-UUID: 35275e1cbcb14f7da379c244e72f9504-20221028
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 645103608; Fri, 28 Oct 2022 17:24:38 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 28 Oct 2022 17:24:38 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs13n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 28 Oct 2022 17:24:37 +0800
-Message-ID: <61c0b62af62ddd0e98378159db2b7d94022c9bf5.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: mediatek-gen3: add SoC based
- clock config
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
+        with ESMTP id S230088AbiJ1JZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 05:25:13 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C84A75FCD;
+        Fri, 28 Oct 2022 02:25:02 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 652266602910;
+        Fri, 28 Oct 2022 10:25:00 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666949101;
+        bh=2bIhaQBUmBagbZkcCfQYz81lwmySMXrFscfo52gtVRY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cqy0A/x9OWYhJT94GG1oWVGElLve88xG2bRickgsjeuqW8Smq+XthNAvn6aPDNkgq
+         Vr0R61BN0q6XQDo90RYsIdecOmKlTppC7WhRSf2A7Xdwhs+v2P0sptLIvl4iGmJFf8
+         JImafWgy3puPOaZeNO/7hoe+iDuFfA6tRB2L7+Se01jtMayD1pg+s/jMzJYtBD/cZn
+         knn+UhSc1le9C8gGW1vijVDCGwMyebspnBzIGcZeVOTE29ZPOqI8TncCT396Db2KHB
+         TZ1hIQPdl3cAJi/nD8HkXuvqmAn4noDb0K7yzJqwuCFcxBF4iBUDK6QY62jwp51KR3
+         747fObHVRLuXg==
+Message-ID: <8adb643e-9c0e-2870-fdbe-0c6d75fbc63e@collabora.com>
+Date:   Fri, 28 Oct 2022 11:24:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v5 1/6] dt-bindings: mmc: mtk-sd: Set clocks based on
+ compatible
+Content-Language: en-US
 To:     Frank Wunderlich <linux@fw-web.de>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Frank Wunderlich <frank-w@public-files.de>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        linux-mediatek@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Wenbin Mei <wenbin.mei@mediatek.com>,
+        Sam Shih <Sam.Shih@mediatek.com>, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
-Date:   Fri, 28 Oct 2022 17:24:36 +0800
-In-Reply-To: <20221025072837.16591-2-linux@fw-web.de>
-References: <20221025072837.16591-1-linux@fw-web.de>
-         <20221025072837.16591-2-linux@fw-web.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+        Chaotian Jing <chaotian.jing@mediatek.com>
+References: <20221025132953.81286-1-linux@fw-web.de>
+ <20221025132953.81286-2-linux@fw-web.de>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20221025132953.81286-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
-
-After apply this patch, we found some dtbs_check error with the
-following patch which adds the PCIe node for MT8195:
-
-https://lore.kernel.org/linux-pci/20221020111925.30002-3-tinghan.shen@mediatek.com/
-
-arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dtb: pcie@112f0000
-: clock-names:        5: 'top_133m' was expected
-    From schema: Documentation/devicetree/bindings/pci/mediatek-pcie-
-gen3.yaml
-arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dtb: pcie@112f8000
-: clock-names:        5: 'top_133m' was expected
-    From schema: Documentation/devicetree/bindings/pci/mediatek-pcie-
-gen3.yaml
-
-Did you get the same error when adding the PCIe node for MT7986?
-
-Thanks. 
-
-On Tue, 2022-10-25 at 09:28 +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+Il 25/10/22 15:29, Frank Wunderlich ha scritto:
+> From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> The PCIe driver covers different SOC which needing different clock
-> configs. Define them based on compatible.
+> The binding was describing a single clock list for all platforms, but
+> that's not really suitable:
 > 
+> Most platforms using at least 2 clocks (source, hclk), some of them
+> a third "source_cg". Mt2712 requires an extra 'bus_clk' on some of
+> its controllers, while mt8192 requires 8 clocks.
+> 
+> Move the clock definitions inside if blocks that match on the
+> compatibles.
+> 
+> I used Patch from Nícolas F. R. A. Prado and modified it to not using
+> "not" statement.
+> 
+> Fixes: 59a23395d8aa ("dt-bindings: mmc: Add support for MT8192 SoC")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
-> - fix typo in mediatek,mt8192-pcie
-> ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 48 ++++++++++++++---
-> --
->  1 file changed, 36 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
-> gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
-> gen3.yaml
-> index c00be39af64e..98d3f0f1cd76 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -43,9 +43,6 @@ description: |+
->    each set has its own address for MSI message, and supports 32 MSI
-> vectors
->    to generate interrupt.
->  
-> -allOf:
-> -  - $ref: /schemas/pci/pci-bus.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -84,15 +81,7 @@ properties:
->      maxItems: 6
->  
->    clock-names:
-> -    items:
-> -      - const: pl_250m
-> -      - const: tl_26m
-> -      - const: tl_96m
-> -      - const: tl_32k
-> -      - const: peri_26m
-> -      - enum:
-> -          - top_133m        # for MT8192
-> -          - peri_mem        # for MT8188/MT8195
-> +    maxItems: 6
->  
->    assigned-clocks:
->      maxItems: 1
-> @@ -138,6 +127,41 @@ required:
->    - '#interrupt-cells'
->    - interrupt-controller
->  
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt8192-pcie
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: tl_96m
-> +            - const: tl_32k
-> +            - const: peri_26m
-> +            - const: top_133m
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8188-pcie
-> +              - mediatek,mt8195-pcie
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: tl_96m
-> +            - const: tl_32k
-> +            - const: peri_26m
-> +            - const: peri_mem
-> +
->  unevaluatedProperties: false
->  
->  examples:
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
