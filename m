@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6F3161072F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5520610731
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:23:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234667AbiJ1BWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 21:22:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
+        id S234030AbiJ1BXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 21:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233598AbiJ1BWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:22:14 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A88A5724
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:22:13 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id l9so2562499qkk.11
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:22:13 -0700 (PDT)
+        with ESMTP id S234664AbiJ1BXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:23:18 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D0CA98CB
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:23:16 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id g16so2688583qtu.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:23:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lCnIPWmpmhl06fh13Fy5AXQxpTL6Lb8+uJ/N2EsF5sI=;
-        b=a+TYQ/L6Z22mSRK++ipMB62pRGbMAza1TqHp6EmZ5qIur4iTr8b9vHbWq5oNoASmFo
-         XI1mZYLDd/qLyuOw9A+VkjnkVNN4tYCewcBs56oNagZYqPBkDls0YhuD4G9Uvgo2DtNi
-         eoNdgUolg/0m5hWqOhaVbul9bLQwtznp9xUeRi3GpxJ4nGFEz5iS1QCTOSlQMjku5zus
-         hD5LHP0f0Lw7k3kOY4pMR9PudaTXIwvNosUL7gecx1KWSrNZf3e0yf9hf8fP+/9MkKYA
-         lKOuVLFsA29Og/04EgfUGab27q6gNNX4L/XOfsWtq83iMXK4VxetNV/+8Nx14y5PCmog
-         ZYpQ==
+        bh=MLwwpYWkEwi2rHDPkaUbVmeOwiPAW2JTot7A9QwOgFQ=;
+        b=bULDzAv18kVE4apmIm4uZAi8agzYX05Ri630ZKNgOkkET4E89V8wkDIdr4ukPX/4M4
+         PUwrxo/hxqbWzbYLETaTJCEDPHjZlM6ln0WEguajUEGb7pTga6lpxVE3Go6Rp31Sz32t
+         +8SItgQN5kx6HgPTYQOTNATR9L9WMgedEZvYihSPuZ2fy7xbjTLAwp/kPS9fmwf+jIuw
+         e16GN7p7yFcI29Wy+jAfnOkKAYEW1r6mmTDl8yiIheqj/YuBNX2Gto1ElKGUipPzdyJd
+         dXDI/xon6D2nzFuti530vrOSKFeMKBo9ymWkl0G2YSovv9IyqK/qLvDAM9O+BzbZ1cae
+         Cdiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lCnIPWmpmhl06fh13Fy5AXQxpTL6Lb8+uJ/N2EsF5sI=;
-        b=oB9uOcwAF0/REvnOMEnFDOx2yU8VRHZOr2eGCJq0df20BBGgij/db+JBpZuE1bK+rq
-         0ilf5e0x833eYuAgY8q/E6GG5lNxtahLUYU2op2mrZKdgoGpefVbfWOkCJ+M18efNbl4
-         gp3BuUDw/rE+EKWpi42c0nsyZzV0wU0yf/WhoGOm/Ohu1clummcSMXOj+lJ31Nr7sVBQ
-         +X8mrHJKxppmnBhHAHCs6c+r4Gv5cBO9dqY6m5UE+o1cqJG9tl7f01LU+bb0MWvEQqLM
-         hFSQdqFauGd5/9TcQYtxaWqhHrN7nkwArxp0Q9twqa+c5mBF0gEwSydl1EP4W4eUmT6d
-         UOtw==
-X-Gm-Message-State: ACrzQf1gT33pLn9f3bNoxiVPdRuGbNNtBeGYRAfwoWamKC+4x6twwpfj
-        ArW63AEUPUYP9M9+5zpx16QuTQ==
-X-Google-Smtp-Source: AMsMyM7Fg+6+mD8eIp9eaV2K/rmXf4ydEmw4VGWcoJSJ4mvc+INqLL4ODYEyRv+PfdsskpLTYRhVMg==
-X-Received: by 2002:a05:620a:4256:b0:6f0:fc14:5b37 with SMTP id w22-20020a05620a425600b006f0fc145b37mr25423947qko.503.1666920132669;
-        Thu, 27 Oct 2022 18:22:12 -0700 (PDT)
+        bh=MLwwpYWkEwi2rHDPkaUbVmeOwiPAW2JTot7A9QwOgFQ=;
+        b=stxJ6xKf2ivxM7tS1lSIwqmV6mx4Iy9IHmXswC94fOcfeo7VM8EsioNoLX3rftVGv5
+         evgoaxqBTfuhWmwzg6Dx6b6azWmwx6QNYgxlzp4f6esqOaa8RoOS2LJbu/fuUp6NRnsG
+         hlk1+0S//JmJzXJF8rsoTLb00Ly1LBGkSFORX3ZysZHsSI1z/q07lebFPR3tbUG6S0QA
+         dPyMtLHjd4V+67nc1BEPLXMHr+mEcuccv7wDf6KhwbBX1+Bn6tGNwqjkfRjDNre+GAZ2
+         n6jsh41u0pQKE5GHml8IFXzkOI9G9xkDoQiBW1vhVFEyOTU9h1f4fvvS9h/EW39KlmP9
+         eCZQ==
+X-Gm-Message-State: ACrzQf3F3lPpmQ+ziq4h+uBDOK2HkqNsrY3ewEX/qwgcVjNNFpOQWhCU
+        IFhRDHkgORWEnDwhrywu9H6aDA==
+X-Google-Smtp-Source: AMsMyM78IpAs5htR3w3rRCmimnb7dVaaAMSgl2I9LDfVS26G1v7HrCoFNVHNjbSExX5U7wD9QP6gRQ==
+X-Received: by 2002:ac8:5b92:0:b0:3a5:428:9210 with SMTP id a18-20020ac85b92000000b003a504289210mr1906464qta.3.1666920195577;
+        Thu, 27 Oct 2022 18:23:15 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id h17-20020a05620a245100b006ecdfcf9d81sm2016666qkn.84.2022.10.27.18.22.11
+        by smtp.gmail.com with ESMTPSA id w10-20020a05620a444a00b006f9e103260dsm2069590qkp.91.2022.10.27.18.23.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 18:22:12 -0700 (PDT)
-Message-ID: <ee37b5a1-5afc-71b3-f777-add295d9ce17@linaro.org>
-Date:   Thu, 27 Oct 2022 21:22:10 -0400
+        Thu, 27 Oct 2022 18:23:14 -0700 (PDT)
+Message-ID: <090059fd-c240-6e62-028f-e51dd98adc9a@linaro.org>
+Date:   Thu, 27 Oct 2022 21:23:13 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add regulator-output binding
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: renesas: Document Renesas
+ Ethernet SERDES
 Content-Language: en-US
-To:     Zev Weiss <zev@bewilderbeest.net>, Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Naresh Solanki <naresh.solanki@9elements.com>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        openbmc@lists.ozlabs.org
-References: <20220925220319.12572-1-zev@bewilderbeest.net>
- <20220925220319.12572-3-zev@bewilderbeest.net>
- <20220929210714.GA2684335-robh@kernel.org>
- <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
- <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20221027132907.2342830-1-yoshihiro.shimoda.uh@renesas.com>
+ <20221027132907.2342830-2-yoshihiro.shimoda.uh@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
+In-Reply-To: <20221027132907.2342830-2-yoshihiro.shimoda.uh@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,111 +77,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 14:42, Zev Weiss wrote:
-> On Thu, Sep 29, 2022 at 02:27:20PM PDT, Zev Weiss wrote:
->> On Thu, Sep 29, 2022 at 02:07:14PM PDT, Rob Herring wrote:
->>> On Sun, Sep 25, 2022 at 03:03:18PM -0700, Zev Weiss wrote:
->>>> This describes a power output supplied by a regulator, such as a
->>>> power outlet on a power distribution unit (PDU).
->>>>
->>>> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->>>> ---
->>>> .../bindings/regulator/regulator-output.yaml  | 47 +++++++++++++++++++
->>>> 1 file changed, 47 insertions(+)
->>>> create mode 100644 Documentation/devicetree/bindings/regulator/regulator-output.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->>>> new file mode 100644
->>>> index 000000000000..40953ec48e9e
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
->>>> @@ -0,0 +1,47 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +
->>>> +$id: http://devicetree.org/schemas/regulator/regulator-output.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Regulator output connector
->>>> +
->>>> +maintainers:
->>>> +  - Zev Weiss <zev@bewilderbeest.net>
->>>> +
->>>> +description: |
->>>> +  This describes a power output connector supplied by a regulator,
->>>> +  such as a power outlet on a power distribution unit (PDU).  The
->>>> +  connector may be standalone or merely one channel or set of pins
->>>> +  within a ganged physical connector carrying multiple independent
->>>> +  power outputs.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: regulator-output
->>>> +
->>>> +  vout-supply:
->>>> +    description:
->>>> +      Phandle of the regulator supplying the output.
->>>> +
->>>> +  regulator-leave-on:
->>>> +    description: |
->>>> +      If the regulator is enabled when software relinquishes control
->>>> +      of it (such as when shutting down) it should be left enabled
->>>> +      instead of being turned off.
->>>> +    type: boolean
->>>
->>> I'm not too sure about this one as there could be various times when
->>> control is relinquished. It is userspace closing its access?
->>> driver unbind? module unload? Does a bootloader pay attention to this?
->>>
->>> Rob
->>
->> Thanks for the feedback, Rob -- I'll admit I was a bit unsure how to 
->> approach that, and this may well not be the right answer.  What I'm 
->> really aiming for is an appropriate way to express that regulator 
->> on/off state should only ever be changed by explicit (external, e.g. 
->> userspace) request, never as any sort of default/automatic action.  
->> The two obvious things to guard against there seem to be automatic 
->> enablement during initialization and automatic disablement on de-init 
->> (shutdown, unbind, etc.).  The former I think can be avoided by simply 
->> not setting regulator-boot-on, so I added this as a corresponding 
->> property to avoid the latter.
->>
->> I'm definitely open to suggestions for a better approach though.
->>
+On 27/10/2022 09:29, Yoshihiro Shimoda wrote:
+> Document Renesas Etherent SERDES for R-Car S4-8 (r8a779f0).
 > 
-> Ping...
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  .../phy/renesas,r8a779f0-ether-serdes.yaml    | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/renesas,r8a779f0-ether-serdes.yaml
 > 
-> Would something like this be preferable as a more direct description of 
-> that?
-> 
->    regulator-manually-controlled:
->      description: |
->        The regulator should never be enabled or disabled automatically,
->        only when explicitly requested by an external actor (e.g.  
->        userspace).
->      type: boolean
 
-This looks like putting policy and OS behavior into DT. I guess it easy
-to understand in case of Linux which disables unclaimed regulators
-during. But what if other system/firmware does not behave like that?
 
-And what is the "external actor"? OS is not an external actor?
-
-I could not get the problem you want to solve with this property - I
-looked at cover letter and at commit msg.
-
-I can only imagine that you want to keep regulator on, after last its
-user disappears... but for what purpose? Do you expect that after system
-shutdown the pin will stay high so regulator will be also on? If so, you
-need hardware design, e.g. with some pull up (if control is over GPIO).
-
-> 
-> That would leave the question of which property takes priority if both 
-> regulator-manually-controlled and regulator-boot-on are set -- should 
-> the binding document the answer to that?  (I personally don't have a 
-> strong opinion on which it should be.)
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
