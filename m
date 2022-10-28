@@ -2,52 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F8066116CD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 18:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC0B26116DD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 18:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230460AbiJ1QFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 12:05:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35524 "EHLO
+        id S229552AbiJ1QGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 12:06:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbiJ1QEu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 12:04:50 -0400
+        with ESMTP id S230287AbiJ1QFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 12:05:55 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78C31903C;
-        Fri, 28 Oct 2022 09:02:52 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E069B659D3;
+        Fri, 28 Oct 2022 09:05:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C591D62947;
-        Fri, 28 Oct 2022 16:02:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A35EC433D6;
-        Fri, 28 Oct 2022 16:02:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B18762950;
+        Fri, 28 Oct 2022 16:05:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 975E1C4347C;
+        Fri, 28 Oct 2022 16:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666972971;
-        bh=Oxti1A+2ZLM13LWu91bH36f/Fx13AJFSM+jY4B3mE7U=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=DkLDaKvFD2Rwrze6hxXZRo9+kKLB8sEtVs8hwjQHbqkL7Q7ijbMoDuq/gFBKUR0Or
-         H0sImDSmMB4S2UDXg5jApERzjViHb30R5L1bHrFOoGA7P0aiVypEnvCfR+J78sdtJj
-         najlz55vlJ/guZaA5vJGCboYQn5O0+giD7iNJgIQ2IboHXAcVV7C1NCrAc6N4WIxHZ
-         D4LS+cONMnpTQrQGeP++D4qGyUh+ypmBFjINQTFR0/4nM07JEpW7hBXvpk1a0TUSGx
-         ai3K4gJso5h9quUOPIwPb75OdU7+DaspFSqjYHONOaM07jhkZ0YAWFuma6u0l9TyI0
-         syLrAx8KFkcpQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, tiwai@suse.com, festevam@gmail.com,
-        linux-kernel@vger.kernel.org, nicoleotsuka@gmail.com,
-        lgirdwood@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        Xiubo.Lee@gmail.com, shengjiu.wang@gmail.com,
-        alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
-        robh+dt@kernel.org, Chancel Liu <chancel.liu@nxp.com>,
-        perex@perex.cz
-In-Reply-To: <20221027060311.2549711-1-chancel.liu@nxp.com>
-References: <20221027060311.2549711-1-chancel.liu@nxp.com>
-Subject: Re: [PATCH 0/3] Add support for SAI on i.MX93 platform
-Message-Id: <166697296821.717517.14812404041210557854.b4-ty@kernel.org>
-Date:   Fri, 28 Oct 2022 17:02:48 +0100
+        s=k20201202; t=1666973109;
+        bh=zMsqR4NCaF15rnmf8tGTZpGv/GOwk0U5elPPfgDilzc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RA510jvmZ8L122s0NFLJGM8/PHg6Vnxygzvi59838JAxosslWRpcpLX0dr/0A21oR
+         Ih5qsaUR5TBTSXglSgeTw0CFZjarBRkxP4AByZEsouyaepzqamqbcFgoUlRDbIJZK3
+         l18qB7+tQcY9nwUu/Id+UXlx/RiSYrPlkFKgiEdEMkh5P1mCQusIY23Yj/EzHsfhEN
+         6x22dJOpDlEzAESmlvxaVaTOXCyepRJ82L6qYGKvOMVzxneTJOwM7U0+AWJp1TOgDJ
+         nqp1My8ZVgkNF7TfUD4qNlzkQDPz6IZJRStj+m7OF9WQ70SW6uKih2vpFaHtm+D8ls
+         76qNnUDzgoS0A==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan+linaro@kernel.org>)
+        id 1ooRqp-00071S-Kp; Fri, 28 Oct 2022 18:04:55 +0200
+From:   Johan Hovold <johan+linaro@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH RESEND v2 00/13] phy: qcom-qmp-usb: fix sc8280xp binding
+Date:   Fri, 28 Oct 2022 18:04:22 +0200
+Message-Id: <20221028160435.26948-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -57,44 +60,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Oct 2022 14:03:08 +0800, Chancel Liu wrote:
-> This patchset supports SAI on i.MX93 platform.
-> 
-> Chancel Liu (3):
->   ASoC: dt-bindings: fsl,sai: Add compatible string for i.MX93 platform
->   ASoC: fsl_sai: Add support for i.MX93 platform
->   ASoC: fsl_sai: Specify the maxburst to 8 on i.MX93 platform
-> 
-> [...]
+[ Resending with devicetree list on CC ]
 
-Applied to
+This series fixes the USB PHY devicetree binding for SC8280XP and adds
+support for the new updated binding to the driver.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+The first half of the series clean up the driver in preparation for
+supporting SC8280XP and its new binding that drops the legacy child node
+and the (incomplete) description of register subregions.
 
-Thanks!
+The other QMP bindings suffer from similar problems and the PCIe and UFS
+drivers are being fixed here:
 
-[1/3] ASoC: dt-bindings: fsl,sai: Add compatible string for i.MX93 platform
-      commit: aa8289fda86ede0e164a260316647c8bf0400d41
-[2/3] ASoC: fsl_sai: Add support for i.MX93 platform
-      commit: 67d5c6c19923ad26def8a001e86fc0f42264a8b5
-[3/3] ASoC: fsl_sai: Specify the maxburst to 8 on i.MX93 platform
-      commit: 870b89d118a29bd845ea706a74e313f9b83f5a45
+        https://lore.kernel.org/lkml/20221021110947.28103-1-johan+linaro@kernel.org/
+        https://lore.kernel.org/lkml/20221024090041.19574-1-johan+linaro@kernel.org/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+and a follow-on series will do corresponding changes to the combo QMP
+bindings and driver.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Note that these patches depend on the linux-phy next branch of today.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Johan
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
 
-Thanks,
-Mark
+Changes in v2
+ - add missing "3" to current bindings file name
+   "qcom,msm8996-qmp-usb3-phy.yaml" to match compatible
+ - add missing "-uni" infix to new bindings file name
+   "qcom,sc8280xp-qmp-usb3-uni-phy.yaml" to match compatible (Krzysztof)
+
+
+Johan Hovold (13):
+  phy: qcom-qmp-usb: fix sc8280xp PCS_USB offset
+  phy: qcom-qmp-usb: sort device-id table
+  phy: qcom-qmp-usb: move device-id table
+  phy: qcom-qmp-usb: move pm ops
+  phy: qcom-qmp-usb: merge driver data
+  phy: qcom-qmp-usb: clean up device-tree parsing
+  phy: qcom-qmp-usb: clean up probe initialisation
+  phy: qcom-qmp-usb: rename PHY ops structure
+  phy: qcom-qmp-usb: clean up PHY init
+  dt-bindings: phy: qcom,qmp-usb: rename current bindings
+  dt-bindings: phy: qcom,qmp-usb: fix sc8280xp binding
+  phy: qcom-qmp-usb: restructure PHY creation
+  phy: qcom-qmp-usb: add support for updated sc8280xp binding
+
+ ...hy.yaml => qcom,msm8996-qmp-usb3-phy.yaml} |  20 +-
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 105 ++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 532 +++++++++---------
+ 3 files changed, 368 insertions(+), 289 deletions(-)
+ rename Documentation/devicetree/bindings/phy/{qcom,qmp-usb-phy.yaml => qcom,msm8996-qmp-usb3-phy.yaml} (95%)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+
+-- 
+2.37.3
+
