@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 007EB6119AC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B34C6119B4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbiJ1Ryw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 13:54:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
+        id S229588AbiJ1R5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:57:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbiJ1Ryv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:54:51 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14BCA19030
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:54:45 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id r19so3932553qtx.6
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:54:45 -0700 (PDT)
+        with ESMTP id S229572AbiJ1R5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:57:06 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA691EA57D
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:57:05 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id z30so3909032qkz.13
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WPPPi5v6XuLB3813cqcFBuR57ngCmvkcFB0jTGQyiig=;
-        b=MtUAzGVb7iDR7Oyu4rO0rQnr0CDw4RrVC6fi5JNA7E1JYz4QUhrfTwZ7LT81G5F78S
-         4DqjtVFwDvlSWdH/IxpMEkYOVu4Ptw+o554zDvnnAVBDypTzLi8aamLaq0iNRAUBN+7s
-         0dPZ6TydUDC/UZJoGx8hyF6yZKQSlm6kLdoPQ5ZBDV+kCRL5WtzZMas6BsZlnpPrxio+
-         BGkvwnxY57bLnLV83ik68NmD8t1lwurBEhyFlSVktAjDU1jOo965kGYPAjGTvc8X5RO5
-         xRw7K0QibSG1T15JTUfFhM6bDIZMG5GyGCBKm/CC4RSWnO/LrSh9tPjqkO7GBBS4GYK1
-         vTFw==
+        bh=t2UMRrA6hypBk9YLVdB4VW5wHm8QCbjxxyhhAxXjkNU=;
+        b=TMNb3V8AhX9WhX05Du+3fglf9uLfI9wB0ttrU8VotGjsWLsy0okAKTSDVz0xxOl8KF
+         zNuPQHvd/kR3PyvJoVDXGlZtmmk79Al8rAIDjUZyXF2Fwu7ZOCYkfl5ZskGskw3M8Adl
+         gC7ELE1lGzbXcSs2WJt6lNDm6lNeNGq0jdYSgh6kyvUGi+XiO9yfdeBb9hSvNqt4p6XE
+         7cYKcAKDhAm76ea3Id6NcO6HkOhNkOf1EF+yN/P/F49LixWucVnI8O6FH+NX4iFeUohn
+         JPi7sntU7rQcbCaIGTlRQNzUto/VcBquWadXxkhogBRtiHbE+sM4Zo6UgCkKuNuJQJXQ
+         ppog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WPPPi5v6XuLB3813cqcFBuR57ngCmvkcFB0jTGQyiig=;
-        b=AB4zAMcrQ5An3lRhBC6gSY2ayS0KTQlnwiE5lX0lJK1JlxqXJLIYzhXJzqJX8uDAN5
-         xxwHdHs7szQDAlIG73lRHo86eLJqzMV/6F+RXIpxif4wLR5AHQaRQaWgWTFhJb9WXx1l
-         JpePDfoyCrPT4vOf1AIXpBq2FUr4gfDkHjRHxY0Xqe93hgdAGeMdeqrcCtG35OipiZlO
-         HUJ7uKMsxwQNsybP67aN39AXIH4DUP8Gz3kV0bEtuEIieY9aO+V74nJc9kJ1gklIoR4c
-         9ruCDqtUaUguYFQTXImIPtAR118tmu5JYYCw9RgSTUWnrQFVPSN2I/K6UlIKxyZPLvE6
-         ZZDA==
-X-Gm-Message-State: ACrzQf2rytR5PqzQC5yhoxU5NhlEEWHJp3jw+jDw16dWE+Y9cXzsHC28
-        bMbgTYezYkLfqhiRqIUuXg6llA==
-X-Google-Smtp-Source: AMsMyM4YYymK8nVKNzn3BsrohpPL4lv5XFK9f/hpOwucaO1bp0vfJ0Co8mIT/DF3/5QGSVcLmXdDIg==
-X-Received: by 2002:a05:622a:44e:b0:39d:c1a:3282 with SMTP id o14-20020a05622a044e00b0039d0c1a3282mr601872qtx.75.1666979684180;
-        Fri, 28 Oct 2022 10:54:44 -0700 (PDT)
+        bh=t2UMRrA6hypBk9YLVdB4VW5wHm8QCbjxxyhhAxXjkNU=;
+        b=KP7HcDsqCMxy82jobiIfL95iJtcCbvLmXM3ljIp0tzI6omKLa1moGE0mey+zW5MXB6
+         OhRxLshCwSd18OlHzZcbN8e0nlYA1EHDcy+ZCk2lSgGA7UBT5qBORJnKUAetSEteG1mj
+         lsvxfsc74wwjZGEqB0GkQ6/pr3wH5I3JLeri5zA8PGrphS6IFBCR0fcUhsf9GQJIloPl
+         sfek6XA3pL++pyqmYlS5C4PQUNCLJlkZ5KiJ2Sv7LLvfpo67OBiH402vg701tx70EiaY
+         DsBt00Psmr7fya6Gz20I0dJlqqhsWUvrBq6/rByOZOYZtx2Xv6SMKxNUC08Gaiw1RmYJ
+         bWOA==
+X-Gm-Message-State: ACrzQf0eo94sGS4je8X19PLZyw8t8WZIjoHGczdgb6e6i524R6rNwxkf
+        PjH3YC35TlfvJSbQ9tMwdTwz2uZ/AUJCLQ==
+X-Google-Smtp-Source: AMsMyM6wLJNrR/80ICPG10nSm5Sgvsux4rOEUB/kGaglkjyZjg2hrXmZEnVbBBIKg8Bp7Mg07JvVuQ==
+X-Received: by 2002:a05:620a:d4b:b0:6f6:b34a:53cb with SMTP id o11-20020a05620a0d4b00b006f6b34a53cbmr351470qkl.662.1666979824237;
+        Fri, 28 Oct 2022 10:57:04 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id d13-20020a05620a240d00b006f0fc145ae5sm3488976qkn.15.2022.10.28.10.54.39
+        by smtp.gmail.com with ESMTPSA id s9-20020ac85ec9000000b0039ccbf75f92sm2668431qtx.11.2022.10.28.10.56.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 10:54:43 -0700 (PDT)
-Message-ID: <02523fe5-bf99-9891-d00c-347893d5dabe@linaro.org>
-Date:   Fri, 28 Oct 2022 13:54:37 -0400
+        Fri, 28 Oct 2022 10:57:03 -0700 (PDT)
+Message-ID: <55b03c70-cc77-43e7-7ca2-8a0445a40cea@linaro.org>
+Date:   Fri, 28 Oct 2022 13:56:57 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 2/4] pwm: Add Apple PWM controller
+Subject: Re: [PATCH 3/4] arm64: dts: apple: t8103: Add PWM controller
 Content-Language: en-US
 To:     Sasha Finkelstein <fnkl.kernel@gmail.com>,
         thierry.reding@gmail.com, robh+dt@kernel.org,
@@ -64,9 +64,9 @@ Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
         linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221028165215.43662-1-fnkl.kernel@gmail.com>
- <20221028165215.43662-3-fnkl.kernel@gmail.com>
+ <20221028165215.43662-4-fnkl.kernel@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028165215.43662-3-fnkl.kernel@gmail.com>
+In-Reply-To: <20221028165215.43662-4-fnkl.kernel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,34 +80,116 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 28/10/2022 12:52, Sasha Finkelstein wrote:
-> Adds the Apple PWM controller driver.
+> Adds PWM controller and keyboard backlight bindings for M1 MacBooks
 > 
 > Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
 > ---
->  drivers/pwm/Kconfig     |  12 ++++
->  drivers/pwm/Makefile    |   1 +
->  drivers/pwm/pwm-apple.c | 124 ++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 137 insertions(+)
->  create mode 100644 drivers/pwm/pwm-apple.c
+>  arch/arm64/boot/dts/apple/t8103-j293.dts | 20 ++++++++++++++++++++
+>  arch/arm64/boot/dts/apple/t8103-j313.dts | 20 ++++++++++++++++++++
+>  arch/arm64/boot/dts/apple/t8103.dtsi     |  9 +++++++++
+>  3 files changed, 49 insertions(+)
 > 
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 60d13a949bc5..ec6acb368073 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -51,6 +51,18 @@ config PWM_AB8500
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-ab8500.
+> diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
+> index ecb10d237a05..5652cd41730a 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-j293.dts
+> +++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
+> @@ -11,6 +11,7 @@
 >  
-> +config PWM_APPLE
-> +	tristate "Apple SoC PWM support"
-> +	depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
-
-Why this code cannot be build on 32-bit?
-
-> +	help
-> +	  Generic PWM framework driver for PWM controller present on
-> +	  Apple SoCs
+>  #include "t8103.dtsi"
+>  #include "t8103-jxxx.dtsi"
+> +#include <dt-bindings/leds/common.h>
+>  
+>  / {
+>  	compatible = "apple,j293", "apple,t8103", "apple,arm-platform";
+> @@ -43,3 +44,22 @@ &i2c2 {
+>  &i2c4 {
+>  	status = "okay";
+>  };
 > +
+> +/ {
+> +	pwmleds {
+
+Node names should be generic: led-controller
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "pwm-leds";
+> +		kbd-backlight {
+
+Does not look like you tested the DTS against bindings. Please run `make
+dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+for instructions).
+
+> +			pwms = <&fpwm1 0 40000>;
+> +			label = "kbd_backlight";
+> +			function = LED_FUNCTION_KBD_BACKLIGHT;
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			max-brightness = <255>;
+> +			default-state = "keep";
+> +			pwm-names = "kbd-backlight";
+
+This goes just after pwms.
+
+> +		};
+> +	};
+> +};
+> +
+> +&fpwm1 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/apple/t8103-j313.dts b/arch/arm64/boot/dts/apple/t8103-j313.dts
+> index df741737b8e6..cff53f8770f3 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-j313.dts
+> +++ b/arch/arm64/boot/dts/apple/t8103-j313.dts
+> @@ -11,6 +11,7 @@
+>  
+>  #include "t8103.dtsi"
+>  #include "t8103-jxxx.dtsi"
+> +#include <dt-bindings/leds/common.h>
+>  
+>  / {
+>  	compatible = "apple,j313", "apple,t8103", "apple,arm-platform";
+> @@ -35,3 +36,22 @@ &pcie0_dart_2 {
+>  
+>  /delete-node/ &port01;
+>  /delete-node/ &port02;
+> +
+> +/ {
+> +	pwmleds {
+
+Same comments
+
+> +		compatible = "pwm-leds";
+> +		kbd-backlight {
+> +			pwms = <&fpwm1 0 40000>;
+> +			label = "kbd_backlight";
+> +			function = LED_FUNCTION_KBD_BACKLIGHT;
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			max-brightness = <255>;
+> +			default-state = "keep";
+> +			pwm-names = "kbd-backlight";
+> +		};
+> +	};
+> +};
+> +
+> +&fpwm1 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+> index 51a63b29d404..a95dc482102e 100644
+> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
+> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+> @@ -191,6 +191,15 @@ i2c4: i2c@235020000 {
+>  			status = "disabled"; /* only used in J293 */
+>  		};
+>  
+> +		fpwm1: fpwm@235044000 {
+
+Node names should be generic, so pwm.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +			compatible = "apple,t8103-fpwm", "apple,s5l-fpwm";
+> +			reg = <0x2 0x35044000 0x0 0x4000>;
 
 Best regards,
 Krzysztof
