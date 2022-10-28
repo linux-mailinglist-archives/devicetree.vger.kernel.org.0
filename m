@@ -2,195 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB89E6108F1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 05:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B18B0610914
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 05:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236292AbiJ1Dm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 23:42:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56606 "EHLO
+        id S235481AbiJ1Dy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 23:54:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235121AbiJ1DmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 23:42:19 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B903D18C3;
-        Thu, 27 Oct 2022 20:42:18 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29S2qNEb012858;
-        Fri, 28 Oct 2022 03:42:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=dcvGEyCk5HBE8N9yo00NnbAt3RtvsmvtwzwfhcFvfm8=;
- b=DpIXBgOcL9pgTaQS4FCbPoz2E2rX7k4gCI3gDuhrSFhodqb2ldOvdr9nQxxaaPiJfdjD
- zRovlxidGNjw5sd20ey/kKk0nd/BUfp1QP3q0hMNYoCIXEWlh3KKYeBa5inXxwHYbAy/
- M3BhU5pO9XNqb0u3UhlbObP59O8YzdSwFrhtKz3GdctmTkk9Yqa06YftaaW3JLUP5UNd
- jwEuheJbPQdi7m2GHRKXCvd5wLAc6ivoiHTwl2iwjoGpN6IQA9HcwTogtTFbTfkyvJnd
- Pl57LVTvGazYiYk+hztOLegWELCmJneoveMTkTee9Ga+PL7n/TMa4YyKN3y6hXUX55DM jg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kfahvuxux-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Oct 2022 03:42:07 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29S3g6Qq003756
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Oct 2022 03:42:06 GMT
-Received: from th-lint-050.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.29; Thu, 27 Oct 2022 20:42:06 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S235743AbiJ1DyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 23:54:22 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C0DDFD8F53;
+        Thu, 27 Oct 2022 20:54:19 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8AxDdlqUltjWgMDAA--.11476S3;
+        Fri, 28 Oct 2022 11:54:18 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxJldnUltjBiYGAA--.3575S2;
+        Fri, 28 Oct 2022 11:54:16 +0800 (CST)
+Subject: Re: [PATCH v4 1/2] clocksource: loongson2_hpet: add hpet driver
+ support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>, zhuyinbo@loongson.cn,
         Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Mike Tipton <quic_mdtipton@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 10/10] arm64: dts: qcom: sc8280xp: Add bwmon instances
-Date:   Thu, 27 Oct 2022 20:41:55 -0700
-Message-ID: <20221028034155.5580-11-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221028034155.5580-1-quic_bjorande@quicinc.com>
-References: <20221028034155.5580-1-quic_bjorande@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev
+References: <20221026035752.32681-1-zhuyinbo@loongson.cn>
+ <438f5df4-b076-4920-7bb3-095041c27eef@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <9b4c904a-9277-504e-3bec-0b11331bbea4@loongson.cn>
+Date:   Fri, 28 Oct 2022 11:54:15 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _p6_VENDhfT4NPW1-D_l3Amkgv6at4O_
-X-Proofpoint-ORIG-GUID: _p6_VENDhfT4NPW1-D_l3Amkgv6at4O_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-27_07,2022-10-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- malwarescore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0 clxscore=1015
- suspectscore=0 spamscore=0 priorityscore=1501 adultscore=0 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2210280022
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <438f5df4-b076-4920-7bb3-095041c27eef@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxJldnUltjBiYGAA--.3575S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7JFWruFW7CFy3Kw1kZFWUArb_yoW8Jry8pF
+        W2gan8tFWkXr4ru3s7ta9Fk3Z8u3Z5Xr98Grn5t3WxArWkJ3W8WFZ29Fy3uF98ursrt3y7
+        ZryFqa48ua9FyFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jYnmiUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the two bwmon instances and define votes for CPU -> LLCC and LLCC ->
-DDR, with bandwidth values based on the downstream DeviceTree.
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 91 ++++++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index e62245e37a61..86c5bfb33357 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -1296,6 +1296,97 @@ usb_1_ssphy: usb3-phy@8903400 {
- 			};
- 		};
- 
-+		pmu@9091000 {
-+			compatible = "qcom,sc8280xp-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
-+			reg = <0 0x9091000 0 0x1000>;
-+
-+			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interconnects = <&mc_virt MASTER_LLCC 3 &mc_virt SLAVE_EBI1 3>;
-+
-+			operating-points-v2 = <&llcc_bwmon_opp_table>;
-+
-+			llcc_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <762000>;
-+				};
-+				opp-1 {
-+					opp-peak-kBps = <1720000>;
-+				};
-+				opp-2 {
-+					opp-peak-kBps = <2086000>;
-+				};
-+				opp-3 {
-+					opp-peak-kBps = <2597000>;
-+				};
-+				opp-4 {
-+					opp-peak-kBps = <2929000>;
-+				};
-+				opp-5 {
-+					opp-peak-kBps = <3879000>;
-+				};
-+				opp-6 {
-+					opp-peak-kBps = <5161000>;
-+				};
-+				opp-7 {
-+					opp-peak-kBps = <5931000>;
-+				};
-+				opp-8 {
-+					opp-peak-kBps = <6515000>;
-+				};
-+				opp-9 {
-+					opp-peak-kBps = <7980000>;
-+				};
-+				opp-10 {
-+					opp-peak-kBps = <8136000>;
-+				};
-+				opp-11 {
-+					opp-peak-kBps = <10437000>;
-+				};
-+				opp-12 {
-+					opp-peak-kBps = <12191000>;
-+				};
-+			};
-+		};
-+
-+		pmu@90b6400 {
-+			compatible = "qcom,sc8280xp-bwmon", "qcom,msm8998-bwmon";
-+			reg = <0 0x090b6400 0 0x600>;
-+
-+			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			interconnects = <&gem_noc MASTER_APPSS_PROC 3 &gem_noc SLAVE_LLCC 3>;
-+			operating-points-v2 = <&cpu_bwmon_opp_table>;
-+
-+			cpu_bwmon_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-0 {
-+					opp-peak-kBps = <2288000>;
-+				};
-+				opp-1 {
-+					opp-peak-kBps = <4577000>;
-+				};
-+				opp-2 {
-+					opp-peak-kBps = <7110000>;
-+				};
-+				opp-3 {
-+					opp-peak-kBps = <9155000>;
-+				};
-+				opp-4 {
-+					opp-peak-kBps = <12298000>;
-+				};
-+				opp-5 {
-+					opp-peak-kBps = <14236000>;
-+				};
-+				opp-6 {
-+					opp-peak-kBps = <15258001>;
-+				};
-+			};
-+		};
-+
- 		system-cache-controller@9200000 {
- 			compatible = "qcom,sc8280xp-llcc";
- 			reg = <0 0x09200000 0 0x58000>, <0 0x09600000 0 0x58000>;
--- 
-2.37.3
+在 2022/10/26 下午10:20, Krzysztof Kozlowski 写道:
+> On 25/10/2022 23:57, Yinbo Zhu wrote:
+>> HPET (High Precision Event Timer) defines a new set of timers, which
+>> are used by the operating system to schedule threads, interrupt the
+>> kernel and interrupt the multimedia timer server. The operating
+>> system can assign different timers to different applications. By
+>> configuration, each timer can generate interrupt independently.
+>>
+>> The loongson2 HPET module includes a main count and three comparators
+>> , all of which are 32 bits wide. Among the three comparators, only
+> 
+> No blank line before coma.
+You said that need blank line is need a blank space before comma?  I
+will add it a blank space before comma.
+> 
+>> one comparator supports periodic interrupt, all three comparators
+>> support non periodic interrupts.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> ---
+>> Change in v4:
+>>                  1. Use common clock framework ops to gain apb clock.
+>>                  2. This patch need rely on clock patch, which patchwork
+>>                     link was "https://patchwork.kernel.org/project/linux-clk/list/?series=688892".
+> 
+> Link to lore.
+> 
+> The point 2 should go to cover letter. It's easy to miss it.
+> 
+> Best regards,
+> Krzysztof
+> 
 
