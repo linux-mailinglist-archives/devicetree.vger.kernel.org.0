@@ -2,110 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2886B6111CB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD2F56111CE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:46:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbiJ1MpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44944 "EHLO
+        id S229911AbiJ1MqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:46:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiJ1MpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:45:06 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3129C4C62F;
-        Fri, 28 Oct 2022 05:45:05 -0700 (PDT)
-Received: by mail-qk1-f181.google.com with SMTP id b25so3297291qkk.7;
-        Fri, 28 Oct 2022 05:45:05 -0700 (PDT)
+        with ESMTP id S229494AbiJ1MqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:46:08 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447761CEC02
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:46:06 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id t25so3300635qkm.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:46:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dnb39zjpqX2r3HKo80XytYcwFNnYVwYUMcVlIvU9TL8=;
+        b=DCmTVCubue9/E2bl72no/Go8p1pbLGGabQA2CdERIcrVy2zjP0CtUsCWHtulhsj4OS
+         2SAQ51FwFY8+4hLWhluyaK1KGQHr/E//MT/+YXrtgHyhnKezH3Xt6K6iUt5j7hcD4pu/
+         Sm2hC7KOky+QhCheweOegs5ON1n+YVKfD5H2c3pChNUtcU0cG3GF5VlSTJX/V79p3TSW
+         hoM2apBPL0KEeTD5xoPxrZ2/lTxQz0WkXpxdohb3kAmqvx4YNEXBULf1KjQRwcavQ8CR
+         C95nf1fmsgmdf1WZKakez8EBFxMPEm+4Wxw90WHxKnHD/Jf9hzjkM9qIZUulp4FT47JD
+         3D8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d5L/coRKTHoItE23ReDb1PV3s90z+puDyMQpN9g990M=;
-        b=a3RBMBN3/FDng7LPU8cUjxhYpgnkS+CRVxacsjtgsOAOjEL2w7xwKGlD9UD9WbtCLy
-         JiEbONhz3pKDrxw/B1ysIiELluLgTlFmSP04CyP62umHgsH93YtTNMefAM/b0mQb07GT
-         uTWl73fOn6cR/waaUD8MRgTWQLovLyrzsxMcBTI1Lr9abvJ8ZoHguxAPRDEQj0zhvq6N
-         Yoqhx3XPLrh79Mf/NukxYPVJdS/CgYX+tycmM0CgAOVQq/8srsS5dIFhHTwK4jgraqJR
-         RRjHZa2a730A2SB4hojjQU9nwcTAZNUkXvtAPpxsTuyUN92KjYWzx7YAlcepI4AjsORG
-         uDrw==
-X-Gm-Message-State: ACrzQf1dVPG5/iRfO95lEauSuUkzE3DvQxIaeFOHjbN7DtHAa+SeqJ9R
-        Vk0L+8pLSInW36896TkhutZbtKTgIJVmyQ==
-X-Google-Smtp-Source: AMsMyM6XuJrgYkPWttyciuKZVVyitZ7bgI4UnIPMFD87TSdyjtZk/2CDAGcXbUv37C4RHzsvntj+zA==
-X-Received: by 2002:a05:620a:2601:b0:6bc:70bb:c56b with SMTP id z1-20020a05620a260100b006bc70bbc56bmr38918312qko.416.1666961104181;
-        Fri, 28 Oct 2022 05:45:04 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id dt36-20020a05620a47a400b006bb8b5b79efsm2872781qkb.129.2022.10.28.05.45.01
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dnb39zjpqX2r3HKo80XytYcwFNnYVwYUMcVlIvU9TL8=;
+        b=uUrL/QpBJgheTAtg3cifHEKnbD8bJyoh+x2fvq0jXdZ+8SnH3McCq2unyVL10JOPw0
+         6L1xBBT99X5NI1ibreSSIoe47/omOCHEMqVYzzzmsJtmXinpvCEFf/bgkXkcHyFHwrid
+         BM+WlerKau4HoYbrsY2azeQohlfXJdrQGIS3sPXKbOZxkK9FpunDVqxb1kt8E9p/65ZV
+         FDEsUr9CyGytvubCLd2gmEaIJuiq7BlqHEYDMKbyo8Z2WPzAOmXVwNsqvWyWR0PuekqY
+         MOn71aeGAE/6U2yeDyueYHB3E1ZlFQEsK9vv3wfC7/axyzNL0cODtYVO6Yg4A6NNuaSi
+         aMBg==
+X-Gm-Message-State: ACrzQf3L444TZLGZcBXXWn5oKmzEHGalEILvlvICmU0LBYlrPFLO5sLJ
+        RWZVRwpwfa7KpSS5lOl0b9LlNXX5HJidDA==
+X-Google-Smtp-Source: AMsMyM6+dApRdgXx//urTLDa+9Ord8Qt9L9zl+7e2jtpRrOecuRe0lNwHP1pUNCP3yXOfnaRcBh2pw==
+X-Received: by 2002:a05:620a:2808:b0:6bc:5d4a:a01a with SMTP id f8-20020a05620a280800b006bc5d4aa01amr37525498qkp.371.1666961165442;
+        Fri, 28 Oct 2022 05:46:05 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id v6-20020a05622a014600b003999d25e772sm2320701qtw.71.2022.10.28.05.46.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 05:45:02 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-3321c2a8d4cso46026487b3.5;
-        Fri, 28 Oct 2022 05:45:01 -0700 (PDT)
-X-Received: by 2002:a81:3d2:0:b0:36b:6772:75a3 with SMTP id
- 201-20020a8103d2000000b0036b677275a3mr30116483ywd.383.1666961101680; Fri, 28
- Oct 2022 05:45:01 -0700 (PDT)
+        Fri, 28 Oct 2022 05:46:04 -0700 (PDT)
+Message-ID: <ce3fdd20-248f-4fdd-fe83-2aa79fd297c5@linaro.org>
+Date:   Fri, 28 Oct 2022 08:46:03 -0400
 MIME-Version: 1.0
-References: <20220920184904.90495-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220920184904.90495-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220920184904.90495-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 28 Oct 2022 14:44:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXaxb05O0vqw8PqRQShOFE-f9JEQqxGb0LaPWTA=yDAYg@mail.gmail.com>
-Message-ID: <CAMuHMdXaxb05O0vqw8PqRQShOFE-f9JEQqxGb0LaPWTA=yDAYg@mail.gmail.com>
-Subject: Re: [PATCH v4 01/10] dt-bindings: soc: renesas: Move renesas.yaml
- from arm to soc
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        Atish Patra <atishp@rivosinc.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 2/2] memory: tegra: Add DLA clients for Tegra234
+Content-Language: en-US
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20221028123741.134880-1-jonathanh@nvidia.com>
+ <20221028123741.134880-2-jonathanh@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221028123741.134880-2-jonathanh@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 20, 2022 at 8:50 PM Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> renesas.yaml lists out all the Renesas SoC's and the platforms/EVK's which
-> is either ARM32/ARM64. It would rather make sense if we move renesas.yaml
-> to the soc/renesas folder instead. This is in preparation for adding a new
-> SoC (RZ/Five) from Renesas which is based on RISC-V.
->
-> While at it drop the old entry for renesas.yaml from MAINTAINERS file and
-> there is no need to update the new file path of renesas.yaml as we already
-> have an entry for Documentation/devicetree/bindings/soc/renesas/ folder.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 28/10/2022 08:37, Jon Hunter wrote:
+> Add the memory clients on Tegra234 which are needed for initialising the
+> SMMU for the Deep Learning Accelerator (DLA).
+> 
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
-> v3 -> v4
-> * Updated the path in the DT binding
-> * Included RB tag from Geert
+>  drivers/memory/tegra/tegra234.c | 160 ++++++++++++++++++++++++++++++++
+>  1 file changed, 160 insertions(+)
+> 
+> diff --git a/drivers/memory/tegra/tegra234.c b/drivers/memory/tegra/tegra234.c
+> index a9e8fd99730f..9bdaf8af8c97 100644
+> --- a/drivers/memory/tegra/tegra234.c
+> +++ b/drivers/memory/tegra/tegra234.c
+> @@ -170,6 +170,166 @@ static const struct tegra_mc_client tegra234_mc_clients[] = {
+>  				.security = 0x504,
+>  			},
+>  		},
+> +	}, {
+> +		.id = TEGRA234_MEMORY_CLIENT_DLA0RDA,
+> +		.name = "dla0rda",
+> +		.sid = TEGRA234_SID_NVDLA0,
 
-Will queue in renesas-devel for v6.2.
+This is now not applicable because you sent dependencies separate, mixed
+with other subsystems... Split pieces based on subsystems.
 
-Gr{oetje,eeting}s,
+Best regards,
+Krzysztof
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
