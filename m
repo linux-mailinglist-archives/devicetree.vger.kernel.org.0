@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC75A611257
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AB8B61125B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:08:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbiJ1NIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54050 "EHLO
+        id S230228AbiJ1NIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:08:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbiJ1NHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:07:48 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676376B8EA
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 06:07:31 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id l28so3393929qtv.4
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 06:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ftkqot10AQcXQdqV/Jbl/9CtC9aRi/Jqm3fJZzs9lj8=;
-        b=i0yI4Ug+Z1ysX4/bnftGptzijoHqXCS6WRhD038+LsxdPz7E0ThoG4tlNtTThFCHbR
-         ASl+or5ag7lRFgPCqxkO31DpQ3+PRFaki8lLE27Z/4I4v8FcdahfKS9IL4RMXm22aXxm
-         hBvYE9Bzk6H2DuSw9q6/fYdS2s5dFu+eLVe2GHdQUkkeVFZrV9QJ7ZdT1XPU++F4jB6A
-         t+Bx1Dw3unAtPbBniY1qeBFX4crCQHR9MNTNvAH53sSgKBB0AzDCg/0ioBHqwsXPTnys
-         bV484SK6UqfDgScP8cnUrOU+5DwkCVvbKA7t6nSq8VgNhdUFadESwMgDD0JsewS0Shf3
-         r8JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ftkqot10AQcXQdqV/Jbl/9CtC9aRi/Jqm3fJZzs9lj8=;
-        b=akTAsJskvi4Qo/UHPCdYCiah2q+B7hHxygGiQxnpMaMz3iXP9qqmPlfj8lS5uuZVQM
-         ym0JcHQLq8NicH5FeEl6t8Wr2u+liNI3QvJwSiJnFtAh6xLEay/PQPJBQBHbuMIyeaTs
-         t61pIjMHUc0hYU9qonSaLdvyYh1g4o1juAgWMLkYLLGOj1goIUVwRHd5FIszh0e0vXFv
-         g4+SOV4YCiETjnGPbncOcCsHLy1ZS8XW2HDEWqhwTq5rx635RnxIZPi6J9uoeE8Uw7fE
-         mRvbjOMI6ZUmppUce2Q9puGbiS268+7ZgHj6Enu1vmxAmbMueFqSzSeyifStwL9V5XU2
-         ilAw==
-X-Gm-Message-State: ACrzQf31gn83QYWtV75Gh1jWRPMNGem+eNyNAkriji2s7mHikrk6DAyV
-        L78cLrfcFphdbyL23hQiDzunUg==
-X-Google-Smtp-Source: AMsMyM69J8NXxr8evm2/tJLL/IA+Uh85w9MU4UpxQfO/PLJBf1vpzopr/ycomAQtDwCRHdjtHbxrSg==
-X-Received: by 2002:a05:622a:120c:b0:39c:c7e7:bec3 with SMTP id y12-20020a05622a120c00b0039cc7e7bec3mr45618758qtx.648.1666962450378;
-        Fri, 28 Oct 2022 06:07:30 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id t18-20020a37ea12000000b006af0ce13499sm2854849qkj.115.2022.10.28.06.07.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 06:07:29 -0700 (PDT)
-Message-ID: <4a4c2b3d-79e5-1f34-a031-77d1d1941000@linaro.org>
-Date:   Fri, 28 Oct 2022 09:07:28 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 2/2] memory: tegra: Add DLA clients for Tegra234
-Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
+        with ESMTP id S229826AbiJ1NI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:08:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589D76C74B;
+        Fri, 28 Oct 2022 06:08:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DEEFF62856;
+        Fri, 28 Oct 2022 13:08:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CF53C433D6;
+        Fri, 28 Oct 2022 13:08:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666962506;
+        bh=ECi5ZL9/CovQrvlXRqJIBv8wWvMwdtva2tmSf8ayGz8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YHCV8/xrqJ4VydITOXS6s0km2idgLo5DtBEjthmVLki9+Blqo7INGNTqczdDJm2sT
+         mK767JbQIE7BlOVsk0Z5DZ8H/HLzqQMMVT9rO+aynsEWPr5PmN6r7WDQtFPPKbpq0x
+         lTlTZbQoS9DQ3OSYADBVZ8xT2iyWjj2esS1qSG9KqC0sEUrXlJ5/xyyYZHoLlO+vkg
+         jfqPyEPZO6BBpZAqrOXB4zmKiSar/7WatDoceZJVlQ6UWFAQ35vZhijJQyeLjy82Fl
+         S8T0WP/bRw9VxtHA/k+Dshomv9ornM7Dbz6ThoDAJwMuTVNNwbU3yaS+DKybALYX0w
+         xOYxbceKs4/iw==
+Date:   Fri, 28 Oct 2022 18:38:22 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20221028123741.134880-1-jonathanh@nvidia.com>
- <20221028123741.134880-2-jonathanh@nvidia.com>
- <ce3fdd20-248f-4fdd-fe83-2aa79fd297c5@linaro.org>
- <073073ae-d921-e11f-8ff4-67f1a61760d0@nvidia.com>
- <c1465ec3-a903-f1d1-621f-2cbe95ae53e7@linaro.org>
- <1c22af7f-fa73-6f79-ad12-d460b7c534c8@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1c22af7f-fa73-6f79-ad12-d460b7c534c8@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 08/15] phy: qcom-qmp-pcie: add register init helper
+Message-ID: <Y1vURr4xPZD5/bh0@matsya>
+References: <20221021110947.28103-1-johan+linaro@kernel.org>
+ <20221021110947.28103-9-johan+linaro@kernel.org>
+ <932765e0-ecbc-8c9b-69c5-ce0bb0c8de68@linaro.org>
+ <Y1KDXD9n0cCqjTGy@hovoldconsulting.com>
+ <Y1vRDv+hrMmnqwPj@matsya>
+ <Y1vT94blD9PJHKDp@hovoldconsulting.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y1vT94blD9PJHKDp@hovoldconsulting.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,57 +64,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 09:05, Jon Hunter wrote:
+On 28-10-22, 15:07, Johan Hovold wrote:
+> On Fri, Oct 28, 2022 at 06:24:38PM +0530, Vinod Koul wrote:
+> > On 21-10-22, 13:32, Johan Hovold wrote:
 > 
-> On 28/10/2022 13:52, Krzysztof Kozlowski wrote:
->> On 28/10/2022 08:51, Jon Hunter wrote:
->>>
->>> On 28/10/2022 13:46, Krzysztof Kozlowski wrote:
->>>> On 28/10/2022 08:37, Jon Hunter wrote:
->>>>> Add the memory clients on Tegra234 which are needed for initialising the
->>>>> SMMU for the Deep Learning Accelerator (DLA).
->>>>>
->>>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->>>>> ---
->>>>>    drivers/memory/tegra/tegra234.c | 160 ++++++++++++++++++++++++++++++++
->>>>>    1 file changed, 160 insertions(+)
->>>>>
->>>>> diff --git a/drivers/memory/tegra/tegra234.c b/drivers/memory/tegra/tegra234.c
->>>>> index a9e8fd99730f..9bdaf8af8c97 100644
->>>>> --- a/drivers/memory/tegra/tegra234.c
->>>>> +++ b/drivers/memory/tegra/tegra234.c
->>>>> @@ -170,6 +170,166 @@ static const struct tegra_mc_client tegra234_mc_clients[] = {
->>>>>    				.security = 0x504,
->>>>>    			},
->>>>>    		},
->>>>> +	}, {
->>>>> +		.id = TEGRA234_MEMORY_CLIENT_DLA0RDA,
->>>>> +		.name = "dla0rda",
->>>>> +		.sid = TEGRA234_SID_NVDLA0,
->>>>
->>>> This is now not applicable because you sent dependencies separate, mixed
->>>> with other subsystems... Split pieces based on subsystems.
->>>
->>> Sorry I don't understand. This patch is dependent upon the first. I have
->>> not sent anything separate.
->>
->> You sent mixed between subsystems patches adding TEGRA234_SID_NVDLA0.
->> That one should have been sent separate so maintainers can pick it up.
+> > > [...] This is not about keeping the
+> > > diff small, this is about readability of the new helper function as I
+> > > already told you.
+> > > 
+> > > And this is a *local* identifier, not some state member that needs a
+> > > super descriptive name. And the rest of the driver used "tbl"
+> > > consistently until your EP/RC mode patches for that matter.
+> > 
+> > I would disagree here... You can change tbls/tables but then it does not
+> > help _this_ patch
+> > 
+> > Right thing would be to change tbls to tables first and then add init
+> > helper... For a reviewer seeing an undocumented change and unnecessary
+> > diff is not right..
 > 
-> The original patch [0] I sent had no dependencies and so Thierry picked 
-> this up. However, when adding patch 2/2 here, I noticed a typo in the 
-> definition for TEGRA234_MEMORY_CLIENT_DLA0WRB so thought I would fix 
-> this up while I am at it.
+> I still think that it belongs in the patch adding the new helper
+> because it is essentially only in that new function that the improved
+> readability due to the shorter identifier matters (the earlier helpers
+> where per table type).
+>  
+> > Pls split if you would still like the rename
 > 
->> Now, it's not possible for me to pick this patch.
-> 
-> Yes now you cannot simply pick this up. We have had similar problems 
-> before. I am not sure if it is easiest for Thierry to pick these up.
-> 
+> But if you prefer I'll split it out in a preparatory patch.
 
-And there is simple solution as I said - split the patches per
-subsystem. Why the dependency was combining multiple subsystems into one?
+That would be good thanks
 
-Best regards,
-Krzysztof
-
+-- 
+~Vinod
