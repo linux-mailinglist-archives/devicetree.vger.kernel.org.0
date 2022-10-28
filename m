@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 164A4611752
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 18:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B58D611760
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 18:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230473AbiJ1QQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 12:16:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59646 "EHLO
+        id S229473AbiJ1QSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 12:18:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbiJ1QPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 12:15:54 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1BA43AFB;
-        Fri, 28 Oct 2022 09:14:59 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id b5so5237489pgb.6;
-        Fri, 28 Oct 2022 09:14:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TD5l30vG1rtUw0AaFjv0iTM9qtrwO/l/Nk+Ie5csbe8=;
-        b=EUrKK9bg8T1QLJ5Zj2yVqYDVvcip00wqonolJcThqUmT0naR9aUR55CTJT6UVJGnXv
-         sfoYiBTyU1uj5d7tCXKkW8UMgk5vlTw/hIPVOI862wb5bn6xwYDXKThiFtgUmYqzGS5+
-         5RzAqYlt8QS2DfOkDKr/Aq0onMabCuaC7tgbw5osXjs/dF8zcYQI69lNDWGqIBE41XW6
-         4m3WRvbmCaLx6wfG6psP2IXOqlTq1vhT2yBhOVFKZhVQhTQo5aQXLEf5Zp94AD0Ir7HR
-         mEd6BYEEX++Bu9gLItJL9fCqzTK3jn56gViic6zKaBbkhxpBcyq+oDlrLPhT/Yz+oRyz
-         mRgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TD5l30vG1rtUw0AaFjv0iTM9qtrwO/l/Nk+Ie5csbe8=;
-        b=s16RtHA3jIUIyjY0Xe5cSJRZMp33ZJwG9ae83DmQe5PVEQlToXi21dvZS2yWwRNVjl
-         cSB1x53YXZ0/h7fskklDKxloZM1ILzi6Bc4a11Rgrx4GV956qEEMHPwX/GVFwujIRm7y
-         Eq2ZgWSzVQI+F445FvwLTMQP18Vb2iHDQzXQRJBUDMxSHHnlO8sr1I4L4AeEkho6A2Bk
-         OrOshdfmrIHqSxIa9EI3vcoNzLKErJMvkZosKCaxh/YrJWQj8fXut3KGbDBe7woQpp3V
-         sdeoTow0Fb0b3dBCkFgtyCYdjio2rICJUcpEePULLpws6Qjda5LHKfUDpOWitLs2j84y
-         Ed1g==
-X-Gm-Message-State: ACrzQf06Ep2ylU6jaN+SAzyvB/gThWuw3V3CdKiXcxz5HytHCZ1rpo77
-        NmtfimGKqgeEGpg/KlrPtzg=
-X-Google-Smtp-Source: AMsMyM44iW1ux3scVaTcg0/Px0zZdci6OAaImQc97HaK4C2wibO4X0F0WOyLMkejM3ZmP5JVZdFmKA==
-X-Received: by 2002:a05:6a00:b82:b0:56c:d5bf:1019 with SMTP id g2-20020a056a000b8200b0056cd5bf1019mr3934873pfj.72.1666973698850;
-        Fri, 28 Oct 2022 09:14:58 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:ea9a:801b:ed52:2db1])
-        by smtp.gmail.com with ESMTPSA id y27-20020a63181b000000b0041cd5ddde6fsm2863268pgl.76.2022.10.28.09.14.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 09:14:57 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 09:14:54 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] Additional fixes for Azoteq IQS7222A/B/C
-Message-ID: <Y1v//k6MfHUd46F7@google.com>
-References: <Y1SQ2t6yUvdaIQPG@nixie71>
- <87pmectm8a.fsf@baylibre.com>
- <Y1vYM0Fe323qZupM@nixie71>
+        with ESMTP id S229685AbiJ1QSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 12:18:36 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115EC17E03;
+        Fri, 28 Oct 2022 09:17:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BA636B82B07;
+        Fri, 28 Oct 2022 16:17:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E5BBC433C1;
+        Fri, 28 Oct 2022 16:17:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666973867;
+        bh=MPN/lPTpCXpy+0PRxdY8GXPpytF3KfULUfkRjnBwUpE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U4jN1aqrPtVpL4VSh4NG5IKIR0V5D/7XGlmxImplMYfIF2nvv4TCI3FNBmihmGZEx
+         V9fP0Zer515uPmI0ZDdCMLln/GOWnTRqQLKZua/VEzttslPumufiygnfvpQkIRwWcN
+         TFV8I7d6Xb1VlRUUJUGFLovN1ITdLhP++IPi3/9/Kzb4u/eEdSZhq4pEuihKYZtYWY
+         oSwO3C8T7BU3xoCKInl61SsWHX7yvHNbaSMiProzM44CvwTnhalM6/ts6sIf7QvvPU
+         nFmLKoj7eJeHyGNZJqrQcw5BQOiUVpp/hiTtP1rzYhOLWD7zppUH9YgIc8Xpo08WMx
+         HBiUwucVzAr2A==
+Date:   Fri, 28 Oct 2022 17:17:40 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        "chunxu . li" <chunxu.li@mediatek.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v1 2/2] ASoC: mediatek: mt8186-rt5682: Modify machine
+ driver for two DMICs case
+Message-ID: <Y1wApOeV7OoQzkt5@sirena.org.uk>
+References: <20221028160733.1390230-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028160733.1390230-3-ajye_huang@compal.corp-partner.google.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="xnmABysITro+lN+6"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Cw3lWstGeVw1b8Ns"
 Content-Disposition: inline
-In-Reply-To: <Y1vYM0Fe323qZupM@nixie71>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221028160733.1390230-3-ajye_huang@compal.corp-partner.google.com>
+X-Cookie: Life -- Love It or Leave It.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,178 +69,50 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---xnmABysITro+lN+6
+--Cw3lWstGeVw1b8Ns
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Oct 28, 2022 at 08:25:07AM -0500, Jeff LaBundy wrote:
-> Hi Mattijs,
-> 
-> Thank you for reaching out and helping to review this series.
-> 
-> On Fri, Oct 28, 2022 at 09:56:37AM +0200, Mattijs Korpershoek wrote:
-> > On sam., oct. 22, 2022 at 19:54, Jeff LaBundy <jeff@labundy.com> wrote:
-> > 
-> > > This series comprises a second round of fixes that result from
-> > > continued testing and updated guidance from the vendor.
-> > >
-> > > Jeff LaBundy (7):
-> > >   Input: iqs7222 - drop unused device node references
-> > >   dt-bindings: input: iqs7222: Reduce 'linux,code' to optional
-> > >   Input: iqs7222 - report malformed properties
-> > >   dt-bindings: input: iqs7222: Correct minimum slider size
-> > >   Input: iqs7222 - protect against undefined slider size
-> > >   dt-bindings: input: iqs7222: Add support for IQS7222A v1.13+
-> > >   Input: iqs7222 - add support for IQS7222A v1.13+
-> > >
-> > >  .../bindings/input/azoteq,iqs7222.yaml        |  25 +-
-> > >  drivers/input/misc/iqs7222.c                  | 504 +++++++++++-------
-> > >  2 files changed, 311 insertions(+), 218 deletions(-)
-> > 
-> > Not sure this requires a re-send, but the series seems ill-formatted.
-> > all patches are posted separately to the list instead of replying to the
-> > cover letter. Is that expected?
-> 
-> Yes, this was a goof on my part. I see that the series is threaded
-> properly on Patchwork but not on lore.kernel.org.
-> 
-> Much to my dismay, my mail service recently began enforcing OAuth2
-> but declined to enable app-specific passwords as Gmail and others
-> do. I can therefore no longer use git send-email directly and I am
+On Sat, Oct 29, 2022 at 12:07:33AM +0800, Ajye Huang wrote:
 
-You can teach git to work with OAuth - I am using Gmail without
-application specific passwords. You simply need to use the credential
-helper that would give the token instead of a password.
+> +static const char * const dmic_mux_text[] = {
+> +	"FrontMic",
+> +	"RearMic",
+> +};
 
-I have the following in my .gitconfig:
+> +	ret = snd_soc_dapm_new_controls(&card->dapm, dmic_widgets,
+> +					ARRAY_SIZE(dmic_widgets));
+> +	if (ret) {
+> +		dev_err(card->dev, "DMic widget addition failed: %d\n", ret);
+> +		/* Don't need to add routes if widget addition failed */
+> +		return ret;
+> +	}
 
-[credential]
-	helper = cache --timeout=3000
-	helper = local-helper
+> +       if (of_property_read_bool(pdev->dev.of_node, "dmic-gpios")) {
+> +               mach_priv->dmic_sel = devm_gpiod_get_optional(&pdev->dev,
+> +                                                       "dmic", GPIOD_OUT_LOW);
 
-and I am using the attached script that gets client ID and refresh token
-from the disk and generates authentication token. The script is using
-Google OAUTH library and endpoint, but since you taught mutt how to work
-with your provider you should be able to adjust it as needed.
+My prior comments about it being nicer to make the addition of the
+control depend on the property being there and the description of the
+options configurable do stand (I appreciate that the other driver might
+not have done this which was probably an oversight).
 
-And please do not judge me for this script ;)
+Also do we really need the of_property_read_bool() there?  I'd have
+expected that devm_gpiod_get_optional() would be handling that for us.
 
-> instead emulating it with a script that tunnels patches through mutt.
-> 
-> In this last series, my script inadvertenly dropped the '< >' from
-> the cover letter's message ID, so some mailers may see this series
-> as seven separate threads. This is fixed now.
-> 
-> That being said, I see this series was already applied earlier this
-> week; I think a mail simply did not go out. So no further action is
-> needed.
+--Cw3lWstGeVw1b8Ns
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Sorry, my bad, I forgot to send the notice.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNcAKQACgkQJNaLcl1U
+h9Dszgf/VXVqdAt6y4Tux5PXD9zW+9i23ZFaCs1y/E0zse4AyVDDvo+BtL+IrkcL
+z9i6r9EqrQuX6SBUCup87nUu3s4aIwtlCvH3Li2znhZWKfY1PEN7xWA7IB6eZDrp
+nWBO4wPITY3ftUoLGTEpv2ZgQ3QIFm4B/rQpNEkfxbwF91kv/JPK2VzAL2Q0zbck
+ahvvraHhPGI+2MkDjcufrlzqUke/MteuKH+zKgZjDLYDicXFaj0gHhS/0n7s46Nw
+Uq2pcLsOFtU8yBm9LVBeC2CDk134qJH4h81Pen/yF/v2+7Pyz5uJD1X2PqXqVRDF
+Et13wKZD5oDLUdFdlZhs82B5gcdQ4g==
+=Qv/e
+-----END PGP SIGNATURE-----
 
--- 
-Dmitry
-
---xnmABysITro+lN+6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename=git-credential-local-helper
-
-#!/usr/bin/env python3
-
-import argparse
-import gnupg
-import os
-import sys
-from google.oauth2.credentials import Credentials as Oauth2Creds
-from google.auth.transport.requests import Request as AuthRequest
-
-def eprint(*args, **kwargs):
-    print(*args, file=sys.stderr, **kwargs)
-
-class SMTPCredential(object):
-    CONFIG_DICT = {
-        'dtor@chromium.org' : ('Chromium', False),
-        'dtor@google.com' : ('Google', False),
-        'dmitry.torokhov@gmail.com' : ('Gmail', True),
-        'dtor@kernel.org' : ('Kernel.org', False),
-    }
-
-    def __init__(self):
-        self.gpg = gnupg.GPG(gpgbinary="gpg2", use_agent=True)
-        self.data_path = os.path.expanduser('~/.mutt/passwords/')
-
-    def get_unencrypted_data(self, config_name):
-        file_name = os.path.join(self.data_path, config_name)
-        with open(file_name, 'r') as fp:
-            lines = fp.read().splitlines()
-            return next(iter(lines), None)
-
-    def get_encrypted_data(self, config_name):
-        file_name = os.path.join(self.data_path, config_name)
-        with open(file_name, 'rb') as fp:
-            crypt = self.gpg.decrypt_file(fp)
-            if crypt.ok:
-                lines = crypt.data.splitlines()
-                return next(iter(lines), None)
-
-    def get_password(self, config_name):
-        return self.get_encrypted_data(config_name)
-
-    def get_oauth2_creds(self, config_name):
-        client_id = self.get_unencrypted_data(config_name + ".oauth.client")
-        client_secret = self.get_encrypted_data(config_name + ".oauth.secret")
-        refresh_token = self.get_encrypted_data(config_name + ".oauth.refresh")
-        if client_id and client_secret and refresh_token:
-            return Oauth2Creds(None,
-                               refresh_token=refresh_token,
-                               token_uri='https://oauth2.googleapis.com/token',
-                               client_id=client_id,
-                               client_secret=client_secret)
-
-    def get_oauth2_token(self, config_name):
-        creds = self.get_oauth2_creds(config_name)
-        if creds:
-            creds.refresh(AuthRequest())
-            return creds.token
-
-    def get(self, username, **kwargs):
-        (name, oauth2) = self.CONFIG_DICT[username]
-        secret = self.get_oauth2_token(name) if oauth2 \
-                 else self.get_password(name)
-        if secret:
-            print("password={0}".format(secret))
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('operation', action="store", type=str,
-            help="Git action to be performed (get|store|erase)")
-    # parse all arguments
-    arguments = parser.parse_args()
-
-    myvars = {}
-    for line in sys.stdin:
-        name, val = line.partition("=")[::2]
-        myvars[name.strip()] = val.strip()
-
-    if arguments.operation == "get":
-        try:
-            protocol = myvars.pop('protocol')
-            username = myvars.pop('username')
-            cred_class = globals()[protocol.upper() + "Credential"]
-            cred = cred_class()
-            cred.get(username, **myvars)
-        except:
-            eprint("Failed to get credential")
-            raise
-    elif arguments.operation == "store":
-        pass
-    elif arguments.operation == "erase":
-        pass
-    else:
-        eprint("Invalid git operation")
-
-if __name__ == "__main__":
-    main()
-
---xnmABysITro+lN+6--
+--Cw3lWstGeVw1b8Ns--
