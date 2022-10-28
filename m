@@ -2,99 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B950261125E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7B961127D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbiJ1NJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36908 "EHLO
+        id S229949AbiJ1NPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:15:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230306AbiJ1NJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:09:40 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D8C10547
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 06:09:37 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-3321c2a8d4cso46604507b3.5
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 06:09:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zNvEGzwFZiPNSYA/riEwCNGdEsEkX1GF8vTXGSAxJg4=;
-        b=j/Ro6KESD6qEo8DaVVUq3iotBaCxQLlZwORfAykz4UFJz1XnfXypAIyl8qAzDxzx+K
-         IAhjUghZjt+GzqNmin22zQXpTtz4SjRLO6N0nZqwdG7vrXQuX/sbvkbtiPCHtBhS0eoH
-         qy2Q7VHmjJ6tdNweJK2n/smTGza7+9BVNsvN2BSMmp8JCjGUaEcSwevBbThJntv3dslG
-         jUz3E70/ODotZIDMigHxJzat6yB+K6dYEWGKuKRE5TFqHCf0dvZT8vHMW0QqcLcvLyqj
-         KSVSo2tG89mKnwIgB2jPhcRZHZomvC4dJiX6SSou7qhnKS+Y+827B5w2V1VZRD/eFepK
-         Uspw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zNvEGzwFZiPNSYA/riEwCNGdEsEkX1GF8vTXGSAxJg4=;
-        b=jBZLLMlENb7e0Dg0VAlYAUT9dtvlN3GI257AsqcFl16fVff2NaSc/FKwLyutYHfMRi
-         mLUeV8DT7szFIt+NjYo62VG4Ic8x6eEI/CRnOznqgrwDws5Q+4wBrgNDOuiAPQ3Fy9cN
-         P/FhQD6avX3LsmCWKnXfY1Aa4zV00zeMXVkEGXQAQEGQ9PMQr2C2pDomDGWYlOhiOeqf
-         Vu9SyIE1eJELgSPzSCjrBGsAct9ttkgi8IvO0oraI8USHMQHrS5UmsyjxfMQndXchWdp
-         5oh3SAwTwEBN7H9kTLICE8+QSMUe9h1nBlzR9lZyPgD64JuLd+1mCvwG62WRyeHeXUWn
-         6H9w==
-X-Gm-Message-State: ACrzQf3Jo6S8llDe9o+B0UayYv8lRVWNmXGFniuXZr1XH9skLwIeJsRN
-        eycQu/e2mIf2/Xvlf0Jk8u1af5RLVCihHIK1ddc02A==
-X-Google-Smtp-Source: AMsMyM4RlEu/ZOLsDrVy8uJcLRb63RMgIWBseuziSlav6DYsCFUaKtiFKKtHnLGhUZVQNf3FzpLYAMYgWfoFz/21v3Q=
-X-Received: by 2002:a81:164b:0:b0:36f:ced7:985f with SMTP id
- 72-20020a81164b000000b0036fced7985fmr16909310yww.360.1666962576949; Fri, 28
- Oct 2022 06:09:36 -0700 (PDT)
+        with ESMTP id S230012AbiJ1NPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:15:39 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2B753A63;
+        Fri, 28 Oct 2022 06:15:35 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SDFLxd124254;
+        Fri, 28 Oct 2022 08:15:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666962921;
+        bh=yVb75vWswYo2lZ6O2P7WBQeQA1oaX7Ir3hSVvtddISU=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=qGpaKjRmtUzyz/9D2Kq19X68Hep3BHdEy/L9s//hW2bg9uHADtslZtcL61is+dK6T
+         oK1Emv2xsOQO9vO4k1WXeU0EQ4o4JezH1yJYv4uf537fD7h1JKLD2nlR++4j+143z6
+         ZscBj16MHW8vmw/KNswY3T8TAoCzRWwvh4Cjfe+8=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SDFLWm022874
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Oct 2022 08:15:21 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
+ Oct 2022 08:15:20 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 28 Oct 2022 08:15:20 -0500
+Received: from [10.250.232.28] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SDFGPS062125;
+        Fri, 28 Oct 2022 08:15:17 -0500
+Message-ID: <0c5d0418-8b1c-3ea4-1ec5-1e229ac18f6c@ti.com>
+Date:   Fri, 28 Oct 2022 18:45:15 +0530
 MIME-Version: 1.0
-References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
- <20221028102450.1161382-3-ajye_huang@compal.corp-partner.google.com>
- <Y1vDxtdNGURAT850@sirena.org.uk> <CALprXBbTkj0Q_-3AL81Q1okRD5ZyDf_c=daPrkQstkM4_CNgGQ@mail.gmail.com>
- <Y1vStD8vNYmdvPH1@sirena.org.uk>
-In-Reply-To: <Y1vStD8vNYmdvPH1@sirena.org.uk>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Fri, 28 Oct 2022 21:09:30 +0800
-Message-ID: <CALprXBZMvPhDo_7Hsvvgutb50ZBvmQZTAwvzUstQCEC3QN58vg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] ASoC: dmic: Add optional dmic selection
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 00/10] AM62x Disable Incomplete DT Nodes
+To:     Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, robh@kernel.org,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        angelogioacchino.delregno@collabora.corp-partner.google.com,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+        Bryan Brattlof <bb@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221018211533.21335-1-afd@ti.com>
+Content-Language: en-US
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+In-Reply-To: <20221018211533.21335-1-afd@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark Brown
 
-I need to abandon this one, I will send another new patch, thank you so much.
 
-On Fri, Oct 28, 2022 at 9:01 PM Mark Brown <broonie@kernel.org> wrote:
->
-> On Fri, Oct 28, 2022 at 08:59:54PM +0800, Ajye Huang wrote:
->
-> > Thank you for review,
-> > I think it is appropriate to implement on audio machine side, like
-> > this I did before,
-> > commit 3cfbf07c6d27
-> > ("ASoC: qcom: sc7180: Modify machine driver for 2mic")
->
-> > What is your suggestion?  Thank you.
->
-> Doing that seems fine.
->
-> Please don't top post, reply in line with needed context.  This allows
-> readers to readily follow the flow of conversation and understand what
-> you are talking about and also helps ensure that everything in the
-> discussion is being addressed.
+On 19/10/22 2:45 am, Andrew Davis wrote:
+
+> 
+> Andrew Davis (10):
+>   arm64: dts: ti: k3-am62: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable I2C nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable SPI nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable EPWM nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable ECAP nodes at the board level
+>   arm64: dts: ti: k3-am62: MDIO pinmux should belong to the MDIO node
+>   arm64: dts: ti: k3-am62: Enable MDIO nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable MCAN nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable SDHCI nodes at the board level
+>   arm64: dts: ti: k3-am62: Enable OSPI nodes at the board level
+> 
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 26 +++++++
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  4 ++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  2 +
+>  arch/arm64/boot/dts/ti/k3-am625-sk.dts     | 81 +++-------------------
+>  4 files changed, 43 insertions(+), 70 deletions(-)
+> 
+
+Acked-by: Vignesh Raghavendra <vigneshr@ti.com>
