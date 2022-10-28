@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C7C61155D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:02:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65FCC611569
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230256AbiJ1PCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 11:02:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45082 "EHLO
+        id S231199AbiJ1PEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:04:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229980AbiJ1PCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:02:33 -0400
+        with ESMTP id S229519AbiJ1PEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:04:02 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAE8204AEF
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 08:02:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853A9207524
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 08:04:01 -0700 (PDT)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1ooQsN-00059y-5j; Fri, 28 Oct 2022 17:02:27 +0200
+        id 1ooQtn-0005Lw-0P; Fri, 28 Oct 2022 17:03:55 +0200
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1ooQsM-0002J1-OQ; Fri, 28 Oct 2022 17:02:26 +0200
-Date:   Fri, 28 Oct 2022 17:02:26 +0200
+        id 1ooQtm-0002Tc-05; Fri, 28 Oct 2022 17:03:54 +0200
+Date:   Fri, 28 Oct 2022 17:03:53 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -31,15 +31,14 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-kernel@vger.kernel.org, linux-imx@nxp.com,
         kernel@pengutronix.de, festevam@gmail.com,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2 09/15] arm64: dts: imx8mn-evk: set off-on-delay-us in
- regulator
-Message-ID: <20221028150226.gjixwznlygszbp7m@pengutronix.de>
+Subject: Re: [PATCH V2 11/15] arm64: dts: imx8mn-evk: enable uart1
+Message-ID: <20221028150353.ct6p7mwzvla7675z@pengutronix.de>
 References: <20221024031351.4135651-1-peng.fan@oss.nxp.com>
- <20221024031351.4135651-10-peng.fan@oss.nxp.com>
+ <20221024031351.4135651-12-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221024031351.4135651-10-peng.fan@oss.nxp.com>
+In-Reply-To: <20221024031351.4135651-12-peng.fan@oss.nxp.com>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -56,43 +55,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 22-10-24, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> Some SD Card controller and power circuitry has increased capacitance,
-> so the usual toggling of regulator to power the card off and on
-> is insufficient.
-> 
-> According to SD spec, for sd card power reset operation, the sd card
-> supply voltage needs to be lower than 0.5v and keep over 1ms, otherwise,
-> next time power back the sd card supply voltage to 3.3v, sd card can't
-> support SD3.0 mode again.
-> 
-> This patch add the off-on-delay-us, make sure the sd power reset behavior
-> is align with the specification. Without this patch, when do quick system
-> suspend/resume test, some sd card can't work at SD3.0 mode after system
-> resume back.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> index 261c36540079..2b4395854283 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> @@ -36,6 +36,7 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
->  		regulator-min-microvolt = <3300000>;
->  		regulator-max-microvolt = <3300000>;
->  		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		off-on-delay-us = <12000>;
+> Enable uart1 for BT usage
 
-All others are using 20000us, did you changed the HW?
+Nit: In the other patch you're describe why you need to use a other PLL
+as source.
 
 Regards,
   Marco
 
->  		enable-active-high;
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+> index a37a165b40ec..f137eb406c24 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
+> @@ -247,6 +247,15 @@ &spdif1 {
+>  	status = "okay";
+>  };
+>  
+> +&uart1 { /* BT */
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	assigned-clocks = <&clk IMX8MN_CLK_UART1>;
+> +	assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_80M>;
+> +	fsl,uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+>  &uart2 { /* console */
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_uart2>;
+> @@ -440,6 +449,15 @@ MX8MN_IOMUXC_SD1_STROBE_GPIO2_IO11	0x159
+>  		>;
 >  	};
 >  
+> +	pinctrl_uart1: uart1grp {
+> +		fsl,pins = <
+> +			MX8MN_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
+> +			MX8MN_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
+> +			MX8MN_IOMUXC_UART3_RXD_UART1_DCE_CTS_B	0x140
+> +			MX8MN_IOMUXC_UART3_TXD_UART1_DCE_RTS_B	0x140
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart2: uart2grp {
+>  		fsl,pins = <
+>  			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
 > -- 
 > 2.37.1
 > 
