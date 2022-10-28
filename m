@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C4C6113E8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 562E76113ED
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbiJ1OEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:04:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45150 "EHLO
+        id S231326AbiJ1OEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 10:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231232AbiJ1OEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:04:32 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5B5C56
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 07:04:26 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id g11so3498840qts.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 07:04:26 -0700 (PDT)
+        with ESMTP id S231258AbiJ1OEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:04:33 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065D0E3D
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 07:04:30 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id mi9so4096723qvb.8
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 07:04:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=P8oKprLw8ZYm+8GU3x4F5q2ce8H0sbZgjnP+ajJvPJI=;
-        b=EvuSFD8XSe837jMobEgQmwLyHBXFuLECBBN7IL8NsbQOeJnK79KcFF6rtBZmKY6SZF
-         K61FSKN8/GdEvlerc+ae7dDFs5SVDee9VVYNpkq/QaMgEbR6mUVeKmibKkBFJzwvXax2
-         thJ7arKGs7GoZDFjd5c6VHK1xDS1cXAv6sdXUuZXzLh8cxLrm9MtnjVzHQ6/jcNJkulX
-         fq+q75OxoYl+/DjM9rWwSYsDxqwakrSUehzQlG5EOTzLg1Mbi28fPRDqEztm8sUsd0B1
-         GHuF9xDFErNgdurg6VYlsFqa+7buusI9oCzkgMEaMN4WrjXQaTIZiMPZuv8g83hCwEL7
-         KqKA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2bW2zopTlg25jDOdqXgCYa9SYjwIlYLKzQ7Rf0QVa04=;
+        b=tRoGixS3L9fuKo5JvypgkaKDRIZhIMHWmSYxz7bwKH7//g7r9C0IeXcbmZJJGWAvwD
+         GCUqSeVZiEUtFPvA8CtNRj+Ru9vRDDPo4M3FlV/Om6RkK3gBJWlih/bNjn+V2wjDlg5U
+         kVHV1v9hJlZ6Us6Rmt3OnUtal1H7lL8oJXWvZ6+QekHp1Gz6cXIzdtT8XU+5FPtU4YwU
+         snbM2BeZSgvGf1cbRlL+IeqEAp0rA6RET1D8NyXIJn9bCBYaKnB8W+GnAJV6CPy9Nrc0
+         in2x6ouxSbvQqDeHUNhf4bVSDWz/aq0arwxbap5/srU0v/igfGv/M2hqVEl6BEZLvXYK
+         VweQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P8oKprLw8ZYm+8GU3x4F5q2ce8H0sbZgjnP+ajJvPJI=;
-        b=y1aS8ejtCdLtCBjSGFuWYGcxQV+tRlvt3waZvUChAiACtsbm8hGtvVHQWfxktVHMtP
-         ryspJJbExyZX4RrI6KrfqWoBTWFl8WihVGBLxU7uWgnDKw+pni0uZUBATIK5TpKJcQAP
-         XjG7EwqsTITASbi/T9OsaF8ThN4Ks5JSj4ZudUX/AC5a9AXrNVnMJ5hcBR5f8QaFy6Tr
-         5L4zNWVzU48mu9m0hfeWOjSpbJWTRghnXJLnr5o3S38msnKVzRUmNYwpl8y3L/BqUZ47
-         NjWpBaiXa6zQ+2lwsZUlXUxkXnXu8DPxoMCixgWN+RbVgFmDcKPWdJEbogCYsEcgfmG8
-         Wi/g==
-X-Gm-Message-State: ACrzQf0gXNxj42hvY8h4LLGJ7PP6L4o07lo6WgAm7LK7DWIXtPEIAuiz
-        5ap+x+14WWywdwlRoXzjyXM7Tg==
-X-Google-Smtp-Source: AMsMyM4UqyN4iexH4H/2B3I0jFyzxPa5AYb4vXnKt17haWEFdfDUuSlvomj6hSMi1DWUp+Amq5UFaw==
-X-Received: by 2002:ac8:5854:0:b0:39c:dba4:6fa0 with SMTP id h20-20020ac85854000000b0039cdba46fa0mr46658376qth.175.1666965865720;
-        Fri, 28 Oct 2022 07:04:25 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2bW2zopTlg25jDOdqXgCYa9SYjwIlYLKzQ7Rf0QVa04=;
+        b=r/LockMRIhwqXJc+422WQ8oU/rL/90WgLDmtiA398Zl4qPrNMAzogsuN1v0hjk9ddg
+         6iZ6u7eellm0NcSNaDgxYXXEJeoLsFhpKDvvwPbAuJ9acJrGnFfI7lQVxf5Pyv+2Bq7T
+         CwA1thPQf8kl9v3gGuEeTczeWd3aLjcZC2vR7zpVtbCs2FxLlr/dzX+sdSnS5wezVPZc
+         Hgh0D2j3s1Ju+7UmfAcyruVggbGlhl+EkBsutj7cZgHCTRJ1Jav35nhDRQWAjinyGZCV
+         JrYEVD8mbT/7Ao+BlQWY8kqqp6kOjx7W955ZFv+cP1uX4PgyCEJpKWaF5QkYAzt+Z/g6
+         xOCQ==
+X-Gm-Message-State: ACrzQf0PDCiUb8EnkDSF844wiuFy1yXMLs6jmeHjtE49uhkDdiVTgBVa
+        D5HRGgM4U7E7xpkfl7+EsMIvYQ==
+X-Google-Smtp-Source: AMsMyM49sDGd4Fa8wX1KaVJXth7JRPH5eGlWzkuYX3rudY/Vhi5lVq/f8Q8MpgH9RSVOqf5QB9Wpjg==
+X-Received: by 2002:a05:6214:1d01:b0:4b0:b782:15a6 with SMTP id e1-20020a0562141d0100b004b0b78215a6mr47232115qvd.43.1666965869069;
+        Fri, 28 Oct 2022 07:04:29 -0700 (PDT)
 Received: from krzk-bin.. ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id w8-20020a05620a424800b006ed30a8fb21sm3028252qko.76.2022.10.28.07.04.21
+        by smtp.gmail.com with ESMTPSA id w8-20020a05620a424800b006ed30a8fb21sm3028252qko.76.2022.10.28.07.04.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 07:04:24 -0700 (PDT)
+        Fri, 28 Oct 2022 07:04:28 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Bjorn Andersson <andersson@kernel.org>,
         Andy Gross <agross@kernel.org>,
@@ -92,72 +93,128 @@ To:     Bjorn Andersson <andersson@kernel.org>,
         netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-renesas-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] dt-bindings: clock: qcom,gcc-ipq8074: use common GCC schema
-Date:   Fri, 28 Oct 2022 10:03:24 -0400
-Message-Id: <20221028140326.43470-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: net: constrain number of 'reg' in ethernet ports
+Date:   Fri, 28 Oct 2022 10:03:25 -0400
+Message-Id: <20221028140326.43470-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221028140326.43470-1-krzysztof.kozlowski@linaro.org>
+References: <20221028140326.43470-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reference common Qualcomm GCC schema to remove common pieces.
+'reg' without any constraints allows multiple items which is not the
+intention for Ethernet controller's port number.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/clock/qcom,gcc-ipq8074.yaml      | 25 +++----------------
- 1 file changed, 4 insertions(+), 21 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml
-index 21470f52ce36..ac6711ed01ba 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-ipq8074.yaml
-@@ -17,34 +17,17 @@ description: |
-   See also:
-   - dt-bindings/clock/qcom,gcc-ipq8074.h
+---
+
+Please give it a time for Rob's bot to process this.
+---
+ Documentation/devicetree/bindings/net/asix,ax88178.yaml       | 4 +++-
+ Documentation/devicetree/bindings/net/microchip,lan95xx.yaml  | 4 +++-
+ .../devicetree/bindings/net/microchip,lan966x-switch.yaml     | 4 ++--
+ .../devicetree/bindings/net/microchip,sparx5-switch.yaml      | 3 ++-
+ .../devicetree/bindings/net/mscc,vsc7514-switch.yaml          | 3 ++-
+ .../bindings/net/renesas,r8a779f0-ether-switch.yaml           | 4 ++--
+ 6 files changed, 14 insertions(+), 8 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/asix,ax88178.yaml b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
+index 1af52358de4c..a81dbc4792f6 100644
+--- a/Documentation/devicetree/bindings/net/asix,ax88178.yaml
++++ b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
+@@ -27,7 +27,9 @@ properties:
+           - usbb95,772b   # ASIX AX88772B
+           - usbb95,7e2b   # ASIX AX88772B
  
-+allOf:
-+  - $ref: qcom,gcc.yaml#
+-  reg: true
++  reg:
++    maxItems: 1
 +
- properties:
-   compatible:
-     const: qcom,gcc-ipq8074
+   local-mac-address: true
+   mac-address: true
  
--  '#clock-cells':
--    const: 1
--
--  '#power-domain-cells':
--    const: 1
--
--  '#reset-cells':
--    const: 1
--
--  reg:
--    maxItems: 1
--
--  protected-clocks:
--    description:
--      Protected clock specifier list as per common clock binding.
--
- required:
-   - compatible
--  - reg
--  - '#clock-cells'
--  - '#power-domain-cells'
--  - '#reset-cells'
+diff --git a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
+index cf91fecd8909..3715c5f8f0e0 100644
+--- a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
++++ b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
+@@ -39,7 +39,9 @@ properties:
+           - usb424,9e08   # SMSC LAN89530 USB Ethernet Device
+           - usb424,ec00   # SMSC9512/9514 USB Hub & Ethernet Device
  
--additionalProperties: false
-+unevaluatedProperties: false
+-  reg: true
++  reg:
++    maxItems: 1
++
+   local-mac-address: true
+   mac-address: true
  
- examples:
-   - |
+diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+index dc116f14750e..583d70c51be6 100644
+--- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
++++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+@@ -83,8 +83,8 @@ properties:
+             const: 0
+ 
+           reg:
+-            description:
+-              Switch port number
++            items:
++              - description: Switch port number
+ 
+           phys:
+             description:
+diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+index 57ffeb8fc876..ccb912561446 100644
+--- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
++++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+@@ -89,7 +89,8 @@ properties:
+ 
+         properties:
+           reg:
+-            description: Switch port number
++            items:
++              - description: Switch port number
+ 
+           phys:
+             maxItems: 1
+diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+index ee0a504bdb24..1cf82955d75e 100644
+--- a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
++++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+@@ -109,7 +109,8 @@ properties:
+ 
+         properties:
+           reg:
+-            description: Switch port number
++            items:
++              - description: Switch port number
+ 
+           phy-handle: true
+ 
+diff --git a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
+index 581fff8902f4..0eba66a29c6c 100644
+--- a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch.yaml
+@@ -106,8 +106,8 @@ properties:
+ 
+         properties:
+           reg:
+-            description:
+-              Port number of ETHA (TSNA).
++            items:
++              - description: Port number of ETHA (TSNA).
+ 
+           phys:
+             maxItems: 1
 -- 
 2.34.1
 
