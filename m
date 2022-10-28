@@ -2,75 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D563610E64
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 12:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FA7E610E7E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 12:31:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbiJ1KZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 06:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52038 "EHLO
+        id S230334AbiJ1KbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 06:31:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbiJ1KZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 06:25:17 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382ED3D580
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 03:25:15 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id l2so4453115pld.13
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 03:25:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=compal-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mUsj9+u75ZiURBRDbzjBcZDwYbW7xC+xuux1Bvrvp1o=;
-        b=m/UP4fu4PKx43aYhlz2Rp68oxaguB66SWgjhBVhkhTHKdqmEwNzyWVWP/JjKj9e9MR
-         Y9NbqLdrh6vosMJkx4/BbPjlDdoTGOSbLf9YlskUdi2tRYgX1g1CvzAuVyoCi0VkzXRC
-         YiJikNgpdC5EnHKpbrhHNkk119Nj3DFsGsE6w+TjxTdDz+6HVs67iFL9qP8jyjb/AORE
-         f3P+EGHaIc/diGpmmYEz4CycVYZSvEao+8SdiHCuSm9vC6VKyCeNUY/bjUA93jagvckf
-         3An73/Dpsb6QM8WHQVPgptVGjG3555ilgw6nCH2As9aTzF5lO+bKWqXlNOhd+iiecq/a
-         GB6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mUsj9+u75ZiURBRDbzjBcZDwYbW7xC+xuux1Bvrvp1o=;
-        b=wTQ3CVruZFErXvROim28SbRBHcOIkpj9B28cvmK19aAkzu4aEj7JFnhcva7U3J4cgW
-         5IF07JQ3LnPwni87XSK/etuYPXm4igYm0C/fRtejHq6dPHOJuSLe93MxvFJ4e7giR4A1
-         +t5AhgZ1xTH0LTqd93GJp5NvmQFJlWEvsccYCsZBRC9pk6NZUNeU7qtPP6HaRLGd85s7
-         kLoZa8Q2MkyH2BTMLFZwy6PPDqE5yb8zNHyQGQA/xFqdO6Zhp2lmT7REjhOEPqhdFN6q
-         sK365I9X0yB0q0wzDim82ak5+a+UhzwXnMBIy4xPVZqKhtBCc0n0qdvQwY9/IDUOGzXJ
-         hiqg==
-X-Gm-Message-State: ACrzQf0kt8Rpe6S9Jfc6npctu+Ros4RyFKsASMoUWllFfTrqmn5cPpfG
-        vw1CxrZCO9GA6ARLqc1LSiGUnw==
-X-Google-Smtp-Source: AMsMyM5PF+mfGpOT7qE4MUpscnGJjWoxwCDcOj+0J2CfXJVc05btTeWq4lG3ZKUCtFYAksnUSFF5Nw==
-X-Received: by 2002:a17:902:bd8e:b0:178:25ab:56cc with SMTP id q14-20020a170902bd8e00b0017825ab56ccmr53514796pls.86.1666952715118;
-        Fri, 28 Oct 2022 03:25:15 -0700 (PDT)
-Received: from localhost.localdomain (118-167-210-30.dynamic-ip.hinet.net. [118.167.210.30])
-        by smtp.gmail.com with ESMTPSA id o1-20020aa79781000000b0056b6a22d6c9sm2565236pfp.212.2022.10.28.03.25.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 03:25:14 -0700 (PDT)
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S229996AbiJ1KbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 06:31:11 -0400
+Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D5631826D0;
+        Fri, 28 Oct 2022 03:31:10 -0700 (PDT)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout4.routing.net (Postfix) with ESMTP id 8C9711009AC;
+        Fri, 28 Oct 2022 10:31:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1666953067;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PZ0ls0S2a/efmbZzUvXCvMEN9e16JQ1qjyHBOdmh020=;
+        b=q/RpwxhgGQQKA4BlPp0SXwD0QqTgV22m63u0T6sflNbxvZ2Bl3rC7pIfeYtzoL+d/4Plka
+        nBg6YbaIChu3PVgt3ComMofjBxmlFS7aqsmm4CuOe4xJ6V3NH1sROoElX+hnt7Y2gGo4df
+        5eOGIGoevtqDdSR2d1qRfR8CY7ETwkQ=
+Received: from [127.0.0.1] (fttx-pool-217.61.151.20.bambit.de [217.61.151.20])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id BBF444071F;
+        Fri, 28 Oct 2022 10:31:06 +0000 (UTC)
+Date:   Fri, 28 Oct 2022 12:31:00 +0200
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        linux-mediatek@lists.infradead.org
+CC:     Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, robh@kernel.org,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
-        angelogioacchino.delregno@collabora.corp-partner.google.com,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: [PATCH v1 2/2] ASoC: dmic: Add optional dmic selection
-Date:   Fri, 28 Oct 2022 18:24:50 +0800
-Message-Id: <20221028102450.1161382-3-ajye_huang@compal.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
-References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_1/2=5D_dt-bindings=3A_PCI=3A_me?= =?US-ASCII?Q?diatek-gen3=3A_add_SoC_based_clock_config?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <61c0b62af62ddd0e98378159db2b7d94022c9bf5.camel@mediatek.com>
+References: <20221025072837.16591-1-linux@fw-web.de> <20221025072837.16591-2-linux@fw-web.de> <61c0b62af62ddd0e98378159db2b7d94022c9bf5.camel@mediatek.com>
+Message-ID: <29E908AC-3313-4A12-BD98-362803D51C12@fw-web.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mail-ID: f37f2ece-abf2-4114-81ef-4a8ba4b5b03d
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
@@ -80,106 +62,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having two DMICs, a front DMIC and a rear DMIC,
-but only host audio input AUX port0 is used for these two Dmics.
-A "dmic_sel-gpios" property is used for a mixer control to switch
-the dmic signal source between the Front and Rear Dmic.
+Am 28=2E Oktober 2022 11:24:36 MESZ schrieb Jianjun Wang <jianjun=2Ewang@me=
+diatek=2Ecom>:
+>Hi Frank,
+>
+>After apply this patch, we found some dtbs_check error with the
+>following patch which adds the PCIe node for MT8195:
+>
+>https://lore=2Ekernel=2Eorg/linux-pci/20221020111925=2E30002-3-tinghan=2E=
+shen@mediatek=2Ecom/
+>
+>arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2=2Edtb: pcie@112f0000
+>: clock-names:        5: 'top_133m' was expected
+>    From schema: Documentation/devicetree/bindings/pci/mediatek-pcie-
+>gen3=2Eyaml
+>arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2=2Edtb: pcie@112f8000
+>: clock-names:        5: 'top_133m' was expected
+>    From schema: Documentation/devicetree/bindings/pci/mediatek-pcie-
+>gen3=2Eyaml
+>
+>Did you get the same error when adding the PCIe node for MT7986?
+>
+>Thanks=2E=20
+>
+>On Tue, 2022-10-25 at 09:28 +0200, Frank Wunderlich wrote:
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>=20
 
-usage: amixer -c0 cset name='Dmic Mux' 'FrontMic'
-usage: amixer -c0 cset name='Dmic Mux' 'RearMic'
+As far as i see the problem is the fallback-node which requires different =
+clockconfig than the main compatible=2E
 
-Refer to this one as an example,
-commit 3cfbf07c6d27
-("ASoC: qcom: sc7180: Modify machine driver for 2mic")
+6th clock was defined as this enum
+  - top_133m        # for MT8192
+  - peri_mem        # for MT8188/MT8195
 
-Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
----
- sound/soc/codecs/dmic.c | 52 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+By using lower compatible as main compatible and first one as fallback you=
+ cannot success all parts of allOf=2E
 
-diff --git a/sound/soc/codecs/dmic.c b/sound/soc/codecs/dmic.c
-index 4fd6f97e5a49..5c56fbcdb3e6 100644
---- a/sound/soc/codecs/dmic.c
-+++ b/sound/soc/codecs/dmic.c
-@@ -28,8 +28,50 @@ struct dmic {
- 	int wakeup_delay;
- 	/* Delay after DMIC mode switch */
- 	int modeswitch_delay;
-+	struct gpio_desc *dmic_sel;
-+	int dmic_switch;
- };
- 
-+static int dmic_sel_get(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct snd_soc_component *component = snd_soc_dapm_to_component(dapm);
-+	struct dmic *dmic = snd_soc_component_get_drvdata(component);
-+
-+	ucontrol->value.integer.value[0] = dmic->dmic_switch;
-+	return 0;
-+}
-+
-+static int dmic_sel_set(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct snd_soc_component *component = snd_soc_dapm_to_component(dapm);
-+	struct dmic *dmic = snd_soc_component_get_drvdata(component);
-+
-+	dmic->dmic_switch = ucontrol->value.integer.value[0];
-+	if (dmic->dmic_sel) {
-+		gpiod_set_value(dmic->dmic_sel, dmic->dmic_switch);
-+		dev_info(dapm->dev, "%s value %d\n", __func__, dmic->dmic_switch);
-+	} else
-+		dev_info(dapm->dev, "%s without dmic_sel-gpios\n", __func__);
-+
-+	return 0;
-+}
-+
-+static const char * const dmic_mux_text[] = {
-+	"FrontMic",
-+	"RearMic",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(dmic_enum,
-+			    SND_SOC_NOPM, 0, dmic_mux_text);
-+
-+static const struct snd_kcontrol_new dmic_mux_control =
-+	SOC_DAPM_ENUM_EXT("DMIC Select Mux", dmic_enum,
-+			  dmic_sel_get, dmic_sel_set);
-+
- static int dmic_daiops_trigger(struct snd_pcm_substream *substream,
- 			       int cmd, struct snd_soc_dai *dai)
- {
-@@ -115,6 +157,11 @@ static int dmic_component_probe(struct snd_soc_component *component)
- 	if (dmic->modeswitch_delay > MAX_MODESWITCH_DELAY)
- 		dmic->modeswitch_delay = MAX_MODESWITCH_DELAY;
- 
-+	dmic->dmic_sel = devm_gpiod_get_optional(component->dev,
-+						"dmic_sel", GPIOD_OUT_LOW);
-+	if (IS_ERR(dmic->dmic_sel))
-+		return PTR_ERR(dmic->dmic_sel);
-+
- 	snd_soc_component_set_drvdata(component, dmic);
- 
- 	return 0;
-@@ -125,10 +172,15 @@ static const struct snd_soc_dapm_widget dmic_dapm_widgets[] = {
- 			       SND_SOC_NOPM, 0, 0, dmic_aif_event,
- 			       SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
- 	SND_SOC_DAPM_INPUT("DMic"),
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+	SND_SOC_DAPM_MUX("Dmic Mux", SND_SOC_NOPM, 0, 0, &dmic_mux_control),
- };
- 
- static const struct snd_soc_dapm_route intercon[] = {
- 	{"DMIC AIF", NULL, "DMic"},
-+	/* digital mics */
-+	{"Dmic Mux", "FrontMic", "DMIC"},
-+	{"Dmic Mux", "RearMic", "DMIC"},
- };
- 
- static const struct snd_soc_component_driver soc_dmic = {
--- 
-2.25.1
+>>    clock-names:
+>> -    items:
+>> -      - const: pl_250m
+>> -      - const: tl_26m
+>> -      - const: tl_96m
+>> -      - const: tl_32k
+>> -      - const: peri_26m
+>> -      - enum:
+>> -          - top_133m        # for MT8192
+>> -          - peri_mem        # for MT8188/MT8195
 
+From=20my PoV the dts is wrong as the 2 SoC are not compatible to each other=
+=2E=2E=2Emt8192 needs top_133m as 6th clock whereas mt8195 needs peri_mem=
+=2E Of course we can change it back to enum in both branches,but imho fallb=
+ack does not match to main compatible in the dts=2E
+
+>> +allOf:
+>> +  - $ref: /schemas/pci/pci-bus=2Eyaml#
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            const: mediatek,mt8192-pcie
+>> +    then:
+>> +      properties:
+>> +        clock-names:
+>> +          items:
+>> +            - const: pl_250m
+>> +            - const: tl_26m
+>> +            - const: tl_96m
+>> +            - const: tl_32k
+>> +            - const: peri_26m
+>> +            - const: top_133m
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - mediatek,mt8188-pcie
+>> +              - mediatek,mt8195-pcie
+>> +    then:
+>> +      properties:
+>> +        clock-names:
+>> +          items:
+>> +            - const: pl_250m
+>> +            - const: tl_26m
+>> +            - const: tl_96m
+>> +            - const: tl_32k
+>> +            - const: peri_26m
+>> +            - const: peri_mem
+>> +
+>>  unevaluatedProperties: false
+>> =20
+>>  examples:
+>
+
+
+regards Frank
