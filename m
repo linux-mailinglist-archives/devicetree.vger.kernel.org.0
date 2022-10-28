@@ -2,97 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C985611D4F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E996611DA5
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbiJ1WQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 18:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50042 "EHLO
+        id S230197AbiJ1WsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 18:48:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230037AbiJ1WQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:16:50 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635CC249D3D
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:16:49 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id r19so4367754qtx.6
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:16:49 -0700 (PDT)
+        with ESMTP id S230175AbiJ1Wr6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:47:58 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31AC1E3EFF
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:47:57 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id e129so6010905pgc.9
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:47:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AnYlAKDE7Id/0+mYIu8Vu+E1SnnSzVg+K0/rkruZ2h8=;
-        b=KHwk2RAuaECbC3I7NYokRNVpeeKvnlcV85rc9BRqkxuNJlkU2+lVRJXfJqZFDfM1tD
-         FPistzLhKYj8sYn3DvAo1CqC/S7W4JqEJD56XQqUZjtYm/C2ymDinNrQ4rq5SnOF4dzq
-         s3iTuqPV6qb+SdKUqqpld/8OMroRwU6Cqrrel1ZZlUgH/Y/aAjQ3hdm/rcnQ2Z07o1CO
-         thqe8VfVj7/vhOIUQZk0RFINemife/mrT1/5eXAfVArDHO4V3yhn1eljUADT7uOBhtB3
-         8In3Mv7oNC0I/MEK0dD49w6ktF3SPP+AzPOtzs3Qh0xn9f97/9CE9AFekFUiHMPmebCT
-         F6cQ==
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XNWOunf0MeNELm/6hh2SrO7f/AQE69u+QfbjVdty5AM=;
+        b=EEpGSKxK9lR6bSHQeO9mpjI5aJ0mo+Tq9xtR5dxdAmPO9pWDjVnq3MZGd3HBstWi89
+         G81YmqMpQD6yQWv7F7ajDR4NDx7KA6Iel23+LU300QGRZLpkh8LHT1j31b1ctIB0AzXR
+         W4ib7MLukIKMC+QZGnlSX+erxQKN1z0e9QTqXwH4kEz350BEMayq7PocPU1ejopjVjeG
+         fqAqO0qM9sV+0Rnn7zy7g+DyMo1wxWqz+H2CDqLf7WZ1cBsSmVWB418/2iXO1nWpNhCm
+         c9JOSvK/1J5o3pAH+/Ej2Jx0J13dmvi4CIYsCT8esTVuiZuJDdBhUWIz+EWJ1VwNhtmZ
+         ZdDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AnYlAKDE7Id/0+mYIu8Vu+E1SnnSzVg+K0/rkruZ2h8=;
-        b=taATANudnM0b0fgwzAIsyHEawvRSTmZDZiRigq95MvlNSjMFw2xT1299Xw8yGbuSWS
-         wcetNJnOZrtshlhLNx41zVgKoCUGtYXhLbG+5vwIgKnbGIafjaHs1N6SP2Vpu052NWz6
-         fD7MqgJNMZ7WNgYSysZZORfhiIi8hfnxbcshxpKPMrFSUNdpZ2+cDaXzpd15vTvEh8uu
-         gWn9BsNohOM4Q4J7GZevYQxeLBny91w1ExINUHm+4cyUvakmgJBXZv7IKdoOb5oO6SrZ
-         akkkVM3W1gYW9kLNBnzagk0gqAVhn44wNZ7hFI/Y/wqwg81yc2YebGczHQgyQkTESLUK
-         +CVw==
-X-Gm-Message-State: ACrzQf1IGQy4b7X4MKmJz5OnTO9qVjMSzywQYB0NMbAS1jNOmrQOCgft
-        8idlFKs2uhbeNmo66q8LeJZpPg==
-X-Google-Smtp-Source: AMsMyM4JqcQtQfto3gxhbFuFfIPXNDpMOLw+m+TMO83HEMc+0lwBFGtm0ISPPKKz6TltA+cegdORBA==
-X-Received: by 2002:ac8:57cd:0:b0:39c:bb4c:565b with SMTP id w13-20020ac857cd000000b0039cbb4c565bmr1511242qta.115.1666995408600;
-        Fri, 28 Oct 2022 15:16:48 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id v8-20020a05620a440800b006ec59941acasm4018380qkp.11.2022.10.28.15.16.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 15:16:47 -0700 (PDT)
-Message-ID: <1e5b41c7-5f0d-68e7-ddbb-d2594998bd4f@linaro.org>
-Date:   Fri, 28 Oct 2022 18:16:46 -0400
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XNWOunf0MeNELm/6hh2SrO7f/AQE69u+QfbjVdty5AM=;
+        b=EC+kYTBsqXlLIqVl3QiYVwWFuq6P6kkx5OePQlnHinWzlsWJTpeSsp2cyq+39haBCD
+         VR0D86WnhzxI/bc87fe3zevch2PC+TrZRHxfeKUHR24NfLkMLM4lShLEWzAyyhffijnJ
+         8kQUYygqbYdMbalXzCc06nK5bwtGc80RAVDyeCBqiP2yAH0268oet1yIyeus/T2MJhQC
+         pZwCuEE2GDK1Xm5jH7EIKGxwUjApKOjwpG4Dcyaljx0s+5SgUfrGJF92uCtVNrYDcmQQ
+         UFDhiWUuaY0F8cD3nGlAN4SrAnk2O1985y5re+KiMlzHDt4wjS/diPCP+X9lc8GGnl5i
+         gWnw==
+X-Gm-Message-State: ACrzQf1N+F+T+PTe4y6RwFDkdZ486k/rG2CyExKKTBTgb+iLVozyfLHz
+        /kEuoQimT1sGwCktRSew71GX+g==
+X-Google-Smtp-Source: AMsMyM6QWOjW3DUtSzW+KukyxrKtOPnGEwYsIahI+/leRyvtuw78aUBGwwYao1GqCUc6at4+NEb0tQ==
+X-Received: by 2002:a63:ea48:0:b0:43c:69c4:68d4 with SMTP id l8-20020a63ea48000000b0043c69c468d4mr1629243pgk.416.1666997277123;
+        Fri, 28 Oct 2022 15:47:57 -0700 (PDT)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id q22-20020a170902bd9600b00186b6bb2f48sm3523938pls.129.2022.10.28.15.47.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 15:47:56 -0700 (PDT)
+In-Reply-To: <20221012110928.352910-1-emil.renner.berthing@canonical.com>
+References: <20221012110928.352910-1-emil.renner.berthing@canonical.com>
+Subject: Re: [PATCH v1] riscv: dts: sifive unleashed: Add PWM controlled LEDs
+Message-Id: <166699694891.354.8818111630458399949.b4-ty@rivosinc.com>
+Date:   Fri, 28 Oct 2022 15:42:28 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sc8280xp: Add bwmon instances
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     Georgi Djakov <djakov@kernel.org>,
-        Mike Tipton <quic_mdtipton@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221028034155.5580-1-quic_bjorande@quicinc.com>
- <20221028034155.5580-11-quic_bjorande@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028034155.5580-11-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.11.0-dev-36ce3
+Cc:     Alexandre Ghiti <alexandre.ghiti@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bin Meng <bin.meng@windriver.com>
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        linux-riscv@lists.infradead.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 23:41, Bjorn Andersson wrote:
-> Add the two bwmon instances and define votes for CPU -> LLCC and LLCC ->
-> DDR, with bandwidth values based on the downstream DeviceTree.
+On Wed, 12 Oct 2022 13:09:28 +0200, Emil Renner Berthing wrote:
+> This adds the 4 PWM controlled green LEDs to the HiFive Unleashed device
+> tree. The schematic doesn't specify any special function for the LEDs,
+> so they're added here without any default triggers and named d1, d2, d3
+> and d4 just like in the schematic.
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
+> 
 
-Looks good (with compatible change to include "cpu" part):
+Applied, thanks!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[1/1] riscv: dts: sifive unleashed: Add PWM controlled LEDs
+      https://git.kernel.org/palmer/c/8bc8824d3019
 
 Best regards,
-Krzysztof
-
+-- 
+Palmer Dabbelt <palmer@rivosinc.com>
