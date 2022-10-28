@@ -2,92 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B8B3610793
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 042A76107B3
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234467AbiJ1CBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 22:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51760 "EHLO
+        id S234802AbiJ1COZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 22:14:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234492AbiJ1CBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:01:10 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA15537FA
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:01:09 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id b25so2623280qkk.7
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:01:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VcEbkQyKWb0L/Kg+ZX5HS6lAAi/DowSIXYc8QAB2Kvg=;
-        b=ewKFgj2VXv+7hOe1fSACo9aaYnFrC2eObv3KKRwT6XZ2Y8AxykC0UNMzi9vkpu9asf
-         PeFG2R+MOYlyOHZ9so4lnwzQydIOI6jDJpLHlnXtGB1aUrnWoyrSl/Z5ISJjA4JsJ3/W
-         VqFv7fAXe1zS7aQudC4D3J/ScT/8shcfjDZ6Y9RKQmz6Jl7u6eXiTujTuUzm0b4hLPL+
-         BB1dVtEU2LVYc70hHo4KZgzmMCgvyX0qIuTbhHcZVRoDbfnxbd8htJ6HoqxBIRMVUTL1
-         YSv2LSD8Pd8P90+54refqhPmqqpPjKR/2EYMWhjMXI6HitC6/GWmMrr3m2oxYqUBX4bW
-         v1yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VcEbkQyKWb0L/Kg+ZX5HS6lAAi/DowSIXYc8QAB2Kvg=;
-        b=lQpZ11SN9UtytJypD7m2jV5VHQuId86w2OsvscG/cqLhv+7+9Fz75/a/zimWgAdsu0
-         sv+QJLGSpkrMJ4noSFR4p6oIEDlFm/HvP+1W6yV+Mn91jrKVOR6MKDqB4f1bICRNTXCR
-         rZuJ3sTLzBDZa6xf6IwSJJhJLBGATFpGW8EBUPDXOQvnJiCJ2l0Yr3eOM1kwJt16jy7+
-         Q/mWzNNDeX38R0Mp+WrmL81MFC3cPuwBJ5aqOituTsRPKv5cLeJnCKUa8ECKdOVbpdP9
-         c7VTwOXgHhUSA9rVo1rJ4gyFxtCbUKzgk5fyRB/R1OboQzNOul45oPcRLnGjpR3EwSOI
-         S+sA==
-X-Gm-Message-State: ACrzQf1UdjQcNN7KGiDkh7ay2oTw0Y9qVmoIM9kWNj0fSvmwaD0zNbZR
-        bkYLhDtZBJVK7kcnx8K3eML0dQ==
-X-Google-Smtp-Source: AMsMyM4d/n9swMkcWtvrJM2VCoFzwdy2vtmRKr+nsDpZ0zGmNvHHxuJUhYkQKjPr828IJ5kn0OOVMQ==
-X-Received: by 2002:a05:620a:254e:b0:6c9:cc85:c41a with SMTP id s14-20020a05620a254e00b006c9cc85c41amr37259351qko.260.1666922468461;
-        Thu, 27 Oct 2022 19:01:08 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id r22-20020ac84256000000b0039467aadeb8sm1449703qtm.13.2022.10.27.19.01.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 19:01:07 -0700 (PDT)
-Message-ID: <49f504a1-e7c3-ade7-b4b4-e7571125b992@linaro.org>
-Date:   Thu, 27 Oct 2022 22:01:05 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [EXT] Re: [PATCH v8 1/2] dt-bindings: fsl-imx-sdma: Convert imx
- sdma to DT schema
-Content-Language: en-US
-To:     Joy Zou <joy.zou@nxp.com>, "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>
-Cc:     "S.J. Wang" <shengjiu.wang@nxp.com>,
-        "martink@posteo.de" <martink@posteo.de>,
-        "dev@lynxeye.de" <dev@lynxeye.de>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        Peng Fan <peng.fan@nxp.com>, "david@ixit.cz" <david@ixit.cz>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        Hongxing Zhu <hongxing.zhu@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20221025083609.2129260-1-joy.zou@nxp.com>
- <20221025083609.2129260-2-joy.zou@nxp.com>
- <133f27f4-d92c-ef8d-4fc9-32387518e4c0@linaro.org>
- <AM6PR04MB5925157A3A6F8ADB80371082E1339@AM6PR04MB5925.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AM6PR04MB5925157A3A6F8ADB80371082E1339@AM6PR04MB5925.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S235652AbiJ1COY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:14:24 -0400
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD921B7ED5;
+        Thu, 27 Oct 2022 19:14:22 -0700 (PDT)
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 57FCF200AB2;
+        Fri, 28 Oct 2022 04:14:21 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1A8A0200A9F;
+        Fri, 28 Oct 2022 04:14:21 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 3A236180222C;
+        Fri, 28 Oct 2022 10:14:19 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     shengjiu.wang@gmail.com, abelvesa@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, marex@denx.de
+Subject: [PATCH v3 0/3] clk: imx8mp: Add audio shared gate
+Date:   Fri, 28 Oct 2022 09:53:42 +0800
+Message-Id: <1666922026-6943-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,65 +44,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 23:01, Joy Zou wrote:
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2022年10月26日 22:59
->> To: Joy Zou <joy.zou@nxp.com>; vkoul@kernel.org; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
->> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com
->> Cc: S.J. Wang <shengjiu.wang@nxp.com>; martink@posteo.de;
->> dev@lynxeye.de; alexander.stein@ew.tq-group.com; Peng Fan
->> <peng.fan@nxp.com>; david@ixit.cz; aford173@gmail.com; Hongxing Zhu
->> <hongxing.zhu@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
->> dmaengine@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Subject: [EXT] Re: [PATCH v8 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma
->> to DT schema
->>
->> Caution: EXT Email
->>
->> On 25/10/2022 04:36, Joy Zou wrote:
->>> Convert the i.MX SDMA binding to DT schema format using json-schema.
->>>
->>> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma,
->>> fsl,imx35-to1-sdma and fsl,imx35-to2-sdma are not used. So need to
->>> delete it. The compatibles fsl,imx50-sdma, fsl,imx6sll-sdma and
->>> fsl,imx6sl-sdma are added. The original binding don't list all compatible used.
->>>
->>> In addition, add new peripheral types HDMI Audio.
->>>
->>> Signed-off-by: Joy Zou <joy.zou@nxp.com>
->>> ---
->>> Changes in v8:
->>> add the dma-controller quotes.
->>
->> Why adding quotes?
-> I refer to your comments in patch v7/1. The comment as follow:
-> +maintainers:
-> +  - Joy Zou <joy.zou@nxp.com>
-> +
-> You need to reference dma-controller.yaml schema.
+Add audio shared gate because CCGR101 is shared
 
-Yes, you need to reference dma-controller.yaml. Nothing about quotes.
-Reference is "$ref: .....yaml"
+changes in v3:
+- remove IMX8MP_CLK_AUDIO_ROOT
 
+changes in v2:
+- split dt-binding to separate patch
 
-> +properties:
-> +  compatible:
-> +    one of:
-> I misunderstand that add the dma-controller.yaml quotes. 
+Abel Vesa (2):
+  dt-bindings: clock: imx8mp: Add ids for the audio shared gate
+  clk: imx8mp: Add audio shared gate
 
-There was nothing about quotes - ".
+Shengjiu Wang (1):
+  dt-bindings: clock: imx8mp: Remove unused IMX8MP_CLK_AUDIO_ROOT
 
-> So I am a little confused. Now, I see.
-> should I add dma-common.yaml quotes but not the dma-controller?
+ drivers/clk/imx/clk-imx8mp.c             | 11 ++++++++++-
+ include/dt-bindings/clock/imx8mp-clock.h | 12 ++++++++++--
+ 2 files changed, 20 insertions(+), 3 deletions(-)
 
-Just drop "
-
-https://en.wikipedia.org/wiki/Quotation_mark
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
