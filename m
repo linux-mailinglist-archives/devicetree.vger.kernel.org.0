@@ -2,83 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA43611A7B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 20:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF915611A95
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 21:01:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbiJ1SwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 14:52:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
+        id S229959AbiJ1TBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 15:01:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbiJ1SwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 14:52:09 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 531FD22B3B5;
-        Fri, 28 Oct 2022 11:52:08 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id k19so9122189lji.2;
-        Fri, 28 Oct 2022 11:52:08 -0700 (PDT)
+        with ESMTP id S229839AbiJ1TBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 15:01:47 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4042D207513
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 12:01:39 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id e15so149053qts.1
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 12:01:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6gdWn4WdaMz/orHTAzTV9G0nntj7JTXh23bqgGD28ww=;
-        b=IlIMFaVvVPTKibfA9BQgsl6WlDe6xi3m4idFQLiURGOQyhN8GFQQQFzvvyRXnD8he2
-         T21zJmDFV5DckThnOPksEsSfiJFBvQMprH0xtSSfAtSpn6zO0Cjc0Yxtp+LtKIrGQg/y
-         PLw1kC73/9lVhboHHGzJAx4oKBDtFV5mbkgd2T+lfZZcj8x2kiEVbX7den29NDjlH8g2
-         9BMCYYXGQDcCy/6qYq3d07fXwrupU0vQ+syCzOwFPxgcAl/EBYglrHaJ7NSuzDZzavN6
-         w7yLPQSUXCBZbsXsiYpnc+oaYjOvAffoqDkuxgGmsLUoVgfxJxYbbzG+x36N03gai0sN
-         OWAQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TrrrPiEsaJjz2I4gZR9uDg73/3QRK40o8WZc68H+SKU=;
+        b=hs34YtzgAoaQFOxylLaY3WS1CFJ99MNS6mPLJ8PcAv9PY4GsNKzUUpTPGt/YlynNLE
+         d/2rY/wciydJ7WoHuyTIYHRDs9n+2coQ5aUaZdvNDIQIxxb3oOkkVsDuSON9JnvQhxxG
+         Pg3XGwO/Ap3XOTZHlYHmaODBoHyi0DRusGXUaDB9e+IF0v/jCV7RLhcl8uLSW2uMJ7jP
+         +HOS94qG+7Tn2KV8pz6wJ3GjWPxvGVll1Dfz55XLObU8p/HgyVrAzyVWyOJzzk64qW9x
+         aljAjZJ3BqEo/6VCasVZ19UsuxCtcNdD0prd+IiCVp2Np7gMQl71jVqQy5D6ps+lSxSz
+         SIMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6gdWn4WdaMz/orHTAzTV9G0nntj7JTXh23bqgGD28ww=;
-        b=ydRyn2UZF7Dl8xRFyUxLc0yiEHGZMeboatwrYo6/gGsjkZfD47HGXBMV0EOGVW/Ea5
-         Uf9iVR+0i24MH5a9iqz/9GZnTcPw8rcREzIXzMaEKmJNhQ1jL1hTVK9DJDwMHlxAZEn0
-         qy4/z0nWQsas00sgCwqJw1BhxH3a+rA8q8Z5OdQZRCgx4ysVeHZY9g6ICxPdQxxl8BIS
-         8GN2l68cr2K0pde5bYOpexRIcfLiS7wC49G9ZZVBVnziVyUX2qPgqKTrXkGPGWBr6riq
-         mFICsPCLP6Sd/mkxixs3nBUZgPiilTIgiJvp/LgqdLpauzWxm73iWlZNj4a6y9bWUpQ5
-         HaRA==
-X-Gm-Message-State: ACrzQf12COXC12eQHERvYMTuYxGsQKTBr6eVh51cfnWFfL/CtiMU3KQY
-        F/VuLl5NV6BKpk1GgvPzX94xHAqCX+2hmPuM99g=
-X-Google-Smtp-Source: AMsMyM5VRH4ZpCY4vOTfbRgY2tlY1P3ky5WrY7Fz0QRermYZFqN2uaE/zebFoOjmW7Y2t2HShLgeo8qoKuu7FMxmtTc=
-X-Received: by 2002:a05:651c:1073:b0:277:35ca:5eef with SMTP id
- y19-20020a05651c107300b0027735ca5eefmr372209ljm.150.1666983126676; Fri, 28
- Oct 2022 11:52:06 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TrrrPiEsaJjz2I4gZR9uDg73/3QRK40o8WZc68H+SKU=;
+        b=IdmT2pWzbtQdhxVVqKNh/XTUwAEYuvdp5GJeICYYgwlRK9xGs0ve76JztDZWBkBD5U
+         wxsoUn0bgYrm46x8ui+4VpdBGqqvE3pieUVT8o7VcHPbrtJiWtcF0V+mjhCPYFTnNkTb
+         t0i8zMD38fw1PZuqJirCRHtXY8Tid/5ZNDfaE7BJIJ4qNBgt8hEDOBTPwPQwXQwgLsIQ
+         c0jUw9d6rGktqIT23o9HBnWqF4vxjxCWCEJnulbUImu8x9z+aB2gq6HvyJO9E+Po9xLV
+         iEeU/fUrlRXUm9f/3W90r5IEFZnl1m0tuBYiohIK2tEw8+yyOwaR8UKGiOlZpE9SNqo+
+         TWUg==
+X-Gm-Message-State: ACrzQf0ZlOuAf/45PeQmoK8SMqEsKxOvbxn8Xsyt41Rqu7wei0LDZGVH
+        LeQkCoZSkbez3XVAX2O3Id2dhA==
+X-Google-Smtp-Source: AMsMyM5tI6t61tGPJX4Qmat7c8bhg7M4dZUK39Hr9ggtRlcSvI36L6NCrf8GcentL/vnPly4sejj6Q==
+X-Received: by 2002:ac8:7fd5:0:b0:3a4:ec00:ad14 with SMTP id b21-20020ac87fd5000000b003a4ec00ad14mr856426qtk.56.1666983696901;
+        Fri, 28 Oct 2022 12:01:36 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id f18-20020a05620a409200b006cdd0939ffbsm3523651qko.86.2022.10.28.12.01.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 12:01:36 -0700 (PDT)
+Message-ID: <0a5446a4-ec28-6a91-f7b3-35a920546474@linaro.org>
+Date:   Fri, 28 Oct 2022 15:01:33 -0400
 MIME-Version: 1.0
-References: <20221028165215.43662-1-fnkl.kernel@gmail.com> <20221028165215.43662-3-fnkl.kernel@gmail.com>
- <02523fe5-bf99-9891-d00c-347893d5dabe@linaro.org>
-In-Reply-To: <02523fe5-bf99-9891-d00c-347893d5dabe@linaro.org>
-From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date:   Fri, 28 Oct 2022 21:51:55 +0300
-Message-ID: <CAMT+MTTE84XDf8c0D3MLxZ92HiDP6DhXfpHVyQZ7hfYMUkL7dg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] pwm: Add Apple PWM controller
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, marcan@marcan.st,
-        sven@svenpeter.dev, alyssa@rosenzweig.io, asahi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH net-next v6 5/5] ARM: dts: qcom: ipq4019: Add description
+ for the IPQESS Ethernet controller
+Content-Language: en-US
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+References: <20221028154924.789116-1-maxime.chevallier@bootlin.com>
+ <20221028154924.789116-6-maxime.chevallier@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221028154924.789116-6-maxime.chevallier@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 at 20:54, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 28/10/2022 12:52, Sasha Finkelstein wrote:
-> > +config PWM_APPLE
-> > +     tristate "Apple SoC PWM support"
-> > +     depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
->
-> Why this code cannot be build on 32-bit?
-It uses 64-bit divisions, which causes it to fail to build on 32-bit
-mips. It should not be a
-problem, since this hardware is only present on 64-bit SoCs.
+On 28/10/2022 11:49, Maxime Chevallier wrote:
+> The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
+> connected to the CPU through the internal IPQESS Ethernet controller.
+> 
+> Add support for this internal interface, which is internally connected to a
+> modified version of the QCA8K Ethernet switch.
+> 
+> This Ethernet controller only support a specific internal interface mode
+> for connection to the switch.
+> 
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+You skipped the actual maintainers of the file.
+
+Best regards,
+Krzysztof
+
