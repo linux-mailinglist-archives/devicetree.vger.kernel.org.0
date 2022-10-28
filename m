@@ -2,127 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D836B611B9E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CF5A611BD0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:50:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiJ1UhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 16:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54254 "EHLO
+        id S229927AbiJ1UuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 16:50:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbiJ1UhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:37:08 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5278322ECA1
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:37:07 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id e15so309505qts.1
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:37:07 -0700 (PDT)
+        with ESMTP id S229835AbiJ1UuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:50:19 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3BA4BA47
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:50:15 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-13b103a3e5dso7617098fac.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:50:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mLhDGX+PrEvnm4Dlo2lfmgiA3MNJTPSJGxJWbaZR8W8=;
-        b=dP4p4Ok2D32LJTsv+EjZxVrvDh1JmRlkNAmsuKZR7akxXFdrlkTqJLWv1S7zAi0TRe
-         oMsD7dCt5jS2K7AH8aEJ+BvfgYbefW+KgGp9z+BKzh07aWvPulc/Dps+aMxq+EfxkNbT
-         u9FeToJoRFTd0nWVeVpKJbAFsvnQ4hByiUJIYB40hT1xF1q5aiBn8s+kCdDBJg6Z0Lhr
-         r7TN6Z0o5H9hRNWejPbhcpLo/TFiC5+hyBYkiAVuhF/PdZ39EW9sLF+M8Q90CVr3CVVG
-         18rgJO3aOSiY69X9lDt7Nj2pvhLKatYocDrT6TK4/69H5kmjW08JkLz5LnInELBjsvXc
-         Kakg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FcP0tGCK9d7r2ZJkyYaZJhFzBpIGugbHphWbIKx20Xg=;
+        b=ZoMWjfVQvaU9c5oUUdOo8SQUqm+QXHBAcJEfMVRu5kWBv4B2iAovEvZkanNtmKNIX2
+         43ejNwF7lhM+gZ/zF9rcTNf3hv22Y3+iEWAH6crzWy5vN3pc+N8/IxLteAEj4wc5ryWe
+         pr+WpFnJjIil/RHD5fMJ/whzAZkYDKhTvK2imRGdZs8V9OEkPJYLg5LCVyvwAtvcRMyz
+         Esu7T7CROvkoDolv/kuS+MtnMETpJza4oKmF4m/yIH0k1ocFmIjQiUwEQqGYvkL044ax
+         T+sBI6zxUToSFngKsirDQyagc/KOtKPosm5oTR/uEzXbrWfYORG4yuxe6VFD8n1tqatL
+         ePMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mLhDGX+PrEvnm4Dlo2lfmgiA3MNJTPSJGxJWbaZR8W8=;
-        b=RFyqyY3CCbBJF2BsjZ9Pqv3AY53tYiZwM0Q4A01/LDPX7qEj5GIH0OI53Y+ccBcO5y
-         ZT6Rq/sRGO3/RG9j8v8Gf+XDtKxS0m+GCrSz6NLaUN6VmmK6WlehEtpBrK9BuDXbUFaf
-         qKcQ+KFHJEODk0WnbDmcVKEt14IvCgeGoaodjvSx0Kt9J1uXxDxTfURgB1lKGH2YObm4
-         Tv7dV4/ezDSVSW/x+M6Ctsk4JXut0x+E8FbLwE2DCi+kdZLZ+SR11qR996A7uBS6LpCW
-         5hLAG5R/UDibiaAUlhYfKjOTr9Qp6/jGL22I3VmD8n556UCVDRaEBP7RBKoyczbfa9fg
-         aEIQ==
-X-Gm-Message-State: ACrzQf07o5Q2z136A+9nOzM4lQNfBX34Ojgz0afxVcyEvsCVILufnSq8
-        GEe+PZ9Fc5vndu+CyP9u3M63wQ==
-X-Google-Smtp-Source: AMsMyM5qKtdHZ8nexHN/YCSovC/f5dnkvPRDrUYXFOY9EAVNFTH5gMukdPnFsDXSX89IzH1T2mH09g==
-X-Received: by 2002:ac8:7f07:0:b0:39c:c64d:852e with SMTP id f7-20020ac87f07000000b0039cc64d852emr1178683qtk.21.1666989426498;
-        Fri, 28 Oct 2022 13:37:06 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id h18-20020ac87d52000000b003998bb7b83asm2827619qtb.90.2022.10.28.13.37.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 13:37:05 -0700 (PDT)
-Message-ID: <ebf10a8f-b2cb-b2d0-0742-1ab7e5d60172@linaro.org>
-Date:   Fri, 28 Oct 2022 16:37:04 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FcP0tGCK9d7r2ZJkyYaZJhFzBpIGugbHphWbIKx20Xg=;
+        b=v5WqzI/Xee+uSggwIVPtnYlMcJfZrDH02IemPh+/BYd7toU87ySbBoY/o426vWruIA
+         ACaXniaiHEq2tvJ8FtHqPb3TSDX7+iIbpwc6o3U9CsOR6GjSVQoMIyvCxCR61J4QgcS5
+         dXLEZ8EsTenuq0mXxMJUuIOynHfX4BOomw+yQaDklwanVXf0dtPRlR4/OwX5M4YJJsyO
+         5X28KoHhSEmOXEWTIVha4B+HHvViwwDrqVgpNR4XCQafpDK2me5M/ZkkJc3nRsdXii5w
+         kmVXm6DTYWd7DqwSGcFLxU9sHuyza2LjPKD3bD1AFiDPiB1veMGGeltUaglBc+2+mB+E
+         cvag==
+X-Gm-Message-State: ACrzQf1HRK0ji4XTDvEL2muASfXBdo49x2iz1jwioEaA1e7S2EkFAivd
+        4AfxnX+vAaKTUshVxe9n0pk=
+X-Google-Smtp-Source: AMsMyM4ZC9mnckst7ftVv7KOT5VCbwZRWKQaH+RkMLpJeqYaCFtr1uVFaEXNVxF2AH4A7oA6UpyaJA==
+X-Received: by 2002:a05:6870:c092:b0:132:a01f:7c31 with SMTP id c18-20020a056870c09200b00132a01f7c31mr649053oad.56.1666990214675;
+        Fri, 28 Oct 2022 13:50:14 -0700 (PDT)
+Received: from wintermute.localdomain (76-244-6-13.lightspeed.rcsntx.sbcglobal.net. [76.244.6.13])
+        by smtp.gmail.com with ESMTPSA id i2-20020a056830010200b0066756fdd916sm2090778otp.68.2022.10.28.13.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 13:50:14 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     devicetree@vger.kernel.org, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V4 0/3] drm/panel: Add NewVision NV3051D Panels
+Date:   Fri, 28 Oct 2022 15:50:06 -0500
+Message-Id: <20221028205009.15105-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add binding for the GPIO block
- for Apple Mac SMC
-Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org
-References: <Y1vZprz7t1WRW3bz@shell.armlinux.org.uk>
- <E1ooPSs-00Hb5D-PE@rmk-PC.armlinux.org.uk>
- <Y1vvoc2x90HnG1E9@shell.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y1vvoc2x90HnG1E9@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 11:05, Russell King (Oracle) wrote:
-> On Fri, Oct 28, 2022 at 02:32:02PM +0100, Russell King (Oracle) wrote:
->> Add the DT binding for the Apple Mac System Management Controller GPIOs.
->>
->> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
->> ---
->>  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 41 +++++++++++++++++++
-> 
-> Sorry, just realised I hadn't renamed this file. I'll do that for v3.
-> Please review assuming I've made that change.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-v3 is needed anyway for the tooling/automated checks.
+Add the NewVision NV3051D panel as found on the Anbernic RG353P and
+RG353V. The underlying LCD panel itself is unknown (the NV3051D is
+the controller), so the device name is used for the panel with a
+fallback to the driver IC.
 
-> 
->>  1 file changed, 41 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->> new file mode 100644
->> index 000000000000..2bb8faa2c08c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
->> @@ -0,0 +1,41 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Apple Mac System Management Controller GPIO
->> +
->> +maintainers:
->> +  - Hector Martin <marcan@marcan.st>
->> +
->> +description:
->> +  This describes the binding for the Apple Mac System Management Controller
+Changes from V3:
+ - Changed driver remove function from int to void to match change
+   made to mipi_dsi_driver struct.
 
-Missing change. Drop "This describes the binding for". This is a
-description of hardware.
+Changes from V2:
+ - Ensured dt_binding_check and dtbs_check successfully passed.
+ - Corrected some minor formatting issues in documentation.
+ - Added another mode per userspace request for 100hz. I was unable
+   to find a supported 50hz mode that would also work, so for now
+   only 60hz, 100hz, and 120hz are supported.
 
-Rest looks good.
+Changes from V1:
+ - Changed compatible string to the driver IC.
+ - Updated documentation to use new compatible string with board
+   name.
+ - Refactored somewhat to make it easier to support other LCD panels
+   with this kernel module.
+ - Added support for 60hz mode. Adjusted pixel clock to ensure proper
+   60hz and 120hz (previously was running at 124hz).
+ - Added vendor prefix for NewVision. Anbernic vendor prefix added in
+   https://lore.kernel.org/linux-devicetree/20220906210324.28986-2-macroalpha82@gmail.com
 
->> +  GPIO block.
-Best regards,
-Krzysztof
+Chris Morgan (3):
+  dt-bindings: vendor-prefixes: add NewVision vendor prefix
+  dt-bindings: display: panel: Add NewVision NV3051D bindings
+  drm/panel: Add NewVision NV3051D MIPI-DSI LCD panel
+
+ .../display/panel/newvision,nv3051d.yaml      |  63 +++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-newvision-nv3051d.c   | 523 ++++++++++++++++++
+ 5 files changed, 598 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/newvision,nv3051d.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-newvision-nv3051d.c
+
+-- 
+2.25.1
 
