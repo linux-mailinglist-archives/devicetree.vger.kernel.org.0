@@ -2,111 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65FCC611569
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC53B611570
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231199AbiJ1PEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 11:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
+        id S230258AbiJ1PFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiJ1PEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:04:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853A9207524
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 08:04:01 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ooQtn-0005Lw-0P; Fri, 28 Oct 2022 17:03:55 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ooQtm-0002Tc-05; Fri, 28 Oct 2022 17:03:54 +0200
-Date:   Fri, 28 Oct 2022 17:03:53 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2 11/15] arm64: dts: imx8mn-evk: enable uart1
-Message-ID: <20221028150353.ct6p7mwzvla7675z@pengutronix.de>
-References: <20221024031351.4135651-1-peng.fan@oss.nxp.com>
- <20221024031351.4135651-12-peng.fan@oss.nxp.com>
+        with ESMTP id S229714AbiJ1PFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:05:18 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525FE3B475;
+        Fri, 28 Oct 2022 08:05:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=m1naYypMZxihx03/xrGzfTuZ4moWiQ/R0mJ6CyIw0Eo=; b=ImfikutahMjz8u+Ij+EaxTdtjZ
+        jOEBhU0BZ3LdpGiQvC6GWBZWCO10liuvJ8KeZBIm+WRHY03QxtSJA7Uacr2L1aOSe32cks+mHu7zl
+        TIegGQZXw6TNZaBglNyqPoGNBe0mmwh5f6j23EHVnFfIxSRpSbMJ/6/9qiA4qtcS34qHrRim7DL6S
+        X7zaFdZ1Wtbhz+uNANCAlUhOyVlweu4SyO6I6yZnXkr6Pm3+U3gomEBDw2x3MO6YdQsAEOsrPeB8T
+        VAn3kflEp0//5AUv61G0zV+UbWW4pxSsgeU+NyFnYZFd73FAt7Z37fiyyi9sIY7N0kZF8n80GJpYi
+        wAY5iODw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35006)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ooQux-0008QG-8S; Fri, 28 Oct 2022 16:05:07 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ooQuv-0002eD-GQ; Fri, 28 Oct 2022 16:05:05 +0100
+Date:   Fri, 28 Oct 2022 16:05:05 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: add binding for the GPIO block
+ for Apple Mac SMC
+Message-ID: <Y1vvoc2x90HnG1E9@shell.armlinux.org.uk>
+References: <Y1vZprz7t1WRW3bz@shell.armlinux.org.uk>
+ <E1ooPSs-00Hb5D-PE@rmk-PC.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221024031351.4135651-12-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <E1ooPSs-00Hb5D-PE@rmk-PC.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-24, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Fri, Oct 28, 2022 at 02:32:02PM +0100, Russell King (Oracle) wrote:
+> Add the DT binding for the Apple Mac System Management Controller GPIOs.
 > 
-> Enable uart1 for BT usage
-
-Nit: In the other patch you're describe why you need to use a other PLL
-as source.
-
-Regards,
-  Marco
-
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  .../devicetree/bindings/gpio/gpio-macsmc.yaml | 41 +++++++++++++++++++
+
+Sorry, just realised I hadn't renamed this file. I'll do that for v3.
+Please review assuming I've made that change.
+
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> index a37a165b40ec..f137eb406c24 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> @@ -247,6 +247,15 @@ &spdif1 {
->  	status = "okay";
->  };
->  
-> +&uart1 { /* BT */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	assigned-clocks = <&clk IMX8MN_CLK_UART1>;
-> +	assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_80M>;
-> +	fsl,uart-has-rtscts;
-> +	status = "okay";
-> +};
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> new file mode 100644
+> index 000000000000..2bb8faa2c08c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-macsmc.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-macsmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  &uart2 { /* console */
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_uart2>;
-> @@ -440,6 +449,15 @@ MX8MN_IOMUXC_SD1_STROBE_GPIO2_IO11	0x159
->  		>;
->  	};
->  
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
-> +			MX8MN_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
-> +			MX8MN_IOMUXC_UART3_RXD_UART1_DCE_CTS_B	0x140
-> +			MX8MN_IOMUXC_UART3_TXD_UART1_DCE_RTS_B	0x140
-> +		>;
-> +	};
+> +title: Apple Mac System Management Controller GPIO
 > +
->  	pinctrl_uart2: uart2grp {
->  		fsl,pins = <
->  			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
+> +maintainers:
+> +  - Hector Martin <marcan@marcan.st>
+> +
+> +description:
+> +  This describes the binding for the Apple Mac System Management Controller
+> +  GPIO block.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-smc-gpio
+> +      - const: apple,smc-gpio
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio {
+> +        compatible = "apple,t8103-smc-gpio", "apple,smc-gpio";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +    };
 > -- 
-> 2.37.1
+> 2.30.2
 > 
 > 
-> 
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
