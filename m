@@ -2,124 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48871610C0F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 10:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E057610C58
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 10:38:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbiJ1IQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 04:16:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
+        id S229667AbiJ1IiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 04:38:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbiJ1IQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 04:16:02 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0279719E029
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 01:16:01 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id r186-20020a1c44c3000000b003cf4d389c41so3100462wma.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 01:16:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nNUdT0pPy3cOwelmgfn8Li0duY7pG3zcPFGqUcnDR0I=;
-        b=cL7qGw+WZ7oIhsoKvAp/fncO/Powx/3R0gYRYrHXfBqCZMARA06h55UJpiBp1VS/M5
-         ckkZFgxPpA1zetD0U8Z3+0E3iH/cM4OqfSddJpjlZwTArXB12hDevrLav4PrYt94mdoi
-         H2ywL/n6XnQMdOSDC1BH0uvMi5or7vSikzSAjHZ6WYJWrdc1oA19sktR4yGDlphGweFy
-         qa7chU3YL1Zmq/bjuHqNXhzdtiWBJpo53xE1JScUdrlh2Y+fChB6MS8ujMh60OCL1Zo9
-         NF8h/EfkGO5DT1ZZQHvPR4nmx20JrET8RJgTTEEfcvVYWINDC7x2U4iZYHy9nnoHa5y4
-         OJQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nNUdT0pPy3cOwelmgfn8Li0duY7pG3zcPFGqUcnDR0I=;
-        b=IHO7G3w7S7vdUxbIWIienin+0D+FOM6sZYSOgC8ckz9ez7jrypykURLUUQiiXtvJ2K
-         /EXI9m4U/lowR36SVSndp2wVjADCjT4ArPNEWt1eMHBtiA4jrYQicnsLtv1zOXJ5yWdY
-         LlXejN2CKxT6DDVIrp7QtQ2u50v5xWd3Z8uaTAOk75ertiI1zz/kHc+jnYuOcBfTRW1v
-         Pae+KEvNmWE3QCeDrKlJZs9LLlbsZAcrtdj3/3k31r4zX8PvhdPRVDDhX02CafJ/jAae
-         URsYChWRh9AjajcrDYRq08jq2uoshJwYhIcjhBxwf86qt0+PKsGIH517jNiFJj6clqhs
-         PfLw==
-X-Gm-Message-State: ACrzQf2npDNNsGlMGCYV/McrroEzwwhr7OUxv5+PI7NX3TOSqXHoaysd
-        zHTnBm0/766u5Yll4+rSm7dzCg==
-X-Google-Smtp-Source: AMsMyM5OHXihJsfaY0g3uCEzw4Qk3wyZTMnWLQXTWhLkH4yx/A61d//fGaZJsClTjAWBlUuLbuLXPA==
-X-Received: by 2002:a05:600c:4f86:b0:3cc:e010:7a7b with SMTP id n6-20020a05600c4f8600b003cce0107a7bmr8699332wmq.114.1666944959478;
-        Fri, 28 Oct 2022 01:15:59 -0700 (PDT)
-Received: from localhost ([2a01:cb19:85e6:1900:98b2:dc79:fe90:6dad])
-        by smtp.gmail.com with ESMTPSA id bk17-20020a0560001d9100b0022cdb687bf9sm3974247wrb.0.2022.10.28.01.15.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 01:15:59 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Jeff LaBundy <jeff@labundy.com>, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        jeff@labundy.com
-Subject: Re: [PATCH v3 5/7] Input: iqs7222 - protect against undefined
- slider size
-In-Reply-To: <Y1SRXEi7XMlncDWk@nixie71>
-References: <Y1SRXEi7XMlncDWk@nixie71>
-Date:   Fri, 28 Oct 2022 10:15:58 +0200
-Message-ID: <87mt9gtlc1.fsf@baylibre.com>
+        with ESMTP id S229572AbiJ1IiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 04:38:24 -0400
+X-Greylist: delayed 579 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 28 Oct 2022 01:38:21 PDT
+Received: from mx3.securetransport.de (mx3.securetransport.de [116.203.31.6])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA63B1C4ED3
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 01:38:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1666945666;
+        bh=Nzw+lJPvhuGpLkLfLOU1y21nWQh1oo3psAESPs5jx0U=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=VCW4H50KN7pcCvQFglKX0nYLcLiUkQSWyACuDjib2dCBsoSkozx/tGP5B3UZucNNI
+         qylMuwhrD0WElBm5T3b89RDhGj99jN8oe31MpJ/8NsuUPYmh48ZzqOTRUrT0BUtvBR
+         MP9R0Y8Yppmgz38dkuxy3MKzW8N0YPrOY/OcIuKZ8id2tjz1c53gyTznJJrmqS7lxU
+         GWZpJLQbt5gwFGnXnrb6nhykMfA8YLOwXC/QG2TpMr1eA1imf9A1v3KtyTpmbXmXU9
+         OLTgiINrIpzP8lLxJH+Eeg2E1CJ0d4ZVnrHgkuPeB26AXjWm8j3CjPoqYSwi2d2KKf
+         W0BzGcHjKf1dQ==
+X-secureTransport-forwarded: yes
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Complaints-To: abuse@cubewerk.de
+To:     Alexander Dahl <ada@thorsis.com>
+CC:     Rob Herring <robh@kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marex@denx.de" <marex@denx.de>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
+ controls Rx enable during Tx
+Thread-Topic: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
+ controls Rx enable during Tx
+Thread-Index: AQHY6VtPL1dpKjxCfE69ES0JgWopKq4hB10AgADJ5GCAAWVVAIAALFPQ
+Date:   Fri, 28 Oct 2022 08:27:35 +0000
+Message-ID: <be36f321adeb44dc9ecc5398db315349@dh-electronics.com>
+References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
+ <20221026165049.9541-2-cniedermaier@dh-electronics.com>
+ <20221026205914.GA1294440-robh@kernel.org>
+ <f04351971a5c4b5e8930000addb06398@dh-electronics.com>
+ <Y1t0vurzqh8XziDs@ada.ifak-system.com>
+In-Reply-To: <Y1t0vurzqh8XziDs@ada.ifak-system.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On sam., oct. 22, 2022 at 19:57, Jeff LaBundy <jeff@labundy.com> wrote:
-
-> Select variants of silicon do not define a default slider size, in
-> which case the size must be specified in the device tree. If it is
-> not, the axis's maximum value is reported as 65535 due to unsigned
-> integer overflow.
->
-> To solve this problem, move the existing zero-check outside of the
-> conditional block that checks whether the property is present.
->
-> Fixes: e505edaedcb9 ("Input: add support for Azoteq IQS7222A/B/C")
-> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-
-Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-
-> ---
-> Changes in v3:
->  - None
->
-> Changes in v2:
->  - Rebased to account for changes earlier in series
->
->  drivers/input/misc/iqs7222.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/input/misc/iqs7222.c b/drivers/input/misc/iqs7222.c
-> index a5c08b1d9c9b..6af25dfd1d2a 100644
-> --- a/drivers/input/misc/iqs7222.c
-> +++ b/drivers/input/misc/iqs7222.c
-> @@ -2024,7 +2024,7 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
->  
->  	error = fwnode_property_read_u32(sldr_node, "azoteq,slider-size", &val);
->  	if (!error) {
-> -		if (!val || val > dev_desc->sldr_res) {
-> +		if (val > dev_desc->sldr_res) {
->  			dev_err(&client->dev, "Invalid %s size: %u\n",
->  				fwnode_get_name(sldr_node), val);
->  			return -EINVAL;
-> @@ -2043,6 +2043,13 @@ static int iqs7222_parse_sldr(struct iqs7222_private *iqs7222,
->  		return error;
->  	}
->  
-> +	if (!(reg_offset ? sldr_setup[3]
-> +			 : sldr_setup[2] & IQS7222_SLDR_SETUP_2_RES_MASK)) {
-> +		dev_err(&client->dev, "Undefined %s size\n",
-> +			fwnode_get_name(sldr_node));
-> +		return -EINVAL;
-> +	}
-> +
->  	error = fwnode_property_read_u32(sldr_node, "azoteq,top-speed", &val);
->  	if (!error) {
->  		if (val > (reg_offset ? U16_MAX : U8_MAX * 4)) {
-> -- 
-> 2.34.1
+RnJvbTogQWxleGFuZGVyIERhaGwgW21haWx0bzphZGFAdGhvcnNpcy5jb21dDQpTZW50OiBGcmlk
+YXksIE9jdG9iZXIgMjgsIDIwMjIgODoyMSBBTQ0KPiANCj4gSGVsbG8gQ2hyaXN0b3BoLA0KPiAN
+Cg0KSGVsbG8gQWxleCwNCg0KPiBsZXQgbWUgZmlyc3Qgc2F5LCBmb3IgYW4gdXBjb21pbmcgbmV3
+IHByb2R1Y3Qgd2UgYXJlIGN1cnJlbnRseQ0KPiBkZXZlbG9waW5nLCB3ZSB0cmllZCBkaWZmZXJl
+bnQgd2lyaW5ncywgYWxsIHJlbGF0ZWQgdG8gdGhhdCAhUkUgcGluIG9mDQo+IHRoZSB0cmFuc2Nl
+aXZlci4NCj4gDQo+IEluIGEgZmlyc3QgaGFyZHdhcmUgcmV2aXNpb24gdGhlIGVuZ2luZWVyIGRv
+aW5nIHRoZSBzY2hlbWF0aWMNCj4gY29ubmVjdGVkICFSRSB0byBHTkQgKGFsd2F5cyBvbikgYW5k
+IGl0IHRvb2sgbWUgYSB3aGlsZSB0byByZWNvZ25pemUNCj4gd2hhdCB3YXMgZ29pbmcgb246IGV2
+ZXJ5dGhpbmcgc2VuZCB0aHJvdWdoIFRYIHdhcyBtaXJyb3JlZCBvbiBSWCwNCj4gd2hpY2ggbWFr
+ZXMgdXNpbmcgbG90cyBvZiBzdGFuZGFyZCBhcHBsaWNhdGlvbnMgb24gdGhhdCBwb3J0IGp1c3QN
+Cj4gZmFpbC4gIChUbyBiZSBmYWlyLCB3ZSBuZWVkIGV4YWN0bHkgdGhhdCBiZWhhdmlvdXIgb24g
+YSBkaWZmZXJlbnQNCj4gYm9hcmQuKQ0KPiANCj4gSW4gYSBzZWNvbmQgaXRlcmF0aW9uICFSRSBp
+cyBkaXJlY3RseSBjb25uZWN0ZWQgdG8gREUgbm93LCBzbyBSRSBpcw0KPiBub3cgYWx3YXlzIHRo
+ZSBvcHBvc2l0ZSBvZiBERS4gIERFIGl0c2VsZiBpcyBhbHdheXMgY29ubmVjdGVkIHRvIHRoZQ0K
+PiBSVFMgbGluZSBvZiB0aGUgVUFSVCwgd2hpY2ggYWxsb3dzIHRoZSBkcml2ZXIgdG8gc3dpdGNo
+IGRpcmVjdGlvbi4NCj4gDQo+IE1vcmUgYmVsb3cuDQo+IA0KPiBBbSBUaHUsIE9jdCAyNywgMjAy
+MiBhdCAxMjowNjo1NlBNICswMDAwIHNjaHJpZWIgQ2hyaXN0b3BoIE5pZWRlcm1haWVyOg0KPj4g
+RnJvbTogUm9iIEhlcnJpbmcgW21haWx0bzpyb2JoQGtlcm5lbC5vcmddDQo+PiBTZW50OiBXZWRu
+ZXNkYXksIE9jdG9iZXIgMjYsIDIwMjIgMTA6NTkgUE0NCj4+PiBPbiBXZWQsIE9jdCAyNiwgMjAy
+MiBhdCAwNjo1MDo0NlBNICswMjAwLCBDaHJpc3RvcGggTmllZGVybWFpZXIgd3JvdGU6DQo+Pj4+
+IEFkZCB0aGUgYmluZGluZyBmb3IgYSBnZW5lcmljIGRlZmluaXRpb24gb2YgYSBHUElPLCB0aGF0
+IGNvbnRyb2xzIHdoZXRoZXIgUngNCj4+Pj4gaXMgY29ubmVjdGVkIG9yIGRpc2Nvbm5lY3RlZCBi
+eSBhbiBlbGVjdHJpY2FsIGNpcmN1aXQgdG8gaGF2ZSB0aGUgYWJpbGl0eQ0KPj4+PiB0byByZWNl
+aXZlIHRoZSBzaWduYWxzIG9uIHRoZSBidXMgZHVyaW5nIHNlbmRpbmcgb3IgZGlzYWJsZSByZWNl
+aXZpbmcgZHVyaW5nDQo+Pj4+IHNlbmRpbmcuDQo+Pj4+DQo+Pj4+IFNpZ25lZC1vZmYtYnk6IENo
+cmlzdG9waCBOaWVkZXJtYWllciA8Y25pZWRlcm1haWVyQGRoLWVsZWN0cm9uaWNzLmNvbT4NCj4+
+Pj4gLS0tDQo+Pj4+IENjOiBHcmVnIEtyb2FoLUhhcnRtYW4gPGdyZWdraEBsaW51eGZvdW5kYXRp
+b24ub3JnPg0KPj4+PiBDYzogUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCj4+Pj4g
+Q2M6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9y
+Zz4NCj4+Pj4gQ2M6IE1hcmVrIFZhc3V0IDxtYXJleEBkZW54LmRlPg0KPj4+PiBDYzogZGV2aWNl
+dHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4+Pj4gVG86IGxpbnV4LXNlcmlhbEB2Z2VyLmtlcm5lbC5v
+cmcNCj4+Pj4gVG86IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPj4+PiAt
+LS0NCj4+Pj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zZXJpYWwvcnM0ODUu
+eWFtbCB8IDQgKysrKw0KPj4+PiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQ0KPj4+
+Pg0KPj4+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Nl
+cmlhbC9yczQ4NS55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Nlcmlh
+bC9yczQ4NS55YW1sDQo+Pj4+IGluZGV4IDkwYTFiYWI0MGYwNS4uMGViZDc2OTBmODVkIDEwMDY0
+NA0KPj4+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc2VyaWFsL3Jz
+NDg1LnlhbWwNCj4+Pj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Nl
+cmlhbC9yczQ4NS55YW1sDQo+Pj4+IEBAIC01MSw2ICs1MSwxMCBAQCBwcm9wZXJ0aWVzOg0KPj4+
+PiAgICAgIGRlc2NyaXB0aW9uOiBHUElPIHBpbiB0byBlbmFibGUgUlM0ODUgYnVzIHRlcm1pbmF0
+aW9uLg0KPj4+PiAgICAgIG1heEl0ZW1zOiAxDQo+Pj4+DQo+Pj4+ICsgIHJzNDg1LXJ4LWR1cmlu
+Zy10eC1ncGlvczoNCj4+Pj4gKyAgICBkZXNjcmlwdGlvbjogR1BJTyBwaW4gdG8gY29udHJvbCBS
+UzQ4NSBSeCBlbmFibGUgZHVyaW5nIFR4Lg0KPj4+DQo+Pj4gQWN0aXZlIHN0YXRlIG1lYW5zIGRv
+IHdoYXQ/IEFuZCBpbmFjdGl2ZT8gVGhpcyBpcyBhbiBvdXRwdXQgZ2F0aW5nIHRoZQ0KPj4+IFJY
+IHNpZ25hbCBvciBhbiBpbnB1dCB0ZWxsaW5nIHRoZSByZWNlaXZlciB3aGF0IHRvIGRvIGR1cmlu
+ZyB0eD8gVGhlDQo+Pj4gZGVzY3JpcHRpb24gaXMgbm90IGFkZXF1YXRlLg0KPj4+DQo+Pj4gSG93
+IGRvZXMgdGhpcyBwcm9wZXJ0eSByZWxhdGUgdG8gJ3JzNDg1LXJ4LWR1cmluZy10eCcgQW55IGNv
+bWJpbmF0aW9uIG9mDQo+Pj4gdGhlIDIgYmVpbmcgcHJlc2VudCBvciBub3QgaXMgb2theT8gSWYg
+bm90LCB5b3UgbmVlZCBzb21lIGNvbnN0cmFpbnRzLg0KPj4+DQo+Pj4gUm9iDQo+Pg0KPj4NCj4+
+IEhpIFJvYiwNCj4+DQo+PiBJIGhhdmUgaW1wcm92ZWQgdGhlIG1lc3NhZ2U6DQo+Pg0KPj4gVGhl
+IHN0YW5kYXJkIFJTNDg1IGlzIGEgaGFsZi1kdXBsZXggYnVzIHRoYXQgaW4gbW9zdCBjYXNlZCBp
+cyBkcml2ZW4gYnkgYW4NCj4+IFVBUlQgY29udHJvbGxlci4gVGhlIGludGVyZmFjZSB0byB0aGUg
+YnVzIGlzIGNvbnRyb2xsZWQgYnkgYSB0cmFuc2NlaXZlciwgdGhhdA0KPj4gaGFzIGEgcGluIGNh
+bGxlZCBSRSAoUnggZW5hYmxlKSBvciBzaW1pbGFyLCB3aGljaCBjb25uZWN0cyB0aGUgYnVzIHRv
+IFJ4IHNpZ25hbA0KPj4gb2YgdGhlIFVBUlQgY29udHJvbGxlci4gVGhpcyBwYXRjaCBhZGRzIGEg
+YmluZGluZyBmb3IgYSBnZW5lcmljIGRlZmluaXRpb24gb2YgYQ0KPj4gR1BJTyB0aGF0IGNhbiBz
+d2l0Y2ggYmV0d2VlbiB0d28gc3RhdGVzIHRvIGNvbnRyb2wgdGhlIFJFIHBpbiB2aWEgYW4gZWxl
+Y3RyaWNhbA0KPj4gY2lyY3VpdDoNCj4+IC0gQWN0aXZlOg0KPj4gICBUaGUgUkUgcGluIGlzIGFs
+d2F5cyBhY3RpdmUuIFRoZSBVQVJUIFJ4IHNlZSBldmVyeXRoaW5nIG9uIHRoZSBidXMgYW5kDQo+
+PiAgIHRoZXJlZm9yZSBhbHNvIHdoYXQgaGFwcGVucyB3aXRoIHRoZSBUeCBzaWduYWwgb24gdGhl
+IGJ1cy4NCj4+IC0gSW5hY3RpdmU6DQo+PiAgIFRoZSBSRSBwaW4gaXMgYWx3YXlzIGFjdGl2ZSwg
+YnV0IGR1cmluZyBzZW5kaW5nIG9uIHRoZSBidXMgdGhlIHBpbiBSRSBpcw0KPj4gICBpbmFjdGl2
+ZS4gU28gYmFzaWNhbGx5IHRoZSByZWNlaXZpbmcgZHVyaW5nIHNlbmRpbmcgaXMgc3VwcHJlc3Nl
+ZC4NCj4+DQo+PiBJcyBpdCBub3cgbW9yZSB1bmRlcnN0YW5kYWJsZSwgb3IgaGF2ZSBJIHN0aWxs
+IG5vdCBjb25zaWRlcmVkIGFuIGFzcGVjdD8NCj4gDQo+IEJldHRlci4gIEJ1dCB3aGF0IGFib3V0
+IHRoZSBxdWVzdGlvbnMgUm9iIGFza2VkPyAgVGhlcmUncyBhbHJlYWR5IGENCj4gcHJvcGVydHkg
+J3JzNDg1LXJ4LWR1cmluZy10eCcgd2hpY2ggbGVhZHMgdG8gc2V0dGluZyB0aGUgZmxhZw0KPiBT
+RVJfUlM0ODVfUlhfRFVSSU5HX1RYIGluIHNlcmlhbCBjb3JlLiAgQXMgZmFyIGFzIEkgdW5kZXJz
+dG9vZCBmcm9tIGENCj4gcXVpY2sgZ2xhbmNlIGF0IGNvcmUgYW5kIGRyaXZlcnMsIHRoaXMgZGVh
+bHMgd2l0aCBoYWxmIG9yIGZ1bGwgZHVwbGV4DQo+IGZyb20gdGhlIFVBUlQgcG9pbnQgb2Ygdmll
+dyAobm90IHRoZSB0cmFuc2NlaXZlcikuDQo+IA0KPiBZb3UgbmVlZCB0byBleHBsYWluLCB3aGF0
+J3MgdGhlIGRpZmZlcmVuY2UgdG8gdGhlIG5ldyBwcm9wZXJ0eS4NCj4gSSBzdXNwZWN0IHlvdSB3
+YW50IHRvIHNvbWVob3cgc3dpdGNoIGJlaGF2aW91ciB3aXRoIHRoYXQgR1BJTyBsaW5lPw0KPiBX
+aGljaCBkcml2ZXIgc2hvdWxkIHN3aXRjaCB0aGF0IGxpbmUgaW4gdGhlIGVuZCBhbmQgd2hlbj8N
+Cj4gDQo+IChGb3IgdGhpcmQgaXRlcmF0aW9uIG9mIG91ciBoYXJkd2FyZSB3ZSB0aG91Z2h0IGFi
+b3V0IGEgR1BJTw0KPiBjb250cm9sbGluZyB3aGV0aGVyICFSRSBpcyBhbHdheXMgb24gb3IgY29u
+bmVjdGVkIHRvIERFLCBidXQgdGhhdCdzDQo+IHByb2JhYmx5IG5vdCB3aGF0IHlvdSBoYXZlIGlu
+IG1pbmQ/KQ0KPiANCj4gTWF5YmUgYSBzaW1wbGUgZ2VuZXJpYyBzY2hlbWF0aWMgY291bGQgaGVs
+cCBleHBsYWluIG9yIG1heWJlIHlvdSBmaW5kDQo+IGEgYmV0dGVyIG5hbWUgZm9yIHRoZSBwcm9w
+ZXJ0eT8NCj4gDQo+IEdyZWV0cw0KPiBBbGV4DQoNCkJhc2ljYWxseSB0aGUgaWRlYSBpcyB0aGF0
+IHRoaXMgR1BJTyBpcyBhbiBpbmRpY2F0b3IgZm9yIHRoZSBzdGF0ZSBvZiB0aGUNCmZsYWcgJ3Jz
+NDg1LXJ4LWR1cmluZy10eCcsIHNvIHRoYXQgdGhlIGhhcmR3YXJlIGtub3dzIHdoaWNoIG1vZGUg
+Zm9yIHRoZQ0KcmVjZWl2aW5nIGlzIHdhbnRlZC4NCg0KTXkgc2NoZW1hdGljczoNCiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIOKUjOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKU
+gOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUkA0KICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAg4pSCICAgICBSUzQ4NCAgICAgICAg4pSCDQogICAgICAgICAgICAgICBUeCDilIDilIDi
+lIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilKREICAgICAgICAgICAgICAg
+ICDilIINCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIOKUgiAgICAgVHJhbnNjZWl2
+ZXIgIOKUgg0KICAgICAgICAgICAgICBSVFMg4pSA4pSA4pSA4pSA4pSs4pSA4pSA4pSA4pSA4pSA
+4pSA4pSA4pSA4pSA4pSA4pSkREUgICAgICAgICAgICAgICAg4pSCDQogICAgICAgICAgICAgICAg
+ICAgICAg4pSCICAgICAgICAgIOKUgiAgICAgICAgICAgICAgICAgIOKUgg0KICAgICAgICAgICAg
+ICAgICAgICAgIOKUgiDilIzilIDilIDilIDilIDilIDilJAgIOKUgiAgICAgICAgICAgICAgICAg
+IOKUgg0KICAgICAgICAgICAgICAgICAgICAgIOKUlOKUgOKUpCYgICAg4pSCICDilIIgICAgICAg
+ICAgICAgICAgICDilIINCiAgICAgICAgICAgICAgICAgICAgICAgIOKUgiAgICAg4pSc4pSA4pSA
+4pSkIVJFICAgICAgICAgICAgICAg4pSCDQohcnhfZHVyaW5nX3R4X2dwaW8g4pSA4pSA4pSA4pSA
+4pSA4pSkICAgICDilIIgIOKUgiAgICAgICAgICAgICAgICAgIOKUgg0KICAgICAgICAgICAgICAg
+ICAgICAgICAg4pSU4pSA4pSA4pSA4pSA4pSA4pSYICDilIIgICAgICAgICAgICAgICAgICDilIIN
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIOKUgiAgICAgICAgICAgICAgICAgIOKU
+gg0KICAgICAgICAgICAgICAgUngg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA
+4pSA4pSA4pSA4pSkUiAgICAgICAgICAgICAgICAg4pSCDQogICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICDilIIgICAgICAgICAgICAgICAgICDilIINCiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIOKUlOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKU
+gOKUgOKUgOKUgOKUgOKUmA0KDQpJIG11eGVkIHRoZSBVQVJUIENUUyBwaW4gYXMgR1BJTyBhbmQg
+dXNlIGl0IGFzIHJ4X2R1cmluZ190eF9ncGlvLCBiZWNhdXNlDQppbiBteSBjYXNlIHRoaXMgcGlu
+IGlzIHVudXNlZCBhbnl3YXkuIEl0IHNob3VsZCBiZSBub3RlZCB0aGF0IEkgdGhlbiB1c2UNCnRo
+aXMgcGluIExPVyBBQ1RJVkUgKGluIERUIGJ5IEdQSU9fQUNUSVZFX0xPVykuDQoNCkkgaG9wZSBp
+dCBoYXMgYmVjb21lIGNsZWFyZXIgd2hhdCBJIGFtIGRvaW5nLg0KRG8geW91IHN0aWxsIHRoaW5r
+IEkgbmVlZCBhbm90aGVyIG5hbWU/DQoNCg0KUmVnYXJkcw0KQ2hyaXN0b3BoDQo=
