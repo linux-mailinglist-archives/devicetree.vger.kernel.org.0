@@ -2,104 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2FD611115
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD527611124
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:22:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiJ1MUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:20:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
+        id S229460AbiJ1MWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:22:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbiJ1MUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:20:13 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F850317CC;
-        Fri, 28 Oct 2022 05:20:08 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id o64so5909009oib.12;
-        Fri, 28 Oct 2022 05:20:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4dmFRfHeOegE5+bpQefgHIJnNQwHhQbV7Ukrk2pAq+A=;
-        b=JMfGkiBCyKiFTCuBHGxICUrQbfZYrTBbcV4ZAPIjhqPogXkofdEE+6c0gi8cHG3cY0
-         Snl7EFX9REIb0dXcSkfXRLAhNem6FFZnF5KPdE8HJ6RUD1ZlngRt2iYok2ohaNXRJUco
-         +zVs211Qvlu2q2cKd4c6oq6PWh2wJ2fxOgKHBFXdtNJefeZumE8JSMWXahyX1N9M0T8h
-         EoMAiSLPbjFjhktqA0hBdYe5ZV4FTnwQU3O5Emh8FP4cFN45CNx6p11iXCTuAx3CWqId
-         CZwAbT59F+itLQmwq5Nwv5f2BLG9OlX8BRwA8UMn+hlJCEz6b4qz5Xc1CgtUWuQRZaal
-         As+g==
-X-Gm-Message-State: ACrzQf0Mfz45GBkajlmbj4uDuTCTQLgpgcdKkX3WtdAcTnllq2EvbYAI
-        BZNQzM9AWV/QadxBGGKNgw==
-X-Google-Smtp-Source: AMsMyM6cKt0KcpbmIifbatyxqCPEd6Pz5r7yvNlhqxNm415ojTZlVQjyH5r0iSI57y48fTiJvgzy0w==
-X-Received: by 2002:aca:f102:0:b0:359:a7d8:3748 with SMTP id p2-20020acaf102000000b00359a7d83748mr7469355oih.164.1666959608160;
-        Fri, 28 Oct 2022 05:20:08 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s19-20020a056870e6d300b0011f400edb17sm1983410oak.4.2022.10.28.05.20.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 05:20:07 -0700 (PDT)
-Received: (nullmailer pid 1079535 invoked by uid 1000);
-        Fri, 28 Oct 2022 12:20:05 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Paolo Abeni <pabeni@redhat.com>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        with ESMTP id S229719AbiJ1MWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:22:13 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E8F42AD7;
+        Fri, 28 Oct 2022 05:22:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1666959730; x=1698495730;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jyi2YPooioLK0F2LEjhYuRsxAS5UfvB2qcGTTVQ+86k=;
+  b=JhA32RIAAlQp0udyLlAYMh2ufytPoUhISB0CIDVzrbeUBKVzQfJDqTvN
+   VPif8ILODITkXMKTS644vKPcrlS0Nw/O4Y1d1r9KokNThFGMXDOWt9aGK
+   f2B9mYNCzqeO6SRiLFGGl0ViXSXH0Tc7jxhu6KrTwtulraePyvwJA+c/7
+   mZ7wWz5coCakG4SBvmicXXwNQA1C9//aImaF7Pf3H7m7i+VKa4mdqVxh3
+   ki0lCPsVUNFH4PxADCscq/sjSlFxiUJz5lIszuZnP5dnwx4w7KuLx6kuf
+   sHoHaWk9mv43STFjLN32tBQMh+ztwVi/dWwS/OMGig2jdk8Ssr4bkdkwW
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="335119535"
+X-IronPort-AV: E=Sophos;i="5.95,221,1661842800"; 
+   d="scan'208";a="335119535"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2022 05:22:10 -0700
+X-IronPort-AV: E=McAfee;i="6500,9779,10513"; a="758064551"
+X-IronPort-AV: E=Sophos;i="5.95,221,1661842800"; 
+   d="scan'208";a="758064551"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Oct 2022 05:22:06 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 0F1C020399;
+        Fri, 28 Oct 2022 15:22:04 +0300 (EEST)
+Date:   Fri, 28 Oct 2022 12:22:04 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-kernel@vger.kernel.org, Marcin Wojtas <mw@semihalf.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        netdev@vger.kernel.org
-In-Reply-To: <20221028092337.822840-3-miquel.raynal@bootlin.com>
-References: <20221028092337.822840-1-miquel.raynal@bootlin.com> <20221028092337.822840-3-miquel.raynal@bootlin.com>
-Message-Id: <166695949292.1076993.16137208250373047416.robh@kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: nvmem: add YAML schema for the ONIE tlv layout
-Date:   Fri, 28 Oct 2022 07:20:05 -0500
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v4 4/4] media: platform: Add Renesas RZ/G2L CRU driver
+Message-ID: <Y1vJbJfFjV9jRNzz@paasikivi.fi.intel.com>
+References: <20221027103104.74576-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221027103104.74576-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Y1qCbUoLrR6qlQwa@paasikivi.fi.intel.com>
+ <CA+V-a8seroka4YkyCnSYa2KMPDWMG1Zk8tyiqRntdPUQnc+nrA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8seroka4YkyCnSYa2KMPDWMG1Zk8tyiqRntdPUQnc+nrA@mail.gmail.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 11:23:34 +0200, Miquel Raynal wrote:
-> Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
-> compatible networking device.
-> 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../nvmem/layouts/onie,tlv-layout.yaml        | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
-> 
+Hi Prabhakar,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Thu, Oct 27, 2022 at 08:04:40PM +0100, Lad, Prabhakar wrote:
+...
+> > > +static int rzg2l_cru_ip_s_stream(struct v4l2_subdev *sd, int enable)
+> > > +{
+> > > +     struct rzg2l_cru_dev *cru;
+> > > +     int ret;
+> > > +
+> > > +     cru = v4l2_get_subdevdata(sd);
+> > > +
+> > > +     if (!cru->is_csi)
+> > > +             return -EINVAL;
+> > > +
+> > > +     ret = v4l2_subdev_call(cru->ip.remote, video, s_stream, enable);
+> >
+> > It's up to the driver how call pre_streamon() and post_streamoff(), as long
+> > as it takes place on both sides of s_stream().
+> >
+> > In other words, as it seems your device doesn't need anything special, you
+> > could waive implemeting the callbacks yourself and call pre_streamon() and
+> > post_streamoff() here.
+> >
+> Here the cru->ip.remote = CSI, in the rzg2l_cru_set_stream(1) where we
+> are calling pre_streamon()/post_streamoff() callbacks the subdev is
+> CRU-IP. So the calls from rzg2l_cru_set_stream() land into
+> rzg2l_cru_ip_pre_streamon() and rzg2l_cru_ip_post_streamoff() which
+> are calling pre_streamon/post_streamoff for the CSI subdev.
 
-yamllint warnings/errors:
+Again, you should call the source sub-device's pre_streamon and
+post_streamoff from the s_stream handler (not from
+rzg2l_cru_ip_pre_streamon or rzg2l_cru_ip_post_streamoff).
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.example.dtb:0:0: /example-0/onie: failed to match any schema with compatible: ['onie,tlv-layout', 'vendor,device']
+Starting streaming takes place link by link. This allows a driver to omit
+implementing pre_streamon and post_streamon callbacks if it doesn't need
+them.
 
-doc reference errors (make refcheckdocs):
+-- 
+Kind regards,
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Sakari Ailus
