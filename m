@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0E47610A6C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A30F8610AC0
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:54:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbiJ1GmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 02:42:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48590 "EHLO
+        id S229932AbiJ1GyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 02:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbiJ1Glw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:41:52 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD5E745F5E
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 23:41:49 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id c7-20020a05600c0ac700b003c6cad86f38so5763902wmr.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 23:41:49 -0700 (PDT)
+        with ESMTP id S229739AbiJ1Gx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:53:58 -0400
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DC115A961
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 23:53:58 -0700 (PDT)
+Received: by mail-vs1-xe2f.google.com with SMTP id k67so4300387vsk.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 23:53:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FOXFaSkWoyrw6Tt6vNYB3VyEMNdaD+r0RNnUIhwjbV4=;
-        b=hlBRFUsLCdqMdTgZgiy8f2LWBebmnYV7rKsjNbrWKuXIv3R/p2b/1i0zrEemBe9RRv
-         vhm3hqD2tFpHWJpEm8wIamSktSw+2g5kNddNqfDChYHHpCARKBph32HwQtXNagQFvluO
-         xrBByMrNN22DC0KBBEqi3dQdmUiNdVc+KQERxKlRaVk3kn53yWxZfVoJauaop7wrNAT2
-         mQmdWYK1sYzH5XMdzFDjSb3Hpu6vFE2s6VcyqBsQmL1OMeZhPhDyybjnlpTa0Ici/ywf
-         hDORZPPU9KlMhOMNmpF4GNT3W/SUvspujJXxwpwWHUTSXKGPaIXjVP3XUjd+Lcny6lLW
-         G9pA==
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OpbKxLZEgiv7SiPTmTz0hQmQi7+UD5rIZmwRiJpWwnU=;
+        b=WVNWBldxxivWijQLOrTY0p1RYqZUECQT2gs0dLpGOhAfOt7qaJ8mUR3LpZStc8JsC9
+         faLNhUd0Y1gSuLpRSZ55JfhlPtGQ1rrVrUWBJr4DthnYqKqwxqwDI4+Ghu8FyBtBGc9b
+         HF40g5NP51E1/nWSLu7CAlSaKamHFZMWPNA5SBLJyf5HUujPb7aCgl3g7QvrFktkFbsu
+         bT/utRzLuP5VJAIjjbFlSmVt2IA+S4k2tlf9i085KRTsJts4fySssjFiOK+y2LVSyrC3
+         mu3FSD/8+b9N9mn7CxSa7yT3aYxxzfukTeQ5BhHw9j2K95lN9d66u+QxAUS4AYbDdvjv
+         FLlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FOXFaSkWoyrw6Tt6vNYB3VyEMNdaD+r0RNnUIhwjbV4=;
-        b=tX5VVSoFYIrcWQcJ9DSEvwn4L9ofECYkHDSE1A07LMODCrXTyiNveECBHXIQ/QvZel
-         vJMfg1XBpPTGqg3xpirBPErr7IZN2llMur9dg5NNOS4YxfyLDBsOoNgU1XcKSwQ0slUP
-         0yMXdj5BsYNQpF5AafuFrLXO5IQ/VWgyY349ynNAguWAa4r7Xjy4AR3SUSPHo5cWtKzr
-         AOcAEgLgdlG8tU3QkvLDvQ46Bh4QOQDhe3kYZ1GpS0HuZ+PjXAPXAoq24v2xunWI86jx
-         Z3bDCMTpr9bDtWKbHj824fYaJQzq7kBXTFaYL0kiL90A2FlIeKwqectruOS7lJvyAvL3
-         Jzfw==
-X-Gm-Message-State: ACrzQf3F/EiVMinitonPWirIRxqm3+Ti6E8bsEFAdHniK9XMyERkLwGk
-        R/emj9B4r/jbwnOg/7nhWAdIeQ==
-X-Google-Smtp-Source: AMsMyM41qCS4mNKA58mLIKzckELZo4v8n6J3P17M7Hj6TEhQ7UqBUcXQ6bOItzwdX2dLYY794GCf4w==
-X-Received: by 2002:a05:600c:4f84:b0:3c8:3424:8b1 with SMTP id n4-20020a05600c4f8400b003c8342408b1mr8189083wmq.53.1666939308338;
-        Thu, 27 Oct 2022 23:41:48 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id h17-20020a05600c351100b003c7087f6c9asm7253979wmq.32.2022.10.27.23.41.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 23:41:48 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 2/2] leds: remove ide-disk trigger
-Date:   Fri, 28 Oct 2022 06:41:41 +0000
-Message-Id: <20221028064141.2171405-2-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221028064141.2171405-1-clabbe@baylibre.com>
-References: <20221028064141.2171405-1-clabbe@baylibre.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OpbKxLZEgiv7SiPTmTz0hQmQi7+UD5rIZmwRiJpWwnU=;
+        b=Ot9H26h5nUoZUOEBA0rTKH+kIwXHFDHfIiBzp9vsP8eg3tKojjwe3Uy+mwWZ9nLDUQ
+         xWzyOp6kgZQPUhRaICqBXjukEflBuv417PYf7epd9j2WTaICSNKB8SWv8ro5gaOfITAK
+         TpvyRucCbN9/dcC6xKcIQzI+/h5IHUQze/EyEzd50teLbhkzjrvicpgrqbSJXEUkFAer
+         RDIZmPClQrJ+DqtT6BdWBa33BXILYuqKodH/h1sgUlhJapWDZDotxdSLLOyuxIgLUmLP
+         wY8LjOkVPTwAUab2J3DcflWN0IVzQcgG8hDy17OwxthbOsyV35NeBdDB+XucvGhqws0x
+         bTLQ==
+X-Gm-Message-State: ACrzQf1WUpToLxSfPaF+svFEKNbYQUI95FQCyEx2Z5ePchUX1HKZ4Mtm
+        EOS0sfPvruWJpUhZ3UYJUurFlvhpN4bUCZhOn/H5UnHyCVU=
+X-Google-Smtp-Source: AMsMyM6fyRr8fZyD5IeKRCdlNkDnZI5Py4QhqKWGG3CYFk+B5Q7pYIJ8rsqSZ2g8oGHKzLomicffvzD1HI655VW01tM=
+X-Received: by 2002:a17:902:ecc2:b0:181:b55a:f954 with SMTP id
+ a2-20020a170902ecc200b00181b55af954mr52858127plh.32.1666940026266; Thu, 27
+ Oct 2022 23:53:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20221027191939.13106-1-mcpratt@pm.me> <CAGETcx8N8TPMuOFBhJ0kgBfxa74YpeZXTFM3QRrbdz5bVj2x3Q@mail.gmail.com>
+ <m08h9-9Spey2RcSxfM2vJLYwEAfuVJWBpQrAEqkopJLwv7Hen59r00F7C5TjKC32EsTG9eooMpfdcpumczlBjgYZv-2sqzCLIhRjnKbbcww=@pm.me>
+In-Reply-To: <m08h9-9Spey2RcSxfM2vJLYwEAfuVJWBpQrAEqkopJLwv7Hen59r00F7C5TjKC32EsTG9eooMpfdcpumczlBjgYZv-2sqzCLIhRjnKbbcww=@pm.me>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 27 Oct 2022 23:53:09 -0700
+Message-ID: <CAGETcx82KpKB-RLP+_YfPMO2iwJDG+EV+Cz5o8nPUyNdRqEvSw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix support for nvmem-cells
+To:     mcpratt@pm.me
+Cc:     devicetree@vger.kernel.org, rafal@milecki.pl, ansuelsmth@gmail.com,
+        srinivas.kandagatla@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,68 +68,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No user of ide-disk remains, so remove this deprecated trigger.
-Only a few platforms used this and were fixed in 2016.
+On Thu, Oct 27, 2022 at 2:43 PM <mcpratt@pm.me> wrote:
+>
+>
+> >
+> > Hi Michael,
+> >
+> > Thanks a lot for submitting a patch to fix issues in fw_devlink. I
+> > think my other patch series[1] should fix this in a generic way for
+> > all such cases where the phandle doesn't actually point to the
+> > supplier struct device. The series itself has some bugs, but there are
+> > "try this if it fixes it" code snippets in the thread that I need to
+> > roll into a v2.
+> >
+> > Give it a shot if you can. I'll try to get back to the series soon.
+> >
+> > [1] - https://lore.kernel.org/lkml/20220810060040.321697-1-saravanak@google.com/
+> > -Saravana
+>
+> Hi Saravana,
+>
+> It's definitely good to hear that someone is working on it already :D
+>
+> It looks like the "dangling consumers" function would probably fix
+> the issue in Openwrt with fw_devlink. However, I noticed that in your series
+> the function of_get_compat_node_parent() is still there.
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- remove also DEFINE_LED_TRIGGER(ledtrig_ide)
-Changes since v2:
-- Added the fact that few platforms used this and it was fixed old ago.
-- Added Rob's ack
-V3 can be seen at https://lore.kernel.org/lkml/20220208104601.3751852-1-clabbe@baylibre.com/T/
-Changes since v3:
-- rebased on recent tree
+Yeah, it's there mainly for the weird/annoying "remote-endpoint" case.
+Annoying because it's of zero use to fw_devlink since it always causes
+cyclic dependency, but I also can't ignore it because the cycle could
+be part of other cycles (and I can't ignore those cycles).
 
- Documentation/devicetree/bindings/leds/common.yaml | 3 ---
- drivers/leds/trigger/ledtrig-disk.c                | 4 ----
- 2 files changed, 7 deletions(-)
+> I'm not sure whether
+> or not that could be simplified as well,
 
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 8ebe602419b5..7081c7b64b94 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -92,9 +92,6 @@ properties:
-           - disk-activity
-           - disk-read
-           - disk-write
--            # LED indicates IDE disk activity (deprecated), in new implementations
--            # use "disk-activity"
--          - ide-disk
-             # LED flashes at a fixed, configurable rate
-           - timer
-             # LED alters the brightness for the specified duration with one software
-diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/ledtrig-disk.c
-index 0741910785bb..0b7dfbd04273 100644
---- a/drivers/leds/trigger/ledtrig-disk.c
-+++ b/drivers/leds/trigger/ledtrig-disk.c
-@@ -16,7 +16,6 @@
- DEFINE_LED_TRIGGER(ledtrig_disk);
- DEFINE_LED_TRIGGER(ledtrig_disk_read);
- DEFINE_LED_TRIGGER(ledtrig_disk_write);
--DEFINE_LED_TRIGGER(ledtrig_ide);
- 
- void ledtrig_disk_activity(bool write)
- {
-@@ -24,8 +23,6 @@ void ledtrig_disk_activity(bool write)
- 
- 	led_trigger_blink_oneshot(ledtrig_disk,
- 				  &blink_delay, &blink_delay, 0);
--	led_trigger_blink_oneshot(ledtrig_ide,
--				  &blink_delay, &blink_delay, 0);
- 	if (write)
- 		led_trigger_blink_oneshot(ledtrig_disk_write,
- 					  &blink_delay, &blink_delay, 0);
-@@ -40,7 +37,6 @@ static int __init ledtrig_disk_init(void)
- 	led_trigger_register_simple("disk-activity", &ledtrig_disk);
- 	led_trigger_register_simple("disk-read", &ledtrig_disk_read);
- 	led_trigger_register_simple("disk-write", &ledtrig_disk_write);
--	led_trigger_register_simple("ide-disk", &ledtrig_ide);
- 
- 	return 0;
- }
--- 
-2.37.4
+I don't think I can -- too long to explain and I'm not feeling it
+right now. But it has to do with how devices are populated and being
+able to use that for lazily converting dependencies in DT to device
+links.
 
+> since that is how I got the idea
+> for this patch. I understand your goal is to remove the dependency on
+> the "compatible" properties in total (at least for supplier devices).
+>
+> I'll try the series and let you know how it goes (unless your V2 is coming soon).
+
+It's most likely not "coming soon". Kinda busy with some stuff that I
+can't postpone.
+
+-Saravana
+
+>
+> FYI the device I test this on is Engenius EPG600 (MT7620A + QCA8337)
+>
+> --
+> Thanks,
+> MCP
