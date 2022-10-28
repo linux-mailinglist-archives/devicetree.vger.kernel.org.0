@@ -2,93 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E83C061141A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871F9611439
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:14:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231191AbiJ1OJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:09:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54842 "EHLO
+        id S230389AbiJ1OOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 10:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiJ1OJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:09:16 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D3EE51E047D;
-        Fri, 28 Oct 2022 07:09:12 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E499512FC;
-        Fri, 28 Oct 2022 07:09:18 -0700 (PDT)
-Received: from e120937-lin.. (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 935F53F534;
-        Fri, 28 Oct 2022 07:09:11 -0700 (PDT)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     sudeep.holla@arm.com, cristian.marussi@arm.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 8/8] arm64: dts: juno: Add Thermal critical trip points
-Date:   Fri, 28 Oct 2022 15:08:33 +0100
-Message-Id: <20221028140833.280091-8-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221028140833.280091-1-cristian.marussi@arm.com>
-References: <20221028140833.280091-1-cristian.marussi@arm.com>
+        with ESMTP id S230469AbiJ1OO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:14:29 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9F3DF39;
+        Fri, 28 Oct 2022 07:14:27 -0700 (PDT)
+Received: from mercury (unknown [37.84.150.129])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 279386602925;
+        Fri, 28 Oct 2022 15:14:26 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1666966466;
+        bh=eBiw1DQEjFf2dEuqwrvW3KKB9648bBPpwmqSPSVAKIU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RXkzI29z86w4GOXZXMHvLn0TISt6OPvDxN/Cqle1jcQdUzXanA8e0eg3qIU65kAMc
+         SZOa32lAhzYEEiL27lNb8oFvMX9XxpiDL1fJTDUT/d/oeigAfjbGLLw1p5y2zq7BD5
+         OjZqA1P676nUV6CMHhwobRTLGV74k/zp44kayM1gHxd8cvjqIyUeCSK6ru2ti2BNYr
+         qupyiLBhfZsNtxwZoto13kmuriHDFQJQmvcINoNCEg16UYuNpHq+xwlnxoO2LOQ4Zg
+         662HfoY6ybdkfd2kOcr0yd4Wu26JkCUqtrcptMFZev3cssaPEqHnxlYnglT/dyDm8Q
+         UyHXSetP4bmow==
+Received: by mercury (Postfix, from userid 1000)
+        id 608C910607E8; Fri, 28 Oct 2022 16:14:24 +0200 (CEST)
+Date:   Fri, 28 Oct 2022 16:14:24 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: power: reset: restart-handler: add
+ common schema
+Message-ID: <20221028141424.nzx3xbpswpvue7iy@mercury.elektranox.org>
+References: <20220923203603.515714-1-krzysztof.kozlowski@linaro.org>
+ <0b2b3ee9-1d5a-4849-a20d-486c3897fb0c@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fumpg2gf52miwsop"
+Content-Disposition: inline
+In-Reply-To: <0b2b3ee9-1d5a-4849-a20d-486c3897fb0c@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When thernal zones are defined, trip points definitions are mandatory.
-Define a couple of critical trip points for monitoring of existing
-PMIC and SOC thermale zones.
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-----
-Not sure if we want to add a:
+--fumpg2gf52miwsop
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: f7b636a8d83c ("arm64: dts: juno: add thermal zones for scpi sensors")
----
- arch/arm64/boot/dts/arm/juno-base.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index 2f27619d8abd..8b4d280b1e7e 100644
---- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -751,12 +751,26 @@ pmic {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 0>;
-+			trips {
-+				pmic_crit0: trip0 {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 
- 		soc {
- 			polling-delay = <1000>;
- 			polling-delay-passive = <100>;
- 			thermal-sensors = <&scpi_sensors0 3>;
-+			trips {
-+				soc_crit0: trip0 {
-+					temperature = <80000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
- 		};
- 
- 		big_cluster_thermal_zone: big-cluster {
--- 
-2.34.1
+On Wed, Oct 26, 2022 at 12:44:22PM -0400, Krzysztof Kozlowski wrote:
+> On 23/09/2022 16:36, Krzysztof Kozlowski wrote:
+> > Add common schema for restart and shutdown handlers, so they all use
+> > same meaning of "priority" field.  The Linux drivers already have this
+> > property and some systems want to customize it per-board in DTS.
+> >=20
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >=20
+> > ---
+>=20
+> Sebastian,
+>=20
+> This is still pending. Any comments from your side? Can you pick it up?
 
+Done.
+
+-- Sebastian
+
+--fumpg2gf52miwsop
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmNb48AACgkQ2O7X88g7
++ppBhw//e4km+aI0/WbdM/CI76nbO/u8OCFmoB0wh23SRFlRJTfT2AKbT7IzYDbC
+rGFrK5PJpSQU9P/3iBGJaGEpaiwy9Ld+YQblPNSEm5SAxzF7jVgp4XYvaDF7v5t1
+LEo2Ma6ZsCIUSsSNPDWaThbdmoDQv4h5pjb+cEDE6G9z94nWHjZx76H69P7+ts0l
+8J2d6rxXafjOsbUAXGZ5MB+5bhD8mUpQIRfr860htn6+Pwe98StrwzQjge4P5p/Q
+8wscFF8Y8D5G5JFgAFO/CqdtGaZcuZsLMuQmG5w/2Ihxiza45tzbhprG78kgvr/Y
+fkjhT5naIEwpS2DbJ1D5b//GHF0LL1Mjg8cHfCWzkwAJVfonTRK7UuvN2SODZaP2
+vWMpZkisdGLnlDFKw63uuwvBbAb1TsC9bjPI28C4dsKzExG20XjIfSBs9qeV7i2d
+sL+JsZHgDx6miWjyQeV0YUNM5StFqZztyu/uRdNL6DITX1QIwlPxHWtf4xlsd7kZ
+eaI/vqbg2D10P/hdClH5j1/MO8Va0rHdE5aHWxQoD6XdgbcMCx+S/pILa+i1mPHr
+0LqlCaomp21LegnzSw8NNyVs22fYeqtjoV2THYtAd/tNrT4bM1/D0/y3OMcWbkNa
+kQuRfcLPogOQy/tH59wl94B/xXKb1u9vYUJb7cgZ42ceYC5NkF4=
+=XI8z
+-----END PGP SIGNATURE-----
+
+--fumpg2gf52miwsop--
