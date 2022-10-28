@@ -2,75 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA57E610DE1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 11:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E689610E55
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 12:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229933AbiJ1JzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 05:55:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37858 "EHLO
+        id S229740AbiJ1KX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 06:23:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbiJ1Jys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 05:54:48 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A09112081
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 02:54:35 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id z18so2104577edb.9
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 02:54:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nmdVHdb0604svJdIsRaVukZi9ahZ7H2UV4HkwxeskFk=;
-        b=JHy028xSipvYsrvmbs4y9KHaTCwLsFw/PY3zKDKbC2VeIhqNGRnj2XIn5JgpcWpAko
-         /37Wr3ZMBagFhYyBvLl5ISIlh/cnYRB2fz8SxOvc9sNvuyodfZKjVUlJScWUKAr81Ywt
-         up2s54mqKYI7aunqAsP4l7jgeEKzuOEUQqYAE+UrdaPD7ABB234gYNRp1ef1668OQZS0
-         Gr62KSEKhm9c5b7UPeVRHzZ/FNAgUAF4j5UszMOMVDAqnrz2IDY8/ZEoFNPYNtaCzHER
-         IZbYtIQP8qDWjU77ys8lhLvIMjb1T4oKE7YAdQzoq3Il8pe2VoYBhJjTClNs+tiPzr6H
-         Ig3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nmdVHdb0604svJdIsRaVukZi9ahZ7H2UV4HkwxeskFk=;
-        b=COWW9uC+1aim2jzQmot1YExnG3CxpCbIHzMLnC588rEh/l9HBs29JNIB1Hd6ayzH7V
-         L5emSrxTaN+AGqO0hMwVeSV5Hg3uZKuuHZVpYM8aXlO3t8pZPURySstRc9Y9yPRaH5+a
-         WHoMa7Dm6hPqEBBG2M3sk0MEi49lGZ2p6WuhX0LgEJeQOMjQwO+hcgXlnXHLdSF2guSe
-         OJFDIOGKYe9chQnahX7DLVUlpBIAwg9luriAQstZvMz1aAfm4w6Nlm4ucQUzdz6i4nqi
-         JdEVnkpZEXDs6EK28pSgFK7Z2kXBe3tMXVQskNUQq5P99KUKL1RKiFWSWxvG0oyXwsvZ
-         fRWA==
-X-Gm-Message-State: ACrzQf3jQ7GdtdJvBPMv8Pp4ivYE3jFw65Z4bQrqgKGK5lI+XjiLkNmp
-        woAfjCXkZR/NNZh+8NbfMiyNYHP69eU=
-X-Google-Smtp-Source: AMsMyM4YPNxgtZVn81kP0Q9BvvV2MSxeepP/juFSeBKEUzdh1n1fSuPrCvzUxbL2oa2fJtdveXdRXg==
-X-Received: by 2002:a05:6402:3510:b0:461:f781:6dfe with SMTP id b16-20020a056402351000b00461f7816dfemr19358251edd.272.1666950873636;
-        Fri, 28 Oct 2022 02:54:33 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906328a00b00772061034dbsm1968245ejw.182.2022.10.28.02.54.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 02:54:33 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Lee Jones <lee@kernel.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: timer: add Broadcom's BCMBCA timers
-Date:   Fri, 28 Oct 2022 11:54:19 +0200
-Message-Id: <20221028095419.6036-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230064AbiJ1KX1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 06:23:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A43751CB52C;
+        Fri, 28 Oct 2022 03:23:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3EA2962762;
+        Fri, 28 Oct 2022 10:23:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED3E5C433D7;
+        Fri, 28 Oct 2022 10:23:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666952605;
+        bh=pBCdGb929chY5ppQKuDgVYnGog6hqh/6E2N9jwb1/Zc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=CK14ehMMVSXCsyikJLRvsO703TSBA8hqBDTbHmB56WimZGqIliGCQ1TWofoZSDoCr
+         t6/KsOtbaegq8xYk4ebOZgF9CcDB3s7586rzQHivwFpOGMmlUjgqvoun8vpJr+4jFn
+         YhfILNBOUKzylZp6ud4Yzuo1sVZgd1eciJniazjy12vcMOZ2N1VwvW7yXpUvUkFf7O
+         F53a48BF4p9aOPto6Ft5NUoKonXeRbRrCO+gqK+xMmQv0dnXcJb/7QtCXaofZntwSP
+         4ZmlXl4yibOboMPcPGehGwKvgyVGmXsVSP42/BGXJMyKdY4TxacyBfPiEhsgX97rh3
+         BJDnM2eOXBnMw==
+Message-ID: <ad852357-98a3-b8b9-e9eb-d65c28947ed5@kernel.org>
+Date:   Fri, 28 Oct 2022 13:23:20 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 2/3] phy: ti: gmii-sel: Update methods for fetching and
+ using qsgmii main port
+Content-Language: en-US
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>, robh+dt@kernel.org,
+        lee@kernel.org, krzysztof.kozlowski@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, kishon@kernel.org,
+        vkoul@kernel.org, dan.carpenter@oracle.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20221026074532.109220-1-s-vadapalli@ti.com>
+ <20221026074532.109220-3-s-vadapalli@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221026074532.109220-3-s-vadapalli@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,101 +61,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Siddharth,
 
-BCA is a big set / family of Broadcom devices sharing multiple hardware
-blocks. One of them is timer that actually exists in two versions. It's
-a part of TWD MFD block.
+On 26/10/2022 10:45, Siddharth Vadapalli wrote:
+> The number of QSGMII main ports are specific to the device. TI's J7200 for
+> which the QSGMII main port property is fetched from the device-tree has
+> only one QSGMII main port. However, devices like TI's J721e support up to
+> two QSGMII main ports. Thus, the existing methods for fetching and using
+> the QSGMII main port are not scalable.
+> 
+> Update the existing methods for handling the QSGMII main ports and its
+> associated requirements to make it scalable for future devices.
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>  drivers/phy/ti/phy-gmii-sel.c | 29 ++++++++++++++++++++++-------
+>  1 file changed, 22 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/phy/ti/phy-gmii-sel.c b/drivers/phy/ti/phy-gmii-sel.c
+> index 0bcfd6d96b4d..c8f30d2e1f46 100644
+> --- a/drivers/phy/ti/phy-gmii-sel.c
+> +++ b/drivers/phy/ti/phy-gmii-sel.c
+> @@ -50,6 +50,7 @@ struct phy_gmii_sel_soc_data {
+>  	const struct reg_field (*regfields)[PHY_GMII_SEL_LAST];
+>  	bool use_of_data;
+>  	u64 extra_modes;
+> +	u32 num_qsgmii_main_ports;
+>  };
+>  
+>  struct phy_gmii_sel_priv {
+> @@ -213,6 +214,8 @@ struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw5g_soc_j7200 = {
+>  	.use_of_data = true,
+>  	.regfields = phy_gmii_sel_fields_am654,
+>  	.extra_modes = BIT(PHY_INTERFACE_MODE_QSGMII),
+> +	.num_ports = 4,
+> +	.num_qsgmii_main_ports = 1,
+>  };
+>  
+>  static const struct of_device_id phy_gmii_sel_id_table[] = {
+> @@ -378,11 +381,13 @@ static int phy_gmii_sel_init_ports(struct phy_gmii_sel_priv *priv)
+>  static int phy_gmii_sel_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> +	const struct phy_gmii_sel_soc_data *soc_data;
+>  	struct device_node *node = dev->of_node;
+>  	const struct of_device_id *of_id;
+>  	struct phy_gmii_sel_priv *priv;
+>  	u32 main_ports = 1;
+>  	int ret;
+> +	u32 i;
+>  
+>  	of_id = of_match_node(phy_gmii_sel_id_table, pdev->dev.of_node);
+>  	if (!of_id)
+> @@ -394,16 +399,26 @@ static int phy_gmii_sel_probe(struct platform_device *pdev)
+>  
+>  	priv->dev = &pdev->dev;
+>  	priv->soc_data = of_id->data;
+> +	soc_data = priv->soc_data;
+>  	priv->num_ports = priv->soc_data->num_ports;
+> -	of_property_read_u32(node, "ti,qsgmii-main-ports", &main_ports);
+> +	priv->qsgmii_main_ports = 0;
+> +
+>  	/*
+> -	 * Ensure that main_ports is within bounds. If the property
+> -	 * ti,qsgmii-main-ports is not mentioned, or the value mentioned
+> -	 * is out of bounds, default to 1.
+> +	 * Based on the compatible, try to read the appropriate number of
+> +	 * QSGMII main ports from the "ti,qsgmii-main-ports" property from
+> +	 * the device-tree node.
+>  	 */
+> -	if (main_ports < 1 || main_ports > 4)
+> -		main_ports = 1;
+> -	priv->qsgmii_main_ports = PHY_GMII_PORT(main_ports);
+> +	for (i = 0; i < soc_data->num_qsgmii_main_ports; i++) {
+> +		of_property_read_u32_index(node, "ti,qsgmii-main-ports", i, &main_ports);
+> +		/*
+> +		 * Ensure that main_ports is within bounds.
+> +		 */
+> +		if (main_ports < 1 || main_ports > soc_data->num_ports) {
+> +			dev_err(dev, "Invalid qsgmii main port provided\n");
 
-Add binding for it so SoCs can be properly described. Linux (and
-probably any other OS) doesn't really seem to need a driver for it. it
-may be needed for bootloaders (e.g., U-Boot) though. Especially for SoCs
-with CPUs other than Cortex-A9 (which contains arch timers).
+nit: This message is a bit misleading if the property does not exist in DT.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../devicetree/bindings/mfd/brcm,twd.yaml     |  8 ++++
- .../bindings/timer/brcm,bcmbca-timer.yaml     | 45 +++++++++++++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/brcm,bcmbca-timer.yaml
+How about just "Invalid ti,qsgmii-main-ports"
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-index 634526f790b8..e5136a37b0a3 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-@@ -36,6 +36,9 @@ properties:
-     const: 1
- 
- patternProperties:
-+  '^timer@[a-f0-9]+$':
-+    $ref: /schemas/timer/brcm,bcmbca-timer.yaml
-+
-   '^watchdog@[a-f0-9]+$':
-     $ref: /schemas/watchdog/brcm,bcm7038-wdt.yaml
- 
-@@ -54,6 +57,11 @@ examples:
-         #address-cells = <1>;
-         #size-cells = <1>;
- 
-+        timer@0 {
-+            compatible = "brcm,bcm63138-timer";
-+            reg = <0x0 0x28>;
-+        };
-+
-         watchdog@28 {
-             compatible = "brcm,bcm7038-wdt";
-             reg = <0x28 0x8>;
-diff --git a/Documentation/devicetree/bindings/timer/brcm,bcmbca-timer.yaml b/Documentation/devicetree/bindings/timer/brcm,bcmbca-timer.yaml
-new file mode 100644
-index 000000000000..7061f52bcb8a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/brcm,bcmbca-timer.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/brcm,bcmbca-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Broadband SoC timer
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: brcm,bcm6345-timer
-+        description: >
-+          An old block with 3 timers.
-+
-+          It can be found in BCM6345, BCM6838 and BCM63268.
-+      - const: brcm,bcm63138-timer
-+        description: >
-+          Updated block with 4 timers and control regs at the beginning.
-+
-+          It can be found in newer SoCs, e.g., BCM63138, BCM63148, BCM63381,
-+          BCM68360, BCM6848, BCM6858, BCM4908.
-+
-+  reg:
-+    maxItems: 1
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    timer@fffe0200 {
-+      compatible = "brcm,bcm6345-timer";
-+      reg = <0xfffe0200 0x1c>;
-+    };
-+  - |
-+    timer@fffe8080 {
-+      compatible = "brcm,bcm63138-timer";
-+      reg = <0xfffe8080 0x28>;
-+    };
--- 
-2.34.1
+> +			return -EINVAL;
+> +		}
+> +		priv->qsgmii_main_ports |= PHY_GMII_PORT(main_ports);
+> +	}
+>  
+>  	priv->regmap = syscon_node_to_regmap(node->parent);
+>  	if (IS_ERR(priv->regmap)) {
 
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
+
+cheers,
+-roger
