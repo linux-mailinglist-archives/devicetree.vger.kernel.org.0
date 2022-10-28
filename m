@@ -2,95 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE139610624
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 01:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A8A6106FA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 02:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235311AbiJ0XJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 19:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58538 "EHLO
+        id S233622AbiJ1Axa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 20:53:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234803AbiJ0XJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 19:09:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B224900C1;
-        Thu, 27 Oct 2022 16:09:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EDD2162591;
-        Thu, 27 Oct 2022 23:09:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AF58C43470;
-        Thu, 27 Oct 2022 23:09:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666912150;
-        bh=hkVd0MHbdzv+0Fr8xN0jWV93AyTqcsDg/4xXphAOWoY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=pQYR3IBIYxC2QnaF5LND3DsXVVjn40xDYIyLCoihxWofX3ZqgAAbOJXAoN5nGPzos
-         BP2ceaLG0LYEVVnTQC+ausc84DRwddiqM6pORsTRgVEmFl+HCo71CG0KCyCVyTPup0
-         7hta12meYHD6jgaMM6prV62LyaEAeYslaERDhUL1BYTmvDuJctdYvK3apQw9A0YRud
-         r5QETThHHgd7sXa0+pgIxoqz2ywZU/h19H3zY6gzpRRkfFeOXLguiLUr0deb1l+1io
-         Md0rj7W6MN6D+3cXAkxHi2pszbD8TyEyoMqKPLWvldCSgbUwGT/7T2sXflpmfCYXWK
-         WrXm5LTs2svTg==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S234810AbiJ1Ax3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 20:53:29 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519A0A3F73;
+        Thu, 27 Oct 2022 17:53:26 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id r61-20020a17090a43c300b00212f4e9cccdso8364960pjg.5;
+        Thu, 27 Oct 2022 17:53:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BTLDGG1JfCbcJjNOZkikvC8f7AaHQJjjKAzvQey3fqs=;
+        b=YnAdcvuXVzFEKYlYf+iaNqeO54C1FKncfcUPJNMcb9fT3kuLTBm1UToeqsx0dAmz3w
+         YIU1Kk3Af0qMH7kR5YnVFhLLbyG1FR3Z7PuKnPUyVzfL3LtPVEs5BLP3+tHdHJcc8dkh
+         l1N2kRSl+QuKM3DEayZicbnVHgQqQKTjGRJgVRsV45fV5suhfQpIm/6z8LKgrYu7EnTb
+         po3Mtx06BVaoGcxu8k3H+tovzxKoKxzg5V2gf3LmWmdwGokt1y/pPUO3CsYWoZyHz63l
+         gXwoQWf3wkd+Bvcyr7Cavb1POamSpm1W8P6XR7A/XjJOGxm1XHl4rJ4c6KH/dpxj0eCc
+         dndw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BTLDGG1JfCbcJjNOZkikvC8f7AaHQJjjKAzvQey3fqs=;
+        b=K4w4GnidSTQPrAsWtnI0XJ7/K/2gyrQarNd0RssVC6kxBx+YixBtCcl9YuO6q797He
+         n7d8/h62Aibk0nL88KYLIBrDYClhkoHkD0tQWdAEIXJINIJjRH8qqc0L/sThLR2fLnNp
+         9vADgq9Pu/qxt4k+S+TKiO3Ajea7O3NFg2K5uyK26US6TKdIC3odTn4CbAMzZVqSrI8C
+         cgWa4hhcU7vty6YFQ8IEI9W1LY3s0fUJM63hu7CusRTn2H8m56T892uQAPpt8NJoInzs
+         j9iyZzJxK2qpLIEFocxralbiGistcPTNZ8h5RK5ywKAhAh5rnNMMXKW4JCWZssJ1e1Q8
+         LT3Q==
+X-Gm-Message-State: ACrzQf2iLxWow8fW3KZ7vwN+0AIwpGkc2HSmYeB+p606dtnN7ZUUyMaM
+        U0YsgHtoGfkqp1JLtm8Gm3wttTHpGIk=
+X-Google-Smtp-Source: AMsMyM4MlDLg14I1SS17xTsY8wvg4fC9kOv0osvlxi1GA2wcy5gtR5CrX6S1qEjfxC6MYC0rgq4mEg==
+X-Received: by 2002:a17:902:f710:b0:184:7a4c:fdc1 with SMTP id h16-20020a170902f71000b001847a4cfdc1mr51902574plo.27.1666918405546;
+        Thu, 27 Oct 2022 17:53:25 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:ea9a:801b:ed52:2db1])
+        by smtp.gmail.com with ESMTPSA id a17-20020a170902ecd100b00176b3d7db49sm1843475plh.0.2022.10.27.17.53.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Oct 2022 17:53:24 -0700 (PDT)
+Date:   Thu, 27 Oct 2022 17:53:21 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Gross <agross@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 06/11] dt-bindings: input: qcom,pm8921-pwrkey: convert
+ to dt-schema
+Message-ID: <Y1soAaUqIHb6+I8T@google.com>
+References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
+ <20220928-mdm9615-dt-schema-fixes-v4-6-dac2dfaac703@linaro.org>
+ <Y1o5hYAnBuf1akJ9@google.com>
+ <e8f53c8a-2842-9e6e-75bd-e099db3fe6f3@linaro.org>
+ <68f6d58e-8b7a-1032-4a3d-c4c74b82d111@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20221027101159.942843-6-peng.fan@oss.nxp.com>
-References: <20221027101159.942843-1-peng.fan@oss.nxp.com> <20221027101159.942843-6-peng.fan@oss.nxp.com>
-Subject: Re: [PATCH 5/6] clk: imx: keep hsio bus clock always on
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jacky Bai <ping.bai@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>
-To:     Peng Fan (OSS) <peng.fan@oss.nxp.com>, abel.vesa@linaro.org,
-        abelvesa@kernel.org, festevam@gmail.com, kernel@pengutronix.de,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Date:   Thu, 27 Oct 2022 16:09:08 -0700
-User-Agent: alot/0.10
-Message-Id: <20221027230910.4AF58C43470@smtp.kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <68f6d58e-8b7a-1032-4a3d-c4c74b82d111@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Peng Fan (OSS) (2022-10-27 03:11:58)
-> From: Jacky Bai <ping.bai@nxp.com>
->=20
-> During Linux System suspend/resume stress test after System Sleep
-> enabled, system will stuck sometimes. It is because NICMIX is powered
-> down, which HSIOMIX(always on) is not powered down. When NICMIX
-> powering down, HSIOMIX will get a hardware handshake, without HSIO ROOT
-> clk, the handshake will lose. Then after NICMIX power on when system
-> resume, the access to HSIOMIX through NICMIX would be broken. So keep HSIO
-> ROOT always on.
->=20
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
->  [Peng Fan] rewrite commit message
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/clk/imx/clk-imx93.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
-> index 422ad3c89845..74e8d810db7f 100644
-> --- a/drivers/clk/imx/clk-imx93.c
-> +++ b/drivers/clk/imx/clk-imx93.c
-> @@ -109,7 +109,7 @@ static const struct imx93_clk_root {
->         { IMX93_CLK_CCM_CKO2,           "ccm_cko2_root",        0x1d00, C=
-KO2_SEL, },
->         { IMX93_CLK_CCM_CKO3,           "ccm_cko3_root",        0x1d80, C=
-KO1_SEL, },
->         { IMX93_CLK_CCM_CKO4,           "ccm_cko4_root",        0x1e00, C=
-KO2_SEL, },
-> -       { IMX93_CLK_HSIO,               "hsio_root",            0x1e80, L=
-OW_SPEED_IO_SEL, },
-> +       { IMX93_CLK_HSIO,               "hsio_root",            0x1e80, L=
-OW_SPEED_IO_SEL, CLK_IS_CRITICAL},
+On Thu, Oct 27, 2022 at 08:43:20AM -0400, Krzysztof Kozlowski wrote:
+> On 27/10/2022 08:39, Neil Armstrong wrote:
+> > Hi,
+> > 
+> > On 27/10/2022 09:55, Dmitry Torokhov wrote:
+> >> On Fri, Oct 21, 2022 at 11:06:42AM +0200, Neil Armstrong wrote:
+> >>> Convert input/qcom,pm8xxx-pwrkey.txt to YAML, and take in account that
+> >>> the PM8921 pwrkey compatible is used as fallback for the PM8018 pwrkey.
+> >>>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >>
+> >> Should I merge this through my tree or you want all these changes to go
+> >> together through some particular tree?
+> > 
+> > I have no preference,
+> > Krzysztof will you take it and prepare a branch to Bjorn ?
+> 
+> No, I did not plan on doing it.
+> 
+> Dmitry,
+> Please grab it (assuming there are no dependencies).
 
-Similarly add a comment for critical flag please.
+Applied, thank you.
+
+-- 
+Dmitry
