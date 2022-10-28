@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8260611113
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2FD611115
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230103AbiJ1MUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:20:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52792 "EHLO
+        id S230272AbiJ1MUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:20:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbiJ1MUN (ORCPT
+        with ESMTP id S230241AbiJ1MUN (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:20:13 -0400
 Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B191B30576;
-        Fri, 28 Oct 2022 05:20:07 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id o64so5908943oib.12;
-        Fri, 28 Oct 2022 05:20:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F850317CC;
+        Fri, 28 Oct 2022 05:20:08 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id o64so5909009oib.12;
+        Fri, 28 Oct 2022 05:20:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GS27YxTROfugF/wVZbzeCMhNKTwEI+7kiEMnQj/EQrE=;
-        b=6LtMm9VZqab/4Sx8yDCG9T0L8O+S5msg3bgA/lVBREn956Fdf1x8Jtr6oyzes4B+b6
-         n0jDMLoRqGYaNKc2u9H2BlLY5PLAsn6DqEeZEQhbYen99IejJMeziZwbg56nVt2aGb6Y
-         8dqA751koCUmw5wRxX3a4bRHXoJyNq8DezXh/QI71LF4bnizUWM8bkhkAhTfM+6E+G/p
-         Qo7vfKyW4WvCoFiqBf/sgS9h7uxaF8mFH1AUb8oKpEqPdezdUXEs1YvX9KG0VtVqV8hr
-         ZTuq21z9VoA4Svh0Q0nFhbW2aswP2w8ECaFBA22YB+BIM1jOOnPiViWOE+yHtF42mReP
-         kqQg==
-X-Gm-Message-State: ACrzQf15+RzAiG9hUa7FT/BboYCQK02iyKfRDgBrZPZwiWLLQbw5I/Bv
-        w09LwyQDuNQcQwZVPlTabQ==
-X-Google-Smtp-Source: AMsMyM654wy/VermBsr6jXijH34jpCZlwSxa507GFx8XdZTumRNnQbRpMmh3u7vFH90EDhUf9AYZRg==
-X-Received: by 2002:a05:6808:ec4:b0:354:475a:c101 with SMTP id q4-20020a0568080ec400b00354475ac101mr8080836oiv.56.1666959606450;
-        Fri, 28 Oct 2022 05:20:06 -0700 (PDT)
+        bh=4dmFRfHeOegE5+bpQefgHIJnNQwHhQbV7Ukrk2pAq+A=;
+        b=JMfGkiBCyKiFTCuBHGxICUrQbfZYrTBbcV4ZAPIjhqPogXkofdEE+6c0gi8cHG3cY0
+         Snl7EFX9REIb0dXcSkfXRLAhNem6FFZnF5KPdE8HJ6RUD1ZlngRt2iYok2ohaNXRJUco
+         +zVs211Qvlu2q2cKd4c6oq6PWh2wJ2fxOgKHBFXdtNJefeZumE8JSMWXahyX1N9M0T8h
+         EoMAiSLPbjFjhktqA0hBdYe5ZV4FTnwQU3O5Emh8FP4cFN45CNx6p11iXCTuAx3CWqId
+         CZwAbT59F+itLQmwq5Nwv5f2BLG9OlX8BRwA8UMn+hlJCEz6b4qz5Xc1CgtUWuQRZaal
+         As+g==
+X-Gm-Message-State: ACrzQf0Mfz45GBkajlmbj4uDuTCTQLgpgcdKkX3WtdAcTnllq2EvbYAI
+        BZNQzM9AWV/QadxBGGKNgw==
+X-Google-Smtp-Source: AMsMyM6cKt0KcpbmIifbatyxqCPEd6Pz5r7yvNlhqxNm415ojTZlVQjyH5r0iSI57y48fTiJvgzy0w==
+X-Received: by 2002:aca:f102:0:b0:359:a7d8:3748 with SMTP id p2-20020acaf102000000b00359a7d83748mr7469355oih.164.1666959608160;
+        Fri, 28 Oct 2022 05:20:08 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n15-20020a0568301e8f00b00661946468c6sm270107otr.31.2022.10.28.05.20.05
+        by smtp.gmail.com with ESMTPSA id s19-20020a056870e6d300b0011f400edb17sm1983410oak.4.2022.10.28.05.20.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 05:20:05 -0700 (PDT)
-Received: (nullmailer pid 1079533 invoked by uid 1000);
+        Fri, 28 Oct 2022 05:20:07 -0700 (PDT)
+Received: (nullmailer pid 1079535 invoked by uid 1000);
         Fri, 28 Oct 2022 12:20:05 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yun Liu <liuyun@loongson.cn>, linux-kernel@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org, loongarch@lists.linux.dev,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20221028073222.21609-2-zhuyinbo@loongson.cn>
-References: <20221028073222.21609-1-zhuyinbo@loongson.cn> <20221028073222.21609-2-zhuyinbo@loongson.cn>
-Message-Id: <166695949216.1076967.15883740834218408019.robh@kernel.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: hpet: add loongson-2 hpet
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Paolo Abeni <pabeni@redhat.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-kernel@vger.kernel.org, Marcin Wojtas <mw@semihalf.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        netdev@vger.kernel.org
+In-Reply-To: <20221028092337.822840-3-miquel.raynal@bootlin.com>
+References: <20221028092337.822840-1-miquel.raynal@bootlin.com> <20221028092337.822840-3-miquel.raynal@bootlin.com>
+Message-Id: <166695949292.1076993.16137208250373047416.robh@kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: nvmem: add YAML schema for the ONIE tlv layout
 Date:   Fri, 28 Oct 2022 07:20:05 -0500
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -67,21 +69,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 15:32:22 +0800, Yinbo Zhu wrote:
-> Add the Loongson-2 High Precision Event Timer (HPET) binding
-> with DT schema format using json-schema.
+On Fri, 28 Oct 2022 11:23:34 +0200, Miquel Raynal wrote:
+> Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
+> compatible networking device.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
-> Change in v5:
-> 		1. Replace string loongson2/Loongson2 with Loongson-2/loongson-2.
-> 		2. Add the patch review information.
-> 
->  .../bindings/timer/loongson,ls2k-hpet.yaml    | 50 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+>  .../nvmem/layouts/onie,tlv-layout.yaml        | 96 +++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -90,13 +86,7 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.example.dts:21:18: fatal error: dt-bindings/clock/loongson,ls2k-clk.h: No such file or directory
-   21 |         #include <dt-bindings/clock/loongson,ls2k-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1492: dt_binding_check] Error 2
+Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.example.dtb:0:0: /example-0/onie: failed to match any schema with compatible: ['onie,tlv-layout', 'vendor,device']
 
 doc reference errors (make refcheckdocs):
 
