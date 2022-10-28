@@ -2,178 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC8A610780
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:56:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED8CE61078C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234492AbiJ1B4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 21:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41558 "EHLO
+        id S229616AbiJ1B67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 21:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234657AbiJ1B4W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:56:22 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4E8C7F098
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:56:20 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id bb5so2698230qtb.11
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:56:20 -0700 (PDT)
+        with ESMTP id S229531AbiJ1B66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:58:58 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06012AEA1F
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:58:58 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id f8so2617694qkg.3
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:58:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QFSp8Gx4w5A/kz9i8MLnQOAGdc+1wRun3PEnvhLdY94=;
-        b=Y6RrE+pmTF/dQH8SABMBeNtSpSRZA2e6R+brGqO9hQZMeYaaEVPHhfS71KE8VnvegY
-         OxbHVdCaYLpPLqJgvzjptumMzCEIo8V9aEUscBDIHrSgD1YSRi2rLCtjDApfcx9KkM2s
-         C8FG5iVGmQtXIyBs3yFPyk7b+qQ5vQGzvtFzuHGWvBU1JfCencMOJnL4n7Za7f6oqUJ/
-         IB07lhkV94YIVVCkZVnUfSfIuPBH2DzBM16E35SA/Gj5TlTxSZw4jxDcv17J9rXzItx6
-         qMo1t5Zf6fL1Y/G5Ji7PupJGMAZVhiI7OrXzlLGNkPfvmK6i+bCvPBo/UO2Bj3HSsT+k
-         htog==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BAW17+BRYm/H3b4WvRIwEV8kXOxv/g6sG9smsLfq3p0=;
+        b=vjd0f8z/krQCI2mZcirxzMwClkzC3Hldszir9m1PcZNl5VAXYBpmRo2ls+Z3CZSInj
+         j4tlmLK67v0MVs4OGpDoutATgrFPQpizafC6XVVlW6Q3zLxufNHl1PGBQUzwX9TKXjTR
+         HoldiZLnPe9s9oDlHkCzvqFs3hd+InNKIqhNPuExt/l/QgTjfuoUPXJloLu8yjn9/ZgP
+         Sowaw+Qq+aV17bOJwf5M/Y0Eb4Dmais0JAAaTsNXfpSXdS0XcROkC9mNvC/lGijnFlHn
+         o8pNyukvX8+tgODVDBeXz1KGUy5W5PQCukWv4M8CxFGbeoSOL74P+9RVugWtQXf6VIF5
+         cLoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QFSp8Gx4w5A/kz9i8MLnQOAGdc+1wRun3PEnvhLdY94=;
-        b=7Mtk9bXvc5BBqzA/7V+XZSnnemcjOFDkJNcMPWd5rLiss+DVD7qXxwADIOff3EBtku
-         TU6uGB8BJ3ahzaEtqDBHFqdWEP0KS5ib5f6awGTtmTKddC11C0c/D/igFjoUQvq5gjLZ
-         BvRBP//xTe34+KezI/+V8OK8AATtowEplNNtxNRaEQEkt8JJHWBnhQrBl+mwM4nrYq2B
-         nz7DgG5BSZRzrPXRDSERbJEeCdn2X6y5r420F6byCtf2lvMYnuf3eS3fwCpljv//Y2dW
-         CTPq1gCQv0NW2h463UtsxM3nSsUDq1EKrRPv709aTevrSD5RTj8udbVCkuocdnvSpq9b
-         qQmw==
-X-Gm-Message-State: ACrzQf3aEODWDXDZs1ey/YUyojwXWLUVnx5it2r24aLMTgugnoLdjcB/
-        DF21PAfQmx+vKl+ImyHUnDFTgg==
-X-Google-Smtp-Source: AMsMyM7Xo9W5zqlgQeOl61qFWDZWAQZKaYla7Bady0M41BCekgMax0lwbN7ph8twDwnM/cI9vq0i3g==
-X-Received: by 2002:a05:622a:15d3:b0:39d:dd6:3a31 with SMTP id d19-20020a05622a15d300b0039d0dd63a31mr34285810qty.37.1666922179821;
-        Thu, 27 Oct 2022 18:56:19 -0700 (PDT)
-Received: from krzk-bin.. ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id ay17-20020a05620a179100b006bb78d095c5sm2021816qkb.79.2022.10.27.18.56.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Oct 2022 18:56:19 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BAW17+BRYm/H3b4WvRIwEV8kXOxv/g6sG9smsLfq3p0=;
+        b=x7zcvqydPU+qvnEDX7WSn/vrbt/knzfajUKfs8gPJkuZ0k6Hrq4LScIMWWhTm1iWKA
+         fljWKDBYf1Np1NLFPheUj4CQ/zlOOdWFZZIO7KLY0cluoAL5SQNZX3Wjrd4G5XXrfi0V
+         Tg3Uys9pRO4LPk1WUrxDfjQ70hqEcMSllkvVC6IgLOMO7AM/vPtAyZhw9RnY0zQuG2HR
+         488Q8J9J7c/ALwMBUsY4FkeEmnnhsXqyb3n5I1xYxBHz4GW7doJ5KF0m56ovCOQOXe9I
+         Nwk+Z767GsQ46wnlCTIjhSTN0QwoccKwjqVkGh9D/fI9h2qv4wcmRjE5pt9M9Yb8sdUy
+         ymsA==
+X-Gm-Message-State: ACrzQf3fzIUXYmop9KywG8YzrTu1CRLrNcueQch6ka4yEZFJa1i7gUax
+        HzD8IJUKbipKOfdHwLD+wsLUPQ==
+X-Google-Smtp-Source: AMsMyM4KNauk+P3PKPfVNAfv2imHHQZUKu47Ls8+K3ykGh6ymSZlm9Yn/lb4RSQzLktpCTirbNrTUQ==
+X-Received: by 2002:a05:620a:1452:b0:6ec:3f82:522b with SMTP id i18-20020a05620a145200b006ec3f82522bmr36080682qkl.402.1666922337187;
+        Thu, 27 Oct 2022 18:58:57 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id h18-20020ac87d52000000b003998bb7b83asm1694147qtb.90.2022.10.27.18.58.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 18:58:56 -0700 (PDT)
+Message-ID: <d6f14e09-0c24-e19a-0951-bb3ca2219e79@linaro.org>
+Date:   Thu, 27 Oct 2022 21:58:54 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v6 1/2] dt-bindings: it6505: add properties to restrict
+ output bandwidth
+Content-Language: en-US
+To:     allen <allen.chen@ite.com.tw>
+Cc:     Pin-Yen Lin <treapking@chromium.org>,
+        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
+        Hermes Wu <Hermes.Wu@ite.com.tw>,
+        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Daniel Machon <daniel.machon@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: net: constrain number of 'reg' in ethernet ports
-Date:   Thu, 27 Oct 2022 21:56:16 -0400
-Message-Id: <20221028015616.101750-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20221027030155.59238-1-allen.chen@ite.com.tw>
+ <20221027030155.59238-2-allen.chen@ite.com.tw>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221027030155.59238-2-allen.chen@ite.com.tw>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'reg' without any constraints allows multiple items which is not the
-intention for Ethernet controller's port number.
+On 26/10/2022 23:01, allen wrote:
+> From: allen chen <allen.chen@ite.com.tw>
+> 
+> Add properties to restrict dp output data-lanes and clock.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This is a friendly reminder during the review process.
 
----
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
 
-Changes since v1:
-1. Drop change to non-accepted renesas,r8a779f0-ether-switch.
+Thank you.
 
-Please give it a time for Rob's bot to process this.
----
- Documentation/devicetree/bindings/net/asix,ax88178.yaml       | 4 +++-
- Documentation/devicetree/bindings/net/microchip,lan95xx.yaml  | 4 +++-
- .../devicetree/bindings/net/microchip,lan966x-switch.yaml     | 4 ++--
- .../devicetree/bindings/net/microchip,sparx5-switch.yaml      | 3 ++-
- .../devicetree/bindings/net/mscc,vsc7514-switch.yaml          | 3 ++-
- 5 files changed, 12 insertions(+), 6 deletions(-)
+Rob asked - Commit msg should explain reason for breaking users.
 
-diff --git a/Documentation/devicetree/bindings/net/asix,ax88178.yaml b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
-index 1af52358de4c..a81dbc4792f6 100644
---- a/Documentation/devicetree/bindings/net/asix,ax88178.yaml
-+++ b/Documentation/devicetree/bindings/net/asix,ax88178.yaml
-@@ -27,7 +27,9 @@ properties:
-           - usbb95,772b   # ASIX AX88772B
-           - usbb95,7e2b   # ASIX AX88772B
- 
--  reg: true
-+  reg:
-+    maxItems: 1
-+
-   local-mac-address: true
-   mac-address: true
- 
-diff --git a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-index cf91fecd8909..3715c5f8f0e0 100644
---- a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
-@@ -39,7 +39,9 @@ properties:
-           - usb424,9e08   # SMSC LAN89530 USB Ethernet Device
-           - usb424,ec00   # SMSC9512/9514 USB Hub & Ethernet Device
- 
--  reg: true
-+  reg:
-+    maxItems: 1
-+
-   local-mac-address: true
-   mac-address: true
- 
-diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-index dc116f14750e..583d70c51be6 100644
---- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-@@ -83,8 +83,8 @@ properties:
-             const: 0
- 
-           reg:
--            description:
--              Switch port number
-+            items:
-+              - description: Switch port number
- 
-           phys:
-             description:
-diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-index 57ffeb8fc876..ccb912561446 100644
---- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-@@ -89,7 +89,8 @@ properties:
- 
-         properties:
-           reg:
--            description: Switch port number
-+            items:
-+              - description: Switch port number
- 
-           phys:
-             maxItems: 1
-diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-index ee0a504bdb24..1cf82955d75e 100644
---- a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-@@ -109,7 +109,8 @@ properties:
- 
-         properties:
-           reg:
--            description: Switch port number
-+            items:
-+              - description: Switch port number
- 
-           phy-handle: true
- 
--- 
-2.34.1
+> 
+> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
+> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+> ---
+>  .../bindings/display/bridge/ite,it6505.yaml   | 68 +++++++++++++++++--
+>  1 file changed, 62 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> index 833d11b2303a7..b16a9d9127ddb 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+> @@ -52,9 +52,49 @@ properties:
+>      maxItems: 1
+>      description: extcon specifier for the Power Delivery
+>  
+> -  port:
+> -    $ref: /schemas/graph.yaml#/properties/port
+> -    description: A port node pointing to DPI host port node
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: A port node pointing to DPI host port node
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              link-frequencies:
+> +                minItems: 1
+> +                maxItems: 1
+> +                description: Allowed max link frequencies in Hz
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: Video port for DP output
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                uniqueItems: true
+> +                items:
+> +                  - enum: [ 0, 1 ]
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +
+
+This looks ok.
+
+Best regards,
+Krzysztof
 
