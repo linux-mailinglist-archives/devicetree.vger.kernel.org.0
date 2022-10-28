@@ -2,61 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB8B6107CB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AF86107D6
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235860AbiJ1CQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 22:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49770 "EHLO
+        id S235947AbiJ1CRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 22:17:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234467AbiJ1CQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:16:43 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342D3B8789;
-        Thu, 27 Oct 2022 19:16:42 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29S2GWXQ093633;
-        Thu, 27 Oct 2022 21:16:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666923392;
-        bh=lC+v97z1n2EnRlAcKJM9c5yU39ah8gTvf+wCbPVildI=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Pqaetyom9P4o8B23dlUMhtYg3F9ukYptsD5UnDtTHT5W4NZBgpbHivvoIUWcIGUjx
-         99DaybdQyATbBOzUbnDn28GBMn/EipjigoywolVxXVPhzTitAKiQHJ2jQAvwxjVzRK
-         axYu/dZYDmrD9aOp8aiVz3n7hhSYcyCioyxIleZw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29S2GWJI053392
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Oct 2022 21:16:32 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 27
- Oct 2022 21:16:32 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 27 Oct 2022 21:16:32 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29S2GWWJ043814;
-        Thu, 27 Oct 2022 21:16:32 -0500
-Date:   Thu, 27 Oct 2022 21:16:32 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Matt Ranostay <mranostay@ti.com>
-CC:     <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/9] J721S2: Add support for additional IPs
-Message-ID: <20221028021632.lzrsfna5v75hnz6n@payable>
-References: <20220921031327.4135-1-mranostay@ti.com>
+        with ESMTP id S236087AbiJ1CRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:17:35 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76525BA934
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:17:32 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id h24so2735832qta.7
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:17:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BJWq+oV9qCWB9nsJJoQSKw7FQSgWYiEd+bdoELvwk7c=;
+        b=VybGqElICFb96ny5ImphHSJ4bPBiryi0OLukwgdxtu7Apmvl6DqhkGO6US9H+puEjr
+         rOdYx4AAQ7ijRQ0853O4pV3fdTdfBOay+Y9RNZkyd5DP5OlmvtyqYJoj7NdxTdfPKZZs
+         pJ0tBSoKW+EHYTQNRmAPOztYPVOk8WwYRCSPdCu72M1k036ZDrOpjWTyitgfsGwyPiKh
+         7S5wakI/81U1g04sbymHYoat3Zr9W0mZOU4pqNPLSpzcc06bxKDj4TbI60UIpG+ufErA
+         aCuEuC1/Uk5kSG9GlmrHMtBmMNoyKLAXL/cb5HK0v21yq7kqgSsHMvvuIb+Fslsu7Rw5
+         Ftow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BJWq+oV9qCWB9nsJJoQSKw7FQSgWYiEd+bdoELvwk7c=;
+        b=GCJrR65xvqSA6ZBgdT6l1yyxWczmp2h9rcz51bJZgieBRDjSxcEVOHU9ukCcHUNf/F
+         WS+wVc6orRH5030N9fZXHl0FfM78Y8vfX8pxWwpx42ni1Go2DDe3yBpg13+vxaO9dUD1
+         +cv3po+pXihe8YjBRODNj9zmGD/yRlez4ST9M64wWslBbTX3nC+SYMLpburzt2/miI8T
+         tkP802NoYkJ/a0KzDEFsp6ING83GuNpdffs8fj9GeIrzCdehOQhq1NB9DdUgagOehuR7
+         3EXyUOJsEbp78OPiyQubct2eaD07GvEz9yPhsgH5RvEvazi5rlEeIxmyzgxcJRrkFbH1
+         TxUw==
+X-Gm-Message-State: ACrzQf3UJgFdKlvOkbft4a9cFJpnRh6kskusW+7r6Q+tgbKuwh2AQz15
+        o8HDzP8ooCreBwU8D7ApHP7hUw==
+X-Google-Smtp-Source: AMsMyM6sHImfq+ADwCCpfFGFstcpO4jS6IWwSFdv+ExMapjj41nSytwQQbllPPAuW9NuIBm3yZW0Iw==
+X-Received: by 2002:a05:622a:1646:b0:3a4:e8b5:b8c8 with SMTP id y6-20020a05622a164600b003a4e8b5b8c8mr12886869qtj.339.1666923451637;
+        Thu, 27 Oct 2022 19:17:31 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id bs15-20020a05620a470f00b006ec09d7d357sm2101353qkb.47.2022.10.27.19.17.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Oct 2022 19:17:31 -0700 (PDT)
+Message-ID: <7fe4bf93-6b60-f1f7-d89f-8d7f75c9e58c@linaro.org>
+Date:   Thu, 27 Oct 2022 22:17:29 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220921031327.4135-1-mranostay@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v3 3/3] dt-bindings: clock: imx8mp: Remove unused
+ IMX8MP_CLK_AUDIO_ROOT
+Content-Language: en-US
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, shengjiu.wang@gmail.com,
+        abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, marex@denx.de
+References: <1666922026-6943-1-git-send-email-shengjiu.wang@nxp.com>
+ <1666922026-6943-4-git-send-email-shengjiu.wang@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1666922026-6943-4-git-send-email-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,35 +79,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20:13-20220920, Matt Ranostay wrote:
-> The following series of patches add support for the following
-> on J721S2 common processor board,
+On 27/10/2022 21:53, Shengjiu Wang wrote:
+> Remove unused IMX8MP_CLK_AUDIO_ROOT which is replaced by
+> IMX8MP_CLK_AUDIO_AHB_ROOT.
 
-Thanks Matt for picking these up.. however,
+You break users, so this should be a bit better explained.
 
-> Matt Ranostay (2):
->   arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ device tree node
->   dt-bindings: PCI: Add host mode device-id for j721s2 platform
+Best regards,
+Krzysztof
 
-
-It gets hard when we mix driver bindings with dts patches. Please do not
-do that - in this case, the binding would be better go through  Lorenzo
-Pieralisi <lorenzo.pieralisi@arm.com> (who needs to be in the To list)
-and the corresponding list linux-pci@vger.kernel.org in CC
-
-This allows driver bindings to be independently merged of the dts
-changes - also allows dts maintainers to pick patches after ensuring
-bindings (and any corresponding driver changes) are merged into master
-(which locks things down). please disconnect the series such that the
-dts can alone be picked up without dtbs_check problems.
-
-That said, i'd rather we rebase this after Andrew's cleanup series in
-[1] and follow the same pattern for new nodes being added.
-
-
-[1] https://lore.kernel.org/all/20221020160305.18711-1-afd@ti.com/
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
