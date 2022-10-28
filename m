@@ -2,88 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8BC611E43
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 01:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C32B2611E5E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 01:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiJ1XrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 19:47:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
+        id S229909AbiJ1X4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 19:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiJ1XrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 19:47:04 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DDB1D5E3A;
-        Fri, 28 Oct 2022 16:47:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A38D5CE2F6B;
-        Fri, 28 Oct 2022 23:47:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16871C433D6;
-        Fri, 28 Oct 2022 23:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667000819;
-        bh=hB5fE6S2HQ2dHPl7HVJSxxHZcSmMmavYRsA3XNFzfwM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=c+IMnUh0cw/5I9OwpiVH/87RYGhRzQcEY3LqtjiL4TOTD/mWeymZWRyBuQhoFftq4
-         SjAHCsDgyk0WIlHpVUZ4nvg44DzjbYR7iRq/t+1oNpSyDbD104TZ3O1HLnEJ2fAGC1
-         +Sj3j/EbDe/kJLer2o+/9kfm9BvS9V8yuCScICsdAWBac9MgrfzjHbXqnvuLs9sbVJ
-         OdZhjO0oMDHvnOhqrS+HFTFD+yONBWYSSSkYRRhOHPr/xY0hXLmOAG7kznEuNmWj6k
-         O0jDOMiNfIreJW3/wo7WTSlRliOUEGYknlJvHW5xZx9yezMPuyNoY5jYk0BFCRfn4o
-         w7szPXFkQdumg==
-Message-ID: <d5bb33db-5c26-fbfa-0d12-46ca41d80785@kernel.org>
-Date:   Fri, 28 Oct 2022 19:46:56 -0400
+        with ESMTP id S229553AbiJ1X4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 19:56:19 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE994161FF9
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:56:02 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id w29so4471930qtv.9
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 16:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8w2NYwcU/LxoZeA70fFUf8Snmsz0a/FEvB2F4yg5rzI=;
+        b=RS9HoOWqVyRPdi4iPukjXDBFWBHpBP+0R3pRGgU1YY0THtRKCGBm5+TvZe/Y7tqf4W
+         WmAnDLLOfK1tAVDJS6tTqjW5D4YCnPxAuDGxBXvqcVcm35aXhBSscbEQrS+bUo7MVXeY
+         HFn3q6CnpBg5EwMKeQ8hosbhPRbpnZ/dRNFUOSzWkb7z4ED525yYK3sC4Lig2GblI23S
+         PG7D3d8rlIrKNWvNrtcq/M6FOflJ/xRA7D5dm2eFUwz9kASav0ny4OklPZo8vPoIIlT2
+         7GTsH1bv4guGVz/o53yS6/pe4dw1k3AZPbYjUmQkPuoQNSuYDex5qn7X6WbZGUcHWLRf
+         u1yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8w2NYwcU/LxoZeA70fFUf8Snmsz0a/FEvB2F4yg5rzI=;
+        b=ISYOQRlMzbMptpj+C98ZC+NPSpG5oMPXHh1SNlC/8EOWwI4ccl151VzJNebvVnoUFQ
+         At6zMeJ6IpBFQmQum7THmyWpC+FsJd+H5erBGvd1DSLl8LDkUapnMrn894PnPCWPdrkv
+         +sBObwIGW/7EmnCljE0fu50J8TxorO7es8r847xlGDZTJFLHaCyNBsHU1uZmX2sL8PwC
+         diBzJBam9bGl9U5DquJlyvz63XFeAwgtsoOzvECsDLdaEAPnlSErwbyd5ShJMG9Hhc/u
+         VryzgN3yLhYTCGoBCpRnBqvNcP1bVA+ExlYqLjE2+XPxZT48AFP9Qmnn31qgRNPQCy+9
+         Sz4w==
+X-Gm-Message-State: ACrzQf3PKBL1cOnqlMC/dWxzcCFsjVLSiy73GtQxRWt43UrAjzxj+2Lh
+        oX1B0ugME+ICRUhl+gfbQJoyNg==
+X-Google-Smtp-Source: AMsMyM7fMyqhfK46Jxy9MvJOiMmlZBT+lsFy9twv/ntI4E00t092YTyfoMwUSvVgDhAOeV9pu7xWtQ==
+X-Received: by 2002:ac8:5e54:0:b0:399:e614:3b0b with SMTP id i20-20020ac85e54000000b00399e6143b0bmr1803085qtx.89.1667001361886;
+        Fri, 28 Oct 2022 16:56:01 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id i21-20020a05620a249500b006a6ebde4799sm33564qkn.90.2022.10.28.16.56.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 16:56:01 -0700 (PDT)
+Message-ID: <fdbde791-b0d9-7cb8-c028-5e4466ae3d81@linaro.org>
+Date:   Fri, 28 Oct 2022 19:55:59 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 10/12] dt-bindings: mediatek: mt8188: add audio afe
- document
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add bindings for Renesas ProXO
 Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "robh@kernel.org" <robh@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>
-References: <20220930145701.18790-1-trevor.wu@mediatek.com>
- <20220930145701.18790-11-trevor.wu@mediatek.com>
- <166457526101.1112313.13428811477972046652.robh@kernel.org>
- <ac5d872ac8dfa40bd5238589f85d78ad6ba6d706.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <ac5d872ac8dfa40bd5238589f85d78ad6ba6d706.camel@mediatek.com>
+To:     Alex Helms <alexander.helms.jy@renesas.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, geert+renesas@glider.be
+References: <20220914211809.22500-1-alexander.helms.jy@renesas.com>
+ <20220914211809.22500-2-alexander.helms.jy@renesas.com>
+ <20220915120844.GA996386-robh@kernel.org>
+ <8d71b849-7226-09ec-d099-ae5c172e1a17@renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8d71b849-7226-09ec-d099-ae5c172e1a17@renesas.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/10/2022 23:57, Trevor Wu (吳文良) wrote:
->> date:
+On 22/09/2022 14:06, Alex Helms wrote:
+> On 9/15/2022 5:08 AM, Rob Herring wrote:
+>> On Wed, Sep 14, 2022 at 02:18:08PM -0700, Alex Helms wrote:
+>>> Add dt bindings for the Renesas ProXO oscillator.
+>>>
+>>> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
+>>> ---
+>>>  .../bindings/clock/renesas,proxo.yaml         | 50 +++++++++++++++++++
+>>>  MAINTAINERS                                   |  5 ++
+>>>  2 files changed, 55 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,proxo.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/renesas,proxo.yaml b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
+>>> new file mode 100644
+>>> index 000000000..2ae131431
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/renesas,proxo.yaml
+>>> @@ -0,0 +1,50 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fclock%2Frenesas%2Cversaclock7.yaml%23&amp;data=05%7C01%7Calexander.helms.jy%40renesas.com%7C34ce960b2542459b61d408da97130b50%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637988405289843575%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=izvR%2FXbUNVXknaODSnMmcetPnn%2Ff3Jk%2F6RuBdZ7uSa0%3D&amp;reserved=0
+>>> +$schema: https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Calexander.helms.jy%40renesas.com%7C34ce960b2542459b61d408da97130b50%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637988405289843575%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=dQ7nZtgfTE5DrXB1iavJuOhSWmGl4tYI1m6iZpkPAhA%3D&amp;reserved=0
+>>> +
+>>> +title: Renesas ProXO Oscillator Device Tree Bindings
+>>> +
+>>> +maintainers:
+>>> +  - Alex Helms <alexander.helms.jy@renesas.com>
+>>> +
+>>> +description: |
 >>
->> pip3 install dtschema --upgrade
+>> Don't need '|' if no formatting to preserve.
 >>
->> Please check and re-submit.
+>>> +  Renesas ProXO is a family of programmable ultra-low phase noise 
+>>> +  quartz-based oscillators.
 >>
+>> Are they all the same from a s/w standpoint. If not you need specific 
+>> compatibles for the differences. 
 > 
-> After upgrading dtschema, I can see the problem.
-> I will correct it in V2.
+> At this time only the XP variant is supported and this is reflected in
+> the "compatible" string.
 
-Correct also cc list.
+You should document everything, if possible, not what is supported by
+some version of some system/driver/firmware.
 
+> 
+>>
+>>> +
+>>> +properties:
+>>> +  '#clock-cells':
+>>> +    const: 0
+>>> +
+>>> +  compatible:
+>>> +    enum:
+>>> +      - renesas,proxo-xp
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  renesas,xtal:
+>>> +    description: Internal crystal frequency, default is 50000000 (50MHz)
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>
+>> Use 'clock-frequency'.
+> 
+> I think "crystal-frequency" would make more sense. The parts come
+> programmed to a factory clock frequency which is different than the
+> internal crystal frequency.
+
+We have a standard property and it should be used, when applicable.
+Don't encode here frequency for something else than the driving clock.
 
 Best regards,
 Krzysztof
