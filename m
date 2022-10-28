@@ -2,59 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6DA96111F8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E6BB611201
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:56:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiJ1My5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59972 "EHLO
+        id S230071AbiJ1M40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:56:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbiJ1Myt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:54:49 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D7A5F81;
-        Fri, 28 Oct 2022 05:54:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 8756ECE2AFD;
-        Fri, 28 Oct 2022 12:54:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2483DC433C1;
-        Fri, 28 Oct 2022 12:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666961683;
-        bh=m+dABeNdo1jP9iK7JBRoT+Hc2J3W+ylW1aqtkyVNMsc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fJrku492UpL2ToEbDTFMxi6MgjxD8xG5ZhVFxQ/A9TlfqFvWZkd6YLnAQbuq9pKbh
-         ps3zJuE/fIRhkFDJkAflSMwdYg+b3yibDzDa3/Dxp08yf8e+gbx14ZjOSH6XY3xIcN
-         TWMCsORy9TMbyiYTjXGXtgoh9tew9Xi0nAkPJYGOBYhZBps6GAlIUVZ2chV7h0K5LR
-         2PSuzXsAOZurYLCZeO2F5mat8WIR7PFCU+M3t/DStOe6WMLFnE4DtCbeFTXINqb41j
-         7EkujZVKWctY0xUTAOY3BvW/ka9zyXltTX6ozzoEj9eW8rirUO6vufCHrwND57NpSS
-         OtA2CHU8IIIVQ==
-Date:   Fri, 28 Oct 2022 18:24:38 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 08/15] phy: qcom-qmp-pcie: add register init helper
-Message-ID: <Y1vRDv+hrMmnqwPj@matsya>
-References: <20221021110947.28103-1-johan+linaro@kernel.org>
- <20221021110947.28103-9-johan+linaro@kernel.org>
- <932765e0-ecbc-8c9b-69c5-ce0bb0c8de68@linaro.org>
- <Y1KDXD9n0cCqjTGy@hovoldconsulting.com>
+        with ESMTP id S229786AbiJ1M4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:56:25 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF681BFB89
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:56:24 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id t25so3318012qkm.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:56:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cc5DBl6fLk5VzpRBus6T5B5WFedWLUlf7giGkmjppAI=;
+        b=W3+V21sHGybZcObpWl4eWzRRO5UpXS5CubY6vZWm4wmc/wVNosn8k7o5cfbMRKZsMv
+         mceEyAc7gzpUbbmjsMaG708c29v1yO7HJvM2dk9BGYnYlTzUlEuKaDueXXNWcjo6YVxW
+         rQrl3fGIckDdeIYPyZ7rhl5WeRWBJr+k9Lbl+CxbT8vZjdgHUMONQjgzVHTxFapgPuq0
+         YLepYO1wapwDyhInCDLina8mP/46KRabITlTMRr0i8iRA6CUGg2bLofDcMfjVgpgFPav
+         AISuqHvjDgep9YCsWKVdjaosHTOL/tgiXSLdpqBsF3nmmlZJUc6v3P8uy4xUWsVNcS/U
+         xeIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cc5DBl6fLk5VzpRBus6T5B5WFedWLUlf7giGkmjppAI=;
+        b=VHget3t6XeHlrNYgYQxoBm6a/ThKbo2ZwkiAr30yYg2DxCC70w2rAovtQ+CwjF1PlW
+         AILodT2+XQc3e7/pKcAzlRY6WB9P9f8b2UUsmvVGK81dx/zgyApwduLFhPxQkzQwVuzw
+         Uq9nkGQ3T41s/QIrYva8pKS02g9o/9qd3ICkLMMYaOnVNnSzQ4eZmXNKD7g0ZhrxMuFx
+         OuqdjgzAq7NzdbaMqsXIjOQrnouHW9o2ZaMgiiDZKhnOLdF53Z8OS3gZlW1JinCl8vTn
+         MhdFBbRNvRflWDcLoJA45dFYTcQlECH97EhvlkFor7OYjrtgsd5VvqARgXgg1TVa9+6W
+         55rQ==
+X-Gm-Message-State: ACrzQf0t0jqzDz/S6FdavNAtq1WSTeLvgh+jY5IrsP32aEMFZlhTR4Vf
+        Uq5vR2aYe88TQ/3LkFWwUAoppA==
+X-Google-Smtp-Source: AMsMyM5hT4czWckRumb4ArDnLCJlAEAvoUS/pqZEVgHDhwmINPXneYrfuoJapsgExSEDC138xP0piA==
+X-Received: by 2002:a05:620a:45ac:b0:6f8:7c0c:20f with SMTP id bp44-20020a05620a45ac00b006f87c0c020fmr11966040qkb.270.1666961783732;
+        Fri, 28 Oct 2022 05:56:23 -0700 (PDT)
+Received: from krzk-bin.. ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id d13-20020a05620a240d00b006f0fc145ae5sm2978266qkn.15.2022.10.28.05.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 05:56:23 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory-controllers: arm,pl353-smc: Extend to support 'arm,pl354' SMC
+Date:   Fri, 28 Oct 2022 08:56:20 -0400
+Message-Id: <166696177685.15403.8751248944316732738.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221021203928.286169-1-robh@kernel.org>
+References: <20221021203928.286169-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y1KDXD9n0cCqjTGy@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,101 +75,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-10-22, 13:32, Johan Hovold wrote:
-> On Fri, Oct 21, 2022 at 02:18:49PM +0300, Dmitry Baryshkov wrote:
-> > On 21/10/2022 14:09, Johan Hovold wrote:
-> > > Generalise the serdes initialisation helper so that it can be used to
-> > > initialise all the PHY registers (e.g. serdes, tx, rx, pcs).
-> > > 
-> > > Note that this defers the ungating of the PIPE clock somewhat, which is
-> > > fine as it isn't needed until starting the PHY.
-> > > 
-> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > ---
-> > >   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 51 +++++++-----------------
-> > >   1 file changed, 15 insertions(+), 36 deletions(-)
-> > > 
-> > > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > > index dd7e72424fc0..f57d10f20277 100644
-> > > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > > @@ -1820,46 +1820,32 @@ static void qmp_pcie_configure(void __iomem *base,
-> > >   	qmp_pcie_configure_lane(base, tbl, num, 0xff);
-> > >   }
-> > >   
-> > > -static void qmp_pcie_serdes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
-> > > -{
-> > > -	void __iomem *serdes = qmp->serdes;
-> > > -
-> > > -	if (!tables)
-> > > -		return;
-> > > -
-> > > -	qmp_pcie_configure(serdes, tables->serdes, tables->serdes_num);
-> > > -}
-> > > -
-> > > -static void qmp_pcie_lanes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
-> > > +static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
-> > >   {
-> > >   	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> > > +	void __iomem *serdes = qmp->serdes;
-> > >   	void __iomem *tx = qmp->tx;
-> > >   	void __iomem *rx = qmp->rx;
-> > >   	void __iomem *tx2 = qmp->tx2;
-> > >   	void __iomem *rx2 = qmp->rx2;
-> > > +	void __iomem *pcs = qmp->pcs;
-> > > +	void __iomem *pcs_misc = qmp->pcs_misc;
-> > >   
-> > > -	if (!tables)
-> > > +	if (!tbls)
-> > >   		return;
-> > >   
-> > > -	qmp_pcie_configure_lane(tx, tables->tx, tables->tx_num, 1);
-> > > -	qmp_pcie_configure_lane(rx, tables->rx, tables->rx_num, 1);
-> > > +	qmp_pcie_configure(serdes, tbls->serdes, tbls->serdes_num);
-> > > +
-> > > +	qmp_pcie_configure_lane(tx, tbls->tx, tbls->tx_num, 1);
-> > > +	qmp_pcie_configure_lane(rx, tbls->rx, tbls->rx_num, 1);
-> > >   
-> > >   	if (cfg->lanes >= 2) {
-> > > -		qmp_pcie_configure_lane(tx2, tables->tx, tables->tx_num, 2);
-> > > -		qmp_pcie_configure_lane(rx2, tables->rx, tables->rx_num, 2);
-> > > +		qmp_pcie_configure_lane(tx2, tbls->tx, tbls->tx_num, 2);
-> > > +		qmp_pcie_configure_lane(rx2, tbls->rx, tbls->rx_num, 2);
-> > >   	}
-> > > -}
-> > > -
-> > > -static void qmp_pcie_pcs_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
-> > > -{
-> > > -	void __iomem *pcs = qmp->pcs;
-> > > -	void __iomem *pcs_misc = qmp->pcs_misc;
-> > > -
-> > > -	if (!tables)
-> > > -		return;
-> > >   
-> > > -	qmp_pcie_configure(pcs, tables->pcs, tables->pcs_num);
-> > > -	qmp_pcie_configure(pcs_misc, tables->pcs_misc, tables->pcs_misc_num);
-> > > +	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
-> > > +	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
-> > 
-> > As seem above, if nothing else, tables -> tbls rename generates 
-> > unnecessary diff.
+On Fri, 21 Oct 2022 15:39:28 -0500, Rob Herring wrote:
+> Add support for the Arm PL354 static memory controller to the existing
+> Arm PL353 binding. Both are different configurations of the same IP with
+> support for different types of memory interfaces.
 > 
-> Can you please stop with the bikeshedding. This is not about keeping the
-> diff small, this is about readability of the new helper function as I
-> already told you.
+> The 'arm,pl354' binding has already been in use upstream for a long time
+> in Arm development boards. The existing users have only the controller
+> without any child devices, so drop the required address properties
+> (ranges, #address-cells, #size-cells). The schema for 'ranges' is too
+> constrained as the order is not important and the PL354 has 8
+> chipselects (And the PL353 actually has up to 8 too).
 > 
-> And this is a *local* identifier, not some state member that needs a
-> super descriptive name. And the rest of the driver used "tbl"
-> consistently until your EP/RC mode patches for that matter.
+> [...]
 
-I would disagree here... You can change tbls/tables but then it does not
-help _this_ patch
+Applied, thanks!
 
-Right thing would be to change tbls to tables first and then add init
-helper... For a reviewer seeing an undocumented change and unnecessary
-diff is not right..
+[1/1] dt-bindings: memory-controllers: arm,pl353-smc: Extend to support 'arm,pl354' SMC
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/de67fa80c66992b13dd018ec18e8c91156522c18
 
-Pls split if you would still like the rename
-
+Best regards,
 -- 
-~Vinod
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
