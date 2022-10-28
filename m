@@ -2,188 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 231A6611464
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:24:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDC6611468
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbiJ1OYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:24:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32970 "EHLO
+        id S229916AbiJ1OYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 10:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230404AbiJ1OYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:24:06 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E233D7F08E;
-        Fri, 28 Oct 2022 07:24:01 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id l11so6923768edb.4;
-        Fri, 28 Oct 2022 07:24:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1WNx4yfmC2U2E4sOpj8fuWYGqScB4dVY74TwkvhFBpE=;
-        b=BdMcIjkGtdB6QHnO0UqPMIgIbwrcBaBsurYNtLQNWtQdjYYAk0QJ/qtkXsdk3KU4oc
-         D0rYoyX8uo2Hs2p28sgxsY22aOyR76J53s4uRgyYAGwUx9eNhFXRePS0rvuyHiK5vruP
-         X2ZpVWwq8gL4V22UiHsdY1V9f+pXT99i7DYkgtR4LdVwioc4ONSn3YDtKZmuMnjA5gTg
-         4F6qZ9TNIeBQY4uNhZZOQ+vRrAfHipnIMT3XBX/Hu6GqWdVcu00MawmARpPjgXki28lH
-         zDNbjH/hZr4B65wO/QGmTMG2oYd3Rrt56XEbKkicKKoq8QDnnOmiumXfCe1y6gHWNwYZ
-         Ltrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1WNx4yfmC2U2E4sOpj8fuWYGqScB4dVY74TwkvhFBpE=;
-        b=pPpW0+5SSVnt0kS6NRk1SwOPw20xh1yeBy8jZqtA8ZcMo6GgR06x0YvRHLYpSGB6pR
-         Hth6/SMK773fEGkwYHZK2QskKWHvPlLwXatvPtP0qP3lnNiPzrxB6YlYpHdIh8kUNo4F
-         OayXRMw5wXnRPC/ckr8lvjf4MzMRuI5bDcfxNUFjcCmX7/q5sNsGwT20u1rVZIwpm4KF
-         gsqTMx3vEPBFtEnAe1LDW2Ln5dcUrIIYLyjRsI/aRKJxwV2WO4Oi0qwwhV6lXpbkUDqK
-         +gxzWqgXd/XvfJPgxnmdM4E5yZBR/NWyvmqJr0aL40bzcc1e/PPgw9zCSXMjhFHUNEmm
-         zAfA==
-X-Gm-Message-State: ACrzQf2q4nKnirRNJQa289I2NUHOxXpNoi1s+4uXuS8tKjvqFF4TOKfb
-        KhTYmqbSr6SgHCWUHUiDgp8ycSnTx3Y=
-X-Google-Smtp-Source: AMsMyM4ik7rZcQCOXBPPYJ3o+aIYHG80fp5tiP5YBP+g26Vh2wZbIWjETpw9Q40LUbXywZdlf8pfLw==
-X-Received: by 2002:a05:6402:90b:b0:45c:16a0:ec1e with SMTP id g11-20020a056402090b00b0045c16a0ec1emr52558047edz.427.1666967040383;
-        Fri, 28 Oct 2022 07:24:00 -0700 (PDT)
-Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id r19-20020aa7cfd3000000b004611c230bd0sm2794945edy.37.2022.10.28.07.23.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 07:23:59 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 16:23:57 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH 2/2] memory: tegra: Add DLA clients for Tegra234
-Message-ID: <Y1vl/cyDUVFWzz1z@orome>
-References: <20221028123741.134880-1-jonathanh@nvidia.com>
- <20221028123741.134880-2-jonathanh@nvidia.com>
- <ce3fdd20-248f-4fdd-fe83-2aa79fd297c5@linaro.org>
- <073073ae-d921-e11f-8ff4-67f1a61760d0@nvidia.com>
- <c1465ec3-a903-f1d1-621f-2cbe95ae53e7@linaro.org>
- <1c22af7f-fa73-6f79-ad12-d460b7c534c8@nvidia.com>
- <4a4c2b3d-79e5-1f34-a031-77d1d1941000@linaro.org>
+        with ESMTP id S230090AbiJ1OYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:24:38 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B7CC7B;
+        Fri, 28 Oct 2022 07:24:29 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SEOIhT023801;
+        Fri, 28 Oct 2022 09:24:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666967058;
+        bh=kA5Mgq119+ATbl1YiCzW7OI1HyW0bjpkWthHyg3MhQs=;
+        h=From:To:CC:Subject:Date;
+        b=Dk3S4EvGluN/5qR0jkrhReZVmiBo73bTkVRZz9g8a1Eeoj44zjmYfdP9YD+/87GQz
+         8m77Ug+4FJdVLN36uCha6/qOcnEDaOtm6GsKI/zWbZRZQD3SbvSqxo9XCqP2oSzGNv
+         OD2JEIjB9Rr0IIoc1UTOe+6edh7Q8DAAoDh9jorI=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SEOIj2030628
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Oct 2022 09:24:18 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
+ Oct 2022 09:24:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 28 Oct 2022 09:24:18 -0500
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SEOHfP039275;
+        Fri, 28 Oct 2022 09:24:17 -0500
+From:   Andrew Davis <afd@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bryan Brattlof <bb@ti.com>, Le Jin <le.jin@siemens.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>
+Subject: [PATCH 00/11] AM65x Disable Incomplete DT Nodes
+Date:   Fri, 28 Oct 2022 09:24:06 -0500
+Message-ID: <20221028142417.10642-1-afd@ti.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SGWPt8G5BjvFgXNp"
-Content-Disposition: inline
-In-Reply-To: <4a4c2b3d-79e5-1f34-a031-77d1d1941000@linaro.org>
-User-Agent: Mutt/2.2.7 (2022-08-07)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello all,
 
---SGWPt8G5BjvFgXNp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Same story as for AM64x[0], AM62x[1], and J7x[2].
 
-On Fri, Oct 28, 2022 at 09:07:28AM -0400, Krzysztof Kozlowski wrote:
-> On 28/10/2022 09:05, Jon Hunter wrote:
-> >=20
-> > On 28/10/2022 13:52, Krzysztof Kozlowski wrote:
-> >> On 28/10/2022 08:51, Jon Hunter wrote:
-> >>>
-> >>> On 28/10/2022 13:46, Krzysztof Kozlowski wrote:
-> >>>> On 28/10/2022 08:37, Jon Hunter wrote:
-> >>>>> Add the memory clients on Tegra234 which are needed for initialisin=
-g the
-> >>>>> SMMU for the Deep Learning Accelerator (DLA).
-> >>>>>
-> >>>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> >>>>> ---
-> >>>>>    drivers/memory/tegra/tegra234.c | 160 ++++++++++++++++++++++++++=
-++++++
-> >>>>>    1 file changed, 160 insertions(+)
-> >>>>>
-> >>>>> diff --git a/drivers/memory/tegra/tegra234.c b/drivers/memory/tegra=
-/tegra234.c
-> >>>>> index a9e8fd99730f..9bdaf8af8c97 100644
-> >>>>> --- a/drivers/memory/tegra/tegra234.c
-> >>>>> +++ b/drivers/memory/tegra/tegra234.c
-> >>>>> @@ -170,6 +170,166 @@ static const struct tegra_mc_client tegra234_=
-mc_clients[] =3D {
-> >>>>>    				.security =3D 0x504,
-> >>>>>    			},
-> >>>>>    		},
-> >>>>> +	}, {
-> >>>>> +		.id =3D TEGRA234_MEMORY_CLIENT_DLA0RDA,
-> >>>>> +		.name =3D "dla0rda",
-> >>>>> +		.sid =3D TEGRA234_SID_NVDLA0,
-> >>>>
-> >>>> This is now not applicable because you sent dependencies separate, m=
-ixed
-> >>>> with other subsystems... Split pieces based on subsystems.
-> >>>
-> >>> Sorry I don't understand. This patch is dependent upon the first. I h=
-ave
-> >>> not sent anything separate.
-> >>
-> >> You sent mixed between subsystems patches adding TEGRA234_SID_NVDLA0.
-> >> That one should have been sent separate so maintainers can pick it up.
-> >=20
-> > The original patch [0] I sent had no dependencies and so Thierry picked=
-=20
-> > this up. However, when adding patch 2/2 here, I noticed a typo in the=
-=20
-> > definition for TEGRA234_MEMORY_CLIENT_DLA0WRB so thought I would fix=20
-> > this up while I am at it.
-> >=20
-> >> Now, it's not possible for me to pick this patch.
-> >=20
-> > Yes now you cannot simply pick this up. We have had similar problems=20
-> > before. I am not sure if it is easiest for Thierry to pick these up.
-> >=20
->=20
-> And there is simple solution as I said - split the patches per
-> subsystem. Why the dependency was combining multiple subsystems into one?
+Last round for AM65x, but there are some boards that I do not have
+(Simatic IOT2050), so testing very welcome!
 
-Splitting per subsystem doesn't really work in this case. The main
-problem is that the dt-bindings headers are used by multiple subsystems,
-and the content is not generated in a git-friendly way. So even if we
-were to split things up, at some point there would be conflicts between
-the various branches that these changes end up in.
+Thanks,
+Andrew
 
-The easiest solution for this is to simply take this through a single
-tree. Normally this wouldn't be a problem because the symbols defined in
-these headers are only used in device trees. However, for the memory
-clients it is slightly complicated by the fact that the memory
-controller driver also needs access to these symbols, so it creates an
-interdependency between the dt-bindings, DT and memory controller
-branches.
+[0] https://www.spinics.net/lists/arm-kernel/msg1018532.html
+[1] https://www.spinics.net/lists/arm-kernel/msg1018864.html
+[2] https://www.spinics.net/lists/arm-kernel/msg1019544.html
 
-One of the reasons why Jon originally sent the larger patch, adding all
-the missing IDs in one go, was precisely so we could avoid this hassle
-in the future.
+Andrew Davis (11):
+  arm64: dts: ti: k3-am65: Enable UART nodes at the board level
+  arm64: dts: ti: k3-am65: Enable I2C nodes at the board level
+  arm64: dts: ti: k3-am65: Enable SPI nodes at the board level
+  arm64: dts: ti: k3-am65: Enable EPWM nodes at the board level
+  arm64: dts: ti: k3-am65: Enable ECAP nodes at the board level
+  arm64: dts: ti: k3-am65: MDIO pinmux should belong to the MDIO node
+  arm64: dts: ti: k3-am65: Enable MDIO nodes at the board level
+  arm64: dts: ti: k3-am65: Enable MCAN nodes at the board level
+  arm64: dts: ti: k3-am65: Enable PCIe nodes at the board level
+  arm64: dts: ti: k3-am65: Enable Mailbox nodes at the board level
+  arm64: dts: ti: k3-am65: Enable McASP nodes at the board level
 
-Thierry
+ .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 101 ++--------------
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  41 +++++++
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  18 ++-
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |   2 +
+ .../ti/k3-am6528-iot2050-basic-common.dtsi    |   1 +
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 113 ++++--------------
+ .../ti/k3-am6548-iot2050-advanced-common.dtsi |   4 -
+ 7 files changed, 94 insertions(+), 186 deletions(-)
 
---SGWPt8G5BjvFgXNp
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.37.3
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNb5f0ACgkQ3SOs138+
-s6F97Q//TI/SluqHTnhnTLlvEv5LTZ2qz+g4U/DR8qX2ixpoYjQohofq08SkRmAm
-MwWRXqFsr6aB/CKUFtW2XoMJEKnRQUkBQHHTapTCp9WsN7w8LjjVjbBNr/EbZ9wA
-p6ZZr4/i2JkjlLD0IdqIX3py9aWZcNO1ek7td56o+tONtKwQU5I5EoJ7hvuPaCTc
-UQ/jzVrmFYK+1jeaicrdKdd/GADap1+BVoG48WBmxFTYv/nSl3WQAzJdirCh8DBP
-bzHVaG5cDOf8QxvX7czdEjACVqfEY5v9k7wb6bHQckdDq2kNWSC33gcEps2FO3Ke
-9HTp1nuUPZRBttrXOo+RNS5ckRirBKUaaQnVplT/fL35ebTKR1CQ5cogbcc3as7t
-EyPkldde+Ic8nu8y15+d2OBjjy4VHga7o/vWHLmYUiVEck29wO4kyPYMH9ZsDW40
-yjNs3hDs9++ICpDKnbmK0Veu3LWuJSAgL/rZpaL6RQJvNd1Y/5RlljLqlO8blYzo
-+6J2MS+yoai5XZwkjF1EVeZMDyMBb83UXnbHCAymgYGHUX6otzIhom1azZmW7tOg
-3JgPmt4SatRwb9dJHN+244fRggp/JL6Wga1o+TP7zGFBbBIXb3hNNL6UOVgOPe6a
-irlq6UIIS/Tk739d9KhvwR1FhNeBpsQIW5Ey0hfZ9J6sTCbyaC0=
-=SPDS
------END PGP SIGNATURE-----
-
---SGWPt8G5BjvFgXNp--
