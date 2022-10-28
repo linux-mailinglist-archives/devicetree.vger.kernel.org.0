@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 169636110AF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9431A6110B3
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230262AbiJ1MIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
+        id S230266AbiJ1MIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:08:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230248AbiJ1MIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:08:22 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE3C51D3C40
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:08:21 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id t25so12445075ejb.8
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:08:21 -0700 (PDT)
+        with ESMTP id S230254AbiJ1MIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:08:24 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE9A1D3A72
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:08:22 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id a67so7524609edf.12
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:08:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+UwiNY00/B1wEnev9eGZy7ZKGi1I0cycL/iCTh2NCnA=;
-        b=WFhXjhcB/pX6k4XKVx6xAYZLBxEgJdoEEs9MDz3R7vvSnjTjzj3EIsZlVoBXpuvkbH
-         GsqErhVmgMJW8jJd5lHD7vEIxvtc6IdDBL+3YkOBwCfIxSgcKnSHv22isGw3/DLmwsIT
-         dLzxwBEZ5Xa0RPFkro0DoKSUYyw421m2IhRQvVHH9gq0eaDlBjq1vmeatdkaZRBB/IaS
-         9lzxb5B5mSN8jBcRUYKlA3fBlhT8y8IQOZRx/nOa+Rl+swZOxoKl0Hxr+Ldt9U0d+I18
-         KM3rNI90JCpcR+S016feJFLdeCkTppGDQwaxJhiFItHs822f4JE2db0Ay8m8X7d67wx8
-         pxrw==
+        bh=J/gtiEXD+8uUkkIaghTv4hrEKAMCKaLjc9YinjxqWWo=;
+        b=QRdI1yDkxsMRbomr2xeVl1S3oGNYlV+7UkLhH0STOtOKyee85y7Ty6dnzGe1Da+lbq
+         sfK0X4YQCtcNOm1hAwcMFaYmub6S7xhQ8nnXWbQv8eeTIFD2LrZQLAck/03ibM/D7Uff
+         RG2H5t3snHFN0LHcC4G2YQywZz88HNuBldWSQLXmuV5hxdCXgD9RFK1nhXzGew2HPyr/
+         fJV2YS+uwnyM6X3xvURArmYCef9b1kuK8e5ZBzmSA2WcpoiqFmZa51fUpR72XSZ78Nho
+         ZVME3m3JtA2Bb0gAWGl0c5I/DXTy95tkyVOrVpkoszvA2lioFdAMiPWLDoWwaBj3/YkJ
+         27Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+UwiNY00/B1wEnev9eGZy7ZKGi1I0cycL/iCTh2NCnA=;
-        b=hw2n3Zb31nPdzcNLr/1VbY7+/7ixPffWkzDjdlfXCLrOs8Kymsl49CKwLmEBGq8CeP
-         JBMJd2hg/CKfASGPAXqnogicwBSQaQoOUVVZsf5LKFUyVZXSFhqfOaeUWbQcSpR0FrbI
-         IQzBNXSWXgH9TdaeKL4aDemjX1iFU9AX+igvzodASpOWJcfc8JGQ+CLrnPtTBzw/0DhZ
-         +2jtfj6RWIaa9z0ZO5KKtwPvm+8H1/IV/hTEQ6VcGeQR+3uUWBiY4pXWThj4bF496Stm
-         GHZ2a/q3+JNJf2595Xhlql1HOvvtuS3bQ+5hZ39T9ov9jt9nwdj6jfjp4ufr85VaW3do
-         K85Q==
-X-Gm-Message-State: ACrzQf0Cz61b8jTu1jrVwalWhOSRPacQBg7kmxK1IwpLu420uCXaSIKg
-        QUEgyFO0oMFDp9/dRYW5fPRpAA==
-X-Google-Smtp-Source: AMsMyM6qMEgjzC2J8dgTEwYSZlt5kH905cdXrte36zXs4B6iGshkk5H9+3G7jMgli094NZ6MLD10hw==
-X-Received: by 2002:a17:906:db0c:b0:77b:7d7d:5805 with SMTP id xj12-20020a170906db0c00b0077b7d7d5805mr48359888ejb.726.1666958900428;
-        Fri, 28 Oct 2022 05:08:20 -0700 (PDT)
+        bh=J/gtiEXD+8uUkkIaghTv4hrEKAMCKaLjc9YinjxqWWo=;
+        b=OGliBD4+KXOd6GnB+9MLa/fQeZorUF9PF05edVuZZhR7Vab6X8JaIVlU/62pAzhIFD
+         hAOF/eUbQm/npChKeyU6v2YdxA4uIVvlpXFCXOJzpbf4prcg5ejg19HiQ7qiKslTtCBo
+         SGQU+R0aiQws09a/RIOe5s0T6XASjhaWznOFSimjsghTtUC5DcvQrpiMJVmIzS6HJz0I
+         vX4IDOxQrn2fsKBaLT3uEMxWQWaTo2lajwZjcid0p+hnUjN5C+Z9z8sygnPrvyBmj3PE
+         +3lkA+tNxYdnkbdoXypGNtU/BfA2H9Bov/ZDD1ny3za5w9h7JdYscXpd6lOmSIFda3Pv
+         sV8w==
+X-Gm-Message-State: ACrzQf1aYp8jO+6l0CBaNMj1Q0V7lQNYthJIWXqwmlKEWGb3uxIezFo1
+        nVBKn5N8cvEP89MJx0vpo4DueQ==
+X-Google-Smtp-Source: AMsMyM5WUQDfutYRFNEgV8bjucY7YE+caWuR7DEIYmHISEEGI9x5oGJojJJ1t/FcKDzntjA7yyvUkg==
+X-Received: by 2002:a05:6402:348b:b0:45c:b22b:c4a9 with SMTP id v11-20020a056402348b00b0045cb22bc4a9mr51712910edc.65.1666958902502;
+        Fri, 28 Oct 2022 05:08:22 -0700 (PDT)
 Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id u13-20020a170906124d00b00782e3cf7277sm2067258eja.120.2022.10.28.05.08.18
+        by smtp.gmail.com with ESMTPSA id u13-20020a170906124d00b00782e3cf7277sm2067258eja.120.2022.10.28.05.08.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 05:08:19 -0700 (PDT)
+        Fri, 28 Oct 2022 05:08:21 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         konrad.dybcio@somainline.org, robh+dt@kernel.org,
@@ -64,9 +64,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
         freedreno@lists.freedesktop.org,
         Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
         quic_jesszhan@quicinc.com
-Subject: [PATCH v1 1/9] drm/msm: Add compatibles for SM8350 display
-Date:   Fri, 28 Oct 2022 14:08:04 +0200
-Message-Id: <20221028120812.339100-2-robert.foss@linaro.org>
+Subject: [PATCH v1 2/9] drm/msm/dpu: Refactor sc7280_pp location
+Date:   Fri, 28 Oct 2022 14:08:05 +0200
+Message-Id: <20221028120812.339100-3-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221028120812.339100-1-robert.foss@linaro.org>
 References: <20221028120812.339100-1-robert.foss@linaro.org>
@@ -74,46 +74,55 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for "qcom,sm8350-dpu" and
-"qcom,sm8350-mdss".
+The sc7280_pp declaration is not located by the other _pp
+declarations, but rather hidden around the _merge_3d
+declarations. Let's fix this to avoid confusion.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 1 +
- drivers/gpu/drm/msm/msm_mdss.c          | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index 008e1420e6e5..70683dbc6b32 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -1315,6 +1315,7 @@ static const struct of_device_id dpu_dt_match[] = {
- 	{ .compatible = "qcom,sc8180x-dpu", },
- 	{ .compatible = "qcom,sm8150-dpu", },
- 	{ .compatible = "qcom,sm8250-dpu", },
-+	{ .compatible = "qcom,sm8350-dpu", },
- 	{}
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index 0239a811d5ec..d0ce7612fee8 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -1175,6 +1175,13 @@ static const struct dpu_pingpong_cfg sm8150_pp[] = {
+ 			-1),
  };
- MODULE_DEVICE_TABLE(of, dpu_dt_match);
-diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-index e13c5c12b775..fd5a95cace16 100644
---- a/drivers/gpu/drm/msm/msm_mdss.c
-+++ b/drivers/gpu/drm/msm/msm_mdss.c
-@@ -447,6 +447,7 @@ static const struct of_device_id mdss_dt_match[] = {
- 	{ .compatible = "qcom,sc8180x-mdss" },
- 	{ .compatible = "qcom,sm8150-mdss" },
- 	{ .compatible = "qcom,sm8250-mdss" },
-+	{ .compatible = "qcom,sm8350-mdss" },
- 	{}
+ 
++static const struct dpu_pingpong_cfg sc7280_pp[] = {
++	PP_BLK("pingpong_0", PINGPONG_0, 0x59000, 0, sc7280_pp_sblk, -1, -1),
++	PP_BLK("pingpong_1", PINGPONG_1, 0x6a000, 0, sc7280_pp_sblk, -1, -1),
++	PP_BLK("pingpong_2", PINGPONG_2, 0x6b000, 0, sc7280_pp_sblk, -1, -1),
++	PP_BLK("pingpong_3", PINGPONG_3, 0x6c000, 0, sc7280_pp_sblk, -1, -1),
++};
++
+ static struct dpu_pingpong_cfg qcm2290_pp[] = {
+ 	PP_BLK("pingpong_0", PINGPONG_0, 0x70000, 0, sdm845_pp_sblk,
+ 		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
+@@ -1198,13 +1205,6 @@ static const struct dpu_merge_3d_cfg sm8150_merge_3d[] = {
+ 	MERGE_3D_BLK("merge_3d_2", MERGE_3D_2, 0x83200),
  };
- MODULE_DEVICE_TABLE(of, mdss_dt_match);
+ 
+-static const struct dpu_pingpong_cfg sc7280_pp[] = {
+-	PP_BLK("pingpong_0", PINGPONG_0, 0x59000, 0, sc7280_pp_sblk, -1, -1),
+-	PP_BLK("pingpong_1", PINGPONG_1, 0x6a000, 0, sc7280_pp_sblk, -1, -1),
+-	PP_BLK("pingpong_2", PINGPONG_2, 0x6b000, 0, sc7280_pp_sblk, -1, -1),
+-	PP_BLK("pingpong_3", PINGPONG_3, 0x6c000, 0, sc7280_pp_sblk, -1, -1),
+-};
+-
+ /*************************************************************
+  * DSC sub blocks config
+  *************************************************************/
 -- 
 2.34.1
 
