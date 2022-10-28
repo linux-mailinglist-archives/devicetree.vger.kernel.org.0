@@ -2,475 +2,447 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60C07610EDE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 12:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBCA1610F2C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 12:57:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbiJ1Kmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 06:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57738 "EHLO
+        id S229692AbiJ1K5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 06:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230045AbiJ1Kmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 06:42:46 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9A0943D5B0;
-        Fri, 28 Oct 2022 03:42:43 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.95,220,1661785200"; 
-   d="scan'208";a="140727909"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Oct 2022 19:42:42 +0900
-Received: from localhost.localdomain (unknown [10.226.92.52])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 65779400CA05;
-        Fri, 28 Oct 2022 19:42:38 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v9 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Date:   Fri, 28 Oct 2022 11:42:30 +0100
-Message-Id: <20221028104231.220426-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221028104231.220426-1-biju.das.jz@bp.renesas.com>
-References: <20221028104231.220426-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S229683AbiJ1K5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 06:57:50 -0400
+Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71ACF197F83;
+        Fri, 28 Oct 2022 03:57:47 -0700 (PDT)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout2.routing.net (Postfix) with ESMTP id 5A38F5FF91;
+        Fri, 28 Oct 2022 10:57:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1666954665;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=45U4JNMPzdhCKxqPyu/vblXV0uvneI0UY12mqqikmNY=;
+        b=qYKXa4p1a/mfedbUiCOoRY73YxiNLK5k2wUfxc/gMihZXF2P++EOfXckS6Ipr35feNZ3hU
+        GCOHd1S3ehvX9Ks26/zkTp4PlqcxFhlBl+qejn5h3FeLxM8pkgY3qsE9hfh1k8X/8fdDvy
+        jbKwxXbjVEv5iEuvI9DrfJgxs3qI5g8=
+Received: from webmail.hosting.de (unknown [134.0.26.148])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPA id D10C3403ED;
+        Fri, 28 Oct 2022 10:57:44 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Fri, 28 Oct 2022 12:57:44 +0200
+From:   "Frank Wunderlich (linux)" <linux@fw-web.de>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC v2 7/7] arm64: dts: mt7986: add Bananapi R3
+In-Reply-To: <64daf96b-b2b5-6f02-91aa-58d19083ee01@collabora.com>
+References: <20221026093650.110290-1-linux@fw-web.de>
+ <20221026093650.110290-8-linux@fw-web.de>
+ <64daf96b-b2b5-6f02-91aa-58d19083ee01@collabora.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <a97aa98a6230e7f33a6b5f5e2c9e54ce@fw-web.de>
+X-Sender: linux@fw-web.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mail-ID: a0790789-d43a-4d9d-b1a0-321851b4552d
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the General PWM Timer (GPT).
+Am 2022-10-28 11:19, schrieb AngeloGioacchino Del Regno:
+> Il 26/10/22 11:36, Frank Wunderlich ha scritto:
+>> From: Frank Wunderlich <frank-w@public-files.de>
+>> 
+>> Add support for Bananapi R3 SBC.
+>> 
+>> - SD/eMMC support (switching first 4 bits of data-bus with sw6/D)
+>> - all rj45 ports and both SFP working (eth1/lan4)
+>> - all USB-Ports + SIM-Slot tested
+>> - i2c and all uarts tested
+>> - wifi tested
+>> 
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>> ---
+>> SPI-NAND/NOR switched (CS by sw5/C) not yet included
+>>    this is done with DT-Overlays in my tree, but i have no idea yet,
+>>    how to upstream
+>> 
+>> break some lines in wifi-eeprom-data because of checkpatch warnings.
+>> originally there were 8 x int32 per line
+>> 
+>> changes:
+>> 
+>> v2:
+>> - remove pcie to be added later (discussion about clocks)
+>> - some fixes based on suggestions on ML
+>>    - add key suffix like it's done in mt7622-bpi-r64 devicetree
+>>    - add dash in sfp node names
+>>    - use reg as unit for switch-node
+>>    - drop "-3-4" suffix from i2c-pins node name
+>>    - fix order in Makefile
+>> ---
+>>   arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+>>   .../mediatek/mt7986a-bananapi-bpi-r3-emmc.dts |  34 +
+>>   .../mediatek/mt7986a-bananapi-bpi-r3-sd.dts   |  29 +
+>>   .../dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi | 593 
+>> ++++++++++++++++++
+>>   4 files changed, 658 insertions(+)
+>>   create mode 100644 
+>> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+>>   create mode 100644 
+>> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+>>   create mode 100644 
+>> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+>> 
+>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile 
+>> b/arch/arm64/boot/dts/mediatek/Makefile
+>> index 0ec90cb3ef28..e8902f2cc58f 100644
+>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>> @@ -7,6 +7,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtb
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
+>>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+>> diff --git 
+>> a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+>> new file mode 100644
+>> index 000000000000..859b4180ca11
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dts
+>> @@ -0,0 +1,34 @@
+>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 MediaTek Inc.
+>> + * Author: Sam.Shih <sam.shih@mediatek.com>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +
+>> +#include "mt7986a-bananapi-bpi-r3.dtsi"
+>> +
+>> +/ {
+>> +	model = "Bananapi BPI-R3 (emmc)";
+>> +};
+>> +
+>> +&mmc0 {
+>> +	pinctrl-names = "default", "state_uhs";
+>> +	pinctrl-0 = <&mmc0_pins_default>;
+>> +	pinctrl-1 = <&mmc0_pins_uhs>;
+> 
+> pinctrl properties and power supply properties can go to the shared
+> mt7986a-bananapi-bpi-r3.dtsi file.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v8->v9:
- * Added Rb tag from Rob.
-v7->v8:
- * Removed Rb tags from Rob and Geert as it modelled as single GPT
-   device handling multiple channels.
- * Updated description
- * Updated interrupts and interrupt-names properties
- * Updated example
-v6->v7:
- * No change.
-v5->v6:
- * No change.
-v4->v5:
- * No change.
-v3->v4:
- * No change.
-v2->v3:
- * Added Rb tag from Rob.
-v1->v2:
- * Added '|' after 'description:' to preserve formatting.
- * Removed description for pwm_cells as it is common property.
- * Changed the reg size in example from 0xa4->0x100
- * Added Rb tag from Geert.
-RFC->v1:
- * Added Description
- * Removed comments from reg and clock
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 378 ++++++++++++++++++
- 1 file changed, 378 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+OK
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-new file mode 100644
-index 000000000000..fc0a4e2be6a0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -0,0 +1,378 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rzg2l-gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L General PWM Timer (GPT)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
-+  (GPT32E). It supports the following functions
-+  * 32 bits × 8 channels.
-+  * Up-counting or down-counting (saw waves) or up/down-counting
-+    (triangle waves) for each counter.
-+  * Clock sources independently selectable for each channel.
-+  * Two I/O pins per channel.
-+  * Two output compare/input capture registers per channel.
-+  * For the two output compare/input capture registers of each channel,
-+    four registers are provided as buffer registers and are capable of
-+    operating as comparison registers when buffering is not in use.
-+  * In output compare operation, buffer switching can be at crests or
-+    troughs, enabling the generation of laterally asymmetric PWM waveforms.
-+  * Registers for setting up frame cycles in each channel (with capability
-+    for generating interrupts at overflow or underflow)
-+  * Generation of dead times in PWM operation.
-+  * Synchronous starting, stopping and clearing counters for arbitrary
-+    channels.
-+  * Starting, stopping, clearing and up/down counters in response to input
-+    level comparison.
-+  * Starting, clearing, stopping and up/down counters in response to a
-+    maximum of four external triggers.
-+  * Output pin disable function by dead time error and detected
-+    short-circuits between output pins.
-+  * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
-+  * Enables the noise filter for input capture and external trigger
-+    operation.
-+
-+  The below pwm channels are supported.
-+    pwm0  - GPT32E0.GTIOC0A channel
-+    pwm1  - GPT32E0.GTIOC0B channel
-+    pwm2  - GPT32E1.GTIOC1A channel
-+    pwm3  - GPT32E1.GTIOC1B channel
-+    pwm4  - GPT32E2.GTIOC2A channel
-+    pwm5  - GPT32E2.GTIOC2B channel
-+    pwm6  - GPT32E3.GTIOC3A channel
-+    pwm7  - GPT32E3.GTIOC3B channel
-+    pwm8  - GPT32E4.GTIOC4A channel
-+    pwm9  - GPT32E4.GTIOC4B channel
-+    pwm10 - GPT32E5.GTIOC5A channel
-+    pwm11 - GPT32E5.GTIOC5B channel
-+    pwm12 - GPT32E6.GTIOC6A channel
-+    pwm13 - GPT32E6.GTIOC6B channel
-+    pwm14 - GPT32E7.GTIOC7A channel
-+    pwm15 - GPT32E7.GTIOC7B channel
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-gpt  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-gpt  # RZ/V2L
-+      - const: renesas,rzg2l-gpt
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    const: 2
-+
-+  interrupts:
-+    items:
-+      - description: GPT32E0.GTCCRA input capture/compare match
-+      - description: GPT32E0.GTCCRB input capture/compare
-+      - description: GPT32E0.GTCCRC compare match
-+      - description: GPT32E0.GTCCRD compare match
-+      - description: GPT32E0.GTCCRE compare match
-+      - description: GPT32E0.GTCCRF compare match
-+      - description: GPT32E0.GTADTRA compare match
-+      - description: GPT32E0.GTADTRB compare match
-+      - description: GPT32E0.GTCNT overflow/GTPR compare match
-+      - description: GPT32E0.GTCNT underflow
-+      - description: GPT32E1.GTCCRA input capture/compare match
-+      - description: GPT32E1.GTCCRB input capture/compare
-+      - description: GPT32E1.GTCCRC compare match
-+      - description: GPT32E1.GTCCRD compare match
-+      - description: GPT32E1.GTCCRE compare match
-+      - description: GPT32E1.GTCCRF compare match
-+      - description: GPT32E1.GTADTRA compare match
-+      - description: GPT32E1.GTADTRB compare match
-+      - description: GPT32E1.GTCNT overflow/GTPR compare match
-+      - description: GPT32E1.GTCNT underflow
-+      - description: GPT32E2.GTCCRA input capture/compare match
-+      - description: GPT32E2.GTCCRB input capture/compare
-+      - description: GPT32E2.GTCCRC compare match
-+      - description: GPT32E2.GTCCRD compare match
-+      - description: GPT32E2.GTCCRE compare match
-+      - description: GPT32E2.GTCCRF compare match
-+      - description: GPT32E2.GTADTRA compare match
-+      - description: GPT32E2.GTADTRB compare match
-+      - description: GPT32E2.GTCNT overflow/GTPR compare match
-+      - description: GPT32E2.GTCNT underflow
-+      - description: GPT32E3.GTCCRA input capture/compare match
-+      - description: GPT32E3.GTCCRB input capture/compare
-+      - description: GPT32E3.GTCCRC compare match
-+      - description: GPT32E3.GTCCRD compare match
-+      - description: GPT32E3.GTCCRE compare match
-+      - description: GPT32E3.GTCCRF compare match
-+      - description: GPT32E3.GTADTRA compare match
-+      - description: GPT32E3.GTADTRB compare match
-+      - description: GPT32E3.GTCNT overflow/GTPR compare match
-+      - description: GPT32E3.GTCNT underflow
-+      - description: GPT32E4.GTCCRA input capture/compare match
-+      - description: GPT32E4.GTCCRB input capture/compare
-+      - description: GPT32E4.GTCCRC compare match
-+      - description: GPT32E4.GTCCRD compare match
-+      - description: GPT32E4.GTCCRE compare match
-+      - description: GPT32E4.GTCCRF compare match
-+      - description: GPT32E4.GTADTRA compare match
-+      - description: GPT32E4.GTADTRB compare match
-+      - description: GPT32E4.GTCNT overflow/GTPR compare match
-+      - description: GPT32E4.GTCNT underflow
-+      - description: GPT32E5.GTCCRA input capture/compare match
-+      - description: GPT32E5.GTCCRB input capture/compare
-+      - description: GPT32E5.GTCCRC compare match
-+      - description: GPT32E5.GTCCRD compare match
-+      - description: GPT32E5.GTCCRE compare match
-+      - description: GPT32E5.GTCCRF compare match
-+      - description: GPT32E5.GTADTRA compare match
-+      - description: GPT32E5.GTADTRB compare match
-+      - description: GPT32E5.GTCNT overflow/GTPR compare match
-+      - description: GPT32E5.GTCNT underflow
-+      - description: GPT32E6.GTCCRA input capture/compare match
-+      - description: GPT32E6.GTCCRB input capture/compare
-+      - description: GPT32E6.GTCCRC compare match
-+      - description: GPT32E6.GTCCRD compare match
-+      - description: GPT32E6.GTCCRE compare match
-+      - description: GPT32E6.GTCCRF compare match
-+      - description: GPT32E6.GTADTRA compare match
-+      - description: GPT32E6.GTADTRB compare match
-+      - description: GPT32E6.GTCNT overflow/GTPR compare match
-+      - description: GPT32E6.GTCNT underflow
-+      - description: GPT32E7.GTCCRA input capture/compare match
-+      - description: GPT32E7.GTCCRB input capture/compare
-+      - description: GPT32E7.GTCCRC compare match
-+      - description: GPT32E7.GTCCRD compare match
-+      - description: GPT32E7.GTCCRE compare match
-+      - description: GPT32E7.GTCCRF compare match
-+      - description: GPT32E7.GTADTRA compare match
-+      - description: GPT32E7.GTADTRB compare match
-+      - description: GPT32E7.GTCNT overflow/GTPR compare match
-+      - description: GPT32E7.GTCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: ccmpa0
-+      - const: ccmpb0
-+      - const: cmpc0
-+      - const: cmpd0
-+      - const: cmpe0
-+      - const: cmpf0
-+      - const: adtrga0
-+      - const: adtrgb0
-+      - const: ovf0
-+      - const: unf0
-+      - const: ccmpa1
-+      - const: ccmpb1
-+      - const: cmpc1
-+      - const: cmpd1
-+      - const: cmpe1
-+      - const: cmpf1
-+      - const: adtrga1
-+      - const: adtrgb1
-+      - const: ovf1
-+      - const: unf1
-+      - const: ccmpa2
-+      - const: ccmpb2
-+      - const: cmpc2
-+      - const: cmpd2
-+      - const: cmpe2
-+      - const: cmpf2
-+      - const: adtrga2
-+      - const: adtrgb2
-+      - const: ovf2
-+      - const: unf2
-+      - const: ccmpa3
-+      - const: ccmpb3
-+      - const: cmpc3
-+      - const: cmpd3
-+      - const: cmpe3
-+      - const: cmpf3
-+      - const: adtrga3
-+      - const: adtrgb3
-+      - const: ovf3
-+      - const: unf3
-+      - const: ccmpa4
-+      - const: ccmpb4
-+      - const: cmpc4
-+      - const: cmpd4
-+      - const: cmpe4
-+      - const: cmpf4
-+      - const: adtrga4
-+      - const: adtrgb4
-+      - const: ovf4
-+      - const: unf4
-+      - const: ccmpa5
-+      - const: ccmpb5
-+      - const: cmpc5
-+      - const: cmpd5
-+      - const: cmpe5
-+      - const: cmpf5
-+      - const: adtrga5
-+      - const: adtrgb5
-+      - const: ovf5
-+      - const: unf5
-+      - const: ccmpa6
-+      - const: ccmpb6
-+      - const: cmpc6
-+      - const: cmpd6
-+      - const: cmpe6
-+      - const: cmpf6
-+      - const: adtrga6
-+      - const: adtrgb6
-+      - const: ovf6
-+      - const: unf6
-+      - const: ccmpa7
-+      - const: ccmpb7
-+      - const: cmpc7
-+      - const: cmpd7
-+      - const: cmpe7
-+      - const: cmpf7
-+      - const: adtrga7
-+      - const: adtrgb7
-+      - const: ovf7
-+      - const: unf7
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpt4: pwm@10048400 {
-+        compatible = "renesas,r9a07g044-gpt", "renesas,rzg2l-gpt";
-+        reg = <0x10048000 0x800>;
-+        interrupts = <GIC_SPI 218 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 219 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 220 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 221 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 222 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 223 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 224 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 225 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 226 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 227 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 231 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 232 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 233 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 234 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 235 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 236 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 237 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 238 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 239 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 240 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 244 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 245 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 246 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 247 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 248 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 249 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 250 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 251 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 252 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 253 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 257 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 258 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 259 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 260 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 261 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 272 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 273 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 275 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 283 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 284 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 285 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 286 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 287 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 288 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 289 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 290 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 291 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 292 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 296 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 297 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 298 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 299 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 300 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 301 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 302 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 303 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 304 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 305 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 309 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 310 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 311 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 312 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 313 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 314 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 315 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 316 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 317 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "ccmpa0", "ccmpb0", "cmpc0", "cmpd0",
-+                          "cmpe0", "cmpf0", "adtrga0", "adtrgb0",
-+                          "ovf0", "unf0",
-+                          "ccmpa1", "ccmpb1", "cmpc1", "cmpd1",
-+                          "cmpe1", "cmpf1", "adtrga1", "adtrgb1",
-+                          "ovf1", "unf1",
-+                          "ccmpa2", "ccmpb2", "cmpc2", "cmpd2",
-+                          "cmpe2", "cmpf2", "adtrga2", "adtrgb2",
-+                          "ovf2", "unf2",
-+                          "ccmpa3", "ccmpb3", "cmpc3", "cmpd3",
-+                          "cmpe3", "cmpf3", "adtrga3", "adtrgb3",
-+                          "ovf3", "unf3",
-+                          "ccmpa4", "ccmpb4", "cmpc4", "cmpd4",
-+                          "cmpe4", "cmpf4", "adtrga4", "adtrgb4",
-+                          "ovf4", "unf4",
-+                          "ccmpa5", "ccmpb5", "cmpc5", "cmpd5",
-+                          "cmpe5", "cmpf5", "adtrga5", "adtrgb5",
-+                          "ovf5", "unf5",
-+                          "ccmpa6", "ccmpb6", "cmpc6", "cmpd6",
-+                          "cmpe6", "cmpf6", "adtrga6", "adtrgb6",
-+                          "ovf6", "unf6",
-+                          "ccmpa7", "ccmpb7", "cmpc7", "cmpd7",
-+                          "cmpe7", "cmpf7", "adtrga7", "adtrgb7",
-+                          "ovf7", "unf7";
-+        clocks = <&cpg CPG_MOD R9A07G044_GPT_PCLK>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_GPT_RST_C>;
-+        #pwm-cells = <2>;
-+    };
--- 
-2.25.1
+> Also, I have a question here... so your hardware can take either eMMC
+> or MicroSD... and... is there really no way to build in both 
+> devicetrees
+> and having the bootloader to select the right one based on hardware 
+> version
+> or on machine compatible?
 
+as i wrote in description the board has both, an emmc-chip and 
+microsd-slot, but they cannot be used simultanously as mt7986 has only 1 
+mmc-controller. BPI-R3 has a switch that changes the first 4 data-lines 
+either to emmc or microsd-slot. You have only 1 mmc-node that has to be 
+configured to which mmc-device you have connected, so i have to use 2 
+different devicetrees here.
+
+> I can see, on the wiki, that both bootloader and ATF can be customized 
+> (so,
+> can be compiled and flashed just fine), so I would say that even if the
+> "original" U-Boot doesn't distinguish devicetrees, you can definitely 
+> easily
+> implement that.
+
+i already boot a fit-image with 2 dts (and 2 overlays for spi-nand/nor) 
+and my uboot can check with "mmc partconf" if emmc is available and if 
+not choose the sd-dts.
+
+> If you have no idea how to recognize the boards, from a fast look at 
+> the
+> board schematics, I can see that there's a bootstrap setting based on 
+> the
+> state of GPIO0 and GPIO1... you can perhaps use that somehow?
+> Otherwise, remember that, most of the times, there are other ways to 
+> determine
+> the board version, like Board ID resistors...
+
+but how should this effect the dts files here? originally i had the 
+sd-card dts as base and the emmc had overridden/deleted some properties 
+there (so only 2 dts-files). Had talked to Matthias and he suggested 
+having a base dtsi and 2 dts for the 2 mmc-configs.
+
+> Also, still on the wiki, I can't see any no-eMMC version of this board: 
+> is
+> the sd-only a pre-production version or..?
+
+no sd/emmc-only version...1 board with 1 mmc-controller, but 2 
+"storages" connected (only 1 functional based on hw switch setting)
+
+>> +	bus-width = <8>;
+>> +	max-frequency = <200000000>;
+>> +	cap-mmc-highspeed;
+>> +	mmc-hs200-1_8v;
+>> +	mmc-hs400-1_8v;
+>> +	hs400-ds-delay = <0x14014>;
+>> +	vmmc-supply = <&reg_3p3v>;
+>> +	vqmmc-supply = <&reg_1p8v>;
+>> +	non-removable;
+>> +	no-sd;
+>> +	no-sdio;
+>> +	status = "okay";
+>> +};
+>> +
+>> diff --git 
+>> a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+>> new file mode 100644
+>> index 000000000000..57200407ab86
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dts
+>> @@ -0,0 +1,29 @@
+>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 MediaTek Inc.
+>> + * Author: Sam.Shih <sam.shih@mediatek.com>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +
+>> +#include "mt7986a-bananapi-bpi-r3.dtsi"
+>> +
+>> +/ {
+>> +	model = "Bananapi BPI-R3 (sdmmc)";
+>> +};
+>> +
+>> +&mmc0 {
+>> +	//sdcard
+> 
+> C-style comments please
+
+ok
+
+>> +	pinctrl-names = "default", "state_uhs";
+>> +	pinctrl-0 = <&mmc0_pins_default>;
+>> +	pinctrl-1 = <&mmc0_pins_uhs>;
+>> +	bus-width = <4>;
+>> +	max-frequency = <52000000>;
+>> +	cap-sd-highspeed;
+>> +	vmmc-supply = <&reg_3p3v>;
+>> +	vqmmc-supply = <&reg_1p8v>;
+>> +	status = "okay";
+>> +};
+>> +
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi 
+>> b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+>> new file mode 100644
+>> index 000000000000..fc100c3a6415
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtsi
+>> @@ -0,0 +1,593 @@
+>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>> +/*
+>> + * Copyright (C) 2021 MediaTek Inc.
+>> + * Authors: Sam.Shih <sam.shih@mediatek.com>
+>> + *          Frank Wunderlich <frank-w@public-files.de>
+>> + *          Daniel Golle <daniel@makrotopia.org>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/leds/common.h>
+>> +
+>> +#include "mt7986a.dtsi"
+>> +
+>> +/ {
+>> +	model = "Bananapi BPI-R3";
+>> +	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+>> +
+>> +	aliases {
+>> +		serial0 = &uart0;
+>> +		ethernet0 = &gmac0;
+>> +		ethernet1 = &gmac1;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial0:115200n8";
+>> +	};
+>> +
+>> +	gpio-keys {
+>> +		compatible = "gpio-keys";
+>> +
+>> +		factory-key {
+> 
+> I'd say that this is not "factory-key" but "reset-key"?
+
+okay i rename it.
+
+>> +			label = "reset";
+>> +			linux,code = <KEY_RESTART>;
+>> +			gpios = <&pio 9 GPIO_ACTIVE_LOW>;
+>> +		};
+>> +
+>> +		wps-key {
+>> +			label = "wps";
+>> +			linux,code = <KEY_WPS_BUTTON>;
+>> +			gpios = <&pio 10 GPIO_ACTIVE_LOW>;
+>> +		};
+>> +	};
+>> +
+> 
+> ..snip..
+> 
+>> +
+>> +	memory@40000000 {
+>> +		device_type = "memory";
+>> +		reg = <0 0x40000000 0 0x40000000>;
+> 
+> Doesn't your bootloader fill-in the memory size automatically?
+
+have not tried yet.
+
+>> +	};
+>> +
+>> +	reg_1p8v: regulator-1p8v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "fixed-1.8V";
+> 
+> This is "avdd18", isn't it?
+
+need to check
+
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+> 
+> All these regulators have a vin-supply: please fill it in.
+> Moreover, in the schematics, I can also see other LDOs: 0.9VD (input 
+> +12VD),
+> AVDD12 (input 1.8VD), DDRV_VPP (input 3.3VD)...
+
+ok
+
+> Of course, this means that you have one more 1.8V regulator, called 
+> 1.8vd.
+> 
+>> +	};
+>> +
+>> +	reg_3p3v: regulator-3p3v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "fixed-3.3V";
+> 
+> regulator-name = "3.3vd";
+> 
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+> 
+> vin-supply = <&dcin>; (dcin: regulator-12vd { ... })
+> 
+>> +	};
+>> +
+>> +	reg_5v: regulator-5v {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "fixed-5V";
+> 
+> regulator-name  = "fixed-5p1";
+> 
+>> +		regulator-min-microvolt = <5000000>;
+>> +		regulator-max-microvolt = <5000000>;
+> 
+> Schematics say "+5V: 5.1V/3A", so this is not 5000000.
+> 
+>> +		regulator-boot-on;
+>> +		regulator-always-on;
+> 
+> 
+> vin-supply = <&dcin>;
+> 
+>> +	};
+>> +
+> 
+> ..snip..
+> 
+>> +
+>> +&pio {
+>> +	i2c_pins: i2c-pins {
+>> +		mux {
+>> +			function = "i2c";
+>> +			groups = "i2c";
+>> +		};
+>> +	};
+>> +
+>> +	mmc0_pins_default: mmc0-pins {
+>> +		mux {
+>> +			function = "emmc";
+>> +			groups = "emmc_51";
+>> +		};
+>> +		conf-cmd-dat {
+>> +			pins = "EMMC_DATA_0", "EMMC_DATA_1", "EMMC_DATA_2",
+>> +			       "EMMC_DATA_3", "EMMC_DATA_4", "EMMC_DATA_5",
+>> +			       "EMMC_DATA_6", "EMMC_DATA_7", "EMMC_CMD";
+>> +			input-enable;
+>> +			drive-strength = <4>;
+>> +			mediatek,pull-up-adv = <1>;	/* pull-up 10K */
+> 
+> Can we please stop using these custom pull-{up,down}-adv properties?
+> Check what was done on pinctrl-mt8192.c (and dt schema) for more 
+> information
+> and examples.
+
+need to check these with MTK.
+
+>> +		};
+>> +		conf-clk {
+> 
+> ..snip..
+> 
+>> +
+>> +&wifi {
+>> +	status = "okay";
+>> +	pinctrl-names = "default", "dbdc";
+>> +	pinctrl-0 = <&wf_2g_5g_pins>, <&wf_led_pins>;
+>> +	pinctrl-1 = <&wf_dbdc_pins>, <&wf_led_pins>;
+>> +
+>> +	mediatek,eeprom-data = <0x86790900 0xc4326 0x60000000 0x00 0x00 0x00 
+>> 0x00 0x00
+> 
+> Ouch! This looks like firmware unrolled in a devicetree property - that 
+> can't
+> be right.
+> 
+> Please dump that in a binary file and load it as firmware from 
+> userspace.
+
+it uses the mt76 driver and here eeprom can only be loaded from 
+mtd-partition or from device tree. Previous attempts loading eeprom data 
+from userspace file (like it's done for "normal" firmware) were 
+rejected.
+
+regards Frank
