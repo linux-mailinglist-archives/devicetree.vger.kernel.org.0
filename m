@@ -2,97 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 388D3611961
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4296961196B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 19:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbiJ1Ri1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 13:38:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37760 "EHLO
+        id S229962AbiJ1RkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 13:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiJ1RiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:38:24 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECBC22B7AD
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:38:23 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id a27so604714qtw.10
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 10:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OoiWmzEHNiG88vfsHfRqrZ47OnbEddshqdwrSUCSfdc=;
-        b=KVHYbMgLdjosFobEllSKS2gVxGXmn7likk3DFxkKLRckWZBWtQ+hYLRHf+mHMnbAzk
-         OS6GbPuf0tS6LBmIxqEmp14LX28G3ZfllSvD0QnStJJOfPOfW6SC/UmDt6h7H7gbl8zl
-         GtdUA69sBxa8SDi5iTokosr/jbkNeuSq01ATIF7I1oCTapq+ZqHj1dxZhYsFqBrV59Ga
-         4o6kKJGy0TsHgli8sUlqjpSMEUGglIqtzD8g3eGRRnwFxB80tTodWyguO7OM/7/UEYT7
-         Yan2bmd5zkguKG/iX6GqzIQ+Le87HcLfC7Nn/oz9sm4/EBBKd7X44vo+DownrOs5fxbo
-         t2yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OoiWmzEHNiG88vfsHfRqrZ47OnbEddshqdwrSUCSfdc=;
-        b=76ChYRYgLLQAyy5howmC1gxuJb091CFWatbV70qaoE1hBoYDakB9MutzN150rgh70n
-         YFy1ca1UZLfyurbj3nWd3I/kUKFNPxsUoCK+TCk3MMP2WsFjyFZQFbN1Y8RvQ3U4ILxs
-         +ZME/fxm3xnl+rjh9mcJI4QvuJPQhw3/ls7YjgjId6QJr2fJGBQLVOech3m805T8rZau
-         br55mIYEIAIfYNRq35tClk+yJIG+LdYn+syqH+/2LuwB1WuOKlp3mrh15t6WkQKIlUpP
-         DAemfGAvOPWJRVpLxwHB1/Kdqd7xSvCl97LjBDxUUWJ4efHszEFDWGxcP43XH06rkdIQ
-         5xPA==
-X-Gm-Message-State: ACrzQf2zVCBYzdkgtPFj3ua01ovXkbYv8FgsTFODKay/m8L3qGQkWnWC
-        LVvifiIdNzlbkrFEym9kC+Jv5Ij+1ZrRNQ==
-X-Google-Smtp-Source: AMsMyM4caIjhtYHuTfGPNcDxg9L7/E27m2qa9JZA/wHA4f+o4D1CwRHBXK6JfuWmsbrhp+8T9OCd7A==
-X-Received: by 2002:a05:622a:1905:b0:3a5:c6f:a874 with SMTP id w5-20020a05622a190500b003a50c6fa874mr552750qtc.282.1666978703103;
-        Fri, 28 Oct 2022 10:38:23 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id i6-20020a05622a08c600b0039853b7b771sm2612184qte.80.2022.10.28.10.38.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 10:38:22 -0700 (PDT)
-Message-ID: <fd226c82-ee6e-ce5b-3949-faaf88ded3b6@linaro.org>
-Date:   Fri, 28 Oct 2022 13:38:20 -0400
+        with ESMTP id S229971AbiJ1Rj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 13:39:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9A922B0C;
+        Fri, 28 Oct 2022 10:39:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E31D1629E7;
+        Fri, 28 Oct 2022 17:39:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F741C433C1;
+        Fri, 28 Oct 2022 17:39:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666978795;
+        bh=ijO6aXAOytrnNWFvN6FIBPIF9fWaDeLYuPg+SmXzcW0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=XlmX7AbLOlzcuDycIMTqQo5Msl/O1UrlY9QhSC6rGdeKF9JUjr3yrR9NpcHe2TYM+
+         5suxjBt+Zv56j2cJU/oSN2Rahek8/rTW3NlgC9YBMu3vbyyg+IhXjKhjmvkhmwtAuP
+         H+WDYNUQADpwXTt2AHYU66l28ZAbVfxwVvcfyurSOdWvYTYLSLAmOqWoKEaF0CGXQv
+         MSBOUzEDFqrU4NM2XAp6iS6vNsOkEaPg2Nnllrq2Pk4hVjQk6CGstuMijgXCdnBLTZ
+         qu/Law20CAgJeDQjTdRk1ob/7vgoAUmxchqimhuDnH231xMHziRaQRDrkzyPjqkUrp
+         kGHDZ0Y2vmiBw==
+Message-ID: <eeeb3895-4eed-ab2f-10e7-111a6275b8e7@kernel.org>
+Date:   Fri, 28 Oct 2022 13:39:49 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 1/2] dt-bindings: rtc: ds1307: Add support for Epson
- RX8111
+Subject: Re: [PATCH v5 2/2] dt-bindings: Document common device controller
+ bindings
 Content-Language: en-US
-To:     glasveze@delta.nl, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        Mike Looijmans <mike.looijmans@topic.nl>
-References: <20221028144041.11067-1-glasveze@delta.nl>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028144041.11067-1-glasveze@delta.nl>
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
+        "alexandre.torgue@st.com" <alexandre.torgue@st.com>,
+        "peng.fan@oss.nxp.com" <peng.fan@oss.nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "a.fatoum@pengutronix.de" <a.fatoum@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "tomase@xilinx.com" <tomase@xilinx.com>,
+        "benjamin.gaignard@st.com" <benjamin.gaignard@st.com>,
+        "loic.pallardy@st.com" <loic.pallardy@st.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+References: <cover.1666806317.git.oleksii_moisieiev@epam.com>
+ <ab68324eea3c788a369260f5a1e5da843a960cde.1666806317.git.oleksii_moisieiev@epam.com>
+ <166682078099.1353934.10574272333105424439.robh@kernel.org>
+ <Y1omrFVw0FbC3YTc@EPUAKYIW015D>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <Y1omrFVw0FbC3YTc@EPUAKYIW015D>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 10:40, glasveze@delta.nl wrote:
-> From: Mike Looijmans <mike.looijmans@topic.nl>
+On 27/10/2022 02:35, Oleksii Moisieiev wrote:
+> On Wed, Oct 26, 2022 at 04:51:15PM -0500, Rob Herring wrote:
+>> On Wed, 26 Oct 2022 17:51:27 +0000, Oleksii Moisieiev wrote:
+>>> Introducing of the common device controller bindings for the controller
+>>> provider and consumer devices. Those bindings are intended to allow
+>>> divided system on chip into muliple domains, that can be used to
+>>> configure hardware permissions.
+>>>
+>>> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+>>> ---
+>>>  .../feature-domain-controller.yaml            | 80 +++++++++++++++++++
+>>>  1 file changed, 80 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/feature-domains/feature-domain-controller.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/feature-domains/feature-domain-controller.example.dtb: foo@0: feature-domain-names: ['default', 'unbind'] is too long
+>> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/feature-domains/feature-domain-controller.yaml
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>>
+>> See https://urldefense.com/v3/__https://patchwork.ozlabs.org/project/devicetree-bindings/patch/ab68324eea3c788a369260f5a1e5da843a960cde.1666806317.git.oleksii_moisieiev@epam.com/__;!!GF_29dbcQIUBPA!y6dnIrQEa4gr2RDYPf2_Oc7JsKHJrAKtl69xg0Jlf-Qri5BP9kBzqIknprWXaikX5y2Yz_UWCW5yYv_9Hw$  [patchwork[.]ozlabs[.]org]
+>>
+>> This check can fail if there are any dependencies. The base for a patch
+>> series is generally the most recent rc1.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit.
+>>
 > 
-> The rx_8111 is quite similar to the rx_8030. This adds support for this
-> chip to the ds1307 driver.
+> Hello,
 > 
-> This adds the entry to the devicetree bindings.
-> 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> Thank you for the response. I would recheck and resubmit patch series if there
+> will be no additional comments.
+>
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+when resubmitting, Cc necessary maintainers as pointed out by
+scripts/get_maintainer.pl. Or base your tree on something decent...
 
 Best regards,
 Krzysztof
