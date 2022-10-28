@@ -2,106 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D87B611C9F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B643611CAB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbiJ1Vpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 17:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41976 "EHLO
+        id S230008AbiJ1VsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 17:48:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbiJ1Vph (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:45:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0C13CBFF;
-        Fri, 28 Oct 2022 14:44:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4294862A9A;
-        Fri, 28 Oct 2022 21:44:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8841C433C1;
-        Fri, 28 Oct 2022 21:44:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1666993486;
-        bh=hEPWWlelcGH3NQVG+eZz1c2zEG8h8Bc4DpOykI4c9Gk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lCifIkfabc3Jhkz4fjaWCTgPqUFY6iypjHmafhtPZwpsAaSeav5hoQsjrowongJD/
-         E4hvNN1opq6PBc4kN7fHcndS9JUOMMBGHKXUURcE9UjjCylPtb34ePtBWcD3/5b0g3
-         XVV74JyQ+4QbEhXMqotyyegecdwxoRPZt0+tVx1N5/+lyu34mtpfp0+S0RAH+K26SA
-         z2aKMVv+7fHOVnIa+Ln6nWjzYW5RvVIQ25V0mwkZlBssJayoBi8zmAPxtdennkyIs0
-         SfmsMf2EOmfLRwv62heLRDN0GgpFulhGzy8CpH/6kAsf1RcPrWVwAImDt7liDWmA4h
-         hIF7ZaPyGt8nA==
-Date:   Fri, 28 Oct 2022 16:44:43 -0500
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Job Noorman <job@noorman.info>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: sdm632: fairphone-fp3: add
- touchscreen
-Message-ID: <20221028214443.oeg5u4n4bjdyeuks@builder.lan>
-References: <20221024140001.139111-1-job@noorman.info>
- <20221024140001.139111-4-job@noorman.info>
+        with ESMTP id S230022AbiJ1VsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:48:23 -0400
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E38F24C11E
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 14:48:21 -0700 (PDT)
+Received: by mail-qv1-xf2b.google.com with SMTP id u7so4910543qvn.13
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 14:48:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SBJznIFzWZyEQbZ4eSSNW6gDtZq5LgNV4oKX/YjGZaU=;
+        b=S1rpEcjOVlvANLl0lKIzyQw2/HKiR+gzWh/C1KxmlLUp0TymDAoBBY8Ul+cVdpkdD1
+         Qb+bWUawxtnOwh0PeIYsVu+AtzModJPMUMpySwO18TKpURRJCEaWD2UxXDZtkCbTj80K
+         kxoqBKC7J3qx9FOP4/N+MzwlGjX2xZocCYVImbCiIPJZBz59J33i7tRXHqlwImhCpS6r
+         Xc3omikSPEMPvz741LYlnWLNrU5bPK6HMts1n1I4APzrtQdgsB2sd7z89KuD+OsuRFfE
+         Inht9Swb9s7xcvFyzVUOdCUuv8xTNyBBJ9mqwMZKr6At2fkJN5SJC231U7AP+YGuxVuG
+         0JLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SBJznIFzWZyEQbZ4eSSNW6gDtZq5LgNV4oKX/YjGZaU=;
+        b=CmISK2TuX6wA1jSWcXxTq+EeeUpLdyw0RHAxnG4DtCEV3/EkWvLemJy80PiBtoNvgL
+         LHUvAogpwDaxz0xqDrtznHo+89NdRHiiAyOGHBYCfiybAAS7drpIEknZNU96xgZigh3Q
+         SjODtGUicilvkDOagHv3OBSrt7AUKqlg5PgGdJ9o27FjnRVIzAjv4SxOfyOOvtLxaHfE
+         105umC3SiVCSSEfSQpJQqJdeDN+P049pwCTWVOOlIh3nDsUxnW6ldBVOWTaxQWa6tWKo
+         MLbiuMD8aXxSFjCuDptoGtm1WqTQIoYRXk3kiHCnK5qqSgF7UiWe2EMzsvl+5Bksrk6S
+         P5ow==
+X-Gm-Message-State: ACrzQf2ZmV+60G1YWuow480P2tCPzgJ2sJqljMn+PRuKEsBJf1zPu4Oi
+        zndbUDUFfGjaew5zkqO12H6eOw==
+X-Google-Smtp-Source: AMsMyM7RVnXDhVMel24hc/A2lGTULvxRB93QAfaenSC9hzmYAcuI1qSvsj4Kp1lV+hm1ywpWSMbBPw==
+X-Received: by 2002:a05:6214:29c9:b0:4bb:b957:cd4a with SMTP id gh9-20020a05621429c900b004bbb957cd4amr1364459qvb.108.1666993700285;
+        Fri, 28 Oct 2022 14:48:20 -0700 (PDT)
+Received: from [192.168.1.11] ([64.57.193.93])
+        by smtp.gmail.com with ESMTPSA id m22-20020a05620a291600b006f926a0572asm3847258qkp.27.2022.10.28.14.48.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 14:48:19 -0700 (PDT)
+Message-ID: <5392d0d9-ab8c-8945-169f-264114017c1f@linaro.org>
+Date:   Fri, 28 Oct 2022 17:48:17 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221024140001.139111-4-job@noorman.info>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 04/11] arm64: tegra: Enable XUSB host and device on Jetson
+ AGX Orin
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, Wayne Chang <waynec@nvidia.com>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, treding@nvidia.com,
+        heikki.krogerus@linux.intel.com, ajayg@nvidia.com, kishon@ti.com,
+        vkoul@kernel.org, p.zabel@pengutronix.de, balbi@kernel.org,
+        mathias.nyman@intel.com, jckuo@nvidia.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, singhanc@nvidia.com,
+        linux-i2c@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-tegra@vger.kernel.org
+References: <20221024074128.1113554-1-waynec@nvidia.com>
+ <20221024074128.1113554-5-waynec@nvidia.com>
+ <2059dfe5-b084-42a4-7f35-9da9561fc12b@linaro.org>
+ <b803bcf9-fc47-5239-ffe9-707925f324de@nvidia.com>
+ <5676bcd2-14fc-4e1d-643e-89e575d190c3@linaro.org> <Y1vNU1KeUH8LvG0r@orome>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y1vNU1KeUH8LvG0r@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 24, 2022 at 03:59:59PM +0200, Job Noorman wrote:
-> Add Himax hx83112b touchscreen to the FP3 DT.
+On 28/10/2022 08:38, Thierry Reding wrote:
+>>>
+>>> I understand you may not like this approach, however, this comment is 
+>>> not really relevant to just this patch, but a general comment. But yes 
+>>> we will ensure that this is correct.
+>>>
+>>
+>> Just to clarify - this status looks redundant, but I have no way to tell
+>> for sure...
 > 
-> Signed-off-by: Job Noorman <job@noorman.info>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> But that's independent of whether we specify this using the full path or
+> reference the node by label, isn't it? The only way to make sure that a
+> status = "okay" is not redundant is by manual inspection. I don't know
+> of an automated way to do that. Perhaps it's something that could be
+> added as a check to DTC?
 
-Please include at least all the mailing lists as Cc on all your patches
-in the series - I'm not subscribed to linux-input, so I don't have patch
-1 or patch 2 in my inbox.
+With overrides/extends pattern it is easy to spot one case of mistakes -
+you see override, then status might be needed might not. You see new
+node (like here!) - then status=okay is redundant.
 
-Thanks,
-Bjorn
+Best regards,
+Krzysztof
 
-> ---
->  arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> index 891e314bc782..2920504461d3 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts
-> @@ -49,6 +49,20 @@ &hsusb_phy {
->  	vdda-phy-dpdm-supply = <&pm8953_l13>;
->  };
->  
-> +&i2c_3 {
-> +	status = "okay";
-> +
-> +	touchscreen@48 {
-> +		compatible = "himax,hx83112b";
-> +		reg = <0x48>;
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <65 IRQ_TYPE_LEVEL_LOW>;
-> +		touchscreen-size-x = <1080>;
-> +		touchscreen-size-y = <2160>;
-> +		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-> +	};
-> +};
-> +
->  &pm8953_resin {
->  	status = "okay";
->  	linux,code = <KEY_VOLUMEDOWN>;
-> -- 
-> 2.38.1
-> 
