@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B42A9611CBB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 23:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B245E611D13
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 00:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbiJ1Vyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 17:54:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
+        id S229777AbiJ1WBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 18:01:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230030AbiJ1Vys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 17:54:48 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E539B84A
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 14:54:31 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id hh9so4324951qtb.13
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 14:54:31 -0700 (PDT)
+        with ESMTP id S229602AbiJ1WBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 18:01:32 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6CB228CE3
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:01:32 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id l28so4363317qtv.4
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 15:01:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ypWGFUNGDLHwApi026F7Lg/Q5kEFIG84xDzjJbXD2/k=;
-        b=bMfd6Y+8Bb/7mf+v1RLdW/boQm7hm/01WMe8QE0c5GDKd2VGHAtcvI3CNSnMEeEwK3
-         JS2/9wDnNOQ2RuwD6QOnb7CN/0VbLdvrbBnuH7MC0x/Z1K2xcbBc0K4JuexgMcHRy9JX
-         hYiaUCxQXZ9TJL9ECS/LnDrGcmXdJnx1aZDMz7GZXd1jcD/hp0r8aBwC4MRqceEFyJac
-         uhg9c3g3VycO4B0qEaouNN5EaNEAwXhdZiThPIj/M6/wL6bwgzA/cNqCkQaKFAGW6xKe
-         T5NSoZbSG39YFqh6xGrL5m2anXvEcgleQ2nnEKbEh7nzpIrZy2ajbBLHUMqucK3eLTKk
-         dxRg==
+        bh=yr8HUh+1Ce740LCeQRhqA45PIBCHDZMjS7OE/YrOh64=;
+        b=W9FqxqVnRpTbDGEs374QqsqI4sSBT2PWyKERYSuC+2neXgYNGwjuSYr2/ApwF+NVbA
+         Q0dM2jBrF/UfnRAISug35FgYcv+0fw1/fP8rQjcNcQqzwBX1dcTG2rjQR1QFp1y+jbUi
+         x/iJ2p04XhKdaEihWKAwmWZgdiFh5NgEZmNSQNVQGIFbWT5OGVgvuHZgAU/rKnCpX7K1
+         iEEBWzFeK7MFsIiUkty+mxSGdp7Nrm4qCKQ9JmB6yOiQmXHKkEOABaJPN7Z6qnDReXJL
+         tEDtNEtKQdTZGwleHGGLIGKq9hGWtKu8CTF4MgTEXtiMWesmIw1Pix067DtUo8NvsXSQ
+         NI6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ypWGFUNGDLHwApi026F7Lg/Q5kEFIG84xDzjJbXD2/k=;
-        b=s4lsW+e7Ap2kiJVXbj5vu8fD9aI711UHDf3DBq10djXrbTPuL1ZwoYfsZE9UGXdWn3
-         BIgJA68sqE6NPtGamyMt3K4cwVRyQ93qv5z/ACW/br/2rW6GZLB849pNO8gEtygBNtIs
-         O2sslXNAU+CRMxZzApR36cX1YWz+ZzFzzZpE+fh3NCMQxj1SCTnPI9FlQCBvW6m8soSL
-         ZhUNIXH9EmulVGnStbQR+DDTsNCL0HJnjoc1Xn/cbBhSPLJK9aKR/Sha+nVckrVYHX24
-         Ge1mim5Fv4xidaMJBuhTJ5V27oNuHt0uq6taaB1fAKRNYNT9b3vTJgCuW3wj5BTbI7A9
-         c3Jg==
-X-Gm-Message-State: ACrzQf3bKlX8zgWqQ+PeFFjiGawCTHlLZr8d4JLEA4kpByTqxQ6xLEbD
-        5emvV7AIoIm+/TETv4sR69EHrw==
-X-Google-Smtp-Source: AMsMyM44UxC+QbkUhxkJ2SJwwV42LBcRooft0gZyiny7ak1R+Cj0fteS2bzsSPuqL7uPupt7Dj088g==
-X-Received: by 2002:a05:622a:350:b0:39a:286b:1b21 with SMTP id r16-20020a05622a035000b0039a286b1b21mr1412784qtw.427.1666994070681;
-        Fri, 28 Oct 2022 14:54:30 -0700 (PDT)
+        bh=yr8HUh+1Ce740LCeQRhqA45PIBCHDZMjS7OE/YrOh64=;
+        b=yJqDG+fZQEoP31n2bKSXvUiryPdwp2B7IST1w9WXtCg/fOTN9vgWrz1lGTW59k6Zaq
+         tz7tS1j8lLGAPW0ST1T9DUYvz9LyRS8baaS0AEv1fvI1f2xRDWL4PSaJGknvd3rXr83m
+         Rb8oFad6MWgKrTwc12E/FuxlC3AKUGcYbDN4uc8Nd36T/1TMnRwc8egiW77mXpfgp5n3
+         SpMnaBV2rixoKMIqX93ICKW/eRsA0EXcuQfHX/75l14qXfzn/O/WVMxqbdF/c0OWP5eq
+         HJ8cTwbuXu4Kj+UYE9tXMm8fSL/4gWdQxgChfj5D12jYbjLTRiE/9vtn6dd7pT2UUgBG
+         3FFA==
+X-Gm-Message-State: ACrzQf0MomFpdjXfH2aK16C2znC/tpEhLA54Ju+pRn4sk0MbXv/qtYwn
+        BZaYywWMO//SZ/DEpI8QhiZBug==
+X-Google-Smtp-Source: AMsMyM6orjMbEmKKnktdS6B4pHMzgMLO4tFbtwa8t4mwDA17uPa9xsXNo4D2AWjXskqRxr20EIO8Og==
+X-Received: by 2002:a05:622a:1114:b0:3a4:f4e4:6430 with SMTP id e20-20020a05622a111400b003a4f4e46430mr1443085qty.337.1666994491244;
+        Fri, 28 Oct 2022 15:01:31 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id bl4-20020a05622a244400b0039a08c0a594sm2920026qtb.82.2022.10.28.14.54.29
+        by smtp.gmail.com with ESMTPSA id m8-20020a05620a24c800b006ce515196a7sm3784993qkn.8.2022.10.28.15.01.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 14:54:29 -0700 (PDT)
-Message-ID: <07f8d510-e2df-ed9c-c70b-ba159e9bcb69@linaro.org>
-Date:   Fri, 28 Oct 2022 17:54:28 -0400
+        Fri, 28 Oct 2022 15:01:30 -0700 (PDT)
+Message-ID: <c868e55d-b808-0ca9-4e84-baf94c469182@linaro.org>
+Date:   Fri, 28 Oct 2022 18:01:27 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v6 1/3] dt-bindings: net: renesas: Document Renesas
- Ethernet Switch
+Subject: Re: [PATCH v1 7/9] arm64: dts: qcom: sm8350: Add display system nodes
 Content-Language: en-US
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20221028065458.2417293-1-yoshihiro.shimoda.uh@renesas.com>
- <20221028065458.2417293-2-yoshihiro.shimoda.uh@renesas.com>
+To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, sean@poorly.run, airlied@linux.ie,
+        daniel@ffwll.ch, quic_kalyant@quicinc.com, swboyd@chromium.org,
+        angelogioacchino.delregno@somainline.org, loic.poulain@linaro.org,
+        quic_vpolimer@quicinc.com, vkoul@kernel.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
+        quic_jesszhan@quicinc.com,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20221028120812.339100-1-robert.foss@linaro.org>
+ <20221028120812.339100-8-robert.foss@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028065458.2417293-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20221028120812.339100-8-robert.foss@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,14 +85,216 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 02:54, Yoshihiro Shimoda wrote:
-> Document Renesas Etherent Switch for R-Car S4-8 (r8a779f0).
+On 28/10/2022 08:08, Robert Foss wrote:
+> Add mdss, mdss_mdp, dsi0, dsi0_phy nodes. With these
+> nodes the display subsystem is configured to support
+> one DSI output.
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 196 ++++++++++++++++++++++++++-
+>  1 file changed, 192 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index b6e44cd3b394..eaa3cdee1860 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -3,6 +3,7 @@
+>   * Copyright (c) 2020, Linaro Limited
+>   */
+>  
+> +#include <dt-bindings/interconnect/qcom,sm8350.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,dispcc-sm8350.h>
+>  #include <dt-bindings/clock/qcom,gcc-sm8350.h>
+> @@ -2535,14 +2536,200 @@ usb_2_dwc3: usb@a800000 {
+>  			};
+>  		};
+>  
+> +		mdss: mdss@ae00000 {
+> +			compatible = "qcom,sm8350-mdss";
+> +			reg = <0 0x0ae00000 0 0x1000>;
+> +			reg-names = "mdss";
+> +
+> +			interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&mmss_noc MASTER_MDP1 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "mdp0-mem", "mdp1-mem";
+> +
+> +			power-domains = <&dispcc MDSS_GDSC>;
+> +			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
+> +
+> +			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
+> +				 <&gcc GCC_DISP_SF_AXI_CLK>,
+> +				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +			clock-names = "iface", "bus", "nrt_bus", "core";
+> +
+> +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <1>;
+> +
+> +			status = "ok";
 
+No need for this.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			mdss_mdp: mdp@ae01000 {
+
+Node name: display-controller
+> +				compatible = "qcom,sm8350-dpu";
+> +				reg = <0 0x0ae01000 0 0x8f000>,
+> +				      <0 0x0aeb0000 0 0x2008>;
+> +				reg-names = "mdp", "vbif";
+> +				iommus = <&apps_smmu 0x820 0x402>;
+> +
+> +				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+> +					<&gcc GCC_DISP_SF_AXI_CLK>,
+> +					<&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					<&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+> +					<&dispcc DISP_CC_MDSS_MDP_CLK>,
+> +					<&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +				clock-names = "bus",
+> +					      "nrt_bus",
+> +					      "iface",
+> +					      "lut",
+> +					      "core",
+> +					      "vsync";
+> +
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> +				assigned-clock-rates = <19200000>;
+> +
+> +				operating-points-v2 = <&mdp_opp_table>;
+> +				power-domains = <&rpmhpd SM8350_MMCX>;
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <0>;
+> +
+> +				status = "ok";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dpu_intf1_out: endpoint {
+> +							remote-endpoint = <&dsi0_in>;
+> +						};
+> +					};
+> +				};
+> +
+> +				mdp_opp_table: mdp-opp-table {
+
+I have doubts that it passes dtbs_checks... opp-table
+
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-200000000 {
+> +						opp-hz = /bits/ 64 <200000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-300000000 {
+> +						opp-hz = /bits/ 64 <300000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-345000000 {
+> +						opp-hz = /bits/ 64 <345000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-460000000 {
+> +						opp-hz = /bits/ 64 <460000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+> +
+> +			dsi0: dsi@ae94000 {
+> +				compatible = "qcom,mdss-dsi-ctrl";
+> +				reg = <0 0x0ae94000 0 0x400>;
+> +				reg-names = "dsi_ctrl";
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <4>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_PCLK0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_ESC0_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&gcc GCC_DISP_HF_AXI_CLK>;
+> +				clock-names = "byte",
+> +					      "byte_intf",
+> +					      "pixel",
+> +					      "core",
+> +					      "iface",
+> +					      "bus";
+> +
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
+> +						  <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
+> +				assigned-clock-parents = <&dsi0_phy 0>,
+> +							 <&dsi0_phy 1>;
+> +
+> +				operating-points-v2 = <&dsi_opp_table>;
+> +				power-domains = <&rpmhpd SM8350_MMCX>;
+> +
+> +				phys = <&dsi0_phy>;
+> +				phy-names = "dsi";
+> +
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						dsi0_in: endpoint {
+> +							remote-endpoint = <&dpu_intf1_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						dsi0_out: endpoint {
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+> +			dsi0_phy: dsi-phy@ae94400 {
+
+Just "phy". I think Dmitry was renaming all of these.
+
+> +				compatible = "qcom,dsi-phy-5nm-8350";
+> +				reg = <0 0x0ae94400 0 0x200>,
+> +				      <0 0x0ae94600 0 0x280>,
+> +				      <0 0x0ae94900 0 0x260>;
+> +				reg-names = "dsi_phy",
+> +					    "dsi_phy_lane",
+> +					    "dsi_pll";
+> +
+> +				#clock-cells = <1>;
+> +				#phy-cells = <0>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&rpmhcc RPMH_CXO_CLK>;
+> +				clock-names = "iface", "ref";
+> +
+> +				status = "disabled";
+> +
+> +				dsi_opp_table: dsi-opp-table {
+
+opp-table
+
+Run `make dtbs_check`
+
 
 Best regards,
 Krzysztof
