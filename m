@@ -2,112 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 556746111F5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6DA96111F8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 14:54:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230023AbiJ1Myo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 08:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59516 "EHLO
+        id S230038AbiJ1My5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 08:54:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbiJ1Mym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:54:42 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CDEA48A14
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:54:38 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-367b8adf788so46402217b3.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 05:54:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c4Wa3zuGdPPlhF6BsX0vopA+9xtlRCdSj7XxNypRvgY=;
-        b=jEjV12PkkhsxOk2320IMxk9cduAJECXQwpyb4R07XWi96fTyT/phvIrEx/uNX5djVf
-         UDGN9rbfjUrXH6v0TDAlll0ZVY9nXNbm4ZwD8wKzo19tsD7f02QleEwfm4lHV29P2dn+
-         7U5+eBjTnYHFY2k038NGOig4k9AuLcaW21bnCgHxfypB89aYLpyEo8zJJLbqrGYNdT6q
-         rCaOrkoiHpOhwcV0isM3Dpt+AYe4k3IiRQy6JXBFBfZYRgXsg6WzyxGNMN9BDptB2r8G
-         3/BzbWiyPOwuuFN+i08HYE9oC1flRzQiva8lOIfo3ZoS0K1O5//nQItTRDXcSnyGHhpd
-         B6NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c4Wa3zuGdPPlhF6BsX0vopA+9xtlRCdSj7XxNypRvgY=;
-        b=eDIClLiSUx715ngr62Fq3fmfstV8xktcM5bBNOlrRFza72PaNOjV6Nasgx0QkLzY0f
-         EW3AlPORLcPZ6ogK1MCnkuixmz+9YIGbDULGaVs8DNfe1UdXttOLwsXj4lck9SNDlH7a
-         sA3cakaMr3Z5HqUHBHCwtSNhsAsOTKbm2BUN4cPSimmt1Mw83ZnBZUp/YXD6GxSD+kmd
-         B7xTW8fK99B9Ge8/GP25MZdwSwJD8zth4WfwYgyZYgqA0zHzy94HSauoQBND4hhDYbPE
-         31dMo47VulyQIr0DpulevdXGHlKFecpiuBvfEEv39YQjOY4ra8MVZI4lmZ2jNK4Lcv3d
-         6oIA==
-X-Gm-Message-State: ACrzQf3AABS/ujxL3vPVG0YuSf6dTpHaNYVNsUfN7dS5oGwEQaz0pIC5
-        AtJz5rDTAASnUxtu4F1PuUNeExkQkSXszAgv3+MyuFc+2Nk=
-X-Google-Smtp-Source: AMsMyM6/onXKmlmi48y+9Oj39tNtsrUcw88h4lmuDL7lgeCeAFf6rXMt+ipp9GLAJ1e6jJH90cSd+4st7GalIt3w450=
-X-Received: by 2002:a81:4f89:0:b0:36a:f09f:73fc with SMTP id
- d131-20020a814f89000000b0036af09f73fcmr31265830ywb.487.1666961677715; Fri, 28
- Oct 2022 05:54:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
- <20221028102450.1161382-3-ajye_huang@compal.corp-partner.google.com> <a7275ee4-c6ec-c0e8-c49d-dec9ca367d9f@linux.intel.com>
-In-Reply-To: <a7275ee4-c6ec-c0e8-c49d-dec9ca367d9f@linux.intel.com>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Fri, 28 Oct 2022 20:54:31 +0800
-Message-ID: <CALprXBavrYqWxKUgEJMWNXGCuBnKNjKk1n_4eFOeo+=6=juHYQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] ASoC: dmic: Add optional dmic selection
-To:     =?UTF-8?B?QW1hZGV1c3ogU8WCYXdpxYRza2k=?= 
-        <amadeuszx.slawinski@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, robh@kernel.org,
-        alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        devicetree@vger.kernel.org,
-        angelogioacchino.delregno@collabora.corp-partner.google.com,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>,
+        with ESMTP id S230033AbiJ1Myt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 08:54:49 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D7A5F81;
+        Fri, 28 Oct 2022 05:54:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 8756ECE2AFD;
+        Fri, 28 Oct 2022 12:54:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2483DC433C1;
+        Fri, 28 Oct 2022 12:54:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1666961683;
+        bh=m+dABeNdo1jP9iK7JBRoT+Hc2J3W+ylW1aqtkyVNMsc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fJrku492UpL2ToEbDTFMxi6MgjxD8xG5ZhVFxQ/A9TlfqFvWZkd6YLnAQbuq9pKbh
+         ps3zJuE/fIRhkFDJkAflSMwdYg+b3yibDzDa3/Dxp08yf8e+gbx14ZjOSH6XY3xIcN
+         TWMCsORy9TMbyiYTjXGXtgoh9tew9Xi0nAkPJYGOBYhZBps6GAlIUVZ2chV7h0K5LR
+         2PSuzXsAOZurYLCZeO2F5mat8WIR7PFCU+M3t/DStOe6WMLFnE4DtCbeFTXINqb41j
+         7EkujZVKWctY0xUTAOY3BvW/ka9zyXltTX6ozzoEj9eW8rirUO6vufCHrwND57NpSS
+         OtA2CHU8IIIVQ==
+Date:   Fri, 28 Oct 2022 18:24:38 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 08/15] phy: qcom-qmp-pcie: add register init helper
+Message-ID: <Y1vRDv+hrMmnqwPj@matsya>
+References: <20221021110947.28103-1-johan+linaro@kernel.org>
+ <20221021110947.28103-9-johan+linaro@kernel.org>
+ <932765e0-ecbc-8c9b-69c5-ce0bb0c8de68@linaro.org>
+ <Y1KDXD9n0cCqjTGy@hovoldconsulting.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y1KDXD9n0cCqjTGy@hovoldconsulting.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amadeusz,
+On 21-10-22, 13:32, Johan Hovold wrote:
+> On Fri, Oct 21, 2022 at 02:18:49PM +0300, Dmitry Baryshkov wrote:
+> > On 21/10/2022 14:09, Johan Hovold wrote:
+> > > Generalise the serdes initialisation helper so that it can be used to
+> > > initialise all the PHY registers (e.g. serdes, tx, rx, pcs).
+> > > 
+> > > Note that this defers the ungating of the PIPE clock somewhat, which is
+> > > fine as it isn't needed until starting the PHY.
+> > > 
+> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > > ---
+> > >   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 51 +++++++-----------------
+> > >   1 file changed, 15 insertions(+), 36 deletions(-)
+> > > 
+> > > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > > index dd7e72424fc0..f57d10f20277 100644
+> > > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> > > @@ -1820,46 +1820,32 @@ static void qmp_pcie_configure(void __iomem *base,
+> > >   	qmp_pcie_configure_lane(base, tbl, num, 0xff);
+> > >   }
+> > >   
+> > > -static void qmp_pcie_serdes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
+> > > -{
+> > > -	void __iomem *serdes = qmp->serdes;
+> > > -
+> > > -	if (!tables)
+> > > -		return;
+> > > -
+> > > -	qmp_pcie_configure(serdes, tables->serdes, tables->serdes_num);
+> > > -}
+> > > -
+> > > -static void qmp_pcie_lanes_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
+> > > +static void qmp_pcie_init_registers(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tbls)
+> > >   {
+> > >   	const struct qmp_phy_cfg *cfg = qmp->cfg;
+> > > +	void __iomem *serdes = qmp->serdes;
+> > >   	void __iomem *tx = qmp->tx;
+> > >   	void __iomem *rx = qmp->rx;
+> > >   	void __iomem *tx2 = qmp->tx2;
+> > >   	void __iomem *rx2 = qmp->rx2;
+> > > +	void __iomem *pcs = qmp->pcs;
+> > > +	void __iomem *pcs_misc = qmp->pcs_misc;
+> > >   
+> > > -	if (!tables)
+> > > +	if (!tbls)
+> > >   		return;
+> > >   
+> > > -	qmp_pcie_configure_lane(tx, tables->tx, tables->tx_num, 1);
+> > > -	qmp_pcie_configure_lane(rx, tables->rx, tables->rx_num, 1);
+> > > +	qmp_pcie_configure(serdes, tbls->serdes, tbls->serdes_num);
+> > > +
+> > > +	qmp_pcie_configure_lane(tx, tbls->tx, tbls->tx_num, 1);
+> > > +	qmp_pcie_configure_lane(rx, tbls->rx, tbls->rx_num, 1);
+> > >   
+> > >   	if (cfg->lanes >= 2) {
+> > > -		qmp_pcie_configure_lane(tx2, tables->tx, tables->tx_num, 2);
+> > > -		qmp_pcie_configure_lane(rx2, tables->rx, tables->rx_num, 2);
+> > > +		qmp_pcie_configure_lane(tx2, tbls->tx, tbls->tx_num, 2);
+> > > +		qmp_pcie_configure_lane(rx2, tbls->rx, tbls->rx_num, 2);
+> > >   	}
+> > > -}
+> > > -
+> > > -static void qmp_pcie_pcs_init(struct qmp_pcie *qmp, const struct qmp_phy_cfg_tables *tables)
+> > > -{
+> > > -	void __iomem *pcs = qmp->pcs;
+> > > -	void __iomem *pcs_misc = qmp->pcs_misc;
+> > > -
+> > > -	if (!tables)
+> > > -		return;
+> > >   
+> > > -	qmp_pcie_configure(pcs, tables->pcs, tables->pcs_num);
+> > > -	qmp_pcie_configure(pcs_misc, tables->pcs_misc, tables->pcs_misc_num);
+> > > +	qmp_pcie_configure(pcs, tbls->pcs, tbls->pcs_num);
+> > > +	qmp_pcie_configure(pcs_misc, tbls->pcs_misc, tbls->pcs_misc_num);
+> > 
+> > As seem above, if nothing else, tables -> tbls rename generates 
+> > unnecessary diff.
+> 
+> Can you please stop with the bikeshedding. This is not about keeping the
+> diff small, this is about readability of the new helper function as I
+> already told you.
+> 
+> And this is a *local* identifier, not some state member that needs a
+> super descriptive name. And the rest of the driver used "tbl"
+> consistently until your EP/RC mode patches for that matter.
 
-Yes, the original version I tried the implementation on audio machine
-driver, but one person gave me an idea for this dmic.c
-Do you think it is appropriate on dmic.c?
- If it isn't, I will add kcontrol into audio machine driver.  thanks
+I would disagree here... You can change tbls/tables but then it does not
+help _this_ patch
 
+Right thing would be to change tbls to tables first and then add init
+helper... For a reviewer seeing an undocumented change and unnecessary
+diff is not right..
 
-On Fri, Oct 28, 2022 at 7:44 PM Amadeusz S=C5=82awi=C5=84ski
-<amadeuszx.slawinski@linux.intel.com> wrote:
->
-> On 10/28/2022 12:24 PM, Ajye Huang wrote:
-> > Having two DMICs, a front DMIC and a rear DMIC,
-> > but only host audio input AUX port0 is used for these two Dmics.
-> > A "dmic_sel-gpios" property is used for a mixer control to switch
-> > the dmic signal source between the Front and Rear Dmic.
-> >
-> > usage: amixer -c0 cset name=3D'Dmic Mux' 'FrontMic'
-> > usage: amixer -c0 cset name=3D'Dmic Mux' 'RearMic'
-> >
-> > Refer to this one as an example,
-> > commit 3cfbf07c6d27
-> > ("ASoC: qcom: sc7180: Modify machine driver for 2mic")
-> >
-> > Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-> > ---
->
->
-> I'm very suspicious of this patchset. As it is you add kcontrol which
-> won't take effect on most platforms making use of DMIC. It feels to me
-> that it is something you want to handle on machine driver side instead.
->
+Pls split if you would still like the rename
+
+-- 
+~Vinod
