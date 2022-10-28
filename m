@@ -2,160 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5800611475
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A719A6114C4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:39:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbiJ1OYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
+        id S229602AbiJ1Ojf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 10:39:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbiJ1OYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:24:39 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A03010B1;
-        Fri, 28 Oct 2022 07:24:36 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SEOQ1q008177;
-        Fri, 28 Oct 2022 09:24:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666967066;
-        bh=1sNW9NejH8BybzwsPnUBsHJrG4Y80shP3LjdJoV0xME=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ykEX2V7tPwJ31D4VDkp+XiNC+uQ5i3Z1TccnEXqhcAP9suyeEStN9XYHhjezOMht4
-         Qbs+nRvhKw4JC+37kbCDHR1OOLDRpOgx2V3158yWKD1+t25X19qlq9dXDxiio7O+NP
-         8dUQ8KXpfUqSoiGcyJZoyiePovPjVQADvSh82HQQ=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SEOQTO030672
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Oct 2022 09:24:26 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
- Oct 2022 09:24:25 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 28 Oct 2022 09:24:25 -0500
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SEOHfa039275;
-        Fri, 28 Oct 2022 09:24:25 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bryan Brattlof <bb@ti.com>, Le Jin <le.jin@siemens.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH 11/11] arm64: dts: ti: k3-am65: Enable McASP nodes at the board level
-Date:   Fri, 28 Oct 2022 09:24:17 -0500
-Message-ID: <20221028142417.10642-12-afd@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221028142417.10642-1-afd@ti.com>
-References: <20221028142417.10642-1-afd@ti.com>
+        with ESMTP id S229976AbiJ1OjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:39:19 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D08E1CCCFB;
+        Fri, 28 Oct 2022 07:39:18 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id f37so8599208lfv.8;
+        Fri, 28 Oct 2022 07:39:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=438MwCH9BTrA9BcLzWtnTn0JobWEvRhTpMnkj9ZVmww=;
+        b=D6fblxQFn5vZbZOLKFcWYLtI+c5zEeyTAZFyxcD1/OuwZbjwiAe7Rx2XzqRykO7NB4
+         FD3Urrlg6EwzXqeeeBNgNG9L6NGUf7kpLhdjTANcQw2PJyshDO1qdJS3j9dfllmSO+iF
+         fitc0zBqXUiIdk3ZmY3elt03yduCSbxd8TDrrJ1EPruopt/jKNNHQf9V/ACPqJHvlXia
+         Ai7z3Ow9ZFsPEGz/dt5LHnZDFLU7Lw/HQV2e3+9Ta1gfOhN3LHYGmslCk+z29lv0Ds2J
+         5pdseKa35npP7brfhnpTl9nLjdYEbwiDiXAD3Kh7VYpGwghSFsUEAkd94mmCWgh+PtT3
+         hWLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:content-language:cc:to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=438MwCH9BTrA9BcLzWtnTn0JobWEvRhTpMnkj9ZVmww=;
+        b=hObzsKI+/gn4XdTkxVOnOsfRptOch0qMr+fUwsDBykzSxjRdsdXAOJkt+LVPoF7CC4
+         H0xi3SEn78ELXk9oZVvNpDxld80QeCRvBI+lO7sHYQlS5tToVfBb7eJDUyWm1EI2qFos
+         45mPCUhZDMbjYWt1Frs6r0czNE5rfUZJThC+86KG2e43ZxbTmfNZytZmz1Kn8gfRLdOo
+         zFM3fybu5uwnHzIypcK1uqDrfTU1bq9rZ4/LO7wt28hS5gJ6VWJz+tAlPHFT5JzSkqQH
+         kyjAo+3B7y34Jll/8Y2va089JQUSpse24lNdN4p5uV4hKTGUOrk1CayHf9h59NWjERKk
+         lGQg==
+X-Gm-Message-State: ACrzQf2uYPTeoY0VagGw7HGag4GsOhHg7V5lxu0+TaWt5jLN1l92Ui4y
+        kgR/wkIvKIwMbQXz7IMwVm8RmJM1IkE=
+X-Google-Smtp-Source: AMsMyM62WjvitZ/M1z2g9r8bWwHww4iANV4p1qKSM1aGXF74m8W47uJXLz8akxUC5+rl6g/WQgKGBg==
+X-Received: by 2002:a17:907:6288:b0:78d:ab30:c374 with SMTP id nd8-20020a170907628800b0078dab30c374mr48265363ejc.266.1666967946292;
+        Fri, 28 Oct 2022 07:39:06 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id e2-20020a170906314200b0077e6be40e4asm2293971eje.175.2022.10.28.07.39.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Oct 2022 07:39:05 -0700 (PDT)
+Message-ID: <e83964fe-ad87-0905-4586-e235757c6b2b@gmail.com>
+Date:   Fri, 28 Oct 2022 16:39:04 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.0
+From:   Johan Jonker <jbx6244@gmail.com>
+Subject: [PATCH v2 0/4] Add basic Rockchip rk3128 DT support
+To:     kever.yang@rock-chips.com, heiko@sntech.de
+Cc:     sjg@chromium.org, philipp.tomsich@vrull.eu,
+        zhangqing@rock-chips.com, hjc@rock-chips.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-McASP nodes defined in the top-level AM65x SoC dtsi files are incomplete
-and will not be functional unless they are extended with pinmux
-information.
+Add basic Rockchip rk3128 DT support.
 
-As the pinmux is only known at the board integration level, these
-nodes should only be enabled when provided with this information.
+Features:
+  Quad-core ARM Cortex-A7MP Core processor
+  Clock & reset unit
+  Power management unit
+  Interrupt controller
+  DMAC
+  6x 64 bits Timers
+  4x PWMs
+  1x 32 bits watchdog
 
-Disable the McASP nodes in the dtsi files and only enable the ones that
-are actually pinned out on a given board.
+Internal memory:
+  Internal BootRom
+  Internal SRAM 8KB
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 12 ------------
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi           |  3 +++
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 12 ------------
- 3 files changed, 3 insertions(+), 24 deletions(-)
+External memory:
+  Dynamic Memory Interface (DDR3/DDR3L/LPDDR2)
+  Nand Flash Interface
+  eMMC Interface
+  SD/MMC Interface
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index c6c79dde79c52..3cced26b520a1 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -674,15 +674,3 @@ &mcu_r5fss0_core1 {
- 			<&mcu_r5fss0_core1_memory_region>;
- 	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5fss0_core1>;
- };
--
--&mcasp0 {
--	status = "disabled";
--};
--
--&mcasp1 {
--	status = "disabled";
--};
--
--&mcasp2 {
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 3dc624a379c5f..1930da25d2821 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -799,6 +799,7 @@ mcasp0: mcasp@2b00000 {
- 		clocks = <&k3_clks 104 0>;
- 		clock-names = "fck";
- 		power-domains = <&k3_pds 104 TI_SCI_PD_EXCLUSIVE>;
-+		status = "disabled";
- 	};
- 
- 	mcasp1: mcasp@2b10000 {
-@@ -816,6 +817,7 @@ mcasp1: mcasp@2b10000 {
- 		clocks = <&k3_clks 105 0>;
- 		clock-names = "fck";
- 		power-domains = <&k3_pds 105 TI_SCI_PD_EXCLUSIVE>;
-+		status = "disabled";
- 	};
- 
- 	mcasp2: mcasp@2b20000 {
-@@ -833,6 +835,7 @@ mcasp2: mcasp@2b20000 {
- 		clocks = <&k3_clks 106 0>;
- 		clock-names = "fck";
- 		power-domains = <&k3_pds 106 TI_SCI_PD_EXCLUSIVE>;
-+		status = "disabled";
- 	};
- 
- 	cal: cal@6f03000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index d1c8047d96726..592ab2b54cb3d 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -487,18 +487,6 @@ &cpsw_port1 {
- 	phy-handle = <&phy0>;
- };
- 
--&mcasp0 {
--	status = "disabled";
--};
--
--&mcasp1 {
--	status = "disabled";
--};
--
--&mcasp2 {
--	status = "disabled";
--};
--
- &dss {
- 	status = "disabled";
- };
--- 
-2.37.3
+Connectivity:
+  SDIO interface
+  SPI Controller
+  3x UART controller
+  4x I2C controllers
+  4x groups of GPIO (GPIO0~GPIO3), 32 GPIOs per group
+  USB Host2.0
+  USB OTG2.0
+
+===
+
+The Linux kernel has added a rk3128 clock driver in the past,
+but the DT is still missing.
+
+In U-boot the rk3128 DT doesn't conform the latest bindings
+and also the pin definition don't match the TRM.
+
+On request from the U-boot maintainers I submit a basic rk3128 DT.
+https://lore.kernel.org/u-boot/258c2dbf-436d-5935-83f5-a2dbb8cf62d7@rock-chips.com/
+
+Based on:
+https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/rk3128.dtsi
+https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm/boot/dts/rk312x.dtsi
+
+rk3128 TRM:
+https://rockchip.fr/RK312X%20TRM/
+
+rk3128 datasheet:
+https://rockchip.fr/RK3128%20datasheet%20V1.2.pdf
+
+===
+
+NOT TESTED WITH HARDWARE
+NO THERMAL PROTECTION
+
+===
+
+Request:
+  Help with testing on hardware.
+
+===
+
+Changed V2:
+  rk3128.dtsi:
+    remove aliases
+    add gic interrupts mask defines
+    add virtual timer interrupts
+
+  rk3128-evb.dts:
+    use generic node names
+    remove underscores in node names
+    add more aliases
+    sort
+
+===
+
+Johan Jonker (4):
+  dt-bindings: arm: rockchip: Add Rockchip RK3128 Evaluation board
+  dt-bindings: timer: rockchip: add rockchip,rk3128-timer
+  ARM: dts: rockchip: add rk3128.dtsi
+  ARM: dts: rockchip: add rk3128-evb.dts
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../bindings/timer/rockchip,rk-timer.yaml     |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/rk3128-evb.dts              | 110 +++
+ arch/arm/boot/dts/rk3128.dtsi                 | 916 ++++++++++++++++++
+ 5 files changed, 1033 insertions(+)
+ create mode 100644 arch/arm/boot/dts/rk3128-evb.dts
+ create mode 100644 arch/arm/boot/dts/rk3128.dtsi
+
+--
+2.20.1
 
