@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A775A6112CF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11F06112D5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbiJ1Nbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:31:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56690 "EHLO
+        id S229936AbiJ1NcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231139AbiJ1Nbc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:31:32 -0400
+        with ESMTP id S231200AbiJ1NcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:32:05 -0400
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5451D4431;
-        Fri, 28 Oct 2022 06:31:31 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SDVOV5012750;
-        Fri, 28 Oct 2022 08:31:24 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2891C4938;
+        Fri, 28 Oct 2022 06:32:03 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SDVvNB012813;
+        Fri, 28 Oct 2022 08:31:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1666963884;
-        bh=vbBf/+4TnJs87J725DwYnXl+fYl3HWX+7jwAnoxnCUM=;
+        s=ti-com-17Q1; t=1666963917;
+        bh=tOgS5P5mWnRIUdlI9htAdpHl4sc42ZePAf+hlPCtk6A=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=horsq3bNXIx2wYbndA4scsxAdayDteSI0uxXozf5mzWArfkyof0xDGEASCHkvvASb
-         4dlvVI4uxIm51AgxXKggJo6psXGK8EOLHipGNoSj/RduG/mW8fdiqP06jyMpsOa/Ks
-         2gvISfXohsMyxVToeYfo+zP1ne/DtcPI1XO8Tnc4=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SDVOrx016228
+        b=lA6WRNq6e+ZS7dYvTROFMIxEZ9R2Zl9SB6BbGoN+Ug/xejlXQTZ9EkmDZuUnlIwkG
+         Ne8/ZVgbjmAmLXBEosR6I8hsI5wyFi99mw5PRtFEQjCeZA6vfSXXIK1P/vSYTFUzHs
+         zccm1a6Y5MRK6TGlQiTRBBuLUXJUjFi73skAssqI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SDVvG4032586
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Oct 2022 08:31:24 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 28 Oct 2022 08:31:57 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
- Oct 2022 08:31:24 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2022 08:31:57 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 28 Oct 2022 08:31:23 -0500
+ Frontend Transport; Fri, 28 Oct 2022 08:31:57 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SDVN5J053573;
-        Fri, 28 Oct 2022 08:31:24 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SDVvsB021017;
+        Fri, 28 Oct 2022 08:31:57 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <afd@ti.com>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <bb@ti.com>,
-        <vigneshr@ti.com>, <devicetree@vger.kernel.org>
+To:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <kristo@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <afd@ti.com>, <linux-kernel@vger.kernel.org>, <vigneshr@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <bb@ti.com>
 CC:     Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH 00/10] AM62x Disable Incomplete DT Nodes
-Date:   Fri, 28 Oct 2022 08:31:22 -0500
-Message-ID: <166696386565.13625.17976605291962468095.b4-ty@ti.com>
+Subject: Re: [PATCH 00/12] TI J7x Disable Incomplete DT Nodes
+Date:   Fri, 28 Oct 2022 08:31:56 -0500
+Message-ID: <166696389197.13875.2738230115869646167.b4-ty@ti.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20221018211533.21335-1-afd@ti.com>
-References: <20221018211533.21335-1-afd@ti.com>
+In-Reply-To: <20221020160305.18711-1-afd@ti.com>
+References: <20221020160305.18711-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -66,40 +66,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Andrew Davis,
 
-On Tue, 18 Oct 2022 16:15:23 -0500, Andrew Davis wrote:
-> Same story as for AM64x[0], this time for AM62x. If there
-> are no objections here then the J7x platforms are next.
+On Thu, 20 Oct 2022 11:02:53 -0500, Andrew Davis wrote:
+> Same story as for AM64x[0] and AM62x[1], this time for J7x.
 > 
-> Thanks,
-> Andrew
-> 
-> [0] https://www.spinics.net/lists/arm-kernel/msg1018532.html
+> This one was a little more involved that the last 2 rounds as some IP
+> (like UART) are pinned out using the default pinmux. Perhaps we should be
+> explicit here and have pinmux nodes that simply restate the defaults. I
+> can go solve that in a follow up series if we think that is what we
+> want to do.
 > 
 > [...]
 
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[01/10] arm64: dts: ti: k3-am62: Enable UART nodes at the board level
-        commit: b5877d9b409cfd5667813e667cbc27192a0fb9ea
-[02/10] arm64: dts: ti: k3-am62: Enable I2C nodes at the board level
-        commit: a1541a08bbf9d02f842801261d0dd4505bcd29e0
-[03/10] arm64: dts: ti: k3-am62: Enable SPI nodes at the board level
-        commit: 361e8b7144405b78bd37cc3e9b2d23fc2e2ed6d5
-[04/10] arm64: dts: ti: k3-am62: Enable EPWM nodes at the board level
-        commit: 6e5474826606a783dd969467f93b0c6a56c39780
-[05/10] arm64: dts: ti: k3-am62: Enable ECAP nodes at the board level
-        commit: ffd61c16fe8facf56b6fb06e29ba5bd150f01bd9
-[06/10] arm64: dts: ti: k3-am62: MDIO pinmux should belong to the MDIO node
-        commit: 8709e0442c79c03f7067d6e7464d669504f76527
-[07/10] arm64: dts: ti: k3-am62: Enable MDIO nodes at the board level
-        commit: 1f737012ce7bd92aecf7d6b1e17742dc7cae7bee
-[08/10] arm64: dts: ti: k3-am62: Enable MCAN nodes at the board level
-        commit: 2f6d7e18e73d3bd3752ca16d0b3c6b2926809452
-[09/10] arm64: dts: ti: k3-am62: Enable SDHCI nodes at the board level
-        commit: b2b10301ca685ac23f09d2e663eb4b990b871935
-[10/10] arm64: dts: ti: k3-am62: Enable OSPI nodes at the board level
-        commit: b0ca32e895680ba94c0ef24a5faa738e536e31cc
+[01/12] arm64: dts: ti: k3-j721e: Enable UART nodes at the board level
+        commit: fe17e20fde14c6cbaf1cae97aef370b6f4c73518
+[02/12] arm64: dts: ti: k3-j721e: Enable I2C nodes at the board level
+        commit: 282c4ad3b8c1da99095e0edbbe617cdf4dcb138b
+[03/12] arm64: dts: ti: k3-j721e: Enable MCASP nodes at the board level
+        commit: 256596ad158c80c8e4104a6310a411ec8829f9eb
+[04/12] arm64: dts: ti: k3-j721e: Enable MCAN nodes at the board level
+        commit: 39e7758b94e31071a87489364c723afe92849ae7
+[05/12] arm64: dts: ti: k3-j7200: Enable UART nodes at the board level
+        commit: dae322f8a7ef11a06bfb61bada4ebbcac219783e
+[06/12] arm64: dts: ti: k3-j7200: Enable I2C nodes at the board level
+        commit: a9ed915cd55c883fed72e50b45988fa4305496a7
+[07/12] arm64: dts: ti: k3-j721s2: Enable UART nodes at the board level
+        commit: 0e63f35a9c6acf1d74bd693c492f8955bb16c89a
+[08/12] arm64: dts: ti: k3-j721e: Enable Mailbox nodes at the board level
+        commit: 7e48b665100ee84bdaa163dece6d40351077f664
+[09/12] arm64: dts: ti: k3-j7200: Enable Mailbox nodes at the board level
+        commit: 74f0f58d3122c3e2cc313dd6311b9742dbfd54e0
+[10/12] arm64: dts: ti: k3-j721s2: Enable Mailbox nodes at the board level
+        commit: 3fb0402f65959edc9a14842dc36828d2c7109ae2
+[11/12] arm64: dts: ti: k3-j721s2: Enable MCAN nodes at the board level
+        commit: 06639b8ae0e9be0cf0195209e6b69f4e254687b0
+[12/12] arm64: dts: ti: k3-j721s2: Enable I2C nodes at the board level
+        commit: 0aef5131380628e2a9bfcbbcfed5d6477c8f9651
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
