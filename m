@@ -2,172 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8CE61078C
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B8B3610793
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 04:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbiJ1B67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 21:58:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43650 "EHLO
+        id S234467AbiJ1CBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 22:01:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiJ1B66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:58:58 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06012AEA1F
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:58:58 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id f8so2617694qkg.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:58:57 -0700 (PDT)
+        with ESMTP id S234492AbiJ1CBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 22:01:10 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA15537FA
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:01:09 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id b25so2623280qkk.7
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 19:01:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BAW17+BRYm/H3b4WvRIwEV8kXOxv/g6sG9smsLfq3p0=;
-        b=vjd0f8z/krQCI2mZcirxzMwClkzC3Hldszir9m1PcZNl5VAXYBpmRo2ls+Z3CZSInj
-         j4tlmLK67v0MVs4OGpDoutATgrFPQpizafC6XVVlW6Q3zLxufNHl1PGBQUzwX9TKXjTR
-         HoldiZLnPe9s9oDlHkCzvqFs3hd+InNKIqhNPuExt/l/QgTjfuoUPXJloLu8yjn9/ZgP
-         Sowaw+Qq+aV17bOJwf5M/Y0Eb4Dmais0JAAaTsNXfpSXdS0XcROkC9mNvC/lGijnFlHn
-         o8pNyukvX8+tgODVDBeXz1KGUy5W5PQCukWv4M8CxFGbeoSOL74P+9RVugWtQXf6VIF5
-         cLoA==
+        bh=VcEbkQyKWb0L/Kg+ZX5HS6lAAi/DowSIXYc8QAB2Kvg=;
+        b=ewKFgj2VXv+7hOe1fSACo9aaYnFrC2eObv3KKRwT6XZ2Y8AxykC0UNMzi9vkpu9asf
+         PeFG2R+MOYlyOHZ9so4lnwzQydIOI6jDJpLHlnXtGB1aUrnWoyrSl/Z5ISJjA4JsJ3/W
+         VqFv7fAXe1zS7aQudC4D3J/ScT/8shcfjDZ6Y9RKQmz6Jl7u6eXiTujTuUzm0b4hLPL+
+         BB1dVtEU2LVYc70hHo4KZgzmMCgvyX0qIuTbhHcZVRoDbfnxbd8htJ6HoqxBIRMVUTL1
+         YSv2LSD8Pd8P90+54refqhPmqqpPjKR/2EYMWhjMXI6HitC6/GWmMrr3m2oxYqUBX4bW
+         v1yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAW17+BRYm/H3b4WvRIwEV8kXOxv/g6sG9smsLfq3p0=;
-        b=x7zcvqydPU+qvnEDX7WSn/vrbt/knzfajUKfs8gPJkuZ0k6Hrq4LScIMWWhTm1iWKA
-         fljWKDBYf1Np1NLFPheUj4CQ/zlOOdWFZZIO7KLY0cluoAL5SQNZX3Wjrd4G5XXrfi0V
-         Tg3Uys9pRO4LPk1WUrxDfjQ70hqEcMSllkvVC6IgLOMO7AM/vPtAyZhw9RnY0zQuG2HR
-         488Q8J9J7c/ALwMBUsY4FkeEmnnhsXqyb3n5I1xYxBHz4GW7doJ5KF0m56ovCOQOXe9I
-         Nwk+Z767GsQ46wnlCTIjhSTN0QwoccKwjqVkGh9D/fI9h2qv4wcmRjE5pt9M9Yb8sdUy
-         ymsA==
-X-Gm-Message-State: ACrzQf3fzIUXYmop9KywG8YzrTu1CRLrNcueQch6ka4yEZFJa1i7gUax
-        HzD8IJUKbipKOfdHwLD+wsLUPQ==
-X-Google-Smtp-Source: AMsMyM4KNauk+P3PKPfVNAfv2imHHQZUKu47Ls8+K3ykGh6ymSZlm9Yn/lb4RSQzLktpCTirbNrTUQ==
-X-Received: by 2002:a05:620a:1452:b0:6ec:3f82:522b with SMTP id i18-20020a05620a145200b006ec3f82522bmr36080682qkl.402.1666922337187;
-        Thu, 27 Oct 2022 18:58:57 -0700 (PDT)
+        bh=VcEbkQyKWb0L/Kg+ZX5HS6lAAi/DowSIXYc8QAB2Kvg=;
+        b=lQpZ11SN9UtytJypD7m2jV5VHQuId86w2OsvscG/cqLhv+7+9Fz75/a/zimWgAdsu0
+         sv+QJLGSpkrMJ4noSFR4p6oIEDlFm/HvP+1W6yV+Mn91jrKVOR6MKDqB4f1bICRNTXCR
+         rZuJ3sTLzBDZa6xf6IwSJJhJLBGATFpGW8EBUPDXOQvnJiCJ2l0Yr3eOM1kwJt16jy7+
+         Q/mWzNNDeX38R0Mp+WrmL81MFC3cPuwBJ5aqOituTsRPKv5cLeJnCKUa8ECKdOVbpdP9
+         c7VTwOXgHhUSA9rVo1rJ4gyFxtCbUKzgk5fyRB/R1OboQzNOul45oPcRLnGjpR3EwSOI
+         S+sA==
+X-Gm-Message-State: ACrzQf1UdjQcNN7KGiDkh7ay2oTw0Y9qVmoIM9kWNj0fSvmwaD0zNbZR
+        bkYLhDtZBJVK7kcnx8K3eML0dQ==
+X-Google-Smtp-Source: AMsMyM4d/n9swMkcWtvrJM2VCoFzwdy2vtmRKr+nsDpZ0zGmNvHHxuJUhYkQKjPr828IJ5kn0OOVMQ==
+X-Received: by 2002:a05:620a:254e:b0:6c9:cc85:c41a with SMTP id s14-20020a05620a254e00b006c9cc85c41amr37259351qko.260.1666922468461;
+        Thu, 27 Oct 2022 19:01:08 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id h18-20020ac87d52000000b003998bb7b83asm1694147qtb.90.2022.10.27.18.58.55
+        by smtp.gmail.com with ESMTPSA id r22-20020ac84256000000b0039467aadeb8sm1449703qtm.13.2022.10.27.19.01.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 18:58:56 -0700 (PDT)
-Message-ID: <d6f14e09-0c24-e19a-0951-bb3ca2219e79@linaro.org>
-Date:   Thu, 27 Oct 2022 21:58:54 -0400
+        Thu, 27 Oct 2022 19:01:07 -0700 (PDT)
+Message-ID: <49f504a1-e7c3-ade7-b4b4-e7571125b992@linaro.org>
+Date:   Thu, 27 Oct 2022 22:01:05 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v6 1/2] dt-bindings: it6505: add properties to restrict
- output bandwidth
+Subject: Re: [EXT] Re: [PATCH v8 1/2] dt-bindings: fsl-imx-sdma: Convert imx
+ sdma to DT schema
 Content-Language: en-US
-To:     allen <allen.chen@ite.com.tw>
-Cc:     Pin-Yen Lin <treapking@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        Hermes Wu <Hermes.Wu@ite.com.tw>,
-        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20221027030155.59238-1-allen.chen@ite.com.tw>
- <20221027030155.59238-2-allen.chen@ite.com.tw>
+To:     Joy Zou <joy.zou@nxp.com>, "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+Cc:     "S.J. Wang" <shengjiu.wang@nxp.com>,
+        "martink@posteo.de" <martink@posteo.de>,
+        "dev@lynxeye.de" <dev@lynxeye.de>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        Peng Fan <peng.fan@nxp.com>, "david@ixit.cz" <david@ixit.cz>,
+        "aford173@gmail.com" <aford173@gmail.com>,
+        Hongxing Zhu <hongxing.zhu@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20221025083609.2129260-1-joy.zou@nxp.com>
+ <20221025083609.2129260-2-joy.zou@nxp.com>
+ <133f27f4-d92c-ef8d-4fc9-32387518e4c0@linaro.org>
+ <AM6PR04MB5925157A3A6F8ADB80371082E1339@AM6PR04MB5925.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221027030155.59238-2-allen.chen@ite.com.tw>
+In-Reply-To: <AM6PR04MB5925157A3A6F8ADB80371082E1339@AM6PR04MB5925.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/10/2022 23:01, allen wrote:
-> From: allen chen <allen.chen@ite.com.tw>
+On 26/10/2022 23:01, Joy Zou wrote:
 > 
-> Add properties to restrict dp output data-lanes and clock.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2022年10月26日 22:59
+>> To: Joy Zou <joy.zou@nxp.com>; vkoul@kernel.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
+>> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com
+>> Cc: S.J. Wang <shengjiu.wang@nxp.com>; martink@posteo.de;
+>> dev@lynxeye.de; alexander.stein@ew.tq-group.com; Peng Fan
+>> <peng.fan@nxp.com>; david@ixit.cz; aford173@gmail.com; Hongxing Zhu
+>> <hongxing.zhu@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
+>> dmaengine@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Subject: [EXT] Re: [PATCH v8 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma
+>> to DT schema
+>>
+>> Caution: EXT Email
+>>
+>> On 25/10/2022 04:36, Joy Zou wrote:
+>>> Convert the i.MX SDMA binding to DT schema format using json-schema.
+>>>
+>>> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma,
+>>> fsl,imx35-to1-sdma and fsl,imx35-to2-sdma are not used. So need to
+>>> delete it. The compatibles fsl,imx50-sdma, fsl,imx6sll-sdma and
+>>> fsl,imx6sl-sdma are added. The original binding don't list all compatible used.
+>>>
+>>> In addition, add new peripheral types HDMI Audio.
+>>>
+>>> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+>>> ---
+>>> Changes in v8:
+>>> add the dma-controller quotes.
+>>
+>> Why adding quotes?
+> I refer to your comments in patch v7/1. The comment as follow:
+> +maintainers:
+> +  - Joy Zou <joy.zou@nxp.com>
+> +
+> You need to reference dma-controller.yaml schema.
 
-This is a friendly reminder during the review process.
+Yes, you need to reference dma-controller.yaml. Nothing about quotes.
+Reference is "$ref: .....yaml"
 
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
 
-Thank you.
+> +properties:
+> +  compatible:
+> +    one of:
+> I misunderstand that add the dma-controller.yaml quotes. 
 
-Rob asked - Commit msg should explain reason for breaking users.
+There was nothing about quotes - ".
 
-> 
-> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-> ---
->  .../bindings/display/bridge/ite,it6505.yaml   | 68 +++++++++++++++++--
->  1 file changed, 62 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> index 833d11b2303a7..b16a9d9127ddb 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> @@ -52,9 +52,49 @@ properties:
->      maxItems: 1
->      description: extcon specifier for the Power Delivery
->  
-> -  port:
-> -    $ref: /schemas/graph.yaml#/properties/port
-> -    description: A port node pointing to DPI host port node
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: A port node pointing to DPI host port node
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              link-frequencies:
-> +                minItems: 1
-> +                maxItems: 1
-> +                description: Allowed max link frequencies in Hz
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Video port for DP output
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                minItems: 1
-> +                uniqueItems: true
-> +                items:
-> +                  - enum: [ 0, 1 ]
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +
+> So I am a little confused. Now, I see.
+> should I add dma-common.yaml quotes but not the dma-controller?
 
-This looks ok.
+Just drop "
+
+https://en.wikipedia.org/wiki/Quotation_mark
 
 Best regards,
 Krzysztof
