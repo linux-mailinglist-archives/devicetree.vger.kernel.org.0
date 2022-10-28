@@ -2,171 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0DB610A3E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2C0A610A6B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229441AbiJ1GUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 02:20:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44778 "EHLO
+        id S229909AbiJ1GmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 02:42:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiJ1GUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:20:53 -0400
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5ECAC385;
-        Thu, 27 Oct 2022 23:20:50 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 08:20:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=default;
-        t=1666938047;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
-         references:references; bh=F9MaZfC5dOvrw2AAE71aejLNXhOhHToAdH9Vvg4sUDQ=;
-        b=gOsjlYKD35myIP4h5tqjz/IzS4BESg4AkjT7BR3Wl2VZXlLmfKWu3G2vNVUcQAlLrvg7P6
-        k+hrwNmDUhKCVTXBw1NWH/gloJX0lKgQ3W0WUsZYIZJFqgmarofMLSoj9dbwrd6mR0Hjvg
-        0F6MHvDBWlc4OPbgzgYdnYhNPkjD1DJ9ag4i7XjX1XhnaT6LUIamMG9TPUQkp6Xbp38+2N
-        8CXC7+Hzcm6RnR3qgR/jHoZbE03fpIHoJ/J+V4HTX7frgU5UFMQ1KSmx3q1VHhUQ64joHV
-        VmwaB9IwTpxrsffRG4p/h6GBBG60mn6TERs7R/bDEt8vDWZ13B9S3zvnNsm8jQ==
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marex@denx.de" <marex@denx.de>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
- controls Rx enable during Tx
-Message-ID: <Y1t0vurzqh8XziDs@ada.ifak-system.com>
-Mail-Followup-To: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Rob Herring <robh@kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-        "marex@denx.de" <marex@denx.de>,
-        "jirislaby@kernel.org" <jirislaby@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
- <20221026165049.9541-2-cniedermaier@dh-electronics.com>
- <20221026205914.GA1294440-robh@kernel.org>
- <f04351971a5c4b5e8930000addb06398@dh-electronics.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f04351971a5c4b5e8930000addb06398@dh-electronics.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229871AbiJ1Glw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:41:52 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1034415A8FC
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 23:41:49 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id fn7-20020a05600c688700b003b4fb113b86so2868057wmb.0
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 23:41:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pW67w54VW6hMiwBpE+8e4feStlkLZps5VX75c4wE11Q=;
+        b=vzESmk/pqrKW0wWW8snVPstmmTABNdIAlBU5Vnebpsdu9zEU/vvi0ukbWnHaddtL+j
+         1m1Hyk6dxr+NCsQL4QBnO05peXndx8IWFxZCIutHo1M/6cy23CQyJj71po6K/fWwXoC7
+         Poh2RFiv6FypKR/8IYfEVoeKWxYKi8qfy8W3RO6HEhbrXx1KJf7XRm2Svc8xE+EgU3R9
+         lOBKTbsvATwvgdVEY3ryAkMnxOZ46XVndz+AB1xnrJVMaO+fHCI8OR3y9mTlEpxre4Ke
+         Z8Ss2e45hN0Y6xzH15MgGRMf6bI5LfLFAW8tRYmtD2PDGlC9lYQKKB+uRKjQTs/6J8gm
+         1/LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pW67w54VW6hMiwBpE+8e4feStlkLZps5VX75c4wE11Q=;
+        b=pNPsjbIwSxoGxuAI8B4/jnX5yZg6y0hHhA9hINDMNt5vbn9WEfiLF8oEeBQqHWwbk3
+         Csn/SSUvyOoVm6FyZIa7T6BfjlvtBF/736pboL665f+DOqYGzPbftcB1fb2YrK4vrTyU
+         1PLwLQOpuaCKbSi1MDiR2X1PRPvfvujjlEPJEins0DrwOsjdjqq43RMEk15bl0LoYOMH
+         iksZvCk75BecTkjS5w2JfxLxqcC4eqUd/Q++zhqo2qXy2UYwJmIL/Hs1LpGJOEZMJJkw
+         KIy+DfH9hXiZph3/tu+AzA+lSTs/HVGtgdtAHi4GGBvCsT6LXpeZyr97MUD918TABuHn
+         Nz/g==
+X-Gm-Message-State: ACrzQf3k8NXRUFwg7pWFAoc/Uqcip5PSuff63yr0fue2kG8nMjto2Iw6
+        xP4CuJa8k8v+tGSIc+1Yk/VXrQ==
+X-Google-Smtp-Source: AMsMyM6MF6iXF3Vbr8+9LVdv/dLucMkGE6IxQEIr1BfhoAdfJj2zxG0tSODIPtiImospUL3ffmOGSg==
+X-Received: by 2002:a7b:c34a:0:b0:3c6:e069:d41c with SMTP id l10-20020a7bc34a000000b003c6e069d41cmr8316994wmj.180.1666939307626;
+        Thu, 27 Oct 2022 23:41:47 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id h17-20020a05600c351100b003c7087f6c9asm7253979wmq.32.2022.10.27.23.41.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Oct 2022 23:41:47 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: leds: common: add disk write/read and usb-host/usb-gadget
+Date:   Fri, 28 Oct 2022 06:41:40 +0000
+Message-Id: <20221028064141.2171405-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Christoph,
+The triggers enum misses 3 cases used by gemini DT.
+usb-host was added via commit 0cfbd328d60f ("usb: Add LED triggers for USB activity")
+so we add also as valid trigger usb-gadget which was added along in this
+commit.
 
-let me first say, for an upcoming new product we are currently
-developing, we tried different wirings, all related to that !RE pin of
-the transceiver.
+disk-read/disk-write were added by commit d1ed7c558612 ("leds: Extends disk trigger for reads and writes")
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
-In a first hardware revision the engineer doing the schematic
-connected !RE to GND (always on) and it took me a while to recognize
-what was going on: everything send through TX was mirrored on RX,
-which makes using lots of standard applications on that port just
-fail.  (To be fair, we need exactly that behaviour on a different
-board.)
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+V1 can be seen at https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210508193654.2596119-1-clabbe@baylibre.com/
+Changes since v1:
+- rebased on recent tree
 
-In a second iteration !RE is directly connected to DE now, so RE is
-now always the opposite of DE.  DE itself is always connected to the
-RTS line of the UART, which allows the driver to switch direction.
+Changes since v2:
+- rebased on recent tree
 
-More below.
+ Documentation/devicetree/bindings/leds/common.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Am Thu, Oct 27, 2022 at 12:06:56PM +0000 schrieb Christoph Niedermaier:
-> From: Rob Herring [mailto:robh@kernel.org]
-> Sent: Wednesday, October 26, 2022 10:59 PM
-> > On Wed, Oct 26, 2022 at 06:50:46PM +0200, Christoph Niedermaier wrote:
-> >> Add the binding for a generic definition of a GPIO, that controls whether Rx
-> >> is connected or disconnected by an electrical circuit to have the ability
-> >> to receive the signals on the bus during sending or disable receiving during
-> >> sending.
-> >>
-> >> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-> >> ---
-> >> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> >> Cc: Rob Herring <robh+dt@kernel.org>
-> >> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> >> Cc: Marek Vasut <marex@denx.de>
-> >> Cc: devicetree@vger.kernel.org
-> >> To: linux-serial@vger.kernel.org
-> >> To: linux-arm-kernel@lists.infradead.org
-> >> ---
-> >>  Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
-> >>  1 file changed, 4 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
-> >> index 90a1bab40f05..0ebd7690f85d 100644
-> >> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
-> >> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
-> >> @@ -51,6 +51,10 @@ properties:
-> >>      description: GPIO pin to enable RS485 bus termination.
-> >>      maxItems: 1
-> >>
-> >> +  rs485-rx-during-tx-gpios:
-> >> +    description: GPIO pin to control RS485 Rx enable during Tx.
-> > 
-> > Active state means do what? And inactive? This is an output gating the
-> > RX signal or an input telling the receiver what to do during tx? The
-> > description is not adequate.
-> > 
-> > How does this property relate to 'rs485-rx-during-tx' Any combination of
-> > the 2 being present or not is okay? If not, you need some constraints.
-> > 
-> > Rob
-> 
-> 
-> Hi Rob,
-> 
-> I have improved the message:
-> 
-> The standard RS485 is a half-duplex bus that in most cased is driven by an
-> UART controller. The interface to the bus is controlled by a transceiver, that
-> has a pin called RE (Rx enable) or similar, which connects the bus to Rx signal
-> of the UART controller. This patch adds a binding for a generic definition of a
-> GPIO that can switch between two states to control the RE pin via an electrical
-> circuit:
-> - Active:
->   The RE pin is always active. The UART Rx see everything on the bus and
->   therefore also what happens with the Tx signal on the bus.
-> - Inactive:
->   The RE pin is always active, but during sending on the bus the pin RE is
->   inactive. So basically the receiving during sending is suppressed.
-> 
-> Is it now more understandable, or have I still not considered an aspect?
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index f5c57a580078..8ebe602419b5 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -90,6 +90,8 @@ properties:
+           - heartbeat
+             # LED indicates disk activity
+           - disk-activity
++          - disk-read
++          - disk-write
+             # LED indicates IDE disk activity (deprecated), in new implementations
+             # use "disk-activity"
+           - ide-disk
+@@ -98,6 +100,8 @@ properties:
+             # LED alters the brightness for the specified duration with one software
+             # timer (requires "led-pattern" property)
+           - pattern
++          - usb-gadget
++          - usb-host
+         # LED is triggered by SD/MMC activity
+       - pattern: "^mmc[0-9]+$"
+       - pattern: "^cpu[0-9]*$"
+-- 
+2.37.4
 
-Better.  But what about the questions Rob asked?  There's already a
-property 'rs485-rx-during-tx' which leads to setting the flag
-SER_RS485_RX_DURING_TX in serial core.  As far as I understood from a
-quick glance at core and drivers, this deals with half or full duplex
-from the UART point of view (not the transceiver).
-
-You need to explain, what's the difference to the new property.
-I suspect you want to somehow switch behaviour with that GPIO line?
-Which driver should switch that line in the end and when?
-
-(For third iteration of our hardware we thought about a GPIO
-controlling whether !RE is always on or connected to DE, but that's
-probably not what you have in mind?)
-
-Maybe a simple generic schematic could help explain or maybe you find
-a better name for the property?
-
-Greets
-Alex
-
-> 
-> 
-> Thanks and regards
-> Christoph
