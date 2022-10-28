@@ -2,126 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EDF610719
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6F3161072F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 03:22:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235176AbiJ1BJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Oct 2022 21:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44012 "EHLO
+        id S234667AbiJ1BWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Oct 2022 21:22:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233867AbiJ1BJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:09:48 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C301EAE4
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:09:45 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id i10so2410196qkl.12
-        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:09:45 -0700 (PDT)
+        with ESMTP id S233598AbiJ1BWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Oct 2022 21:22:14 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A88A5724
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:22:13 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id l9so2562499qkk.11
+        for <devicetree@vger.kernel.org>; Thu, 27 Oct 2022 18:22:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NqWJUv7RHF72o6asga23lrHNA3l+QNl6qrRvFoALfC0=;
-        b=xNY+5H8aLsuLqj5SHMC6+3oVJMnmAwJEywEYQRhVfMYTHImPvFLQ1xjheNghCtawx8
-         56u0KNrtfK/g27UvusPueR/KF+K0f7KKxD2H5uB9+4U04yCt+S7gzcs6oywD133JgKsu
-         Q8H6qc46rDkbKEMdsrwc8e8qyTA4h1RpAs1o1/HMLpvz6w7DvSMdyD87akjaamsTYhYe
-         2xBP5vgryWZx2R/CvvkPgqsgOJ33A/Nz57081y7dR8uSEASI/EsV1kZte7vHpuUsdVMC
-         I0LLf8BW5MDDbWK3FiB75Kg3Cmj5vndNRaNrlljvEs9edA6C1UvBTkis9pyEoEMn4oEa
-         E0HQ==
+        bh=lCnIPWmpmhl06fh13Fy5AXQxpTL6Lb8+uJ/N2EsF5sI=;
+        b=a+TYQ/L6Z22mSRK++ipMB62pRGbMAza1TqHp6EmZ5qIur4iTr8b9vHbWq5oNoASmFo
+         XI1mZYLDd/qLyuOw9A+VkjnkVNN4tYCewcBs56oNagZYqPBkDls0YhuD4G9Uvgo2DtNi
+         eoNdgUolg/0m5hWqOhaVbul9bLQwtznp9xUeRi3GpxJ4nGFEz5iS1QCTOSlQMjku5zus
+         hD5LHP0f0Lw7k3kOY4pMR9PudaTXIwvNosUL7gecx1KWSrNZf3e0yf9hf8fP+/9MkKYA
+         lKOuVLFsA29Og/04EgfUGab27q6gNNX4L/XOfsWtq83iMXK4VxetNV/+8Nx14y5PCmog
+         ZYpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NqWJUv7RHF72o6asga23lrHNA3l+QNl6qrRvFoALfC0=;
-        b=Dk+2OazKwCfUXwMADwPu/yib2uD6a0ZGqdx8qK61dXxjO6ZiSlYTLj6H8IIaU5Aq5m
-         8w0IfTuL0k6FS+CFUmtdheidlKHGqC5+8+g76Efp174kyB4LYjpTOwgn0U0a5z87JDEy
-         DuB7gg7JeJmeiVFwd56JCL6VnMIW4rNA4kf8sTQzxjTcFgb6fgn21mAkc2XE2apzT8th
-         wI38X0gcggnTrdjAwBw5NAGagn73NDmjg+YwfRIvdFZLIjHP61FLdr6AXMyNJDxIouqn
-         gWqoZuaoB98UDVPRJKrS30sVGqHUu4Eekry4a3k01hB6asZ3gaF5Smg1+FVm/xoiysDl
-         BAwg==
-X-Gm-Message-State: ACrzQf2M7CGQxcPliesX///ppymP0DltTRX2CKknu96ES6TiYcY0LA7v
-        lzUwJg4sjp+YNiEf/rp4yAQofw==
-X-Google-Smtp-Source: AMsMyM4BLpfVzD9/T6Vh002ms5kTcmfVgy8ChfBo+r70aLAfiUIOQMVATnUfpTdIW3jfsHWmvZVK1g==
-X-Received: by 2002:a37:ab0c:0:b0:6ec:e84f:7487 with SMTP id u12-20020a37ab0c000000b006ece84f7487mr37406434qke.522.1666919384782;
-        Thu, 27 Oct 2022 18:09:44 -0700 (PDT)
+        bh=lCnIPWmpmhl06fh13Fy5AXQxpTL6Lb8+uJ/N2EsF5sI=;
+        b=oB9uOcwAF0/REvnOMEnFDOx2yU8VRHZOr2eGCJq0df20BBGgij/db+JBpZuE1bK+rq
+         0ilf5e0x833eYuAgY8q/E6GG5lNxtahLUYU2op2mrZKdgoGpefVbfWOkCJ+M18efNbl4
+         gp3BuUDw/rE+EKWpi42c0nsyZzV0wU0yf/WhoGOm/Ohu1clummcSMXOj+lJ31Nr7sVBQ
+         +X8mrHJKxppmnBhHAHCs6c+r4Gv5cBO9dqY6m5UE+o1cqJG9tl7f01LU+bb0MWvEQqLM
+         hFSQdqFauGd5/9TcQYtxaWqhHrN7nkwArxp0Q9twqa+c5mBF0gEwSydl1EP4W4eUmT6d
+         UOtw==
+X-Gm-Message-State: ACrzQf1gT33pLn9f3bNoxiVPdRuGbNNtBeGYRAfwoWamKC+4x6twwpfj
+        ArW63AEUPUYP9M9+5zpx16QuTQ==
+X-Google-Smtp-Source: AMsMyM7Fg+6+mD8eIp9eaV2K/rmXf4ydEmw4VGWcoJSJ4mvc+INqLL4ODYEyRv+PfdsskpLTYRhVMg==
+X-Received: by 2002:a05:620a:4256:b0:6f0:fc14:5b37 with SMTP id w22-20020a05620a425600b006f0fc145b37mr25423947qko.503.1666920132669;
+        Thu, 27 Oct 2022 18:22:12 -0700 (PDT)
 Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id bl24-20020a05620a1a9800b006ed61f18651sm1988799qkb.16.2022.10.27.18.09.43
+        by smtp.gmail.com with ESMTPSA id h17-20020a05620a245100b006ecdfcf9d81sm2016666qkn.84.2022.10.27.18.22.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Oct 2022 18:09:44 -0700 (PDT)
-Message-ID: <f6293fb0-9892-1f94-47a6-a9275231d741@linaro.org>
-Date:   Thu, 27 Oct 2022 21:09:41 -0400
+        Thu, 27 Oct 2022 18:22:12 -0700 (PDT)
+Message-ID: <ee37b5a1-5afc-71b3-f777-add295d9ce17@linaro.org>
+Date:   Thu, 27 Oct 2022 21:22:10 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH v3 2/5] dt-bindings: clock: Add RPMHCC bindings for
- QDU1000 and QRU1000
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221026190441.4002212-1-quic_molvera@quicinc.com>
- <20221026190441.4002212-3-quic_molvera@quicinc.com>
- <de2cd5c0-1c3d-5d47-4896-82e32f3c0d88@linaro.org>
- <52cf61ed-88bd-b04e-1596-15013d613c4c@quicinc.com>
+Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add regulator-output binding
 Content-Language: en-US
+To:     Zev Weiss <zev@bewilderbeest.net>, Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        openbmc@lists.ozlabs.org
+References: <20220925220319.12572-1-zev@bewilderbeest.net>
+ <20220925220319.12572-3-zev@bewilderbeest.net>
+ <20220929210714.GA2684335-robh@kernel.org>
+ <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
+ <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <52cf61ed-88bd-b04e-1596-15013d613c4c@quicinc.com>
+In-Reply-To: <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/10/2022 21:04, Melody Olvera wrote:
-> 
-> 
-> On 10/27/2022 8:57 AM, Krzysztof Kozlowski wrote:
->> On 26/10/2022 15:04, Melody Olvera wrote:
->>> Add compatible strings for RPMHCC for QDU1000 and QRU1000.
+On 27/10/2022 14:42, Zev Weiss wrote:
+> On Thu, Sep 29, 2022 at 02:27:20PM PDT, Zev Weiss wrote:
+>> On Thu, Sep 29, 2022 at 02:07:14PM PDT, Rob Herring wrote:
+>>> On Sun, Sep 25, 2022 at 03:03:18PM -0700, Zev Weiss wrote:
+>>>> This describes a power output supplied by a regulator, such as a
+>>>> power outlet on a power distribution unit (PDU).
+>>>>
+>>>> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>>>> ---
+>>>> .../bindings/regulator/regulator-output.yaml  | 47 +++++++++++++++++++
+>>>> 1 file changed, 47 insertions(+)
+>>>> create mode 100644 Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/regulator/regulator-output.yaml b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..40953ec48e9e
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/regulator/regulator-output.yaml
+>>>> @@ -0,0 +1,47 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +
+>>>> +$id: http://devicetree.org/schemas/regulator/regulator-output.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Regulator output connector
+>>>> +
+>>>> +maintainers:
+>>>> +  - Zev Weiss <zev@bewilderbeest.net>
+>>>> +
+>>>> +description: |
+>>>> +  This describes a power output connector supplied by a regulator,
+>>>> +  such as a power outlet on a power distribution unit (PDU).  The
+>>>> +  connector may be standalone or merely one channel or set of pins
+>>>> +  within a ganged physical connector carrying multiple independent
+>>>> +  power outputs.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: regulator-output
+>>>> +
+>>>> +  vout-supply:
+>>>> +    description:
+>>>> +      Phandle of the regulator supplying the output.
+>>>> +
+>>>> +  regulator-leave-on:
+>>>> +    description: |
+>>>> +      If the regulator is enabled when software relinquishes control
+>>>> +      of it (such as when shutting down) it should be left enabled
+>>>> +      instead of being turned off.
+>>>> +    type: boolean
 >>>
->>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>> ---
->> This looks correct except:
->> 1. redundant bindings in subject
->> 2. not cc-ing all maintainers
+>>> I'm not too sure about this one as there could be various times when
+>>> control is relinquished. It is userspace closing its access?
+>>> driver unbind? module unload? Does a bootloader pay attention to this?
+>>>
+>>> Rob
 >>
->> so still not tag.
+>> Thanks for the feedback, Rob -- I'll admit I was a bit unsure how to 
+>> approach that, and this may well not be the right answer.  What I'm 
+>> really aiming for is an appropriate way to express that regulator 
+>> on/off state should only ever be changed by explicit (external, e.g. 
+>> userspace) request, never as any sort of default/automatic action.  
+>> The two obvious things to guard against there seem to be automatic 
+>> enablement during initialization and automatic disablement on de-init 
+>> (shutdown, unbind, etc.).  The former I think can be avoided by simply 
+>> not setting regulator-boot-on, so I added this as a corresponding 
+>> property to avoid the latter.
 >>
+>> I'm definitely open to suggestions for a better approach though.
 >>
-> Not sure what you mean by redundant bindings; should I remove
-> "QRU1000"? "Compatible strings"? Please advise.
+> 
+> Ping...
+> 
+> Would something like this be preferable as a more direct description of 
+> that?
+> 
+>    regulator-manually-controlled:
+>      description: |
+>        The regulator should never be enabled or disabled automatically,
+>        only when explicitly requested by an external actor (e.g.  
+>        userspace).
+>      type: boolean
 
-In the subject please drop second 'bindings' word, because it is
-redundant so:
+This looks like putting policy and OS behavior into DT. I guess it easy
+to understand in case of Linux which disables unclaimed regulators
+during. But what if other system/firmware does not behave like that?
 
-dt-bindings: clock: Add RPMHCC for QDU1000 and QRU1000
-or
-dt-bindings: clock: Add QDU1000/QRU1000 RPMHCC
+And what is the "external actor"? OS is not an external actor?
+
+I could not get the problem you want to solve with this property - I
+looked at cover letter and at commit msg.
+
+I can only imagine that you want to keep regulator on, after last its
+user disappears... but for what purpose? Do you expect that after system
+shutdown the pin will stay high so regulator will be also on? If so, you
+need hardware design, e.g. with some pull up (if control is over GPIO).
 
 > 
-> Also, I got maintainers from running get_maintainers.pl on
-> linux-next/master; is this wrong? Not sure what I'm missing here.
+> That would leave the question of which property takes priority if both 
+> regulator-manually-controlled and regulator-boot-on are set -- should 
+> the binding document the answer to that?  (I personally don't have a 
+> strong opinion on which it should be.)
 
-You miss some of Qualcomm maintainers. Maybe more, I did not check every
-possible output for every patchset. I just spotted missing Konrad,
-because it sticks out. If you copy the output of some commands, be sure
-you copy everything. Otherwise, just automate it so there will be no
-chances for mistakes.
 
 Best regards,
 Krzysztof
