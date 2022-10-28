@@ -2,118 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2856611625
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2768611645
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiJ1Pke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 11:40:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38248 "EHLO
+        id S229968AbiJ1Ptv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:49:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbiJ1PkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:40:25 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09E15BC3D;
-        Fri, 28 Oct 2022 08:40:19 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 29SDUEtq006872;
-        Fri, 28 Oct 2022 17:40:04 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=NbSB6f9Ybohoa8sO7EshRv4xTh4x+pWRCcytboWIs/k=;
- b=pgoR/CsMI+tvg2md6eHJrB6jO6zrERgJg2N2jHt0sU1Z5pBoN3lBYLSbnB7Z/ePsMPOq
- p0lMnbv3WW7qzfqbTJ6QNtHXoLhzgufALSiXTG4XCj/u0vN+tG3ap8BDhMKwa1OMdhZM
- fApaV1qjCXw+jlVJtZzaFAnrTAWtoI9Cz6jK2aGxkvy1KCbKBrZNUrqFYsjo8xsfnSrS
- wpWHzjwKExqrCL7kOR4wAF7DLU3bIorcknYrxXICGA2HcUTphJWmew7/zdQkSiYHS4pg
- EHgBiad629AVF4n4zye3L1pry7665iN2jhMTIXD/3+UaHQg0KxN71IDOfZ0obYVtR0Wv 8Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3kfajfdsyf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Oct 2022 17:40:04 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C618F10002A;
-        Fri, 28 Oct 2022 17:40:00 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C1E60229A8C;
-        Fri, 28 Oct 2022 17:40:00 +0200 (CEST)
-Received: from [10.252.12.236] (10.252.12.236) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Fri, 28 Oct
- 2022 17:39:57 +0200
-Message-ID: <5cb2f55d-dfb1-7481-1907-007db8d25448@foss.st.com>
-Date:   Fri, 28 Oct 2022 17:39:56 +0200
+        with ESMTP id S229663AbiJ1Pti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:49:38 -0400
+Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1BB6A465;
+        Fri, 28 Oct 2022 08:49:29 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EDC3324000D;
+        Fri, 28 Oct 2022 15:49:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666972168;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=f23mXktPnjBIbQnylG+4fHP9q0uzvSm8Mys4clA2Wyg=;
+        b=a9wF6nGSZcwRGb55YkTPYESTmNRJxwlOMLvuXH4yrMellZVomcLGHG27XIHgHjQrs9zP9N
+        nxEW2FAkPXPrvpQDHm4V/mSNqvDgU8LD5iGUeGLrICrR777uqvxbZ75Eh1CSaJnSKMaxTr
+        QDWzF+Y5A44uQyHKONDcW3rirm7HtVH5c/CL5qkHKt4n/FYBZb6ym0rS4Xh8RylJC+c2fH
+        oK43OudHEYcx5SQEBXDz2mRDn/M9XnILWqe6wJaiXZJUsfwK7bPsj1dMOUYcgLOhVdEQ0c
+        tVBg6I4GN5fjUzXqRhDtUdm4x0qdeWSh1raPJRbRUAp2BQ62i0UqWRToAGH+bg==
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH net-next v6 0/5] net: ipqess: introduce Qualcomm IPQESS driver
+Date:   Fri, 28 Oct 2022 17:49:19 +0200
+Message-Id: <20221028154924.789116-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH 1/3] dt-bindings: nvmem: add new stm32mp13 compatible for
- stm32-romem
-Content-Language: en-US
-To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     Rob Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20221028145252.2115933-1-patrick.delaunay@foss.st.com>
- <20221028165150.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20221028165150.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.12.236]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-28_07,2022-10-27_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_BL_SPAMCOP_NET,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/28/22 16:52, Patrick Delaunay wrote:
-> Add a new compatible for stm32mp13 support.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+Hello everyone,
 
-Hi Patrick,
+This is the 6th iteration on the IPQESS driver, that includes a new
+DSA tagger to let the MAC convey the tag to the switch through an
+out-of-band medium, here using DMA descriptors.
 
-You can add my:
-Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Notables changes on V6 :
+ - Cleanup unused helpers and fields in the tagger
+ - Cleanup ordering in various files
+ - Added more documentation on the tagger
+ - Fixed the CHANGEUPPER caching
+ - Cleanups in the IPQESS driver
 
-Thanks,
-Fabrice
+Thanks Andrew, Vlad and Krzysztof for the reviews !
 
-> ---
-> This patch is already sent separately in:
-> https://lore.kernel.org/all/20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid/
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685403
-> 
-> I create a serie for more efficient review.
-> 
-> Patrick.
-> 
->  Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> index 448a2678dc62..16f4cad2fa55 100644
-> --- a/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/st,stm32-romem.yaml
-> @@ -22,6 +22,7 @@ properties:
->    compatible:
->      enum:
->        - st,stm32f4-otp
-> +      - st,stm32mp13-bsec
->        - st,stm32mp15-bsec
->  
->    reg:
+Notables changes on V5 :
+ - Fix caching of CHANGEUPPER events
+ - Use a skb extension-based tagger
+ - Rename the binding file
+ - Some cleanups in the ipqess driver itself
+
+Notables changes on V4 :
+ - Cache the uses_dsa info from CHANGEUPPER events
+ - Use better string handling helpers for ethtool stats
+ - rename ethtool callbacks
+ - Fix a binding typo
+
+Notables changes on V3 :
+ - Took into account Russell's review on the ioctl handler and the mac
+   capabilities that were missing
+ - Took Andrew's reviews into account by reworking the napi rx loop,
+   some stray "inline" keywords, and useless warnings
+ - Took Vlad's reviews into account by reworking a few macros
+ - Took Christophe's review into account by removing extra GFP_ZERO
+ - Took Rob's review into account by simplifying the binding
+
+Notables changes on V2 :
+ - Put the DSA tag in the skb itself instead of using skb->shinfo
+ - Fixed the initialisation sequence based on Andrew's comments
+ - Reworked the error paths in the init sequence
+ - Add support for the clock and reset lines on that controller
+ - Fixed and updated the binding
+
+The driver itself is pretty straightforward, but has lived out-of-tree
+for a while. I've done my best to clean-up some outdated API calls, but
+some might remain.
+
+This controller is somewhat special, since it's part of the IPQ4019 SoC
+which also includes an QCA8K switch, and uses the IPQESS controller for
+the CPU port. The switch is so tightly intergrated with the MAC that it
+is connected to the MAC using an internal link (hence the fact that we
+only support PHY_INTERFACE_MODE_INTERNAL), and this has some
+consequences on the DSA side.
+
+The tagging for the switch isn't done inband as most switch do, but
+out-of-band, the DSA tag being included in the DMA descriptor.
+
+This series includes a new out-of-band tagger that uses skb extensions
+to convey the tag between the tagger and the MAC driver.
+
+Thanks to the Sartura folks who worked on a base version of this driver,
+and provided test hardware.
+
+Best regards,
+
+Maxime Chevallier
+
+Maxime Chevallier (5):
+  net: dt-bindings: Introduce the Qualcomm IPQESS Ethernet controller
+  net: ipqess: introduce the Qualcomm IPQESS driver
+  net: dsa: add out-of-band tagging protocol
+  net: ipqess: Add out-of-band DSA tagging support
+  ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet
+    controller
+
+ .../bindings/net/qcom,ipq4019-ess-edma.yaml   |   94 ++
+ Documentation/networking/dsa/dsa.rst          |   13 +-
+ MAINTAINERS                                   |    8 +
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |   44 +
+ drivers/net/ethernet/qualcomm/Kconfig         |   12 +
+ drivers/net/ethernet/qualcomm/Makefile        |    2 +
+ drivers/net/ethernet/qualcomm/ipqess/Makefile |    8 +
+ drivers/net/ethernet/qualcomm/ipqess/ipqess.c | 1307 +++++++++++++++++
+ drivers/net/ethernet/qualcomm/ipqess/ipqess.h |  522 +++++++
+ .../ethernet/qualcomm/ipqess/ipqess_ethtool.c |  164 +++
+ include/linux/dsa/oob.h                       |   16 +
+ include/linux/skbuff.h                        |    3 +
+ include/net/dsa.h                             |    2 +
+ net/core/skbuff.c                             |   10 +
+ net/dsa/Kconfig                               |    9 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_oob.c                             |   48 +
+ 17 files changed, 2262 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,ipq4019-ess-edma.yaml
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/Makefile
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c
+ create mode 100644 include/linux/dsa/oob.h
+ create mode 100644 net/dsa/tag_oob.c
+
+-- 
+2.37.3
+
