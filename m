@@ -2,165 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09B81610A39
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:19:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C0DB610A3E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 08:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiJ1GTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 02:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37884 "EHLO
+        id S229441AbiJ1GUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 02:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbiJ1GTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:19:35 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 979905F54;
-        Thu, 27 Oct 2022 23:19:30 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8Axz7dxdFtjFAgDAA--.6665S3;
-        Fri, 28 Oct 2022 14:19:29 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Axf+BrdFtj_zQGAA--.22314S4;
-        Fri, 28 Oct 2022 14:19:28 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 3/3] dt-bindings: clock: add loongson-2 clock
-Date:   Fri, 28 Oct 2022 14:19:22 +0800
-Message-Id: <20221028061922.19045-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221028061922.19045-1-zhuyinbo@loongson.cn>
-References: <20221028061922.19045-1-zhuyinbo@loongson.cn>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Axf+BrdFtj_zQGAA--.22314S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4kJw4fKFyfWF1kuFg_yoW5GrWDpF
-        sxC343GryIvF17Zws5Ka4xA3Z5u3Z7CF17ZwnrCa42kr98W3W5XF17K34DZa9rAFy7Za9r
-        ZFWfCr4jka1Ikw7anT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bS8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE
-        52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I
-        80ewAv7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Xr0_
-        Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVWxJVW8Jr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1U
-        YxBIdaVFxhVjvjDU0xZFpf9x07UNjjkUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229450AbiJ1GUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 02:20:53 -0400
+Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5ECAC385;
+        Thu, 27 Oct 2022 23:20:50 -0700 (PDT)
+Date:   Fri, 28 Oct 2022 08:20:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=thorsis.com; s=default;
+        t=1666938047;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:content-type:content-type:in-reply-to:in-reply-to:
+         references:references; bh=F9MaZfC5dOvrw2AAE71aejLNXhOhHToAdH9Vvg4sUDQ=;
+        b=gOsjlYKD35myIP4h5tqjz/IzS4BESg4AkjT7BR3Wl2VZXlLmfKWu3G2vNVUcQAlLrvg7P6
+        k+hrwNmDUhKCVTXBw1NWH/gloJX0lKgQ3W0WUsZYIZJFqgmarofMLSoj9dbwrd6mR0Hjvg
+        0F6MHvDBWlc4OPbgzgYdnYhNPkjD1DJ9ag4i7XjX1XhnaT6LUIamMG9TPUQkp6Xbp38+2N
+        8CXC7+Hzcm6RnR3qgR/jHoZbE03fpIHoJ/J+V4HTX7frgU5UFMQ1KSmx3q1VHhUQ64joHV
+        VmwaB9IwTpxrsffRG4p/h6GBBG60mn6TERs7R/bDEt8vDWZ13B9S3zvnNsm8jQ==
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marex@denx.de" <marex@denx.de>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/4] dt_bindings: rs485: Add binding for GPIO that
+ controls Rx enable during Tx
+Message-ID: <Y1t0vurzqh8XziDs@ada.ifak-system.com>
+Mail-Followup-To: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Rob Herring <robh@kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "marex@denx.de" <marex@denx.de>,
+        "jirislaby@kernel.org" <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20221026165049.9541-1-cniedermaier@dh-electronics.com>
+ <20221026165049.9541-2-cniedermaier@dh-electronics.com>
+ <20221026205914.GA1294440-robh@kernel.org>
+ <f04351971a5c4b5e8930000addb06398@dh-electronics.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f04351971a5c4b5e8930000addb06398@dh-electronics.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 clock binding with DT schema format using
-json-schema.
+Hello Christoph,
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/clock/loongson,ls2k-clk.yaml     | 63 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
+let me first say, for an upcoming new product we are currently
+developing, we tried different wirings, all related to that !RE pin of
+the transceiver.
 
-diff --git a/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-new file mode 100644
-index 000000000000..63a59015987e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/loongson,ls2k-clk.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 SoC Clock Control Module
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+description: |
-+  Loongson-2 SoC clock control module is an integrated clock controller, which
-+  generates and supplies to all modules.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - loongson,ls2k-clk
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: 100m ref
-+
-+  clock-names:
-+    items:
-+      - const: ref_100m
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      The clock consumer should specify the desired clock by having the clock
-+      ID in its "clocks" phandle cell. See include/dt-bindings/clock/loongson,ls2k-clk.h
-+      for the full list of Loongson-2 SoC clock IDs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ref_100m: clock-ref-100m {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <100000000>;
-+        clock-output-names = "ref_100m";
-+    };
-+
-+    clk: clock-controller@1fe00480 {
-+        compatible = "loongson,ls2k-clk";
-+        reg = <0x1fe00480 0x58>;
-+        #clock-cells = <1>;
-+        clocks = <&ref_100m>;
-+        clock-names = "ref_100m";
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5136684fb6c6..e5fb270dd363 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11911,6 +11911,7 @@ LOONGSON-2 SOC SERIES CLOCK DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-clk@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/clock/loongson,ls2k-clk.yaml
- F:	drivers/clk/clk-loongson2.c
- F:	include/dt-bindings/clock/loongson,ls2k-clk.h
- 
--- 
-2.31.1
+In a first hardware revision the engineer doing the schematic
+connected !RE to GND (always on) and it took me a while to recognize
+what was going on: everything send through TX was mirrored on RX,
+which makes using lots of standard applications on that port just
+fail.  (To be fair, we need exactly that behaviour on a different
+board.)
 
+In a second iteration !RE is directly connected to DE now, so RE is
+now always the opposite of DE.  DE itself is always connected to the
+RTS line of the UART, which allows the driver to switch direction.
+
+More below.
+
+Am Thu, Oct 27, 2022 at 12:06:56PM +0000 schrieb Christoph Niedermaier:
+> From: Rob Herring [mailto:robh@kernel.org]
+> Sent: Wednesday, October 26, 2022 10:59 PM
+> > On Wed, Oct 26, 2022 at 06:50:46PM +0200, Christoph Niedermaier wrote:
+> >> Add the binding for a generic definition of a GPIO, that controls whether Rx
+> >> is connected or disconnected by an electrical circuit to have the ability
+> >> to receive the signals on the bus during sending or disable receiving during
+> >> sending.
+> >>
+> >> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
+> >> ---
+> >> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >> Cc: Rob Herring <robh+dt@kernel.org>
+> >> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> >> Cc: Marek Vasut <marex@denx.de>
+> >> Cc: devicetree@vger.kernel.org
+> >> To: linux-serial@vger.kernel.org
+> >> To: linux-arm-kernel@lists.infradead.org
+> >> ---
+> >>  Documentation/devicetree/bindings/serial/rs485.yaml | 4 ++++
+> >>  1 file changed, 4 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/serial/rs485.yaml b/Documentation/devicetree/bindings/serial/rs485.yaml
+> >> index 90a1bab40f05..0ebd7690f85d 100644
+> >> --- a/Documentation/devicetree/bindings/serial/rs485.yaml
+> >> +++ b/Documentation/devicetree/bindings/serial/rs485.yaml
+> >> @@ -51,6 +51,10 @@ properties:
+> >>      description: GPIO pin to enable RS485 bus termination.
+> >>      maxItems: 1
+> >>
+> >> +  rs485-rx-during-tx-gpios:
+> >> +    description: GPIO pin to control RS485 Rx enable during Tx.
+> > 
+> > Active state means do what? And inactive? This is an output gating the
+> > RX signal or an input telling the receiver what to do during tx? The
+> > description is not adequate.
+> > 
+> > How does this property relate to 'rs485-rx-during-tx' Any combination of
+> > the 2 being present or not is okay? If not, you need some constraints.
+> > 
+> > Rob
+> 
+> 
+> Hi Rob,
+> 
+> I have improved the message:
+> 
+> The standard RS485 is a half-duplex bus that in most cased is driven by an
+> UART controller. The interface to the bus is controlled by a transceiver, that
+> has a pin called RE (Rx enable) or similar, which connects the bus to Rx signal
+> of the UART controller. This patch adds a binding for a generic definition of a
+> GPIO that can switch between two states to control the RE pin via an electrical
+> circuit:
+> - Active:
+>   The RE pin is always active. The UART Rx see everything on the bus and
+>   therefore also what happens with the Tx signal on the bus.
+> - Inactive:
+>   The RE pin is always active, but during sending on the bus the pin RE is
+>   inactive. So basically the receiving during sending is suppressed.
+> 
+> Is it now more understandable, or have I still not considered an aspect?
+
+Better.  But what about the questions Rob asked?  There's already a
+property 'rs485-rx-during-tx' which leads to setting the flag
+SER_RS485_RX_DURING_TX in serial core.  As far as I understood from a
+quick glance at core and drivers, this deals with half or full duplex
+from the UART point of view (not the transceiver).
+
+You need to explain, what's the difference to the new property.
+I suspect you want to somehow switch behaviour with that GPIO line?
+Which driver should switch that line in the end and when?
+
+(For third iteration of our hardware we thought about a GPIO
+controlling whether !RE is always on or connected to DE, but that's
+probably not what you have in mind?)
+
+Maybe a simple generic schematic could help explain or maybe you find
+a better name for the property?
+
+Greets
+Alex
+
+> 
+> 
+> Thanks and regards
+> Christoph
