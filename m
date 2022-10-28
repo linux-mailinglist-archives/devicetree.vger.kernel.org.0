@@ -2,101 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76D08611A9B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 21:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 312BE611AF1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 21:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbiJ1TEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 15:04:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
+        id S229552AbiJ1Tfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 15:35:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbiJ1TEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 15:04:42 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5516FDFAD;
-        Fri, 28 Oct 2022 12:04:40 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-13c2cfd1126so7288953fac.10;
-        Fri, 28 Oct 2022 12:04:40 -0700 (PDT)
+        with ESMTP id S229576AbiJ1Tfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 15:35:42 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44C297FFA6;
+        Fri, 28 Oct 2022 12:35:41 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id r76so648077oie.13;
+        Fri, 28 Oct 2022 12:35:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RtfpI9rlbOhsKpmZm1h0Bvu9a77/MRnLOJ2Qclf1R/g=;
-        b=bAU8WkXgJzbLqj/s1xMIlYjC73u64Y+eF+FDViEqGXlUM2RfJgmn5VnkJACM0eoqS2
-         g5tYy4gmWyPIFi52SiglNeC3T+gSVOkPY7SClSC270eH3JJHzkgFlPVfavATEtJV2pgS
-         5wFZ7A+I1rrQdUlQQVCcaD5li+8Ocy+aqEwP9YsiKZD9iGWrrbmspR+aAZBIFIEfnqad
-         GyXN/ZDSu4LW8xw2fwPB+iscyHumlzav8jA46n4BZzUvMzMPI3FF7nDE2/lB7ow5mp7L
-         L70WhUYPoj9NRsgsncZgXZl4p72sh/c/JsOV0IR95RqTWmAR+JxOwNqxQrSFnAECADa2
-         uXqw==
-X-Gm-Message-State: ACrzQf323+lU11+L+G/SBCOUu2CRc1pdCaRxe5S1XlFnS6rrc2L15jra
-        oOOy0t4sdMJue3NeycyIAQ==
-X-Google-Smtp-Source: AMsMyM6tezh5o2b4dNkYK5v+E6BduBVm+8wB6EMOaQdLqRIYQoPr5GfMlgIq26LTdQ2B28Jfk4dbpw==
-X-Received: by 2002:a05:6870:b414:b0:130:ea11:761c with SMTP id x20-20020a056870b41400b00130ea11761cmr393921oap.62.1666983879570;
-        Fri, 28 Oct 2022 12:04:39 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8taqJDtvUl86Drgh5fEgYjN4USVyEjdYeYqtilVVUAs=;
+        b=euK7emXG2/v2gGUTzAiwXQOcrlFPmPnmY3tzG4ApAtyGNR2fJuSpwdvuhgW8zUrOAd
+         SRdiWKt5T8O9P7XjwAOH91Sinn6UFW0Ow3QRASclauRYSrfRVV3VMSsXoGl4rsHjfbuw
+         3SxliJyKYMqBMXEjGCeVUZvOEnF24395fJlbjnoyFd/R3y/46OeR4Qau1OFJbzQC00kY
+         +eDvQduPgHvrVKFXqHFfCtnUWE1Q6KLlZ5aiWTBwYTn3Y32uKa4wyhjb4tM22Zg+bJul
+         maSv8igrx3YOKTAtXdR0nGdIigkh8JhZOZFh7rdSuOkz+fJgIs88hfUKFuKdGzYeS/tF
+         P81A==
+X-Gm-Message-State: ACrzQf2PL08GON7GENFspWnLTMehHXOGeRX7gBG2ZW3LphRbJBXKqxRQ
+        mn6sl3+yDU7+kmUrHOSo6HWd13iKAg==
+X-Google-Smtp-Source: AMsMyM6Y9zExkyYtY64AW0IfA302F1WI9FzMoN/vCTIprGoOFxzrGGF1uk6seWK6mk7k3r4lw2QVxg==
+X-Received: by 2002:a05:6808:d50:b0:355:4cd9:e6ca with SMTP id w16-20020a0568080d5000b003554cd9e6camr547665oik.160.1666985740445;
+        Fri, 28 Oct 2022 12:35:40 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g91-20020a9d12e4000000b00661b019accbsm2022445otg.3.2022.10.28.12.04.38
+        by smtp.gmail.com with ESMTPSA id 111-20020a9d0878000000b006605883eae6sm1991047oty.63.2022.10.28.12.35.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 12:04:39 -0700 (PDT)
-Received: (nullmailer pid 2098127 invoked by uid 1000);
-        Fri, 28 Oct 2022 19:04:38 -0000
+        Fri, 28 Oct 2022 12:35:39 -0700 (PDT)
+Received: (nullmailer pid 2188330 invoked by uid 1000);
+        Fri, 28 Oct 2022 19:35:41 -0000
+Date:   Fri, 28 Oct 2022 14:35:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, sven@svenpeter.dev,
-        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        asahi@lists.linux.dev, marcan@marcan.st, alyssa@rosenzweig.io
-In-Reply-To: <20221028165215.43662-2-fnkl.kernel@gmail.com>
-References: <20221028165215.43662-1-fnkl.kernel@gmail.com> <20221028165215.43662-2-fnkl.kernel@gmail.com>
-Message-Id: <166698381253.2093680.6251640066817102720.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: pwm: Add Apple PWM controller
-Date:   Fri, 28 Oct 2022 14:04:38 -0500
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Fix UniPhier USB3 controller node
+ names in example
+Message-ID: <20221028193541.GA2183248-robh@kernel.org>
+References: <20221027044920.23194-1-hayashi.kunihiko@socionext.com>
+ <20221027044920.23194-2-hayashi.kunihiko@socionext.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221027044920.23194-2-hayashi.kunihiko@socionext.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 19:52:13 +0300, Sasha Finkelstein wrote:
-> Apple SoCs such as the M1 contain a PWM controller used
-> among other things to control the keyboard backlight.
+On Thu, Oct 27, 2022 at 01:49:19PM +0900, Kunihiko Hayashi wrote:
+> The word "glue" is ambiguous for the controller node name. Should put
+> "usb-controller" instead of "usb-glue" on the controller node.
 > 
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-apple.yaml    | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-apple.yaml
+>  .../devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml  | 2 +-
+>  .../devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml  | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+
+Acked-by: Rob Herring <robh@kernel.org>
+
 > 
+> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> index 21e4414eea60..8ce57898fb96 100644
+> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.yaml
+> @@ -146,7 +146,7 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -    usb-glue@65b00000 {
+> +    usb-controller@65b00000 {
+>          compatible = "socionext,uniphier-ld20-dwc3-glue", "simple-mfd";
+>          #address-cells = <1>;
+>          #size-cells = <1>;
+> diff --git a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
+> index 4c26d2d2303d..ba60b7add4f7 100644
+> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.yaml
+> @@ -131,7 +131,7 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -    usb-glue@65b00000 {
+> +    usb-controller@65b00000 {
+>          compatible = "socionext,uniphier-ld20-dwc3-glue",
+>                       "simple-mfd";
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+This and a bunch of other Socionext compatibles in examples throw 
+warnings because there is not a schema for them:
 
-yamllint warnings/errors:
+Documentation/devicetree/bindings/phy/socionext,uniphier-usb3ss-phy.example.dtb:0:0: /example-0/usb-controller@65b00000: failed to match any schema with compatible: ['socionext,uniphier-ld20-dwc3-glue', 'simple-mfd']
+Documentation/devicetree/bindings/phy/socionext,uniphier-usb3hs-phy.example.dtb:0:0: /example-0/usb-controller@65b00000: failed to match any schema with compatible: ['socionext,uniphier-ld20-dwc3-glue', 'simple-mfd']
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/pwm-apple.example.dtb: fpwm@235044000: compatible:0: 'apple,s5l-fpwm' is not one of ['apple,t8103-fpwm', 'apple,t6000-fpwm', 'apple,t8112-fpwm']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/pwm-apple.example.dtb: fpwm@235044000: compatible: ['apple,s5l-fpwm'] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/pwm-apple.example.dtb: fpwm@235044000: reg: [[2, 889470976], [0, 16384]] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pwm/pwm-apple.yaml
 
-doc reference errors (make refcheckdocs):
+The remaining warnings are preventing turning the warning on by default, 
+so fixing them would be nice.
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
