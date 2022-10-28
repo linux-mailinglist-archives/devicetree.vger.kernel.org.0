@@ -2,97 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E6516114F1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A596E6114F7
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 16:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiJ1OpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 10:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
+        id S230295AbiJ1Opx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 10:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiJ1OpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:45:15 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361953740D
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 07:45:14 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id e15so4186584qvo.4
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 07:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m1AAUO9ec7glCHA2X40Y51NdXitGuWrBUJxsXEZcPDg=;
-        b=utZ0gwr8MQ8XQ1920c1ke8xyRoRuOxOqhtdR55hmc3TZ3v97wNT7QLAYlpIfIB2/Py
-         T+czkuKijb4LhDjiZQou8r07l493FQLVuWvRCWeQejHlrExMZX9wUVjaTCMp8ijVxh/T
-         dONuUYl90Y9681jAVkdj9bUWCJy9WmbFzpdcHq69S+NyfWSMF95oPuVQwri23ZeZwDkn
-         WXKAr7pgyWvbb7woWAIuCOpYmIx8dQpjdZozEGtSR3kOT6KwNQtqaMg4pD395sQQJw6/
-         I9xZ04N2Np0omaaae3GIGk1Ms/RpgpgX0uB6Qo31iZeygpX/+zLCasjy46j6c0cJ6Pm/
-         nqrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m1AAUO9ec7glCHA2X40Y51NdXitGuWrBUJxsXEZcPDg=;
-        b=AJ1NLPMzRggcUwpMo42Njpe6xf9VR4p0YTv9f9hVFffCaEXu1qmqotWRWrmkwgHMUw
-         Vya9RI+nbIlNsETxjslOjiJQFQ5zWV0JfaMEU9lcPfSZk33QgC556Wfox0EEqatfbLzH
-         WRrusQnpFx4sU9C+Fk8v5xD3YwiEmnvJtjNEjvcvMIseTY/K27WN9MLPpbE7GP7/WwBX
-         4SYEiCprkVg9ljX9EPWqhP6/s0UFdMcqhTohB8bWREJNdQI/2SR7X7azqMwDQKVHSqwg
-         pcqa3CZZYcFRY6I/GlGNZA+925Yatildvp9nLabamDM8rKoIcCH/JuSvd909vFNgN+mU
-         OvgQ==
-X-Gm-Message-State: ACrzQf1R9NxunxNhKed2MgsS+KdI54+hSfhSedAP/D1FCL6s1n2Z8Ql6
-        7blujeJwSIhSubYXq3tPLOvlDg==
-X-Google-Smtp-Source: AMsMyM7691EK067NDqs2Y3DWbH9DROsxcfs8nrIZcEFGEx9P9sJrrbzyZcL7UqR/7b5B7ECC0z6V3Q==
-X-Received: by 2002:ad4:5962:0:b0:4bb:6b78:c599 with SMTP id eq2-20020ad45962000000b004bb6b78c599mr23744305qvb.35.1666968313257;
-        Fri, 28 Oct 2022 07:45:13 -0700 (PDT)
-Received: from [192.168.1.11] ([64.57.193.93])
-        by smtp.gmail.com with ESMTPSA id m3-20020a05620a24c300b006b953a7929csm3111764qkn.73.2022.10.28.07.45.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Oct 2022 07:45:12 -0700 (PDT)
-Message-ID: <f86fcbf2-76c4-e530-8ad5-f31de403ad42@linaro.org>
-Date:   Fri, 28 Oct 2022 10:45:11 -0400
-MIME-Version: 1.0
+        with ESMTP id S229930AbiJ1Opt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 10:45:49 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 228A2C96EB;
+        Fri, 28 Oct 2022 07:45:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DsuvZz2gblIo5/avcB7R9nOBR50wDMJ2fARfJbIzGzsaXCDxYo5oIs+7Mr7evk9MN7zxoJlvhyP2p9b4EiY1Lo8fpkpENDt1h3t4z4qKLDaPNIu2OiUQWIeZb65iuI0FzVGaz2p7YGFu3b72n2lkBwTxDBqtaIHCgHX6swZCATjtvkD5R1UzG/7sRy5VmldGLRvZ0uLp3p2TrpGPNgk6b2//0wAsKICcu9+juY7xEvo4J9wJubW6bK2oZuicvZ67qm80vqgAqhinpP9p3yUFxqS3WIma0pEJxgbSQDxu77cwRN3V2KHAIajPJ1F3lCSYxx95qP4C+LHkDCGfnc/3OA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RcvtCHqHlAs/Yq1GLNiCDy/Ts3ccfTWmZmTmhNa5Wio=;
+ b=cjfFQpxIddci09dAuscqAKVDHMzR4H5nhvgEIOMy4938lq2UB1pAjDEDUXzA3ExlAZLGcuFHoWCPrZr4i62tDGDZzYuPSYMLtY5xeDVIDiLiuJu45hULWvzGnn6gNYeZtmZvsA00MnOD+bJf5ygyaM3NxKtm6b/cZpY9bOBSEyKeJfIBBQkL6OLfoUx7kBAShrar+gTOk46MsnXan7KuSaMUBvpwOj3sCrjfRbXBNOGPyhgfan0A9Sr4rEuVC948wneIg9HDqyn2HU9TsSTZKZAl4dGxX16SM06FX6RkBXkDrK0SZo7IQId6DFA5wf7FjKd4BZc9klGiVt4RlEYtiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RcvtCHqHlAs/Yq1GLNiCDy/Ts3ccfTWmZmTmhNa5Wio=;
+ b=bxdCsPlib55JFKVca5ap4//ZCa5IIZYJXGLWA2cx5qILRO0nlYqfZx8pfjU/OwnHhmA1N5wdq4PNWfnzuu4MQHBAPRnQX81fyl9eff/xRQLqcx9+ZXj1bnhhmFGfrmQUoBFDlYCL0i2k89a78rtZcxUY2Tl8P5LUwQy8vqIqfhE6+Rdpy+B5DgqUS5DikjKdO+NWlbU7ru1MX8sXq5dITTBmnVMa3O2dyPfKEzY+7WTTIeqLzQyLDZtrkOqQBFaStl48GqEOh3StmzLRchBx9r6XReXdu8wdpag0FearNrzBiRwxtprwKsEjJTMxtVfnK+emTpeEuZSZe0bUMStDLQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ DM6PR12MB4074.namprd12.prod.outlook.com (2603:10b6:5:218::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5769.15; Fri, 28 Oct 2022 14:45:42 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::c0e5:f111:3e59:7c66]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::c0e5:f111:3e59:7c66%6]) with mapi id 15.20.5769.015; Fri, 28 Oct 2022
+ 14:45:42 +0000
+Message-ID: <84263080-2957-8e1e-ab09-43483d9f9401@nvidia.com>
+Date:   Fri, 28 Oct 2022 15:45:36 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 1/2] dt-bindings:iio:accel: Add docs for ADXL359
+ Thunderbird/102.2.2
+Subject: Re: [PATCH] arm64: tegra: Update console for Jetson Xavier and Orin
 Content-Language: en-US
-To:     Ramona Bolboaca <ramona.bolboaca@analog.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221028134454.669509-1-ramona.bolboaca@analog.com>
- <20221028134454.669509-2-ramona.bolboaca@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221028134454.669509-2-ramona.bolboaca@analog.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20221028123556.134435-1-jonathanh@nvidia.com>
+ <Y1vkYyuCPoLLCXDO@orome>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <Y1vkYyuCPoLLCXDO@orome>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: LNXP265CA0012.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:5e::24) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DM6PR12MB4074:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25175d2f-4d3c-4604-849d-08dab8f3169a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: IPWwdNXCqPeOQ2B82i2vuSmDX4LUd0KV8FlxfsFmuiKFsFQU+auYw9bfjlWojyC+jhLziZIdfbbYzi3tOwI6bUpFxozdXTGQbPM3TgDqCzq7emwdVNd5Jq/jBSe27pbEPRtd3YUnYvo46RMSKuqCmfncRFo0jNh2tCccRhy6pv2R1EjrA5E8yTEes0uVR6MhdeIyc1is8DRCL7H+tnsmU3GbVSSUVEdr4K6aKpB9PMGyopTb0AEyl7nkEbHNEWY8jgVfkyW3j8xi/BaYwFFhDku04bLfJOESpPFm78yrYb/behnu4Iv9eLgmPuQ/YBuLKQQlzpgBYUeXHKXAOr70cqzc+0NjSPyIJhm6HMU4Tf4gXWd3R6V+q1VpmYL1hiqVCeu67YBHKb95mVK1pB68rp+CwFtgugo1pyPEQzUy3/O3cOIC3oxNaMINpF4sE7pjDdNZmybFVXsxV2msla+RmxXhxLNb1GiwZ0gSQTSQx86NJB6+cNXjmLSOvsAIuCPKeJqOfRTcwIfrl7Qd3xGLro2ag+0H95MJmaDTTwUr9nVz0GXVdDBqAad5Y6qdXNLoApi7MNOraTSWeJ+mfyJi8O2pDNt+CStdRM9dCNevZnYiWfWL95SGn8HoGtH01TnkMnWzMS85iAWAdXAQ16kko+gy96WRE1fBUhVCf/ZVgjeUVBDA0b8TmyErImYgm5Vf9kC9UgxAgFdXPL2woi5Wd9114r6vpYM2q3Q3OH46XBEjAtG4uV+ZJ7Enu5jrboeNrJ9SucWG9iKvyHgwekIYi5MSytjml/P6cvWphM+OT2o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(396003)(39860400002)(346002)(376002)(451199015)(83380400001)(86362001)(38100700002)(2906002)(5660300002)(31696002)(15650500001)(66946007)(4326008)(66556008)(66476007)(8676002)(41300700001)(6916009)(8936002)(6506007)(6666004)(2616005)(186003)(6512007)(316002)(54906003)(53546011)(6486002)(478600001)(31686004)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?em5FemlISUhDRnNEUWUxQVJwMWluM1VVbkVjL25zTW8xdThDSk1JNkk4R0VV?=
+ =?utf-8?B?bUtFajlEZ3QzWE9QTDJXSVVWY1dJWVREckR0eEVRc1d4d002K1NQVzUzYmor?=
+ =?utf-8?B?OHc1bVM4MVBWLzc0cXVtN3RUTmRXWXc4aGxjdU5LTWhFZmdQSjZmNXZsenBo?=
+ =?utf-8?B?SEZnUWJEcUMwWlBhZ0w3OTAyOXU5OHZiS1JOaUY3bnUzWVI3Zm9URHFuSFMx?=
+ =?utf-8?B?OGhmLzNsZXkvZjk4aE1FQktRajJwUHFQb1RzQm1qWHgzZHMxTVhwNkRUbWU5?=
+ =?utf-8?B?cFVXNUdBa2NrVlNBVEpsYytxL21XMjJzUzFBVFl3Y08xMXVFc3d2U09KQmk0?=
+ =?utf-8?B?ZWhleVQwQmRHcTE4YzlnbzAzUVZ4NHFybEZvY3lTbVlsdHFtZkpFZEJDNXlz?=
+ =?utf-8?B?WktLNW5CUGtwSnNyYVUwUnFwaEhWVXZwV1lSV3EwcVE5NU1YbTRJSUFmNnpx?=
+ =?utf-8?B?ZVhRRUNKMUFqaWtSbEJFMzZnOW56dEtWK0ROblU4QXcyS3NLN05kQUh0REJr?=
+ =?utf-8?B?TGpOUjcwSElDb1lTdE9WRVJ3N3U0dHlSaVNrczBDbjk5TTZpTG01NDcxNHNi?=
+ =?utf-8?B?WTRHN1NaWVU0QzN6dEZFQ3dSZVBweDZ1K0JyRUVVZ2doZ3hEQ2NZcHBETWNQ?=
+ =?utf-8?B?enJ5UlVhWEM4bERiSmtJaHlsVTJQOEJhUEU2VVBuM0llM3pSanFrZGxZV2du?=
+ =?utf-8?B?bFY0eTlBaEl0aHFGd3Z2QTBtWkFLVTZUNWdxNEY3cnpTdTVoWkU4SE9Ub2VF?=
+ =?utf-8?B?SXVNVHMzYUl4UjUvUWZqbEh1S0t4bGlKSFhRVFRwcEtqR0srK2dQNkpyTThi?=
+ =?utf-8?B?eE03WlQvQ3JHTU5Na0hSWFI3Ry9haWtJUXJ2MVI3VU9YOUZnWVB3NUNuaGM2?=
+ =?utf-8?B?d2lyYkxCZTJIclJrUEpFTzB3TmhXblMyNmc4RWdQNHJJWitMUWtYVkwrZFh5?=
+ =?utf-8?B?K1hDQm1pcnFydnZWU296eWlWS3BPMGFjQ2UyY0VDV29md0p4RkR6R1ZkZGJ5?=
+ =?utf-8?B?Q1JLVXRDSHlwMCsyenlBSFM0WXN0blF2U2tjdTRiUW05ZTYvc1JLZUM1WDBV?=
+ =?utf-8?B?SUsvTnYwblJiUVNsdkEvVFhucG1NZStZOUpOYjZjOURPREVLV29lZnZ0Mkdn?=
+ =?utf-8?B?VTdZa3hSNXNxbmc5V2s2RWZiRFVuVkFTRnF4cHI2R29KbUpVZnlxUUsyREdW?=
+ =?utf-8?B?ZldYUVN5Q1AzRHlpaHY2YnliOTB2S283M0I3SWVxQkRqNXBjUHZUdDJTcUVk?=
+ =?utf-8?B?bTBGcWhqY3EzZHZMNHg1OVZPdXJUeWRGSWQxcnI0WjNHUFZiempVWVY2dHpU?=
+ =?utf-8?B?Z0RReE15VGM5Y2JvazZtNVoxSkZJQ2M3b2tsYXo3eXBncXZuaUkvbmpDR1BP?=
+ =?utf-8?B?UkpTZ1gzY3d0cFUyU1ZFVTJjeEFEbTZKczlwTFU1NTZxdkR1NktOdHN5Q2lT?=
+ =?utf-8?B?KzNUVkh3YlVKTDNwMXNRRU92ekg3emNEN0lZNXJaUU1NaFpCRk9MZWE3Q1NR?=
+ =?utf-8?B?b2JhRTRCWm14K1psOFNOenlKcVBmOU5KVkJUejdOMTJ6QXNiZ0pQNVBVWm9I?=
+ =?utf-8?B?Q0pnczNrcUtZUWsyaEZGS2xkejJYWnhvSzdRWHk3a2xWdHRiaE0wcXVTYTBO?=
+ =?utf-8?B?SEYzUlo4Y25hTk5WeUhQK1RrUURHbnlLaGhlWXgyZklrQ1pqcnRtYXh6dWRM?=
+ =?utf-8?B?ckREWHcrc1BqL3VzL2JZZEw1aVRNT3pjaHdJM0FxQ2luaWZsN2sxZGYwWTVS?=
+ =?utf-8?B?NlQ1V0U4SjdIQS93SGM2dHMrQWM3M082ZVdIRHRUbmJSR3lLVnNSbzdhT3lp?=
+ =?utf-8?B?M1V2UHhqUytidkE5NlI4SnRkWWtUV1hmN3l0ZWNRMmZnRGJlM29YRkhUUHdn?=
+ =?utf-8?B?TXoxSnJpaWlMZ0pWSlh4QVRhUWhRRTMzNThrT0lVZWx0R1c2emo4akdLZzRH?=
+ =?utf-8?B?RDZhT054SEFKTVNqMDd2cHFQa2hqSUlRMnIvWnFFTHpGczhkVUpQMnZCZURx?=
+ =?utf-8?B?aktyMEFFWDVvN3BmRDVWYU9xMWYzd3NnbUs3Vng3VGs3UFZFTTJDaU9uN3p6?=
+ =?utf-8?B?TjZyQ3FMcGVzWWxxSk54cUpDdnhZM0pHdnFvUUVib0lGU3Bsa1NoVXRGcUJD?=
+ =?utf-8?B?eVpFMEpWYTNIR0NKNDVoQlpwZ2YvMmp6cmdXK2krMWlUeGtudHRaK2E1SXZx?=
+ =?utf-8?B?czlEc3hLQW9Yc1UrVFhBWVBFeE4xWmd2NnhQdnY0ZjloS1hvTWdpOG5tNFpk?=
+ =?utf-8?B?ajJzNzlJOFY3bEpNSHNQOEk5YzJBPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25175d2f-4d3c-4604-849d-08dab8f3169a
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 14:45:42.5103
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8seen4kAx7gOmONZlvwnRCuxCgIu5W2DHzkFHzlYd5Bs67MCY0BeJiMIdI/G6VVwGOvoOFDtKUQyeq7ER5LwvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4074
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 09:44, Ramona Bolboaca wrote:
-> Update ADXL355 existing documentation with documentation
-> for ADXL359 dedvice.
 
-Missing spaces in subject. Look at Git how subject should be formatted.
-
+On 28/10/2022 15:17, Thierry Reding wrote:
+> On Fri, Oct 28, 2022 at 01:35:56PM +0100, Jon Hunter wrote:
+>> The Tegra Combined UART (TCU) is the default serial interface for Jetson
+>> Xavier and Orin platforms and so update the bootargs for these platforms
+>> to use the TCU.
+>>
+>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>>   arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi                | 2 +-
+>>   arch/arm64/boot/dts/nvidia/tegra194-p3668.dtsi                | 2 +-
+>>   arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 2 +-
+>>   3 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> Signed-off-by: Ramona Bolboaca <ramona.bolboaca@analog.com>
-> ---
->  .../devicetree/bindings/iio/accel/adi,adxl355.yaml        | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
+> I'm a little confused now. You're certainly right that the TCU is the
+> serial interface, but then why haven't we seen any fallout from this?
+> That is, why does console=ttyS0,115200n8 still work just fine?
 
-With subject fixed:
+For Jetson Xavier platforms, ttyS0 is the UART on the 40-pin header and 
+yes could be used, but probably not obvious. I thought about keeping 
+both and we could if we wanted. I certainly have not used ttyS0 on Orin.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Looking a little more into stdout-path (which we already point to the
+> TCU), that ends up adding TCU as the preferred console already. So I
+> wonder if we really need to set the console here at all.
+ >
+> Do you see any difference in behavior after this patch? Does it fix
+> anything? Could you perhaps try to remove this option altogether and see
+> if that makes a difference?
 
-Best regards,
-Krzysztof
+I wondered about that, but I was not seeing any console until the rootfs 
+was mounted. However, looking at of_console_check() it appears that the 
+cmdline takes precedence over stdout-path. OK, let me try removing the 
+bootargs all together.
 
+
+Jon
+-- 
+nvpublic
