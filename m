@@ -2,43 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CADD761154A
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6780961154D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 17:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbiJ1PA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 11:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41026 "EHLO
+        id S229826AbiJ1PBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 11:01:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiJ1PA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:00:29 -0400
+        with ESMTP id S230037AbiJ1PBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 11:01:05 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6736F5754D
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 08:00:27 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A60AE22F
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 08:01:04 -0700 (PDT)
 Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1ooQqM-0004cd-E0; Fri, 28 Oct 2022 17:00:22 +0200
+        id 1ooQqx-0004ob-LN; Fri, 28 Oct 2022 17:00:59 +0200
 Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1ooQqM-0001OB-1B; Fri, 28 Oct 2022 17:00:22 +0200
-Date:   Fri, 28 Oct 2022 17:00:22 +0200
+        id 1ooQqx-0001iP-9p; Fri, 28 Oct 2022 17:00:59 +0200
+Date:   Fri, 28 Oct 2022 17:00:59 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         shawnguo@kernel.org, s.hauer@pengutronix.de,
         devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH V2 05/15] arm64: dts: imx8mp-evk: enable uart1/3 ports
-Message-ID: <20221028150021.dplhuorxr5w2bnux@pengutronix.de>
+        Frank Li <frank.li@nxp.com>, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, Han Xu <han.xu@nxp.com>,
+        festevam@gmail.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V2 06/15] arm64: dts: imx8mp-evk: enable fspi nor on
+ imx8mp evk
+Message-ID: <20221028150059.jubkfqiqo6mhg2zh@pengutronix.de>
 References: <20221024031351.4135651-1-peng.fan@oss.nxp.com>
- <20221024031351.4135651-6-peng.fan@oss.nxp.com>
+ <20221024031351.4135651-7-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221024031351.4135651-6-peng.fan@oss.nxp.com>
+In-Reply-To: <20221024031351.4135651-7-peng.fan@oss.nxp.com>
 User-Agent: NeoMutt/20180716
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -53,12 +54,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22-10-24, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+> From: Han Xu <han.xu@nxp.com>
 > 
-> Enable uart1/3 ports for evk board.
-> Configure the clock to source from IMX8MP_SYS_PLL1_80M, because the uart
-> could only support max 1.5M buadrate if using OSC_24M as clock source.
+> enable fspi nor on imx8mp evk dts
 > 
+> Reviewed-by: Frank Li <frank.li@nxp.com>
+> Signed-off-by: Han Xu <han.xu@nxp.com>
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
 LGTM, feel free to add my:
@@ -66,77 +67,52 @@ LGTM, feel free to add my:
 Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
 > ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 36 ++++++++++++++++++++
->  1 file changed, 36 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 25 ++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index 316390f917a4..b8a7de87ce4c 100644
+> index b8a7de87ce4c..54dfac4ac63b 100644
 > --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
 > +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -428,6 +428,15 @@ &snvs_pwrkey {
->  	status = "okay";
+> @@ -85,6 +85,20 @@ reg_usdhc2_vmmc: regulator-usdhc2 {
+>  	};
 >  };
 >  
-> +&uart1 { /* BT */
+> +&flexspi {
 > +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	assigned-clocks = <&clk IMX8MP_CLK_UART1>;
-> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-> +	fsl,uart-has-rtscts;
+> +	pinctrl-0 = <&pinctrl_flexspi0>;
 > +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <80000000>;
+> +		spi-tx-bus-width = <1>;
+> +		spi-rx-bus-width = <4>;
+> +	};
 > +};
 > +
->  &uart2 {
->  	/* console */
->  	pinctrl-names = "default";
-> @@ -450,6 +459,15 @@ &usb_dwc3_1 {
->  	status = "okay";
+>  &A53_0 {
+>  	cpu-supply = <&reg_arm>;
 >  };
->  
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	assigned-clocks = <&clk IMX8MP_CLK_UART3>;
-> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_80M>;
-> +	fsl,uart-has-rtscts;
-> +	status = "okay";
-> +};
-> +
->  &usdhc2 {
->  	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
->  	assigned-clock-rates = <400000000>;
-> @@ -625,6 +643,15 @@ MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
+> @@ -567,6 +581,17 @@ MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27      0x154   /* CAN2_STBY */
 >  		>;
 >  	};
 >  
-> +	pinctrl_uart1: uart1grp {
+> +	pinctrl_flexspi0: flexspi0grp {
 > +		fsl,pins = <
-> +			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX	0x140
-> +			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX	0x140
-> +			MX8MP_IOMUXC_UART3_RXD__UART1_DCE_CTS	0x140
-> +			MX8MP_IOMUXC_UART3_TXD__UART1_DCE_RTS	0x140
+> +			MX8MP_IOMUXC_NAND_ALE__FLEXSPI_A_SCLK           0x1c2
+> +			MX8MP_IOMUXC_NAND_CE0_B__FLEXSPI_A_SS0_B        0x82
+> +			MX8MP_IOMUXC_NAND_DATA00__FLEXSPI_A_DATA00      0x82
+> +			MX8MP_IOMUXC_NAND_DATA01__FLEXSPI_A_DATA01      0x82
+> +			MX8MP_IOMUXC_NAND_DATA02__FLEXSPI_A_DATA02      0x82
+> +			MX8MP_IOMUXC_NAND_DATA03__FLEXSPI_A_DATA03      0x82
 > +		>;
 > +	};
 > +
->  	pinctrl_uart2: uart2grp {
+>  	pinctrl_gpio_led: gpioledgrp {
 >  		fsl,pins = <
->  			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
-> @@ -638,6 +665,15 @@ MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR	0x10
->  		>;
->  	};
->  
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MP_IOMUXC_ECSPI1_SCLK__UART3_DCE_RX		0x140
-> +			MX8MP_IOMUXC_ECSPI1_MOSI__UART3_DCE_TX		0x140
-> +			MX8MP_IOMUXC_ECSPI1_SS0__UART3_DCE_RTS		0x140
-> +			MX8MP_IOMUXC_ECSPI1_MISO__UART3_DCE_CTS		0x140
-> +		>;
-> +	};
-> +
->  	pinctrl_usdhc2: usdhc2grp {
->  		fsl,pins = <
->  			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
+>  			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x140
 > -- 
 > 2.37.1
 > 
