@@ -2,163 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 979D361129B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 117236112CA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230385AbiJ1NZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42174 "EHLO
+        id S230488AbiJ1NbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbiJ1NZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:25:18 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2079.outbound.protection.outlook.com [40.107.223.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDAC85F81;
-        Fri, 28 Oct 2022 06:25:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f5Q+tMO6qwbCyKBb7UyoG35xK2VPLouD2iAnOXOcQ+lCJwNLTqWogsSTgl9d5pRWi8O34TMEivqPjicvOZdqY/5jgQR70715sM2zeOjQfyx68TfCf6i6dG7dqGZOG8TkOX5DDQ/t5MIlzNrX1m/epRt0uXD4n7Ha6GlYmGgVzimHd6rwabFN8FXx7H6rh84n56bGwMBJUMtz/qwakgRx1DroUGU1SpDBsh0ubJJgNHo34ZEIQFyalL6Bz2SEGs20+RRL+oiUVdq+1HmteSicp/cW6VmVs5SGrZBFCSeqbwjhXxXVBcJh60CcuS5y1K7LNmEplREEcfOzlgMMCGPFGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4AEBgAlqC9wjLQNxKcJ0sFq+7CccHYY4pv4OVcCm6GI=;
- b=G9XX2/W4vVQLD9sF1GeKYGG3MkEA/fnTSdYQPZs4T+p+9EIuHGT8Snm0bbIVXi7Exxaz6bPfJjjxmqSIF068EyWuW4eEnExPXdq0GpuChUj4mC/+bpjJD0d7hNTgnTJdSfWzefjUgAvFoRiAVlSGKCHDb6FnpVYz3JqcBULUYBcFhcpmY4bdkirnG1+HjOSxs5a5xT+fzmUcscuqZ7NDgXYCu+shDR48rA/EcV3VzqsGuLRD4RbGLwwgNNdmc5KQRv+ryphKRQk4XtnkcKt2iJJuFLQFuD3cKKblWwvr3UavebTenzQDXFOd2oQYOEuVoRcOmeRw8535VxAYurxWbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4AEBgAlqC9wjLQNxKcJ0sFq+7CccHYY4pv4OVcCm6GI=;
- b=Xp9XXMqeHmx8WMhw0zQQIpbHFjRsvBFPiqp5Bow/Xm/EuxRu1ReJQLBUyMzq/aPaoVbpYPwELA6qR8K//d0mDtU+EeWG/t6asbFpRdHGQF6AQGJu9C2/592/9dy+xfDTibqRDldaDchoz74HCJJptRJIPHhlrRX4BFT4dJOwaxg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by DM6PR08MB6364.namprd08.prod.outlook.com
- (2603:10b6:5:1eb::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.15; Fri, 28 Oct
- 2022 13:25:13 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::afa7:70e3:c2c9:b680]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::afa7:70e3:c2c9:b680%7]) with mapi id 15.20.5746.023; Fri, 28 Oct 2022
- 13:25:13 +0000
-Date:   Fri, 28 Oct 2022 08:25:07 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] Additional fixes for Azoteq IQS7222A/B/C
-Message-ID: <Y1vYM0Fe323qZupM@nixie71>
-References: <Y1SQ2t6yUvdaIQPG@nixie71>
- <87pmectm8a.fsf@baylibre.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87pmectm8a.fsf@baylibre.com>
-X-ClientProxiedBy: DM6PR21CA0017.namprd21.prod.outlook.com
- (2603:10b6:5:174::27) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+        with ESMTP id S230522AbiJ1NbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:31:05 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCBEAA3B50;
+        Fri, 28 Oct 2022 06:31:00 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SDUsHZ014769;
+        Fri, 28 Oct 2022 08:30:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666963854;
+        bh=YNmEL+4el6A4/n1wHclSSQcRxCbdsl7QUONYIy+L2Ps=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=IJLYwdGcq1alUDnJ+h255/zN/eQujh1jEPN7pP+YYpYmIuWcQ8uKH3GkmFfdPtQQ/
+         5lLrqP0KQxqvOnC5h+MeBN8+Fqidnv/jERlWupuk1chQxMCw6ttaz6fMt/Z+aU1TyQ
+         FsAwI9a2FqVkiRO6uXIW7HtV72UgYXxWDTG4AUU0=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SDUs8d031963
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Oct 2022 08:30:54 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
+ Oct 2022 08:30:54 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 28 Oct 2022 08:30:54 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SDUseQ052554;
+        Fri, 28 Oct 2022 08:30:54 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <afd@ti.com>
+CC:     Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH 00/10] AM64x Disable Incomplete DT Nodes
+Date:   Fri, 28 Oct 2022 08:30:52 -0500
+Message-ID: <166696382813.13332.11282110313952274375.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20221017192532.23825-1-afd@ti.com>
+References: <20221017192532.23825-1-afd@ti.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|DM6PR08MB6364:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45c3f149-245b-40a9-8d2d-08dab8e7d80b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ku+ixZ3ZfB7kBMCiJKbgYxfFnfTv3He4XewxM1WLgXB4iAfLjyL58JO3CidveTZbKVV+W7Bj9rc51db5echs+d9KHSErunGIgV86gIS4PrIUyAl2vFUwZt/PeMtpQEZlgNTAVOQcREFIpXzVa8qJv1R2or+MB1hoDYu3XvuQ2pXwpksWerBtnZxvYmfNXd+lcOCUZ9PzCv/YN3RNWI6KpqcL6NPf41Eo+08CUu2LvvUs0ZwYqKYuYLsY5lziMWUw4F6cYmR5zz2I4+QT+EmUiKYPrDXBwvL/7GHNNeLJ+i1l362hDf8bdS188afE3ZJVvHZk+PdRwFOvIF1fmjvSmtyUngivF/Euh4VCLRmEi1Xr9YIszr7Zn9F8ekMDgO3Y5S2z2hNEvAUOh3+8LWR2Y2VfAHC8DOSQAWQN9/XRfY/T/zad+dYc+NcVsIwaborCw1kkF4fPCa149678dP4KkPtAyZDJrHwxuAONVKhMu+ElsFCqBAAezdW0K5Au3FMSp0Zxu3nHdrrzmy8hvUUnR5PMEH2ZANBKa9bifFnLz/yvVoJ6610Edl9xY1YfnMMNkLaci625TAyVg8mI/Evw5935B1lCad/MT+6EGNrJ9wg8luA6k2sTii5Thdf+VQZB0kmh/3vkNH+zu1z9CkE8a6JUufj/lsuQtrAW9fMojN6Gtp6knDrIVzPSPgYb3TnISvCc392fHOh91aNyk91MNg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(39830400003)(376002)(136003)(366004)(346002)(396003)(451199015)(6666004)(8936002)(2906002)(9686003)(6512007)(86362001)(26005)(41300700001)(186003)(5660300002)(8676002)(6506007)(4326008)(38100700002)(316002)(66476007)(66556008)(66946007)(83380400001)(6486002)(478600001)(33716001)(6916009);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qN8+DnZkQx1V65dK9ZGuaIMVNyx054rGpM7sUZ9k55Yjnlda4lkJgc30swCD?=
- =?us-ascii?Q?g1Pkx1PWldKXGECy76JbQMusHMQDOpaeJ/ai7jPpPV0qk/RVF2+KE9mChBao?=
- =?us-ascii?Q?jHgXSSSAVfa4cmpCp+WN0scl7knX3Bhzrpy9NKpzIu3mw1rCVu+1HoLyEC8i?=
- =?us-ascii?Q?YnB+3Pb0PvhDy2zPJUr9AaERw8LrWdLAC/CNOqjG75P7wgX/HEDKGfA1Hdqo?=
- =?us-ascii?Q?ozKI14ck1xjk60qeoOAOU+TT4jDkPwo3xqANgXMUuUg8/RH3ybHFtf3WFnYx?=
- =?us-ascii?Q?UAIuGVED57nXaiMGozmbLyetbngcd47xh8MlVQhm0lC+l3HmFajS8wcJ6Wfb?=
- =?us-ascii?Q?kIJLPFF6vcz1kX0/oVtGykMMbrjik/dISz472m+ZLbqd3yXoPjyQ5EKtU1lL?=
- =?us-ascii?Q?WUo1u8fWmoZyUzFhNQ5xKCrjJEaHQiPFbl9jBd5afQbuN8YqlKheJGItUkgm?=
- =?us-ascii?Q?zbYFms0VBoXEE/1LbuuE2zKv86jjk91l9U/CPvHgCPuFMznrulYO9eU/O+dy?=
- =?us-ascii?Q?5VLEPsKHpHUdeao6xLBlzEi+46G046urjl1Xb5lenardJzZATjIpyOruVXzC?=
- =?us-ascii?Q?LVcoOYcfyEoUAY4U7qLkbhiDN8OOwTmBVuiyHLImUB8ya/VnNtXIESESgrON?=
- =?us-ascii?Q?PWqaQdx4MmrXg8EbpEGRIVKA+Q+IvZA9yX4jUI33YgTsPPtvJPFLKZkR/sob?=
- =?us-ascii?Q?Caot5D0TDm9aVTCbOvmiQfbkY2DLzmUmWnIsPwMcsfs/1TIo7hSF9Sr94ovf?=
- =?us-ascii?Q?8pLiCs42+Kkp2q2rLGGx0VuRiefpdo1aPvroJFFXY6rJSJRzk34UB7+7Wor6?=
- =?us-ascii?Q?82utlWRnxASNjQSUmWRuZP2Zmm0/9WWGffYWQF2nMdVPZOPBNZG/YAe+h0Hs?=
- =?us-ascii?Q?PZI/ufuFy6JLlsug2Svq5FbABUvdKxLtU39jl9EPt2HgANp2d5a95NMskNIw?=
- =?us-ascii?Q?MEOCc4D2/CglInKf9JMmVaKCxWFrKVPO5y4JuYtJLT/yRmHEDVN9TuLrmabH?=
- =?us-ascii?Q?BPW+1mgl6kIYGmMFg9Kv7mpboZDptBn01bNB49d/mW6JYoNC3mcVmFPln/5A?=
- =?us-ascii?Q?K6g+zOfv+fwioChEBHUZ1qIcaB04tpg4QpSbakHc0w38weHlfctQO7TxqA+M?=
- =?us-ascii?Q?AvUXqYbWQT9D70jklRhLICRTkob8YvkH8cBRiGz/F+xVg5jZa+/LuULR8Eq6?=
- =?us-ascii?Q?BsTDcbClVQa7H44jvAUwzbbM91j7/9E2VTqGEKJjV4VI5RCHGUovOmsJ5hua?=
- =?us-ascii?Q?gS3yzXFYlqr8j9pkp9iAKcs2QzcosHP/5rFR1P4+UfNA4v4EAOlNn3R8oDsA?=
- =?us-ascii?Q?Ya7wQuIQBJQhx3PcEHa3cM7fjk46wbMkkAN0Izf2ZkSQsar27OzMOEDhxGMn?=
- =?us-ascii?Q?cuO7YJHIrisYWXn6ZSQwCv6LW1Mm/6RiHFao+dQgNFlMI/xseyLPG8/ooFeS?=
- =?us-ascii?Q?3vHIK8w0bj4TI+RCLg3RTg4fVGJ0B0i5sDXagxUop+LqHt8YQDF5ncM/xsdZ?=
- =?us-ascii?Q?KzYnBkcUaAX/Dlq8k7RUMXGn5x932mn4ex30shI/8kWgRs8+4fKMyltLJomB?=
- =?us-ascii?Q?gmCdBJGNzpzp3A3KKoqeOmyDadIev0v3JL+i5h3D?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45c3f149-245b-40a9-8d2d-08dab8e7d80b
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2022 13:25:13.2156
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pSuMEl6m528mZ1bfT7yFls6Ky+fRXarIxSaOeC8wNkmMrav39QXnYLjpSfBU5q1D2owNyJ0yo8PhaCrJxY+htA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR08MB6364
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mattijs,
+Hi Andrew Davis,
 
-Thank you for reaching out and helping to review this series.
-
-On Fri, Oct 28, 2022 at 09:56:37AM +0200, Mattijs Korpershoek wrote:
-> On sam., oct. 22, 2022 at 19:54, Jeff LaBundy <jeff@labundy.com> wrote:
+On Mon, 17 Oct 2022 14:25:22 -0500, Andrew Davis wrote:
+> This series goes through the AM64x dtsi and disables the set of nodes
+> that are not functional without additional board level information.
+> This is usually pinmux data, but can also be inernal device resources.
 > 
-> > This series comprises a second round of fixes that result from
-> > continued testing and updated guidance from the vendor.
-> >
-> > Jeff LaBundy (7):
-> >   Input: iqs7222 - drop unused device node references
-> >   dt-bindings: input: iqs7222: Reduce 'linux,code' to optional
-> >   Input: iqs7222 - report malformed properties
-> >   dt-bindings: input: iqs7222: Correct minimum slider size
-> >   Input: iqs7222 - protect against undefined slider size
-> >   dt-bindings: input: iqs7222: Add support for IQS7222A v1.13+
-> >   Input: iqs7222 - add support for IQS7222A v1.13+
-> >
-> >  .../bindings/input/azoteq,iqs7222.yaml        |  25 +-
-> >  drivers/input/misc/iqs7222.c                  | 504 +++++++++++-------
-> >  2 files changed, 311 insertions(+), 218 deletions(-)
+> Only when the node is completed in the board file should the node be
+> enabled. This helps prevents nodes that represent IP that are not
+> pinned-out on a given board from being left enabled.
 > 
-> Not sure this requires a re-send, but the series seems ill-formatted.
-> all patches are posted separately to the list instead of replying to the
-> cover letter. Is that expected?
+> [...]
 
-Yes, this was a goof on my part. I see that the series is threaded
-properly on Patchwork but not on lore.kernel.org.
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Much to my dismay, my mail service recently began enforcing OAuth2
-but declined to enable app-specific passwords as Gmail and others
-do. I can therefore no longer use git send-email directly and I am
-instead emulating it with a script that tunnels patches through mutt.
+[01/10] arm64: dts: ti: k3-am64: Enable UART nodes at the board level
+        commit: dacf4705cee54eef4406a886a0a50a6f445969f8
+[02/10] arm64: dts: ti: k3-am64: Enable I2C nodes at the board level
+        commit: b80f75d8f68cad4efa250e4a3152932f59c756cc
+[03/10] arm64: dts: ti: k3-am64: Enable SPI nodes at the board level
+        commit: 79d4aa623f6c9d47aa29b6b4a3fa46c09f74bfae
+[04/10] arm64: dts: ti: k3-am64: Enable EPWM nodes at the board level
+        commit: ebc0ed718da346d651b356cb71dddfb747c934fa
+[05/10] arm64: dts: ti: k3-am64: Enable ECAP nodes at the board level
+        commit: dcac8eaaa90fe2c84761cf55a3e989ca5774d2f5
+[06/10] arm64: dts: ti: k3-am64: Enable PCIe nodes at the board level
+        commit: 3e21ec289c76dbc88dc306802122214b6b053a99
+[07/10] arm64: dts: ti: k3-am64: MDIO pinmux should belong to the MDIO node
+        commit: aa62d661247f180d0fc534e880cb6bc7fb50b4a1
+[08/10] arm64: dts: ti: k3-am64: Enable MDIO nodes at the board level
+        commit: f572888b3c10bf12436423e854f6ee6e3872c570
+[09/10] arm64: dts: ti: k3-am64: Enable MCAN nodes at the board level
+        commit: 4a57988707d7c7502842de07d6c8649da5a844fc
+[10/10] arm64: dts: ti: k3-am64: Enable GPMC and ELM nodes at the board level
+        commit: 4eb7aa3befa33c05a03d11fd3b4bb8b74d3c68c0
 
-In this last series, my script inadvertenly dropped the '< >' from
-the cover letter's message ID, so some mailers may see this series
-as seven separate threads. This is fixed now.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-That being said, I see this series was already applied earlier this
-week; I think a mail simply did not go out. So no further action is
-needed.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> 
-> >
-> > -- 
-> > 2.34.1
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Kind regards,
-Jeff LaBundy
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
