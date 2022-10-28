@@ -2,74 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF478611B69
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E6E611B72
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 22:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230174AbiJ1UKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 16:10:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52324 "EHLO
+        id S229828AbiJ1UMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 16:12:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbiJ1UKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:10:35 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513B43B979;
-        Fri, 28 Oct 2022 13:10:14 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id r18so5720562pgr.12;
-        Fri, 28 Oct 2022 13:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iBZo/dC6Q+wzhKtQTU3L9ZaF2Ionm1WRsDT9YBpa+v4=;
-        b=HHgnF2o76kVgjWHDEvsyd4pt+m4CEWY6TJyfGzouGmxQhaqpaUo4TlBRwKT5oyCZ9Q
-         LQU+MNHbJBf9ZCeXGiVlO7xVcnePGEI6msSjHnqPEqFr4rIJnycFJci5T/bNDJHpxJ8X
-         HT+rnD6u2SgZdr9lpoiu4YJ3aCzQllFGR9T9q00IyubQrEGtC/7q4VcvGb9cl73w/w+E
-         ziSj+ViVR9kZ0Z4E7SpjF/74TCQBh8ssbF2UefHi8CN+rGl1yX0t1YExnLU7Cj2GFQ30
-         FqbEKeWTtmvBS0lgd0d7jpTcPNkSKT4ubrn+Bn18NwJtEIB6LglvOMEp3CLAchCYFvLm
-         6myA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iBZo/dC6Q+wzhKtQTU3L9ZaF2Ionm1WRsDT9YBpa+v4=;
-        b=IqcCGPtPRUXPc5yn11M1cMFAEzxN/Q//LVRxaN2yuOo1exC4eZVg9iiOpYviJ0DPL1
-         iPH+LnCHStKTR2uEuB60zcbuWMsyjoOw/la2M+it7bPlIG0bI7NZM+IeHhhNC1sLOwCX
-         l2C4czypySuiZ69UyzHJxPtMuMKxUpnjqfvZwQ3i89RYmUb6CC0osx0RCFkYzrBtsIBS
-         EjjKGVJqaVeCZJkZZPzV6RJ17fTD7tscx2x7lLXPb2PbDLfDjVo/x1yk1QR0Eg+rpbwx
-         uc6j6CE5XAvNg6WBOv8IB1yFhALhUt54ceqIEWJ3aj2JpHebozcdndgBE+JqfaoCFWpT
-         K9tQ==
-X-Gm-Message-State: ACrzQf0lEA0ucZGvjGlmUKfzzcu0Do8jLk5ewlx6+TICwkHaHqX7qgKG
-        LBmUzAQt+0FJHgT+/8EqG9w=
-X-Google-Smtp-Source: AMsMyM6YSVyP0C6lt5etyLKbRx3bv0C6jh4sqOTHVjcTTF8i+MafKMFEPfFVg7i56XZsRJZSDQ+vhQ==
-X-Received: by 2002:aa7:888b:0:b0:563:aa1:adae with SMTP id z11-20020aa7888b000000b005630aa1adaemr852470pfe.15.1666987813673;
-        Fri, 28 Oct 2022 13:10:13 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:ea9a:801b:ed52:2db1])
-        by smtp.gmail.com with ESMTPSA id m5-20020a170902bb8500b00186a8beec78sm3453919pls.52.2022.10.28.13.10.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 13:10:12 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 13:10:09 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, jeff@labundy.com,
-        neil.armstrong@linaro.org, arnd@arndb.de, robert.jarzmik@free.fr,
-        Jonathan.Cameron@huawei.com, christianshewitt@gmail.com,
-        stano.jakubek@gmail.com, rydberg@bitmath.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v3 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
-Message-ID: <Y1w3IZniJ/4otMDX@google.com>
-References: <20221010153522.17503-1-macroalpha82@gmail.com>
- <20221010153522.17503-4-macroalpha82@gmail.com>
- <87sfjhp9f6.fsf@baylibre.com>
+        with ESMTP id S229636AbiJ1UMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 16:12:48 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EF133A0D
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 13:12:47 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29SKCb2g051071;
+        Fri, 28 Oct 2022 15:12:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1666987957;
+        bh=dS6096uIVbd6Ad4dAE2AejyqmR16Bp3FaNel1ZQsUhQ=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Gi3bxkTi2myOqdgBq+4yYq5LHX6ATf6oYPm8CHfvONta1n7TUpTI/N8qI0B+hMpCt
+         gl3475q8eHSABpMg5mDS6klc5bXHkI3+R9eB/UeordP3J+nDadyeG90oGmzJCcTnxb
+         bs7Ujx1SemF5cce+lj5uXvoPHD07+WiMrIDJ6l5g=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29SKCbMq120641
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 28 Oct 2022 15:12:37 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 28
+ Oct 2022 15:12:37 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 28 Oct 2022 15:12:37 -0500
+Received: from [10.250.135.52] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29SKCW6t054889;
+        Fri, 28 Oct 2022 15:12:34 -0500
+Message-ID: <13fba52e-dcbb-310e-0c35-6fbe0cc9c551@ti.com>
+Date:   Fri, 28 Oct 2022 23:12:31 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87sfjhp9f6.fsf@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62: Add general purpose timers
+ for am62
+Content-Language: en-US
+To:     Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Keerthy <j-keerthy@ti.com>
+References: <20220914074224.44786-1-tony@atomide.com>
+From:   Georgi Vlaev <g-vlaev@ti.com>
+In-Reply-To: <20220914074224.44786-1-tony@atomide.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,51 +67,200 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 21, 2022 at 03:56:29PM +0200, Mattijs Korpershoek wrote:
-> Hi Chris,
-> 
-> Thank you for your patch.
-> 
-> On Mon, Oct 10, 2022 at 10:35, Chris Morgan <macroalpha82@gmail.com> wrote:
-> 
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> >
-> > Add support for the Hynitron cst3xx controller found on devices such
-> > as the Anbernic RG353P and RG353V (the Hynitron CST340). This driver
-> > was built from sources provided by Hynitron to Anbernic (possibly
-> > via Rockchip as an intermediary) and marked as GPLv2 in the code.
-> > This driver was written strictly for the cst3xx series, but in
-> > most places was left somewhat generic so support could be easily
-> > added to other devices in the future.
-> >
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  drivers/input/touchscreen/Kconfig           |  12 +
-> >  drivers/input/touchscreen/Makefile          |   1 +
-> >  drivers/input/touchscreen/hynitron_cstxxx.c | 508 ++++++++++++++++++++
-> >  3 files changed, 521 insertions(+)
-> >  create mode 100644 drivers/input/touchscreen/hynitron_cstxxx.c
-> >
-> > diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-> > index 2d70c945b20a..9a9528e59c36 100644
-> > --- a/drivers/input/touchscreen/Kconfig
-> > +++ b/drivers/input/touchscreen/Kconfig
-> > @@ -422,6 +422,18 @@ config TOUCHSCREEN_HYCON_HY46XX
-> >  	  To compile this driver as a module, choose M here: the
-> >  	  module will be called hycon-hy46xx.
-> >  
-> > +config TOUCHSCREEN_HYNITRON_CSTXXX
-> > +	tristate "Hynitron touchscreen support"
-> > +	depends on I2C
-> 
-> Since we include linux/of.h, I think we should also add:
-> depends on OF
+Hi,
 
-I think the driver should easily work on a non-OF system (ACPI for
-example). Including OF is fine, but I'd rather we did not use
-of_device.h and instead used device_get_match_data() from property.h
+On 9/14/22 10:42, Tony Lindgren wrote:
+> There are 8 general purpose timers on am65 that can be used for things
+> like PWM using pwm-omap-dmtimer driver. There are also additional four
+> timers in the MCU domain that do not have interrupts routable for Linux.
+> 
+> We configure the timers with the 25 MHz input clock by default as the
+> 32.768 kHz clock may not be wired on the device. We leave the MCU domain
+> timers clock mux unconfigured, and mark the MCU domain timers reserved.
+> The MCU domain timers are likely reserved by the software for the ESM
+> module.
+> 
+> Compared to am65, the timers on am62 do not have a dedicated IO mux for
+> the timers. On am62, the timers have different interrupts, clocks and
+> power domains compared to am65, and the MCU timers are at a different
+> IO address.
+> 
+> Cc: Keerthy <j-keerthy@ti.com>
+> Cc: Nishanth Menon <nm@ti.com>
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 97 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi  | 45 +++++++++++
+>  2 files changed, 142 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -186,6 +186,103 @@ main_pmx0: pinctrl@f4000 {
+>  		pinctrl-single,function-mask = <0xffffffff>;
+>  	};
+>  
+> +	main_timer0: timer@2400000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2400000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 36 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 36 2>;
+> +		assigned-clock-parents = <&k3_clks 36 3>;
+> +		power-domains = <&k3_pds 36 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer1: timer@2410000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2410000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 37 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 37 2>;
+> +		assigned-clock-parents = <&k3_clks 37 3>;
+> +		power-domains = <&k3_pds 37 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer2: timer@2420000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2420000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 38 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 38 2>;
+> +		assigned-clock-parents = <&k3_clks 38 3>;
+> +		power-domains = <&k3_pds 38 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer3: timer@2430000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2430000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 39 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 39 2>;
+> +		assigned-clock-parents = <&k3_clks 39 3>;
+> +		power-domains = <&k3_pds 39 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer4: timer@2440000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2440000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 40 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 40 2>;
+> +		assigned-clock-parents = <&k3_clks 40 3>;
+> +		power-domains = <&k3_pds 40 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer5: timer@2450000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2450000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 41 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 41 2>;
+> +		assigned-clock-parents = <&k3_clks 41 3>;
+> +		power-domains = <&k3_pds 41 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer6: timer@2460000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2460000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 42 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 42 2>;
+> +		assigned-clock-parents = <&k3_clks 42 3>;
+> +		power-domains = <&k3_pds 42 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +	main_timer7: timer@2470000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x2470000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&k3_clks 43 2>;
+> +		clock-names = "fck";
+> +		assigned-clocks = <&k3_clks 43 2>;
+> +		assigned-clock-parents = <&k3_clks 43 3>;
+> +		power-domains = <&k3_pds 43 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +	};
+> +
+> +
+>  	main_uart0: serial@2800000 {
+>  		compatible = "ti,am64-uart", "ti,am654-uart";
+>  		reg = <0x00 0x02800000 0x00 0x100>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> --- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> @@ -14,6 +14,51 @@ mcu_pmx0: pinctrl@4084000 {
+>  		pinctrl-single,function-mask = <0xffffffff>;
+>  	};
+>  
+> +	/*
+> +	 * The MCU domain timer interrupts are routed only to the ESM module,
+> +	 * and not currently available for Linux. The MCU domain timers are
+> +	 * of limited use without interrupts, and likely reserved by the ESM.
+> +	 */
+> +	mcu_timer0: timer@4800000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x4800000 0x00 0x400>;
+> +		clocks = <&k3_clks 35 2>;
+> +		clock-names = "fck";
+> +		power-domains = <&k3_pds 35 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +		status = "reserved";
+> +	};
+> +
+> +	mcu_timer1: timer@4810000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x4810000 0x00 0x400>;
+> +		clocks = <&k3_clks 48 2>;
+> +		clock-names = "fck";
+> +		power-domains = <&k3_pds 48 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +		status = "reserved";
+> +	};
+> +
+> +	mcu_timer2: timer@4820000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x4820000 0x00 0x400>;
+> +		clocks = <&k3_clks 49 2>;
+> +		clock-names = "fck";
+> +		power-domains = <&k3_pds 49 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +		status = "reserved";
+> +	};
+> +
+> +	mcu_timer3: timer@4830000 {
+> +		compatible = "ti,am654-timer";
+> +		reg = <0x00 0x4830000 0x00 0x400>;
+> +		clocks = <&k3_clks 50 2>;
+> +		clock-names = "fck";
+> +		power-domains = <&k3_pds 50 TI_SCI_PD_EXCLUSIVE>;
+> +		ti,timer-pwm;
+> +		status = "reserved";
+> +	};
+> +
+>  	mcu_uart0: serial@4a00000 {
+>  		compatible = "ti,am64-uart", "ti,am654-uart";
+>  		reg = <0x00 0x04a00000 0x00 0x100>;
 
-Thanks.
+The "power-domains" property fix for the binding was merged recently.
+
+Reviewed-by: Georgi Vlaev <g-vlaev@ti.com>
 
 -- 
-Dmitry
+Regards,
+Georgi
