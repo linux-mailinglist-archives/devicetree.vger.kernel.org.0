@@ -2,92 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CB59611346
-	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2596761135A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Oct 2022 15:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbiJ1NoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 09:44:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59752 "EHLO
+        id S231316AbiJ1NpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 09:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231365AbiJ1NoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:44:13 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027631AF29
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 06:44:11 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ooPeJ-0004WP-2G; Fri, 28 Oct 2022 15:43:51 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ooPeH-00059M-GL; Fri, 28 Oct 2022 15:43:49 +0200
-Date:   Fri, 28 Oct 2022 15:43:49 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@linux.intel.com,
-        jacopo@jmondi.org, hverkuil@xs4all.nl
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Add support for Toshiba TC358746
-Message-ID: <20221028134349.lxvo2jjvs6aehrbd@pengutronix.de>
-References: <20220930124812.450332-1-m.felsch@pengutronix.de>
+        with ESMTP id S231236AbiJ1Noz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 09:44:55 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65FCDB10;
+        Fri, 28 Oct 2022 06:44:37 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 8247740008;
+        Fri, 28 Oct 2022 13:44:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1666964675;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=p+nLdRj+8OUj3qiwCvpQ1lxFy6TRepZB0071YCG29E8=;
+        b=imB9yEPn61l8qq77msz4sIun2w4ZFowREgZ1KGLqw0HpfzW22oyTt8UIJ2iCq2LZ6EXWW7
+        DpQeM3QKho8/TuGAjFrbRvGAccykwijKa4vJks31PHn/hJBR7Ts3T7/OdsEgaNA/uYuMGy
+        Z+ll5Rz10DhCAh0sqgUKTTqI+cE8aZu99SScC14NJLbppEeuvGjoOtRNBHR2f3M+eUxACz
+        ytGKlDHk7FMU4vyVMSgMRs+XOW/sWEx3l5FBn4vVwHXWM6F/AraZcURVvStTSGOyA/g81A
+        hPcqNRfLmGaBUfXuF6lalkjIfFS9kuTUAm8a1aHzQh9h4DBOyRakzco2dBRNlA==
+Date:   Fri, 28 Oct 2022 15:44:31 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Paolo Abeni <pabeni@redhat.com>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-kernel@vger.kernel.org, Marcin Wojtas <mw@semihalf.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: nvmem: add YAML schema for the ONIE
+ tlv layout
+Message-ID: <20221028154431.0096ab70@xps-13>
+In-Reply-To: <166695949292.1076993.16137208250373047416.robh@kernel.org>
+References: <20221028092337.822840-1-miquel.raynal@bootlin.com>
+        <20221028092337.822840-3-miquel.raynal@bootlin.com>
+        <166695949292.1076993.16137208250373047416.robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220930124812.450332-1-m.felsch@pengutronix.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob & Krzysztof,
 
-gentle ping.
+robh@kernel.org wrote on Fri, 28 Oct 2022 07:20:05 -0500:
 
-Regards,
-  Marco
+> On Fri, 28 Oct 2022 11:23:34 +0200, Miquel Raynal wrote:
+> > Add a schema for the ONIE tlv NVMEM layout that can be found on any ONIE
+> > compatible networking device.
+> >=20
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../nvmem/layouts/onie,tlv-layout.yaml        | 96 +++++++++++++++++++
+> >  1 file changed, 96 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/nvmem/layouts/oni=
+e,tlv-layout.yaml
+> >  =20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/nvmem/layouts/onie,tlv-layout.example.d=
+tb:0:0: /example-0/onie: failed to match any schema with compatible: ['onie=
+,tlv-layout', 'vendor,device']
 
-On 22-09-30, Marco Felsch wrote:
-> Hi,
-> 
-> this small series adds the support for the Toshiba TC358746 MIPI-CSI to
-> Parallel converter chip. The different versions of this serie can be
-> found here [1]. Thanks a lot for the review feedback from Laurent and
-> Sakari, which was very helpful.
-> 
-> [1] https://lore.kernel.org/all/20220922134843.3108267-1-m.felsch@pengutronix.de/
->     https://lore.kernel.org/all/20220916134535.128131-1-m.felsch@pengutronix.de/
->     https://lore.kernel.org/all/20220818143307.967150-5-m.felsch@pengutronix.de/
-> 
-> Marco Felsch (4):
->   phy: dphy: refactor get_default_config
->   phy: dphy: add support to calculate the timing based on hs_clk_rate
->   media: dt-bindings: add bindings for Toshiba TC358746
->   media: tc358746: add Toshiba TC358746 Parallel to CSI-2 bridge driver
-> 
->  .../bindings/media/i2c/toshiba,tc358746.yaml  |  178 ++
->  drivers/media/i2c/Kconfig                     |   17 +
->  drivers/media/i2c/Makefile                    |    1 +
->  drivers/media/i2c/tc358746.c                  | 1696 +++++++++++++++++
->  drivers/phy/phy-core-mipi-dphy.c              |   31 +-
->  include/linux/phy/phy-mipi-dphy.h             |    3 +
->  6 files changed, 1922 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
->  create mode 100644 drivers/media/i2c/tc358746.c
-> 
-> -- 
-> 2.30.2
-> 
-> 
-> 
+Oh right, I wanted to ask about this under the three --- but I forgot.
+Here was my question:
+
+How do we make the checker happy with an example where the second
+compatible can be almost anything (any nvmem-compatible device) but the
+first one should be the layout? (this is currently what Michael's
+proposal uses).
+
+> doc reference errors (make refcheckdocs):
+>=20
+> See https://patchwork.ozlabs.org/patch/
+>=20
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>=20
+> pip3 install dtschema --upgrade
+>=20
+> Please check and re-submit.
+>=20
+
+
+Thanks,
+Miqu=C3=A8l
