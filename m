@@ -2,173 +2,466 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2552F611F0D
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 03:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEEE611F47
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 04:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbiJ2B1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 21:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
+        id S229615AbiJ2CVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 22:21:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbiJ2B1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 21:27:43 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9652C1CC755
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 18:27:41 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id k2so16888708ejr.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 18:27:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=SB8cXsJ6cSiGdyMloRjmKV5mlYek2j619QkGusLH93k=;
-        b=OIignES46Kbt8O1G/D8CE5LCzf4liD+TVCHTDYlD1UbO7ZV00At2PgUGiLzRcjcRoP
-         KDz7BunLbRO8b7QvzRLiyOYUoHvTfU9FCx65vWf3xgqvOJfA9iwsnxzTSjLjFF9sYFPW
-         oYjD0DXfz6gTvYLzJGRJbZK+G+AXCUGpHlhghba5fZUJvAy/kS6ffd4YC9jxzDunFcSf
-         vFV9nR1IVVFNTZQXpa+glCngHUChxUtAowEyJGhQRCTxA5BuzVj4ZMRpqk49kbNedsjN
-         j+nCAT3fysljbaAoQW9f4RydBrH+FUr24DZEeAVV9w+0jE2sDNkP80yZyp1RAxuojKBH
-         q1xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SB8cXsJ6cSiGdyMloRjmKV5mlYek2j619QkGusLH93k=;
-        b=m/X2vi3l3msjgnBDaYz6BIJxKU3z5uFUmi8fbpDcfO3IJcvTpDoYLDwVAkyy+wC3NF
-         mVUY++gVnHZxzt5oV16NKW8USudCw27X2jjOSGsxRsk3nyOgu8Wi8ByaCkOWBAULhFmk
-         n7VZ/ZkgaYYGSnxmnp+e+VcioFTOGdCjLuNbuvdQCeAbnt5uoVYXz0Hj6gMTttAGDAz8
-         UyWoGkWRmkR3VjtpIiQxJm4fW+1LQqSNLNU7Xsfh8p+iZnLF6nYRdKLV4V51or7psmWN
-         tLkBfprma8nhqJ7F/MPS9lJB5wKazfofWpwoUiDo1YjvFZlrAlIwIsqOfmoH/ZOs5FOB
-         XbpQ==
-X-Gm-Message-State: ACrzQf2aY94fW9cVv3PUyfuYZirSzGp2WsHQ3Nl551iXBKcah0hHjojT
-        EPIGjgLDH6qpGLqmQQAtO18Afk9Vw07sNSP3bY2pag==
-X-Google-Smtp-Source: AMsMyM6MGnF2TSbEaIjrBzL/n0tAG+PSMkH6yiE/pY/08UqBhcIIpMPKhMmviToeyNxz+zsaPbVSgur3Lfy83BExNZM=
-X-Received: by 2002:a17:907:75c1:b0:79b:f804:c081 with SMTP id
- jl1-20020a17090775c100b0079bf804c081mr1857415ejc.381.1667006860118; Fri, 28
- Oct 2022 18:27:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221028034155.5580-1-quic_bjorande@quicinc.com>
-In-Reply-To: <20221028034155.5580-1-quic_bjorande@quicinc.com>
-From:   Steev Klimaszewski <steev@kali.org>
-Date:   Fri, 28 Oct 2022 20:27:27 -0500
-Message-ID: <CAKXuJqhOH1Ts0Nde5WB0-bVHUv=_As23eJRsH=VnCxxjtkNB_A@mail.gmail.com>
-Subject: Re: [PATCH 00/10] interconnect: osm-l3: SC8280XP L3 and DDR scaling
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S229576AbiJ2CVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 22:21:47 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 063DF1A1B3F;
+        Fri, 28 Oct 2022 19:21:44 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8CxLdk2jlxjAjYDAA--.12108S3;
+        Sat, 29 Oct 2022 10:21:42 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx_eEwjlxj5aMGAA--.22825S2;
+        Sat, 29 Oct 2022 10:21:42 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Mike Tipton <quic_mdtipton@quicinc.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        zhanghongchen <zhanghongchen@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v5 1/2] pinctrl: pinctrl-loongson2: add pinctrl driver support
+Date:   Sat, 29 Oct 2022 10:21:29 +0800
+Message-Id: <20221029022130.19914-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dx_eEwjlxj5aMGAA--.22825S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvAXoW3Zr13JFyrArWDJr47AFW7XFb_yoW8Gr1xuo
+        WS9Fn8Xw4fJr18XFZ8Zrn8GrW7ZFs7Cr1DA397Zrs8u3y2vrnFgryDtr4xGFy8trs5tF17
+        ZasagFWrJa1Iqwn5n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXasCq-sGcSsGvf
+        J3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnRJU
+        UUyC1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_JrI_Jryl8cAvFV
+        AK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVWUCVW8JwA2
+        z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4j6F4UM2
+        8EF7xvwVC2z280aVCY1x0267AKxVW8JVW8Jr1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAq
+        jxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
+        AFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
+        0xvY0x0EwIxGrwCF04k20xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4I
+        kC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWU
+        WwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr
+        0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWU
+        JVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYx
+        BIdaVFxhVjvjDU0xZFpf9x07UC_M3UUUUU=
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_SBL_CSS,
+        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 27, 2022 at 10:42 PM Bjorn Andersson
-<quic_bjorande@quicinc.com> wrote:
->
-> The SC8280XP currently shows depressing results in memory benchmarks.
-> Fix this by introducing support for the platform in the OSM (and EPSS)
-> L3 driver and support for the platform in the bwmon binding.
->
-> Then add the necessary nodes and values throughout the sc8280xp and
-> sa8540p dtsi files to make the various devices on these platforms scale
-> both L3, memory bus and DDR.
->
-> Bjorn Andersson (10):
->   interconnect: qcom: osm-l3: Use platform-independent node ids
->   interconnect: qcom: osm-l3: Squash common descriptors
->   interconnect: qcom: osm-l3: Add per-core EPSS L3 support
->   interconnect: qcom: osm-l3: Simplify osm_l3_set()
->   dt-bindings: interconnect: Add sm8350, sc8280xp and generic OSM L3
->     compatibles
->   arm64: dts: qcom: Align with generic osm-l3/epss-l3
->   arm64: dts: qcom: sc8280xp: Add epss_l3 node
->   arm64: dts: qcom: sc8280xp: Set up L3 scaling
->   dt-bindings: interconnect: qcom,msm8998-bwmon: Add sc8280xp bwmon
->     instances
->   arm64: dts: qcom: sc8280xp: Add bwmon instances
->
->  .../interconnect/qcom,msm8998-bwmon.yaml      |   5 +
->  .../bindings/interconnect/qcom,osm-l3.yaml    |  22 ++-
->  arch/arm64/boot/dts/qcom/sa8540p.dtsi         |  39 +++++
->  arch/arm64/boot/dts/qcom/sc7180.dtsi          |   2 +-
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          |   2 +-
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 152 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +-
->  arch/arm64/boot/dts/qcom/sm8150.dtsi          |   2 +-
->  arch/arm64/boot/dts/qcom/sm8250.dtsi          |   2 +-
->  drivers/interconnect/qcom/osm-l3.c            | 126 ++++-----------
->  10 files changed, 251 insertions(+), 103 deletions(-)
->
-> --
-> 2.37.3
->
-Prior to this series being applied:
+The Loongson-2 SoC has a few pins that can be used as GPIOs or take
+multiple other functions. Add a driver for the pinmuxing.
 
-steev@cho:~/temp/mybw$ ./mybw
-    64: 21043.42MB/s
-   128: 22511.90MB/s
-   256: 23190.96MB/s
-   512: 23532.00MB/s
-  1024: 23537.36MB/s
-    2K: 23730.19MB/s
-    4K: 23307.45MB/s
-    8K: 23603.36MB/s
-   16K: 23752.39MB/s
-   32K: 23819.91MB/s
-   64K: 23871.28MB/s
-  128K: 23890.10MB/s
-  256K: 23851.90MB/s
-  512K: 23759.65MB/s
- 1024K: 15956.73MB/s
-    2M: 8418.88MB/s
-    4M: 6385.06MB/s
-    8M: 5959.11MB/s
-   16M: 5892.18MB/s
-   32M: 6109.78MB/s
+There is currently no support for GPIO pin pull-up and pull-down.
 
+Signed-off-by: zhanghongchen <zhanghongchen@loongson.cn>
+Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+---
+ MAINTAINERS                         |   7 +
+ drivers/pinctrl/Kconfig             |  11 +
+ drivers/pinctrl/Makefile            |   1 +
+ drivers/pinctrl/pinctrl-loongson2.c | 328 ++++++++++++++++++++++++++++
+ 4 files changed, 347 insertions(+)
+ create mode 100644 drivers/pinctrl/pinctrl-loongson2.c
 
-With this series applied:
-steev@cho:~/temp/mybw$ ./mybw
-    64: 21193.63MB/s
-   128: 22513.64MB/s
-   256: 23196.15MB/s
-   512: 23554.33MB/s
-  1024: 23555.31MB/s
-    2K: 23738.53MB/s
-    4K: 23310.13MB/s
-    8K: 23616.14MB/s
-   16K: 23768.47MB/s
-   32K: 23847.16MB/s
-   64K: 23881.61MB/s
-  128K: 23901.33MB/s
-  256K: 23910.21MB/s
-  512K: 23839.70MB/s
- 1024K: 23577.47MB/s
-    2M: 23836.08MB/s
-    4M: 23798.35MB/s
-    8M: 23759.23MB/s
-   16M: 22887.62MB/s
-   32M: 22491.87MB/s
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e677c77136a2..8afa53595124 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11922,6 +11922,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+ F:	drivers/clocksource/loongson2_hpet.c
+ 
++LOONGSON-2 SOC SERIES PINCTRL DRIVER
++M:	zhanghongchen <zhanghongchen@loongson.cn>
++M:	Yinbo Zhu <zhuyinbo@loongson.cn>
++L:	linux-gpio@vger.kernel.org
++S:	Maintained
++F:	drivers/pinctrl/pinctrl-loongson2.c
++
+ LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
+ M:	Sathya Prakash <sathya.prakash@broadcom.com>
+ M:	Sreekanth Reddy <sreekanth.reddy@broadcom.com>
+diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+index 1cf74b0c42e5..36b0d243e902 100644
+--- a/drivers/pinctrl/Kconfig
++++ b/drivers/pinctrl/Kconfig
+@@ -507,6 +507,17 @@ config PINCTRL_ZYNQMP
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called pinctrl-zynqmp.
+ 
++config PINCTRL_LOONGSON2
++	tristate "Pinctrl driver for the Loongson-2 SoC"
++	depends on LOONGARCH || COMPILE_TEST
++	select PINMUX
++	select GENERIC_PINCONF
++	help
++	  This selects pin control driver for the Loongson-2 SoC. It
++	  provides pin config functions multiplexing.  GPIO pin pull-up,
++	  pull-down functions are not supported. Say yes to enable
++	  pinctrl for Loongson-2 SoC.
++
+ source "drivers/pinctrl/actions/Kconfig"
+ source "drivers/pinctrl/aspeed/Kconfig"
+ source "drivers/pinctrl/bcm/Kconfig"
+diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
+index e76f5cdc64b0..bad6a760c141 100644
+--- a/drivers/pinctrl/Makefile
++++ b/drivers/pinctrl/Makefile
+@@ -28,6 +28,7 @@ obj-$(CONFIG_PINCTRL_KEEMBAY)	+= pinctrl-keembay.o
+ obj-$(CONFIG_PINCTRL_LANTIQ)	+= pinctrl-lantiq.o
+ obj-$(CONFIG_PINCTRL_FALCON)	+= pinctrl-falcon.o
+ obj-$(CONFIG_PINCTRL_XWAY)	+= pinctrl-xway.o
++obj-$(CONFIG_PINCTRL_LOONGSON2) += pinctrl-loongson2.o
+ obj-$(CONFIG_PINCTRL_LPC18XX)	+= pinctrl-lpc18xx.o
+ obj-$(CONFIG_PINCTRL_MAX77620)	+= pinctrl-max77620.o
+ obj-$(CONFIG_PINCTRL_MCP23S08_I2C)	+= pinctrl-mcp23s08_i2c.o
+diff --git a/drivers/pinctrl/pinctrl-loongson2.c b/drivers/pinctrl/pinctrl-loongson2.c
+new file mode 100644
+index 000000000000..3b0b2e218767
+--- /dev/null
++++ b/drivers/pinctrl/pinctrl-loongson2.c
+@@ -0,0 +1,328 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Author: zhanghongchen <zhanghongchen@loongson.cn>
++ *         Yinbo Zhu <zhuyinbo@loongson.cn>
++ * Copyright (C) 2022-2023 Loongson Technology Corporation Limited
++ */
++
++#include <linux/init.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++#include <linux/of.h>
++#include <linux/pinctrl/pinmux.h>
++#include <linux/pinctrl/pinconf-generic.h>
++#include "core.h"
++#include "pinctrl-utils.h"
++
++#define PMX_GROUP(grp, offset, bitv)					\
++	{								\
++		.name = #grp,						\
++		.pins = grp ## _pins,					\
++		.num_pins = ARRAY_SIZE(grp ## _pins),			\
++		.reg = offset,						\
++		.bit = bitv,						\
++	}
++
++#define SPECIFIC_GROUP(group)						\
++	static const char * const group##_groups[] = {			\
++		#group							\
++	}
++
++#define FUNCTION(fn)							\
++	{								\
++		.name = #fn,						\
++		.groups = fn ## _groups,				\
++		.num_groups = ARRAY_SIZE(fn ## _groups),		\
++	}
++
++struct loongson2_pinctrl {
++	struct device *dev;
++	struct pinctrl_dev *pcdev;
++	struct pinctrl_desc desc;
++	struct device_node *of_node;
++	spinlock_t lock;
++	void * __iomem reg_base;
++};
++
++struct loongson2_pmx_group {
++	const char *name;
++	const unsigned int *pins;
++	unsigned int num_pins;
++	unsigned int reg;
++	unsigned int bit;
++};
++
++struct loongson2_pmx_func {
++	const char *name;
++	const char * const *groups;
++	unsigned int num_groups;
++};
++
++#define LOONGSON2_PIN(x) PINCTRL_PIN(x, "gpio"#x)
++static const struct pinctrl_pin_desc loongson2_pctrl_pins[] = {
++	LOONGSON2_PIN(0),  LOONGSON2_PIN(1),  LOONGSON2_PIN(2),  LOONGSON2_PIN(3),
++	LOONGSON2_PIN(4),  LOONGSON2_PIN(5),  LOONGSON2_PIN(6),  LOONGSON2_PIN(7),
++	LOONGSON2_PIN(8),  LOONGSON2_PIN(9),  LOONGSON2_PIN(10), LOONGSON2_PIN(11),
++	LOONGSON2_PIN(12), LOONGSON2_PIN(13), LOONGSON2_PIN(14),
++	LOONGSON2_PIN(16), LOONGSON2_PIN(17), LOONGSON2_PIN(18), LOONGSON2_PIN(19),
++	LOONGSON2_PIN(20), LOONGSON2_PIN(21), LOONGSON2_PIN(22), LOONGSON2_PIN(23),
++	LOONGSON2_PIN(24), LOONGSON2_PIN(25), LOONGSON2_PIN(26), LOONGSON2_PIN(27),
++	LOONGSON2_PIN(28), LOONGSON2_PIN(29), LOONGSON2_PIN(30),
++	LOONGSON2_PIN(32), LOONGSON2_PIN(33), LOONGSON2_PIN(34), LOONGSON2_PIN(35),
++	LOONGSON2_PIN(36), LOONGSON2_PIN(37), LOONGSON2_PIN(38), LOONGSON2_PIN(39),
++	LOONGSON2_PIN(40), LOONGSON2_PIN(41),
++	LOONGSON2_PIN(44), LOONGSON2_PIN(45), LOONGSON2_PIN(46), LOONGSON2_PIN(47),
++	LOONGSON2_PIN(48), LOONGSON2_PIN(49), LOONGSON2_PIN(50), LOONGSON2_PIN(51),
++	LOONGSON2_PIN(52), LOONGSON2_PIN(53), LOONGSON2_PIN(54), LOONGSON2_PIN(55),
++	LOONGSON2_PIN(56), LOONGSON2_PIN(57), LOONGSON2_PIN(58), LOONGSON2_PIN(59),
++	LOONGSON2_PIN(60), LOONGSON2_PIN(61), LOONGSON2_PIN(62), LOONGSON2_PIN(63),
++};
++
++static const unsigned int gpio_pins[] = {0, 1, 2, 3, 4, 5, 6, 7,
++					 8, 9, 10, 11, 12, 13, 14,
++					 16, 17, 18, 19, 20, 21, 22, 23,
++					 24, 25, 26, 27, 28, 29, 30,
++					 32, 33, 34, 35, 36, 37, 38, 39,
++					 40,         43, 44, 45, 46, 47,
++					 48, 49, 50, 51, 52, 53, 46, 55,
++					 56, 57, 58, 59, 60, 61, 62, 63};
++static const unsigned int sdio_pins[] = {36, 37, 38, 39, 40, 41};
++static const unsigned int can1_pins[] = {34, 35};
++static const unsigned int can0_pins[] = {32, 33};
++static const unsigned int pwm3_pins[] = {23};
++static const unsigned int pwm2_pins[] = {22};
++static const unsigned int pwm1_pins[] = {21};
++static const unsigned int pwm0_pins[] = {20};
++static const unsigned int i2c1_pins[] = {18, 19};
++static const unsigned int i2c0_pins[] = {16, 17};
++static const unsigned int nand_pins[] = {44, 45, 46, 47, 48, 49, 50, 51,
++					 52, 53, 54, 55, 56, 57, 58, 59, 60,
++					 61, 62, 63};
++static const unsigned int sata_led_pins[] = {14};
++static const unsigned int lio_pins[]    = {};
++static const unsigned int i2s_pins[]    = {24, 25, 26, 27, 28};
++static const unsigned int hda_pins[]    = {24, 25, 26, 27, 28, 29, 30};
++static const unsigned int uart2_pins[]  = {};
++static const unsigned int uart1_pins[]  = {};
++static const unsigned int camera_pins[] = {};
++static const unsigned int dvo1_pins[]   = {};
++static const unsigned int dvo0_pins[]   = {};
++
++static struct loongson2_pmx_group loongson2_pmx_groups[] = {
++	PMX_GROUP(gpio, 0x0, 64),
++	PMX_GROUP(sdio, 0x0, 20),
++	PMX_GROUP(can1, 0x0, 17),
++	PMX_GROUP(can0, 0x0, 16),
++	PMX_GROUP(pwm3, 0x0, 15),
++	PMX_GROUP(pwm2, 0x0, 14),
++	PMX_GROUP(pwm1, 0x0, 13),
++	PMX_GROUP(pwm0, 0x0, 12),
++	PMX_GROUP(i2c1, 0x0, 11),
++	PMX_GROUP(i2c0, 0x0, 10),
++	PMX_GROUP(nand, 0x0, 9),
++	PMX_GROUP(sata_led, 0x0, 8),
++	PMX_GROUP(lio, 0x0, 7),
++	PMX_GROUP(i2s, 0x0, 6),
++	PMX_GROUP(hda, 0x0, 4),
++	PMX_GROUP(uart2, 0x8, 13),
++	PMX_GROUP(uart1, 0x8, 12),
++	PMX_GROUP(camera, 0x10, 5),
++	PMX_GROUP(dvo1, 0x10, 4),
++	PMX_GROUP(dvo0, 0x10, 1),
++
++};
++
++SPECIFIC_GROUP(sdio);
++SPECIFIC_GROUP(can1);
++SPECIFIC_GROUP(can0);
++SPECIFIC_GROUP(pwm3);
++SPECIFIC_GROUP(pwm2);
++SPECIFIC_GROUP(pwm1);
++SPECIFIC_GROUP(pwm0);
++SPECIFIC_GROUP(i2c1);
++SPECIFIC_GROUP(i2c0);
++SPECIFIC_GROUP(nand);
++SPECIFIC_GROUP(sata_led);
++SPECIFIC_GROUP(lio);
++SPECIFIC_GROUP(i2s);
++SPECIFIC_GROUP(hda);
++SPECIFIC_GROUP(uart2);
++SPECIFIC_GROUP(uart1);
++SPECIFIC_GROUP(camera);
++SPECIFIC_GROUP(dvo1);
++SPECIFIC_GROUP(dvo0);
++
++static const char * const gpio_groups[] = {
++	"sdio", "can1", "can0", "pwm3", "pwm2", "pwm1", "pwm0", "i2c1",
++	"i2c0", "nand", "sata_led", "lio", "i2s", "hda", "uart2", "uart1",
++	"camera", "dvo1", "dvo0"
++};
++
++static const struct loongson2_pmx_func loongson2_pmx_functions[] = {
++	FUNCTION(gpio),
++	FUNCTION(sdio),
++	FUNCTION(can1),
++	FUNCTION(can0),
++	FUNCTION(pwm3),
++	FUNCTION(pwm2),
++	FUNCTION(pwm1),
++	FUNCTION(pwm0),
++	FUNCTION(i2c1),
++	FUNCTION(i2c0),
++	FUNCTION(nand),
++	FUNCTION(sata_led),
++	FUNCTION(lio),
++	FUNCTION(i2s),
++	FUNCTION(hda),
++	FUNCTION(uart2),
++	FUNCTION(uart1),
++	FUNCTION(camera),
++	FUNCTION(dvo1),
++	FUNCTION(dvo0),
++};
++
++static int loongson2_get_groups_count(struct pinctrl_dev *pcdev)
++{
++	return ARRAY_SIZE(loongson2_pmx_groups);
++}
++
++static const char *loongson2_get_group_name(struct pinctrl_dev *pcdev,
++					unsigned int selector)
++{
++	return loongson2_pmx_groups[selector].name;
++}
++
++static int loongson2_get_group_pins(struct pinctrl_dev *pcdev, unsigned int selector,
++			const unsigned int **pins, unsigned int *num_pins)
++{
++	*pins = loongson2_pmx_groups[selector].pins;
++	*num_pins = loongson2_pmx_groups[selector].num_pins;
++
++	return 0;
++}
++
++static void loongson2_pin_dbg_show(struct pinctrl_dev *pcdev, struct seq_file *s,
++			       unsigned int offset)
++{
++	seq_printf(s, " %s", dev_name(pcdev->dev));
++}
++
++static const struct pinctrl_ops loongson2_pctrl_ops = {
++	.get_groups_count	= loongson2_get_groups_count,
++	.get_group_name		= loongson2_get_group_name,
++	.get_group_pins		= loongson2_get_group_pins,
++	.dt_node_to_map		= pinconf_generic_dt_node_to_map_all,
++	.dt_free_map		= pinctrl_utils_free_map,
++	.pin_dbg_show		= loongson2_pin_dbg_show,
++};
++
++static int loongson2_pmx_set_mux(struct pinctrl_dev *pcdev, unsigned int func_num,
++			      unsigned int group_num)
++{
++	struct loongson2_pinctrl *pctrl = pinctrl_dev_get_drvdata(pcdev);
++	unsigned long reg = (unsigned long)pctrl->reg_base +
++				loongson2_pmx_groups[group_num].reg;
++	unsigned int mux_bit = loongson2_pmx_groups[group_num].bit;
++	unsigned int val;
++	unsigned long flags;
++
++	spin_lock_irqsave(&pctrl->lock, flags);
++	val = readl((void *)reg);
++	if (func_num == 0)
++		val &= ~(1<<mux_bit);
++	else
++		val |= (1<<mux_bit);
++	writel(val, (void *)reg);
++	spin_unlock_irqrestore(&pctrl->lock, flags);
++
++	return 0;
++}
++
++static int loongson2_pmx_get_funcs_count(struct pinctrl_dev *pcdev)
++{
++	return ARRAY_SIZE(loongson2_pmx_functions);
++}
++
++static const char *loongson2_pmx_get_func_name(struct pinctrl_dev *pcdev,
++				    unsigned int selector)
++{
++	return loongson2_pmx_functions[selector].name;
++}
++
++static int loongson2_pmx_get_groups(struct pinctrl_dev *pcdev,
++			 unsigned int selector,
++			 const char * const **groups,
++			 unsigned int * const num_groups)
++{
++	*groups = loongson2_pmx_functions[selector].groups;
++	*num_groups = loongson2_pmx_functions[selector].num_groups;
++
++	return 0;
++}
++
++static const struct pinmux_ops loongson2_pmx_ops = {
++	.set_mux = loongson2_pmx_set_mux,
++	.get_functions_count = loongson2_pmx_get_funcs_count,
++	.get_function_name = loongson2_pmx_get_func_name,
++	.get_function_groups = loongson2_pmx_get_groups,
++};
++
++static int loongson2_pinctrl_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct loongson2_pinctrl *pctrl;
++
++	pctrl = devm_kzalloc(dev, sizeof(*pctrl), GFP_KERNEL);
++	if (!pctrl)
++		return -ENOMEM;
++
++	pctrl->reg_base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(pctrl->reg_base))
++		return dev_err_probe(pctrl->dev, PTR_ERR(pctrl->reg_base),
++				     "unable to map I/O memory");
++
++	spin_lock_init(&pctrl->lock);
++
++	pctrl->dev = dev;
++	pctrl->desc.name	= "pinctrl-loongson2";
++	pctrl->desc.owner	= THIS_MODULE;
++	pctrl->desc.pctlops	= &loongson2_pctrl_ops;
++	pctrl->desc.pmxops	= &loongson2_pmx_ops;
++	pctrl->desc.confops	= NULL;
++	pctrl->desc.pins	= loongson2_pctrl_pins;
++	pctrl->desc.npins	= ARRAY_SIZE(loongson2_pctrl_pins);
++
++	pctrl->pcdev = devm_pinctrl_register(pctrl->dev, &pctrl->desc, pctrl);
++	if (IS_ERR(pctrl->pcdev))
++		return dev_err_probe(pctrl->dev, PTR_ERR(pctrl->pcdev),
++				     "can't register pinctrl device");
++
++	return 0;
++}
++
++static const struct of_device_id loongson2_pinctrl_dt_match[] = {
++	{
++		.compatible = "loongson,ls2k-pinctrl",
++	},
++	{ },
++};
++
++static struct platform_driver loongson2_pinctrl_driver = {
++	.probe		= loongson2_pinctrl_probe,
++	.driver = {
++		.name	= "loongson2-pinctrl",
++		.of_match_table = loongson2_pinctrl_dt_match,
++	},
++};
++
++static int __init loongson2_pinctrl_init(void)
++{
++	return platform_driver_register(&loongson2_pinctrl_driver);
++}
++arch_initcall(loongson2_pinctrl_init);
++
++static void __exit loongson2_pinctrl_exit(void)
++{
++	platform_driver_unregister(&loongson2_pinctrl_driver);
++}
++module_exit(loongson2_pinctrl_exit);
+-- 
+2.31.1
 
-Additionally, if anyone is curious, geekbench 5.4 comparison, with
-this patchset applied on 6.0.5:
-
-https://browser.geekbench.com/v5/cpu/compare/18284519?baseline=18076980
-
-This change is very welcomed :)
-
-Tested on the Lenovo Thinkpad X13s
-
-Tested-by: Steev Klimaszewski <steev@kali.org>
