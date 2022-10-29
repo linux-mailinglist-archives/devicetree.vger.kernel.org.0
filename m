@@ -2,112 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D2F61261D
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 00:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF64612621
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 00:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbiJ2WG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 18:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53858 "EHLO
+        id S229682AbiJ2WHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 18:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbiJ2WGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 18:06:25 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430A733843
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 15:06:24 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id s24so12484671ljs.11
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 15:06:24 -0700 (PDT)
+        with ESMTP id S229608AbiJ2WHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 18:07:44 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EEE633845
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 15:07:43 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id u11so12515562ljk.6
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 15:07:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UJDjGMm6I8hjAfftqkiQTNt09c2+c9FwSviLe2yp5iw=;
-        b=Py3MJJV/HlB9DftTqPNbSYJAxhgyf2Yodm2Sp8+XtgQAUPmeWMGLwXFkFGBayvEG1N
-         WWUEfzDXN7t4D3XYRcHB5Sxai/wjj/ZaZrxjmNTPqZTJufO3yFJcgQCWd/1bngDXGXl7
-         ylEmWYQdqtsX2sc3HjlCbe4X2luPbz6MtnukExb/n7XnzE0syraNgoiAUBMGZZUEBG/A
-         J0//BwTYlxBp8rTvYMms7+KGpNnKycxzTbOYzXZUtsJO9Ezpc1D7LFMdZcTuWyWO70ZE
-         Klw7OpX+ln5/+54DVWUEIDm8cXwEolQfUkAW7Vd5i7zKOyVwKaXW6eqSdlRtoMPvOUTh
-         jXxA==
+        bh=kH0QVpvpb7zwsERmRHshEbzMpFPeVcyeSJAaIxfPmeA=;
+        b=knwXWXI35Z9QHYg/HnqH+NOaEsQ5qMooSHtXrI7QvPMaaQpqlQjkHkKtAVsUzOdF6a
+         lzY0X4nhgD7dwm2bVd+DbOB2m3bBWI0NJ+g6TCgNqdBHkCOCt8eVTrv3sWjAIsvVpgOB
+         grO3Ebm7UpPd1BQLIxiZQKCGfhcouUyWdwRKVYyaVahrS5H+cxCZjFgqRoO2gVRmCE9x
+         pjIcztC2FaUpAyIg6J+QqUeAcOwwcdwfU3UnlQKIhWtg0+Wfr0SXtqCytqJWel+ENGXW
+         hqSov814BZCkfEMrZ51GiQTde/ASWWydCPCDu8ZfHP5BRj1F/mTdw1Y9Rq2+5qnm/DKJ
+         O6NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UJDjGMm6I8hjAfftqkiQTNt09c2+c9FwSviLe2yp5iw=;
-        b=O6I9zJslaaQGmF8lNYfl+Pp9IUv6htViXHV6fM6D1fH4PxLiNDv24NKd5LkMAecJdH
-         5TRwv5vNeXhdMuuz3Zy5+awNQceIB3FnimN0vj31wuoHEjmF2WT8OXoIDOHTGlmyBg/c
-         yFnRw6lq+If0HvEcjB5s+fN7Yh1+X+aROWekOwCcHWNR1aDUwkkrU0tWv7uitkZNI0ih
-         1ZkblD6050zyJ6QbPyHH0BzLdM3dNR8cGpXeH/GbvlxvuFu3y+qxQIkip0eW74OH0ZX5
-         VMABtaovjLzeDpXE/qO0Oe/sUfbIJ1U84bSkyzhxKPRnRGxbuQRaHcz0M2H4u/1b2UCl
-         KLgQ==
-X-Gm-Message-State: ACrzQf0btqZndQjMNfZorFwSocKVD2Zj8emwY0en0z5B5DP0qao81k1P
-        ie0SICZCP/7K6p/rd/fz5ZXo8g==
-X-Google-Smtp-Source: AMsMyM6d9zFikwHgFIh6rMjFnXd95IUDGB9ReOdNF6pduE42CdBpB+h3NUOeN+s9d+Sh4pEsV9GjGQ==
-X-Received: by 2002:a05:651c:1a0e:b0:26f:e008:a29c with SMTP id by14-20020a05651c1a0e00b0026fe008a29cmr2417615ljb.365.1667081182585;
-        Sat, 29 Oct 2022 15:06:22 -0700 (PDT)
+        bh=kH0QVpvpb7zwsERmRHshEbzMpFPeVcyeSJAaIxfPmeA=;
+        b=shh1dPgk06z2tbZIh7iEQbs1DPuzTl2UCNF590arLDFvfUfaaOjARUUyyp23xmpDXS
+         BvK/WtKXBEBoIR1K+jI64N1gPa420sBir36vSk+gH3I/iMWmoJyJG1zEwxjr6e3C20bs
+         qzZvV9aJpkkN5UqzGTn62NpOponU0eUKi3AN/IGJyYbjdQtzFqjTE0afaJRxg+/m4OjV
+         GtzDAUf7sBd/xxBr8qQGi3Q+lNizNiBGNFZ0GyO9ynG04CKwI1CSreR3fXTP6kxq28kz
+         Fo6fVBaGaymE35GYET5kU6ylcfvNAH9IUEebM3r3MStUfTQcG8hju40qQ6GoXd57bTit
+         c7WQ==
+X-Gm-Message-State: ACrzQf0/sqGwzwODMEYWCmp5doZT92v2vCw5FHIbk6/Emxi3r2WvAjba
+        P4vwensd3N7O7kJitTIr1Ns8vA==
+X-Google-Smtp-Source: AMsMyM4Kim3IsWLAeRiaNmbOWMXPNztIz3EePZlhHCUOgoJB2enCeOLO/ytox+A3fQBULaeUOHQbzA==
+X-Received: by 2002:a2e:a601:0:b0:26c:4149:251a with SMTP id v1-20020a2ea601000000b0026c4149251amr2283442ljp.348.1667081262018;
+        Sat, 29 Oct 2022 15:07:42 -0700 (PDT)
 Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id v14-20020a2ea44e000000b0026e8b82eba6sm442460ljn.34.2022.10.29.15.06.21
+        by smtp.gmail.com with ESMTPSA id h12-20020a2ea48c000000b00277041268absm435049lji.78.2022.10.29.15.07.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Oct 2022 15:06:22 -0700 (PDT)
-Message-ID: <9c1ca51d-2202-8279-cecb-12792385b18d@linaro.org>
-Date:   Sun, 30 Oct 2022 01:06:20 +0300
+        Sat, 29 Oct 2022 15:07:41 -0700 (PDT)
+Message-ID: <c88b11d2-79db-13af-0252-9b7dafb5314e@linaro.org>
+Date:   Sun, 30 Oct 2022 01:07:40 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH 12/15] scsi: ufs: ufs-qcom: Fix the Qcom register name for
- offset 0xD0
+Subject: Re: [PATCH v2 01/12] dt-bindings: iio: qcom: adc7-pm8350: Allow
+ specifying SID for channels
 Content-Language: en-GB
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
+        andersson@kernel.org
 Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org
-References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
- <20221029141633.295650-13-manivannan.sadhasivam@linaro.org>
+        steev@kali.org
+References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
+ <20221029051449.30678-2-manivannan.sadhasivam@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221029141633.295650-13-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20221029051449.30678-2-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/10/2022 17:16, Manivannan Sadhasivam wrote:
-> Fix the register name used for offset 0xD0. The correct name is
-> REG_UFS_PARAM0.
-
-The vendor kernels starting from 3.10 define this register as 
-RETRY_TIMER_REG (but it is unused). I'd suggest adding a comment about 
-the older register name.
-
+On 29/10/2022 08:14, Manivannan Sadhasivam wrote:
+> As per the new ADC7 architecture used by the Qualcomm PMICs, each PMIC
+> has the static Slave ID (SID) assigned by default. The primary PMIC
+> PMK8350 is responsible for collecting the temperature/voltage data from
+> the slave PMICs and exposing them via it's registers.
+> 
+> For getting the measurements from the slave PMICs, PMK8350 uses the
+> channel ID encoded with the SID of the relevant PMIC. So far, the
+> dt-binding for the slave PMIC PM8350 assumed that there will be only
+> one PM8350 in a system. So it harcoded SID 1 with channel IDs.
+> 
+> But this got changed in platforms such as Lenovo X13s where there are a
+> couple of PM8350 PMICs available. So to address multiple PM8350s, change
+> the binding to accept the SID specified by the user and use it for
+> encoding the channel ID.
+> 
+> It should be noted that, even though the SID is static it is not
+> globally unique. Only the primary PMIC has the unique SID id 0.
 > 
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->   drivers/ufs/host/ufs-qcom.h | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |  6 +-
+>   .../dt-bindings/iio/qcom,spmi-adc7-pm8350.h   | 90 +++++++++----------
+>   2 files changed, 46 insertions(+), 50 deletions(-)
 > 
-> diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-> index 6cb0776456b3..214ea50acab9 100644
-> --- a/drivers/ufs/host/ufs-qcom.h
-> +++ b/drivers/ufs/host/ufs-qcom.h
-> @@ -33,7 +33,7 @@ enum {
->   	REG_UFS_TX_SYMBOL_CLK_NS_US         = 0xC4,
->   	REG_UFS_LOCAL_PORT_ID_REG           = 0xC8,
->   	REG_UFS_PA_ERR_CODE                 = 0xCC,
-> -	REG_UFS_RETRY_TIMER_REG             = 0xD0,
-> +	REG_UFS_PARAM0                      = 0xD0,
->   	REG_UFS_PA_LINK_STARTUP_TIMER       = 0xD8,
->   	REG_UFS_CFG1                        = 0xDC,
->   	REG_UFS_CFG2                        = 0xE0,
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
