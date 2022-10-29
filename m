@@ -2,140 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D0B6124DC
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 20:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 976D56124E2
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 20:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiJ2SRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 14:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42080 "EHLO
+        id S229691AbiJ2SZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 14:25:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiJ2SRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 14:17:48 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6DA3742A;
-        Sat, 29 Oct 2022 11:17:39 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 050BE32003D3;
-        Sat, 29 Oct 2022 14:17:36 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sat, 29 Oct 2022 14:17:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1667067456; x=
-        1667153856; bh=kVBk6N/yGZ9tAGNJ6kSU4aOivyafZXMayzGUcpw6CFI=; b=p
-        io7zuhv6wY/6zkAwk7bGRGrAr8q5rMpdg7h94jJ2EOs63vVJx70GbMGmM5veUsyv
-        m1gRWhGVrW3s5wV7Ml5TwBSew/tc7BYNpWrhFzKYtPx4lkFA1BCHbFo10s6Lu1R1
-        GmV3N2kMNAbRCYNgYIobJROqY7v4jqcw2WIYZVEU57uR2xNmpjAQt9uW6OLYFBEx
-        431dDpUS0P0kps2NCjcg2hfKUUBRIy1LGUA52KsMOA+S2jdtSYW67mJaV6XicAsa
-        2pVZujJQkCD/ReTTdjT3pin+sTm4LiHd/XDOQQ8xOPg4kIAMh2d7TjyyRuBd0SyF
-        sziVkAqVc/GxNxxOfgdxA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1667067456; x=
-        1667153856; bh=kVBk6N/yGZ9tAGNJ6kSU4aOivyafZXMayzGUcpw6CFI=; b=s
-        D4G5jWT+qjOh4PqBo8LwTpDuY9nQ3LLQQwV1GkoiUvPSFJl4LnxH3WCfOT8zvoUQ
-        ZNPsW58lsHf+ZCBpNC08YH0I28x+YiStvIIxs5kkcsDdNhkfTntKlx2k8yZ75D3f
-        H7Crgz11LvYBA8okmBQ6A1h2p8/yJOWmTrcqBOCUt6xptAMDbgEUUwFgX/ZiONcB
-        GEUizEJIPaAj0and+PX0Obh+t7uGUGl78Ch4U33YysCQkiSRw+sGs8vGEFxbT/bw
-        nYUREoOLiY9+VWORCZzuQc/mwcsPLBLEQ2arSMNQ2zyUc2VsckiooyqXtWZEpIat
-        shIkwZcGVVXCgmm3U+I/w==
-X-ME-Sender: <xms:O25dY_5HBOYYoqdzRljTYCC8oAumGPppoAtkmKqAthrB6M0Wh3xgmQ>
-    <xme:O25dY073nrKLhl-GN0GI0pPVnS894eyX8Yp0MdfR15D0_wgUg7ykr46SrJyK1uzPi
-    _1EKS-EaHlSrrAWow>
-X-ME-Received: <xmr:O25dY2e4J3ep4qV8vzgpNdbA0n8-Z5-rwldP3LoUvA7YzqzqHsgo1BUXJpfdzgZCItXe3fRi4wrhcWItjjy0y6aHWFWBIg4p2sUVtbh3luNZQ9WicrwVCHupUQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtdekgdduvdefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeegudekuedukeduhedthfdtueeujeekleeiveduvefhuefhkeff
-    vedtueelhfeftdenucffohhmrghinhepghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdroh
-    hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehs
-    rghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:O25dYwJ6bQEzUwkripURDzw6fgzrALMUSx-WNyqMv6Y9LzKbTs98oQ>
-    <xmx:O25dYzKDVmkiLngVYQtkQ-bGteDlXYpvr5it9_7EPZeap2mu75ENRA>
-    <xmx:O25dY5xks2IMhMIF47UH7VfWN62nc9XYHLpCnVRopB4N1KR3NIBdXg>
-    <xmx:QG5dY0UfvV1RNRLqyImkSyCbm1K1sWMFADUJyvzlEWjXb5KLJ9aLFw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 29 Oct 2022 14:17:30 -0400 (EDT)
-Message-ID: <f09812a7-5d7e-f8f8-aba4-7645810a8c52@sholland.org>
-Date:   Sat, 29 Oct 2022 13:17:29 -0500
+        with ESMTP id S229686AbiJ2SZZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 14:25:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9B02CC9C;
+        Sat, 29 Oct 2022 11:25:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07C5360B9C;
+        Sat, 29 Oct 2022 18:25:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADB13C433C1;
+        Sat, 29 Oct 2022 18:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667067923;
+        bh=fk7p0OBEKADdDAykc2nChzzCU3c5n8VRunSlpw/uRtQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=giLgFdhxzhL/uXBZBe3W4KDqMum9mc/a98aK8aoHfzEZD3gloLkMt51JSGuq2YBZh
+         ez6wM4IGP2RxqShiXC9tyAq4qHosHN+VFDipSY/xecSKzLivRMDySCM4W3s8MMzx3e
+         KuoBeEz+M0s4+CyemdvNPChM9RpIJke8DBraf0naNhjVOlQDiL/8AkVetyy72alPuP
+         Bsa18uCx04FUznIB/Kr6RrV9qFz2GWoB7mCos1yxeZHKT0jFP9Zfq941QaVP+tx5db
+         eVg+GMqZZstiFJJAICfGoK6fGkotgcsOvOn5xZDVo6WLWjiMVRVq6odQuwwn8Yst3A
+         /hlEH+iu+u7Ng==
+Message-ID: <46361c9f-8773-07e7-c125-f16b8b7a352b@kernel.org>
+Date:   Sat, 29 Oct 2022 21:25:17 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v8 0/2] gpmc wait pin additions
 Content-Language: en-US
-To:     Max Fierke <max@maxfierke.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <20220918034415.74641-1-max@maxfierke.com>
- <20220918034415.74641-2-max@maxfierke.com>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add prefix for
- ClockworkPi
-In-Reply-To: <20220918034415.74641-2-max@maxfierke.com>
+To:     "B. Niedermayr" <benedikt.niedermayr@siemens.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        ", krzysztof.kozlowski"@linaro.org
+Cc:     robh+dt@kernel.org, tony@atomide.com
+References: <20221021081612.591613-1-benedikt.niedermayr@siemens.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20221021081612.591613-1-benedikt.niedermayr@siemens.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Max,
-
-On 9/17/22 22:44, Max Fierke wrote:
-> Add a prefix for Clockwork Tech LLC, known as ClockworkPi. They
-> produce a number of hobbyist devices, including the ClockworkPi
-> DevTerm and GameShell.
+On 21/10/2022 11:16, B. Niedermayr wrote:
+> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
 > 
-> Signed-off-by: Max Fierke <max@maxfierke.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Currently it is not possible to configure the WAIT0PINPOLARITY and
+> WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via
+> device tree properties.
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 2f0151e9f6be..64f4b899c40c 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -258,6 +258,8 @@ patternProperties:
->      description: Cirrus Logic, Inc.
->    "^cisco,.*":
->      description: Cisco Systems, Inc.
-> +  "^clockworkpi,.*":
-> +    description: Clockwork Tech LLC
+> It is also not possible to use the same wait-pin for different
+> cs-regions.
+> 
+> While the current implementation may fullfill most usecases, it may not
+> be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where
+> more complex interfacing options where possible.
+> 
+> For example interfacing an ASIC which offers multiple cs-regions but
+> only one waitpin the current driver and dt-bindings are not sufficient.
+> 
+> While using the same waitpin for different cs-regions worked for older
+> kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
+> newer kernels (>5.10).
+> 
+> Changes since v1:
+>   * Rebase against recent 6.0.0-rc3 kernel
+>   * Updated eMail recipients list
+> Changes since v2:
+>   * Remove the gpmc register configuration out of the gpiochip
+>     callbacks. In this case the memory interface configuration
+>     is not done via gpio bindings.
+>   * Some minor code fixes
+>   * Changed git commit descriptions
+> Change since v3:
+>   * Use a uint32 dt-property instean a boolean one
+>   * If the dt-property is not set, then don't touch the
+>     GPMC_CONFIG register
+>   * Changed git commit descriptions
+> Changes since v4:
+>   * Use checkpatch with "--strict" option
+>   * Moved wait-pin sanity checks to gpmc_read_settings_dt()
+>   * Always assign WAITPINPOLARITY_DEFAULT on error cases
+>   * Track waitpin allocation within gpmc for determine
+>     allocation origin
+> Changes since v5:
+>   * Tracking of wait-pin allocations with polarity change detection
+>     * Introduced a new struct gpmc_waitpin
+>   * Add GPMC_* to global header definitions
+>   * Don't allow GPMC_WAITPINPOLARITY_DEFAULT when parsing dt-properties
+>   * Squashed wait-pin-polarity and shared-wait-pin patches, since they
+>     should not be separated
+> Changes since v6:
+>   * Move wait-pin allocation into gpmc_probe()
+>   * Fix s/gpmc/GPMC/ in commit description
+>   * use ti,wait-pin-polarity instead of gpmc,wait-pin-polarity
+>   * Refactored if clause in gpmc_alloc_waitpin()
+>   * Revert values for GPMC_WAITPINPOLARITY_ACTIVE_LOW and
+>     GPMC_WAITPINPOLARITY_ACTIVE_HIGH.
+>     Use the exact same values which are written into the register.
+> Changes since v7:
+>   * Renamed GPMC_WAITPINPOLARITY_DEFAULT to GPMC_WAITPINPOLARITY_INVALID
+>   * Call gpiochip_request_own_desc() only on first wait-pin allocation
+>   * Fixed use of old "gpmc,wait-pin-polarity" property.
+> 
+> Benedikt Niedermayr (2):
+>   memory: omap-gpmc: wait pin additions
+>   dt-bindings: memory-controllers: gpmc-child: add wait-pin polarity
+> 
+>  .../memory-controllers/ti,gpmc-child.yaml     |   7 +
+>  drivers/memory/omap-gpmc.c                    | 122 ++++++++++++++++--
+>  include/linux/platform_data/gpmc-omap.h       |   8 ++
+>  3 files changed, 124 insertions(+), 13 deletions(-)
 
-The vendor uses "clockwork" as the prefix in their downstream
-devicetrees[1][2][3], so I would suggest using the same here. I think
-there is a distinction between "Clockwork" the company and "ClockworkPi"
-the product. This is what I did for the board devicetree I sent[4].
+For this series.
 
-Regards,
-Samuel
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
-[1]:
-https://github.com/clockworkpi/DevTerm/blob/main/Code/patch/armbian_build_a04/userpatches/kernel/sunxi-current/kernel_001_dts.patch#L31
-[2]:
-https://github.com/clockworkpi/DevTerm/blob/main/Code/patch/armbian_build_a04/userpatches/kernel/sunxi-current/kernel_001_dts.patch#L127
-[3]:
-https://github.com/clockworkpi/DevTerm/blob/main/Code/patch/armbian_build_a06/patch/kernel-001-a06-dts.patch#L37
-[4]:
-https://lore.kernel.org/lkml/20220815050815.22340-12-samuel@sholland.org/
+> 
+> --
+> 2.25.1
+> 
 
->    "^cloudengines,.*":
->      description: Cloud Engines, Inc.
->    "^cnm,.*":
-
+cheers,
+-roger
