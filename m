@@ -2,206 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA8D6121B3
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 11:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BCD86121C6
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 11:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229726AbiJ2JLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 05:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50888 "EHLO
+        id S229716AbiJ2JaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 05:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbiJ2JLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 05:11:36 -0400
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714A874DFF;
-        Sat, 29 Oct 2022 02:11:35 -0700 (PDT)
-Received: by mail-pj1-x1033.google.com with SMTP id j7so2915633pjn.5;
-        Sat, 29 Oct 2022 02:11:35 -0700 (PDT)
+        with ESMTP id S229482AbiJ2JaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 05:30:08 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EFD0564EC;
+        Sat, 29 Oct 2022 02:30:05 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id r186-20020a1c44c3000000b003cf4d389c41so5114812wma.3;
+        Sat, 29 Oct 2022 02:30:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XGovVwjV1E6BtwAiQsNOA452MnQdQNOQG6D6vOb6hjA=;
-        b=p2QpFFF5brhI4B/eXe+Z4xKQnOouzEpVnsR2XVDcm6l2MYNVqlTciLf4+nBkZxvVnP
-         oFSWEV1VNijYMeOfawxJGLATxCcZyE+2Ep5EkFwnGqACwpt188YeIlh0E/i3wPBvtwcQ
-         6p1hfuLM/TBc5AvXxutguyvUN4gvjjV8zvXSq8YqEzyiJfxZwSMvF7pSe5TTJuuXS5wy
-         vuLc60YIxYAEYtYjEjGQwsmjCIPzvg2e5WPgD4KqKhrtuyMw8ETHzKclKdrbZPz+5HYW
-         hInjBTHcD+fAYruoqy00HDYWKdsBiKLgfQKI+jqNeHCWdgEpjazZVUMUP+K96RgWDNoa
-         2kFA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IMcGPMOyuVjrwsxO9/L14qIeyoUHwUkbeOcTtHo1MFY=;
+        b=hbRRMUxR76ePgCyqoRPN+EmfTeZ+GbVR+gKCCI9C5iGTOwattxP4FlhMiW0KpBBWEV
+         mDoScxT2uyIkP/wxVJlo4n4epxanwNfKuQolXdyKCV8oOktoYnEkXsf0etvz9bjzU09u
+         j3bVcN5zXq7arHe5fempliuY3Vj8GpQVJZSC27AviAPKv0xKqat6o/ZbUblT6bp8oIqs
+         0HmRlid0oipHzPh+Q9M3Kzd16XW9ouyQM9DwTi1o5hDEnWo8oxd/eKRL/MnyH7W2BELz
+         SXMFQE3DycU8V1zBnJgbZYbJpnpValgpY8herm60ZJfKfrFRkqNGkQc1YfVciwXjHM6m
+         2jCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XGovVwjV1E6BtwAiQsNOA452MnQdQNOQG6D6vOb6hjA=;
-        b=VBzXX0IgS4L2TJOOnHluohLpeXjon8mIhQeNgTdjoWc/XPS203Q5sbpFQBb392AFV9
-         AuTyxmNTTv8i+mqb+mUllZiC0BdoHpe/iCoIPPsGl6ATVn4OVyEoQlcwxJHenQrlTbVV
-         DynqjBuI8K9y3pMTskxu5/xZQkQKXIRnN3P7Sm98XFIs1nAtf4oFfXkKwHoTToMGMmc+
-         daazj/oLLlJI5b34Io2yLHSLFCbexnnqcJUpuLVJ6Y3qNxW8X8PpmW8LBtIqKS2e/wVf
-         aXqxyjcrg0b2mFNferbNN13tIbNlCQPPDnUjgb3McpCLRvReKCWbg+Yk0NOL7pbzwlDb
-         w51g==
-X-Gm-Message-State: ACrzQf27OWUudc0s3/fhXad6B1751sc/x6ypBddN2la8qoI5K0mbSOyM
-        MNDiC9Pp7ja8XoMmLK8iXBA=
-X-Google-Smtp-Source: AMsMyM4OatQFYqVqmKwLry/ueQrrTE1Ary//IAEG8r6UYYkfBMVy9IEHCtjpLWqjIXaf33tEae5evQ==
-X-Received: by 2002:a17:90a:9606:b0:213:aff5:e537 with SMTP id v6-20020a17090a960600b00213aff5e537mr1690450pjo.183.1667034694859;
-        Sat, 29 Oct 2022 02:11:34 -0700 (PDT)
-Received: from debian.me (subs02-180-214-232-1.three.co.id. [180.214.232.1])
-        by smtp.gmail.com with ESMTPSA id i66-20020a626d45000000b0056b8e788acesm789333pfc.82.2022.10.29.02.11.34
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IMcGPMOyuVjrwsxO9/L14qIeyoUHwUkbeOcTtHo1MFY=;
+        b=KntK7Vyr5zQEYcMCPItR/ikDxQ9azHOOAV7tiCR+fxOcYn0/SXiR49DCd79KZrHFoA
+         YECdJE7aqY1gm8U/iy37h6OSeiaxwqH12YxfAmAFd80UM8XioTXUdCSJsaG2EEvyssz5
+         e5MFDjP+YwgQyJfP7QITjvZrQ1ppj3tyeAgZRByqkq5EtbYkvR912yqNn72uR5+/yBa9
+         nq6CsdJKj0lp9XfA3pkcV4AN9ZCGit+JN+VAuAtHk4iB8r5wtbOtxsN5p+5llv9u/QsK
+         FpXompwDK/rXjWJuWDYsTy4xfEmV5HOEVXW7TjOgxUykuuEEaeFiwynQEbolyETHN/pB
+         Q4xw==
+X-Gm-Message-State: ACrzQf0aEJky1lipANENjAJCaJhiEyYSE7GbNTbZRHWmDubS1ltOOn4X
+        I9uNXT6jGzqFc1nhzxelfIVQN0WJ2fcIJg==
+X-Google-Smtp-Source: AMsMyM6ZQsraZKeZFId8+Hf2p+MRXWZ12xb2BfGulzb0UcE5iPR1ky5D7Nc7jvllyiqJCM8g7uVVvQ==
+X-Received: by 2002:a05:600c:3d18:b0:3cf:4c1e:5812 with SMTP id bh24-20020a05600c3d1800b003cf4c1e5812mr11715380wmb.192.1667035803509;
+        Sat, 29 Oct 2022 02:30:03 -0700 (PDT)
+Received: from discovery.. (p5b3f76b5.dip0.t-ipconnect.de. [91.63.118.181])
+        by smtp.gmail.com with ESMTPSA id f7-20020adff987000000b0022e6178bd84sm1068187wrr.8.2022.10.29.02.30.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Oct 2022 02:11:34 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 1AF4E103D6E; Sat, 29 Oct 2022 16:11:30 +0700 (WIB)
-Date:   Sat, 29 Oct 2022 16:11:30 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org
-Subject: Re: [PATCH v8 4/9] phy: fsl: Add Lynx 10G SerDes driver
-Message-ID: <Y1zuQvkyqtHOPGrk@debian.me>
-References: <20221027191113.403712-1-sean.anderson@seco.com>
- <20221027191113.403712-5-sean.anderson@seco.com>
+        Sat, 29 Oct 2022 02:30:03 -0700 (PDT)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, andy.shevchenko@gmail.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, Saravanan Sekar <sravanhome@gmail.com>
+Subject: [PATCH v5 0/8] Add support for mp2733 battery charger
+Date:   Sat, 29 Oct 2022 11:29:52 +0200
+Message-Id: <20221029093000.45451-1-sravanhome@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9mhS4nfECiIf9yXH"
-Content-Disposition: inline
-In-Reply-To: <20221027191113.403712-5-sean.anderson@seco.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+changes in v5:
+  - fixed commit message on v5-0002 and v5-0004
 
---9mhS4nfECiIf9yXH
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+changes in v4:
+  - fixed attributes groups review comments in v3
+  - added new bug fix patches v4-0007 and v4-0008 
 
-On Thu, Oct 27, 2022 at 03:11:08PM -0400, Sean Anderson wrote:
->  .. only::  subproject and html
-> diff --git a/Documentation/driver-api/phy/lynx_10g.rst b/Documentation/dr=
-iver-api/phy/lynx_10g.rst
-> new file mode 100644
-> index 000000000000..ebbf4dd86726
-> --- /dev/null
-> +++ b/Documentation/driver-api/phy/lynx_10g.rst
-> @@ -0,0 +1,58 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> +Lynx 10G Phy (QorIQ SerDes)
-> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> +
-> +Using this phy
-> +--------------
-> +
-> +:c:func:`phy_get` just gets (or creates) a new :c:type:`phy` with the la=
-nes
-> +described in the phandle. :c:func:`phy_init` is what actually reserves t=
-he
-> +lanes for use. Unlike some other drivers, when the phy is created, there=
- is no
-> +default protocol. :c:func:`phy_set_mode <phy_set_mode_ext>` must be call=
-ed in
-> +order to set the protocol.
-> +
-> +Supporting SoCs
-> +---------------
-> +
-> +Each new SoC needs a :c:type:`struct lynx_conf <lynx_conf>`, containing =
-the
-> +number of lanes in each device, the endianness of the device, and the he=
-lper
-> +functions to use when selecting protocol controllers. For example, the
-> +configuration for the LS1046A is::
+changes in v3:
+  - fixed dt_binding_check error
+  - fixed spelling usb->USB
 
-Did you mean struct lynx_cfg as in below snippet?
+changes in v2:
+  - fixed spelling
+  - revert back probe to probe_new in mfd driver
 
-> +
-> +    static const struct lynx_cfg ls1046a_cfg =3D {
-> +        .lanes =3D 4,
-> +        .endian =3D REGMAP_ENDIAN_BIG,
-> +        .mode_conflict =3D lynx_ls_mode_conflict,
-> +        .mode_apply =3D lynx_ls_mode_apply,
-> +        .mode_init =3D lynx_ls_mode_init,
-> +    };
-> +
-> +The ``mode_`` functions will generally be common to all SoCs in a series=
- (e.g.
-> +all Layerscape SoCs or all T-series SoCs).
-> +
-> +In addition, you will need to add a device node as documented in
-> +``Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml``. This lets t=
-he
-> +driver know which lanes are available to configure.
-> +
-> +Supporting Protocols
-> +--------------------
-> +
-> +Each protocol is a combination of values which must be programmed into t=
-he lane
-> +registers. To add a new protocol, first add it to :c:type:`enum lynx_pro=
-tocol
-> +<lynx_protocol>`. Add a new entry to `lynx_proto_params`, and populate t=
-he
-> +appropriate fields. Modify `lynx_lookup_proto` to map the :c:type:`enum
-> +phy_mode <phy_mode>` to :c:type:`enum lynx_protocol <lynx_protocol>`. Up=
-date
-> +the ``mode_conflict``, ``mode_apply``, and ``mode_init`` helpers are upd=
-ated to
-> +support your protocol.
-> +
+I do not see a cover letter, but FWIW,
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+for all patches except DT binding
+Note, some of the comments regarding spelling were given, I believe
+you are going to address them in v3.
 
-These lynx_ keywords should be in double backticks to be consistent
-(rendered as inline code).
 
-Also, don't forget to add conjunctions:
+add support for mp2733 Battery charger control driver for Monolithic
+Power System's MP2733 chipset 
 
-"... Then modify ``lynx_lookup_proto`` ... Finally, update the ...
-helpers ..."
+Saravanan Sekar (8):
+  iio: adc: mp2629: fix wrong comparison of channel
+  mfd: mp2629: fix failed to get iio channel by device name
+  iio: adc: mp2629: fix potential array out of bound access
+  power: supply: fix wrong interpretation of register value
+  mfd: mp2629: Add support for mps mp2733 battery charger
+  iio: adc: mp2629: restrict input voltage mask for mp2629
+  power: supply: Add support for mp2733 battery charger
+  power: supply: mp2629: Add USB fast charge settings
 
-> +You may need to modify :c:func:`lynx_set_mode` in order to support your
-> +protocol. This can happen when you have added members to :c:type:`struct
-> +lynx_proto_params <lynx_proto_params>`. It can also happen if you have s=
-pecific
-> +clocking requirements, or protocol-specific registers to program.
-> +
-> +Internal API Reference
-> +----------------------
-> +
-> +.. kernel-doc:: drivers/phy/freescale/phy-fsl-lynx-10g.c
+ .../ABI/testing/sysfs-class-power-mp2629      |  16 ++
+ drivers/iio/adc/mp2629_adc.c                  |   8 +-
+ drivers/mfd/mp2629.c                          |   7 +-
+ drivers/power/supply/mp2629_charger.c         | 229 +++++++++++++++---
+ include/linux/mfd/mp2629.h                    |   6 +
+ 5 files changed, 228 insertions(+), 38 deletions(-)
 
-Otherwise LGTM, thanks.
+-- 
+2.32.0
 
---=20
-An old man doll... just what I always wanted! - Clara
-
---9mhS4nfECiIf9yXH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY1zuPAAKCRD2uYlJVVFO
-o0lFAQDAGPql7PsJtgyOHANd61r9QA5C1NsAs7p1z2APtWtn7wD8CZbEagXT+kX1
-GJMBh0UPc1fhpUiL2ln6IRYVs6nfRw0=
-=CfkV
------END PGP SIGNATURE-----
-
---9mhS4nfECiIf9yXH--
