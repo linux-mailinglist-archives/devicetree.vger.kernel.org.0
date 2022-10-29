@@ -2,131 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E522B6123E5
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0188F6123E8
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbiJ2O3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 10:29:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57096 "EHLO
+        id S229613AbiJ2Obs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 10:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbiJ2O3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:29:09 -0400
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 534BB638FC
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 07:29:08 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.29.156.neoplus.adsl.tpnet.pl [95.49.29.156])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 316E83EE8A;
-        Sat, 29 Oct 2022 16:29:06 +0200 (CEST)
-Message-ID: <90b7e0e0-a354-f64d-8c53-aa80df684a3a@somainline.org>
-Date:   Sat, 29 Oct 2022 16:29:05 +0200
+        with ESMTP id S229565AbiJ2Obr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:31:47 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BD75F139
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 07:31:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=6XeitnMdgwFpeuK+H13twlavq6fbNgWRZM0W9Q9wNqQ=; b=BkDVIX/+LNajR4WP3unVw1T+eB
+        FPzBZvY4ONnXa+yiZQmCCnQClBVtEN1OtlaEYTbqa7I7BMhuqJxM5OQm0Ok4M7kt8SBWduFgwOUcS
+        Mb67oWk0QzDDgb7D8pobw9F5xDKCD7HnZiPjd4FDzHp8lvJn+H+Rf8x2xb9SQ6zy8llU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oomru-000uEZ-Ej; Sat, 29 Oct 2022 16:31:26 +0200
+Date:   Sat, 29 Oct 2022 16:31:26 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Adam Baker <linux@baker-net.org.uk>
+Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Tony Dinh <mibodhi@gmail.com>
+Subject: Re: [PATCH] ARM: dts: kirkwood: Add Zyxel NSA310S board
+Message-ID: <Y105PjbwnFJ1wItM@lunn.ch>
+References: <20220929080110.3182561-1-paweldembicki@gmail.com>
+ <YzWVOyM+Z3AFSI7c@lunn.ch>
+ <e78b6ece-8dfa-733f-d449-1108a9545223@baker-net.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v2 12/12] arm64: dts: qcom: sc8280xp-x13s: Add thermal
- zone support
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        johan+linaro@kernel.org, quic_jprakash@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, steev@kali.org
-References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
- <20221029051449.30678-13-manivannan.sadhasivam@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221029051449.30678-13-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e78b6ece-8dfa-733f-d449-1108a9545223@baker-net.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 29.10.2022 07:14, Manivannan Sadhasivam wrote:
-> Add thermal zone support by making use of the thermistor SYS_THERM6.
-> Based on experiments, this thermistor seems to reflect the actual
-> surface temperature of the laptop.
+On Sat, Oct 29, 2022 at 01:14:52AM +0100, Adam Baker wrote:
+> On 29/09/2022 13:53, Andrew Lunn wrote:
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > Same license comment. However, you can only change the license if it
+> > is your code. If you did the conversion from a board setup file to DT,
+> > you can change the license. If somebody else did that and you are just
+> > submitting it, then we need to keep to GPL-2.0-only.
 > 
-> For the cooling device, all BIG CPU cores are throttle down to keep the
-s/throttle/throttled
+> As it lists my name in the copyright I'm guessing it is derived from my
+> nsa320 device tree. If so I have no objection to relicensing to GPL2 + MIT
+> for anything that came from my code.
 
-Is it okay to let the 4xA78C run at full throttle in thermal emergencies though?
-> temperature at a sane level.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index ca77c19c6d0d..96e2fa72f782 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -29,6 +29,52 @@ backlight {
->  		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
->  	};
->  
-> +	thermal-zones {
-> +		skin-temp-thermal {
-> +			polling-delay-passive = <250>;
-> +			polling-delay = <0>;
-> +			thermal-sensors = <&pmk8280_adc_tm 5>;
-> +
-> +			trips {
-> +				skin_temp_alert0: trip-point0 {
-> +					temperature = <55000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +
-> +				skin_temp_alert1: trip-point1 {
-> +					temperature = <58000>;
-> +					hysteresis = <1000>;
-> +					type = "passive";
-> +				};
-> +
-> +				skin-temp-crit {
-> +					temperature = <73000>;
-Ouch, I didn't know we were serving burnt fingers at the cafeteria today :D
+Thanks Adam.
 
-Or maybe this just looks scary.. The laptop looks plastic, so maybe it won't cause instant
-burns?
+It would be nice if you sent an Acked-by: on the patch.
 
-Konrad
-> +					hysteresis = <1000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&skin_temp_alert0>;
-> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +
-> +				map1 {
-> +					trip = <&skin_temp_alert1>;
-> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	vreg_edp_bl: regulator-edp-bl {
->  		compatible = "regulator-fixed";
->  
+   Andrew
