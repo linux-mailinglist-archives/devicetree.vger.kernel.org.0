@@ -2,87 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF7061238A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4814261239B
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbiJ2OQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 10:16:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37864 "EHLO
+        id S229887AbiJ2ORT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 10:17:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbiJ2OQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:16:23 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [5.144.164.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D685264A0
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 07:16:22 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.29.156.neoplus.adsl.tpnet.pl [95.49.29.156])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 483E63EFD3;
-        Sat, 29 Oct 2022 16:16:20 +0200 (CEST)
-Message-ID: <061d3d94-9e60-21f3-9e9e-ea121142cd05@somainline.org>
-Date:   Sat, 29 Oct 2022 16:16:19 +0200
+        with ESMTP id S229841AbiJ2OQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:16:59 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 541645F10D
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 07:16:54 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d10so7091005pfh.6
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 07:16:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XUgElLMFDRghXwZQM2277E5lbjtRUO+bSagQ51THrn8=;
+        b=hlFw3VNhdEjhNbDugmqQbdr3ZoY7/PJIRYJ8nuzsfu57VEImN/daGMaKM8P0zRqK+k
+         TH147l5elpo6UQsdFsJlfVTHfg6MvBSIxlemEQ5pCvROO2UBndr6y7uB+MGJyXBKRrVv
+         QaQbNmGV6fvDA5rleWbpG4b6xHYyGkbhT+Y03ZjwHiHhclIsYYW5Ojg63cMipi5C4lbo
+         akr65YxRr6VFHJ0Z7w/7dGZgjuHLqfMJTR1UMQbTKr0twgel+bwFwaJ8r7Lk4zJDdRe6
+         F64HUqagS7yW2IC/2orTGobu+W9p6tBqjb6SxuIR/lcDJ+dxBRkP+YyBf8nh/d9RkmUl
+         pXfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XUgElLMFDRghXwZQM2277E5lbjtRUO+bSagQ51THrn8=;
+        b=APaspE+viPW3oOb4HcQxkQ9i6ntUKOj/re/GrnSRmK05br8MeFzgX0tl+aybMvnklf
+         bN8kOMFAEfxdc7o62DsJnS/03FBmRXgjuK4BgbuXDHrlOwbb2iD2ji51YRQZ4h03vtT3
+         nS+nkFTvHMRRHNB+0xnw1WaPi3Q60PhatVARO/PPoEE3Dpr9OoEm+E7hVP+g6mXiTIg+
+         gTXS8WwWo1Y5xjNA5YqVToOYRexalameUavR31YBm4NG1qRDg9LThOS5oq6XKqEgErsF
+         gbHX4msbUGY2ffC90SJQzvfv9+NwihCxCKWv43VqLTEVNpZGgZUpU6m2SG04V85SgEt8
+         AM4Q==
+X-Gm-Message-State: ACrzQf25yZlQaf+2aTtxRwOjnTFhZtZKJn3Yer5WWJH7wFKwWcHxJ683
+        sZmR1l8bBmRhhQmNsJC8+AmS
+X-Google-Smtp-Source: AMsMyM61nYHwbC8ugbPRGE7JQBjSBZbAW3B6wYn1EzUISYGwQKkwHK4PcK7DahB/9BSqNiuIHZH2pA==
+X-Received: by 2002:a63:9049:0:b0:46f:59b9:1645 with SMTP id a70-20020a639049000000b0046f59b91645mr4078692pge.541.1667053013986;
+        Sat, 29 Oct 2022 07:16:53 -0700 (PDT)
+Received: from localhost.localdomain ([117.193.208.18])
+        by smtp.gmail.com with ESMTPSA id u4-20020a170902e5c400b001866049ddb1sm1370157plf.161.2022.10.29.07.16.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Oct 2022 07:16:53 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        andersson@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 02/15] phy: qcom-qmp-ufs: Add support for configuring PHY in HS Series B mode
+Date:   Sat, 29 Oct 2022 19:46:20 +0530
+Message-Id: <20221029141633.295650-3-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
+References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v2 06/12] arm64: dts: qcom: sc8280xp-pmics: Add support
- for TM5 block in PMK8280
-Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        andersson@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        johan+linaro@kernel.org, quic_jprakash@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, steev@kali.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
- <20221029051449.30678-7-manivannan.sadhasivam@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221029051449.30678-7-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add separate tables_hs_b instance to allow the PHY driver to configure the
+PHY in HS Series B mode. The individual SoC configs need to supply the
+serdes register setting in tables_hs_b and the UFS driver can request the
+Series B mode by calling phy_set_mode() with mode set to PHY_MODE_UFS_HS_B.
 
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-On 29.10.2022 07:14, Manivannan Sadhasivam wrote:
-> Thermal Monitoring block ADC5 (TM5) in PMK8280 can be used to monitor the
-> temperature from secondary PMICs like PM8280.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+index cdfda4e6d575..4c6a2b5afc9a 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+@@ -20,6 +20,8 @@
+ #include <linux/reset.h>
+ #include <linux/slab.h>
+ 
++#include <ufs/unipro.h>
++
+ #include <dt-bindings/phy/phy.h>
+ 
+ #include "phy-qcom-qmp.h"
+@@ -549,6 +551,8 @@ struct qmp_phy_cfg {
+ 
+ 	/* Main init sequence for PHY blocks - serdes, tx, rx, pcs */
+ 	const struct qmp_phy_cfg_tables tables;
++	/* Additional sequence for HS Series B */
++	const struct qmp_phy_cfg_tables tables_hs_b;
+ 
+ 	/* clock ids to be requested */
+ 	const char * const *clk_list;
+@@ -582,6 +586,7 @@ struct qmp_phy_cfg {
+  * @rx2: iomapped memory space for second lane's rx (in dual lane PHYs)
+  * @pcs_misc: iomapped memory space for lane's pcs_misc
+  * @qmp: QMP phy to which this lane belongs
++ * @mode: PHY mode configured by the UFS driver
+  */
+ struct qmp_phy {
+ 	struct phy *phy;
+@@ -594,6 +599,7 @@ struct qmp_phy {
+ 	void __iomem *rx2;
+ 	void __iomem *pcs_misc;
+ 	struct qcom_qmp *qmp;
++	u32 mode;
+ };
+ 
+ /**
+@@ -983,6 +989,8 @@ static int qmp_ufs_power_on(struct phy *phy)
+ 	int ret;
+ 
+ 	qmp_ufs_serdes_init(qphy, &cfg->tables);
++	if (qphy->mode == PHY_MODE_UFS_HS_B)
++		qmp_ufs_serdes_init(qphy, &cfg->tables_hs_b);
+ 
+ 	qmp_ufs_lanes_init(qphy, &cfg->tables);
+ 
+@@ -1070,6 +1078,15 @@ static int qmp_ufs_disable(struct phy *phy)
+ 	return qmp_ufs_exit(phy);
+ }
+ 
++static int qmp_ufs_set_mode(struct phy *phy, enum phy_mode mode, int submode)
++{
++	struct qmp_phy *qphy = phy_get_drvdata(phy);
++
++	qphy->mode = mode;
++
++	return 0;
++}
++
+ static int qmp_ufs_vreg_init(struct device *dev, const struct qmp_phy_cfg *cfg)
+ {
+ 	struct qcom_qmp *qmp = dev_get_drvdata(dev);
+@@ -1105,6 +1122,7 @@ static int qmp_ufs_clk_init(struct device *dev, const struct qmp_phy_cfg *cfg)
+ static const struct phy_ops qcom_qmp_ufs_ops = {
+ 	.power_on	= qmp_ufs_enable,
+ 	.power_off	= qmp_ufs_disable,
++	.set_mode	= qmp_ufs_set_mode,
+ 	.owner		= THIS_MODULE,
+ };
+ 
+-- 
+2.25.1
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> index 3c56e4cb5b5b..6f95743bf87d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-> @@ -84,6 +84,16 @@ pmk8280_vadc: adc@3100 {
->  			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
->  			#io-channel-cells = <1>;
->  		};
-> +
-> +		pmk8280_adc_tm: adc-tm@3400 {
-> +			compatible = "qcom,spmi-adc-tm5-gen2";
-> +			reg = <0x3400>;
-> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#thermal-sensor-cells = <1>;
-> +			status = "disabled";
-> +		};
->  	};
->  
->  	pmc8280_1: pmic@1 {
