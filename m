@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06514612010
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 06:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8BB661201D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 06:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbiJ2E3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 00:29:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55012 "EHLO
+        id S229691AbiJ2EpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 00:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiJ2E27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 00:28:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9BCAC4A1;
-        Fri, 28 Oct 2022 21:28:58 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2AB2D6097D;
-        Sat, 29 Oct 2022 04:28:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C278C433B5;
-        Sat, 29 Oct 2022 04:28:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667017737;
-        bh=aTygU2PRy7lfkCjg6NARWEJFi56C6SOOGo8ciffs0M4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=kC2UVQISZ4nPYgwr4pAfEbOBLInAwPZ7BrO0UqU77CO3g/1OthskPiQ56m4beDNuo
-         kirUfT3Yx90wgKypNS+4vJq45qniwWZUc61/bK/BpC/gURWj1Nrz+9NX2M9R8k6QG1
-         JVdJ2764RFk/m7zvOiE5C6G0+diBCReXzgYnEmWeTT79aQqxt/Q0xE0GTJlZAgQkQ+
-         o05mujJ+CZu7Sj9aiS4aEm70LUW60rqBZVnpJa9ILh9PC6R6K5OhZ6IOgrL0GuWS8I
-         ayIRuIXNfHl/AlNCL8ZzAEKdDVQYeKE8CeQo6WEcorRvAhqZDpo2cCwIauEQDlxiZU
-         gwXMZ1oaJI3hg==
-Received: by mail-oi1-f182.google.com with SMTP id r187so8131587oia.8;
-        Fri, 28 Oct 2022 21:28:57 -0700 (PDT)
-X-Gm-Message-State: ACrzQf1Y7EH1maZ7DcN4qqklAArydKnonl4f41IrNu15dXPojMMnN+Tl
-        57h75/hT6TdH9eazF7RPxwaxoNGYLSPSF36cVi8=
-X-Google-Smtp-Source: AMsMyM7qr9dXGyzxd/3829olJulGF7SulN3N+dRbu+X5QyTSvh7ZfeE/P62C1xUQsuyr9RgMVhxxfngZ/+bX0pJujPk=
-X-Received: by 2002:a05:6808:f0e:b0:359:b055:32ea with SMTP id
- m14-20020a0568080f0e00b00359b05532eamr9050147oiw.112.1667017736773; Fri, 28
- Oct 2022 21:28:56 -0700 (PDT)
+        with ESMTP id S229531AbiJ2EpN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 00:45:13 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1D6422EC
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 21:45:09 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id j7so2619447pjn.5
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 21:45:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cMXXcHIJpdgfCG4kb6+eRNUQjVyKYt9c/7vvbgqvAxI=;
+        b=C/tu0qOWJARQpN3fLEdgRr7dSfDpf9yG3SR2/GY9PQRughufYGZ9dzpGr/bRHF6IjS
+         f2Msprm5/bA1GxS/G2N/ANCQ9jBuyJaT+FrqeMVmB3EqMaQSdZGCkjWwfnbnSLHXAoZ1
+         byPEyC1H4w6X6ZMflOId7SKrokFzVpJWt7XK3UFx5zFhzw5kpyu+A9L8xnsya+0Dg5+z
+         sJ657P5/Vi++gBf+do6h3BuawEgHCDj29UVk2G+/ErkF1x8dkCRBPFn7xHJHIZEWqyUu
+         +zjP0ZBiHPZXyUQ9pKbClr3RyLNMMW19VA/YhZDTMvkPDNHEAQIvDPxc11vV5AuDlRgx
+         yq6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cMXXcHIJpdgfCG4kb6+eRNUQjVyKYt9c/7vvbgqvAxI=;
+        b=MKFtyYGi86GryXPe2Zei3v1TYhVyWp0Moz7IWVg7i62pIZuSq5kl0wiR0XRb9KTMIN
+         kzCaEuEQRtdWx2/4WRy1APY7kjx9NYt/tBNmqU1fSm/UlrYIKM1dib+X4gMXhJMgNZBs
+         CprUz1iYUzHcVnfCp6WU0aWn+Y4F79RNWJ/EBHBjfZEE9EHoN7dL2ZJUh7ishUJtybkd
+         PSUmutSrO7ZTrZ8mWCM9GSFMqPvt5cz3NyYBygFsT/DWVZNM3ZVPVeka5Mdyiy66+7rb
+         P/SeWQRajVfjGZdC4jjCZA4nChyLlhCOSBfhoJ/7FLj8dib7LwPMB0pWyohVZ/5+Mr9B
+         df/A==
+X-Gm-Message-State: ACrzQf0/Nje1AND6lU2u60+hwdIOPKtbmdcftwhs7pW7HhuTkRYQryPI
+        CNKqv7s47YKkexSm0TI/3S12
+X-Google-Smtp-Source: AMsMyM5yMqiV4qvNeajNznO/K4lRaEUuV+0wpajr6EvNKhNOmn3cdV4wPficSOCXTrfPLg1vTQsCbw==
+X-Received: by 2002:a17:903:2014:b0:186:8937:28a6 with SMTP id s20-20020a170903201400b00186893728a6mr2534512pla.39.1667018709223;
+        Fri, 28 Oct 2022 21:45:09 -0700 (PDT)
+Received: from thinkpad ([59.92.103.167])
+        by smtp.gmail.com with ESMTPSA id u10-20020a170902e80a00b00186b69157ecsm293533plg.202.2022.10.28.21.45.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Oct 2022 21:45:08 -0700 (PDT)
+Date:   Sat, 29 Oct 2022 10:15:01 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        johan+linaro@kernel.org, quic_jprakash@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 08/11] arm64: dts: qcom: sc8280xp-x13s: Add PMK8280 VADC
+ channels
+Message-ID: <20221029044501.GB5362@thinkpad>
+References: <20221027063006.9056-1-manivannan.sadhasivam@linaro.org>
+ <20221027063006.9056-9-manivannan.sadhasivam@linaro.org>
+ <0d4af50e-558a-e9cd-1d6f-54c77e0deb86@linaro.org>
+ <1f1ecb2c-16d8-4530-9deb-7ef8861a128d@linaro.org>
 MIME-Version: 1.0
-References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20221028165921.94487-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Sat, 29 Oct 2022 12:28:44 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTSJML1buw3mO-2Oy8SAsHFk0hqKabiKhAQLfyuOcnas-g@mail.gmail.com>
-Message-ID: <CAJF2gTSJML1buw3mO-2Oy8SAsHFk0hqKabiKhAQLfyuOcnas-g@mail.gmail.com>
-Subject: Re: [PATCH v5 7/7] riscv: configs: defconfig: Enable Renesas RZ/Five SoC
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1f1ecb2c-16d8-4530-9deb-7ef8861a128d@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,66 +78,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Guo Ren <guoren@kernel.org>
+On Thu, Oct 27, 2022 at 10:04:24AM -0400, Krzysztof Kozlowski wrote:
+> On 27/10/2022 10:03, Krzysztof Kozlowski wrote:
+> > On 27/10/2022 02:30, Manivannan Sadhasivam wrote:
+> >> Add VADC channels for measuring the on-chip die temperature and external
+> >> crystal osciallator temperature of PMK8280.
+> >>
+> >> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >> ---
+> >>  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 18 ++++++++++++++++++
+> >>  1 file changed, 18 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> >> index 6aa8cf6d9776..9ac5d5c22832 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> >> @@ -7,6 +7,7 @@
+> >>  /dts-v1/;
+> >>  
+> >>  #include <dt-bindings/gpio/gpio.h>
+> >> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+> >>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> >>  
+> >>  #include "sc8280xp.dtsi"
+> >> @@ -173,6 +174,23 @@ &pmk8280_pon_resin {
+> >>  	status = "okay";
+> >>  };
+> >>  
+> >> +&pmk8280_vadc {
+> >> +	status = "okay";
+> >> +
+> >> +	pmk8280-die-temp@3 {
+> > 
+> > die-temp@
+> 
+> Hm, wait, unless this is the die temperature of pmk8280? But then how
+> about pmic-die-temp?
 
-On Sat, Oct 29, 2022 at 12:59 AM Prabhakar <prabhakar.csengg@gmail.com> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Enable Renesas RZ/Five SoC config in defconfig. It allows the default
-> upstream kernel to boot on RZ/Five SMARC EVK board.
->
-> Alongside enable SERIAL_SH_SCI config so that the serial driver used by
-> RZ/Five SoC is built-in.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v4 -> v5
-> * No change
->
-> v3 -> v4
-> * Explicitly enabled ARCH_R9A07G043 config (note I have restored the RB
->   tags with this change)
-> * Used riscv instead of RISC-V in subject line
->
-> v2 -> v3
-> * Included RB tags
-> * Updated commit description
->
-> v1 -> v2
-> * New patch
-> ---
->  arch/riscv/configs/defconfig | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-> index 05fd5fcf24f9..97fba7884d7a 100644
-> --- a/arch/riscv/configs/defconfig
-> +++ b/arch/riscv/configs/defconfig
-> @@ -29,6 +29,8 @@ CONFIG_SOC_MICROCHIP_POLARFIRE=y
->  CONFIG_SOC_SIFIVE=y
->  CONFIG_SOC_STARFIVE=y
->  CONFIG_SOC_VIRT=y
-> +CONFIG_ARCH_RENESAS=y
-> +CONFIG_ARCH_R9A07G043=y
->  CONFIG_SMP=y
->  CONFIG_HOTPLUG_CPU=y
->  CONFIG_PM=y
-> @@ -123,6 +125,7 @@ CONFIG_INPUT_MOUSEDEV=y
->  CONFIG_SERIAL_8250=y
->  CONFIG_SERIAL_8250_CONSOLE=y
->  CONFIG_SERIAL_OF_PLATFORM=y
-> +CONFIG_SERIAL_SH_SCI=y
->  CONFIG_VIRTIO_CONSOLE=y
->  CONFIG_HW_RANDOM=y
->  CONFIG_HW_RANDOM_VIRTIO=y
-> --
-> 2.25.1
->
+Yes, this is the die temperature of PMK8280, so "pmic-die-temp" makes sense.
 
+Thanks,
+Mani
+
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
 -- 
-Best Regards
- Guo Ren
+மணிவண்ணன் சதாசிவம்
