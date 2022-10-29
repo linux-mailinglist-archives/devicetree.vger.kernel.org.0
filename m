@@ -2,51 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0F7F612295
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 13:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68F016122E0
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 14:23:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbiJ2LwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 07:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47720 "EHLO
+        id S229536AbiJ2MXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 08:23:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbiJ2LwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 07:52:10 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954F76C766;
-        Sat, 29 Oct 2022 04:52:08 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4MzyM65s8MzVj83;
-        Sat, 29 Oct 2022 19:47:14 +0800 (CST)
-Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
- (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Sat, 29 Oct
- 2022 19:52:06 +0800
-From:   Weilong Chen <chenweilong@huawei.com>
-To:     <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <wsa@kernel.org>, <andriy.shevchenko@linux.intel.com>,
-        <f.fainelli@gmail.com>, <jarkko.nikula@linux.intel.com>,
-        <jdelvare@suse.de>, <william.zhang@broadcom.com>,
-        <jsd@semihalf.com>, <conor.dooley@microchip.com>,
-        <phil.edworthy@renesas.com>,
-        <tharunkumar.pasumarthi@microchip.com>,
-        <semen.protsenko@linaro.org>, <kfting@nuvoton.com>
-CC:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH next v9 2/4] dt-bindings: i2c: add entry for hisilicon,ascend910-i2c
-Date:   Sat, 29 Oct 2022 19:59:37 +0800
-Message-ID: <20221029115937.179788-2-chenweilong@huawei.com>
-X-Mailer: git-send-email 2.31.GIT
-In-Reply-To: <20221029115937.179788-1-chenweilong@huawei.com>
-References: <20221029115937.179788-1-chenweilong@huawei.com>
+        with ESMTP id S229476AbiJ2MXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 08:23:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B836034DC9;
+        Sat, 29 Oct 2022 05:23:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E47260683;
+        Sat, 29 Oct 2022 12:23:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7E18C433C1;
+        Sat, 29 Oct 2022 12:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667046213;
+        bh=2rAz/7cIZHOgN7rQrdQWulR/fVQBW8dzB+F/2hYImNU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g7Ms5KyeSzTbrcGfVIhy2kppOQx/z2Qw4QyUqYcL4icKyJHD/1rfNBdNluGcQzry+
+         zalrlflp/c4p50wCfVX9TPtZWQgU3Sq5vS0u2m0sYVgJt2xqPH4O082sr306z4KzpV
+         WQ47CUi+PzF8kKn2/v9iCFGEpeXAAmfYIthLeD7kKNS9f7u6n9CW9K4zKy1FuZRabj
+         ov6D9PE4uqLzuB5sTLpF/KYTaNUpWcgiCa1NRKKyE2mZxoGFC+HUF3S/jk2lk+/0Tr
+         YXNFFhPe1iqno8C5GLDuOW1cDSkVSWOnDB5IEvEvIZX+KLbuiYr9I84mgwTFucD1tw
+         UakcuW43F3ArA==
+Date:   Sat, 29 Oct 2022 20:23:26 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mq-kontron-pitx-imx8m: remove
+ off-on-delay-us for regulator-usdhc2-vmmc
+Message-ID: <20221029122326.GV125525@dragon>
+References: <20221024111902.1338095-1-heiko.thiery@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.175.101.6]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221024111902.1338095-1-heiko.thiery@gmail.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,115 +57,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the new compatible for HiSilicon i2c.
+On Mon, Oct 24, 2022 at 01:19:03PM +0200, Heiko Thiery wrote:
+> The delay is not required and can be remove.
+> 
+> Fixes: 5dbadc848259 (arm64: dts: fsl: add support for Kontron pitx-imx8m board)
 
-Signed-off-by: Weilong Chen <chenweilong@huawei.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Change since v8:
-- Use vendor,soc-ipblock format.
-- Drop quotes.
-- Drop "Device Tree bindings".
-- Description goes to top level description.
-- Use defines for constants.
-Link: https://lore.kernel.org/lkml/20221024015151.342651-2-chenweilong@huawei.com/
+It looks more like a clean-up than bug fix.
 
- .../bindings/i2c/hisilicon,ascend910-i2c.yaml | 73 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 74 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,ascend910-i2c.yaml
+Shawn
 
-diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,ascend910-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,ascend910-i2c.yaml
-new file mode 100644
-index 000000000000..7d7a8de7bcd8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/hisilicon,ascend910-i2c.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/hisilicon,ascend910-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon common I2C controller
-+
-+maintainers:
-+  - Yicong Yang <yangyicong@hisilicon.com>
-+
-+description:
-+  The HiSilicon common I2C controller can be used for many different
-+  types of SoC such as Huawei Ascend AI series chips.
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,ascend910-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    default: 400000
-+
-+  i2c-sda-falling-time-ns:
-+    default: 343
-+
-+  i2c-scl-falling-time-ns:
-+    default: 203
-+
-+  i2c-sda-hold-time-ns:
-+    default: 830
-+
-+  i2c-scl-rising-time-ns:
-+    default: 365
-+
-+  i2c-digital-filter-width-ns:
-+    default: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i2c@38b0000 {
-+      compatible = "hisilicon,ascend910-i2c";
-+      reg = <0x38b0000 0x10000>;
-+      interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-+      i2c-sda-falling-time-ns = <56>;
-+      i2c-scl-falling-time-ns = <56>;
-+      i2c-sda-hold-time-ns = <56>;
-+      i2c-scl-rising-time-ns = <56>;
-+      i2c-digital-filter;
-+      i2c-digital-filter-width-ns = <0x0>;
-+      clocks = <&alg_clk>;
-+      clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d1214d83c2df..d42e34d1e8e2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9228,6 +9228,7 @@ M:	Yicong Yang <yangyicong@hisilicon.com>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
- W:	https://www.hisilicon.com
-+F:	Documentation/devicetree/bindings/i2c/hisilicon,ascend910-i2c.yaml
- F:	drivers/i2c/busses/i2c-hisi.c
- 
- HISILICON LPC BUS DRIVER
--- 
-2.31.GIT
-
+> 
+> Signed-off-by: Heiko Thiery <heiko.thiery@gmail.com>
+> ---
+> v2:
+>  - add Fixes tag
+> 
+>  arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> index a91c136797f6..21442e04a632 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+> @@ -51,7 +51,6 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+>  		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
+> -		off-on-delay-us = <20000>;
+>  		enable-active-high;
+>  	};
+>  };
+> -- 
+> 2.30.2
+> 
