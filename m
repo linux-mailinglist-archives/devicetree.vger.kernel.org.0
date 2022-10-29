@@ -2,67 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A09611F6B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 04:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C598C611F6C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 04:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbiJ2Cux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 22:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35794 "EHLO
+        id S229542AbiJ2CyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 22:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiJ2Cuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 22:50:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 448B91DCCE6
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 19:50:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D4F5162B4B
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 02:50:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A88DCC433C1;
-        Sat, 29 Oct 2022 02:50:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667011851;
-        bh=Go2NAFfKH+IszxXHlhSkZ4Sh77SiywS/Y9CIxay8nh0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C7ptrbGJd9p9ngvL2l5noos2Z64pqhJ60ABk9sfob5k0uOHHApQBmM5BKmeyJspeQ
-         Ab8ILRcS2S5gnfIiMBSlvl1nBu6Ytb3cm066mhE2+513Rpz64fqgYrBZ325U3zIIpf
-         ikRvwkvkm6AnoIc5+daXQmTkRfwXrjjIOjdue1Lig86HDuS2e9SIp4WNBLSKWH2Ba2
-         Bqzk+HFFijlNR94m0/jPHr9l/nqvd6stbheXih0XJhT4RNCg+fsFHDDhvnYk/F47Jw
-         8sr9OkQUmdDDsyG2DyBnje5tGjidobsTT0kOwXYqkrz457nc/UGDWDZ0BTNLPpuqm6
-         UFQhY2t4M+/4g==
-Date:   Sat, 29 Oct 2022 10:50:43 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Shenwei Wang <shenwei.wang@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229379AbiJ2CyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 22:54:21 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 439EB1EB557;
+        Fri, 28 Oct 2022 19:54:12 -0700 (PDT)
+Received: from loongson.cn (unknown [10.180.13.64])
+        by gateway (Coremail) with SMTP id _____8Axz7fSlVxj0DYDAA--.7201S3;
+        Sat, 29 Oct 2022 10:54:10 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxNlfSlVxjXKYGAA--.4822S2;
+        Sat, 29 Oct 2022 10:54:10 +0800 (CST)
+Subject: Re: [PATCH v5 1/3] dt-bindings: clock: add loongson-2 clock include
+ file
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>, Ming Qian <ming.qian@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
-        imx@lists.linux.dev
-Subject: Re: [PATCH 1/2] arm64: dts: freescale: imx8dxl: add scu_gpio node
-Message-ID: <20221029025043.GJ125525@dragon>
-References: <20221011194715.647439-1-shenwei.wang@nxp.com>
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
+References: <20221028025504.13247-1-zhuyinbo@loongson.cn>
+ <01a38c4c-b42a-c170-3c3d-0b7e087bfaa4@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <2bd0f05d-a5c4-3c5c-ccbc-3e3385cc0a1d@loongson.cn>
+Date:   Sat, 29 Oct 2022 10:54:10 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221011194715.647439-1-shenwei.wang@nxp.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <01a38c4c-b42a-c170-3c3d-0b7e087bfaa4@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8DxNlfSlVxjXKYGAA--.4822S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvdXoWrJFy8JrW7ZF4fAry3WF4fuFg_yoWxWrXEkF
+        WIyw1DZw13GrZ3KanYqFyDCaySg34jy3yUKFZYqr4fXa4UtrWjvr48C3s3KrW3WrsFgr4r
+        ury8tw1xCw1fujkaLaAFLSUrUUUU0b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
+        j7CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
+        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84AC
+        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84
+        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8I
+        j28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2
+        WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkE
+        bVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r
+        126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkE
+        bVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E74
+        80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
+        I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04
+        k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
+        xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jYnmiUUUUU=
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 11, 2022 at 02:47:14PM -0500, Shenwei Wang wrote:
-> add scu_gpio node in system-controller.
-> 
-> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
 
-Applied both, thanks!
+
+在 2022/10/28 下午7:43, Krzysztof Kozlowski 写道:
+> On 27/10/2022 22:55, Yinbo Zhu wrote:
+>> This file defines all Loongson-2 SoC clock indexes, it should be
+>> included in the device tree in which there's device using the
+>> clocks.
+>>
+>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>> Change in v5:
+>> 		1. Replace loongson2/Loongson2 with loongson-2/Loongson-2.
+>> 		2. Replace soc with SoC.
+>>
+> 
+> Where is the rest of the changelog?
+What you're asking is where the replacement string is located.  it was 
+in commit log.
+> 
+> Best regards,
+> Krzysztof
+> 
+
