@@ -2,105 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93F25612099
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 07:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C508D6120AE
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 08:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229602AbiJ2Fnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 01:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44212 "EHLO
+        id S229441AbiJ2GZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 02:25:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbiJ2Fnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 01:43:33 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D0F88A29;
-        Fri, 28 Oct 2022 22:43:27 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id b11so6329738pjp.2;
-        Fri, 28 Oct 2022 22:43:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=eSxGW8VSXQH29RP+qVcRowt10gdA6+owThqJVu58aP8=;
-        b=MJ1lbV+gZIxzdqhPJmls3u6JEH5Ibfij83W5hBaN09H0062OgR0C3lLN3UTy2SdVar
-         uKsDgAz3XXDAqYV7AefDYymhiBm0fOusiEwtFql4hnta49hLaOc55nR6VAWF0oYJi5/i
-         RTNYLAWj364zZiVGg4qPHaH97F0SrOlpJChnghpu7huVZnF4rV3RiS22VW1yQu6g0QAu
-         W69ZwsY8TJqaP+Lyye48hQVGPOz3f9YXSRDoR2D/uIIxkT9gvq6qYRaWWqP74HlbzHOA
-         2RVgyuecFiRojT65jWWL3uizhHviOwYbzbFtG7k37FQ9GFVnleb62u1qGtCf3nTzVNVy
-         Akfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eSxGW8VSXQH29RP+qVcRowt10gdA6+owThqJVu58aP8=;
-        b=rPQZpbyUmIJFfO3as1pX92lRzNoHSIYBY2n2HYTHpAhBmWDZq1EzUceHNucdYJmlk4
-         uRRsXJcb4IZpQVxut8t44Ep39tE4aj/qsW9gSWAKTmrplVYnrkP4mLyCIPKKbC9ZR0cZ
-         mc5lVXLMH5dKPxf5OBzY4nyGQ2KDHn/gvllvhIQHfqNeQmZ8PEDeV9NhLAkgPUcMep5t
-         AgvsbNZYrrskH9q8lGN2m0CTUEESrLL/8sFnsfA00LZkhMMuxmnlusxh3T2DSQp2MI5y
-         eg+lNQ2aHo8j8Gguo61GrBWe6tNAncSIj7iys+eilj93eVCmX6bgGM1XOaYW/GoG/dV9
-         QWNw==
-X-Gm-Message-State: ACrzQf1YW2AfYn+EKiZmKeIU5RpGwqosKciqaF1U9j1TtEr0Av27DlSB
-        BHJrHar041FgQeku0S4TcW8=
-X-Google-Smtp-Source: AMsMyM4F8ZoqOQ9FYOTuyLnCKddf3Cju8GMoEOm+DqVHyR8IpufXOmB69wKM8+rpBOEu1VBxGRnXhg==
-X-Received: by 2002:a17:90a:6045:b0:212:fe9a:5792 with SMTP id h5-20020a17090a604500b00212fe9a5792mr19630896pjm.178.1667022206914;
-        Fri, 28 Oct 2022 22:43:26 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:2acc:9d2e:bff9:e77])
-        by smtp.gmail.com with ESMTPSA id m12-20020a17090a414c00b002135fdfa995sm344652pjg.25.2022.10.28.22.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 22:43:26 -0700 (PDT)
-Date:   Fri, 28 Oct 2022 22:43:23 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, rydberg@bitmath.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        mkorpershoek@baylibre.com
-Subject: Re: [PATCH V4 3/3] input/touchscreen: Add Hynitron cstxxx touchscreen
-Message-ID: <Y1y9e9sgE/Dck9fB@google.com>
-References: <20221028202636.14341-1-macroalpha82@gmail.com>
- <20221028202636.14341-4-macroalpha82@gmail.com>
- <Y1xGIykG5H5QmtZa@google.com>
- <SN6PR06MB5342E823C4FF82E974724AF3A5329@SN6PR06MB5342.namprd06.prod.outlook.com>
+        with ESMTP id S229379AbiJ2GZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 02:25:41 -0400
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B631AE287;
+        Fri, 28 Oct 2022 23:25:38 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 75B0F41A36;
+        Sat, 29 Oct 2022 06:25:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+        t=1667024736; bh=JT3PnfJYuEQF82Wv2/4BQPk5WGhUbwUFWKKXPKTgxYg=;
+        h=Date:To:Cc:References:From:Subject:In-Reply-To;
+        b=bkCJsyDqMCBtZuEYdRkGZeedhmNAdbpH8FD1mnRE2NUkUl2N5H4fq8uyw28Icthxl
+         TDfxaorgT52SBjS51eaJ4DiSnhy+8S1xACQtDGS5mirenbYxgb0E4wUCjItEwOl3CC
+         AdT1SRgVg/CPx7aAaDZu1suz8YOzEIsuQGBWlZjdCUqqHGvvyGZY3VvTATFDw2iYgX
+         cwDWedF0jcR4pIcUF4gYu7jJxZJdTz0yeBOpsLYcrH26IJCXG/RRIqEOGvb0IIx2O2
+         j+eKOdJSBTZJFX6e92EU8PtupDTQnV5sG4r2vtP9ouskby01L/blQUMsp8ATvYeQri
+         aJ3NnNw2wwKFA==
+Message-ID: <fdc98171-e764-5be2-69ed-4395b13c06fe@marcan.st>
+Date:   Sat, 29 Oct 2022 15:25:30 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR06MB5342E823C4FF82E974724AF3A5329@SN6PR06MB5342.namprd06.prod.outlook.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sven@svenpeter.dev,
+        alyssa@rosenzweig.io, asahi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221028165215.43662-1-fnkl.kernel@gmail.com>
+ <20221028165215.43662-3-fnkl.kernel@gmail.com>
+ <02523fe5-bf99-9891-d00c-347893d5dabe@linaro.org>
+ <CAMT+MTTE84XDf8c0D3MLxZ92HiDP6DhXfpHVyQZ7hfYMUkL7dg@mail.gmail.com>
+ <3b8441da-31af-2414-1362-0efb05cbf8c0@linaro.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH 2/4] pwm: Add Apple PWM controller
+In-Reply-To: <3b8441da-31af-2414-1362-0efb05cbf8c0@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 28, 2022 at 04:43:16PM -0500, Chris Morgan wrote:
-> On Fri, Oct 28, 2022 at 02:14:11PM -0700, Dmitry Torokhov wrote:
-> > Hi Chris,
-> > 
-> > On Fri, Oct 28, 2022 at 03:26:36PM -0500, Chris Morgan wrote:
-> > > +static void hyn_reset_proc(struct i2c_client *client, int delay)
-> > > +{
-> > > +	struct hynitron_ts_data *ts_data = i2c_get_clientdata(client);
-> > > +
-> > > +	gpiod_set_value_cansleep(ts_data->reset_gpio, 1);
-> > > +	mdelay(20);
-> > > +	gpiod_set_value_cansleep(ts_data->reset_gpio, 0);
-> > > +	if (delay)
-> > > +		mdelay(delay);
-> > 
-> > Just wanted to ask - you do not really want to spin for 20+ msecs here,
-> > right? I think changing mdelay() to msleep()/usleep() should be OK
-> > throughout the driver...
+On 29/10/2022 04.49, Krzysztof Kozlowski wrote:
+> On 28/10/2022 14:51, Sasha Finkelstein wrote:
+>> On Fri, 28 Oct 2022 at 20:54, Krzysztof Kozlowski
+>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>> On 28/10/2022 12:52, Sasha Finkelstein wrote:
+>>>> +config PWM_APPLE
+>>>> +     tristate "Apple SoC PWM support"
+>>>> +     depends on ARCH_APPLE || (COMPILE_TEST && 64BIT)
+>>>
+>>> Why this code cannot be build on 32-bit?
+>> It uses 64-bit divisions, which causes it to fail to build on 32-bit
+>> mips. It should not be a
+>> problem, since this hardware is only present on 64-bit SoCs.
 > 
-> I just tested changing all instances of mdelay to msleep and msleep works
-> just fine. Do you want me to resubmit or can you change that as well?
+> Does not matter, code should be portable and buildable on 32-bit. If it
+> does not build then your code is not correct.
 
-No need. I made a few additional changes and applied. Please take a look
-in my 'next' branch and yell if something is wrong.
+This statement does not apply in general. There are plenty of drivers
+which cannot reasonably build for 32-bit, and make no sense because no
+32-bit hardware exists that could use them. Examples include anything
+that accesses 64-bit registers on 64-bit SoCs the normal way, and
+further anything that touches CPU stuff like system registers.
 
-Thanks.
+In *this* case, if the only issue is some 64-bit math, then yes, it
+should be made to build on 32-bit (especially since this is likely to
+also work for older 32-bit Apple SoCs). But the (COMPILE_TEST && 64BIT)
+pattern is definitely valid in other cases, and I've been adding it
+lately to shut up the kernel test bot since it makes no sense to compile
+test a whole pile of our drivers on 32-bit architectures - they
+fundamentally can't compile without adding pointless hypothetical broken
+fluff to the driver like split MMIO accesses (which often can't work on
+real hardware), and it serves no purpose.
 
--- 
-Dmitry
+
+- Hector
