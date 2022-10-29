@@ -2,47 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0188F6123E8
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFEBE612412
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiJ2Obs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 10:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33318 "EHLO
+        id S229959AbiJ2O4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 10:56:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbiJ2Obr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:31:47 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BD75F139
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 07:31:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=6XeitnMdgwFpeuK+H13twlavq6fbNgWRZM0W9Q9wNqQ=; b=BkDVIX/+LNajR4WP3unVw1T+eB
-        FPzBZvY4ONnXa+yiZQmCCnQClBVtEN1OtlaEYTbqa7I7BMhuqJxM5OQm0Ok4M7kt8SBWduFgwOUcS
-        Mb67oWk0QzDDgb7D8pobw9F5xDKCD7HnZiPjd4FDzHp8lvJn+H+Rf8x2xb9SQ6zy8llU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oomru-000uEZ-Ej; Sat, 29 Oct 2022 16:31:26 +0200
-Date:   Sat, 29 Oct 2022 16:31:26 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Adam Baker <linux@baker-net.org.uk>
-Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Tony Dinh <mibodhi@gmail.com>
-Subject: Re: [PATCH] ARM: dts: kirkwood: Add Zyxel NSA310S board
-Message-ID: <Y105PjbwnFJ1wItM@lunn.ch>
-References: <20220929080110.3182561-1-paweldembicki@gmail.com>
- <YzWVOyM+Z3AFSI7c@lunn.ch>
- <e78b6ece-8dfa-733f-d449-1108a9545223@baker-net.org.uk>
+        with ESMTP id S229497AbiJ2O4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:56:51 -0400
+Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA5127DF8;
+        Sat, 29 Oct 2022 07:56:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1667055391; bh=Rjnk2GfEtjhc7aPN1HinZjHZRnbPWaoByT5yL4fs8vY=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=KQVEns2j3bnqIGavDI94PVQtVcUmOhfJ2CgzISs3tHKmeNqCKIsTfz4CqvMk0m0hm
+         LQ0nUYAUg6WfEo/d0qBD3pxqldEfdZt5/IHo/uIo2Birs7iuTUKT8ue74bVTMurB7b
+         T5u+KqpKCHgoBfw5R03dS3gQ7VNa+LM3X6pVP0NI=
+Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
+        via [213.182.55.207]
+        Sat, 29 Oct 2022 16:56:31 +0200 (CEST)
+X-EA-Auth: ffC9z5VMk1EziQcyiKwrCnIHjLobvY6isyGnBPrFPMjwQU8iLOhLQsjJ+rgjWc3rKFkDJnz7m3fzshX4JKVV/EnakQzGs4eEFIoHfeMap7Q=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH v1 1/2] arm64: dts: qcom: msm8916-alcatel-idol347: add GPIO torch LED
+Date:   Sat, 29 Oct 2022 16:55:56 +0200
+Message-Id: <20221029145557.106920-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e78b6ece-8dfa-733f-d449-1108a9545223@baker-net.org.uk>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,20 +49,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 29, 2022 at 01:14:52AM +0100, Adam Baker wrote:
-> On 29/09/2022 13:53, Andrew Lunn wrote:
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > Same license comment. However, you can only change the license if it
-> > is your code. If you did the conversion from a board setup file to DT,
-> > you can change the license. If somebody else did that and you are just
-> > submitting it, then we need to keep to GPL-2.0-only.
-> 
-> As it lists my name in the copyright I'm guessing it is derived from my
-> nsa320 device tree. If so I have no objection to relicensing to GPL2 + MIT
-> for anything that came from my code.
+Add support for torch LED on GPIO 32.
 
-Thanks Adam.
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+---
+ .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-It would be nice if you sent an Acked-by: on the patch.
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+index 3dc9619fde6e..3a0a593899ae 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
+@@ -5,6 +5,7 @@
+ #include "msm8916-pm8916.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
+ 
+ / {
+ 	model = "Alcatel OneTouch Idol 3 (4.7)";
+@@ -34,6 +35,19 @@ button-volume-up {
+ 		};
+ 	};
+ 
++	gpio-leds {
++		compatible = "gpio-leds";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&gpio_leds_default>;
++
++		led-0 {
++			gpios = <&msmgpio 32 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "torch";
++			function = LED_FUNCTION_TORCH;
++		};
++	};
++
+ 	usb_id: usb-id {
+ 		compatible = "linux,extcon-usb-gpio";
+ 		id-gpio = <&msmgpio 69 GPIO_ACTIVE_HIGH>;
+@@ -276,6 +290,14 @@ gpio_keys_default: gpio-keys-default {
+ 		bias-pull-up;
+ 	};
+ 
++	gpio_leds_default: gpio-leds-default {
++		pins = "gpio32";
++		function = "gpio";
++
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	gyro_int_default: gyro-int-default {
+ 		pins = "gpio97", "gpio98";
+ 		function = "gpio";
+-- 
+2.37.3
 
-   Andrew
+
+
