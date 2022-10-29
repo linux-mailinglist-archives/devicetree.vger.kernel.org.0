@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6571612067
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 07:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41FE861206A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 07:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbiJ2FQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 01:16:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S229711AbiJ2FQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 01:16:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbiJ2FPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 01:15:43 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2810A1974C8
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:35 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id q71so6500509pgq.8
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:35 -0700 (PDT)
+        with ESMTP id S229923AbiJ2FPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 01:15:47 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82721CB510
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:40 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id g24so6541825plq.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ssWG2K/L40ECA7RFYZd0Ssg9F64AzTozxaoR5gGuJ3c=;
-        b=atqrHA5b6gwjGelKryJPqzyTJ/MjFn6RwViURNGVYZkpPqP1WmK64iKvymNtbOQlnZ
-         mbKjZPP+2vpChHNpxOzyySCMtpI5epMG62Op1NivSB8eAPfiHiEDKseMjyCrLlv77Yjt
-         GOVk2vklEAdyMrqx4rJ981aK+5zI13WoYld2Z6MSweGc/avsJG7gL7jj+p7zhB5kQwd7
-         S+rSk1uN4Orc5P9eoOR4Oiz3F2C3UINaU5Jvr/XYji1FvzcqtJb43FGCFYu3rhyhXub6
-         B6at9pHCGdJhjDXaVmsrijjlm6O7SIsGuUbwmw/kQd3gcoKs4GG5ai7YSv/0ZYA1vykj
-         uO1g==
+        bh=p0QqRP1D1eQSgHWesXmi0SdTGcBYrL7MF+tNbo4fAQs=;
+        b=cWYOevpbrsYCKJLBBbZ0cVHERCaVHtsvJQDWHVZWQf7TNl6zP1+7pOfFeI41QS9CJP
+         HJjLYtUN8QjFhuLXgDHJ7pqVv6XU0+mQNglkaLnz9jsscd7ODrz6Dj4gd/NyGngvYst/
+         gMAZOt3mqkmzerFFzEJG1Y4jS7XYia7sHRF167PRssMLvcHpXaAy4y9swN25wFedw2jL
+         znQJT+64KX7BUCVqItMiwVVxep9DV6Lr0M54LaaUFHWJbuHGzPr6C65xigYD26LgvboJ
+         zH3lFExzXPIzZcKK4o3NCFevzkUmGXf6NRJa/vGNxNxg2widx2yMTpNfsnwxq28xvZ04
+         DucA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ssWG2K/L40ECA7RFYZd0Ssg9F64AzTozxaoR5gGuJ3c=;
-        b=8Pxk2oTwi+R3+ny1v1hbsidCOXoTlB+gHMviIgfxZ3AsFg6x+VukfdHP0SY/DnNnEP
-         /lVpcMWCeOPmZtJx2zCcmigyOUR+yGpy6z5bc/xaRplqFdWMZPpk8LlDV3fg0ypsvKxH
-         eixLCfLk87sXYED6MIZREQLDXZCJnQB197U4Q8yfSrMctWN0VY93ENgtAUwrB2N0AKQ7
-         Q1NxcBDu0ep0eQ37hq3z+wj8Ia8RB9vSZerHnGph3/5oULsjdWthupHzNPvEWL7idSXT
-         Sul6K14nZfNwqFKNAopUzUgkN+Z1VBpYUDontA1ZV89oJXEZ/seiWc25ZKzvFRfbw5+n
-         pPxg==
-X-Gm-Message-State: ACrzQf1oIKSQEiALvcBvZGXBLAzQeZiUPwQ71fDl/cosuZipQS6TPFSf
-        5P6Q3Bsdt8a/iWyTqH/zxbwC
-X-Google-Smtp-Source: AMsMyM45JM3p1b99TdtBq2OT4YrKkPggdXFEOeVTDglVAcZi7VCOqtTii1I4/mPuGvU6kKMfGQHb5A==
-X-Received: by 2002:a05:6a00:891:b0:565:85a7:a6e with SMTP id q17-20020a056a00089100b0056585a70a6emr2653028pfj.21.1667020535231;
-        Fri, 28 Oct 2022 22:15:35 -0700 (PDT)
+        bh=p0QqRP1D1eQSgHWesXmi0SdTGcBYrL7MF+tNbo4fAQs=;
+        b=E8gP+Jm11kJkP10TN22qZkA56zI7UCNSLMxF5sy5N+Hccp6QNPu8x9QhBnXEm35CjE
+         iFOQousNnRFwhYYDv00Nnb3rquNiqIjeG/TJXR/tgwPQ6VKd1+EI9/MTEDILxI05GvNI
+         T3rLo/7CqUcFH183LQiAqW7bqLIv6Cbu0+VElgV1ehFl99NSofsG1GSewAgBQc70hht2
+         MMilI8djz6n0eJ8eQ/FEDLm+nn5jONadLLXH1iibReN0FeIknPgAuOCqT0fD2rPgC3ub
+         VdrkDT9EO4Mp1cIacLcIkuuIbQWCI4FWijM8eenyffnqlCm3ElrvaPMVCT+YfLp6yDxS
+         knfg==
+X-Gm-Message-State: ACrzQf04DapLQ6q7xVrtabY3I1+gqlDgA1G2Rzc2zAvUdCC+H6RxRnHk
+        /r5Xvfq+eUSGCVmf90i2ryV+
+X-Google-Smtp-Source: AMsMyM4u2iT/ElVWUQ1QcsObzIYM57c7Nc+QWSEv8gdwgD5jX67o8GLOl2oOiia90ytkwGVXzYq2AA==
+X-Received: by 2002:a17:90b:4c84:b0:213:5fe0:6732 with SMTP id my4-20020a17090b4c8400b002135fe06732mr2924359pjb.219.1667020540399;
+        Fri, 28 Oct 2022 22:15:40 -0700 (PDT)
 Received: from localhost.localdomain ([59.92.103.167])
-        by smtp.gmail.com with ESMTPSA id f5-20020a170902ce8500b0017e9b820a1asm363150plg.100.2022.10.28.22.15.30
+        by smtp.gmail.com with ESMTPSA id f5-20020a170902ce8500b0017e9b820a1asm363150plg.100.2022.10.28.22.15.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 22:15:34 -0700 (PDT)
+        Fri, 28 Oct 2022 22:15:39 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org
 Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
@@ -58,9 +58,9 @@ Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
         steev@kali.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 06/12] arm64: dts: qcom: sc8280xp-pmics: Add support for TM5 block in PMK8280
-Date:   Sat, 29 Oct 2022 10:44:43 +0530
-Message-Id: <20221029051449.30678-7-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 07/12] arm64: dts: qcom: sc8280xp-x13s: Enable PMK8280 RESIN input
+Date:   Sat, 29 Oct 2022 10:44:44 +0530
+Message-Id: <20221029051449.30678-8-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
 References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
@@ -76,36 +76,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thermal Monitoring block ADC5 (TM5) in PMK8280 can be used to monitor the
-temperature from secondary PMICs like PM8280.
+Enable resetting the PMK8280 through RESIN block in SC8280XP X13s.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-index 3c56e4cb5b5b..6f95743bf87d 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-@@ -84,6 +84,16 @@ pmk8280_vadc: adc@3100 {
- 			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
- 			#io-channel-cells = <1>;
- 		};
-+
-+		pmk8280_adc_tm: adc-tm@3400 {
-+			compatible = "qcom,spmi-adc-tm5-gen2";
-+			reg = <0x3400>;
-+			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#thermal-sensor-cells = <1>;
-+			status = "disabled";
-+		};
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index b2b744bb8a53..6aa8cf6d9776 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -169,6 +169,10 @@ &pmk8280_pon_pwrkey {
+ 	status = "okay";
+ };
  
- 	pmc8280_1: pmic@1 {
++&pmk8280_pon_resin {
++	status = "okay";
++};
++
+ &qup0 {
+ 	status = "okay";
+ };
 -- 
 2.25.1
 
