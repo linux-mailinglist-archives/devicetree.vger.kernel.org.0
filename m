@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEEC061256E
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 23:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6EEC612571
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 23:13:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbiJ2VNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 17:13:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54646 "EHLO
+        id S229716AbiJ2VNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 17:13:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229716AbiJ2VNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 17:13:18 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31FAF3D5A1
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 14:13:17 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id bn35so12423191ljb.5
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 14:13:17 -0700 (PDT)
+        with ESMTP id S229738AbiJ2VNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 17:13:19 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D15E3CBFC
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 14:13:18 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id k19so12077808lji.2
+        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 14:13:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=swTzgpM0Pz/+17CyZPXCMYY39bgiFlYC7ketMF0VDSU=;
-        b=qjDZPTSAikMnTJw7RtegzieQLRrkmgafUzkKPtnThgNEijjf25ZKWiCCeVSP1kgyHv
-         cWfRIghlWgmJ66I4haQOKw8sqctrjoqjx663Dqfy0aO+AcHvoKy3TwAhadIM57/jHMBW
-         ZijkEKoHFMkO6a2/RJU88Dcw5A25uaE9+Iu4Rw9AJR435Q5/VRkyMXymAMEOqml1EvfN
-         zTwBlgPCzp3szymADo5qBioYfMKB2WipypdqyFDyUwkm8K8DWs/oy1+YK2WazzUAW/O/
-         y8z1lZpBe9fq8cLNlOGaiN19gkFcojJR9zb+0Tr69VqE70hhX+IeGO7LcCeZ/tAX95ol
-         VLGQ==
+        bh=AABN3JU0WwLg/3X+1uTYK5YdfpTdRR6rzCtqixbVbNE=;
+        b=nHmfc3I2SdQ1sDn9NaJcEerxAVJzu+fRcCtGEhI6yFZe3W9cBkKx50xahAp5qUasc5
+         /kPzL6hLxSXx68Dm/VQUZ8Wr88UQUMQU4KFEwxmiqY+lt4b3lQAD4zVb30kAWOnJGO9P
+         ysMT5YaOa9bjVhsIe5P9wCybAyhJjw389vCyJ8e4FXNGbxbfo4A5FovWK+IzSlnoCSJK
+         5JgzV1coPIdbQMohrjBpcrL47z279sow9j7P/LKwbVIMpKCPTv1MgDO8l94NLoKSe1q9
+         gOl8obvSX1zoOKcII0BQ4gfQ31ekcaFEsiw8//vHhY9ww6Vp7uUtS4SnqyQX2hlKq33J
+         F4eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=swTzgpM0Pz/+17CyZPXCMYY39bgiFlYC7ketMF0VDSU=;
-        b=l500ruTV7XITHwW8aKlZaoD+Q+isv03VVTbbJBKP5DsRPMkxUWz+g9EHkZfiExeKXc
-         O1sRusl5PfYmn+vL9NfJsYWBE3e2eYNxYQ/39WDWzwaSjlULcW1VXe5yzSiSBw+p1GzP
-         P5EYZbQfmluzbNMfLSIxQp4YlvriD0uIZc2UZju54ARzgtRiwVN6ONx5EmoGmeFTU4IF
-         DxF6GSlCr84m5NvnKiOaj/nwqp61UHgVH2UPTDMWuFZGPlggEnXxg8wlqV0PmZiOuHan
-         C8yXNrP9G9WdmnPStC7zJ/K6oizx33YdB30cZUsB3laT2fKK4oADT+G5oktY1SzSbA+R
-         eQ8g==
-X-Gm-Message-State: ACrzQf3W9vtshD3+eBQIIt46+rGQT4Qv8ifxx3JHpfZKusZ2N/QBZc7b
-        0SutyjthshVaQLvDEt4Yda2m4w==
-X-Google-Smtp-Source: AMsMyM7MYkde/YdEibYj6wq2j+5pTXEeJMeIPK+cSHSOHrk7IOl01tEyuBC+b8dntHuhTnTnu1sffg==
-X-Received: by 2002:a2e:5cb:0:b0:277:794:cb70 with SMTP id 194-20020a2e05cb000000b002770794cb70mr2288707ljf.280.1667077995491;
-        Sat, 29 Oct 2022 14:13:15 -0700 (PDT)
+        bh=AABN3JU0WwLg/3X+1uTYK5YdfpTdRR6rzCtqixbVbNE=;
+        b=V4G3NPN+cPEi0CGLIMIDnGbMj+2zi3Yk+khff6/Y2krTqGjB/S129us/pc1moTjO8p
+         Tw5DNvISWdYtKnITi74yHFW8TXus8xBi8hUeZuUo8w4C966rlP+1JgWyzDnw4Bwy3BAs
+         UxmONL6byd5zecwsQuKtmQEc0IiieMCen8blsTsv5rJy+VtAdLaGgydAUupLvggIzyqk
+         f/smFexUQ1yJHyvGWGteKSf27AdVLv+oMjrttR9258muuCpVaF8wseTAYEewjnHmU8Nc
+         DFYYz+IljMfURi6thUsJElvKHwh1Uk1uM7GVuhK+S23ghfhOGGQFhA7Fn1tXgribHXlp
+         5y3g==
+X-Gm-Message-State: ACrzQf0/m2c9OGH+mCJh9lFgTsn1czg/oyGaXmx7yRGdZW8Rgl34tkt3
+        9Nx2Qq1AVLnCZ4jE76w4oWN5+A==
+X-Google-Smtp-Source: AMsMyM66ZucE/gOMLnkKWQcgNIxxoGr6ZWjovNOs+cuhSzoxE3bP7Cl3BIzUGh9alPX9a9Qad+YqUg==
+X-Received: by 2002:a05:651c:511:b0:26f:ecc3:964f with SMTP id o17-20020a05651c051100b0026fecc3964fmr2158754ljp.28.1667077996490;
+        Sat, 29 Oct 2022 14:13:16 -0700 (PDT)
 Received: from localhost.localdomain ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id j14-20020a05651231ce00b004a480c8f770sm433508lfe.210.2022.10.29.14.13.14
+        by smtp.gmail.com with ESMTPSA id j14-20020a05651231ce00b004a480c8f770sm433508lfe.210.2022.10.29.14.13.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Oct 2022 14:13:15 -0700 (PDT)
+        Sat, 29 Oct 2022 14:13:16 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -66,9 +66,9 @@ Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v1 1/7] dt-bindings: PCI: qcom: Add sm8350 to bindings
-Date:   Sun, 30 Oct 2022 00:13:06 +0300
-Message-Id: <20221029211312.929862-2-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v1 2/7] dt-bindings: phy: qcom,qmp-pcie: add sm8350 bindings
+Date:   Sun, 30 Oct 2022 00:13:07 +0300
+Message-Id: <20221029211312.929862-3-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221029211312.929862-1-dmitry.baryshkov@linaro.org>
 References: <20221029211312.929862-1-dmitry.baryshkov@linaro.org>
@@ -83,101 +83,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for two PCIe hosts on SM8350 platform. The only difference
-between them is in the aggre0 clock, which warrants the oneOf clause for
-the clocks properties.
+Add bindings for the PCIe QMP PHYs found on SM8350.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/pci/qcom,pcie.yaml    | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index 54f07852d279..55bf5958ef79 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -32,6 +32,7 @@ properties:
-       - qcom,pcie-sdm845
-       - qcom,pcie-sm8150
-       - qcom,pcie-sm8250
-+      - qcom,pcie-sm8350
-       - qcom,pcie-sm8450-pcie0
-       - qcom,pcie-sm8450-pcie1
-       - qcom,pcie-ipq6018
-@@ -185,6 +186,7 @@ allOf:
-               - qcom,pcie-sc8180x
-               - qcom,pcie-sc8280xp
-               - qcom,pcie-sm8250
-+              - qcom,pcie-sm8350
-               - qcom,pcie-sm8450-pcie0
-               - qcom,pcie-sm8450-pcie1
-     then:
-@@ -540,6 +542,57 @@ allOf:
-           items:
-             - const: pci # PCIe core reset
+diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+index 80aa8d2507fb..8a85318d9c92 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
+@@ -19,15 +19,18 @@ properties:
+       - qcom,sc8280xp-qmp-gen3x1-pcie-phy
+       - qcom,sc8280xp-qmp-gen3x2-pcie-phy
+       - qcom,sc8280xp-qmp-gen3x4-pcie-phy
++      - qcom,sm8350-qmp-gen3x1-pcie-phy
+ 
+   reg:
+     minItems: 1
+     maxItems: 2
+ 
+   clocks:
++    minItems: 5
+     maxItems: 6
+ 
+   clock-names:
++    minItems: 5
+     items:
+       - const: aux
+       - const: cfg_ahb
+@@ -104,6 +107,25 @@ allOf:
+         reg:
+           maxItems: 1
  
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
 +            enum:
-+              - qcom,pcie-sm8350
++              - qcom,sm8350-qmp-gen3x1-pcie-phy
 +    then:
-+      oneOf:
-+          # Unfortunately the "optional" ref clock is used in the middle of the list
-+        - properties:
-+            clocks:
-+              maxItems: 13
-+            clock-names:
-+              items:
-+                - const: pipe # PIPE clock
-+                - const: pipe_mux # PIPE MUX
-+                - const: phy_pipe # PIPE output clock
-+                - const: ref # REFERENCE clock
-+                - const: aux # Auxiliary clock
-+                - const: cfg # Configuration clock
-+                - const: bus_master # Master AXI clock
-+                - const: bus_slave # Slave AXI clock
-+                - const: slave_q2a # Slave Q2A clock
-+                - const: tbu # PCIe TBU clock
-+                - const: ddrss_sf_tbu # PCIe SF TBU clock
-+                - const: aggre0 # Aggre NoC PCIe0 AXI clock
-+                - const: aggre1 # Aggre NoC PCIe1 AXI clock
-+        - properties:
-+            clocks:
-+              maxItems: 12
-+            clock-names:
-+              items:
-+                - const: pipe # PIPE clock
-+                - const: pipe_mux # PIPE MUX
-+                - const: phy_pipe # PIPE output clock
-+                - const: ref # REFERENCE clock
-+                - const: aux # Auxiliary clock
-+                - const: cfg # Configuration clock
-+                - const: bus_master # Master AXI clock
-+                - const: bus_slave # Slave AXI clock
-+                - const: slave_q2a # Slave Q2A clock
-+                - const: tbu # PCIe TBU clock
-+                - const: ddrss_sf_tbu # PCIe SF TBU clock
-+                - const: aggre1 # Aggre NoC PCIe1 AXI clock
 +      properties:
-+        resets:
-+          maxItems: 1
-+        reset-names:
-+          items:
-+            - const: pci # PCIe core reset
++        clocks:
++          maxItems: 5
++        clock-names:
++          maxItems: 5
++    else:
++      properties:
++        clocks:
++          minItems: 6
++        clock-names:
++          minItems: 6
 +
-   - if:
-       properties:
-         compatible:
-@@ -670,6 +723,7 @@ allOf:
-               - qcom,pcie-sdm845
-               - qcom,pcie-sm8150
-               - qcom,pcie-sm8250
-+              - qcom,pcie-sm8350
-               - qcom,pcie-sm8450-pcie0
-               - qcom,pcie-sm8450-pcie1
-     then:
+ examples:
+   - |
+     #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
 -- 
 2.35.1
 
