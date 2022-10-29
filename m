@@ -2,68 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7507611F01
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 03:21:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2552F611F0D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 03:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbiJ2BVS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 21:21:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56260 "EHLO
+        id S229799AbiJ2B1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 21:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbiJ2BVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 21:21:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EEAC1D52D9;
-        Fri, 28 Oct 2022 18:21:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4ED1A62B3D;
-        Sat, 29 Oct 2022 01:21:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5480FC433C1;
-        Sat, 29 Oct 2022 01:21:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667006475;
-        bh=5TkdmKtr0vd4StVEShzYTsdB+zVnMpjpJrgmlbn67jY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JUm4EulxAMUPNQASBBnrXSseDx8YhEzI4TMBwvwpTWNdXizoHnFjVyV9B2hoycJ2s
-         wdhnF/d2kXMBqZUwpWWypdv4rnzjCur5XW2cJsDZU71mIY5HDLhyyA68w92vlkjq/P
-         sw51d06jTIeAp/y75GNMhX8dtOeLcXASVJpOn04PRMMiv1XJzhtqteU5XVmMs+ZM/t
-         Zy8ZeCeToYTEXNXaek5qqS9T0lrH5FpOT0LAD9Y2M1aNFphhl0hjJYWHV6J9+GtGbh
-         OdpUfZjS9mvHHHIprO+NhzjugwME6RzKaKUng6fs/1OsjJFy/IBd1GEhB1Ab9SGugp
-         DPGiYoogT1a/w==
-Date:   Sat, 29 Oct 2022 09:21:08 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] arm64: dts: imx8: correct clock order
-Message-ID: <20221029012108.GH125525@dragon>
-References: <20221010100747.289644-1-peng.fan@oss.nxp.com>
+        with ESMTP id S229788AbiJ2B1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 21:27:43 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9652C1CC755
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 18:27:41 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id k2so16888708ejr.2
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 18:27:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SB8cXsJ6cSiGdyMloRjmKV5mlYek2j619QkGusLH93k=;
+        b=OIignES46Kbt8O1G/D8CE5LCzf4liD+TVCHTDYlD1UbO7ZV00At2PgUGiLzRcjcRoP
+         KDz7BunLbRO8b7QvzRLiyOYUoHvTfU9FCx65vWf3xgqvOJfA9iwsnxzTSjLjFF9sYFPW
+         oYjD0DXfz6gTvYLzJGRJbZK+G+AXCUGpHlhghba5fZUJvAy/kS6ffd4YC9jxzDunFcSf
+         vFV9nR1IVVFNTZQXpa+glCngHUChxUtAowEyJGhQRCTxA5BuzVj4ZMRpqk49kbNedsjN
+         j+nCAT3fysljbaAoQW9f4RydBrH+FUr24DZEeAVV9w+0jE2sDNkP80yZyp1RAxuojKBH
+         q1xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SB8cXsJ6cSiGdyMloRjmKV5mlYek2j619QkGusLH93k=;
+        b=m/X2vi3l3msjgnBDaYz6BIJxKU3z5uFUmi8fbpDcfO3IJcvTpDoYLDwVAkyy+wC3NF
+         mVUY++gVnHZxzt5oV16NKW8USudCw27X2jjOSGsxRsk3nyOgu8Wi8ByaCkOWBAULhFmk
+         n7VZ/ZkgaYYGSnxmnp+e+VcioFTOGdCjLuNbuvdQCeAbnt5uoVYXz0Hj6gMTttAGDAz8
+         UyWoGkWRmkR3VjtpIiQxJm4fW+1LQqSNLNU7Xsfh8p+iZnLF6nYRdKLV4V51or7psmWN
+         tLkBfprma8nhqJ7F/MPS9lJB5wKazfofWpwoUiDo1YjvFZlrAlIwIsqOfmoH/ZOs5FOB
+         XbpQ==
+X-Gm-Message-State: ACrzQf2aY94fW9cVv3PUyfuYZirSzGp2WsHQ3Nl551iXBKcah0hHjojT
+        EPIGjgLDH6qpGLqmQQAtO18Afk9Vw07sNSP3bY2pag==
+X-Google-Smtp-Source: AMsMyM6MGnF2TSbEaIjrBzL/n0tAG+PSMkH6yiE/pY/08UqBhcIIpMPKhMmviToeyNxz+zsaPbVSgur3Lfy83BExNZM=
+X-Received: by 2002:a17:907:75c1:b0:79b:f804:c081 with SMTP id
+ jl1-20020a17090775c100b0079bf804c081mr1857415ejc.381.1667006860118; Fri, 28
+ Oct 2022 18:27:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221010100747.289644-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221028034155.5580-1-quic_bjorande@quicinc.com>
+In-Reply-To: <20221028034155.5580-1-quic_bjorande@quicinc.com>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Fri, 28 Oct 2022 20:27:27 -0500
+Message-ID: <CAKXuJqhOH1Ts0Nde5WB0-bVHUv=_As23eJRsH=VnCxxjtkNB_A@mail.gmail.com>
+Subject: Re: [PATCH 00/10] interconnect: osm-l3: SC8280XP L3 and DDR scaling
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Mike Tipton <quic_mdtipton@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 10, 2022 at 06:07:47PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Per bindings/mmc/fsl-imx-esdhc.yaml, the clock order is ipg, ahb, per,
-> otherwise warning: "
-> mmc@5b020000: clock-names:1: 'ahb' was expected
-> mmc@5b020000: clock-names:2: 'per' was expected "
-> 
-> Fixes: 16c4ea7501b1 ("arm64: dts: imx8: switch to new lpcg clock binding")
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On Thu, Oct 27, 2022 at 10:42 PM Bjorn Andersson
+<quic_bjorande@quicinc.com> wrote:
+>
+> The SC8280XP currently shows depressing results in memory benchmarks.
+> Fix this by introducing support for the platform in the OSM (and EPSS)
+> L3 driver and support for the platform in the bwmon binding.
+>
+> Then add the necessary nodes and values throughout the sc8280xp and
+> sa8540p dtsi files to make the various devices on these platforms scale
+> both L3, memory bus and DDR.
+>
+> Bjorn Andersson (10):
+>   interconnect: qcom: osm-l3: Use platform-independent node ids
+>   interconnect: qcom: osm-l3: Squash common descriptors
+>   interconnect: qcom: osm-l3: Add per-core EPSS L3 support
+>   interconnect: qcom: osm-l3: Simplify osm_l3_set()
+>   dt-bindings: interconnect: Add sm8350, sc8280xp and generic OSM L3
+>     compatibles
+>   arm64: dts: qcom: Align with generic osm-l3/epss-l3
+>   arm64: dts: qcom: sc8280xp: Add epss_l3 node
+>   arm64: dts: qcom: sc8280xp: Set up L3 scaling
+>   dt-bindings: interconnect: qcom,msm8998-bwmon: Add sc8280xp bwmon
+>     instances
+>   arm64: dts: qcom: sc8280xp: Add bwmon instances
+>
+>  .../interconnect/qcom,msm8998-bwmon.yaml      |   5 +
+>  .../bindings/interconnect/qcom,osm-l3.yaml    |  22 ++-
+>  arch/arm64/boot/dts/qcom/sa8540p.dtsi         |  39 +++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 152 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi          |   2 +-
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi          |   2 +-
+>  drivers/interconnect/qcom/osm-l3.c            | 126 ++++-----------
+>  10 files changed, 251 insertions(+), 103 deletions(-)
+>
+> --
+> 2.37.3
+>
+Prior to this series being applied:
 
-Applied, thanks!
+steev@cho:~/temp/mybw$ ./mybw
+    64: 21043.42MB/s
+   128: 22511.90MB/s
+   256: 23190.96MB/s
+   512: 23532.00MB/s
+  1024: 23537.36MB/s
+    2K: 23730.19MB/s
+    4K: 23307.45MB/s
+    8K: 23603.36MB/s
+   16K: 23752.39MB/s
+   32K: 23819.91MB/s
+   64K: 23871.28MB/s
+  128K: 23890.10MB/s
+  256K: 23851.90MB/s
+  512K: 23759.65MB/s
+ 1024K: 15956.73MB/s
+    2M: 8418.88MB/s
+    4M: 6385.06MB/s
+    8M: 5959.11MB/s
+   16M: 5892.18MB/s
+   32M: 6109.78MB/s
+
+
+With this series applied:
+steev@cho:~/temp/mybw$ ./mybw
+    64: 21193.63MB/s
+   128: 22513.64MB/s
+   256: 23196.15MB/s
+   512: 23554.33MB/s
+  1024: 23555.31MB/s
+    2K: 23738.53MB/s
+    4K: 23310.13MB/s
+    8K: 23616.14MB/s
+   16K: 23768.47MB/s
+   32K: 23847.16MB/s
+   64K: 23881.61MB/s
+  128K: 23901.33MB/s
+  256K: 23910.21MB/s
+  512K: 23839.70MB/s
+ 1024K: 23577.47MB/s
+    2M: 23836.08MB/s
+    4M: 23798.35MB/s
+    8M: 23759.23MB/s
+   16M: 22887.62MB/s
+   32M: 22491.87MB/s
+
+Additionally, if anyone is curious, geekbench 5.4 comparison, with
+this patchset applied on 6.0.5:
+
+https://browser.geekbench.com/v5/cpu/compare/18284519?baseline=18076980
+
+This change is very welcomed :)
+
+Tested on the Lenovo Thinkpad X13s
+
+Tested-by: Steev Klimaszewski <steev@kali.org>
