@@ -2,148 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C6D61215B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 10:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C1F61218F
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 10:45:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbiJ2IVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 04:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56646 "EHLO
+        id S229542AbiJ2Ip2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 04:45:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229936AbiJ2IVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 04:21:47 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E81DDC355B;
-        Sat, 29 Oct 2022 01:21:44 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8AxbdqX4lxjZj4DAA--.12368S3;
-        Sat, 29 Oct 2022 16:21:43 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxR1eQ4lxjKWcHAA--.6252S3;
-        Sat, 29 Oct 2022 16:21:41 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hector Martin <marcan@marcan.st>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Brian Norris <briannorris@chromium.org>,
-        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v3 2/2] dt-bindings: soc: add loongson-2 chipid
-Date:   Sat, 29 Oct 2022 16:21:35 +0800
-Message-Id: <20221029082135.31096-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221029082135.31096-1-zhuyinbo@loongson.cn>
-References: <20221029082135.31096-1-zhuyinbo@loongson.cn>
+        with ESMTP id S229494AbiJ2IpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 04:45:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540ED1911C1;
+        Sat, 29 Oct 2022 01:45:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 33C2360E07;
+        Sat, 29 Oct 2022 08:45:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1953C433C1;
+        Sat, 29 Oct 2022 08:45:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667033122;
+        bh=vzWoq0o5W51YIJT+YPewX9yLmMuvgvJek06xaJJrXM8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uhwA36J/p4M9sV8vr/h/SCpd5u8/AVnPwdLBM72KPlWUFWG3+57xYBuN84p/2jDxR
+         QS3WRrwcXiej2e+zmkuDGfNf0fj8W+E8cKm5Rc2E9kpq45vjY3GdtSJ3bW6F9wL8rT
+         iRFBHbHW/RcXo5nJPkvoYNh45S2ZCheTXnxPNjbdXqEOX+a/G+Jurfz02K4vcztyT7
+         zSAMLyNO6cFL7EeDcib9Mnr0FzsvLvhBV6GLJeVlzItj25GtKsMIgV1VmSwbHkFAc/
+         dcOgOf/wT5IBWX+upXFFH9prXBTzKrBiEFMGfQiULKoTAmJKNsfFB9A4vbU9uAiZxF
+         mJA85ai6J6Rqg==
+Date:   Sat, 29 Oct 2022 16:45:14 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, marex@denx.de, tharvey@gateworks.com,
+        vkoul@kernel.org, bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        alexander.stein@ew.tq-group.com, richard.leitner@linux.dev,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH v1] soc: imx: imx8mp-blk-ctrl: Add PCIe SYSPLL
+ configurations
+Message-ID: <20221029084514.GT125525@dragon>
+References: <1666590189-1364-1-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxR1eQ4lxjKWcHAA--.6252S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7uF15Xw1fArW7KFyfJryfXrb_yoW8tFykpa
-        13Cr95KF4xtF17uws5Ka4Ik3W5Zr95AFsFgFZrZw13KrWqg3WFqw43K3WDZanrZr1UJayU
-        uFWfGrW5GF4xCr7anT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2
-        Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
-        1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-        Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj
-        6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
-        0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-        JbIYCTnIWIevJa73UjIFyTuYvjxUciL0UUUUU
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_SBL_CSS,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1666590189-1364-1-git-send-email-hongxing.zhu@nxp.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 SoC chipid binding with DT schema format using
-json-schema.
+On Mon, Oct 24, 2022 at 01:43:09PM +0800, Richard Zhu wrote:
+> Add PCIe SYSPLL configurations, thus the internal SYSPLL can be used as
+> i.MX8MP PCIe reference clock.
+> 
+> The following properties of PHY dts node should be changed accordingly.
+>   - Set 'fsl,refclk-pad-mode' as '<IMX8_PCIE_REFCLK_PAD_OUTPUT>'.
+>   - Change 'clocks' to '<&clk IMX8MP_CLK_HSIO_ROOT>'.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
-Change in v3:
-		1. Drop "driver" and describe instead what is GUTS, including
-		   its acronym.
-		2. Add desciption about the SoC register.
-		3. Fixup dts node name.
-		4. Replace string loongson2/Loongson2 with loongson-2/Loongson-2
-                   in binding file and commit message.
-
- .../bindings/hwinfo/loongson,ls2k-chipid.yaml | 38 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-new file mode 100644
-index 000000000000..9d0c36ec1982
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwinfo/loongson,ls2k-chipid.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 SoC ChipID
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+description: |
-+  Loongson-2 SoC contains many groups of global utilities register
-+  blocks, of which the ChipID group registers record SoC version,
-+  feature, vendor and id information.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-chipid
-+
-+  reg:
-+    maxItems: 1
-+
-+  little-endian: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    chipid: chipid@1fe00000 {
-+        compatible = "loongson,ls2k-chipid";
-+        reg = <0x1fe00000 0x3ffc>;
-+        little-endian;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a02d45dd21ce..072da0f47f14 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11934,6 +11934,7 @@ LOONGSON-2 SOC SERIES GUTS DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	loongarch@lists.linux.dev
- S:	Maintained
-+F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
- F:	drivers/soc/loongson/loongson2_guts.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.31.1
-
+Applied, thanks!
