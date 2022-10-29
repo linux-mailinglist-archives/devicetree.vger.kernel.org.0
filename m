@@ -2,67 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5467612144
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 10:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B239B61214C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 10:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiJ2IJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 04:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57160 "EHLO
+        id S229826AbiJ2IMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 04:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiJ2IJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 04:09:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D265B1E3;
-        Sat, 29 Oct 2022 01:09:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CD7560C98;
-        Sat, 29 Oct 2022 08:09:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D7AEC433C1;
-        Sat, 29 Oct 2022 08:09:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667030980;
-        bh=UC4z7mu5pZBDxzC29j4d1dHYgaV/4A8mo2vnnjbI1hk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bl3TUf0DbYKMSx03+g8tji24xoc7DrnnG+jxxNFR7p1eipwY4BYZxvpyCE2z2P+tQ
-         bDB5f+nJVPrskMHgGPypzIfbjsUmUciLRXYT0gaczfMPV520yR0dTgtyRYAyHrWwAU
-         NyL1P0BxAeBPHOm2K00RMRXRlHBj8Xhsz37pH2KBZj2f6b6TuWvkZjyV5/7m/xnmPy
-         P8d5OyO79KypIive1O82ANixS6zE/wtdWwLWxNF9XFy7Fu+smffc1pkV3N8AwmDKNB
-         /CDM5opgSjfZVSisTeqV2YUaimijCuBG4TVyA03IsSRWufXPgxidm3boJDWY2dU0B7
-         aK67DdBgmcYiA==
-Date:   Sat, 29 Oct 2022 16:09:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 0/2] imx8mp: spi: update binding and compatible
-Message-ID: <20221029080933.GP125525@dragon>
-References: <20221020103158.2273874-1-peng.fan@oss.nxp.com>
+        with ESMTP id S229457AbiJ2IMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 04:12:40 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C0586810;
+        Sat, 29 Oct 2022 01:12:36 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1oogx5-00055T-D4; Sat, 29 Oct 2022 10:12:23 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     herbert@gondor.apana.org.au, davem@davemloft.net,
+        Corentin Labbe <clabbe@baylibre.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
+        mturquette@baylibre.com, ardb@kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v10 00/33] crypto: rockchip: permit to pass self-tests
+Date:   Sat, 29 Oct 2022 10:12:21 +0200
+Message-Id: <166703105270.1426558.18336536991217213193.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220927075511.3147847-1-clabbe@baylibre.com>
+References: <20220927075511.3147847-1-clabbe@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221020103158.2273874-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 20, 2022 at 06:31:56PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Tue, 27 Sep 2022 07:54:38 +0000, Corentin Labbe wrote:
+> The rockchip crypto driver is broken and do not pass self-tests.
+> This serie's goal is to permit to become usable and pass self-tests.
 > 
-> i.MX8MP ECSPI reused from i.MX6UL, so update binding and dts
+> This whole serie is tested on a rk3328-rock64, rk3288-miqi and
+> rk3399-khadas-edge-v with selftests (with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
 > 
-> Peng Fan (2):
->   dt-bindings: spi: fsl-imx-cspi: update i.MX8MP binding
->   arm64: dts: imx8mp: update ecspi compatible and clk
+> Regards
+> 
+> [...]
 
-Applied both, thanks!
+Applied, thanks!
+
+[26/33] clk: rk3399: use proper crypto0 name
+        commit: b136468a0024ea90c1259767c732eed12ce6edba
+[27/33] arm64: dts: rockchip: add rk3328 crypto node
+        commit: d1152bc533c941f7e267bf53d344cee510ea2808
+[28/33] arm64: dts: rockchip: rk3399: add crypto node
+        commit: 8c701fa6e38c43dba75282e4d919298a5cfc5b05
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
