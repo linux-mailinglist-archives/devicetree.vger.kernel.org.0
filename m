@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41FE861206A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 07:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A63DD61206E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 07:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiJ2FQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 01:16:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58656 "EHLO
+        id S229981AbiJ2FQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 01:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiJ2FPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 01:15:47 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B82721CB510
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:40 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id g24so6541825plq.3
-        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:40 -0700 (PDT)
+        with ESMTP id S229911AbiJ2FPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 01:15:51 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F0C1D2F4B
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:45 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id io19so6529198plb.8
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 22:15:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=p0QqRP1D1eQSgHWesXmi0SdTGcBYrL7MF+tNbo4fAQs=;
-        b=cWYOevpbrsYCKJLBBbZ0cVHERCaVHtsvJQDWHVZWQf7TNl6zP1+7pOfFeI41QS9CJP
-         HJjLYtUN8QjFhuLXgDHJ7pqVv6XU0+mQNglkaLnz9jsscd7ODrz6Dj4gd/NyGngvYst/
-         gMAZOt3mqkmzerFFzEJG1Y4jS7XYia7sHRF167PRssMLvcHpXaAy4y9swN25wFedw2jL
-         znQJT+64KX7BUCVqItMiwVVxep9DV6Lr0M54LaaUFHWJbuHGzPr6C65xigYD26LgvboJ
-         zH3lFExzXPIzZcKK4o3NCFevzkUmGXf6NRJa/vGNxNxg2widx2yMTpNfsnwxq28xvZ04
-         DucA==
+        bh=BHFiT+TZb5B1WGujexyeyAlYCgIQjWunzDzNjtB/Zig=;
+        b=JdUNhwrzxVYK2G8LaQKWsqiOd9eEsYUrt0x1ktLfZpKvzCgHclt6lcmdXuATw5K0Zr
+         9scTUH5/Ya9g5YMYXYw6eQ9N0uBcOb57RsYe09tsJrUXse1Q6Wcg1DNu8aKclocM7pnt
+         OXVL04hgbc5mqCeHoJHcwUp3RfQiVrbacJLQiXgiDS0GkUsJcsYExZ6bq2vKO8gui9nx
+         DjTk3Vtw1Ok3N2K7xDkVTGTCtIEhbFTrfuNCLtI1Qmda4a2+/ngjkOH41FXdhVQ6F3am
+         Dk9PUMUZBfrfaeyML7WtavBCfvU5KTdXMxkEfdKSlAc6jdZSb0LjKFEo16QSG6L4q/h3
+         w7uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=p0QqRP1D1eQSgHWesXmi0SdTGcBYrL7MF+tNbo4fAQs=;
-        b=E8gP+Jm11kJkP10TN22qZkA56zI7UCNSLMxF5sy5N+Hccp6QNPu8x9QhBnXEm35CjE
-         iFOQousNnRFwhYYDv00Nnb3rquNiqIjeG/TJXR/tgwPQ6VKd1+EI9/MTEDILxI05GvNI
-         T3rLo/7CqUcFH183LQiAqW7bqLIv6Cbu0+VElgV1ehFl99NSofsG1GSewAgBQc70hht2
-         MMilI8djz6n0eJ8eQ/FEDLm+nn5jONadLLXH1iibReN0FeIknPgAuOCqT0fD2rPgC3ub
-         VdrkDT9EO4Mp1cIacLcIkuuIbQWCI4FWijM8eenyffnqlCm3ElrvaPMVCT+YfLp6yDxS
-         knfg==
-X-Gm-Message-State: ACrzQf04DapLQ6q7xVrtabY3I1+gqlDgA1G2Rzc2zAvUdCC+H6RxRnHk
-        /r5Xvfq+eUSGCVmf90i2ryV+
-X-Google-Smtp-Source: AMsMyM4u2iT/ElVWUQ1QcsObzIYM57c7Nc+QWSEv8gdwgD5jX67o8GLOl2oOiia90ytkwGVXzYq2AA==
-X-Received: by 2002:a17:90b:4c84:b0:213:5fe0:6732 with SMTP id my4-20020a17090b4c8400b002135fe06732mr2924359pjb.219.1667020540399;
-        Fri, 28 Oct 2022 22:15:40 -0700 (PDT)
+        bh=BHFiT+TZb5B1WGujexyeyAlYCgIQjWunzDzNjtB/Zig=;
+        b=NdFfqpMlDgWeAB32O0xGn0qypfIYmmiOBNobep+2Vu1wnMvBcaWV/Oi0k44DDYKpTc
+         qKaMuSXNpRL885TiTwwtvKSxUMbnFXxbQPwV3qeUka/Wp/gVnD3ilSwdPV//rm+UfDNF
+         9wCq9aVt0lGkCaZhVG884sgaSPutwMduCi+/nWft8uYV0Q6E2JMkeSp2whDOFJA3Uluf
+         3r6k4nK1uTvDglsyQ7zMT/ATFEOoSq6V3g/OIGdUDWS/M+dk6WQTzdnW4KxRPyujxXJG
+         dO8GhZosfN6nSHZIKOaDxF3xk5Ll2KBMGzdznSYbpz/ufNQs/MK0c7pSpcwHzQ7g0qMg
+         N1AQ==
+X-Gm-Message-State: ACrzQf0DBtp40yARE/ydxk+p0h5rlBaq8/385WII7fyZnS77SyjjBSMi
+        iUYQn2gcnh/T1+C3IvIFY5E+
+X-Google-Smtp-Source: AMsMyM5kQRU46HsVC2D8IYv1AbzOgD3X2Kpm9vKnInBbk6MHkqH2frQT/bbTFNnywZFkOl+M6QQvhQ==
+X-Received: by 2002:a17:90b:4d0d:b0:20d:6fc0:51 with SMTP id mw13-20020a17090b4d0d00b0020d6fc00051mr19854994pjb.10.1667020545210;
+        Fri, 28 Oct 2022 22:15:45 -0700 (PDT)
 Received: from localhost.localdomain ([59.92.103.167])
-        by smtp.gmail.com with ESMTPSA id f5-20020a170902ce8500b0017e9b820a1asm363150plg.100.2022.10.28.22.15.35
+        by smtp.gmail.com with ESMTPSA id f5-20020a170902ce8500b0017e9b820a1asm363150plg.100.2022.10.28.22.15.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Oct 2022 22:15:39 -0700 (PDT)
+        Fri, 28 Oct 2022 22:15:44 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org
 Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
@@ -56,11 +56,10 @@ Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
         quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         steev@kali.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 07/12] arm64: dts: qcom: sc8280xp-x13s: Enable PMK8280 RESIN input
-Date:   Sat, 29 Oct 2022 10:44:44 +0530
-Message-Id: <20221029051449.30678-8-manivannan.sadhasivam@linaro.org>
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 08/12] arm64: dts: qcom: sc8280xp-x13s: Add PMK8280 VADC channels
+Date:   Sat, 29 Oct 2022 10:44:45 +0530
+Message-Id: <20221029051449.30678-9-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
 References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
@@ -76,24 +75,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable resetting the PMK8280 through RESIN block in SC8280XP X13s.
+Add VADC channels for measuring the on-chip die temperature and external
+crystal osciallator temperature of PMK8280.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index b2b744bb8a53..6aa8cf6d9776 100644
+index 6aa8cf6d9776..18315743313b 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -169,6 +169,10 @@ &pmk8280_pon_pwrkey {
+@@ -7,6 +7,7 @@
+ /dts-v1/;
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+ #include "sc8280xp.dtsi"
+@@ -173,6 +174,23 @@ &pmk8280_pon_resin {
  	status = "okay";
  };
  
-+&pmk8280_pon_resin {
++&pmk8280_vadc {
 +	status = "okay";
++
++	pmic-die-temp@3 {
++		reg = <PMK8350_ADC7_DIE_TEMP>;
++		label = "pmk8280_die_temp";
++		qcom,pre-scaling = <1 1>;
++	};
++
++	xo-therm@44 {
++		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
++		label = "pmk8280_xo_therm";
++		qcom,ratiometric;
++		qcom,hw-settle-time = <200>;
++	};
 +};
 +
  &qup0 {
