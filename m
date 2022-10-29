@@ -2,49 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2393D6122F0
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 14:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D6246122DE
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 14:23:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiJ2McD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 08:32:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40010 "EHLO
+        id S229494AbiJ2MXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 08:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiJ2McC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 08:32:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5CF4362A;
-        Sat, 29 Oct 2022 05:32:01 -0700 (PDT)
+        with ESMTP id S229476AbiJ2MXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 08:23:12 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5583B13FA5;
+        Sat, 29 Oct 2022 05:23:11 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6A29BB80B8C;
-        Sat, 29 Oct 2022 12:32:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88601C433D6;
-        Sat, 29 Oct 2022 12:31:57 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id F0BD7CE0691;
+        Sat, 29 Oct 2022 12:23:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 951CDC433D6;
+        Sat, 29 Oct 2022 12:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667046719;
-        bh=JQNqjjF1fdq01amg12SW8BOIrXiIMWFieuiSrg1ze28=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RblPKuXoDjz+VlqpnwAHqEA5ZBWkuevnvxoryLvKTDSQ7GoPoZ2uAnMkqhF2IvnBQ
-         nitctOqIlVnPM3XOq0mI36u7+dqtu34LUClQU8gesBVA5NoLbH+Xb1gGYONGRVs4fG
-         vHZkvIXjWk+7C4BsROy1Ry86R6cOXrF2wjBa2s8KxvEVmrS0cnEBWsxGQGa79l8trB
-         O0HOntUfD+y2Bnkt+jKx7L2qCASk5FWo21AAV5bWqrjA08ms9z2RrWf6fufxMaGjV/
-         xDJyec4kxUzGtCwpEjz8PgI9zez8pcw28hmRhx2yHV5gY40Ew/1rAw8XbHFP0wqX9g
-         HOtXma4QEJxFg==
-Date:   Sat, 29 Oct 2022 20:31:53 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rmk+kernel@armlinux.org.uk,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] arch: dts: specify the MDC frequency on Layerscape
- DPAA2 devices
-Message-ID: <20221029123153.GW125525@dragon>
-References: <20221025144117.1010488-1-ioana.ciornei@nxp.com>
+        s=k20201202; t=1667046187;
+        bh=v06jAg9hAvsKxAOUy65CZ38r94S4ygiEbDbpNXiL1GE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=L2QzKAw4H3p29banHYiELab6iffzHBMfhjCC5APi4Z/jUtK73EtdVvKHHjuRqBQrE
+         Owx3fN1/g9tJvESSugOsUVpCl7o9JNoxnFszDoX57sNZorU0M/a7AybzH0yrANa40y
+         rBHnGQkKHaqSO8fC+zjccuWtXd61aUwGFEq/DqmL/RZZRZ5QQHHkLtvy1PXzH2MVGL
+         dvXv3rtVdBFgX4iIp6Vy3A9naCAeIm4gOTRaj+yOjmGK0FliQJgSHr1bbdkGWEZMs7
+         OQu8kbqBaYO43nLi1ySGS48in95NcZxOxNGHoff/8xJ8ltNKeoPKTa242PX2ZRnhCB
+         qtDi8IRBKThJw==
+Date:   Sat, 29 Oct 2022 13:35:03 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Saravanan Sekar <sravanhome@gmail.com>
+Cc:     sre@kernel.org, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+        andy.shevchenko@gmail.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 6/8] iio: adc: mp2629: restrict input voltage mask
+ for mp2629
+Message-ID: <20221029133503.207cfd48@jic23-huawei>
+In-Reply-To: <20221029093000.45451-7-sravanhome@gmail.com>
+References: <20221029093000.45451-1-sravanhome@gmail.com>
+        <20221029093000.45451-7-sravanhome@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221025144117.1010488-1-ioana.ciornei@nxp.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -54,20 +57,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 25, 2022 at 05:41:14PM +0300, Ioana Ciornei wrote:
-> Up until now, the external MDIO controller frequency values relied
-> either on the default ones out of reset or on those setup by u-boot.
-> Let's just properly specify the MDC frequency in the DTS so that even
-> without u-boot's intervention Linux can drive the MDIO bus.
-> 
-> This patch set adds the needed properties on all DPAA2 based SoCs.
-> 
-> Ioana Ciornei (3):
->   arm64: dts: lx2160a: specify clock frequencies for the MDIO
->     controllers
->   arm64: dts: ls1088a: specify clock frequencies for the MDIO
->     controllers
->   arm64: dts: ls208xa: specify clock frequencies for the MDIO
->     controllers
+On Sat, 29 Oct 2022 11:29:58 +0200
+Saravanan Sekar <sravanhome@gmail.com> wrote:
 
-Applied all, thanks!
+> Add support for mp2733 which is updated version of mp2629
+> with a higher range of input voltage.
+> 
+> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Hmm. this is going to slow things down wrt to this series going in.
+We want the associated fix to go in during this cycle, and this
+is dependant on a change going via MFD.  Ah well.
+
+Generally I prefer to avoid using chip IDs for this sort of check
+because they don't generalize as well as an actual flag for this
+'feature' stored in a chip_info type structure.
+
+However, we can tidy that up if it becomes relevant as more parts
+are added to the driver.
+
+On basis this might end up going via MFD,
+
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+
+> ---
+>  drivers/iio/adc/mp2629_adc.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/mp2629_adc.c b/drivers/iio/adc/mp2629_adc.c
+> index 88e947f300cf..18290e176e1e 100644
+> --- a/drivers/iio/adc/mp2629_adc.c
+> +++ b/drivers/iio/adc/mp2629_adc.c
+> @@ -66,6 +66,7 @@ static int mp2629_read_raw(struct iio_dev *indio_dev,
+>  			int *val, int *val2, long mask)
+>  {
+>  	struct mp2629_adc *info = iio_priv(indio_dev);
+> +	struct mp2629_data *ddata = dev_get_drvdata(info->dev);
+>  	unsigned int rval;
+>  	int ret;
+>  
+> @@ -75,8 +76,10 @@ static int mp2629_read_raw(struct iio_dev *indio_dev,
+>  		if (ret)
+>  			return ret;
+>  
+> -		if (chan->channel == MP2629_INPUT_VOLT)
+> +		if (chan->channel == MP2629_INPUT_VOLT &&
+> +		    ddata->chip_id == CHIP_ID_MP2629)
+>  			rval &= GENMASK(6, 0);
+> +
+>  		*val = rval;
+>  		return IIO_VAL_INT;
+>  
+
