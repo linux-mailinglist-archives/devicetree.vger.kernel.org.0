@@ -2,186 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B969461219B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 10:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA8D6121B3
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 11:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229483AbiJ2IwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 04:52:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47450 "EHLO
+        id S229726AbiJ2JLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 05:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229473AbiJ2IwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 04:52:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CA57294C;
-        Sat, 29 Oct 2022 01:52:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D45EEB80B18;
-        Sat, 29 Oct 2022 08:52:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B54D9C433C1;
-        Sat, 29 Oct 2022 08:52:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667033532;
-        bh=tgmS/qsa7Xj1NPEN9xtKdy2llm6Lq3xzN0ImD6ECmVk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bfr+Jc3YRUHbT0fjZU69RWmHkPLRflTF6qltdWo86+RhjCEqi1f5AKBBjIzVkXgn4
-         HJqD63WuQOlv+gybW84JioiM+qryUzqyfK4Y/onjSx7qITvp/ajxm0rMOGXcckQH4X
-         wOhc2umeWLnT3o43QCFCESUuIrjZUNu0pNnENmsZ1mHpc0wPxcDvL87IQNi5heMf2n
-         M6wpSCDTLbrY1+cKteNt0psT58QNzGsJmM6I25Jq/0geIMUuxZp7gy2aO7h+QAg2Y5
-         LUITtWaaCWD4NAton8fkOCRZilwnckCaCR5LzjrJrAimeo4fwRsHFGqjrBf4KDLPpz
-         zeDyhAxf5HgDQ==
-Date:   Sat, 29 Oct 2022 16:52:04 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     kernel@pengutronix.de, robh+dt@kernel.org, lgirdwood@gmail.com,
-        lee.jones@linaro.org, broonie@kernel.org,
-        linux-arm-kernel@lists.infradead.org, rui.zhang@intel.com,
-        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
-        geert@linux-m68k.org, linux-pm@vger.kernel.org,
-        andreas@kemnade.info, amitk@kernel.org,
-        linux-hwmon@vger.kernel.org, alistair23@gmail.com,
-        devicetree@vger.kernel.org, linux@roeck-us.net, linux-imx@nxp.com
-Subject: Re: [PATCH v22 2/2] ARM: dts: imx7d-remarkable2: Enable
- silergy,sy7636a
-Message-ID: <20221029085204.GU125525@dragon>
-References: <20221024105853.42029-1-alistair@alistair23.me>
- <20221024105853.42029-3-alistair@alistair23.me>
+        with ESMTP id S229741AbiJ2JLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 05:11:36 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714A874DFF;
+        Sat, 29 Oct 2022 02:11:35 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id j7so2915633pjn.5;
+        Sat, 29 Oct 2022 02:11:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XGovVwjV1E6BtwAiQsNOA452MnQdQNOQG6D6vOb6hjA=;
+        b=p2QpFFF5brhI4B/eXe+Z4xKQnOouzEpVnsR2XVDcm6l2MYNVqlTciLf4+nBkZxvVnP
+         oFSWEV1VNijYMeOfawxJGLATxCcZyE+2Ep5EkFwnGqACwpt188YeIlh0E/i3wPBvtwcQ
+         6p1hfuLM/TBc5AvXxutguyvUN4gvjjV8zvXSq8YqEzyiJfxZwSMvF7pSe5TTJuuXS5wy
+         vuLc60YIxYAEYtYjEjGQwsmjCIPzvg2e5WPgD4KqKhrtuyMw8ETHzKclKdrbZPz+5HYW
+         hInjBTHcD+fAYruoqy00HDYWKdsBiKLgfQKI+jqNeHCWdgEpjazZVUMUP+K96RgWDNoa
+         2kFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XGovVwjV1E6BtwAiQsNOA452MnQdQNOQG6D6vOb6hjA=;
+        b=VBzXX0IgS4L2TJOOnHluohLpeXjon8mIhQeNgTdjoWc/XPS203Q5sbpFQBb392AFV9
+         AuTyxmNTTv8i+mqb+mUllZiC0BdoHpe/iCoIPPsGl6ATVn4OVyEoQlcwxJHenQrlTbVV
+         DynqjBuI8K9y3pMTskxu5/xZQkQKXIRnN3P7Sm98XFIs1nAtf4oFfXkKwHoTToMGMmc+
+         daazj/oLLlJI5b34Io2yLHSLFCbexnnqcJUpuLVJ6Y3qNxW8X8PpmW8LBtIqKS2e/wVf
+         aXqxyjcrg0b2mFNferbNN13tIbNlCQPPDnUjgb3McpCLRvReKCWbg+Yk0NOL7pbzwlDb
+         w51g==
+X-Gm-Message-State: ACrzQf27OWUudc0s3/fhXad6B1751sc/x6ypBddN2la8qoI5K0mbSOyM
+        MNDiC9Pp7ja8XoMmLK8iXBA=
+X-Google-Smtp-Source: AMsMyM4OatQFYqVqmKwLry/ueQrrTE1Ary//IAEG8r6UYYkfBMVy9IEHCtjpLWqjIXaf33tEae5evQ==
+X-Received: by 2002:a17:90a:9606:b0:213:aff5:e537 with SMTP id v6-20020a17090a960600b00213aff5e537mr1690450pjo.183.1667034694859;
+        Sat, 29 Oct 2022 02:11:34 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-1.three.co.id. [180.214.232.1])
+        by smtp.gmail.com with ESMTPSA id i66-20020a626d45000000b0056b8e788acesm789333pfc.82.2022.10.29.02.11.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Oct 2022 02:11:34 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id 1AF4E103D6E; Sat, 29 Oct 2022 16:11:30 +0700 (WIB)
+Date:   Sat, 29 Oct 2022 16:11:30 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v8 4/9] phy: fsl: Add Lynx 10G SerDes driver
+Message-ID: <Y1zuQvkyqtHOPGrk@debian.me>
+References: <20221027191113.403712-1-sean.anderson@seco.com>
+ <20221027191113.403712-5-sean.anderson@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9mhS4nfECiIf9yXH"
 Content-Disposition: inline
-In-Reply-To: <20221024105853.42029-3-alistair@alistair23.me>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221027191113.403712-5-sean.anderson@seco.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 24, 2022 at 08:58:53PM +1000, Alistair Francis wrote:
-> Enable the silergy,sy7636a and silergy,sy7636a-regulator on the
-> reMarkable2.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  arch/arm/boot/dts/imx7d-remarkable2.dts | 62 +++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> index a2a91bfdd98e..99ac0d242936 100644
-> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> @@ -22,6 +22,27 @@ memory@80000000 {
->  		reg = <0x80000000 0x40000000>;
->  	};
->  
-> +	thermal-zones {
-> +		epd-thermal {
-> +			thermal-sensors = <&epd_pmic>;
-> +			polling-delay-passive = <30000>;
-> +			polling-delay = <30000>;
 
-Have a newline between properties and child node.
+--9mhS4nfECiIf9yXH
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +			trips {
-> +				trip0 {
-> +					temperature = <49000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
+On Thu, Oct 27, 2022 at 03:11:08PM -0400, Sean Anderson wrote:
+>  .. only::  subproject and html
+> diff --git a/Documentation/driver-api/phy/lynx_10g.rst b/Documentation/dr=
+iver-api/phy/lynx_10g.rst
+> new file mode 100644
+> index 000000000000..ebbf4dd86726
+> --- /dev/null
+> +++ b/Documentation/driver-api/phy/lynx_10g.rst
+> @@ -0,0 +1,58 @@
+> +.. SPDX-License-Identifier: GPL-2.0
 > +
-> +				trip1 {
-> +					temperature = <50000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +	};
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> +Lynx 10G Phy (QorIQ SerDes)
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
 > +
->  	reg_brcm: regulator-brcm {
->  		compatible = "regulator-fixed";
->  		regulator-name = "brcm_reg";
-> @@ -84,6 +105,33 @@ wacom_digitizer: digitizer@9 {
->  	};
->  };
->  
-> +&i2c4 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_i2c4>;
-> +	pinctrl-1 = <&pinctrl_i2c4>;
-> +	status = "okay";
+> +Using this phy
+> +--------------
 > +
-> +	epd_pmic: sy7636a@62 {
+> +:c:func:`phy_get` just gets (or creates) a new :c:type:`phy` with the la=
+nes
+> +described in the phandle. :c:func:`phy_init` is what actually reserves t=
+he
+> +lanes for use. Unlike some other drivers, when the phy is created, there=
+ is no
+> +default protocol. :c:func:`phy_set_mode <phy_set_mode_ext>` must be call=
+ed in
+> +order to set the protocol.
+> +
+> +Supporting SoCs
+> +---------------
+> +
+> +Each new SoC needs a :c:type:`struct lynx_conf <lynx_conf>`, containing =
+the
+> +number of lanes in each device, the endianness of the device, and the he=
+lper
+> +functions to use when selecting protocol controllers. For example, the
+> +configuration for the LS1046A is::
 
-Node name should be generic while label could be specific, so maybe:
+Did you mean struct lynx_cfg as in below snippet?
 
-	sy7636a: pmic@62 {
-
-> +		compatible = "silergy,sy7636a";
-> +		reg = <0x62>;
-> +		status = "okay";
-
-We usually end property list with `status`.
-
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_epdpmic>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		#thermal-sensor-cells = <0>;
+> +
+> +    static const struct lynx_cfg ls1046a_cfg =3D {
+> +        .lanes =3D 4,
+> +        .endian =3D REGMAP_ENDIAN_BIG,
+> +        .mode_conflict =3D lynx_ls_mode_conflict,
+> +        .mode_apply =3D lynx_ls_mode_apply,
+> +        .mode_init =3D lynx_ls_mode_init,
+> +    };
+> +
+> +The ``mode_`` functions will generally be common to all SoCs in a series=
+ (e.g.
+> +all Layerscape SoCs or all T-series SoCs).
+> +
+> +In addition, you will need to add a device node as documented in
+> +``Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml``. This lets t=
+he
+> +driver know which lanes are available to configure.
+> +
+> +Supporting Protocols
+> +--------------------
+> +
+> +Each protocol is a combination of values which must be programmed into t=
+he lane
+> +registers. To add a new protocol, first add it to :c:type:`enum lynx_pro=
+tocol
+> +<lynx_protocol>`. Add a new entry to `lynx_proto_params`, and populate t=
+he
+> +appropriate fields. Modify `lynx_lookup_proto` to map the :c:type:`enum
+> +phy_mode <phy_mode>` to :c:type:`enum lynx_protocol <lynx_protocol>`. Up=
+date
+> +the ``mode_conflict``, ``mode_apply``, and ``mode_init`` helpers are upd=
+ated to
+> +support your protocol.
 > +
 
-Move this newline one line below.
+These lynx_ keywords should be in double backticks to be consistent
+(rendered as inline code).
 
-> +		epd-pwr-good-gpios = <&gpio6 21 GPIO_ACTIVE_HIGH>;
-> +		regulators {
-> +			reg_epdpmic: vcom {
-> +				regulator-name = "vcom";
-> +				regulator-boot-on;
-> +			};
-> +		};
-> +	};
-> +};
+Also, don't forget to add conjunctions:
+
+"... Then modify ``lynx_lookup_proto`` ... Finally, update the ...
+helpers ..."
+
+> +You may need to modify :c:func:`lynx_set_mode` in order to support your
+> +protocol. This can happen when you have added members to :c:type:`struct
+> +lynx_proto_params <lynx_proto_params>`. It can also happen if you have s=
+pecific
+> +clocking requirements, or protocol-specific registers to program.
 > +
->  &snvs_pwrkey {
->  	status = "okay";
->  };
-> @@ -177,6 +225,13 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
->  		>;
->  	};
->  
-> +	pinctrl_epdpmic: epdpmicgrp {
-> +		fsl,pins = <
-> +			MX7D_PAD_SAI2_RX_DATA__GPIO6_IO21 0x00000074
-> +			MX7D_PAD_ENET1_RGMII_TXC__GPIO7_IO11 0x00000014
-
-You might want to align hex values like other pinctrl nodes?
-
-Shawn
-
-> +		>;
-> +	};
+> +Internal API Reference
+> +----------------------
 > +
->  	pinctrl_i2c1: i2c1grp {
->  		fsl,pins = <
->  			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
-> @@ -184,6 +239,13 @@ MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
->  		>;
->  	};
->  
-> +	pinctrl_i2c4: i2c4grp {
-> +		fsl,pins = <
-> +			MX7D_PAD_I2C4_SDA__I2C4_SDA		0x4000007f
-> +			MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
-> +		>;
-> +	};
-> +
->  	pinctrl_uart1: uart1grp {
->  		fsl,pins = <
->  			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
-> -- 
-> 2.37.3
-> 
+> +.. kernel-doc:: drivers/phy/freescale/phy-fsl-lynx-10g.c
+
+Otherwise LGTM, thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--9mhS4nfECiIf9yXH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY1zuPAAKCRD2uYlJVVFO
+o0lFAQDAGPql7PsJtgyOHANd61r9QA5C1NsAs7p1z2APtWtn7wD8CZbEagXT+kX1
+GJMBh0UPc1fhpUiL2ln6IRYVs6nfRw0=
+=CfkV
+-----END PGP SIGNATURE-----
+
+--9mhS4nfECiIf9yXH--
