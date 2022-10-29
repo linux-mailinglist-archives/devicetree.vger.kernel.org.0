@@ -2,55 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E76611E90
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 02:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D72611E97
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 02:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiJ2AEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 20:04:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58700 "EHLO
+        id S229619AbiJ2AFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 20:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiJ2AEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 20:04:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258F71F527F;
-        Fri, 28 Oct 2022 17:04:00 -0700 (PDT)
+        with ESMTP id S229689AbiJ2AFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 20:05:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0AAE4A830;
+        Fri, 28 Oct 2022 17:05:04 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B678E62B28;
-        Sat, 29 Oct 2022 00:03:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F59DC433C1;
-        Sat, 29 Oct 2022 00:03:56 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7B943B82DE1;
+        Sat, 29 Oct 2022 00:05:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA3B3C433D7;
+        Sat, 29 Oct 2022 00:05:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667001839;
-        bh=8+9R9gDIJ/W0YoiM2ajpmy9KkYOG9Pgge4BcaswvFNc=;
+        s=k20201202; t=1667001902;
+        bh=YC+e6whfjf04npKAsVbYriXuxVx8o81YW1bGePbuxs4=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Z5xzl+e1CHM/j6Z845Zw/o/Mvytjfro2i96voHFOEYewSj0U21V3IgUGaCEBfkz7/
-         EI5Xo8zO+gCWLQ0JI7Eo8doEQXviz0InQFf1QODluVbsCzOn+y/N7nLPXI9Unk273d
-         f8/8cpwPN5RXlkiydkvM3C4goHxFoOY9hAeDypgiw+HTW/rxJbtjx37pRVmbfTVCSh
-         0ebFSrhw1TIYk6ByyJd2L2jYH5jF2Ppb3ZN3EjZz3w4B3mgUFnIhqnDCLNoxFJsXxd
-         uGTC8vtwe0TSkLf4jurqiD9Cxh+rbRsiaCXSz8S8Tr7ddYA9vKYVVJBtJdn6e0Wkmc
-         ceXrUMmkxmHSA==
-Message-ID: <4f9f6fcf-b6f2-7729-5950-7bc472d0c863@kernel.org>
-Date:   Fri, 28 Oct 2022 20:03:55 -0400
+        b=XZtDH9hskgd+DcdN6r/uI+3H+zwpSM0oHxfwv4zT6UkMti5zONqh4om+cFikwlDxO
+         SocagtPpUBOZVsJV93xAw5irDidO79KgBEdTpDhDq4/6Cl2QFPAFQZYG2pNgE2pxPB
+         EDPMikvkGFgiDFbIo+N+k+N0YEwUMrpvqOYRA/rFmcEbSlL1D8KPAP2xF+lNv6ei3Z
+         uJjY5i6CAnMfgGGlGuQgie8ygvh7vq8DYaRdKqRdU9HNpCZ5NtaIs6N21U6dcWepnh
+         I2da3hBzKwXGkq99bip3bOiQRo1VLiEFdrRieeyur1sYXNzIePbQOW7FNqZURecXmU
+         nelCO6FNXnJYA==
+Message-ID: <d40193d3-d933-0e89-a08e-47fd87aaf07a@kernel.org>
+Date:   Fri, 28 Oct 2022 20:04:59 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 net-next 1/6] arm64: dts: mediatek: mt7986: add support
- for RX Wireless Ethernet Dispatch
+Subject: Re: [PATCH next v8 2/2] dt-bindings: i2c: add entry for
+ hisilicon,i2c-ascend910
 Content-Language: en-US
-To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
-Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org, robh@kernel.org, daniel@makrotopia.org
-References: <cover.1666549145.git.lorenzo@kernel.org>
- <41d67d36481f3099f953a462a80e99a4fcd477dd.1666549145.git.lorenzo@kernel.org>
+To:     Weilong Chen <chenweilong@huawei.com>, yangyicong@hisilicon.com,
+        xuwei5@huawei.com, wsa@kernel.org, robh+dt@kernel.org,
+        robh@kernel.org
+Cc:     linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20221024015151.342651-1-chenweilong@huawei.com>
+ <20221024015151.342651-2-chenweilong@huawei.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <41d67d36481f3099f953a462a80e99a4fcd477dd.1666549145.git.lorenzo@kernel.org>
+In-Reply-To: <20221024015151.342651-2-chenweilong@huawei.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -63,147 +60,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/10/2022 14:28, Lorenzo Bianconi wrote:
-> Similar to TX Wireless Ethernet Dispatch, introduce RX Wireless Ethernet
-> Dispatch to offload traffic received by the wlan interface to lan/wan
-> one.
+On 23/10/2022 21:51, Weilong Chen wrote:
+> Add the new compatible for HiSilicon i2c.
+> 
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
 
 Please use scripts/get_maintainers.pl to get a list of necessary people
 and lists to CC.  It might happen, that command when run on an older
 kernel, gives you outdated entries.  Therefore please be sure you base
 your patches on recent Linux kernel.
 
-> 
-> Co-developed-by: Sujuan Chen <sujuan.chen@mediatek.com>
-> Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 73 +++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
+> Change since v7:
+> - Fix yamllint errors, rename i2c-xxx to i2c-ascend910
+> Link: https://lore.kernel.org/all/166635752527.3428089.707277745439761591.robh@kernel.org/
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 72e0d9722e07..e3b05280dcb6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -8,6 +8,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/mt7986-clk.h>
->  #include <dt-bindings/reset/mt7986-resets.h>
-> +#include <dt-bindings/reset/ti-syscon.h>
->  
->  / {
->  	interrupt-parent = <&gic>;
-> @@ -76,6 +77,31 @@ wmcpu_emi: wmcpu-reserved@4fc00000 {
->  			no-map;
->  			reg = <0 0x4fc00000 0 0x00100000>;
->  		};
-> +
-> +		wo_emi0: wo-emi0@4fd00000 {
-> +			reg = <0 0x4fd00000 0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		wo_emi1: wo-emi1@4fd40000 {
-> +			reg = <0 0x4fd40000 0 0x40000>;
-> +			no-map;
-> +		};
-> +
-> +		wo_ilm0: wo-ilm0@151e0000 {
-> +			reg = <0 0x151e0000 0 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		wo_ilm1: wo-ilm1@151f0000 {
-> +			reg = <0 0x151f0000 0 0x8000>;
-> +			no-map;
-> +		};
-> +
-> +		wo_data: wo-data@4fd80000 {
-> +			reg = <0 0x4fd80000 0 0x240000>;
-> +			no-map;
-> +		};
->  	};
->  
->  	timer {
-> @@ -226,6 +252,12 @@ ethsys: syscon@15000000 {
->  			 reg = <0 0x15000000 0 0x1000>;
->  			 #clock-cells = <1>;
->  			 #reset-cells = <1>;
-> +
-> +			ethsysrst: reset-controller {
-> +				compatible = "ti,syscon-reset";
-> +				#reset-cells = <1>;
-> +				ti,reset-bits = <0x34 4 0x34 4 0x34 4 (ASSERT_SET | DEASSERT_CLEAR | STATUS_SET)>;
-> +			};
->  		};
->  
->  		wed_pcie: wed-pcie@10003000 {
-> @@ -240,6 +272,10 @@ wed0: wed@15010000 {
->  			reg = <0 0x15010000 0 0x1000>;
->  			interrupt-parent = <&gic>;
->  			interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
-> +			memory-region = <&wo_emi0>, <&wo_ilm0>, <&wo_data>;
-> +			mediatek,wo-ccif = <&wo_ccif0>;
-> +			mediatek,wo-dlm = <&wo_dlm0>;
-> +			mediatek,wo-boot = <&wo_boot>;
->  		};
->  
->  		wed1: wed@15011000 {
-> @@ -248,6 +284,43 @@ wed1: wed@15011000 {
->  			reg = <0 0x15011000 0 0x1000>;
->  			interrupt-parent = <&gic>;
->  			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
-> +			memory-region = <&wo_emi1>, <&wo_ilm1>, <&wo_data>;
-> +			mediatek,wo-ccif = <&wo_ccif1>;
-> +			mediatek,wo-dlm = <&wo_dlm1>;
-> +			mediatek,wo-boot = <&wo_boot>;
-> +		};
-> +
-> +		wo_ccif0: wo-ccif1@151a5000 {
+>  .../bindings/i2c/hisilicon,i2c-ascend910.yaml | 70 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
+> new file mode 100644
+> index 000000000000..918825a3026b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/hisilicon,i2c-ascend910.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/i2c/hisilicon,i2c-ascend910.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+My previous comments apply.
 
-"1" suffix is for sure not generic. Neither wo-ccif is... unless there
-is some article on Wikipedia about it? Or maybe generic name is not
-possible to get, which happens...
+> +
+> +title: HiSilicon common I2C controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Yicong Yang <yangyicong@hisilicon.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: hisilicon,i2c-ascend910
+> +    description:
+> +      The HiSilicon common I2C controller can be used for many different
+> +      types of SoC such as Huawei Ascend AI series chips.
 
-> +			compatible = "mediatek,mt7986-wo-ccif","syscon";
-> +			reg = <0 0x151a5000 0 0x1000>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		wo_ccif1: wo-ccif1@151ad000 {
-> +			compatible = "mediatek,mt7986-wo-ccif","syscon";
-> +			reg = <0 0x151ad000 0 0x1000>;
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		wo_dlm0: wo-dlm@151e8000 {
-> +			compatible = "mediatek,mt7986-wo-dlm";
-> +			reg = <0 0x151e8000 0 0x2000>;
-> +			resets = <&ethsysrst 0>;
-> +			reset-names = "wocpu_rst";
-> +		};
-> +
-> +		wo_dlm1: wo-dlm@0x151f8000 {
-> +			compatible = "mediatek,mt7986-wo-dlm";
-> +			reg = <0 0x151f8000 0 0x2000>;
-> +			resets = <&ethsysrst 0>;
-> +			reset-names = "wocpu_rst";
-> +		};
-> +
-> +		wo_boot: wo-boot@15194000 {
-> +			compatible = "mediatek,mt7986-wo-boot","syscon";
+Comment still applies.
 
-Missing space.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    default: 400000
+> +
+> +  i2c-sda-falling-time-ns:
+> +    default: 343
+> +
+> +  i2c-scl-falling-time-ns:
+> +    default: 203
+> +
+> +  i2c-sda-hold-time-ns:
+> +    default: 830
+> +
+> +  i2c-scl-rising-time-ns:
+> +    default: 365
+> +
+> +  i2c-digital-filter-width-ns:
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c@5038b0000 {
+> +      compatible = "hisilicon,i2c-ascend910";
+> +      reg = <0x38b0000 0x10000>;
+> +      interrupts = <0x0 120 0x4>;
 
-> +			reg = <0 0x15194000 0 0x1000>;
->  		};
->  
->  		eth: ethernet@15100000 {
+Same here.
+
 
 Best regards,
 Krzysztof
