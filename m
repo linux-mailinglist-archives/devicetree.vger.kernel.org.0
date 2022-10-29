@@ -2,125 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC8856121FA
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 11:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E95B61221E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 12:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiJ2Jpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 05:45:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51092 "EHLO
+        id S229766AbiJ2KHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 06:07:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbiJ2Jpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 05:45:33 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BED961D63;
-        Sat, 29 Oct 2022 02:45:31 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 29T9im6c009885;
-        Sat, 29 Oct 2022 09:44:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=NbnSfTQFRtU1QAkKnF5HQ/jgkcL6x48/jtBbKCN1o3A=;
- b=ejhQh9s2wQmjT/ve77N4cIuGzdvilUOs6YrRn5l727HoTGHxnfkeXRo2t652VOMAT8Ui
- GHBfwPBsV5aXWi+GZZOrIrrIoZvUzJIS/t8Sfh0ym1uo6Q8uE05dV2c83NWiHOHNOzub
- tRT/3uHY2LjAFiw8KlZmBpZx3YWLmAdQJRz4iXchE78Mz3BGQmdsaaETWbcmw1JWmj9q
- GqIsgiKKrjjbCfdg4dv72+11nIlrI1BXch2F6j06UQy3HdEEfEVhKu4jD9E/l9LWDLIY
- aJaAPCIWrty69yfNyts+Nc+znA0oEu0tpF/cXNX3TkaJAY1onxrYjBy+ZPfu5qid3gxS Zg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kgwcyrkw4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 29 Oct 2022 09:44:48 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29T9ilIc007037
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 29 Oct 2022 09:44:47 GMT
-Received: from [10.216.56.52] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Sat, 29 Oct
- 2022 02:44:41 -0700
-Message-ID: <6e0590af-0bd1-cbef-c573-fa62b5bc9e63@quicinc.com>
-Date:   Sat, 29 Oct 2022 15:14:38 +0530
+        with ESMTP id S229761AbiJ2KHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 06:07:08 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1764F7B7AA;
+        Sat, 29 Oct 2022 03:07:07 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id DECFE5C015A;
+        Sat, 29 Oct 2022 06:07:03 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Sat, 29 Oct 2022 06:07:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-transfer-encoding:content-type:date:date:from
+        :from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1667038023; x=1667124423; bh=X1
+        FoTzqNKN1Kmjdz4a3YhRLFY9KNaucDFaWdfFf2th0=; b=VIsSSJmS3SJ1oleOa5
+        ykSLvEHrT/7b2P4YKN9oDFAxX81qyEzZDbzZWicVm9rhMzSBH44lgEkwivgpcd50
+        Ap6qDtLvw2jhoSgsvz+fonG8mXnc/RvThtXBuqAb+6a44jL+ck6zPdcy4siN0z1L
+        NTmNHk9tH87kRIh//ksytGP0HiBpmcx0xEqPwhLImB8mO7lWpznpbKH77hti9eGW
+        9UJZQ2JA1rv2fVw+4mheQYy3tpOG47/WYWB8WVWuVjUuZyj4t/XQdcnt1npg+3S4
+        g71Un2Gl42KYwuDW45VBURKhsFFQnTIqbhtpZAkOkPp6bBzSA7nEh7gIxqz2zZbs
+        etBg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1667038023; x=1667124423; bh=X1FoTzqNKN1Km
+        jdz4a3YhRLFY9KNaucDFaWdfFf2th0=; b=SyU/3aqKGtEVofaulqnCHmPyGqHlF
+        co4j771E6n4PSuVUh0kz1cgJJMMfiWOpwc9rBdDf9yudb9MC4hbE7b8VBu3Vq72N
+        abGOEqaZKlV8QMYcfO/b1t2uKgJXIyMtmbMGC+hE+ydinWfF+070GIXBtpxdSRjm
+        GWdVF20gVBqgM8E1CyZv6DqNQiWHGNPrAM6uWGzQFsYE+QYUOs6msO2k7ZsKY1S2
+        nSbz8gRFGd7F0JTxONBFuF3fBVuGUDFChIO6+PxoRHz7lcCiLQE+g6IUYumZNHyz
+        la7NQXTy4HxfksJTIQtWkPjRWXcZU8cW/RG0+opadpGZY6J+UAFsxQOXw==
+X-ME-Sender: <xms:R_tcY5QoSxnvDf4bA9ZWDC5r1i-ghIeL_0KblDCxeB1KYcBs1Y5asw>
+    <xme:R_tcYyxb21PBAlIx8Ib71PXqyOJyrejegTrp2gqzEmJI0q3GLVDuATcuKYkRK1k_E
+    SoBtpiNazO5r5sU17I>
+X-ME-Received: <xmr:R_tcY-2xP_RYAVY4Z1i0Zi5h29KAwMjM3doEKrTwoc2P7PjbexfMVzzUC5C7rDU7cHBDK3ADLXjI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrtdekgddvgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvvefufffkofgtggfgsehtkeertd
+    ertdejnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
+    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepffekhfelteeggf
+    etieekteekhedtffekvddtveetgeffgfelffeftdehuefgheefnecuvehluhhsthgvrhfu
+    ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhish
+    htrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:R_tcYxAcWQp_LlrVmo3eTZruES8G7rC-0zA-hy_1IiyvjRUAJr9u1w>
+    <xmx:R_tcYygXK3J6K0hEoUqxKGRZn1avSbkaN5i9b4LSlBYghKQ7Yd3C1w>
+    <xmx:R_tcY1po7dxk7m22OY7v4XlCEaaUoAFa8n-6nsH8_7yqrWpUn0ELlw>
+    <xmx:R_tcY7Ztl3VmoNENOasV4Ur-xttiF9G8pNCqdLREqeTMWDThesRSVQ>
+Feedback-ID: ifd214418:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 29 Oct 2022 06:06:52 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     lgirdwood@gmail.com, robh+dt@kernel.org, broonie@kernel.org,
+        kernel@pengutronix.de, lee.jones@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, alistair23@gmail.com,
+        linux-imx@nxp.com, alistair@alistair23.me, amitk@kernel.org,
+        s.hauer@pengutronix.de, linux@roeck-us.net, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, shawnguo@kernel.org,
+        andreas@kemnade.info, linux-kernel@vger.kernel.org,
+        geert@linux-m68k.org
+Subject: [PATCH v23 0/2] Add support for the silergy,sy7636a
+Date:   Sat, 29 Oct 2022 20:06:44 +1000
+Message-Id: <20221029100646.294583-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.38.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v10 1/7] dt-bindings: remoteproc: qcom: Add SC7280 ADSP
- support
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
-References: <1664368073-13659-1-git-send-email-quic_srivasam@quicinc.com>
- <1664368073-13659-2-git-send-email-quic_srivasam@quicinc.com>
- <a1a78c72-2067-1ea8-a50e-0dcf4ae4bb83@linaro.org>
- <97b462ea-e283-60ee-e272-b136ca08a251@linaro.org>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <97b462ea-e283-60ee-e272-b136ca08a251@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8nPSRRS4ej5El_L6aCOcLQBLyEF-NcIn
-X-Proofpoint-GUID: 8nPSRRS4ej5El_L6aCOcLQBLyEF-NcIn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-29_05,2022-10-27_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- mlxlogscore=811 impostorscore=0 spamscore=0 malwarescore=0 phishscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2210290068
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v23:
+ - Cleanup device tree changes
+v22:
+ - Rebase on master
+ - Drop `ARM: dts: imx7d-remarkable2: Enable lcdif`
+v21:
+ - Rebase on master
+v20:
+ - Remove merged patches
+ - Fixup Kconfig selection based on previous discussions
+v19:
+ - Rebase on linux-next
+v18:
+ - Rebase
+v17:
+ - Rebase and fix build issues
+v16:
+ - Improve vdd regulator comments
+v15:
+ - Address comments on the patches
+v14:
+ - Merge the thermal driver and hwmon
+v13:
+ - Address comments on thermal driver
+ - Rebase on master (without other patches)
+v12:
+ - Rebase
+v11:
+ - Address comments on hwmon
+ - Improve "mfd: simple-mfd-i2c: Add a Kconfig name" commit message
+v10:
+ - Use dev_get_regmap() instead of dev_get_drvdata()
+v9:
+ - Convert to use the simple-mfd-i2c instead
 
-On 10/28/2022 10:32 PM, Krzysztof Kozlowski wrote:
-Thanks for Your time Krzysztof!!!
-> On 29/09/2022 03:32, Krzysztof Kozlowski wrote:
->> On 28/09/2022 14:27, Srinivasa Rao Mandadapu wrote:
->>> Add ADSP PIL loading support for SC7280 SoCs.
->>>
->>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->>> ---
->>> Changes since V9:
->>> 	-- Add missing unevaluatedProperties in glink-edge.
->>> Changes since V8:
->>> 	-- Add glink-edge reference.
->>> 	-- Remove redundant glinke-edge properties.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
-> Actually not... you still do not Cc all necessary maintainers. I don't
-> understand why.
->
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
+Alistair Francis (2):
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a
+  ARM: dts: imx7d-remarkable2: Enable silergy,sy7636a
 
-Sorry for missing it. Actually it was long back patch.
+ arch/arm/boot/dts/imx7d-remarkable2.dts | 63 +++++++++++++++++++++++++
+ arch/arm/configs/imx_v6_v7_defconfig    |  3 ++
+ 2 files changed, 66 insertions(+)
 
-Recently After your suggestion on soundwire bindings patch,I am taking 
-care of it.
+-- 
+2.38.1
 
->
-> Best regards,
-> Krzysztof
->
