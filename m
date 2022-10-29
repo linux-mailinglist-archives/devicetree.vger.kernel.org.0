@@ -2,214 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4AE5612614
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 00:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 153D3612618
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 00:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiJ2WCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 18:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48782 "EHLO
+        id S229565AbiJ2WC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 18:02:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiJ2WCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 18:02:37 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08E52CC94
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 15:02:35 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id p8so13631080lfu.11
-        for <devicetree@vger.kernel.org>; Sat, 29 Oct 2022 15:02:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5E055D0LraQtXxVm7spy38VDfZkDycL7gLDgoeNA16o=;
-        b=j+7ijpO0/3KSJT8VqP7+9KbWRoZ/P+8Pt6ftg3RYrDzOQG/OoUV3jZOVwlzUM/mUoE
-         Omp1Y/opkSMuvoGniucEoYxxLubo8YorcLW3UC4oUz6VTsVEaHyQTMjT0ricldnbA0Kx
-         Q7XY6n1TR3nT4arq0EucIOCEApbF8g2lZ47I33YD9Z18W0PYYdY6EQ0y+Ym6rw2rtccA
-         w4RfDNWehGXZrzjOmFTrIzYZQT+uQGlanuCHvKts3N4YkiAR74fC9jSvI9aKI9pxPy6J
-         iJogk19yBiCAPzTiF0eH5T+eZ9Ut5hcoKdi8Sh1LETftUSkJcmmB1zHQSfRpb1JuTPiz
-         t6OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5E055D0LraQtXxVm7spy38VDfZkDycL7gLDgoeNA16o=;
-        b=pKFqNQhPwRsz00wc2kixexbT8VipXEes8mnS0kxzH1HvHNWqStJVOa6/UGnVFQzdyc
-         yfBA+nXJ4SG6Ys7Q14SeMheCOrIyDFK5vFOyY3fJ0cfe3Or5KwnJuszVHcA82623VKEF
-         cbASpaoG62M72Ojxdl7MiBUOvusFKR0anSrerT8jqgQ9nm4sA9TxgRrakBiKS1cQl/lx
-         i0y3tpizW3OKmWw+i3MSPLYSfD5nC1PUL8M+E5PmKCn4lkL6GsrYMjIN/p5+Nr7H7993
-         JmUIbPmlJMzHQXNaeCNPiJzw+MMdBnIGbATAOZTUrqxQ35PKitaO7NcwtGTeGSZAh8UI
-         X4xQ==
-X-Gm-Message-State: ACrzQf0vPyGdi1qXnt3FTNmGsgnLSVXlUvXEzgvb7IH3wu/LDBwBvGYb
-        g4xyb0Yp0yL14LiN4lhhX2zzDQ==
-X-Google-Smtp-Source: AMsMyM4pm04TNdTofIp5vVw8Exv2fHuV0kBcqVC+ddmDOKxb5o54kJtyQCL/FSn1KaXk+T9gB25qYw==
-X-Received: by 2002:a05:6512:48f:b0:4a4:7988:b737 with SMTP id v15-20020a056512048f00b004a47988b737mr2152049lfq.28.1667080739088;
-        Sat, 29 Oct 2022 14:58:59 -0700 (PDT)
-Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b00277092c03e7sm437615ljo.33.2022.10.29.14.58.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 29 Oct 2022 14:58:58 -0700 (PDT)
-Message-ID: <01a01fb3-2520-58ce-6432-b278bb8118f5@linaro.org>
-Date:   Sun, 30 Oct 2022 00:58:57 +0300
+        with ESMTP id S229489AbiJ2WCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 18:02:55 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BB072C656;
+        Sat, 29 Oct 2022 15:02:54 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CFC21660231A;
+        Sat, 29 Oct 2022 23:02:52 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667080972;
+        bh=34xyCO5Alo2glnzXKm3onPMsgcEoOJdeiM8/2fgcEbQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Uk+C9Wq4RQZR9ak3Evg9c2Fv7UHDHSK9JFFdLIgwcUblgosBx2Pz3A1RBJTuF0jC1
+         fbYHcCiJ4pQfWRKp0scaAVNG06w3Np5QvsY4MIMBnGh+F5CLc3cLjexa84NQAzD/Zm
+         mB7Htet0hr95fwHWlV8qnHZGuVjqt1DPoA+mtoWoqomm9Cp6nDH5y89IVcviFk6U+G
+         +q5aYcRDnq4NdAeZNo6a3+RqDi9lskkf5YvhqCrO3EW896Iv44u4zsROiRC+Gs249b
+         p3MsPpvOn66e5qbF8aStXFwKRnCUkm9NoD0Pd19jLlHs/udrrVJ/F9aklZ3rQa+Zy6
+         pG8rzQzWHcdIw==
+Received: by mercury (Postfix, from userid 1000)
+        id 373041066A63; Sun, 30 Oct 2022 00:02:50 +0200 (CEST)
+Date:   Sun, 30 Oct 2022 00:02:50 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Saravanan Sekar <sravanhome@gmail.com>
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
+        lars@metafoo.de, andy.shevchenko@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 0/8] Add support for mp2733 battery charger
+Message-ID: <20221029220250.pybesx2w4hslkrcp@mercury.elektranox.org>
+References: <20221029093000.45451-1-sravanhome@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 10/15] scsi: ufs: ufs-qcom: Use bitfields where
- appropriate
-Content-Language: en-GB
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org
-References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
- <20221029141633.295650-11-manivannan.sadhasivam@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20221029141633.295650-11-manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tnqkut6gjfzafbxh"
+Content-Disposition: inline
+In-Reply-To: <20221029093000.45451-1-sravanhome@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/10/2022 17:16, Manivannan Sadhasivam wrote:
-> Use bitfield macros where appropriate to simplify the driver.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->   drivers/ufs/host/ufs-qcom.h | 58 ++++++++++++++++---------------------
->   1 file changed, 25 insertions(+), 33 deletions(-)
-> 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+--tnqkut6gjfzafbxh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-> index 44466a395bb5..6cb0776456b3 100644
-> --- a/drivers/ufs/host/ufs-qcom.h
-> +++ b/drivers/ufs/host/ufs-qcom.h
-> @@ -17,12 +17,9 @@
->   #define DEFAULT_CLK_RATE_HZ     1000000
->   #define BUS_VECTOR_NAME_LEN     32
->   
-> -#define UFS_HW_VER_MAJOR_SHFT	(28)
-> -#define UFS_HW_VER_MAJOR_MASK	(0x000F << UFS_HW_VER_MAJOR_SHFT)
-> -#define UFS_HW_VER_MINOR_SHFT	(16)
-> -#define UFS_HW_VER_MINOR_MASK	(0x0FFF << UFS_HW_VER_MINOR_SHFT)
-> -#define UFS_HW_VER_STEP_SHFT	(0)
-> -#define UFS_HW_VER_STEP_MASK	(0xFFFF << UFS_HW_VER_STEP_SHFT)
-> +#define UFS_HW_VER_MAJOR_MASK	GENMASK(31, 28)
-> +#define UFS_HW_VER_MINOR_MASK	GENMASK(27, 16)
-> +#define UFS_HW_VER_STEP_MASK	GENMASK(15, 0)
->   
->   /* vendor specific pre-defined parameters */
->   #define SLOW 1
-> @@ -76,24 +73,24 @@ enum {
->   #define UFS_CNTLR_3_x_x_VEN_REGS_OFFSET(x)	(0x400 + x)
->   
->   /* bit definitions for REG_UFS_CFG1 register */
-> -#define QUNIPRO_SEL		0x1
-> -#define UTP_DBG_RAMS_EN		0x20000
-> +#define QUNIPRO_SEL		BIT(0)
-> +#define UTP_DBG_RAMS_EN		BIT(17)
->   #define TEST_BUS_EN		BIT(18)
->   #define TEST_BUS_SEL		GENMASK(22, 19)
->   #define UFS_REG_TEST_BUS_EN	BIT(30)
->   
->   /* bit definitions for REG_UFS_CFG2 register */
-> -#define UAWM_HW_CGC_EN		(1 << 0)
-> -#define UARM_HW_CGC_EN		(1 << 1)
-> -#define TXUC_HW_CGC_EN		(1 << 2)
-> -#define RXUC_HW_CGC_EN		(1 << 3)
-> -#define DFC_HW_CGC_EN		(1 << 4)
-> -#define TRLUT_HW_CGC_EN		(1 << 5)
-> -#define TMRLUT_HW_CGC_EN	(1 << 6)
-> -#define OCSC_HW_CGC_EN		(1 << 7)
-> +#define UAWM_HW_CGC_EN		BIT(0)
-> +#define UARM_HW_CGC_EN		BIT(1)
-> +#define TXUC_HW_CGC_EN		BIT(2)
-> +#define RXUC_HW_CGC_EN		BIT(3)
-> +#define DFC_HW_CGC_EN		BIT(4)
-> +#define TRLUT_HW_CGC_EN		BIT(5)
-> +#define TMRLUT_HW_CGC_EN	BIT(6)
-> +#define OCSC_HW_CGC_EN		BIT(7)
->   
->   /* bit definition for UFS_UFS_TEST_BUS_CTRL_n */
-> -#define TEST_BUS_SUB_SEL_MASK	0x1F  /* All XXX_SEL fields are 5 bits wide */
-> +#define TEST_BUS_SUB_SEL_MASK	GENMASK(4, 0)  /* All XXX_SEL fields are 5 bits wide */
->   
->   #define REG_UFS_CFG2_CGC_EN_ALL (UAWM_HW_CGC_EN | UARM_HW_CGC_EN |\
->   				 TXUC_HW_CGC_EN | RXUC_HW_CGC_EN |\
-> @@ -101,17 +98,12 @@ enum {
->   				 TMRLUT_HW_CGC_EN | OCSC_HW_CGC_EN)
->   
->   /* bit offset */
-> -enum {
-> -	OFFSET_UFS_PHY_SOFT_RESET           = 1,
-> -	OFFSET_CLK_NS_REG                   = 10,
-> -};
-> +#define OFFSET_CLK_NS_REG		0xa
->   
->   /* bit masks */
-> -enum {
-> -	MASK_UFS_PHY_SOFT_RESET             = 0x2,
-> -	MASK_TX_SYMBOL_CLK_1US_REG          = 0x3FF,
-> -	MASK_CLK_NS_REG                     = 0xFFFC00,
-> -};
-> +#define MASK_UFS_PHY_SOFT_RESET		BIT(1)
-> +#define MASK_TX_SYMBOL_CLK_1US_REG	GENMASK(9, 0)
-> +#define MASK_CLK_NS_REG			GENMASK(23, 10)
->   
->   /* QCOM UFS debug print bit mask */
->   #define UFS_QCOM_DBG_PRINT_REGS_EN	BIT(0)
-> @@ -135,15 +127,15 @@ ufs_qcom_get_controller_revision(struct ufs_hba *hba,
->   {
->   	u32 ver = ufshcd_readl(hba, REG_UFS_HW_VERSION);
->   
-> -	*major = (ver & UFS_HW_VER_MAJOR_MASK) >> UFS_HW_VER_MAJOR_SHFT;
-> -	*minor = (ver & UFS_HW_VER_MINOR_MASK) >> UFS_HW_VER_MINOR_SHFT;
-> -	*step = (ver & UFS_HW_VER_STEP_MASK) >> UFS_HW_VER_STEP_SHFT;
-> +	*major = FIELD_GET(UFS_HW_VER_MAJOR_MASK, ver);
-> +	*minor = FIELD_GET(UFS_HW_VER_MINOR_MASK, ver);
-> +	*step = FIELD_GET(UFS_HW_VER_STEP_MASK, ver);
->   };
->   
->   static inline void ufs_qcom_assert_reset(struct ufs_hba *hba)
->   {
-> -	ufshcd_rmwl(hba, MASK_UFS_PHY_SOFT_RESET,
-> -			1 << OFFSET_UFS_PHY_SOFT_RESET, REG_UFS_CFG1);
-> +	ufshcd_rmwl(hba, MASK_UFS_PHY_SOFT_RESET, FIELD_PREP(MASK_UFS_PHY_SOFT_RESET, 1),
+Hi,
 
-Nit: I'd just define the value too and use the defined name here.
+On Sat, Oct 29, 2022 at 11:29:52AM +0200, Saravanan Sekar wrote:
+> add support for mp2733 Battery charger control driver for
+> Monolithic Power System's MP2733 chipset.
 
-> +		    REG_UFS_CFG1);
->   
->   	/*
->   	 * Make sure assertion of ufs phy reset is written to
-> @@ -154,8 +146,8 @@ static inline void ufs_qcom_assert_reset(struct ufs_hba *hba)
->   
->   static inline void ufs_qcom_deassert_reset(struct ufs_hba *hba)
->   {
-> -	ufshcd_rmwl(hba, MASK_UFS_PHY_SOFT_RESET,
-> -			0 << OFFSET_UFS_PHY_SOFT_RESET, REG_UFS_CFG1);
-> +	ufshcd_rmwl(hba, MASK_UFS_PHY_SOFT_RESET, FIELD_PREP(MASK_UFS_PHY_SOFT_RESET, 0),
+I suppose you do not actually want to get this merged concidering
+you did not carry over the Acked-by you got in v4? :)
 
-Nit: FIELD_PREP is always 0.
+-- Sebastian
 
-> +		    REG_UFS_CFG1);
->   
->   	/*
->   	 * Make sure de-assertion of ufs phy reset is written to
+--tnqkut6gjfzafbxh
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With best wishes
-Dmitry
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmNdowYACgkQ2O7X88g7
++ppCuA/9EaUr3RIT3rZlRyeSq64bqT5OX6cD2aCfAz0t6X4UnShTGVeXTHY2ROxX
+ChF3GmKE6V7VDbNUyWisgVAXVk0Sxv/qIDHJKLy9H07BGRw61jfYU/LTNrup/1rU
+8e6HbmKBbr6s+Bp4G2uTTCS2YmcFtd13CoKu+jr+of67o74eI16iuHpb1+LS7nIC
+Qo6nRUf/BbrG6NDRNFLKkrFRSXJ0OupS9ScjB2M0uwSL7ShHHXz98BNt54EsVsvF
+LVdAB/jNdpHGpoE3sGeLWACHBbudNRrbFo1FGf/lCC5ck0lHeaF+sz6oe1AkU2So
+QWsWnvsngqcZi2I3DqnAjIvrVMQFxUr74/nGylcyqb+5B3J7ugqeO8RmXbKXtD/N
+L7EexVF4ijjJ+pA+XEIFfrOzBAveOrqj5FCb0zOcFtKO4NRl9w6mzZi8dTByZ4nm
+g8shb2qH/B+uLEEdoyIhAcpO7q2pK4rWG+mdnJZmMz8qwr3W/n/N1mO3I9AOr8q8
+p5EYXi1nxFrNU88HSxbP/IwCRaVsrI0+vdzqvZ+KisI2jNDkZN9zhNyz9m9e/+5f
+Xdq97NX0qQtyMLK5uTD2cVR3ULhWf0AxyI5p4p4sjx1uyFMADoJ0LGP4tRUwUl2m
+7Y2g3HIFCHjrPqnVxvNs52TfHILISS/Ogug/8x6/yoC7KfK+RI4=
+=FNRE
+-----END PGP SIGNATURE-----
+
+--tnqkut6gjfzafbxh--
