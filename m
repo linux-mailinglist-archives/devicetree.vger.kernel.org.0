@@ -2,100 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C598C611F6C
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 04:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB26611FDA
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 05:44:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiJ2CyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 22:54:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
+        id S229681AbiJ2Dov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 23:44:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiJ2CyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 22:54:21 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 439EB1EB557;
-        Fri, 28 Oct 2022 19:54:12 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8Axz7fSlVxj0DYDAA--.7201S3;
-        Sat, 29 Oct 2022 10:54:10 +0800 (CST)
-Received: from [10.180.13.64] (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxNlfSlVxjXKYGAA--.4822S2;
-        Sat, 29 Oct 2022 10:54:10 +0800 (CST)
-Subject: Re: [PATCH v5 1/3] dt-bindings: clock: add loongson-2 clock include
- file
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-References: <20221028025504.13247-1-zhuyinbo@loongson.cn>
- <01a38c4c-b42a-c170-3c3d-0b7e087bfaa4@linaro.org>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <2bd0f05d-a5c4-3c5c-ccbc-3e3385cc0a1d@loongson.cn>
-Date:   Sat, 29 Oct 2022 10:54:10 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229457AbiJ2Dou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 23:44:50 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D7813D79
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 20:44:47 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 185so8177224ybc.3
+        for <devicetree@vger.kernel.org>; Fri, 28 Oct 2022 20:44:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gz8chRT8BgwvM1bBz/hqcVOXEH6efHhKugP2b6d/KNA=;
+        b=g6MMhZCmMEfh5a1DNSkgtctHLoc0Zxx78dPchuD8LfuYJuM5a1iKBrVY3MzEJpWdSU
+         St2AbaMMDtRXzuN7Q9fGU5SuwvRBV8GtPCtMKFew5Jgeo3SqAp3VI2Uff9lQ4/h7Xgjv
+         e87BsOqWIITvxqZrgqybtQZCsPPTDd+GZ/aDgY1yOHLKqOuhxyFLlNxRFYJbUVplgX/b
+         Nr1A7IKy/E9utSKzdSQGIo8zwRASo1XvlR14JZTP3iaAwE60u+5pauhotsJQew5rfIhz
+         o07M4q7QLt1ZdhZ2j+qK4jcCgzprDxNjmdyBOeBCztLzR3zFNw+3a/w8RQH3ndmDNtaW
+         h3rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gz8chRT8BgwvM1bBz/hqcVOXEH6efHhKugP2b6d/KNA=;
+        b=shUsDvL2HdLa/Bwp7hjF/9YFkru6qr+azguMfzQRJgUV5xoJREVrcmcWApPAm3j+ZX
+         sxsUZyFa/7VKZE1olHxhJwkKkcBzOLcLJTT4RiYu+MFlimVSFznoBjUm81nJUBUDIcSI
+         SyKZOzCFH6Bz6OF1CQEeLqruU/3aYFa8KxmGx9tSEkmcbnOfRwAnRezSCZL+vfiV/p/m
+         cFwnjtFC5byDhupdax86BN4vlYPeZ6mEvKS6QB1D468z3R1mLlvfxNjDV8yTcqG01crV
+         rc9J4VGfcqxafY5kZNZYxzIEp9d/14eE44eJLHgacJ3989oyusSEKdWGSu9DX6JYEpEb
+         SaBg==
+X-Gm-Message-State: ACrzQf1PYd31ru8+moEQISqqyHyq1FXAvv3QaXQwcnRBOpUISkMygsZP
+        am39nEpRPPmrf0UTBzfRITbvGdVJ4bYH06fMaQPPNw==
+X-Google-Smtp-Source: AMsMyM66Ody47i2fsJ1hG0H/GOy1qXYYvmBtbpesojjIICAXjadL3JpiUK2chgxERuVe2gXSvIE968uC4fCiiR0bu24=
+X-Received: by 2002:a25:420e:0:b0:6ca:2d9b:bdcb with SMTP id
+ p14-20020a25420e000000b006ca2d9bbdcbmr2339348yba.453.1667015086809; Fri, 28
+ Oct 2022 20:44:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <01a38c4c-b42a-c170-3c3d-0b7e087bfaa4@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxNlfSlVxjXKYGAA--.4822S2
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvdXoWrJFy8JrW7ZF4fAry3WF4fuFg_yoWxWrXEkF
-        WIyw1DZw13GrZ3KanYqFyDCaySg34jy3yUKFZYqr4fXa4UtrWjvr48C3s3KrW3WrsFgr4r
-        ury8tw1xCw1fujkaLaAFLSUrUUUU0b8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
-        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
-        j7CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
-        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84AC
-        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84
-        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8I
-        j28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2
-        WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkE
-        bVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r
-        126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkE
-        bVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-        80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
-        I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04
-        k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
-        xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jYnmiUUUUU=
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+References: <20221028172215.1471235-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028172215.1471235-2-ajye_huang@compal.corp-partner.google.com>
+ <628ac98c-0755-e6f6-e010-f1e772c4b71a@linaro.org> <CALprXBY8FUc_w=JO3bp9m1e=1d5Fcvrou_En1JG8Hx0BYuETKw@mail.gmail.com>
+ <Y1wi+g9yVR+++iIg@sirena.org.uk>
+In-Reply-To: <Y1wi+g9yVR+++iIg@sirena.org.uk>
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Date:   Sat, 29 Oct 2022 11:44:41 +0800
+Message-ID: <CALprXBZ0qTkd1UoJ-TNEA8Epp5nBJW1KYsBQz_Wtm4YnxewmrA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] ASoC: mediatek: dt-bindings: modify machine
+ bindings for two MICs case
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        "chunxu . li" <chunxu.li@mediatek.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark Brown,
 
+On Sat, Oct 29, 2022 at 2:44 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> There was my thing about putting the names in DT too.
 
-在 2022/10/28 下午7:43, Krzysztof Kozlowski 写道:
-> On 27/10/2022 22:55, Yinbo Zhu wrote:
->> This file defines all Loongson-2 SoC clock indexes, it should be
->> included in the device tree in which there's device using the
->> clocks.
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->> Change in v5:
->> 		1. Replace loongson2/Loongson2 with loongson-2/Loongson-2.
->> 		2. Replace soc with SoC.
->>
-> 
-> Where is the rest of the changelog?
-What you're asking is where the replacement string is located.  it was 
-in commit log.
-> 
-> Best regards,
-> Krzysztof
-> 
+> @@ -72,6 +76,8 @@ examples:
+>          pinctrl-0 = <&aud_clk_mosi_off>;
+>          pinctrl-1 = <&aud_clk_mosi_on>;
+>
+> +        dmic-gpios = <&pio 23 0>;
 
+I think I added the pinctrl-name and pinctrl id in its example, to
+make it easier for the user to understand , like below, what do you
+think? thanks
+examples:
+  - |
+
+    sound: mt8186-sound {
+        compatible = "mediatek,mt8186-mt6366-rt1019-rt5682s-sound";
+        mediatek,platform = <&afe>;
+        pinctrl-names = "aud_clk_mosi_off",
+                        "aud_clk_mosi_on";
++                       "aud_gpio_dmic_sec";
+        pinctrl-0 = <&aud_clk_mosi_off>;
+        pinctrl-1 = <&aud_clk_mosi_on>;
++       pinctrl-2 = <&aud_gpio_dmic_sec>;
+
++       dmic-gpios = <&pio 23 GPIO_ACTIVE_HIGH>;
+
+        headset-codec {
+            sound-dai = <&rt5682s>;
+        };
+
+        playback-codecs {
+             sound-dai = <&it6505dptx>,
+                         <&rt1019p>;
+        };
+    };
