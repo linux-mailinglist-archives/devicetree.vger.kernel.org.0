@@ -2,89 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA1F6122FB
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 14:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E78B61230A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 14:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbiJ2MjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 08:39:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
+        id S229491AbiJ2Mx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 08:53:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbiJ2MjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 08:39:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CB4F5BC;
-        Sat, 29 Oct 2022 05:39:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 71CAC60921;
-        Sat, 29 Oct 2022 12:39:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DCC9C433C1;
-        Sat, 29 Oct 2022 12:39:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667047147;
-        bh=s6DwFZr4p5Nv9auYKCqUUdyR1/gRNx0yp6nQ1POqRos=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=OVjseauTUkV2BjIQy3hWO1e+MajwDmaGHPM4rwIB05d9EGS+perUmOjkA6YyWC3cg
-         J0jQ2ggaIG2byBR4tBMUv5o8C9HyEAAisdo4S/rxtednpRByjSuCmmb+f6dPgQg8P+
-         tjz4s3Na5y76MTMvzEXUTKgoQhpIwT5+W/SmPGxkzR16XsFOK3uBgt71x5H+mPzDnS
-         x8gO4Wlpkp6Y4YfmRK9c/FRnsvV+yt0jSII0dRsG6SeX/A4A13apSwXBGokvzxF4tC
-         LmGCWfzWFNC84lTKMABBI8dPD/0xhVcyQJqI/3gMdQ+3hif9PGKcfZ95Kv0SaqJsyC
-         HpiNsw5Ag0Qew==
-Date:   Sat, 29 Oct 2022 13:51:02 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S229489AbiJ2Mx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 08:53:58 -0400
+Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77B961134;
+        Sat, 29 Oct 2022 05:53:56 -0700 (PDT)
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+        by mxout1.routing.net (Postfix) with ESMTP id D5568419DC;
+        Sat, 29 Oct 2022 12:53:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1667048034;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=F28icF3t/ZJZnzJ1jYpuHgDKBjTOtvEe+03X+Age5+w=;
+        b=wj2UQE2uO0w5HijBktCAoeLWvP1KpoV15b52aDP6+K735D6tOSmTiFqWGdCdeftwnpxkFv
+        2Q2f4PTCw6/M5S1VuPQ95IMqeW/7gIhojcVrUt+42jRrNLw9tTI8WSsFd2Aeb6s4G10YLm
+        5ZfYvWP+RBTMwHVC0UarXgw0cQBV48U=
+Received: from frank-G5.. (fttx-pool-217.61.156.178.bambit.de [217.61.156.178])
+        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id DEF623600A1;
+        Sat, 29 Oct 2022 12:53:52 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: adc: renesas,rcar-gyroadc:
- Miscellaneous improvements
-Message-ID: <20221029135102.5bb9d786@jic23-huawei>
-In-Reply-To: <3c0895a3-2da6-3bd1-c786-01cf5eaa2452@linaro.org>
-References: <7b7a13680fa24282c3407e12b5943a66a2ed9068.1666611184.git.geert+renesas@glider.be>
-        <3c0895a3-2da6-3bd1-c786-01cf5eaa2452@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/2] rework mtk pcie-gen3 bindings and support mt7986
+Date:   Sat, 29 Oct 2022 14:53:46 +0200
+Message-Id: <20221029125348.36362-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 292954b1-9310-4712-9c4c-012164a8cf71
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Oct 2022 08:23:43 -0400
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+From: Frank Wunderlich <frank-w@public-files.de>
 
-> On 24/10/2022 07:34, Geert Uytterhoeven wrote:
-> > Set limits on the number of power-domains and resets, and make them
-> > required.
-> > 
-> > Simplify the example, and update it to match reality:
-> >   - Convert from obsolete MSTP to CPG/MSSR bindings,
-> >   - Examples should use #{address,size}-cells = <1>,
-> >   - Add missing resets property,
-> >   - Drop soc container and pinctrl properties, which are not needed in
-> >     examples.
-> > 
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>  
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Applied,
-Thanks
+This Series prepares support for mt7986 PCIe which is basicly gen3 PCIe
+but with slightly differnt clock configuration.
 
-Jonathan
+To make differences better to read i split the exiting bindings which
+has already different settings with a compatible switch and then add a
+new one for mt7986.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+v2:
+- fixed typo in part 1 (SoC based config)
+- squashed part2+3 (compatible and clock config for mt7986)
+
+v3:
+- fixed problem with fallback-compatible not compatible to main
+
+Frank Wunderlich (2):
+  dt-bindings: PCI: mediatek-gen3: add SoC based clock config
+  dt-bindings: PCI: mediatek-gen3: add support for mt7986
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      | 64 +++++++++++++++----
+ 1 file changed, 52 insertions(+), 12 deletions(-)
+
+-- 
+2.34.1
 
