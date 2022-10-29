@@ -2,60 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E5C5611F45
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 04:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F14E3611F4D
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 04:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229456AbiJ2CVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Oct 2022 22:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38722 "EHLO
+        id S229456AbiJ2C0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Oct 2022 22:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiJ2CVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 22:21:46 -0400
+        with ESMTP id S229379AbiJ2C0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Oct 2022 22:26:53 -0400
 Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A264E1A0FAA;
-        Fri, 28 Oct 2022 19:21:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 06BE11D29BE;
+        Fri, 28 Oct 2022 19:26:50 -0700 (PDT)
 Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8DxPLc3jlxjBDYDAA--.361S3;
-        Sat, 29 Oct 2022 10:21:43 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx_eEwjlxj5aMGAA--.22825S3;
-        Sat, 29 Oct 2022 10:21:42 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        by gateway (Coremail) with SMTP id _____8AxzNhpj1xjNTYDAA--.12170S3;
+        Sat, 29 Oct 2022 10:26:49 +0800 (CST)
+Received: from [10.180.13.64] (unknown [10.180.13.64])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxqFdoj1xjV6QGAA--.4731S2;
+        Sat, 29 Oct 2022 10:26:49 +0800 (CST)
+Subject: Re: [PATCH v4 1/2] clocksource: loongson2_hpet: add hpet driver
+ support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        zhanghongchen <zhanghongchen@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v5 2/2] dt-bindings: pinctrl: add loongson-2 pinctrl
-Date:   Sat, 29 Oct 2022 10:21:30 +0800
-Message-Id: <20221029022130.19914-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221029022130.19914-1-zhuyinbo@loongson.cn>
-References: <20221029022130.19914-1-zhuyinbo@loongson.cn>
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Yun Liu <liuyun@loongson.cn>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        loongarch@lists.linux.dev
+References: <20221026035752.32681-1-zhuyinbo@loongson.cn>
+ <438f5df4-b076-4920-7bb3-095041c27eef@linaro.org>
+ <9b4c904a-9277-504e-3bec-0b11331bbea4@loongson.cn>
+ <a79acba3-19ff-6da4-4bbe-d5c5e455594a@linaro.org>
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+Message-ID: <a196f518-84d3-184e-a6f8-d59062cb5c1d@loongson.cn>
+Date:   Sat, 29 Oct 2022 10:26:48 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
+In-Reply-To: <a79acba3-19ff-6da4-4bbe-d5c5e455594a@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dx_eEwjlxj5aMGAA--.22825S3
+X-CM-TRANSID: AQAAf8CxqFdoj1xjV6QGAA--.4731S2
 X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tFy8Kr4fJF43AFW8JFb_yoW5tw13pF
-        43C3sxGr1IqF4xX39xCa40vw13Gan7AF9rC3ZFv34jqr4Dta4vvay5Krn0q3yDCF47JFW5
-        WFy5u34UXF1UCr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bzxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84
-        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc80
-        4VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67
-        AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48I
-        cxkI7VAKI48JMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4
-        IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
-        MI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJV
-        WUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
-        6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_GrUvcS
-        sGvfC2KfnxnUUI43ZEXa7IU1tl1PUUUUU==
-X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,RCVD_IN_SBL_CSS,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Coremail-Antispam: 1Uk129KBjvdXoWrtF4fArW7ZrWxKF4ftw4UCFg_yoWfuFb_GF
+        1UAwn2kw45Gr9Yqr4qk34kA393tayUGry5J398tr47Ww1qyFy5ur1DZFyfAw1rGFnrGF13
+        WrZYvr1S9r1q9jkaLaAFLSUrUUUUnb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUO
+        j7CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
+        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84AC
+        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84
+        ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8I
+        j28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2
+        WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkE
+        bVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14v26r
+        1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkE
+        bVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E74
+        80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
+        I7IYx2IY67AKxVW8JVW5JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04
+        k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7Cj
+        xVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jetC7UUUUU=
+X-Spam-Status: No, score=1.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_SBL_CSS,SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,164 +78,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 pinctrl binding with DT schema format using
-json-schema.
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
-Change in v5:
-		1. Drop dependencies.
-		2. Add spaces after '='.
-		3. Replace string loongson2 with loongson-2 in title.
 
- .../pinctrl/loongson,ls2k-pinctrl.yaml        | 125 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 126 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-new file mode 100644
-index 000000000000..34683a4856ad
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
-@@ -0,0 +1,125 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/loongson,ls2k-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 SoC Pinctrl Controller
-+
-+maintainers:
-+  - zhanghongchen <zhanghongchen@loongson.cn>
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+allOf:
-+  - $ref: pinctrl.yaml#
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-pinctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+patternProperties:
-+  '-pins$':
-+    type: object
-+
-+    additionalProperties: false
-+
-+    patternProperties:
-+      'pinmux$':
-+        type: object
-+        description: node for pinctrl.
-+        $ref: pinmux-node.yaml#
-+
-+        unevaluatedProperties: false
-+
-+        properties:
-+          groups:
-+            description:
-+              One or more groups of pins to mux to a certain function
-+            items:
-+              enum: [gpio, sdio, can1, can0, pwm3, pwm2, pwm1, pwm0, i2c1, i2c0,
-+                     nand, sata_led, lio, i2s, hda, uart2, uart1, camera, dv01,
-+                     dvo0]
-+          function:
-+            description:
-+              The function that a group of pins is muxed to
-+            enum: [gpio, sdio, can1, can0, pwm3, pwm2, pwm1, pwm0, i2c1, i2c0,
-+                   nand, sata_led, lio, i2s, hda, uart2, uart1, camera, dv01,
-+                   dvo0]
-+
-+        required:
-+          - groups
-+          - function
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pctrl: pinctrl@1fe00420 {
-+        compatible = "loongson,ls2k-pinctrl";
-+        reg = <0x1fe00420 0x18>;
-+        sdio_pins_default: sdio-pins {
-+            sdio-pinmux {
-+                groups = "sdio";
-+                function = "sdio";
-+            };
-+
-+            sdio-det-pinmux {
-+                groups = "pwm2";
-+                function = "gpio";
-+            };
-+        };
-+
-+        pwm1_pins_default: pwm1-pins {
-+            pinmux {
-+                groups = "pwm1";
-+                function = "pwm1";
-+            };
-+        };
-+
-+        pwm0_pins_default: pwm0-pins {
-+            pinmux {
-+                groups = "pwm0";
-+                function = "pwm0";
-+            };
-+        };
-+
-+        i2c1_pins_default: i2c1-pins {
-+            pinmux {
-+                groups = "i2c1";
-+                function = "i2c1";
-+            };
-+        };
-+
-+        i2c0_pins_default: i2c0-pins {
-+            pinmux {
-+                groups = "i2c0";
-+                function = "i2c0";
-+            };
-+        };
-+
-+        nand_pins_default: nand-pins {
-+            pinmux {
-+                groups = "nand";
-+                function = "nand";
-+            };
-+        };
-+
-+        hda_pins_default: hda-pins {
-+            grp0-pinmux {
-+                groups = "hda";
-+                function = "hda";
-+            };
-+
-+            grp1-pinmux {
-+                groups = "i2s";
-+                function = "gpio";
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8afa53595124..4fc949c36a44 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11927,6 +11927,7 @@ M:	zhanghongchen <zhanghongchen@loongson.cn>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-gpio@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/pinctrl/loongson,ls2k-pinctrl.yaml
- F:	drivers/pinctrl/pinctrl-loongson2.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.31.1
+在 2022/10/28 下午7:33, Krzysztof Kozlowski 写道:
+> On 27/10/2022 23:54, Yinbo Zhu wrote:
+>>
+>>
+>> 在 2022/10/26 下午10:20, Krzysztof Kozlowski 写道:
+>>> On 25/10/2022 23:57, Yinbo Zhu wrote:
+>>>> HPET (High Precision Event Timer) defines a new set of timers, which
+>>>> are used by the operating system to schedule threads, interrupt the
+>>>> kernel and interrupt the multimedia timer server. The operating
+>>>> system can assign different timers to different applications. By
+>>>> configuration, each timer can generate interrupt independently.
+>>>>
+>>>> The loongson2 HPET module includes a main count and three comparators
+>>>> , all of which are 32 bits wide. Among the three comparators, only
+>>>
+>>> No blank line before coma.
+>> You said that need blank line is need a blank space before comma?
+> 
+> No, I did not say that.
+> 
+Your meaning is no new lines before commas ?
+I will do it.
+> Best regards,
+> Krzysztof
+> 
 
