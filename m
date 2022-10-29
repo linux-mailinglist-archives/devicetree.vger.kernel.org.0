@@ -2,130 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A164561240F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 16:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C64D761241E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Oct 2022 17:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbiJ2O4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Oct 2022 10:56:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34392 "EHLO
+        id S229816AbiJ2PKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Oct 2022 11:10:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbiJ2O4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 10:56:51 -0400
-Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E9F01A831;
-        Sat, 29 Oct 2022 07:56:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1667055393; bh=cnHB/4wJLTp97pHPmNGyrytKlD90FNbK6YTVOWwFjM0=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=lZ+latLXQv3zvEePk//cFDAIpwxMiWZTxKcFeTvDSxh5LGT69dDzsPhZmnDuo7cYQ
-         Q96Cf+swjxsY33wOxzfOaqHxj7ukEmfbMkqdckPDqAwEMpMXd44dve/w6WFZDUbPdQ
-         VjBc8q41aaLVw1qNJoyrX1TWdKIJzXLr5IvECxgI=
-Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
-        via [213.182.55.207]
-        Sat, 29 Oct 2022 16:56:33 +0200 (CEST)
-X-EA-Auth: ICeHAvWj9qLZjB+ctyqYPt4DioJaU/Djg+uFctKL2Y03oPkzlKncDD3xawmzWga5ooQLzFwsNw1TaxOkcDKyklx/+0fJ0VjqkolTrdLhTgU=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH v1 2/2] arm64: dts: qcom: msm8916-alcatel-idol347: add LED indicator
-Date:   Sat, 29 Oct 2022 16:55:57 +0200
-Message-Id: <20221029145557.106920-2-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221029145557.106920-1-vincent.knecht@mailoo.org>
-References: <20221029145557.106920-1-vincent.knecht@mailoo.org>
+        with ESMTP id S229789AbiJ2PKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Oct 2022 11:10:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA082FC31;
+        Sat, 29 Oct 2022 08:10:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A2715B80939;
+        Sat, 29 Oct 2022 15:10:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9853BC433D6;
+        Sat, 29 Oct 2022 15:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667056210;
+        bh=mOHOFPnUIanOt/8CZe7yg7vprJJpkdiXWEot67QgAvg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=oGdvnYtTW3+D7LUZmwdjXEsD875n5caNW0pefVQhEWNA6ZXTe9aurvQJiL2T/ArP1
+         /pVSsL5VU/pVExwZGxYH837fonmsy8nb2y3HxhXBGeOK5wc3vl12ygGH5KXTx4OSf1
+         SkKqpysUz1EOw9Olgym2kdwIyCzzVyp+8h6EepCVcGloWHo9Ws5H4fNFHp3NGYELMr
+         ec/e/pcuUNQpK2dwkZkJgFUDsUCuHQJrWKo17jhvgrfzvKFmbAkpQSfom5eoPZIofh
+         agYXrTDPccx1aqVflKwkg/rN7CVJk4wdKllNYu7z0+3tsvG/6DHp0enYUpz4Kb5rF9
+         6PQfHbfZzrwAw==
+Date:   Sat, 29 Oct 2022 16:22:07 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Ramona Bolboaca <ramona.bolboaca@analog.com>
+Cc:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings:iio:accel: Add docs for ADXL359
+Message-ID: <20221029162207.76311679@jic23-huawei>
+In-Reply-To: <20221028134454.669509-2-ramona.bolboaca@analog.com>
+References: <20221028134454.669509-1-ramona.bolboaca@analog.com>
+        <20221028134454.669509-2-ramona.bolboaca@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add si-en,sn3190 LED controller to enable white LED indicator.
+On Fri, 28 Oct 2022 16:44:53 +0300
+Ramona Bolboaca <ramona.bolboaca@analog.com> wrote:
 
-This requires adding the additional "enable" gpio that the OEM
-choose to use, despite it not being mentioned in si-en,sn3190
-datasheet nor supported by the driver.
+> Update ADXL355 existing documentation with documentation
+> for ADXL359 dedvice.
+> 
+> Signed-off-by: Ramona Bolboaca <ramona.bolboaca@analog.com>
+> ---
+>  .../devicetree/bindings/iio/accel/adi,adxl355.yaml        | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+> index 14b487088ab4..93ad7ff6b355 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl355.yaml
+> @@ -4,20 +4,22 @@
+>  $id: http://devicetree.org/schemas/iio/accel/adi,adxl355.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices ADXL355 3-Axis, Low noise MEMS Accelerometer
+> +title: Analog Devices ADXL355 and ADXL359 3-Axis, Low noise MEMS Accelerometer
+trivial: Accelerometers
+>  
+>  maintainers:
+>    - Puranjay Mohan <puranjay12@gmail.com>
+>  
+>  description: |
+> -  Analog Devices ADXL355 3-Axis, Low noise MEMS Accelerometer that supports
+> -  both I2C & SPI interfaces
+> +  Analog Devices ADXL355 and ADXL359 3-Axis, Low noise MEMS Accelerometer that
+trivial: Accelerometers
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
- .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Fix it if we need a v2 for other reasons. If not I can do it whilst applying.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-index 3a0a593899ae..952ae092e6ae 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-@@ -130,6 +130,27 @@ gyroscope@68 {
- 	};
- };
- 
-+&blsp_i2c6 {
-+	status = "okay";
-+
-+	led-controller@68 {
-+		compatible = "si-en,sn3190";
-+		reg = <0x68>;
-+		shutdown-gpios = <&msmgpio 89 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_enable_default &led_shutdown_default>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			led-max-microamp = <5000>;
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_WHITE>;
-+		};
-+	};
-+};
-+
- &pm8916_resin {
- 	status = "okay";
- 	linux,code = <KEY_VOLUMEDOWN>;
-@@ -306,6 +327,29 @@ gyro_int_default: gyro-int-default {
- 		bias-disable;
- 	};
- 
-+	/*
-+	 * The OEM wired an additional GPIO to be asserted so that
-+	 * the si-en,sn3190 LED IC works. Since this GPIO is not
-+	 * part of the IC datasheet nor supported by the driver,
-+	 * force it asserted here.
-+	 */
-+	led_enable_default: led-enable-default {
-+		pins = "gpio102";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-high;
-+	};
-+
-+	led_shutdown_default: led-shutdown-default {
-+		pins = "gpio89";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	mag_reset_default: mag-reset-default {
- 		pins = "gpio8";
- 		function = "gpio";
--- 
-2.37.3
+Jonathan
 
-
+> +  supports both I2C & SPI interfaces
+>      https://www.analog.com/en/products/adxl355.html
+> +    https://www.analog.com/en/products/adxl359.html
+>  
+>  properties:
+>    compatible:
+>      enum:
+>        - adi,adxl355
+> +      - adi,adxl359
+>  
+>    reg:
+>      maxItems: 1
 
