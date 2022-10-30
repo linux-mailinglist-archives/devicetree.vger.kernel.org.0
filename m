@@ -2,62 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4974A612ABB
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 14:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 220B1612ACB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 14:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiJ3Naq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 09:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51368 "EHLO
+        id S229674AbiJ3NuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 09:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiJ3Nap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 09:30:45 -0400
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76272A1AC;
-        Sun, 30 Oct 2022 06:30:44 -0700 (PDT)
-Received: by mail-ot1-f54.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so5498643otb.8;
-        Sun, 30 Oct 2022 06:30:44 -0700 (PDT)
+        with ESMTP id S229515AbiJ3NuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 09:50:24 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0758D55BB;
+        Sun, 30 Oct 2022 06:50:23 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322d768ba7so11176469fac.5;
+        Sun, 30 Oct 2022 06:50:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HD39gM3Y6SRPo4vcxIc+9YUMAKWkt9Hhn/IHBrOsFlQ=;
-        b=Vr5R1QJ2NB7IT6vUZgRUv9NKLpsSDNItPaM62RsJVrzC6vOtNn44yBGq9YXVZNJIN4
-         IH7UezjmfMqj1EkyqYmqeotlovdWvBWYjEmTfItAp23n7nBy7qWAOGD9kOYVWdhu0ArX
-         jTuqMLatl7T/Grv5iLvwAatwvkVJ3+gK+234eS92ssF3hbYAUdbG39D/4Ur223eMCVhL
-         +9m8cRtutnV0ESR3VazJUDja3VvWMLnx6V8HMMd2lyoh9DDR31r/G/2kTh6UHSvP+ENv
-         uaDMwSAMn1ghMvDnBK/d3d/YLDXmeSWLTDiQBTWVkOXzhV99txIAWsd5I1E5n/+azO5K
-         N6ZQ==
-X-Gm-Message-State: ACrzQf2OTA+wlvtRzPVEi9mOPySIdmlVldpWYdcpd3KnQddomu1fyy3K
-        lDnPnW5VDzU6NWQLQzoFHg15ttKE2w==
-X-Google-Smtp-Source: AMsMyM7eb5wn/o7W0L3N1kxoCZoa3guN36yaLuEOuip6+FdK0zFbNExjnXEq0PuFn2cnF/atfZze+g==
-X-Received: by 2002:a9d:2da3:0:b0:66a:38de:96b6 with SMTP id g32-20020a9d2da3000000b0066a38de96b6mr4210624otb.20.1667136643544;
-        Sun, 30 Oct 2022 06:30:43 -0700 (PDT)
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=hw01HOuryg79no8aMleCKIAZAkXFo9PVrSnrQ3NItHg=;
+        b=Bm9Mp4ppADYXI0sjG6qbgXGrryxPlcD7N2s+k2JDU+Kr0pfwlVZgGjygtliPGGEXSN
+         qc8Npzyk1qanPsUogA0QqQd+PL7CraXqGwJPCI/Ryk1DTcD84KQxiKWxscJJhf3UghdM
+         VAjjwqP07Yt2OU+kpO0CK4cQOB5QfwSKaWjFcoOvPj/qZuufsS7jt8BcUAMLMMXvr3PD
+         5kNBFJi4mTBfAqlHfgifsFL2U8MKZ/iajYY038AuKax5jyaLyO5m/TCdZvhLxAZ9UByI
+         zT5Rr5svJFrwhcL/K0+c1EUVR+349dzEdxR6gyYgeG6o7PWIw8eJVpSfX93040ktWOSe
+         S6Yw==
+X-Gm-Message-State: ACrzQf06nyW3KysllPwGAC52lW52FLi7myuy7+bV5wn7h9DOzCPTNirz
+        uvttz5HwzKUdRd1oumQQyA==
+X-Google-Smtp-Source: AMsMyM6HN4/vLJC1yWt+A8WWnZkp+11IcygTJEWrLtMHxk3x/m5N+dKkTENhuNR66OXIOrZIW/02AA==
+X-Received: by 2002:a05:6870:d285:b0:12b:cdce:63d8 with SMTP id d5-20020a056870d28500b0012bcdce63d8mr14117853oae.140.1667137822201;
+        Sun, 30 Oct 2022 06:50:22 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w17-20020a9d77d1000000b0066193df8edasm1703173otl.34.2022.10.30.06.30.42
+        by smtp.gmail.com with ESMTPSA id a11-20020a9d5c8b000000b0066c3b6eff00sm1728680oti.2.2022.10.30.06.50.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Oct 2022 06:30:42 -0700 (PDT)
-Received: (nullmailer pid 964892 invoked by uid 1000);
-        Sun, 30 Oct 2022 13:30:44 -0000
-Date:   Sun, 30 Oct 2022 08:30:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5 1/5] dt-bindings: timer: Document RZ/G2L MTU3a bindings
-Message-ID: <20221030133044.GA964038-robh@kernel.org>
-References: <20221027144844.85149-1-biju.das.jz@bp.renesas.com>
- <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
+        Sun, 30 Oct 2022 06:50:21 -0700 (PDT)
+Received: (nullmailer pid 992217 invoked by uid 1000);
+        Sun, 30 Oct 2022 13:50:23 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Pratyush Yadav <p.yadav@ti.com>, linux-mtd@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+In-Reply-To: <20221028235933.934850-5-miquel.raynal@bootlin.com>
+References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
+ <20221028235933.934850-5-miquel.raynal@bootlin.com>
+Message-Id: <166713668385.965763.9400218413404488593.robh@kernel.org>
+Subject: Re: [PATCH 04/12] dt-bindings: mtd: ingenic: Mark partitions in the
+ controller node as deprecated
+Date:   Sun, 30 Oct 2022 08:50:23 -0500
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,41 +79,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 27, 2022 at 03:48:40PM +0100, Biju Das wrote:
-> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
-> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
-> channels and one 32-bit timer channel. It supports the following
-> functions
->  - Counter
->  - Timer
->  - PWM
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v4->v5:
->  * Modelled as timer bindings.
->  * Fixed the typo.
-> v3->v4:
->  * Dropped counter and pwm compatibeles as they don't have any resources.
->  * Made rz-mtu3 as pwm provider.
->  * Updated the example and description.
-> v2->v3:
->  * Dropped counter bindings and integrated with mfd as it has only one property.
->  * Removed "#address-cells" and "#size-cells" as it do not have children with
->    unit addresses.
->  * Removed quotes from counter and pwm.
->  * Provided full path for pwm bindings.
->  * Updated the example.
-> v1->v2:
->  * Modelled counter and pwm as a single device that handles
->    multiple channels.
->  * Moved counter and pwm bindings to respective subsystems
->  * Dropped 'bindings' from MFD binding title.
->  * Updated the example
->  * Changed the compatible names.
-> ---
->  .../bindings/timer/renesas,rz-mtu3.yaml       | 302 ++++++++++++++++++
->  1 file changed, 302 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Sat, 29 Oct 2022 01:59:25 +0200, Miquel Raynal wrote:
+> Defining partitions as subnodes of the controller has been deprecated
+> long time ago, but unlike having partitions within the controller node,
+> having an enveloppe named "partitions" (which is not itself within a
+> chip subnode) is not that common, so keep this deprecated definition in
+> this file.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/ingenic,nand.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+
+
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+
+
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/mtd/atmel-nand.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
+Warning: Documentation/devicetree/bindings/mtd/ingenic,nand.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
+Warning: Documentation/devicetree/bindings/mtd/lpc32xx-mlc.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
+Warning: Documentation/devicetree/bindings/mtd/lpc32xx-slc.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
+Warning: Documentation/devicetree/bindings/mtd/mtk-nand.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
+Warning: drivers/mtd/parsers/Kconfig references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
+Documentation/devicetree/bindings/mtd/atmel-nand.txt: Documentation/devicetree/bindings/mtd/partition.txt
+Documentation/devicetree/bindings/mtd/ingenic,nand.yaml: Documentation/devicetree/bindings/mtd/partition.txt
+Documentation/devicetree/bindings/mtd/lpc32xx-mlc.txt: Documentation/devicetree/bindings/mtd/partition.txt
+Documentation/devicetree/bindings/mtd/lpc32xx-slc.txt: Documentation/devicetree/bindings/mtd/partition.txt
+Documentation/devicetree/bindings/mtd/mtk-nand.txt: Documentation/devicetree/bindings/mtd/partition.txt
+drivers/mtd/parsers/Kconfig: Documentation/devicetree/bindings/mtd/partition.txt
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
