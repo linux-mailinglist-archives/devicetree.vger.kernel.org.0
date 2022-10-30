@@ -2,46 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8498E612C89
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 21:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9F8612C8C
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 21:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229494AbiJ3UFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 16:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
+        id S229556AbiJ3UI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 16:08:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiJ3UFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 16:05:33 -0400
+        with ESMTP id S229476AbiJ3UI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 16:08:27 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1812A95B3;
-        Sun, 30 Oct 2022 13:05:31 -0700 (PDT)
-Received: from [185.156.123.69] (helo=phil.localnet)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1DC2FD
+        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 13:08:24 -0700 (PDT)
+Received: from [185.156.123.69] (helo=phil.sntech)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1opEYb-0005bW-Cr; Sun, 30 Oct 2022 21:05:21 +0100
+        id 1opEbV-0005ci-IQ; Sun, 30 Oct 2022 21:08:21 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-rockchip@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com
-Subject: Re: [PATCHv2 6/6] dt-bindings: rtc: convert hym8563 bindings to json-schema
-Date:   Sun, 30 Oct 2022 21:05:19 +0100
-Message-ID: <9218219.T7Z3S40VBb@phil>
-In-Reply-To: <20221024165549.74574-7-sebastian.reichel@collabora.com>
-References: <20221024165549.74574-1-sebastian.reichel@collabora.com> <20221024165549.74574-7-sebastian.reichel@collabora.com>
+To:     devicetree@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
+        pgwipeout@gmail.com, linux-rockchip@lists.infradead.org,
+        Chris Morgan <macromorgan@hotmail.com>,
+        jagan@amarulasolutions.com, frattaroli.nicolas@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, michael.riesch@wolfvision.net
+Subject: Re: [PATCH 0/4] Add Anbernic RG353V and RG353VS
+Date:   Sun, 30 Oct 2022 21:08:15 +0100
+Message-Id: <166716040323.1678541.11778892065439320693.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20221028184045.13113-1-macroalpha82@gmail.com>
+References: <20221028184045.13113-1-macroalpha82@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
         T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -50,121 +43,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 24. Oktober 2022, 18:55:49 CET schrieb Sebastian Reichel:
-> Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
-> Schema format.
+On Fri, 28 Oct 2022 13:40:41 -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
-> ---
->  .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
->  .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
->  2 files changed, 56 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> Add support for the Anbernic RG353V and RG353VS handheld gaming
+> consoles. These devices are extremely similar to the existing
+> Anbernic RG353P.
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-> deleted file mode 100644
-> index a8934fe2ab4c..000000000000
-> --- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -Haoyu Microelectronics HYM8563 Real Time Clock
-> -
-> -The HYM8563 provides basic rtc and alarm functionality
-> -as well as a clock output of up to 32kHz.
-> -
-> -Required properties:
-> -- compatible: should be: "haoyu,hym8563"
-> -- reg: i2c address
-> -- #clock-cells: the value should be 0
-> -
-> -Optional properties:
-> -- clock-output-names: From common clock binding
-> -- interrupts: rtc alarm/event interrupt
-> -
-> -Example:
-> -
-> -hym8563: hym8563@51 {
-> -	compatible = "haoyu,hym8563";
-> -	reg = <0x51>;
-> -
-> -	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> -
-> -	#clock-cells = <0>;
-> -};
-> -
-> -device {
-> -...
-> -	clocks = <&hym8563>;
-> -...
-> -};
-> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-> new file mode 100644
-> index 000000000000..0b9f39ef0edc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Haoyu Microelectronics HYM8563 RTC
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: haoyu,hym8563
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    description: From common clock binding to override the default output clock name.
-> +    maxItems: 1
-> +
-> +  wakeup-source:
-> +    description: Enables wake up of host system on alarm.
-> +
-> +allOf:
-> +  - $ref: rtc.yaml
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rtc@51 {
-> +            compatible = "haoyu,hym8563";
-> +            reg = <0x51>;
-> +            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-> +            #clock-cells = <0>;
-> +        };
-> +    };
+> Add support for the battery of the existing RG353P and RG503 too
+> as part of this change, as to keep things compact we must first split
+> the 353p devicetree into attributes common to all 353 devices and
+> attributes that only exist for the 353P, 353V, and 353VS devices
+> (which includes a different battery in the V and VS).
 > 
+> [...]
 
+Applied, thanks!
 
+[1/4] dt-bindings: arm: rockchip: Add Anbernic RG353V and RG353VS
+      commit: e1cc1e712d85c10ad47a083186c222210dab5b23
+[2/4] arm64: dts: rockchip: add Anbernic RG353V and RG353VS
+      commit: 1e141cf127262150d053ed3f80d0d3c42de11c43
+[3/4] arm64: dts: rockchip: add rk817 chg to RG353P and RG503
+      commit: 22a91b7614132ce0651d0ddd6e0bcee119370840
+[4/4] arm64: dts: rockchip: add poll-interval to RGxx3 devices
+      commit: 60bd5ee7c8a855a7917fe41771b0e297912a7626
 
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
