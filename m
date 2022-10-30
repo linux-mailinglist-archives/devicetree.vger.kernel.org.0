@@ -2,80 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75648612A92
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 13:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4974A612ABB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 14:30:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229682AbiJ3MZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 08:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55962 "EHLO
+        id S229542AbiJ3Naq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 09:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiJ3MZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 08:25:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3353E1B1;
-        Sun, 30 Oct 2022 05:25:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C42B860DFD;
-        Sun, 30 Oct 2022 12:25:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3669C433C1;
-        Sun, 30 Oct 2022 12:25:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667132727;
-        bh=8WVf6807pwphI1dXEwQpsvpZJ8jktxWXzKRXjmkztlg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=iw6+VgHIRjH01QPIV+N60+nK2thtqxdxlwtDp6I0g58AvQWQgzBeQ6Tv2R5wd5fDB
-         xWs/h/Iga/+d2ql6UPbGI4cFjA9OscgQg6rJlRjTLNcf6ngs6LsuYAgNBb3FPs8p0v
-         CO4kovLqGUijgaXMZyOQn9rcC9hhlrTTxI66RrLmbqFaOzBNXiKLnfxDRRv398bJ1D
-         kWIBzudRdmjNN+mi+O45sJd/jfrAaLl7v8wROvZdgGFIuw3O2WTNQv241Of0BK4goB
-         /0uSrDzLurV5AqaT2fZIpL/2SV2PL8qZCs75XXJpZOs0n1FtFiWfjxyDKp/gq6YaOB
-         z4OHux2NqTyVQ==
-Date:   Sun, 30 Oct 2022 07:25:25 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 4/7] phy: qcom-qmp-pcie: split and rename the sm8450
- gen3 PHY config tables
-Message-ID: <20221030122525.GA1022832@bhelgaas>
+        with ESMTP id S229441AbiJ3Nap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 09:30:45 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76272A1AC;
+        Sun, 30 Oct 2022 06:30:44 -0700 (PDT)
+Received: by mail-ot1-f54.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so5498643otb.8;
+        Sun, 30 Oct 2022 06:30:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HD39gM3Y6SRPo4vcxIc+9YUMAKWkt9Hhn/IHBrOsFlQ=;
+        b=Vr5R1QJ2NB7IT6vUZgRUv9NKLpsSDNItPaM62RsJVrzC6vOtNn44yBGq9YXVZNJIN4
+         IH7UezjmfMqj1EkyqYmqeotlovdWvBWYjEmTfItAp23n7nBy7qWAOGD9kOYVWdhu0ArX
+         jTuqMLatl7T/Grv5iLvwAatwvkVJ3+gK+234eS92ssF3hbYAUdbG39D/4Ur223eMCVhL
+         +9m8cRtutnV0ESR3VazJUDja3VvWMLnx6V8HMMd2lyoh9DDR31r/G/2kTh6UHSvP+ENv
+         uaDMwSAMn1ghMvDnBK/d3d/YLDXmeSWLTDiQBTWVkOXzhV99txIAWsd5I1E5n/+azO5K
+         N6ZQ==
+X-Gm-Message-State: ACrzQf2OTA+wlvtRzPVEi9mOPySIdmlVldpWYdcpd3KnQddomu1fyy3K
+        lDnPnW5VDzU6NWQLQzoFHg15ttKE2w==
+X-Google-Smtp-Source: AMsMyM7eb5wn/o7W0L3N1kxoCZoa3guN36yaLuEOuip6+FdK0zFbNExjnXEq0PuFn2cnF/atfZze+g==
+X-Received: by 2002:a9d:2da3:0:b0:66a:38de:96b6 with SMTP id g32-20020a9d2da3000000b0066a38de96b6mr4210624otb.20.1667136643544;
+        Sun, 30 Oct 2022 06:30:43 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w17-20020a9d77d1000000b0066193df8edasm1703173otl.34.2022.10.30.06.30.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Oct 2022 06:30:42 -0700 (PDT)
+Received: (nullmailer pid 964892 invoked by uid 1000);
+        Sun, 30 Oct 2022 13:30:44 -0000
+Date:   Sun, 30 Oct 2022 08:30:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <chris.paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 1/5] dt-bindings: timer: Document RZ/G2L MTU3a bindings
+Message-ID: <20221030133044.GA964038-robh@kernel.org>
+References: <20221027144844.85149-1-biju.das.jz@bp.renesas.com>
+ <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221029211312.929862-5-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221027144844.85149-2-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 30, 2022 at 12:13:09AM +0300, Dmitry Baryshkov wrote:
-> SM8350 PHY config tables are mostly the same as SM8450 gen3 PHY config
-> tables. Split these tables to be used by SM8350 config. Following this
-> split rename generic tables to remove x1 suffix.
+On Thu, Oct 27, 2022 at 03:48:40PM +0100, Biju Das wrote:
+> The RZ/G2L multi-function timer pulse unit 3 (MTU3a) is embedded in
+> the Renesas RZ/G2L family SoC's. It consists of eight 16-bit timer
+> channels and one 32-bit timer channel. It supports the following
+> functions
+>  - Counter
+>  - Timer
+>  - PWM
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v4->v5:
+>  * Modelled as timer bindings.
+>  * Fixed the typo.
+> v3->v4:
+>  * Dropped counter and pwm compatibeles as they don't have any resources.
+>  * Made rz-mtu3 as pwm provider.
+>  * Updated the example and description.
+> v2->v3:
+>  * Dropped counter bindings and integrated with mfd as it has only one property.
+>  * Removed "#address-cells" and "#size-cells" as it do not have children with
+>    unit addresses.
+>  * Removed quotes from counter and pwm.
+>  * Provided full path for pwm bindings.
+>  * Updated the example.
+> v1->v2:
+>  * Modelled counter and pwm as a single device that handles
+>    multiple channels.
+>  * Moved counter and pwm bindings to respective subsystems
+>  * Dropped 'bindings' from MFD binding title.
+>  * Updated the example
+>  * Changed the compatible names.
+> ---
+>  .../bindings/timer/renesas,rz-mtu3.yaml       | 302 ++++++++++++++++++
+>  1 file changed, 302 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/renesas,rz-mtu3.yaml
 
-Commit logs that say "Following this ..." always make me ask whether
-this could or should be split into two patches, one that is a trivial
-rename that's easier to review.
-
-But I guess this is a phy patch that Lorenzo will look for somebody
-else to ack :)
-
-Bjorn
+Reviewed-by: Rob Herring <robh@kernel.org>
