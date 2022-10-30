@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 220B1612ACB
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 14:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F36C612ACD
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 14:50:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiJ3NuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 09:50:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36906 "EHLO
+        id S229549AbiJ3Nu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 09:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiJ3NuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 09:50:24 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0758D55BB;
-        Sun, 30 Oct 2022 06:50:23 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-1322d768ba7so11176469fac.5;
-        Sun, 30 Oct 2022 06:50:23 -0700 (PDT)
+        with ESMTP id S229636AbiJ3NuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 09:50:25 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A397A55BC;
+        Sun, 30 Oct 2022 06:50:24 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-13b23e29e36so11160493fac.8;
+        Sun, 30 Oct 2022 06:50:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=hw01HOuryg79no8aMleCKIAZAkXFo9PVrSnrQ3NItHg=;
-        b=Bm9Mp4ppADYXI0sjG6qbgXGrryxPlcD7N2s+k2JDU+Kr0pfwlVZgGjygtliPGGEXSN
-         qc8Npzyk1qanPsUogA0QqQd+PL7CraXqGwJPCI/Ryk1DTcD84KQxiKWxscJJhf3UghdM
-         VAjjwqP07Yt2OU+kpO0CK4cQOB5QfwSKaWjFcoOvPj/qZuufsS7jt8BcUAMLMMXvr3PD
-         5kNBFJi4mTBfAqlHfgifsFL2U8MKZ/iajYY038AuKax5jyaLyO5m/TCdZvhLxAZ9UByI
-         zT5Rr5svJFrwhcL/K0+c1EUVR+349dzEdxR6gyYgeG6o7PWIw8eJVpSfX93040ktWOSe
-         S6Yw==
-X-Gm-Message-State: ACrzQf06nyW3KysllPwGAC52lW52FLi7myuy7+bV5wn7h9DOzCPTNirz
-        uvttz5HwzKUdRd1oumQQyA==
-X-Google-Smtp-Source: AMsMyM6HN4/vLJC1yWt+A8WWnZkp+11IcygTJEWrLtMHxk3x/m5N+dKkTENhuNR66OXIOrZIW/02AA==
-X-Received: by 2002:a05:6870:d285:b0:12b:cdce:63d8 with SMTP id d5-20020a056870d28500b0012bcdce63d8mr14117853oae.140.1667137822201;
-        Sun, 30 Oct 2022 06:50:22 -0700 (PDT)
+        bh=1QUpqSv8LSRsD1VYxzYGonzNWEdEEaZtwSxjwf3b2Fg=;
+        b=QJCxgQJ6PBPMK4/Gv9QTySBAAj0xygOZGtAHHz/rnsKoWR0I4ypbI6tw7F4onFS3Mx
+         25SipjrTTq34ovDOg5RHk+ldPkwSSXPdT+RGNzaQDYVpaKnrxd7uBl8AnjL6pL2SNGxh
+         IkNIV507jUTP0jz5Z1dio8x6ZU5XQHwqoWxk3cc45MTTv0F8Djwr1JiNpES2XFyGMsQV
+         teJZ1qTYU8bfb9e/CLwHXXo7yG91QBrdpv0mfy13aIGa8jZmGMhLl7RLgU9I+waqkU1K
+         5sa+pG2TG8iVUgxefjNaOobiOgEt04x5aVjYnVTpxDcAagICxujYAvc2ZMydnO9qVYGf
+         9wPw==
+X-Gm-Message-State: ACrzQf3JlRiCm/mfLzY8SZxaO277tQfyaeYskWg0dtwpsNGSKHVzi34C
+        bWaGygof/yui/QGEVaA1Vw==
+X-Google-Smtp-Source: AMsMyM4A4ituhLKMdNGU6GZbc0dsVd/UTLy9ttWdlGJXrzspN/uk3HqBWucUMAxeWy0eP8Y0ZZSnwQ==
+X-Received: by 2002:a05:6871:28a:b0:13b:cb8b:1ab7 with SMTP id i10-20020a056871028a00b0013bcb8b1ab7mr4755663oae.225.1667137823806;
+        Sun, 30 Oct 2022 06:50:23 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a11-20020a9d5c8b000000b0066c3b6eff00sm1728680oti.2.2022.10.30.06.50.20
+        by smtp.gmail.com with ESMTPSA id c4-20020a056870478400b0013320d9d9casm1836309oaq.44.2022.10.30.06.50.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Oct 2022 06:50:21 -0700 (PDT)
-Received: (nullmailer pid 992217 invoked by uid 1000);
+        Sun, 30 Oct 2022 06:50:23 -0700 (PDT)
+Received: (nullmailer pid 992222 invoked by uid 1000);
         Sun, 30 Oct 2022 13:50:23 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pratyush Yadav <p.yadav@ti.com>, linux-mtd@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-In-Reply-To: <20221028235933.934850-5-miquel.raynal@bootlin.com>
-References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
- <20221028235933.934850-5-miquel.raynal@bootlin.com>
-Message-Id: <166713668385.965763.9400218413404488593.robh@kernel.org>
-Subject: Re: [PATCH 04/12] dt-bindings: mtd: ingenic: Mark partitions in the
- controller node as deprecated
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+Cc:     devicetree@vger.kernel.org, loongarch@lists.linux.dev,
+        WANG Xuerui <kernel@xen0n.name>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yun Liu <liuyun@loongson.cn>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jianmin Lv <lvjianmin@loongson.cn>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yang Li <yang.lee@linux.alibaba.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20221029065222.27912-2-zhuyinbo@loongson.cn>
+References: <20221029065222.27912-1-zhuyinbo@loongson.cn>
+ <20221029065222.27912-2-zhuyinbo@loongson.cn>
+Message-Id: <166713668551.965836.8662861477016293697.robh@kernel.org>
+Subject: Re: [PATCH v6 2/2] dt-bindings: hpet: add loongson-2 hpet
 Date:   Sun, 30 Oct 2022 08:50:23 -0500
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,17 +74,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sat, 29 Oct 2022 01:59:25 +0200, Miquel Raynal wrote:
-> Defining partitions as subnodes of the controller has been deprecated
-> long time ago, but unlike having partitions within the controller node,
-> having an enveloppe named "partitions" (which is not itself within a
-> chip subnode) is not that common, so keep this deprecated definition in
-> this file.
+On Sat, 29 Oct 2022 14:52:22 +0800, Yinbo Zhu wrote:
+> Add the Loongson-2 High Precision Event Timer (HPET) binding
+> with DT schema format using json-schema.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mtd/ingenic,nand.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/timer/loongson,ls2k-hpet.yaml    | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
 > 
 
 
@@ -101,21 +95,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-
+Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.example.dts:21:18: fatal error: dt-bindings/clock/loongson,ls2k-clk.h: No such file or directory
+   21 |         #include <dt-bindings/clock/loongson,ls2k-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1492: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/mtd/atmel-nand.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
-Warning: Documentation/devicetree/bindings/mtd/ingenic,nand.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
-Warning: Documentation/devicetree/bindings/mtd/lpc32xx-mlc.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
-Warning: Documentation/devicetree/bindings/mtd/lpc32xx-slc.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
-Warning: Documentation/devicetree/bindings/mtd/mtk-nand.txt references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
-Warning: drivers/mtd/parsers/Kconfig references a file that doesn't exist: Documentation/devicetree/bindings/mtd/partition.txt
-Documentation/devicetree/bindings/mtd/atmel-nand.txt: Documentation/devicetree/bindings/mtd/partition.txt
-Documentation/devicetree/bindings/mtd/ingenic,nand.yaml: Documentation/devicetree/bindings/mtd/partition.txt
-Documentation/devicetree/bindings/mtd/lpc32xx-mlc.txt: Documentation/devicetree/bindings/mtd/partition.txt
-Documentation/devicetree/bindings/mtd/lpc32xx-slc.txt: Documentation/devicetree/bindings/mtd/partition.txt
-Documentation/devicetree/bindings/mtd/mtk-nand.txt: Documentation/devicetree/bindings/mtd/partition.txt
-drivers/mtd/parsers/Kconfig: Documentation/devicetree/bindings/mtd/partition.txt
 
 See https://patchwork.ozlabs.org/patch/
 
