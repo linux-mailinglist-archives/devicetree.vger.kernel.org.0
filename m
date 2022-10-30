@@ -2,92 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65A26612BC1
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 18:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDE4A612BDF
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 18:26:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiJ3RRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 13:17:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51550 "EHLO
+        id S229786AbiJ3R0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 13:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiJ3RRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 13:17:41 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8876B1ED
-        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 10:17:38 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id y72so11412307yby.13
-        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 10:17:38 -0700 (PDT)
+        with ESMTP id S229597AbiJ3R0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 13:26:22 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCFE195B3
+        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 10:26:21 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id u8-20020a17090a5e4800b002106dcdd4a0so14038582pji.1
+        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 10:26:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OQ7uJLBIhN6i85bshrC6bijT/YDWeXqFsg9Tc3UQLxY=;
-        b=ACnpJ5mK07YWG7SrKB+AOsI1oo2Cp/w8OGk3mQBSzEp43U510vT9y1sDXj7kgfoR/k
-         Lb4MTUfVAQEaNtlB9DUy/FlxCwzU6uoisLyvszi9/IZTu74T4T1pjpBLCKJ35QkIFf5r
-         wROu3WZep4MOF23gRdXFUpcjC3JtSfFACYh6cGlCINAetusBTnY4S3JQ+e9IlaQJBuvE
-         CFdYmyc3ue62bk8OO7fd8VH1MnAXnT1VDOQ0yjlkHJrjSiLIw5vCRtwsBo37nVqYlKjt
-         PrbVOpy+7ZIgT6iedcx2c+Sc+x5eTA+0Fb5hLARVqt/vGk0aoTLeHXbKZEvc8TNQh/6i
-         nIHw==
+        d=compal-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gLXxaEi/fgQzftVcfZ/5ZZW/Hv9wZqoHOKy0rIFeuG8=;
+        b=bcK5f8GSJ5au6s7UOKhNfCDgpZhwaC4LcSCnk+IiN0XipjzOVWFQHfnmNcJZVO0Ar5
+         YdWDkuBbVY9SYg7w8/m/pVwcHjpcGjLO4IkQ2V10e6rcMvJ1rm74AKG5tkv4OF3lHK6I
+         RSOBTelhZdmuUSEsnQSbmx0PAaaEBYZEi1xSQPuSm0Sbbq6EHv/flF8jK7igMQB8NuGV
+         lxLZRsXFTBAffbC0d9CwKQbdHbX+ZbtXxH0JKVaxxVf5qKsvVe84vazlXbrZRG9A203V
+         uwkownSc2icUzj4KwF8azkioe0pb8die0hGVgPk/OeUF8sM7dzzftXrAylTAri4cgkkw
+         +mXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OQ7uJLBIhN6i85bshrC6bijT/YDWeXqFsg9Tc3UQLxY=;
-        b=bKEJ02HS+Bn5BvxcKoA3/ee+851WeyjI+DUfa/9Sxpa+KSklQwNp9rLRUmoYNQAsHi
-         4uDYGUGV+1WVdcjJDx4xOnjuSaKG2eTWgUczTCK4rux697YRVP0VmWWsYHiPhGOT5tig
-         1WY1tvv+eqiVKLLy2JGdSp8AgidRjZ1lGIkMPvXGt/+0BFCAFTEnkiLF0d0irImwPRVj
-         VLbtfRX+pmt4APO5f86cwCZte1llTMOxTNWHT4dAVOCWrY7CjAzRGvN1nEr0m86h26RS
-         qZmqf4pN50skzEm5SFrgg7ZZH27XpL7FcSFnWlDTSo6HqsaifpKgez+ckLIJVWffJXrr
-         sNoA==
-X-Gm-Message-State: ACrzQf2l6orSLxE+tK+5TbH2UzBr+441v9eyn7jpTmp0Bia+vIykbtoH
-        tO127qlhnCQyjMLa7fBiZpLQTXm6SkzKQBG3Hb0CAw==
-X-Google-Smtp-Source: AMsMyM42BGs2fhx99u/w9idGVeX58S0wuZSo8XELt8XRKWvIHOSt9iOpY08Tsg+YGY4VPcICFow8CroCW2E0+u21gME=
-X-Received: by 2002:a5b:241:0:b0:6b0:90e:1d4d with SMTP id g1-20020a5b0241000000b006b0090e1d4dmr8985854ybp.648.1667150257212;
- Sun, 30 Oct 2022 10:17:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20221030085358.1619285-1-ajye_huang@compal.corp-partner.google.com>
- <20221030085358.1619285-2-ajye_huang@compal.corp-partner.google.com> <166713668618.965877.11108951663566363754.robh@kernel.org>
-In-Reply-To: <166713668618.965877.11108951663566363754.robh@kernel.org>
+        bh=gLXxaEi/fgQzftVcfZ/5ZZW/Hv9wZqoHOKy0rIFeuG8=;
+        b=yI/S2urMswdQ0xuUvVIP45ZbBIkE82WNiXXzA9HoyHnB8AGJ7d0ugxeojpTpTk4+E/
+         GeJ+YtEX63dVlNRE2wbcgeWh+WfoqtxM5eti0Gh1TNOtg8zyN494Oe1Jqv2vTw0W6QVn
+         NXAYm6+3frJYR3X8nT72O165+rZZ4tFPURt5aXBmaRgPbZvruXjJPQk09ePmSM/JgbJI
+         mD2o6Rx5DYWLpvJPxdLqHMM6VHEG2+BXm/YQTxdIxvxb8NMH/zWoBfWfS3HjEuo4BFGw
+         MKpyvrZ0dx0w3eVTsNh31kwYyCoQIIOfOuPF1hNNvS5gZFMEf/91aUoTFfAB1orZAqDf
+         RVgg==
+X-Gm-Message-State: ACrzQf3Ht3VGj4QpiCMGbyDhp9QU2vH/uwdWwh3vMusLFCqlcmy9g5Dp
+        3C8XQ6WLxv3s4vtXgi6pRyABVQ==
+X-Google-Smtp-Source: AMsMyM57weFMujeT2e1myPTiJTj/yCu1MkIsK+ndDUMX4i6e/QPc5/xyzt5HOPqMh/2WCIiV3wZ0kg==
+X-Received: by 2002:a17:903:2346:b0:186:ba56:f520 with SMTP id c6-20020a170903234600b00186ba56f520mr9937566plh.138.1667150781108;
+        Sun, 30 Oct 2022 10:26:21 -0700 (PDT)
+Received: from localhost.localdomain (118-167-185-125.dynamic-ip.hinet.net. [118.167.185.125])
+        by smtp.gmail.com with ESMTPSA id q14-20020a170902a3ce00b00186c6d2e7e3sm2933881plb.26.2022.10.30.10.26.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Oct 2022 10:26:20 -0700 (PDT)
 From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Mon, 31 Oct 2022 01:17:26 +0800
-Message-ID: <CALprXBYwi9SpgOSN9kx6JqyY9tnc0jWbZqWv-iJ6Sq079rSTnA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] ASoC: mediatek: dt-bindings: modify machine
- bindings for two MICs case
-To:     Rob Herring <robh@kernel.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, alsa-devel@alsa-project.org,
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-mediatek@lists.infradead.org,
         "chunxu . li" <chunxu.li@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: [PATCH v4 0/2] Modify documentation and machine driver for mt8186_rt1019_rt5682s sound card
+Date:   Mon, 31 Oct 2022 01:26:07 +0800
+Message-Id: <20221030172609.1635096-1-ajye_huang@compal.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob Herring
+v4:
+- Documentation: 
+  - Fix the FATAL ERROR: Unable to parse input tree.
 
-On Sun, Oct 30, 2022 at 9:50 PM Rob Herring <robh@kernel.org> wrote:
+v3:
+- Documentation: 
+  - Add an explain example in description.
+  - Add the pinctrl-name and pinctrl id in its example.
 
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.example.dts:29.35-36 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.example.dtb] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1492: dt_binding_check] Error 2
+v2:
+- dmic codec driver: 
+  - Remove the unnecessary use of_property_read_bool()
 
-Thank you for your review, and I will send the fixed patch again  thanks
+v1:
+- Documentation: Add dmic-gpios optional prop for two DMICs case.
+- dmic codec driver: 
+  - "dmic-gpios" property is used for amixer control to switch
+     the dmic signal source between the Front and Rear Dmic.
+
+Thanks for the review!
+
+Ajye Huang (2):
+  ASoC: mediatek: dt-bindings: modify machine bindings for two MICs case
+  ASoC: mediatek: mt8186-rt5682: Modify machine driver for two DMICs
+    case
+
+ .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   |  13 ++-
+ .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     | 102 +++++++++++++++++-
+ 2 files changed, 113 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
+
