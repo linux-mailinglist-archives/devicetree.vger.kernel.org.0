@@ -2,134 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF683612CE6
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 21:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E34E612D22
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 23:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbiJ3U4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 16:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37806 "EHLO
+        id S229667AbiJ3WB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 18:01:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiJ3U4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 16:56:33 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DB69595;
-        Sun, 30 Oct 2022 13:56:32 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id a5so14966895edb.11;
-        Sun, 30 Oct 2022 13:56:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KFcRfWRyXi5vlxA7mDVUDb68ztcKVUII1OhMaUKoMY0=;
-        b=mtBfSG9FABE66AWdcsxYQUCjkoyaplzytMcS9Lq3YCTKyHVnQ7Qi2+fR/khu+LsDDB
-         MntqbxYZxYfxj3SpABiOn71tJ3WvCRyMBc51UkPmliSpp0UkMb/O2WjGR4OoVzjoRPqk
-         NrQTrJ10nSr+NsMdiXAPsWsVhQacgsGJHClA42CrtmgtIKC7Kf5yAbeWBm7gpB8x9ZoG
-         WEw/Oyh22oW1Th4wselPl+flAM/7SW70t9cPHAqdL7gJl8VU7rfsfOfDtYa2OJmteOBk
-         PT5P3bWNdS8+I/ZLOBN/uLf62iD07/vryem2unJLA/J3tO6bo9GKTUxmQw7nL2BZkFgi
-         PCsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KFcRfWRyXi5vlxA7mDVUDb68ztcKVUII1OhMaUKoMY0=;
-        b=OLiLGD4RRwNr4YsikpZwnR2VStgcGyAYQUEHziz52Jv8Jc90K8QPe6GZekMHHBBIAh
-         OTA7xX2maMAdwRTBiDfFjYZhmEIfbeX5IAZJLzJvcrwesDzFI3ZKECTdtExKx/w5CL+6
-         3L7hwQhdwEKKVIwHMSdY7moiwC+FW/VaHQC1ygQjmpG35Mf2WvfNQXVjSmjGvEJu/3Km
-         Z2I/JX+bxlMmX2vi5m7/HC3BmhrI16KMq3uVS5D+pjyuQWKeRe3tDQZpGt2eUiqk3CIW
-         530sGzeKgti9XBxt1rQGc9DXRWCwZx9sxxYhPh3RoNn1vI2m7SRa0w/gv6K/bIgttUJh
-         80+w==
-X-Gm-Message-State: ACrzQf1wJgfNNLGlpbqLDy2NiHKa86iUv0z4iRcq8J/Dg6DxJeQEBRpc
-        x/o2dfIOvmq8yJ0D5PrmstGhoE5L/X0=
-X-Google-Smtp-Source: AMsMyM4nJ5rQBJWIcEkeQiP60ZzilqtOq785QEX5fls9YhzQE7qcm3GocrP/NsQEEcdGzobAqft/+Q==
-X-Received: by 2002:a05:6402:11c7:b0:462:549d:fbbe with SMTP id j7-20020a05640211c700b00462549dfbbemr10320925edw.199.1667163390852;
-        Sun, 30 Oct 2022 13:56:30 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id i14-20020a170906698e00b0078defb88b0dsm2211923ejr.73.2022.10.30.13.56.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Oct 2022 13:56:30 -0700 (PDT)
-Message-ID: <f275ca8d-fd0a-26e5-b978-b7f3df815e0a@gmail.com>
-Date:   Sun, 30 Oct 2022 21:56:29 +0100
+        with ESMTP id S229597AbiJ3WB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 18:01:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C35C6173;
+        Sun, 30 Oct 2022 15:01:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F18C1B8106E;
+        Sun, 30 Oct 2022 22:01:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0464C43470;
+        Sun, 30 Oct 2022 22:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667167313;
+        bh=PTddCbOvBcGoJz9y6uoPrxjHNey64Rs4moExDo18JNo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oBj+p4LD61npVqFTDN/1z67vIhtPjMl3nm9Bw85cdKp2SsodE1hdREk/tDZ7SXfr2
+         MHMgNu9iKmezbLwTugt02OGnKJsaczKeaauODrE1ZxYOJxDCepsbkBMJJ5DISprNWt
+         gz/Cf3Ub6wQoJfR5bENJp3bXySIAwc2Q8nyP7gmUu5InE5N3LFj/+9s5rxeA8FxWV7
+         GIpb+Uluiu5oabZEdVuZH8zxx2mNnixkQKojweQLYpEGGAxYwclUYE2ywppcx6rWd0
+         6awfqJmVaO8FozNfmDFzWE4sqd68GKDGci9UxvpBqBgb5WJmcZSPnmmhzCls3YU4yu
+         Ht8ELXerH7yNg==
+Received: by mail-lf1-f41.google.com with SMTP id f37so16625228lfv.8;
+        Sun, 30 Oct 2022 15:01:53 -0700 (PDT)
+X-Gm-Message-State: ACrzQf2ifE0WEKPkw66GY2cAgbAJ+8mC2JEZ/PcDGRlUZc9N+AgurfQp
+        PRFzc5jW7OQmFqnb4QvND5HxkFGSBBvHBFxhiQ==
+X-Google-Smtp-Source: AMsMyM7bW4oZVcI6LfaIeb+D2pMd4aIh+5780YF8WjoT6K4m0oJ3/Jwzr5TWckfqyNhNSgM9wxkKYBm/MKYXrTTj2L8=
+X-Received: by 2002:a19:f24b:0:b0:4ab:cd12:d282 with SMTP id
+ d11-20020a19f24b000000b004abcd12d282mr4215098lfk.74.1667167311542; Sun, 30
+ Oct 2022 15:01:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-From:   Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v2] ARM: dts: rockchip: rk3xx: disable arm_global_timer
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20221030194311.197909-1-a39.skl@gmail.com> <20221030194311.197909-2-a39.skl@gmail.com>
+In-Reply-To: <20221030194311.197909-2-a39.skl@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Sun, 30 Oct 2022 17:01:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL3Yq53m6D_eELurkJjDCWZuvMtACbUnqpLymWAuFh=OQ@mail.gmail.com>
+Message-ID: <CAL_JsqL3Yq53m6D_eELurkJjDCWZuvMtACbUnqpLymWAuFh=OQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: Add MSM8976 device tree
+To:     Adam Skladowski <a39.skl@gmail.com>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock source and the sched_clock provided by the arm_global_timer
-on Rockchip rk3066a/rk3188 are quite unstable because their rates
-depend on the CPU frequency.
+On Sun, Oct 30, 2022 at 2:43 PM Adam Skladowski <a39.skl@gmail.com> wrote:
+>
+> Add a base DT for MSM8976 SoC.
+>
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8976.dtsi | 1357 +++++++++++++++++++++++++
+>  1 file changed, 1357 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8976.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> new file mode 100644
+> index 0000000000000..461593eb04635
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> @@ -0,0 +1,1357 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+> +
+> +#include <dt-bindings/clock/qcom,gcc-msm8976.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +
+> +/ {
+> +       interrupt-parent = <&intc>;
+> +
+> +       #address-cells = <2>;
+> +       #size-cells = <2>;
+> +
+> +       chosen { };
+> +
+> +       clocks {
 
-Recent changes to the arm_global_timer driver makes it impossible to use.
+Drop the container node.
 
-On the other side, the arm_global_timer has a higher rating than the
-ROCKCHIP_TIMER, it will be selected by default by the time framework
-while we want to use the stable Rockchip clock source.
+> +               sleep_clk: sleep-clk {
+> +                       compatible = "fixed-clock";
+> +                       #clock-cells = <0>;
+> +                       clock-frequency = <32768>;
+> +               };
+> +
+> +               xo_board: xo-board {
+> +                       compatible = "fixed-clock";
+> +                       #clock-cells = <0>;
+> +                       clock-frequency = <19200000>;
+> +                       clock-output-names = "xo";
+> +               };
+> +       };
+> +
+> +       cpus {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               CPU0: cpu@0 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a53";
+> +                       reg = <0x0>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1024>;
+> +                       next-level-cache = <&L2_0>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
 
-Keep the arm_global_timer disabled in order to have the
-DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
+The cpu node is also the L1 cache(s). You've got a mixture here with
+'next-level-cache' in the cpu node. Drop these nodes.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
+> +               };
+> +
+> +               CPU1: cpu@1 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a53";
+> +                       reg = <0x1>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1024>;
+> +                       next-level-cache = <&L2_0>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               CPU2: cpu@2 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a53";
+> +                       reg = <0x2>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1024>;
+> +                       next-level-cache = <&L2_0>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               CPU3: cpu@3 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a53";
+> +                       reg = <0x3>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1024>;
+> +                       next-level-cache = <&L2_0>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               CPU4: cpu@100 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a72";
+> +                       reg = <0x100>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1830>;
+> +                       next-level-cache = <&L2_1>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               CPU5: cpu@101 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a72";
+> +                       reg = <0x101>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1830>;
+> +                       next-level-cache = <&L2_1>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               CPU6: cpu@102 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a72";
+> +                       reg = <0x102>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1830>;
+> +                       next-level-cache = <&L2_1>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               CPU7: cpu@103 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a72";
+> +                       reg = <0x103>;
+> +                       enable-method = "psci";
+> +                       capacity-dmips-mhz = <1830>;
+> +                       next-level-cache = <&L2_1>;
+> +                       #cooling-cells = <2>;
+> +
+> +                       l1-icache {
+> +                               compatible = "cache";
+> +                       };
+> +                       l1-dcache {
+> +                               compatible = "cache";
+> +                       };
+> +               };
+> +
+> +               cpu-map {
+> +                       cluster0 {
+> +                               core0 {
+> +                                       cpu = <&CPU0>;
+> +                               };
+> +                               core1 {
+> +                                       cpu = <&CPU1>;
+> +                               };
+> +                               core2 {
+> +                                       cpu = <&CPU2>;
+> +                               };
+> +                               core3 {
+> +                                       cpu = <&CPU3>;
+> +                               };
+> +                       };
+> +
+> +                       cluster1 {
+> +                               core0 {
+> +                                       cpu = <&CPU4>;
+> +                               };
+> +                               core1 {
+> +                                       cpu = <&CPU5>;
+> +                               };
+> +                               core2 {
+> +                                       cpu = <&CPU6>;
+> +                               };
+> +                               core3 {
+> +                                       cpu = <&CPU7>;
+> +                               };
+> +                       };
+> +               };
+> +
+> +               L2_0: l2-cache_0 {
+> +                       compatible = "cache";
+> +                       cache-level = <2>;
 
-ARM: dts: rockchip: disable arm-global-timer for rk3188
-https://lore.kernel.org/linux-rockchip/1492374441-23336-26-git-send-email-daniel.lezcano@linaro.org/
+Unified? Needs 'unified-cache' property.
 
-clocksource: arm_global_timer: implement rate compensation whenever source clock changes
-https://lore.kernel.org/all/20210406130045.15491-2-andrea.merello@gmail.com/
----
- arch/arm/boot/dts/rk3188.dtsi | 1 -
- arch/arm/boot/dts/rk3xxx.dtsi | 7 +++++++
- 2 files changed, 7 insertions(+), 1 deletion(-)
+> +               };
+> +
+> +               L2_1: l2-cache_1 {
+> +                       compatible = "cache";
+> +                       cache-level = <2>;
+> +               };
+> +       };
+> +
+> +       firmware {
+> +               scm: scm {
+> +                       compatible = "qcom,scm-msm8976", "qcom,scm";
+> +                       clocks = <&gcc GCC_CRYPTO_CLK>,
+> +                                <&gcc GCC_CRYPTO_AXI_CLK>,
+> +                                <&gcc GCC_CRYPTO_AHB_CLK>;
+> +                       clock-names = "core", "bus", "iface";
+> +                       #reset-cells = <1>;
+> +               };
+> +       };
+> +
+> +       memory {
 
-diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index cdd4a0bd5..486a96ce2 100644
---- a/arch/arm/boot/dts/rk3188.dtsi
-+++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -607,7 +607,6 @@
+Needs a unit-address.
 
- &global_timer {
- 	interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
--	status = "disabled";
- };
+> +               device_type = "memory";
+> +               /* We expect the bootloader to fill in the reg */
 
- &local_timer {
-diff --git a/arch/arm/boot/dts/rk3xxx.dtsi b/arch/arm/boot/dts/rk3xxx.dtsi
-index bf285091a..b0ec459ff 100644
---- a/arch/arm/boot/dts/rk3xxx.dtsi
-+++ b/arch/arm/boot/dts/rk3xxx.dtsi
-@@ -76,6 +76,13 @@
- 		reg = <0x1013c200 0x20>;
- 		interrupts = <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_EDGE_RISING)>;
- 		clocks = <&cru CORE_PERI>;
-+		status = "disabled";
-+		/* The clock source and the sched_clock provided by the arm_global_timer
-+		 * on Rockchip rk3066a/rk3188 are quite unstable because their rates
-+		 * depend on the CPU frequency.
-+		 * Keep the arm_global_timer disabled in order to have the
-+		 * DW_APB_TIMER (rk3066a) or ROCKCHIP_TIMER (rk3188) selected by default.
-+		 */
- 	};
+Isn't the base address known?
 
- 	local_timer: local-timer@1013c600 {
---
-2.20.1
-
+> +               reg = <0 0 0 0>;
+> +       };
