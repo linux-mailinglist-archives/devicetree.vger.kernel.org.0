@@ -2,243 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B74612BE3
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 18:26:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA937612C18
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 18:58:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbiJ3R0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 13:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
+        id S229695AbiJ3R6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 13:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbiJ3R0b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 13:26:31 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0DCB493
-        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 10:26:30 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id d24so8930973pls.4
-        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 10:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=compal-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/CLvTkmlFURtDEd8JKfEk5mMDoaPLqHdlnnztyHVUao=;
-        b=n3IRtQJE5TLtkrNDDscRgSlAy4vp1fA+fZuVruAWfCKFHN4rBqckBmcm1vrobbtagt
-         ff6E6eJCZU1PGpzscG52OwunWV2u2LLJm5A4X4RVqgwPGpCg0h/CAeVUuA2PAvGFuuhB
-         OrcQ7ArFo9a4ZN7QmkINuYtbtoZ6WbTrdBvPxiogesfkVvg4QQg9SRsEcDiCBNn4nFqW
-         Okj90TA4u7eouptcyfOEcbXWy+JdS5GGEdE1Kge8+ok10gmTylTjjg1/Sle9tWOBHL8f
-         u4mNzZAVoNxCHoS34ON7vniY1/xxhyIEDrd1sPZDja+QALzKe8Ts+8dCPvEQ8DwlXy7b
-         YHjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/CLvTkmlFURtDEd8JKfEk5mMDoaPLqHdlnnztyHVUao=;
-        b=YpO2Gu3+XSeH0IrazbkkIPAsp0xoDjGja25TyOoiMr+U/6WDeV2YxzIVxcTbqLPXjR
-         CMj16a1OKoK+KWVGkFMDJWHmyDvrU9sQACv6VOM2Qi2Vrb//U6IwsUNp99vgycr0+yhS
-         OWVyAmLumRKj6VM9/+3CkueUx+FKDEOdMnLqu0EMi72yzjZ5jwGNqjzLm8CyvBrT3djt
-         3kAkflybWAV5Up9q+wlhnvGLuUK2j4cKunIfceSUOQBppUNTBoc51TsqbGuAMibgCdXH
-         XTl/3qtXxFGwIGmO/u+Vu6GStiUrKRkOz+kMBjVVL7KLN+hdyYsCgmh7wbDr6Kw+BjrW
-         W6KQ==
-X-Gm-Message-State: ACrzQf0H6o67gAZ+CwvXwwQlCg+41QMVy7hrO7dh94k86W08NxjrXDBU
-        roDVMO7dBG/2lKCVC7gLTzOLfw==
-X-Google-Smtp-Source: AMsMyM4CzVH//ceOeMRtn/UZ+GsaqMaKcQLg7IVwBGlW84c14ZpQ6WKA4F8hqYjgnqJ2dWQRoRa7xA==
-X-Received: by 2002:a17:90b:38c:b0:212:fe14:4ba0 with SMTP id ga12-20020a17090b038c00b00212fe144ba0mr28049976pjb.138.1667150789913;
-        Sun, 30 Oct 2022 10:26:29 -0700 (PDT)
-Received: from localhost.localdomain (118-167-185-125.dynamic-ip.hinet.net. [118.167.185.125])
-        by smtp.gmail.com with ESMTPSA id q14-20020a170902a3ce00b00186c6d2e7e3sm2933881plb.26.2022.10.30.10.26.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Oct 2022 10:26:29 -0700 (PDT)
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        "chunxu . li" <chunxu.li@mediatek.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: [PATCH v4 2/2] ASoC: mediatek: mt8186-rt5682: Modify machine driver for two DMICs case
-Date:   Mon, 31 Oct 2022 01:26:09 +0800
-Message-Id: <20221030172609.1635096-3-ajye_huang@compal.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221030172609.1635096-1-ajye_huang@compal.corp-partner.google.com>
-References: <20221030172609.1635096-1-ajye_huang@compal.corp-partner.google.com>
+        with ESMTP id S229636AbiJ3R6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 13:58:16 -0400
+X-Greylist: delayed 903 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 30 Oct 2022 10:58:15 PDT
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39733A479;
+        Sun, 30 Oct 2022 10:58:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1667151762; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=LoQgOqNpF8Wwcu6VtLKcO4yYoCvOKAdIVCYF9kaDjStJS7UpaFt6+gdxBlbPtZ3q2AhTueAktG3rTOBOAl/ZlRzWFtKPXQXbP/2Y8hKYsSkJtz5lu8YyAZma6cVn3G3cJ6hUp5vRc+t2RqFvag57ztmd0POErtRJRrdFRJ93how=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1667151762; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=9bbvkGLwb/l1l5DfSEEWjM8y6U4gTUldLMgsN2ZwJHI=; 
+        b=d/INXma4ZfwxCDKG6YckAw79LjrhUW3sxofmHWm6WUj2S1wj4YE80ny6R3T98/xS8/xpkwpPszBjwrqheeet7UVG7YG7HYg95avPUITQZep7aaPzIaPpyuzsOs9OtpE2KLdLHZMFIZWs+OOVVea2V1oRhivHEJ0pGNSgsX04IFc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1667151762;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=9bbvkGLwb/l1l5DfSEEWjM8y6U4gTUldLMgsN2ZwJHI=;
+        b=BgJlSSBIjCMuklesP4o7xxtQBHELhJLioMpT0uZ/6IziR5QiJ3g7DtK6SY/DK/z8
+        +XNGl1kZovw21Rwa8t4UsBugjGTAzdqGXKLVuUrB1AANgJkKufZi/Fu9qcgAUKdyBQp
+        Zegg27gAXPxIotcEcuusabwUk1eWrnEosEjSdv3Q=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1667151759719557.7288943473982; Sun, 30 Oct 2022 10:42:39 -0700 (PDT)
+Message-ID: <a75564ec-3a9a-1bd6-3f4f-aae28ac933ad@arinc9.com>
+Date:   Sun, 30 Oct 2022 20:42:32 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v1 net-next 4/7] dt-bindings: net: dsa: mediatek,mt7530:
+ remove unnecessary dsa-port reference
+To:     Colin Foster <colin.foster@in-advantage.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>
+References: <20221025050355.3979380-1-colin.foster@in-advantage.com>
+ <20221025050355.3979380-5-colin.foster@in-advantage.com>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20221025050355.3979380-5-colin.foster@in-advantage.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having two DMICs, a front DMIC and a Rear DMIC,
-but only host audio input AUX port0 is used for these two Dmics.
-A "dmic-gpios" property is used for a mixer control to switch
-the dmic signal source between the Front and Rear Dmic.
+On 25.10.2022 08:03, Colin Foster wrote:
+> dsa.yaml contains a reference to dsa-port.yaml, so a duplicate reference to
+> the binding isn't necessary. Remove this unnecessary reference.
+> 
+> Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
+> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
 
-Refer to this one as an example,
-commit 3cfbf07c6d27
-("ASoC: qcom: sc7180: Modify machine driver for 2mic")
+Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
----
- .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     | 102 +++++++++++++++++-
- 1 file changed, 101 insertions(+), 1 deletion(-)
-
-diff --git a/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c b/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
-index 2414c5b77233..75351734464c 100644
---- a/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
-+++ b/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
-@@ -7,6 +7,8 @@
- // Author: Jiaxin Yu <jiaxin.yu@mediatek.com>
- //
- 
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/input.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-@@ -39,6 +41,8 @@
- 
- struct mt8186_mt6366_rt1019_rt5682s_priv {
- 	struct snd_soc_jack headset_jack, hdmi_jack;
-+	struct gpio_desc *dmic_sel;
-+	int dmic_switch;
- };
- 
- /* Headset jack detection DAPM pins */
-@@ -68,6 +72,94 @@ static struct snd_soc_codec_conf mt8186_mt6366_rt1019_rt5682s_codec_conf[] = {
- 	},
- };
- 
-+static int dmic_get(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct mtk_soc_card_data *soc_card_data =
-+		snd_soc_card_get_drvdata(dapm->card);
-+	struct mt8186_mt6366_rt1019_rt5682s_priv *priv = soc_card_data->mach_priv;
-+
-+	ucontrol->value.integer.value[0] = priv->dmic_switch;
-+	return 0;
-+}
-+
-+static int dmic_set(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct mtk_soc_card_data *soc_card_data =
-+		snd_soc_card_get_drvdata(dapm->card);
-+	struct mt8186_mt6366_rt1019_rt5682s_priv *priv = soc_card_data->mach_priv;
-+
-+	priv->dmic_switch = ucontrol->value.integer.value[0];
-+	if (priv->dmic_sel) {
-+		gpiod_set_value(priv->dmic_sel, priv->dmic_switch);
-+		dev_info(dapm->card->dev, "dmic_set_value %d\n",
-+			 priv->dmic_switch);
-+	}
-+	return 0;
-+}
-+
-+static const char * const dmic_mux_text[] = {
-+	"FrontMic",
-+	"RearMic",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(mt8186_dmic_enum,
-+			    SND_SOC_NOPM, 0, dmic_mux_text);
-+
-+static const struct snd_kcontrol_new mt8186_dmic_mux_control =
-+	SOC_DAPM_ENUM_EXT("DMIC Select Mux", mt8186_dmic_enum,
-+			  dmic_get, dmic_set);
-+
-+static const struct snd_soc_dapm_widget dmic_widgets[] = {
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+	SND_SOC_DAPM_MUX("Dmic Mux", SND_SOC_NOPM, 0, 0, &mt8186_dmic_mux_control),
-+};
-+
-+static const struct snd_soc_dapm_route dmic_map[] = {
-+	/* digital mics */
-+	{"Dmic Mux", "FrontMic", "DMIC"},
-+	{"Dmic Mux", "RearMic", "DMIC"},
-+};
-+
-+static int primary_codec_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_card *card = rtd->card;
-+	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(card);
-+	struct mt8186_mt6366_rt1019_rt5682s_priv *priv = soc_card_data->mach_priv;
-+	int ret;
-+
-+	ret = mt8186_mt6366_init(rtd);
-+
-+	if (ret) {
-+		dev_err(card->dev, "mt8186_mt6366_init failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (!priv->dmic_sel) {
-+		dev_info(card->dev, "dmic_sel is null\n");
-+		return ret;
-+	}
-+
-+	ret = snd_soc_dapm_new_controls(&card->dapm, dmic_widgets,
-+					ARRAY_SIZE(dmic_widgets));
-+	if (ret) {
-+		dev_err(card->dev, "DMic widget addition failed: %d\n", ret);
-+		/* Don't need to add routes if widget addition failed */
-+		return ret;
-+	}
-+
-+	ret = snd_soc_dapm_add_routes(&card->dapm, dmic_map,
-+				      ARRAY_SIZE(dmic_map));
-+
-+	if (ret)
-+		dev_err(card->dev, "DMic map addition failed: %d\n", ret);
-+
-+	return ret;
-+}
-+
- static int mt8186_rt5682s_init(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct snd_soc_component *cmpnt_afe =
-@@ -775,7 +867,7 @@ static struct snd_soc_dai_link mt8186_mt6366_rt1019_rt5682s_dai_links[] = {
- 		.dpcm_playback = 1,
- 		.dpcm_capture = 1,
- 		.ignore_suspend = 1,
--		.init = mt8186_mt6366_init,
-+		.init = primary_codec_init,
- 		SND_SOC_DAILINK_REG(adda),
- 	},
- 	{
-@@ -1015,6 +1107,14 @@ static int mt8186_mt6366_rt1019_rt5682s_dev_probe(struct platform_device *pdev)
- 
- 	soc_card_data->mach_priv = mach_priv;
- 
-+	mach_priv->dmic_sel = devm_gpiod_get_optional(&pdev->dev,
-+						      "dmic", GPIOD_OUT_LOW);
-+	if (IS_ERR(mach_priv->dmic_sel)) {
-+		dev_err(&pdev->dev, "DMIC gpio failed err=%ld\n",
-+			PTR_ERR(mach_priv->dmic_sel));
-+		return PTR_ERR(mach_priv->dmic_sel);
-+	}
-+
- 	adsp_node = of_parse_phandle(pdev->dev.of_node, "mediatek,adsp", 0);
- 	if (adsp_node) {
- 		struct mtk_sof_priv *sof_priv;
--- 
-2.25.1
-
+Thanks.
+Arınç
