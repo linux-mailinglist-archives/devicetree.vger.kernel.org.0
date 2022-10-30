@@ -2,119 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9312612ACE
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 14:50:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0CBB612AE5
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 15:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbiJ3Nu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 09:50:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37042 "EHLO
+        id S229629AbiJ3OFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 10:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbiJ3Nu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 09:50:26 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73BF655BB;
-        Sun, 30 Oct 2022 06:50:26 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-13be3ef361dso11137902fac.12;
-        Sun, 30 Oct 2022 06:50:26 -0700 (PDT)
+        with ESMTP id S229542AbiJ3OFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 10:05:37 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B96DCB4B1
+        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 07:05:36 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id t4so2463230lfp.2
+        for <devicetree@vger.kernel.org>; Sun, 30 Oct 2022 07:05:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BHFM6mvpTc4ovqs5hhJhMynku+IEtunZuiq9YKhbLO8=;
+        b=aNCdPv27ZhT3eaK9iQRkbyXiOIF7+cejYtDoXdFQtNGF6ZTU0Ql6y/EBjCpagSvEa8
+         VHPAdIE6kWNyyrFGMf/a00PHc+m3SrHKiX64fy6wr3vAF6tu5F0/KtTwQUWe7U6Th4Nz
+         6FLhxtbRPjFxvynUhKY9332rtrNJ1vCu5BdGpfJ5aHWEZdbSijFA/8kycbx9aDHI6UJ8
+         Lo6E1BET643GndbeB4vA4L7mlHoySvnYBeaD/59oP5k3aLmVOAOpCuPOI3AY7HElyCKZ
+         kdUZ7fPMTSljM5ebyVUy28CR4bIogFCZiXOugH2kbKJhT03pIFMOGts9kkaQGwHc8rlT
+         qZMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QM+uLtn35cNBB8WShoztahWkyNeyqqGV8AL7ZS4noIw=;
-        b=yyqGwwSCEE3LLNbIEMxym1bJMTOYJsEfKDYEY5l68vTHcxFU5/se22Q/Wmntza0P3B
-         9KLcFgnaPpJUZmfDNTxYERHy1WU5BZ4GtgowExk7J812maqn7OsfVP4rzroHGpvwXpwB
-         CAzT3152sQcuje+V06dh5t3qxAb/D3/OWvGVmVymnrpmm9j6LYi8EdpLAozRJcbOJRoY
-         POOfPIXpLpzhzvzI5lmsjqOFlz+ArRAocWqhEQZippilGo+AXaNz7dlJVYV6aNqS5gTH
-         +786QmHd6ePYJLoPJXbchdf/UOO9CDkvEi9/45Mg1Xrpf+33WazkoxkhwO47xKoZlZhi
-         Sz0g==
-X-Gm-Message-State: ACrzQf3aRbWH0vnHSrhHTBFLOBY1OlDllXPVpTIsIkfTldTClqI/y/aJ
-        pe7bbDwT533QTBBPQb0V1A==
-X-Google-Smtp-Source: AMsMyM4ekD+KyJWMr4GSGQ0Ji2kUPt3lAnlfD1u4S/wAA6L9dkzw4WsHzE7oFxxtxteJsfH9/11fzg==
-X-Received: by 2002:a05:6870:5b9d:b0:12b:5871:22f4 with SMTP id em29-20020a0568705b9d00b0012b587122f4mr4949428oab.211.1667137825562;
-        Sun, 30 Oct 2022 06:50:25 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 11-20020aca280b000000b00353fe4fb4casm1394805oix.48.2022.10.30.06.50.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 30 Oct 2022 06:50:25 -0700 (PDT)
-Received: (nullmailer pid 992220 invoked by uid 1000);
-        Sun, 30 Oct 2022 13:50:23 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BHFM6mvpTc4ovqs5hhJhMynku+IEtunZuiq9YKhbLO8=;
+        b=xbKqWuMYhLfPAguxOMgkUSqpOIYNNBYUpcQDhHpDuBuAn16ijPUBXOrwawdE3t7DtN
+         gLv3b6tA+PQhSMOOswPB60RrrIaxqHF+wEh/KBZ/5NOdm2QyuJKDZGGvvHVOMwezuvUu
+         AQ5UoCPnVIuiajoPor/YUxE7KHH1jcllWuOkjmfWw35sjgfdU2znAZIDkt3s5Y6evEfr
+         xcsi3heESU8+iSEHvJn0s/pCfUKRjBz/UiO0aelGANWHWVogjvrmadVNqbgpQJJ6l8nq
+         plk5Y0KjVyLNzxRRNpolo84XoUA/ypbagSN1G0yYT1H807BpMtz7mKxkhiHSstvY3MQx
+         qcuQ==
+X-Gm-Message-State: ACrzQf19nUOcjD0KYCuI6EvFxsRuMWjNlJtxcBKe7j01Gu8Fp0zvNz1H
+        GPvB4aBUjv6T5Kb1HoKMrYfM3u3ueyZWPg==
+X-Google-Smtp-Source: AMsMyM4FUc8GR+0YDkgT8hruq9bgJEOQQsm3HZUJ90dhns2FXIDm/jLELOwKhHdv41CBKeDAYF32Dg==
+X-Received: by 2002:a05:6512:b21:b0:4ae:391c:e655 with SMTP id w33-20020a0565120b2100b004ae391ce655mr3217997lfu.45.1667138735120;
+        Sun, 30 Oct 2022 07:05:35 -0700 (PDT)
+Received: from [10.27.10.248] ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id n5-20020a05651203e500b004a63193058asm807083lfq.92.2022.10.30.07.05.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 30 Oct 2022 07:05:34 -0700 (PDT)
+Message-ID: <63a38833-7c9e-ea43-81f5-2f9b98584e62@linaro.org>
+Date:   Sun, 30 Oct 2022 17:05:33 +0300
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        linux-sunxi@lists.linux.dev, linux-mtd@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        linux-arm-msm@vger.kernel.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20221028235933.934850-10-miquel.raynal@bootlin.com>
-References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
- <20221028235933.934850-10-miquel.raynal@bootlin.com>
-Message-Id: <166713668466.965796.13624922237162086174.robh@kernel.org>
-Subject: Re: [PATCH 09/12] dt-bindings: mtd: phymap: Reuse the generic definitions
-Date:   Sun, 30 Oct 2022 08:50:23 -0500
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v1 4/7] phy: qcom-qmp-pcie: split and rename the sm8450
+ gen3 PHY config tables
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20221030122525.GA1022832@bhelgaas>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221030122525.GA1022832@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Sat, 29 Oct 2022 01:59:30 +0200, Miquel Raynal wrote:
-> The memory mapped MTD devices also share a lot with all the other MTD
-> devices, so let's share the properties by referencing mtd.yaml. We can
-> then drop mentioning the properties, to the cost of mentioning the
-> possible "sram" node name prefix.
+On 30/10/2022 15:25, Bjorn Helgaas wrote:
+> On Sun, Oct 30, 2022 at 12:13:09AM +0300, Dmitry Baryshkov wrote:
+>> SM8350 PHY config tables are mostly the same as SM8450 gen3 PHY config
+>> tables. Split these tables to be used by SM8350 config. Following this
+>> split rename generic tables to remove x1 suffix.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/mtd/mtd-physmap.yaml | 7 +++----
->  Documentation/devicetree/bindings/mtd/mtd.yaml         | 2 +-
->  2 files changed, 4 insertions(+), 5 deletions(-)
-> 
+> Commit logs that say "Following this ..." always make me ask whether
+> this could or should be split into two patches, one that is a trivial
+> rename that's easier to review.
 
+Point noted. I'll split the commit for v2.
 
+> But I guess this is a phy patch that Lorenzo will look for somebody
+> else to ack :)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I think the patches will be applied to three different threes (PCI, phy 
+and arm-soc/qcom). I have sent them as a single series to let reviewers 
+see the whole story.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/memory-controllers/st,stm32-fmc2-ebi.example.dtb: psram@0,0: $nodename:0: 'psram@0,0' does not match '^(flash|sram)(@.*)?$'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+With best wishes
+Dmitry
 
