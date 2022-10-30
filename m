@@ -2,156 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB63612C7D
-	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 20:45:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8498E612C89
+	for <lists+devicetree@lfdr.de>; Sun, 30 Oct 2022 21:05:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiJ3TpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 15:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37928 "EHLO
+        id S229494AbiJ3UFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 16:05:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiJ3TpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 15:45:17 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4136624E;
-        Sun, 30 Oct 2022 12:45:15 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id a14so13351040wru.5;
-        Sun, 30 Oct 2022 12:45:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NKfS4aLyhcZFouwvRqN+Hdd2h6IBU2o24ivlxdwY0Kk=;
-        b=gQD2ly58el8xxV1WXPhVHbGQKb2LoinxKG6ea/7w5TYG3yCnfuD6uDIYTTz8fPthzL
-         3TWJ4MnAo7iw8HU3iXq7pSPr74l64y46ogk6IL+dTG12Mn8ZkvhU5d++AACymBJQqrQ9
-         mLmZYxbCTTllzu7OpKz4ZbJU7KBEUGZEJFV24az1LLwaOrOgaUQQCHznTsS48GphwBA/
-         ymF8XT7gf9x9l3T4F4QsIBHyE17/Mv6fuMSffnVu1AqJ/YcPzHSt0yib8ffnE6NO7Htc
-         7YBeXcfOxdcCTIlEbftaUYuN0iR+BsiMu7BGsL6SuvumvlOmMuMOvVz8ANITXUL+IHEL
-         3hqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NKfS4aLyhcZFouwvRqN+Hdd2h6IBU2o24ivlxdwY0Kk=;
-        b=lllu0vkwcMfPKj5F3OJkH6PNfn77R3OlFFicu08fftAubwab7iU1nv6EHuBNq9LM4Y
-         9Z5gfmrvK9ykXICgKcwYuFPeXStxzjo4Sz9FWZMZci5zBGByl5uUWduQdUDF+gT68g73
-         FHiNVEAr03emHpHhCcfZiUrHN7ai4E7EJinplqqokZarOKzjRYr/Pu0/bjA3fCHQa0D9
-         S3royvhnhDduZHuLjB5qv+oufiXaBOxSxkkTuDAEyKCp9BHuJTH9BBRlF34S+sCsH85R
-         T6wScK7ZK6Fjf2nxxYgtE6d2SaFFJ6rj1GPYMjeej8yHIY61odHo7HAzNtt82jb2xKaX
-         sMcw==
-X-Gm-Message-State: ACrzQf0mCNwkO9ElO66numy8RGHqqQyE7bHluUItUz2uSA9TmCyedf2q
-        T+9wazqmKDmLW7r/GcxaIk4=
-X-Google-Smtp-Source: AMsMyM5oiGBxjmdAvLKUOJuUhqiRqr3JgCGFBbO7W6nQz88ItVLsAqDzKQPMmSwGOjNl36hM60rB4A==
-X-Received: by 2002:a05:6000:1845:b0:236:90d2:f239 with SMTP id c5-20020a056000184500b0023690d2f239mr5912515wri.711.1667159114228;
-        Sun, 30 Oct 2022 12:45:14 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id p12-20020a7bcc8c000000b003a682354f63sm5063992wma.11.2022.10.30.12.45.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Oct 2022 12:45:13 -0700 (PDT)
-Message-ID: <1e268275-0705-8c30-5ea8-799d17278f08@gmail.com>
-Date:   Sun, 30 Oct 2022 20:45:12 +0100
+        with ESMTP id S229476AbiJ3UFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 16:05:33 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1812A95B3;
+        Sun, 30 Oct 2022 13:05:31 -0700 (PDT)
+Received: from [185.156.123.69] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1opEYb-0005bW-Cr; Sun, 30 Oct 2022 21:05:21 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-rockchip@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: Re: [PATCHv2 6/6] dt-bindings: rtc: convert hym8563 bindings to json-schema
+Date:   Sun, 30 Oct 2022 21:05:19 +0100
+Message-ID: <9218219.T7Z3S40VBb@phil>
+In-Reply-To: <20221024165549.74574-7-sebastian.reichel@collabora.com>
+References: <20221024165549.74574-1-sebastian.reichel@collabora.com> <20221024165549.74574-7-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.0
-Subject: Re: [PATCH v1 1/2] arm: rockchip: Kconfig: remove select
- ARM_GLOBAL_TIMER
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     linux@armlinux.org.uk, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <88e93a81-ef9f-adcc-db83-f8b5ba615c47@gmail.com>
- <3935573.e9J7NaK4W3@phil>
-Content-Language: en-US
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <3935573.e9J7NaK4W3@phil>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SPF_HELO_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Montag, 24. Oktober 2022, 18:55:49 CET schrieb Sebastian Reichel:
+> Convert RTC binding for Haoyu Microelectronics HYM8563 to Device Tree
+> Schema format.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
+> ---
+>  .../devicetree/bindings/rtc/haoyu,hym8563.txt | 30 ----------
+>  .../bindings/rtc/haoyu,hym8563.yaml           | 56 +++++++++++++++++++
+>  2 files changed, 56 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+> deleted file mode 100644
+> index a8934fe2ab4c..000000000000
+> --- a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Haoyu Microelectronics HYM8563 Real Time Clock
+> -
+> -The HYM8563 provides basic rtc and alarm functionality
+> -as well as a clock output of up to 32kHz.
+> -
+> -Required properties:
+> -- compatible: should be: "haoyu,hym8563"
+> -- reg: i2c address
+> -- #clock-cells: the value should be 0
+> -
+> -Optional properties:
+> -- clock-output-names: From common clock binding
+> -- interrupts: rtc alarm/event interrupt
+> -
+> -Example:
+> -
+> -hym8563: hym8563@51 {
+> -	compatible = "haoyu,hym8563";
+> -	reg = <0x51>;
+> -
+> -	interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+> -
+> -	#clock-cells = <0>;
+> -};
+> -
+> -device {
+> -...
+> -	clocks = <&hym8563>;
+> -...
+> -};
+> diff --git a/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> new file mode 100644
+> index 000000000000..0b9f39ef0edc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/haoyu,hym8563.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/haoyu,hym8563.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Haoyu Microelectronics HYM8563 RTC
+> +
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: haoyu,hym8563
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+> +  clock-output-names:
+> +    description: From common clock binding to override the default output clock name.
+> +    maxItems: 1
+> +
+> +  wakeup-source:
+> +    description: Enables wake up of host system on alarm.
+> +
+> +allOf:
+> +  - $ref: rtc.yaml
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rtc@51 {
+> +            compatible = "haoyu,hym8563";
+> +            reg = <0x51>;
+> +            interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+> +            #clock-cells = <0>;
+> +        };
+> +    };
+> 
 
 
-On 10/30/22 20:30, Heiko Stuebner wrote:
-> Hi Johan,
-> 
-> Am Sonntag, 30. Oktober 2022, 19:36:01 CET schrieb Johan Jonker:
->> The clocksource and the sched_clock provided by the arm_global_timer
->> on Rockchip rk3066a/rk3188 are quite unstable because their rates
->> depend on the cpu frequency.
->>
->> Recent changes to the arm_global_timer driver makes it impossible to use.
->>
->> On the other side, the arm_global_timer has a higher rating than the
->> rockchip_timer, it will be selected by default by the time framework
->> while we want to use the stable rockchip clocksource.
->>
->> Let's disable the arm_global_timer in order to have the ROCKCHIP_TIMER
->> (rk3188) or DW_APB_TIMER (rk3066a) selected by default.
-> 
-> Doing that change won't help you with the issue you see.
-> These days kernel images are supposed to run on as many
-> platforms as possible with the _same_ kernel image.
-> 
-> So the muliplatform image build from the kernel's defconfig will
-> include most of the time other platforms that will pull in the
-> global-timer again.
-> 
-> 
 
-How about "imply" instead of "select"?
-It's no longer useful. One can get rid of if one wants a really lean kernel.
 
-> I do see that you disable the global-timer
-> in the rk3066 dtsi in patch2, though this would leave the rk3188
-> still using the global-timer. Why not do this in the rk3xxx.dtsi?
-> 
-> I.e. keep the global-timer node, but add a disabled property
-> together with a comment above the status=disabled, describing
-> the issue. [This should keep people from re-adding the global-timer
-> in the future :-) ]
-> 
-> Thanks
-> Heiko
-> 
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
->>
->> ARM: dts: rockchip: disable arm-global-timer for rk3188
->> https://lore.kernel.org/linux-rockchip/1492374441-23336-26-git-send-email-daniel.lezcano@linaro.org/
->>
->> clocksource: arm_global_timer: implement rate compensation whenever source clock changes
->> https://lore.kernel.org/all/20210406130045.15491-2-andrea.merello@gmail.com/
->> ---
->>  arch/arm/mach-rockchip/Kconfig | 2 --
->>  1 file changed, 2 deletions(-)
->>
->> diff --git a/arch/arm/mach-rockchip/Kconfig b/arch/arm/mach-rockchip/Kconfig
->> index b7855cc66..0432a4430 100644
->> --- a/arch/arm/mach-rockchip/Kconfig
->> +++ b/arch/arm/mach-rockchip/Kconfig
->> @@ -15,8 +15,6 @@ config ARCH_ROCKCHIP
->>  	select DW_APB_TIMER_OF
->>  	select REGULATOR if PM
->>  	select ROCKCHIP_TIMER
->> -	select ARM_GLOBAL_TIMER
->> -	select CLKSRC_ARM_GLOBAL_TIMER_SCHED_CLOCK
->>  	select ZONE_DMA if ARM_LPAE
->>  	select PM
->>  	help
->> --
->> 2.20.1
->>
->>
-> 
-> 
-> 
-> 
