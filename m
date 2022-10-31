@@ -2,102 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8EA1613C77
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 18:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6FE613C83
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 18:51:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbiJaRui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 13:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53898 "EHLO
+        id S229695AbiJaRvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 13:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbiJaRuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 13:50:37 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2EC762D0;
-        Mon, 31 Oct 2022 10:50:34 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id r187so13521218oia.8;
-        Mon, 31 Oct 2022 10:50:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=O/OrJUaYHRoEPjInfDVcIfVomfgyPlGqEkIKHsEo9lU=;
-        b=Sws3S79oK2W9WoRcOxfaCrGsPty2JHx5XcO65A+e0fWM2FKfMaHcjfJ/Qp58SqjD/9
-         7ODZHr+lJ/mVHO+5toB87jlYwT+l+w4e55owQK6TZL9q/WtEjdZjdopNs2sNX5SdnqV1
-         tRMaJ0htltJ4KLd797qW5X1Pjym8F6RALR/yYQMEO23S4zmC/KzegNBGNOzM8SMkIbEH
-         WM7ywfEu6Am7DeOy6U9CnM0QK6BwVLUnNRPAIAO8IL+fZe34bnXF6cn1CyJwqLp68qW+
-         jEqSF6O4r9zaN9sKdWELQ/RpffuHJWzv7Hb+YXnv1Sk0dr7Pd/WMKII18cQLIICdXFSp
-         pumQ==
-X-Gm-Message-State: ACrzQf0MHyvzyg66zjG2XxYzuPd72pSUpuqk//B3cMTu0ALra2t0K5wW
-        UOjPfsgOzPYxf2BR+FKHnA==
-X-Google-Smtp-Source: AMsMyM4T6altTaqeOLsV6UcilL4G7P8IlDieSR1hoSqarcTXk4QF07+B3xUWgV1CPbP1TirWAooEhQ==
-X-Received: by 2002:a05:6808:14c1:b0:354:d3bf:67b with SMTP id f1-20020a05680814c100b00354d3bf067bmr16249885oiw.160.1667238633807;
-        Mon, 31 Oct 2022 10:50:33 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bk32-20020a0568081a2000b003595494e293sm2532518oib.32.2022.10.31.10.50.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 10:50:33 -0700 (PDT)
-Received: (nullmailer pid 3060092 invoked by uid 1000);
-        Mon, 31 Oct 2022 17:50:34 -0000
-Date:   Mon, 31 Oct 2022 12:50:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Marcin Wojtas <mw@semihalf.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michael Walle <michael@walle.cc>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        netdev@vger.kernel.org, Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH 1/5] dt-bindings: vendor-prefixes: Add ONIE
-Message-ID: <166723863431.3060035.12852650709794600644.robh@kernel.org>
-References: <20221028092337.822840-1-miquel.raynal@bootlin.com>
- <20221028092337.822840-2-miquel.raynal@bootlin.com>
+        with ESMTP id S231755AbiJaRvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 13:51:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6674A63F4;
+        Mon, 31 Oct 2022 10:51:03 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-095-033-157-181.ewe-ip-backbone.de [95.33.157.181])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 67D0766028C0;
+        Mon, 31 Oct 2022 17:51:01 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667238661;
+        bh=LclkUUUuQEL6XWTDbjHN/M93uQibLqIJXoKjFuEGbjU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hte6YTXwfWRFfuipTNvRM0vUkZH2ZsvcAYCJui+c/S6n+HrHHVWg+xvej9zswIsKY
+         0zlWBz1gIhd5V1E94rG6dEzcFNJyqTNew+8FCf6GbGZpOYWvd+EVSfJNf+baD99L/1
+         NmDCuTWbg65Ws5w6mt+VvHb/aDw943mCsEodJeh5u7Y677/cPPni1lDdCHIQrigCBq
+         sgIGBqxWTufrBHww9REvEqMiUQN+pAGq6qTFpBwJ8V/Sxxd3lRU6N0VvXCEHRlPLjJ
+         di2b7va07Wo+Nh12A8olWkxj7CoptG6dc+mrAwZ5tlytzg4PJHcgqUc9kF+yZ3T3F1
+         0Km0E2YJ0gylA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 4B9214801B7; Mon, 31 Oct 2022 18:50:59 +0100 (CET)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH 0/7] RK3588 Thermal Support
+Date:   Mon, 31 Oct 2022 18:50:51 +0100
+Message-Id: <20221031175058.175698-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221028092337.822840-2-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On Fri, 28 Oct 2022 11:23:33 +0200, Miquel Raynal wrote:
-> As described on their website (see link below),
-> 
->    "The Open Network Install Environment (ONIE) is an open source
->     initiative that defines an open “install environment” for modern
->     networking hardware."
-> 
-> It is not a proper corporation per-se but rather more a group which
-> tries to spread the use of open source standards in the networking
-> hardware world.
-> 
-> Link: https://opencomputeproject.github.io/onie/
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
-> 
-> Please note ONIE is not a "company" but rather more an open source
-> group. I don't know if there will be other uses of this prefix but I
-> figured out it would be best to describe it to avoid warnings, but I'm
-> open to other solutions otherwise.
-> 
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+This adds thermal support for the new RK3588(s) SoC
+series. The series has been tested on the RK3588
+EVB1 board.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20221021174721.92468-1-sebastian.reichel@collabora.com/
+ * Collect Reviewed-by/Acked-by
+ * Use TRM channel info in commit message (Daniel Lezcano)
+ * Add patch removing channel id lookup table (Daniel Lezcano)
+ * Add patch allocating sensors array dynamiccaly (Daniel Lezcano)
+ * I also added patches simplifying up the probe routine a bit
+
+-- Sebastian
+
+Finley Xiao (1):
+  thermal: rockchip: Support RK3588 SoC in the thermal driver
+
+Sebastian Reichel (6):
+  thermal: rockchip: Simplify getting match data
+  thermal: rockchip: Simplify clock logic
+  thermal: rockchip: Use dev_err_probe
+  thermal: rockchip: Simplify channel id logic
+  thermal: rockchip: Support dynamic sized sensor array
+  dt-bindings: rockchip-thermal: Support the RK3588 SoC compatible
+
+ .../bindings/thermal/rockchip-thermal.yaml    |   1 +
+ drivers/thermal/rockchip_thermal.c            | 322 ++++++++++++------
+ 2 files changed, 226 insertions(+), 97 deletions(-)
+
+-- 
+2.35.1
+
