@@ -2,95 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3315F613E25
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E842D613E32
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:26:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbiJaTXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 15:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43046 "EHLO
+        id S229822AbiJaT0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 15:26:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbiJaTXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:23:41 -0400
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B504E120A4;
-        Mon, 31 Oct 2022 12:23:40 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id cy15-20020a056830698f00b0065c530585afso7316934otb.2;
-        Mon, 31 Oct 2022 12:23:40 -0700 (PDT)
+        with ESMTP id S229691AbiJaT0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:26:17 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9E812611
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 12:26:17 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id c129so1987358oia.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 12:26:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UJ0lOh2WHzkMHSyGntGrBnZIld+O9sk/z0tqYs4/9ac=;
+        b=jPGFD+shh3P6Bxl6dtn/Bc8qE+MpQYMg9gVIT6JbAAfQ1LHymLueBqrnzH6fi5InEN
+         N+higcRkSVCEyJqh0lBvXm7qN5SOF3x+Mez8epG5Ov/Xs5B4lU2nIgKoZRuJSk0s79n4
+         LQKyHmuYzj7dsuc8Aq/hG7w+vv/5a4uDvjm54=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UQuV1G1h9Q2KEJeOpqlGNcbiDdFW7/cHLrtfvW/w2c0=;
-        b=JmRt9+k4ZUgN6ftkOqfI/zFY+9JJENYl+mWIGGL8QqnFLxs/mN6IdSI4Btwgk2L8z7
-         rtGVL2Cpl4xm8EaqbrUzQbkdhJVYh4BYP1+vFMj/tB7HSb8ZeG/XNmKa/PlrCzIeql3q
-         puV0/5TUOOFzxwh2vrjI/4ejRG/49Qp7N8mhRP1zFFyM5z+0iyAzrOiak5hunvpHNAod
-         r3o8HR3KWRzJxto0Rnx5xzHuPLrc9rWenqwSMvl7ZZYoIahghdHfUk6cs5uPin02x7gE
-         DZoo2iCS5qW0akSvVREQWa7uHurvnPp38dRq2NYeeRbr3wriLss016EnUfMOvl7eK/ky
-         28Kw==
-X-Gm-Message-State: ACrzQf1GsXp0mcvS+NzA5jRxdKMzL31T532l53Yu+2xkFyPMRDQQQRNS
-        tWCytnsCPZqtYZeKr4cgtw==
-X-Google-Smtp-Source: AMsMyM5z4xeQYenKTAqnF5JTbwSTSwTnovUxg75w3nRZZYqNQSLHm9rPIMBXZ8XLc484+u8e7zdX+w==
-X-Received: by 2002:a05:6830:600b:b0:661:152:5de9 with SMTP id bx11-20020a056830600b00b0066101525de9mr7315548otb.143.1667244219911;
-        Mon, 31 Oct 2022 12:23:39 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f10-20020a056870d14a00b00130d060ce80sm3465436oac.31.2022.10.31.12.23.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 12:23:39 -0700 (PDT)
-Received: (nullmailer pid 3283626 invoked by uid 1000);
-        Mon, 31 Oct 2022 19:23:41 -0000
-Date:   Mon, 31 Oct 2022 14:23:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        od@opendingux.net
-Subject: Re: [PATCH v2 1/4] dt-bindings: rtc: ingenic: Rework compatible
- strings and add #clock-cells
-Message-ID: <20221031192341.GA3270129-robh@kernel.org>
-References: <20221028225519.89210-1-paul@crapouillou.net>
- <20221028225519.89210-2-paul@crapouillou.net>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UJ0lOh2WHzkMHSyGntGrBnZIld+O9sk/z0tqYs4/9ac=;
+        b=ptgWREd5kC5WcQuI/a5xu8lCLxC2B4Kjo7TIVnohoCC03BmUCDUWyailyizcnYi4bg
+         w4BYIYBnFPZrcf4XQOuGb9mF9gy6bzwXsisaC9An89W7M4acfzE/doXasLq5r/4cVc1J
+         Jn36XmLFuTaEEeINYSho3j/NVgFA3zdZe5uUC4dpTY4lHVQkNoW6/ZiGXKoiJ1OZKwdu
+         h9UHUyMsYwZonrVYWlefGO4a9qfRepE+3/o8QlsDLkwRwmzUmqEjMZ5u6QJbPI5N87xt
+         6wGbih0A7OpqgZH5zwsgz9wo/QrMKPyXEHY+oPR8GNRguPaB3x0RYh5Z8IkE4jpO0yye
+         EOrg==
+X-Gm-Message-State: ACrzQf2maj3fWsNnnbJXAbC5dS5q6/v1jpOgmwIgXI79ecDfLAlk8cm6
+        YVL16wfXFgZ84+bxW5cWey9eiovYOvNgaLyV2xTi
+X-Google-Smtp-Source: AMsMyM5DK76DhxyTBJTOuwvjAKSAxZG+Xnk3XxPTuByccSTUMcdXR9NkvikUoLLs31SCFH7vadIOJuzabCuELGnqUMM=
+X-Received: by 2002:aca:6007:0:b0:35a:1bda:d213 with SMTP id
+ u7-20020aca6007000000b0035a1bdad213mr1491663oib.181.1667244376293; Mon, 31
+ Oct 2022 12:26:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221028225519.89210-2-paul@crapouillou.net>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20221028231929.347918-1-atishp@rivosinc.com> <Y2Ad/FaLE5qM01gR@spud>
+In-Reply-To: <Y2Ad/FaLE5qM01gR@spud>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Mon, 31 Oct 2022 12:26:05 -0700
+Message-ID: <CAOnJCUK5Z6i39f5MJaRFhorGjcmBR=p_MapY_TDcR1e274wtpA@mail.gmail.com>
+Subject: Re: [PATCH] RISC-V: Do not issue remote fences until smp is available
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Atish Patra <atishp@rivosinc.com>, linux-kernel@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv@lists.infradead.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 28, 2022 at 11:55:16PM +0100, Paul Cercueil wrote:
-> The RTC in the JZ4770 is compatible with the JZ4760, but has an extra
-> register that permits to configure the behaviour of the CLK32K pin. The
-> same goes for the RTC in the JZ4780.
-> 
-> Therefore, the ingenic,jz4770-rtc and ingenic,jz4780-rtc strings do not
-> fall back anymore to ingenic,jz4760-rtc. The ingenic,jz4780-rtc string
-> now falls back to the ingenic,jz4770-rtc string.
+On Mon, Oct 31, 2022 at 12:12 PM Conor Dooley <conor@kernel.org> wrote:
+>
+> On Fri, Oct 28, 2022 at 04:19:29PM -0700, Atish Patra wrote:
+> > It is useless to issue remote fences if there is a single core
+> > available. It becomes a bottleneck for sbi based rfences where
+> > we will be making those ECALLs for no reason. Early code patching
+> > because of static calls end up in this path.
+> >
+> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+>
+> Hey Atish,
+> This doesn't apply for me to either fixes or for-next. What branch does
+> it apply to?
+> Thanks,
+> Conor.
+>
+> > ---
+> >  arch/riscv/mm/cacheflush.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+> > index f10cb47eac3a..7fafc8c26505 100644
+> > --- a/arch/riscv/mm/cacheflush.c
+> > +++ b/arch/riscv/mm/cacheflush.c
+> > @@ -19,6 +19,10 @@ void flush_icache_all(void)
+> >  {
+> >       local_flush_icache_all();
+> >
+> > +     /* No need to issue remote fence if only 1 cpu is online */
+> > +     if (num_online_cpus() == 1)
+> > +             return;
+> > +
+> >       if (IS_ENABLED(CONFIG_RISCV_SBI) && !riscv_use_ipi_for_rfence())
+> >               sbi_remote_fence_i(NULL);
+> >       else
+> > --
+> > 2.34.1
+> >
 
-This is a compatibility mess. There is no driver support in v6.1-rc for 
-ingenic,jz4770-rtc, so a new DT would not work with existing kernels. It 
-sounds like you need 3 compatibles for 4780.
+Sorry I forgot to specify the dependencies for this patch. This patch
+is based on Anup's IPI series [1] as
+I assumed the IPI series would go first. I can rebase on top of the
+master if required.
+However, the issue will manifest only after Jisheng's patch[2] which
+moved the sbi_init to earlier and introduced the
+static key in the paging_init path.
 
-> 
-> Additionally, since the RTCs in the JZ4770 and JZ4780 support outputting
-> the input oscillator's clock to the CLK32K pin, the RTC node is now also
-> a clock provider on these SoCs, so a #clock-cells property is added.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
-> 
->  v2: - add constraint on which SoCs can have the #clock-cells property
->      - add JZ4780 example which has a #clock-cells
-> 
->  .../devicetree/bindings/rtc/ingenic,rtc.yaml  | 32 +++++++++++++++++--
->  1 file changed, 30 insertions(+), 2 deletions(-)
+[1] https://patchwork.kernel.org/project/linux-riscv/patch/20220820065446.389788-8-apatel@ventanamicro.com/
+[2] https://lore.kernel.org/lkml/20220716115059.3509-1-jszhang@kernel.org/
+
+
+--
+Regards,
+Atish
