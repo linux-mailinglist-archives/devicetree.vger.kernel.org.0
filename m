@@ -2,183 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 186E76130D2
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 07:59:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75925613112
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 08:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbiJaG7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 02:59:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33720 "EHLO
+        id S229528AbiJaHJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 03:09:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbiJaG7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 02:59:06 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69698BC3A;
-        Sun, 30 Oct 2022 23:59:05 -0700 (PDT)
-X-UUID: cdd0131db1814b51a02976895fa6600b-20221031
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=KTM7a+rTK4iK4RB118j0Yvi7S9iR30nxZPJCqtVN8Ok=;
-        b=JstBsk4fWE3SZ3/5TrNiJlayJnctRksmGdxiEWyA77XOCpPxdYjiZrOsCwUAsgef1VaB3IY53nuG4Vfu2NB3mc/xP3/QjRhWmA2hlneT6/TS9hss4ZP8Nyu+V2tiNfteJqcvJGsqjlNOYm0/DxpRiL1uEtKTCcw6jH/1BmTxXyA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:9861b1bf-976c-446a-8786-9bcdcb1deb68,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:62cd327,CLOUDID:5fc4efea-84ac-4628-a416-bc50d5503da6,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: cdd0131db1814b51a02976895fa6600b-20221031
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <mengqi.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1272242467; Mon, 31 Oct 2022 14:58:58 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 31 Oct 2022 14:58:57 +0800
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Mon, 31 Oct 2022 14:58:57 +0800
+        with ESMTP id S229531AbiJaHJ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 03:09:26 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2070.outbound.protection.outlook.com [40.107.21.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A2EBF52;
+        Mon, 31 Oct 2022 00:09:23 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=fail;
+ b=X+MEr4a5wqwLxeazXulZsT6ytT4VnYmlMDwC4FBauQDxkMCjCcJS97FR2pgYeQg+pOqXTvYBvaA5YF398t7DV6Ai3uKtnif2vMh6A16nEC2bBcg7Tbg9qV1is1zlrKmbdJGuj/qWogapEyx1jmxprW3idnIiS1PK5gL42GTqf16+YsIgquQGPeKATwaRBoPcKoSqOOYjrKQBRVKBAunBrFrRrxkz3NPTJNWglvHWcHe7Ewr2E/hjchlsr6lLzGkfGJOToT4PuSWkGMQyU4NO8tD4k12sQzAAD4llVpfSKsc8s6ca4Roxfjls9SaWMGdAcBVIkILDt33ClhtLR+DndQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V9l6igGCXVdh0j22NIbdSD++gNk8SAYVWQcNMGRggbc=;
+ b=UtYSdktzwJI1wOtgE7FAAWNa0E3mBVNrH9qP8k4EH2o4RNocidsjdoHW+q5ijfgUruHzCzj1HkwIz+Jur8ZDSzc/5DM6vLfjiDUgE+vZJ88htaZu7TmhUhqSFcFJBjmEHCJ1ZXo5NFpQ0lqVENqaB8EVT9wcONsmpv5vTgdHuU+QHm0NHe2m8MXAo9PYK0n30XhUNS1oIeBnx039s8y9ws0XWy3xw2s9OZxc4ZO5T9Rd225w11Py/uybIgx/V5pCAZR23UPXiN/GymVyhifiqD9+3RNK8vUA1bE4i2u/TM2fc5t2f/m2EKruURE+EhO6eDoONGqZLiAgLJCh9U3TyQ==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.93.157.195) smtp.rcpttodomain=delta.nl smtp.mailfrom=topicproducts.com;
+ dmarc=none action=none header.from=topic.nl; dkim=none (message not signed);
+ arc=fail (47)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V9l6igGCXVdh0j22NIbdSD++gNk8SAYVWQcNMGRggbc=;
+ b=NrwrIwBR74qExesg1/IZ57vgS9T/bLpgrS3VjLDdWDtzXpzbpFNHDkv8rcn3aRitJ31KQNxyEXO4bD7GT0+i+iMeRFVoabmOzNPc8fQYc2iepmYYdap0bHVxkBjjJ4bEYdeC9ghQ9rPOpAVVBSAzRaAkLzHxgGpAhoZyjZwSz/j3gtl5PW3D8w2luOHnwySWeHyHr+c+lOIZRia2IjpmCdqShX318T4/JOGPHMLvr2sq/PH622kAhd0mfSvd2xCIpztoPLMQA0eehy2GfDx4v57ANsfYh4jjX1RHz69yxSZzI8E64hJuB2863F7/k1NSEN6mCRxtwGWiM96M58838A==
+Received: from OS6P279CA0019.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:33::19)
+ by AS8PR04MB8436.eurprd04.prod.outlook.com (2603:10a6:20b:347::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19; Mon, 31 Oct
+ 2022 07:09:21 +0000
+Received: from HE1EUR01FT063.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:e10:33:cafe::d9) by OS6P279CA0019.outlook.office365.com
+ (2603:10a6:e10:33::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19 via Frontend
+ Transport; Mon, 31 Oct 2022 07:09:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
+ smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 20.93.157.195 as permitted sender)
+ receiver=protection.outlook.com; client-ip=20.93.157.195;
+ helo=westeu11-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ HE1EUR01FT063.mail.protection.outlook.com (10.152.1.51) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5769.14 via Frontend Transport; Mon, 31 Oct 2022 07:09:20 +0000
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (104.47.17.173) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 31 Oct 2022 07:09:19 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KYXqPXtElgPcRCmkQgSCWbbk3gsiUxom16AfsN3ASgi2qEqOGky/mYxxg3BLtT5YT7ILfEgYXeeW3Sppa0yTbH5kr/LzIu+CFFC5lghk/6p7MVjFnqpt3ujY1/7D27aR2J+9w22wWyxYYhPk6Wv3XhfQKOAWZTClQoGkHf1heSnnmdZoUPpFAqa40NspotprPLjHzjDNWmhINSfLZ1J06hcnF7cMAZYU46EILKYizkl3Fo6GZwRjWHbV1pGhVcTKgvUz5s1DszI1kFHRvpd5takS/+szPMvIVOE9fH3gP694QuBTSH/XFLbEwA6TfqwdmFR7482OmCATdmV4culWfA==
+ b=h8CK+h8WGkYdYZYXeoNOHIivSGhqiiOcULgyYI0QA422TMRBdhLY3EQ84ya/tu/35Pzqbu4btCdScW/RTKzkffRMQc+1+o8z6ZhTNQ3t3tpcz2NdBN/GrBCbTrTqlcZhG8LhuOBLVMVjNubMQIJxelNuUvv8a4gSANQGLSn1vF8OcQy49X23yMGG2/wCgM7qbeU0enZJ6jYGbe2mRmrwKeFzzzPqtJve47z9elkvsjV9WmtQZkywYa1B2oXGhaoRFEZaQ9mBEhngi88o4w9lAwv0TRSFEI5zDxBAZxl52zztZtK/ulP/baTJ5fbnb/UVKSVQiXOPRYkygKQsMjcjCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KTM7a+rTK4iK4RB118j0Yvi7S9iR30nxZPJCqtVN8Ok=;
- b=gArl3lu1SgufYZS2HOG5Bec0k1E17+NaxOTyC4Ho6CNkYEd6apJMvnr7y9rplIVWw6oltLW5Pk7N4hKJyjz55aSoTHj1lVB/pXRzd/nWGr7DZHPRP2y87Hv+/gyscqSa3h8C5Set2nvDQYvAILujo1ZU9EBPSRQAU1PveHOsKI7DUEv/f/X3R843MpH9Hlp2GUyhYkrxUvrTw3Q3QHgUPabJOuKUeheMBPvuAT0NxTR3rTGgXjuEeZFjyrVQH67KYkAsMXZRvhNM7DAVE8A7Kobr9G2IPe1eNiLK4nzBE4eMnW4k9I17W3DwK3AI+Z+jjxlNaqnPhD2UWqoPkBmhqw==
+ bh=fLyG/U9RvpeajtQVuFrZDOnBDZs+fJ6f9G6Zp0RxXT4=;
+ b=CM+iB+Q0fAjDr0DnpC26KEKeLlpb2R3eQQl4TUwO3riY+UG/bk/de/U5oHLtSVTAInkaJKdAxYiWr6a8NW8fbnzSbI+w+3toNgkU11vcj9FF3Nd9tiDPJ9iMSGrKOyk1hW1iEFVXa++oh3DT1Q4gtFGQfHAEA4gKU65e2pDdhF0w52hOosloCmnm8+5Vmq9qHYcuSo22jnTnP4tXstxscJiu6xWeqLwTiLoLimGTmD8XgTJnfL23PMXIglOa3B5+p3z4Sl4Mo+MLmKfZXTcuB1OUMi7aVEZIATg2aoD+RHeonEWUL2NJdTe3myrJngDa9Tdh7AtTZ4oM9tebiAh96Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KTM7a+rTK4iK4RB118j0Yvi7S9iR30nxZPJCqtVN8Ok=;
- b=TQUcBIcTJh5Dlv+/1M0FY8ugMD0O7DCcbgxtXxBz+wOJh5/BblktGGWzOOdj2ZOJXHMuEfnyQ33U3/R0aLpzHBx8RhXtEjV7vN/kUXCZcrlSLAxcSgs0yy854kamdPiBP3tLic4F0HzsHsAex4pwwBEJvzotCxYCwX3L0k0MCBY=
-Received: from SG2PR03MB6261.apcprd03.prod.outlook.com (2603:1096:4:175::12)
- by SI2PR03MB5787.apcprd03.prod.outlook.com (2603:1096:4:152::10) with
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by AM9PR04MB8353.eurprd04.prod.outlook.com (2603:10a6:20b:3ef::22) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.14; Mon, 31 Oct
- 2022 06:58:55 +0000
-Received: from SG2PR03MB6261.apcprd03.prod.outlook.com
- ([fe80::2023:6096:cfad:9e4]) by SG2PR03MB6261.apcprd03.prod.outlook.com
- ([fe80::2023:6096:cfad:9e4%3]) with mapi id 15.20.5791.017; Mon, 31 Oct 2022
- 06:58:55 +0000
-From:   =?utf-8?B?TWVuZ3FpIFpoYW5nICjlvKDmoqbnkKYp?= 
-        <Mengqi.Zhang@mediatek.com>
-To:     "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        =?utf-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= 
-        <Wenbin.Mei@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        =?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?= 
-        <Chaotian.Jing@mediatek.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] mmc: mtk-sd: add Inline Crypto Engine support
-Thread-Topic: [PATCH 1/2] mmc: mtk-sd: add Inline Crypto Engine support
-Thread-Index: AQHY4jOa8JAJQkyflEOYpQs1p9mmD64T6bKAgBQ+XgA=
-Date:   Mon, 31 Oct 2022 06:58:55 +0000
-Message-ID: <8b0f9631b06e5ff36b691389285e4168125735ad.camel@mediatek.com>
-References: <20221017142007.5408-1-mengqi.zhang@mediatek.com>
-         <20221017142007.5408-2-mengqi.zhang@mediatek.com>
-         <438bf06d-c4f4-74b2-8903-e89dc52196a7@collabora.com>
-In-Reply-To: <438bf06d-c4f4-74b2-8903-e89dc52196a7@collabora.com>
-Accept-Language: en-US
+ 2022 07:09:18 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::e9e6:da5:b455:2c6a]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::e9e6:da5:b455:2c6a%6]) with mapi id 15.20.5769.016; Mon, 31 Oct 2022
+ 07:09:18 +0000
+Message-ID: <6a1b9082-6c7e-7a3e-591f-e7ee0a068c10@topic.nl>
+Date:   Mon, 31 Oct 2022 08:09:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/2] dt-bindings: rtc: ds1307: Add support for Epson
+ RX8111
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SG2PR03MB6261:EE_|SI2PR03MB5787:EE_
-x-ms-office365-filtering-correlation-id: 3a9a8bf7-7a93-4bb2-ae29-08dabb0d608a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: texM8C9lUosxgjGp6Q8eoZGmLGs2Xz4VBlo/nQ4wbpVemwHkRkM5Za09nQiFGCVORYrpFrFQjJ7TYv00ic/u7ThMyAvROZLfduvm3qSD1iER66oV3Aw1qNRv/jBSVghNjsYu0jb6pjmmtK7rf5Q52LeukaqK7KTeTID72Gk6RlNVR/KbJhHGw95WXJH2vu5N0p7x7KQXM7WB/4V4l47hbq1qKBgr8gacAv4E7WH2ExfCQM+j3aYiVQj5ebQMQXU+My89fsvuYt1hLRvW2Vbgz6pSV17AesXsL3FodpDeOavN+zcB96Z1IzDy93jUMTYvAvE0w86SVPgarU3769p0/RLphvEEmEAJO9oqYWAXlGcNfCBvNmz/Ebb06OjLydw2jkWTLrmrEcIuwHUzy/XokkkvNi/ThFKTZ8dQMNYmS/B1AuMxNy7vqQvbvGlzfinBgKRIomc05mqh0LH01wvMohtG8zJGuac6Ze9aHIh0xRXugiLfUfSHWV6WPOa6SNopI4HMPCR5jlYD8m3Vbp2XcIHPJfHxJF36i0ZPtpoAdLTA5QpNzGLmTyXRx4plFVTFLyYecTQ9GiMc0Vce3w/Bt2s8v7ZP5/3d/3RUySlvNoUpAN2yIhdyB7hL+XyPLDWINgPBlCGoSxZMs6kFlLN9Ft86LbDTqbfSUVWt40yNtMGxJGfja4RhSnnArLkmU7Du5+QDjDMQSf/7JgyWEiV0M4k515fvB+qbo6Hh2ZoZTiOtQtj/gDK2tno0Shpijj5Vr8thteDRfCB2KKnQhrgIovRtMON/uFJKfmALQIeXWB4VwiZAAp0g2OKnNUA4BBdr
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6261.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(39860400002)(136003)(366004)(376002)(396003)(451199015)(66899015)(85182001)(83380400001)(36756003)(5660300002)(4744005)(4326008)(4001150100001)(38100700002)(76116006)(2906002)(122000001)(41300700001)(6486002)(64756008)(91956017)(110136005)(316002)(66946007)(71200400001)(66556008)(66446008)(66476007)(8936002)(8676002)(54906003)(7416002)(86362001)(38070700005)(186003)(26005)(2616005)(6506007)(478600001)(6512007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZTJNZkl0MnpWRHkvU1lmdGtEcFlyQmlGZ0RDc3RaMzJPRkRacHZPU3FIMzBV?=
- =?utf-8?B?N3l4L2VNVjlNRzYyU1hSSHhWaThrVHNqYnJodmtlUXpQY3VtdnRRSXU5dWJU?=
- =?utf-8?B?NTFTQlFHVnJKZWQzbHpJV2h2djZBMllvakYvSFB4NkZkQk0xbW5CaGwvMGYr?=
- =?utf-8?B?SDBmT0RFbFFkVk5SaGpIY0M4RS9ZTDNROUxsN0JmL1VGckUxaUlsdWVvNGtK?=
- =?utf-8?B?cEhZTWhHbHJIRC9BRjBvSUk1OVZWQ1FsR0d1dlMwTHN2ZUtFMmtMQzVZeEtB?=
- =?utf-8?B?UXdrUVdkRGlpZG1EMmhxKzlteEFBUW1VVU9xNHdXQk9GU09TRGdvZEFrN0p4?=
- =?utf-8?B?dk9IZ0F6MTczUi9kYThjc2Eva0V6YnVBZnh1VFdXdXFHN0VrM0lLalZML0FF?=
- =?utf-8?B?K21ORWczdnRHOWU2TGExWHVIS2J6ODBVdktGaXlPc28wU0hkZmJJaXdXYjE5?=
- =?utf-8?B?VEtBUmtwRGdYZW5jWmhZZkNKVm5xckxjWDZMeTVYdVlFT0Y2cXNiSDBoQlRi?=
- =?utf-8?B?TFZMblNIcHFVT2RsUWM3MUc5Y0pwSitzZy9aa0lLR3hRZURjQ1BKSnMyN2Fj?=
- =?utf-8?B?WlJGUlpmZmlaQWlGa1JsNWkzdGVMZVdXbWFEVmY0OFoxdUs3dGs1SGxpU0xo?=
- =?utf-8?B?d0pBRnh3cmVweTBtZkVvcE5lRnd3a3dybmhoQjdma2p0Y2JTMk5sZ1NsTUIw?=
- =?utf-8?B?N1IxR0Z3NzFPeDNvdkpoWkpMdkRQa3VtcytiODVvQU8vQU0wM1NMYWQyQU9Y?=
- =?utf-8?B?N0FRbE5GWmF3Y0h4S2NUUllrVHM2Vi9GS1lWN1hKejRoYWN3Nlp6b0VtaGdh?=
- =?utf-8?B?Mk9RUEFIVzVYcnh3dzZQanAyT3VibXJoamRJZHptbzFhaEhxQ3BqMFZ5Tkhu?=
- =?utf-8?B?b29oYjd6eW81VzBpQWtaVjdUK0t4NENuTWFPbWlGSytSV2NsclRCNnluaStF?=
- =?utf-8?B?d0NwRitucmtmSHM2V0tiRG01TnRZcTk1T0J0a09TeDlXYWFsYlhwaEFpbHFR?=
- =?utf-8?B?eUhRWkkyeWdzT0lCODNLUHUraFpqYnNhYzhWRnN1bkloSGNWclRqTU1kcVg3?=
- =?utf-8?B?WUJkaGRINlZLN2U1ZzMzWm9wdmpuN0ZHRS91VCthekJPZHVZUzZRZEJnRW80?=
- =?utf-8?B?QnZGMisxdVdkamdPUVdPMFFsVVVLNWtGU3h1NUFpeW9pRzF0MnFNakM4cDVI?=
- =?utf-8?B?QXdsU05YZ1VSNVhGYXJTdzNLU1ZISHpQNnhRUE91Z3ZFVEFDaTdnKy95dzBU?=
- =?utf-8?B?ekUzckFYVUU5M3FtMEhVZHUyamJ5djVoeEtXcGxacitKZ2JIdHRqOHFXSVRD?=
- =?utf-8?B?bGRpR3JpZ3dtWEtOM2pxTlBOTEV2b0RxTWs1eVlXYmdld2tYWXh1VjZraFY4?=
- =?utf-8?B?cDBGZHBuaTRKQlNGWlFveTkzbzZmaWV0NXNWQUxmb1pQb3VmNC9DYzd5ZWR4?=
- =?utf-8?B?bG9UZy90UUdwdFM2NDJFQ3NQcGdCcUJyNC9oYUlaNVJrZUNvNnlqczdTSDhj?=
- =?utf-8?B?M2ZKallnOUtkRUJ0MUFoTGFWVDh4VGNTTVNQMXhNL1NCa2lxdDRuU0VRZWJV?=
- =?utf-8?B?eFpwYW1WS20wbjV6SDB0aWkzWlhSOWJKZjRnbDVtOXhNMWNFaXExcmQwaVRC?=
- =?utf-8?B?dG5RYXVkM0hidERBY3BjYmNLV2tYQUU5dmNZeXk4eDVLMy9NVG5QM2dzU201?=
- =?utf-8?B?cUx3NmdLM0syOGY3RW1rc2dJLyszdG5TTkxvQW1nc1NTMzJoNkVyczkwMVBL?=
- =?utf-8?B?Q2ZsZlRxNS83NkpVeVc0TUNZWm41b0FCQzVCd0VRSm5idEZDbnJZNDZwNHpE?=
- =?utf-8?B?WmpRUVdTbFA3Q2hDUVBWUGdQeVdwcEFuajhRWU5ySDNBdkR4OVlaaXJ1WnZL?=
- =?utf-8?B?M09nWmlSNHErTHplN3JaUVZRYTFkdkpZcGlMNklDckFNM1NST3paQm9VelR6?=
- =?utf-8?B?b1V1L3N6aGxzcDd2a25ZVzFISHd1WmJMY3d6YVBvdDVVQVVLOGlWNnh0aERB?=
- =?utf-8?B?MlljalIwYytkUHpnRHc2V3gxdFg0VjR4NVBLK2YzSTdoR25TM2lnSE5zUDc4?=
- =?utf-8?B?SFM5T2xYSUpCZDhaMlJVcWpBY3o5VDU5bTlwY2VUZENYVUQydStEQzQ2dlpu?=
- =?utf-8?B?WFRsZW1oQU9TWmtYbGRGaUdSRXRwSk1HamE4aVd1SVNqRTlERnNxdytEZnJt?=
- =?utf-8?B?Q1E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DDE93F7D2FACD54A89187D391FF77AD0@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+To:     glasveze@delta.nl, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org
+CC:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+References: <20221031065406.5684-1-glasveze@delta.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.9ece6833-e74a-4c7a-a461-cb644d735850@emailsignatures365.codetwo.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.26ae0640-23b6-42bd-b752-f9965c8a2c94@emailsignatures365.codetwo.com>
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+Organization: Topic
+In-Reply-To: <20221031065406.5684-1-glasveze@delta.nl>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM0PR02CA0079.eurprd02.prod.outlook.com
+ (2603:10a6:208:154::20) To DB8PR04MB6523.eurprd04.prod.outlook.com
+ (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6261.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a9a8bf7-7a93-4bb2-ae29-08dabb0d608a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2022 06:58:55.4704
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|AM9PR04MB8353:EE_|HE1EUR01FT063:EE_|AS8PR04MB8436:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc92d0e0-bfca-4926-063a-08dabb0ed50a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: NQf1KDyeqDVVvNndmDvL02mvgLcdq4RLwYuyHrBXFo83nxWCPMDtZ/ogpBlCT6wob97JWgBHRQcOXKveU/wbJgdhQyrKERLA6GMvNyZHbeynAkO7fmFgTy/wHKIHbIOMje7bsZvfnxdmdLS3TFs00oFp27nJK6TVTjYBRhAmCEar5G+4n4xgboiyWKdEJo0z5hmT/jfSQS4kmzptRreIRW6PY55vrByZesgeEESNDx4mdQOCLQtVLbV/yEWkLV5oxVnZoZg1jqFzj4U98K1oRnCRrsvN/9EQBg/z/qOrns07Dp+BwC/fHgo84IaAKaPk5UlmfduR/g3n3OKrrMtaEjMzPrdDeOIGIDZJPdGEK0w403q45XVjgqwT3xtbEuW4TlHamyYqMU4PyfcDm7nabNYpPfRiVbVuZDtur7xmB9mQi/47OxenBcJ1lowOoXIukIiV9iVAMemNrorS2Q0g4iJxzDmi7+Eh2X2GyvwYE4TSg8ASSHGWWeYjRopklPPA3QTa3me682cVEycKD77IO9k0PHArHjsd3ljvELVtDI3ebswa0cWSmjifTKbT8iCtf9lSbQZqWJk25/n8aadC9l53ghaj+BpeRQX12OVDZ9unqpGCTG6xnV49CRKnWv13bkC3/AEqEV4T206aEfa4ZLnp1U+A7o89kNiV4+LnkgqZrljk19dd2lebM9+00t6F4t4A4uMt9HPWY8LJO9q/HT10yzzUCIlYdzrl3WXaKozEtVVdrVZpaoKV2hwMFrfezzySD5xW1KI/gNG63rwdnRT4vakrYjOHrlXeMCmjUuJA/YMumy0joldZybi/k/q5aIGX0wcD2iOuUdAPuJh9lw==
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(366004)(39830400003)(396003)(346002)(136003)(451199015)(478600001)(5660300002)(44832011)(2616005)(186003)(6486002)(4744005)(31686004)(36916002)(53546011)(316002)(4326008)(8676002)(66476007)(66556008)(66946007)(6506007)(36756003)(52116002)(31696002)(8936002)(42882007)(2906002)(41300700001)(26005)(6512007)(38350700002)(38100700002)(83170400001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8353
+X-CodeTwo-MessageID: a75dcafb-7f55-486e-9778-bf099dcadce1.20221031070919@westeu11-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: HE1EUR01FT063.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 2f0f4ac5-c5eb-4f08-92ea-08dabb0ed38c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +GqwpPRvou78akBWMuBq30GqnTI34/ONqR8PNfvs9B5gM36tV99aay3boujdw3wyk/8OVpecrTW8AO+PDBKmmaSaeYS4rLRv22Waw+gHZOtmcPLVTznwr8Gvwa2d4SX/cyNF1z6R0LxoWWsEjFkORrVZPA9Zzw589oM6oA4TUz9zsmOyfm4+sWPLvy984BC71u2TbfScX34a4saaxtAFu0rEKkfsIn7rp1CWe10DgKnyPa77zmzr2GZffGJiEOleDUGIz9N7FaPLvFuze0jDuNvG/wEjYQrk9B65LY8GedjZrcNPTxs4Am875VasegoRRFK47pNxdPOJy+fdxMLR/JqMhHI+0tgmJiuGB5jIPHYT9UNo2qzFaiLP/knfpidVPdRdqs+m7XgGfuQF4SAKHJX7rHy7HPPlfkDrqiH20sAR2GEFQ0SDrcpaJb2Y9GkOBew/Mcu0LZZMAuWs+JJjUX76uMu0OwDmDjSD/M0bW1DDuqzMLrKxyt7J4n7H4LoaZUFB3BpGeM0JvFxzsi2exU8ZAntppZ5dkItQ1XpBi25b57WEY7Pop82AKS8qCWFK5S50epmqgPAqdsMpZEL0PD/tOXmWxi3si9kjhSQrvZ03+5j3vGKhiUXErCJWTbbuFJsdS09D9VQFlRtLHyg/xBPFQCTE7EFpmmPvHGJCxI+FvKqrbRTBC7yXyPayEjQLzJcLpJ+9FzZtLIMr8C+REqXl1KgnS8U/ejF718i29RruBAzicSKh6Z/qkzYKNpqCKe4DIu7OssA3PboLxwChrvnBJ/B5Y3N0TiDUU6qSErXYgirYoJMdHuLV1VqucuBb
+X-Forefront-Antispam-Report: CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(39830400003)(136003)(376002)(451199015)(46966006)(36840700001)(36756003)(15974865002)(31696002)(31686004)(83170400001)(7636003)(7596003)(356005)(186003)(47076005)(40480700001)(2906002)(44832011)(6506007)(36860700001)(26005)(6512007)(478600001)(42882007)(336012)(36916002)(53546011)(2616005)(41300700001)(6486002)(82310400005)(316002)(8676002)(70586007)(70206006)(4326008)(5660300002)(8936002)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2022 07:09:20.2455
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WwA6X+qRtxvPwHrVGE9kObvS4Chch7IlJsRNrX80N0GQNo55p9/a04YnEmRk3Nvu+VBUKZoAHxttxGzdYeVKv90s0zKsf3YEskum+L+HpDU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB5787
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc92d0e0-bfca-4926-063a-08dabb0ed50a
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: HE1EUR01FT063.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8436
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIyLTEwLTE4IGF0IDExOjUwICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gSWwgMTcvMTAvMjIgMTY6MjAsIE1lbmdxaSBaaGFuZyBoYSBzY3JpdHRv
-Og0KPiA+IGFkZCBjcnlwdG8gY2xvY2sgY29udHJvbCBhbmQgdW5nYXRlIGl0IGJlZm9yZSBDUUhD
-SSBpbml0Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1lbmdxaSBaaGFuZyA8bWVuZ3FpLnpo
-YW5nQG1lZGlhdGVrLmNvbT4NCj4gDQo+IEhlbGxvIE1lbmdxaSwNCj4gSSdtIGEgYml0IHN1cnBy
-aXNlZCB0aGF0IGVuYWJsaW5nIElDRSBvbmx5IHJlcXVpcmVzIGVuYWJsaW5nIGEgY2xvY2sNCj4g
-YXMNCj4gb24gZG93bnN0cmVhbSBjb2RlIEkgc2VlIHNvbWUgU01DIGNhbGxzIHRvDQo+IE1US19T
-SVBfS0VSTkVMX0hXX0ZERV9NU0RDX0NUTC4NCj4gDQo+IENhbiB5b3UgcGxlYXNlIGV4cGxhaW4g
-d2h5IFNNQyBjYWxscyBhcmUgbm90IG5lZWRlZCBoZXJlPw0KPiANCj4gVGhhbmtzLA0KPiBBbmdl
-bG8NCg0KPiBIaSBBbmdlbG8sDQo+IA0KPiBJbiBzb21lIE1USyBTb0NzLCB3ZSBuZWVkIHNldCBh
-IGVuY3J5cHRvIGVuYWJsZSBiaXQNCj4gTVRLX1NJUF9LRVJORUxfSFdfRkRFX01TRENfQ1RMIGlu
-IHNlY3VyZSB3b3JsZCwgc28gd2UgdXNlIFNNQyBjYWxsIHRvDQo+IGZpbmlzaCBpdC4NCj4gQnV0
-IG5vdCBldmVyeSBNVEsgU29DIG5lZWQgdG8gc2V0IHRoaXMgYml0IGluIHNlY3VyZSB3b3JsZC4g
-VGhpcw0KPiBwYXRjaCBpcyBmb3IgdGhlc2UgU29Dcy4NCj4gQXMgZm9yIFNNQyBjYWxsLCB3ZSBo
-YXZlbid0IGZvdW5kIGEgcHJvcGVyIHdheSB0byBkZWFsIHdpdGggaXQsIHdlJ2xsDQo+IGRvIGl0
-IGxhdGVyLg0KPiANCj4gVGhhbmtzLA0KPiBNZW5ncWkuWmhhbmcNCj4gDQo=
+Sorry for the duplicates - there's some trouble with company spam=20
+filters that won't deliver mail from myself to myself...
+
+
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topicproducts.com=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
+On 31-10-2022 07:54, glasveze@delta.nl wrote:
+> From: Mike Looijmans <mike.looijmans@topic.nl>
+>
+> The rx_8111 is quite similar to the rx_8030. This adds support for this
+> chip to the ds1307 driver.
+>
+> This adds the entry to the devicetree bindings.
+>
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> ---
+>   Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml b/Docu=
+mentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+> index 98d10e680144..a9590da64b84 100644
+> --- a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+> @@ -30,6 +30,7 @@ properties:
+>             - pericom,pt7c4338
+>             - epson,rx8025
+>             - isil,isl12057
+> +          - epson,rx8111
+>             - epson,rx8130
+>  =20
+>         - items:
+
+
+--=20
+Mike Looijmans
+
