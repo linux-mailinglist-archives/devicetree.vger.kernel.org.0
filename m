@@ -2,159 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D8161319A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 09:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFEE161319D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 09:21:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbiJaIVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 04:21:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41284 "EHLO
+        id S229468AbiJaIVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 04:21:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiJaIVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 04:21:16 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2133.outbound.protection.outlook.com [40.107.114.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E28B4BE;
-        Mon, 31 Oct 2022 01:21:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PdvQAlkSwbLU7EcKYLPmlnY7viHKgPixgmOsYCk5Ko/3Pz42YSPCDycFUiWcvAUhKqdRUNOhqpWcMGxmufmsZb64FKP3QvVTH1ge4IjPjLIH6RmdOvB379/3zvRbH3pEiUfcqjMObzTP+Gq9ErWQ6nCZBS1LbOvIRghG7mlHwOwYae0sl9ssUdG/+BXakMPbABjZtv8PTqDfivweL7/r0QM5kdOOHqifb3CX50wQGBPDwk3Aev6kvfr0W1/Q8+0hgcRYPFbsaEHtEbBLG3gnazKyeOKOQ9oUHrycndidQ/r+hB8HSUt/DV+uRbkZmdi5ezYVKykNd1sDzP5v/9Kh8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CuMrscYp5l1SNsb8SgC2tTbYo4FAPp24H3jZUNcmzqg=;
- b=iIsHJuwOqfon/gVC0LjWpnh+JdTzKrm0VM6Uwek4arbNiY91R1oJt8j6jzFWiGONsOkLDHvq99yCCAmcmENu5cfzGFlWNMyfgmTdAmwjnGPYv4FUbKZtX8mZ02j4g2IN+TlKVt9yKAEcNqwFlPyqMjGgYMsya5mRIczM5Fg1AHqFYcBYcI9/a3J9jiq5qC4KUudph7mIdTFgbGSdnh/rQtGgSk1sfzVsQCvXcEM6Hwg2AZ96FK+gVmkewpMU6Wh4OvGzzB5R6B7osAPGQcLVAG1pUjeGdw5C91nwUF48tlL9mn9hZ9rIBi2uF8K6bGk2uVfnz12CPDZWIw7TFbnYoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CuMrscYp5l1SNsb8SgC2tTbYo4FAPp24H3jZUNcmzqg=;
- b=PoMaPSxMnzo7JxDhdZeipc8mWWENTipuZur7PTkPiqk1sO55oTn/SwBhNdQhTIe17Cr4SdZ0E0Iqe2Un2aVfmzO3gX0DflZVKfLLnvWAOrlLfXdrTt6WMgHtxtz3kaFOlmI6S/i64SW2Eys9/3JvnRzWFZQIxWzGn16YqWR8rpU=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by OS3PR01MB8066.jpnprd01.prod.outlook.com
- (2603:1096:604:170::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.18; Mon, 31 Oct
- 2022 08:21:11 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e28a:8db5:ee6a:34a8]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::e28a:8db5:ee6a:34a8%9]) with mapi id 15.20.5769.019; Mon, 31 Oct 2022
- 08:21:10 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v6 2/3] net: ethernet: renesas: Add support for "Ethernet
- Switch"
-Thread-Topic: [PATCH v6 2/3] net: ethernet: renesas: Add support for "Ethernet
- Switch"
-Thread-Index: AQHY6po8IVUtcFUV90m9uUp0suhIEa4lrMAAgAKBSxA=
-Date:   Mon, 31 Oct 2022 08:21:10 +0000
-Message-ID: <TYBPR01MB534180187D899534F1634CBFD8379@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <20221028065458.2417293-1-yoshihiro.shimoda.uh@renesas.com>
- <20221028065458.2417293-3-yoshihiro.shimoda.uh@renesas.com>
- <Y11rVIKtUDf1i5xP@lunn.ch>
-In-Reply-To: <Y11rVIKtUDf1i5xP@lunn.ch>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYBPR01MB5341:EE_|OS3PR01MB8066:EE_
-x-ms-office365-filtering-correlation-id: c6c1e2e3-ff49-443a-f66e-08dabb18de45
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CEmR7qmOnBGFZ4dFYGGG9Y/HXEX0MjtJK1A3gOV6sulIPNebxTR810HSOYxufvhx5Nf80HRwYRIu6IS4wiuVgzjW79acVUrnsxYdacmNNfV5DXmlbIgFcG+8iGkjZHa2HfLtaan0X6Jr8GEr7Lzbw7SxskVVuQMKnnoq4TBC6BJZIeLBU0+d/KKHq80wPjwra3l5V2b0qlo87HP/3r78K/sV9pW1Dvj/OIdubL7db4LOA3fcjb7a/eXrppKVrTESM8CxPDS52ioDhVa1wToiELSQzUYEahLOoCgcS8lWFgf+L05GJbf/rMFybbTEgZvDkNnK3xEvi1oE1ylB7evMm6L1mqJdo6+5nTN448rKobeVzZHplSe9dAU7Z4RguBgGn7BMXVeCQ0CWuhdlU1CiHQGv/GWcLDq/IjypYPLISdTuSIIQ2Z3VLlc6gzNhpXxkAHruLVlDxd5YU/MVUClqXsKii7nRm3YoXQjBkgHucesOqNPgX4X+0VHrMzWtR6U2j+CxOZDkW3eigl8VYH7FLyubSLVF1ZehDlnNUK+Y8cnPwtxhkht6f2bEFLV+iBRgXst2E9R9rAy1wyQIFq23tR5YgUwUcafc5IdVGmrS8fs/xl452fo3OUoKLKHwplHSRkyieK1CMpUtpB7QDKr2Zkh4f4rBw0m2nH+TQA3RdXqqJEeO/DfbS0nVHsgafQ+5C2F8oxbHKzOZwoWT2lWpXvtbEj7Qb+BABkkZClYpck+C0y9QXnp436RwTRyCj1wIiCaW0aJCNyljyImGmqRbBA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(376002)(136003)(346002)(396003)(451199015)(122000001)(38100700002)(9686003)(38070700005)(41300700001)(83380400001)(33656002)(8936002)(52536014)(5660300002)(7416002)(186003)(86362001)(2906002)(4744005)(6506007)(7696005)(8676002)(71200400001)(55016003)(76116006)(66946007)(66476007)(64756008)(66446008)(478600001)(4326008)(316002)(6916009)(66556008)(54906003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Wn0N77eQG3X5wulAoLDUi7mwZCIWOEWo+J7V3yNMNQXMOhJecyK/DTvtSep7?=
- =?us-ascii?Q?2hn246oyghckSKs/GqkMLqx8T4uegTIdKlC7HmU2CDT+Scr2W0tivy5zsj/i?=
- =?us-ascii?Q?9nW/ZHTFtL7nJXZsQykNs6Z/bzURrh3I3izsI7CQ7De1jY7anGNsD79s4GzL?=
- =?us-ascii?Q?XbSlTAcK7N5nzAEBas0v3FCDhJn+ZqsiBtR+btMbrSIBeiBt+R5DcYrBiCX/?=
- =?us-ascii?Q?NN3Yo6XFh1tL/L94zT/WRcVrAyKiAHT12ZHwxs+eeAsaJzM/XrRQvvMF+Ry4?=
- =?us-ascii?Q?Mkad1Scc4PIN70W5w126fVHuoCiGXjhFTLUHmAmyf8SGiDNxvTCCthVxts1G?=
- =?us-ascii?Q?P1rbXHoqd6Ll2ycL0YmImzv/Ad3vN+9x2Qh6w3PFV4s+TSgdozU4Gp7XuCZ4?=
- =?us-ascii?Q?7wRbSXWvY1eYDXtFldaan26IylP+IsLpFVrWTY0fF3YB5hp7EYLwiXkAhX/q?=
- =?us-ascii?Q?4EhSPpdXyFKvQzT/Yws2Z4qeTXga3QRoZ+IxhfKJZr33z07LMLMtKSGpU/+1?=
- =?us-ascii?Q?+kQHGMf0KTITZIu7N5oZhM+mVhXnnQBXrGgLEqkB9xUf4WX8y1V5hSAxTQU5?=
- =?us-ascii?Q?zXe9tCGOuVi61v0bW8nnPrcUtfD9ifHn6KQKMvJ7LAIwKIY3I9ZFxDTfxkDv?=
- =?us-ascii?Q?c0cYMNQMXQvP5TXT0NuVleTU+VvfNB4mJRHU04tRuBwXfjSYZvYf//GGbMLP?=
- =?us-ascii?Q?SB8FrlCINQQjIJrtaAxl35FYiik8FLMM/5MLkRYIiJ6BYv/i0MbIDPciEU4s?=
- =?us-ascii?Q?QgLfcWi76OqyR9S+L//ZZdQwr94eqt4vpz6UW2qFamf8pBIgMtqKTXCk6rK5?=
- =?us-ascii?Q?e9pd1ARTwF2YQldKFni3T2iEgYKy7LAp5M4+3GJ2x0jil8JCuHfbPLlYSWKu?=
- =?us-ascii?Q?xBsxZe1smfeno7K+OEcMZ3lDW3E5PrLXz6Z27yg+9tamX5AMjbRet3vcfu19?=
- =?us-ascii?Q?mYdAa7BWKyGK+5q2kh+A34K4JhD+WfWolZCp8PwSSBSEk99uK+6GQOq7SzKW?=
- =?us-ascii?Q?EdcX9zLxB/twgO2qAMof4TBUaOdTy7btSn4SU23zIJ+xPDcP30BX+rx8Ubf5?=
- =?us-ascii?Q?U9vSxbaSmbXNTeLrNQ9tXgb1SiXRl1j7Lkhv9FzVwrcV2+m6gp6VlAzSGCNK?=
- =?us-ascii?Q?WE+DLDiemCnbYvGp8/5eLjmIA/ZzIn+2yix/J5G4R32UEC755DrQ4HSzBrlP?=
- =?us-ascii?Q?f/TaDdN1pFFZiPOXgKIaxTmCrmZsfs8ic+M1xP7MUQGxNuz/c3F6bme6DRR+?=
- =?us-ascii?Q?ZBge1njWv52UfTiUuy1C1gIoOoxKyRwnV0qN7tGKIALupMyVCgVyDo6NeeRc?=
- =?us-ascii?Q?hzaLQhJOzFVJ7rgF5GIpAmHk1g5v/11jBxI7nv+FcTSAXSREfxj5fX/PqUI8?=
- =?us-ascii?Q?vqE3A9Xjnhn1M3Cjpfiamh5OQEm8cQ+KL8VI/kd07WlQfO3E9xgyoz4Jmwhz?=
- =?us-ascii?Q?c8+u1fFSsnRV3AGlcFZ7vfQsaw8JShXCi0oYtSefAJSP2W2bHToHQDADwEwx?=
- =?us-ascii?Q?1RfgG31KdNnPd96m05J5Ye4DiC7P6CyU6CDAuoDIGB6Dm3OFT35AMQluNyhW?=
- =?us-ascii?Q?QV+NF4zf0rsaxOvA1tFCPljTlJCFx/BKWtjU7U0hzwd2imruKp0NP1PAaGB9?=
- =?us-ascii?Q?AGzILoMICpgwhEMcgLSHzdQ5DXlDBZfbNHvgeUmBz6UM+BEO2Td4wKK6T5h6?=
- =?us-ascii?Q?B9s7hg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229677AbiJaIVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 04:21:24 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B45BF50
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 01:21:22 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id z14so14824979wrn.7
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 01:21:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=B6O0yq/kArzQA3EjTthD7t4BqBLyfgCNNdUUmUdG3qU=;
+        b=n2+3G4DwdjxIILUE+TM1kBRvlJ1r5Ef4wwxfEB/z9yEBBjVQ/zvTcveHW9rytFRzZN
+         iVHADrFJWkyY26if4PdWZoAaE0CItMH7Xmg2k2W9Ac59XLxBsyqSegC/t4CnJLX5hHkJ
+         aObwh9I8MtBOJPyx+s9NrarMSicJBG7k4aZ0Hit0+vNkjQddSvkm5uMR1Tb47CGyfbND
+         o0RGKndoy4qEzSCXdIChH1tTDQVcS6+w9R1Lq7HpJEHuuRA7oVLoMc0nQnfUf+hOjRAD
+         GJHmxc0P6ipbwEz+FwcPaBve7R3ajScbNjxOGJ/7X35Kq3M7BMeQw9bN9YK8qkUQ2H3U
+         m6BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B6O0yq/kArzQA3EjTthD7t4BqBLyfgCNNdUUmUdG3qU=;
+        b=N6/RoPHj0AG4GDAQhWQJlle4KHSodE3699x5RoUPS4u359x75YSLkSnZG+bfA70CNm
+         hkoumbLT0LH0ebBw3pzi28IARdZ1fZ2p5PTM1s13OIthCbuOMW4UV0x5+Tg2gWkw++Lz
+         hJUceaycwS4Zm3H4a20Z1HDCkI5/wDviHGpUq3ZrrkFs1u2dqd+0vpftYibKHOaPwtHa
+         Zc0p7EN5tb75LAXls1Zs26+RDj3nQ099/Ma0+IHH43NHeNs2dOF3rZF3FNa7wKECjJ/I
+         JEpm/gaEqeFuMxU07uU5pNDmjVfTVJIA4IMOd7K4eHuRoxo/9/WdBgr9+FVu+ai085bt
+         4Sdg==
+X-Gm-Message-State: ACrzQf3uixtpeMbNTUh5h11cNo2dk0hlZXnnwH+MwiPg8cYRbMgLp7gf
+        7EiR8+kCzi307kly2wHMxbCwxQLIxzqABg==
+X-Google-Smtp-Source: AMsMyM57VcVHDP0Am5dwUDQkFQhUoaIjsha3sPb6oMcU0/C65JrHbcwoqHOdZqTThXawgWqT7nV1Dw==
+X-Received: by 2002:adf:f88b:0:b0:236:7134:d4ec with SMTP id u11-20020adff88b000000b002367134d4ecmr6779896wrp.669.1667204481398;
+        Mon, 31 Oct 2022 01:21:21 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:898:f380:f572:21f0:736:a7ca? ([2a01:e0a:898:f380:f572:21f0:736:a7ca])
+        by smtp.gmail.com with ESMTPSA id k3-20020a05600c1c8300b003c6b7f5567csm21814431wms.0.2022.10.31.01.21.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Oct 2022 01:21:21 -0700 (PDT)
+Message-ID: <3ee78024-036d-d459-50a6-9402a79aee89@linaro.org>
+Date:   Mon, 31 Oct 2022 09:21:19 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6c1e2e3-ff49-443a-f66e-08dabb18de45
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2022 08:21:10.8614
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ElofkWL6gBR6tWXU8/TnmiKh0IAHAqElt/qhbk+qwJ1gcqxyQ1+dQyXhg/YJtYF+1LMSSbax1YQzO7HyXYWf4XidhzE6Z5h0izxurH2OEM71dxNN0t0uOztVsL0BwKBS
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8066
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCHv2 5/6] arm64: dts: meson: remove clock-frequency from rtc
+Content-Language: en-US
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
+ <20221024165549.74574-6-sebastian.reichel@collabora.com>
+Organization: Linaro Developer Services
+In-Reply-To: <20221024165549.74574-6-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On 24/10/2022 18:55, Sebastian Reichel wrote:
+> 'clock-frequency' is not part of the DT binding and not supported by the
+> Linux driver.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 1 -
+>   arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts      | 1 -
+>   arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts    | 1 -
+>   3 files changed, 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+> index 6ab1cc125b96..202deb4e2d63 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
+> @@ -140,7 +140,6 @@ rtc: rtc@51 {
+>   		compatible = "haoyu,hym8563";
+>   		reg = <0x51>;
+>   		#clock-cells = <0>;
+> -		clock-frequency = <32768>;
+>   		clock-output-names = "xin32k";
+>   	};
+>   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> index f43c45daf7eb..b21172ece1fa 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> @@ -270,7 +270,6 @@ rtc: rtc@51 {
+>   		compatible = "haoyu,hym8563";
+>   		reg = <0x51>;
+>   		#clock-cells = <0>;
+> -		clock-frequency = <32768>;
+>   		clock-output-names = "xin32k";
+>   	};
+>   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+> index b8ef3bd8b840..1703da3235ea 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-minix-neo-u9h.dts
+> @@ -89,7 +89,6 @@ rtc: rtc@51 {
+>   		compatible = "haoyu,hym8563";
+>   		reg = <0x51>;
+>   		#clock-cells = <0>;
+> -		clock-frequency = <32768>;
+>   		clock-output-names = "xin32k";
+>   		wakeup-source;
+>   	};
 
-> From: Andrew Lunn, Sent: Sunday, October 30, 2022 3:05 AM
->=20
-> > +	for (i =3D 0; i < RSWITCH_NUM_PORTS; i++) {
-> > +		err =3D register_netdev(priv->rdev[i]->ndev);
-> > +		if (err) {
-> > +			for (i--; i >=3D 0; i--)
-> > +				unregister_netdev(priv->rdev[i]->ndev);
-> > +			goto err_register_netdev;
-> > +		}
-> > +	}
-> > +
-> > +	err =3D rswitch_ether_port_init_all(priv);
-> > +	if (err)
-> > +		goto err_ether_port_init_all;
->=20
-> As soon as you call register_netdev() the devices are active, and can
-> be in use. E.G. NFS root can start mounting the filesystem before
-> register_netdev() even returns. Is it safe to call driver operations
-> before rswitch_ether_port_init_all().
 
-Thank you for your review! It's not safe. So, I'll modify this driver someh=
-ow.
-
-Best regards,
-Yoshihiro Shimoda
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
