@@ -2,55 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F02F612ECA
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 02:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF731612F00
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 03:29:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbiJaB56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 21:57:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34218 "EHLO
+        id S229542AbiJaC3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 22:29:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiJaB55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 21:57:57 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 890D995AF;
-        Sun, 30 Oct 2022 18:57:55 -0700 (PDT)
-Received: from canpemm500004.china.huawei.com (unknown [172.30.72.54])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4N0x9r3vDczHvRq;
-        Mon, 31 Oct 2022 09:57:36 +0800 (CST)
-Received: from [10.174.179.106] (10.174.179.106) by
- canpemm500004.china.huawei.com (7.192.104.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Mon, 31 Oct 2022 09:57:52 +0800
-Subject: Re: [PATCH next v9 1/4] i2c: hisi: Add initial device tree support
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     <yangyicong@hisilicon.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <wsa@kernel.org>,
-        <f.fainelli@gmail.com>, <jarkko.nikula@linux.intel.com>,
-        <jdelvare@suse.de>, <william.zhang@broadcom.com>,
-        <jsd@semihalf.com>, <conor.dooley@microchip.com>,
-        <phil.edworthy@renesas.com>,
-        <tharunkumar.pasumarthi@microchip.com>,
-        <semen.protsenko@linaro.org>, <kfting@nuvoton.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221029115937.179788-1-chenweilong@huawei.com>
- <Y170TZoIp1WBIwU4@smile.fi.intel.com>
-From:   chenweilong <chenweilong@huawei.com>
-Message-ID: <dfc1c006-61c0-8f28-6164-060347c69d04@huawei.com>
-Date:   Mon, 31 Oct 2022 09:57:51 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
-MIME-Version: 1.0
-In-Reply-To: <Y170TZoIp1WBIwU4@smile.fi.intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.174.179.106]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- canpemm500004.china.huawei.com (7.192.104.92)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        with ESMTP id S229515AbiJaC3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 22:29:06 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C146A45D;
+        Sun, 30 Oct 2022 19:29:01 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id 78so9526323pgb.13;
+        Sun, 30 Oct 2022 19:29:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ym7VlgsY2ND1TufftBYNXemLLzwPWb6Y/WuEGfjTql0=;
+        b=GZwxGwVscF6LN3u//xc+Xv3BdUt0QEiZ0RSRehwah11hGFQFQU1yH2u+q5Ce/z7BR4
+         3Kj0N1PxO1FMfk5SHRb801HoGBORzDI4S1VFLldMwnBXOrn2xw98+rBVsWF0aAw9q9kU
+         QYFZ2ms1UBCYXCa70rCVMtGtYz1K1GF06JKSD0n6lKCZwLrshoOtOVAolpdAyk1CrNYe
+         IwuNMwROcJKSLMsJgg8xpia6iz1slZJyNZEgwxR7O8gESy6YjRogJp4N0Te4tFm1k1/P
+         dwzRpSFTsf4aXUjNJRP6i8PtHC44triJpFPk4oICyS4Q7hPELabicG0LboqQOSbOg2xp
+         KwCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ym7VlgsY2ND1TufftBYNXemLLzwPWb6Y/WuEGfjTql0=;
+        b=vRHXT/kJp05bmy63Wxtn2DBiENtmBrm7iwcs+zV5w+zS6os7Vnbc31pYyC7QdrpPTH
+         wssxqepiaDrAs02lRNwy+mdKrFVtF1bakI8YcraRVxWlhxykXyFTl+SYWuoFj0c/L3B6
+         2+ROb2AwCQt+pMfr+6osKCrZFhOK4pAUVvPzrlITU1dZdVOeuhrO9HFfQEaZxaV5Ye8N
+         e7cAguBPAWBWLkpMCaPbmNP6ppC46aueNJgNRhKb74/iG0LpTgJaYpUHa5qXoLYo79hA
+         fZ/iPoLm93YzHubCr/PLTo8a/5qgoj3SuYBp5bfe4TmeFdDSdR15nIU/riTmKf9TOZUA
+         Cqkw==
+X-Gm-Message-State: ACrzQf3YCrhC/h5rfkrt0WngPI3c8fr/Terw6VmE/NSyawV/tDoFkBd0
+        vi1ZT8ly6dzO1R1JUVb+P6DdM1D9TTw=
+X-Google-Smtp-Source: AMsMyM6ZUUAcJdycmC58Eeg3JYXtoSDDTfx/+SgW/Dl4cvYl2UBOCHKLa9P0nYQRJVswzmXIeoPKHw==
+X-Received: by 2002:a63:d313:0:b0:46b:2ea0:5b68 with SMTP id b19-20020a63d313000000b0046b2ea05b68mr10556487pgg.464.1667183340398;
+        Sun, 30 Oct 2022 19:29:00 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:46a:ab6a:820:3d51:c22d:4bb5])
+        by smtp.gmail.com with ESMTPSA id q42-20020a17090a17ad00b0021282014066sm3064504pja.9.2022.10.30.19.28.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 30 Oct 2022 19:28:59 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        broonie@kernel.org
+Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Add support for Richtek RT6190 36V 4-wwtich regulator
+Date:   Mon, 31 Oct 2022 10:28:52 +0800
+Message-Id: <1667183334-16511-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,67 +66,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/10/31 6:01, Andy Shevchenko wrote:
-> On Sat, Oct 29, 2022 at 07:59:36PM +0800, Weilong Chen wrote:
->> The HiSilicon I2C controller can be used on embedded platform, which
->> boot from devicetree.
-> ...
->
->> +#include <linux/acpi.h>
->> +#include <linux/of.h>
-> Why?
->
-> ...
->
->> +#ifdef CONFIG_ACPI
-> Why?
->
-> ...
->
->> +#ifdef CONFIG_OF
-> Why?
->
-> ...
->
->> -		.acpi_match_table = hisi_i2c_acpi_ids,
->> +		.acpi_match_table = ACPI_PTR(hisi_i2c_acpi_ids),
-> Why?
->
-> ...
->
->> +		.of_match_table = of_match_ptr(hisi_i2c_dts_ids),
-> Why of_match_ptr()?
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-There's a lot of drivers use of_match_ptr/ACPI_PTR to protect the of_device_id and
+The RT6190 is a 4-switch Buck-Boost controller designed for USB power delivery
+(USB PD). It operates with wide input voltage range from 4.5V to 36V, and the
+output voltage can be programmable between 3V and 36V. It implements peak
+current mode control mechanism to deliver up to 100W power with the
+programmable constant voltage and constant current output. It also has built-in
+charge pumps for driving external low-cost N-MOSFETs to control the power path.
 
-have explicit headers file references to linux/acpi.h or linux/of.h, such as
+Since v3:
+- Fix the typo 'upply' to 'supply'.
+- Declare 'enable-gpios' maxItems as 1.
+- Declare the 'maxItems' for the property 'regulator-allowed-modes'.
 
-drivers/media/platform/intel/pxa_camera.c,
+Since v2:
+- Rename binding filename to 'richtek,rt6190.yaml'
 
-bluetooth/hci_intel.c, 
+ChiYuan Huang (2):
+  dt-bindings: regulator: Add bindings for Richtek RT6190 regulator
+  regulator: rt6190: Add support for Richtek RT6190 regulator
 
-platform/x86/intel/chtwc_int33fe.c,
+ .../bindings/regulator/richtek,rt6190.yaml         |  79 ++++
+ drivers/regulator/Kconfig                          |  11 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/rt6190-regulator.c               | 495 +++++++++++++++++++++
+ 4 files changed, 586 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt6190.yaml
+ create mode 100644 drivers/regulator/rt6190-regulator.c
 
-platform/x86/intel/pmc/core.c and so on.
-
-
-The acpi.h and of.h have a nice function or macro definition if CONFIG_OF/ACPI is not satisfy,
-
-for example:
-
-#define ACPI_PTR(_ptr)  (_ptr)  vs  #define ACPI_PTR(_ptr)  (NULL)
-
-and also a lot of 'static inline' function there.
-
-
-Seems a good idea to remove all of them, the codes your noted may look a bit verbose there ,
-
-But I think it is valuable for a driver and device ,telling users it support acpi boot or is it just embedded.
-
-
-Thanks for review.
-
-Best Regards.
-
->
+-- 
+2.7.4
 
