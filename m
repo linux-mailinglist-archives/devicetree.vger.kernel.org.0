@@ -2,159 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37BA7613F0C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D08613F38
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229880AbiJaUck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 16:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
+        id S229645AbiJaUsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 16:48:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiJaUcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:32:35 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6880DEA4
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1667248298;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=6iglFbtxmswy6Wel7/DoB7/VCgHF3PqnZ3i1JdiWSK0=;
-        b=Kx/M5jPO7MonSgdDG0gvJcThxGKWS6TMDVYlj1mLQLpJddmj1REqCytGBz4gBBhoMem3ek
-        9r4KXVhLC7riaQDY5OougA9e49KLjRaKpP2avE9Q6j97nMgUUe+QmKjpKyDEkHxkhDYkOD
-        JeXdqO3q+qT+K+B5aJIJyN4TxB8HwDk=
-Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com
- [209.85.210.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-635-J1fejb9eMgCz1D7RNUygRg-1; Mon, 31 Oct 2022 16:31:37 -0400
-X-MC-Unique: J1fejb9eMgCz1D7RNUygRg-1
-Received: by mail-ot1-f71.google.com with SMTP id 35-20020a9d0026000000b0066c470fd412so2793015ota.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:31:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6iglFbtxmswy6Wel7/DoB7/VCgHF3PqnZ3i1JdiWSK0=;
-        b=3O0wMhnFSsnZ2sZEVpC7rKnnxiXyG1ormGYhPL82LMYye6yfdWm/1sWLQstqB7rk93
-         QuE8Q87E1ybJxAtGoYn0ezMVSv3TFzOBXXqaLfFDbrij92aPsxtZM37smXg2Mgtt4Cv1
-         hNUQKlaSGw2Blif6a8rBoOgY2LSRGpWKPDymb1RD/0HotjjinUDVzOBEWt7mNBpCHlJ4
-         oaeIh8sTRLxjNQDftOYga/7RO7i8vVGu8+NmzSnEKqkJt3H4MAvMuetVhdnpMS2TllyT
-         e1gnboeTg3jpamy3hwN2clOlbfIGjFXahPC+ZfUIhJa2LqEq5gPkIeFW3NEEu67F3RFl
-         0uXw==
-X-Gm-Message-State: ACrzQf2E4pl4vkZ3Yvo0UQ13+Fw5KyquwVr9t//R9GY0FCHAmatCFbI5
-        J10vOg75KcaP4rNzjGStDAcR1ws4VST8WWC3KfUNWmrUchnwbxLiBZeg01fO8Sm6SRxt9oz+474
-        BQSynBXpIs+faNDngA1JZhA==
-X-Received: by 2002:a05:6808:1693:b0:353:e980:30bf with SMTP id bb19-20020a056808169300b00353e98030bfmr7619331oib.206.1667248296673;
-        Mon, 31 Oct 2022 13:31:36 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM6B6/z0lcd7D5OLl9WDtE+Mx0BJBDVllYVLYSG10XWz2v15lMdxxewtOH4kYWzU7mQ+tcnlRQ==
-X-Received: by 2002:a05:6808:1693:b0:353:e980:30bf with SMTP id bb19-20020a056808169300b00353e98030bfmr7619312oib.206.1667248296393;
-        Mon, 31 Oct 2022 13:31:36 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::41])
-        by smtp.gmail.com with ESMTPSA id x13-20020a056830114d00b0066c34486aa7sm3113890otq.73.2022.10.31.13.31.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 13:31:35 -0700 (PDT)
-Date:   Mon, 31 Oct 2022 15:31:33 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH v2 13/15] scsi: ufs: ufs-qcom: Factor out the logic
- finding the HS Gear
-Message-ID: <20221031203133.vmqqig7wlryrgiwv@halaney-x13s>
-References: <20221031180217.32512-1-manivannan.sadhasivam@linaro.org>
- <20221031180217.32512-14-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S229494AbiJaUsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:48:07 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56E413F82;
+        Mon, 31 Oct 2022 13:48:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5F97AB81A5F;
+        Mon, 31 Oct 2022 20:48:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25DF4C433D6;
+        Mon, 31 Oct 2022 20:48:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667249283;
+        bh=O1v863hX945DEcIME2b4UEzO+vPVa0QHCHXH0He84SE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lKpgE8UBzPnYE8ZIlS9EGGNr9CAT9sceJxbPtgUhThoajOrAecoZ0vPcZ8ah1tWo1
+         hwwfXUyEGcWhpin0jwG2LpHUKnLoWDkeEinaP8h1zHn1wjd108e3It0LMrjKFaKPuB
+         kEH+FKBQl3Mpu6OG6PU0OI0bpDhsuv5dthQFr70iA5QuxE1hdHRHNHkU205EX/ZBCF
+         Ir1vIX7jv80QzH/dGbThZzXqy0evDjw2D5OVZEUYL8y1yNAuybCgA016r4lax0U8fB
+         XJcXsFZrCfM89PUTMI1reDy2MKSlWcp7+qbo4FiOEwPVWw4wgv2M3nWJBZ7g4Bw08w
+         RVOvVfQdjVhEA==
+Date:   Mon, 31 Oct 2022 20:47:57 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        angelogioacchino.delregno@collabora.corp-partner.google.com,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: Document dmic_sel-gpios
+ optional prop for two DMICs case
+Message-ID: <Y2A0fdwnHTqw/NDw@sirena.org.uk>
+References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028102450.1161382-2-ajye_huang@compal.corp-partner.google.com>
+ <Y1vDYNOwZNOco1hq@sirena.org.uk>
+ <20221031184343.GA3235956-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pRY+kIEVcpKIGhxD"
 Content-Disposition: inline
-In-Reply-To: <20221031180217.32512-14-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221031184343.GA3235956-robh@kernel.org>
+X-Cookie: Are you still an ALCOHOLIC?
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 11:32:15PM +0530, Manivannan Sadhasivam wrote:
-> In the preparation of adding support for new gears, let's move the
-> logic that finds the gear for each platform to a new function. This helps
-> with code readability and also allows the logic to be used in other places
-> of the driver in future.
-> 
-> While at it, let's make it clear that this driver only supports symmetric
-> gear setting (hs_tx_gear == hs_rx_gear).
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+--pRY+kIEVcpKIGhxD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
->  drivers/ufs/host/ufs-qcom.c | 36 +++++++++++++++++++++++-------------
->  1 file changed, 23 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 38e2ed749d75..c93d2d38b43e 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -278,6 +278,26 @@ static int ufs_qcom_host_reset(struct ufs_hba *hba)
->  	return 0;
->  }
->  
-> +static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
-> +{
-> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> +
-> +	if (host->hw_ver.major == 0x1) {
-> +		/*
-> +		 * HS-G3 operations may not reliably work on legacy QCOM
-> +		 * UFS host controller hardware even though capability
-> +		 * exchange during link startup phase may end up
-> +		 * negotiating maximum supported gear as G3.
-> +		 * Hence downgrade the maximum supported gear to HS-G2.
-> +		 */
-> +		if (hs_gear > UFS_HS_G2)
-> +			return UFS_HS_G2;
-> +	}
-> +
-> +	/* Default is HS-G3 */
-> +	return UFS_HS_G3;
-> +}
-> +
->  static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
->  {
->  	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> @@ -692,19 +712,9 @@ static int ufs_qcom_pwr_change_notify(struct ufs_hba *hba,
->  		ufshcd_init_pwr_dev_param(&ufs_qcom_cap);
->  		ufs_qcom_cap.hs_rate = UFS_QCOM_LIMIT_HS_RATE;
->  
-> -		if (host->hw_ver.major == 0x1) {
-> -			/*
-> -			 * HS-G3 operations may not reliably work on legacy QCOM
-> -			 * UFS host controller hardware even though capability
-> -			 * exchange during link startup phase may end up
-> -			 * negotiating maximum supported gear as G3.
-> -			 * Hence downgrade the maximum supported gear to HS-G2.
-> -			 */
-> -			if (ufs_qcom_cap.hs_tx_gear > UFS_HS_G2)
-> -				ufs_qcom_cap.hs_tx_gear = UFS_HS_G2;
-> -			if (ufs_qcom_cap.hs_rx_gear > UFS_HS_G2)
-> -				ufs_qcom_cap.hs_rx_gear = UFS_HS_G2;
-> -		}
-> +		/* This driver only supports symmetic gear setting i.e., hs_tx_gear == hs_rx_gear */
-> +		ufs_qcom_cap.hs_tx_gear = ufs_qcom_cap.hs_rx_gear = ufs_qcom_get_hs_gear(hba,
-> +									ufs_qcom_cap.hs_tx_gear);
->  
->  		ret = ufshcd_get_pwr_dev_param(&ufs_qcom_cap,
->  					       dev_max_params,
-> -- 
-> 2.25.1
-> 
+On Mon, Oct 31, 2022 at 01:43:43PM -0500, Rob Herring wrote:
+> On Fri, Oct 28, 2022 at 12:56:16PM +0100, Mark Brown wrote:
 
+> > If we're going to do this we should also allow the bindings to label the
+> > mics appropriately so that the control presented can reflect the actual
+> > hardware.  It does feel like it might fit better to do this separately
+> > to the DMIC driver as a mux between the DMIC and the DAI it's connected
+> > to but equally with the way things are at the minute that feels like
+> > it's probably disproportionate effort.
+
+> Are there other needs for DAI muxes? We already have a mux binding, so=20
+> defining a DAI mux would work for any type of muxing control, not just=20
+> GPIO.
+
+I suspect that anything that is more complex than a GPIO should be a
+full fledged CODEC with the muxing internal to the CODEC and just
+described that way.
+
+--pRY+kIEVcpKIGhxD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNgNH0ACgkQJNaLcl1U
+h9CPiQf+LUWw1ke44xSDRkole2tffbqEgGrQ0COXYU/ML5N5/q7uaKxeDi1B+9d6
+d1ApwJ8uynaEU6uxxoBlgI1DECj4+1nKYVTujWBinU9jHlqNqbHld6urtcqC/CLC
+eNUAl/BvuvlgbPDnZVuRL5452ra73bPqZShjx3ZHEgDRBvBQ0Rk5sAms8TGIdg51
+yI4FY9XhHr3XCF/4GfZj2wKjip1mszPFOTvvwlmu6Dm1GQtTHffyMH5N2/u59MAy
+7F0qRipL6HTKkJ0aiPPOULHJfWX72vCik1o5VvlDTRGswbw/+9UWR2rM9Mj00F2F
+sv6gCaIhR0tvygxrEokN2LZkfFK9Lg==
+=gzmB
+-----END PGP SIGNATURE-----
+
+--pRY+kIEVcpKIGhxD--
