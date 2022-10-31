@@ -2,88 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E09613E37
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:27:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD075613E40
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:32:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiJaT1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 15:27:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45264 "EHLO
+        id S229696AbiJaTc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 15:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbiJaT1B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:27:01 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5161612A91;
-        Mon, 31 Oct 2022 12:26:58 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id c129so1989110oia.0;
-        Mon, 31 Oct 2022 12:26:58 -0700 (PDT)
+        with ESMTP id S229515AbiJaTc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:32:28 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F27E12A91;
+        Mon, 31 Oct 2022 12:32:27 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-13b103a3e5dso14572115fac.2;
+        Mon, 31 Oct 2022 12:32:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4di/lLF30NiNOY2y58ftDsroYebuwIwGfqf6Xiyt+E0=;
-        b=vSgbdPStC+zI8LpYqld5JPUeQ1qTyAMKgZOgd+3GLdD7XOKy5bQbNLPWh38J0h0yzt
-         7xIe1JdPoceGDIQqI6EgNNaRuegFzxw7kNBGpfhqrQsTXUOaahIAOtQTOUzP9pVCCkKe
-         442qoDSoSh4Cvq6axMEOiMAvlpOR89Hao3bWRSYCRfxnar4iqVJYHnM6lxUKXg7rG18I
-         DPyWSB204G2hPue0nIOqmHwnHyzlcn9/Xz4Z8rsiqTYTzP7SxajRxcMM5NxagFucUSDl
-         dQBDe39LlF8ufpFdwYvqeyp32gTu2TfPI2is/Hlz065WFs8HhRQjL59pWcZJ379oiETM
-         Q6NQ==
-X-Gm-Message-State: ACrzQf15RYGCpix4bvmp2GLDhaQx0z8k69WeYxMLpB+3wZHkBcWG7jnY
-        I5CpjIrY+tw5SuBtaQj8aA==
-X-Google-Smtp-Source: AMsMyM5fyIkq8Zl+7LyVSIvYffzfskCjDo4gOFtL9h+x5N0+BM8JPLZ1lf8gdt4Kt6YyWLzTPUNmCg==
-X-Received: by 2002:a05:6808:1248:b0:354:2c04:c35b with SMTP id o8-20020a056808124800b003542c04c35bmr15190572oiv.143.1667244417543;
-        Mon, 31 Oct 2022 12:26:57 -0700 (PDT)
+        bh=FVVqsExfMH5y/nVKQLe7SB8sVIcEpxDpkI7AXNSICDk=;
+        b=Wr7MBfjPF55f/OurVVews0fyZU2z1qQyI1SjwIWIm9Q/s8XUr0Ump4zBf9x70QmveT
+         9YugaI79zXjikHjyOO+RiIK83zXQ201rOyoG5qCUEf7OOSfJSW8igoAGG+IobHjy1LTV
+         UzIepa8+tvRK4OpxoZHUXCjpeLtvsk8aytdkbBU58VLAulDzI0tefWRA90dAmN2/ukmY
+         FekXMFYEJRctbwG9fAKqjCwJiURTum95xB7M4nn4XC/tZ83Ec7qGs65DY/ILIoJyBs0E
+         GB7nifSgCvyY6pp4WwqkvnoUD6MOlEyKzWy2HiX3HAL20HoMGrAPdJUDlQYgh4FV+p9E
+         q4ww==
+X-Gm-Message-State: ACrzQf1Sp5e/LeHYpqPxBUyVBZu4UtXrM3sSzjzpu4Q03jxbTYGOEfn1
+        cndMi4KANCa6bpcCkkfNSA==
+X-Google-Smtp-Source: AMsMyM51Ay/CK4pAwfGf+l/L2CO2NolCQmH5Ou1KvFFhPO09DUo2mDuk+qqH803TerpG8A6bPcDstw==
+X-Received: by 2002:a05:6870:d78c:b0:136:ddfe:bf16 with SMTP id bd12-20020a056870d78c00b00136ddfebf16mr8358187oab.86.1667244744371;
+        Mon, 31 Oct 2022 12:32:24 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g10-20020a4a250a000000b00480fd5b0d6bsm436989ooa.22.2022.10.31.12.26.56
+        by smtp.gmail.com with ESMTPSA id m33-20020a056870562100b0012779ba00fesm3512244oao.2.2022.10.31.12.32.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 12:26:57 -0700 (PDT)
-Received: (nullmailer pid 3287247 invoked by uid 1000);
-        Mon, 31 Oct 2022 19:26:58 -0000
-Date:   Mon, 31 Oct 2022 14:26:58 -0500
+        Mon, 31 Oct 2022 12:32:23 -0700 (PDT)
+Received: (nullmailer pid 3293099 invoked by uid 1000);
+        Mon, 31 Oct 2022 19:32:25 -0000
+Date:   Mon, 31 Oct 2022 14:32:25 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Chris Zhong <zyw@rock-chips.com>,
-        Zhang Qing <zhangqing@rock-chips.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: mfd: Expect specific type for
- monitored-battery
-Message-ID: <20221031192658.GA3286587-robh@kernel.org>
-References: <20221028231309.565451-1-krzysztof.kozlowski@linaro.org>
- <Y1+MNL+fCfreAqMh@google.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 01/12] dt-bindings: mtd: Clarify all partition subnodes
+Message-ID: <20221031193225.GA3291000-robh@kernel.org>
+References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
+ <20221028235933.934850-2-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Y1+MNL+fCfreAqMh@google.com>
+In-Reply-To: <20221028235933.934850-2-miquel.raynal@bootlin.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 08:49:56AM +0000, Lee Jones wrote:
-> On Fri, 28 Oct 2022, Krzysztof Kozlowski wrote:
+On Sat, Oct 29, 2022 at 01:59:22AM +0200, Miquel Raynal wrote:
+> Over time the various ways to define MTD partitions has evolved. Most of
+> the controllers support several different bindings. Let's define all
+> possible choices in one file and mark the legacy ones deprecated. This
+> way, we can just reference this file and avoid dupplicating these
+> definitions.
 > 
-> > Core schema does not define type of monitored-battery, so the schemas
-> > are expected to reference proper type.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/ene-kb930.yaml      | 4 +++-
-> >  Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml | 1 +
-> >  2 files changed, 4 insertions(+), 1 deletion(-)
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/mtd.yaml | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> Applied, thanks.
+> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
+> index 25b91f25fcf4..9fcaa61b046c 100644
+> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
+> @@ -21,7 +21,25 @@ properties:
+>        based name) in order to ease flash device identification and/or
+>        describe what they are used for.
+>  
+> +  partitions:
+> +    type: object
+> +    properties:
+> +      '#address-cells': true
+> +      '#size-cells': true
 
-NAK. Please drop or revert.
+These should only be 1 or 2 which I don't think is defined anywhere 
+else.
 
-Rob
+> +
+> +    patternProperties:
+> +      "partition@[0-9a-f]+":
+> +        $ref: partitions/partition.yaml
+> +
+>  patternProperties:
+> +  "@[0-9a-f]+$":
+> +    $ref: partitions/partition.yaml
+> +    deprecated: true
+> +
+> +  "^partition@[0-9a-f]+":
+> +    $ref: partitions/partition.yaml
+> +    deprecated: true
+> +
+>    "^otp(-[0-9]+)?$":
+>      type: object
+>      $ref: ../nvmem/nvmem.yaml#
+> -- 
+> 2.34.1
+> 
+> 
