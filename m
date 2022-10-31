@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17E0261396A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 15:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E371D613974
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 15:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231705AbiJaOyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 10:54:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35108 "EHLO
+        id S231747AbiJaO5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 10:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231715AbiJaOyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 10:54:10 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 732C9BB8;
-        Mon, 31 Oct 2022 07:54:09 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VEs02U119037;
-        Mon, 31 Oct 2022 09:54:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667228040;
-        bh=zqkm021jtzip3ZkKOZoIGeAQdUu0abXG33GeDfCIKYE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Hdby6WqBFbv963vpascjybpM/brO8K5KTmmBJsfSOkSn6RXbRaDp5ZQkWa/OeiyOF
-         8WlBM+AyF3uf2IGkgathQYmPaFz8S7sKDcMvF5/lR1ALkGH+VTvgI18II+osV4ggQe
-         8VosD5PSdnjj1bWGIisgUuhpsHhpk3JYx1SEtB0s=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VEs0Is012476
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 31 Oct 2022 09:54:00 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
- Oct 2022 09:54:00 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 31 Oct 2022 09:54:00 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VEs0Bp014386;
-        Mon, 31 Oct 2022 09:54:00 -0500
-Date:   Mon, 31 Oct 2022 09:54:00 -0500
-From:   Bryan Brattlof <bb@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Le Jin <le.jin@siemens.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/11] AM65x Disable Incomplete DT Nodes
-Message-ID: <20221031145400.garsliw3nlqgkzcb@bryanbrattlof.com>
-References: <20221028142417.10642-1-afd@ti.com>
+        with ESMTP id S230462AbiJaO45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 10:56:57 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACB1911149
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 07:56:56 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id k15so2834434pfg.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 07:56:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=qfRWCQkOBm2MxnVgDK5v0Vn9xRjDYCGceLE5mq8RAWI=;
+        b=stVuBKmZrU7+ei+AFFBE+eKP4PINriYNYY5RsQGv1tc+A6WJ/s7pAKdcc7QZYF4+XO
+         QWS2lLzveBESkZroA6tZEavUJE03g62quWyzPY0QbB9S9Fn4ePHiMyvv7qiHILct2ilD
+         +dmu15gA+VXLxciUsRlhZw65iOYkZ6Lk8j36WixjIHf+1eqf+RajjtP3DfofZztb2SQc
+         0tBimU3mNeMZKv1ZT0LOkiQcQA9AY5OIQscOmqH2B3+LT8oxNq75BZKMlT3L6gep76Uv
+         NQGPc+iBjB+3bAG7L9vnZBqtR9QbTby81m4+c1vAT3Ir6uWvpVrzAMV800H5ZUQjoymv
+         KBAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qfRWCQkOBm2MxnVgDK5v0Vn9xRjDYCGceLE5mq8RAWI=;
+        b=snOkpKQwZPDTM++9HzlAXmLuV6CBd1H+UoW42prezy7J2uSa/tQfMr0BOlDUrWcQKq
+         tGnXpq6B1NckKW/TN7s3nHIX+DdnT2gfhnlYiUcte23S83SNo54U63zBKc6Kt1rrCm53
+         BioC1Mxsxs49KEOAhBbMRoDkdcRdlSpp3Gj92zQjHD2w+qVEzm/TiIi22A87y+TZHm2s
+         +dbzAwKL6t8+0moY8rFZ7uUNMAt1PBEWdtafoEHJqmccoQ6xMNPQ2fNk0hsUP8nhhVh6
+         mbidAgXa8IdEchDbpimzapHg19baY9+t8GLSjA+/0XcFyCC8QtrLiVsz9R/wtfqVxQsa
+         N74g==
+X-Gm-Message-State: ACrzQf02xfacHUVcRsIszGS674w7P3wRN8BNo0LyQ4/L5498wneyqihx
+        42wdOZhfOznZSWL2fHvsfpiw
+X-Google-Smtp-Source: AMsMyM7SHU/9duW/QueVKxebwPeGGo51l3TZSSc9aXZpBWMnn19DzLxyNQfHIvbOJuiSkwcMuVYOrw==
+X-Received: by 2002:a05:6a00:230f:b0:53e:2c2c:5c03 with SMTP id h15-20020a056a00230f00b0053e2c2c5c03mr14699448pfh.11.1667228216041;
+        Mon, 31 Oct 2022 07:56:56 -0700 (PDT)
+Received: from thinkpad ([117.193.209.221])
+        by smtp.gmail.com with ESMTPSA id m12-20020a17090a414c00b002135fdfa995sm4235595pjg.25.2022.10.31.07.56.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Oct 2022 07:56:54 -0700 (PDT)
+Date:   Mon, 31 Oct 2022 20:26:47 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        andersson@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, quic_cang@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org
+Subject: Re: [PATCH 14/15] scsi: ufs: ufs-qcom: Add support for finding HS
+ gear on new UFS versions
+Message-ID: <20221031145647.GC10515@thinkpad>
+References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
+ <20221029141633.295650-15-manivannan.sadhasivam@linaro.org>
+ <cf8dcf53-f131-68f4-c6aa-d41e02ac6d5c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221028142417.10642-1-afd@ti.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cf8dcf53-f131-68f4-c6aa-d41e02ac6d5c@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,36 +79,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On October 28, 2022 thus sayeth Andrew Davis:
-> Hello all,
+On Sun, Oct 30, 2022 at 12:48:21AM +0300, Dmitry Baryshkov wrote:
+> On 29/10/2022 17:16, Manivannan Sadhasivam wrote:
+> > Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
+> > controller/PHY can be configured to run in two gear speeds). But that
+> > requires an agreement between the UFS controller and the UFS device.
+> > This commit finds the max gear supported by both controller and device
+> > then decides which one to use.
+> > 
+> > UFS controller's max gear can be read from the REG_UFS_PARAM0 register and
+> > UFS device's max gear can be read from the "max-gear" devicetree property.
+> > 
+> > The UFS PHY also needs to be configured with the decided gear using the
+> > phy_set_mode_ext() API.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >   drivers/ufs/host/ufs-qcom.c | 35 ++++++++++++++++++++++++++++++++---
+> >   drivers/ufs/host/ufs-qcom.h |  4 ++++
+> >   2 files changed, 36 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> > index f952cc76919f..268463e92d67 100644
+> > --- a/drivers/ufs/host/ufs-qcom.c
+> > +++ b/drivers/ufs/host/ufs-qcom.c
+> > @@ -281,6 +281,9 @@ static int ufs_qcom_host_reset(struct ufs_hba *hba)
+> >   static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
+> >   {
+> >   	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+> > +	struct device *dev = hba->dev;
+> > +	u32 max_gear, hcd_max_gear, reg;
+> > +	int ret;
+> >   	if (host->hw_ver.major == 0x1) {
+> >   		/*
+> > @@ -292,8 +295,33 @@ static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
+> >   		 */
+> >   		if (hs_gear > UFS_HS_G2)
+> >   			return UFS_HS_G2;
+> > +	} else if (host->hw_ver.major > 0x3) {
+> > +		/*
+> > +		 * Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
+> > +		 * controller/PHY can be configured to run in two gear speeds). But that
+> > +		 * requires an agreement between the UFS controller and the device. Below
+> > +		 * code tries to find the max gear of both and decides which gear to use.
+> > +		 *
+> > +		 * First get the max gear supported by the UFS device if available.
+> > +		 * If the property is not defined in devicetree, then use the default gear.
+> > +		 */
+> > +		ret = of_property_read_u32(dev->of_node, "max-gear", &max_gear);
+> > +		if (ret)
+> > +			goto err_out;
 > 
-> Same story as for AM64x[0], AM62x[1], and J7x[2].
+> Can we detect the UFS device's max gear somehow? If not, the 'max-gear'
+> property name doesn't sound good. Maybe calling it 'device-gear' would be
+> better.
 > 
-> Last round for AM65x, but there are some boards that I do not have
-> (Simatic IOT2050), so testing very welcome!
-> 
-> Thanks,
-> Andrew
-> 
-> [0] https://www.spinics.net/lists/arm-kernel/msg1018532.html
-> [1] https://www.spinics.net/lists/arm-kernel/msg1018864.html
-> [2] https://www.spinics.net/lists/arm-kernel/msg1019544.html
-> 
-> Andrew Davis (11):
->   arm64: dts: ti: k3-am65: Enable UART nodes at the board level
->   arm64: dts: ti: k3-am65: Enable I2C nodes at the board level
->   arm64: dts: ti: k3-am65: Enable SPI nodes at the board level
->   arm64: dts: ti: k3-am65: Enable EPWM nodes at the board level
->   arm64: dts: ti: k3-am65: Enable ECAP nodes at the board level
->   arm64: dts: ti: k3-am65: MDIO pinmux should belong to the MDIO node
->   arm64: dts: ti: k3-am65: Enable MDIO nodes at the board level
->   arm64: dts: ti: k3-am65: Enable MCAN nodes at the board level
->   arm64: dts: ti: k3-am65: Enable PCIe nodes at the board level
->   arm64: dts: ti: k3-am65: Enable Mailbox nodes at the board level
->   arm64: dts: ti: k3-am65: Enable McASP nodes at the board level
 
-LGTM! Thanks Andrew!
+UFS device probing depends on PHY init sequence. So technically we cannot know
+the max gear of the device without using an init sequence, but this information
+is static and should be known to a board manufacturer. That's why I decided to
+use this property. Another option is to use a fixed init sequence for probing
+the device and do a re-init after knowing it's max gear but that is not
+recommended.
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+We need "max" keyword because this property specifies the maximum gear at which
+the device could operate and not necessarily the gear at which it operates.
+Maybe, "max-device-gear" would make it clear.
 
-~Bryan
+Thanks,
+Mani
+
+> > +
+> > +		/* Next get the max gear supported by the UFS controller */
+> > +		reg = ufshcd_readl(hba, REG_UFS_PARAM0);
+> > +		hcd_max_gear = UFS_QCOM_MAX_GEAR(reg);
+> > +
+> > +		/*
+> > +		 * Now compare both the gears. If the max gear supported by the UFS device
+> > +		 * is compatible with UFS controller, then use the UFS device's max gear
+> > +		 * speed. Otherwise, use the UFS controller supported max gear speed.
+> > +		 */
+> > +		return (max_gear <= hcd_max_gear) ? max_gear : hcd_max_gear;
+> 
+> return max(max_gear, hcd_max_gear); ?
+> 
+> >   	}
+> > +err_out:
+> >   	/* Default is HS-G3 */
+> >   	return UFS_HS_G3;
+> >   }
+> > @@ -303,7 +331,7 @@ static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
+> >   	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+> >   	struct phy *phy = host->generic_phy;
+> >   	int ret;
+> > -	bool is_rate_B = UFS_QCOM_LIMIT_HS_RATE == PA_HS_MODE_B;
+> > +	u32 hs_gear;
+> >   	/* Reset UFS Host Controller and PHY */
+> >   	ret = ufs_qcom_host_reset(hba);
+> > @@ -311,8 +339,9 @@ static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
+> >   		dev_warn(hba->dev, "%s: host reset returned %d\n",
+> >   				  __func__, ret);
+> > -	if (is_rate_B)
+> > -		phy_set_mode(phy, PHY_MODE_UFS_HS_B);
+> > +	/* UFS_HS_G2 is used here since that's the least gear supported by legacy Qcom platforms */
+> > +	hs_gear = ufs_qcom_get_hs_gear(hba, UFS_HS_G2);
+> > +	phy_set_mode_ext(phy, PHY_MODE_UFS_HS_B, hs_gear);
+> >   	/* phy initialization - calibrate the phy */
+> >   	ret = phy_init(phy);
+> > diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
+> > index 214ea50acab9..c93bc52ea848 100644
+> > --- a/drivers/ufs/host/ufs-qcom.h
+> > +++ b/drivers/ufs/host/ufs-qcom.h
+> > @@ -89,6 +89,10 @@ enum {
+> >   #define TMRLUT_HW_CGC_EN	BIT(6)
+> >   #define OCSC_HW_CGC_EN		BIT(7)
+> > +/* bit definitions for REG_UFS_PARAM0 */
+> > +#define MAX_HS_GEAR_MASK	GENMASK(6, 4)
+> > +#define UFS_QCOM_MAX_GEAR(x)	FIELD_GET(MAX_HS_GEAR_MASK, (x))
+> > +
+> >   /* bit definition for UFS_UFS_TEST_BUS_CTRL_n */
+> >   #define TEST_BUS_SUB_SEL_MASK	GENMASK(4, 0)  /* All XXX_SEL fields are 5 bits wide */
+> 
+> -- 
+> With best wishes
+> Dmitry
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
