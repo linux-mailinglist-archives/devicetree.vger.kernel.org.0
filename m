@@ -2,99 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BE31613A1F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EA31613A1D
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:35:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbiJaPfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 11:35:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
+        id S231655AbiJaPfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 11:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbiJaPfq (ORCPT
+        with ESMTP id S231211AbiJaPfq (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:35:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B386381;
-        Mon, 31 Oct 2022 08:35:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0908A612B9;
-        Mon, 31 Oct 2022 15:35:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 228CEC433C1;
-        Mon, 31 Oct 2022 15:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667230544;
-        bh=pGTJFwR04wAznT0VzOzzd5AeSlMtz89Bp8m8aRJ8gfk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=roK6HfqMOk/p4FlEw5sSzRKH3/jIr6RZYUBRfcuuKaGeatRnGE3w95jqtWtYsXBKD
-         tqiODQ0+ZKbSO39UEHiswBWb/T8iGIMAEsK9OADzVUJyrtOKuu7HVBfLCm+piJAvPy
-         0JYa2Sxait1J4wKj3DPRZC9HtoesTJVtq2hgRoSS86c1IBtkZuqjmZ46ndi1ahi7Kn
-         ftpiup8Cdoz7EFoR4EhRHatapzXwld/5exqdm3NIRKmPR/EpOiQnrRlSqU8FigUTr7
-         xB4lNDrVsvhotmHJP3MfmaEtHLtnU+odLLUrCIbyRqE8Q0Oq+oBHBmch0uKRwBqQIV
-         10sOPD00Daf6A==
-Date:   Mon, 31 Oct 2022 15:35:37 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, Phong Vo <phong@os.amperecomputing.com>,
-        thang@os.amperecomputing.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v10 1/3] dt-bindings: mfd: Add bindings for Ampere Altra
- SMPro MFD driver
-Message-ID: <Y1/rSQ3tt+a/fYzL@google.com>
-References: <20221031024442.2490881-1-quan@os.amperecomputing.com>
- <20221031024442.2490881-2-quan@os.amperecomputing.com>
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC7376350
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 08:35:44 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id l14so16540046wrw.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 08:35:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=TsXJSVmpsfRwUaoUkQeZoN5vrNGuaXJ+yHnFyn7q25I=;
+        b=kNDVSruV16A9lm4yIH6ED5p3NglZj4zIWm6IWzCXkUhLysu/9kFqTnjIKo0B5mdWtE
+         bVkze8vz56g3cNUjHYUhdd2HSRi3Lr77pdsuZdu/ZSMft7E+XFsIZcNWXo6s6H0+dMVH
+         x5hy2kxnN7LVX3Yki1W5sEdlWJRu5LnLP0Z30WQ5M4r6Xw4Aq0ROJk3qcBp2JfWxarBl
+         zZTGvO9QBblm1HmA+daQtS4fyx7f1QGrlVWeziluZvNx7LQ0REWS2xw6IZ/EyUs2cjDK
+         ZxxhWhPVf2FcTxe9wbNDK87W4N6DD4Gjf4lnkHIyHwncXHxqgu0zsO1XLUNAzjCI0n2i
+         /RwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:reply-to:organization:from
+         :references:cc:to:content-language:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TsXJSVmpsfRwUaoUkQeZoN5vrNGuaXJ+yHnFyn7q25I=;
+        b=opM0zT0MRKn3Lfz92GRVilc4tZOLYClU8i/TSW3t4KtjcI/yCVEVwYprAxoPGxMJ9B
+         l4NwDQv51m3HM3gBGLzZXaJ/WX1hcj5CynZh9+YakIvlAXOgbk+sd4LWKhNQJQOLY61J
+         eVShhXt7jpKwN+oXfQGCOn7bMFknmUxU4X2GniGdmq05pnGDDOTFu2/zcMKwPumhsD2S
+         IGrxlgja/4mjabeGzIvVF02cjVZIbp6BOaltiZ9LicGSvR55GshldEz5f8l1ozZjpQt6
+         E8upY2CT/sZCFWGjy0t/VARyvK5WL+I3XX/PKB5Ar/uvW0Za2FJoS+CYPnxF47UjzW/B
+         MaQw==
+X-Gm-Message-State: ACrzQf2rvxjLjC0wNoyNZ/Fovr3MGGqK5/OXHlJ3x5aCgsR3O/UYEnTv
+        IeCR1G5d0E8+HG5pbYFM1mYr3A==
+X-Google-Smtp-Source: AMsMyM73Wi/PfFl19dSX+YB0TWP0LDVvL+RVag0yoxDj3CQC07pDBzEctGykPU2rWEpvK1FkJgWkuQ==
+X-Received: by 2002:adf:f4c7:0:b0:236:c415:c707 with SMTP id h7-20020adff4c7000000b00236c415c707mr5202241wrp.24.1667230543206;
+        Mon, 31 Oct 2022 08:35:43 -0700 (PDT)
+Received: from ?IPV6:2a0d:e487:34f:ed70:97ca:71f8:f780:5cf1? ([2a0d:e487:34f:ed70:97ca:71f8:f780:5cf1])
+        by smtp.gmail.com with ESMTPSA id i6-20020a05600c070600b003cf483ee8e0sm7306730wmn.24.2022.10.31.08.35.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Oct 2022 08:35:42 -0700 (PDT)
+Message-ID: <6858acf3-eb90-41aa-b714-a2ceb6afe9db@linaro.org>
+Date:   Mon, 31 Oct 2022 16:35:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221031024442.2490881-2-quan@os.amperecomputing.com>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v4 08/11] mfd: qcom-pm8xxx: drop unused PM8018 compatible
+Content-Language: en-US
+To:     Lee Jones <lee@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Gross <agross@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
+ <20220928-mdm9615-dt-schema-fixes-v4-8-dac2dfaac703@linaro.org>
+ <Y1/qnCyav/S35mRo@google.com>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+Reply-To: neil.armstrong@linaro.org
+In-Reply-To: <Y1/qnCyav/S35mRo@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Oct 2022, Quan Nguyen wrote:
+Hi,
 
-> Adds device tree bindings for SMPro MFD driver found on the Mt.Jade
-> hardware reference platform with Ampere's Altra Processor family.
+On 31/10/2022 16:32, Lee Jones wrote:
+> On Fri, 21 Oct 2022, Neil Armstrong wrote:
 > 
-> The SMpro co-processor on Ampere Altra processor family is to monitor
-> and report various data included hwmon-related info, RAS errors, and
-> other miscellaneous information.
+>> The PM8018 compatible is always used with PM8921 fallback, so PM8018
+>> compatible can be safely removed from device ID table
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changes in v10:
->   + None
-> 
-> Changes in v9:
->   + Update SPDX license                                       [Greg]
-> 
-> Changes in v8:
->   + Removed unused #*_cells                              [Krzysztof]
-> 
-> Changes in v7:
->   + None
-> 
-> Changes in v6:
->   + None
-> ---
->  .../devicetree/bindings/mfd/ampere,smpro.yaml | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+> Tags should appear chronologically.
 
-Applied, thanks.
+Indeed, they were added by b4, I'll report this.
 
--- 
-Lee Jones [李琼斯]
+Thanks,
+Neil
+
+> 
+> I've fixed this up and applied the patch, thanks.
+> 
+>> ---
+>>   drivers/mfd/qcom-pm8xxx.c | 1 -
+>>   1 file changed, 1 deletion(-)
+>>
+>> diff --git a/drivers/mfd/qcom-pm8xxx.c b/drivers/mfd/qcom-pm8xxx.c
+>> index 2f2734ba5273..601106580e2e 100644
+>> --- a/drivers/mfd/qcom-pm8xxx.c
+>> +++ b/drivers/mfd/qcom-pm8xxx.c
+>> @@ -497,7 +497,6 @@ static const struct pm_irq_data pm8821_data = {
+>>   };
+>>   
+>>   static const struct of_device_id pm8xxx_id_table[] = {
+>> -	{ .compatible = "qcom,pm8018", .data = &pm8xxx_data},
+>>   	{ .compatible = "qcom,pm8058", .data = &pm8xxx_data},
+>>   	{ .compatible = "qcom,pm8821", .data = &pm8821_data},
+>>   	{ .compatible = "qcom,pm8921", .data = &pm8xxx_data},
+>>
+> 
+
