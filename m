@@ -2,169 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5669B613D8D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 19:40:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB80613D93
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 19:43:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbiJaSky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 14:40:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38122 "EHLO
+        id S229527AbiJaSnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 14:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiJaSkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 14:40:52 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A107212626;
-        Mon, 31 Oct 2022 11:40:50 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id o4so17223568wrq.6;
-        Mon, 31 Oct 2022 11:40:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4l/rQiBjU2EDqlLswcve2tJlyY/XQgWJ8y1LR4isvn0=;
-        b=DjG/2ufk+7Y/8//JX+76+6lP62M9TveRoAHeKTQuwNmllazKZR1h4IANy23WyhsSCX
-         243ph3qCkpilBizc50D21TYy8sBYgHWyDwmwNIzljrqo6AfC1L+gkYnf+3jnhlpRL+ke
-         vbnBVCjvAGtGymBLSk4DP6rx19thJXyDhPPDfjajf/XLtR0NHhEYlgOsJe0MV8T9Ou45
-         ilM3Z4dbReG5MMTm+3RyLrAT5WVoxSo1i6dDIT52CgM+kM0yV0I0kyaESPVkn+hE8T8p
-         0w/ZCcgbzVDhmwXnHZD7z8yQWWNSObaFIVK4kqhqTipr0iAPE+hySuc63zBhEJEbGBZe
-         If1g==
+        with ESMTP id S229495AbiJaSnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 14:43:43 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE5F813D4A;
+        Mon, 31 Oct 2022 11:43:42 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so14448695fac.1;
+        Mon, 31 Oct 2022 11:43:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4l/rQiBjU2EDqlLswcve2tJlyY/XQgWJ8y1LR4isvn0=;
-        b=nUph5eV+4/L7Pv56oKEJpVB/UMfUucG3MABFykz2HzVcy3RCdMiBPJ0uyYl7ObqJBE
-         RlHZmfnS/Kq21LCqNbbRALc9bG9FHI9v09GWNN2Mmjq4m53ZF/U7Zbrn7OknSChBqGSu
-         i0ZDoblQu2mO0/VEYIOqWz0giZPF3e0BAJUGpXrvQZKLZww2UK60+oBwYzpzgt6pBSDO
-         z74n8mUTkZ/RgXONLFrAbIyuM2YfdVrURUiCrfwiTCxx57JAPQpvbNxoV47OBaWNv0dx
-         jrm6OyMlhVW/bnMWIHXlASa82sG1u66BZWViqe/hiQ0PXfU/qjlyobElqp1msMPsx4EM
-         pWzA==
-X-Gm-Message-State: ACrzQf2Zc30bdav0IUXkKjBrGjIwmVf3Wt7SgumDbTk3fciQgoBGAfD6
-        g3YWeqovGp8COV11QyID9Sk=
-X-Google-Smtp-Source: AMsMyM5npn0gP5TdeeyQ46cg9Bn7gzkoKCuKASGnw5gB32sz/rFPxQXnD+wbE8y1BuSZdV/ui3EXJw==
-X-Received: by 2002:a05:6000:a09:b0:236:6b18:6b30 with SMTP id co9-20020a0560000a0900b002366b186b30mr9565291wrb.356.1667241649233;
-        Mon, 31 Oct 2022 11:40:49 -0700 (PDT)
-Received: from hp-power-15.localdomain (mm-167-8-212-37.vitebsk.dynamic.pppoe.byfly.by. [37.212.8.167])
-        by smtp.gmail.com with ESMTPSA id k18-20020a05600c081200b003b4935f04a4sm8525887wmp.5.2022.10.31.11.40.48
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=riEhJI8G7uoCQmZTrlcGBLPUnlTnsywRFiMnVaXjKWk=;
+        b=Zg9lbJbaeyYhlzA72h1kRnamVLULBes2RZJ8tbrQi3b5VgNSb8HDPEYqOarBWdb51k
+         J4Hza3lcnmWx+mKSmpHVZ2GPZvBvuzXX/Vp38AE7247Ym3dLZjBAWGRD0lm3FzgzNtTb
+         9cWpl1S377rxyE43eKPR2O9zG5z2ffq+LtCrYFTd877RizS3V5/lDn5+co1WfQy84Yf8
+         G9qAXu7qY7dW2T+6SRDDeZlobJ7/lM4MzlghE5yIIz8RKBmjYDDDvnPlPtFT435qCGmF
+         7z+WaBa8T/j3v4ELiTcmkowzVeg+HD6dQyQA+J41Yh0aXLL13xHqyAGuek3PaH56+51Q
+         jYAA==
+X-Gm-Message-State: ACrzQf09EfDGnfGuAl/6WSZq93c6D5CVkVbBFmaLt80yCxD+uxahm13d
+        IZ6YatZrvdpRY+NKQjOTew==
+X-Google-Smtp-Source: AMsMyM7NZtP3wDok5vjddQFKN4tnOsm2GF6RDetCJiSa5VMKaFm3TvtUFz0VGHdGPXkd/ZambwEHQw==
+X-Received: by 2002:a05:6870:428a:b0:13c:4dd3:9890 with SMTP id y10-20020a056870428a00b0013c4dd39890mr14304964oah.295.1667241822059;
+        Mon, 31 Oct 2022 11:43:42 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t3-20020a056870f20300b0012752d3212fsm3379647oao.53.2022.10.31.11.43.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 11:40:48 -0700 (PDT)
-From:   Siarhei Volkau <lis8215@gmail.com>
-Cc:     Siarhei Volkau <lis8215@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 31 Oct 2022 11:43:41 -0700 (PDT)
+Received: (nullmailer pid 3240044 invoked by uid 1000);
+        Mon, 31 Oct 2022 18:43:43 -0000
+Date:   Mon, 31 Oct 2022 13:43:43 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: [PATCH v4 2/2] serial: 8250/ingenic: Add support for the JZ4750/JZ4755
-Date:   Mon, 31 Oct 2022 21:40:40 +0300
-Message-Id: <20221031184041.1338129-3-lis8215@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20221031184041.1338129-1-lis8215@gmail.com>
-References: <20221031184041.1338129-1-lis8215@gmail.com>
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        angelogioacchino.delregno@collabora.corp-partner.google.com,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: Document dmic_sel-gpios
+ optional prop for two DMICs case
+Message-ID: <20221031184343.GA3235956-robh@kernel.org>
+References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028102450.1161382-2-ajye_huang@compal.corp-partner.google.com>
+ <Y1vDYNOwZNOco1hq@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y1vDYNOwZNOco1hq@sirena.org.uk>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JZ4750/55/60 (but not JZ4760b) have an optional /2 divider between the
-EXT oscillator and some peripherals including UART, which will
-be enabled if using a 24 MHz oscillator, and disabled when
-using a 12 MHz oscillator.
+On Fri, Oct 28, 2022 at 12:56:16PM +0100, Mark Brown wrote:
+> On Fri, Oct 28, 2022 at 06:24:49PM +0800, Ajye Huang wrote:
+> > Document dmic_sel-gpios optional prop for switching between two DMICs.
+> > Ex, the GPIO can control a MUX to select Front or Rear dmic.
+> 
+> > +  dmic_sel-gpios:
 
-This behavior relies on hardware differences: most boards (if not all)
-with those SoCs have 12 or 24 MHz oscillators but many peripherals want
-12Mhz to operate properly (AIC and USB-PHY at least).
+s/_/-/
 
-The 16MHz threshold looks arbitrary but used in vendor's bootloader code
-for enable the divider.
+> > +    maxItems: 1
+> > +    description: GPIO for switching between DMICs, ex Front/Rear dmic
+> > +
+> 
+> If we're going to do this we should also allow the bindings to label the
+> mics appropriately so that the control presented can reflect the actual
+> hardware.  It does feel like it might fit better to do this separately
+> to the DMIC driver as a mux between the DMIC and the DAI it's connected
+> to but equally with the way things are at the minute that feels like
+> it's probably disproportionate effort.
 
-The patch doesn't affect JZ4760's behavior as it is subject for another
-patchset with re-classification of all supported ingenic UARTs.
+Are there other needs for DAI muxes? We already have a mux binding, so 
+defining a DAI mux would work for any type of muxing control, not just 
+GPIO.
 
-Link: https://github.com/carlos-wong/uboot_jz4755/blob/master/cpu/mips/jz_serial.c#L158
-Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
----
- drivers/tty/serial/8250/8250_ingenic.c | 32 +++++++++++++++++++++++---
- 1 file changed, 29 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/tty/serial/8250/8250_ingenic.c b/drivers/tty/serial/8250/8250_ingenic.c
-index 2b2f5d8d2..617b8ce60 100644
---- a/drivers/tty/serial/8250/8250_ingenic.c
-+++ b/drivers/tty/serial/8250/8250_ingenic.c
-@@ -87,7 +87,7 @@ static void __init ingenic_early_console_setup_clock(struct earlycon_device *dev
- 	dev->port.uartclk = be32_to_cpup(prop);
- }
- 
--static int __init ingenic_early_console_setup(struct earlycon_device *dev,
-+static int __init ingenic_earlycon_setup_tail(struct earlycon_device *dev,
- 					      const char *opt)
- {
- 	struct uart_port *port = &dev->port;
-@@ -103,8 +103,6 @@ static int __init ingenic_early_console_setup(struct earlycon_device *dev,
- 		uart_parse_options(opt, &baud, &parity, &bits, &flow);
- 	}
- 
--	ingenic_early_console_setup_clock(dev);
--
- 	if (dev->baud)
- 		baud = dev->baud;
- 	divisor = DIV_ROUND_CLOSEST(port->uartclk, 16 * baud);
-@@ -129,9 +127,36 @@ static int __init ingenic_early_console_setup(struct earlycon_device *dev,
- 	return 0;
- }
- 
-+static int __init ingenic_early_console_setup(struct earlycon_device *dev,
-+					      const char *opt)
-+{
-+	ingenic_early_console_setup_clock(dev);
-+
-+	return ingenic_earlycon_setup_tail(dev, opt);
-+}
-+
-+static int __init jz4750_early_console_setup(struct earlycon_device *dev,
-+					     const char *opt)
-+{
-+	/*
-+	 * JZ4750/55/60 have an optional /2 divider between the EXT
-+	 * oscillator and some peripherals including UART, which will
-+	 * be enabled if using a 24 MHz oscillator, and disabled when
-+	 * using a 12 MHz oscillator.
-+	 */
-+	ingenic_early_console_setup_clock(dev);
-+	if (dev->port.uartclk >= 16000000)
-+		dev->port.uartclk /= 2;
-+
-+	return ingenic_earlycon_setup_tail(dev, opt);
-+}
-+
- OF_EARLYCON_DECLARE(jz4740_uart, "ingenic,jz4740-uart",
- 		    ingenic_early_console_setup);
- 
-+OF_EARLYCON_DECLARE(jz4750_uart, "ingenic,jz4750-uart",
-+		    jz4750_early_console_setup);
-+
- OF_EARLYCON_DECLARE(jz4770_uart, "ingenic,jz4770-uart",
- 		    ingenic_early_console_setup);
- 
-@@ -328,6 +353,7 @@ static const struct ingenic_uart_config x1000_uart_config = {
- 
- static const struct of_device_id of_match[] = {
- 	{ .compatible = "ingenic,jz4740-uart", .data = &jz4740_uart_config },
-+	{ .compatible = "ingenic,jz4750-uart", .data = &jz4760_uart_config },
- 	{ .compatible = "ingenic,jz4760-uart", .data = &jz4760_uart_config },
- 	{ .compatible = "ingenic,jz4770-uart", .data = &jz4760_uart_config },
- 	{ .compatible = "ingenic,jz4775-uart", .data = &jz4760_uart_config },
--- 
-2.36.1
-
+Rob
