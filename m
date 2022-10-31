@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FBC06137AB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 14:17:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA726137CD
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 14:23:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231461AbiJaNRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 09:17:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60286 "EHLO
+        id S230522AbiJaNXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 09:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231365AbiJaNRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 09:17:36 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F096C632D;
-        Mon, 31 Oct 2022 06:17:35 -0700 (PDT)
+        with ESMTP id S229782AbiJaNXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 09:23:20 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73089658D;
+        Mon, 31 Oct 2022 06:23:19 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 362D3660036D;
-        Mon, 31 Oct 2022 13:17:34 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6D302660037C;
+        Mon, 31 Oct 2022 13:23:17 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667222254;
-        bh=ZmPmZv72wbYQvxzOvTCOXp+TPJj41VSYJO29iqOZ//o=;
+        s=mail; t=1667222598;
+        bh=ctOc72E5TG5g0Jfe6gFuy0T4ihRYDcFuhpGAII5uE5M=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KYROdDtJRqd5mFhg8RKdHIF6Fh6pJCaZ0IjRgBZZyvg1agyrVjRmoCYbHYeapj02g
-         3/oiCJzKv0+OU3pNDx7JL7HCml7gYzWJX+2fIokgSlg47GQ/nvZZeJ+Blinpp0DCoO
-         C3c5VK7AF2H7sHZfR9RYU9OOH5g8gzaCc6XNostRPLqrj+OFc18mIg10MHJ+iWk6lK
-         CSD5PruhyEthiTQA1B+WpafUme0VGm/2Y2z200hrF1lfq7z52sjCNBig98NnbHY/Pf
-         59+J5tH/g3v9l1B72StI3IJml8vAuJOOoGFaBmYcpJYrMqC0vvAJDGm5rUCB3EfMqM
-         18rr2tSW0gg3A==
-Message-ID: <bc2e7eec-d78a-dfc5-b7f5-cf5bab001593@collabora.com>
-Date:   Mon, 31 Oct 2022 14:17:31 +0100
+        b=BAWpsTGOkdARYdWAUioC/8GohNdfgTZqbfoCUeTdPIdPgS/vDd+CtKLh5X2PPgmrf
+         vHXRvOxj7l9b8CcZPGLj3BcXMEsbPT7+TpyBpQFJAoDHeQgxikCv9ewtWsYqLBGtDo
+         kLR/QFbkpphY3ixfp0DAeeIom7DCV/wzDs+pc078Kq32W46QXCRgiaRDJWlPhwYFNq
+         filMsDgk+XfCzEfz/dyy3MmUrohLNxIJ0zm5jZC1IT9k+ylBzOgon8ej+rw3rLikOA
+         KZKPY3YMSoWOrkBg3WpKv+1ctBbb8iDYeVs3X0008NxXAjbBPRZ7bLYQryDn78ks1Z
+         wtkxOoSnn5lhw==
+Message-ID: <bd40a99a-63e3-b763-5c1a-74a42c384032@collabora.com>
+Date:   Mon, 31 Oct 2022 14:23:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH 2/2] dt-bindings: mailbox: mediatek,gce-mailbox: add
- mt8188 compatible name
+Subject: Re: [PATCH v4 3/3] arm64: dts: mt8195: Add venc node
 Content-Language: en-US
-To:     "Elvis.Wang" <Elvis.Wang@mediatek.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Houlong Wei <houlong.wei@mediatek.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20221029105017.20734-1-Elvis.Wang@mediatek.com>
- <20221029105017.20734-3-Elvis.Wang@mediatek.com>
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Irui Wang <irui.wang@mediatek.com>
+References: <20221028094317.29270-1-tinghan.shen@mediatek.com>
+ <20221028094317.29270-4-tinghan.shen@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221029105017.20734-3-Elvis.Wang@mediatek.com>
+In-Reply-To: <20221028094317.29270-4-tinghan.shen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -65,12 +66,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 29/10/22 12:50, Elvis.Wang ha scritto:
-> From: Elvis Wang <Elvis.Wang@mediatek.com>
+Il 28/10/22 11:43, Tinghan Shen ha scritto:
+> Add venc node for mt8195 SoC.
 > 
-> Add mt8188 compatible name.
-> 
-> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 
