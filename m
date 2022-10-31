@@ -2,619 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC63612F01
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 03:29:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A776D612F13
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 03:45:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbiJaC3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Oct 2022 22:29:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39478 "EHLO
+        id S229670AbiJaCpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Oct 2022 22:45:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbiJaC3I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 22:29:08 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32AFFB844;
-        Sun, 30 Oct 2022 19:29:07 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id 4so9605871pli.0;
-        Sun, 30 Oct 2022 19:29:07 -0700 (PDT)
+        with ESMTP id S229542AbiJaCpd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Oct 2022 22:45:33 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2131.outbound.protection.outlook.com [40.107.223.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAEDC62C8;
+        Sun, 30 Oct 2022 19:45:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ASspo+WiFW21gF0pWYeyPRg3RESu3EaAlsNAZR6Rg3pFh6KNx6FOMswojkgeyJ+4xNu6dCmg+H6JX5BB+O9n+uXjhmbr6xBCKKci8w27Ra+WClACZ/MWDsZV+oW0m+6moxaQa3zuT3e8KP6OFRc2a1RDGjoYC+CjeqOHV97MvuB8JWkErEgI10D5aD2KIDohEpZVLKoqiheAo5sZBgEb3ThO6eYw45mYIIjsB5qCWcJiyfzpChBIdIpKAUtF6gnLhS1k+NaeeI/b8jxRSKxFMpzpVM0W5ohcty9dySRsm6lL3fgThIzeIANQeuy5l5Xn5TQ92TRXZb8hevQznTQscw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bC5nq/2r5ZrpnC3yL/x25JaSbZkzCTR3f1J6GSRSltU=;
+ b=aqVBEoXPKAV3MPIWcrHIk3+PmY8XCfWWlo5F5SAmTmPNZHwLUA3bDC6iuke29y+QvUgbgENNcqYAT2By559Yk7wi3t9cdJn/6tVYaQZg6cJXDLFL3qhfSi8/tzJmL5Igo+z5yLYfZ84rnj2Tf2NYokXPKPD58Du7Mo3V63UJYKRXaqja3k9y3cM/ANyB076x3reZLg5iZ9RaxgZcC2nK8GUx+ISF5ywJ5hDrO5JKLW3Z8EbnQpuQx7l7bFlI7SjtUB90pgl8jGS9Rp/LzEN6KCGf00eTOi+Ku+l3g6BJeVzVpw4vG86TKqJF6sJYKzqok3twVSfHobb+pGU0QGVZ0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tdwtzHR+xQdJbDyYyz1o5nHG0wEHYVT1LmuGtsV2+G8=;
-        b=YIM59IV43rjaq5RAKarM+/WlP1FL/zRcbhtZ/cHSh33QyBibZh4c9ZIqPkhTjJdjnN
-         vzwh94kHUuUam35TUAbCMLqSYKC3d5cLAMvMK+uxYPTSHUAdD/3WJhvLnafMKLB73L8H
-         AbvXQHrd4LdL8GQKmlogEqZAQWIYjaAWoFHTuufs+yGEz+qsQZX/1HQEG6fXrJtiFTSB
-         eeJVRE+kaNL+ofeI2QJW4Dw+ba0INdVuFS6yoqo66Nx7Ef6dxVsD7PkQqkOrDlzePJBK
-         fLQpEWXD2EEPWVX62xWMxHIdAgd5lHm8KvHIC1fHmaQbxVaLEFIPE9ZreqN7T/JPDzoO
-         fu1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tdwtzHR+xQdJbDyYyz1o5nHG0wEHYVT1LmuGtsV2+G8=;
-        b=29ThP2PVYLVOmaoJGC0uJgQ3NmzsATbkxCHZkKBQJ4yrJTQwYYvSm1zTPfjPlk3xZU
-         SjR+0XWiIWAIhgNZo65ZjVOJRcFWmBGSj4L0iLgsbQn5b/IEqyOqLXWieaPm4pOcq8lp
-         y37DS5pMGBIY12zWhgt+xnSlgVeBzoYdLhYVDBsAg7lcj5WaFdEh51XnIV2M+68hU+Dw
-         8fm5yn0pjdixMA5JrqAtaQX1exg7NEslS0KB4zQuTGD4NYTyoXp1eEfPtJFWG7eqSYI8
-         4qYZAEUtRmqMue39yv5MMWRR/W/HHZujB1hV4PiWK0BBZ+Q5LRjvSXByQ0SxiQZhFrbn
-         bIuA==
-X-Gm-Message-State: ACrzQf0lorrNcaSHUoQTbHkaOlWLp/b4BxvjSSd9AlFabOP+zoIIbDk8
-        fURlm4Rs7w8/b2kilI9Vr1I=
-X-Google-Smtp-Source: AMsMyM5l4MA6BkI467Rx/cJRzGQ2F8lqrurOIFZAW6NkP91c8FD+E2EE0BG89UtfADxtrolIM0CNwg==
-X-Received: by 2002:a17:902:d409:b0:186:af8d:4029 with SMTP id b9-20020a170902d40900b00186af8d4029mr11880672ple.78.1667183346534;
-        Sun, 30 Oct 2022 19:29:06 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:46a:ab6a:820:3d51:c22d:4bb5])
-        by smtp.gmail.com with ESMTPSA id q42-20020a17090a17ad00b0021282014066sm3064504pja.9.2022.10.30.19.29.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 30 Oct 2022 19:29:06 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        broonie@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] regulator: rt6190: Add support for Richtek RT6190 regulator
-Date:   Mon, 31 Oct 2022 10:28:54 +0800
-Message-Id: <1667183334-16511-3-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1667183334-16511-1-git-send-email-u0084500@gmail.com>
-References: <1667183334-16511-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bC5nq/2r5ZrpnC3yL/x25JaSbZkzCTR3f1J6GSRSltU=;
+ b=ih6DlIXrQzM99b1C2YLFlILrEolYKm3UkwMEIX6ua3lwRp29INMS6jo9G51az8437Omk+WBEp8LRL356nZZmUnnsdMGSuzpHDhFnCDbvZhRiRmf7CWR4eSVnkgRtComRC+yIRTuRR4Lmi50toM556aKBMn+pXRXmwLLjVDEGPlE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SN4PR01MB7455.prod.exchangelabs.com (2603:10b6:806:202::11) by
+ BYAPR01MB5336.prod.exchangelabs.com (2603:10b6:a03:11e::33) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5769.19; Mon, 31 Oct 2022 02:45:24 +0000
+Received: from SN4PR01MB7455.prod.exchangelabs.com ([fe80::44c1:e119:56:cd90])
+ by SN4PR01MB7455.prod.exchangelabs.com ([fe80::44c1:e119:56:cd90%7]) with
+ mapi id 15.20.5769.015; Mon, 31 Oct 2022 02:45:24 +0000
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Open Source Submission <patches@amperecomputing.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com,
+        Quan Nguyen <quan@os.amperecomputing.com>
+Subject: [PATCH v10 0/3] Add Ampere's Altra SMPro child drivers
+Date:   Mon, 31 Oct 2022 09:44:39 +0700
+Message-Id: <20221031024442.2490881-1-quan@os.amperecomputing.com>
+X-Mailer: git-send-email 2.35.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0012.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::8) To SN4PR01MB7455.prod.exchangelabs.com
+ (2603:10b6:806:202::11)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR01MB7455:EE_|BYAPR01MB5336:EE_
+X-MS-Office365-Filtering-Correlation-Id: 47b4b5a5-863f-44d3-6b9e-08dabae9f554
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +c78kSYvA0tyxKftVZlZUGnAA5ni8EeDfIB3VX71PoYMQBtR3kJNiaA6UPCWmW7LV5Dkoj5GDNBFLyeleM8hKBV7oVIjHMZikQxbcJDQ5QGQI2pTANOhW1zmxnkkZORqI1TJ/5Juxs5eDOsHRzRt4VWAcRf8UVb+zlWCFTvMlPEBEctbMqt0YobUfvN4uUO9htGICLFyyQpWztCt7ffSmvoMeGu4cme6r59LR2D9rj12Ej8lVqjAKEUxPJqQI9DlNLU2azxKi67Jg4CsfrnBd4Zg4XjBzI/Cn3/ZwY5MHwg880RX3yBRTvp/B5NZTZf5NOznb8vcjaNafOsqFmVin4gTGWl4kbrheV0lkg7D0/z/h9SvpzvD7rACxU5t/rzT1vF3LkWFB2xMixKFuc8QXt8Ij4X+lnxpfIn5u+wEZCD94YcG/DiK8xulbrNC40iDqEqLiTZgTTytbmHwfW9XbwMUlg3iCkyjbWORH2BiS8nVIgmTVFvCxNorS2MpyltQCsPiZZvoeJSSJCNQtbIY7l20VrA/eOcCjEQGuc/47pCkBtsbZz3yAXhLh4++uX67T7/O1qB8odzxWPIZFuyTUCo2ai6JgotSGTqV3rMOVK1BXc+wfADX1081yFLp6RWK3fp9sUmq6ZnTubb1XkMOH3stbR5KzYJgVPeJRLpljOxgSymt3GxuaFNZHrf3hF+7+jwT30iPxPyfu8jEYzqCqGVKSdxCROFMX0AliA3WyYwv49yZAOjDUEWbb9dTpwisCVS9EA52QFDPYPoKBrx9wq3w9VmpFOdoXIYwK7e/gjM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR01MB7455.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(376002)(396003)(39840400004)(366004)(451199015)(38100700002)(38350700002)(66476007)(66556008)(8676002)(66946007)(54906003)(110136005)(4326008)(6486002)(316002)(86362001)(83380400001)(2906002)(52116002)(26005)(966005)(6506007)(6512007)(8936002)(186003)(5660300002)(6666004)(107886003)(41300700001)(478600001)(7416002)(2616005)(1076003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e61jVewvDmSeV9QswtQrIS/dBzUkKuXb2kFk1+IfYOxEpdZZpAEYWce/y1mw?=
+ =?us-ascii?Q?2pgeN6OLh2wqLxhVKg0tr910vLY7E14P6O5ZomYAXSLr1nZ7D45w6iMGNY2T?=
+ =?us-ascii?Q?yBsqAyoHVo6up++YFk0GuOXHZuiQ1yeaoWJrcZCgFa9fZmp5T9F5g4vqckrv?=
+ =?us-ascii?Q?3Z8hyy/FNUl3yHXIzkS7WlhQfwp0j0ROvpCTgOv+Wa1vwge9GBvDAlURa4Hg?=
+ =?us-ascii?Q?Hzu/slc7BRAIV/gNBAEh0k0FH0oLpin/GmlC+dhg6PTgg/XKxAzMbIGpjSpg?=
+ =?us-ascii?Q?oxQ/UB+A7qJ8NAuvTeN9f0le+PJcbORZOk1eieUwFt46R1uEQ5dIC77CCEzt?=
+ =?us-ascii?Q?WiF6UqwJK+YxkbGM/V0ysuugFpmyyw948JhJLn/3nhvIbDP824jIrOOcIpwK?=
+ =?us-ascii?Q?KanIB3765SAZdH8tTxXjbskTYaePe+oLV11qibTtalBPJtSSWaCOi4pcEysq?=
+ =?us-ascii?Q?IVMB1kCvGYNeyphJ6IK1w4tEL8bAGOyVh8plUbN1YG7leeoMUqxPjBoODCur?=
+ =?us-ascii?Q?cCKXOpSRRl0qlz41biwk0BEWU+eMxa3q9voN+GELW31AistOwUwIOwyCCzJ0?=
+ =?us-ascii?Q?3gL+HVhPadD16Am4ZWJItIIk/NxRP6Zs6jG0wvShsshqwxd95FNWmLwYsb/j?=
+ =?us-ascii?Q?DCpcxEAJk+vXkWpS3008eRbjwHkGfKtjS1rSIvPPS2Jlkvk+zA1chU8QU41H?=
+ =?us-ascii?Q?+AcClFP4Pak4UR5HxyfyRN7sYKuGL4FtD8pbfuT9OjNbY1z0uqM52Y/muv1z?=
+ =?us-ascii?Q?nCgTzWak3zMb/wahX5UvrIyHwJdaur4ePZmDAWw/KtnoTvVeA1gv1/F70dNx?=
+ =?us-ascii?Q?uYJ0vT3J1BFiO8KZLCsAlzBC9eJS24rM1u92tTEAmelgBP1yLbiiGuMV4Vq+?=
+ =?us-ascii?Q?0RuR7OH8JOuKCmSPVnp9SBar2cpDivEKHWCY9ypk8NG5UKSC6DO6TxsczrF/?=
+ =?us-ascii?Q?3mElQhOP/9x2fbmJJ+/c6PrekssbShKT3jA2r7WYPyXWAODRhKEwRo7vwFc9?=
+ =?us-ascii?Q?hFDkCyhrlarHJpZmvOkJE5UccrhexDqoe/res27kqkD5nUvSjQmqo8x05v5W?=
+ =?us-ascii?Q?/PtWsNEBQiDxfA82bZZgswGU5fDtHUtv5OnBkKL7zMUt9h5HVz2oarBAtoOz?=
+ =?us-ascii?Q?Z21UIaNqEbVHs/i2IPaWk7qo5KmFizt1iuO45JtVgiVrsYaT9uEvcHF2H679?=
+ =?us-ascii?Q?KnxRqaYO2idMZulEssaGiA2rpw9SrXBTX3CK/F+5QxIAAskG0JDkrdLWOd/6?=
+ =?us-ascii?Q?1jGmFlSExjaigjDth4rKHNi/YGk4VvLuxUhWmY/boFQdegmewLM3ZJYesKix?=
+ =?us-ascii?Q?IhgrOrwL6S3kvxV1CMvWfGgQOlbipUgPaZ+ckZJzGLu3pOtdc5awEgG+nQew?=
+ =?us-ascii?Q?T/lHsGgawhOXOhgw3q0xYhtXkgvIfRHFnqBwgpPELc1WuFO1cHRuyEo/f9zo?=
+ =?us-ascii?Q?/Jx+l6lcdGq6/xlvX0/btg7aBMG8H41cIeVw33FEW4JCUoP3DFH76vw18G/A?=
+ =?us-ascii?Q?xcrBH+/V/QH/AqKiZlBGGhWLSZ6mGZvX6JplHY9U4K2xvzMui5XA/QWpA8U9?=
+ =?us-ascii?Q?c8FNB6cRebvzLL+2oKgXT35LoRh0BQnT0HuKF6yOEmaYW7B1XYmZNUPqawnu?=
+ =?us-ascii?Q?m9ltUfiQmhF8JZYfD49IyBg=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47b4b5a5-863f-44d3-6b9e-08dabae9f554
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR01MB7455.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2022 02:45:23.9004
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vmgBCr+VaCjxOuP5cgNxTDcq7TkQfuhZBJTcQ9lFrPqTwNnQseebQoDdhDck06v9jZgpirmfPqWKbERAcZCVr/ll6kjjUhQtg825lQrHf3g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR01MB5336
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+The SMpro co-processor on Ampere Altra processor family is to monitor
+and report various data included hwmon-related info, RAS errors, and
+other miscellaneous information. The SMPro MFD driver initializes the
+register map and instantiates all sub-devices. All the specifics will
+be handled in the child drivers.
 
-Add support for Richtek RT6190 4-Switch BuckBoost controller.
+As some patches in previous version were picked, this patchset includes
+the remain patches which are Ampere SMpro errmon, SMPRO misc and dt
+bindings document for SMPro MFD driver. The errmon driver supports
+monitoring and reporting RAS-related errors. The misc driver supports
+reporting boot progress and other miscellaneous information.
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- drivers/regulator/Kconfig            |  11 +
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/rt6190-regulator.c | 495 +++++++++++++++++++++++++++++++++++
- 3 files changed, 507 insertions(+)
- create mode 100644 drivers/regulator/rt6190-regulator.c
+Discussion for v9:
+https://lore.kernel.org/lkml/Y1aHiaZ1OpHZIzS9@google.com/T/
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 070e440..4e4614d 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1124,6 +1124,17 @@ config REGULATOR_RT6160
- 	  The wide output range is from 2025mV to 5200mV and can be used on most
- 	  common application scenario.
- 
-+config REGULATOR_RT6190
-+	tristate "Richtek RT6190 4-Switch BuckBoost controller"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  The RT6190 is a 4-Switch BuckBoost controller designed for converting
-+	  input voltage to output voltage that can be equal to, higher or lower
-+	  than input voltage. It operates with wide input voltage range from
-+	  4.5V to 36V, and the output voltage can be set from 3V to 36V by
-+	  external FB pin.
-+
- config REGULATOR_RT6245
- 	tristate "Richtek RT6245 voltage regulator"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 5962307..c3b5cf6 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -134,6 +134,7 @@ obj-$(CONFIG_REGULATOR_RT5120)	+= rt5120-regulator.o
- obj-$(CONFIG_REGULATOR_RT5190A) += rt5190a-regulator.o
- obj-$(CONFIG_REGULATOR_RT5759)	+= rt5759-regulator.o
- obj-$(CONFIG_REGULATOR_RT6160)	+= rt6160-regulator.o
-+obj-$(CONFIG_REGULATOR_RT6190)	+= rt6190-regulator.o
- obj-$(CONFIG_REGULATOR_RT6245)	+= rt6245-regulator.o
- obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
- obj-$(CONFIG_REGULATOR_RTQ2134) += rtq2134-regulator.o
-diff --git a/drivers/regulator/rt6190-regulator.c b/drivers/regulator/rt6190-regulator.c
-new file mode 100644
-index 00000000..995e028
---- /dev/null
-+++ b/drivers/regulator/rt6190-regulator.c
-@@ -0,0 +1,495 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 Richtek Technology Corp.
-+ *
-+ * Author: ChiYuan Huang <cy_huang@richtek.com>
-+ *
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+#define RT6190_REG_VID		0x00
-+#define RT6190_REG_OUTV		0x01
-+#define RT6190_REG_OUTC		0x03
-+#define RT6190_REG_SET1		0x0D
-+#define RT6190_REG_SET2		0x0E
-+#define RT6190_REG_SET4		0x10
-+#define RT6190_REG_RATIO	0x11
-+#define RT6190_REG_OUT_VOLT_L	0x12
-+#define RT6190_REG_TEMP_H	0x1B
-+#define RT6190_REG_STAT1	0x1C
-+#define RT6190_REG_ALERT1	0x1E
-+#define RT6190_REG_ALERT2	0x1F
-+#define RT6190_REG_MASK2	0x21
-+#define RT6190_REG_OCPEN	0x28
-+#define RT6190_REG_SET5		0x29
-+#define RT6190_REG_VBUSC_ADC	0x32
-+#define RT6190_REG_BUSC_VOLT_L	0x33
-+#define RT6190_REG_BUSC_VOLT_H	0x34
-+#define RT6190_REG_STAT3	0x37
-+#define RT6190_REG_ALERT3	0x38
-+#define RT6190_REG_MASK3	0x39
-+
-+#define RT6190_ENPWM_MASK	BIT(7)
-+#define RT6190_ENDCHG_MASK	BIT(4)
-+#define RT6190_ALERT_OTPEVT	BIT(6)
-+#define RT6190_ALERT_UVPEVT	BIT(5)
-+#define RT6190_ALERT_OVPEVT	BIT(4)
-+#define RT6190_ENGCP_MASK	BIT(1)
-+#define RT6190_FCCM_MASK	BIT(7)
-+
-+#define RICHTEK_VID		0x82
-+#define RT6190_OUT_MIN_UV	3000000
-+#define RT6190_OUT_MAX_UV	32000000
-+#define RT6190_OUT_STEP_UV	20000
-+#define RT6190_OUT_N_VOLT	(RT6190_OUT_MAX_UV / RT6190_OUT_STEP_UV + 1)
-+#define RT6190_OUTV_MINSEL	150
-+#define RT6190_OUT_MIN_UA	306000
-+#define RT6190_OUT_MAX_UA	12114000
-+#define RT6190_OUT_STEP_UA	24000
-+#define RT6190_OUTC_MINSEL	19
-+#define RT6190_EN_TIME_US	500
-+
-+#define RT6190_PSM_MODE		0
-+#define RT6190_FCCM_MODE	1
-+
-+struct rt6190_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct gpio_desc *enable_gpio;
-+	unsigned int cached_alert_evt;
-+};
-+
-+static int rt6190_out_set_voltage_sel(struct regulator_dev *rdev,
-+				      unsigned int selector)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	__le16 le_sel = cpu_to_le16(selector);
-+
-+	return regmap_raw_write(regmap, RT6190_REG_OUTV, &le_sel,
-+				sizeof(le_sel));
-+}
-+
-+static int rt6190_out_get_voltage_sel(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	__le16 le_sel;
-+	int ret;
-+
-+	ret = regmap_raw_read(regmap, RT6190_REG_OUTV, &le_sel, sizeof(le_sel));
-+
-+	return ret ?: le16_to_cpu(le_sel);
-+}
-+
-+static int rt6190_out_enable(struct regulator_dev *rdev)
-+{
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	u8 out_cfg[4];
-+	int ret;
-+
-+	pm_runtime_get_sync(data->dev);
-+
-+	/*
-+	 * From off to on, vout config will restore to IC default.
-+	 * Read vout configs before enable, and restore them after enable
-+	 */
-+	ret = regmap_raw_read(regmap, RT6190_REG_OUTV, out_cfg,
-+			      sizeof(out_cfg));
-+	if (ret)
-+		return ret;
-+
-+	ret = regulator_enable_regmap(rdev);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_raw_write(regmap, RT6190_REG_OUTV, out_cfg,
-+			       sizeof(out_cfg));
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(regmap, RT6190_REG_SET5, RT6190_ENGCP_MASK,
-+				  RT6190_ENGCP_MASK);
-+}
-+
-+static int rt6190_out_disable(struct regulator_dev *rdev)
-+{
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	int ret;
-+
-+	ret = regmap_update_bits(regmap, RT6190_REG_SET5, RT6190_ENGCP_MASK, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = regulator_disable_regmap(rdev);
-+	if (ret)
-+		return ret;
-+
-+	/* cleared cached alert event */
-+	data->cached_alert_evt = 0;
-+
-+	pm_runtime_put(data->dev);
-+
-+	return 0;
-+}
-+
-+static int rt6190_out_set_current_limit(struct regulator_dev *rdev, int min_uA,
-+					int max_uA)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	int csel, clim;
-+	__le16 le_csel;
-+
-+	if (min_uA < RT6190_OUT_MIN_UA || max_uA > RT6190_OUT_MAX_UA)
-+		return -EINVAL;
-+
-+	csel = DIV_ROUND_UP(min_uA - RT6190_OUT_MIN_UA, RT6190_OUT_STEP_UA);
-+
-+	clim = RT6190_OUT_MIN_UA + RT6190_OUT_STEP_UA * csel;
-+	if (clim > max_uA)
-+		return -EINVAL;
-+
-+	csel += RT6190_OUTC_MINSEL;
-+	le_csel = cpu_to_le16(csel);
-+
-+	return regmap_raw_write(regmap, RT6190_REG_OUTC, &le_csel,
-+				sizeof(le_csel));
-+}
-+
-+static int rt6190_out_get_current_limit(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	__le16 le_csel;
-+	int csel, ret;
-+
-+	ret = regmap_raw_read(regmap, RT6190_REG_OUTC, &le_csel,
-+			      sizeof(le_csel));
-+	if (ret)
-+		return ret;
-+
-+	csel = le16_to_cpu(le_csel);
-+	csel -= RT6190_OUTC_MINSEL;
-+
-+	return RT6190_OUT_MIN_UA + RT6190_OUT_STEP_UA * csel;
-+}
-+
-+static int rt6190_out_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int val;
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+		val = RT6190_FCCM_MASK;
-+		break;
-+	case REGULATOR_MODE_NORMAL:
-+		val = 0;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, RT6190_REG_SET1, RT6190_FCCM_MASK,
-+				  val);
-+}
-+
-+static unsigned int rt6190_out_get_mode(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev_get_regmap(rdev);
-+	unsigned int config;
-+	int ret;
-+
-+	ret = regmap_read(regmap, RT6190_REG_SET1, &config);
-+	if (ret)
-+		return REGULATOR_MODE_INVALID;
-+
-+	if (config & RT6190_FCCM_MASK)
-+		return REGULATOR_MODE_FAST;
-+
-+	return REGULATOR_MODE_NORMAL;
-+}
-+
-+static int rt6190_out_get_error_flags(struct regulator_dev *rdev,
-+				      unsigned int *flags)
-+{
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	unsigned int state, rpt_flags = 0;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, RT6190_REG_STAT1, &state);
-+	if (ret)
-+		return ret;
-+
-+	state |= data->cached_alert_evt;
-+
-+	if (state & RT6190_ALERT_OTPEVT)
-+		rpt_flags |= REGULATOR_ERROR_OVER_TEMP;
-+
-+	if (state & RT6190_ALERT_UVPEVT)
-+		rpt_flags |= REGULATOR_ERROR_UNDER_VOLTAGE;
-+
-+	if (state & RT6190_ALERT_OVPEVT)
-+		rpt_flags |= REGULATOR_ERROR_REGULATION_OUT;
-+
-+	*flags = rpt_flags;
-+
-+	return 0;
-+}
-+
-+static unsigned int rt6190_out_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case RT6190_PSM_MODE:
-+		return REGULATOR_MODE_NORMAL;
-+	case RT6190_FCCM_MODE:
-+		return REGULATOR_MODE_FAST;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static const struct regulator_ops rt6190_regulator_ops = {
-+	.list_voltage = regulator_list_voltage_linear,
-+	.set_voltage_sel = rt6190_out_set_voltage_sel,
-+	.get_voltage_sel = rt6190_out_get_voltage_sel,
-+	.enable = rt6190_out_enable,
-+	.disable = rt6190_out_disable,
-+	.is_enabled = regulator_is_enabled_regmap,
-+	.set_current_limit = rt6190_out_set_current_limit,
-+	.get_current_limit = rt6190_out_get_current_limit,
-+	.set_active_discharge = regulator_set_active_discharge_regmap,
-+	.set_mode = rt6190_out_set_mode,
-+	.get_mode = rt6190_out_get_mode,
-+	.get_error_flags = rt6190_out_get_error_flags,
-+};
-+
-+static const struct regulator_desc rt6190_regulator_desc = {
-+	.name = "rt6190-regulator",
-+	.type = REGULATOR_VOLTAGE,
-+	.owner = THIS_MODULE,
-+	.ops = &rt6190_regulator_ops,
-+	.min_uV = RT6190_OUT_MIN_UV,
-+	.uV_step = RT6190_OUT_STEP_UV,
-+	.n_voltages = RT6190_OUT_N_VOLT,
-+	.linear_min_sel = RT6190_OUTV_MINSEL,
-+	.enable_reg = RT6190_REG_SET2,
-+	.enable_mask = RT6190_ENPWM_MASK,
-+	.active_discharge_reg = RT6190_REG_SET2,
-+	.active_discharge_mask = RT6190_ENDCHG_MASK,
-+	.active_discharge_on = RT6190_ENDCHG_MASK,
-+	.of_map_mode = rt6190_out_of_map_mode,
-+};
-+
-+static bool rt6190_is_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case RT6190_REG_OUT_VOLT_L ... RT6190_REG_ALERT2:
-+	case RT6190_REG_BUSC_VOLT_L ... RT6190_REG_BUSC_VOLT_H:
-+	case RT6190_REG_STAT3 ... RT6190_REG_ALERT3:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct regmap_config rt6190_regmap_config = {
-+	.name = "rt6190",
-+	.cache_type = REGCACHE_FLAT,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = RT6190_REG_MASK3,
-+	.num_reg_defaults_raw = RT6190_REG_MASK3 + 1,
-+	.volatile_reg = rt6190_is_volatile_reg,
-+};
-+
-+static irqreturn_t rt6190_irq_handler(int irq, void *devid)
-+{
-+	struct regulator_dev *rdev = devid;
-+	struct rt6190_data *data = rdev_get_drvdata(rdev);
-+	unsigned int alert;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, RT6190_REG_ALERT1, &alert);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	/* Write clear alert events */
-+	ret = regmap_write(data->regmap, RT6190_REG_ALERT1, alert);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	data->cached_alert_evt |= alert;
-+
-+	if (alert & RT6190_ALERT_OTPEVT)
-+		regulator_notifier_call_chain(rdev, REGULATOR_EVENT_OVER_TEMP, NULL);
-+
-+	if (alert & RT6190_ALERT_UVPEVT)
-+		regulator_notifier_call_chain(rdev, REGULATOR_EVENT_UNDER_VOLTAGE, NULL);
-+
-+	if (alert & RT6190_ALERT_OVPEVT)
-+		regulator_notifier_call_chain(rdev, REGULATOR_EVENT_REGULATION_OUT, NULL);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rt6190_init_registers(struct regmap *regmap)
-+{
-+	int ret;
-+
-+	/* Enable_ADC = 1 */
-+	ret = regmap_write(regmap, RT6190_REG_SET4, 0x82);
-+	if (ret)
-+		return ret;
-+
-+	/* Config default VOUT ratio to be higher */
-+	ret = regmap_write(regmap, RT6190_REG_RATIO, 0x20);
-+
-+	/* Mask unused alert */
-+	ret = regmap_write(regmap, RT6190_REG_MASK2, 0);
-+	if (ret)
-+		return ret;
-+
-+	/* OCP config */
-+	ret = regmap_write(regmap, RT6190_REG_OCPEN, 0);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable VBUSC ADC */
-+	return regmap_write(regmap, RT6190_REG_VBUSC_ADC, 0x02);
-+}
-+
-+static int rt6190_probe(struct i2c_client *i2c)
-+{
-+	struct device *dev = &i2c->dev;
-+	struct rt6190_data *data;
-+	struct gpio_desc *enable_gpio;
-+	struct regmap *regmap;
-+	struct regulator_dev *rdev;
-+	struct regulator_config cfg = {};
-+	unsigned int vid;
-+	int ret;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	enable_gpio = devm_gpiod_get_optional(dev, "enable", GPIOD_OUT_HIGH);
-+	if (IS_ERR(enable_gpio))
-+		return dev_err_probe(dev, PTR_ERR(enable_gpio), "Failed to get 'enable' gpio\n");
-+	else if (enable_gpio)
-+		usleep_range(RT6190_EN_TIME_US, RT6190_EN_TIME_US * 2);
-+
-+	regmap = devm_regmap_init_i2c(i2c, &rt6190_regmap_config);
-+	if (IS_ERR(regmap))
-+		return dev_err_probe(dev, PTR_ERR(regmap), "Failed to init regmap\n");
-+
-+	data->dev = dev;
-+	data->enable_gpio = enable_gpio;
-+	data->regmap = regmap;
-+	i2c_set_clientdata(i2c, data);
-+
-+	ret = regmap_read(regmap, RT6190_REG_VID, &vid);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read VID\n");
-+
-+	if (vid != RICHTEK_VID)
-+		return dev_err_probe(dev, -ENODEV, "Incorrect VID 0x%02x\n", vid);
-+
-+	ret = rt6190_init_registers(regmap);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to init registers\n");
-+
-+	pm_runtime_set_active(dev);
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to set pm_runtime enable\n");
-+
-+	cfg.dev = dev;
-+	cfg.of_node = dev->of_node;
-+	cfg.driver_data = data;
-+	cfg.init_data = of_get_regulator_init_data(dev, dev->of_node,
-+						   &rt6190_regulator_desc);
-+
-+	rdev = devm_regulator_register(dev, &rt6190_regulator_desc, &cfg);
-+	if (IS_ERR(rdev))
-+		return dev_err_probe(dev, PTR_ERR(rdev), "Failed to register regulator\n");
-+
-+	if (i2c->irq) {
-+		ret = devm_request_threaded_irq(dev, i2c->irq, NULL,
-+						rt6190_irq_handler,
-+						IRQF_ONESHOT, dev_name(dev),
-+						rdev);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to register interrupt\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int rt6190_runtime_suspend(struct device *dev)
-+{
-+	struct rt6190_data *data = dev_get_drvdata(dev);
-+	struct regmap *regmap = data->regmap;
-+
-+	if (!data->enable_gpio)
-+		return 0;
-+
-+	regcache_cache_only(regmap, true);
-+	regcache_mark_dirty(regmap);
-+
-+	gpiod_set_value(data->enable_gpio, 0);
-+
-+	return 0;
-+}
-+
-+static int rt6190_runtime_resume(struct device *dev)
-+{
-+	struct rt6190_data *data = dev_get_drvdata(dev);
-+	struct regmap *regmap = data->regmap;
-+
-+	if (!data->enable_gpio)
-+		return 0;
-+
-+	gpiod_set_value(data->enable_gpio, 1);
-+	usleep_range(RT6190_EN_TIME_US, RT6190_EN_TIME_US * 2);
-+
-+	regcache_cache_only(regmap, false);
-+	return regcache_sync(regmap);
-+}
-+
-+static const struct dev_pm_ops __maybe_unused rt6190_dev_pm = {
-+	RUNTIME_PM_OPS(rt6190_runtime_suspend, rt6190_runtime_resume, NULL)
-+};
-+
-+static const struct of_device_id rt6190_of_dev_table[] = {
-+	{ .compatible = "richtek,rt6190" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, rt6190_of_dev_table);
-+
-+static struct i2c_driver rt6190_driver = {
-+	.driver = {
-+		.name = "rt6190",
-+		.of_match_table = rt6190_of_dev_table,
-+		.pm = pm_ptr(&rt6190_dev_pm),
-+	},
-+	.probe_new = rt6190_probe,
-+};
-+module_i2c_driver(rt6190_driver);
-+
-+MODULE_DESCRIPTION("Richtek RT6190 regulator driver");
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_LICENSE("GPL");
+v10:
+  + Revise and fix document format                             [Bagas]
+  + Update commit message: s/This commit adds/Add/             [Bagas]
+  + Use
+    Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+                                                                [Greg]
+  + Drop Documentation/misc-devices/smpro-[errmon|misc].rst     [Greg]
+
+v9:
+  + Fix issue when building htmldocs                           [Bagas]
+  + Insert 'break;' to avoid fall-through          [kernel test robot]
+  + Update SPDX license                                         [Greg]
+  + Fix messy goto                                              [Greg]
+  + Use ATTRIBUTE_GROUPS()                                      [Greg]
+  + Use dev_groups instead of sysfs_create_group() to avoid
+  user space racing issue                                       [Greg]
+  + Fix ugly static struct define                               [Greg]
+  + Rename smpro-mfd.c to smpro-core.c                     [Lee Jones]
+  + Fix include files in alphabetical order                [Lee Jones]
+  + Add defines to avoid using magic numbers               [Lee Jones]
+  + Return -EINVAL if device does not match                [Lee Jones]
+  + Remove unnecessary comment                             [Lee Jones]
+  + Remove unnecessary channel info for VRD and DIMM event      [Quan]
+  + Separate error_[smpro|pmpro] to error_* and warn_*          [Quan]
+  + Add minor refactor code                                     [Quan]
+
+v8:
+  + Insert 'break;' to avoid fall-through          [kernel test robot]
+  + Avoid uninitialized variable use               [kernel test robot]
+  + Remove unused #*_cells                                 [Krzysztof]
+  + Switch to use sysfs_emit()                                  [Greg]
+  + Sysfs to return single value only                           [Greg]
+  + Fix KernelVerion field in Documentation/ABI/testing doc     [Greg]
+  + Change errors_* sysfs to error_*                            [Quan]
+  + Add overflow_[core|mem|pcie|other]_[ce|ue] sysfs to report
+  overflow status of each type of HW errors                     [Quan]
+  + Update wording in Kconfig for smpro-errmon and smpro-misc   [Quan]
+  + Masks reserved bit when read 10-bit power value             [Quan]
+  + Add some minor refactor                                     [Quan]
+
+v7:
+  + Add docs to Documentation/ABI/testing                       [Greg]
+  + Re-order patches to avoid compile dependency           [Lee Jones]
+  + Remove regmap_acquire/release_lock()                        [Quan]
+  + Install regmap bus->read/write() to handle multiple types of bus
+    access                                                      [Quan]
+  + Replace i2c block read by regmap_noinc_read()               [Quan]
+  + Fix wrong return type of *show/store()         [kernel test robot]
+  + Update GPL version                                          [Quan]
+  + Add some others minor code refactor                         [Quan]
+
+v6:
+  + Introduced smpro-errmon, smpro-misc as smpro-mfd sub-device [Quan]
+
+v5:
+  + Introduced the smpro-mfd driver and drop the use of
+  simple-mfd-i2c driver to avoid DT node with no resource in child
+  device DT nodes [Rob]
+  + Removed the use of reg DT property in child driver [Quan]
+  + Validated ManufactureID when probing smpro-mfd drivers [Quan]
+  + As child devices are instantiated by SMPro MFD driver, drop the
+  ManufacturerID checking in child driver, ie: smpro-hwmon [Quan]
+  + Revised commit messages [Quan]
+
+v4:
+  + Revised commit message [Quan]
+  + Fixed build issue found by kernel test robot [Guenter]
+  + Returned regmap_read() error code [Guenter]
+
+v3:
+  + Supported list of compatible string [Rob]
+  + Introduced reg property in DT to specify reg offset [Rob]
+  + Updated description and other minor changes in yaml file [Rob]
+  + Handled negative temperature value [Guenter]
+  + Returned -ENODEV if Manufacturer ID is wrong [Guenter]
+  + Refactored smpro_read_string() and smpro_temp_read() [Guenter]
+  + Removed smpro_write() function [Guenter]
+  + Added minor refactor changes [Quan]
+
+v2:
+  + Used 'struct of_device_id's .data attribute [Lee Jones]
+  + Removed "virtual" sensors [Guenter]
+  + Fixed typo "mili" to "milli", "nanoWatt" to "microWatt" [Guenter]
+  + Reported SOC_TDP as "Socket TDP" using max attributes [Guenter]
+  + Clarified "highest" meaning in documentation [Guenter]
+  + Corrected return error code when host is turn off [Guenter]
+  + Reported MEM HOT Threshold for all DIMMs as temp*_crit [Guenter]
+  + Removed license info as SPDX-License-Identifier existed [Guenter]
+  + Added is_visible() support [Guenter]
+  + Used HWMON_CHANNEL_INFO() macro and LABEL attributes [Guenter]
+  + Made is_valid_id() return boolean [Guenter]
+  + Returned -EPROBE_DEFER when smpro reg inaccessible [Guenter]
+  + Removed unnecessary error message when dev register fail [Guenter]
+  + Removed Socket TDP sensor [Quan]
+  + Changed "ampere,ac01-smpro" to "ampere,smpro" [Quan]
+  + Included sensor type and channel in labels [Quan]
+  + Refactorized code to fix checkpatch.pl --strict complaint [Quan]
+
+Quan Nguyen (3):
+  dt-bindings: mfd: Add bindings for Ampere Altra SMPro MFD driver
+  misc: smpro-errmon: Add Ampere's SMpro error monitor driver
+  misc: smpro-misc: Add Ampere's Altra SMpro misc driver
+
+ .../sysfs-bus-platform-devices-ampere-smpro   | 312 +++++++++++
+ .../devicetree/bindings/mfd/ampere,smpro.yaml |  42 ++
+ drivers/misc/Kconfig                          |  22 +
+ drivers/misc/Makefile                         |   2 +
+ drivers/misc/smpro-errmon.c                   | 529 ++++++++++++++++++
+ drivers/misc/smpro-misc.c                     | 145 +++++
+ 6 files changed, 1052 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-devices-ampere-smpro
+ create mode 100644 Documentation/devicetree/bindings/mfd/ampere,smpro.yaml
+ create mode 100644 drivers/misc/smpro-errmon.c
+ create mode 100644 drivers/misc/smpro-misc.c
+
 -- 
-2.7.4
+2.35.1
 
