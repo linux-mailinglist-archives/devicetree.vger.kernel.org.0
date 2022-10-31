@@ -2,241 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00236139CB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B1F6139E8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:21:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231209AbiJaPOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 11:14:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
+        id S231548AbiJaPVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 11:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbiJaPOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:14:46 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AEF41114D
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 08:14:44 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id bs21so16438165wrb.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 08:14:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cq37D+aG9RuZDRpw1wGP0MX3DtBta7wQtRmL2GXhPb4=;
-        b=jhEY/rH4R0H5Jw0+aK8ofpuUTm3LequKrN89nkw9m8UyuCrWEncYeG/MIC/Q/BcJ5C
-         cZKWafPttdd+RzhHys+cQ8ZAj3iGC66Dkv4ARaCytE7fJTKjvWXxGfzY48cJu0pstmcV
-         vYvmGW2kM3V3ddY4K+BVFcwZoXyjhW8nxnr2ohaYqK2JQHDzbwpac7Fh/4DP9fgAPZoK
-         iuWerTIRtLWjRoIiJCMV1xeLuWXbxb5ptIDs0apbFK56Gh3HpVh1yvsEYVyD7qfOu5K5
-         p6zU1TsGQwlyeSAQvBLe/NH3p7WWW97glUweqVvCakFYISidN6j7cHLmcN1SBI+y05Sr
-         qKhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cq37D+aG9RuZDRpw1wGP0MX3DtBta7wQtRmL2GXhPb4=;
-        b=JeDDfH0Sc6NDvSViMvkjKKp5mS67zlwZ6D+RU63eisy6aLvEuwJFfLdH6Sb55gmkU/
-         hsv9Ypb0CmlfeuIeRpxLW8IFWebrKSFhYLOySpCa75tiCisAg6iXCtSeJhaufUFYsTPD
-         h46ClacShFAenIA5WA9YaQmqnY60BiynPKXfuw/+hnyJRyGBNyPuSV/imSzEIAqLj+Ij
-         00l2gCWK6wN++9wRMv+LgCtTEIgpE8FcsMAjPpd/IU7fqOXMkPEMX5tD9lmUf7lnpYN4
-         Y1VfyWQWVVbE3D3n6mzZHDpws/dQZulywIzh7pEswG781LsdCX0rO17lBpY6Av1YkthY
-         +3pg==
-X-Gm-Message-State: ACrzQf1jEdqc122faZHcwGW/MdMVDmeCja5dttjTil/1RuUHTwaN0afq
-        T4fPOvDJC32Nbdy6S/ksYcntGQ==
-X-Google-Smtp-Source: AMsMyM4sXtzCevkx80TqZWjZyuYqrrzcc02J3pYnVDrKqdj1012o/P1qJje9tqqi88CEhob6+59a8g==
-X-Received: by 2002:a05:6000:54e:b0:236:5818:d432 with SMTP id b14-20020a056000054e00b002365818d432mr8582721wrf.37.1667229282996;
-        Mon, 31 Oct 2022 08:14:42 -0700 (PDT)
-Received: from [192.168.1.47] (242.155.4.93.rev.sfr.net. [93.4.155.242])
-        by smtp.gmail.com with ESMTPSA id t16-20020adff610000000b0023538fb27c1sm7398137wrp.85.2022.10.31.08.14.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Oct 2022 08:14:42 -0700 (PDT)
-Message-ID: <b251290f-d490-97f2-5642-9f801f6c68af@baylibre.com>
-Date:   Mon, 31 Oct 2022 16:14:38 +0100
+        with ESMTP id S230045AbiJaPVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:21:48 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192DF11472;
+        Mon, 31 Oct 2022 08:21:46 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VFLe99008531;
+        Mon, 31 Oct 2022 10:21:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667229700;
+        bh=ivwd/rVBE3ksKvYI9kBd9lldFarWaNKMhn52QAdm9ck=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=cEA/p5hSql10H8BCNeO6qZ1WWqv2CMamwYww/LhwVjvfvE1NGJFC1dU/qngCVWTzF
+         YBV+wUEc4jpxRModSLKm2auHKzKQWNTAO8m9hPO3LQqy0z6rPDsstrUEbVA3VSaQD7
+         zVRLK4lgOx8B3bqKB8Rv8htKvRa2M/4v8l8gXUPQ=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VFLeGj018433
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Oct 2022 10:21:40 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
+ Oct 2022 10:21:39 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 31 Oct 2022 10:21:39 -0500
+Received: from [10.250.35.234] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VFLdlY036825;
+        Mon, 31 Oct 2022 10:21:39 -0500
+Message-ID: <e855fc1f-ea6d-71b7-db32-5f34b4802f63@ti.com>
+Date:   Mon, 31 Oct 2022 10:21:39 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v5 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721s2-main: Enable crypto
+ accelerator
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>, "nm@ti.com" <nm@ti.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
+To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
-        "marcel.ziswiler@toradex.com" <marcel.ziswiler@toradex.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "jeff@labundy.com" <jeff@labundy.com>
-Cc:     "afd@ti.com" <afd@ti.com>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "msp@baylibre.com" <msp@baylibre.com>,
-        "j-keerthy@ti.com" <j-keerthy@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-References: <20220914140758.7582-1-jneanne@baylibre.com>
- <20220914140758.7582-5-jneanne@baylibre.com>
- <OS0PR01MB59221A8415766E7E3615F39E86379@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <a2000dfa-6872-fdf5-c636-755ae5a82728@baylibre.com>
- <OS0PR01MB59225CD0FF691E169F25F56886379@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   jerome Neanne <jneanne@baylibre.com>
-In-Reply-To: <OS0PR01MB59225CD0FF691E169F25F56886379@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221031135416.350010-1-j-choudhary@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221031135416.350010-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 31/10/2022 15:48, Biju Das wrote:
->> Subject: Re: [PATCH v5 4/6] mfd: tps65219: Add driver for TI TPS65219
->> PMIC
->>
->>
->>
->> On 31/10/2022 12:13, Biju Das wrote:
->>> Hi,
->>>
->>>> Subject: [PATCH v5 4/6] mfd: tps65219: Add driver for TI TPS65219
->>>> PMIC
->>>>
->>>> The TPS65219 is a power management IC PMIC designed to supply a
->> wide
->>>> range of SoCs in both portable and stationary applications. Any SoC
->>>> can control
->>>> TPS65219 over a standard I2C interface.
->>>>
->>>> It contains the following components:
->>>> - Regulators.
->>>> - Over Temperature warning and Shut down.
->>>> - GPIOs
->>>> - Multi Function Pins (MFP)
->>>> - power-button
->>>>
->>>> This patch adds support for tps65219 PMIC. At this time only the
->>>> functionalities listed below are made available:
->>>>
->>>> - Regulators probe and functionalities
->>>> - warm and cold reset support
->>>> - SW shutdown support
->>>> - Regulator warnings via IRQs
->>>> - Power-button via IRQ
->>>>
->>>> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
->>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->>>> ---
->>>>    MAINTAINERS                  |   1 +
->>>>    drivers/mfd/Kconfig          |  14 ++
->>>>    drivers/mfd/Makefile         |   1 +
->>>>    drivers/mfd/tps65219.c       | 320
->> ++++++++++++++++++++++++++++++++
->>>>    include/linux/mfd/tps65219.h | 345
->> +++++++++++++++++++++++++++++++++++
->>>>    5 files changed, 681 insertions(+)
->>>>    create mode 100644 drivers/mfd/tps65219.c  create mode 100644
->>>> include/linux/mfd/tps65219.h
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS index
->>>> f35b29ffd5fb..960df879c635 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -14926,6 +14926,7 @@ F:	drivers/mfd/menelaus.c
->>>>    F:	drivers/mfd/palmas.c
->>>>    F:	drivers/mfd/tps65217.c
->>>>    F:	drivers/mfd/tps65218.c
->>>> +F:	drivers/mfd/tps65219.c
->>>>    F:	drivers/mfd/tps65910.c
->>>>    F:	drivers/mfd/twl-core.[ch]
->>>>    F:	drivers/mfd/twl4030*.c
->>>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig index
->>>> abb58ab1a1a4..1a846c7dd0c2 100644
->>>> --- a/drivers/mfd/Kconfig
->>>> +++ b/drivers/mfd/Kconfig
->>>> @@ -1576,6 +1576,20 @@ config MFD_TPS65218
->>>>    	  This driver can also be built as a module.  If so, the module
->>>>    	  will be called tps65218.
->>>>
->>>> +config MFD_TPS65219
->>>> +	tristate "TI TPS65219 Power Management IC"
->>>> +	depends on I2C && OF
->>>> +	select MFD_CORE
->>>> +	select REGMAP_I2C
->>>> +	select REGMAP_IRQ
->>>> +	help
->>>> +	  If you say yes here you get support for the TPS65219 series of
->>>> Power
->>>> +	  Management ICs. These include voltage regulators, GPIOs and
->>>> +	  push/power button that are often used in portable devices.
->>>> +
->>>> +	  This driver can also be built as a module. If so, the module
->>>> +	  will be called tps65219.
->>>> +
->>>>    config MFD_TPS6586X
->>>>    	bool "TI TPS6586x Power Management chips"
->>>>    	depends on I2C=y
->>>> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile index
->>>> 858cacf659d6..a8ff3d6ea3ab 100644
->>>> --- a/drivers/mfd/Makefile
->>>> +++ b/drivers/mfd/Makefile
->>>> @@ -101,6 +101,7 @@ obj-$(CONFIG_TPS6507X)		+= tps6507x.o
->>>>    obj-$(CONFIG_MFD_TPS65086)	+= tps65086.o
->>>>    obj-$(CONFIG_MFD_TPS65217)	+= tps65217.o
->>>>    obj-$(CONFIG_MFD_TPS65218)	+= tps65218.o
->>>> +obj-$(CONFIG_MFD_TPS65219)	+= tps65219.o
->>>>    obj-$(CONFIG_MFD_TPS65910)	+= tps65910.o
->>>>    obj-$(CONFIG_MFD_TPS65912)	+= tps65912-core.o
->>>>    obj-$(CONFIG_MFD_TPS65912_I2C)	+= tps65912-i2c.o
->>>> diff --git a/drivers/mfd/tps65219.c b/drivers/mfd/tps65219.c new
->> file
->>>> mode
->>>> 100644 index 000000000000..c1638483e069
->>>> --- /dev/null
->>>> +++ b/drivers/mfd/tps65219.c
->>>> @@ -0,0 +1,320 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +//
->>>> +// Driver for TPS65219 Integrated Power Management Integrated
->> Chips
->>>> +(PMIC) // // Copyright (C) 2022 BayLibre Incorporated -
->>>> +
->>>> +
->>>> +static int tps65219_restart(struct notifier_block *this,
->>>> +			    unsigned long reboot_mode, void *cmd) {
->>>> +	struct tps65219 *tps;
->>>> +
->>>> +	tps = container_of(this, struct tps65219, nb);
->>>> +	if (!tps) {
->>>> +		pr_err("tps65219: Restarting failed because the pointer to
->>>> tps65219 is invalid\n");
->>> Why not dev_error?
->> Because I can't get correct device then: if !tps, I can't get tps->dev
->> Then can't reference device in dev_error. Do you have a better
->> suggestion than this pr_err?
+On 10/31/22 8:54 AM, Jayesh Choudhary wrote:
+> Add the node for SA2UL for supporting hardware crypto algorithms,
+> including SHA1, SHA256, SHA512, AES, 3DES and AEAD suites.
+> Add rng node for hardware random number generator.
 > 
-> How container_of can fail?
->
-Good point. This check sounds useless. I'll just remove then...
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+> 
+> Changes have been tested on local j721s2-evm board. Tcrypt tests
+> and crypto self-tests were passing.
+> 
+> Changelog v1 -> v2:
+> - change the TI_SCI flag from shared to exclusive as OP-TEE uses MCU
+>    domain SA2UL instance and not the main domain instance
+> - remove the 'dma-coherent' property (Binding changes are merged)
+> - add the rng node which can be used as well for hwrng along with
+>    optee-rng
+>    
+> v1 patch: https://lore.kernel.org/all/20220628054518.350717-1-j-choudhary@ti.com/
+> 
+> Testing log: https://gist.github.com/Jayesh2000/26acf0e63f7edcd4b267122e4c73b9a8
+> 
+>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 20 ++++++++++++++++++++
+>   1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> index d1ec26110376..7b828afc9280 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> @@ -72,6 +72,26 @@ main_pmx0: pinctrl@11c000 {
+>   		pinctrl-single,function-mask = <0xffffffff>;
+>   	};
+>   
+> +	main_crypto: crypto@4e00000 {
+> +		compatible = "ti,j721e-sa2ul";
+> +		reg = <0x00 0x4e00000 0x00 0x1200>;
+> +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x04e00000 0x00 0x04e00000 0x00 0x30000>;
+> +
+> +		dmas = <&main_udmap 0xca40>, <&main_udmap 0x4a40>,
+> +				<&main_udmap 0x4a41>;
+> +		dma-names = "tx", "rx1", "rx2";
+> +
+> +		rng: rng@4e10000 {
+> +			compatible = "inside-secure,safexcel-eip76";
+> +			reg = <0x0 0x4e10000 0x0 0x7d>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&k3_clks 297 1>;
 
-Thanks for highlighting this.
+This "clocks" property can be dropped now [0].
 
-Jerome.
+Otherwise, LGTM
+
+Acked-by: Andrew Davis <afd@ti.com>
+
+[0] d7e8c41016471 dt-bindings: rng: omap_rng: Drop requirement for clocks
+
+> +		};
+> +	};
+> +
+>   	main_uart0: serial@2800000 {
+>   		compatible = "ti,j721e-uart", "ti,am654-uart";
+>   		reg = <0x00 0x02800000 0x00 0x200>;
