@@ -2,123 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E917A6131A7
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 09:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 147FD6131B9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 09:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229495AbiJaIXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 04:23:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42818 "EHLO
+        id S229487AbiJaIb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 04:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbiJaIXb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 04:23:31 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13DD624B
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 01:23:29 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id y16so14817720wrt.12
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 01:23:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GBjX1O1DcI8vaNSNvjRBLAcS9TKRieTO8wxKUL4zLUI=;
-        b=kyiMogX3Fc6zyqQ+KCFc3VfGF95/6P/uf9wCnWpawXf2OL6+Wq5/hY8b6CsxexG1mL
-         bDz1pGkcGZ+4Ho/NJ+wbYgJGbmHN01xEO/T6xdsVPtq1zk/eZK/qyNA2n2wt6ouOyhZl
-         GOcnRyGBZS9dpDxWrb6mNBrtb1cbaJdMH/ULMf2M6Bu7aPw4bz+IRAZQN8bhUD/6RI4f
-         9x/bcgz/lvpkOPPJrPssJ6gseFHsCIRKPXQK/HhCJzm4Fn/YqPWGBr382M3r2Bc5EVTq
-         hAi/nkC8xsMvYTZg7hxK01Nnq4rElsM9L51KhbUQakpar9Dgym7BIB5UkE+zsB0zMZcg
-         xzuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GBjX1O1DcI8vaNSNvjRBLAcS9TKRieTO8wxKUL4zLUI=;
-        b=QD6WG82AxBhuhY0+gscIHTwn46/WfWGaXLY9Jx23JPXM1+HFj4N+E/SFsxTdoocMjA
-         PAxZry2OKitI6RLpMZWSyLQhcvqRftI4l9KZAJHrw7S749F8Ryh/S30zv9nDvTPnQ8cv
-         kNOBTDY3BXR6hrDAKRCYQ9u7J1Eg4u47sqsp0UQ/0RLuTiLq8RtW8oOmyE/lrsgltRrN
-         hPjmmu9GugUbNSVCDFvDPtOkNL6fTnnVg4fUj4pCjWIE9Ehh7D+jOEckKEQ5S2lhX6bu
-         aBh2MeR/Ue6uqEa2QL5Yoys7r2awK41y/XSia4vw9dh6Jsr90mAoDguyvH0w0J0ikj3K
-         6+bQ==
-X-Gm-Message-State: ACrzQf37YLv0B6I3bADa0XBowWEK65PpaQ9oZXe432AJvWsJmGq18NVy
-        sdFmrnZ18EZdlKQwa1mp0x+5rw==
-X-Google-Smtp-Source: AMsMyM5IFBtq6DgiyrWcyRfDJxoQ0QJzxCDg8oD5MIyuqTVwTfLHW+/92iI1o7CJpSzKRfkKQ1ExSg==
-X-Received: by 2002:adf:f883:0:b0:236:a6a3:d6ac with SMTP id u3-20020adff883000000b00236a6a3d6acmr7345634wrp.538.1667204607833;
-        Mon, 31 Oct 2022 01:23:27 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id e7-20020adff347000000b00226dba960b4sm6416302wrp.3.2022.10.31.01.23.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 01:23:27 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-rockchip@lists.infradead.org,
-        Jerome Brunet <jbrunet@baylibre.com>, kernel@collabora.com,
-        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>
-In-Reply-To: <20221024165549.74574-1-sebastian.reichel@collabora.com>
-References: <20221024165549.74574-1-sebastian.reichel@collabora.com>
-Subject: Re: (subset) [PATCHv2 0/6] Convert HYM8563 RTC binding to YAML
-Message-Id: <166720460675.3774207.3260903176135865754.b4-ty@linaro.org>
-Date:   Mon, 31 Oct 2022 09:23:26 +0100
+        with ESMTP id S229468AbiJaIb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 04:31:57 -0400
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2086.outbound.protection.outlook.com [40.107.249.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E3185F7D;
+        Mon, 31 Oct 2022 01:31:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gHsAcYhdHbgcYiHE92YCrVL7uzMJ1GPa6PfK+HCoznF/wbHGBF0x9GFieFyY5rkvQsrmVvKMc8999GQ2nfnKAoctkhfyigw5c3RHZLGIP9YIdn8Dj6lNyQN8Qh26GbfncKGIjwKwJ9tShnFzw1KtHQLv0U26j8TI87IXEyHrtEbE54H9ecEStpgiDQA4hu7GCjkMXISVQy6ndCg4h7tKitFv+3mgJqERFxNPWF49bZLwAHz+yz27CthJLc8a8JrXxW3BxtbXpusgNOYdPRak0E0NIGtJZq5wrTNLaoA+2pyWW53JMgyV/5CnHOEjeodmQHjpv2988ornm4pSby1kzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YDa6Fvq4iY0XEMxqzjiT8D3wG+8xSAYO8d2vqD1f490=;
+ b=AJfqdHU4imFvtma9NMqNz/1xi7N/gmIQbOD2kHuxTSVS/NfaxewimuegsoUHJNBCiLSlRSAT4zI7VFc/jjd0VTLXsxkG/jZBBzkZ9jSNT44rufubq2d2VsKloDp9w3487YOLoCrLmoUhEMiEdD88nYF1fQTnvaBOkxwNIFFXbAVK1HiCJ5tvS2PDBvd//AVzD0QPazWDsBl+y82slFFp52Jn181zgjiDuZcU2lwVKSr0118MZv2iDv0d1WaLTzNaCYP4uDTeCt4MrYBrdS58VefBO8XvBmTJNCmfXqIoR/HWNJWrKDd+Z6n/5F7BLeLmAwGCryJhBGr+mKtD6iYHMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YDa6Fvq4iY0XEMxqzjiT8D3wG+8xSAYO8d2vqD1f490=;
+ b=pHBlL8cZAI+xtgAlURjxVmEcymrMu8wOzLlpPAxZLOjZ4I5pyNItuCnFDLAsu+/5REygARKqa4FG+tfjRVCdMkMK3h4NwE4EqrLmdIJDbgzRZ0t7KxndW2bAZK4DFa8YqEvsmfxstCXGhG0QD0Y/tFeFRD78aBlNbnZ4MC0blM4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DB9PR04MB8463.eurprd04.prod.outlook.com (2603:10a6:10:2c0::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19; Mon, 31 Oct
+ 2022 08:31:53 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::dcca:b62f:206b:dcf8]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::dcca:b62f:206b:dcf8%3]) with mapi id 15.20.5769.019; Mon, 31 Oct 2022
+ 08:31:53 +0000
+Message-ID: <55b3aaac5085761c2ac274f9faabd252acdd8418.camel@nxp.com>
+Subject: Re: [PATCH RESEND v4 0/2] drivers: bus: Add Freescale i.MX8qxp
+ pixel link MSI bus support
+From:   Liu Ying <victor.liu@nxp.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, saravanak@google.com,
+        gregkh@linuxfoundation.org, geert+renesas@glider.be,
+        krzysztof.kozlowski@linaro.org, robh@kernel.org
+Date:   Mon, 31 Oct 2022 16:30:57 +0800
+In-Reply-To: <20221017074039.4181843-1-victor.liu@nxp.com>
+References: <20221017074039.4181843-1-victor.liu@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR03CA0086.apcprd03.prod.outlook.com
+ (2603:1096:4:7c::14) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|DB9PR04MB8463:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c2ccd15-93cd-4cdd-de61-08dabb1a5ce7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uKHKJOAkFKQdU0X06+rwq/xxoJbvPnX/QnPsolkY+HqV9yoAsPftgdsbOMc7JCevqaRwRMRz0ybRAF2mFZpm6H5p0cCs7COvXbKOr9Jb+2FcD0i+Se/XuE/RSgAeP68C+YRVGRV8s7tp6FREkltj9dgxwpSue+1M6zZvlHEKbRzU31GlYEPqqBDzl+oxyAixqumdjp8tEQLRYh/H11cIwCL5sAnJGRqkEOxclc8SA7AcPLhDly093lMabcBlXHZV5sN9BBdmEovJjh64YE5EQRmk62ANYHHEhqc6tMi7KitKDxuelZoYxy9gCOeB9nJWUDQG2K0FiUx43H1xba54vM7uaTCbIMH6zVsoI4qQkKqwVl2cxrxjUz/mREekXCpF274r/bYim4x9EflNHhmFw4zmGUogUOKje7+/KvwUeXaU0SM5chB6Q0XPLlfODTtoRwh6xoI/+o+nXplgOuMBa+ZVvAaeefRJhsUST3S2UwzDNuuk138UaaESWW+D1K9hhpahQzVc8LxFUpk2gliQb6YqdhKQDahmi6jNTLk9h8seWL4trFQ4Vb/jYTj6EU/va2QOid0PI0fBwDbQMXh2AhkS1BpFwJVOpqGxkBK7xqU9Vi5lcZJ06UwMMnmBaj1T0/HahK23g1qjpHDnTNtliGqWBUWZPOr1Yqg6oyjPQwK4+lNdOFwBPR/zA77hmD0nWwpf5EwNh3wpH47H6Eac5/kM3Mk9inqxL4buMBFhk2CjHTl1YGr0UJkn1KtrfSmacp5TSZGjwvSri7KwCDbMBA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(136003)(39860400002)(376002)(396003)(366004)(451199015)(26005)(41300700001)(6512007)(2906002)(4001150100001)(36756003)(83380400001)(7416002)(5660300002)(186003)(38100700002)(38350700002)(2616005)(8936002)(86362001)(6486002)(478600001)(52116002)(8676002)(66946007)(4326008)(66476007)(6506007)(66556008)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NTRaOFl1ZGdJUGJQSkxBWUFFVE1VRnRtZXdYTVZtcnVKTmJZUFBCRGlSeFJi?=
+ =?utf-8?B?cDB3R3VXcmFOWHAveTFDMWNmMVpmQUJaK2sxdC9VREorV0h0SjZuQXdBZk4z?=
+ =?utf-8?B?eXNrWExYNnNIRUI0WGtNMUtRbFp5VWNaeWhKM2hMcGVKRExpRXpEUTdnajB5?=
+ =?utf-8?B?UHgvQ0xQZnExbHhtSTZiTVpVeGt6TTF3TUFFdnFxenJzdHF2bGxTeDJHSU5K?=
+ =?utf-8?B?OEgwMzAzMnp3NDRhWkVFRkRDZUQxempWengvemY5RU84QjJkK0lZTUdXSHlC?=
+ =?utf-8?B?VEt6OUpjdEVYT2h6OGRpa3NrMVh3NHZxZ29kKzJzRnk0Q1ozYzV0ajR0bEIv?=
+ =?utf-8?B?ZHJudjhaVGNJd3hmR1IxcC9RazVuNVJvcVpia3Fac2JsalJuMHo4QjNFaThs?=
+ =?utf-8?B?Um5LbmxpUE0vMTBnYlY3UjJkM0t2NUNpalZnNS9mVktMYzUvTTl4ZVdZdFhK?=
+ =?utf-8?B?QWJOMW1nT1VGcndTVVF1YWc2aitRVm5hWlVGaVJwak1Xc3RxZHNac0g4T0Z6?=
+ =?utf-8?B?bHBPdVlleEZ4eHdBNy9JcW4vUHdTc2tPcUlWZzlkQXg1SWFESTNvelUxYU11?=
+ =?utf-8?B?Qk9SdzhkZDNoTGdPMWpCdytEQ2M5MmEvdnJmdzJ1WmE1VFRycEVJRlZEdmEr?=
+ =?utf-8?B?TExLVk83cERPTzUvSTY0RjRyWFNETzh2M25yS09HTjFzVXNZZjFSQU9HSVds?=
+ =?utf-8?B?dGdSbTQ1OElxOU16TTBsVW5Xd2J4Q2RrdkhXbTY0MnA3K2ErZXp4NEVIMUR3?=
+ =?utf-8?B?dXEweWw1aUFhNjZIQXhSYU9oZFgvL0MrTWNWNW1TYzBTSWtJbC9QSFppVWZi?=
+ =?utf-8?B?dXFabDFlRThEK09MYWIvYzRkNXR4V0paeDcrQXRzNVJ5UTQ4c3hZSFNaRTNj?=
+ =?utf-8?B?QXliNTJSMWlxd0R0b3NGRU9pMHpvUi9xZFc2RGZXZDliVXpwOXUxb3lQTnNX?=
+ =?utf-8?B?SDZrekpoL2VrcEZxdTRqVER6cHZ5OUlsanpHbHNXQ21hTThVWWxVRTJCQUNk?=
+ =?utf-8?B?dXZYUHNnV3VsZ3BJVll4THBUN2M2OFNGWGZQN0xyZmZkNWtFczV5RzBWVlV1?=
+ =?utf-8?B?KzV5VndPQytBL3I4STJtRUpiMUt2R09nZjBjcTAyK0JVbGw1VjR1clAwWmlP?=
+ =?utf-8?B?OVBQbmg5Q1lTcEdRU1VyV0kxSnBaZHFEWllnQnhhWkFCTGpQWHRjVUxoK3Jj?=
+ =?utf-8?B?S2pmMFZ2NWxFT2Z4bytwRTRWSTJYWUxKZFp4Zmtrczg5VXZTK0hTdzk3TXpR?=
+ =?utf-8?B?TFdBdGxVekpza0N0YkVnVk8vQVpTT3lNUmFLbDlzK0NBOU8xRUlvUHpCenli?=
+ =?utf-8?B?REpIbko3SThRcUMxNCtlUUlhYnJjeWxQa0E2NU9lMVloTVJEZG1MQ1VwL0M0?=
+ =?utf-8?B?VlVRVUZ6UVI1Rlo2WmQ2aDBaelo1WTBOMngzVEVFOGZDZHZtMEdTMkxrNytG?=
+ =?utf-8?B?Qm04YUlNdVRRbjR5a2krSCtrWXBib1pjVllQRUhLVFBKN2FOczQzRUlCRWZx?=
+ =?utf-8?B?NkdTby83b21Jc3F3NzNrVmhZY2ZtR3Zsb3R3YmhmUU1WYXNEeVNHWU9yd2Ru?=
+ =?utf-8?B?OFY1Vm5wZTVKNDhTT3Roa0N1TlY5bnVtT0hGQVpjY2RCNFBJTUJRblhEdnp4?=
+ =?utf-8?B?UW9aUVRFYUtJZTMydit1Sy9JMVRkcmFYcG4weHNlaFhBdnRTbnFzdmVobjJn?=
+ =?utf-8?B?d09xZ1FQTlN1WFFoeXd4V2RxdS9uSGlpTlFBZ1E3c1g4UDlrbmp0NWgrNXJC?=
+ =?utf-8?B?NmxZMzVFVHpwMjhPMytVVkJZWERqcTk5amJ6WmpTRE4xajhXTm9XSTh1Y3V6?=
+ =?utf-8?B?LzJ5bzMwOEVDUWVsYXpuVDVWMGVCRDZkR1I5YXY2R015bFd2TmY0UGVndXIz?=
+ =?utf-8?B?d0R2UkIrMU12Mm5oVVRBMy83ZEVNK1NsckNydU44MWh3WTZ4eUtXbDRMWCtP?=
+ =?utf-8?B?V1EzR1BEMnhiUTMrWHFzSWtYV0JtU3hkZmsxV2s4YlJ2K2p1dU9JUnRuYzdN?=
+ =?utf-8?B?c2kvTDVmVDhrRGF2a2Z4TDREd3U1U2JqTmZqNWYvVkRJeW1EdWw2YWVOY2J1?=
+ =?utf-8?B?L3dGSzFhZzVQTlRKOFQvakc4RE1jVkRNUk9UUkRQSkttNS9GUS8wL3AwWFcy?=
+ =?utf-8?Q?rk92fdmq7+w+uiMoRrmozA/jp?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c2ccd15-93cd-4cdd-de61-08dabb1a5ce7
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2022 08:31:53.1245
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VfrNZvCobqHEuH75Y9MaWs2YfKxxQsGXlRvzFJ6yFnBZb3qHkcMhC6hOWUZnV45E5rs/0PUGEBlVRPgLy4c4Eg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8463
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 24 Oct 2022 18:55:43 +0200, Sebastian Reichel wrote:
-> This converts HYM8563 binding to YAML and fixes
-> the existing DTs.
+On Mon, 2022-10-17 at 15:40 +0800, Liu Ying wrote:
+> Hi,
 > 
-> Changes since PATCHv1:
->  * https://lore.kernel.org/all/20221021170605.85163-1-sebastian.reichel@collabora.com/
->  * Added patches fixing the existing devicetrees (Rob Herring)
->  * Dual licensed the binding (Krzysztof Kozlowski)
->  * Added maxItems for clock-output-names (Krzysztof Kozlowski)
+> This series aims to add Freescale i.MX8qxp pixel link MSI bus support
+> by using the existing simple-pm-bus driver. A power domain and two input
+> clocks need to be enabled before the MSI bus accesses it's child devices,
+> which matches what a simple power-managed bus is(See simple-pm-bus.yaml).
 > 
-> [...]
+> Patch 1 enables/disables functional clock(s) as a bulk in the
+> simple-pm-bus driver when the simple-pm-bus is being power managed,
+> since the MSI bus takes the two input clocks as functional clocks.
+> 
+> Patch 2 adds dt-bindings for the MSI bus.
+> 
+> v3->v4:
+> * Drop patch 1 in v3, because simple-bus/simple-mfd devices probed by the
+>   simple-pm-bus driver should not be child nodes of simple-pm-bus at all,
+>   as simple-bus/simple-mfd's child devices PM operations cannot be propagated
+>   to simple-pm-bus. Those simple-bus/simple-mfd devices needs dedicated drivers.
+> * Drop unnecessary 'bus == NULL' check from simple_pm_bus_runtime_{suspend,resume}.
+>   for patch 1 in v4. (Geert)
+> * Add Geert's R-b tag on patch 1 in v4.
+> * Add child nodes in the example MSI bus node of the MSI bus dt-binding. (Krzysztof)
+> * Resend v4 to imply this series is based on v6.0-rc1 so that there are not any
+>   dependencies for the MSI bus dt-binding. (Rob)
+> * Resend v4 based on v6.1-rc1. (Greg)
+> * Add Rob's R-b tag on patch 2 in v4.
+> 
+> v2->v3:
+> * Add a pattern property to allow child nodes in the MSI bus dt-binding. (Rob)
+> 
+> v1->v2:
+> Address Krzysztof's comments on patch 3:
+> * Add a select to explicitly select the MSI bus dt-binding.
+> * List 'simple-pm-bus' explicitly as one item of compatible strings.
+> * Require compatible and reg properties.
+> * Put reg property just after compatible property in example.
+> 
+> Liu Ying (2):
+>   drivers: bus: simple-pm-bus: Use clocks
+>   dt-bindings: bus: Add Freescale i.MX8qxp pixel link MSI bus binding
+> 
+>  .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 232 ++++++++++++++++++
+>  drivers/bus/simple-pm-bus.c                   |  48 ++++
+>  2 files changed, 280 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.2/arm64-dt)
+Gentle ping...
 
-[5/6] arm64: dts: meson: remove clock-frequency from rtc
-      https://git.kernel.org/amlogic/c/2c5240a018afd6f46fe648ee2396983f5ce1e087
+If there is no more comments on this series, can someone pick it up
+please?
 
-These changes has been applied on the intermediate git tree [1].
+Regards,
+Liu Ying
 
-The v6.2/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
-
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
-
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
-
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
