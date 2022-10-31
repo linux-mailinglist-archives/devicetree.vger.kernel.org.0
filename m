@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B2C613F81
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 22:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 405BC613F84
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 22:10:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbiJaVJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 17:09:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46916 "EHLO
+        id S230039AbiJaVKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 17:10:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbiJaVJm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 17:09:42 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9FE1400A;
-        Mon, 31 Oct 2022 14:09:39 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id sc25so32504154ejc.12;
-        Mon, 31 Oct 2022 14:09:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=J/H4zqvSpNZbUP7OdRkQB5ulns/JJgEm2p5HDGl4vr0=;
-        b=jdQru/ANuLfpXnbBWcPf+Hnh1EQl7quPemjaS+7RJyGqhJwwB6igUuSq9pNxYcak0A
-         O0nU+ktQjuDbpEPhSNuMVISijVcd+pIqtLohl/p0ipwDMxlxu/kPw1UKYXC9AtARimqh
-         gOdvhpfEA53WAhFgMb0x3OQ2og6243Ss4vzxwpbFzmrCXZ+akwiLuHMgHFE7Nq6QAvxZ
-         RWt4SDvHeG6V0iGYZUBbIa2fDRVKuFVryFwygqPVV8OHEkLB/3JPy+4NUwLxouKhDe9C
-         nYvGm5nCci9SEfvVOQOPKfIBUcy4654RF5o2cE3b9PaxeCf+U2MrcosGsShH9K4TNIwL
-         lBSg==
+        with ESMTP id S229823AbiJaVKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 17:10:08 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E41291400A;
+        Mon, 31 Oct 2022 14:10:07 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-12c8312131fso14851276fac.4;
+        Mon, 31 Oct 2022 14:10:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=J/H4zqvSpNZbUP7OdRkQB5ulns/JJgEm2p5HDGl4vr0=;
-        b=fO/7ENJVb8fjSH/AffvJ6Z6pFyyjI+mwCsRkbWHn0TVmoRCiDkqF9K3iIkkxAgB5p7
-         Gmg3cVo8iKp3A7B2vxITheTEbUXmRe9CftG+/cyaa+sEDxGLYq5upkTlTGY50OwnK776
-         ociw/AyHidB4TaHw0axz3sPvpAd+I7Q/aoH5aIfMuzVX+WWTPxJGjeMOF9HBoKx4kKv6
-         y7TXvmdamg4hwzkF5JDOCqKmcL6sg2+ZCSeNepCIZz1QDZKVhtOKU9dFlbmlV3rrqxPj
-         kNEBaVyBsqnNV7c5oAsa6jupWiaES3VzBCzXuBUsbGsJzcvFRskx69+2NJAfNmq1dQdd
-         VTDg==
-X-Gm-Message-State: ACrzQf3uVhX9o3scFlkvBo5rinCuGlSjr8RlSFLJ0YQIDs+KtKggaWRk
-        u1hGj/t+BrLmGMAz4MYtO594Ka2Aqd83dJVSrsk=
-X-Google-Smtp-Source: AMsMyM5+ph4B22ErqbAdNIR0yHm97b2v08YYH+tQJokufHWxnNOdwM3zHZFAfKxK7ZqKFho9BCmRd/EZctEN/41ixx0=
-X-Received: by 2002:a17:906:401:b0:73d:af73:b78 with SMTP id
- d1-20020a170906040100b0073daf730b78mr15533535eja.122.1667250578007; Mon, 31
- Oct 2022 14:09:38 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=byO+eVFbmi2JQ5E3MJb1RGvLIDktwgzVitZO6ouN7wo=;
+        b=hAltad2iPiNAPhoZtxskvB/l4qMqQsCwl2ha9uIsqD66+YjKUGRmRTv8usXeE+kTHQ
+         9BghGTEJeHx81JbMHnjB+1WqcLqwhl8Wy1PEwGH04tKfSUcNVze+nAaNkoW8mw4Bx5jY
+         EJLGq8476hpAk49+yXhlhO6iHoFIOVkPXi9uXxIcUC4djTj9bzBHTeEeAFCvm1f+pc+N
+         P+RMdGF5NflKUnCgVOUpDZlq/44r/4Z1H5ukIa6NGNDgxD6MKNQHIUBPhDTig96qISDo
+         dmCHOr2t8L4UKGsTWXIPJdgl8T76kOZq3up//veq4sO8qw2YZU7XSKu9LME5K0jMJGxd
+         XKRA==
+X-Gm-Message-State: ACrzQf3/NLGiFt+EMlkNzaMrnjfJsXkSuLGTDYJwLaJyZTvcIAaI05ZH
+        JGak+nv2wuCFvFCtqqyfIg==
+X-Google-Smtp-Source: AMsMyM7dZOYdOCb1mto/Idcngckl/1c+JFp3aBXRCuJUrrtvUu24JUA3N2jFdQRjes/90Wb2FlzIkw==
+X-Received: by 2002:a05:6870:e3d1:b0:13c:9dbb:7e95 with SMTP id y17-20020a056870e3d100b0013c9dbb7e95mr8929109oad.43.1667250607134;
+        Mon, 31 Oct 2022 14:10:07 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r7-20020a4acb07000000b00494ed04f500sm2779419ooq.27.2022.10.31.14.10.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Oct 2022 14:10:06 -0700 (PDT)
+Received: (nullmailer pid 3585087 invoked by uid 1000);
+        Mon, 31 Oct 2022 21:10:08 -0000
+Date:   Mon, 31 Oct 2022 16:10:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-arm-msm@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 12/12] dt-bindings: mtd: Constrain the list of parsers
+Message-ID: <20221031211008.GA3512582-robh@kernel.org>
+References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
+ <20221028235933.934850-13-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-References: <20221031091918.531607-1-pierre.gondois@arm.com>
- <fac3eae5-687e-9eb0-ddfb-c659d3816d81@linaro.org> <3c54db0a-44fe-ee24-1833-7637e249ec79@arm.com>
-In-Reply-To: <3c54db0a-44fe-ee24-1833-7637e249ec79@arm.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 31 Oct 2022 22:09:26 +0100
-Message-ID: <CAFBinCBi_xT-pgdMSROHyZUfyZZE33S2YXczr9ijE52AfQVYHQ@mail.gmail.com>
-Subject: Re: [PATCH 02/20] arm64: dts: Update cache properties for amlogic
-To:     Pierre Gondois <pierre.gondois@arm.com>
-Cc:     neil.armstrong@linaro.org, linux-kernel@vger.kernel.org,
-        Rob.Herring@arm.com, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221028235933.934850-13-miquel.raynal@bootlin.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,24 +77,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pierre,
+On Sat, Oct 29, 2022 at 01:59:33AM +0200, Miquel Raynal wrote:
+> Parser compatibles cannot be used anywhere, and the list is limited. In
+> order to constrain this list, enumerate them all under the top
+> "partitions" subnode. New parsers will have to add their own compatible
+> here as well.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/mtd.yaml | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
+> index bddb7bdf441b..29db0b5c115e 100644
+> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
+> @@ -27,13 +27,29 @@ properties:
+>    partitions:
+>      type: object
+>      properties:
+> +      compatible:
+> +        contains:
+> +          enum:
+> +            - fixed-partitions
+> +            - arm,arm-firmware-suite
+> +            - brcm,bcm4908-partitions
+> +            - brcm,bcm947xx-cfe-partitions
+> +            - nksys,ns-partitions
+> +            - nvmem-cells
+> +            - qcom,smem-part
+> +            - redboot-fis
+> +
+>        '#address-cells': true
+> +
+>        '#size-cells': true
 
-On Mon, Oct 31, 2022 at 2:33 PM Pierre Gondois <pierre.gondois@arm.com> wrote:
-[...]
-> To avoid cc-ing people to DTs they are not related, the get_maintainers.pl
-> script was run on each patch individually. The cover-letter is at:
-> https://lore.kernel.org/all/20221031091848.530938-1-pierre.gondois@arm.com/
-I think Neil's question is the same as mine: is there a dt-bindings
-(yaml schema) change for this as well? The idea is to alert people (or
-let bots alert people) in future when adding a cache to a .dts{,i}
-where the cache-level property is missing.
+Alternatively, you could add a 'oneOf' with $ref's to each partition 
+type. Then we don't have the same compatible in 2 places. If you do, 
+then the partition schemas should have a 'select: false' so we don't 
+apply the schema twice.
 
-[...]
-> >> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
-Your patch looks good to me. We already use the property on the 32-bit
-Amlogic SoCs. So please add my:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Or keeping it like this is fine too.
 
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Best regards,
-Martin
+Rob
