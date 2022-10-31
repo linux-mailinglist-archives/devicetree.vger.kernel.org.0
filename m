@@ -2,98 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 731E5613FB6
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 22:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB78613FBF
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 22:16:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbiJaVPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 17:15:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53330 "EHLO
+        id S230297AbiJaVQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 17:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230298AbiJaVPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 17:15:08 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61255114D;
-        Mon, 31 Oct 2022 14:15:04 -0700 (PDT)
-Received: from [192.168.1.101] (95.49.29.156.neoplus.adsl.tpnet.pl [95.49.29.156])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 102083EAF0;
-        Mon, 31 Oct 2022 22:15:02 +0100 (CET)
-Message-ID: <90a99e4d-bf29-e2c0-d880-0c973be79681@somainline.org>
-Date:   Mon, 31 Oct 2022 22:15:01 +0100
+        with ESMTP id S230291AbiJaVQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 17:16:57 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F21F5F12;
+        Mon, 31 Oct 2022 14:16:55 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id kt23so32558463ejc.7;
+        Mon, 31 Oct 2022 14:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lDfCd2FuDOvtKfrsSPo+hRMdeUAtRjfZl9QXKPEK178=;
+        b=gDGxs1fY5KUO+uyr19HQao3BICcCY4is90BRyK3f+Qh9VuFmnzfq5aLy3Q3fvGZTJO
+         C61v10U4g/1PZ8bt+tS0bq7A4KwqdVn3UeFFHwFjpWdh0VGd29Am/Yk0ACZW56v9CXRD
+         IXPPtGC08Z5zDluhG1AjoBQyz0RCQv+CxJoWwPCvyQFn6D9xNGUmFkl5xPkG62SWKw2C
+         RkwEcJLgcc/bOlETdlZ7insycx1toun3GuwVlwXTJEewPIXL6CHT5alBNo3jCAgdJ1+M
+         YEA/jeimfRkqup57/mhP6rbhkUXv4ZXeEiWZ5ER6V8UcaeUy9z90nOOr1YTdmwb+C48a
+         QRTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lDfCd2FuDOvtKfrsSPo+hRMdeUAtRjfZl9QXKPEK178=;
+        b=nu/w2lnURiUddvDHcu4E/vMIbVbvTqkeNpIl36iODmq78zsAqQPamewKM1wARW8/YE
+         OoIuAuuYByESc3L8NvCGASElwQ7Tv1U5Ka6OVeupDDC1ztdoIHz8kalnSFwk3gXU+kJ4
+         YRjdOlTqTdy7/w5zH+7o48rfknrLOFW6Wdtetao7kANd4HNMjXelEPK4Uom82rVs1U0A
+         UgfVlr7M4fbL4tk2c+k51pojWncCaQZaxhH+CQ7KcSSiCdqrTHOnOyegOGNNk/DyXm/d
+         Dqw8B5nu7Y5GmLHMcocNvK91jJL0C0UZI7K5yun3hKl0zI/DoAOXF3IGh5xTuJPboFZG
+         CSlA==
+X-Gm-Message-State: ACrzQf1NolZ1oZBLOXaCPgyga62zhETCeyN4a5cphalivjjMAGejqY5Q
+        O0A7uKAxtihw8K5JskrHgKhao1QFW3Fdlnjlf8HG9u0DjkI=
+X-Google-Smtp-Source: AMsMyM56K441yZsKmM7JuCfanM6BjR8HaEBggpUvIKn0DtcCrLMNid1v1ldjaleJWeq81Dq/vY9m8bv6b80jQVsyIc4=
+X-Received: by 2002:a17:906:7314:b0:791:a45a:bc84 with SMTP id
+ di20-20020a170906731400b00791a45abc84mr14851850ejc.394.1667251014365; Mon, 31
+ Oct 2022 14:16:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sm6350: Add apps_smmu with
- streamID to SDHCI 1/2 nodes
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20221031-b4-odroid-go-ultra-initial-v1-0-42e3dbea86d5@linaro.org> <20221031-b4-odroid-go-ultra-initial-v1-1-42e3dbea86d5@linaro.org>
+In-Reply-To: <20221031-b4-odroid-go-ultra-initial-v1-1-42e3dbea86d5@linaro.org>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 31 Oct 2022 22:16:43 +0100
+Message-ID: <CAFBinCAQKf9RvRWQTCSg7g+7NP_vbEFBUeCoFbYnyfmqeegy5g@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: reset: document Odroid Go Ultra power-off
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221030073232.22726-1-marijn.suijten@somainline.org>
- <20221030073232.22726-11-marijn.suijten@somainline.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221030073232.22726-11-marijn.suijten@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Neil,
+
+On Mon, Oct 31, 2022 at 5:47 PM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+>
+> The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
+> to its two PMICs in order, this represents the poweroff scheme needed to complet
+s/complet/complete/
+> a clean poeroff of the system.
+s/poeroff/poweroff/
+
+Please wait with re-sending this patch in case the dt-bindings and
+reset experts have more to say than finding typos.
 
 
-On 30.10.2022 08:32, Marijn Suijten wrote:
-> When enabling the APPS SMMU the mainline driver reconfigures the SMMU
-> from its bootloader configuration, loosing the stream mapping for (among
-> which) the SDHCI hardware and breaking its ADMA feature.  This feature
-> can be disabled with:
-> 
->     sdhci.debug_quirks=0x40
-> 
-> But it is of course desired to have this feature enabled and working
-> through the SMMU.
-> 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-Konrad
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> index b98b881ebe7e..c309a359ded9 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> @@ -485,6 +485,7 @@ sdhc_1: mmc@7c4000 {
->  			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> +			iommus = <&apps_smmu 0x60 0x0>;
->  
->  			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
->  				 <&gcc GCC_SDCC1_APPS_CLK>,
-> @@ -1064,6 +1065,7 @@ sdhc_2: mmc@8804000 {
->  			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "hc_irq", "pwr_irq";
-> +			iommus = <&apps_smmu 0x560 0x0>;
->  
->  			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
->  				 <&gcc GCC_SDCC2_APPS_CLK>,
+Best regards,
+Martin
