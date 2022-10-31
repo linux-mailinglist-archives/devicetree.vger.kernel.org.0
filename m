@@ -2,159 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F23C613A71
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:44:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C1C613A9B
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:46:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232072AbiJaPoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 11:44:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50872 "EHLO
+        id S232058AbiJaPqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 11:46:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232034AbiJaPoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:44:10 -0400
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD8C11A2B;
-        Mon, 31 Oct 2022 08:44:09 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id cy15-20020a056830698f00b0065c530585afso6973985otb.2;
-        Mon, 31 Oct 2022 08:44:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ifwpmU7A0PMQ06MNBDvyGSIa8Sixxnkraic/SyG2pxo=;
-        b=xWeqNRs+xYaVY6pJ0/6AED+LI0KlGpT8/Xej8vjW1SbOIFob2Q0qJ+a5dioCyt/Yxt
-         gm0dOWhC8OMIlV2sYNDHIuT0xA8W1pL8spyDAuILElCVkPviCwMvr9QycUzy1WM+v//6
-         nPr1kpc4E7wQejg4hElLXbSKYwji1hjkzJkjDmu1neZIMZLjgng+Gs2jiBFN3zY0MiHJ
-         Dl8kYNZyajMlkeiZ5gfO7yxF2RmEB/Mk4YHvNV70COLtCVPAdP/+kONOkCmCJ2Hu3iiC
-         hC591Fp1e+2Lks/oP9/IP29GsLLtlCdAdsKF/yyB6GGw0Ae4b0Rrv/IJVrn6pzBauKmZ
-         fqvg==
-X-Gm-Message-State: ACrzQf0ZS/65EJSTloq4f3J+kB2WM2YBySsA6UVVeQmsv1AjIGxmEWgL
-        1DxsVIRyrTbczj2N8aTkXQ==
-X-Google-Smtp-Source: AMsMyM4dyhQJfUihmItaQeAe7EzaxUEKtl/G0crodesYYunz1GQ0UewMwDpLQSlnR0+F3iiPt9nM5A==
-X-Received: by 2002:a9d:7384:0:b0:66c:42ae:a3da with SMTP id j4-20020a9d7384000000b0066c42aea3damr5180443otk.220.1667231048700;
-        Mon, 31 Oct 2022 08:44:08 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v13-20020a056870708d00b0013c955f64dbsm3147424oae.41.2022.10.31.08.44.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 08:44:08 -0700 (PDT)
-Received: (nullmailer pid 2922103 invoked by uid 1000);
-        Mon, 31 Oct 2022 15:44:09 -0000
-Date:   Mon, 31 Oct 2022 10:44:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Colin Foster <colin.foster@in-advantage.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?iso-8859-1?Q?n=E7_=DCNAL?= <arinc.unal@arinc9.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
+        with ESMTP id S231960AbiJaPqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:46:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39ABF12624;
+        Mon, 31 Oct 2022 08:45:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D2AC9612B9;
+        Mon, 31 Oct 2022 15:45:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5EA6C433D6;
+        Mon, 31 Oct 2022 15:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667231140;
+        bh=Gfx5xqDBJQm6OTzVGDzkuc7YFMXL+R2QMUfRfaHarw4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C2ol+s/GsL7TPDoteDrQ1RWKAz7R8D9cY/k3aRxCdTKvWQldeEQvLdHQPa8bsl2PW
+         5Z64chqinjQHYuqxCy3mfh13IJs5vElXHtAbtKlmAQ7s+9sWg4ZK+Zm5hB9hBJc7+M
+         srYacHx165jh6KsdX4ur1sQJ6nanQ2GvYHPnDGt0sHbIM3Gkkr/YMtFc7vpU5+M8fS
+         vb7P54kOuKLl0sD9IioyCEHrfpB6zv1CnS9NDxW1sXpTmyf2YZP8ihgBSQanHj6hbx
+         AXUje3G837j2VHJ92gKvRwVMkZ/txQrn51quak/Q2hGZBk9/kjiiiCtN18+bSFZkl+
+         UrgA97jg31V/A==
+Date:   Mon, 31 Oct 2022 15:45:34 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v1 net-next 3/7] dt-bindings: net: dsa: qca8k: utilize
- shared dsa.yaml
-Message-ID: <20221031154409.GA2861119-robh@kernel.org>
-References: <20221025050355.3979380-1-colin.foster@in-advantage.com>
- <20221025050355.3979380-4-colin.foster@in-advantage.com>
- <20221025050355.3979380-1-colin.foster@in-advantage.com>
- <20221025050355.3979380-4-colin.foster@in-advantage.com>
- <20221025212114.GA3322299-robh@kernel.org>
- <20221025212114.GA3322299-robh@kernel.org>
- <20221027012553.zb3zjwmw3x6kw566@skbuf>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add regulator-output bindingg
+Message-ID: <Y1/tnic0qc/Ll/5u@sirena.org.uk>
+References: <20220925220319.12572-1-zev@bewilderbeest.net>
+ <20220925220319.12572-3-zev@bewilderbeest.net>
+ <20220929210714.GA2684335-robh@kernel.org>
+ <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
+ <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
+ <ee37b5a1-5afc-71b3-f777-add295d9ce17@linaro.org>
+ <Y1tWpikPogEtV0+x@hatter.bewilderbeest.net>
+ <Y1v6migO2PNV4ksW@sirena.org.uk>
+ <Y1wxMk2x25AeRwLr@hatter.bewilderbeest.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="HdNa3smXV1x+Yg8k"
 Content-Disposition: inline
-In-Reply-To: <20221027012553.zb3zjwmw3x6kw566@skbuf>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <Y1wxMk2x25AeRwLr@hatter.bewilderbeest.net>
+X-Cookie: Sign here without admitting guilt.
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 27, 2022 at 04:25:53AM +0300, Vladimir Oltean wrote:
-> Hi Rob,
-> 
-> On Tue, Oct 25, 2022 at 04:21:14PM -0500, Rob Herring wrote:
-> > On Mon, Oct 24, 2022 at 10:03:51PM -0700, Colin Foster wrote:
-> > > The dsa.yaml binding contains duplicated bindings for address and size
-> > > cells, as well as the reference to dsa-port.yaml. Instead of duplicating
-> > > this information, remove the reference to dsa-port.yaml and include the
-> > > full reference to dsa.yaml.
-> > 
-> > I don't think this works without further restructuring. Essentially, 
-> > 'unevaluatedProperties' on works on a single level. So every level has 
-> > to define all properties at that level either directly in 
-> > properties/patternProperties or within a $ref.
-> > 
-> > See how graph.yaml is structured and referenced for an example how this 
-> > has to work.
-> > 
-> > > @@ -104,8 +98,6 @@ patternProperties:
-> > >                SGMII on the QCA8337, it is advised to set this unless a communication
-> > >                issue is observed.
-> > >  
-> > > -        unevaluatedProperties: false
-> > > -
-> > 
-> > Dropping this means any undefined properties in port nodes won't be an 
-> > error. Once I fix all the issues related to these missing, there will be 
-> > a meta-schema checking for this (this could be one I fixed already).
-> 
-> I may be misreading, but here, "unevaluatedProperties: false" from dsa.yaml
-> (under patternProperties: "^(ethernet-)?port@[0-9]+$":) is on the same
-> level as the "unevaluatedProperties: false" that Colin is deleting.
-> 
-> In fact, I believe that it is precisely due to the "unevaluatedProperties: false"
-> from dsa.yaml that this is causing a failure now:
-> 
-> net/dsa/qca8k.example.dtb: switch@10: ports:port@6: Unevaluated properties are not allowed ('qca,sgmii-rxclk-falling-edge' was unexpected)
-> 
-> Could you please explain why is the 'qca,sgmii-rxclk-falling-edge'
-> property not evaluated from the perspective of dsa.yaml in the example?
-> It's a head scratcher to me.
 
-A schema with unevaluatedProperties can "see" into a $ref, but the 
-ref'ed schema having unevaluatedProperties can't see back to the 
-referring schema for properties defined there.
+--HdNa3smXV1x+Yg8k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-So if a schema is referenced by other schemas which can define their own 
-additional properties, that schema cannot have 'unevaluatedProperties: 
-false'. If both schemas have 'unevaluatedProperties: false', then it's 
-just redundant. We may end up doing that just because it's not obvious 
-when we have both or not, and no unevaluatedProperties/ 
-additionalProperties at all is a bigger issue. I'm working on a 
-meta-schema to check this.
+On Fri, Oct 28, 2022 at 12:44:50PM -0700, Zev Weiss wrote:
+> On Fri, Oct 28, 2022 at 08:51:54AM PDT, Mark Brown wrote:
 
+> > We don't turn things off on reboot?  We don't do anything in particular
+> > on reboot...
 
-> May it have something to do with the fact that Colin's addition:
-> 
-> $ref: "dsa.yaml#"
-> 
-> is not expressed as:
-> 
-> allOf:
->   - $ref: "dsa.yaml#"
-> 
-> ?
+> Okay, perhaps not on reboot specifically, but the userspace-consumer driver
+> has a regulator_bulk_disable() in its .remove function, so it would be
+> triggered at least by a module unload (which is sort of why I ended up with
+> the "when software relinquishes control" wording in the patch).  If we're
+> going to continue with the plan of using that driver for this functionality
+> (which seems overall quite reasonable to me), we need a way to express that
+> that must not happen on this hardware.
 
-No. Either way behaves the same. We generally only use 'allOf' when 
-there might be more than 1 entry. That is mostly just at the top-level.
+Ah, that would be the test driver not intended to be used in production
+then...  That shouldn't be a blocker for the DT binding, and if there's
+a different compatible string for this application then we can either
+make the userspace consumer do something different based on that
+compatible string or have a new driver which does something more
+sensible and perhaps has a better userspace ABI.  Either way so long as
+we can tell the thing being described is a BMC output from the DT
+binding I think we can leave it up to the OS to do something constructive
+with that rather than trying to control the specific behaviour in the
+binding.
 
-Rob
+--HdNa3smXV1x+Yg8k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNf7Z0ACgkQJNaLcl1U
+h9BkFgf9FKsGGxWuC5iXQlHFiyi14CZmY17XgUIeryMt5FgoDqOVqrzpmW1eyubx
+OYeSw4HIYHNJbaad3hPryk75jFUsKsfm7Zt1JSssh2t1w8S+SBET9Gm8PRXWYo4D
+A8ONEz9bbWPUbP9obqEvlFN+fWBGyehb7c2/JN2kElFu8iN+NoR+yiMsMKlvwV7y
+AWY5AT6u8aOyuYtW3lHfiGK4zGCFatnAqDvC48NfN09naLGBAE7CvARC8I6vw91p
+hloaMc6YxMK2jtMsWLtwlLi+Z4P9BArYv4Y2Xi9x5bPFQw/q7e02fh6A76XvBaRF
+bOlyuze5LAJQhttKvmKlIl9ls82INg==
+=aRAV
+-----END PGP SIGNATURE-----
+
+--HdNa3smXV1x+Yg8k--
