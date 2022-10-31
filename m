@@ -2,111 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AA21613456
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 12:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB491613488
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 12:32:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbiJaLOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 07:14:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
+        id S229782AbiJaLcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 07:32:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbiJaLOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 07:14:41 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EA7F9DF17;
-        Mon, 31 Oct 2022 04:14:40 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0AA24113E;
-        Mon, 31 Oct 2022 04:14:47 -0700 (PDT)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47A6D3F703;
-        Mon, 31 Oct 2022 04:14:38 -0700 (PDT)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, Karl Kurbjun <karl.os@veroson.com>,
-        Icenowy Zheng <uwu@icenowy.me>
-Subject: [PATCH v2 7/7] arm64: dts: allwinner: h616: X96 Mate: Add USB nodes
-Date:   Mon, 31 Oct 2022 11:13:58 +0000
-Message-Id: <20221031111358.3387297-8-andre.przywara@arm.com>
+        with ESMTP id S229918AbiJaLcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 07:32:35 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE205DFBE;
+        Mon, 31 Oct 2022 04:32:34 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 29VB7WjM080106;
+        Mon, 31 Oct 2022 19:07:32 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 31 Oct
+ 2022 19:30:39 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
+        <joel@jms.id.au>, <andrew@aj.id.au>, <billy_tsai@aspeedtech.com>,
+        <colin.king@canonical.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <BMC-SW@aspeedtech.com>
+Subject: [PATCH 1/2] iio: adc: aspeed: Remove the trim valid dts property.
+Date:   Mon, 31 Oct 2022 19:32:07 +0800
+Message-ID: <20221031113208.19194-1-billy_tsai@aspeedtech.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221031111358.3387297-1-andre.przywara@arm.com>
-References: <20221031111358.3387297-1-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 29VB7WjM080106
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The X96 Mate TV box has two USB-A ports, VBUS is always on and connected
-to the DC input.
-Since USB port 0 is connected to an USB-A receptable, we configure it
-as a host port. Using it as a peripheral is dangerous, because VBUS is
-always on.
+The dts property "aspeed,trim-data-valid" is used to determin whether to
+read the OTP register. If the image with the aspeed,trim-data-vali
+install to the chip without valid trimming data the adc controller will
+become confused. This patch use the default otp value 0 as a criterion
+for determining whether trimming data is valid instead of the dts
+property. The chip with actually trimming value is 0 should be filter out.
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 ---
- .../dts/allwinner/sun50i-h616-x96-mate.dts    | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+ drivers/iio/adc/aspeed_adc.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-index 6619db34714a4..07424c28b696c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts
-@@ -32,6 +32,14 @@ reg_vcc5v: vcc5v {
- 	};
- };
+diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
+index ffae64f39221..0f065f0bb8e7 100644
+--- a/drivers/iio/adc/aspeed_adc.c
++++ b/drivers/iio/adc/aspeed_adc.c
+@@ -201,6 +201,8 @@ static int aspeed_adc_set_trim_data(struct iio_dev *indio_dev)
+ 				((scu_otp) &
+ 				 (data->model_data->trim_locate->field)) >>
+ 				__ffs(data->model_data->trim_locate->field);
++			if (!trimming_val)
++				trimming_val = 0x8;
+ 		}
+ 		dev_dbg(data->dev,
+ 			"trimming val = %d, offset = %08x, fields = %08x\n",
+@@ -562,12 +564,9 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
  
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci2 {
-+	status = "okay";
-+};
-+
- &ir {
- 	status = "okay";
- };
-@@ -54,6 +62,14 @@ &mmc2 {
- 	status = "okay";
- };
+-	if (of_find_property(data->dev->of_node, "aspeed,trim-data-valid",
+-			     NULL)) {
+-		ret = aspeed_adc_set_trim_data(indio_dev);
+-		if (ret)
+-			return ret;
+-	}
++	ret = aspeed_adc_set_trim_data(indio_dev);
++	if (ret)
++		return ret;
  
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&ohci2 {
-+	status = "okay";
-+};
-+
- &r_rsb {
- 	status = "okay";
- 
-@@ -175,3 +191,12 @@ &uart0 {
- 	pinctrl-0 = <&uart0_ph_pins>;
- 	status = "okay";
- };
-+
-+&usbotg {
-+	dr_mode = "host";	/* USB A type receptable */
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
+ 	if (of_find_property(data->dev->of_node, "aspeed,battery-sensing",
+ 			     NULL)) {
 -- 
 2.25.1
 
