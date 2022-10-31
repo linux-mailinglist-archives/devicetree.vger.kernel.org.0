@@ -2,74 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2FC613E7C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46BEC613E7E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:43:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229886AbiJaTnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 15:43:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54800 "EHLO
+        id S230041AbiJaTnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 15:43:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbiJaTnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:43:31 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93EDB13DF1;
-        Mon, 31 Oct 2022 12:43:30 -0700 (PDT)
-Received: by mail-ot1-f45.google.com with SMTP id l42-20020a9d1b2d000000b0066c6366fbc3so746974otl.3;
-        Mon, 31 Oct 2022 12:43:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/uIj8F7o3xWdPkZPlyBxdDMdHvNd/oWAtYl8AntcMkY=;
-        b=gmfbZdl4GYLHv5btFfVvMYqi3iPQd7PBJJuYVbqJEK6tmzkWAycIpL98ASNdZWegDO
-         Oq1EMe6kcEBypunrR1vrzwwdOF655h0Fn7ddXde3I/O/Sq5xkg5k9zPqHGq74MMTFBLF
-         9rjlYmrEq2GouhLShYMS2bPhKyLsFo8+jiwaqGp4u92FDRUPcknnX1no2rVinZipyZ84
-         qdpxFE8CkPMRf8RxP1DOPi5ld95mX+a31zukNEvc4/IgDfJ5GAGIrg9Irb1lQCiu+pvD
-         sVhY0OyvCncdv2AAHwoRzPXzah4xypwXPRK0g0zjgz5WvAUZ7waIktMzcoSD1Ux2nlqY
-         3F6Q==
-X-Gm-Message-State: ACrzQf0opy0DFgW2AOP8OBOD0Gybep0EQ1Dh/JsHysgWnbntcwo+F+Dj
-        i88PLg52EJRdt7YvFcXvCA==
-X-Google-Smtp-Source: AMsMyM5g7KTSYGxrZRcKyiAux4UsYqX+I25nfP9WEslETBfWyT/AE2QXqBuAEAt4tQmd0TLlfMb3Gw==
-X-Received: by 2002:a9d:4109:0:b0:66c:5346:4505 with SMTP id o9-20020a9d4109000000b0066c53464505mr3136867ote.224.1667245409784;
-        Mon, 31 Oct 2022 12:43:29 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p22-20020a4a8156000000b0049052c66126sm2711866oog.2.2022.10.31.12.43.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 12:43:29 -0700 (PDT)
-Received: (nullmailer pid 3304763 invoked by uid 1000);
-        Mon, 31 Oct 2022 19:43:30 -0000
-Date:   Mon, 31 Oct 2022 14:43:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-arm-msm@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 01/12] dt-bindings: mtd: Clarify all partition subnodes
-Message-ID: <20221031194330.GA3299482-robh@kernel.org>
-References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
- <20221028235933.934850-2-miquel.raynal@bootlin.com>
+        with ESMTP id S229546AbiJaTnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:43:41 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C5C65CA;
+        Mon, 31 Oct 2022 12:43:39 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VJhZiZ066105;
+        Mon, 31 Oct 2022 14:43:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667245415;
+        bh=E4/XqI68hgTr9u4QRp9FIQLVyYZxnimzcjygXJlxaZ0=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Jtn+Hyt43uQGBnh7W7ptGwv2SVajDd74sG7K1V4trvRWA/yU+iJZTL25PqWvie0Gf
+         CaZxT7y8UE2FgouOotyfnnQF+Up2B0JjMqgpKYLpzGSKV/PiCzaQh6GPyLbj6u2c7x
+         CXLAVTcZC3rHOVSaaedwyliaOslsEdakB5+/0U7E=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VJhZJU030466
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Oct 2022 14:43:35 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
+ Oct 2022 14:43:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 31 Oct 2022 14:43:34 -0500
+Received: from [10.250.35.234] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VJhYSE121609;
+        Mon, 31 Oct 2022 14:43:34 -0500
+Message-ID: <7bbea2c1-f67d-c03e-1191-e2fd73832be1@ti.com>
+Date:   Mon, 31 Oct 2022 14:43:34 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221028235933.934850-2-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2] dt-bindings: input: Convert ti,drv260x to DT schema
+Content-Language: en-US
+To:     Luca Weiss <luca@z3ntu.xyz>, <linux-input@vger.kernel.org>
+CC:     <phone-devel@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221031164141.919134-1-luca@z3ntu.xyz>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221031164141.919134-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,63 +68,194 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 29, 2022 at 01:59:22AM +0200, Miquel Raynal wrote:
-> Over time the various ways to define MTD partitions has evolved. Most of
-> the controllers support several different bindings. Let's define all
-> possible choices in one file and mark the legacy ones deprecated. This
-> way, we can just reference this file and avoid dupplicating these
-> definitions.
+On 10/31/22 11:41 AM, Luca Weiss wrote:
+> Convert the drv260x haptics binding to DT schema format.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> The only notable change from .txt format is that vbat-supply is not
+> actually required, so don't make it a required property.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  Documentation/devicetree/bindings/mtd/mtd.yaml | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> @Andrew Davis: You maintain some other TI bindings, would you be willing
+> to also maintain this one? It was originally written by Dan Murphy but
+> apparently Dan no longer works for TI.
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> index 25b91f25fcf4..9fcaa61b046c 100644
-> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> @@ -21,7 +21,25 @@ properties:
->        based name) in order to ease flash device identification and/or
->        describe what they are used for.
->  
-> +  partitions:
-> +    type: object
 
-Also, this node needs 'additionalProperties: false'. Unless there cases 
-of custom properties here. If so, then it gets more complicated and 
-we'll need a partitions.yaml schema instead so we can do:
+Sure, I can take them,
 
-$ref: partitions.yaml
-properties:
-  my-extra-custom-property: true
+Acked-by: Andrew Davis <afd@ti.com>
 
-unevaluatedProperties: false
-
-(Multiple node levels doesn't work for that as child nodes from 2 
-different schemas can't 'see' each other.)
-
-> +    properties:
-> +      '#address-cells': true
-> +      '#size-cells': true
-> +
-> +    patternProperties:
-> +      "partition@[0-9a-f]+":
-> +        $ref: partitions/partition.yaml
-> +
->  patternProperties:
-> +  "@[0-9a-f]+$":
-> +    $ref: partitions/partition.yaml
-> +    deprecated: true
-> +
-> +  "^partition@[0-9a-f]+":
-> +    $ref: partitions/partition.yaml
-> +    deprecated: true
-> +
->    "^otp(-[0-9]+)?$":
->      type: object
->      $ref: ../nvmem/nvmem.yaml#
-> -- 
-> 2.34.1
+> Changes since v1:
+> * add $ref to types as suggested by Rob
+> * change maintainer
 > 
+>   .../devicetree/bindings/input/ti,drv260x.txt  |  50 ---------
+>   .../devicetree/bindings/input/ti,drv260x.yaml | 102 ++++++++++++++++++
+>   2 files changed, 102 insertions(+), 50 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/input/ti,drv260x.txt
+>   create mode 100644 Documentation/devicetree/bindings/input/ti,drv260x.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/input/ti,drv260x.txt b/Documentation/devicetree/bindings/input/ti,drv260x.txt
+> deleted file mode 100644
+> index 4c5312eaaa85..000000000000
+> --- a/Documentation/devicetree/bindings/input/ti,drv260x.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -* Texas Instruments - drv260x Haptics driver family
+> -
+> -Required properties:
+> -	- compatible - One of:
+> -		"ti,drv2604" - DRV2604
+> -		"ti,drv2605" - DRV2605
+> -		"ti,drv2605l" - DRV2605L
+> -	- reg -  I2C slave address
+> -	- vbat-supply - Required supply regulator
+> -	- mode - Power up mode of the chip (defined in include/dt-bindings/input/ti-drv260x.h)
+> -		DRV260X_LRA_MODE - Linear Resonance Actuator mode (Piezoelectric)
+> -		DRV260X_LRA_NO_CAL_MODE - This is a LRA Mode but there is no calibration
+> -				sequence during init.  And the device is configured for real
+> -				time playback mode (RTP mode).
+> -		DRV260X_ERM_MODE - Eccentric Rotating Mass mode (Rotary vibrator)
+> -	- library-sel - These are ROM based waveforms pre-programmed into the IC.
+> -				This should be set to set the library to use at power up.
+> -				(defined in include/dt-bindings/input/ti-drv260x.h)
+> -		DRV260X_LIB_EMPTY - Do not use a pre-programmed library
+> -		DRV260X_ERM_LIB_A - Pre-programmed Library
+> -		DRV260X_ERM_LIB_B - Pre-programmed Library
+> -		DRV260X_ERM_LIB_C - Pre-programmed Library
+> -		DRV260X_ERM_LIB_D - Pre-programmed Library
+> -		DRV260X_ERM_LIB_E - Pre-programmed Library
+> -		DRV260X_ERM_LIB_F - Pre-programmed Library
+> -		DRV260X_LIB_LRA - Pre-programmed LRA Library
+> -
+> -Optional properties:
+> -	- enable-gpio - gpio pin to enable/disable the device.
+> -	- vib-rated-mv - The rated voltage of the actuator in millivolts.
+> -			  If this is not set then the value will be defaulted to
+> -			  3.2 v.
+> -	- vib-overdrive-mv - The overdrive voltage of the actuator in millivolts.
+> -			  If this is not set then the value will be defaulted to
+> -			  3.2 v.
+> -Example:
+> -
+> -haptics: haptics@5a {
+> -	compatible = "ti,drv2605l";
+> -	reg = <0x5a>;
+> -	vbat-supply = <&vbat>;
+> -	enable-gpio = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> -	mode = <DRV260X_LRA_MODE>;
+> -	library-sel = <DRV260X_LIB_LRA>;
+> -	vib-rated-mv = <3200>;
+> -	vib-overdrive-mv = <3200>;
+> -}
+> -
+> -For more product information please see the link below:
+> -http://www.ti.com/product/drv2605
+> diff --git a/Documentation/devicetree/bindings/input/ti,drv260x.yaml b/Documentation/devicetree/bindings/input/ti,drv260x.yaml
+> new file mode 100644
+> index 000000000000..d8b9b9d5d9d9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/ti,drv260x.yaml
+> @@ -0,0 +1,102 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/ti,drv260x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments - drv260x Haptics driver family
+> +
+> +maintainers:
+> +  - Andrew Davis <afd@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,drv2604
+> +      - ti,drv2605
+> +      - ti,drv2605l
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vbat-supply:
+> +    description: Power supply to the haptic motor
+> +
+> +  mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Power up mode of the chip
+> +      (defined in include/dt-bindings/input/ti-drv260x.h)
+> +
+> +      DRV260X_LRA_MODE
+> +        Linear Resonance Actuator mode (Piezoelectric)
+> +
+> +      DRV260X_LRA_NO_CAL_MODE
+> +        This is a LRA Mode but there is no calibration sequence during init.
+> +        And the device is configured for real time playback mode (RTP mode).
+> +
+> +      DRV260X_ERM_MODE
+> +        Eccentric Rotating Mass mode (Rotary vibrator)
+> +    enum: [ 0, 1, 2 ]
+> +
+> +  library-sel:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      These are ROM based waveforms pre-programmed into the IC.
+> +      This should be set to set the library to use at power up.
+> +      (defined in include/dt-bindings/input/ti-drv260x.h)
+> +
+> +      DRV260X_LIB_EMPTY - Do not use a pre-programmed library
+> +      DRV260X_ERM_LIB_A - Pre-programmed Library
+> +      DRV260X_ERM_LIB_B - Pre-programmed Library
+> +      DRV260X_ERM_LIB_C - Pre-programmed Library
+> +      DRV260X_ERM_LIB_D - Pre-programmed Library
+> +      DRV260X_ERM_LIB_E - Pre-programmed Library
+> +      DRV260X_ERM_LIB_F - Pre-programmed Library
+> +      DRV260X_LIB_LRA - Pre-programmed LRA Library
+> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+> +
+> +  enable-gpio:
+> +    maxItems: 1
+> +
+> +  vib-rated-mv:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The rated voltage of the actuator in millivolts.
+> +      If this is not set then the value will be defaulted to 3200 mV.
+> +
+> +  vib-overdrive-mv:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      The overdrive voltage of the actuator in millivolts.
+> +      If this is not set then the value will be defaulted to 3200 mV.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - enable-gpio
+> +  - mode
+> +  - library-sel
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/input/ti-drv260x.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        haptics@5a {
+> +            compatible = "ti,drv2605l";
+> +            reg = <0x5a>;
+> +            vbat-supply = <&vbat>;
+> +            enable-gpio = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> +            mode = <DRV260X_LRA_MODE>;
+> +            library-sel = <DRV260X_LIB_LRA>;
+> +            vib-rated-mv = <3200>;
+> +            vib-overdrive-mv = <3200>;
+> +        };
+> +    };
