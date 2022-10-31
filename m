@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B3C613558
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 13:08:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B544A613592
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 13:15:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231241AbiJaMIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 08:08:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39656 "EHLO
+        id S230467AbiJaMPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 08:15:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231250AbiJaMIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 08:08:02 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C557F005
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 05:07:59 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-367b8adf788so105819397b3.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 05:07:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uIgEds2lsUEazFDcLqiFcBouG6saS9AagLSYOnXJFgM=;
-        b=pBJsJOAmF+05N3+3hZfjF1ZtP+2ryz6assxcuDYfI5liFd25pwJmh3ip1CYl0NQ5b7
-         Q/R1ZzvhOAmZwRIKXL0/Rd3vJlSMqBQhKbXmeRKtrHVvCXgJCl68xaX2G9UwK4VfPkcr
-         DbST64ziRaWJXYFPDvxm+67zOVzWRldT5mqtqIjB0pQbk0KOFdLZlVOkbQIgegc/M26f
-         HCwZRlL2uhDTlN69oODCR8mTGCI+bqk6NyYip7jNywRSyby2dLOxUeqKKCeTF+bQdwb8
-         uIj5xO9FWyVJFdKEt7rZYqlLXCtjHoHoxBURZ+9i2kIIC/npgwSi00nnFKPe6hjb2lW6
-         BjVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uIgEds2lsUEazFDcLqiFcBouG6saS9AagLSYOnXJFgM=;
-        b=Yh8k/E11tiTcXy0NXAZaL21ma2kqMVow3u0mDL2z7xIedUQazmSg5XVrYW7zgZdB9L
-         /bwbClStOUw6GtwVmeNpes8f+HM0tV27y62Ez82scW5n3f4U8etrA/V0J9JZG+dNl0XP
-         RfNKqIQ6JyPH3ue8NBARsON3ZSsf0k3q4kudFUdYr1KzP8T56OzijtjWU17Xs7MiOUTl
-         uRAOblU08zplJOysLN6HFFaN4FzMCcE/Ivb25kgu4qpZwQ8Scsxc2rUOlRoi04JdqMjW
-         U7JcdWKZkZrs5FW8KFkz72mL5TOZy7LR5Mt3wcZTPnl5qJ5ns2FMLmUpxDsHTxSRp0mr
-         cB+w==
-X-Gm-Message-State: ACrzQf3xKI6e7TLtyiP0sjF99a7k6D1Gi9Em4tHQpP06mVAIG6c3UPQN
-        X6kf9435r51km6euDku5wlaSdJMiXXnKKlA9bHuznQ==
-X-Google-Smtp-Source: AMsMyM6Rk+z9XSkM0gx0kUZjmUPDqfeBWgYp5+03gj8tpxxxciSK6Ab/X9mTjfczx5v4JFxVOh/jbjlcTd0zGQEaMuA=
-X-Received: by 2002:a81:4f89:0:b0:36a:f09f:73fc with SMTP id
- d131-20020a814f89000000b0036af09f73fcmr12513606ywb.487.1667218078610; Mon, 31
- Oct 2022 05:07:58 -0700 (PDT)
+        with ESMTP id S231245AbiJaMPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 08:15:48 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC73AF58C;
+        Mon, 31 Oct 2022 05:15:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 986C9B81600;
+        Mon, 31 Oct 2022 12:15:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A23E8C433D6;
+        Mon, 31 Oct 2022 12:15:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667218545;
+        bh=Ef0W9FuoGDPdO4zKMVlrGyTZfrkEq8UbTUD28FiKRag=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P+iA4gyWU/jnn43e+kWoV4GiKk0s/JeKh7LlUD5I/laKaGMYT91w4GqbYLRBtJE7V
+         Q0BUxSVHW53TryBbQHes16JEzqGW0rvbUbdbaS2nm4Zs+OZhVVM21Cmxh00L0r0LFs
+         QdjrUTUSBLIMujDYupLOehoy7qdjM4G8d0KCemtBs4jOr3wWjFVKWiisVmQX1bdpGS
+         2/riTQX+d2qnw2qiLKWwYuBM9TPgJeZV8hyFntv8YM8pQZO2dXVPQXK0ysBNpcOKMm
+         2A3C3Brgoj2yiSVTPkyjzLwU8pOTUdPNJD1qs9MIRIgHQl8q+anWKIs9ioHFCh+oHM
+         4i4Ek4kz1KFcQ==
+Date:   Mon, 31 Oct 2022 12:15:39 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     paul@crapouillou.net, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tsbogend@alpha.franken.de,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: ingenic,aic: Remove unnecessary
+ clocks from schema
+Message-ID: <Y1+8a397G5jwOPmR@sirena.org.uk>
+References: <20221028103418.17578-1-aidanmacdonald.0x0@gmail.com>
+ <20221028103418.17578-2-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-References: <20221030172609.1635096-1-ajye_huang@compal.corp-partner.google.com>
- <20221030172609.1635096-2-ajye_huang@compal.corp-partner.google.com>
-In-Reply-To: <20221030172609.1635096-2-ajye_huang@compal.corp-partner.google.com>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Mon, 31 Oct 2022 20:07:47 +0800
-Message-ID: <CALprXBY3S5N-g6N=q4DgF3ngq-eTxc_+LjGJQp2QjVz+Fi4pRg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] ASoC: mediatek: dt-bindings: modify machine
- bindings for two MICs case
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        "chunxu . li" <chunxu.li@mediatek.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="N901two7N9pSy3Od"
+Content-Disposition: inline
+In-Reply-To: <20221028103418.17578-2-aidanmacdonald.0x0@gmail.com>
+X-Cookie: Sign here without admitting guilt.
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob Herring,
 
+--N901two7N9pSy3Od
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Mon, Oct 31, 2022 at 1:26 AM Ajye Huang
-<ajye_huang@compal.corp-partner.google.com> wrote:
->
-> +
-> +        dmic-gpios = <&pio 23 0>;
->
->          headset-codec {
->              sound-dai = <&rt5682s>;
-> --
-> 2.25.1
->
+On Fri, Oct 28, 2022 at 11:34:16AM +0100, Aidan MacDonald wrote:
+> The AIC needs only the first two clocks: "aic" is a gate that's used
+> for gating the I2S controller when it's suspended, and "i2s" is the
+> system clock, from which the bit and frame clocks are derived. Both
+> clocks are therefore reasonably part of the AIC and should be passed
+> to the OS.
 
-I think the modification will be better, I will send v5 again, thanks
-@@ -63,14 +70,19 @@ required:
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
- examples:
-   - |
-+    #include <dt-bindings/gpio/gpio.h>
+--N901two7N9pSy3Od
+Content-Type: application/pgp-signature; name="signature.asc"
 
-     sound: mt8186-sound {
-         compatible = "mediatek,mt8186-mt6366-rt1019-rt5682s-sound";
-         mediatek,platform = <&afe>;
-         pinctrl-names = "aud_clk_mosi_off",
--                        "aud_clk_mosi_on";
-+                        "aud_clk_mosi_on",
-+                        "aud_gpio_dmic_sec";
-         pinctrl-0 = <&aud_clk_mosi_off>;
-         pinctrl-1 = <&aud_clk_mosi_on>;
-+        pinctrl-2 = <&aud_gpio_dmic_sec>;
-+
-+        dmic-gpios = <&pio 23 GPIO_ACTIVE_HIGH>;
+-----BEGIN PGP SIGNATURE-----
 
-         headset-codec {
-             sound-dai = <&rt5682s>;
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmNfvGoACgkQJNaLcl1U
+h9Cnswf/ZAuU22Y9Yiq2KpvaB2q8KrqZ6K+ZSo62Ba4+8vTUklrQSWDDd6rRYhpg
+a6wup56FbqCzhIhuL8sRf8SI1T21vM8uMluer89ww/q75rIfpll4Yub6fHhpi7b3
+clsOwOE2BJrLONcfkPS5Ln8EfedsXF7JZRR6fTwgOONfkUGkRf4lUtSfIgTAHNjw
+KgStQUCJ/ah5jCarlGQsB4PMq6QcbEJmjLlBI4RDb2fkSWUuoXFtKzRenRrafc7C
+QEAi5knsfYKq3MOfZYjOQfvrYqlaUtlEsQUAzO39m/vxrMagIZcgFNZz8YOzRlfs
+rbUJ4GaCQrVbBh3k/8atGG9LQRqLog==
+=CzgJ
+-----END PGP SIGNATURE-----
+
+--N901two7N9pSy3Od--
