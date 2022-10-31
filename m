@@ -2,92 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A388E613E8A
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:46:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DF3613E91
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 20:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbiJaTqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 15:46:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56748 "EHLO
+        id S229886AbiJaTzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 15:55:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbiJaTqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:46:03 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1635013F35;
-        Mon, 31 Oct 2022 12:46:03 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id y67so13876086oiy.1;
-        Mon, 31 Oct 2022 12:46:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HqPBfh/sHLOCUkJwzrRXE8QNX4/bCsSnqwI1z6aeHg0=;
-        b=zboUwPxJsPpeY9EpaPD+rJFXED1f/1QE1T7tLJ44NdqsdHmQd3Y/Jw5bhWHswtZlkC
-         6o77xTnJHrNr348P/a7wtNa13ShZkvJisPC54rN+ztoRA/3iMLPmd/oPauUaaNer1KcW
-         N8YWVOP2nMu+g6VlhgllcT2ZDvayEdsMiZ8m2vQfFbALWV78Fi2TSWXXLuxjfp+x+E2L
-         59Hf0x0Hl8IIKuBtz7GU6AYASc+t1Q4Atl0tVt4mAy44zwuvFw2F2XjkVVAA8c6ccuDV
-         Q6Pf90u1qmRpkoz0mbukCfICUwupyPcKfJa0xidODFY9WQe/zDdgMKNEd7lbG3NIoQ5f
-         ffAQ==
-X-Gm-Message-State: ACrzQf24A9o37IY7iLtlkJjSdRu0oftf5WeV80QsFP5nNA2hnuOO0zwM
-        o+bzCDdyes6lx6ONwFzHLA==
-X-Google-Smtp-Source: AMsMyM5DjCcuMLrtnUf3Usg92SdXXm4p/mUKMHioTXVsEWUiB+C3u5HR/ONxnbc5Kn3g5zOFM7xPVQ==
-X-Received: by 2002:a05:6808:178a:b0:359:fe7a:14ac with SMTP id bg10-20020a056808178a00b00359fe7a14acmr4520490oib.34.1667245562350;
-        Mon, 31 Oct 2022 12:46:02 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 5-20020a9d0685000000b0066c41be56e7sm2778937otx.55.2022.10.31.12.46.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 12:46:01 -0700 (PDT)
-Received: (nullmailer pid 3307676 invoked by uid 1000);
-        Mon, 31 Oct 2022 19:46:03 -0000
-Date:   Mon, 31 Oct 2022 14:46:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Pratyush Yadav <p.yadav@ti.com>, linux-sunxi@lists.linux.dev,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        with ESMTP id S229515AbiJaTzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 15:55:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3AC13F46;
+        Mon, 31 Oct 2022 12:55:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CF0F60BDE;
+        Mon, 31 Oct 2022 19:55:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FE0FC433D6;
+        Mon, 31 Oct 2022 19:55:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667246105;
+        bh=pyVKDV9QrizM1GaBQq4r6UkfjgqRTyFKgmg+DUJEeQU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mW9DeEtixxOapdRHvxfLlxaq8LROL7F1QXfcV+G5uXeMnzoTrGmytiX0uHZI+YNzw
+         xvT0Sw8CjZRBFt/Q7mkklElI9RtFeYIEPTiAMnIxkpwCGXbZLE05jGHBpXzYNj+uAH
+         Jyk6ToZz7whWr+9xodG6dpq4kUxomyK4YvgRy99M8Uq6T94ievbr9ZoMBOO8H+/msf
+         n58dXAT+2VGsnqLz8EcAWGDiagcAPLiiEpt5LzZnQYH36hbj/vTbd04IiA/QiKL4xX
+         FiwIRacDl3ssyae3g6+FA7eNJ+BYnTRY+9ngedNVDycdGhQZpHiiMeYcVLm2+z2po8
+         vSWtzrDwF4nsQ==
+Date:   Mon, 31 Oct 2022 19:55:00 +0000
+From:   Conor Dooley <conor@kernel.org>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 04/12] dt-bindings: mtd: ingenic: Mark partitions in the
- controller node as deprecated
-Message-ID: <166724556189.3307605.7479486129187361560.robh@kernel.org>
-References: <20221028235933.934850-1-miquel.raynal@bootlin.com>
- <20221028235933.934850-5-miquel.raynal@bootlin.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] riscv: dts: microchip: fix memory node unit address for
+ icicle
+Message-ID: <Y2AoFCbQFGnWT48Y@spud>
+References: <20221025195643.1215890-1-conor@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221028235933.934850-5-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20221025195643.1215890-1-conor@kernel.org>
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Sat, 29 Oct 2022 01:59:25 +0200, Miquel Raynal wrote:
-> Defining partitions as subnodes of the controller has been deprecated
-> long time ago, but unlike having partitions within the controller node,
-> having an enveloppe named "partitions" (which is not itself within a
-> chip subnode) is not that common, so keep this deprecated definition in
-> this file.
+On Tue, Oct 25, 2022 at 08:56:44PM +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Evidently I forgot to update the unit address for the 38-bit cached
+> memory node when I changed the address in the reg property..
+> Update it to match.
+> 
+> Fixes: 6c1193301791 ("riscv: dts: microchip: update memory configuration for v2022.10")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+Applied:
+https://git.kernel.org/conor/c/d6105a8b7c160a73ae04054c8921eba80a294146
+
 > ---
->  Documentation/devicetree/bindings/mtd/ingenic,nand.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-
-Acked-by: Rob Herring <robh@kernel.org>
+> diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+> index ec7b7c2a3ce2..8ced67c3b00b 100644
+> --- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+> +++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+> @@ -37,7 +37,7 @@ ddrc_cache_lo: memory@80000000 {
+>  		status = "okay";
+>  	};
+>  
+> -	ddrc_cache_hi: memory@1000000000 {
+> +	ddrc_cache_hi: memory@1040000000 {
+>  		device_type = "memory";
+>  		reg = <0x10 0x40000000 0x0 0x40000000>;
+>  		status = "okay";
+> -- 
+> 2.38.0
+> 
