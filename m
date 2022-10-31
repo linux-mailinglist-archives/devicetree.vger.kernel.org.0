@@ -2,87 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1143613245
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 10:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6EB3613269
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 10:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbiJaJKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 05:10:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45488 "EHLO
+        id S230177AbiJaJTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 05:19:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbiJaJKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 05:10:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C458DE8A;
-        Mon, 31 Oct 2022 02:10:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 05A5B6104F;
-        Mon, 31 Oct 2022 09:10:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 5684BC43140;
-        Mon, 31 Oct 2022 09:10:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667207417;
-        bh=I4NVs0U7sjGhCQhI4xGL75Wf864Rg/GvXfCf3DWTyIg=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=OWKhRgROTBHPZJy7WJPy9Jinr9RcUW4H/LGAvOdit2Bvzcr7k4sDUB/l7qZUd3Vup
-         pcBDKx5xf13uBhvAbvow5IPHgb1Idfs+P0ak9xuz79+hl/hH1n9unB5F6ShZ+naxoR
-         ddyBphvAbrau6OGk5dXPSnOvPWGr96XW2gBAyq+LBy4zHsyZ0VqyuJbAItSrLwnQ9i
-         6f/ooYbV+whzg2d6E1SEfbMl0tSyRJRtPA4k6KdT2i7Pw2yPm0NQ5zSXjRebbsqHoq
-         /gkLl/4mgeDZEHzosEEZwr3v0L8eTbG7Yh56ffZHosfp0zenynNopgeI9xdcyeC8rW
-         Jlvok7dhVMOiw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 409ECE270D6;
-        Mon, 31 Oct 2022 09:10:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230144AbiJaJTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 05:19:16 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7DDDBD2F6;
+        Mon, 31 Oct 2022 02:19:14 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 921DA1FB;
+        Mon, 31 Oct 2022 02:19:20 -0700 (PDT)
+Received: from pierre123.arm.com (unknown [10.57.7.107])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 160823F703;
+        Mon, 31 Oct 2022 02:19:11 -0700 (PDT)
+From:   Pierre Gondois <pierre.gondois@arm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     pierre.gondois@arm.com, Rob.Herring@arm.com,
+        Brijesh Singh <brijeshkumar.singh@amd.com>,
+        Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 01/20] arm64: dts: Update cache properties for amd
+Date:   Mon, 31 Oct 2022 10:19:03 +0100
+Message-Id: <20221031091903.531009-1-pierre.gondois@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCHv2 1/1] dt-bindings: net: snps,dwmac: Document queue config
- subnodes
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <166720741726.7426.12772308413973886987.git-patchwork-notify@kernel.org>
-Date:   Mon, 31 Oct 2022 09:10:17 +0000
-References: <20221027163119.107092-1-sebastian.reichel@collabora.com>
-In-Reply-To: <20221027163119.107092-1-sebastian.reichel@collabora.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, alexandre.torgue@foss.st.com,
-        peppe.cavallaro@st.com, joabreu@synopsys.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+The DeviceTree Specification v0.3 specifies that the cache node
+'compatible' and 'cache-level' properties are 'required'. Cf.
+s3.8 Multi-level and Shared Cache Nodes
 
-This patch was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+The recently added init_of_cache_level() function checks
+these properties. Add them if missing.
 
-On Thu, 27 Oct 2022 18:31:19 +0200 you wrote:
-> The queue configuration is referenced by snps,mtl-rx-config and
-> snps,mtl-tx-config. Some in-tree DTs and the example put the
-> referenced config nodes directly beneath the root node, but
-> most in-tree DTs put it as child node of the dwmac node.
-> 
-> This adds proper description for this setup, which has the
-> advantage of validating the queue configuration node content.
-> 
-> [...]
+Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+---
+ arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Here is the summary with links:
-  - [PATCHv2,1/1] dt-bindings: net: snps,dwmac: Document queue config subnodes
-    https://git.kernel.org/netdev/net-next/c/8fc4deaa8bd2
-
-You are awesome, thank you!
+diff --git a/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi b/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+index 93688a0b6820..9f2d983e082d 100644
+--- a/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
++++ b/arch/arm64/boot/dts/amd/amd-seattle-cpus.dtsi
+@@ -163,38 +163,47 @@ CPU7: cpu@301 {
+ 	};
+ 
+ 	L2_0: l2-cache0 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
+ 
+ 	L2_1: l2-cache1 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
+ 
+ 	L2_2: l2-cache2 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
+ 
+ 	L2_3: l2-cache3 {
++		compatible = "cache";
+ 		cache-size = <0x100000>;
+ 		cache-line-size = <64>;
+ 		cache-sets = <1024>;
+ 		cache-unified;
++		cache-level = <2>;
+ 		next-level-cache = <&L3>;
+ 	};
+ 
+ 	L3: l3-cache {
++		compatible = "cache";
+ 		cache-level = <3>;
+ 		cache-size = <0x800000>;
+ 		cache-line-size = <64>;
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.25.1
 
