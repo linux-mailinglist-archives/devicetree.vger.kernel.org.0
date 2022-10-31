@@ -2,127 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F40613EAE
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5EB613EBE
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:12:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiJaUGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 16:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37044 "EHLO
+        id S229711AbiJaUMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 16:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbiJaUGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:06:51 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7189C13EB8;
-        Mon, 31 Oct 2022 13:06:50 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VK6aAg054756;
-        Mon, 31 Oct 2022 15:06:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667246796;
-        bh=e8QC9EQqOqeUI8BDYW1Gjrl96J62w1MR4bj6r4Ykpcs=;
-        h=From:To:CC:Subject:Date;
-        b=Yg/YRB4qey3u+029Ya8rHITuNVdsVIQIIlXVuyMLjfCtmunIgBwLyzCg3kWPg0Sru
-         /n+6hS0yCmL/Irp4wyTSInr7dYhnZ6rFAd9+85aN8HhFdzE9xx6bdOha8uX3qx8zHN
-         tZLp4cFg0u/+JwrW5msB3AmYowtDBZNEjyXOmMng=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VK6asO028332
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 31 Oct 2022 15:06:36 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
- Oct 2022 15:06:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 31 Oct 2022 15:06:35 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VK6Y5r086877;
-        Mon, 31 Oct 2022 15:06:35 -0500
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>
-CC:     <kristo@kernel.org>, <robh+dt@kernel.org>, <afd@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <j-choudhary@ti.com>
-Subject: [PATCH v3] arm64: dts: ti: k3-j721s2-main: Enable crypto accelerator
-Date:   Tue, 1 Nov 2022 01:36:33 +0530
-Message-ID: <20221031200633.26997-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229872AbiJaUMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:12:33 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B82F6278
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:12:31 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 099192C02AB;
+        Tue,  1 Nov 2022 09:12:28 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1667247148;
+        bh=XZ+if1N2/Ks4LSOWRvtmswP4a4+DC9ER27mb2KT5/QU=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=xdBosmzTcBxJXMO8IJQtUjMXuNPpOiKVsPnw5lEByGHc1hxGBJVMW93DebxcKWs0B
+         UI68gNnkIUMHBRVTObH1J5Hqyvwk4MtCFmYYPfE7fZxuONcKhq6xSbliQaMOqj/dny
+         vft6sGmpqUkrPWv7OOhBmc9b1Pw/mpoWeOXRtJldQhiU0CLMf9o7O7h93baQC7PD08
+         l2cCagdMQot65F1iZ9R3c2SjyNqvgMP25+2TqZ/gHN8/DiW9SZlgxB5SujLgRONNSS
+         MZlzEpUDpcQ2QA4+Ys9uY9EbrGCCN1LxbSHR88uuZhT8TiPxvXBAGADP1n1OWCFVu5
+         T0BPNcdxHwxnw==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B63602c2b0001>; Tue, 01 Nov 2022 09:12:27 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 1 Nov 2022 09:12:27 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.042; Tue, 1 Nov 2022 09:12:27 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     "Rob.Herring@arm.com" <Rob.Herring@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "Gregory Clement" <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 10/20] arm64: dts: Update cache properties for marvell
+Thread-Topic: [PATCH 10/20] arm64: dts: Update cache properties for marvell
+Thread-Index: AQHY7QoEsh2dDxNstkG/65AkQ+4wgq4oFi+A
+Date:   Mon, 31 Oct 2022 20:12:27 +0000
+Message-ID: <74622aa0-e74b-9ed9-2dab-8a4f0fce40e9@alliedtelesis.co.nz>
+References: <20221031092020.532456-1-pierre.gondois@arm.com>
+In-Reply-To: <20221031092020.532456-1-pierre.gondois@arm.com>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <B5579AC05A4CB84BA1A5FD7110D7B708@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=YrxxuLQX c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=9xFQ1JgjjksA:10 a=7CQSdrXTAAAA:8 a=Xk00A_WVHji455j1H8cA:9 a=QEXdDO2ut3YA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-SEG-SpamProfiler-Score: 0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the node for SA2UL for supporting hardware crypto algorithms,
-including SHA1, SHA256, SHA512, AES, 3DES and AEAD suites.
-Add rng node for hardware random number generator.
-
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-Acked-by: Matt Ranostay <mranostay@ti.com>
-Acked-by: Andrew Davis <afd@ti.com>
----
-
-Changes have been tested on local j721s2-evm board. Tcrypt tests
-and crypto self-tests were passing.
-
-Changelog v2 -> v3:
-- remove the clock property from rng node
-  (<https://lore.kernel.org/all/20220901171041.32056-1-afd@ti.com/>)
-
-Changelog v1 -> v2:
-- change the TI_SCI flag from shared to exclusive as OP-TEE uses MCU
-  domain SA2UL instance and not the main domain instance
-- remove the 'dma-coherent' property (Binding changes are merged)
-- add the rng node which can be used as well for hwrng along with
-  optee-rng
-
-v2 patch: https://lore.kernel.org/all/20221031135416.350010-1-j-choudhary@ti.com/  
-
-Testing log: https://gist.github.com/Jayesh2000/26acf0e63f7edcd4b267122e4c73b9a8
-
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-index d1ec26110376..2e0ba2262e77 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
-@@ -72,6 +72,25 @@ main_pmx0: pinctrl@11c000 {
- 		pinctrl-single,function-mask = <0xffffffff>;
- 	};
- 
-+	main_crypto: crypto@4e00000 {
-+		compatible = "ti,j721e-sa2ul";
-+		reg = <0x00 0x4e00000 0x00 0x1200>;
-+		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x00 0x04e00000 0x00 0x04e00000 0x00 0x30000>;
-+
-+		dmas = <&main_udmap 0xca40>, <&main_udmap 0x4a40>,
-+				<&main_udmap 0x4a41>;
-+		dma-names = "tx", "rx1", "rx2";
-+
-+		rng: rng@4e10000 {
-+			compatible = "inside-secure,safexcel-eip76";
-+			reg = <0x0 0x4e10000 0x0 0x7d>;
-+			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+	};
-+
- 	main_uart0: serial@2800000 {
- 		compatible = "ti,j721e-uart", "ti,am654-uart";
- 		reg = <0x00 0x02800000 0x00 0x200>;
--- 
-2.25.1
-
+DQpPbiAzMS8xMC8yMiAyMjoyMCwgUGllcnJlIEdvbmRvaXMgd3JvdGU6DQo+IFRoZSBEZXZpY2VU
+cmVlIFNwZWNpZmljYXRpb24gdjAuMyBzcGVjaWZpZXMgdGhhdCB0aGUgY2FjaGUgbm9kZQ0KPiAn
+Y29tcGF0aWJsZScgYW5kICdjYWNoZS1sZXZlbCcgcHJvcGVydGllcyBhcmUgJ3JlcXVpcmVkJy4g
+Q2YuDQo+IHMzLjggTXVsdGktbGV2ZWwgYW5kIFNoYXJlZCBDYWNoZSBOb2Rlcw0KPg0KPiBUaGUg
+cmVjZW50bHkgYWRkZWQgaW5pdF9vZl9jYWNoZV9sZXZlbCgpIGZ1bmN0aW9uIGNoZWNrcw0KPiB0
+aGVzZSBwcm9wZXJ0aWVzLiBBZGQgdGhlbSBpZiBtaXNzaW5nLg0KPg0KPiBTaWduZWQtb2ZmLWJ5
+OiBQaWVycmUgR29uZG9pcyA8cGllcnJlLmdvbmRvaXNAYXJtLmNvbT4NCg0KRm9yIGFjNS05OGR4
+MjV4eC5kdHNpDQoNClJldmlld2VkLWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFs
+bGllZHRlbGVzaXMuY28ubno+DQoNCj4gLS0tDQo+ICAgYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2
+ZWxsL2FjNS05OGR4MjV4eC5kdHNpICAgICAgfCAxICsNCj4gICBhcmNoL2FybTY0L2Jvb3QvZHRz
+L21hcnZlbGwvYXJtYWRhLWFwODA2LWR1YWwuZHRzaSB8IDEgKw0KPiAgIGFyY2gvYXJtNjQvYm9v
+dC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtcXVhZC5kdHNpIHwgMiArKw0KPiAgIGFyY2gvYXJt
+NjQvYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDctcXVhZC5kdHNpIHwgMiArKw0KPiAgIDQg
+ZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspDQo+DQo+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kgYi9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kNCj4gaW5kZXggODBiNDRjN2RmNTZhLi5kNDc3
+MGFjZWM2YWMgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hYzUt
+OThkeDI1eHguZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4
+ZHgyNXh4LmR0c2kNCj4gQEAgLTQ5LDYgKzQ5LDcgQEAgY3B1MTogY3B1QDEgew0KPiAgIA0KPiAg
+IAkJbDI6IGwyLWNhY2hlIHsNCj4gICAJCQljb21wYXRpYmxlID0gImNhY2hlIjsNCj4gKwkJCWNh
+Y2hlLWxldmVsID0gPDI+Ow0KPiAgIAkJfTsNCj4gICAJfTsNCj4gICANCj4gZGlmZiAtLWdpdCBh
+L2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtZHVhbC5kdHNpIGIvYXJj
+aC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FybWFkYS1hcDgwNi1kdWFsLmR0c2kNCj4gaW5kZXgg
+ZmNhYjUxNzNmZTY3Li45OTBmNzAzMDNmZTYgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9v
+dC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtZHVhbC5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtNjQv
+Ym9vdC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtZHVhbC5kdHNpDQo+IEBAIC01MSw2ICs1MSw3
+IEBAIGwyOiBsMi1jYWNoZSB7DQo+ICAgCQkJY2FjaGUtc2l6ZSA9IDwweDgwMDAwPjsNCj4gICAJ
+CQljYWNoZS1saW5lLXNpemUgPSA8NjQ+Ow0KPiAgIAkJCWNhY2hlLXNldHMgPSA8NTEyPjsNCj4g
+KwkJCWNhY2hlLWxldmVsID0gPDI+Ow0KPiAgIAkJfTsNCj4gICAJfTsNCj4gICANCj4gZGlmZiAt
+LWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtcXVhZC5kdHNp
+IGIvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FybWFkYS1hcDgwNi1xdWFkLmR0c2kNCj4g
+aW5kZXggM2RiNDI3MTIyZjllLi5hN2I4ZTAwMWNjOWMgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtcXVhZC5kdHNpDQo+ICsrKyBiL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtYXA4MDYtcXVhZC5kdHNpDQo+IEBAIC04MSw2
+ICs4MSw3IEBAIGwyXzA6IGwyLWNhY2hlMCB7DQo+ICAgCQkJY2FjaGUtc2l6ZSA9IDwweDgwMDAw
+PjsNCj4gICAJCQljYWNoZS1saW5lLXNpemUgPSA8NjQ+Ow0KPiAgIAkJCWNhY2hlLXNldHMgPSA8
+NTEyPjsNCj4gKwkJCWNhY2hlLWxldmVsID0gPDI+Ow0KPiAgIAkJfTsNCj4gICANCj4gICAJCWwy
+XzE6IGwyLWNhY2hlMSB7DQo+IEBAIC04OCw2ICs4OSw3IEBAIGwyXzE6IGwyLWNhY2hlMSB7DQo+
+ICAgCQkJY2FjaGUtc2l6ZSA9IDwweDgwMDAwPjsNCj4gICAJCQljYWNoZS1saW5lLXNpemUgPSA8
+NjQ+Ow0KPiAgIAkJCWNhY2hlLXNldHMgPSA8NTEyPjsNCj4gKwkJCWNhY2hlLWxldmVsID0gPDI+
+Ow0KPiAgIAkJfTsNCj4gICAJfTsNCj4gICB9Ow0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9i
+b290L2R0cy9tYXJ2ZWxsL2FybWFkYS1hcDgwNy1xdWFkLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3Qv
+ZHRzL21hcnZlbGwvYXJtYWRhLWFwODA3LXF1YWQuZHRzaQ0KPiBpbmRleCA2ODc4MmYxNjFmMTIu
+Ljc3NDAwOThmZDEwOCAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxs
+L2FybWFkYS1hcDgwNy1xdWFkLmR0c2kNCj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2
+ZWxsL2FybWFkYS1hcDgwNy1xdWFkLmR0c2kNCj4gQEAgLTgxLDYgKzgxLDcgQEAgbDJfMDogbDIt
+Y2FjaGUwIHsNCj4gICAJCQljYWNoZS1zaXplID0gPDB4ODAwMDA+Ow0KPiAgIAkJCWNhY2hlLWxp
+bmUtc2l6ZSA9IDw2ND47DQo+ICAgCQkJY2FjaGUtc2V0cyA9IDw1MTI+Ow0KPiArCQkJY2FjaGUt
+bGV2ZWwgPSA8Mj47DQo+ICAgCQl9Ow0KPiAgIA0KPiAgIAkJbDJfMTogbDItY2FjaGUxIHsNCj4g
+QEAgLTg4LDYgKzg5LDcgQEAgbDJfMTogbDItY2FjaGUxIHsNCj4gICAJCQljYWNoZS1zaXplID0g
+PDB4ODAwMDA+Ow0KPiAgIAkJCWNhY2hlLWxpbmUtc2l6ZSA9IDw2ND47DQo+ICAgCQkJY2FjaGUt
+c2V0cyA9IDw1MTI+Ow0KPiArCQkJY2FjaGUtbGV2ZWwgPSA8Mj47DQo+ICAgCQl9Ow0KPiAgIAl9
+Ow0KPiAgIH07
