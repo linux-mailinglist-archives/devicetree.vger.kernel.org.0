@@ -2,76 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD486134AB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 12:42:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B3C613558
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 13:08:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbiJaLmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 07:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
+        id S231241AbiJaMIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 08:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbiJaLlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 07:41:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4589CE0BD;
-        Mon, 31 Oct 2022 04:41:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D4711611C8;
-        Mon, 31 Oct 2022 11:41:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5314C433D6;
-        Mon, 31 Oct 2022 11:41:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667216509;
-        bh=wZy34/2qvD5KcbCAj+Id9EYXK9BOJSPuJUKfFINyE8w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SpeHoSWSGyd3GYiXc5IAKS4qIH1INIffk7f3KYqkwuLKcZToIaXJ/N14aHmkAdLsH
-         ItSWz2iweC5rTEtPwvJa3IlnP65M9xbZXHA/1fKq3HfQMI0elSEZ3n23bhdO9dhcyx
-         Xj315m7DAhbLNqqkH15mTP4xaXl3JiiQ7qhOpF5gkJhUQCih8C9qLGKCmEAp5fvZ6A
-         qeA7Royksf3Lr9Z58gCp4aXoi2XQce4CWlpgp/o6LBAqtN3ovFFgsLII0x8GSqLuFm
-         yM0o1M5KILsbR0L3GIkPjvtgbQcr+d+5QWe2MwYwO6uGQOay9N01nBtw/tRXXjYtb5
-         Z6N8PUxSRhYqw==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, robh@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add lsm6dsv device bindings
-Date:   Mon, 31 Oct 2022 12:41:26 +0100
-Message-Id: <c34cea4468dc26050dff812f47e1a21f8e544758.1667216004.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <cover.1667216004.git.lorenzo@kernel.org>
-References: <cover.1667216004.git.lorenzo@kernel.org>
+        with ESMTP id S231250AbiJaMIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 08:08:02 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C557F005
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 05:07:59 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-367b8adf788so105819397b3.2
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 05:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=uIgEds2lsUEazFDcLqiFcBouG6saS9AagLSYOnXJFgM=;
+        b=pBJsJOAmF+05N3+3hZfjF1ZtP+2ryz6assxcuDYfI5liFd25pwJmh3ip1CYl0NQ5b7
+         Q/R1ZzvhOAmZwRIKXL0/Rd3vJlSMqBQhKbXmeRKtrHVvCXgJCl68xaX2G9UwK4VfPkcr
+         DbST64ziRaWJXYFPDvxm+67zOVzWRldT5mqtqIjB0pQbk0KOFdLZlVOkbQIgegc/M26f
+         HCwZRlL2uhDTlN69oODCR8mTGCI+bqk6NyYip7jNywRSyby2dLOxUeqKKCeTF+bQdwb8
+         uIj5xO9FWyVJFdKEt7rZYqlLXCtjHoHoxBURZ+9i2kIIC/npgwSi00nnFKPe6hjb2lW6
+         BjVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uIgEds2lsUEazFDcLqiFcBouG6saS9AagLSYOnXJFgM=;
+        b=Yh8k/E11tiTcXy0NXAZaL21ma2kqMVow3u0mDL2z7xIedUQazmSg5XVrYW7zgZdB9L
+         /bwbClStOUw6GtwVmeNpes8f+HM0tV27y62Ez82scW5n3f4U8etrA/V0J9JZG+dNl0XP
+         RfNKqIQ6JyPH3ue8NBARsON3ZSsf0k3q4kudFUdYr1KzP8T56OzijtjWU17Xs7MiOUTl
+         uRAOblU08zplJOysLN6HFFaN4FzMCcE/Ivb25kgu4qpZwQ8Scsxc2rUOlRoi04JdqMjW
+         U7JcdWKZkZrs5FW8KFkz72mL5TOZy7LR5Mt3wcZTPnl5qJ5ns2FMLmUpxDsHTxSRp0mr
+         cB+w==
+X-Gm-Message-State: ACrzQf3xKI6e7TLtyiP0sjF99a7k6D1Gi9Em4tHQpP06mVAIG6c3UPQN
+        X6kf9435r51km6euDku5wlaSdJMiXXnKKlA9bHuznQ==
+X-Google-Smtp-Source: AMsMyM6Rk+z9XSkM0gx0kUZjmUPDqfeBWgYp5+03gj8tpxxxciSK6Ab/X9mTjfczx5v4JFxVOh/jbjlcTd0zGQEaMuA=
+X-Received: by 2002:a81:4f89:0:b0:36a:f09f:73fc with SMTP id
+ d131-20020a814f89000000b0036af09f73fcmr12513606ywb.487.1667218078610; Mon, 31
+ Oct 2022 05:07:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221030172609.1635096-1-ajye_huang@compal.corp-partner.google.com>
+ <20221030172609.1635096-2-ajye_huang@compal.corp-partner.google.com>
+In-Reply-To: <20221030172609.1635096-2-ajye_huang@compal.corp-partner.google.com>
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Date:   Mon, 31 Oct 2022 20:07:47 +0800
+Message-ID: <CALprXBY3S5N-g6N=q4DgF3ngq-eTxc_+LjGJQp2QjVz+Fi4pRg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] ASoC: mediatek: dt-bindings: modify machine
+ bindings for two MICs case
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        "chunxu . li" <chunxu.li@mediatek.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce device bindings for LSM6DSV IMU sensor.
+Hi Rob Herring,
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index fe1e02e5d7b3..e7349a3275dd 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -32,6 +32,7 @@ properties:
-           - st,lsm6dsrx
-           - st,lsm6dst
-           - st,lsm6dsop
-+          - st,lsm6dsv
-       - items:
-           - const: st,asm330lhhx
-           - const: st,lsm6dsr
--- 
-2.38.1
+On Mon, Oct 31, 2022 at 1:26 AM Ajye Huang
+<ajye_huang@compal.corp-partner.google.com> wrote:
+>
+> +
+> +        dmic-gpios = <&pio 23 0>;
+>
+>          headset-codec {
+>              sound-dai = <&rt5682s>;
+> --
+> 2.25.1
+>
 
+I think the modification will be better, I will send v5 again, thanks
+@@ -63,14 +70,19 @@ required:
+
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+
+     sound: mt8186-sound {
+         compatible = "mediatek,mt8186-mt6366-rt1019-rt5682s-sound";
+         mediatek,platform = <&afe>;
+         pinctrl-names = "aud_clk_mosi_off",
+-                        "aud_clk_mosi_on";
++                        "aud_clk_mosi_on",
++                        "aud_gpio_dmic_sec";
+         pinctrl-0 = <&aud_clk_mosi_off>;
+         pinctrl-1 = <&aud_clk_mosi_on>;
++        pinctrl-2 = <&aud_gpio_dmic_sec>;
++
++        dmic-gpios = <&pio 23 GPIO_ACTIVE_HIGH>;
+
+         headset-codec {
+             sound-dai = <&rt5682s>;
