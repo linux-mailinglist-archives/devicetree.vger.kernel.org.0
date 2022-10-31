@@ -2,228 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14961614022
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 22:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55DDD614048
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 22:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiJaVtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 17:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48406 "EHLO
+        id S229480AbiJaV7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 17:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbiJaVtv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 17:49:51 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FC510FD3;
-        Mon, 31 Oct 2022 14:49:50 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 29VL55OU016793;
-        Mon, 31 Oct 2022 21:49:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CkhE949TVC0iDdW3/Q+OOK85Q2bDYQ+v7ZIaOAkG96Y=;
- b=HzBf6v2wnUQn/sQsewcAtn3m7cFCzflv+Im7OG4Qq4Ni/skhs46KIimLv/2Ygea5+Teu
- 15ADI2W6xKWFiO8WZj4EWeAkOHBctY0fZIAhlGCCwWToONnLp2xXeicKluWK3skWC/8g
- KM7nzqfWfqGtnofVgSzSKZQdGhL5SX7pcKVKzoACCr5Rp89xmQgs2EHRpu7zoWDOVNEQ
- 1zmdo8ezAfcZF3TomQElBBVX5oyP2gZ0IivmP6Kth+D24SdPUQ9eWrmVwvQkS3ZxnFZd
- X0oo+OxOiC3bQp4isCXkASmLapv2eu1EHD85MmVQT+LsGmoaf8YqxersoZeeTZv9RjNw jA== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kjj148vpt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 31 Oct 2022 21:49:46 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 29VLnkvN003739
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 31 Oct 2022 21:49:46 GMT
-Received: from [10.110.115.41] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 31 Oct
- 2022 14:49:45 -0700
-Message-ID: <d109cbdf-1b0e-ff67-879c-d0955da4898e@quicinc.com>
-Date:   Mon, 31 Oct 2022 14:49:45 -0700
+        with ESMTP id S229636AbiJaV7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 17:59:19 -0400
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD59F140D3;
+        Mon, 31 Oct 2022 14:59:18 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id c18-20020a056830349200b0066c47e192f0so2808968otu.12;
+        Mon, 31 Oct 2022 14:59:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TkdVTAXCDXe7ReBNTe2yFOz15PzoA3zLKrdNQ4Vf8OQ=;
+        b=VOTnc/KpxNA3oihXYGjWYqt38TxwOndb0rjgvibAhcgOzoUtqo15Iivq7X3vaZIvzm
+         2Rsj6S94ZgotnFfggOX7Xszn0IsFOh6lsaCh53TZKhcX72hWShnNR0qhTLFpoIThE00j
+         3gSkf1wy+ouT09DM2raZ4Oy9JD1rLge1OAE+Lr0R8Vqy67u+LBwYbBSpXeZLqfCwqf6O
+         8sdmzHXyiPgyeRyyyLS3QPctMjUtq8lsVr16JUGZDNkMS9glwkXqkGuMQcGsI/zCPODN
+         aFpzcOXWJOkPcAlRFss6laRlaGYb4uvmjfHRTOdF8GWVMfwNjAyBMuOC6A/cYQ9ESh/U
+         /Agw==
+X-Gm-Message-State: ACrzQf0Qc3KjJgYfEP/ZRkH4ZFCT59PYsuG4IY4LkdBKPN65gD2hSjH4
+        DOeZ/MMSDN8CrTzUz5fLGnjFAhFfNg==
+X-Google-Smtp-Source: AMsMyM7qXfBVn5FY18GmBmJGMZzpxZwKJ+wQQytn1101W33+9AcVgfbtHwIXXJtpXfujb3b3Q1TBYA==
+X-Received: by 2002:a05:6830:2786:b0:66c:349d:bb51 with SMTP id x6-20020a056830278600b0066c349dbb51mr7477938otu.292.1667253558042;
+        Mon, 31 Oct 2022 14:59:18 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id x5-20020a05683000c500b00662228a27d3sm3181986oto.57.2022.10.31.14.59.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Oct 2022 14:59:17 -0700 (PDT)
+Received: (nullmailer pid 3637501 invoked by uid 1000);
+        Mon, 31 Oct 2022 21:59:19 -0000
+Date:   Mon, 31 Oct 2022 16:59:19 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: Convert active-semi PMIC docs to YAML
+ schemas
+Message-ID: <20221031215919.GA3622880-robh@kernel.org>
+References: <20221030113715.12067-1-paul@crapouillou.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026200429.162212-1-quic_molvera@quicinc.com>
- <20221026200429.162212-4-quic_molvera@quicinc.com>
- <ae4b2333-d243-17ee-1ebd-6b1c89eef9f3@linaro.org>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <ae4b2333-d243-17ee-1ebd-6b1c89eef9f3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 1q56z4J4NQ0pGJ5Bvl_v_sObOSMBFZd6
-X-Proofpoint-GUID: 1q56z4J4NQ0pGJ5Bvl_v_sObOSMBFZd6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-31_21,2022-10-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- phishscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 mlxscore=0
- bulkscore=0 mlxlogscore=999 impostorscore=0 malwarescore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2210310135
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221030113715.12067-1-paul@crapouillou.net>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Oct 30, 2022 at 11:37:15AM +0000, Paul Cercueil wrote:
+> Create YAML bindings for the Active-semi PMICs and remove the old text
+> files.
+> 
+> The bindings aren't perfect, for instance I couldn't find good
+> descriptions for the vendor properties in the "charger" node of the
+> ACT8945A because I am not familiar with the hardware and these
+> properties were not documented anywhere.
+> 
+> The YAML schemas are a bit different than what is described in the old
+> text files, because these were sometimes wrong or had missing
+> information. This is the case for the ACT8600 documentation, which
+> specified the valid node names for the regulators, while the driver was
+> expecting different names. This led to the current situation where we
+> have two different boards using different names for the regulators:
+> - arch/mips/boot/dts/ingenic/ci20.dts uses the names documented in the
+>   text file,
+> - arch/mips/boot/dts/ingenic/gcw0.dts uses the names that the driver
+>   expects.
+> In theory, the driver should be fixed to follow the documentation, and
+> accept both naming schemes. In practice though, when the PMIC node was
+> added to the ci20.dts board file, the names were already wrong in
+> regards to what the driver expected, so it never really worked
+> correctly and wasn't tested properly. Furthermore, in that board the
+> consumers of the regulators aren't working for various other reasons
+> (invalid GPIOs, etc.).
+> 
+> For that reason, for the ACT8600 bindings I decided to only use the node
+> names that the driver expects (and that gcw0.dts uses), instead of
+> accepting both old and new names. A follow-up patch will update the CI20
+> board to use the new regulator names.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+> 
+>  Note:
+>  I set Liam Girdwood and Mark Brown as the maintainers by default, since
+>  it doesn't appear that anybody is managing the Active-semi drivers, but
+>  if anybody steps up I can update it.
+> 
+>  Cheers,
+>  -Paul
+> 
+>  .../bindings/regulator/act8865-regulator.txt  | 117 --------
+>  .../bindings/regulator/act8945a-regulator.txt | 113 --------
+>  .../regulator/active-semi,act8600.yaml        | 143 ++++++++++
+>  .../regulator/active-semi,act8846.yaml        | 209 ++++++++++++++
+>  .../regulator/active-semi,act8865.yaml        | 162 +++++++++++
+>  .../regulator/active-semi,act8945a.yaml       | 263 ++++++++++++++++++
+>  6 files changed, 777 insertions(+), 230 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/act8865-regulator.txt
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
+>  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8846.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8865.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8945a.yaml
 
+[...]
 
-On 10/27/2022 8:21 AM, Krzysztof Kozlowski wrote:
-> On 26/10/2022 16:04, Melody Olvera wrote:
->> Add the base DTSI files for QDU1000 and QRU1000 SoCs, including base
->> descriptions of CPUs, GCC, RPMHCC, QUP, TLMM, and interrupt-controller
->> to boot to shell with console on these SoCs.
->>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 1406 +++++++++++++++++++++++++
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
-Sure thing; we talked about this on a different patch.
->
->>  arch/arm64/boot/dts/qcom/qru1000.dtsi |   27 +
->>  2 files changed, 1433 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/qcom/qdu1000.dtsi
->>  create mode 100644 arch/arm64/boot/dts/qcom/qru1000.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
->> new file mode 100644
->> index 000000000000..76474106e931
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
->> @@ -0,0 +1,1406 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
-> (...)
->
->> +
->> +	soc: soc@0 {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges = <0 0 0 0 0x10 0>;
->> +		dma-ranges = <0 0 0 0 0x10 0>;
->> +		compatible = "simple-bus";
->> +
->> +		gcc: clock-controller@80000 {
->> +			compatible = "qcom,gcc-qdu1000", "syscon";
->> +			reg = <0x0 0x80000 0x0 0x1f4200>;
->> +			#clock-cells = <1>;
->> +			#reset-cells = <1>;
->> +			#power-domain-cells = <1>;
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&sleep_clk>;
->> +			clock-names = "bi_tcxo", "sleep_clk";
->> +		};
->> +
->> +		gpi_dma0: dma-controller@900000  {
->> +			compatible = "qcom,sm6350-gpi-dma";
-> You should add here a specific compatible as well. Same in other places.
-> All places. I had impression we talked about this few times, so I don't
-> know what is missing on your side.
->
-> This must be:
-> "qcom,qdu1000-gpi-dma", "qcom,sm6350-gpi-dma"
-Got it. I talked to Stephan and he said either your suggestion or just using
-preexisting compatibles would be ok. I thought it might be cleaner to not
-have the qdu compats, but I'm fine either way.
->
->> +			#dma-cells = <3>;
->> +			reg = <0x0 0x900000 0x0 0x60000>;
->> +			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
->> +			dma-channels = <12>;
->> +			dma-channel-mask = <0x3f>;
->> +			iommus = <&apps_smmu 0xf6 0x0>;
->> +		};
->> +
-> (...)
->
->
->> +
->> +		tlmm: pinctrl@f000000 {
->> +			compatible = "qcom,qdu1000-tlmm";
->> +			reg = <0x0 0xf000000 0x0 0x1000000>;
->> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
->> +			gpio-controller;
->> +			#gpio-cells = <2>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +			gpio-ranges = <&tlmm 0 0 151>;
->> +			wakeup-parent = <&pdc>;
->> +
->> +			qup_uart0_default: qup-uart0-default-state {
->> +				pins = "gpio6", "gpio7", "gpio8", "gpio9";
->> +				function = "qup00";
->> +			};
->> +
->> +			qup_i2c1_data_clk: qup-i2c1-data-clk-state {
->> +				pins = "gpio10", "gpio11";
->> +				function = "qup01";
->> +				drive-strength = <2>;
-> Can we have some generic agreement where to put drive-strengths and bias?
->
-> See also:
-> https://lore.kernel.org/linux-devicetree/20221026200357.391635-2-krzysztof.kozlowski@linaro.org/
->
-> https://lore.kernel.org/lkml/CAD=FV=VUL4GmjaibAMhKNdpEso_Hg_R=XeMaqah1LSj_9-Ce4Q@mail.gmail.com/
-Not sure how much two-sense I have for the conversation at large, but generally I agree with Doug's
-point in the first paragraph. Pulls for this soc are consistent across boards so I don't think it makes
-sense to move them to the board files here. I vote that these stay here.
->
->> +				bias-pull-up;
->> +			};
-> (...)
->
->> +		};
->> +
->> +		cpufreq_hw: cpufreq@17d90000 {
->> +			compatible = "qcom,sm8250-cpufreq-epss", "qcom,cpufreq-epss";
-> This is not sm8250...
-Ack.
->
->> +			reg = <0x0 0x17d90000 0x0 0x1000>, <0x0 0x17d91000 0x0 0x1000>;
->> +			reg-names = "freq-domain0", "freq-domain1";
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
->> +			clock-names = "xo", "alternate";
->> +			#freq-domain-cells = <1>;
->> +		};
->> +
->> +		gem_noc: interconnect@19100000 {
->> +			reg = <0x0 0x19100000 0x0 0xB8080>;
->> +			compatible = "qcom,qdu1000-gem-noc";
->> +			#interconnect-cells = <1>;
->> +			qcom,bcm-voters = <&apps_bcm_voter>;
->> +		};
->> +	};
-Thanks,
-Melody
+> diff --git a/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
+> new file mode 100644
+> index 000000000000..bf8c5145939e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
+> @@ -0,0 +1,143 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/active-semi,act8600.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Active-semi ACT8600 regulator
+> +
+> +maintainers:
+> +  - Liam Girdwood <lgirdwood@gmail.com>
+> +  - Mark Brown <broonie@kernel.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: active-semi,act8600
+> +
+> +  reg:
+> +    description: I2C address
+> +    maxItems: 1
+> +
+> +  system-power-controller:
+> +    description: |
+
+Don't need '|'.
+
+> +      Indicates that the ACT8600 is responsible for powering OFF
+> +      the system.
+> +    type: boolean
+> +
+> +  active-semi,vsel-high:
+> +    description: |
+> +      Indicates the VSEL pin is high. If this property is missing,
+> +      the VSEL pin is assumed to be low.
+> +    type: boolean
+> +
+> +  regulators:
+> +    type: object
+> +    unevaluatedProperties: false
+
+Don't need both this and additionalProperties. As additionalProperties 
+is sufficient here, use it, but move it here. It's easier to read that 
+way IMO.
+
+> +
+> +    properties:
+> +      DCDC1:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          vp1-supply:
+> +            description: Handle to the VP1 input supply
+> +
+> +      DCDC2:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          vp2-supply:
+> +            description: Handle to the VP2 input supply
+> +
+> +      DCDC3:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          vp3-supply:
+> +            description: Handle to the VP3 input supply
+> +
+> +    patternProperties:
+> +      "^((SUDCDC_REG4)|(LDO_REG9)|(LDO_REG10))$":
+
+You can drop the inner parenthesis.
+
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^LDO[5-8]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          inl-supply:
+> +            description: Handle to the INL input supply
+> +
+> +    additionalProperties: false
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - regulators
+> +
+> +examples:
+> +  - |
+> +    i2c3 {
+
+i2c {
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      act8600: pmic@5a {
+
+Drop unused labels.
+
+> +        compatible = "active-semi,act8600";
+> +        reg = <0x5a>;
+> +
+> +        regulators {
+> +          SUDCDC_REG4 {
+> +            regulator-min-microvolt = <5300000>;
+> +            regulator-max-microvolt = <5300000>;
+> +            inl-supply = <&vcc>;
+> +          };
+> +
+> +          LDO5 {
+> +            regulator-min-microvolt = <2500000>;
+> +            regulator-max-microvolt = <2500000>;
+> +            inl-supply = <&vcc>;
+> +          };
+> +
+> +          LDO6 {
+> +            regulator-min-microvolt = <3300000>;
+> +            regulator-max-microvolt = <3300000>;
+> +            inl-supply = <&vcc>;
+> +          };
+> +
+> +          LDO7 {
+> +            regulator-min-microvolt = <3300000>;
+> +            regulator-max-microvolt = <3300000>;
+> +            inl-supply = <&vcc>;
+> +          };
+> +
+> +          LDO8 {
+> +            regulator-min-microvolt = <1800000>;
+> +            regulator-max-microvolt = <1800000>;
+> +            regulator-always-on;
+> +            inl-supply = <&vcc>;
+> +          };
+> +
+> +          LDO_REG9 {
+> +            regulator-min-microvolt = <3300000>;
+> +            regulator-max-microvolt = <3300000>;
+> +            regulator-always-on;
+> +            inl-supply = <&vcc>;
+> +          };
+> +
+> +          LDO_REG10 {
+> +            inl-supply = <&vcc>;
+> +          };
+> +        };
+> +      };
+> +    };
+
+Similar comments on the rest.
+
+Rob
