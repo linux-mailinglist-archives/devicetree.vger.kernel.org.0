@@ -2,122 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3877613D9B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 19:46:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84036613DB5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 19:50:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbiJaSqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 14:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40708 "EHLO
+        id S229479AbiJaSur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 14:50:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbiJaSqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 14:46:10 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49A812610;
-        Mon, 31 Oct 2022 11:46:09 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id p127so13656558oih.9;
-        Mon, 31 Oct 2022 11:46:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dO8H5QCa3hgSieHYwlmpZX3yqBydAVWKuwLGmWit0To=;
-        b=zS3N9TvSG/p251IMREqz5ES9TgTRra3tZ+eXZV/6r2urczZwYocJu+UzsKqNoSLR00
-         Klkfq4/z1LyDE9Beo9G1dhwza4d0lzSY18ykyQ0xWuff43FxujlQj1YtgbZPH5yBaJBI
-         IgBwXI80ASnjix8CFIYcL/tzYf1lgZ2O3zKvP0qP8C/IjS2vpViFfg08xcp3D2c7dQDd
-         LfCuP3lHVxCNFYavEDKg3H+DgCD48FPI7b9PiQ6yiP0xtl/3ddzCD8/qo/IIEHNWWlIr
-         QAgNpMTDgqscjffFLQHzuYjwFiUZgyB8+A/Pp9Pm5oTv/TiWDFq8rY7g0yiLKppBhFgN
-         iSOA==
-X-Gm-Message-State: ACrzQf3FmtARJdkaa68vL3qAxGD6e6ETiCypgIa4Sb8cOt5PvkvgT7Z5
-        etKYx/ifSRvDdg2wFm3T0A==
-X-Google-Smtp-Source: AMsMyM4/HGxczmxjs3nTZ13LSdLRb4M+o0ANIbSNLMj9l7t2fMP1wLJjAEWQ6t6bZdK7j9LmlV6xDw==
-X-Received: by 2002:a05:6808:254:b0:359:f10b:5469 with SMTP id m20-20020a056808025400b00359f10b5469mr5693509oie.248.1667241968993;
-        Mon, 31 Oct 2022 11:46:08 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k12-20020a056820016c00b0049a96a62a3bsm1742279ood.48.2022.10.31.11.46.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 11:46:08 -0700 (PDT)
-Received: (nullmailer pid 3242738 invoked by uid 1000);
-        Mon, 31 Oct 2022 18:46:10 -0000
-Date:   Mon, 31 Oct 2022 13:46:10 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        perex@perex.cz, paul@crapouillou.net, robh+dt@kernel.org,
-        broonie@kernel.org, tsbogend@alpha.franken.de,
-        linux-mips@vger.kernel.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, tiwai@suse.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: ingenic,aic: Remove unnecessary
- clocks from schema
-Message-ID: <166724196894.3242676.3402578757445878857.robh@kernel.org>
-References: <20221028103418.17578-1-aidanmacdonald.0x0@gmail.com>
- <20221028103418.17578-2-aidanmacdonald.0x0@gmail.com>
+        with ESMTP id S229477AbiJaSuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 14:50:46 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D57AD2E5;
+        Mon, 31 Oct 2022 11:50:46 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (97-113-250-99.tukw.qwest.net [97.113.250.99])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 6BE4B1A6;
+        Mon, 31 Oct 2022 11:50:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1667242245;
+        bh=yI4VxHDcRGzkmJzt6Mtn+pBg7sqPLddFXxyeqLB99ZE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gLWG6j8XI9P3wq9uVxSiD+zKUj/071FKMi6IBkvvr8Av3dFpgp4Av5G4GD/vuEFmJ
+         TrlXBhscA3fP3xDH9qvvU3W/YPzTR7Tjt6PENNQ3waFCParDKvnWnNEm38g6DSkZcb
+         +iHqKDcjUEWKGkxTa6nY73G0m7zLjQuk4uxvNLdk=
+Date:   Mon, 31 Oct 2022 11:50:38 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Naresh Solanki <naresh.solanki@9elements.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 2/3] dt-bindings: regulator: Add regulator-output bindingg
+Message-ID: <Y2AY/tQLQ6m+SXI7@hatter.bewilderbeest.net>
+References: <20220925220319.12572-1-zev@bewilderbeest.net>
+ <20220925220319.12572-3-zev@bewilderbeest.net>
+ <20220929210714.GA2684335-robh@kernel.org>
+ <YzYNt+IQRomycRLs@hatter.bewilderbeest.net>
+ <Y1rRCq9Kdd2zPPkw@hatter.bewilderbeest.net>
+ <ee37b5a1-5afc-71b3-f777-add295d9ce17@linaro.org>
+ <Y1tWpikPogEtV0+x@hatter.bewilderbeest.net>
+ <Y1v6migO2PNV4ksW@sirena.org.uk>
+ <Y1wxMk2x25AeRwLr@hatter.bewilderbeest.net>
+ <Y1/tnic0qc/Ll/5u@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20221028103418.17578-2-aidanmacdonald.0x0@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <Y1/tnic0qc/Ll/5u@sirena.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 31, 2022 at 08:45:34AM PDT, Mark Brown wrote:
+>On Fri, Oct 28, 2022 at 12:44:50PM -0700, Zev Weiss wrote:
+>> On Fri, Oct 28, 2022 at 08:51:54AM PDT, Mark Brown wrote:
+>
+>> > We don't turn things off on reboot?  We don't do anything in particular
+>> > on reboot...
+>
+>> Okay, perhaps not on reboot specifically, but the userspace-consumer driver
+>> has a regulator_bulk_disable() in its .remove function, so it would be
+>> triggered at least by a module unload (which is sort of why I ended up with
+>> the "when software relinquishes control" wording in the patch).  If we're
+>> going to continue with the plan of using that driver for this functionality
+>> (which seems overall quite reasonable to me), we need a way to express that
+>> that must not happen on this hardware.
+>
+>Ah, that would be the test driver not intended to be used in production
+>then...  That shouldn't be a blocker for the DT binding, and if there's
+>a different compatible string for this application then we can either
+>make the userspace consumer do something different based on that
+>compatible string or have a new driver which does something more
+>sensible and perhaps has a better userspace ABI.  Either way so long as
+>we can tell the thing being described is a BMC output from the DT
+>binding I think we can leave it up to the OS to do something constructive
+>with that rather than trying to control the specific behaviour in the
+>binding.
 
-On Fri, 28 Oct 2022 11:34:16 +0100, Aidan MacDonald wrote:
-> The AIC needs only the first two clocks: "aic" is a gate that's used
-> for gating the I2S controller when it's suspended, and "i2s" is the
-> system clock, from which the bit and frame clocks are derived. Both
-> clocks are therefore reasonably part of the AIC and should be passed
-> to the OS.
-> 
-> But the "ext" and "pll half" clocks are a little more questionable.
-> It appears these bindings were introduced when the schema was first
-> converted to YAML, but weren't present in the original .txt binding.
-> They are intended to be the possible parent clocks of "i2s".
-> 
-> The JZ4770 actually has three parents for its "i2s" clock, named
-> "ext", "pll0", and "pll1" in the Linux driver. The JZ4780 has two
-> parents but it doesn't have a "pll half" clock, instead it has an
-> "i2s_pll" clock which behaves much differently to the actual
-> "pll half" clock found on the JZ4740 & JZ4760. And there are other
-> Ingenic SoCs that share the JZ4780's clock layout, eg, the X1000.
-> 
-> Therefore, the bindings aren't really adequate for the JZ4770 and
-> a bit misleading for the JZ4780. Either we should fix the bindings,
-> or remove them entirely.
-> 
-> This patch opts to remove the bindings. There is a good case to be
-> made that "ext" and "pll half" don't belong here because they aren't
-> directly used by the AIC. They are only used to set the parent of
-> the "i2s" clock; they have no other effect on the AIC.
-> 
-> A good way to think of it is in terms of how the AIC constrains
-> clocks. The AIC can only generate the bit & frame clocks from the
-> system clock in certain ratios. Setting the sample rate effectively
-> constrains the frame clock, which, because of the clock dividers
-> controlled by the AIC, translates to constraints on the "i2s" clock.
-> Nothing in the AIC imposes a direct constraint on the parents of
-> the "i2s" clock, and the AIC does not need to enable or disable
-> the parents directly, so in principle the AIC doesn't need to be
-> aware of the parent clocks at all.
-> 
-> The choice of parent clock is still important, but the AIC doesn't
-> have enough information to apply such constraints itself. The sound
-> card does have that information because it knows how the AIC is
-> connected to other components. We need to use other DT mechanisms
-> to communicate those constraints at the sound card level, instead
-> of passing the clocks through to the AIC, and inventing ad-hoc ways
-> to plumb the constraints around behind the scenes.
-> 
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-> ---
->  .../devicetree/bindings/sound/ingenic,aic.yaml         | 10 ++--------
->  1 file changed, 2 insertions(+), 8 deletions(-)
-> 
+Ah, alright -- that seems like a nice (obvious in retrospect, of course) 
+solution that should work well I think.  I'll post a v2 with that 
+approach soon.
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+Thanks,
+Zev
+
