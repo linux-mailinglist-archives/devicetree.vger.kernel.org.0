@@ -2,115 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE416613EAB
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F40613EAE
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:06:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbiJaUGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 16:06:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36918 "EHLO
+        id S229850AbiJaUGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 16:06:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbiJaUGn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:06:43 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A85B213E9B
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:05:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1667246748;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=H3ZU5SpqvPjaqpTfjZ04SSbHmjl8vKSTt7kMWQY1QWg=;
-        b=RZO1NqMpmu8OdFuwH8t0CPjnUe8RID6+Bc6tbjigup4O90aUN5zOPk0p+q6s7Y4Gwcf7hn
-        T5KPpVu/mEm0rC+e+7u/Xv+mwPTgorgWG5tZM4sEwnpV+cYDpsjopi73goOL/V0xOhugtH
-        GM8nMqge9Fv8fCj4l2volJqHplQJYYA=
-Received: from mail-oa1-f69.google.com (mail-oa1-f69.google.com
- [209.85.160.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-269-7tOyHKaGO56bjYcRlncgnA-1; Mon, 31 Oct 2022 16:05:47 -0400
-X-MC-Unique: 7tOyHKaGO56bjYcRlncgnA-1
-Received: by mail-oa1-f69.google.com with SMTP id 586e51a60fabf-13bca69ac96so5798956fac.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:05:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H3ZU5SpqvPjaqpTfjZ04SSbHmjl8vKSTt7kMWQY1QWg=;
-        b=kOhVVMzErMci6SYdiczDRdoYujXJbAfsMhMLUTUPwTBPRoj99cad3CcYUrmfZeaF5y
-         M/1pRC74AOJJ7oaZk6gm5DB7pgFPQaNWSlD9hFU8noCRQKc4yZkWDd62HouPbaNP+l+R
-         iYxfWPSzOAjl4O/ghj8v9JSaFk+Qo7z/7nDXjs60IQDxtTaISW4qKxed2zAjMaqERYQl
-         TXkWs+4XU5M1KHzbYScJythK3RD0ZXRahB7DOgV7Fg47yagwRNAkJPKkBbyLkvjLiqGY
-         Xhk5+PS5tl7WOrU6cgChcHpYCE+QzUrdB0VQNWOF2d8HKhLke0Se1gGOGggZp8T8b+cB
-         IEnw==
-X-Gm-Message-State: ACrzQf3xx5/0x1Agn1L70Tt1C1t3GapWVfprYW9q0/tsbrZ77NpcycSF
-        mlgRqoOHLE7aVHmEaPX4zXUiNQidaP5vbGkKkb7aH3bj5hoz57VuLxfYikbHr1YS4aLzPXegvsa
-        Klx9/KIESIS4TDfvuDNAuSg==
-X-Received: by 2002:a05:6830:6401:b0:661:c74e:6b03 with SMTP id cj1-20020a056830640100b00661c74e6b03mr7158957otb.291.1667246746796;
-        Mon, 31 Oct 2022 13:05:46 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM4UUO37SZvA4qjX9uf7dmQCxxsJtcyXRaXYuTlx2k2AoBUUULV+m0zUJOEaCdymKZ+gqdzveQ==
-X-Received: by 2002:a05:6830:6401:b0:661:c74e:6b03 with SMTP id cj1-20020a056830640100b00661c74e6b03mr7158939otb.291.1667246746589;
-        Mon, 31 Oct 2022 13:05:46 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::41])
-        by smtp.gmail.com with ESMTPSA id y1-20020a056830108100b00660fe564e12sm3092167oto.58.2022.10.31.13.05.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 13:05:46 -0700 (PDT)
-Date:   Mon, 31 Oct 2022 15:05:43 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, dmitry.baryshkov@linaro.org
-Subject: Re: [PATCH v2 11/15] scsi: ufs: ufs-qcom: Use dev_err_probe() for
- printing probe error
-Message-ID: <20221031200543.7j3pw4idrawxge2h@halaney-x13s>
-References: <20221031180217.32512-1-manivannan.sadhasivam@linaro.org>
- <20221031180217.32512-12-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S229589AbiJaUGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:06:51 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7189C13EB8;
+        Mon, 31 Oct 2022 13:06:50 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VK6aAg054756;
+        Mon, 31 Oct 2022 15:06:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667246796;
+        bh=e8QC9EQqOqeUI8BDYW1Gjrl96J62w1MR4bj6r4Ykpcs=;
+        h=From:To:CC:Subject:Date;
+        b=Yg/YRB4qey3u+029Ya8rHITuNVdsVIQIIlXVuyMLjfCtmunIgBwLyzCg3kWPg0Sru
+         /n+6hS0yCmL/Irp4wyTSInr7dYhnZ6rFAd9+85aN8HhFdzE9xx6bdOha8uX3qx8zHN
+         tZLp4cFg0u/+JwrW5msB3AmYowtDBZNEjyXOmMng=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VK6asO028332
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Oct 2022 15:06:36 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
+ Oct 2022 15:06:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 31 Oct 2022 15:06:35 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VK6Y5r086877;
+        Mon, 31 Oct 2022 15:06:35 -0500
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <robh+dt@kernel.org>, <afd@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <j-choudhary@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-j721s2-main: Enable crypto accelerator
+Date:   Tue, 1 Nov 2022 01:36:33 +0530
+Message-ID: <20221031200633.26997-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031180217.32512-12-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 11:32:13PM +0530, Manivannan Sadhasivam wrote:
-> Make use of dev_err_probe() for printing the probe error.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Add the node for SA2UL for supporting hardware crypto algorithms,
+including SHA1, SHA256, SHA512, AES, 3DES and AEAD suites.
+Add rng node for hardware random number generator.
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+Acked-by: Matt Ranostay <mranostay@ti.com>
+Acked-by: Andrew Davis <afd@ti.com>
+---
 
-> ---
->  drivers/ufs/host/ufs-qcom.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 8bb0f4415f1a..38e2ed749d75 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -1441,9 +1441,9 @@ static int ufs_qcom_probe(struct platform_device *pdev)
->  	/* Perform generic probe */
->  	err = ufshcd_pltfrm_init(pdev, &ufs_hba_qcom_vops);
->  	if (err)
-> -		dev_err(dev, "ufshcd_pltfrm_init() failed %d\n", err);
-> +		return dev_err_probe(dev, err, "ufshcd_pltfrm_init() failed\n");
->  
-> -	return err;
-> +	return 0;
->  }
->  
->  /**
-> -- 
-> 2.25.1
-> 
+Changes have been tested on local j721s2-evm board. Tcrypt tests
+and crypto self-tests were passing.
+
+Changelog v2 -> v3:
+- remove the clock property from rng node
+  (<https://lore.kernel.org/all/20220901171041.32056-1-afd@ti.com/>)
+
+Changelog v1 -> v2:
+- change the TI_SCI flag from shared to exclusive as OP-TEE uses MCU
+  domain SA2UL instance and not the main domain instance
+- remove the 'dma-coherent' property (Binding changes are merged)
+- add the rng node which can be used as well for hwrng along with
+  optee-rng
+
+v2 patch: https://lore.kernel.org/all/20221031135416.350010-1-j-choudhary@ti.com/  
+
+Testing log: https://gist.github.com/Jayesh2000/26acf0e63f7edcd4b267122e4c73b9a8
+
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index d1ec26110376..2e0ba2262e77 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -72,6 +72,25 @@ main_pmx0: pinctrl@11c000 {
+ 		pinctrl-single,function-mask = <0xffffffff>;
+ 	};
+ 
++	main_crypto: crypto@4e00000 {
++		compatible = "ti,j721e-sa2ul";
++		reg = <0x00 0x4e00000 0x00 0x1200>;
++		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges = <0x00 0x04e00000 0x00 0x04e00000 0x00 0x30000>;
++
++		dmas = <&main_udmap 0xca40>, <&main_udmap 0x4a40>,
++				<&main_udmap 0x4a41>;
++		dma-names = "tx", "rx1", "rx2";
++
++		rng: rng@4e10000 {
++			compatible = "inside-secure,safexcel-eip76";
++			reg = <0x0 0x4e10000 0x0 0x7d>;
++			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++		};
++	};
++
+ 	main_uart0: serial@2800000 {
+ 		compatible = "ti,j721e-uart", "ti,am654-uart";
+ 		reg = <0x00 0x02800000 0x00 0x200>;
+-- 
+2.25.1
 
