@@ -2,78 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EDC613C50
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 18:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1580613C60
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 18:42:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbiJaRkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 13:40:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38464 "EHLO
+        id S231500AbiJaRmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 13:42:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbiJaRkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 13:40:09 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B7113DCE;
-        Mon, 31 Oct 2022 10:39:49 -0700 (PDT)
-Received: from g550jk.arnhem.chello.nl (31-151-115-246.dynamic.upc.nl [31.151.115.246])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 372A3D03F3;
-        Mon, 31 Oct 2022 17:39:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1667237988; bh=bj+OfITge66Pd2VrekTMzTS9h8Rrw+YQRU9RDhOw/TM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=s5wi+pPmEzmUWRPz8Sd2NsgpNcnJQkuCqckioEnelV7anVoedB7eAsx+l7npnQYxa
-         iuIRFXbU831AKwqS0KF6nvGSnIDjl+MF0Eo7vHChZ0kVChWmVlhkS48dKk+jy6Iy0C
-         WUEU2XCnlWEV0N2przDqOl67SuLMki7f6P2U0LLE=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afd@ti.com, Luca Weiss <luca@z3ntu.xyz>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230186AbiJaRmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 13:42:42 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA22513D09
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 10:42:41 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id v1so16996929wrt.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 10:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qBD58fOU8dXLZw0gU/vFhiLvEwJEGbaxG96W6LE0yWQ=;
+        b=DFddqwoKdUK9FiPWro84KHWXNxctg4u0sBQ5fwz4T8ZEHwP3YNl9J0hHY8upp31AiA
+         lV4r2INXQUfSRz4zDE4lTuhcZ4DS8axYzPJpvcKEoaDWf8GFpJbzcsXMDI/qiOFsyzdV
+         GS0gMt4kjnKnz5I7EFjZODt/hypuOT0cwOlC/mFICA7SDOR3I14QZgt9mjaQeujcHgxC
+         i0HOfJ2ufURD3rWCJF7W+7wY765aS1+F+mLngXtA8o79FVF0Yn4TEuZVCkdvaJae4/lV
+         Cu1fqms1Sd6zBIJ22vy8f03+RWg8v0fFTOrPNOB3WseIMTjSotENj8LMSEuMfpqkQAjy
+         s8mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qBD58fOU8dXLZw0gU/vFhiLvEwJEGbaxG96W6LE0yWQ=;
+        b=sZoOGHxVOZEdpN9eDZYVapwx4SnPZBik5AerRO+xmMjD60jmp47gobO/bYcp/ybjNc
+         szFAHPdujccBbiYRLQ3Avun3lFPOmvHtMYs3H9h+Fas4VlyPyaZ246z3KEnfsoB1LB8h
+         5lGz34NY/BbnQ/OlHumN72FKn9lJOLgIsVwNS4tsG+ohqk6OlUYB1cyFDZnrCUYHAhro
+         ut3LrZMmrSvd0sLxSmDOB335Xlg5DXBmJEB+BAbEZaqYkDqXl9OeXvMj8tIqdCHvOLeq
+         0rW4YbeQaET0IRFIOwuTh0OBK+8AZX7lMoef9MTheFvgyvpmnUao25M/kkgsKvb1Hgeo
+         u6RA==
+X-Gm-Message-State: ACrzQf1yJ1iaCRQDIY69QE+v7sfk0esHF+6TBrUe6d89Q5eQnuBAE/qZ
+        YouVTZ37Y05+iwFcc20zubQ4QA==
+X-Google-Smtp-Source: AMsMyM445eUR2UuTOs0wCe7zoEzp750QBgbl7ZjXyGKXWlj9ASz4sIx6ORMSuR/+TaFi777WdjBRcg==
+X-Received: by 2002:a5d:5643:0:b0:236:699c:6cd8 with SMTP id j3-20020a5d5643000000b00236699c6cd8mr9010504wrw.435.1667238160365;
+        Mon, 31 Oct 2022 10:42:40 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id g15-20020a05600c4ecf00b003c6f426467fsm8585443wmq.40.2022.10.31.10.42.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Oct 2022 10:42:39 -0700 (PDT)
+Message-ID: <4cec819c-abd9-a9f8-5874-8394b6902bdb@linaro.org>
+Date:   Mon, 31 Oct 2022 17:42:39 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 0/3] nvmem: stm32: add OP-TEE support for STM32MP13x
+Content-Language: en-US
+To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: qcom: pm8150b: change vbus-regulator node name
-Date:   Mon, 31 Oct 2022 18:39:33 +0100
-Message-Id: <20221031173933.936147-3-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221031173933.936147-1-luca@z3ntu.xyz>
-References: <20221031173933.936147-1-luca@z3ntu.xyz>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc:     Etienne CARRIERE <etienne.carriere@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20221028145252.2115933-1-patrick.delaunay@foss.st.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20221028145252.2115933-1-patrick.delaunay@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the node name as now defined in the spmi-pmic bindings.
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
-Changes in v2:
-* New patch
 
- arch/arm64/boot/dts/qcom/pm8150b.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 28/10/2022 15:52, Patrick Delaunay wrote:
+> 
+> This serie update the NVMEM BSEC driver to be compatible with STM32MP13x
+> SoC and the trusted application STM32MP BSEC in OP-TEE
+> 
+> This serie solve issue in initial support of STM32MP131
+> (using BSEC STM32MP15 compatible) and so it break the DTS compatible.
+> 
+> I create this serie for more efficient review.
+> 
+> The 2 first patches of this series are re-sent of patches already sent
+> 
+> 1- "dt-bindings: nvmem: add new stm32mp13 compatible for stm32-romem"
+>      https://lore.kernel.org/all/20221014172324.1.Ifc1812116ff63f5501f3edd155d3cf5c0ecc846c@changeid/
+>      https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685403
+> 
+> 2- "ARM: dts: stm32mp13: fix compatible for BSEC"
+>      https://lore.kernel.org/all/20221017134437.1.I167a5efc1f8777cce14518c6fa38400ac684de3e@changeid/
+>      https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685815
+> 
+> This DTS break is acceptable as
+> - the STM32MP13x SoC is not yet available outside STMicroelectronics
+>    (not official)
+> - the same patch is already integrated or modifications are in progress in
+>    the other users (arm-trusted-firmware/TF-A, OP-TEE and U-Boot) of
+>    stm32mp131 device tree.
+> 
+> It is the good time to correct this issue before the real availability of
+> the SoC and before full support of SoC in Linux kernel.
+> 
+> This last patch on NVMEM STM32 ROMEM driver in depend on the preliminary
+> patch for the driver:
+> 
+>    "nvmem: stm32: move STM32MP15_BSEC_NUM_LOWER in config"
+>    https://lore.kernel.org/all/20221017174953.v2.1.I95e71328dd654723bd4c57206bd008ff81c726bb@changeid/
+> 
+> present in the serie
+> 
+>    "nvmem: stm32: several minor improvements"
+>    https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=685886
+> 
+> Regards
+> 
+> Patrick
+> 
+> Changes in v1:
+> - update commit message to indicate DTS break reason.
+> 
+> Patrick Delaunay (3):
+>    dt-bindings: nvmem: add new stm32mp13 compatible for stm32-romem
+>    ARM: dts: stm32mp13: fix compatible for BSEC
+>    nvmem: stm32: add OP-TEE support for STM32MP13x
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-index cdded791d96e..66752cc063d6 100644
---- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-@@ -53,7 +53,7 @@ pon@800 {
- 			status = "disabled";
- 		};
- 
--		pm8150b_vbus: dcdc@1100 {
-+		pm8150b_vbus: usb-vbus-regulator@1100 {
- 			compatible = "qcom,pm8150b-vbus-reg";
- 			status = "disabled";
- 			reg = <0x1100>;
--- 
-2.38.1
+Applied 1/3 and 3/3 thanks,
 
+dts changes need to go via the dts maintainer..
+
+--srini
+> 
+>   .../bindings/nvmem/st,stm32-romem.yaml        |   1 +
+>   arch/arm/boot/dts/stm32mp131.dtsi             |   2 +-
+>   drivers/nvmem/stm32-romem.c                   | 450 +++++++++++++++++-
+>   3 files changed, 448 insertions(+), 5 deletions(-)
+> 
