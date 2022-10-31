@@ -2,53 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FA9A61378F
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 14:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBC06137AB
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 14:17:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231432AbiJaNNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 09:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58160 "EHLO
+        id S231461AbiJaNRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 09:17:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231324AbiJaNNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 09:13:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D2BCB75;
-        Mon, 31 Oct 2022 06:13:37 -0700 (PDT)
+        with ESMTP id S231365AbiJaNRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 09:17:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F096C632D;
+        Mon, 31 Oct 2022 06:17:35 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6DA3F6602827;
-        Mon, 31 Oct 2022 13:13:35 +0000 (GMT)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 362D3660036D;
+        Mon, 31 Oct 2022 13:17:34 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667222015;
-        bh=CG2d+WzUhOf+xwwimNowiCEmXfcCjdwlQpdt1QFnrw0=;
+        s=mail; t=1667222254;
+        bh=ZmPmZv72wbYQvxzOvTCOXp+TPJj41VSYJO29iqOZ//o=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ALpTCbRz5+TfhPJiEcFADghgwPSDUJqdl6lsQxpMINEUCgkwVwoWKisouofsZmI1r
-         jw7xyLP3mgy30YhKODpyCmsLq6w/S5B12leKOKA/kK8fxuqt1lkz6/9dsaUOX2RiHC
-         8jxcgiVwFkVql6sqCTFaXigx1aUuJXPIa/BlkIHZFwSK0Kp4RLIHCt7vgEp3zbXwOp
-         gwS4MkVkakrvhaAJjivJT3EOzpSRmTTS4+sPMDOQcwQc9O78ZxNMAfsc1eHAjDeKsm
-         XGgJ7jx+x6Wj4JaRA9VC/bAfPiNlZ8al544ADEC4kXd1wgai/9iXfVfkgcOlbrk8HZ
-         ClHqu8IV/fEiA==
-Message-ID: <00629a19-d42d-3ca1-7b97-f56dd424501f@collabora.com>
-Date:   Mon, 31 Oct 2022 14:13:32 +0100
+        b=KYROdDtJRqd5mFhg8RKdHIF6Fh6pJCaZ0IjRgBZZyvg1agyrVjRmoCYbHYeapj02g
+         3/oiCJzKv0+OU3pNDx7JL7HCml7gYzWJX+2fIokgSlg47GQ/nvZZeJ+Blinpp0DCoO
+         C3c5VK7AF2H7sHZfR9RYU9OOH5g8gzaCc6XNostRPLqrj+OFc18mIg10MHJ+iWk6lK
+         CSD5PruhyEthiTQA1B+WpafUme0VGm/2Y2z200hrF1lfq7z52sjCNBig98NnbHY/Pf
+         59+J5tH/g3v9l1B72StI3IJml8vAuJOOoGFaBmYcpJYrMqC0vvAJDGm5rUCB3EfMqM
+         18rr2tSW0gg3A==
+Message-ID: <bc2e7eec-d78a-dfc5-b7f5-cf5bab001593@collabora.com>
+Date:   Mon, 31 Oct 2022 14:17:31 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.3
-Subject: Re: [PATCH 11/20] arm64: dts: Update cache properties for mediatek
+Subject: Re: [PATCH 2/2] dt-bindings: mailbox: mediatek,gce-mailbox: add
+ mt8188 compatible name
 Content-Language: en-US
-To:     Pierre Gondois <pierre.gondois@arm.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Rob.Herring@arm.com, Rob Herring <robh+dt@kernel.org>,
+To:     "Elvis.Wang" <Elvis.Wang@mediatek.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Houlong Wei <houlong.wei@mediatek.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-References: <20221031092025.533051-1-pierre.gondois@arm.com>
+References: <20221029105017.20734-1-Elvis.Wang@mediatek.com>
+ <20221029105017.20734-3-Elvis.Wang@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221031092025.533051-1-pierre.gondois@arm.com>
+In-Reply-To: <20221029105017.20734-3-Elvis.Wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -60,21 +65,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 31/10/22 10:20, Pierre Gondois ha scritto:
-> The DeviceTree Specification v0.3 specifies that the cache node
-> 'compatible' and 'cache-level' properties are 'required'. Cf.
-> s3.8 Multi-level and Shared Cache Nodes
+Il 29/10/22 12:50, Elvis.Wang ha scritto:
+> From: Elvis Wang <Elvis.Wang@mediatek.com>
 > 
-> The recently added init_of_cache_level() function checks
-> these properties. Add them if missing.
+> Add mt8188 compatible name.
 > 
-> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
 
-Hello Pierre,
-mt8186.dtsi is also affected, can you please add that one to the mix?
-
-Thanks!
-
-Regards,
-Angelo
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
