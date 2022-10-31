@@ -2,123 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1D81613958
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 15:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E0261396A
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 15:54:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231722AbiJaOvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 10:51:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60452 "EHLO
+        id S231705AbiJaOyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 10:54:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231705AbiJaOvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 10:51:06 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6B410FFF
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 07:51:03 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id m14-20020a17090a3f8e00b00212dab39bcdso16196627pjc.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 07:51:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=LgaSg3YilW0bY3wb0PfV4C2o6RkFEiky2r/QW3cr95Q=;
-        b=NDX+/pbFibStxDbfcIKfe9Cw1g+cwYVRJeqt5kJcdCi5TKhYHmo+n1CuKGLOqdKfP2
-         GdYXCuDUGPno200z7QLnM/0kZI3H5VtIGCuXDrXLNUNoi1M2H7/GPm2ZTE8W0aH7TMj0
-         2tg8a9Z5lQ+FMlKEPqjqhyENTtWE85NpEIDSIQSy0kdA8zvhUXrZq7P230w0EUmx4r2C
-         N8omqUJH8CmYmXeGofaell5BDTX/4R/PRuQmsHkJ3lr7MCScv4rPvYORfr15pG6v+YTy
-         G9+RyL2zZJIZSW+V63spiZ9cxugZvL2X5UkIVxh7I1Ql+dc9vayvpM86NFJYW/rt46uU
-         J+8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LgaSg3YilW0bY3wb0PfV4C2o6RkFEiky2r/QW3cr95Q=;
-        b=RZFCxKJ9LmTkPtixN+v8jm8SIEmvg4WjGryoyoNBKnXyjVVmbADyNY6qbnwNvN+vlD
-         jBzri30GHY/d/CVkVONCyualPwMPshFyOzacmAk9qlZ3fUPgzDWVl0guB5a/f/Xp8uNt
-         +HTqc3/IuIQ7wvnHWWJSiFJtGFZ98nrnDFjf3SBn3RT+NZX3m1AluhkVpkRwvgl8Lpbo
-         elvxVdu2OE4oeP+cayg1qPCxsi8kCUgvQulhpe8cRso9scGDVE4Z70YG+g7lPLVHDE47
-         FolZqM5Upr0Stu6aFQ5Waj3c+T2X2kcuZCmdKRKWRd94NnKB8S5KHbGVwLQLJJ+/8mY7
-         fCVA==
-X-Gm-Message-State: ACrzQf3gpZhcWvNvQdprj3VtrawFsu+0lCL89svYQAYNXc2TNLN7G6/d
-        BTNuwOVWeMV8DJOzdRR1LheY
-X-Google-Smtp-Source: AMsMyM6Ca2btqqaMDtFBtgxJEd4UJ/gTOBby0iJg7mkBNzulg11Wh9oaaSrw15z7NN+qZrNYh7rIuQ==
-X-Received: by 2002:a17:90a:e606:b0:212:f100:22e3 with SMTP id j6-20020a17090ae60600b00212f10022e3mr32735016pjy.83.1667227863165;
-        Mon, 31 Oct 2022 07:51:03 -0700 (PDT)
-Received: from thinkpad ([117.193.209.221])
-        by smtp.gmail.com with ESMTPSA id l6-20020a622506000000b0056c08c87196sm4705475pfl.48.2022.10.31.07.50.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 07:51:01 -0700 (PDT)
-Date:   Mon, 31 Oct 2022 20:20:51 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH 12/15] scsi: ufs: ufs-qcom: Fix the Qcom register name
- for offset 0xD0
-Message-ID: <20221031145051.GB10515@thinkpad>
-References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
- <20221029141633.295650-13-manivannan.sadhasivam@linaro.org>
- <9c1ca51d-2202-8279-cecb-12792385b18d@linaro.org>
+        with ESMTP id S231715AbiJaOyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 10:54:10 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 732C9BB8;
+        Mon, 31 Oct 2022 07:54:09 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VEs02U119037;
+        Mon, 31 Oct 2022 09:54:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667228040;
+        bh=zqkm021jtzip3ZkKOZoIGeAQdUu0abXG33GeDfCIKYE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Hdby6WqBFbv963vpascjybpM/brO8K5KTmmBJsfSOkSn6RXbRaDp5ZQkWa/OeiyOF
+         8WlBM+AyF3uf2IGkgathQYmPaFz8S7sKDcMvF5/lR1ALkGH+VTvgI18II+osV4ggQe
+         8VosD5PSdnjj1bWGIisgUuhpsHhpk3JYx1SEtB0s=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VEs0Is012476
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Oct 2022 09:54:00 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
+ Oct 2022 09:54:00 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 31 Oct 2022 09:54:00 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VEs0Bp014386;
+        Mon, 31 Oct 2022 09:54:00 -0500
+Date:   Mon, 31 Oct 2022 09:54:00 -0500
+From:   Bryan Brattlof <bb@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Le Jin <le.jin@siemens.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/11] AM65x Disable Incomplete DT Nodes
+Message-ID: <20221031145400.garsliw3nlqgkzcb@bryanbrattlof.com>
+References: <20221028142417.10642-1-afd@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9c1ca51d-2202-8279-cecb-12792385b18d@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20221028142417.10642-1-afd@ti.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 30, 2022 at 01:06:20AM +0300, Dmitry Baryshkov wrote:
-> On 29/10/2022 17:16, Manivannan Sadhasivam wrote:
-> > Fix the register name used for offset 0xD0. The correct name is
-> > REG_UFS_PARAM0.
+On October 28, 2022 thus sayeth Andrew Davis:
+> Hello all,
 > 
-> The vendor kernels starting from 3.10 define this register as
-> RETRY_TIMER_REG (but it is unused). I'd suggest adding a comment about the
-> older register name.
+> Same story as for AM64x[0], AM62x[1], and J7x[2].
 > 
-
-Makes sense to me.
-
-Thanks,
-Mani
-
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >   drivers/ufs/host/ufs-qcom.h | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-> > index 6cb0776456b3..214ea50acab9 100644
-> > --- a/drivers/ufs/host/ufs-qcom.h
-> > +++ b/drivers/ufs/host/ufs-qcom.h
-> > @@ -33,7 +33,7 @@ enum {
-> >   	REG_UFS_TX_SYMBOL_CLK_NS_US         = 0xC4,
-> >   	REG_UFS_LOCAL_PORT_ID_REG           = 0xC8,
-> >   	REG_UFS_PA_ERR_CODE                 = 0xCC,
-> > -	REG_UFS_RETRY_TIMER_REG             = 0xD0,
-> > +	REG_UFS_PARAM0                      = 0xD0,
-> >   	REG_UFS_PA_LINK_STARTUP_TIMER       = 0xD8,
-> >   	REG_UFS_CFG1                        = 0xDC,
-> >   	REG_UFS_CFG2                        = 0xE0,
+> Last round for AM65x, but there are some boards that I do not have
+> (Simatic IOT2050), so testing very welcome!
 > 
-> -- 
-> With best wishes
-> Dmitry
+> Thanks,
+> Andrew
 > 
+> [0] https://www.spinics.net/lists/arm-kernel/msg1018532.html
+> [1] https://www.spinics.net/lists/arm-kernel/msg1018864.html
+> [2] https://www.spinics.net/lists/arm-kernel/msg1019544.html
+> 
+> Andrew Davis (11):
+>   arm64: dts: ti: k3-am65: Enable UART nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable I2C nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable SPI nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable EPWM nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable ECAP nodes at the board level
+>   arm64: dts: ti: k3-am65: MDIO pinmux should belong to the MDIO node
+>   arm64: dts: ti: k3-am65: Enable MDIO nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable MCAN nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable PCIe nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable Mailbox nodes at the board level
+>   arm64: dts: ti: k3-am65: Enable McASP nodes at the board level
 
--- 
-மணிவண்ணன் சதாசிவம்
+LGTM! Thanks Andrew!
+
+Reviewed-by: Bryan Brattlof <bb@ti.com>
+
+~Bryan
