@@ -2,187 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B939761330B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 10:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D36B861330E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 10:51:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbiJaJu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 05:50:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54516 "EHLO
+        id S230104AbiJaJvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 05:51:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbiJaJuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 05:50:55 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3CB4C77E;
-        Mon, 31 Oct 2022 02:50:47 -0700 (PDT)
-X-UUID: 88ea5f3829ec4f5880114fbd4dde4295-20221031
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=wXK7R0VrP70obFWmdHfxAhAYLbXs3m1mRzgr75u+1yE=;
-        b=r3a2MOxplAiJXCA2uY1HNbr39IwoyKjPpy911B94A1kQD8/87U+ZO1ksxedKOVK3o/UIUb+1+Vx8QsPxY1gMstfvS2se4HGfWhTjfvouAgCSMIFYw+/nLfzpHhwJ0fB8gWqhb1r1LTg7VUpk5K/WKH195BYD4BXCgJn1l0QmPw4=;
-X-CID-UNFAMILIAR: 1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:aa04bcad-4f27-45a5-aec9-bb1616f8375b,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:4,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:4
-X-CID-INFO: VERSION:1.1.12,REQID:aa04bcad-4f27-45a5-aec9-bb1616f8375b,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:4,FILE:0,BULK:0,RULE:Release_HamU,ACTION:r
-        elease,TS:4
-X-CID-META: VersionHash:62cd327,CLOUDID:bce7f5ea-84ac-4628-a416-bc50d5503da6,B
-        ulkID:22103114591032KB6KJV,BulkQuantity:7,Recheck:0,SF:38|16|19|102,TC:nil
-        ,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:40,QS:nil,BEC:nil,COL:0
-X-UUID: 88ea5f3829ec4f5880114fbd4dde4295-20221031
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <mengqi.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 198616210; Mon, 31 Oct 2022 17:50:43 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 31 Oct 2022 17:50:41 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.239)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Mon, 31 Oct 2022 17:50:41 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PEaBDC6jTMyrcJvbViWfq/pHjI6Kk1bo8bKbuaSd9f1Qc9nQmmp4ji7jk9Ufa79b8I/nJtiLVyGp/HI8DcBLVESISl4Rs22rgkABZuJeRltN0fO3lWWgqlH6zMYiZjQR74RKfJNCn3ICDm9vDARRM2h5Ezj0C8Rp2iXb9Z6vDwkxwLVVrrh2MJp7Aud8Lug7nOwtbEIO4cxv/GHFrq17QyRbWYCbP672cGCvEsmApdojfTjsye7Vw9MSKQbcC7R4USamR8mdpYOcHskltD7/485BNeC50yXdjHXdC0L+VlToa4gNeT29C55bsgsPe1k832swCTeaaezhu8oXpJfWVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wXK7R0VrP70obFWmdHfxAhAYLbXs3m1mRzgr75u+1yE=;
- b=QxhVs9FzkGWcpGvT+JR65ZFK//QveOLMWUrLzCfiw588UYauRLA52vaR1UPNOtukKdOne5O0d4Vo1TG+y1TZt8bvTinow/TOzMfZnXvsBGjDV3j8rcazbb8h5bZjgr5Q+fAbHxj+t22fPucCd+k8ykq7aA4meL1dWE1KfeAK8odZB9evPzii8ZZ8uTyr7nZ4mcl+RfIfLoAUAj+xSMhT3VcQg4dcsR08575L7F4/Nlj2NTKTvYz0+SFuV1PAU44HGgJQ5doLVbjPrlNxVJSapsUKKPWmDTl/geFw8VXb+XAhKs52ZhmrqLa1iYgauFT0abXmyPIfoHlADVv5wKZd2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+        with ESMTP id S229950AbiJaJvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 05:51:42 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6D8D2C2
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 02:51:41 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id h9so15214765wrt.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 02:51:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wXK7R0VrP70obFWmdHfxAhAYLbXs3m1mRzgr75u+1yE=;
- b=UlNplNEjCRn4KKYQJx7PSjzNFyqRZgVYoZTwWw2jB2movE6ocUq6lGJG7vKTA9NG+9v5xH85oSN+ynPOW7i5LE+3+dTjyOKQ5oDPVvqzlGwyK+NqIG0DcWXF1FbGj2zgjXKrmjPtjHuVIoUew9kS11T23f6luVveJGBWxuZ9+Ig=
-Received: from SG2PR03MB6261.apcprd03.prod.outlook.com (2603:1096:4:175::12)
- by TYZPR03MB6217.apcprd03.prod.outlook.com (2603:1096:400:12d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.10; Mon, 31 Oct
- 2022 09:50:39 +0000
-Received: from SG2PR03MB6261.apcprd03.prod.outlook.com
- ([fe80::2023:6096:cfad:9e4]) by SG2PR03MB6261.apcprd03.prod.outlook.com
- ([fe80::2023:6096:cfad:9e4%3]) with mapi id 15.20.5791.017; Mon, 31 Oct 2022
- 09:50:39 +0000
-From:   =?utf-8?B?TWVuZ3FpIFpoYW5nICjlvKDmoqbnkKYp?= 
-        <Mengqi.Zhang@mediatek.com>
-To:     "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        =?utf-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= 
-        <Wenbin.Mei@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        =?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?= 
-        <Chaotian.Jing@mediatek.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] mmc: mtk-sd: add Inline Crypto Engine support
-Thread-Topic: [PATCH 1/2] mmc: mtk-sd: add Inline Crypto Engine support
-Thread-Index: AQHY4jOa8JAJQkyflEOYpQs1p9mmD64T6bKAgBRuXAA=
-Date:   Mon, 31 Oct 2022 09:50:39 +0000
-Message-ID: <b557604932edfcd9847f0f033f410b7a68c704dc.camel@mediatek.com>
-References: <20221017142007.5408-1-mengqi.zhang@mediatek.com>
-         <20221017142007.5408-2-mengqi.zhang@mediatek.com>
-         <438bf06d-c4f4-74b2-8903-e89dc52196a7@collabora.com>
-In-Reply-To: <438bf06d-c4f4-74b2-8903-e89dc52196a7@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SG2PR03MB6261:EE_|TYZPR03MB6217:EE_
-x-ms-office365-filtering-correlation-id: dce1d892-7e17-422e-3c12-08dabb255e51
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gFBGsuStrSE2nVKk0HHu70Ftwb47txwcMid4DdAp8cTIgtGi+6U+BWTT9a53vrXDoaDNv0s+/nAfiezASuS1BBNHfdC7UYLtnTU7/bW/wQF9iNdOmWVKpOkrl8pVdFKB8gJ/qXEjRDQ7QI8P75MoGzNbr61WjNuZkc1DMHBj1OAQNOSwiGHVO1pNM+i7myFTyK2pwQfK6AtnTqhYdlkNtQBE+lkb8ilFwRP7QfGeajiPenQow8x/D/x+wV/bcXsFSLTLJJ9Sp+93kp2Sx6DklEzPmZikGZZfLJtrK9eSIlGq1qV7gBQ2UUvEAiN7FY30PDeFEOXB/mOEm+ug1JznmPwO7YOQFaPHM31YNJvfY9wyGFzjlrz7O7a3QK2RHMt9pDb1KDRRT64o2ITktFwIrKovUGXKxgApFlHS4KGrBfc56ViHaB1cJ2Nj8shBzT+XaAn4sgG9ibB5ZLuH1r5exQU6/TlOu5vKz6rRFcZQLNyCG843/cK0jDiVW5KQtecJaiTBrPNBtHsxMT9vvd6b9/UhEpZaG6nt3SceBw+qqHDpsP7a7FBOs4V5yEyTsqmVtmgTcCdKQfqGpDrvl1m4idFhq4s4cUzm1WC9BykfyRe8nxA1M61I6KNKHhuMQxw/5c5pqdyyhFb+CnL7RLpaSEhFq7t5xj4+cXFgk2TD3rQ0YAHVGkXMfV/AZTtH5E7dM+Jy13HSOFSbHmG7QB+Y6ZjOd8h5BUbqa0p5hCkw8UkandozGm0y7qLBasLg5PMPr6JHi20KRltPTZM1X/q+sw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6261.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(346002)(376002)(366004)(39860400002)(396003)(451199015)(6506007)(66899015)(38070700005)(83380400001)(66446008)(110136005)(64756008)(76116006)(66946007)(66556008)(8676002)(4326008)(66476007)(122000001)(38100700002)(85182001)(36756003)(41300700001)(186003)(71200400001)(26005)(6486002)(6512007)(478600001)(86362001)(316002)(4001150100001)(54906003)(2906002)(8936002)(4744005)(7416002)(5660300002)(2616005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?R3dpUW8vL0Z6QitSNk9kaXgvVzR1ZWlkWExDWWNYZXllK1FCTWZad1BWbVl5?=
- =?utf-8?B?WlExKzJ1V3p5ZGpmdkJaTUZEQmtRUlZCcmRlNEc0TGw5d2dnL1h1MjRLM3JZ?=
- =?utf-8?B?aDVqTndxQW5wTTlTcC9lem10RjYrRStMZ2laV1NMNUZuOGNsZFhlMmpiOUwv?=
- =?utf-8?B?TW83NjgrL0dEanRjRHlMU3pzdStmcXNiZjROYWRLQ0h6QXc3eWwxZzlYVHdk?=
- =?utf-8?B?L2FURTRobWNGTTNBTFBnRnRVTnZUZjhIRW9UaTlQUCszMUtJLzhCT2p1K0JS?=
- =?utf-8?B?bkpUdHhaZlc0eFdOYi9VaGVMNld4clFIWEZ5Z29SRnhqNHdkcTRTdWpIeDVW?=
- =?utf-8?B?aUtYTE1MSE11dWFkdVB1dlJPUGhyRVNSQjJUL2swc2p2RHBQSmZVdUt1QjFU?=
- =?utf-8?B?em9uWDBsZ25kU2ZBaDVzemlDTTZuU0QwT2pqcnNDYm9hb1dGR1g4R1VzcExj?=
- =?utf-8?B?WFcwekxQZXVMVTlnSjFEWnp3d0xTZGgxV1Z6ZlQyK000ODdBL1ZXWFBLYmsr?=
- =?utf-8?B?WStJVmgvUmZ1K01ydnowV0NtSitKQi9IQ09lRlZuQzc5TWJ4UUR6dzdwcWxB?=
- =?utf-8?B?WmY4YUw4U3phWVRUL3RacUNhaURVQjAwd2JtL2pVWmFBc3M5NkdObmtwRnVy?=
- =?utf-8?B?QWxCaWt2dUtabnhIRjlibmRBQVVsK3BTS2JZNkpHclZKVDNiOHVLNG5QL3h0?=
- =?utf-8?B?Qk92aU42VmNNVTgzYjZEVUphUXlGS2xWNG9vMWFlV1d0TUU2eVdvN0lTaVI2?=
- =?utf-8?B?VnFXMHNpOFZPTm1lYlNJdkI0RklUY1hwdGxLYW9ndHh6UlZISDl1WW9YRjZr?=
- =?utf-8?B?Zm5vVThRWlhBeEpvSDJxWllMZURrWTROUnhIQWVZV1IxbTQ0S2RvZ1l6WFJG?=
- =?utf-8?B?U1pRM3pxQlFiK2R5NWEyWkFObHNaSVlkMS9QU3BJbGkzc21ZYUc4RnltdUlF?=
- =?utf-8?B?N0ZZdWt6RkVlemR4Z2RDOVZXVWhyNkc2QkJMbUtWekFJMGEzbVlvTm9Jblpy?=
- =?utf-8?B?bWRqMi8rdW5acXNQaFJIQm4vZkc5UmgybDQ2TnB2aktIWHVIMDZJK2Q2UUJB?=
- =?utf-8?B?MGg5a2JCWXg1bDlXL1ZOWTFDM014MXhRdndtSkxySTdZSmhmK0J0RUZINXBI?=
- =?utf-8?B?MWx2dXNPejBWL2RKQ2p2Q3cvWGxUaFV4Rng2Rk5YcjA2bEdXVjFwL2pHc3c3?=
- =?utf-8?B?eWY3dVpxTytia0ZidlFORHhQeElpSEQ0NlRmaGZTUEFXbjVpTysxa2VJTCt5?=
- =?utf-8?B?aW5MRzNCWTBraGlqQzVYdFdxRyttMVFqeHlNNTUvSDFJdTJZekJ3TjV2MFpQ?=
- =?utf-8?B?NWJmcEVHRmZ3RVM4aVZyTHBwKys4SXRjcUgrbkJtQzJmcmxVWTg2SU1HbnZj?=
- =?utf-8?B?K1ZLYmQ0Tzhoc1drdUE5MGUyRWg5NkRnZ2FQd3FpQ3ZRdi96d1pncVRmdUIr?=
- =?utf-8?B?WGRrL2VGN3ZYeVJEWFh5QXJVOE51anVaUWlwRWtRRU94TU90aXhlbVJydGIw?=
- =?utf-8?B?RnJsLy9QeWU1KzgzczlENEpBR29KTXhlYnpneVFwSmpSeTRaQUdLQXhQeCtk?=
- =?utf-8?B?cGpjeHhnSTUzOWtsRkZvbWRRam1TSjM1UTVlTXZjV2d2c2huWWI2bVVybW51?=
- =?utf-8?B?em5HR2lCeXlCNDIxWGhNcEk5TTByVWNlZzRBVEM4bGpHK200NWF6OGZybVpR?=
- =?utf-8?B?MkVOdCsyd3pjSnVPTElLcE5SOTViZGJVaG5XSGZQOXhkY0M3WEUwVWlDQlRX?=
- =?utf-8?B?ejhxTTZRTmxFVHFNbXNGeDZteE5UTXplWWFmN3gyL01acThSb3VWV1pKeHlR?=
- =?utf-8?B?dnpZSEdqNnU1VU1QS3JLR2RJTnZRK0RrMWUwL09mVTJNd1Y0QzluOWg1T2hr?=
- =?utf-8?B?WUZlZ2wvZmI0SW5qSXFwWHUxZEdkQkt4TlJ2TnhmUDZtT2traVFhTWx6RHhx?=
- =?utf-8?B?NkFEMThjMFkyVmlXOGRSYzRkSjRWQjQ2V0tvV3QwUDdUTmN4WXNYT0M2c1lE?=
- =?utf-8?B?ZE9rdFVMQSsvbHRMcEJ3bnk1cVlnOHV1aDd3bU5MR1VQSm5nRFdCUDJGVVZn?=
- =?utf-8?B?TWlpVlNBaG9jTVBSR3FpczgycEFScitHd2Rhd0RnUllRWWJLNHlPY3hua1di?=
- =?utf-8?B?VEFMSFNHWWF4V09saHVXNEd2RUNBd0sxZjNmanBhVWRZUlR5c08ySjNBU01V?=
- =?utf-8?B?dkE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <379A633ADF9C42439F9A6920521F02AF@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=VziB7h28RAb/PpCZNcV8L41sOfQewqSOqnvB/DPlrMo=;
+        b=dO28zyztaMfCnhKERLsvk0QYXe0sBp7JybCMwIY0BVbTH+mpWjmP9LeJPs79WlFFIp
+         LYLXtm6hGkGke0un9gQljjDD7L5Q/A0OGNwWKPLDzoqauQ1uL1DDrB2ZZtuSDrIDmcc4
+         u6xGNwTJFh+iRkSjPBREh8fIG+Hyz1vNPPvJkpsQTfB/0CeCE8353e0V+sGe3eptwS87
+         7ptg6A+SYniaM56BZag4C1DQv7Z2jTl3KcifeQZUEs7HRXxmpAjVxnPE4lBOkPksM6go
+         /TqgTNdSB33qM1s7yQJxcY57LfNDBGcwK16I79T/0eeDqNbh8ixYobtAK5RhNoypphzN
+         bimA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:content-language
+         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VziB7h28RAb/PpCZNcV8L41sOfQewqSOqnvB/DPlrMo=;
+        b=UEEMN8tnGlHtTqs/EBP+7+/duHOQszT4DzMZqz5ShBvNQJzTUDxkZUqAM4YBsNDrJ4
+         4ecOtSQ0QoiCgSPrgAMGuhgQjPjNiIGrPb3T4T9S9dK7g7dzLpTkkWrCBPmbaYTqw64C
+         vr4ijOBdJlKTzSUFAQoSusak4/70/tIVYCAN+DQ9TRsR8tiUcDeDMehP1nJxS+Dq9uaf
+         tg0l+y4djK2CIOQXOQnWa8P42FrnQUTgW0h9lCY0coReYhB0wGOHnQ+uZCqD/62GzNNh
+         mpvPg44VR9pa0+/gJcpX/r82JZwL4G9uWyfZkYqe89tGrswHmccxGZGKRbz/4tSTlOfP
+         AKXg==
+X-Gm-Message-State: ACrzQf1LAn4ij6SrH0rX9CB58wZwGKoptWxQYJVB7YgC0ylRsE7/kN21
+        DQUlQECi4iuNvUPS6lv91HFg4A==
+X-Google-Smtp-Source: AMsMyM5zls16f0t/jN719mMXfIpntktnGfwljIHwNt266SKMYSnD9UtUjWxGVUVBVWLB1wDySYE1fg==
+X-Received: by 2002:a5d:680a:0:b0:236:b797:5d80 with SMTP id w10-20020a5d680a000000b00236b7975d80mr5876999wru.403.1667209899782;
+        Mon, 31 Oct 2022 02:51:39 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:898:f380:f572:21f0:736:a7ca? ([2a01:e0a:898:f380:f572:21f0:736:a7ca])
+        by smtp.gmail.com with ESMTPSA id b6-20020adfee86000000b0023677fd2657sm6571659wro.52.2022.10.31.02.51.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Oct 2022 02:51:39 -0700 (PDT)
+Message-ID: <fac3eae5-687e-9eb0-ddfb-c659d3816d81@linaro.org>
+Date:   Mon, 31 Oct 2022 10:51:37 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6261.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dce1d892-7e17-422e-3c12-08dabb255e51
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2022 09:50:39.6287
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9OjtSfXTLzDmOsKSVUF42dbrEk2hR8tQZWndoouUdJoT5yrYn/JSfGtnCQEWPXcPJcO5XGw4RmlOwt2e885vzrEav2Ec4F1fojshcKV2Z+M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB6217
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 02/20] arm64: dts: Update cache properties for amlogic
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Rob.Herring@arm.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20221031091918.531607-1-pierre.gondois@arm.com>
+Content-Language: en-US
+Organization: Linaro Developer Services
+In-Reply-To: <20221031091918.531607-1-pierre.gondois@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIyLTEwLTE4IGF0IDExOjUwICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gSWwgMTcvMTAvMjIgMTY6MjAsIE1lbmdxaSBaaGFuZyBoYSBzY3JpdHRv
-Og0KPiA+IGFkZCBjcnlwdG8gY2xvY2sgY29udHJvbCBhbmQgdW5nYXRlIGl0IGJlZm9yZSBDUUhD
-SSBpbml0Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1lbmdxaSBaaGFuZyA8bWVuZ3FpLnpo
-YW5nQG1lZGlhdGVrLmNvbT4NCj4gDQo+IEhlbGxvIE1lbmdxaSwNCj4gSSdtIGEgYml0IHN1cnBy
-aXNlZCB0aGF0IGVuYWJsaW5nIElDRSBvbmx5IHJlcXVpcmVzIGVuYWJsaW5nIGEgY2xvY2sNCj4g
-YXMNCj4gb24gZG93bnN0cmVhbSBjb2RlIEkgc2VlIHNvbWUgU01DIGNhbGxzIHRvDQo+IE1US19T
-SVBfS0VSTkVMX0hXX0ZERV9NU0RDX0NUTC4NCj4gDQo+IENhbiB5b3UgcGxlYXNlIGV4cGxhaW4g
-d2h5IFNNQyBjYWxscyBhcmUgbm90IG5lZWRlZCBoZXJlPw0KPiANCj4gVGhhbmtzLA0KPiBBbmdl
-bG8NCj4gDQoNCkhpIEFuZ2VsbywNCg0KVGhlcmUgYXJlIG1hbnkgd3JvbmcgcXVvdGVzIGluIHBy
-ZXZpb3VzIHJlcGx5LCBsZXQgbWUgZml4IGl0IGhlcmUuDQoNCkluIHNvbWUgTVRLIFNvQywgd2Ug
-bmVlZCBzZXQgYSBlbmNyeXB0byBlbmFibGUgYml0DQpNVEtfU0lQX0tFUk5FTF9IV19GREVfTVNE
-Q19DVEwgaW4gc2VjdXJlIHdvcmxkLCBzbyB3ZSB1c2UgU01DIGNhbGwgdG8NCmZpbmlzaCBpdC4N
-CkJ1dCBub3QgZXZlcnkgTVRLIFNvQyBuZWVkIHRvIHNldCB0aGlzIGJpdCBpbiBzZWN1cmUgd29y
-bGQuIFRoaXMgcGF0Y2gNCmlzIGZvciB0aGVzZSBTb0NzLg0KQXMgZm9yIFNNQyBjYWxsLCB3ZSBo
-YXZlbid0IGZvdW5kIGEgcHJvcGVyIHdheSB0byBkZWFsIHdpdGggaXQsIHdlJ2xsDQpkbyBpdCBs
-YXRlci4NCg0KVGhhbmtzLA0KTWVuZ3FpLlpoYW5nDQo=
+Hi,
+
+On 31/10/2022 10:19, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
+> 
+> The recently added init_of_cache_level() function checks
+> these properties. Add them if missing.
+
+Is this tied to a bindings change ? Since I'm only in CC to the 02/20 patch,
+I don't have the context here.
+
+Neil
+
+> 
+> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi   | 1 +
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 1 +
+>   arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1 +
+>   arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 1 +
+>   arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 1 +
+>   arch/arm64/boot/dts/amlogic/meson-sm1.dtsi  | 1 +
+>   6 files changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index b4000cf65a9a..d2f7cb4e5375 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -36,6 +36,7 @@ cpu1: cpu@1 {
+>   
+>   		l2: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 04f797b5a012..1648e67afbb6 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -105,6 +105,7 @@ cpu3: cpu@3 {
+>   
+>   		l2: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index fb0ab27d1f64..af23d7968181 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -50,6 +50,7 @@ cpu3: cpu@3 {
+>   
+>   		l2: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> index ee8fcae9f9f0..9978e619accc 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+> @@ -105,6 +105,7 @@ cpu103: cpu@103 {
+>   
+>   		l2: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   		};
+>   	};
+>   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 023a52005494..e3c12e0be99d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -132,6 +132,7 @@ cpu3: cpu@3 {
+>   
+>   		l2: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> index 80737731af3f..d845eb19d93d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+> @@ -88,6 +88,7 @@ cpu3: cpu@3 {
+>   
+>   		l2: l2-cache0 {
+>   			compatible = "cache";
+> +			cache-level = <2>;
+>   		};
+>   	};
+>   
+
