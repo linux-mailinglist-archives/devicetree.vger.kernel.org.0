@@ -2,152 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 490B86138EC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 15:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEECE6138F9
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 15:31:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231550AbiJaOZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 10:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46638 "EHLO
+        id S231596AbiJaObM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 10:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231381AbiJaOZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 10:25:44 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936116260;
-        Mon, 31 Oct 2022 07:25:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1667226343; x=1698762343;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lZSalSSwi49EzYHTba+DNGAOjjgmfsm6XxBlo4aUqfg=;
-  b=XmutTOasqiv6i0LnIDmDQ7tI4tAlGeJSEDQHyQCLjcXP4puTkLIV8pVV
-   lhisU+OB59wKoyyVRssDUiFa3lhib6gXTkSO1SD1fjmGS6ChZbhgFV80/
-   eKeCvg8tB/+OkOGRHjr3xgPeApNRSwcokKAcAPzo8017TfPlXIlc9/B0x
-   N0JeiU0RslTlf/dQp4H77+Z99p/8aYjdi5IxeXxC5LGrR2kiuT5SlEum9
-   R9qBHIKiM+QsualrpsNJwbomKD7OT4YFh8S68Ff88PG0rWQpWm/La3wlt
-   DZnz0+FUbDzakmt8BCjhkVA875UqIRVkRTSm2qtD0kIeAaf3UpvmLbxu1
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="309995139"
-X-IronPort-AV: E=Sophos;i="5.95,228,1661842800"; 
-   d="scan'208";a="309995139"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2022 07:25:43 -0700
-X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="636064988"
-X-IronPort-AV: E=Sophos;i="5.95,228,1661842800"; 
-   d="scan'208";a="636064988"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2022 07:25:39 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 8C37B20210;
-        Mon, 31 Oct 2022 16:25:37 +0200 (EET)
-Date:   Mon, 31 Oct 2022 14:25:37 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 2/5] media: i2c: ov5645: Use runtime PM
-Message-ID: <Y1/a4QUQpykhuXwh@paasikivi.fi.intel.com>
-References: <20221014183459.181567-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221014183459.181567-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y1pphVPw0J97AmW4@paasikivi.fi.intel.com>
- <CA+V-a8szaPjwumrBgOT9gzMKBjY7hk0zfP8RgzUUDfY+BAsogA@mail.gmail.com>
- <Y1p91+XxPCB9NWwh@paasikivi.fi.intel.com>
- <CA+V-a8uhYymEVg7jdLVGNLsVD3=O1mk-_NVERu00W+gsv-7QXg@mail.gmail.com>
- <Y1rQBmXj71C1RrwB@paasikivi.fi.intel.com>
+        with ESMTP id S231607AbiJaObL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 10:31:11 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30A1D6587;
+        Mon, 31 Oct 2022 07:31:09 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29VEUkUL113944;
+        Mon, 31 Oct 2022 09:30:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667226646;
+        bh=u2H/VwoOd2lyZ9o3nREa5OAy04W4A1/6vZHoNRcnkpw=;
+        h=Date:From:Subject:To:CC:References:In-Reply-To;
+        b=awrwz8BqEKksG3S91R62JGweD2XF2s1U/DNrmP0UILAr2jbHIkeIbDWnDC4c5PzZi
+         OBWzWVL+IUbdd4cLK+hPbFUU/DSKEPHzldisE2xlqTtbJPz39SEpwnFOw9xgy/eqXG
+         Wos5MihnfRPdZpEQoIDAWdvrYfr30bD0jpVWnsbk=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29VEUkhq120665
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Oct 2022 09:30:46 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
+ Oct 2022 09:30:46 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 31 Oct 2022 09:30:46 -0500
+Received: from [10.250.35.234] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29VEUjHd094160;
+        Mon, 31 Oct 2022 09:30:45 -0500
+Message-ID: <0025ec36-0632-b79e-beba-cf838018a704@ti.com>
+Date:   Mon, 31 Oct 2022 09:30:45 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y1rQBmXj71C1RrwB@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+From:   Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v3 2/9] ARM: dts: nspire: Use syscon-reboot to handle
+ restart
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221027181337.8651-1-afd@ti.com>
+ <20221027181337.8651-3-afd@ti.com>
+ <050f3d65-5720-9c97-1930-bc458c4c2fb8@linaro.org>
+ <a4688f2d-0a0f-dffc-92cc-4fa50938d0d8@ti.com>
+ <4236ab07-6ad3-efcd-7d5e-c244581d2944@linaro.org>
+Content-Language: en-US
+In-Reply-To: <4236ab07-6ad3-efcd-7d5e-c244581d2944@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Thu, Oct 27, 2022 at 06:37:58PM +0000, Sakari Ailus wrote:
-> Hi Prabhakar,
+On 10/27/22 4:27 PM, Krzysztof Kozlowski wrote:
+> On 27/10/2022 17:07, Andrew Davis wrote:
+>> On 10/27/22 2:33 PM, Krzysztof Kozlowski wrote:
+>>> On 27/10/2022 14:13, Andrew Davis wrote:
+>>>> Writing this bit can be handled by the syscon-reboot driver.
+>>>> Add this node to DT.
+>>>>
+>>>> Signed-off-by: Andrew Davis <afd@ti.com>
+>>>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>>>> Tested-by: Fabian Vogt <fabian@ritter-vogt.de>
+>>>> Reviewed-by: Fabian Vogt <fabian@ritter-vogt.de>
+>>>> ---
+>>>>    arch/arm/boot/dts/nspire.dtsi | 7 +++++++
+>>>>    1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/nspire.dtsi b/arch/arm/boot/dts/nspire.dtsi
+>>>> index bb240e6a3a6f..48fbc9d533c3 100644
+>>>> --- a/arch/arm/boot/dts/nspire.dtsi
+>>>> +++ b/arch/arm/boot/dts/nspire.dtsi
+>>>> @@ -172,7 +172,14 @@ rtc: rtc@90090000 {
+>>>>    			};
+>>>>    
+>>>>    			misc: misc@900a0000 {
+>>>> +				compatible = "ti,nspire-misc", "syscon", "simple-mfd";
+>>>
+>>> You have syscon and simple-mfd, but bindings in patch #1 say only syscon.
+>>>
+>>
+>> I'm not following, are you just saying my wording in the patch message just
+>> wasn't complete?
 > 
-> On Thu, Oct 27, 2022 at 05:32:07PM +0100, Lad, Prabhakar wrote:
-> > Hi Sakari,
-> > 
-> > On Thu, Oct 27, 2022 at 1:47 PM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > On Thu, Oct 27, 2022 at 01:01:52PM +0100, Lad, Prabhakar wrote:
-> > > > Hi Sakari,
-> > > >
-> > > > On Thu, Oct 27, 2022 at 12:20 PM Sakari Ailus
-> > > > <sakari.ailus@linux.intel.com> wrote:
-> > > > >
-> > > > > Hi Prabhakar,
-> > > > >
-> > > > > One more comment.
-> > > > >
-> > > > > On Fri, Oct 14, 2022 at 07:34:56PM +0100, Prabhakar wrote:
-> > > > > > @@ -1209,12 +1190,16 @@ static int ov5645_probe(struct i2c_client *client)
-> > > > > >
-> > > > > >       dev_info(dev, "OV5645 detected at address 0x%02x\n", client->addr);
-> > > > > >
-> > > > > > +     pm_runtime_set_active(dev);
-> > > > > > +     pm_runtime_get_noresume(dev);
-> > > > > > +     pm_runtime_enable(dev);
-> > > > >
-> > > > > You won't gain anything by eanbling runtime PM here. Just move it to the
-> > > > > end of the function before the rest of the calls. Error handling becomes
-> > > > > more simple.
-> > > > >
-> > > > If I move the above calls below I get the below warning:
-> > > >
-> > > > [    2.633386] ov5645 0-003c: Runtime PM usage count underflow!
-> > > >
-> > > > This is because of the last patch which moves ov5645_entity_init_cfg()
-> > > > before registering the subdev. ov5645_entity_init_cfg() calls s_ctrl
-> > > > due to which we are seeing the above message. Please let me know how
-> > > > to proceed on this.
-> > >
-> > > Ah. Yes, this is a problem with the usage pattern of
-> > > pm_runtime_get_if_in_use(). But please don't change that.
-> > >
-> > > You can still move enabling runtime PM later in the function.
-> > >
-> > Agreed, the final version looks like below:
-> > 
-> >     pm_runtime_set_active(dev);
-> >     pm_runtime_get_noresume(dev);
-> > 
+> Your binding patch adds nspire compatible to the list of two items, so
+> you have two items in total - nspire followed by syscon.
 > 
-> You'll have to enable runtime PM here, before pm_runtime_get_if_in_use()
-> gets called.
+> What you implemented here is different.
 > 
-> I'll see if it could be made to work in a sensible way when runtime PM
-> isn't enabled yet.
 
-There are various ways how runtime PM interface functions generally work,
-and generally return an error when runtime PM is disabled. Incrementing the
-usage_count when runtime PM is disabled would make
-pm_runtime_get_if_in_use() very special and not match what the rest would
-do. Therefore I think it's best to keep this in the driver. After all, mo
-other driver needs this in the media tree, which is the major user of the
-function.
+Is there a list of three items I can add this compatible? If instead you
+mean I should go make a new binding, just say so :)
 
--- 
-Kind regards,
+>>
+>> Or are you saying something more about nodes that are both syscon and simple-mfd?
+>> In that case, having both syscon and simple-mfd seems rather common, looks like
+>> you added the rule for it[0].
+>>
+>> Thinking on this, they almost represent the same thing. simple-mfd says "my child
+>> nodes should be considered devices", why do we need that? Couldn't we simply state
+>> that "syscon" node's children are always devices, I mean what else could they be,
+>> syscon is an MFD after all (and lives in drivers/mfd/).
+> 
+> No, syscon is not an MFD. Syscon means system controller and alone it
+> does not have children.
+> 
 
-Sakari Ailus
+The binding lives in devicetree/bindings/*mfd*/, it is mentioned as one
+in devicetree/bindings/mfd/mfd.txt. If it is not an MFD then the bindings
+are giving out mixed signals here..
+
+>>
+>> "syscon" often just says, others can use the registers within this node, so as a
+>> different option, make "syscon" a property of "simple-mfd" nodes. I'm seeing all
+>> these examples of devices that should have been children of the "syscon" device,
+>> but instead use
+>>
+>> regmap = <&x>;
+>> syscon = <&x>;
+>>
+>> or similar and put the device node out somewhere random. And in those cases,
+>> wouldn't it have been more correct to use the normal "reg" and "regions" to
+>> define the registers belonging to the child node/device?..
+> 
+> Sorry, I do not follow. How this is even related to your patch?
+> 
+> Your bindings say A, DTS say B. A != B. This needs fixing.
+> 
+
+I said it was compatible with "syscon", not that it is incompatible
+with "simple-mfd" devices.
+
+What I've done here gives no dtbs_check warnings and
+"devicetree/bindings/mfd/mfd.txt" explicitly allows what I am doing.
+Unless we do not consider the old bindings valid? If so, would you
+like me to convert mfd.txt to yaml, just let me know.
+
+> Unless you are asking me what your device is in general. This I don't
+> really know, but if you want to use it as regmap provider for system
+> registers and as a parent of syscon-based reboot device, then your
+> device is syscon and simple-mfd. With a specific compatible. Was this
+> your question?
+> 
+
+Yes, I would like to use it as a regmap provider, my question here is
+a much more general one: why do I need to specify that in device tree?
+That is not a hardware description, my hardware is not "regmap" hardware.
+This "syscon" stuff feels like a bodge to make the Linux drivers and bus
+frameworks interact the way we want.
+
+I know at this point this has little to do with this series, but I'd like
+to just think this out for a moment. The latest Devicetree Specification
+talks about "simple-bus" as a special compatible that communicates that
+child nodes with compatible strings need probed also. ("simple-mfd" seems
+to be used the same way but without needing a "ranges" property..)
+
+Both of these are properties of a node, not something a device is "compatible"
+with. "compatibles" are also supposed to be listed "from most specific to
+most general", so which is more specific, "simple-mfd" or "syscon", etc..
+
+Seems like Rob might agree[0], these are not really compatibles. We cant fix
+history, but for new nodes, instead of growing the problem and forcing these to
+be overloaded compatibles, we allow these to become new standard node properties.
+
+For instance:
+
+main_conf: syscon@43000000 {
+	compatible = "ti,j721e-system-controller";
+	reg = <0x0 0x43000000 0x0 0x20000>;
+
+	simple-bus;
+	syscon;
+
+	...
+};
+
+Thoughts?
+
+Thanks,
+Andrew
+
+[0] https://lore.kernel.org/all/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com/
+
+> Best regards,
+> Krzysztof
+> 
