@@ -2,199 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1809613A3D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:39:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E042613A66
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 16:42:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbiJaPja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 11:39:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45510 "EHLO
+        id S231168AbiJaPm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 11:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231566AbiJaPj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:39:29 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2EBFE6
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 08:39:28 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id b11so10711388pjp.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 08:39:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GDJlQVCguNnJGzrf7cy1BrTUPSikkGc5f2fzu23Hw8E=;
-        b=WRBu6OGXkoxGY9UDJlisGfoLlWfiXqVHG1Cnz3WRejo/gU3au2sQfiQ2tkakym9Xvo
-         iH0CoovbBegwAiep1sHg4TttXjjq/HrCIkyI5/TCaJ/H1IvYg1JbIrhO+s7yVMVLua/z
-         PpUHd3lFUJZDfkqQOe5GQoNE02nWPKbltKJPZ5xwKdhWQ6o3Cr0QxictvbOI80ElcM0p
-         HiVEDIlcAC13c7U2uQ2TLdQKZNhDaf3ENAUc+8Q1XXgGxebLZa30nags0BnoeAp4nlFu
-         WESqHLfEHr+Q/91YoMfMixV2mv12PzOybQqyz88iiau13lhaZ2on32Go4ucT9oqwOR2V
-         5HCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GDJlQVCguNnJGzrf7cy1BrTUPSikkGc5f2fzu23Hw8E=;
-        b=5GejuIzESsTZs4KkBnYtl++Hhm6UPa+IvfJUiy7gOxL3XgFD55ZL/vBBedmOMmv4Xt
-         DAxOskbuFeC0mAIxiqC/O4jAIArZhHXgZZI9os1C5tn6f2mAaCoEBrOa8dK3NimZ7KNs
-         xCU1XLh6T2pBUnnoGWmNyGxGrfeNvlIf/VSRvJYL+rlh0DkltckJaSO0as3i3BOFatMU
-         wUKA2/yetu/4PKU81LMd1k4M1b0qjQB0GOo7+5oN62XzqsMMv/ATzEIbHC/+a+wKlXTh
-         rtVwDvC/FMlVk9eDHWMIM1/bWXWWqelkIo3Hu9Jhw3FDXktrfV+XHUZRsFO1Z8GcNHa2
-         gJAg==
-X-Gm-Message-State: ACrzQf1qz2NkNqB9fJp3MSn6exb1D23DjwAERqBRxlQXdhmNNnwn1f2Z
-        hipOOHZ4dAd+r2mryEn5A83l
-X-Google-Smtp-Source: AMsMyM6vZZ75FfRX28onYwNDU8BBGjMy3OIm0+QuUmPhw/ZrPNPrK/WEn/ojZGHcsog6PjRh9KLgjQ==
-X-Received: by 2002:a17:90a:6b0d:b0:213:b85a:3bd4 with SMTP id v13-20020a17090a6b0d00b00213b85a3bd4mr12287233pjj.169.1667230768366;
-        Mon, 31 Oct 2022 08:39:28 -0700 (PDT)
-Received: from thinkpad ([117.193.209.221])
-        by smtp.gmail.com with ESMTPSA id q5-20020a17090311c500b0017f49b41c12sm4628832plh.173.2022.10.31.08.39.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 08:39:27 -0700 (PDT)
-Date:   Mon, 31 Oct 2022 21:09:19 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH 14/15] scsi: ufs: ufs-qcom: Add support for finding HS
- gear on new UFS versions
-Message-ID: <20221031153919.GA12738@thinkpad>
-References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
- <20221029141633.295650-15-manivannan.sadhasivam@linaro.org>
- <cf8dcf53-f131-68f4-c6aa-d41e02ac6d5c@linaro.org>
+        with ESMTP id S231880AbiJaPm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 11:42:28 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD86E6598;
+        Mon, 31 Oct 2022 08:42:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1667230946; x=1698766946;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=pccmZ2wu/F/RQoaJULqDUPUNbab1oATh54UEl4dbLlQ=;
+  b=W18jj3gbd3M+8K76L8BcHKNPudiDCcnk7vCWHf6HwqxEVmb2YnIjcf2m
+   BQNfFzKE4Dy1Ftz61TsPVYUDmvyR7Uw0Uf1J1GcLbw3EafaYt3ASY3Xic
+   0gJQnxW4U6vRJLquqlUfWnMTCQIcvwZM6Vy+8mTd3pDD0eOc8XCi2dtBg
+   QHy7H7h2KE9oGGc+2wY/Apeeh33GvlRWO9G2X3iORvdmLd11wj4WlYmrI
+   VhvShBQUk0PtvkI1LTxCxBTBTnKd5U2l+HCbji2jL0gSK/bug0519tl0o
+   WXaKqdmbzs/4YK3tIbBGtJeB4JZs3JNSIuQoLuxIDnL3bcNniJMy3LDsj
+   w==;
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="306546564"
+X-IronPort-AV: E=Sophos;i="5.95,228,1661842800"; 
+   d="scan'208";a="306546564"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Oct 2022 08:42:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6500,9779,10517"; a="628278350"
+X-IronPort-AV: E=Sophos;i="5.95,228,1661842800"; 
+   d="scan'208";a="628278350"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga007.jf.intel.com with ESMTP; 31 Oct 2022 08:42:20 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1opWva-005B6a-18;
+        Mon, 31 Oct 2022 17:42:18 +0200
+Date:   Mon, 31 Oct 2022 17:42:18 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     chenweilong <chenweilong@huawei.com>
+Cc:     yangyicong@hisilicon.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wsa@kernel.org,
+        f.fainelli@gmail.com, jarkko.nikula@linux.intel.com,
+        jdelvare@suse.de, william.zhang@broadcom.com, jsd@semihalf.com,
+        conor.dooley@microchip.com, phil.edworthy@renesas.com,
+        tharunkumar.pasumarthi@microchip.com, semen.protsenko@linaro.org,
+        kfting@nuvoton.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH next v9 1/4] i2c: hisi: Add initial device tree support
+Message-ID: <Y1/s2iZFod/7qzU+@smile.fi.intel.com>
+References: <20221029115937.179788-1-chenweilong@huawei.com>
+ <Y170TZoIp1WBIwU4@smile.fi.intel.com>
+ <dfc1c006-61c0-8f28-6164-060347c69d04@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cf8dcf53-f131-68f4-c6aa-d41e02ac6d5c@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <dfc1c006-61c0-8f28-6164-060347c69d04@huawei.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 30, 2022 at 12:48:21AM +0300, Dmitry Baryshkov wrote:
-> On 29/10/2022 17:16, Manivannan Sadhasivam wrote:
-> > Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
-> > controller/PHY can be configured to run in two gear speeds). But that
-> > requires an agreement between the UFS controller and the UFS device.
-> > This commit finds the max gear supported by both controller and device
-> > then decides which one to use.
-> > 
-> > UFS controller's max gear can be read from the REG_UFS_PARAM0 register and
-> > UFS device's max gear can be read from the "max-gear" devicetree property.
-> > 
-> > The UFS PHY also needs to be configured with the decided gear using the
-> > phy_set_mode_ext() API.
-> > 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >   drivers/ufs/host/ufs-qcom.c | 35 ++++++++++++++++++++++++++++++++---
-> >   drivers/ufs/host/ufs-qcom.h |  4 ++++
-> >   2 files changed, 36 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> > index f952cc76919f..268463e92d67 100644
-> > --- a/drivers/ufs/host/ufs-qcom.c
-> > +++ b/drivers/ufs/host/ufs-qcom.c
-> > @@ -281,6 +281,9 @@ static int ufs_qcom_host_reset(struct ufs_hba *hba)
-> >   static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
-> >   {
-> >   	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> > +	struct device *dev = hba->dev;
-> > +	u32 max_gear, hcd_max_gear, reg;
-> > +	int ret;
-> >   	if (host->hw_ver.major == 0x1) {
-> >   		/*
-> > @@ -292,8 +295,33 @@ static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
-> >   		 */
-> >   		if (hs_gear > UFS_HS_G2)
-> >   			return UFS_HS_G2;
-> > +	} else if (host->hw_ver.major > 0x3) {
-> > +		/*
-> > +		 * Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
-> > +		 * controller/PHY can be configured to run in two gear speeds). But that
-> > +		 * requires an agreement between the UFS controller and the device. Below
-> > +		 * code tries to find the max gear of both and decides which gear to use.
-> > +		 *
-> > +		 * First get the max gear supported by the UFS device if available.
-> > +		 * If the property is not defined in devicetree, then use the default gear.
-> > +		 */
-> > +		ret = of_property_read_u32(dev->of_node, "max-gear", &max_gear);
-> > +		if (ret)
-> > +			goto err_out;
+On Mon, Oct 31, 2022 at 09:57:51AM +0800, chenweilong wrote:
+> On 2022/10/31 6:01, Andy Shevchenko wrote:
+> > On Sat, Oct 29, 2022 at 07:59:36PM +0800, Weilong Chen wrote:
+> >> The HiSilicon I2C controller can be used on embedded platform, which
+> >> boot from devicetree.
+> > ...
+> >
+> >> +#include <linux/acpi.h>
+> >> +#include <linux/of.h>
+> > Why?
+> >
+> > ...
+> >
+> >> +#ifdef CONFIG_ACPI
+> > Why?
+> >
+> > ...
+> >
+> >> +#ifdef CONFIG_OF
+> > Why?
+> >
+> > ...
+> >
+> >> -		.acpi_match_table = hisi_i2c_acpi_ids,
+> >> +		.acpi_match_table = ACPI_PTR(hisi_i2c_acpi_ids),
+> > Why?
+> >
+> > ...
+> >
+> >> +		.of_match_table = of_match_ptr(hisi_i2c_dts_ids),
+> > Why of_match_ptr()?
 > 
-> Can we detect the UFS device's max gear somehow? If not, the 'max-gear'
-> property name doesn't sound good. Maybe calling it 'device-gear' would be
-> better.
-> 
-> > +
-> > +		/* Next get the max gear supported by the UFS controller */
-> > +		reg = ufshcd_readl(hba, REG_UFS_PARAM0);
-> > +		hcd_max_gear = UFS_QCOM_MAX_GEAR(reg);
-> > +
-> > +		/*
-> > +		 * Now compare both the gears. If the max gear supported by the UFS device
-> > +		 * is compatible with UFS controller, then use the UFS device's max gear
-> > +		 * speed. Otherwise, use the UFS controller supported max gear speed.
-> > +		 */
-> > +		return (max_gear <= hcd_max_gear) ? max_gear : hcd_max_gear;
-> 
-> return max(max_gear, hcd_max_gear); ?
-> 
+> There's a lot of drivers use of_match_ptr/ACPI_PTR to protect the of_device_id and
+> have explicit headers file references to linux/acpi.h or linux/of.h, such as
+> drivers/media/platform/intel/pxa_camera.c,
+> bluetooth/hci_intel.c,�
+> platform/x86/intel/chtwc_int33fe.c,
+> platform/x86/intel/pmc/core.c and so on.
 
-min() should work...
+We have a lot of the legacy or not-up-to-dated to all new kernel APIs code.
+Does it justify not to use the new approach in the new contribution?
 
-Thanks,
-Mani
+...
 
-> >   	}
-> > +err_out:
-> >   	/* Default is HS-G3 */
-> >   	return UFS_HS_G3;
-> >   }
-> > @@ -303,7 +331,7 @@ static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
-> >   	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> >   	struct phy *phy = host->generic_phy;
-> >   	int ret;
-> > -	bool is_rate_B = UFS_QCOM_LIMIT_HS_RATE == PA_HS_MODE_B;
-> > +	u32 hs_gear;
-> >   	/* Reset UFS Host Controller and PHY */
-> >   	ret = ufs_qcom_host_reset(hba);
-> > @@ -311,8 +339,9 @@ static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
-> >   		dev_warn(hba->dev, "%s: host reset returned %d\n",
-> >   				  __func__, ret);
-> > -	if (is_rate_B)
-> > -		phy_set_mode(phy, PHY_MODE_UFS_HS_B);
-> > +	/* UFS_HS_G2 is used here since that's the least gear supported by legacy Qcom platforms */
-> > +	hs_gear = ufs_qcom_get_hs_gear(hba, UFS_HS_G2);
-> > +	phy_set_mode_ext(phy, PHY_MODE_UFS_HS_B, hs_gear);
-> >   	/* phy initialization - calibrate the phy */
-> >   	ret = phy_init(phy);
-> > diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
-> > index 214ea50acab9..c93bc52ea848 100644
-> > --- a/drivers/ufs/host/ufs-qcom.h
-> > +++ b/drivers/ufs/host/ufs-qcom.h
-> > @@ -89,6 +89,10 @@ enum {
-> >   #define TMRLUT_HW_CGC_EN	BIT(6)
-> >   #define OCSC_HW_CGC_EN		BIT(7)
-> > +/* bit definitions for REG_UFS_PARAM0 */
-> > +#define MAX_HS_GEAR_MASK	GENMASK(6, 4)
-> > +#define UFS_QCOM_MAX_GEAR(x)	FIELD_GET(MAX_HS_GEAR_MASK, (x))
-> > +
-> >   /* bit definition for UFS_UFS_TEST_BUS_CTRL_n */
-> >   #define TEST_BUS_SUB_SEL_MASK	GENMASK(4, 0)  /* All XXX_SEL fields are 5 bits wide */
+> The acpi.h and of.h have a nice function or macro definition if CONFIG_OF/ACPI is not satisfy,
+> for example:
 > 
-> -- 
-> With best wishes
-> Dmitry
+> #define ACPI_PTR(_ptr)� (_ptr)� vs� #define ACPI_PTR(_ptr)� (NULL)
 > 
+> and also a lot of 'static inline' function there.
+
+And why do you need it?
+
+...
+
+> Seems a good idea to remove all of them, the codes your noted may look a bit
+> verbose there. But I think it is valuable for a driver and device ,telling
+> users it support acpi boot or is it just embedded.
+
+So, what do we gain here?
+
+(Fill the "Advantages of your code" section below)
+
+Disadvantages of your code:
+- ugly ifdeffery which we usually do not appreciate
+- in some cases it's good to have OF ID table on ACPI platforms (see what
+  PRP0001 trick is)
+- use old approach for the compiler on how to avoid warnings of the static
+  variables being defined and not used (note, neither ACPI_PTR() nor
+  of_match_ptr() provides a new approach on that, so you have to amend them
+  first)
+- as a side effect additional headers to be included that are used for 1% or
+  less of their capacity and slow down the compilation
 
 -- 
-மணிவண்ணன் சதாசிவம்
+With Best Regards,
+Andy Shevchenko
+
+
