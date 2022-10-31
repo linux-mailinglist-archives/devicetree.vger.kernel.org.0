@@ -2,165 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD730613F3D
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:48:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CABC1613F46
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 21:53:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbiJaUsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 16:48:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38198 "EHLO
+        id S229740AbiJaUxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 16:53:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbiJaUsT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:48:19 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A386A13F14;
-        Mon, 31 Oct 2022 13:48:17 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 6A3D485516;
-        Mon, 31 Oct 2022 21:48:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667249295;
-        bh=pq9DqKce60sVUC1K+Yc/28v+Bml4q8FIg6z4f8sn9ic=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oljSgmRl+hyCeLzuOB0L0Z0csV+M6TM/KE4fTHVGSmXNGUJIS4nhs8M9wr+eJ3f/Q
-         vyI8c8Y67gcqm55JTou5avN/6e1Nlra2233hgdc1pYWmwedNLHZmD+WXin72oUfsFZ
-         A++u6y1n83/0UFmmBKDaubmNIYYlaS3dzfz3p0Kc5qfGgb3L5zbFNsrDxVvjP7+siQ
-         RBjsp+eA0AMhzGqpDQ0e+sCbE7c07wGaK2+2Bp6rP01SvSQgUeJVOFxJ0j+bEfq7JV
-         N3IqWyD43dZ6cIOk+045wt9ifGINm7YFpdpvY4n6cpw9eJxRu5mlnu2LI2Usfro8mS
-         9huiZm1mwGpHw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-bluetooth@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Hakan Jansson <hakan.jansson@infineon.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Luiz Augusto von Dentz <luiz.von.dentz@intel.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] Bluetooth: hci_bcm: Add CYW4373A0 support
-Date:   Mon, 31 Oct 2022 21:48:04 +0100
-Message-Id: <20221031204804.195267-2-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221031204804.195267-1-marex@denx.de>
-References: <20221031204804.195267-1-marex@denx.de>
+        with ESMTP id S230162AbiJaUxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 16:53:09 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBB591035
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1667249528;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=qWJyfhmQ6o9T03H9pL5B2g/JZubAjjutk2ZOVbBRNCw=;
+        b=fhkAmShiLoUIK7Yb70WLQ+ST4uv0PzOAWx3Od3SZ6nQYrYMWnat6XRdPPpk73OpHa9EhQo
+        V2BHsZWB/6wP4jtmIkUoRdUsfkRTDm0mCyflkG9xpCw2U5bQfLFiCRz6h8f9A26KWQoY7o
+        wWLRrO9uSR6EgALzn5uD1bPHDJIuiNc=
+Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com
+ [209.85.160.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-81-mFKtavt5Pj-U8M_8eCzWVg-1; Mon, 31 Oct 2022 16:52:06 -0400
+X-MC-Unique: mFKtavt5Pj-U8M_8eCzWVg-1
+Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-13c2cedb93bso5866299fac.4
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 13:52:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qWJyfhmQ6o9T03H9pL5B2g/JZubAjjutk2ZOVbBRNCw=;
+        b=g71H8ojLt7wK6O8yZSt48Nz9P9NUsd+casNZnxT0jmBncE5vV3QuDkAqTUfIEP5+h8
+         bKe+Dvr74AQ1gPXc6JRh0CpzoWj7pqQZDcAA3H5ISTIbde/oBAQSEwuuYdaKcNTkaFTr
+         jIBxk4dd1YkBk6B6Tkf4XxqFPoyxxFEc+ZiExEO9AndjXSxrwt4dBSAtJtYJEYZc6nuD
+         qBkRn6SBfn4aOCgYdLQ9j0nzyb3wDqCbjRye/QXX6gR50sMXjdAzDsAmwpBAS3mIzMCk
+         td24oYXKpe8lYJeA6zMqjPRyRikFn/uxwDBk+XEE0M33n1M0QW6qKoQaD0SiqPtovyWZ
+         6kBg==
+X-Gm-Message-State: ACrzQf1BG0TsL0K0Oy460kYX4naHq+8lF28+4oEnBVoPxX01nHLd9s7M
+        eKKMV7ZNAzyE4LqfwljbCpGWzmYbZ3qhYtaDuFqntj5ydgCM5fHvLXeiVYePXmMsC+nXkmWgiEO
+        0Q4p7JX7p4hOsF60TWojaMw==
+X-Received: by 2002:a4a:9645:0:b0:476:a4e2:8cbc with SMTP id r5-20020a4a9645000000b00476a4e28cbcmr6332030ooi.74.1667249526158;
+        Mon, 31 Oct 2022 13:52:06 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM7ywIcmmfWbra9uzy87gn8Co1UQ9UKror/SwnO/b46Kb0nMbJMNL+ohvKc3NHWq0v7gIWh+yg==
+X-Received: by 2002:a4a:9645:0:b0:476:a4e2:8cbc with SMTP id r5-20020a4a9645000000b00476a4e28cbcmr6332015ooi.74.1667249525910;
+        Mon, 31 Oct 2022 13:52:05 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::41])
+        by smtp.gmail.com with ESMTPSA id f16-20020a9d5f10000000b006679a03a753sm3169250oti.11.2022.10.31.13.52.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Oct 2022 13:52:05 -0700 (PDT)
+Date:   Mon, 31 Oct 2022 15:52:03 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        andersson@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, quic_cang@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org, dmitry.baryshkov@linaro.org
+Subject: Re: [PATCH v2 14/15] scsi: ufs: ufs-qcom: Add support for finding HS
+ gear on new UFS versions
+Message-ID: <20221031205203.gxpghwdoyz4a5c4w@halaney-x13s>
+References: <20221031180217.32512-1-manivannan.sadhasivam@linaro.org>
+ <20221031180217.32512-15-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221031180217.32512-15-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CYW4373A0 is a Wi-Fi + Bluetooth combo device from Cypress.
-This chip is present e.g. on muRata 2AE module.
+On Mon, Oct 31, 2022 at 11:32:16PM +0530, Manivannan Sadhasivam wrote:
+> Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
+> controller/PHY can be configured to run in two gear speeds). But that
+> requires an agreement between the UFS controller and the UFS device.
+> This commit finds the max gear supported by both controller and device
+> then decides which one to use.
+> 
+> UFS controller's max gear can be read from the REG_UFS_PARAM0 register and
+> UFS device's max gear can be read from the "max-device-gear" devicetree
+> property.
+> 
+> The UFS PHY also needs to be configured with the decided gear using the
+> phy_set_mode_ext() API.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/ufs/host/ufs-qcom.c | 31 ++++++++++++++++++++++++++++---
+>  drivers/ufs/host/ufs-qcom.h |  4 ++++
+>  2 files changed, 32 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
+> index c93d2d38b43e..ca60a5b0292b 100644
+> --- a/drivers/ufs/host/ufs-qcom.c
+> +++ b/drivers/ufs/host/ufs-qcom.c
+> @@ -281,6 +281,9 @@ static int ufs_qcom_host_reset(struct ufs_hba *hba)
+>  static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
+>  {
+>  	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+> +	struct device *dev = hba->dev;
+> +	u32 max_device_gear, max_hcd_gear, reg;
+> +	int ret;
+>  
+>  	if (host->hw_ver.major == 0x1) {
+>  		/*
+> @@ -292,8 +295,29 @@ static u32 ufs_qcom_get_hs_gear(struct ufs_hba *hba, u32 hs_gear)
+>  		 */
+>  		if (hs_gear > UFS_HS_G2)
+>  			return UFS_HS_G2;
+> +	} else if (host->hw_ver.major > 0x3) {
+> +		/*
+> +		 * Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
 
-This chip has additional quirk where the HCI command 0xfc45, used on
-older chips to switch UART clock from 24 MHz to 48 MHz, to support
-baudrates over 3 Mbdps, is no longer recognized by this newer chip.
-This newer chip can configure the 4 Mbdps baudrate without the need
-to issue HCI command 0xfc45, so add flag to indicate this and do not
-issue the command on this chip to avoid failure to set 4 Mbdps baud
-rate.
+Bikeshedding, but I think with this wording checking:
 
-It is not clear whether there is a way to determine which chip does
-and which chip does not support the HCI command 0xfc45, other than
-trial and error.
+    host->hw_ver.major >= 0x4
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Hakan Jansson <hakan.jansson@infineon.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Luiz Augusto von Dentz <luiz.von.dentz@intel.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-To: linux-bluetooth@vger.kernel.org
----
- drivers/bluetooth/hci_bcm.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+is a little more readable, or at least for me when I read the comment I
+had to jump back up to the else if statement.
 
-diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
-index d7e0b75db8a60..29da04815763f 100644
---- a/drivers/bluetooth/hci_bcm.c
-+++ b/drivers/bluetooth/hci_bcm.c
-@@ -53,11 +53,13 @@
-  * struct bcm_device_data - device specific data
-  * @no_early_set_baudrate: Disallow set baudrate before driver setup()
-  * @drive_rts_on_open: drive RTS signal on ->open() when platform requires it
-+ * @no_uart_clock_set: UART clock set command for >3Mbps mode is unavailable
-  * @max_autobaud_speed: max baudrate supported by device in autobaud mode
-  */
- struct bcm_device_data {
- 	bool	no_early_set_baudrate;
- 	bool	drive_rts_on_open;
-+	bool	no_uart_clock_set;
- 	u32	max_autobaud_speed;
- };
- 
-@@ -100,6 +102,7 @@ struct bcm_device_data {
-  * @is_suspended: whether flow control is currently disabled
-  * @no_early_set_baudrate: don't set_baudrate before setup()
-  * @drive_rts_on_open: drive RTS signal on ->open() when platform requires it
-+ * @no_uart_clock_set: UART clock set command for >3Mbps mode is unavailable
-  * @pcm_int_params: keep the initial PCM configuration
-  * @use_autobaud_mode: start Bluetooth device in autobaud mode
-  * @max_autobaud_speed: max baudrate supported by device in autobaud mode
-@@ -140,6 +143,7 @@ struct bcm_device {
- #endif
- 	bool			no_early_set_baudrate;
- 	bool			drive_rts_on_open;
-+	bool			no_uart_clock_set;
- 	bool			use_autobaud_mode;
- 	u8			pcm_int_params[5];
- 	u32			max_autobaud_speed;
-@@ -172,10 +176,11 @@ static inline void host_set_baudrate(struct hci_uart *hu, unsigned int speed)
- static int bcm_set_baudrate(struct hci_uart *hu, unsigned int speed)
- {
- 	struct hci_dev *hdev = hu->hdev;
-+	struct bcm_data *bcm = hu->priv;
- 	struct sk_buff *skb;
- 	struct bcm_update_uart_baud_rate param;
- 
--	if (speed > 3000000) {
-+	if (speed > 3000000 && !bcm->dev->no_uart_clock_set) {
- 		struct bcm_write_uart_clock_setting clock;
- 
- 		clock.type = BCM_UART_CLOCK_48MHZ;
-@@ -1529,6 +1534,7 @@ static int bcm_serdev_probe(struct serdev_device *serdev)
- 		bcmdev->max_autobaud_speed = data->max_autobaud_speed;
- 		bcmdev->no_early_set_baudrate = data->no_early_set_baudrate;
- 		bcmdev->drive_rts_on_open = data->drive_rts_on_open;
-+		bcmdev->no_uart_clock_set = data->no_uart_clock_set;
- 	}
- 
- 	return hci_uart_register_device(&bcmdev->serdev_hu, &bcm_proto);
-@@ -1550,6 +1556,10 @@ static struct bcm_device_data bcm43438_device_data = {
- 	.drive_rts_on_open = true,
- };
- 
-+static struct bcm_device_data bcm4373a0_device_data = {
-+	.no_uart_clock_set = true,
-+};
-+
- static struct bcm_device_data cyw55572_device_data = {
- 	.max_autobaud_speed = 921600,
- };
-@@ -1566,6 +1576,7 @@ static const struct of_device_id bcm_bluetooth_of_match[] = {
- 	{ .compatible = "brcm,bcm4349-bt", .data = &bcm43438_device_data },
- 	{ .compatible = "brcm,bcm43540-bt", .data = &bcm4354_device_data },
- 	{ .compatible = "brcm,bcm4335a0" },
-+	{ .compatible = "cypress,cyw4373a0-bt", .data = &bcm4373a0_device_data },
- 	{ .compatible = "infineon,cyw55572-bt", .data = &cyw55572_device_data },
- 	{ },
- };
--- 
-2.35.1
+Even without that change though
+
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+
+> +		 * controller/PHY can be configured to run in two gear speeds). But that
+> +		 * requires an agreement between the UFS controller and the device. Below
+> +		 * code tries to find the max gear of both and decides which gear to use.
+> +		 *
+> +		 * First get the max gear supported by the UFS device if available.
+> +		 * If the property is not defined in devicetree, then use the default gear.
+> +		 */
+> +		ret = of_property_read_u32(dev->of_node, "max-device-gear", &max_device_gear);
+> +		if (ret)
+> +			goto err_out;
+> +
+> +		/* Next get the max gear supported by the UFS controller */
+> +		reg = ufshcd_readl(hba, REG_UFS_PARAM0);
+> +		max_hcd_gear = UFS_QCOM_MAX_GEAR(reg);
+> +
+> +		/* Now return the minimum of both gears */
+> +		return min(max_device_gear, max_hcd_gear);
+>  	}
+>  
+> +err_out:
+>  	/* Default is HS-G3 */
+>  	return UFS_HS_G3;
+>  }
+> @@ -303,7 +327,7 @@ static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
+>  	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
+>  	struct phy *phy = host->generic_phy;
+>  	int ret;
+> -	bool is_rate_B = UFS_QCOM_LIMIT_HS_RATE == PA_HS_MODE_B;
+> +	u32 hs_gear;
+>  
+>  	/* Reset UFS Host Controller and PHY */
+>  	ret = ufs_qcom_host_reset(hba);
+> @@ -311,8 +335,9 @@ static int ufs_qcom_power_up_sequence(struct ufs_hba *hba)
+>  		dev_warn(hba->dev, "%s: host reset returned %d\n",
+>  				  __func__, ret);
+>  
+> -	if (is_rate_B)
+> -		phy_set_mode(phy, PHY_MODE_UFS_HS_B);
+> +	/* UFS_HS_G2 is used here since that's the least gear supported by legacy Qcom platforms */
+> +	hs_gear = ufs_qcom_get_hs_gear(hba, UFS_HS_G2);
+> +	phy_set_mode_ext(phy, PHY_MODE_UFS_HS_B, hs_gear);
+>  
+>  	/* phy initialization - calibrate the phy */
+>  	ret = phy_init(phy);
+> diff --git a/drivers/ufs/host/ufs-qcom.h b/drivers/ufs/host/ufs-qcom.h
+> index 7fe928b82753..751ded3e3531 100644
+> --- a/drivers/ufs/host/ufs-qcom.h
+> +++ b/drivers/ufs/host/ufs-qcom.h
+> @@ -94,6 +94,10 @@ enum {
+>  #define TMRLUT_HW_CGC_EN	BIT(6)
+>  #define OCSC_HW_CGC_EN		BIT(7)
+>  
+> +/* bit definitions for REG_UFS_PARAM0 */
+> +#define MAX_HS_GEAR_MASK	GENMASK(6, 4)
+> +#define UFS_QCOM_MAX_GEAR(x)	FIELD_GET(MAX_HS_GEAR_MASK, (x))
+> +
+>  /* bit definition for UFS_UFS_TEST_BUS_CTRL_n */
+>  #define TEST_BUS_SUB_SEL_MASK	GENMASK(4, 0)  /* All XXX_SEL fields are 5 bits wide */
+>  
+> -- 
+> 2.25.1
+> 
 
