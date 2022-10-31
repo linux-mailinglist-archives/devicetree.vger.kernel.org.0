@@ -2,63 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B06613820
-	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 14:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86FC7613822
+	for <lists+devicetree@lfdr.de>; Mon, 31 Oct 2022 14:33:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231236AbiJaNdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 09:33:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40458 "EHLO
+        id S230024AbiJaNdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 09:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231519AbiJaNcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 09:32:46 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A5010554;
-        Mon, 31 Oct 2022 06:32:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=8yyvfwDpAKpyb8m69eVKr5lOcCham69PMp6CPAhA13Q=; b=xC+diylspD9rQWeAOigRmWl1I9
-        NZX1cLJfh4nlzhI5yadi9uvpQuZxJh/TgJ98ZgbFFuJh/4eXyZrbFDZWaKH5IcO0RQfVOuVpw/3HB
-        80DgEdd1y9csTwGzjp8k50obDPlQo3zQ3Sfc8DK1azUYOAToWEmotwnf3CMvOpB89L5c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1opUu1-0011SN-AA; Mon, 31 Oct 2022 14:32:33 +0100
-Date:   Mon, 31 Oct 2022 14:32:33 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v7 2/3] net: ethernet: renesas: Add support for "Ethernet
- Switch"
-Message-ID: <Y1/OcdvPS1bOHo9I@lunn.ch>
-References: <20221031123242.2528208-1-yoshihiro.shimoda.uh@renesas.com>
- <20221031123242.2528208-3-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229785AbiJaNdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 09:33:54 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A1B64101D8;
+        Mon, 31 Oct 2022 06:33:53 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A70881FB;
+        Mon, 31 Oct 2022 06:33:59 -0700 (PDT)
+Received: from [10.57.7.114] (unknown [10.57.7.114])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D2FB3F703;
+        Mon, 31 Oct 2022 06:33:50 -0700 (PDT)
+Message-ID: <3c54db0a-44fe-ee24-1833-7637e249ec79@arm.com>
+Date:   Mon, 31 Oct 2022 14:33:52 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031123242.2528208-3-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 02/20] arm64: dts: Update cache properties for amlogic
+To:     neil.armstrong@linaro.org, linux-kernel@vger.kernel.org
+Cc:     Rob.Herring@arm.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20221031091918.531607-1-pierre.gondois@arm.com>
+ <fac3eae5-687e-9eb0-ddfb-c659d3816d81@linaro.org>
+Content-Language: en-US
+From:   Pierre Gondois <pierre.gondois@arm.com>
+In-Reply-To: <fac3eae5-687e-9eb0-ddfb-c659d3816d81@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 09:32:41PM +0900, Yoshihiro Shimoda wrote:
-> Add initial support for Renesas "Ethernet Switch" device of R-Car S4-8.
-> The hardware has features about forwarding for an ethernet switch
-> device. But, for now, it acts as ethernet controllers so that any
-> forwarding offload features are not supported. So, any switchdev
-> header files and DSA framework are not used.
+Hello Neil,
+
+On 10/31/22 10:51, Neil Armstrong wrote:
+> Hi,
 > 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> On 31/10/2022 10:19, Pierre Gondois wrote:
+>> The DeviceTree Specification v0.3 specifies that the cache node
+>> 'compatible' and 'cache-level' properties are 'required'. Cf.
+>> s3.8 Multi-level and Shared Cache Nodes
+>>
+>> The recently added init_of_cache_level() function checks
+>> these properties. Add them if missing.
+> 
+> Is this tied to a bindings change ? Since I'm only in CC to the 02/20 patch,
+> I don't have the context here.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+It is not tied to a binding change, it is just to align the DTs to the
+DeviceTree spec to potentially prepare for having a common DT parsing code.
 
-    Andrew
+To avoid cc-ing people to DTs they are not related, the get_maintainers.pl
+script was run on each patch individually. The cover-letter is at:
+https://lore.kernel.org/all/20221031091848.530938-1-pierre.gondois@arm.com/
+
+
+> 
+> Neil
+> 
+>>
+>> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+>> ---
+>>    arch/arm64/boot/dts/amlogic/meson-a1.dtsi   | 1 +
+>>    arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 1 +
+>>    arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1 +
+>>    arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 1 +
+>>    arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 1 +
+>>    arch/arm64/boot/dts/amlogic/meson-sm1.dtsi  | 1 +
+>>    6 files changed, 6 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> index b4000cf65a9a..d2f7cb4e5375 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> @@ -36,6 +36,7 @@ cpu1: cpu@1 {
+>>    
+>>    		l2: l2-cache0 {
+>>    			compatible = "cache";
+>> +			cache-level = <2>;
+>>    		};
+>>    	};
+>>    
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> index 04f797b5a012..1648e67afbb6 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> @@ -105,6 +105,7 @@ cpu3: cpu@3 {
+>>    
+>>    		l2: l2-cache0 {
+>>    			compatible = "cache";
+>> +			cache-level = <2>;
+>>    		};
+>>    	};
+>>    
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> index fb0ab27d1f64..af23d7968181 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+>> @@ -50,6 +50,7 @@ cpu3: cpu@3 {
+>>    
+>>    		l2: l2-cache0 {
+>>    			compatible = "cache";
+>> +			cache-level = <2>;
+>>    		};
+>>    	};
+>>    
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+>> index ee8fcae9f9f0..9978e619accc 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+>> @@ -105,6 +105,7 @@ cpu103: cpu@103 {
+>>    
+>>    		l2: l2-cache0 {
+>>    			compatible = "cache";
+>> +			cache-level = <2>;
+>>    		};
+>>    	};
+>>    };
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> index 023a52005494..e3c12e0be99d 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+>> @@ -132,6 +132,7 @@ cpu3: cpu@3 {
+>>    
+>>    		l2: l2-cache0 {
+>>    			compatible = "cache";
+>> +			cache-level = <2>;
+>>    		};
+>>    	};
+>>    
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>> index 80737731af3f..d845eb19d93d 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+>> @@ -88,6 +88,7 @@ cpu3: cpu@3 {
+>>    
+>>    		l2: l2-cache0 {
+>>    			compatible = "cache";
+>> +			cache-level = <2>;
+>>    		};
+>>    	};
+>>    
+> 
