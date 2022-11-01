@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 610D6614284
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:01:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0EB614286
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:02:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbiKABBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 21:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
+        id S229739AbiKABCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 21:02:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbiKABBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:01:54 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09C2D15FD0
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:01:54 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id z5-20020a17090a8b8500b00210a3a2364fso470174pjn.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:01:54 -0700 (PDT)
+        with ESMTP id S229695AbiKABB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:01:58 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E2C15FD5
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:01:57 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id h193so3444143pgc.10
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:01:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YpQKJf0nCYhED+OJ4NgA+kcEUlPiaiAkjycoHn2haSw=;
-        b=jyV40niyXaznH+xF2lsPZ3/7o3Z1xZe++umhAGYRU59whff/rMEr6MXl7gIwvw/Qhi
-         J1gQmTIrdbe3IhUaociyBychF1i0NBZ+4lH5C/z//wTR8qVUzJA7R9gDxGGXjm6R7WEf
-         KNh8SHeoC23dTTWCozLT3rwvUi1GuLvKpQwnmLDxkttdw1Xk4Tthk/umAjZGys/e7HlP
-         d7SPemLpPc75vE/WHKwkSEVzmVTOntGuyrB2aQVZPn7N2K5h9qMA7hXB58ToVSLbg7o0
-         4bcoPi7ikgXHV5U2lAmnQ3PzFIPiiBHSv0+qcsnH3cABoBtnRcOqi+2Xzm5lgVdoORmr
-         CJMA==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nKK8zgxJDxmHrqaFmkJ3vFtzjdbdmPcZFfepc/ywGK4=;
+        b=gpQo86TGe8qxzpefyPW85RKyFkniP4RwoGFdUWmgvZ+8NRgJM7XwOWSLH1wv26pR5P
+         GQSWpkt8pV0/Dp8u3QRz9CalvONObooWFOzGHKq4nFQZZRZBWFCASqfPYWHy+4ROmZE2
+         isR6tX+N3kDLg8cyHAh3E0wgXmG3grxNbrCOxzFGKni6ALmcJMTNcShtpQVV/8MwUCql
+         53FEfXQhp0paqnCKa0B2hNOEE0o6114Vrg+b/dmRuwoezglh9/wwRnH5kL1HNylxNJ6M
+         bE0Rg6nIo48Kqu/HHj3aLZqHes7+InNAhqOt6Zn1qTAfspEZCuNiTvvfRkcROKaNmVbH
+         quVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YpQKJf0nCYhED+OJ4NgA+kcEUlPiaiAkjycoHn2haSw=;
-        b=yimoYq8o2QsRGO5BG4t166fIFj37TMr8w3PXdLzrpWVBJ9IGMg5LXW8Jx3zdrI+UDJ
-         rahwHO+i1LKo9jOGYNYPYnYCng5Z1Kpvo+NeQg2m/GYI7ZCx/jYMTf4e9pcrYGiVL0uG
-         jyIL2eXJ50qinfvc4hTDeVBb13MPOINAMhyE4sJ9Ugi9DUcsY5zjizmdeWFllOJKs4eL
-         Qf/HFqEGvHFRV5GBUfSyBhal8h+6VteArmfwhr113n/kWHNuPXG07NlbPqzZNStbe91e
-         VKNGNunK+eYI+DawxSgJY1v5F6Ml38N/LBHQqyP4Vj/XM3XPWCgI0jzfdUtyeBvKZ2nr
-         BtBw==
-X-Gm-Message-State: ACrzQf258Y6ybiqKzAM0Ihn8JLWBdglsm7powd7iRIn0sCFpiIuW4lOQ
-        j8XCdON6ApxkRYVjtDNFGRCN/w==
-X-Google-Smtp-Source: AMsMyM40mGDjn/AE/VqMdr2FOW+ALCggd/wxgijHCfk9xkJ6ZuPgfLd2RVFKNgmsHS9AoMAJsO5AIw==
-X-Received: by 2002:a17:90b:30c1:b0:213:a155:949c with SMTP id hi1-20020a17090b30c100b00213a155949cmr17879204pjb.76.1667264513481;
-        Mon, 31 Oct 2022 18:01:53 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nKK8zgxJDxmHrqaFmkJ3vFtzjdbdmPcZFfepc/ywGK4=;
+        b=KihuPk4H1v1pBh3blZwdNKbT5ElTwI71/GApwLoOkfHz5zcDaTr/XDi6CN/k6DrEEl
+         tgycf+kQ3GiSZMk5kUgJJAXqMzOxdiTcz/6L4M2q7ca2r+TNP9aTM1+zfsfJzHeMIDrr
+         ZfK8v8MrVF9dF3wfYOQrs+t95AH3vvWV7e2/3EUhBcS2SBu6bMg46//aIHiuTdPO5EEH
+         cVfgivB6Qo5Pvelo9Vu0R09X9JULB/d0auYNJaO9Bi6NF2SZPznJYzzhKegwCGQWJrTE
+         YvRHw5a6Afi2GoUuiriLCm2qGb5e8OAFnzJ0E6TzXLFnB1BIA6+R2TBUqIvkwn0xJ6QU
+         oVbA==
+X-Gm-Message-State: ACrzQf3hGtdoitmaNz7+UCjuNZxzzdjQ9ro+JlkDHJxrpXK1FyDwcv/+
+        X9hzId88GT1vUZK8QV55IKWCfg==
+X-Google-Smtp-Source: AMsMyM7GSQ6+in0gJC2uUlOtdOXbqJ4twCOsmuQrpv1n85ntFVH4bYGWff/v2AlyqN8VHLoN6v5s3g==
+X-Received: by 2002:a63:205f:0:b0:46e:f589:6096 with SMTP id r31-20020a63205f000000b0046ef5896096mr14681144pgm.622.1667264516816;
+        Mon, 31 Oct 2022 18:01:56 -0700 (PDT)
 Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id a16-20020aa794b0000000b005627d995a36sm5221920pfl.44.2022.10.31.18.01.50
+        by smtp.gmail.com with ESMTPSA id a16-20020aa794b0000000b005627d995a36sm5221920pfl.44.2022.10.31.18.01.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 18:01:52 -0700 (PDT)
+        Mon, 31 Oct 2022 18:01:56 -0700 (PDT)
 From:   Andy Chiu <andy.chiu@sifive.com>
 To:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
         radhey.shyam.pandey@xilinx.com
@@ -56,10 +57,12 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
         greentime.hu@sifive.com
-Subject: [PATCH v2 net-next 0/3] net: axienet: Use a DT property to configure frequency of the MDIO bus
-Date:   Tue,  1 Nov 2022 09:01:44 +0800
-Message-Id: <20221101010146.900008-1-andy.chiu@sifive.com>
+Subject: [PATCH v2 net-next 1/3] net: axienet: Unexport and remove unused mdio functions
+Date:   Tue,  1 Nov 2022 09:01:45 +0800
+Message-Id: <20221101010146.900008-2-andy.chiu@sifive.com>
 X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20221101010146.900008-1-andy.chiu@sifive.com>
+References: <20221101010146.900008-1-andy.chiu@sifive.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,30 +74,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some FPGA platforms have to set frequency of the MDIO bus lower than 2.5
-MHz. Thus, we use a DT property, which is "clock-frequency", to work
-with it at boot time. The default 2.5 MHz would be set if the property
-is not pressent. Also, factor out mdio enable/disable functions due to
-the api change since 253761a0e61b7.
+Both axienet_mdio_enable functions are no longer used in
+xilinx_axienet_main.c due to 253761a0e61b7. And axienet_mdio_disable is
+not even used in the mdio.c. So unexport and remove them.
 
-Changelog:
---- v2 ---
-1. Use clock-frequency, as defined in mdio.yaml, to configure MDIO
-   clock.
-2. Only print out frequency if it is set to a non-standard value.
-3. Reduce the scope of axienet_mdio_enable and remove
-   axienet_mdio_disable because no one really uses it anymore.
+Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+---
+ drivers/net/ethernet/xilinx/xilinx_axienet.h      |  2 --
+ drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c | 13 +------------
+ 2 files changed, 1 insertion(+), 14 deletions(-)
 
-Andy Chiu (2):
-  net: axienet: Unexport mdio functions
-  net: axienet: set mdio clock according to bus-frequency
-  dt-bindings: describe the support of "clock-frequency" in mdio
-
- .../bindings/net/xilinx_axienet.txt           |  2 +
- drivers/net/ethernet/xilinx/xilinx_axienet.h  |  2 -
- .../net/ethernet/xilinx/xilinx_axienet_mdio.c | 58 +++++++++++--------
- 3 files changed, 35 insertions(+), 27 deletions(-)
-
+diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet.h b/drivers/net/ethernet/xilinx/xilinx_axienet.h
+index 6370c447ac5c..575ff9de8985 100644
+--- a/drivers/net/ethernet/xilinx/xilinx_axienet.h
++++ b/drivers/net/ethernet/xilinx/xilinx_axienet.h
+@@ -611,8 +611,6 @@ static inline void axienet_dma_out_addr(struct axienet_local *lp, off_t reg,
+ #endif /* CONFIG_64BIT */
+ 
+ /* Function prototypes visible in xilinx_axienet_mdio.c for other files */
+-int axienet_mdio_enable(struct axienet_local *lp);
+-void axienet_mdio_disable(struct axienet_local *lp);
+ int axienet_mdio_setup(struct axienet_local *lp);
+ void axienet_mdio_teardown(struct axienet_local *lp);
+ 
+diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
+index 0b3b6935c558..e1f51a071888 100644
+--- a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
++++ b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
+@@ -153,7 +153,7 @@ static int axienet_mdio_write(struct mii_bus *bus, int phy_id, int reg,
+  * Sets up the MDIO interface by initializing the MDIO clock and enabling the
+  * MDIO interface in hardware.
+  **/
+-int axienet_mdio_enable(struct axienet_local *lp)
++static int axienet_mdio_enable(struct axienet_local *lp)
+ {
+ 	u32 host_clock;
+ 
+@@ -226,17 +226,6 @@ int axienet_mdio_enable(struct axienet_local *lp)
+ 	return axienet_mdio_wait_until_ready(lp);
+ }
+ 
+-/**
+- * axienet_mdio_disable - MDIO hardware disable function
+- * @lp:		Pointer to axienet local data structure.
+- *
+- * Disable the MDIO interface in hardware.
+- **/
+-void axienet_mdio_disable(struct axienet_local *lp)
+-{
+-	axienet_iow(lp, XAE_MDIO_MC_OFFSET, 0);
+-}
+-
+ /**
+  * axienet_mdio_setup - MDIO setup function
+  * @lp:		Pointer to axienet local data structure.
 -- 
 2.36.0
 
