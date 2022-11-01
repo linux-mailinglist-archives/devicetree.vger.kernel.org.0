@@ -2,198 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D15161428A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D8B461428E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiKABCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 21:02:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46688 "EHLO
+        id S229469AbiKABD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 21:03:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbiKABCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:02:05 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9966B15FF7
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:02:00 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id l6so11869924pjj.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:02:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=znJaAap91p43kF17FoLNdEXLPy9K2O9nkVnQWIz7B2o=;
-        b=hh1hg97OdvlfvP3Paw6FWHjz67HyKSheZyUa8itGRHsMebhFfBP4ptmFkDQ2yhjyOw
-         vY2NilO6QigYZYd9DJOx1cEHCtcGIQ4o43+JN2q9hPrIQDWsTQZFatNDWSpfuUVg5h3D
-         GtZD7r61+HYbu9TqPkjzK+ZBarInbYxD4RpL349qWFPLhIEXmYpovEEBRPS1nktTm4Nl
-         +RIqiXQVvh98ZPzM0rD/PkwopdkvY5FvwQ8olgRqv9HggtMV8qW+zDGQMu6/1UF6sAEr
-         MEVCe15/ysk7aumGphQPODy8Ch8eKL211tL8rikwIWM+uAeNUEyfwN8JXYDNt5+jtNk6
-         FwXA==
+        with ESMTP id S229441AbiKABD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:03:28 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74248DFE5;
+        Mon, 31 Oct 2022 18:03:27 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id y67so14553556oiy.1;
+        Mon, 31 Oct 2022 18:03:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=znJaAap91p43kF17FoLNdEXLPy9K2O9nkVnQWIz7B2o=;
-        b=7uyy6G9r5NKzN8YT3V1DzCM7gDJOQrfW+GFu5U1dvlAjzBVg8JhcB0ixbg3pXp1tk7
-         uTt7TDmV7YUdLWrhmcCrp1mgtOo/1AbLBBvEGIRTyFaLIxkHZ00n6aFlIjQsnn23I70J
-         1qlNQDfxHsRcPOPzbQuHFIG5Fe2GuYrx8WzJEKtEEcBuaf0PLiF48hf5H3ys0U+NZbIp
-         UGtf0Odtd5hqOt4kWabyfMJ68gAe76CbTfSxCIaKrHhx01Z+ueLwZkfuK9RvKJOJ4pR3
-         +c3axCihgq7WAaziipUfpC+ICaJdR1tD7zyPQEu7wWRbByiSqYSXz+4B9nv0pJ9XOMKy
-         RtwQ==
-X-Gm-Message-State: ACrzQf2V/QYq82GhRAZhFqWQMMMnLJIjHf7S4IMGk4VMjTHEAcgUmdrA
-        5ibY6SH2cq4t6Vo1p6UlBW9zWQ==
-X-Google-Smtp-Source: AMsMyM6RCa6UfEcZqy52DywsQ4RtK3oUQplhwBWljYRLasxiVNfdPunnrcUsqQytaTXEuTxz06Yc/A==
-X-Received: by 2002:a17:90b:b05:b0:212:f402:bd16 with SMTP id bf5-20020a17090b0b0500b00212f402bd16mr35167089pjb.163.1667264519998;
-        Mon, 31 Oct 2022 18:01:59 -0700 (PDT)
-Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id a16-20020aa794b0000000b005627d995a36sm5221920pfl.44.2022.10.31.18.01.57
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HkcBrIA7oBQ5mjHwd2UEcYrTi2K7pE4sTmK8J9yJ3xk=;
+        b=Mq2MCGy1T+z8KLT7oleVOs/Tzw1HdSIUIxdT/SzNTos3RyY/MC6cRtZ1T+nbWqLeNG
+         Aw40g51YC4CmKG9AjtaiZcHj44REHFFugnyD2HY2Z3dtedw3CisyG7CbdEBKN214YVkL
+         kKLjTgfiHHFK1Xht9i2KMh8/9J20rdYnTPbnHiK/3yPTXH1qPLEPvb+gQ2rsOS+8FvsE
+         JBnTY/piYCB/vq9yLHfpHGl83CHkwpY5xPYL5W39qaY8bVtrrXoUn9eDp0vcYKHJ9ph6
+         ItABvTn8l4PcLng55G6Pai3XKZmv4BbEBP0PeHlQgwh3UKjTZCjKg0s7EWEei2Tiyvly
+         OLEA==
+X-Gm-Message-State: ACrzQf3b8EhHzBmytm+hBCGdTtjY3RRqNw4pT+u6fjGTtd7wJTGdFEga
+        pf1tOerplPfPmYmBVB5jmA==
+X-Google-Smtp-Source: AMsMyM5Hm6wz1VL2aBS7VdPj2bSUEvAruPZvs7foxPpmncN/mwOsDpLRKL8oEo1akGDpohnZxJPP6w==
+X-Received: by 2002:a05:6808:8d2:b0:354:7fd4:f17b with SMTP id k18-20020a05680808d200b003547fd4f17bmr27480oij.221.1667264606700;
+        Mon, 31 Oct 2022 18:03:26 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g12-20020a056870a70c00b0010d7242b623sm3825007oam.21.2022.10.31.18.03.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 18:01:59 -0700 (PDT)
-From:   Andy Chiu <andy.chiu@sifive.com>
-To:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
-        radhey.shyam.pandey@xilinx.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
-        greentime.hu@sifive.com
-Subject: [PATCH v2 net-next 2/3] net: axienet: set mdio clock according to bus-frequency
-Date:   Tue,  1 Nov 2022 09:01:46 +0800
-Message-Id: <20221101010146.900008-3-andy.chiu@sifive.com>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20221101010146.900008-1-andy.chiu@sifive.com>
-References: <20221101010146.900008-1-andy.chiu@sifive.com>
+        Mon, 31 Oct 2022 18:03:26 -0700 (PDT)
+Received: (nullmailer pid 4030032 invoked by uid 1000);
+        Tue, 01 Nov 2022 01:03:27 -0000
+Date:   Mon, 31 Oct 2022 20:03:27 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>,
+        linux-usb@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Karl Kurbjun <karl.os@veroson.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-sunxi@lists.linux.dev,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: phy: Add special clock for Allwinner
+ H616 PHY
+Message-ID: <166726460732.4029973.16304467789451504367.robh@kernel.org>
+References: <20221031111358.3387297-1-andre.przywara@arm.com>
+ <20221031111358.3387297-3-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221031111358.3387297-3-andre.przywara@arm.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some FPGA platforms have 80KHz MDIO bus frequency constraint when
-connecting Ethernet to its on-board external Marvell PHY. Thus, we may
-have to set MDIO clock according to the DT. Otherwise, use the default
-2.5 MHz, as specified by 802.3, if the entry is not present.
 
-Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
----
- .../net/ethernet/xilinx/xilinx_axienet_mdio.c | 47 +++++++++++++------
- 1 file changed, 33 insertions(+), 14 deletions(-)
+On Mon, 31 Oct 2022 11:13:53 +0000, Andre Przywara wrote:
+> The USB PHY IP in the Allwinner H616 SoC requires a quirk that involves
+> some resources from port 2's PHY and HCI IP. In particular the PMU clock
+> for port 2 must be surely ungated before accessing the REG_HCI_PHY_CTL
+> register of port 2. To allow each USB port to be controlled
+> independently of port 2, we need a handle to that particular PMU clock
+> in the *PHY* node, as the HCI and PHY part might be handled by separate
+> drivers.
+> 
+> Add that clock to the requirements of the H616 PHY binding, so that a
+> PHY driver can apply the quirk in isolation, without requiring help from
+> port 2's HCI driver.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  .../phy/allwinner,sun8i-h3-usb-phy.yaml       | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
 
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
-index e1f51a071888..666df3713d92 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_mdio.c
-@@ -18,6 +18,7 @@
- #include "xilinx_axienet.h"
- 
- #define MAX_MDIO_FREQ		2500000 /* 2.5 MHz */
-+#define MDIO_CLK_DIV_MASK	0x3f /* bits[5:0] */
- #define DEFAULT_HOST_CLOCK	150000000 /* 150 MHz */
- 
- /* Wait till MDIO interface is ready to accept a new transaction.*/
-@@ -147,15 +148,18 @@ static int axienet_mdio_write(struct mii_bus *bus, int phy_id, int reg,
- /**
-  * axienet_mdio_enable - MDIO hardware setup function
-  * @lp:		Pointer to axienet local data structure.
-+ * @np:		Pointer to mdio device tree node.
-  *
-  * Return:	0 on success, -ETIMEDOUT on a timeout.
-  *
-  * Sets up the MDIO interface by initializing the MDIO clock and enabling the
-  * MDIO interface in hardware.
-  **/
--static int axienet_mdio_enable(struct axienet_local *lp)
-+static int axienet_mdio_enable(struct axienet_local *lp, struct device_node *np)
- {
-+	u32 clk_div;
- 	u32 host_clock;
-+	u32 mdio_freq = MAX_MDIO_FREQ;
- 
- 	lp->mii_clk_div = 0;
- 
-@@ -184,6 +188,12 @@ static int axienet_mdio_enable(struct axienet_local *lp)
- 			    host_clock);
- 	}
- 
-+	if (np)
-+		of_property_read_u32(np, "clock-frequency", &mdio_freq);
-+	if (mdio_freq != MAX_MDIO_FREQ)
-+		netdev_info(lp->ndev, "Setting non-standard mdio bus frequency to %u Hz\n",
-+			    mdio_freq);
-+
- 	/* clk_div can be calculated by deriving it from the equation:
- 	 * fMDIO = fHOST / ((1 + clk_div) * 2)
- 	 *
-@@ -209,13 +219,20 @@ static int axienet_mdio_enable(struct axienet_local *lp)
- 	 * "clock-frequency" from the CPU
- 	 */
- 
--	lp->mii_clk_div = (host_clock / (MAX_MDIO_FREQ * 2)) - 1;
-+	clk_div = (host_clock / (mdio_freq * 2)) - 1;
- 	/* If there is any remainder from the division of
--	 * fHOST / (MAX_MDIO_FREQ * 2), then we need to add
-+	 * fHOST / (mdio_freq * 2), then we need to add
- 	 * 1 to the clock divisor or we will surely be above 2.5 MHz
- 	 */
--	if (host_clock % (MAX_MDIO_FREQ * 2))
--		lp->mii_clk_div++;
-+	if (host_clock % (mdio_freq * 2))
-+		clk_div++;
-+
-+	/* Check for overflow of mii_clk_div */
-+	if (clk_div & ~MDIO_CLK_DIV_MASK) {
-+		netdev_dbg(lp->ndev, "MDIO clock divisor overflow, setting to maximum value\n");
-+		clk_div = MDIO_CLK_DIV_MASK;
-+	}
-+	lp->mii_clk_div = (u8)clk_div;
- 
- 	netdev_dbg(lp->ndev,
- 		   "Setting MDIO clock divisor to %u/%u Hz host clock.\n",
-@@ -242,10 +259,6 @@ int axienet_mdio_setup(struct axienet_local *lp)
- 	struct mii_bus *bus;
- 	int ret;
- 
--	ret = axienet_mdio_enable(lp);
--	if (ret < 0)
--		return ret;
--
- 	bus = mdiobus_alloc();
- 	if (!bus)
- 		return -ENOMEM;
-@@ -261,15 +274,21 @@ int axienet_mdio_setup(struct axienet_local *lp)
- 	lp->mii_bus = bus;
- 
- 	mdio_node = of_get_child_by_name(lp->dev->of_node, "mdio");
-+	ret = axienet_mdio_enable(lp, mdio_node);
-+	if (ret < 0)
-+		goto unregister;
- 	ret = of_mdiobus_register(bus, mdio_node);
-+	if (ret)
-+		goto unregister;
- 	of_node_put(mdio_node);
--	if (ret) {
--		mdiobus_free(bus);
--		lp->mii_bus = NULL;
--		return ret;
--	}
- 	axienet_mdio_mdc_disable(lp);
- 	return 0;
-+
-+unregister:
-+	of_node_put(mdio_node);
-+	mdiobus_free(bus);
-+	lp->mii_bus = NULL;
-+	return ret;
- }
- 
- /**
--- 
-2.36.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
