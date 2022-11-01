@@ -2,108 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B80614ABA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 13:32:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59F9C614AEF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 13:41:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230010AbiKAMcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 08:32:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46242 "EHLO
+        id S230398AbiKAMln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 08:41:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiKAMcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 08:32:24 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6D4118B12;
-        Tue,  1 Nov 2022 05:32:23 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id w14so19876223wru.8;
-        Tue, 01 Nov 2022 05:32:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Bg/tq8mc0td21VxYxjkcP/FxMATVdKN1/vdE4yipxA4=;
-        b=HxeTSKDytWdqrppMzJdUt6sgSoPymV2VPF26TP9Fb6CbFx1c6fwS+7sIjbaXRiElTF
-         z8xNpSFX/UhK5KGmYuGfrE46MteZvRiB8x0x1XQEuJCDOvNVnSwXofX3WT5jLpnoaVSQ
-         0e4N1cTpNSVfW7dOnWcHGzQIUf99gBKLzj+uumXJE2yIQzl+VIv3QeUzFaDsW+HYC5mX
-         qrauECSAzW4hTsTffwmzeqX0VvmI4ptrWv/v6+jr749d26InGtVdHUsUIiv+3o92j5X/
-         W9dEUJNnPYtjfHoM5FRDg6FeYvcop+2hTgVZ7OL/nYg0otMRZkWfvqxP5asvKT2umaTR
-         rFGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Bg/tq8mc0td21VxYxjkcP/FxMATVdKN1/vdE4yipxA4=;
-        b=pZA1BkDFnKy87/LViFAKozXj7KzHH9ny2hfhnTi0SJGKRGor7/yFeudcWDI8RRLKAG
-         qfMYV7KUgdlGA1v8pXz5xUWqNKRWNdFxbCkCc10Rus7/IvWFe/RrNFmgFbIbtV+Km2Hg
-         kItoXmpz1DSjLeWlDREsx+r4yuVW8/t8h2YdhCTEPqjvsoJGRxNZh3+PMYyEDBa03ABW
-         xvVXLHxhAkwbVVKcT0uX3gvxkmJMI62GeaZ0AxGxrGymi/+TV4GLhAdEmMsC6Fb2QMjb
-         TgwkFAy/k+YbVs4PtV5lNe7d4UC2dD3gKwhrbElaixxb2ev24PQkfIqn/iW1bDi08RgN
-         sNzw==
-X-Gm-Message-State: ACrzQf1I93enRnR4VGdnpAevGjOeXu051KDxDhpunUA4ljPU0ps/q+3z
-        GIYm0skREJv41rJl4+ijif8=
-X-Google-Smtp-Source: AMsMyM67xgqrFvdCk92DmG+pXdrUp6p+i6JO/9O/Gv6lDJmfmGTlKfueosAa4DWo4K9KaX+dYjCDZw==
-X-Received: by 2002:a05:6000:42:b0:236:6c52:bc22 with SMTP id k2-20020a056000004200b002366c52bc22mr11585644wrx.692.1667305942512;
-        Tue, 01 Nov 2022 05:32:22 -0700 (PDT)
-Received: from kista.localdomain (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id f18-20020a1cc912000000b003cf5ec79bf9sm10404176wmb.40.2022.11.01.05.32.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Nov 2022 05:32:22 -0700 (PDT)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, samuel@sholland.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: allwinner: h6: Add deinterlace node
-Date:   Tue,  1 Nov 2022 13:32:01 +0100
-Message-Id: <20221101123201.3021129-4-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221101123201.3021129-1-jernej.skrabec@gmail.com>
-References: <20221101123201.3021129-1-jernej.skrabec@gmail.com>
+        with ESMTP id S230186AbiKAMlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 08:41:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A4219286;
+        Tue,  1 Nov 2022 05:41:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 159E9B81CF5;
+        Tue,  1 Nov 2022 12:41:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 290DDC433C1;
+        Tue,  1 Nov 2022 12:41:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667306498;
+        bh=O7ATZryO3TjGj7xTXAJD/NietUD1CSnvEvNqQmfKAes=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NrLKkhnZ3ZEUGvc/PlFHT0pVDoRWrAl+9FZIjWkfiX7MwiBULWwakSDlheaC3BGk6
+         VBMTe2IiuTjyLrwiGI2lEaIeaLB0wOs3ukKNFlecPpV7HiO5cpbRyH9RFHBe7ixLva
+         nrpmyiMiOYRGmlRIUl8TvwgP1FYsAwUD3bKC8sVsJKv4nmWXqJHb9RyQu+9rUyxI0O
+         xSNHmrbej1nJ6u0ZR50hejZ4IoxJMTb8O8Scth4vhEWxcSBKLeo54YP+ibVwp+9cam
+         r8Au/0hzkr7688XZea3c3UB/vKyNEdVQOi0yzqQMFOLJ8fsSRhlDlGyFYkJVBrpKtz
+         YLjb4oq6dFSZQ==
+Date:   Tue, 1 Nov 2022 13:41:35 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Qii Wang <qii.wang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: update bindings for mt7986 soc
+Message-ID: <Y2ET/xCCZBnSkify@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Qii Wang <qii.wang@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221009101631.82380-1-linux@fw-web.de>
+ <20221009101631.82380-2-linux@fw-web.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OVe5jiAChcWLZ5TL"
+Content-Disposition: inline
+In-Reply-To: <20221009101631.82380-2-linux@fw-web.de>
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-H6 has deinterlace core. Add a node for it.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+--OVe5jiAChcWLZ5TL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 0aa6dfafc197..badc6afd6941 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -154,6 +154,18 @@ mixer0_out_tcon_top_mixer0: endpoint {
- 			};
- 		};
- 
-+		deinterlace@1420000 {
-+			compatible = "allwinner,sun50i-h6-deinterlace";
-+			reg = <0x01420000 0x2000>;
-+			clocks = <&ccu CLK_BUS_DEINTERLACE>,
-+				 <&ccu CLK_DEINTERLACE>,
-+				 <&ccu CLK_MBUS_DEINTERLACE>;
-+			clock-names = "bus", "mod", "ram";
-+			resets = <&ccu RST_BUS_DEINTERLACE>;
-+			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-+			iommus = <&iommu 2>;
-+		};
-+
- 		video-codec-g2@1c00000 {
- 			compatible = "allwinner,sun50i-h6-vpu-g2";
- 			reg = <0x01c00000 0x1000>;
--- 
-2.38.1
+On Sun, Oct 09, 2022 at 12:16:30PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+>=20
+> Add i2c compatible for MT7986 SOC.
+>=20
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
+Applied to for-next, thanks!
+
+
+--OVe5jiAChcWLZ5TL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmNhE/8ACgkQFA3kzBSg
+KbbjHQ//e/qAp3S8diQPLa1LMdac1yjF2cy2QHnuH6cG0OgbBSW+kHgLZqP1M+BR
++ZoM8Pba+m/8qs1O3d0cvXBEDd3SbqB9yLJ1RPkyF9inK//TkyGz58YUmvXkexfU
+uOt2OGLFyhzfa4jV3V8CFc0vqRKVbbVniFu5D9Nrfqi5ztolKZLgGhCmMIohr8vl
+gS/nQmADI3hTW/UP8vOUqCWOHF07bVQ0t0VAjSOb0HWqM09EaH/sFoNypDfAYRrg
+C6YJbVzl26qDhArXHTxUsDJkrZFzFn0CulNxlCvMkaQIlAb8cfviCUoqT35tVIfr
+tjujcI9Jn9L8I2nHxUHulBfUNnM+3peCrSfWvoDIcIpV8n/ZeaPZaSAurgtbvF8v
+CAyyXS1xOyoMHDtLaHyF5wMrwZ5pithjhXRugPa0sQM/Q35BAr0k6xkealJgGzBn
+QoYIfsn2uToxmnEPqMGVFEciryr8DEXFY9P75uu2JsJYz7i3Frlmy9QLke/1GD9A
+6U1bliJJq5tkRV/EUQMgYp2GrxYOXfRiEPe02DwqcYMiMftCNO8oiFWusJoJw6ga
+U+5H8MkrJJ8cHuKOnKJOIvoUDTdp9aKGM31zWi3vfAtLhuF4XrYDTajAWKH9y7yI
+RrX+qvH9RpAe1BNb2T5MMkKQj9tQwDDRw5SCZIvfUvXPOVrIf3o=
+=qXU1
+-----END PGP SIGNATURE-----
+
+--OVe5jiAChcWLZ5TL--
