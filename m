@@ -2,135 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71A6D6142BA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:11:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18C786142ED
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:54:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229907AbiKABLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 21:11:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
+        id S229667AbiKAByn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 21:54:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229782AbiKABLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:11:46 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A98C6596
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:45 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id h14so11843401pjv.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:45 -0700 (PDT)
+        with ESMTP id S229479AbiKABym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:54:42 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A671117C
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:54:42 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id d10so12232327pfh.6
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:54:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zeBMYdMZ1p+Lm3eAVj+hDEsLF6ZsPuh0Td05pqMw4LA=;
-        b=T9kXSSEJxsE21WH61OdQ94VYWF4t4yhNq+JNB4JInAbU+UacVYZxmMjZZMlI7DnBOO
-         ccf30kthD6BT7dwFyQKdZjpm2/0ZKvuQeEqzvi0mD78XN44pVNOHtBn4lw2ONh1hiDed
-         eBy5ILKEF7jd244fvYM/UF6LRMhRyBpRarbK9lkwPZPSAuYhcm0KJ3ZB1Tx2mu5NArFy
-         BbfUrboNAjd0py/1bhJgtaVcnsp5O7GYFuiLob61wH324nOLBdEKe7342LOSYAIey/iy
-         dKXufj8PweP65FvykoLbX5IMH5jPsChfrwU5OEkroqwkowFHVfKedsHP2r1DmQBfvbWN
-         P+Pg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4Nyr+8vXAObvcvrLwnI+C2J6LtRrVXt+n6mJE22Uf/Y=;
+        b=aNGhxo99VjiaCKfW8tJ737JilzCT5WHwJbFV6EeuQyitK1x2rv4+Iihtle8Z1f6gYA
+         kfOcUOzbR5h3iPzpXXvMKmzjlvPr6kIn0WZja9VmJ2Db6+k5xFLS1uXAk+su3gU+eUS6
+         FOO6nwr0kUofJY/iMU/gpg2j7oPHq0xyiE0w1Cgv6cvbIWvkAP7fjndvDUosnnNxQ9fL
+         UGeydg/kE3wVFvke8Cj+DlNrlu8cxaxMydMnEcCFwTWD2mc6EqGH+7xdK98u2KFWRlkz
+         /KBTCDEktEg6CJkEFYyH9cCeFcXvgsTSox02IBUOm8vMCxoUoFRTVI+4KYhit2oL7CLW
+         dPdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zeBMYdMZ1p+Lm3eAVj+hDEsLF6ZsPuh0Td05pqMw4LA=;
-        b=o1080JSFAIfsZkfPIzcPl8wTOyqAnvM2G73mzb8RES2bYTXr8M5tPOSvEkMAjKsBwk
-         d+N1R5DcXSMx1PdynU+bXN9b56XyVO3G3eLp9Dv0z9uHXz6VTEmAn7PCvTUouh7qsIK8
-         hH2kfLxaUlpMdAKzjI8aIYEbaasSmb2DK6Xbk+9Yzxi40t7KZPHlbjlR0hDDY9TYC7GW
-         h7/vux5CnocbmvkmgRpSul9lvpqB9WXnLdEgw1WwxB6AJfj2J2OPZWCSlhoXk043r7H/
-         61YciV+0zJoJMPh5fPTX0/VhBaxCU2Foq8IRqyq+8GFl9HMiNhioYFxb31Agh0Q4OE0t
-         91Yg==
-X-Gm-Message-State: ACrzQf3E1gnfSgYNDNrHmB8T/EtK5gLSTzjtiCZybpFJSPXI23nyiclm
-        W4H0o7wkr6TA4Fy8FQWfKg3zHQ==
-X-Google-Smtp-Source: AMsMyM4B0jgEDjy497l6SopIpu1wkozw10ZHKcpyKvpI1a5y333hD2+JbNSwhHScPQj2OGXxhsP3JA==
-X-Received: by 2002:a17:902:c1c6:b0:186:994f:6e57 with SMTP id c6-20020a170902c1c600b00186994f6e57mr16841442plc.17.1667265104900;
-        Mon, 31 Oct 2022 18:11:44 -0700 (PDT)
-Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id e64-20020a621e43000000b0056be7ac5261sm5230900pfe.163.2022.10.31.18.11.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 18:11:44 -0700 (PDT)
-From:   Andy Chiu <andy.chiu@sifive.com>
-To:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
-        radhey.shyam.pandey@xilinx.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
-        greentime.hu@sifive.com
-Subject: [PATCH net-next] net: axiemac: add PM callbacks to support suspend/resume
-Date:   Tue,  1 Nov 2022 09:11:39 +0800
-Message-Id: <20221101011139.900930-1-andy.chiu@sifive.com>
-X-Mailer: git-send-email 2.36.0
+        bh=4Nyr+8vXAObvcvrLwnI+C2J6LtRrVXt+n6mJE22Uf/Y=;
+        b=70/S0FQwo8NJ3/SnV0JyUiJUgcRI0fSzgcjK4QAHbdLgto9a2CgAlxGa3CuCmn6xbI
+         pZdfDyiR2oEUiZgeLNk3HQRk53dK8OGHM2V9UFrSYLhx9/CnCvrvS47XoM6rI9ik6ac3
+         U5A25UwiY4N311cNYj6FhBhBcB8SHpms4jb5lCVPToFkz1f0I2CwbRcCvreEEQZ4uT5Y
+         Iz723I9GyIfzVfhZAbDMtuZnNDVd+sw8v7WhuMNu9j/luH4Cn8wOiYNHdXQKTxyG8iV5
+         lr/7zVFIZlHfI1Llsj5VoE3qqZ/HuGrE2leMIUPmqoofAsIccgYBXG7w9+qbYgK+AiJ9
+         wcUA==
+X-Gm-Message-State: ACrzQf0e6mp0Qi8+E41jRfnIYVK+Mk+42NJXdVP6ZDVydTtnamrPyNWg
+        48yoj6JQL21baNrHI/r+jItJGNKbYGM8FF1kGCg=
+X-Google-Smtp-Source: AMsMyM4mCM+zv9t4DoD3b9KlKjrdWz39FULdNmxfpgMXO6VERGOP+Ot90j3Ia5BjE6GrPqsXQVgTZ2rg8noB9H9CdJE=
+X-Received: by 2002:a63:3206:0:b0:46f:8979:30d5 with SMTP id
+ y6-20020a633206000000b0046f897930d5mr12055106pgy.505.1667267681512; Mon, 31
+ Oct 2022 18:54:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a17:903:22c7:b0:186:60a8:6595 with HTTP; Mon, 31 Oct 2022
+ 18:54:40 -0700 (PDT)
+Reply-To: luciadani18@gamil.com
+From:   Attention Please <macycooper6@gmail.com>
+Date:   Mon, 31 Oct 2022 18:54:40 -0700
+Message-ID: <CA+FV2s0NdfCEH2sLhNTDeFwohfQV96e-Bu7S3A4GCjKveCWZSw@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=4.1 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,LOTS_OF_MONEY,MILLION_HUNDRED,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNDISC_MONEY autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support basic system-wide suspend and resume functions
+To Whom It May Concern,
 
-Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
----
- .../net/ethernet/xilinx/xilinx_axienet_main.c | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+How are you doing? If you have a minute I would like to discuss a
+vital proposal with you for your kind consideration. And I am Sorry
+for emphasizing your email and your privacy here online because we
+haven't met before,
 
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-index 441e1058104f..d082f2b10f4d 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-@@ -2217,12 +2217,48 @@ static void axienet_shutdown(struct platform_device *pdev)
- 	rtnl_unlock();
- }
- 
-+static int axienet_suspend(struct device *dev)
-+{
-+	struct net_device *ndev = dev_get_drvdata(dev);
-+
-+	if (!netif_running(ndev))
-+		return 0;
-+
-+	netif_device_detach(ndev);
-+
-+	rtnl_lock();
-+	axienet_stop(ndev);
-+	rtnl_unlock();
-+
-+	return 0;
-+}
-+
-+static int axienet_resume(struct device *dev)
-+{
-+	struct net_device *ndev = dev_get_drvdata(dev);
-+
-+	if (!netif_running(ndev))
-+		return 0;
-+
-+	rtnl_lock();
-+	axienet_open(ndev);
-+	rtnl_unlock();
-+
-+	netif_device_attach(ndev);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(axienet_pm_ops,
-+				axienet_suspend, axienet_resume);
-+
- static struct platform_driver axienet_driver = {
- 	.probe = axienet_probe,
- 	.remove = axienet_remove,
- 	.shutdown = axienet_shutdown,
- 	.driver = {
- 		 .name = "xilinx_axienet",
-+		 .pm = &axienet_pm_ops,
- 		 .of_match_table = axienet_of_match,
- 	},
- };
--- 
-2.36.0
+I am Madam Lucia Daniel, I am suffering for health condition for the
+past 8 years, before i go for my last surgery i have a proposal for
+you to help the Less-privileged, I have in my possession the sum of
+(Eight Million Five Hundred Thousand Dollars) it belongs to my late
+husband, and its save in the bank, don=E2=80=99t be afraid for expenses any
+fee i will pay, I just want you to stand as my trustee and help the
+Less-privileged once you received the fund,  if you are interested
+Kindly get back to me for more information and procedure.
 
+I have my reason for making this decision.
+Thank you and please stay safe.
+
+Warm Regards,
+Madam Lucia.
