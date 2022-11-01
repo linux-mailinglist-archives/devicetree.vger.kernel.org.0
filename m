@@ -2,59 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 690AB6154DC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 359936154DF
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:20:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbiKAWTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 18:19:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57142 "EHLO
+        id S229933AbiKAWUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 18:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiKAWTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:19:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF34193C6;
-        Tue,  1 Nov 2022 15:19:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D57EC60FAA;
-        Tue,  1 Nov 2022 22:19:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22252C433C1;
-        Tue,  1 Nov 2022 22:19:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667341184;
-        bh=oRP7g+ZDDYszSibvvA5FgoFpJlVOf5XIE6A0JYpcsIk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HKTDDZFNmuD/A6cF+K+Y8uAFNlxKp7OfKIhGMYZ0Sm6lImu/HOdm/PlC1T5oqrhk5
-         /2lr0EoCvbT5i7xhWPngLc9QyJviN+MSUo9LY561doPU5mF4yhtlpp9LTLFtJyTchL
-         5W3RHNmncM3Z1RcUGEakEegnuxtxv41zz8FqJRIrt0RgVuxMObAWzyrotz0Rd/M3Bc
-         QM5eAjNtcrHinEWbkzQoQv6cy0H4Qz7+S7qqgXzJ29eIccXyICTqAzWIEzhPPNTAAN
-         kiIcXfMoNzcfS3JOJeCYbjzruc4+VITXaPfgjVpDekBee6aoSk2OFTZ/5eBtBQmvTg
-         gmcgsC206ubtg==
-Received: by pali.im (Postfix)
-        id BF6167F8; Tue,  1 Nov 2022 23:19:41 +0100 (CET)
-Date:   Tue, 1 Nov 2022 23:19:41 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Gregory Clement <gregory.clement@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Subject: Re: [PATCH 0/6] ARM: dts: pci-mvebu: Fix assigned-addresses for
- every PCIe Root Port
-Message-ID: <20221101221941.ttrh3zgepqu6v2nn@pali>
-References: <20220817223053.31141-1-pali@kernel.org>
- <20221009111529.2eo2mwca3ywfkajy@pali>
+        with ESMTP id S230273AbiKAWUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:20:44 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607581A21B
+        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 15:20:42 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id q9so40784455ejd.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Nov 2022 15:20:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WRrN2JNvrw/Lxmr+UOWvkeKiXy4AdPPchFYyYnA+jJs=;
+        b=RqN4/aFD3NZwhgmavKLUGS5mDGKcx/pemLkR017Aqlm0lY78WPxWs5Hkrmm5E0CjRe
+         zDrcb6l40EV8F5b47gx761zfV/J/dQTUN1Vmpc8AU4JFNWEUXPXXYtQCcmJCnUkKecsp
+         VuyuMBCITd6iBQRseN9AJGJuTJ+0S/7wfT6115kI4RsvyDyI4yEGINQhrqUG7cPaXjDq
+         OwLI/Ka6ThyEaPjMOJrlFMSJYbhehKvcw0Q4JYACIs+AJOT6T9cMd0o6ZOjAVtR2QUYT
+         RNhrcufN/n2UH69JgbZOvhPzm1yGrRBhPn+kSKyJyJUPOwstYLRn84wMZUHmgVwxz3ci
+         nv/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WRrN2JNvrw/Lxmr+UOWvkeKiXy4AdPPchFYyYnA+jJs=;
+        b=TTN+6U7Koj2w+rTEfO6bt4BJyppwZQPsMT44yXrHu9M+KFTvXpyQbpuMFUzAFRIJGU
+         iYbclxnICdAQ/wSl/ru8X1xeSOKWjAr2u0xtXzA6SnL+fUy3ITKPN7Yz0ilDd+1lti2V
+         hXJ2ZukWA+E+R2ToWaF0KZLkGaSUQBxRwSu4GXK6sOBwMfcd1UVpXZXw7Gk1worxDCQd
+         HqXCEumfqjPV+nZNNPNmf6FPSI5xhUAASWgflGh2377HxkGTGP/3MeabyCfct+GuBA9u
+         Yl04rIIxuySVMtVYQbwoqub6/3OAqx833AGEcxHylKYeruKHnQbDWV8TCBXgqNFiwJD1
+         sXiw==
+X-Gm-Message-State: ACrzQf1cAcDNVPyM92FteiaX8j9z6qCILYatjzUZ5LirM6ZbaKO8w9EF
+        8diNHsk/Zdf0dMKlMr2qhSvM8a03GqzmoE8Zqvz1mqLDZ3Bwmg==
+X-Google-Smtp-Source: AMsMyM7OY7jYHupzKNa+H059InLE6G87GEMrdV6G0H7id3YMnfPSnGmg5DSRvp8jlEWcRYlfoigQdUBIUw5ZE5IJq+o=
+X-Received: by 2002:a17:906:9b86:b0:73d:72cf:72af with SMTP id
+ dd6-20020a1709069b8600b0073d72cf72afmr20888450ejc.440.1667341240927; Tue, 01
+ Nov 2022 15:20:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221009111529.2eo2mwca3ywfkajy@pali>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20221031204804.195267-1-marex@denx.de>
+In-Reply-To: <20221031204804.195267-1-marex@denx.de>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 1 Nov 2022 23:20:30 +0100
+Message-ID: <CACRpkdZPzFivWwQV1X8qWfXdrTmrx5gHCk0ZMKJ+5ovNPgqxrw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: broadcom-bluetooth: Add CYW4373A0
+ DT binding
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-bluetooth@vger.kernel.org,
+        Hakan Jansson <hakan.jansson@infineon.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Luiz Augusto von Dentz <luiz.von.dentz@intel.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,54 +70,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ping?
+On Mon, Oct 31, 2022 at 9:48 PM Marek Vasut <marex@denx.de> wrote:
 
-On Sunday 09 October 2022 13:15:29 Pali Rohár wrote:
-> Gregory, ping?
-> 
-> On Thursday 18 August 2022 00:30:47 Pali Rohár wrote:
-> > Per IEEE Std 1275-1994 bindings documentation (to which kernel DT
-> > bindings refers), DT property assigned-addresses contains BDF address
-> > of resource. Currently more PCIe Root Port nodes have BDF address in
-> > assigned-addresses which points to different PCIe Root Port nodes. This
-> > obviously does not make sense as the address resource specified in
-> > assigned-addresses of every PCIe Root Port describes address range of
-> > internal registers which are specific for corresponding Marvell PCIe
-> > Root Port. Fix this issue and align all BDF addresses in
-> > assigned-addresses DT property to specify correct BDF address of the
-> > current PCIe Root Port.
-> > 
-> > Note that current version of pci-mvebu.c controller driver, which
-> > registers Marvell PCIe Root Ports, ignores BDF value in DT property
-> > assigned-addresses. It expects that Root Port's assigned-addresses
-> > contains address range of that root port. That is why driver currently
-> > works without any issue and nobody spotted it. But if driver or
-> > something else would do device tree validation then this issue should be
-> > spotted and throws error. Also device tree files may be used by other
-> > projects where drivers may require correct values.
-> > 
-> > This patch series aligns BDF address of every Marvell PCIe Root Port in
-> > node name, config space in reg property and mem in assigned-address
-> > property of internal registers resource.
-> > 
-> > Pali Rohár (6):
-> >   ARM: dts: dove: Fix assigned-addresses for every PCIe Root Port
-> >   ARM: dts: armada-370: Fix assigned-addresses for every PCIe Root Port
-> >   ARM: dts: armada-xp: Fix assigned-addresses for every PCIe Root Port
-> >   ARM: dts: armada-375: Fix assigned-addresses for every PCIe Root Port
-> >   ARM: dts: armada-38x: Fix assigned-addresses for every PCIe Root Port
-> >   ARM: dts: armada-39x: Fix assigned-addresses for every PCIe Root Port
-> > 
-> >  arch/arm/boot/dts/armada-370.dtsi        |  2 +-
-> >  arch/arm/boot/dts/armada-375.dtsi        |  2 +-
-> >  arch/arm/boot/dts/armada-380.dtsi        |  4 ++--
-> >  arch/arm/boot/dts/armada-385.dtsi        |  6 +++---
-> >  arch/arm/boot/dts/armada-39x.dtsi        |  6 +++---
-> >  arch/arm/boot/dts/armada-xp-mv78230.dtsi |  8 ++++----
-> >  arch/arm/boot/dts/armada-xp-mv78260.dtsi | 16 ++++++++--------
-> >  arch/arm/boot/dts/dove.dtsi              |  2 +-
-> >  8 files changed, 23 insertions(+), 23 deletions(-)
-> > 
-> > -- 
-> > 2.20.1
-> > 
+> CYW4373A0 is a Wi-Fi + Bluetooth combo device from Cypress.
+> This chip is present e.g. on muRata 2AE module. Extend the
+> binding with its DT compatible.
+>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
