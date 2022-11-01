@@ -2,186 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A47614538
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 08:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6928861455C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 09:00:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbiKAHr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 03:47:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58314 "EHLO
+        id S229738AbiKAIAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 04:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiKAHr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 03:47:56 -0400
-Received: from smtp.smtpout.orange.fr (smtp-11.smtpout.orange.fr [80.12.242.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EB517E2A
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 00:47:54 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.100.34])
-        by smtp.orange.fr with ESMTPA
-        id pm00o8nsx42kJpm00oEoLN; Tue, 01 Nov 2022 08:47:53 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 01 Nov 2022 08:47:53 +0100
-X-ME-IP: 86.243.100.34
-Message-ID: <67fdf851-961d-2f4b-591f-4939e1937e68@wanadoo.fr>
-Date:   Tue, 1 Nov 2022 08:47:51 +0100
+        with ESMTP id S229795AbiKAIAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 04:00:16 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73CA965AF;
+        Tue,  1 Nov 2022 01:00:14 -0700 (PDT)
+Received: from canpemm500004.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4N1j9j69NvzmVb2;
+        Tue,  1 Nov 2022 16:00:09 +0800 (CST)
+Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
+ (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 1 Nov
+ 2022 16:00:03 +0800
+From:   Weilong Chen <chenweilong@huawei.com>
+To:     <chenweilong@huawei.com>, <yangyicong@hisilicon.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <wsa@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <f.fainelli@gmail.com>, <jarkko.nikula@linux.intel.com>,
+        <jdelvare@suse.de>, <william.zhang@broadcom.com>,
+        <jsd@semihalf.com>, <conor.dooley@microchip.com>,
+        <phil.edworthy@renesas.com>,
+        <tharunkumar.pasumarthi@microchip.com>,
+        <semen.protsenko@linaro.org>, <kfting@nuvoton.com>
+CC:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH next v10 1/2] i2c: hisi: Add initial device tree support
+Date:   Tue, 1 Nov 2022 16:07:27 +0800
+Message-ID: <20221101080728.143639-1-chenweilong@huawei.com>
+X-Mailer: git-send-email 2.31.GIT
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH RFC V2 1/3] of: dynamic: Add of_create_node() and
- of_destroy_node()
-To:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org, frowand.list@gmail.com, helgaas@kernel.org
-Cc:     clement.leger@bootlin.com, max.zhen@amd.com, sonal.santan@amd.com,
-        larry.liu@amd.com, brian.xu@amd.com, stefano.stabellini@xilinx.com,
-        trix@redhat.com
-References: <1665598440-47410-1-git-send-email-lizhi.hou@amd.com>
- <1665598440-47410-2-git-send-email-lizhi.hou@amd.com>
-Content-Language: fr
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <1665598440-47410-2-git-send-email-lizhi.hou@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.175.101.6]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ canpemm500004.china.huawei.com (7.192.104.92)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 12/10/2022 à 20:13, Lizhi Hou a écrit :
-> of_create_node() creates device node and apply to base tree dynamically.
-> The parent device node and full name are required for creating the node.
-> And the caller can also provide a property array for the node.
-> 
-> Inside this function, it creates a changeset. Then the new device node
-> and properties are added to the changeset and applied to base tree. The
-> pointer of this changeset is saved in device node private data.
-> 
-> of_destroy_node() removes the node created by of_create_node() from the
-> base tree and free it. It gets the changeset pointer from device node
-> private data and call of_changeset_destroy() to free everything.
-> 
-> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
-> Signed-off-by: Sonal Santan <sonal.santan@amd.com>
-> Signed-off-by: Max Zhen <max.zhen@amd.com>
-> Signed-off-by: Brian Xu <brian.xu@amd.com>
-> ---
->   drivers/of/dynamic.c | 80 ++++++++++++++++++++++++++++++++++++++++++++
->   include/linux/of.h   |  4 +++
->   2 files changed, 84 insertions(+)
-> 
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index cd3821a6444f..eca28b723706 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -934,3 +934,83 @@ int of_changeset_action(struct of_changeset *ocs, unsigned long action,
->   	return 0;
->   }
->   EXPORT_SYMBOL_GPL(of_changeset_action);
-> +
-> +/**
-> + * of_create_node - Dynamically create a device node and apply it to base tree
-> + *
-> + * @parent: Pointer to parent device node
-> + * @full_name: Full name of device node
-> + * @props: Pointer to property array
-> + *
-> + * Return: Pointer to the created device node or NULL in case of an error.
-> + */
-> +struct device_node *of_create_node(struct device_node *parent,
-> +				   const char *full_name,
-> +				   struct property *props)
-> +{
-> +	struct of_changeset *cset;
-> +	struct property *new_pp;
-> +	struct device_node *np;
-> +	int ret, i;
-> +
-> +	cset = kzalloc(sizeof(*cset), GFP_KERNEL);
+The HiSilicon I2C controller can be used on embedded platform, which
+boot from devicetree.
 
-Hi,
+Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+Acked-by: Yicong Yang <yangyicong@hisilicon.com>
+---
+Change since v9:
+- Drop wrong use ACPI_PTR/of_match_ptr
+Link: https://lore.kernel.org/lkml/dfc1c006-61c0-8f28-6164-060347c69d04@huawei.com/T/
 
-kmalloc() would be enough. of_changeset_init() below already calls 
-memset().
+ drivers/i2c/busses/Kconfig    | 2 +-
+ drivers/i2c/busses/i2c-hisi.c | 7 +++++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-> +	if (!cset)
-> +		return NULL;
-> +
-> +	of_changeset_init(cset);
-> +
-> +	np = __of_node_dup(NULL, full_name);
-> +	if (!np)
-> +		goto failed;
-
-'cset' seems to be leaking if __of_node_dup() fails.
-
-> +	np->parent = parent;
-> +
-> +	ret = of_changeset_attach_node(cset, np);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	if (props) {
-> +		for (i = 0; props[i].name; i++) {
-> +			new_pp = __of_prop_dup(&props[i], GFP_KERNEL);
-> +			if (!new_pp)
-> +				goto failed;
-> +			ret = of_changeset_add_property(cset, np, new_pp);
-> +			if (ret) {
-> +				kfree(new_pp->name);
-> +				kfree(new_pp->value);
-> +				kfree(new_pp);
-> +				goto failed;
-> +			}
-> +		}
-> +	}
-> +
-> +	ret = of_changeset_apply(cset);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	np->data = cset;
-> +
-> +	return np;
-> +
-> +failed:
-> +	of_changeset_destroy(cset);
-> +	if (np)
-> +		of_node_put(np);
-> +
-> +	return NULL;
-> +}
-> +
-> +/**
-> + * of_destroy_node - Destroy a dynamically created device node
-> + *
-> + * @np: Pointer to dynamically created device node
-> + *
-> + */
-> +void of_destroy_node(struct device_node *np)
-> +{
-> +	struct of_changeset *cset;
-> +
-> +	cset = (struct of_changeset *)np->data;
-> +	of_changeset_destroy(cset);
-> +	of_node_put(np);
-> +	kfree(cset);
-> +}
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 766d002bddb9..493ef957c1a8 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -1475,6 +1475,10 @@ extern int of_changeset_revert(struct of_changeset *ocs);
->   extern int of_changeset_action(struct of_changeset *ocs,
->   		unsigned long action, struct device_node *np,
->   		struct property *prop);
-> +struct device_node *of_create_node(struct device_node *parent,
-> +				   const char *full_name,
-> +				   struct property *props);
-> +void of_destroy_node(struct device_node *np);
->   
->   static inline int of_changeset_attach_node(struct of_changeset *ocs,
->   		struct device_node *np)
+diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
+index e50f9603d189..a7bfddf08fa7 100644
+--- a/drivers/i2c/busses/Kconfig
++++ b/drivers/i2c/busses/Kconfig
+@@ -673,7 +673,7 @@ config I2C_HIGHLANDER
+ 
+ config I2C_HISI
+ 	tristate "HiSilicon I2C controller"
+-	depends on (ARM64 && ACPI) || COMPILE_TEST
++	depends on ARM64 || COMPILE_TEST
+ 	help
+ 	  Say Y here if you want to have Hisilicon I2C controller support
+ 	  available on the Kunpeng Server.
+diff --git a/drivers/i2c/busses/i2c-hisi.c b/drivers/i2c/busses/i2c-hisi.c
+index 76c3d8f6fc3c..bcc97e4fcb65 100644
+--- a/drivers/i2c/busses/i2c-hisi.c
++++ b/drivers/i2c/busses/i2c-hisi.c
+@@ -489,11 +489,18 @@ static const struct acpi_device_id hisi_i2c_acpi_ids[] = {
+ };
+ MODULE_DEVICE_TABLE(acpi, hisi_i2c_acpi_ids);
+ 
++static const struct of_device_id hisi_i2c_dts_ids[] = {
++	{ .compatible = "hisilicon,ascend910-i2c", },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
++
+ static struct platform_driver hisi_i2c_driver = {
+ 	.probe		= hisi_i2c_probe,
+ 	.driver		= {
+ 		.name	= "hisi-i2c",
+ 		.acpi_match_table = hisi_i2c_acpi_ids,
++		.of_match_table = hisi_i2c_dts_ids,
+ 	},
+ };
+ module_platform_driver(hisi_i2c_driver);
+-- 
+2.31.GIT
 
