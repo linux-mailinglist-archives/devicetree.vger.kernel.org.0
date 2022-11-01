@@ -2,52 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 325AB614C9F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 15:34:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66623614CB1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 15:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbiKAOeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 10:34:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47320 "EHLO
+        id S230382AbiKAOgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 10:36:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbiKAOd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 10:33:57 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 577DA1B9DC;
-        Tue,  1 Nov 2022 07:33:56 -0700 (PDT)
+        with ESMTP id S230401AbiKAOfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 10:35:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2C61B9D8;
+        Tue,  1 Nov 2022 07:35:44 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E588DB81CC4;
-        Tue,  1 Nov 2022 14:33:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB2CCC433D6;
-        Tue,  1 Nov 2022 14:33:50 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D4F7F615C5;
+        Tue,  1 Nov 2022 14:35:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB6E4C433C1;
+        Tue,  1 Nov 2022 14:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667313233;
-        bh=5wW5fMffXJgRHGmoyZvOIkPaV2Johu/1uvLcafbGSG0=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=OHqr7Vo/xB2puwUuLILh2ggR5FlTfNTzr+bxUpXT1Q2MyStbEvdrIz+u1euEv6J5C
-         8dCmpItF0Qv4j0reelkFGia/zaYAbr7s/Nke8I8m61t15DacLt3ERd6AY7szsYhGkR
-         Z7DeaheSdF2O0g4qti0p6HiB75qEjfIPow9TH+Hd9X0qaCBnj3xVydFjtdOsk2IuA7
-         FVroEkRxkUTzjlvyk4IrzK8QZ0wO/3XKeHrDcSIJ5PFN06GO2ei+zNA02XymRv3cce
-         sQxpeRV4Gg4TnVstaAzlmSQ8ANtNjuZPDSDiKmxJKuqD93ygeKoUmuaQ5JnqNC0cu0
-         8JRE86XpHOAmg==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, festevam@gmail.com, perex@perex.cz,
-        Xiubo.Lee@gmail.com, robh+dt@kernel.org,
-        linuxppc-dev@lists.ozlabs.org, shengjiu.wang@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        nicoleotsuka@gmail.com, tiwai@suse.com,
-        Chancel Liu <chancel.liu@nxp.com>,
-        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com
-In-Reply-To: <20221028082750.991822-1-chancel.liu@nxp.com>
-References: <20221028082750.991822-1-chancel.liu@nxp.com>
-Subject: Re: [PATCH 0/3] Add support for MICFIL on i.MX93 platform
-Message-Id: <166731323052.255497.10142620061824758896.b4-ty@kernel.org>
-Date:   Tue, 01 Nov 2022 14:33:50 +0000
+        s=k20201202; t=1667313343;
+        bh=O2IUvbj/N3TdgpyaE2KkKjkh22Z7LBbDiIgzXNXCzHw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hRLkanXej6i8EOQN3UiLQJkfEd12MjxwtNNz8t9QtHErH2uiBIO+V/yCK9axSsbJi
+         pM4zy44Qyh9pRZeZuFnUm7nZhwUUpFU763+Hg8Shdvyt1O8AsV62bKfMS2HocEdIRk
+         Mx119NNQFrG7nxuB8LxdME18RgcW852WBrEWAG9aN3PxziM1UETXUt3NXGxdtRei5W
+         S0va1gvliT9wFSS3t9KZWlyfdu+1fwRESBopq8dus2yJm42S5kRBWCZZrJdMthvPVQ
+         7tk6BP7z1yfyYn77U/CWW7zKFiGIXM2PcFNR2XMCxG1+EH/+c+C0xnapHShj1GuYQx
+         8v6qTuEV+d3Rw==
+Date:   Tue, 1 Nov 2022 20:05:29 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        quic_vbadigan@quicinc.com, Brian Masney <bmasney@redhat.com>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] PCI: qcom: Add basic interconnect support
+Message-ID: <20221101143529.GA244012@thinkpad>
+References: <20221021064616.6380-1-johan+linaro@kernel.org>
+ <20221021064616.6380-3-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
+In-Reply-To: <20221021064616.6380-3-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -57,45 +66,172 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Oct 2022 16:27:47 +0800, Chancel Liu wrote:
-> This patchset supports MICFIL on i.MX93 platform.
+On Fri, Oct 21, 2022 at 08:46:16AM +0200, Johan Hovold wrote:
+> On Qualcomm platforms like SC8280XP and SA8540P, interconnect bandwidth
+> must be requested before enabling interconnect clocks.
 > 
-> Chancel Liu (3):
->   ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX93
->     platform
->   ASoC: fsl_micfil: Add support for i.MX93 platform
->   ASoC: fsl_micfil: Add support when using eDMA
+> Add basic support for managing an optional "pcie-mem" interconnect path
+> by setting a low constraint before enabling clocks and updating it after
+> the link is up.
 > 
-> [...]
+> Note that it is not possible for a controller driver to set anything but
+> a maximum peak bandwidth as expected average bandwidth will vary with
+> use case and actual use (and power policy?). This very much remains an
+> unresolved problem with the interconnect framework.
+> 
+> Also note that no constraint is set for the SC8280XP/SA8540P "cpu-pcie"
+> path for now as it is not clear what an appropriate constraint would be
+> (and the system does not crash when left unspecified).
+> 
 
-Applied to
+I initially thought we should move this to dwc core but I'm not sure if the
+interconnect path is going to be the same for all platforms. So keeping it
+within Qcom driver is good for now. 
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> Fixes: 70574511f3fc ("PCI: qcom: Add support for SC8280XP")
+> Reviewed-by: Brian Masney <bmasney@redhat.com>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 76 ++++++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 7db94a22238d..0c13f976626f 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/crc8.h>
+>  #include <linux/delay.h>
+>  #include <linux/gpio/consumer.h>
+> +#include <linux/interconnect.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+> @@ -224,6 +225,7 @@ struct qcom_pcie {
+>  	union qcom_pcie_resources res;
+>  	struct phy *phy;
+>  	struct gpio_desc *reset;
+> +	struct icc_path *icc_mem;
+>  	const struct qcom_pcie_cfg *cfg;
+>  };
+>  
+> @@ -1644,6 +1646,74 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+>  	.start_link = qcom_pcie_start_link,
+>  };
+>  
+> +static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +	int ret;
+> +
+> +	pcie->icc_mem = devm_of_icc_get(pci->dev, "pcie-mem");
+> +	if (IS_ERR(pcie->icc_mem)) {
+> +		ret = PTR_ERR(pcie->icc_mem);
+> +		return ret;
 
-Thanks!
+return PTR_ERR(pcie->icc_mem);
 
-[1/3] ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX93 platform
-      commit: fb3425689699daebecf27a37d729ae43ef66ebab
-[2/3] ASoC: fsl_micfil: Add support for i.MX93 platform
-      commit: a10a52541f644a1fdf8876d474f31a54c4142ccc
-[3/3] ASoC: fsl_micfil: Add support when using eDMA
-      commit: 77a7a6e9a94df0ac7ba46677b5ce4a743a931fce
+> +	}
+> +
+> +	/*
+> +	 * Some Qualcomm platforms require interconnect bandwidth constraints
+> +	 * to be set before enabling interconnect clocks.
+> +	 *
+> +	 * Set an initial peak bandwidth corresponding to single-lane Gen 1
+> +	 * for the pcie-mem path.
+> +	 */
+> +	ret = icc_set_bw(pcie->icc_mem, 0, MBps_to_icc(250));
+> +	if (ret) {
+> +		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+> +			ret);
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Move "ret);" to prior line. No need to keep up within 80 columns.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +	u32 offset, status, bw;
+> +	int speed, width;
+> +	int ret;
+> +
+> +	if (!pcie->icc_mem)
+> +		return;
+> +
+> +	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
+> +	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
+> +
+> +	/* Only update constraints if link is up. */
+> +	if (!(status & PCI_EXP_LNKSTA_DLLLA))
+> +		return;
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+What if the link comes back later? I'd suggest to call this function from
+qcom_pcie_link_up(), whenever link is up.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +
+> +	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
+> +	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
+> +
+> +	switch (speed) {
+> +	case 1:
+> +		bw = MBps_to_icc(250);
+> +		break;
+> +	case 2:
+> +		bw = MBps_to_icc(500);
+> +		break;
+> +	default:
+> +	case 3:
+
+Why do you need explicit "case 3" and not just default case?
+
+> +		bw = MBps_to_icc(985);
+> +		break;
+> +	}
+> +
+> +	ret = icc_set_bw(pcie->icc_mem, 0, width * bw);
+> +	if (ret) {
+> +		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+> +			ret);
+
+Move "ret);" to prior line and save braces.
 
 Thanks,
-Mark
+Mani
+
+> +	}
+> +}
+> +
+>  static int qcom_pcie_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -1704,6 +1774,10 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		goto err_pm_runtime_put;
+>  	}
+>  
+> +	ret = qcom_pcie_icc_init(pcie);
+> +	if (ret)
+> +		goto err_pm_runtime_put;
+> +
+>  	ret = pcie->cfg->ops->get_resources(pcie);
+>  	if (ret)
+>  		goto err_pm_runtime_put;
+> @@ -1722,6 +1796,8 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		goto err_phy_exit;
+>  	}
+>  
+> +	qcom_pcie_icc_update(pcie);
+> +
+>  	return 0;
+>  
+>  err_phy_exit:
+> -- 
+> 2.37.3
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
