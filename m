@@ -2,134 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E961614D90
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 15:59:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B531614DCD
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 16:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbiKAO7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 10:59:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41420 "EHLO
+        id S231234AbiKAPHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 11:07:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231204AbiKAO63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 10:58:29 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9F9B1D312;
-        Tue,  1 Nov 2022 07:56:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1667314584; x=1698850584;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ymj/jOHbE6XLvUeDMy9nMN43LrVvwx6KJLq+fmcPOf0=;
-  b=U1fH3qBfHvfoWwy68Tw8jQDYOyG1PSzPFdGWTKHQTH2/XxVWB/vgbEun
-   31sEBAnI5qZEOZksyN5BKF3Mq+8ef7f5EclN/h6T1utBSjSNoIhYUQ1C1
-   /B9TriiXWhq/l3e4BDBCzRFZe4XcelLWU7MDR/svUJ7X7pjcy5d+8d+jI
-   Mh3ZTl3mzwac/eSeBajTbfb6IomScgsEPOc5yFhrBBaUyiZJTHcm1M74Q
-   W0N1y1IfzGsvgJxuqm4L4EolvU3Yfcx+W1kjL4L18bQ/k9EJq28rLYVv8
-   8pEat5Sbl0hgkZigBoYF4GZVMkkJOAPxhyKp9STHaHECnzrHtgMcywZcy
-   Q==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="310860962"
-X-IronPort-AV: E=Sophos;i="5.95,231,1661842800"; 
-   d="scan'208";a="310860962"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Nov 2022 07:56:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10518"; a="636423228"
-X-IronPort-AV: E=Sophos;i="5.95,231,1661842800"; 
-   d="scan'208";a="636423228"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga007.fm.intel.com with ESMTP; 01 Nov 2022 07:56:06 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1opsgO-005dZF-04;
-        Tue, 01 Nov 2022 16:56:04 +0200
-Date:   Tue, 1 Nov 2022 16:56:03 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Weilong Chen <chenweilong@huawei.com>
-Cc:     yangyicong@hisilicon.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wsa@kernel.org,
-        f.fainelli@gmail.com, jarkko.nikula@linux.intel.com,
-        jdelvare@suse.de, william.zhang@broadcom.com, jsd@semihalf.com,
-        conor.dooley@microchip.com, phil.edworthy@renesas.com,
-        tharunkumar.pasumarthi@microchip.com, semen.protsenko@linaro.org,
-        kfting@nuvoton.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH next v10 1/2] i2c: hisi: Add initial device tree support
-Message-ID: <Y2Ezg2TYeIsxUYxW@smile.fi.intel.com>
-References: <20221101080728.143639-1-chenweilong@huawei.com>
+        with ESMTP id S231401AbiKAPHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 11:07:09 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A631DF0E;
+        Tue,  1 Nov 2022 08:00:59 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id k15so5634101pfg.2;
+        Tue, 01 Nov 2022 08:00:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gun1iY/Ev7jUkuPSB5eGYnxQ+oJQPhXUeqVegBkXHI0=;
+        b=F8RZQLTL/seSsqRJF8M8PkO+NKjm4qG2RUiIZXcv8I8+svBagNBE0IRbqKT9pIM19t
+         x5lGd7F36/1OJoZK1a2x7Hv0hwTSH+kSDvKDiO4trR8Lhfj07FEuPCj/BwWj/KoUGmzF
+         wpFWg+SYdG68+qU0JrYa1sEGmW3H/Sug1K2Wd3JsqRi4jq3d+B0XLURxNssxslRDjlhr
+         PKjLD/Uqir5GKAjM/qjZEIpln4s0FWykznAJi71WV+0yFIw4hXYe+tJxJsqcl4kBEtAs
+         M7VJdFhlywnU3lg/Fke5hAo9xsF7oQ79XKj8Rk7CH0uz/G3Tu/MExhW8OgyK8eIliwXN
+         3/eA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gun1iY/Ev7jUkuPSB5eGYnxQ+oJQPhXUeqVegBkXHI0=;
+        b=QaOBHVpWW2bgkZgGpHKSVV9x7UVr3MXYtpoPCd8HNJqLFmQT1VN0VmCVhIYXnDqcTk
+         OEkKaLc36fWJdKQGKkMInqzMeFrWvANveJTZ7pDYTboG/YhK8SG9cNwkGoFit++z4FRi
+         MeOldv8WW/mwl+C8E0OLvf5Ewu9BfgNuHp1ZTvQui1yB80bBKmfFohBOVECu9aSEmxyt
+         UHbyRZ3UwBWj3yDyOa9R2UL6e7t82Ij0iZxPrWez4ny9Pt14RXr8MvMMTxdd0s3vv/2h
+         zBzuDJpspom6Wv4Lv01kUYiSezcLd9ZHXbedKmR5jql0WrakpC9/njwP3zY1QOu5CRa/
+         Ywtg==
+X-Gm-Message-State: ACrzQf1t6p5+1YK8Ahrwbu+ZlHiVadQPi/vJbvUConim+wKGg5D+JhE6
+        Kfo2zq7DBFhM/GDmwTD896c=
+X-Google-Smtp-Source: AMsMyM5+aZe/e/LqwyaP0o9+9aMalBMSzYKbdT2Y6WqjvE1WoFfK2aSORVEqoDEjsBm0zxw4r1lUCg==
+X-Received: by 2002:a63:fb0b:0:b0:46f:a98b:5685 with SMTP id o11-20020a63fb0b000000b0046fa98b5685mr12248746pgh.393.1667314812821;
+        Tue, 01 Nov 2022 08:00:12 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id v8-20020a17090a088800b0020087d7e778sm6048005pjc.37.2022.11.01.08.00.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Nov 2022 08:00:12 -0700 (PDT)
+Date:   Tue, 1 Nov 2022 08:00:08 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
+        shawnguo@kernel.org, rydberg@bitmath.org, alistair23@gmail.com,
+        s.hauer@pengutronix.de, andreas@kemnade.info
+Subject: Re: [PATCH v10 2/4] dt-bindings: input: Add Cypress TT21000
+ touchscreen controller
+Message-ID: <Y2E0eFq1xZthd3Os@google.com>
+References: <20221026114908.191472-1-alistair@alistair23.me>
+ <20221026114908.191472-3-alistair@alistair23.me>
+ <Y2BfCkVhE9GNdjWI@google.com>
+ <CAL_JsqKppGZ2Dm3GiDY-e4TvLSvcc-EHwafXNwfoSD1AHzz=GA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221101080728.143639-1-chenweilong@huawei.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAL_JsqKppGZ2Dm3GiDY-e4TvLSvcc-EHwafXNwfoSD1AHzz=GA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 01, 2022 at 04:07:27PM +0800, Weilong Chen wrote:
-> The HiSilicon I2C controller can be used on embedded platform, which
-> boot from devicetree.
+On Tue, Nov 01, 2022 at 06:50:23AM -0500, Rob Herring wrote:
+> On Mon, Oct 31, 2022 at 6:49 PM Dmitry Torokhov
+> <dmitry.torokhov@gmail.com> wrote:
+> >
+> > On Wed, Oct 26, 2022 at 09:49:06PM +1000, Alistair Francis wrote:
+> > > Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
+> > > documentation. It can use I2C or SPI bus.
+> > > This touchscreen can handle some defined zone that are designed and
+> > > sent as button. To be able to customize the keycode sent, the
+> > > "linux,code" property in a "button" sub-node can be used.
+> > >
+> > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> > Applied, thank you.
+> 
+> It looks like you applied v8, not this version. linux-next now has a warning:
+> 
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dtb:
+> touchscreen@24: Unevaluated properties are not allowed
+> ('#address-cells', '#size-cells' were unexpected)
+>         From schema:
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
 
-Thanks, This version LGTM,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
-> Acked-by: Yicong Yang <yangyicong@hisilicon.com>
-> ---
-> Change since v9:
-> - Drop wrong use ACPI_PTR/of_match_ptr
-> Link: https://lore.kernel.org/lkml/dfc1c006-61c0-8f28-6164-060347c69d04@huawei.com/T/
-> 
->  drivers/i2c/busses/Kconfig    | 2 +-
->  drivers/i2c/busses/i2c-hisi.c | 7 +++++++
->  2 files changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-> index e50f9603d189..a7bfddf08fa7 100644
-> --- a/drivers/i2c/busses/Kconfig
-> +++ b/drivers/i2c/busses/Kconfig
-> @@ -673,7 +673,7 @@ config I2C_HIGHLANDER
->  
->  config I2C_HISI
->  	tristate "HiSilicon I2C controller"
-> -	depends on (ARM64 && ACPI) || COMPILE_TEST
-> +	depends on ARM64 || COMPILE_TEST
->  	help
->  	  Say Y here if you want to have Hisilicon I2C controller support
->  	  available on the Kunpeng Server.
-> diff --git a/drivers/i2c/busses/i2c-hisi.c b/drivers/i2c/busses/i2c-hisi.c
-> index 76c3d8f6fc3c..bcc97e4fcb65 100644
-> --- a/drivers/i2c/busses/i2c-hisi.c
-> +++ b/drivers/i2c/busses/i2c-hisi.c
-> @@ -489,11 +489,18 @@ static const struct acpi_device_id hisi_i2c_acpi_ids[] = {
->  };
->  MODULE_DEVICE_TABLE(acpi, hisi_i2c_acpi_ids);
->  
-> +static const struct of_device_id hisi_i2c_dts_ids[] = {
-> +	{ .compatible = "hisilicon,ascend910-i2c", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, hisi_i2c_dts_ids);
-> +
->  static struct platform_driver hisi_i2c_driver = {
->  	.probe		= hisi_i2c_probe,
->  	.driver		= {
->  		.name	= "hisi-i2c",
->  		.acpi_match_table = hisi_i2c_acpi_ids,
-> +		.of_match_table = hisi_i2c_dts_ids,
->  	},
->  };
->  module_platform_driver(hisi_i2c_driver);
-> -- 
-> 2.31.GIT
-> 
+Oops, should be fixed now.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Dmitry
