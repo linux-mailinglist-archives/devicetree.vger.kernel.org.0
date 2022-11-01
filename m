@@ -2,163 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5FE96146AB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 10:30:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 555B761473A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 10:52:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229556AbiKAJaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 05:30:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
+        id S230305AbiKAJwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 05:52:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229695AbiKAJai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 05:30:38 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFCB12667
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 02:30:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1667295037; x=1698831037;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=eEIGsA/PvZNFQUyUhmTytwmzIaUYi4AT15RJYkS3FJU=;
-  b=SeiiYhDC9SFSI+rqwPMolv3riNklfgnDnNplms5UGEhQWthXnGZ0Oah3
-   i5zxZKTgY7+0MVI9/jQdR5XAZEJb+PsVAMDFjmxvt3jz445u3vQQMdyPU
-   cJIHy4BaZNRFp+fIwl5PFG9KzWSfpQe3WhD9c6wl5FOm/xmxy1qiCDI03
-   HrXlM4/qTrwHUepw32zoQw8daStTmHqlPHson7C6vdDRyKNFCn7wfBIvy
-   PyQmjFeaylRvzUqs82m5mBvrjfB0SjMab29lFbb38WsSgwFaWzENXmtsG
-   JGa+w5dnGP44wnruIa+a7PDJQcSl7jc3Y5i28p77tg2gCn4MMJsfWhfSf
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.95,230,1661810400"; 
-   d="scan'208";a="27083761"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 01 Nov 2022 10:30:35 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 01 Nov 2022 10:30:35 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 01 Nov 2022 10:30:35 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1667295035; x=1698831035;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=eEIGsA/PvZNFQUyUhmTytwmzIaUYi4AT15RJYkS3FJU=;
-  b=Sazd5WQtb3htTFfdYg7rR/qdMiUFLjJuaO5LzJd3yIVd3j+3oNKFo14d
-   g1NPXRLWnCkCSGL4GsTHptpsSGwveTVnUJRCyxfGzMfcQOpcI0CwZaCsx
-   x3PfvNukjbPbMXMPcEwMCrwwRgDcQjuU796wXor+1KO1sfnVoBf+U7Fi1
-   EkMddTnXApia6X3us8ERx1rE7BFPm3J2p9Ih7YkEFpwWlFQ8cDC8CgY0n
-   MaB6OrUctVlmvURtx7MT/zWgO20oLEW/kWLwkCmHm1kLg7iCrdyra4TZ/
-   2s9CnSZkXHrlSPpaFjWDXKmnhwqlpTVKcaFmjAM29O8Ov8ncgKt+1Yy/X
-   w==;
-X-IronPort-AV: E=Sophos;i="5.95,230,1661810400"; 
-   d="scan'208";a="27083760"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 01 Nov 2022 10:30:34 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9E84F280056;
-        Tue,  1 Nov 2022 10:30:34 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/1] arm64: dts: imx8mm-tqma8mqml-mba8mx: Fix USB DR
-Date:   Tue,  1 Nov 2022 10:30:31 +0100
-Message-Id: <20221101093031.278241-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229641AbiKAJwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 05:52:06 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF8A319031;
+        Tue,  1 Nov 2022 02:52:04 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 2A19RBEV025158;
+        Tue, 1 Nov 2022 17:27:11 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 1 Nov
+ 2022 17:50:21 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <joel@jms.id.au>, <andrew@aj.id.au>, <lee.jones@linaro.org>,
+        <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+        <p.zabel@pengutronix.de>, <billy_tsai@aspeedtech.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <BMC-SW@aspeedtech.com>,
+        <garnermic@meta.com>
+Subject: [v2 0/3] upport pwm/tach driver for aspeed ast26xx
+Date:   Tue, 1 Nov 2022 17:51:53 +0800
+Message-ID: <20221101095156.30591-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 2A19RBEV025158
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using extcon USB host mode works properly on DR interface, e.g.
-enabling/disabling VBUS. But USB device mode is not working.
-Fix this by switching to usb-role-switch instead.
+Unlike the old design that the register setting of the TACH should based
+on the configure of the PWM. In ast26xx, the dependency between pwm and
+tach controller is eliminated and becomes a separate hardware block. One
+is used to provide pwm output and another is used to monitor the frequency
+of the input. Therefore, this patch serials implements them by writing the
+two driver "pwm-aspeed-ast2600.c" and "tach-aspeed-ast2600.c". The former
+is following the pwm subsystem which can apply the existed driver to
+controller the fan(pwm-fan.c), beeper(pwm-beeper.c) and so on. The latter
+is following the sysfs interface of hwmon to creat the node for fan
+monitor.
 
-Fixes: dfcd1b6f7620 ("arm64: dts: freescale: add initial device tree for TQMa8MQML with i.MX8MM")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Improve the commit message describing the actual issue being fixed
+Changes since v1:
+- tach:
+  - Add the document tach-aspeed-ast2600.rst
+  - Use devm_* api to simplify the error cleanup.
+  - Change hwmon register api to devm_hwmon_device_register_with_info
 
- .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 32 +++++++++++++++----
- 1 file changed, 26 insertions(+), 6 deletions(-)
+Billy Tsai (3):
+  dt-bindings: Add bindings for aspeed pwm-tach.
+  pwm: Add Aspeed ast2600 PWM support
+  hwmon: Add Aspeed ast2600 TACH support
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-index bfb44630da6b..56323c989d55 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-@@ -34,11 +34,25 @@ reg_usdhc2_vmmc: regulator-vmmc {
- 		off-on-delay-us = <12000>;
- 	};
- 
--	extcon_usbotg1: extcon-usbotg1 {
--		compatible = "linux,extcon-usb-gpio";
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		type = "micro";
-+		label = "X19";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_usb1_extcon>;
--		id-gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pinctrl_usb1_connector>;
-+		id-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				usb_dr_connector: endpoint {
-+					remote-endpoint = <&usb1_drd_sw>;
-+				};
-+			};
-+		};
- 	};
- };
- 
-@@ -106,13 +120,19 @@ &usbotg1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_usbotg1>;
- 	dr_mode = "otg";
--	extcon = <&extcon_usbotg1>;
- 	srp-disable;
- 	hnp-disable;
- 	adp-disable;
- 	power-active-high;
- 	over-current-active-low;
-+	usb-role-switch;
- 	status = "okay";
-+
-+	port {
-+		usb1_drd_sw: endpoint {
-+			remote-endpoint = <&usb_dr_connector>;
-+		};
-+	};
- };
- 
- &usbotg2 {
-@@ -242,7 +262,7 @@ pinctrl_usbotg1: usbotg1grp {
- 			   <MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x84>;
- 	};
- 
--	pinctrl_usb1_extcon: usb1-extcongrp {
-+	pinctrl_usb1_connector: usb1-connectorgrp {
- 		fsl,pins = <MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x1c0>;
- 	};
- 
+ .../bindings/hwmon/aspeed,ast2600-tach.yaml   |  48 ++
+ .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml |  76 +++
+ .../bindings/pwm/aspeed,ast2600-pwm.yaml      |  64 +++
+ Documentation/hwmon/tach-aspeed-ast2600.rst   |  28 +
+ drivers/hwmon/Kconfig                         |   9 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/tach-aspeed-ast2600.c           | 484 ++++++++++++++++++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-aspeed-ast2600.c              | 325 ++++++++++++
+ 10 files changed, 1046 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+ create mode 100644 Documentation/hwmon/tach-aspeed-ast2600.rst
+ create mode 100644 drivers/hwmon/tach-aspeed-ast2600.c
+ create mode 100644 drivers/pwm/pwm-aspeed-ast2600.c
+
 -- 
-2.34.1
+2.25.1
 
