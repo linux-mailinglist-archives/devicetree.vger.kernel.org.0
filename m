@@ -2,79 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8099A614485
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 07:11:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A668C6144CC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 07:48:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbiKAGLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 02:11:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41876 "EHLO
+        id S229645AbiKAGsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 02:48:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbiKAGLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 02:11:46 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8557713E91;
-        Mon, 31 Oct 2022 23:11:44 -0700 (PDT)
-X-UUID: 845b764c036743428ea1af133456fa44-20221101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=qKVQ5xUvwJLnVjPZU5c5Gw7oruotfGjxaq+qal/96R4=;
-        b=GuUVMsDwkmDD7i5cWGFB/69htQfxwCVbR0tMncQU5xKaAHKhq6yFOuc7pscmKfUXtFN5G2HBslg3Cv/T8sS5Krjj1ZCyWPuyKXid8lWw7xrsZImXvY059WXCroPJEKpYYCk0Eo82McZrAq1WHYyDu0C3ejglmq7rv3eEPvNsTSY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:8e59e156-0255-4f9c-a468-7c19a5da7fe8,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-        ON:release,TS:70
-X-CID-INFO: VERSION:1.1.12,REQID:8e59e156-0255-4f9c-a468-7c19a5da7fe8,IP:0,URL
-        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
-        ON:quarantine,TS:70
-X-CID-META: VersionHash:62cd327,CLOUDID:8a6f3e81-3116-4fbc-b86b-83475c3df513,B
-        ulkID:221101141141HA5AA7M9,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
-        il,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 845b764c036743428ea1af133456fa44-20221101
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 272453379; Tue, 01 Nov 2022 14:11:40 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 1 Nov 2022 14:11:39 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Tue, 1 Nov 2022 14:11:39 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229511AbiKAGsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 02:48:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D95D5389E
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 23:48:51 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lgo@pengutronix.de>)
+        id 1opl4h-0004HL-NK; Tue, 01 Nov 2022 07:48:39 +0100
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <lgo@pengutronix.de>)
+        id 1opl4h-001clN-Gj; Tue, 01 Nov 2022 07:48:38 +0100
+Received: from lgo by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <lgo@pengutronix.de>)
+        id 1opl4f-0031LM-QQ; Tue, 01 Nov 2022 07:48:37 +0100
+From:   =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>
+To:     =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        kernel@pengutronix.de, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-        Bard Liao <yung-chuan.liao@linux.intel.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yaochun Hung <yc.hung@mediatek.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <sound-open-firmware@alsa-project.org>,
-        <alsa-devel@alsa-project.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v1 2/2] ASoC: SOF: mediatek: Revise mt8186 ADSP clock driver
-Date:   Tue, 1 Nov 2022 14:11:37 +0800
-Message-ID: <20221101061137.25731-3-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221101061137.25731-1-tinghan.shen@mediatek.com>
-References: <20221101061137.25731-1-tinghan.shen@mediatek.com>
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: iio: adc: add TI LMP92064 controller
+Date:   Tue,  1 Nov 2022 07:48:03 +0100
+Message-Id: <20221101064804.720050-1-l.goehrs@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: lgo@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,101 +54,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Initialize the required clocks for mt8186 ADSP. The ADSP core is
-expected booting with 26M clock, and using the mainpll_d2_d2 clock
-for ADSP bus.
+Add binding documentation for the TI LMP92064 dual channel SPI ADC.
 
-The enable/disable order of clocks is also revised. The clock should
-be enabled as mainpll_d2_d2 -> adsp bus -> adsp, and disabled in the
-reversed order.
+Changes from v1 -> v2:
 
-Fixes: 210b3ab932f7 ("ASoC: SOF: mediatek: Add mt8186 dsp clock support")
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+ - Rename the "shunt-resistor" devicetree property to
+   "shunt-resistor-micro-ohms".
+ - Add supply regulator support for the two voltage domains of the chip
+   (vdd and vdig).
+ - Add reference to spi-peripheral-props.yaml
+
+Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
 ---
- sound/soc/sof/mediatek/mt8186/mt8186-clk.c | 35 +++++++++++++++++-----
- sound/soc/sof/mediatek/mt8186/mt8186-clk.h |  2 ++
- 2 files changed, 30 insertions(+), 7 deletions(-)
+ .../bindings/iio/adc/ti,lmp92064.yaml         | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
 
-diff --git a/sound/soc/sof/mediatek/mt8186/mt8186-clk.c b/sound/soc/sof/mediatek/mt8186/mt8186-clk.c
-index 2df3b7ae1c6f..c86391aa7948 100644
---- a/sound/soc/sof/mediatek/mt8186/mt8186-clk.c
-+++ b/sound/soc/sof/mediatek/mt8186/mt8186-clk.c
-@@ -20,6 +20,8 @@
- static const char *adsp_clks[ADSP_CLK_MAX] = {
- 	[CLK_TOP_AUDIODSP] = "audiodsp",
- 	[CLK_TOP_ADSP_BUS] = "adsp_bus",
-+	[CLK_TOP_MAINPLL_D2_D2] = "mainpll_d2_d2",
-+	[CLK_TOP_CLK26M] = "clk26m",
- };
- 
- int mt8186_adsp_init_clock(struct snd_sof_dev *sdev)
-@@ -48,18 +50,36 @@ static int adsp_enable_all_clock(struct snd_sof_dev *sdev)
- 	struct device *dev = sdev->dev;
- 	int ret;
- 
--	ret = clk_prepare_enable(priv->clk[CLK_TOP_AUDIODSP]);
-+	ret = clk_set_parent(priv->clk[CLK_TOP_AUDIODSP], priv->clk[CLK_TOP_CLK26M]);
-+	if (ret) {
-+		dev_err(dev, "set audiodsp clock fail %d\n", ret);
-+		return ret;
-+	}
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml b/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
+new file mode 100644
+index 000000000000..357b15ebd897
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,lmp92064.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,lmp92064.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	ret = clk_set_parent(priv->clk[CLK_TOP_ADSP_BUS], priv->clk[CLK_TOP_MAINPLL_D2_D2]);
-+	if (ret) {
-+		dev_err(dev, "set adsp bus clock fail %d\n", ret);
-+		return ret;
-+	}
++title: Texas Instruments LMP92064 Precision Current and Voltage Sensor.
 +
-+	ret = clk_prepare_enable(priv->clk[CLK_TOP_MAINPLL_D2_D2]);
- 	if (ret) {
--		dev_err(dev, "%s clk_prepare_enable(audiodsp) fail %d\n",
--			__func__, ret);
-+		dev_err(dev, "clk_prepare_enable(mainpll_d2_d2) fail %d\n", ret);
- 		return ret;
- 	}
- 
- 	ret = clk_prepare_enable(priv->clk[CLK_TOP_ADSP_BUS]);
- 	if (ret) {
--		dev_err(dev, "%s clk_prepare_enable(adsp_bus) fail %d\n",
--			__func__, ret);
--		clk_disable_unprepare(priv->clk[CLK_TOP_AUDIODSP]);
-+		dev_err(dev, "clk_prepare_enable(adsp_bus) fail %d\n", ret);
-+		clk_disable_unprepare(priv->clk[CLK_TOP_MAINPLL_D2_D2]);
-+		return ret;
-+	}
++maintainers:
++  - Leonard Göhrs <l.goehrs@pengutronix.de>
 +
-+	ret = clk_prepare_enable(priv->clk[CLK_TOP_AUDIODSP]);
-+	if (ret) {
-+		dev_err(dev, "clk_prepare_enable(audiodsp) fail %d\n", ret);
-+		clk_disable_unprepare(priv->clk[CLK_TOP_MAINPLL_D2_D2]);
-+		clk_disable_unprepare(priv->clk[CLK_TOP_ADSP_BUS]);
- 		return ret;
- 	}
- 
-@@ -70,8 +90,9 @@ static void adsp_disable_all_clock(struct snd_sof_dev *sdev)
- {
- 	struct adsp_priv *priv = sdev->pdata->hw_pdata;
- 
--	clk_disable_unprepare(priv->clk[CLK_TOP_ADSP_BUS]);
- 	clk_disable_unprepare(priv->clk[CLK_TOP_AUDIODSP]);
-+	clk_disable_unprepare(priv->clk[CLK_TOP_ADSP_BUS]);
-+	clk_disable_unprepare(priv->clk[CLK_TOP_MAINPLL_D2_D2]);
- }
- 
- int mt8186_adsp_clock_on(struct snd_sof_dev *sdev)
-diff --git a/sound/soc/sof/mediatek/mt8186/mt8186-clk.h b/sound/soc/sof/mediatek/mt8186/mt8186-clk.h
-index 89c23caf0fee..37f5cfa2b230 100644
---- a/sound/soc/sof/mediatek/mt8186/mt8186-clk.h
-+++ b/sound/soc/sof/mediatek/mt8186/mt8186-clk.h
-@@ -15,6 +15,8 @@ struct snd_sof_dev;
- enum adsp_clk_id {
- 	CLK_TOP_AUDIODSP,
- 	CLK_TOP_ADSP_BUS,
-+	CLK_TOP_MAINPLL_D2_D2,
-+	CLK_TOP_CLK26M,
- 	ADSP_CLK_MAX
- };
- 
++description: |
++  The LMP92064 is a two channel ADC intended for combined voltage and current
++  measurements.
++
++  The device contains two ADCs to allow simultaneous sampling of voltage and
++  current and thus of instantaneous power consumption.
++
++properties:
++  compatible:
++    enum:
++      - ti,lmp92064
++
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: Regulator that provides power to the main part of the chip
++
++  vdig-supply:
++    description: |
++      Regulator that provides power to the digital I/O part of the chip
++
++  shunt-resistor-micro-ohms:
++    description: |
++      Value of the shunt resistor (in µΩ) connected between INCP and INCN,
++      across which current is measured. Used to provide correct scaling of the
++      raw ADC measurement.
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - shunt-resistor-micro-ohms
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "ti,lmp92064";
++            reg = <0>;
++            vdd-supply = <&vdd>;
++            vdig-supply = <&vdd>;
++            spi-max-frequency = <20000000>;
++            shunt-resistor-micro-ohms = <15000>;
++            reset-gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>;
++        };
++    };
++...
 -- 
-2.18.0
+2.30.2
 
