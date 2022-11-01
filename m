@@ -2,143 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 993F461425E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 01:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B19E614273
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 01:59:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbiKAAg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 20:36:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57676 "EHLO
+        id S229626AbiKAA7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 20:59:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiKAAg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 20:36:26 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 486E915A28;
-        Mon, 31 Oct 2022 17:36:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
-        t=1667262975; bh=xNrSYuVcNP5WrbbqEMql1DEKS8f3dgJjlNcdXVkrsu0=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=J16DQCVzUl7reu3kcBC+HKkzqCh9lkTYDmgryvpKInPnEdbeHoStaeRhQTDptF/+h
-         XBssVisBpMrf7gAKs5kHnwf0F0ELsJiT+wib0ZCNZ74LAUURb7ItE6uR1rDrLZJ5wo
-         Qy6ZwiOuH3qooosj/udIG4wze9/Hh6UHdSV8NBp2n9/DYqaJKcxafBfoL7I0FlxLkP
-         Q2zMX3TIvRBuI/H7zPpA02g9HmTxN9BEBdZ7boXU+BY5kO0fHYbPUZUZqmKKa9Wn4n
-         r2AESLxDe2qaiiX2K6NbRly2GY5pvo06HaIT7kM0aX3t/z/83i058mTzckyEB5Rbfs
-         zBWRFG1uMkAMg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M42nS-1opfGJ0YYy-0003KC; Tue, 01
- Nov 2022 01:36:15 +0100
-Date:   Tue, 1 Nov 2022 01:36:13 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: spi: nuvoton,npcm-fiu: Change spi-nor@0
- name to flash@0
-Message-ID: <Y2Bp/bmrbg1uWO8m@probook>
-References: <20221031222559.199509-1-j.neuschaefer@gmx.net>
- <Y2BURsf5xKyfMn4+@sirena.org.uk>
- <Y2Baq2gtpGVoIBJs@probook>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="QVnX+LE0aV3XCUSr"
-Content-Disposition: inline
-In-Reply-To: <Y2Baq2gtpGVoIBJs@probook>
-X-Provags-ID: V03:K1:VsNVW23BvtuUv/C3JqwyLDD+OxT6FesjAJ/Sy0+sCeZYK0WAh1d
- r+decQ102ZvRvqKBT/1d0kDKkU0RcKvR1RYOqmdBLK1WuQoi1JO3HljcB3G0SNvwsQ70oqw
- ofdl1N/zuMJdMpcEtINUKSK0QHvxtmeCv/NWQ3JnYkELNPRMVmcg/8QQnEDhD/aSUp9x8fM
- Z8iwTYlM7KLAlfiNZ3NbQ==
-UI-OutboundReport: notjunk:1;M01:P0:aivzwCu7ZDM=;ldTaWpnwiri6PH5P9eSTKgyM7oR
- FL6bVfoXdXlQgAiNcatyTNJMWfTPQgvYYVdgA/b6b1R7o+2CiXDNsjk6AVzUr8QrSIlbp5Mn1
- zXx8AbED7wb5Uq0MOmOqM1tWjN5dLmucaIllYlMlhNly/dfifeK0RzdXvSBtGOeK7j0Fptz3u
- fwZ3WGvm6/KWrlXQqNiPyLYRX3SqKbRs7FUxbeBY5y1aIu2XH4C9WrnY8eYLNu0rNjX3AcyPR
- YQ9KQkzTvekPfTKKfN0KMfa6gzOiI9s7+Zlh9+BqbD3BUzHLusAeupvku9XMgSyFI9vuzXoM2
- GgSdFJCr9gJYooU79hcwJQdL9AZTZkCTrd6WUztlYL1KXJhVx0o8TDstApVcESMJGWT6sQoOQ
- psYKKhb5U2nbgv1w5RQh6fXjCeLm5NDRsIGfHNKuwIZKSzDBODa0sSTZFJNy2XyCwETbbYhCO
- dEsZntdUNjfZu+sTPpAzzrflcP8hlgxxFvSc8AuwmOQ1AfthAZm/wIsVLYgky2+1kENb8EuFe
- xpdL5Dmx62EE8dbuDMm0X6IA2PzksLFvhhmjdhGEUTOiDtMa2ZcsQQQqCVwbku1MMLDbIOHQ2
- vHi+ap52FvIxcyaPsEVLUWjGSren+6cqOno7mPIDRBdynMWcezRsIRnTwaJ+vZfPslVwCCaAk
- Q03hv47ZMxf94p3mu5KDzcdUXjYl2g84MrYRhrK5CmwEXFNEaOxaAr4aXPYEaGr5hOoGWHecz
- PdvifGBhzVhfcFKPxM12X2008YAaGiDAYnqn7IU5pfq4ziskaWfGRDK3e7K6M8qUWfOXA0ubh
- otQo08tnH7OlAa73hJvqHQlA6g/FxY4feHUCr3S7M/Hj97ncK6NM4o08yi3QYnyuGlFWlngSS
- cHzC9zM3pfLM95n+kc6EgHT1A1xrbg7PMJ/JXvXLg7oFBjjOUUZTkwKy1dNnujn9Gd6CK2jCt
- 91bEs2uQWvzQIAROleajms76PUw=
+        with ESMTP id S229565AbiKAA7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 20:59:52 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B2EA1570A;
+        Mon, 31 Oct 2022 17:59:51 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id B19965C0134;
+        Mon, 31 Oct 2022 20:59:50 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute3.internal (MEProxy); Mon, 31 Oct 2022 20:59:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxfierke.com;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1667264390; x=1667350790; bh=/T
+        yw2zeLdHb2+Dw5oK5UkZVpNiwdVxrfWV3SYy8GWLU=; b=oW61/4/ucjPrJA26Ib
+        wMk7qNewaQZ33kSOGel0yWPIUBFMi/hOxK/A1aKopMpn4a6D5YKKm8gFjCJD98Qw
+        0rSmRVVjaanH1Pl3rs5fP/BRBcxtewSYKx4oMpWXM1iliBtwttIlj0hH0bTaslsa
+        I9EPkC+iWJGHBwou8M9AF/SKkYripqnXCP3ts4ceXma9RviyE+8xZEG8lLoZeYYM
+        y63eZ2KVjKp6w/QI7NwIzy00ckGN/FtXE9XKq/fU0Kkryu9t7uf1pY8DHunil7yK
+        dv3vUyZD7hMkzohgqhGRIsqcA596eUv8dN/FjcAxxvmIiodYFmp7E7YnwHvRyFuw
+        J+MQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1667264390; x=1667350790; bh=/Tyw2zeLdHb2+Dw5oK5UkZVpNiwd
+        VxrfWV3SYy8GWLU=; b=Zuz4i4i897MG6ZZjrh9u56tpaxyaVDiDvS6cVSzs0qkN
+        KQ9OIEN/m9hpCkqPxCk2A4qPIQQAdBMKCP/2QBGp9m+Vr1QI4ohJMrmLOFykneuz
+        5ElOxOW8U6llgsQMIw9JTe8rbY1wYd+MmzJ4nothufYCAEi/3zidP5nw6B100STl
+        C7zqxOEWfST6bgl2inIoReJWGgSBMd5oeWPv2MBAC50zQvDdFn3mzjBv3eT+9UC8
+        3zEbtw/8UYqm1FP/maV+7VlrscPf2w06tkEItdsb41Yie1KMflWHibGso0iQQUom
+        Lz2YLTWbunWTySEFjNbEn9k0kg0CHxUYnSRel/0hNQ==
+X-ME-Sender: <xms:hm9gY3N76yfdUFK31PMFEc4_fFWbYptVosa4NpjgCiGl_uHHU0q1ug>
+    <xme:hm9gYx_-JmD4xI-VnJEE-5M3QGagFHEE1j1cDzyuUphsMMmvTGkNqnM3x2F1h5Hh8
+    NUamx6JhTN3hdGdU60>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrudeggddvlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdforgig
+    ucfhihgvrhhkvgdfuceomhgrgiesmhgrgihfihgvrhhkvgdrtghomheqnecuggftrfgrth
+    htvghrnhepfffgieefueefjeeutdevgfeijeetvdfgfeekjefgfedtvdekleduueetgedt
+    tefgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgiesmhgrgihfihgvrhhkvgdrtghomh
+X-ME-Proxy: <xmx:hm9gY2Rl3hZqVcodjeHqK7kAptvWfjptBiWCsYEycmXx-LpdkBnwyg>
+    <xmx:hm9gY7tv3ADGKOpPSFSXCIKLCBstjl0rHM_aYX1b6fv66uOmx8dQcA>
+    <xmx:hm9gY_dY5dBohUb8gPMHXr-s4auy_gU5krqgRJ0Skh7K6eZgmBBSkg>
+    <xmx:hm9gY91d1phpyjrFtoyUs_ZLb0F89jrTu1aLDk8DJ5f1CplsBjGN6g>
+Feedback-ID: idee9475d:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 322BE2D40071; Mon, 31 Oct 2022 20:59:50 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1087-g968661d8e1-fm-20221021.001-g968661d8
+Mime-Version: 1.0
+Message-Id: <5efcce2b-4534-4777-8daa-d1ff2b6bb1c7@app.fastmail.com>
+In-Reply-To: <f09812a7-5d7e-f8f8-aba4-7645810a8c52@sholland.org>
+References: <20220918034415.74641-1-max@maxfierke.com>
+ <20220918034415.74641-2-max@maxfierke.com>
+ <f09812a7-5d7e-f8f8-aba4-7645810a8c52@sholland.org>
+Date:   Mon, 31 Oct 2022 19:59:07 -0500
+From:   "Max Fierke" <max@maxfierke.com>
+To:     "Samuel Holland" <samuel@sholland.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        thierry.reding@gmail.com, "Sam Ravnborg" <sam@ravnborg.org>,
+        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: vendor-prefixes: Add prefix for ClockworkPi
+Content-Type: text/plain
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Oct 29, 2022, at 1:17 PM, Samuel Holland wrote:
+> Hi Max,
+>
+> The vendor uses "clockwork" as the prefix in their downstream
+> devicetrees[1][2][3], so I would suggest using the same here. I think
+> there is a distinction between "Clockwork" the company and "ClockworkPi"
+> the product. This is what I did for the board devicetree I sent[4].
+>
+> Regards,
+> Samuel
+>
 
---QVnX+LE0aV3XCUSr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Samuel,
 
-On Tue, Nov 01, 2022 at 12:30:51AM +0100, Jonathan Neusch=C3=A4fer wrote:
-> On Mon, Oct 31, 2022 at 11:03:34PM +0000, Mark Brown wrote:
-> > On Mon, Oct 31, 2022 at 11:25:59PM +0100, Jonathan Neusch=C3=A4fer wrot=
-e:
-> > > The node name for flash memories has been standardized to "flash@...".
-> > > Fix the example in nuvoton,npcm-fiu.txt accordingly.
-> >=20
-> > Please submit patches using subject lines reflecting the style for the
-> > subsystem, this makes it easier for people to identify relevant patches.
-> > Look at what existing commits in the area you're changing are doing and
-> > make sure your subject lines visually resemble what they're doing.
+Ah yes, I struggled a bit with the distinction because the company itself
+seems to be a bit inconsistent here.
 
+I will follow your lead and post a v4 follow-up with that vendor prefix
+changed.
 
-Ah sorry, I missed this line:
+Glad to see someone else working on support for this hardware!
 
-> > There's no need to resubmit to fix this alone.
-
-
-
->=20
-> Documentation/devicetree/bindings/spi/ has a wild mix of
->=20
->  - spi: <some vendor>:
->  - spi: dt-bindings:
->  - dt-bindings: spi:
->=20
->=20
-> "spi: dt-bindings:" seems to win out slightly. I'll switch it to that for=
- v2.
-
-So, no v2.
-
-
-Jonathan
-
---QVnX+LE0aV3XCUSr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmNgadwACgkQCDBEmo7z
-X9tIZg/9HuIIa19SgaWQxuFMqJ8zvTu7gKSSYiWfc7vgLxWHRczUewtItrlDJutY
-yC+Ixd+5vux8N7FV56Mwd44nuYItWvcceCTVHkzIDw70xF/TivsJ1RDffJwiVIYS
-AFjQddErzDGdk7ETgW7GssY9KGTTfHPJkCWX6X0Ct8yIhYNaNcR9Sf9W7OfDXW6v
-27wjtKEJhAwrz9g5ld0yJzR1c0nmNVxEa7ITvwqa0rBOtC1dNKpIZ6242B+Agmgg
-RmB4+7yudoVnJQ+kFkRsoAjHZhonV9SIngh8JUgUzYY/V7nmlLGnXqu+s4dsZ7rN
-d6jUHwu/+VmgJxWcTeOcOaaN1J+RiUECvr64GiyvIvdKXAUud4J4MhjYTNPC+bkK
-N7gZ4BLxduKbNA459TnSflVV3RJ+ssVdatM+Dr9lq7GQQ8dUg050fT06XNdEMQgm
-Z36khA9ThdaDXjEAma7jD42dwnf3JJ8LF7U9KimE6YoEX9J9fsegZcsLQoWZTYQv
-j6Cj3Gf1npvpJBrm0SCnTeJdkUTRNVa1IZnycuI65itA8z5QkhTywSYvk9LZJMfc
-dxUPLgI38+WjP3tDPtL1UD5ZqOYOsx8xYq6k41iYWMRwEIsX7nDEU6yfqHe0Po9e
-lXXPGpuY/ovcoRpkzNqqgqMlnB73Kydf08Rcl/VVwpDThW/uPHI=
-=X73p
------END PGP SIGNATURE-----
-
---QVnX+LE0aV3XCUSr--
+Thanks,
+Max
