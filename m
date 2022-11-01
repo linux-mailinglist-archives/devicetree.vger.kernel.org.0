@@ -2,168 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0358A614356
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 03:41:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 565E7614393
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 04:20:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiKAClO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 22:41:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40092 "EHLO
+        id S229729AbiKADUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 23:20:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiKAClN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 22:41:13 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2104.outbound.protection.outlook.com [40.107.243.104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF7417066;
-        Mon, 31 Oct 2022 19:41:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JzhYPocPhiXA4kw/41Hv4WASenXFNw1pKxuoaPOZYt+Ivtow/4DlIx/fZ4ccf+WuH3peKEtDjdOKMooR+MdcXq+TTH39dCadlg2vSH5oeko2GQvmDX9G54eyg/12ti3o5AyoPOFQmr9zn69eBsssq/2KvFCXYB5K0sQNN1tFpuO1pFGAbU5DT4kYNIsfoaH8jZj8dsuE32R8j9RYWcapbHVESe5adDXcjWkaaAvwgS4NWG3Bl6xgRjv+VJl3SPWL6XxmnmJ8qVZnNnXWuWL2o3VL/WZtC9JvX/q6Vr+wZDLiiIXlVy4voG01lE3gEApsDt4iXsRfUv0wujwZcFRFpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2KCgIwWUZ75jibR1AKvPtfdWSg3rKsb1q8fqTXUP4jk=;
- b=AnX63wLCEjh+6s5AAaKn6OoHMdktthdxLUeZmas7xUNkCIu0C6zCttn4C0LjxYottvRw+wi8il6XGZNJ+CZb0HrzyJ+JpHi6Do1xiBmlzkz1wSqDRLWxEr2/jjb7+2uDVCvLWaKdQvebqpnXMARFC34QHLj9vsAMhDGD4l+rvVyo4Scf2fYYnY943ZcqAEkN2E7RVX/Sx4WrgkDSTZRjAe3gBecDDI6l3RWjsy0lbMKF0NHqYlNQxBchT4kqYbCDjpbhPtOx0XtED2xplceQ69LUWoycQEIrPnKmL4gTWDZU3o36mLemsHPzoLbI4V3WStS7fQB0Xw+7zAoAe1lQGA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2KCgIwWUZ75jibR1AKvPtfdWSg3rKsb1q8fqTXUP4jk=;
- b=p6eBEg/EvsBo2875ZzrLau/oSXujXAZzwJSLX2p+XpiYYcNEaDT9mIFpHLeedJy60Ws827UDQg/LeYIL17f8uWkNpu/FkjnKerQgI9P+4MILTpaph5a/Huk8+uQxOzGIR5kCw2Zt3YIN4j7U7LQfyrOfwAvM7RcXC79NbUC+9Co=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by CH0PR10MB4857.namprd10.prod.outlook.com
- (2603:10b6:610:c2::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19; Tue, 1 Nov
- 2022 02:41:11 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::a8ed:4de9:679e:9d36]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::a8ed:4de9:679e:9d36%4]) with mapi id 15.20.5769.016; Tue, 1 Nov 2022
- 02:41:11 +0000
-Date:   Mon, 31 Oct 2022 19:41:06 -0700
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     Lee Jones <lee@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v1 net-next 1/7] dt-bindings: mfd: ocelot: remove
- spi-max-frequency from required properties
-Message-ID: <Y2CHQhPRHBp0riut@COLIN-DESKTOP1.localdomain>
-References: <20221025050355.3979380-1-colin.foster@in-advantage.com>
- <20221025050355.3979380-2-colin.foster@in-advantage.com>
- <Y1/rbgXwUZZXY3JK@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Y1/rbgXwUZZXY3JK@google.com>
-X-ClientProxiedBy: BYAPR08CA0066.namprd08.prod.outlook.com
- (2603:10b6:a03:117::43) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+        with ESMTP id S229561AbiKADUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 23:20:12 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DBC6647F;
+        Mon, 31 Oct 2022 20:20:09 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A139dCP031554;
+        Tue, 1 Nov 2022 03:19:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=9WjdJBUVH8MeLvA9zh4Sza3xE353qf9XmPnIJRTg3o0=;
+ b=FkxISVjvKZXQbL+0dSpAJTk4egSQgWpxAXWeB6toT6waoXI5r9ErXEymo0PuOb+vdDP3
+ VxV1GUK58L0HPrFFEUrJdlkh+m62H83mSM+CRvoH18qQlNwBmtGHVNqDdKtjFFkx/uLm
+ ngwNjZvFXHMsDJXSkMvN3MIaJ8oTwLRfgDKbqQ4wDe7yI1AZZ949YXErB/3Beg04n3f1
+ kf9frK4Wy7YEpAIUaLeJdOocOsh78m46CC/Nt63whE4wFEUFKzI/kqi3tMIkzJ4pDKnx
+ bnncDilBbM/kebhj4fSZGGlQbtvSjGtDO+Yit3vGVfoKP5v1LwUechbUajZ+AsbLkNxN Zw== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kjsqh05vc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 01 Nov 2022 03:19:49 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A13Jm3k029644
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 1 Nov 2022 03:19:48 GMT
+Received: from [10.110.109.83] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 31 Oct
+ 2022 20:19:46 -0700
+Message-ID: <df09560d-803b-33f6-69ed-6d377d05d336@quicinc.com>
+Date:   Mon, 31 Oct 2022 20:19:45 -0700
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|CH0PR10MB4857:EE_
-X-MS-Office365-Filtering-Correlation-Id: b315786a-0753-46f3-6319-08dabbb289bb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qpHAxECP3PBNtDYuoZ1pwinFAQ903W1vREvcLvy0TYYQqNJzC3Xg1JNMCUBgkPJWIdySZrnJ9fSC7mDZzOPh6fMhqyJYkOhjIy9y/VwCwHa1aLJyCgYA5lZgX9qcQP2Yw8sd3Hog9e+am0cqQIbpk+2jMMQz/vEsC773taxOthWW+VaFjFDya5SvH/ewcULSNWth7+J1bvwSKWBr+C7uMgNCgmVq/VkgsTf4kkq+ecHnw59WBPcjzzqCIOMxZEM2SJvpNWWyDoOLUuSexf5y0UQl/hu8L7LTJIEUeGL2g4VXfHiSxDgML7MH8NqpWx3+MMtvkAt4pTU+UwGHEmGmGgTUQJ5JlKgNxE4AP6Q/PlYZa8b9xWWRfL0AWVVzuIwx/qLRMKueDU0v2ToazvHnRuCbZlvCNNBNUro63Ua2wvWhySg7r9o7GN27q698LvaeMznYor6DkSOycQT1VZIBPOq3ySyqv1hnlUV2ATIhjjHwa57eSTnwzLztTv5XYNeKuTm93PY5CnmbkC1bv7IhAWIwAx8Jg32pJAtSpMWqtnpJAVjuD/HaYgjyqyV1pmIsgVsgd9lcQPgjWRBNN7VHp5QBM2CV/8OapKtK6TLTZrTrsTJ+dkCH0X8vSNK2paU9tFyjuDDmJ4GHnOOG2lao+aaNg7tBBBNFhj4CPVebbPqMtuezEyupk7Xg5IU0FKH/FryZ7yKjlQ5/DezQEffe5Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(136003)(396003)(346002)(39840400004)(366004)(451199015)(6666004)(9686003)(26005)(6512007)(6506007)(7416002)(316002)(38100700002)(8936002)(41300700001)(4326008)(8676002)(478600001)(86362001)(83380400001)(186003)(6486002)(4744005)(5660300002)(2906002)(66556008)(66476007)(44832011)(6916009)(54906003)(66946007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MUE5TXM3d2VqZjhyMG1RalBVTFl3VGw0S2ZSdVRlQTl3Q1J4SUh2YURXcHVy?=
- =?utf-8?B?L3hkbit2U0xHaFl6VXliWWRXbEkyTGx4TVFkZjNnQlVBS2tQQUI2VGpOQ01Y?=
- =?utf-8?B?OTRCak9XeEFYVVJhZ0FvWkUxYVlLRmJmTkYrUzZTemJoWGw0TU1XNEc3cUQ2?=
- =?utf-8?B?L2VvZkw3T3JPdDRRdGtFRzAwK3ptZWswc1dJRHl1aHJtT2xSMDd1TVpQc1Ax?=
- =?utf-8?B?YStpdFZ6Z0xBNGt6MHpHQjA5RGlBbGEvUEJWQ1VObG5pcm9QSHBsN0lqVWVk?=
- =?utf-8?B?NHA0amZtd0tabkNFNEp0bkZNTFAvdzNLMitsVUluTnZmZG53b3dDTkV1ZGwz?=
- =?utf-8?B?VG5jcXdHWlZTRDBNcEl1TTFlN2pNYVpYSmRZVlpZZGVFUW9jSHVzbjRMN2Fq?=
- =?utf-8?B?M1VXMExhUEdTSVZKaDJwZExSQ1k0RUx1M3BMTWR3YnBIb25hNTViUDRsczlj?=
- =?utf-8?B?Y3ZyaU1WZFhNd0R4cGRWRXhENFc1djYrODZtdUl3cHpHaVdlNW1VODZPYkYy?=
- =?utf-8?B?UHZJN3UxUWhXc3hRQ01BQnRkWXJ1NElMdmxrR3dDNzFnMTRsclFHdThSamNh?=
- =?utf-8?B?Q0FZVnc0V2VuY0pKVTJnYVZoWE5jWks4N0RmWWtQUFpYZDlHUjJpUVhyQVdZ?=
- =?utf-8?B?bjBHUFYxZWRYZFZRdzdlU2RwbmxNYTNQWXFMVmxURzFnakEwZ3dCVUVGK0Rk?=
- =?utf-8?B?cmN4MXRmQ1BCUEJpQzl5WHZqQkt2YkVYQ0sxOUoxU0p2djZPcS9HRXVUNmMy?=
- =?utf-8?B?dkNhODlNdVZPQzV6RTBiaFB4K2RrT2M5UlVtQlMxWFdtS0ZlZllhZ3Jzd00x?=
- =?utf-8?B?azlSdjlKbmlkRHFBcUtmQ3A5QytwWkxhakhGdVBCc2hVTGxldHRhZ1RlOWVU?=
- =?utf-8?B?ODJtSHd3ZXdQdmVXUDgvODBTQ1lkUHhoRHIrOFVkTnB2cmVJT0pNNWdJVmZQ?=
- =?utf-8?B?b1hXRXdOQzh5ditOMllSRkFmRlZQMndsNkp4TUdZVTdRdmUyYk96M05XQkN0?=
- =?utf-8?B?S3hlY0RGSUY2YW1EaTgwanFSRk10TXFpSzFhZHU2Tm9hWDdpU0xoQllydE5M?=
- =?utf-8?B?WGNKRGFPNER6OEYzejRQT1dWRG1jeWZJcE9sSTRnSWY2dXd4cTM1QUFWcERS?=
- =?utf-8?B?dzBud3NCVUVhL213eTBtNThtYXZ0WEhQTzBRM0UrNE5mbnZBeHVRZTM3SkNh?=
- =?utf-8?B?cEFpcUNLaU14cXQ0cTRXVms4QUVQc0lMK0ltb3NCaFNTbFlPVGJGeEJiQWE5?=
- =?utf-8?B?bFVNMTJaS2pXcDV2d3MxL3NDQUxmQm1NaHpIL2xrWllIUi9nNXdRcnMyblBs?=
- =?utf-8?B?bkg3RGp3RU9HeTdzUkRvTlJPZVpQSXlZdXJyUDRvNEQrbUVzZmVVcW5Yb0Iw?=
- =?utf-8?B?c3ZuK0VybmIrbWw3eHl2V0NMeTRsa3NXVDgxU0FKQ3ErZU90eTZZT3dsaFRj?=
- =?utf-8?B?cFRaQTJ0dTRzOHFwMmNrTDNEOVZUVjBNaEhmOXZ2ZGpaTTZzM2MxNlZaMFl2?=
- =?utf-8?B?blRCTTdTdEVteDdmU1VPOUV6VlVMWFVPY0ErK29heFR2dTNjaGV6bkk2bGh1?=
- =?utf-8?B?dFpnYWdrU3Vud2pEMUx6RGZvZURBYkJJbjJaYU1hVVVKdjY4NGtqZWJqZ1N1?=
- =?utf-8?B?TnJYNk5GZmYwWHd0WmlsZkVMd1VOVTI2UThGZkVUZysrL2s4bW9RN09pd1pL?=
- =?utf-8?B?NGtsT3F5OTZvY0tWcWsycnhqaEI1WG1rWEtsd1VWZVBob0I1UnVYVUx5eEdS?=
- =?utf-8?B?Tk02WVVTbm9iTUhiaTJwSHUrNUt2cUxMWVFTSDZSM2RaakZWMG9JeTdxNWdO?=
- =?utf-8?B?WDk2dEdjMVdiYTlXalZTc1hNQXlHWUVETlJ5YVRrQS96c21SeFFYVGgrbFFN?=
- =?utf-8?B?ZENiellsMGFhTEQ3cHdFY3VJTDJGb24wNHEwV3BNNmZ6aHlrMFV2TGRqRGh0?=
- =?utf-8?B?dFdmT1RUMEJ1amc3Q253Y29RUisweDFLWURQdGlTR0VTQW16L3k2TkxWTXBt?=
- =?utf-8?B?ZmkvS1EySTNOeitWV3dRVkdQVmhacklCWFhsWjlwWkdGa3RuL3NldGR6WjZ6?=
- =?utf-8?B?M3QyaGtzaENleDVHdDM4ZWdCdlBPRTV2OEFrc1FlQTNUWFhQSzgyTlRJUEpW?=
- =?utf-8?B?L216QUhXR1d6aDFVTW5PZXErS3FlbjZHQlpFYnNUTmZNazJYWkRsWDl4NlUz?=
- =?utf-8?B?d2c9PQ==?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b315786a-0753-46f3-6319-08dabbb289bb
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2022 02:41:11.7553
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6iCZyCkLEFp7ng0taGfCRn7un0TOjXO6EOImxOLLvC6joXXggZ8uvkm1+PbqDA3QxlSFTy/t+iNd3NreLlSSW9u/Iseg2yfnAbtcnMa5pCE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR10MB4857
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v5 02/13] dt-bindings: Add binding for gunyah hypervisor
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221011000840.289033-1-quic_eberman@quicinc.com>
+ <20221011000840.289033-3-quic_eberman@quicinc.com>
+ <20221012155645.GA2173829-robh@kernel.org>
+ <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
+ <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
+ <75ef3cc5-3b19-9eab-b3eb-56fa254d92bd@quicinc.com>
+ <79673829-a079-201f-91e1-790eb7cc3a4b@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <79673829-a079-201f-91e1-790eb7cc3a4b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: fs7KBXATslAtjcGiQirE6T_AviZphkjK
+X-Proofpoint-ORIG-GUID: fs7KBXATslAtjcGiQirE6T_AviZphkjK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-10-31_22,2022-10-31_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 lowpriorityscore=0
+ suspectscore=0 bulkscore=0 mlxlogscore=999 clxscore=1011 spamscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211010023
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 03:36:14PM +0000, Lee Jones wrote:
-> On Mon, 24 Oct 2022, Colin Foster wrote:
-> 
-> > The property spi-max-frequency was initially documented as a required
-> > property. It is not actually required, and will break bindings validation
-> > if other control mediums (e.g. PCIe) are used.
-> > 
-> > Remove this property from the required arguments.
-> > 
-> > Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/mscc,ocelot.yaml | 1 -
-> >  1 file changed, 1 deletion(-)
-> 
-> Applied, thanks.
 
-Thanks Lee
 
+On 10/27/2022 12:55 PM, Krzysztof Kozlowski wrote:
+> On 27/10/2022 12:17, Elliot Berman wrote:
+>> Hi Rob,
+>>
+>> On 10/26/2022 2:16 PM, Rob Herring wrote:
+>>> On Thu, Oct 13, 2022 at 6:59 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+>>>>
+>>>>
+>>>> On 10/12/2022 8:56 AM, Rob Herring wrote:
+>>>>> On Mon, Oct 10, 2022 at 05:08:29PM -0700, Elliot Berman wrote:
+>>>>>> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
+>>>>>> Resource Manager applies a devicetree overlay describing the virtual
+>>>>>> platform configuration of the guest VM, such as the message queue
+>>>>>> capability IDs for communicating with the Resource Manager. This
+>>>>>> information is not otherwise discoverable by a VM: the Gunyah hypervisor
+>>>>>> core does not provide a direct interface to discover capability IDs nor
+>>>>>> a way to communicate with RM without having already known the
+>>>>>> corresponding message queue capability ID. Add the DT bindings that
+>>>>>> Gunyah adheres for the hypervisor node and message queues.
+>>>>>>
+>>>>>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>>>>>> ---
+>>>>>>     .../bindings/firmware/gunyah-hypervisor.yaml  | 87 +++++++++++++++++++
+>>>>>>     MAINTAINERS                                   |  1 +
+>>>>>>     2 files changed, 88 insertions(+)
+>>>>>>     create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..f0a14101e2fd
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>>>>>> @@ -0,0 +1,87 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Gunyah Hypervisor
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
+>>>>>> +  - Elliot Berman <quic_eberman@quicinc.com>
+>>>>>> +
+>>>>>> +description: |+
+>>>>>> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
+>>>>>
+>>>>> How you end up with the node (applying an overlay) is not relavent to
+>>>>> the binding.
+>>>>>
+>>>>>> +  describes the basic configuration of the hypervisor. Virtual machines use this information to determine
+>>>>>> +  the capability IDs of the message queues used to communicate with the Gunyah Resource Manager.
+>>>>>
+>>>>> Wrap at 80. That is the coding standard still though 100 is deemed
+>>>>> allowed. And yamllint only complains at 110 because I didn't care to fix
+>>>>> everyones lines over 100.
+>>>>>
+>>>>>> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    items:
+>>>>>> +      - const: gunyah-hypervisor-1.0
+>>>>>> +      - const: gunyah-hypervisor
+>>>>>
+>>>>> 2 compatibles implies a difference between the 2. What's the difference?
+>>>>> Where does '1.0' come from?
+>>>>>
+>>>>
+>>>> There's no difference. I thought the convention was to have
+>>>> device-specific compatible and the generic compatible. "device-specific"
+>>>> here would be specific to version of Gunyah since it's software.
+>>>
+>>> No, that's just what people do because "vendor,new-soc",
+>>> "vendor,old-soc" seems to bother them for some reason. At the end of
+>>> the day, it's just a string identifier that means something. If
+>>> there's no difference in that 'something', then there is no point in
+>>> having more than one string.
+>>>
+>>> You only need something specific enough to discover the rest from the
+>>> firmware. When that changes, then you add a new compatible. Of course,
+>>> if you want existing OSs to work, then better not change the
+>>> compatible.
+>>>
+>>
+>> Thanks for the info, I'll drop the "-1.0" suffix.
 > 
-> -- 
-> Lee Jones [李琼斯]
+> You still did not answer from where does 1.0 come from... Compatibles
+> are usually expected to be specific.
+> 
+
+The 1.0 comes from the Gunyah version. This is the same version returned 
+by "hyp_identify" hypercall.
+
