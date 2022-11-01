@@ -2,95 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AD66142B7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A6D6142BA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:11:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbiKABLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 21:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53536 "EHLO
+        id S229907AbiKABLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 21:11:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbiKABLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:11:39 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F98D165AC
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:38 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id r187so14528817oia.8
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:38 -0700 (PDT)
+        with ESMTP id S229782AbiKABLq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:11:46 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A98C6596
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:45 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id h14so11843401pjv.4
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zeBMYdMZ1p+Lm3eAVj+hDEsLF6ZsPuh0Td05pqMw4LA=;
+        b=T9kXSSEJxsE21WH61OdQ94VYWF4t4yhNq+JNB4JInAbU+UacVYZxmMjZZMlI7DnBOO
+         ccf30kthD6BT7dwFyQKdZjpm2/0ZKvuQeEqzvi0mD78XN44pVNOHtBn4lw2ONh1hiDed
+         eBy5ILKEF7jd244fvYM/UF6LRMhRyBpRarbK9lkwPZPSAuYhcm0KJ3ZB1Tx2mu5NArFy
+         BbfUrboNAjd0py/1bhJgtaVcnsp5O7GYFuiLob61wH324nOLBdEKe7342LOSYAIey/iy
+         dKXufj8PweP65FvykoLbX5IMH5jPsChfrwU5OEkroqwkowFHVfKedsHP2r1DmQBfvbWN
+         P+Pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EtuNirfdP3MaA2p83xUDjwwQUX0NJu7/yIl+/F9+dHQ=;
-        b=5+Grw//mTTQ+zn+RLkQA5Qu/TxBce7JnOZ5cdj+wZ2k3QtKaCjWCAmZQD0GJj+EqXq
-         txpSymL1unHl7x3XZIosKo6eaj08dBceRM0puUGrIiuyKqUcZjy9pM7Wu8HNfHCDfZ2x
-         G5wktuGEJ8avIGO49dnjVghtPyxqCR95D1q8kAAju5lxyKJ26pHXmYsl2ELTIDuijkFo
-         Gg7TeDFa58ZWsAPSh+l/4jS3+Qf8WyLCjfmzSv8yaE6F0hf0ZqNVfMvO2OO8xE++1rfy
-         D2wBn/qgKqeL6ma2biCkWhDilofn1C7/e72F4D29HZO1l3KAiu7oYQJKfRqNhLeW4lXW
-         TCQg==
-X-Gm-Message-State: ACrzQf1ln8tCe5QyqDCsqcJ9/ixIgSb8rwqpWK9prNeGDhWwEVWnvQ4C
-        k4AIHxttZxC0UHwp+tuWwA==
-X-Google-Smtp-Source: AMsMyM7PkPjCjvokoDKlgpXF0xGhT0xxEIWsQFKZusHIVxDlXwthc+cfIjbWAR/yst/cwmPzfUYQ+g==
-X-Received: by 2002:a05:6808:1a13:b0:354:b339:25f2 with SMTP id bk19-20020a0568081a1300b00354b33925f2mr16488065oib.285.1667265097603;
-        Mon, 31 Oct 2022 18:11:37 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j21-20020a9d7d95000000b00661b019accbsm3333754otn.3.2022.10.31.18.11.36
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zeBMYdMZ1p+Lm3eAVj+hDEsLF6ZsPuh0Td05pqMw4LA=;
+        b=o1080JSFAIfsZkfPIzcPl8wTOyqAnvM2G73mzb8RES2bYTXr8M5tPOSvEkMAjKsBwk
+         d+N1R5DcXSMx1PdynU+bXN9b56XyVO3G3eLp9Dv0z9uHXz6VTEmAn7PCvTUouh7qsIK8
+         hH2kfLxaUlpMdAKzjI8aIYEbaasSmb2DK6Xbk+9Yzxi40t7KZPHlbjlR0hDDY9TYC7GW
+         h7/vux5CnocbmvkmgRpSul9lvpqB9WXnLdEgw1WwxB6AJfj2J2OPZWCSlhoXk043r7H/
+         61YciV+0zJoJMPh5fPTX0/VhBaxCU2Foq8IRqyq+8GFl9HMiNhioYFxb31Agh0Q4OE0t
+         91Yg==
+X-Gm-Message-State: ACrzQf3E1gnfSgYNDNrHmB8T/EtK5gLSTzjtiCZybpFJSPXI23nyiclm
+        W4H0o7wkr6TA4Fy8FQWfKg3zHQ==
+X-Google-Smtp-Source: AMsMyM4B0jgEDjy497l6SopIpu1wkozw10ZHKcpyKvpI1a5y333hD2+JbNSwhHScPQj2OGXxhsP3JA==
+X-Received: by 2002:a17:902:c1c6:b0:186:994f:6e57 with SMTP id c6-20020a170902c1c600b00186994f6e57mr16841442plc.17.1667265104900;
+        Mon, 31 Oct 2022 18:11:44 -0700 (PDT)
+Received: from archlinux.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id e64-20020a621e43000000b0056be7ac5261sm5230900pfe.163.2022.10.31.18.11.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 18:11:37 -0700 (PDT)
-Received: (nullmailer pid 4041380 invoked by uid 1000);
-        Tue, 01 Nov 2022 01:11:38 -0000
-Date:   Mon, 31 Oct 2022 20:11:38 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH V4 2/3] dt-bindings: display: panel: Add NewVision
- NV3051D bindings
-Message-ID: <20221101011138.GA4040180-robh@kernel.org>
-References: <20221028205009.15105-1-macroalpha82@gmail.com>
- <20221028205009.15105-3-macroalpha82@gmail.com>
- <762efc62-cad6-609b-c82d-01a4290e5948@linaro.org>
- <SN6PR06MB5342D758FFA64096002E348FA5359@SN6PR06MB5342.namprd06.prod.outlook.com>
+        Mon, 31 Oct 2022 18:11:44 -0700 (PDT)
+From:   Andy Chiu <andy.chiu@sifive.com>
+To:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        pabeni@redhat.com, edumazet@google.com, andy.chiu@sifive.com,
+        greentime.hu@sifive.com
+Subject: [PATCH net-next] net: axiemac: add PM callbacks to support suspend/resume
+Date:   Tue,  1 Nov 2022 09:11:39 +0800
+Message-Id: <20221101011139.900930-1-andy.chiu@sifive.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN6PR06MB5342D758FFA64096002E348FA5359@SN6PR06MB5342.namprd06.prod.outlook.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 28, 2022 at 09:28:59PM -0500, Chris Morgan wrote:
-> On Fri, Oct 28, 2022 at 07:01:12PM -0400, Krzysztof Kozlowski wrote:
-> > On 28/10/2022 16:50, Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > 
-> > > Add documentation for the NewVision NV3051D panel bindings.
-> > > Note that for the two expected consumers of this panel binding
-> > > the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
-> > > is used because the hardware itself is known as "anbernic,rg353p".
-> > > 
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Didn't you got here tag?
-> 
-> Yes, I'm so sorry. I always seem to miss one detail each time, I
-> promise I'll get better (eventually, I hope). This one should
-> already have the "Reviewed-by: Rob Herring <robh@kernel.org>" but
-> I forgot to include it. Literally the only change from v3 is the
-> return of a function changing from int to void, since that changed
-> in the 6.1 kernel.
+Support basic system-wide suspend and resume functions
 
-If you forget, just add the tags by themselves and the tools will pick 
-them up.
+Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+---
+ .../net/ethernet/xilinx/xilinx_axienet_main.c | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+index 441e1058104f..d082f2b10f4d 100644
+--- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
++++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+@@ -2217,12 +2217,48 @@ static void axienet_shutdown(struct platform_device *pdev)
+ 	rtnl_unlock();
+ }
+ 
++static int axienet_suspend(struct device *dev)
++{
++	struct net_device *ndev = dev_get_drvdata(dev);
++
++	if (!netif_running(ndev))
++		return 0;
++
++	netif_device_detach(ndev);
++
++	rtnl_lock();
++	axienet_stop(ndev);
++	rtnl_unlock();
++
++	return 0;
++}
++
++static int axienet_resume(struct device *dev)
++{
++	struct net_device *ndev = dev_get_drvdata(dev);
++
++	if (!netif_running(ndev))
++		return 0;
++
++	rtnl_lock();
++	axienet_open(ndev);
++	rtnl_unlock();
++
++	netif_device_attach(ndev);
++
++	return 0;
++}
++
++static DEFINE_SIMPLE_DEV_PM_OPS(axienet_pm_ops,
++				axienet_suspend, axienet_resume);
++
+ static struct platform_driver axienet_driver = {
+ 	.probe = axienet_probe,
+ 	.remove = axienet_remove,
+ 	.shutdown = axienet_shutdown,
+ 	.driver = {
+ 		 .name = "xilinx_axienet",
++		 .pm = &axienet_pm_ops,
+ 		 .of_match_table = axienet_of_match,
+ 	},
+ };
+-- 
+2.36.0
 
