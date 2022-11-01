@@ -2,98 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6619614398
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 04:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B32A6143A7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 04:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229689AbiKADUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 23:20:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60118 "EHLO
+        id S229649AbiKADcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 23:32:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbiKADUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 23:20:12 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03E164C1;
-        Mon, 31 Oct 2022 20:20:10 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A13B3We003254;
-        Tue, 1 Nov 2022 03:19:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=vsmyPGqjrN3pNUGJKucOlOuMfiAWJI3kVBM4CmpcAkg=;
- b=UUJ0PGKXDKWr5c3E2BU6bNCBnUPNMa0Equr0An1IGwSLjMDeld0Q1S79X1JxIq5dXGb+
- kG6ulC1mMuXLMDmCu0i2QX+vTzs08Klenr/y1VWSNNWzZINaI/SPoWNsLFSQImZbOe3b
- DCLLTVawa4nQVXP5mVWm3D4tMPBm7aXB+yj4ToXzr9hC/pVUUOnSjyuybNtaItgVqFoG
- Ki5altTbn2ScPNROPmrGTWwi9st/hHGJA15ZLkT30j/QXcBA4GUFf65EzIS+sL/lauc0
- Pl1GgCpc+75hf1A4NQm71V/UvO4WgE1a+F9ToBezO9RpHxhGO/tgFFedTWcYxwY4iM+V dQ== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kjsqh05ve-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 01 Nov 2022 03:19:56 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A13JtsO000716
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 1 Nov 2022 03:19:55 GMT
-Received: from [10.110.109.83] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 31 Oct
- 2022 20:19:53 -0700
-Message-ID: <fb7e101f-8de0-d77e-30e1-74b882b19583@quicinc.com>
-Date:   Mon, 31 Oct 2022 20:19:52 -0700
+        with ESMTP id S229495AbiKADcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 23:32:19 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D8111818
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 20:32:18 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A13WAjW027811;
+        Mon, 31 Oct 2022 22:32:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667273530;
+        bh=ZNSg+tdLYI8t3kL+DrHRf8hsg5cpT1hvwZ2tfGpA5/8=;
+        h=From:To:CC:Subject:Date;
+        b=xr8H7gdkGUsI63Rr8RfjFs4k/dT+jcEurvmn0W7cBYEjVXAPpa0ce5JYvz01NC6lh
+         ROhZB41GMaoCSEvrh0P4Dv4r9abMnOc2Nah9irCCccnhWW1BnzVic9/eRuz7sEBIPo
+         n45JlZoU7AZij+KJJME5u7jRPYLuGwci6R04LSI0=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A13WARQ025475
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 31 Oct 2022 22:32:10 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
+ Oct 2022 22:32:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 31 Oct 2022 22:32:10 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A13W59Q001079;
+        Mon, 31 Oct 2022 22:32:08 -0500
+From:   Matt Ranostay <mranostay@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v4 0/8] J721S2: Add support for additional IPs
+Date:   Mon, 31 Oct 2022 20:31:56 -0700
+Message-ID: <20221101033204.33048-1-mranostay@ti.com>
+X-Mailer: git-send-email 2.38.GIT
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v6 02/21] dt-bindings: Add binding for gunyah hypervisor
-Content-Language: en-US
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Marc Zyngier" <maz@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-3-quic_eberman@quicinc.com>
- <CABb+yY3JVNPG3dcyHNFxEeGEu3MN_pAOh3+cwexPPe2YG6SNUg@mail.gmail.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <CABb+yY3JVNPG3dcyHNFxEeGEu3MN_pAOh3+cwexPPe2YG6SNUg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4w0f77iR79SVZoQsJSIViVLTnRUaGtL4
-X-Proofpoint-ORIG-GUID: 4w0f77iR79SVZoQsJSIViVLTnRUaGtL4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-10-31_22,2022-10-31_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 impostorscore=0 lowpriorityscore=0
- suspectscore=0 bulkscore=0 mlxlogscore=749 clxscore=1015 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211010023
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,34 +61,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jassi,
+The following series of patches add support for the following
+on J721S2 common processor board,
 
-On 10/27/2022 7:33 PM, Jassi Brar wrote:
- > On Wed, Oct 26, 2022 at 1:59 PM Elliot Berman 
-<quic_eberman@quicinc.com> wrote:
- > .....
- >> +
- >> +        gunyah-resource-mgr@0 {
- >> +            compatible = "gunyah-resource-manager-1-0", 
-"gunyah-resource-manager";
- >> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX 
-full IRQ */
- >> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX 
-empty IRQ */
- >> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
- >> +                  /* TX, RX cap ids */
- >> +        };
- >>
- > All these resources are used only by the mailbox controller driver.
- > So, this should be the mailbox controller node, rather than the
- > mailbox user.> One option is to load gunyah-resource-manager as a 
-module that relies
- > on the gunyah-mailbox provider. That would also avoid the "Allow
- > direct registration to a channel" hack patch.
+- USB
+- SerDes
+- OSPI
+- PCIe
 
-A message queue to another guest VM wouldn't be known at boot time and 
-thus couldn't be described on the devicetree. We will need "Allow direct 
-registration to a channel" patch anyway to support those message queues. 
-I would like to have one consistent mechanism to set up message queues.
+Changes from v1:
+* Resolve issues with dt schema reporting
+* Minor changes related to consistency on node naming and value
 
-- Elliot
+Changes from v2:
+* Added PCIe RC + EP enablement patchsets
+* Added device-id for j722s2 PCIe host in dt documentation
+* Reworked SERDES + WIZ enablement patchset to use properies for clocks
+  defines versus entire devicetree nodes. Results in cleaner code that
+  doesn't break dt-schema or the driver functionality.
+
+Changes from v3:
+* Rebased changes on top of '[PATCH 00/12] TI J7x Disable Incomplete DT Nodes'
+* Removed "dt-bindings: PCI: Add host mode device-id for j721s2 platform" patch and
+  send it own series to avoid a dependency that would hold up other patches in this
+  series
+
+Aswath Govindraju (7):
+  arm64: dts: ti: k3-j721s2-main: Add support for USB
+  arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable SERDES0
+  arm64: dts: ti: k3-j721s2-common-proc-board: Add USB support
+  arm64: dts: ti: k3-j721s2: Add support for OSPI Flashes
+  arm64: dts: ti: k3-j721s2-main: Add PCIe device tree node
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
+
+Matt Ranostay (1):
+  arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ device tree node
+
+ .../dts/ti/k3-j721s2-common-proc-board.dts    |  92 +++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 156 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 +++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  42 +++++
+ 4 files changed, 330 insertions(+)
+
+-- 
+2.38.GIT
+
