@@ -2,89 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36B89615493
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 22:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 621BA6154A6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:04:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231225AbiKAV7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 17:59:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38962 "EHLO
+        id S231411AbiKAWEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 18:04:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231229AbiKAV7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 17:59:23 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B6B51A812;
-        Tue,  1 Nov 2022 14:58:49 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id f5so19024861ejc.5;
-        Tue, 01 Nov 2022 14:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=4TMJ2/97uEF+3KaUi8/IJUBwB2FgHNsew0b2CWSykd0=;
-        b=N5MlkBYasbaBLPbYSLbwkBFgPK6XXiKDrbPXeLderFC0hN+1hqOiBdezANh1oMuCZY
-         imjOu8VGMMXlEk60P8cD0Z5PE6gEyd4OkOST0fKrKQp3ENUFvL9lN9/4qwYfFkDXOMA9
-         iSJlDLbkIpVta68NLet1Cl1wEZkEjxA4BQLy/kXGoQ4EADyX7/SAC2AoguIFFkpLNRXr
-         keqExt3Bo/d7P0ZzgJzNy4le+ovY3LvlsPH4vN5e8uAfsrx02Z/PlE9TACqm/RswpPjN
-         exD9MmDNVG5L0RaTNgfiBMBpjdU57J761psqOv91wEC/bdQrTcPLpDD/Pt8/fsJzW/00
-         Y8mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4TMJ2/97uEF+3KaUi8/IJUBwB2FgHNsew0b2CWSykd0=;
-        b=xyZpzWbIt7w7uXmcAdzU9nkfKoRRFT7BTQ3QwgWKgwQXSA/fAYA2fFuJ3ZgS2KOwXp
-         2XH1eymU6BJrUMKeFdngOXdOGk8VXxaN5IBoaXSNyXNWG1Nvl6yoL9XjEHIxxj0WE331
-         axgaPgx0mEB44Es1PmDwuMAE6CI8A4w4++oo6pA0/VEq4uxsr5h4bhw04VVXClOyFUEP
-         LjfgR6i/3EvyMGP3qHZvlcTwRyBbbhsV33NChgqBFbQSaWNB37EduNlLayeBCTKvgENS
-         JSe2JqkHW6AyLZw8IyVHn+IYXjxFYYXHlsBCPYC1xg6UiuhzmPXPaN+QnWc+SyWbsm+f
-         xyDg==
-X-Gm-Message-State: ACrzQf1WlF3PuePe5u+UG4kElFASv9MQBkYwB15KL6YvfAP72WS/UWar
-        +J6QsV2aAtcweinWw5gNLr+udsuxI22aEAqGg7w=
-X-Google-Smtp-Source: AMsMyM7gKetTduEW6MoryEjGlM7bGisT8V3iiRxLCrzL3iNkTHiUe9QH39sF2k31aoiedPiZQxniBSUE419TF76ewHA=
-X-Received: by 2002:a17:906:2a93:b0:78d:b87e:6aab with SMTP id
- l19-20020a1709062a9300b0078db87e6aabmr20674022eje.157.1667339928024; Tue, 01
- Nov 2022 14:58:48 -0700 (PDT)
+        with ESMTP id S231248AbiKAWD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:03:59 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 309DDBCAC;
+        Tue,  1 Nov 2022 15:03:48 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A1M3hJ5080000;
+        Tue, 1 Nov 2022 17:03:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667340223;
+        bh=idqkIaxfM0hYGMULOZ4YM5a3jmDlrjLVq7FFd478qm0=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=nRdH6yX9K4i1UPy6X+dW483oscPvb90Pi2QuF27xlLLvuEPOb/3JevZO4TxDP/U7G
+         5U4/hptUQCpw97cKDmRQNOsRTErzMSqk79/27vXGfOehDpCueURfww20TLQNOd+Fxb
+         +IJKBAl2dUkT55A+GiOWYmHe9vDU3DWNdUHWjGAc=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A1M3hJQ098295
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 1 Nov 2022 17:03:43 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 1 Nov
+ 2022 17:03:43 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Tue, 1 Nov 2022 17:03:43 -0500
+Received: from [10.250.35.234] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A1M3gDC008535;
+        Tue, 1 Nov 2022 17:03:42 -0500
+Message-ID: <781a97eb-ac7f-2986-9915-76f8543c61fe@ti.com>
+Date:   Tue, 1 Nov 2022 17:03:42 -0500
 MIME-Version: 1.0
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-3-quic_eberman@quicinc.com> <CABb+yY3JVNPG3dcyHNFxEeGEu3MN_pAOh3+cwexPPe2YG6SNUg@mail.gmail.com>
- <fb7e101f-8de0-d77e-30e1-74b882b19583@quicinc.com> <CABb+yY08jP+Q5xvzLf=7F1tULP6-eZz5EDiK9mBj2fAv=iZa_A@mail.gmail.com>
- <4cb58489-cd42-1868-9add-0c360065de23@quicinc.com>
-In-Reply-To: <4cb58489-cd42-1868-9add-0c360065de23@quicinc.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Tue, 1 Nov 2022 16:58:36 -0500
-Message-ID: <CABb+yY2GA90RLazHZL7sLtC+ka-P8y6s00V2BVF4OMPTDi-rKg@mail.gmail.com>
-Subject: Re: [PATCH v6 02/21] dt-bindings: Add binding for gunyah hypervisor
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/2] ARM: dts: ti: Add AM57xx GP EVM board support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221014152643.28745-1-afd@ti.com>
+ <20221014152643.28745-2-afd@ti.com>
+ <c2fce6e4-6292-0d5a-7f16-b2a4fd06a185@linaro.org>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <c2fce6e4-6292-0d5a-7f16-b2a4fd06a185@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,54 +72,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 1, 2022 at 3:35 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->
->
->
-> On 11/1/2022 9:23 AM, Jassi Brar wrote:
-> > On Mon, Oct 31, 2022 at 10:20 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
-> >>
-> >> Hi Jassi,
-> >>
-> >> On 10/27/2022 7:33 PM, Jassi Brar wrote:
-> >>   > On Wed, Oct 26, 2022 at 1:59 PM Elliot Berman
-> >> <quic_eberman@quicinc.com> wrote:
-> >>   > .....
-> >>   >> +
-> >>   >> +        gunyah-resource-mgr@0 {
-> >>   >> +            compatible = "gunyah-resource-manager-1-0",
-> >> "gunyah-resource-manager";
-> >>   >> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX
-> >> full IRQ */
-> >>   >> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX
-> >> empty IRQ */
-> >>   >> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
-> >>   >> +                  /* TX, RX cap ids */
-> >>   >> +        };
-> >>   >>
-> >>   > All these resources are used only by the mailbox controller driver.
-> >>   > So, this should be the mailbox controller node, rather than the
-> >>   > mailbox user.> One option is to load gunyah-resource-manager as a
-> >> module that relies
-> >>   > on the gunyah-mailbox provider. That would also avoid the "Allow
-> >>   > direct registration to a channel" hack patch.
-> >>
-> >> A message queue to another guest VM wouldn't be known at boot time and
-> >> thus couldn't be described on the devicetree.
-> >>
-> > I think you need to implement of_xlate() ... or please tell me what
-> > exactly you need to specify in the dt.
->
-> Dynamically created virtual machines can't be known on the dt, so there
-> is nothing to specify in the DT. There couldn't be a devicetree node for
-> the message queue client because that client is only exists once the VM
-> is created by userspace.
->
-The underlying "physical channel" is the synchronous SMC instruction,
-which remains 1 irrespective of the number of mailbox instances
-created.
-So basically you are sharing one resource among users. Why doesn't the
-RM request the "smc instruction" channel once and share it among
-users?
+On 10/15/22 10:21 AM, Krzysztof Kozlowski wrote:
+> On 14/10/2022 11:26, Andrew Davis wrote:
+>> The AM57xx GP EVM boards are built on top the AM57xx BeagleBoard-X15.
+>> The EVM extends the BeagleBoard by adding a touchscreen, some buttons,
+>> and a handful of peripheral extension slots.
+>>
+>> Being a plugin extension of an existing standalone board; we define
+>> the am57xx-evm as a composite-DTB of the base am57xx-beagle-x15
+>> and a new am57xx-evm overlay.
+>>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Signed-off-by: Andrew Davis <afd@ti.com>
+>> ---
+>>   arch/arm/boot/dts/Makefile        |   2 +
+>>   arch/arm/boot/dts/am57xx-evm.dtso | 127 ++++++++++++++++++++++++++++++
+>>   2 files changed, 129 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/am57xx-evm.dtso
+>>
+>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>> index 6aa7dc4db2fc..767220502021 100644
+>> --- a/arch/arm/boot/dts/Makefile
+>> +++ b/arch/arm/boot/dts/Makefile
+>> @@ -984,10 +984,12 @@ dtb-$(CONFIG_SOC_OMAP5) += \
+>>   	omap5-igep0050.dtb \
+>>   	omap5-sbc-t54.dtb \
+>>   	omap5-uevm.dtb
+>> +am57xx-evm-dtbs := am57xx-beagle-x15.dtb am57xx-evm.dtbo
+>>   dtb-$(CONFIG_SOC_DRA7XX) += \
+>>   	am57xx-beagle-x15.dtb \
+>>   	am57xx-beagle-x15-revb1.dtb \
+>>   	am57xx-beagle-x15-revc.dtb \
+>> +	am57xx-evm.dtb \
+>>   	am5729-beagleboneai.dtb \
+>>   	am57xx-cl-som-am57x.dtb \
+>>   	am57xx-sbc-am57x.dtb \
+>> diff --git a/arch/arm/boot/dts/am57xx-evm.dtso b/arch/arm/boot/dts/am57xx-evm.dtso
+>> new file mode 100644
+>> index 000000000000..6678aaef66ee
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/am57xx-evm.dtso
+>> @@ -0,0 +1,127 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * DT overlay for AM57xx GP EVM boards
+>> + *
+>> + * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/input/input.h>
+>> +
+>> +&{/} {
+>> +	compatible = "ti,am5728-evm", "ti,am572x-beagle-x15", "ti,am5728", "ti,dra742", "ti,dra74", "ti,dra7";
+> 
+> You should start documenting these...
+> 
 
--j
+There are some odd bindings in the current txt based docs, will
+need some time the fixup:
+
+https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/omap/omap.txt
+
+I'll try converting this over to yaml after this series.
+
+>> +	model = "TI AM5728 EVM";
+>> +
+>> +	aliases {
+>> +		display0 = "/display";
+>> +		display1 = "/connector"; // Fixme: &lcd0 and &hdmi0 could be
+>> +					 // resolved here correcly based on
+>> +					 // information in the base dtb symbol
+>> +					 // table with a fix in dtc
+>> +	};
+>> +
+>> +	gpio-keys {
+>> +		compatible = "gpio-keys";
+>> +
+>> +		button-user1 {
+>> +			gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
+>> +			label = "USER1";
+>> +			linux,code = <BTN_1>;
+>> +		};
+>> +
+>> +		button-user2 {
+>> +			gpios = <&gpio2 25 GPIO_ACTIVE_LOW>;
+>> +			label = "USER2";
+>> +			linux,code = <BTN_2>;
+>> +		};
+>> +
+>> +		button-user3 {
+>> +			gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
+>> +			label = "USER3";
+>> +			linux,code = <BTN_3>;
+>> +		};
+>> +
+>> +		button-user4 {
+>> +			gpios = <&gpio2 24 GPIO_ACTIVE_LOW>;
+>> +			label = "USER4";
+>> +			linux,code = <BTN_4>;
+>> +		};
+>> +
+>> +		button-user5 {
+>> +			gpios = <&gpio2 20 GPIO_ACTIVE_LOW>;
+>> +			label = "USER5";
+>> +			linux,code = <BTN_5>;
+>> +		};
+>> +	};
+>> +
+>> +	lcd0: display {
+>> +		compatible = "osddisplays,osd070t1718-19ts", "panel-dpi";
+>> +		backlight = <&lcd_bl>;
+>> +		enable-gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
+>> +		label = "lcd";
+>> +
+>> +		port {
+>> +			lcd_in: endpoint {
+>> +				remote-endpoint = <&dpi_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	lcd_bl: backlight {
+>> +		compatible = "pwm-backlight";
+>> +		brightness-levels = <0 243 245 247 249 251 252 253 255>;
+>> +		default-brightness-level = <8>;
+>> +		pwms = <&ehrpwm1 0 50000 0>;
+> 
+> Don't you have here PWM flag?
+> 
+
+The invert flag? Nope, this is not inverted. And there is no
+define for none, just 0.
+
+>> +	};
+>> +};
+>> +
+>> +&ehrpwm1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&epwmss1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c5 {
+>> +	status = "okay";
+>> +	clock-frequency = <400000>;
+>> +
+>> +	#address-cells = <1>;
+>> +	#size-cells = <0>;
+>> +
+>> +	pixcir_ts@5c {
+> 
+> No underscores in node names.
+> 
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+
+ACK
+
+>> +		compatible = "pixcir,pixcir_tangoc";
+>> +		attb-gpio = <&gpio2 4 GPIO_ACTIVE_HIGH>;
+>> +		interrupt-parent = <&gpio2>;
+>> +		interrupts = <4 0>;
+> 
+> Use proper flags (and not NONE).
+> 
+
+ACK, will fix.
+
+Thanks,
+Andrew
+
+>> +		reg = <0x5c>;
+>> +		reset-gpio = <&gpio2 6 GPIO_ACTIVE_HIGH>;
+>> +		touchscreen-size-x = <1024>;
+>> +		touchscreen-size-y = <600>;
+> Best regards,
+> Krzysztof
+> 
