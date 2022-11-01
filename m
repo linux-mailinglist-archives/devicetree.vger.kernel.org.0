@@ -2,311 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 329986149CB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 12:49:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E39B6149E1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 12:50:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbiKALte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 07:49:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40820 "EHLO
+        id S231479AbiKALum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 07:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231552AbiKALtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 07:49:00 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173D31C436
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 04:43:10 -0700 (PDT)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 01C2F3EBA9;
-        Tue,  1 Nov 2022 12:43:06 +0100 (CET)
-Date:   Tue, 1 Nov 2022 12:43:04 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Kalyan Thota <quic_kalyant@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com
-Subject: Re: [v7] drm/msm/disp/dpu1: add support for dspp sub block flush in
- sc7280
-Message-ID: <20221101114304.3vsurukthhh34wmf@SoMainline.org>
-References: <1667300225-14367-1-git-send-email-quic_kalyant@quicinc.com>
+        with ESMTP id S231516AbiKALuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 07:50:19 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34DC18356;
+        Tue,  1 Nov 2022 04:47:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net; s=s31663417;
+        t=1667303193; bh=JJv66pqUZLGSuwjn2/9tXQQ7SlOBgLn8HpmJOkx7aPg=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=rrF+YsPAa3IV99mB0UyIPdZwWMj2a1Sd0W7yTqGVoVzjeF8p5DGkY21ppeA/EkzVP
+         z29N0cxCAoRyzprHerp0+BAqwljinzvwpce1Lg7MiZ1vJP9Rk37TF1FM37YSicCAfS
+         GvgTL6gQ03dZbcvlZ7yBfu9G2Pqa+3c3dBIDpjQnOoAxXaDG3pyBZpDwjCpnqOsON/
+         tttbO5e9jyjL7PdPPwFl16q8Z0rlbEb/Ege3qZYNr1RKU8QPTEFjv1UccAXSXyyPJm
+         QUNd8yjya2RYv6Se09sOur3sGcgB1xfB9HItkpVppf5L0QmhhhOtmFsSx9tzaAxVuM
+         R6kxCeq4gnCAQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from probook ([95.223.44.31]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MRmfo-1oSIKp2Fsg-00T9OQ; Tue, 01
+ Nov 2022 12:46:33 +0100
+Date:   Tue, 1 Nov 2022 12:46:24 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 2/7] clocksource: timer-npcm7xx: Enable timer 1 clock
+ before use
+Message-ID: <Y2EHEMja1KuhUJda@probook>
+References: <20220508194333.2170161-1-j.neuschaefer@gmx.net>
+ <20220508194333.2170161-3-j.neuschaefer@gmx.net>
+ <0972c833-432d-a850-958f-0d4f482e25a4@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Cg4Yx/SYZOk1zL3s"
 Content-Disposition: inline
-In-Reply-To: <1667300225-14367-1-git-send-email-quic_kalyant@quicinc.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <0972c833-432d-a850-958f-0d4f482e25a4@linaro.org>
+X-Provags-ID: V03:K1:nQWEA620M0xDRJA3lx//ZeEp2fNJGNFvQyYu7/vR8QZvRV2AKUU
+ cSEYUB1J0pIUVc5JeZ2F/CgCHKgi6EA8TJF0TaTBz1hrzvsJrSw+LR/YoClr6L0s9FNay4e
+ jrrN+GvUJYPXquSebUUbVnWqeUkfq+nlBn3j/nkhv9R+WufeU26d+h7jEsD8Jp8IBc7qepy
+ xhmnYem6U8/Xzz52cQr1A==
+UI-OutboundReport: notjunk:1;M01:P0:K8gGFXdxteQ=;f+EuOcF2T+Nx30Flx0u0xHWGvPw
+ zziIdeP5O68bmUXfyk/H2heXB3PcrROiY5DzSCTaX5UPhQs9h5DRdnFWsQwOE7x1K3urzYsTW
+ eORz1MN0uvXw2vEBv5nPWyM8NPwQMuBddVXqQQljlpEqE3nnZb1EdY5c7i0lrN3A5aJanrzQU
+ L/eBIFF/XdT5gx9TT5Vcmo/VgNbNn2kDYhWYMVzKfp+BrRsq150Ah6hHc0VeeVu+t66TFi5Kh
+ q2zMJVvUhjSaom/4uvlJesJTzhkzHCmE9XP+wK0UK1JNXfI8k37bi86NMoptJAuDsHXHUUiP4
+ XzgwSuDJObE6H/Uk9ID96wuqTZBAmQzGusKFiATq3ZA1OvCvUvJhpTICJ0BBEidqTmvirMxHE
+ PZegy8D9J7Ioajz8NV91MYVk7/cvv7S1q/a1uSxsqtzUBTAjxA9tnm7VQXsDgiuiDeSNfPRXg
+ 68hV3VYt8emm19JfVjW+z9HRJljWYFGQMgjPucsBj7HDnDgUQTMb3lXOl2pwNhTvYP0VgWsU7
+ +w8dzpIddaG+7Cet54hmjAHXscoSb8oyCaI898FGxmAVE6VN5KtQVqa02QlrnwKSbTEh0vm+w
+ 5/VGC4guFNGSHaBZ9/YUcKA3fPBvzTif8rb10dS11sOMF/wV8ukzx6wDeN1ZJ/4yponjo+1BH
+ Qb5/Zzi4B7P+u4oanm1+0zKrRd4lXnTGRDR3TVC/BdtiJyBJIX9TqQch3POA/i6HPB2glmGiK
+ y83xB46YjNmmv4Igi1LZQdrpY31k9osWi7f7+a3qsHQ0MLdR8TEgg7q+I2Ek9mhVxaMDc4ykZ
+ H+neKgeBt0upoGbGora8TQBDbr8K5YuNoLLEW+s/6cF9Uy2Gv64M/ZGUKWZzE/UaOInC1xLBO
+ rcV3DsTsM1EctieH6rybO4oH71kbpNIcoxVuXZ6JraJQIfmRgfhTkY7Bk2Aw+VTd/yALlYiJT
+ VAi5nms9oxarNm0kKWwiKfpr8fQ=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-11-01 03:57:05, Kalyan Thota wrote:
-> Flush mechanism for DSPP blocks has changed in sc7280 family, it
-> allows individual sub blocks to be flushed in coordination with
-> master flush control.
-> 
-> Representation: master_flush && (PCC_flush | IGC_flush .. etc )
-> 
-> This change adds necessary support for the above design.
-> 
-> Changes in v1:
-> - Few nits (Doug, Dmitry)
-> - Restrict sub-block flush programming to dpu_hw_ctl file (Dmitry)
-> 
-> Changes in v2:
-> - Move the address offset to flush macro (Dmitry)
-> - Seperate ops for the sub block flush (Dmitry)
-> 
-> Changes in v3:
-> - Reuse the DPU_DSPP_xx enum instead of a new one (Dmitry)
-> 
-> Changes in v4:
-> - Use shorter version for unsigned int (Stephen)
-> 
-> Changes in v5:
-> - Spurious patch please ignore.
-> 
-> Changes in v6:
-> - Add SOB tag (Doug, Dmitry)
-> 
-> Changes in v7:
-> - Cache flush mask per dspp (Dmitry)
-> - Few nits (Marijn)
 
-Thanks, but it seems like you skipped some of them.  I'll point them out
-again this time, including some new formatting issues.
+--Cg4Yx/SYZOk1zL3s
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c       |  2 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c |  5 ++-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  4 +++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c     | 46 ++++++++++++++++++++++++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h     |  7 ++--
->  5 files changed, 58 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> index 601d687..4170fbe 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-> @@ -766,7 +766,7 @@ static void _dpu_crtc_setup_cp_blocks(struct drm_crtc *crtc)
->  
->  		/* stage config flush mask */
->  		ctl->ops.update_pending_flush_dspp(ctl,
-> -			mixer[i].hw_dspp->idx);
-> +			mixer[i].hw_dspp->idx, DPU_DSPP_PCC);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> index 27f029f..0eecb2f 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> @@ -65,7 +65,10 @@
->  	(PINGPONG_SDM845_MASK | BIT(DPU_PINGPONG_TE2))
->  
->  #define CTL_SC7280_MASK \
-> -	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG))
-> +	(BIT(DPU_CTL_ACTIVE_CFG) | \
-> +	 BIT(DPU_CTL_FETCH_ACTIVE) | \
-> +	 BIT(DPU_CTL_VM_CFG) | \
-> +	 BIT(DPU_CTL_DSPP_SUB_BLOCK_FLUSH))
->  
->  #define MERGE_3D_SM8150_MASK (0)
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index 38aa38a..8148e91 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -161,10 +161,12 @@ enum {
->   * DSPP sub-blocks
->   * @DPU_DSPP_PCC             Panel color correction block
->   * @DPU_DSPP_GC              Gamma correction block
-> + * @DPU_DSPP_IGC             Inverse Gamma correction block
+On Mon, May 09, 2022 at 01:37:40PM +0200, Daniel Lezcano wrote:
+> On 08/05/2022 21:43, Jonathan Neusch=C3=A4fer wrote:
+> > In the WPCM450 SoC, the clocks for each timer can be gated individually.
+> > To prevent the timer 1 clock from being gated, enable it explicitly.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+>=20
+>=20
+> Applied, thanks
 
-Here.
+Hi, I didn't see this patch in linux-next. May I know where you applied it?
 
->   */
->  enum {
->  	DPU_DSPP_PCC = 0x1,
->  	DPU_DSPP_GC,
-> +	DPU_DSPP_IGC,
->  	DPU_DSPP_MAX
->  };
->  
-> @@ -191,6 +193,7 @@ enum {
->   * @DPU_CTL_SPLIT_DISPLAY:	CTL supports video mode split display
->   * @DPU_CTL_FETCH_ACTIVE:	Active CTL for fetch HW (SSPPs)
->   * @DPU_CTL_VM_CFG:		CTL config to support multiple VMs
-> + * @DPU_CTL_DSPP_BLOCK_FLUSH: CTL config to support dspp sub-block flush
+If it got lost somehow, I can also resend it later.
 
-I even overlooked this in my review: all docs use spaces except these
-use tabs... Yet you use spaces here and didn't even align the text.
 
-Either use tabs in the line you add here, or replace the rest with
-spaces and align them again.
+Best regards,
+Jonathan
 
->   * @DPU_CTL_MAX
->   */
->  enum {
-> @@ -198,6 +201,7 @@ enum {
->  	DPU_CTL_ACTIVE_CFG,
->  	DPU_CTL_FETCH_ACTIVE,
->  	DPU_CTL_VM_CFG,
-> +	DPU_CTL_DSPP_SUB_BLOCK_FLUSH,
->  	DPU_CTL_MAX
->  };
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> index a35ecb6..fbcb7da 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> @@ -33,6 +33,7 @@
->  #define   CTL_INTF_FLUSH                0x110
->  #define   CTL_INTF_MASTER               0x134
->  #define   CTL_FETCH_PIPE_ACTIVE         0x0FC
-> +#define   CTL_DSPP_n_FLUSH(n)		((0x13C) + ((n) * 4))
+--Cg4Yx/SYZOk1zL3s
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Here.
+-----BEGIN PGP SIGNATURE-----
 
->  
->  #define CTL_MIXER_BORDER_OUT            BIT(24)
->  #define CTL_FLUSH_MASK_CTL              BIT(17)
-> @@ -110,9 +111,14 @@ static inline void dpu_hw_ctl_trigger_pending(struct dpu_hw_ctl *ctx)
->  
->  static inline void dpu_hw_ctl_clear_pending_flush(struct dpu_hw_ctl *ctx)
->  {
-> +	int i;
-> +
->  	trace_dpu_hw_ctl_clear_pending_flush(ctx->pending_flush_mask,
->  				     dpu_hw_ctl_get_flush_register(ctx));
->  	ctx->pending_flush_mask = 0x0;
-> +
-> +	for(i = 0; i < ARRAY_SIZE(ctx->pending_dspp_flush_mask); i++)
-> +		ctx->pending_dspp_flush_mask[i] = 0x0;
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmNhBu4ACgkQCDBEmo7z
+X9veJBAAzD5hLwhrXHZk7IC3NjXxmXkEvjxqi+k1w8isyz9tr6/ldQGEmQ9m2YJc
+Lqw+QYmq2MvpPeEDYzsX+wGq8kjbQmdn5rztX/k5wx2I4MaZEtKmHEl8WlAJ973M
+ryvuLYqzsdparwWYam7WdjdhIPBsrtDvlQYtThoCYSSQlDgUgwv1/pfZE2Rh3nXT
+KhTmM/eZ0xVh0DT9VzaiVQForAg6mokDB0OdTBf0ZcXTctCTAkHo8Mjr5Yb7iIlZ
+lWnM5NG7Nhykn8AbVFOE6dQMIaiPJzwhpYY35APp+5qvPLJcYMc1H8hsDowVXK2c
+rwEEhKFOreq8ovc9zjFiQ37QH71Qvv4o1xJ3/1Q0HmF06KiF9zidWopokC8o5pe6
+RT1HY+7+D14CHL2+HnF9vjCqhyfZsVUraGBxscolgxoK/q3sfX0tWunle6qM17vc
+MjeYmkjnjV5SyQg7TL8/8BKttzYt/wC9mqEtkFzCnHtCtBpGgJJ9QbP8OfCJxZTs
+Fw4iww/01aZQSvC1HvBISotocCFDmXejtBjkQCdkbQOQbHI7u78Z/2RTG3DNtq6r
+lgi0ZvzjeA47j7XAX+jLm2K4XhnGJnhv+X30z2llNFfPa+fFt3UovL7het7hIXfR
+NONeccaOnV9J5M0Y/hPw2cGEi4RwJCjjxIv2/YK3sfnXX2QUPIM=
+=g5U2
+-----END PGP SIGNATURE-----
 
-Any idea why the other `pending_xxx_flush_mask`s aren't cleared here?
-
->  }
->  
->  static inline void dpu_hw_ctl_update_pending_flush(struct dpu_hw_ctl *ctx,
-> @@ -130,6 +136,8 @@ static u32 dpu_hw_ctl_get_pending_flush(struct dpu_hw_ctl *ctx)
->  
->  static inline void dpu_hw_ctl_trigger_flush_v1(struct dpu_hw_ctl *ctx)
->  {
-> +	int i;
-> +
->  	if (ctx->pending_flush_mask & BIT(MERGE_3D_IDX))
->  		DPU_REG_WRITE(&ctx->hw, CTL_MERGE_3D_FLUSH,
->  				ctx->pending_merge_3d_flush_mask);
-> @@ -140,6 +148,11 @@ static inline void dpu_hw_ctl_trigger_flush_v1(struct dpu_hw_ctl *ctx)
->  		DPU_REG_WRITE(&ctx->hw, CTL_WB_FLUSH,
->  				ctx->pending_wb_flush_mask);
->  
-> +	for(i = 0; i < ARRAY_SIZE(ctx->pending_dspp_flush_mask); i++)
-> +		if (ctx->pending_dspp_flush_mask[i])
-> +			DPU_REG_WRITE(&ctx->hw, CTL_DSPP_n_FLUSH(i),
-> +				ctx->pending_dspp_flush_mask[i]);
-> +
->  	DPU_REG_WRITE(&ctx->hw, CTL_FLUSH, ctx->pending_flush_mask);
->  }
->  
-> @@ -287,8 +300,9 @@ static void dpu_hw_ctl_update_pending_flush_merge_3d_v1(struct dpu_hw_ctl *ctx,
->  }
->  
->  static void dpu_hw_ctl_update_pending_flush_dspp(struct dpu_hw_ctl *ctx,
-> -	enum dpu_dspp dspp)
-> +	enum dpu_dspp dspp, u32 dspp_sub_blk)
->  {
-> +
->  	switch (dspp) {
->  	case DSPP_0:
->  		ctx->pending_flush_mask |= BIT(13);
-> @@ -307,6 +321,30 @@ static void dpu_hw_ctl_update_pending_flush_dspp(struct dpu_hw_ctl *ctx,
->  	}
->  }
->  
-> +static void dpu_hw_ctl_update_pending_flush_dspp_subblocks(
-> +	struct dpu_hw_ctl *ctx,	enum dpu_dspp dspp, u32 dspp_sub_blk)
-> +{
-> +
-> +	if (dspp >= DSPP_MAX)
-> +		return;
-> +
-> +	switch (dspp_sub_blk) {
-> +	case DPU_DSPP_IGC:
-> +		ctx->pending_dspp_flush_mask[dspp-DSPP_0] |= BIT(2);
-
-Spaces around -, here and below.
-
-- Marijn
-
-> +		break;
-> +	case DPU_DSPP_PCC:
-> +		ctx->pending_dspp_flush_mask[dspp-DSPP_0] |= BIT(4);
-> +		break;
-> +	case DPU_DSPP_GC:
-> +		ctx->pending_dspp_flush_mask[dspp-DSPP_0] |= BIT(5);
-> +		break;
-> +	default:
-> +		return;
-> +	}
-> +
-> +	ctx->pending_flush_mask |= BIT(29);
-> +}
-> +
->  static u32 dpu_hw_ctl_poll_reset_status(struct dpu_hw_ctl *ctx, u32 timeout_us)
->  {
->  	struct dpu_hw_blk_reg_map *c = &ctx->hw;
-> @@ -675,7 +713,11 @@ static void _setup_ctl_ops(struct dpu_hw_ctl_ops *ops,
->  	ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
->  	ops->update_pending_flush_sspp = dpu_hw_ctl_update_pending_flush_sspp;
->  	ops->update_pending_flush_mixer = dpu_hw_ctl_update_pending_flush_mixer;
-> -	ops->update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
-> +	if (cap & BIT(DPU_CTL_DSPP_SUB_BLOCK_FLUSH))
-> +		ops->update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp_subblocks;
-> +	else
-> +		ops->update_pending_flush_dspp = dpu_hw_ctl_update_pending_flush_dspp;
-> +
->  	if (cap & BIT(DPU_CTL_FETCH_ACTIVE))
->  		ops->set_active_pipes = dpu_hw_ctl_set_fetch_pipe_active;
->  };
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> index 96c012e..ff4e92c 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-> @@ -148,13 +148,15 @@ struct dpu_hw_ctl_ops {
->  		enum dpu_lm blk);
->  
->  	/**
-> -	 * OR in the given flushbits to the cached pending_flush_mask
-> +	 * OR in the given flushbits to the cached pending_dspp_flush_mask
->  	 * No effect on hardware
->  	 * @ctx       : ctl path ctx pointer
->  	 * @blk       : DSPP block index
-> +	 * @dspp_sub_blk : DSPP sub-block index
->  	 */
->  	void (*update_pending_flush_dspp)(struct dpu_hw_ctl *ctx,
-> -		enum dpu_dspp blk);
-> +		enum dpu_dspp blk, u32 dspp_sub_blk);
-> +
->  	/**
->  	 * Write the value of the pending_flush_mask to hardware
->  	 * @ctx       : ctl path ctx pointer
-> @@ -242,6 +244,7 @@ struct dpu_hw_ctl {
->  	u32 pending_intf_flush_mask;
->  	u32 pending_wb_flush_mask;
->  	u32 pending_merge_3d_flush_mask;
-> +	u32 pending_dspp_flush_mask[DSPP_MAX - DSPP_0];
->  
->  	/* ops */
->  	struct dpu_hw_ctl_ops ops;
-> -- 
-> 2.7.4
-> 
+--Cg4Yx/SYZOk1zL3s--
