@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9FF61552A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E76661552E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:40:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbiKAWjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 18:39:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45728 "EHLO
+        id S229944AbiKAWkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 18:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbiKAWjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:39:36 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53AFAE14;
-        Tue,  1 Nov 2022 15:39:35 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id j14so22931626ljh.12;
-        Tue, 01 Nov 2022 15:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GeigVI+V5xySLHwa2uoMXywRzDo/9AKQ0VmpZC55SVM=;
-        b=HhcR6dNxu36C2QsltNXnoi9BKUuV7yfmnrMN/IpskveeWEAURnGiu5FwESJpXmdoQ2
-         gjBn1fFAaoF0N56ZAbydnD7m0TO74RqIAHgw5yUCwjPxvXV4uJmo9ettyyP/4uwK+nyO
-         ouUsQ5gNhOQgKKeW3FYqOoF9hOqEepdquWGiCI0DMKPwfFX11BEanIHlznasp3mCuc77
-         jZLfsju2ZKY3jLms0j+yNvku49wKIzJSnGKx8WWZDYm2hcH1uvxxI3H70zrjy9kgOt6P
-         HG5sFvaxe1VG33+hxXmPOF+1XGJ2Uqzuki1IJdqrVGr8aKBa08mVHTmQvNWXoqf4Uwny
-         MwzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GeigVI+V5xySLHwa2uoMXywRzDo/9AKQ0VmpZC55SVM=;
-        b=Xhm0HL5JK75aosf+cy6fZETkhOOT1cCejWAlr8zU2PTc19W493XxZIdfY2xvQMwySM
-         oA7OZk7BHFxQ9m1uz2ER3v3shAR8HoWZX6PIHJXCcUdcFBVrH/J+5FNbK0Hg3ulKcwB5
-         5kV9y6pOXRV4Pj/KnpmADYcT75DHETLgMAQ9iGOt4v/9mepeJq3Im30NIJCi/CfPNVj0
-         yEwpOM7YeLL3CPLhVh3yt5mMpX3/LhUeyw1bg87xTYOobF34vJn0Qc2OTHe6Vg+WUwiw
-         cIDfCst5ufV0ZyCiPyk6bqzlBtZJy0H1W+TFoU4sEjKE4/o9ldyNtQmOUjFUHgscLVb0
-         RdDw==
-X-Gm-Message-State: ACrzQf2ho9M3OJ5G/58T7eQjbD6qIgr6mNTtuYCtrFMedsiESUfVfGGW
-        SZK1wXPBdUT94rE878lBllS45FqtoPZRlT47wa9vbiv1
-X-Google-Smtp-Source: AMsMyM4VGAGwJoePKPhWw8zlSBHacFf+rvRwheNIwDhv6SJ7ohRiQEdAMEnhCeiOdxaIy5altMC8z47kvHzd+TFbQaU=
-X-Received: by 2002:a2e:9ac3:0:b0:277:1c8e:684f with SMTP id
- p3-20020a2e9ac3000000b002771c8e684fmr7601225ljj.260.1667342373498; Tue, 01
- Nov 2022 15:39:33 -0700 (PDT)
+        with ESMTP id S231282AbiKAWkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:40:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0892410C9;
+        Tue,  1 Nov 2022 15:40:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 93731B81FE7;
+        Tue,  1 Nov 2022 22:40:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19BADC433C1;
+        Tue,  1 Nov 2022 22:40:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667342414;
+        bh=WkRx3F7l0URB3nWlmZfohQGMJsgytlqexz3K2O1G9QE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NWxk6MOSZjG1ZF10r+HahelcPmQrZiqzYI9CZhL8Vo+clS6B2v66x9vzVdGQBpWCI
+         JMZl78kCubv69vPV9MzFVDFVx0LCWMUd/w9Huizfa5XQ1X+5v6k+BpaumRez+bX0ml
+         qqa+anH/G9lO7GKlqCMN89qVR388YzMcE08KuWKOM++ZQFIMzazZPtsdI9HVAGZ03y
+         o+vOlODJusdUfwV75ktd7kqRxLvVW0+2L/HMgC0ssq89I+gSLyln9KjwrwJXENRuay
+         MmqgLCJSnZlnO2DmBgJcdzRSqufW8Zgq8S3eyENtj+jOf2di11pvms1dtfCt9X8GMX
+         nF8GwqiaPBlgw==
+Received: by pali.im (Postfix)
+        id E715D7F8; Tue,  1 Nov 2022 23:40:11 +0100 (CET)
+Date:   Tue, 1 Nov 2022 23:40:11 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: armada-3720-turris-mox: Add missing
+ interrupt for RTC
+Message-ID: <20221101224011.v6wb5tuykojticnr@pali>
+References: <20220924115826.7891-1-pali@kernel.org>
+ <20221009114838.fsw5xqa3dtntejde@pali>
 MIME-Version: 1.0
-References: <20221031204804.195267-1-marex@denx.de> <CACRpkdZPzFivWwQV1X8qWfXdrTmrx5gHCk0ZMKJ+5ovNPgqxrw@mail.gmail.com>
-In-Reply-To: <CACRpkdZPzFivWwQV1X8qWfXdrTmrx5gHCk0ZMKJ+5ovNPgqxrw@mail.gmail.com>
-From:   Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date:   Tue, 1 Nov 2022 15:39:21 -0700
-Message-ID: <CABBYNZ+CgFbKtLsvwbZOo=NA=rgnaKDY0wWRUKTccBm39F+HPg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: broadcom-bluetooth: Add CYW4373A0
- DT binding
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Marek Vasut <marex@denx.de>, linux-bluetooth@vger.kernel.org,
-        Hakan Jansson <hakan.jansson@infineon.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Luiz Augusto von Dentz <luiz.von.dentz@intel.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221009114838.fsw5xqa3dtntejde@pali>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+PING?
 
-On Tue, Nov 1, 2022 at 3:30 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Mon, Oct 31, 2022 at 9:48 PM Marek Vasut <marex@denx.de> wrote:
->
-> > CYW4373A0 is a Wi-Fi + Bluetooth combo device from Cypress.
-> > This chip is present e.g. on muRata 2AE module. Extend the
-> > binding with its DT compatible.
-> >
-> > Signed-off-by: Marek Vasut <marex@denx.de>
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Should we have these changes in bluetooth-next or dt has a dedicated tree?
-
--- 
-Luiz Augusto von Dentz
+On Sunday 09 October 2022 13:48:38 Pali Rohár wrote:
+> Gregory: PING
+> 
+> On Saturday 24 September 2022 13:58:26 Pali Rohár wrote:
+> > MCP7940MT-I/MNY RTC has connected interrupt line to GPIO2_5.
+> > 
+> > Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
+> > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> > index 5840ed129309..802862fe2060 100644
+> > --- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> > +++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+> > @@ -125,9 +125,12 @@
+> >  	/delete-property/ mrvl,i2c-fast-mode;
+> >  	status = "okay";
+> >  
+> > +	/* MCP7940MT-I/MNY RTC */
+> >  	rtc@6f {
+> >  		compatible = "microchip,mcp7940x";
+> >  		reg = <0x6f>;
+> > +		interrupt-parent = <&gpiosb>;
+> > +		interrupts = <5 0>; /* GPIO2_5 */
+> >  	};
+> >  };
+> >  
+> > -- 
+> > 2.20.1
+> > 
