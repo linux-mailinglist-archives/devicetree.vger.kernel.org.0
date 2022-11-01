@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7883D614767
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 11:04:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46591614787
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 11:13:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230519AbiKAKEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 06:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37552 "EHLO
+        id S229795AbiKAKN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 06:13:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230507AbiKAKEF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 06:04:05 -0400
-Received: from smtp.smtpout.orange.fr (smtp-17.smtpout.orange.fr [80.12.242.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F1CD92
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 03:04:01 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.100.34])
-        by smtp.orange.fr with ESMTPA
-        id po7coPf1atk1apo7coKGsq; Tue, 01 Nov 2022 11:03:59 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 01 Nov 2022 11:03:59 +0100
-X-ME-IP: 86.243.100.34
-Message-ID: <5b2fea37-b790-d209-27b3-12c2a6830822@wanadoo.fr>
-Date:   Tue, 1 Nov 2022 11:03:52 +0100
+        with ESMTP id S230184AbiKAKN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 06:13:56 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F8C10DA;
+        Tue,  1 Nov 2022 03:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1667297618;
+        bh=EXo84VvyGFTmnUtTrG/jdPf51mIhHpHMuo9uKvlgcNU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=lzdpyZ1ZS169jMbRDTgL75XNWlMM2oWp6gL7Q1PQsKPnFMYm0rYRtToZ5Zak5tAdY
+         KZlEUSD4/6Ye8nvFoYFR8YjjQe7I/hQm7c8tzNMOgQuD4jgGXkzZMM0TCh1qKZDYVz
+         1U+FYiUoOQE5CP9RX/EflIbfb8kaUuVZF/vOUcqAB+kX09mgIF/vbZGYqnuz7UcE43
+         QYr5WYnPQw6U2Ko44aL4YOW6jKZa+iDg3C2a1iFRuXOfVs7alYhzxOCxtHvEF0jSM6
+         K6Wahsp8ZRUoXPROUnDJ531uOU+OXqxd267x2/vdEs/gXM3u60qTxagSZ6+RZ4Xm7h
+         y6J15bBNbJilQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [80.245.78.243] ([80.245.78.243]) by web-mail.gmx.net
+ (3c-app-gmx-bs25.server.lan [172.19.170.77]) (via HTTP); Tue, 1 Nov 2022
+ 11:13:38 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [v2 2/3] pwm: Add Aspeed ast2600 PWM support
-Content-Language: fr
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-References: <20221101095156.30591-1-billy_tsai@aspeedtech.com>
- <20221101095156.30591-3-billy_tsai@aspeedtech.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au, lee.jones@linaro.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
-        garnermic@meta.com
-In-Reply-To: <20221101095156.30591-3-billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <trinity-5f39285a-b188-4b6d-a5e5-d1b3439f9506-1667297618702@3c-app-gmx-bs25>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Aw: [RFC v2 0/7] Add BananaPi R3
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 1 Nov 2022 11:13:38 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20221026093650.110290-1-linux@fw-web.de>
+References: <20221026093650.110290-1-linux@fw-web.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:vTLmDZVdxu/OhxXQdTtnUrTU8yVjVdP1AJqlwGeH25SKTftZwcYz5EUJkxLnSKt07UwBO
+ AZZbIwz0azU04gsTcylSqO6vpy0EJMzg5tGR6LU9P0Fu85IZkrE5+GvcTrFINcfITW6IQHBLSBFa
+ Ft628KAFdy+1Uggnv23DdweVKm61nlYoU2BK7H+xx03l/g9HHxmdfjZz2g6JqY6yhL37vjh5GhrX
+ tADFjdkiyYWiCkiglzb25HY2ojRF2UaNFGC60wf2sADUuXgTkxAaiCcrJEoX+IogGJD7XYOWH9/G
+ OY=
+UI-OutboundReport: notjunk:1;M01:P0:NZk14boAfX4=;LLalRtJ//zvUVwCWzAr8k322sTN
+ QrXMtEJIgtdByG7Wy3iKadWHhDzcH+8JJky+xYmGl0x8d7JUgaE1xOa5OHwcdWkzrpgCU105m
+ x+XuKXuKkw8v3nE//WDldWCE95s+VodeOkosiVeZsazU+t0+UjMHnVUK9zjlJRUmbE3BGi8uD
+ qTKbcussMJZhIgyY74RI4oQhhgh3ic6bcznLXJyzDNDNYzbVWG1qQD6nmvwUHNBkG5O7u1W4s
+ gpbq6LsV3vRVxzaxXMK6FX/CJzhaG05bDBay5eBlzdtJathrutqoXncnBApWT9YF3qPjegtgN
+ keK/JrUyx2435Ql+HWtGXtTy4HN+b8cUyN0KJnUWSSLVrDCJ4Q22hFyMtFqE5L3xyHimVRpiL
+ NRlqJvWjswaiYO3dVQ7Wr3vQWCDz61wI5N5KaCRjp3D5YQPp/kulgfwdOarMuIJwSJ0zZyqB5
+ D2zgo86SDhkazQggr8yhqWFX88pHbaNo5Dy1KLouTqIqvg8wWY/A+GLhi6qyoFx3cjW7CJ5Ir
+ ngMQ4POi1PhV1bbW5vos8SZhHy61WdivCE7Mj59uV/0ru8hcchBfZ7kagu6rlvcSX1iQuIsdi
+ WHE8A0LTkJfGQJnofSzp3o6QcmITBU8NLb0p10n8VJSRv2atfdq4bZPw6RQTaZiMvKAddG3Fr
+ +5PxhSLaLwqRomNt0M0nLEPCqBk/91Zgv0PwKo9YDhmHYd1cZnr2f2UKP+yoEl2L8VfHu+jP4
+ Spe9FgBMgRA7Ys0Ie1FeAIur0P9rIuizXj71uNWWP4Pn9azh4GwfX3lEY7FRqoGbNRm/hwy7t
+ 1DHP6sjZ0gMx9urEAFh8zluDt+JzsuX8pectH+UDZotTs=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 01/11/2022 à 10:51, Billy Tsai a écrit :
-> This patch add the support of PWM controller which can be found at aspeed
-> ast2600 soc. The pwm supoorts up to 16 channels and it's part function
-> of multi-function device "pwm-tach controller".
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-
-[...]
-
-> +static int aspeed_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +	struct aspeed_pwm_data *priv;
-> +	struct device_node *np;
-> +	struct platform_device *parent_dev;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	np = pdev->dev.parent->of_node;
-> +	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Unsupported pwm device binding\n");
-> +
-> +	priv->regmap = syscon_node_to_regmap(np);
-> +	if (IS_ERR(priv->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +				     "Couldn't get regmap\n");
-> +
-> +	parent_dev = of_find_device_by_node(np);
-> +	priv->clk = devm_clk_get(&parent_dev->dev, 0);
-
 Hi,
 
-if this helps, using devm_clk_get_enabled() would save a few lines of code.
+any comments on Parts 2,3,4 and 6?
 
-CJ
+>   arm64: dts: mt7986: add i2c node
+>   arm64: dts: mt7986: add spi related device nodes
+>   arm64: dts: mt7986: add usb related device nodes
+>   arm64: dts: mt7986: add crypto related device nodes
 
-> +	if (IS_ERR(priv->clk))
-> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
-> +				     "Couldn't get clock\n");
-> +
+maybe they are ready to merge? mtk is working on mmc-pinctrl and i work on the other comments for r3 dts.
 
-[...]
+regards Frank
