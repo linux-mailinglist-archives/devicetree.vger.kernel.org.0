@@ -2,110 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B82C614570
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 09:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B71161458A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 09:17:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbiKAIIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 04:08:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
+        id S229949AbiKAIRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 04:17:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiKAIIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 04:08:00 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF63A1834E;
-        Tue,  1 Nov 2022 01:07:59 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id o2so7409469ilo.8;
-        Tue, 01 Nov 2022 01:07:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NziJY6/fyP+utH+wONN+4YTM+lMaIKC/fH0mKgAarmA=;
-        b=YXlrNLxqzKzYUVnb3wco5w3HzIK2/t3QuwRIhttCmLZzPf0ZpKreSxnnGh4YJm2gqS
-         OlIjdQp8GB3y0CcAtQ+JP0nq60wD66CmiopFiTg5Hm9TtFdI+mB6nmhVBzMyLU0TfPvt
-         I3l0Q6nfGYhz8ejdib3Mv6OnReRJGcxDfOITODinYLNJ0isX0J2t+QlNvgQkZzbbMoe1
-         5RYKqCpJJPa8uZpFN5CwKOrujMQ95rhRsf2duJusno8klWUCI2BZDsfI699mVCwf2G8y
-         Ap07BMeCrMktsAJBSUte7W/GgokSBi3W0yG0iv4VoS6UqcpBusKiZSRHzd/yt3LEyyv6
-         erBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NziJY6/fyP+utH+wONN+4YTM+lMaIKC/fH0mKgAarmA=;
-        b=WVBC1Y/ce1MkEdhvnJB/t6LMcdsY+A5Udr/TsqVZjC5ziDOukttCbk7rrwh3US85PZ
-         H1k5WaCmJcMcRGlRhVXulA5I8RZwJXAZtxCeNX7Jv8tSIPk+zLkcKz1z/EoC2FQR/td/
-         ge5i4PVi/aBsO8a/nHVjte/YeBlHsJ+va4ZL9eGy9eA5ux86n7NTH5JPvs7EuMFE9BIW
-         TrVZThc1hguqNxzUCfyX4nsPp/k7PfFG7muKnXI/H3OaLgn1XRe2yUZspQCCrMgchllk
-         DOre3UvMU64NwKOn+fItcLaToZIBTOz3yskj7drNpgftc6NHSypN2a+8j8paRb5uXhPG
-         +zug==
-X-Gm-Message-State: ACrzQf3vzu+1rxgqeUJEOblMoIMOtw1QrarwARLfBVe9DEBDTWuxH80o
-        PgITfXiAmbty6mjnZmqT6/DccBOD0YsVUMjGe7IMwXnLPMS1zCkw
-X-Google-Smtp-Source: AMsMyM5FqKTLQ4YFREilyxrr3PyG2tVv4MFHjVwm0WhqmZEE07K4C3m/MZDXaZPfV2iizknDneQmjcZTrQicHwG9yWY=
-X-Received: by 2002:a05:6e02:b22:b0:2f9:b864:f1ad with SMTP id
- e2-20020a056e020b2200b002f9b864f1admr10472437ilu.298.1667290079191; Tue, 01
- Nov 2022 01:07:59 -0700 (PDT)
+        with ESMTP id S229556AbiKAIRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 04:17:20 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEF6EE0D;
+        Tue,  1 Nov 2022 01:17:19 -0700 (PDT)
+Received: from canpemm500004.china.huawei.com (unknown [172.30.72.57])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4N1jY74lwVzHvXH;
+        Tue,  1 Nov 2022 16:16:59 +0800 (CST)
+Received: from localhost (10.175.101.6) by canpemm500004.china.huawei.com
+ (7.192.104.92) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 1 Nov
+ 2022 16:17:17 +0800
+From:   Weilong Chen <chenweilong@huawei.com>
+To:     <chenweilong@huawei.com>, <f.fangjian@huawei.com>,
+        <linus.walleij@linaro.org>, <brgl@bgdev.pl>,
+        <yangyicong@hisilicon.com>, <xuwei5@huawei.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH next v3 1/2] gpio: hisi: Add initial device tree support
+Date:   Tue, 1 Nov 2022 16:24:41 +0800
+Message-ID: <20221101082442.263448-1-chenweilong@huawei.com>
+X-Mailer: git-send-email 2.31.GIT
 MIME-Version: 1.0
-References: <20221031190159.1341027-1-lis8215@gmail.com> <20221031190159.1341027-2-lis8215@gmail.com>
- <166725358721.3638147.11464755727689545438.robh@kernel.org> <20221101010834.GA4034975-robh@kernel.org>
-In-Reply-To: <20221101010834.GA4034975-robh@kernel.org>
-From:   Siarhei Volkau <lis8215@gmail.com>
-Date:   Tue, 1 Nov 2022 11:07:48 +0300
-Message-ID: <CAKNVLfagXrTmwAPX3019SgMSOJ+BMQ1KfQV2LjOSrUA6+ZiFSA@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: adc-joystick: add valid-range
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
-        Artur Rojek <contact@artur-rojek.eu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.175.101.6]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ canpemm500004.china.huawei.com (7.192.104.92)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=B2=D1=82, 1 =D0=BD=D0=BE=D1=8F=D0=B1. 2022 =D0=B3. =D0=B2 04:08, Rob He=
-rring <robh@kernel.org>:
->
-> On Mon, Oct 31, 2022 at 05:05:54PM -0500, Rob Herring wrote:
-> >
-> > On Mon, 31 Oct 2022 22:01:58 +0300, Siarhei Volkau wrote:
-> > > The valid-range property aims to cover detachable/lock-able
-> > > joysticks where measured value goes outside valid-range.
-> > >
-> > > Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
-> > > ---
-> > >  .../bindings/input/adc-joystick.yaml          | 62 +++++++++++++++++=
-++
-> > >  1 file changed, 62 insertions(+)
-> > >
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
-k'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/input/adc-joystick.example.dts:82.28-=
-104.11: ERROR (duplicate_label): /example-1/joystick: Duplicate label 'joys=
-tick' on /example-1/joystick and /example-0/adc-joystick
-> > ERROR: Input tree has errors, aborting (use -f to force output)
-> > make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindin=
-gs/input/adc-joystick.example.dtb] Error 2
-> > make[1]: *** Waiting for unfinished jobs....
-> > make: *** [Makefile:1492: dt_binding_check] Error 2
->
-> The examples aren't completely independent, so you can't use the same
-> labels.
+Add support for HiSilicon GPIO controller in embedded platform, which
+boot from devicetree.
 
-Good explanation, thank you.
+Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+---
+Change since v2:
+- Drop wrong use ACPI_PTR/of_match_ptr
+Link: https://lore.kernel.org/lkml/20221028022453.163186-1-chenweilong@huawei.com/
+
+ drivers/gpio/Kconfig     | 2 +-
+ drivers/gpio/gpio-hisi.c | 7 +++++++
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+index e034f752e7ce..71a7880af59d 100644
+--- a/drivers/gpio/Kconfig
++++ b/drivers/gpio/Kconfig
+@@ -310,7 +310,7 @@ config GPIO_GRGPIO
+ 
+ config GPIO_HISI
+ 	tristate "HiSilicon GPIO controller driver"
+-	depends on (ARM64 && ACPI) || COMPILE_TEST
++	depends on ARM64 || COMPILE_TEST
+ 	select GPIO_GENERIC
+ 	select GPIOLIB_IRQCHIP
+ 	help
+diff --git a/drivers/gpio/gpio-hisi.c b/drivers/gpio/gpio-hisi.c
+index 3caabef5c7a2..55bd69043bf4 100644
+--- a/drivers/gpio/gpio-hisi.c
++++ b/drivers/gpio/gpio-hisi.c
+@@ -221,6 +221,12 @@ static const struct acpi_device_id hisi_gpio_acpi_match[] = {
+ };
+ MODULE_DEVICE_TABLE(acpi, hisi_gpio_acpi_match);
+ 
++static const struct of_device_id hisi_gpio_dts_match[] = {
++	{ .compatible = "hisilicon,ascend910-gpio", },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, hisi_gpio_dts_match);
++
+ static void hisi_gpio_get_pdata(struct device *dev,
+ 				struct hisi_gpio *hisi_gpio)
+ {
+@@ -311,6 +317,7 @@ static struct platform_driver hisi_gpio_driver = {
+ 	.driver		= {
+ 		.name	= HISI_GPIO_DRIVER_NAME,
+ 		.acpi_match_table = hisi_gpio_acpi_match,
++		.of_match_table = hisi_gpio_dts_match,
+ 	},
+ 	.probe		= hisi_gpio_probe,
+ };
+-- 
+2.31.GIT
+
