@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26697614792
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 11:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5A76147A8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 11:25:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbiKAKQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 06:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49848 "EHLO
+        id S229511AbiKAKZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 06:25:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiKAKQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 06:16:56 -0400
-Received: from smtp.smtpout.orange.fr (smtp-21.smtpout.orange.fr [80.12.242.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F214B101E5
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 03:16:54 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.100.34])
-        by smtp.orange.fr with ESMTPA
-        id poK5o6hO9TyoupoK5oU5C1; Tue, 01 Nov 2022 11:16:53 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Tue, 01 Nov 2022 11:16:53 +0100
-X-ME-IP: 86.243.100.34
-Message-ID: <4e7beec4-9b77-a125-6715-2699c453f5fe@wanadoo.fr>
-Date:   Tue, 1 Nov 2022 11:16:45 +0100
+        with ESMTP id S229462AbiKAKZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 06:25:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66166D120;
+        Tue,  1 Nov 2022 03:25:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 01B646155E;
+        Tue,  1 Nov 2022 10:25:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8FCFC433D6;
+        Tue,  1 Nov 2022 10:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667298312;
+        bh=xaFUexV7MYwXBZ2ARe4EZEhgaYRXQWZ3AJuXjnpw1uY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u5gO4DFSfUwgEwxwj2Hne3ZKxcSXO49SUTYi9bc2H8kENoQ4V4Axr2tykanogWvRb
+         mL71xZiwh8nXKABsAIkgkeNKZwiwSvs/vaoAioBxbSf2hUQYWpWORJqpPKPah5DUAW
+         Ap/5YySro6biKUJda8QHGaybG/pN541Dr8z3JTYjC8NRLvzOPKRVqYWv6+5vbCWRa1
+         ZlvHW/9+Cbtc6NF6fI8fQ9xfh9RgryhyhJorQo8WndUDqbNJG08cLb9lLdIRy4Mt0C
+         gc4/wQefBumoHFXRHLTM1clfjHqd3MB/ZBDjYjxz6Z1GYAFGo0/p2IdS7aIMy1f1nU
+         Msx52f1p7LuXQ==
+Date:   Tue, 1 Nov 2022 10:25:06 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Chris Zhong <zyw@rock-chips.com>,
+        Zhang Qing <zhangqing@rock-chips.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: mfd: Expect specific type for
+ monitored-battery
+Message-ID: <Y2D0As4ezi/031lL@google.com>
+References: <20221028231309.565451-1-krzysztof.kozlowski@linaro.org>
+ <Y1+MNL+fCfreAqMh@google.com>
+ <20221031192658.GA3286587-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [v2 3/3] hwmon: Add Aspeed ast2600 TACH support
-Content-Language: fr
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-References: <20221101095156.30591-1-billy_tsai@aspeedtech.com>
- <20221101095156.30591-4-billy_tsai@aspeedtech.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au, lee.jones@linaro.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
-        garnermic@meta.com
-In-Reply-To: <20221101095156.30591-4-billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221031192658.GA3286587-robh@kernel.org>
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 01/11/2022 à 10:51, Billy Tsai a écrit :
-> This patch add the support of Tachometer which can use to monitor the
-> frequency of the input. The tach supports up to 16 channels and it's part
-> function of multi-function device "pwm-tach controller".
+On Mon, 31 Oct 2022, Rob Herring wrote:
+
+> On Mon, Oct 31, 2022 at 08:49:56AM +0000, Lee Jones wrote:
+> > On Fri, 28 Oct 2022, Krzysztof Kozlowski wrote:
+> > 
+> > > Core schema does not define type of monitored-battery, so the schemas
+> > > are expected to reference proper type.
+> > > 
+> > > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/mfd/ene-kb930.yaml      | 4 +++-
+> > >  Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml | 1 +
+> > >  2 files changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > Applied, thanks.
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> NAK. Please drop or revert.
 
-Hi,
-a few nits below,
+Dropping is not a problem.
 
-[...]
+Would you mind providing some context?
 
-> +
-> +	if (ret) {
-> +		/* return 0 if we didn't get an answer because of timeout*/
-
-Missing space at the end of the comment
-
-> +		if (ret == -ETIMEDOUT)
-> +			return 0;
-> +		else
-> +			return ret;
-
-[...]
-
-> +static int aspeed_tach_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np, *child;
-> +	struct aspeed_tach_data *priv;
-> +	struct device *hwmon;
-> +	struct platform_device *parent_dev;
-> +	int ret;
-> +
-> +	np = dev->parent->of_node;
-> +	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "Unsupported tach device binding\n");
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +	priv->dev = &pdev->dev;
-> +	priv->tach_channel =
-> +		devm_kzalloc(dev,
-> +			     TACH_ASPEED_NR_TACHS * sizeof(*priv->tach_channel),
-> +			     GFP_KERNEL);
-
-use devm_kcalloc() instead of devm_kzalloc()?
-Error handling?
-
-> +
-> +	priv->regmap = syscon_node_to_regmap(np);
-> +	if (IS_ERR(priv->regmap)) {
-> +		dev_err(priv->dev, "Couldn't get regmap\n");
-
-In order to be conistent with the other error handling paths:
-return dev_err_probe()?
-
-> +		return -ENODEV;
-> +	}
-
-[...]
-
+-- 
+Lee Jones [李琼斯]
