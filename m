@@ -2,98 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC4836142A6
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67AD66142B7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:11:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbiKABIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 21:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50030 "EHLO
+        id S229740AbiKABLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 21:11:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbiKABIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:08:35 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3433167CC;
-        Mon, 31 Oct 2022 18:08:33 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-13bd19c3b68so15320643fac.7;
-        Mon, 31 Oct 2022 18:08:33 -0700 (PDT)
+        with ESMTP id S229480AbiKABLj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:11:39 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F98D165AC
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:38 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id r187so14528817oia.8
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:11:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rkVZqxjemZWhoVabZk5YcbL3H9P5S1HNJrfIuS+Jm2Q=;
-        b=DPS6/8/GpGlIYZRwAo8w8ABq20QsNVUw03TKiTUWPjXYOWCoEWFwY3KEITSEAGOdPx
-         +FdEUZGQVZtQFApSMTQDjkZFvRAxcWN212K4NpINkEiRODelqX8VY38AY+T3TPmnepgi
-         QLW2bZyMQ2yUgJ+oGjTmr8U2FgCmSGHP7dLjV5rcl7Rhrh5YxSllZ4h0fp4k6Crak0jX
-         1/l2UhtP/l43k7tkL8RhY9PQIzveMCWqKKzE912rXf1dLtK3PmOJ/+hQwui7cMoKgWv6
-         57jnQJKPy0PaX+/PxKYdPp2+c0Gw5Cu7sbNy8go3eR8fIjkeECai6aY7w8ZzZYYDDkIA
-         XKDw==
-X-Gm-Message-State: ACrzQf0ezFKJ3DT7kyzEu9+hfwkSpJr0Z+Sx2kjtUcmbPCKMhf1myUKq
-        D2wrwWvwcW1gaMCUtbJCqvMaStFJeQ==
-X-Google-Smtp-Source: AMsMyM5s/TLtNmTf6pyI0/TB4FnK1lstOfBUqUGcVIlbjL/cr2l0qlAgnrdhOoeXpc4AiV6ipkm/fA==
-X-Received: by 2002:a05:6870:4390:b0:13d:2be6:dac with SMTP id r16-20020a056870439000b0013d2be60dacmr1435983oah.3.1667264912818;
-        Mon, 31 Oct 2022 18:08:32 -0700 (PDT)
+        bh=EtuNirfdP3MaA2p83xUDjwwQUX0NJu7/yIl+/F9+dHQ=;
+        b=5+Grw//mTTQ+zn+RLkQA5Qu/TxBce7JnOZ5cdj+wZ2k3QtKaCjWCAmZQD0GJj+EqXq
+         txpSymL1unHl7x3XZIosKo6eaj08dBceRM0puUGrIiuyKqUcZjy9pM7Wu8HNfHCDfZ2x
+         G5wktuGEJ8avIGO49dnjVghtPyxqCR95D1q8kAAju5lxyKJ26pHXmYsl2ELTIDuijkFo
+         Gg7TeDFa58ZWsAPSh+l/4jS3+Qf8WyLCjfmzSv8yaE6F0hf0ZqNVfMvO2OO8xE++1rfy
+         D2wBn/qgKqeL6ma2biCkWhDilofn1C7/e72F4D29HZO1l3KAiu7oYQJKfRqNhLeW4lXW
+         TCQg==
+X-Gm-Message-State: ACrzQf1ln8tCe5QyqDCsqcJ9/ixIgSb8rwqpWK9prNeGDhWwEVWnvQ4C
+        k4AIHxttZxC0UHwp+tuWwA==
+X-Google-Smtp-Source: AMsMyM7PkPjCjvokoDKlgpXF0xGhT0xxEIWsQFKZusHIVxDlXwthc+cfIjbWAR/yst/cwmPzfUYQ+g==
+X-Received: by 2002:a05:6808:1a13:b0:354:b339:25f2 with SMTP id bk19-20020a0568081a1300b00354b33925f2mr16488065oib.285.1667265097603;
+        Mon, 31 Oct 2022 18:11:37 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bj23-20020a056808199700b00353ef11d6c9sm2912777oib.19.2022.10.31.18.08.31
+        by smtp.gmail.com with ESMTPSA id j21-20020a9d7d95000000b00661b019accbsm3333754otn.3.2022.10.31.18.11.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 18:08:32 -0700 (PDT)
-Received: (nullmailer pid 4035896 invoked by uid 1000);
-        Tue, 01 Nov 2022 01:08:34 -0000
-Date:   Mon, 31 Oct 2022 20:08:34 -0500
+        Mon, 31 Oct 2022 18:11:37 -0700 (PDT)
+Received: (nullmailer pid 4041380 invoked by uid 1000);
+        Tue, 01 Nov 2022 01:11:38 -0000
+Date:   Mon, 31 Oct 2022 20:11:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Siarhei Volkau <lis8215@gmail.com>
-Cc:     linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
-        Artur Rojek <contact@artur-rojek.eu>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: adc-joystick: add valid-range
-Message-ID: <20221101010834.GA4034975-robh@kernel.org>
-References: <20221031190159.1341027-1-lis8215@gmail.com>
- <20221031190159.1341027-2-lis8215@gmail.com>
- <166725358721.3638147.11464755727689545438.robh@kernel.org>
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Chris Morgan <macroalpha82@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        thierry.reding@gmail.com, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH V4 2/3] dt-bindings: display: panel: Add NewVision
+ NV3051D bindings
+Message-ID: <20221101011138.GA4040180-robh@kernel.org>
+References: <20221028205009.15105-1-macroalpha82@gmail.com>
+ <20221028205009.15105-3-macroalpha82@gmail.com>
+ <762efc62-cad6-609b-c82d-01a4290e5948@linaro.org>
+ <SN6PR06MB5342D758FFA64096002E348FA5359@SN6PR06MB5342.namprd06.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <166725358721.3638147.11464755727689545438.robh@kernel.org>
+In-Reply-To: <SN6PR06MB5342D758FFA64096002E348FA5359@SN6PR06MB5342.namprd06.prod.outlook.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 05:05:54PM -0500, Rob Herring wrote:
-> 
-> On Mon, 31 Oct 2022 22:01:58 +0300, Siarhei Volkau wrote:
-> > The valid-range property aims to cover detachable/lock-able
-> > joysticks where measured value goes outside valid-range.
+On Fri, Oct 28, 2022 at 09:28:59PM -0500, Chris Morgan wrote:
+> On Fri, Oct 28, 2022 at 07:01:12PM -0400, Krzysztof Kozlowski wrote:
+> > On 28/10/2022 16:50, Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Add documentation for the NewVision NV3051D panel bindings.
+> > > Note that for the two expected consumers of this panel binding
+> > > the underlying LCD model is unknown. Name "anbernic,rg353p-panel"
+> > > is used because the hardware itself is known as "anbernic,rg353p".
+> > > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > > 
-> > Signed-off-by: Siarhei Volkau <lis8215@gmail.com>
-> > ---
-> >  .../bindings/input/adc-joystick.yaml          | 62 +++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> > 
+> > Didn't you got here tag?
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/input/adc-joystick.example.dts:82.28-104.11: ERROR (duplicate_label): /example-1/joystick: Duplicate label 'joystick' on /example-1/joystick and /example-0/adc-joystick
-> ERROR: Input tree has errors, aborting (use -f to force output)
-> make[1]: *** [scripts/Makefile.lib:406: Documentation/devicetree/bindings/input/adc-joystick.example.dtb] Error 2
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1492: dt_binding_check] Error 2
+> Yes, I'm so sorry. I always seem to miss one detail each time, I
+> promise I'll get better (eventually, I hope). This one should
+> already have the "Reviewed-by: Rob Herring <robh@kernel.org>" but
+> I forgot to include it. Literally the only change from v3 is the
+> return of a function changing from int to void, since that changed
+> in the 6.1 kernel.
 
-The examples aren't completely independent, so you can't use the same 
-labels.
+If you forget, just add the tags by themselves and the tools will pick 
+them up.
 
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
 
