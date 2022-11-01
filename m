@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06670614631
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 10:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D356146A8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 10:29:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbiKAJBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 05:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46992 "EHLO
+        id S230128AbiKAJ3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 05:29:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbiKAJBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 05:01:48 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 769CB18B39;
-        Tue,  1 Nov 2022 02:01:45 -0700 (PDT)
-X-UUID: 49efab0d4f5949b389d3c749977f62d1-20221101
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=ifEtjIVlTaP3++cRQmv2qysU5CyrCue5y2eduWwm65g=;
-        b=TbOt0EGtuYUHnGVwo+MvfULuyw7qnmMTJXAj2GlTM9TTVEuj0wP2tc1Wo7QT0w+RwQuFdDWSoBaDom8dfekfbne/Ta2+9kWE4BgkuRI0dHrgO9TsZx/pRUvdgJQIzR+gqsRmXb+wbFcEpHlzOmh3xxF30mMa1fNcC8XqQ4/3aJo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:66544c4f-6981-4c65-ba50-3b7a8a47854b,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:62cd327,CLOUDID:8be513eb-84ac-4628-a416-bc50d5503da6,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 49efab0d4f5949b389d3c749977f62d1-20221101
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 461759375; Tue, 01 Nov 2022 17:01:38 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 1 Nov 2022 17:01:37 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Tue, 1 Nov 2022 17:01:36 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <nfraprado@collabora.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v3 7/7] dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT8173
-Date:   Tue, 1 Nov 2022 17:01:16 +0800
-Message-ID: <20221101090116.27130-8-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221101090116.27130-1-allen-kh.cheng@mediatek.com>
-References: <20221101090116.27130-1-allen-kh.cheng@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229556AbiKAJ3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 05:29:22 -0400
+X-Greylist: delayed 1543 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 01 Nov 2022 02:29:20 PDT
+Received: from spamfilter04.delta.nl (spamfilter04.delta.nl [217.102.255.204])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D932D18E1F;
+        Tue,  1 Nov 2022 02:29:20 -0700 (PDT)
+Received: from host-ubmmyvj.static.zeelandnet.nl ([217.102.255.198] helo=mail.zeelandnet.nl)
+        by spamfilter04.delta.nl with esmtp (Exim 4.92)
+        (envelope-from <glazveze@delta.nl>)
+        id 1opmgD-00068o-Tg; Tue, 01 Nov 2022 09:31:44 +0100
+X-Sender-IP: 204.168.188.16
+Received: from phenom.domain_not_set.invalid (016-188-168-204.dynamic.caiway.nl [204.168.188.16])
+        (Authenticated sender: glasveze@delta.nl)
+        by mail.zeelandnet.nl (Postfix) with ESMTPA;
+        Tue,  1 Nov 2022 09:31:23 +0100 (CET)
+From:   glazveze@delta.nl
+To:     linux-rtc@vger.kernel.org
+Cc:     Mike Looijmans <mike.looijmans@topic.nl>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: rtc: ds1307: Add support for Epson RX8111
+Date:   Tue,  1 Nov 2022 09:31:21 +0100
+Message-Id: <20221101083123.11695-1-glazveze@delta.nl>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: 217.102.255.198
+X-DELTA-Domain: zeelandnet.nl
+X-DELTA-Username: 217.102.255.198
+Authentication-Results: delta.nl; auth=pass smtp.auth=217.102.255.198@zeelandnet.nl
+X-DELTA-Outgoing-Class: ham
+X-DELTA-Outgoing-Evidence: SB/global_tokens (0.00150102412276)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+fMveXxnfOZrgwa7/MvQYDPUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wqSBOxlRVmV45FJ8CYZCUIt8C9mOBdONdnsxgsk1D2pwpi
+ 79/9lCWegUcH0YAeiESZu3hhVxUr+XbzYNuhZTyMN2jRpXv406oGDMCZBpfLj6tXYKbjfBt0vNkw
+ cgcqpVi2EeDr8t3Z6zKdUQQxqR+SNjz3rkBrmCeUsHTfzqlbREQW59v6OzLaYvRKiPHtemyFp+Fb
+ q4/dza6vunvz714/oUhDTJc8JF+XcA6Coahq6p9OU3mS/dDcjm11n8LBBaHmFYGlZcUx+feeIofU
+ vaKO2wvHbfwld3xCwVQvwEuT74WwDyq/Nv4s81lckG+lIDvnx8yeplRO3sLIqUlSH7OGWzZxdxZO
+ MNdUoc9FlEr2BnLwENyZMPyeFLnoLT8oU4J5ip9csxSp5vs/cqLV2uCxa1gbjNr6zuq/msj6Lhvp
+ vjHGDmddzHap4I7VGqLLvI7oxlm7kP52ZxDqHbw/0OqAoLoOc/cuTx5izBB4vDJo75HWAoddgXQw
+ hX0bgQM/NQzAznOAUImGZ//xcQKfbL7egPacf1SEo03G99/UIdTGSFjTsZRW5VqyvaeMWA2+RBXp
+ D59QdM/f9KJhSSfjTAUyLIywuTEI0kISK7u1AZUYswOEpwFdG2jGwY6Bm9W/XNNE6vgDovKp0+yN
+ qw90aRFIFnjEprciIL+rxAZ0QqLSHV9IlKha13El6tTzAeqsLP7TmwyWkFAKX6230SM4LCMeEY09
+ Bx7bp0O2j1hLeSx525zuuPE0M/XzHi7X8V/cu68gr/U0flMcy2Vi/IcBgY4amwfEOQVUNYnWQ300
+ Dp6cJDE37L8A/sfCSfmp70N6CAkTDnHxOK4BiYyvkz+/wZwwYqG/vijyG4aOcjbIor8orItFLNlw
+ ZrFQlMFer4BtL1PbpJ3Vh8ibsqyxAqJtYGjzP6GMdt/ZiCCGoGagixCwW84NSDNfnkx0FX3OFUNq
+ n1MpieaDJmOksitnbpZ9MQYjx/Om5AxPQGNBedVITG8AWxFjzL6tOKgqN6JvQh5n0fI612bG5S+Z
+ Kxm29vhtcTbav+nPErDn/9w2ERKKH06cfjA78AQFw9bd8gj3LalWsUOocRk0/bWX1xH6FJm0Q3iP
+ CmrxJ2+EokXE5CTwtF1RSNQwFbwWnhEwBi6hI73CcV6EcHXc0Zal25K9MsiopwSawNLQjZK6kKbb
+ gNaJlD9A4g+m3nW06IBcbpAk9tBJy3OwmQm7DjpV7Sk6wVAJ6/XOJOG/iKSpBU+r0zgYp1Oa51OE
+ Dgse489k7IVPaIjV8ZGYtKORiBOrYEFBQtHrezLP9jihx+Za/cV70jOJzN2r4A==
+X-Report-Abuse-To: spam@spamfilter03.delta.nl
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the mediatek,mt8173-wdt compatible using mediatek,mt6589-wdt as
-fallback.
+From: Mike Looijmans <mike.looijmans@topic.nl>
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+The rx_8111 is quite similar to the rx_8030. This adds support for this
+chip to the ds1307 driver.
+
+This adds the entry to the devicetree bindings.
+
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+
+(no changes since v1)
+
+ Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-index 36606524d869..b3605608410c 100644
---- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
-@@ -37,6 +37,7 @@ properties:
-               - mediatek,mt7622-wdt
-               - mediatek,mt7623-wdt
-               - mediatek,mt7629-wdt
-+              - mediatek,mt8173-wdt
-               - mediatek,mt8516-wdt
-           - const: mediatek,mt6589-wdt
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+index 98d10e680144..a9590da64b84 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
++++ b/Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+@@ -30,6 +30,7 @@ properties:
+           - pericom,pt7c4338
+           - epson,rx8025
+           - isil,isl12057
++          - epson,rx8111
+           - epson,rx8130
  
+       - items:
 -- 
-2.18.0
+2.17.1
 
