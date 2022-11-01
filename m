@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 536816143AE
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 04:34:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75A3B6143B1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 04:34:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229542AbiKADeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 23:34:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37634 "EHLO
+        id S229641AbiKADeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 23:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbiKADd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 23:33:59 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7152914D06
-        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 20:33:58 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A13XqI6110698;
-        Mon, 31 Oct 2022 22:33:52 -0500
+        with ESMTP id S229562AbiKADeG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 23:34:06 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC4914097
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 20:34:05 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A13Y081028235;
+        Mon, 31 Oct 2022 22:34:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667273632;
-        bh=Xk8DWQIUn5XNU/2AqNLuq1Lq5HKcDpTzIMP1rZnUOaM=;
+        s=ti-com-17Q1; t=1667273640;
+        bh=lUQ8BrzIrh0IU4n4pCFIbilegbKdvrPqk/Ajgoe632g=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=BwlIUeyBINlsPE0Bu42zMDbZ3KJ4yabFcaDXZhwY3bC5A8ocmOeMH4QRC2qrSLkal
-         1SrAR4GZCBTrA/11VIVbHWsSODSNMylYkyXt0n8k63h5oTZIZ5lWalWgz3Sv81Mngc
-         ifYai8fA6f+Ac8AgC7eGWxlC29cvnBRERJc0T2Qc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A13Xq3j026221
+        b=wsZHoE2v3PN3CZmMr7j6LzrDoU+4dGixz+TWJzPKk2iDZZdfHcj2Y1McseWkuwLOQ
+         6E+66pSaSq5eZc3xPnR/TCKBF1ZMYmr+K0itGNknO8VtURRzLZcRXvvhK2mghrNKY/
+         a6EhKeikDsIFFh0vcP+7GwXixGcnGLy9GjdssVFg=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A13Y0dI013398
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 31 Oct 2022 22:33:52 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 31 Oct 2022 22:34:00 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 31
- Oct 2022 22:33:52 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2022 22:34:00 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Mon, 31 Oct 2022 22:33:52 -0500
+ Frontend Transport; Mon, 31 Oct 2022 22:34:00 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A13XnAA080559;
-        Mon, 31 Oct 2022 22:33:51 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A13XsER122909;
+        Mon, 31 Oct 2022 22:33:57 -0500
 From:   Matt Ranostay <mranostay@ti.com>
 To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
         <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
 CC:     <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>
-Subject: [PATCH v4 4/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable SERDES0
-Date:   Mon, 31 Oct 2022 20:33:04 -0700
-Message-ID: <20221101033308.33101-4-mranostay@ti.com>
+Subject: [PATCH v4 5/8] arm64: dts: ti: k3-j721s2-common-proc-board: Add USB support
+Date:   Mon, 31 Oct 2022 20:33:05 -0700
+Message-ID: <20221101033308.33101-5-mranostay@ti.com>
 X-Mailer: git-send-email 2.38.GIT
 In-Reply-To: <20221101033308.33101-1-mranostay@ti.com>
 References: <20221101033308.33101-1-mranostay@ti.com>
@@ -65,9 +65,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Aswath Govindraju <a-govindraju@ti.com>
 
-Configure first lane to PCIe, the second lane to USB and the last two lanes
-to eDP. Also, add sub-nodes to SERDES0 DT node to represent SERDES0 is
-connected to PCIe.
+The board uses lane 1 of SERDES for USB. Set the mux
+accordingly.
+
+The USB controller and EVM supports super-speed for USB0
+on the Type-C port. However, the SERDES has a limitation
+that upto 2 protocols can be used at a time. The SERDES is
+wired for PCIe, eDP and USB super-speed. It has been
+chosen to use PCIe and eDP as default. So restrict
+USB0 to high-speed mode.
 
 Cc: Vignesh Raghavendra <vigneshr@ti.com>
 Cc: Nishanth Menon <nm@ti.com>
@@ -78,40 +84,40 @@ Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
  1 file changed, 22 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index a7aa6cf08acd..c3a397484c70 100644
+index c3a397484c70..c787d46f89de 100644
 --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
 +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -9,6 +9,9 @@
- 
- #include "k3-j721s2-som-p0.dtsi"
- #include <dt-bindings/net/ti-dp83867.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+#include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/mux/ti-serdes.h>
- 
- / {
- 	compatible = "ti,j721s2-evm", "ti,j721s2";
-@@ -296,6 +299,25 @@ &cpsw_port1 {
- 	phy-handle = <&phy0>;
+@@ -147,6 +147,12 @@ vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+ 			J721S2_IOPAD(0x020, PIN_INPUT, 7) /* (AA23) MCAN15_RX.GPIO0_8 */
+ 		>;
+ 	};
++
++	main_usbss0_pins_default: main-usbss0-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
++		>;
++	};
  };
  
-+&serdes_ln_ctrl {
-+	idle-states = <J721S2_SERDES0_LANE0_PCIE1_LANE0>, <J721S2_SERDES0_LANE1_USB>,
-+		      <J721S2_SERDES0_LANE2_EDP_LANE2>, <J721S2_SERDES0_LANE3_EDP_LANE3>;
+ &wkup_pmx0 {
+@@ -318,6 +324,22 @@ serdes0_pcie_link: phy@0 {
+ 	};
+ };
+ 
++&usb_serdes_mux {
++	idle-states = <1>; /* USB0 to SERDES lane 1 */
 +};
 +
-+&serdes_refclk {
-+	clock-frequency = <100000000>;
++&usbss0 {
++	pinctrl-0 = <&main_usbss0_pins_default>;
++	pinctrl-names = "default";
++	ti,vbus-divider;
++	ti,usb2-only;
 +};
 +
-+&serdes0 {
-+	serdes0_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 1>;
-+	};
++&usb0 {
++	dr_mode = "otg";
++	maximum-speed = "high-speed";
 +};
 +
  &mcu_mcan0 {
