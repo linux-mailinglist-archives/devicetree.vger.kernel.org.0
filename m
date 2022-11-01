@@ -2,69 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09075615084
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 18:22:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 207F3615092
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 18:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230475AbiKARWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 13:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53706 "EHLO
+        id S229738AbiKARZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 13:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231179AbiKARWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 13:22:33 -0400
+        with ESMTP id S229964AbiKARZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 13:25:32 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE0DE1B1DF;
-        Tue,  1 Nov 2022 10:22:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF965178B6;
+        Tue,  1 Nov 2022 10:25:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B391616D3;
-        Tue,  1 Nov 2022 17:22:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF73AC43470;
-        Tue,  1 Nov 2022 17:22:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BF2961640;
+        Tue,  1 Nov 2022 17:25:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0D31C433D7;
+        Tue,  1 Nov 2022 17:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667323351;
-        bh=rgPGhUUt+Eyr0PadTOMg/b3hGIEIFxFAmO+UgjHuXjg=;
+        s=k20201202; t=1667323531;
+        bh=8+n4wVebR2DVuEojd5dP66y68blMgawXTlygiHM3C3U=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sKK7JjMNpUp0pB4xBhlrCB4Q5PsVPhMCuyQFP06qzMwkOZUXClGjTp3ioNusBPvql
-         pDtDKVjcSDhLImjrE/4+pfjgfeKpoiwXm8zeNcEqJ1EFd6Cug6V7NB9nvzk1a0uVrH
-         BtykVR53Ni8+BOFwtc4crxEVkaPeh+fugsdv+R6OvwPluKc9IdrKOyC7j3NquziIFo
-         vHX9Ihlt44Bb7XSnnoXrBY3rAjA7NcMCwTtw1yCRr+JgXLrElPcW3llcNItoaTBOic
-         qYSC32+9pLwAChCVilgLXhHX+7rFAqLR5aLRDIj6lAJ3zBuFmKvxvtZNdIRsZydwsi
-         1aczXvTT8+SZQ==
-Received: by mail-lj1-f177.google.com with SMTP id j14so21856352ljh.12;
-        Tue, 01 Nov 2022 10:22:31 -0700 (PDT)
-X-Gm-Message-State: ACrzQf3lago/N2nUOKtze1SsdGJflAI5zrkhEjTvXSQSSnETNLr2i5ja
-        lO4M5KEVj/Q9YoJC7rF8MoBRO/El4ubAEeNozA==
-X-Google-Smtp-Source: AMsMyM5vOg74NIWBfxSPaEbGXTsm2QqL0KeMr1dNQn0vaGrKgq5wWdu76VnqemjN8nO91mLCT9GkD3PgA7n9FTpeu5A=
-X-Received: by 2002:a2e:9a85:0:b0:275:1343:df71 with SMTP id
- p5-20020a2e9a85000000b002751343df71mr1163621lji.215.1667323349671; Tue, 01
- Nov 2022 10:22:29 -0700 (PDT)
+        b=VwC1XIFZ/6uv0ZpIYTUWUsrPvE1JXB/r6SNROi2qkbPIsLwxBcscmulwu6trYeRpu
+         p9okHSDGs3VJT+v5l3Wmo8NRhB1HZAFi7F+qWWc4E6xgC7im4J2begb3ugdQNta32J
+         0hZnktyZz3xC40Rs7OIbA4GDjW4scoxf2xktW/MZEUCUb/l1wxI5RNM27NGwwGZOLY
+         ZCUOzujCkavRzvrLHpZezmZXRdIPWG39t/nmWcBzTD6DYaYItZDJ6F+q6nBJ4vG1TX
+         fBt6xSxepbFXEWlrQRpcy27oSzP0Kc+pCMD0SL5UxIVRR3iJq+La8wKB7J6S9L3Zuq
+         zN9AhImTjDWhQ==
+Received: by mail-lj1-f170.google.com with SMTP id z24so21899695ljn.4;
+        Tue, 01 Nov 2022 10:25:30 -0700 (PDT)
+X-Gm-Message-State: ACrzQf2ck3qZy5yP3ZeXltyDH90VLoccnT6BOh9/ldUHFBTfu51ZYMPW
+        w4NF0KCNMcVykkZIv682ZofrlmsLIsfFNwtHfA==
+X-Google-Smtp-Source: AMsMyM76Gx3gpIDmB0YWloxakt3kNIrl0ft6hshAFByvsLqfn6Hp/4L00+ft8BqwrQoWEk8oeG8xE59btzfpwteVooE=
+X-Received: by 2002:a2e:b16b:0:b0:277:3946:7611 with SMTP id
+ a11-20020a2eb16b000000b0027739467611mr8104831ljm.392.1667323528960; Tue, 01
+ Nov 2022 10:25:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221029211312.929862-1-dmitry.baryshkov@linaro.org>
- <20221029211312.929862-2-dmitry.baryshkov@linaro.org> <20221031214055.GA3613285-robh@kernel.org>
- <CAA8EJpqt+UvWHwd90Cdm3iCi2sbxbwbC3ADY6PW053Tw8r94VA@mail.gmail.com>
-In-Reply-To: <CAA8EJpqt+UvWHwd90Cdm3iCi2sbxbwbC3ADY6PW053Tw8r94VA@mail.gmail.com>
+References: <20221028231309.565451-1-krzysztof.kozlowski@linaro.org>
+ <Y1+MNL+fCfreAqMh@google.com> <20221031192658.GA3286587-robh@kernel.org> <Y2D0As4ezi/031lL@google.com>
+In-Reply-To: <Y2D0As4ezi/031lL@google.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 1 Nov 2022 12:22:20 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLVzPawSFh9e6b3nVfn+dNDFooVgOa7B_iTGU13tzXTRQ@mail.gmail.com>
-Message-ID: <CAL_JsqLVzPawSFh9e6b3nVfn+dNDFooVgOa7B_iTGU13tzXTRQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/7] dt-bindings: PCI: qcom: Add sm8350 to bindings
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+Date:   Tue, 1 Nov 2022 12:25:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJUx2FtpYWSkx3cOFcywSux7P2sPpvbVmaryMdo1+xA_Q@mail.gmail.com>
+Message-ID: <CAL_JsqJUx2FtpYWSkx3cOFcywSux7P2sPpvbVmaryMdo1+xA_Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: Expect specific type for monitored-battery
+To:     Lee Jones <lee@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
+        Heiko Stuebner <heiko@sntech.de>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Chris Zhong <zyw@rock-chips.com>,
+        Zhang Qing <zhangqing@rock-chips.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -75,78 +68,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 4:47 PM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+On Tue, Nov 1, 2022 at 5:25 AM Lee Jones <lee@kernel.org> wrote:
 >
-> On Tue, 1 Nov 2022 at 00:40, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Sun, Oct 30, 2022 at 12:13:06AM +0300, Dmitry Baryshkov wrote:
-> > > Add bindings for two PCIe hosts on SM8350 platform. The only difference
-> > > between them is in the aggre0 clock, which warrants the oneOf clause for
-> > > the clocks properties.
-> > >
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/pci/qcom,pcie.yaml    | 54 +++++++++++++++++++
-> > >  1 file changed, 54 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > > index 54f07852d279..55bf5958ef79 100644
-> > > --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > > @@ -32,6 +32,7 @@ properties:
-> > >        - qcom,pcie-sdm845
-> > >        - qcom,pcie-sm8150
-> > >        - qcom,pcie-sm8250
-> > > +      - qcom,pcie-sm8350
-> > >        - qcom,pcie-sm8450-pcie0
-> > >        - qcom,pcie-sm8450-pcie1
-> > >        - qcom,pcie-ipq6018
-> > > @@ -185,6 +186,7 @@ allOf:
-> > >                - qcom,pcie-sc8180x
-> > >                - qcom,pcie-sc8280xp
-> > >                - qcom,pcie-sm8250
-> > > +              - qcom,pcie-sm8350
-> > >                - qcom,pcie-sm8450-pcie0
-> > >                - qcom,pcie-sm8450-pcie1
-> > >      then:
-> > > @@ -540,6 +542,57 @@ allOf:
-> > >            items:
-> > >              - const: pci # PCIe core reset
-> > >
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - qcom,pcie-sm8350
-> > > +    then:
-> > > +      oneOf:
-> > > +          # Unfortunately the "optional" ref clock is used in the middle of the list
-> > > +        - properties:
-> > > +            clocks:
-> > > +              maxItems: 13
-> > > +            clock-names:
-> > > +              items:
-> > > +                - const: pipe # PIPE clock
-> > > +                - const: pipe_mux # PIPE MUX
-> > > +                - const: phy_pipe # PIPE output clock
-> > > +                - const: ref # REFERENCE clock
-> > > +                - const: aux # Auxiliary clock
-> > > +                - const: cfg # Configuration clock
-> > > +                - const: bus_master # Master AXI clock
-> > > +                - const: bus_slave # Slave AXI clock
-> > > +                - const: slave_q2a # Slave Q2A clock
-> > > +                - const: tbu # PCIe TBU clock
-> > > +                - const: ddrss_sf_tbu # PCIe SF TBU clock
-> > > +                - const: aggre0 # Aggre NoC PCIe0 AXI clock
-> >
-> > 'enum: [ aggre0, aggre1 ]' and 'minItems: 12' would eliminate the 2nd
-> > case. There's a implicit requirement that string names are unique (by
-> > default).
+> On Mon, 31 Oct 2022, Rob Herring wrote:
 >
-> Wouldn't it also allow a single 'aggre0' string?
+> > On Mon, Oct 31, 2022 at 08:49:56AM +0000, Lee Jones wrote:
+> > > On Fri, 28 Oct 2022, Krzysztof Kozlowski wrote:
+> > >
+> > > > Core schema does not define type of monitored-battery, so the schemas
+> > > > are expected to reference proper type.
+> > > >
+> > > > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/mfd/ene-kb930.yaml      | 4 +++-
+> > > >  Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml | 1 +
+> > > >  2 files changed, 4 insertions(+), 1 deletion(-)
+> > >
+> > > Applied, thanks.
+> >
+> > NAK. Please drop or revert.
+>
+> Dropping is not a problem.
+>
+> Would you mind providing some context?
 
-No, because it's only for the 12th entry in the list.
+I did elsewhere in the series, but simply we don't want to define a
+type for a property multiple times. It should be defined once
+somewhere common.
 
 Rob
