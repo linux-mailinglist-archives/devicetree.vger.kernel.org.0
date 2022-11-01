@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2196B6154C7
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 690AB6154DC
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 23:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbiKAWLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 18:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51074 "EHLO
+        id S229591AbiKAWTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 18:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230474AbiKAWLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:11:17 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB461788F;
-        Tue,  1 Nov 2022 15:11:17 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A1MBDkM081499;
-        Tue, 1 Nov 2022 17:11:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667340673;
-        bh=t76/NsfJhc/UAPsjQj3wDq/rlBwPLOZ9zUVmC6141YA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=b+3L6l0Osgad7DE+uvg+315gwIVopn8CAp2IaYYLJEENdHCSUlGqjCJ67N7sJ6SSj
-         TFrCQ8SlwHLoq4rK3ABIjftIDMc86pfTcNJt68+ln68I1jPpEHKitcqtmYJ2xkAuj9
-         iokV98HTmpWe4CsaaVHmTqeVgUHWwAyHNnXE8By8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A1MBDeI116147
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Nov 2022 17:11:13 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 1 Nov
- 2022 17:11:12 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 1 Nov 2022 17:11:12 -0500
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A1MBAl6016232;
-        Tue, 1 Nov 2022 17:11:12 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S229533AbiKAWTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 18:19:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF34193C6;
+        Tue,  1 Nov 2022 15:19:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D57EC60FAA;
+        Tue,  1 Nov 2022 22:19:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22252C433C1;
+        Tue,  1 Nov 2022 22:19:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667341184;
+        bh=oRP7g+ZDDYszSibvvA5FgoFpJlVOf5XIE6A0JYpcsIk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HKTDDZFNmuD/A6cF+K+Y8uAFNlxKp7OfKIhGMYZ0Sm6lImu/HOdm/PlC1T5oqrhk5
+         /2lr0EoCvbT5i7xhWPngLc9QyJviN+MSUo9LY561doPU5mF4yhtlpp9LTLFtJyTchL
+         5W3RHNmncM3Z1RcUGEakEegnuxtxv41zz8FqJRIrt0RgVuxMObAWzyrotz0Rd/M3Bc
+         QM5eAjNtcrHinEWbkzQoQv6cy0H4Qz7+S7qqgXzJ29eIccXyICTqAzWIEzhPPNTAAN
+         kiIcXfMoNzcfS3JOJeCYbjzruc4+VITXaPfgjVpDekBee6aoSk2OFTZ/5eBtBQmvTg
+         gmcgsC206ubtg==
+Received: by pali.im (Postfix)
+        id BF6167F8; Tue,  1 Nov 2022 23:19:41 +0100 (CET)
+Date:   Tue, 1 Nov 2022 23:19:41 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Andrew Davis <afd@ti.com>
-Subject: [PATCH v2 2/2] ARM: dts: ti: Add AM57xx GP EVM Rev A3 board support
-Date:   Tue, 1 Nov 2022 17:11:10 -0500
-Message-ID: <20221101221110.17885-3-afd@ti.com>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221101221110.17885-1-afd@ti.com>
-References: <20221101221110.17885-1-afd@ti.com>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Subject: Re: [PATCH 0/6] ARM: dts: pci-mvebu: Fix assigned-addresses for
+ every PCIe Root Port
+Message-ID: <20221101221941.ttrh3zgepqu6v2nn@pali>
+References: <20220817223053.31141-1-pali@kernel.org>
+ <20221009111529.2eo2mwca3ywfkajy@pali>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20221009111529.2eo2mwca3ywfkajy@pali>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,35 +62,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The A3 revision of the AM57xx GP EVM has the same EVM feature set as the
-original but is paired with an updated revision C BeagleBoard X15.
+ping?
 
-DT Overlays allow us to model this in the same way, we simply apply the
-EVM overlay to the Rev C BeagleBoard to create the Rev A3 AM57xx GP EVM.
-
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm/boot/dts/Makefile | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0a281b81cc42a..6fb8e7cb4cf7b 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -986,11 +986,13 @@ dtb-$(CONFIG_SOC_OMAP5) += \
- 	omap5-sbc-t54.dtb \
- 	omap5-uevm.dtb
- am57xx-evm-dtbs := am57xx-beagle-x15.dtb am57xx-evm.dtbo
-+am57xx-evm-reva3-dtbs := am57xx-beagle-x15-revc.dtb am57xx-evm.dtbo
- dtb-$(CONFIG_SOC_DRA7XX) += \
- 	am57xx-beagle-x15.dtb \
- 	am57xx-beagle-x15-revb1.dtb \
- 	am57xx-beagle-x15-revc.dtb \
- 	am57xx-evm.dtb \
-+	am57xx-evm-reva3.dtb \
- 	am5729-beagleboneai.dtb \
- 	am57xx-cl-som-am57x.dtb \
- 	am57xx-sbc-am57x.dtb \
--- 
-2.37.3
-
+On Sunday 09 October 2022 13:15:29 Pali Rohár wrote:
+> Gregory, ping?
+> 
+> On Thursday 18 August 2022 00:30:47 Pali Rohár wrote:
+> > Per IEEE Std 1275-1994 bindings documentation (to which kernel DT
+> > bindings refers), DT property assigned-addresses contains BDF address
+> > of resource. Currently more PCIe Root Port nodes have BDF address in
+> > assigned-addresses which points to different PCIe Root Port nodes. This
+> > obviously does not make sense as the address resource specified in
+> > assigned-addresses of every PCIe Root Port describes address range of
+> > internal registers which are specific for corresponding Marvell PCIe
+> > Root Port. Fix this issue and align all BDF addresses in
+> > assigned-addresses DT property to specify correct BDF address of the
+> > current PCIe Root Port.
+> > 
+> > Note that current version of pci-mvebu.c controller driver, which
+> > registers Marvell PCIe Root Ports, ignores BDF value in DT property
+> > assigned-addresses. It expects that Root Port's assigned-addresses
+> > contains address range of that root port. That is why driver currently
+> > works without any issue and nobody spotted it. But if driver or
+> > something else would do device tree validation then this issue should be
+> > spotted and throws error. Also device tree files may be used by other
+> > projects where drivers may require correct values.
+> > 
+> > This patch series aligns BDF address of every Marvell PCIe Root Port in
+> > node name, config space in reg property and mem in assigned-address
+> > property of internal registers resource.
+> > 
+> > Pali Rohár (6):
+> >   ARM: dts: dove: Fix assigned-addresses for every PCIe Root Port
+> >   ARM: dts: armada-370: Fix assigned-addresses for every PCIe Root Port
+> >   ARM: dts: armada-xp: Fix assigned-addresses for every PCIe Root Port
+> >   ARM: dts: armada-375: Fix assigned-addresses for every PCIe Root Port
+> >   ARM: dts: armada-38x: Fix assigned-addresses for every PCIe Root Port
+> >   ARM: dts: armada-39x: Fix assigned-addresses for every PCIe Root Port
+> > 
+> >  arch/arm/boot/dts/armada-370.dtsi        |  2 +-
+> >  arch/arm/boot/dts/armada-375.dtsi        |  2 +-
+> >  arch/arm/boot/dts/armada-380.dtsi        |  4 ++--
+> >  arch/arm/boot/dts/armada-385.dtsi        |  6 +++---
+> >  arch/arm/boot/dts/armada-39x.dtsi        |  6 +++---
+> >  arch/arm/boot/dts/armada-xp-mv78230.dtsi |  8 ++++----
+> >  arch/arm/boot/dts/armada-xp-mv78260.dtsi | 16 ++++++++--------
+> >  arch/arm/boot/dts/dove.dtsi              |  2 +-
+> >  8 files changed, 23 insertions(+), 23 deletions(-)
+> > 
+> > -- 
+> > 2.20.1
+> > 
