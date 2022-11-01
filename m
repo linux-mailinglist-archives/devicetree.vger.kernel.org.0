@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9DF1615235
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 20:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91A7F61524C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 20:31:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbiKATW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 15:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48628 "EHLO
+        id S230266AbiKATbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 15:31:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229968AbiKATWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 15:22:55 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593071EC6C
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 12:22:54 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id b5so14266462pgb.6
-        for <devicetree@vger.kernel.org>; Tue, 01 Nov 2022 12:22:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eEtZo/a1sd1wcSWZKkoCrX1avRUJt1UjkNS0NlZQL/4=;
-        b=QEA1iXc37I5rzSs5hKflQbAc2y8xw0vwFh2PE/vObyapp49iv5wDtqXSZ2s+okrFcV
-         gyuGIG29rF1qYFGN9vB0i4BdahCR4D2AZVB7MZ+X+lYggJKjfOHgIvLd9JTq0BZfG10i
-         17xgpZAPG3HAGMGnDSlqeQ/+LzNSazkJFQCdTxWpKfNqFH9WIgLM1OYC2zXERuVLJYlb
-         O+Om0cNyMMG6jo0GcspPvpvx7bXKxcA9lUqnqKJUKnXHMEXZatGjrTR/bbNe2dq58cpJ
-         0o8ka+lGLBr4d8Uj2uC3kp4phufIRlupcic3UfKS5rjfLf26UbkerewjEr84Y/tCa/g6
-         nRXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eEtZo/a1sd1wcSWZKkoCrX1avRUJt1UjkNS0NlZQL/4=;
-        b=XkBEwRZif9JbIs2cDBLiNkqJplx1VOlxTTgUsmrf6UCRmHdLqYWZk3n+IrBEr6VXwg
-         kx/+FKIRL5VrGEPFWeBK/x2QE5p2JyPIa2UEpIM4856qDYy7ehxIxqdwBwHMRhSHeyu0
-         dLevuCcRpMcjZpPczXn0A9kx9p7g+7MbdvHwbSZ0Ep736UDCYNI5CF6NT7vXLDXAC1LX
-         x0EtX4rGJ7CecP9JvBK+dQVnFQTLy/Kl5x873UNZya1awQ9XpfHuqDzHiDpLWPh+BLlF
-         ug0I3p0etBLW8B24ZxsIxSCcAoZNbP0ME2JTw4WfLdsLOq5mcd/xjlbc2rXCwnWK6KO/
-         8vtw==
-X-Gm-Message-State: ACrzQf1HCMr37f8FsTmuklS5HVLzbw9i6rJhOwhW4m0+wsAENJ7ZlX+F
-        ITNnlhsxH4BQP55+nEaaDse5nDutEaAjUt9n
-X-Google-Smtp-Source: AMsMyM4uxb/DbCv9KgzTqU7n0Ij38fHEqA9N+MdGN8qw+d1O/PEts1FOLgUcQX0ndANjcIiYy+nd3w==
-X-Received: by 2002:a05:6a00:810:b0:56c:df84:1b2d with SMTP id m16-20020a056a00081000b0056cdf841b2dmr21622827pfk.66.1667330573898;
-        Tue, 01 Nov 2022 12:22:53 -0700 (PDT)
-Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
-        by smtp.gmail.com with ESMTPSA id m14-20020a63fd4e000000b00460c67afbd5sm6279892pgj.7.2022.11.01.12.22.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Nov 2022 12:22:53 -0700 (PDT)
-Message-ID: <2cad1cb4-b16f-201e-0593-2599ec8abf8f@9elements.com>
-Date:   Wed, 2 Nov 2022 00:52:49 +0530
+        with ESMTP id S230317AbiKATbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 15:31:42 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31BA1DA69;
+        Tue,  1 Nov 2022 12:31:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 50C60CE189F;
+        Tue,  1 Nov 2022 19:31:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C577C433C1;
+        Tue,  1 Nov 2022 19:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667331094;
+        bh=WyIzLEcN50Fw5PFe9SKdT3KJdU4GGa4/iSjE4+abfmc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Iy0cKseHZkLThuvTOkeIMgCEC+VZO0kEfgA5718SGnMx7DWcmz947Jm3aVE7bAbYA
+         8jGiq/FqZIAoDgWVuyFXpRwEazh63/R8DcTvJcf/muxytxnWDMJo5RfzlH3z2X05Rj
+         VZyFaeUSUzTQC2LT7z8sct2V7pm7fVFEe4ZfvA4eLXjH/UVMKI6g0fcXTu1ekxtsTV
+         ThBeBX8nPbbnhgN4EiA94iVxIXHp10RYi4ckwZ/IIM1YoZCZlBK310/xD9WhexCQ1v
+         CiZdBAHHoCKVGOgqwgZv5cY1+dZLgHHQJA2zPqJTuLgRDNLExYKQIU5U+c3zYQPlZm
+         +Peul+4PXO1Vw==
+Received: by mail-lf1-f53.google.com with SMTP id bp15so24763888lfb.13;
+        Tue, 01 Nov 2022 12:31:34 -0700 (PDT)
+X-Gm-Message-State: ACrzQf1MLNW2LzbCg+LtEjTT2vMeHMYfiOH1jTis/4iGuZ0/UHyRRJ+X
+        QG9oSV+m81XXyXEcJXSyZ8tPN7YoBf/q/f2ngQ==
+X-Google-Smtp-Source: AMsMyM56o6ehUTqHNJex/6nPD6TozwNOv5iAUrQfO3Tq4EY2MBqu+fisAt2c5ELx7fLLoUJJ/1LYXLFBfHigj58hF3U=
+X-Received: by 2002:a05:6512:3e10:b0:4a2:48c1:8794 with SMTP id
+ i16-20020a0565123e1000b004a248c18794mr7516415lfv.17.1667331092636; Tue, 01
+ Nov 2022 12:31:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-References: <20221013094838.1529153-1-Naresh.Solanki@9elements.com>
- <20221013094838.1529153-2-Naresh.Solanki@9elements.com>
- <20221024161806.GA1855651-robh@kernel.org>
- <dcd22f70-e51c-290e-c11f-9a5ce32748c1@9elements.com>
- <CAL_JsqKT52ULEZjKo9emEAt74nH2OpMO8ymLLKM_T-NzAwqGog@mail.gmail.com>
- <3152c290-8aca-b91a-df20-335c33395835@9elements.com>
- <20221101184402.GA1884153-robh@kernel.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <20221101184402.GA1884153-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20221027044920.23194-1-hayashi.kunihiko@socionext.com>
+ <20221027044920.23194-3-hayashi.kunihiko@socionext.com> <20221028193859.GA2188803-robh@kernel.org>
+ <0d7636f6-2c51-587d-1961-face98dfa056@socionext.com>
+In-Reply-To: <0d7636f6-2c51-587d-1961-face98dfa056@socionext.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 1 Nov 2022 14:31:23 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+8Rm9v4megza14JPyamV-9Yr4iAa5r+HhM6qtdHRWEBw@mail.gmail.com>
+Message-ID: <CAL_Jsq+8Rm9v4megza14JPyamV-9Yr4iAa5r+HhM6qtdHRWEBw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: Fix UniPhier SATA controller node
+ names in example
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,16 +67,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, Nov 1, 2022 at 4:10 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
+>
+> Hi Rob,
+>
+> On 2022/10/29 4:38, Rob Herring wrote:
+> > On Thu, Oct 27, 2022 at 01:49:20PM +0900, Kunihiko Hayashi wrote:
+> >> The word "glue" is ambiguous for the controller node name. Should put
+> >> "sata-controller" instead of "ahci-glue" on the controller node.
+> >> And rename a phy node to "sata-phy".
+> >>
+> >> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> >> ---
+> >>   .../devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml  | 4 ++--
+> >>   1 file changed, 2 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git
+> > a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+> > b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+> >> index a3cd45acea28..89b8b133777a 100644
+> >> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.
+> > yaml
+> >> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.
+> > yaml
+> >> @@ -117,14 +117,14 @@ additionalProperties: false
+> >>
+> >>   examples:
+> >>     - |
+> >> -    ahci-glue@65700000 {
+> >> +    sata-controller@65700000 {
+> >
+> > But is this really the SATA controller aka AHCI?
+> >
+> > In cases where we don't have a standardized name, I don't think it makes
+> > sense changing node names from one non-standard name to another.
+>
+> I see. This can't be named generic, so this change will drop.
+> And "sata-phy" in the same way.
 
-On 02-11-2022 12:14 am, Rob Herring wrote:
-> Does turning off fw_devlink help (fw_devlink=off)?
-This didn't bring any difference for the error.
-Failing due to same consumer & supplier.
-Returning from here:
-https://github.com/torvalds/linux/blob/master/drivers/base/core.c#L702
-Also this can cause return:
-https://github.com/torvalds/linux/blob/master/drivers/base/core.c#L732
+I think sata-phy is fine. It may not be added, but usb3-phy or
+pcie-phy are common already.
 
-Regards,
-Naresh
+Rob
