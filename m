@@ -2,96 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D8B461428E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:03:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20C88614293
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 02:04:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229469AbiKABD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 21:03:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47650 "EHLO
+        id S229561AbiKABEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Oct 2022 21:04:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiKABD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:03:28 -0400
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74248DFE5;
-        Mon, 31 Oct 2022 18:03:27 -0700 (PDT)
-Received: by mail-oi1-f169.google.com with SMTP id y67so14553556oiy.1;
-        Mon, 31 Oct 2022 18:03:27 -0700 (PDT)
+        with ESMTP id S229441AbiKABEt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 21:04:49 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE3111814
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:04:48 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-333a4a5d495so123433937b3.10
+        for <devicetree@vger.kernel.org>; Mon, 31 Oct 2022 18:04:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Co31BusoGSY0MXuFeKA0QlCszA6tiMpIiw8hHEzMy28=;
+        b=fFKYIUFXKtITwrPLqasMLB1EHzFCV1ahYkQ3s3TQmt2L/uccTfNAITexpynI2emGWQ
+         L0efnOz06fdQ8AYkBw3yutXLfnrZD9pX+EAy71QXcnxzg7zwGB+ot793T+iJLK35xwJx
+         3W+An4ChtjB6RS4TU/6nHfnIFyL+gUS3fqyy2Zzk/i4gUr40thWNi6GOryi4XGk0Rf7b
+         29bnWmE+gT7Juq6qz4fkfjRrKCp/vVqxloUhoUJP73sHMYVQzYtCBWfS2hcW5sx+Qu+m
+         55rOvBGn27AKXrhd7SPCjeIbnYet7rzcBRdHPq0gknY9a6e2XiYOx3jqaiZMLzJcQq3W
+         0VfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HkcBrIA7oBQ5mjHwd2UEcYrTi2K7pE4sTmK8J9yJ3xk=;
-        b=Mq2MCGy1T+z8KLT7oleVOs/Tzw1HdSIUIxdT/SzNTos3RyY/MC6cRtZ1T+nbWqLeNG
-         Aw40g51YC4CmKG9AjtaiZcHj44REHFFugnyD2HY2Z3dtedw3CisyG7CbdEBKN214YVkL
-         kKLjTgfiHHFK1Xht9i2KMh8/9J20rdYnTPbnHiK/3yPTXH1qPLEPvb+gQ2rsOS+8FvsE
-         JBnTY/piYCB/vq9yLHfpHGl83CHkwpY5xPYL5W39qaY8bVtrrXoUn9eDp0vcYKHJ9ph6
-         ItABvTn8l4PcLng55G6Pai3XKZmv4BbEBP0PeHlQgwh3UKjTZCjKg0s7EWEei2Tiyvly
-         OLEA==
-X-Gm-Message-State: ACrzQf3b8EhHzBmytm+hBCGdTtjY3RRqNw4pT+u6fjGTtd7wJTGdFEga
-        pf1tOerplPfPmYmBVB5jmA==
-X-Google-Smtp-Source: AMsMyM5Hm6wz1VL2aBS7VdPj2bSUEvAruPZvs7foxPpmncN/mwOsDpLRKL8oEo1akGDpohnZxJPP6w==
-X-Received: by 2002:a05:6808:8d2:b0:354:7fd4:f17b with SMTP id k18-20020a05680808d200b003547fd4f17bmr27480oij.221.1667264606700;
-        Mon, 31 Oct 2022 18:03:26 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g12-20020a056870a70c00b0010d7242b623sm3825007oam.21.2022.10.31.18.03.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Oct 2022 18:03:26 -0700 (PDT)
-Received: (nullmailer pid 4030032 invoked by uid 1000);
-        Tue, 01 Nov 2022 01:03:27 -0000
-Date:   Mon, 31 Oct 2022 20:03:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>,
-        linux-usb@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Karl Kurbjun <karl.os@veroson.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-sunxi@lists.linux.dev,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: phy: Add special clock for Allwinner
- H616 PHY
-Message-ID: <166726460732.4029973.16304467789451504367.robh@kernel.org>
-References: <20221031111358.3387297-1-andre.przywara@arm.com>
- <20221031111358.3387297-3-andre.przywara@arm.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Co31BusoGSY0MXuFeKA0QlCszA6tiMpIiw8hHEzMy28=;
+        b=wwrGfqfVqCGMGgb4VgCzD7bbLRJE5cNvgAO9EoVoT5242WR7R8ETR90fnV1CX3mcPK
+         kXvZnGyPpK4yjupR08NiTQ4qtnH5LDMTiwtJ3kkeZ+x0bpKO2Ik40H1m87Nclo1zkA3k
+         40oHNaM5pzeWdzMqp7UedmjldaboMk+BiYKrXRcZGFFuclwbfiCBpKfqcNZOcTitpCVz
+         XXUB5jaT3Gfd+FB/dxoE9Tra8cjdtZ9h/DxbCvkb+Kf4jeCncI47LMRYSkVqbgWyL50S
+         wSdUm8qbNWzJwQDU03UPGNePaBTMyNMnmTm6tsL9rtAYZ6W+UoWyPw3xQ1lanFAxHkwB
+         FXIA==
+X-Gm-Message-State: ACrzQf0P1d6Hvlm9cIfrp6AycBTwCGAb5B53FYpKw1kyMu2V5mpl+ffo
+        KT+PRctCe05kjzCWdGeF5Ae45o6f5FhXnDGFzxM6PA==
+X-Google-Smtp-Source: AMsMyM5AqSG/s/7RS5sYTrot30XqWHEK/nyNuZSJdwa4sk5v4Ezc4sUV0G3a3sCElW41Ozxyxt5F67HvM8x9vV+w5A8=
+X-Received: by 2002:a81:ab4f:0:b0:36f:d141:f9af with SMTP id
+ d15-20020a81ab4f000000b0036fd141f9afmr15526798ywk.311.1667264687461; Mon, 31
+ Oct 2022 18:04:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031111358.3387297-3-andre.przywara@arm.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20221028102450.1161382-1-ajye_huang@compal.corp-partner.google.com>
+ <20221028102450.1161382-2-ajye_huang@compal.corp-partner.google.com>
+ <Y1vDYNOwZNOco1hq@sirena.org.uk> <20221031184343.GA3235956-robh@kernel.org> <Y2A0fdwnHTqw/NDw@sirena.org.uk>
+In-Reply-To: <Y2A0fdwnHTqw/NDw@sirena.org.uk>
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Date:   Tue, 1 Nov 2022 09:04:37 +0800
+Message-ID: <CALprXBYEsB5z-iioBeyeBAwPFkOnkQn8CBbj9Di9CpdqvFFnOg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: Document dmic_sel-gpios
+ optional prop for two DMICs case
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+        angelogioacchino.delregno@collabora.corp-partner.google.com,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark, Rob
 
-On Mon, 31 Oct 2022 11:13:53 +0000, Andre Przywara wrote:
-> The USB PHY IP in the Allwinner H616 SoC requires a quirk that involves
-> some resources from port 2's PHY and HCI IP. In particular the PMU clock
-> for port 2 must be surely ungated before accessing the REG_HCI_PHY_CTL
-> register of port 2. To allow each USB port to be controlled
-> independently of port 2, we need a handle to that particular PMU clock
-> in the *PHY* node, as the HCI and PHY part might be handled by separate
-> drivers.
-> 
-> Add that clock to the requirements of the H616 PHY binding, so that a
-> PHY driver can apply the quirk in isolation, without requiring help from
-> port 2's HCI driver.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../phy/allwinner,sun8i-h3-usb-phy.yaml       | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+To avoid confusion, I had submitted another one for process
