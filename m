@@ -2,94 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D8D6149F4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 12:53:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E92F614A03
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 12:56:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231417AbiKALw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 07:52:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40232 "EHLO
+        id S229920AbiKALz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 07:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbiKALwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 07:52:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B7FE1BEA1;
-        Tue,  1 Nov 2022 04:50:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A0C12B81CC1;
-        Tue,  1 Nov 2022 11:50:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B42DC43142;
-        Tue,  1 Nov 2022 11:50:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667303434;
-        bh=b9DuYeJ8UAyKN4iunSt8QITKWhgj/OI7HXDzc4+2l1s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UYRKmAH9YdIMxLU8EIhuvvnbpOp7f11/bypSfTgAnJ565eqzNIZhOubyyXnOkFswX
-         rhxW/gDb/p+cg9Lu0k0BFY9UoeX9g+O320lJ4oyNnP39nPcim7deDVUf6OcbZAz/i3
-         zHvY+drmkwx21kwgXW1OfmfPT0Te1NND2AK6kynHuFF0rqSGxEqrD629HK7QXRFz+V
-         Le522I8ivpz1IgpVuvWozjhySVwzSABDDZkwEjdKqI51HxP9ORUYEvx7pXo+rTWQ9l
-         aMxApK4Kt9dNwjIF60jmsZlHYfRYvz0WxGzXm2ghiWZpCemYMCfygsCZWQ0pFASGoR
-         CsU8sKuJgpGYw==
-Received: by mail-lf1-f52.google.com with SMTP id t4so10102074lfp.2;
-        Tue, 01 Nov 2022 04:50:34 -0700 (PDT)
-X-Gm-Message-State: ACrzQf3ExM1ZhFcAohp/pUws3qOdk8rf+u8UQzY+GN/iaD5Z/lCN6vZo
-        TbPe/bkf+K3WtSfuQGtHPFYwSNuyiVzMSPQLZw==
-X-Google-Smtp-Source: AMsMyM5KpWl/s5M/2RwB97O0OoBTIFMD/4tFktgErD2EfbHM6BU8nZZywCB3++o+IvLHYAQ1WNuxKb0WTeinXEUk2sM=
-X-Received: by 2002:a05:6512:3e10:b0:4a2:48c1:8794 with SMTP id
- i16-20020a0565123e1000b004a248c18794mr6906292lfv.17.1667303432390; Tue, 01
- Nov 2022 04:50:32 -0700 (PDT)
+        with ESMTP id S229889AbiKALz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 07:55:56 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE18F180;
+        Tue,  1 Nov 2022 04:55:55 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-13b6c1c89bdso16472291fac.13;
+        Tue, 01 Nov 2022 04:55:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=1gVTUqCuPMUev0ujZeNXu/CWSNZgTr+132JZ6/ognRo=;
+        b=nKkX/cfKzDXN72XIOR2OYD2e+Q18MTCaP77lXs/mDeFRqP0FszBFWJtexoqj5tbzbr
+         7+MohlBt0K8SGyXT9g3Jj9n1UrD0ySiulwvJ5tyFIqdcYdfi6RjT9I4//tml4rBaeuhy
+         GuplAb7Nw3CqufC7gBb14XcbXz7pMjeRE1A9Wts4QeVZ6wS8aS8XgtHzOJ3SZT88B/Ck
+         oZeoHUwunTGKmyLUrnIUv09qq5BFRNIu5OsrY3j7gLkGw4me7IhiQL6s39u5nUAn9ztA
+         zYA+SoKFmPGx/7FTlhHITWSF7ozkAt0E0UcQfkaVCETZbWdwhy202scTrXf2Mcx1bs8y
+         2Rog==
+X-Gm-Message-State: ACrzQf0peqo2rbDWRHGR3TzjkDw+Fqdv9owXQ2ivmI/C0SsBVauly+77
+        ehxdcSntb0PHyJr/EKs26ZbZ5AJTYQ==
+X-Google-Smtp-Source: AMsMyM6qMT8qCkO6ZNEjSImtbudJZC9vqH6tDKsweV0FpVQVuDjfk3wQo6SRNNJQcpJKsMUfQzqVfg==
+X-Received: by 2002:a05:6871:54e:b0:13b:29b7:e4be with SMTP id t14-20020a056871054e00b0013b29b7e4bemr10919340oal.176.1667303755012;
+        Tue, 01 Nov 2022 04:55:55 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p15-20020a0568708a0f00b001226d2100f2sm4346552oaq.33.2022.11.01.04.55.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Nov 2022 04:55:54 -0700 (PDT)
+Received: (nullmailer pid 909535 invoked by uid 1000);
+        Tue, 01 Nov 2022 11:55:54 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-References: <20221026114908.191472-1-alistair@alistair23.me>
- <20221026114908.191472-3-alistair@alistair23.me> <Y2BfCkVhE9GNdjWI@google.com>
-In-Reply-To: <Y2BfCkVhE9GNdjWI@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 1 Nov 2022 06:50:23 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKppGZ2Dm3GiDY-e4TvLSvcc-EHwafXNwfoSD1AHzz=GA@mail.gmail.com>
-Message-ID: <CAL_JsqKppGZ2Dm3GiDY-e4TvLSvcc-EHwafXNwfoSD1AHzz=GA@mail.gmail.com>
-Subject: Re: [PATCH v10 2/4] dt-bindings: input: Add Cypress TT21000
- touchscreen controller
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        shawnguo@kernel.org, rydberg@bitmath.org, alistair23@gmail.com,
-        s.hauer@pengutronix.de, andreas@kemnade.info
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     robh+dt@kernel.org, bhelgaas@google.com, michals@xilinx.com,
+        krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
+        nagaradhesh.yeleswarapu@amd.com, linux-pci@vger.kernel.org,
+        bharat.kumar.gogada@amd.com, devicetree@vger.kernel.org
+In-Reply-To: <20221101052049.3946283-2-thippeswamy.havalige@amd.com>
+References: <20221101052049.3946283-1-thippeswamy.havalige@amd.com>
+ <20221101052049.3946283-2-thippeswamy.havalige@amd.com>
+Message-Id: <166730310310.897892.15492131590720845659.robh@kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML
+ schemas of Xilinx NWL PCIe Root Port Bridge
+Date:   Tue, 01 Nov 2022 06:55:54 -0500
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 6:49 PM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
->
-> On Wed, Oct 26, 2022 at 09:49:06PM +1000, Alistair Francis wrote:
-> > Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
-> > documentation. It can use I2C or SPI bus.
-> > This touchscreen can handle some defined zone that are designed and
-> > sent as button. To be able to customize the keycode sent, the
-> > "linux,code" property in a "button" sub-node can be used.
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
->
-> Applied, thank you.
 
-It looks like you applied v8, not this version. linux-next now has a warning:
+On Tue, 01 Nov 2022 10:50:49 +0530, Thippeswamy Havalige wrote:
+> Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
+> dt binding.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
+>  .../bindings/pci/xilinx-nwl-pcie.txt          |  73 ----------
+>  .../bindings/pci/xlnx,nwl-pcie.yaml           | 137 ++++++++++++++++++
+>  2 files changed, 137 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> 
 
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dtb:
-touchscreen@24: Unevaluated properties are not allowed
-('#address-cells', '#size-cells' were unexpected)
-        From schema:
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
->
-> --
-> Dmitry
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+pcie@fd0e0000: Unevaluated properties are not allowed ('iommus', 'power-domains' were unexpected)
+	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dtb
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dtb
+
