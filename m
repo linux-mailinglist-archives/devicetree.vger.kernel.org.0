@@ -2,225 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D69036143C3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 04:48:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6491A614428
+	for <lists+devicetree@lfdr.de>; Tue,  1 Nov 2022 06:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbiKADsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Oct 2022 23:48:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40156 "EHLO
+        id S229817AbiKAFVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 01:21:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiKADsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Oct 2022 23:48:02 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2101.outbound.protection.outlook.com [40.107.93.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6712117599;
-        Mon, 31 Oct 2022 20:48:00 -0700 (PDT)
+        with ESMTP id S229452AbiKAFVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 01:21:32 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2074.outbound.protection.outlook.com [40.107.93.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA8C6140ED;
+        Mon, 31 Oct 2022 22:21:29 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YS1StcYLPnNgWF7PZw1rphWNZ9+6aMMiGk8J30yM6Ctk+014/KiBZMJbPMuROZB4DwFJgplavVf8H7laJEJat+Yhr9EB8kipc7fr6utEk3hHnYTk7XrNS8qzEvcFZvwzBTgH0DsX8dn8zLUqm/gmM1HnisernWf9KLshsgA+QrSOS227ov+Fi+w9RZLpiFFukqUlxeBJ4IB1FbgAeRBsBBCZIQ51sPgVMKi1kb5YrScQ/y6THqYl3+2ctpgi0u6o6e3VZtd6Z/Uoutto1Eq+N4JSr/1IYrMeGznXqDBmz8bEhYryknSoSdAqMJlSHJ355Z6ZHaUcDRIvgUxBmBWuUg==
+ b=mT2CZDbAkoiq5WeXIIWevZ+F3wk+r9JJ6sGpE4FodyjofiJCsfdkR4LGgVm58kyvIrkGlvRx0TDe/9lPfgeLh3ZdCAcmVS3Scu9l4pAeNRn0U87XzhIC5HSXUL61xd2JAh278KtWiY63fW6eDYaQYkpauvW4D10BQxu+3S/EjGfYdO1IXrFvRiAce18JSx5vNSw52EeJ2rCsK7/NGD0kx4mwj0Y9TNYINtdn2kGV4kTHp5b2Guu08fDzMx5Opz8xUSSrcfBMdFKOahZKEIiXb+f3kTaxSsVUczAGGLaF64eO8FJqtswzDMUE8Hk2Q9eFsZrQ4WqvKgOKW27d3ZOjbw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RGaqW5LiW4wBrceSqKiBy6n5WDYhxBsQwEnx3GYwn1k=;
- b=HhxJnV1b4Lxg+DpCU8MdXOH4zRI2HayN+C6cGrVRWtoBi+w6COe2djddjLglNgsUVan9c6NQdGazF0f2z2ip/CHF6Zg04QQMZLQhuB+0AJ/fZKSxO82Haz+kYY1v5pGBMhXqqk6TEKt37oZqsjLW+G909uDJDUDo7AOQ95QuQxoO/FD3FmgGgxls4Hn4iyysyTUs8nqcY9hKnkJAj+QnoVnztk1YxPHqkjkVDr/6an4m+cwbfuDrHVv7WCr56/cJCDV270Z+3tr8aoD8xomLrqkezZy951oILkW8XkEdZaYZ7jvbE2dWEGpuMzI2VqxXvToOCdDJSZ/Z+neRcjbRew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ bh=JmFE5m3c6/JIG4LoFb+XfEt9pQiJh8aS0MmE6VbICjI=;
+ b=NaXVWldoefcnHqKRkmn4WESLOQ+XCAxZ6ek0K3WBZPpftTIhiTz26jgddj75Tagrl1EREeTTcIID+I6C8XWC7UeizYga2q6bltyFz67MhfYyiMLdDW3Cb60FHKuHkTZ3APhVbFStLzJsyEovuCQT6ONgTUXUN7TuKNkjAdNDfOXaqIPGMujpsSzh420qnr5ld8CLWFsN+lYl/8QOQjdfBwCGlld2jb1vnmBK+4vNTqkrjTHBuOQzzzMQbQyVYYr+qvNi3aWIOTx3xzI0rFQEgJI1Md78JgcAC+fZTvIitewWWioMJ0BcVYLY+r0U0cbBNU1R5ZnJrhue3LJHsaoBjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RGaqW5LiW4wBrceSqKiBy6n5WDYhxBsQwEnx3GYwn1k=;
- b=y5cvpBSzb12Wr1KNGM9luS6wLoWFSMuRWVyVgleejiSLbGDHlIS+eH3fiPuuPaxnY0os24GrVh1yNZ1L2WkcCJMWrkQ7P5zomNfs3P25eJy/VfqEH5nkd8Qa/QytpO/tKZ7RZ+bJPs4dpea8MCdhZWrezOaJzFch4lS/qvHKgOM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by SA2PR10MB4553.namprd10.prod.outlook.com
- (2603:10b6:806:11a::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19; Tue, 1 Nov
- 2022 03:47:58 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::a8ed:4de9:679e:9d36]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::a8ed:4de9:679e:9d36%4]) with mapi id 15.20.5769.016; Tue, 1 Nov 2022
- 03:47:57 +0000
-Date:   Mon, 31 Oct 2022 20:47:43 -0700
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?utf-8?B?bsOnIMOcTkFM?= <arinc.unal@arinc9.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v1 net-next 3/7] dt-bindings: net: dsa: qca8k: utilize
- shared dsa.yaml
-Message-ID: <Y2CW3/V4/iiMh+Sq@COLIN-DESKTOP1.localdomain>
-References: <20221025050355.3979380-1-colin.foster@in-advantage.com>
- <20221025050355.3979380-4-colin.foster@in-advantage.com>
- <20221025050355.3979380-1-colin.foster@in-advantage.com>
- <20221025050355.3979380-4-colin.foster@in-advantage.com>
- <20221025212114.GA3322299-robh@kernel.org>
- <20221025212114.GA3322299-robh@kernel.org>
- <20221027012553.zb3zjwmw3x6kw566@skbuf>
- <20221031154409.GA2861119-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031154409.GA2861119-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0214.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::9) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+ bh=JmFE5m3c6/JIG4LoFb+XfEt9pQiJh8aS0MmE6VbICjI=;
+ b=2isOeClH35k3c1nJzk7canFUYTtHKYZfl6uuIEAHW33+WAPdSFWlrEIgnYBRmsrRKCS1xxABIk0pzCtQJk75cb9yFfLQd+atzLXfy2ZNpoOc67ydMHq8DKuFnDRlfXWxNoJpgfaQwo7MuryV4pS2dqYsj+JPKe1jvBSwHZk57YM=
+Received: from MW4PR04CA0081.namprd04.prod.outlook.com (2603:10b6:303:6b::26)
+ by PH8PR12MB6867.namprd12.prod.outlook.com (2603:10b6:510:1ca::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.16; Tue, 1 Nov
+ 2022 05:21:27 +0000
+Received: from CO1NAM11FT090.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6b:cafe::b5) by MW4PR04CA0081.outlook.office365.com
+ (2603:10b6:303:6b::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.19 via Frontend
+ Transport; Tue, 1 Nov 2022 05:21:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT090.mail.protection.outlook.com (10.13.175.152) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5769.14 via Frontend Transport; Tue, 1 Nov 2022 05:21:27 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 1 Nov
+ 2022 00:21:18 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Tue, 1 Nov
+ 2022 00:21:06 -0500
+Received: from xhdarjunv40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
+ Transport; Tue, 1 Nov 2022 00:21:04 -0500
+From:   Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
+CC:     <bhelgaas@google.com>, <michals@xilinx.com>, <robh+dt@kernel.org>,
+        <nagaradhesh.yeleswarapu@amd.com>, <bharat.kumar.gogada@amd.com>,
+        Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Subject: [PATCH v2 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML schemas of Xilinx AXI PCIe Root Port Bridge
+Date:   Tue, 1 Nov 2022 10:50:48 +0530
+Message-ID: <20221101052049.3946283-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|SA2PR10MB4553:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3d8d954-b698-4e12-ffd7-08dabbbbdd5d
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT090:EE_|PH8PR12MB6867:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a585cfa-d7b2-4af6-0e92-08dabbc8ed25
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XY40nut9fhqgP7WkvuJh5/Cd/NgET5adxxPkXr3l/ZoCd9v8Kqq5cej4EKrxUEMUMhlftyHZqQWQwysV1VfW11t2uYyZS/sxucDuajBzyzuRLD1tkJ5dZ57rF5ug0j4+fV4hQQ+cHJPFUTImbj41N5IM1rOcBcfsNx3G+Sn8ZO31DY7opMStQv9GlK/6QsVCax+YTDnl9nthSv5Q9juAe/zpHwBlhuMj7QSQ6op7HTovzeCvbiyzzgB+bV00Siv08jlLg2bSTQtvP3C+UB7NFPzZ8F3ghhBaK0oRaaCd2jbKg/F5P1QCHw9XCnrJq04KdQctoEmkf6vsao9Mp4+yR9zNk3oBKXlqMpejEGOXunomePdWTA527AhORZvUDTcLed4HWF4WT5Ud3mE5MILGGmRBq/xsTd8SmHGCWghLJIC8uByQ0y87JSdyClof0ZlBWckYUPHQm1U8JtuTxTW8IVqIlQiA6A1kcPsTsLkps4oi8tRNaFNBJk3e7ZBm3nvw9/94VZYEI3OhwU/pJEtuif92Esh6XyEz0Mioy80IG5obyHJNQxxfx28vRHMGURpyMXdCkCPl/C7zt+kksnSqkz1I9mA6UX07AirR810udI8VyjpHLzColWYK+FGzVF/a+ubGvdh3M44g3icgV4JDFb8XT0YF9vrDbFt/zH0I683viec6ATF/khx/9kYPi0R+8mNlDm6wNYdIAex9MvpRrxD5fQaNQStwt11VXzXXjLUn2Xd0yNmrfBnNYk0Eho4T
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(396003)(366004)(39830400003)(136003)(346002)(451199015)(86362001)(38100700002)(6506007)(83380400001)(6486002)(2906002)(44832011)(9686003)(186003)(26005)(478600001)(6666004)(6512007)(41300700001)(6916009)(316002)(54906003)(66556008)(66946007)(5660300002)(8676002)(66476007)(4326008)(7416002)(8936002)(32563001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QEuWOprBnd+JllM+q+JdH3teRPRWQlcv2rZ9HKry6acnbL0+ZaCE+R3u/X29?=
- =?us-ascii?Q?7v+cjJyvYG8W3cK/NzmJZpVzU5BYeh+xPu+v0AE++G0tK/93xcuES+1grGVB?=
- =?us-ascii?Q?I7RgMzqrz84Yf7FV6Ds0sWiFIu7tdklvv4mCVx3rOgNMXRsqRPIj1mvHxNuD?=
- =?us-ascii?Q?tmUnjo6iKrrgs1stRbWRaNJ6ZZojSZgzOKq5GBXP6aMsbjzzfeOh3RccomIU?=
- =?us-ascii?Q?2jYBd6k/ykdrRiZfBn95A8gotohs6myeV68Qgb6+7Ok2xwP7/V01q4e2VhPA?=
- =?us-ascii?Q?B8x6fBfssttcyPGPRQpvKhfk3A0yeu+8sobNzgA+dtJFJdnJQhCJWgGXAK2x?=
- =?us-ascii?Q?BtFTwSNipDj8qtTJo4NDnCrvXve6NHAf9q6AlWiD0+hPiQzcaQ2HD/5CEWRw?=
- =?us-ascii?Q?Q4rCKkI9PJG8zARAF8ulCXgD5Os81+PTyt/qGYSA7gEbph4E3tpag30u5BDD?=
- =?us-ascii?Q?1LJRkSmjDDT8AkAkVKS2bsieMCaxk+S+TYt7DuHPq5TPvZRIEa1UfHg1OpYF?=
- =?us-ascii?Q?oV40GYiziKTCFwL5KlKPut7dXQ/dtHTys39G4MndYYH3fDjFM+U8cISKfhQx?=
- =?us-ascii?Q?s8bPH6/AllPSNml7n2oNijRA6Jga6p2ejB3SP18XbvRTBqGdgcV5sj2mmH7M?=
- =?us-ascii?Q?jnSd13a9VrRhRtu4j5W1VcCgVyrxWWBRmV7XQxuU4Z9ymq06zM0vOwgg+APQ?=
- =?us-ascii?Q?iomPEebND7TCpBpYZKbloO4+PYwN4Sco9AeBlL5xZkwKh424LcGOD86Xh0v/?=
- =?us-ascii?Q?7pOjJ499SfEYCugFWdVPD+ZYVFoYj6FQFP7IH0EzlR7MkDvxaifnlCIXUkFX?=
- =?us-ascii?Q?YADmXPD3gALdMi/3srJle1HUUo7PGsSU6qalfnrUXnl2XYqpywyPB94kQIfA?=
- =?us-ascii?Q?gS5w8AqgAE07x8GaRejfWp134O+6JjWENyxVFTXxhwwpV2CdD2DcdnSR7d+V?=
- =?us-ascii?Q?CqSP8zQ+WPfCqSdXZVdEZgqibiNbIlqw/4ZU+wCLHraT9uSz4dRb21A4lIJB?=
- =?us-ascii?Q?YAXdHYdZV0MuZLVXJjDOeRizlT9bmIkUTDBInp/kLYeTesT8IV+klnzAr3P0?=
- =?us-ascii?Q?XhrKqc2nom7OADFB4Ty5eflhBZZMnVzXITfRlNZHyywUy6B9lrFYX3kYO7Pv?=
- =?us-ascii?Q?4WDwIvrlZcfRxLsNUkGG0iLzJ7CF1kk8iHc9P/RTiuXJ9ymOJ52TBZNiWSE+?=
- =?us-ascii?Q?sDzbNS92bSq4Ro+pX5wF2LsMG5jCTJqnnRna4FpcULUz2Jlo2CuoNRSLWL4z?=
- =?us-ascii?Q?d9hQJd1DSG4l4V3g89RtM2UGfZhydz4NJ70tVxZh7F5EmvOMrM7rgiTIoVGd?=
- =?us-ascii?Q?zRI3tBc4V04S6W0i7XDDZZPYh8b8mi6VRMsYxz4mRJNZz5lh1vkU+XBTJ6Jt?=
- =?us-ascii?Q?5J9ITCrwQ/NdT9I7POl9Bc8lOp8Rxi0Hngm9/8wn+w0WBviA56S+TOPlbyp/?=
- =?us-ascii?Q?SEiGdCi2TOrFq0NHMqH+8dv703NHDFcEb4XMBU9P+UiZz02xBZ7zrwLEf0HJ?=
- =?us-ascii?Q?AVnyVatLzD10qHrWnp9xW3Gs1vJ5p45gNUaa4ZCdHy8lf47f7j9igltUsVrJ?=
- =?us-ascii?Q?1m67KtQyfK3DZkmT+bIAY2Kvusio+tCmwZWKOkZY33nL0w5c0o75pmu+YbYi?=
- =?us-ascii?Q?LQ=3D=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3d8d954-b698-4e12-ffd7-08dabbbbdd5d
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2022 03:47:57.6518
+X-Microsoft-Antispam-Message-Info: fkAGsWcYVjiZIU6D7EZ107NMiuO1yMxunsL6dvgfXgpfOrGQafH9HzBrUgZjVPkbiJd6w1YBLYhea2FSOXu7+IbOJS1cbQ3NOPRlM227LW2jdUsOKVq0XcTWdEBFnTgz+tsG1mp2rVd1yyLEQBjlL3fx3T+qvVKcsIMxkqL9g8WIFNx58Yck6zy/a6Xd18sa/y+2P5PnJ2x9yzJ+RUWkDOMOs0k6/x429JhsYddX8sNPs/9nMMxa7674vEvZ+owWiuN3Sy/qeoCzg6leYKD6rYtB5Ygz429SrBw7b+IHWjSqDmNqvWFzKzdni2hqbgfF9UMaQsuly25rQ19NOymiZRlCvGRxdgF8Og6tVwG5r+qpQxlZiU18+o+edVrFKToEHk2Mca0eIt3LT84GO+Tpeb51RlI7QdbgoIK2a4LyoUWGBmlqijC6kTlWqm/7xfgFWZf+In4dkGh2i5N5JyMdj32Eihr2lF0/2CpdA8ClDKn5j78VPZ5pgU5sLIQLRLfWyf8foa7nVxmxdU/fiYBElA/pbgpkjhUA7AQUIZ32uAQ+ZB2qwWzgnTirre+oktgniupcHhnpXl4GDx5JbigoL/e96cJZvqUf4OsX8UYp/rBGtFZTzBuQvwvAcnrsZAhOmd0jq7Zd6yRtcF0FghtiKKHyZPjikbb+zXpnGJDMDPZpcDSM+ZuIMRd6r0VA8LxhYjQRM4J1oT9Tdielg/DakfKD6azcjhtvzPq0h/bSe+s1M34MbaT/FK6/RYHLjX2E4M3VyWlicSKKh6DMxwNZcuwuWPM7sxtToDDuIRzVg1nQOtbuV0ez2RVX4KmHnfQ3JQc9IJfQehOAJffv+i6/RMGrJOngMq800PwjLDe79qDmFQeQZlb5aAjy6LWqwkYR
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(39860400002)(346002)(376002)(396003)(136003)(451199015)(46966006)(36840700001)(40470700004)(5660300002)(82310400005)(966005)(478600001)(82740400003)(86362001)(110136005)(54906003)(4326008)(44832011)(70206006)(70586007)(83380400001)(36860700001)(6666004)(8676002)(40460700003)(8936002)(316002)(186003)(1076003)(36756003)(426003)(47076005)(81166007)(2906002)(356005)(2616005)(26005)(41300700001)(336012)(40480700001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2022 05:21:27.1266
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3ohmtbcg5euk0WCPNO3B1Rup7sFfYti1QttIfUxdWlWCfGA++7T9Jldbq+fM2GwsuMt7o/Q7lbYMlSA6lipaE3osWFrKfpATaNhz9sm8tqQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR10MB4553
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a585cfa-d7b2-4af6-0e92-08dabbc8ed25
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT090.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6867
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 10:44:09AM -0500, Rob Herring wrote:
-> On Thu, Oct 27, 2022 at 04:25:53AM +0300, Vladimir Oltean wrote:
-> > Hi Rob,
-> > 
-> > On Tue, Oct 25, 2022 at 04:21:14PM -0500, Rob Herring wrote:
-> > > On Mon, Oct 24, 2022 at 10:03:51PM -0700, Colin Foster wrote:
-> > > > The dsa.yaml binding contains duplicated bindings for address and size
-> > > > cells, as well as the reference to dsa-port.yaml. Instead of duplicating
-> > > > this information, remove the reference to dsa-port.yaml and include the
-> > > > full reference to dsa.yaml.
-> > > 
-> > > I don't think this works without further restructuring. Essentially, 
-> > > 'unevaluatedProperties' on works on a single level. So every level has 
-> > > to define all properties at that level either directly in 
-> > > properties/patternProperties or within a $ref.
-> > > 
-> > > See how graph.yaml is structured and referenced for an example how this 
-> > > has to work.
-> > > 
-> > > > @@ -104,8 +98,6 @@ patternProperties:
-> > > >                SGMII on the QCA8337, it is advised to set this unless a communication
-> > > >                issue is observed.
-> > > >  
-> > > > -        unevaluatedProperties: false
-> > > > -
-> > > 
-> > > Dropping this means any undefined properties in port nodes won't be an 
-> > > error. Once I fix all the issues related to these missing, there will be 
-> > > a meta-schema checking for this (this could be one I fixed already).
-> > 
-> > I may be misreading, but here, "unevaluatedProperties: false" from dsa.yaml
-> > (under patternProperties: "^(ethernet-)?port@[0-9]+$":) is on the same
-> > level as the "unevaluatedProperties: false" that Colin is deleting.
-> > 
-> > In fact, I believe that it is precisely due to the "unevaluatedProperties: false"
-> > from dsa.yaml that this is causing a failure now:
-> > 
-> > net/dsa/qca8k.example.dtb: switch@10: ports:port@6: Unevaluated properties are not allowed ('qca,sgmii-rxclk-falling-edge' was unexpected)
-> > 
-> > Could you please explain why is the 'qca,sgmii-rxclk-falling-edge'
-> > property not evaluated from the perspective of dsa.yaml in the example?
-> > It's a head scratcher to me.
-> 
-> A schema with unevaluatedProperties can "see" into a $ref, but the 
-> ref'ed schema having unevaluatedProperties can't see back to the 
-> referring schema for properties defined there.
-> 
-> So if a schema is referenced by other schemas which can define their own 
-> additional properties, that schema cannot have 'unevaluatedProperties: 
-> false'. If both schemas have 'unevaluatedProperties: false', then it's 
-> just redundant. We may end up doing that just because it's not obvious 
-> when we have both or not, and no unevaluatedProperties/ 
-> additionalProperties at all is a bigger issue. I'm working on a 
-> meta-schema to check this.
+Convert to YAML dtschemas of Xilinx AXI PCIe Root Port Bridge
+dt binding.
 
-Thanks for this information. So if I'm understanding correctly:
+Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+---
+ .../devicetree/bindings/pci/xilinx-pcie.txt   | 88 -------------------
+ .../bindings/pci/xlnx,axi-pcie-host.yaml      | 87 ++++++++++++++++++
+ 2 files changed, 87 insertions(+), 88 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
 
- - All DSA chips I'm modifying should reference dsa.yaml, as they
-   currently are.
- - As such, these all should have unevaluatedProperties: true, so they
-   can see into dsa.yaml.
- - dsa.yaml, and any schema that gets $ref:'d, can not have
-   unevaluatedProperties: false, unless the desire is to forbid any
-   other properties to be added.
+diff --git a/Documentation/devicetree/bindings/pci/xilinx-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-pcie.txt
+deleted file mode 100644
+index fd57a81180a4..000000000000
+--- a/Documentation/devicetree/bindings/pci/xilinx-pcie.txt
++++ /dev/null
+@@ -1,88 +0,0 @@
+-* Xilinx AXI PCIe Root Port Bridge DT description
+-
+-Required properties:
+-- #address-cells: Address representation for root ports, set to <3>
+-- #size-cells: Size representation for root ports, set to <2>
+-- #interrupt-cells: specifies the number of cells needed to encode an
+-	interrupt source. The value must be 1.
+-- compatible: Should contain "xlnx,axi-pcie-host-1.00.a"
+-- reg: Should contain AXI PCIe registers location and length
+-- device_type: must be "pci"
+-- interrupts: Should contain AXI PCIe interrupt
+-- interrupt-map-mask,
+-  interrupt-map: standard PCI properties to define the mapping of the
+-	PCI interface to interrupt numbers.
+-- ranges: ranges for the PCI memory regions (I/O space region is not
+-	supported by hardware)
+-	Please refer to the standard PCI bus binding document for a more
+-	detailed explanation
+-
+-Optional properties for Zynq/Microblaze:
+-- bus-range: PCI bus numbers covered
+-
+-Interrupt controller child node
+-+++++++++++++++++++++++++++++++
+-Required properties:
+-- interrupt-controller: identifies the node as an interrupt controller
+-- #address-cells: specifies the number of cells needed to encode an
+-	address. The value must be 0.
+-- #interrupt-cells: specifies the number of cells needed to encode an
+-	interrupt source. The value must be 1.
+-
+-NOTE:
+-The core provides a single interrupt for both INTx/MSI messages. So,
+-created a interrupt controller node to support 'interrupt-map' DT
+-functionality.  The driver will create an IRQ domain for this map, decode
+-the four INTx interrupts in ISR and route them to this domain.
+-
+-
+-Example:
+-++++++++
+-Zynq:
+-	pci_express: axi-pcie@50000000 {
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		#interrupt-cells = <1>;
+-		compatible = "xlnx,axi-pcie-host-1.00.a";
+-		reg = < 0x50000000 0x1000000 >;
+-		device_type = "pci";
+-		interrupts = < 0 52 4 >;
+-		interrupt-map-mask = <0 0 0 7>;
+-		interrupt-map = <0 0 0 1 &pcie_intc 1>,
+-				<0 0 0 2 &pcie_intc 2>,
+-				<0 0 0 3 &pcie_intc 3>,
+-				<0 0 0 4 &pcie_intc 4>;
+-		ranges = < 0x02000000 0 0x60000000 0x60000000 0 0x10000000 >;
+-
+-		pcie_intc: interrupt-controller {
+-			interrupt-controller;
+-			#address-cells = <0>;
+-			#interrupt-cells = <1>;
+-		};
+-	};
+-
+-
+-Microblaze:
+-	pci_express: axi-pcie@10000000 {
+-		#address-cells = <3>;
+-		#size-cells = <2>;
+-		#interrupt-cells = <1>;
+-		compatible = "xlnx,axi-pcie-host-1.00.a";
+-		reg = <0x10000000 0x4000000>;
+-		device_type = "pci";
+-		interrupt-parent = <&microblaze_0_intc>;
+-		interrupts = <1 2>;
+-		interrupt-map-mask = <0 0 0 7>;
+-		interrupt-map = <0 0 0 1 &pcie_intc 1>,
+-				<0 0 0 2 &pcie_intc 2>,
+-				<0 0 0 3 &pcie_intc 3>,
+-				<0 0 0 4 &pcie_intc 4>;
+-		ranges = <0x02000000 0x00000000 0x80000000 0x80000000 0x00000000 0x10000000>;
+-
+-		pcie_intc: interrupt-controller {
+-			interrupt-controller;
+-			#address-cells = <0>;
+-			#interrupt-cells = <1>;
+-		};
+-
+-	};
+diff --git a/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml b/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+new file mode 100644
+index 000000000000..fc0761a7a2e2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/xlnx,axi-pcie-host.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pci/xlnx,axi-pcie-host.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xilinx AXI PCIe Root Port Bridge
++
++maintainers:
++  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
++
++allOf:
++  - $ref: /schemas/pci/pci-bus.yaml#
++
++properties:
++  compatible:
++    const: xlnx,axi-pcie-host-1.00.a
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  ranges:
++    items:
++      - description: |
++          ranges for the PCI memory regions (I/O space region is not
++          supported by hardware)
++
++  "#interrupt-cells":
++    const: 1
++
++  interrupt-controller:
++    description: identifies the node as an interrupt controller
++    type: object
++    properties:
++      "interrupt-controller": true
++      "#address-cells":
++        const: 0
++      "#interrupt-cells":
++        const: 1
++
++    required:
++      - 'interrupt-controller'
++      - '#address-cells'
++      - '#interrupt-cells'
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - ranges
++  - interrupts
++  - interrupt-map
++  - "#interrupt-cells"
++  - interrupt-controller
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    zynq:
++        pci_express: pcie@50000000 {
++            compatible = "xlnx,axi-pcie-host-1.00.a";
++            reg = < 0x50000000 0x1000000 >;
++            #address-cells = <3>;
++            #size-cells = <2>;
++            #interrupt-cells = <1>;
++            device_type = "pci";
++            interrupts = < GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH >;
++            interrupt-map-mask = <0 0 0 7>;
++            interrupt-map = <0 0 0 1 &pcie_intc 1>,
++                            <0 0 0 2 &pcie_intc 2>,
++                            <0 0 0 3 &pcie_intc 3>,
++                            <0 0 0 4 &pcie_intc 4>;
++            ranges = < 0x02000000 0 0x60000000 0x60000000 0 0x10000000 >;
++            pcie_intc: interrupt-controller {
++                interrupt-controller;
++                #address-cells = <0>;
++                #interrupt-cells = <1>;
++            };
++        };
+-- 
+2.25.1
 
-I'll get another patch set out this week with all these changes, and
-tested against the latest dt_bindings_check.
-
-> 
-> 
-> > May it have something to do with the fact that Colin's addition:
-> > 
-> > $ref: "dsa.yaml#"
-> > 
-> > is not expressed as:
-> > 
-> > allOf:
-> >   - $ref: "dsa.yaml#"
-> > 
-> > ?
-> 
-> No. Either way behaves the same. We generally only use 'allOf' when 
-> there might be more than 1 entry. That is mostly just at the top-level.
-> 
-> Rob
