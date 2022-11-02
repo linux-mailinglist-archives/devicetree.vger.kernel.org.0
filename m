@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043EF616DEB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 472AA616DF0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:44:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbiKBTmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 15:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53776 "EHLO
+        id S229850AbiKBToe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 15:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbiKBTl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:41:59 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 326D310D9
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 12:41:58 -0700 (PDT)
+        with ESMTP id S229534AbiKBTod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:44:33 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1FE2BF4;
+        Wed,  2 Nov 2022 12:44:31 -0700 (PDT)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A2JfkAg005858;
-        Wed, 2 Nov 2022 14:41:46 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A2JiKvL125223;
+        Wed, 2 Nov 2022 14:44:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667418106;
-        bh=RZL3NQLhGNU5QGx3OdaGdZVvg9x4UOH8qQy79a3Y4XQ=;
+        s=ti-com-17Q1; t=1667418260;
+        bh=73fJ/vUrAbwYd4seHXK+hQNCfqrK2dd66XKeNvDJbXQ=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=m3Uj5wzXt+qu5dbtq6p81g8zU/EzsO2BQZpIitQJhqZjyW6S3SzofN0GYLr5CGySZ
-         R4ZYRGacGCSj+tFYO4n9wlPUa6ueoxIF/abKBpyzBxlfKwHEzCLtjSOMoXYBn75cj+
-         39g13tlWkLQBlFryT8rDVUix5Q4y2fQbkuZPVtnw=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A2Jfkbh050324
+        b=puP9EyhnKGWKqLSG4MiIQLfqovo/GwHLupylvfRuqgYQH2dlVBYDqezZL2NIBs01V
+         NkTq4SissumgQYKuaj4bPBlxNoPzhMEorRx0hgSbQP82kiQ6VoP4anDc6LVqwwyIp0
+         VRJof68/QpNPidD3958+CeSKdd2ITwgRcXbBmlpo=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A2JiK4f051375
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Nov 2022 14:41:46 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 2 Nov 2022 14:44:20 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
- 2022 14:41:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 14:44:20 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 2 Nov 2022 14:41:46 -0500
+ Frontend Transport; Wed, 2 Nov 2022 14:44:20 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A2Jfkrv100649;
-        Wed, 2 Nov 2022 14:41:46 -0500
-Date:   Wed, 2 Nov 2022 14:41:46 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A2JiKDT103584;
+        Wed, 2 Nov 2022 14:44:20 -0500
+Date:   Wed, 2 Nov 2022 14:44:20 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Wadim Egorov <W.Egorov@phytec.de>
-CC:     "linux-arm-kernel@lists.infradead.org" 
+To:     Andrew Davis <afd@ti.com>
+CC:     Jayesh Choudhary <j-choudhary@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>, <j-keerthy@ti.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: Add support for phyBOARD-Electra-AM642
-Message-ID: <20221102194146.zyaw2yzl7q4b6r7u@ducky>
-References: <20221102134923.3438022-1-w.egorov@phytec.de>
- <20221102134923.3438022-2-w.egorov@phytec.de>
- <20221102151047.ucwh7dwmmqhx4nxf@rejoice>
- <1c73c3a0-458a-0005-f9a7-2d879e70cfe3@phytec.de>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am65-main: drop RNG clock
+Message-ID: <20221102194420.umwuyk374g2mgg45@unlucky>
+References: <20221031213237.52275-1-j-choudhary@ti.com>
+ <20221031213237.52275-2-j-choudhary@ti.com>
+ <20221102151706.krsi5lujydb4nswa@daybreak>
+ <4f954c08-6a2e-93b5-6806-7b27b247496e@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1c73c3a0-458a-0005-f9a7-2d879e70cfe3@phytec.de>
+In-Reply-To: <4f954c08-6a2e-93b5-6806-7b27b247496e@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -71,68 +68,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:56-20221102, Wadim Egorov wrote:
-[...]
-
-> >> +
-> >> +#include <dt-bindings/gpio/gpio.h>
-> >> +#include <dt-bindings/leds/common.h>
-> >> +#include <dt-bindings/net/ti-dp83867.h>
-> >> +
-> >> +/ {
-> >> +	model = "PHYTEC phyCORE-AM64x";
-> >> +	compatible = "phytec,am64-phycore-som";
-> > Does this match the binding?
+On 12:04-20221102, Andrew Davis wrote:
+> On 11/2/22 10:17 AM, Nishanth Menon wrote:
+> > On 03:02-20221101, Jayesh Choudhary wrote:
+> > > Drop RNG clock property as it is not controlled by rng-driver.
+> > 
+> > Does'nt tell me what is the alternative? why is the hardware description
+> > not sufficient for control?
+> > 
+> > https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/clocks.html#clocks-for-sa2-ul0-device
+> > Looks like a perfectly valid description - do we have a bug and firmware
+> > does'nt allow control here?
+> > 
 > 
-> Not very sure about the compatible I should chose here. It is probably not very 
-> important since the compatible gets overridden by the carrier which specifies 
-> the am642 SoC.
-> Seems like the TI SoMs (k3-j7*som*.dtsi) do not add a compatible at all.
+> We have three input clocks feeding the SA2UL module, x1, x2, pka. PKA goes
+> to the PKA sub-module (isn't it nice when they make things simple). But x1 and
+> x2 are miscellaneous and bus clocks respectively and route to several sub-modules.
 > 
-> Or do you think we should add the "ti,am642" compatible here?
-
-If the compatible of SoM makes much sense as a standalone OR usable
-elsewhere, then it could be an enum option to allow for som, soC as a
-valid combination.
-
-On the other hand, simplistically, it does look like SoM (like the j7es
-processor board) serves no specific purpose standalone, in which case
-skipping it is more appropriate.
-
-> >> +
-> >> +		rtos_ipc_memory_region: ipc-memories@a5000000 {
-> >> +			reg = <0x00 0xa5000000 0x00 0x00800000>;
-> >> +			alignment = <0x1000>;
-
-Since it is no-map, alignment does'nt serve any purpose, right?
-
-> >> +			no-map;
-> >> +		};
-> > Does this memory map work for All usage of the SoM and firmware
-> > combinations? OR would you like to keep the immutable memory map
-> > reservation in the base device tree and use overlay for firmware
-> > combination?
+> All we drop here is the clock handle in the RNG sub-module, as that sub-module is
+> not the owner of that clock (the parent SA2UL is). The alternative we could implement
+> is to move the clock node up to the parent SA2UL node.
 > 
-> Can you be a bit more specific about the firmware and the combinations you are 
-> talking about?
-> For now, I just applied the same memory maps as the k3-am642-evm.dts.
+> > > 
+> > > Fixes: b366b2409c97 ("arm64: dts: ti: k3-am6: Add crypto accelarator node")
+> > > Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> > > ---
+> > >   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 1 -
+> > >   1 file changed, 1 deletion(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > > index 4005a73cfea9..e166d7b7e3a1 100644
+> > > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > > @@ -126,7 +126,6 @@ rng: rng@4e10000 {
+> > >   			compatible = "inside-secure,safexcel-eip76";
+> > >   			reg = <0x0 0x4e10000 0x0 0x7d>;
+> > >   			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+> > > -			clocks = <&k3_clks 136 1>;
+> > 
+> > Does this mean that the crypto module's power-domains property should be
+> > dropped as well?
+> > 
 > 
-> Are you referring to the variants of the AM64 which can come with more or less 
-> R5 cores?
-> So an AM644 and AM641 would need different entries here and should be adjusted 
-> e.g. per dt overlays?
-> In that case it would be nice to have a minimal set of regions defined in the 
-> som.dtsi.
+> Why? the power-domains property is in the correct spot (up in the parent node).
+> 
+> Now it is true we cant actually shut the SA2UL down since it is owned
+> by the security processor, but since it is marked TI_SCI_PD_SHARED this
+> should be fine.
 
-Two things:
-In the actual usage of the board, do folks tend to stick with the memory
-map OR does the memory map tend to change? there are specific stuff like
-DM or tisci or tfa that does look mandatory.
+The idea of the descriptions were to describe what is controllable by
+firmware, if there is no control due to the specified reason, it is a
+device tree bug, and should be documented when dropping it. If it serves
+a purpose in the firmware by indicating usage for example - it has valid
+reason to stick around as it is expected to be used by firmware for some
+specific reason.
 
-Further, if there are variations like the processor variations you
-mention with differing R5 combinations (processor and firmware),
-overlays will be your friend as it can scale across multiple carrier
-board options as well.
+The commit description does bring up the above mentioned questions and
+must be explained appropriately.
 
 -- 
 Regards,
