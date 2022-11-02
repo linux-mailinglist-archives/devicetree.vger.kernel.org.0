@@ -2,81 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 585F261640E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD7161645C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:04:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbiKBNro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 09:47:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42972 "EHLO
+        id S229964AbiKBOEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 10:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbiKBNrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 09:47:42 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329692AC5B;
-        Wed,  2 Nov 2022 06:47:41 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id 16-20020a9d0490000000b0066938311495so10304462otm.4;
-        Wed, 02 Nov 2022 06:47:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LGpEyXXVyXPOrEOOBkcZ03FYWwkR3GVThqUz07ODObE=;
-        b=h0vrRZkzpO8YT1zBp7ll09rY6O9aOevMJuOSD79eH6XXNrcmf0hGbT6jS+rUIvcc+l
-         fmH4kjNbBRMR+BrUtQAXRisYVrDw6WLoi3TbG46kbuUHLS42UcxCTGbKGuOT4tw3yRpl
-         jk+GqFSU5eu3aXsjL0PhV42pQ7TMZ+F3wfD3Os4r7Av8Sw8ihJia2pV/4ockE19czNis
-         r+H3JIE3cxi5w/0pkK3C6jeHxYviEfnUB9IW1wWtQwdmJhQUawltb9KgwwPlRDJq8CvY
-         CV0GoG3/j2BaT/ZGy9g/1vXmXFFGodONJznDKwyJnbbUhcmf5lC8dFEPL15MigKgBz4E
-         ht2Q==
-X-Gm-Message-State: ACrzQf3gHH+hgK9Na3gTozT2UT6nmVd0YYF7VLVoaBo7Fi4hPuu/7BGh
-        qHtBTVsD5JgzxuSdDRfDyA==
-X-Google-Smtp-Source: AMsMyM4rBlGbDO/gPIe3u2OjlrxQwDeQSgPaUoceBazCsEcgAWHwbXQEyWwUEo1cwLqhTTTrBvY15Q==
-X-Received: by 2002:a9d:7449:0:b0:66c:41be:56d7 with SMTP id p9-20020a9d7449000000b0066c41be56d7mr10536267otk.381.1667396860427;
-        Wed, 02 Nov 2022 06:47:40 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c10-20020a9d480a000000b0066c75a2643asm682333otf.66.2022.11.02.06.47.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 06:47:39 -0700 (PDT)
-Received: (nullmailer pid 3704516 invoked by uid 1000);
-        Wed, 02 Nov 2022 13:47:41 -0000
-Date:   Wed, 2 Nov 2022 08:47:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, andersson@kernel.org,
-        sboyd@kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@somainline.org, tdas@codeaurora.org,
-        agross@kernel.org, mturquette@baylibre.com
-Subject: Re: [PATCH 2/3] dt-bindings: clocks: qcom,gcc-ipq8074: allow XO and
- sleep clocks
-Message-ID: <166739686110.3704462.17117268037747402541.robh@kernel.org>
-References: <20221030175703.1103224-1-robimarko@gmail.com>
- <20221030175703.1103224-2-robimarko@gmail.com>
+        with ESMTP id S230174AbiKBOEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:04:36 -0400
+X-Greylist: delayed 903 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 02 Nov 2022 07:04:35 PDT
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0FDBC8
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:04:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1667396971; x=1669988971;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=TEWDcJcdLzrRGLl4Zr6RUQZWouxbMCR10Wc6sY07eKk=;
+        b=If+BvLLTmrEIBep3zP5VEwwiAhyMRIK8UQ5BqZ0YWK7cf9iSYKTIBaChmrC1hsNv
+        wfsN1EYp4QbfBBW1A4yh7UUkxRsrSF/n/GmjAaglj+1DFcz31LUlKp1+kBhov0qS
+        BoKITB/zlGgI7X/CdyroJZUBagSEQq7DLQUQgHH9MfA=;
+X-AuditID: ac14000a-833f270000003940-af-6362756b20a4
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 43.6D.14656.B6572636; Wed,  2 Nov 2022 14:49:31 +0100 (CET)
+Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 2 Nov
+ 2022 14:49:39 +0100
+From:   Wadim Egorov <w.egorov@phytec.de>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: arm: ti: Add bindings for PHYTEC AM64x based hardware
+Date:   Wed, 2 Nov 2022 14:49:22 +0100
+Message-ID: <20221102134923.3438022-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221030175703.1103224-2-robimarko@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.25.0.11]
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJLMWRmVeSWpSXmKPExsWyRpKBRze7NCnZ4FKvkMX8I+dYLZZ/ns1u
+        0ffiIbPFpsfXWC3e/DjLZNG69wi7xf+zH9gd2D02repk87hzbQ+bx+Yl9R7Hb2xn8vi8SS6A
+        NYrLJiU1J7MstUjfLoEro3PqV+aCFvaK/o/32RsYt7J2MXJySAiYSEw4+I+pi5GLQ0hgMZPE
+        mvULGSGcx4wScx/tYgGpYhNQl7iz4RtQBweHiICHxJcJViBhZoESibmTDjKD2MIC4RIHNp5j
+        B7FZBFQkTnxZBhbnFbCU2LGrlRlimbzEzEvf2SHighInZz5hgZgjL9G8dTYzhC0hcfDFCzBb
+        CCj+4tJyFpjeaedeQ80Jldj6ZTvTBEaBWUhGzUIyahaSUQsYmVcxCuVmJmenFmVm6xVkVJak
+        JuulpG5iBAW3CAPXDsa+OR6HGJk4GA8xSnAwK4nw1p+NThbiTUmsrEotyo8vKs1JLT7EKM3B
+        oiTOe7+HKVFIID2xJDU7NbUgtQgmy8TBKdXAWCcs8qw2zffBibOmZ2xnPBcpOcmX/51BruDh
+        XzW1Dp9pUmWNu5++3vT7a7j+sw1Hk42Sd39LuVWstWtjulz110+OC/msZHT/VEQFvl/Ivji5
+        4cSdU9teWGq19ja19T+Xehv3+O39X4mTjmi3uZVedZuacrpq//t9Dn5s/AWnJq8uO+LZpXVp
+        mRJLcUaioRZzUXEiAAy+z/hcAgAA
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add devicetree bindings for AM64x based phyCORE-AM64 SoM
+and phyBOARD-Electra RDK.
 
-On Sun, 30 Oct 2022 18:57:02 +0100, Robert Marko wrote:
-> Allow passing XO and sleep clocks to the IPQ8074 to avoid having to do
-> a global matching by name.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->  .../devicetree/bindings/clock/qcom,gcc-ipq8074.yaml    | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 28b8232e1c5b..2b9c045e39bf 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -38,6 +38,12 @@ properties:
+               - ti,am642-sk
+           - const: ti,am642
+ 
++      - description: K3 AM642 SoC PHYTEC phyBOARD-Electra
++        items:
++          - const: phytec,am642-phyboard-electra-rdk
++          - const: phytec,am64-phycore-som
++          - const: ti,am642
++
+       - description: K3 AM654 SoC
+         items:
+           - enum:
+-- 
+2.34.1
+
