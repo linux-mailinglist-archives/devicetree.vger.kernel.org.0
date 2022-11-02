@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE411615E3D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 09:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E67EE615E7E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 09:57:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231158AbiKBIsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 04:48:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52366 "EHLO
+        id S230366AbiKBI5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 04:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231166AbiKBIsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 04:48:07 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36ED227DC6
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 01:48:04 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bk15so23402032wrb.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 01:48:04 -0700 (PDT)
+        with ESMTP id S229932AbiKBI5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 04:57:43 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8D41D66F
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 01:57:42 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id y16so23450471wrt.12
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 01:57:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Fsdl5KhjqGKQP2QnpOdJy/pvqM2iIVhcnFcFTUrO8A=;
-        b=DtUC+ogPgNq55gImpxgwl/g1PNaHgnSJcUcH3ey02Bg+UHOPn61NGgUQUYKxBUOm0o
-         6j55cZK0uUFkIxNtb+53CsWK1Qemz2HFYEVNxcPQv0r7mtLb2RXImhJTAH9IsAo+1z9q
-         7G1N1lvRgIsbn5JRW5ZN520ZMYXPAl0pU7SP4BuUHUJXQ8pLqmOtdGSongttbwoxl4gD
-         UCRERlPPo6ROhX89ISBcJigfQ/WWviTE5pg5Sy9EA81RzurzZR4FBrz+FkJ7VlMQlk/r
-         Kf0hzD4noFjzvmELW/qh3UcYV9e2WT9ndb5muF24MVZXZC5g3GERl9eZ0sUFk5IVZOFg
-         gSlQ==
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y0ELtJUswTvsICDd6pZhg8WvDye9Yaac1O9iQirvkEg=;
+        b=DIFxcmOONUfY6UOrohpypSzx/M6HiWntfS1ud2CyQ1Cu1KnLGuFpzMSNPDmxyl8lLE
+         EKTjbZBjbi76OJFKA9OjDb6Bpjot8t3jZL+D1fia+yVU+G0UM+o7Vcbz5AM3fIzDGCsr
+         GdO8yy5J8rHVo2ASSCFjcxrxovoNEuUoKbE+avyzzfw4gP6tj6gs/QgxWOCJ7dWk7Zv2
+         RIvMbW6+NlUTS4k+AWgOpmjdByS5Wshd3nc/IKgzcZgaD2bcNiw3vpUzvvcCmxoKVaay
+         P7T5do3nOGdlQQkg5ifDlNQmzrooWLR91BLZTAwo2+U26evkaJqPy4TALy8Fy8+4J59O
+         xdkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7Fsdl5KhjqGKQP2QnpOdJy/pvqM2iIVhcnFcFTUrO8A=;
-        b=EaFGnNO4h6eGa9tr7oNschgWVqogWbzqRNXEw/PEGqDoPCELZtMsvhNmCCBG9aoyG8
-         05B5TzMXEqRRDkLOfxhyjCOYOs2pw7QFOo6v8BKE2Bbf8yMG/g5EldMH1f4LvkovP91J
-         KAqdsYQWq39f66FZaXSnEQAJkEVE0Zd7pOf1PB3gt8q3ZzXnu4xoP1HT+fyQae5QG1pG
-         XC9GiivGXU0QQaeYQkLjO9JE0DeRnWwPi8R8mDfJE1JNu6v+oeQ1wFf7EUgKBQkUsw5i
-         ySBxkUy5xQneuk3USH8gnTShO1md+P9E5Jt8hZ45FTjzDWj21nzcRKiIWH0DrzVGWC64
-         fMoA==
-X-Gm-Message-State: ACrzQf1kWNiF5OPCI48Nv5GGL6WYkbiJgR70lRqG/Iky4A1ZR+Jtxu/E
-        tep6t/9q920SVm3m9vfOYqbwaw==
-X-Google-Smtp-Source: AMsMyM5eXnSYYlsc2nkRMQQBb/aW4z9lnVUJTRZ031AFqmay+F47F4Osg205pLQkXyK71S4ukrEHUA==
-X-Received: by 2002:a5d:4c52:0:b0:236:60e8:72e with SMTP id n18-20020a5d4c52000000b0023660e8072emr14434036wrt.573.1667378883428;
-        Wed, 02 Nov 2022 01:48:03 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:6bae:ac40:a798:cbb4? ([2a01:e0a:982:cbb0:6bae:ac40:a798:cbb4])
-        by smtp.gmail.com with ESMTPSA id ck1-20020a5d5e81000000b002366553eca7sm12328632wrb.83.2022.11.02.01.48.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 01:48:03 -0700 (PDT)
-Message-ID: <9499a56d-fb74-16cd-46c1-27b3fcfdcd7e@linaro.org>
-Date:   Wed, 2 Nov 2022 09:48:03 +0100
+        bh=y0ELtJUswTvsICDd6pZhg8WvDye9Yaac1O9iQirvkEg=;
+        b=SeDQEkOW86ybGxnTqkFLjlMFsVsus9DSYbbgbg+W9ys/KMgcl9oSJ7/9/yPMhXBDGT
+         KzAVamv6j12t5ulGx1I1zlKYO5CAZ2jc26CoSppsM2EyH4SP6+ZdGs6wrYxtOwbnPzRO
+         47ZJ2HS0NiDDErY/wcyeklKnYlxLF5Uy9pkmC12vDMJX+ydEdqAdwp18T9zCIlK/YO5T
+         M2s9ZEVa5VmJ/ORsHELe14p0gwQ3EpZgVN75qCSOZ/dFfVpACLxkagFJJwFUQG5O01Ek
+         +DSH3C898D0cTA/r58DsE3KypjknuoQjT35euLtjfHnkCRMXG0xEVrpZv9EH9KN5eAol
+         iboA==
+X-Gm-Message-State: ACrzQf0DgndT9MMhHS74exzSQtLb8senRaGdbpCD11SbADibk2SbhB5I
+        t11Uwrdo5l3dpHm+8Ey+ZU1j3jgmr3hCe4Nd
+X-Google-Smtp-Source: AMsMyM4OySBELR8wmC30iThcmfAktQx0ysmaLB233M/5BopHdkwBb0QhclPwTDRdl+QL3X/rddaRpQ==
+X-Received: by 2002:adf:b612:0:b0:236:5d1f:143a with SMTP id f18-20020adfb612000000b002365d1f143amr13907460wre.364.1667379460895;
+        Wed, 02 Nov 2022 01:57:40 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id j39-20020a05600c48a700b003b95ed78275sm1290176wmp.20.2022.11.02.01.57.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 01:57:40 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [PATCH v5 0/2] mfd: max597x: Add support for max597x
+Date:   Wed,  2 Nov 2022 09:57:35 +0100
+Message-Id: <20221102085737.599100-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/4] power: reset: add Odroid Go Ultra poweroff driver
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20221031-b4-odroid-go-ultra-initial-v1-0-42e3dbea86d5@linaro.org>
- <20221031-b4-odroid-go-ultra-initial-v1-2-42e3dbea86d5@linaro.org>
- <20221031222918.knzv3lotfn3sp7bl@mercury.elektranox.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20221031222918.knzv3lotfn3sp7bl@mercury.elektranox.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+max597x is multifunction device with hot swap controller, fault
+protection & upto four indication leds.
 
-On 31/10/2022 23:29, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Mon, Oct 31, 2022 at 05:47:26PM +0100, Neil Armstrong wrote:
->> The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
->> to its two PMICs in order, this represents the poweroff scheme needed to complete
->> a clean poweroff of the system.
->>
->> This implement this scheme, and overrides the PSCI pm_power_off.
-> 
-> Please use devm_register_power_off_handler() or
-> devm_register_sys_off_handler() for new drivers.
+max5978 has single hot swap controller whereas max5970 has two hot swap
+controllers.
 
-Thx, will update.
+Changes in V5:
+- Fix dt schema error
+Changes in V4:
+- Add NULL entry for of_device_id
+- Memory allocation check
+Changes in V3:
+- Address code review comment
+Changes in V2:
+- Update depends in Kconfig.
 
-Neil
+Marcello Sylvester Bauer (1):
+  dt-bindings: mfd: Add bindings for MAX5970 and MAX5978
 
-> 
-> Thanks,
-> 
-> -- Sebastian
-> 
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> [...]
+Patrick Rudolph (1):
+  mfd: max597x: Add support for MAX5970 and MAX5978
+
+ .../devicetree/bindings/mfd/max5970.yaml      | 164 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  12 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max597x.c                         |  92 ++++++++++
+ include/linux/mfd/max597x.h                   | 103 +++++++++++
+ 5 files changed, 372 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/max5970.yaml
+ create mode 100644 drivers/mfd/max597x.c
+ create mode 100644 include/linux/mfd/max597x.h
+
+
+base-commit: 6b780408be034213edfb5946889882cb29f8f159
+-- 
+2.37.3
 
