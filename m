@@ -2,135 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02D6A6162C2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 13:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 719616162DD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 13:43:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbiKBMfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 08:35:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46362 "EHLO
+        id S230473AbiKBMnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 08:43:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230087AbiKBMfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:35:14 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954062936E;
-        Wed,  2 Nov 2022 05:35:08 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id b62so5742993pgc.0;
-        Wed, 02 Nov 2022 05:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ytob8zx1SKLrpfmFHLBokxWlh3AKyd6aWp40MhHR3AA=;
-        b=L+WGEPxtjHZGG+0/03qhtcLzwTWa0RZvC6ENbtnYYEmGdOdqzORyCYWGHiiKGwBbZp
-         KslMkod7TDhB8M0NXP2k/nLbt9OCY3e+3cdkqW9y+YimCUIenhZoL3a6OXgPowGILUxX
-         gRjl7Jb0Ux1nGP34bMqyiSWOkaugy4IC1/m8vql7oRWtS/IoOeOQatQafP+Pg96OhfSn
-         Q7fv7twRUQVxEMmym8IOEfYsAnBx/udNvUVEpKWpif7oh5++Jt6I+7+7RvHE3v+F3O3v
-         lSCqoLRINb8GEybY6rkPROmwAkKFlBNnIaYSLWx0tZAYhd/+7HZJfiiX2URPxsihLRxE
-         3PlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ytob8zx1SKLrpfmFHLBokxWlh3AKyd6aWp40MhHR3AA=;
-        b=tZ8WDbgXfytWV8O1xzh4ttT03dkghL2vofQteC3l6PKETnJVBsSgI62ia3cWcKqdot
-         z653DJx3NTvRV7VsEWQA/2zhAdDW3ZiBD/T/pZum7knvAxqULno57rOo3sXQUJAHJqyX
-         z3NxwzlJShsIVT7RmbZTHXdWvDagIt2R2FtkofPGU/f3OhQxLkbOWqt3fwcryhN3PVkS
-         3X0OJzuz2aWPZ5HyFaDbssX6hU1TkT9qo99hJfHNVAQgIL0gaPw1vC8f1S5D4rG/xWTj
-         zAVwmuTYsf1X6hbOCbvnOdmseJltPW2v2XsRhyqrJCSfyz9wzZoRYAxtZPJlXCMcHTMp
-         CZSA==
-X-Gm-Message-State: ACrzQf0IjXHkHF3U644wzGI/o+xyq1B3DVZDQzvcONTKgEHQJMZNXH58
-        U19V5uUPjakY5kleW0DzzxA=
-X-Google-Smtp-Source: AMsMyM4jOx9/ITQnqPBGYtd6ydBNmq2RMw1l33fg34hHBYM3Z1Lk8t/v3pEbA7l6diIXB1ayvFtrbw==
-X-Received: by 2002:a05:6a00:1a8f:b0:56d:f7c2:959 with SMTP id e15-20020a056a001a8f00b0056df7c20959mr4269897pfv.71.1667392508049;
-        Wed, 02 Nov 2022 05:35:08 -0700 (PDT)
-Received: from debian.me (subs32-116-206-28-50.three.co.id. [116.206.28.50])
-        by smtp.gmail.com with ESMTPSA id m20-20020a6562d4000000b00462ae17a1c4sm7529521pgv.33.2022.11.02.05.35.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 05:35:07 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 01518103835; Wed,  2 Nov 2022 19:35:04 +0700 (WIB)
-Date:   Wed, 2 Nov 2022 19:35:04 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S230465AbiKBMnT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:43:19 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7317024952;
+        Wed,  2 Nov 2022 05:43:18 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 6D6F03200939;
+        Wed,  2 Nov 2022 08:43:15 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute3.internal (MEProxy); Wed, 02 Nov 2022 08:43:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm3; t=1667392995; x=1667479395; bh=2ljwfRfuML
+        ubvQuGUCmVfn79dRgv0MQ+cLuAbpZvYZM=; b=EV50IlqSfdXYpMSKTJNtJCJPlI
+        BDbfRNy2WM4CJEAiGyp8dulOeuUYPHfQRxFrlHQuE2n6X+j4XJrLKj63cwWOrJhu
+        SCP8zDxtAf85c4CvyRPWUzeiwtF3Nn5s6iMa7UrznLl8HwtzbRvmH0oGBtBQgww3
+        x22KkHckxB8Bcgg/Q8pEPnCrdrwEgH6axkBNX78HbHr/1TiQDom204HIgeuzb35C
+        FbGgWFCPJfileGrVC9OuwZrGfe0W8LZKn8TRYvqEOHJ8MgZi7hmlG0H8mi74OPxw
+        KSeC6SjYDYeENNA8n0GnVeiTepsf8qM50mX/SfJGIzGIalqDj5zMxM0cXadw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1667392995; x=1667479395; bh=2ljwfRfuMLubvQuGUCmVfn79dRgv
+        0MQ+cLuAbpZvYZM=; b=QpIHGclRgGaUrS+c4UWrVaDB4MmjWjPSHGqFNWhNIwBj
+        HBU5DXAZPm7W/dTyb97eP3XpgE23u/wiEpASZuLvksk8eB6jHckfQ1MDFb2H7k2k
+        0Obih3fpfE/nCdBExS1lrBbplY3NjWiZQjYne1bZXRW8gaiANg7gGRuvQCRYhFlU
+        P1ss40ks75qa+we9zOjl3VOx9N3EslZjg5DrFcWfxBUPhn2kixJyRrBSa6FzOMOt
+        oVV1zLWv6VTgKA0XTG7TBmt/MurmsOYNHCnKoVducdrxC9MvtqAxJD7ApL6rmEoi
+        XZhpBxbB6MNZySV74/XvcTognZbQOa/4M+IUql7jRw==
+X-ME-Sender: <xms:4mViY2oMvw36nhSoOeNikn2A_KQopTlNrWB9X2lvJsSHCBz35s9Rtg>
+    <xme:4mViY0qhLSUzZD_dbLwXdLhmH4TgqxfJEt9Fzn47yvjHhanL8ThRZlmNDHzeJXxl4
+    18Rl9Vl2BpwpDQjnbo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrudejgdegvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhn
+    ugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtth
+    gvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeet
+    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrh
+    hnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:4mViY7OA7qbEpdp8cFYC2-UDho_MPh8IFQi5yjMtTNJEbF65vl_Thw>
+    <xmx:4mViY14KFX9B_x91A7mIo2M-GHJNc-Mmyi3mK15wqEgmy4XIlLXS8A>
+    <xmx:4mViY16iMVKtH4wr2OrXEf30ky7J49Ctn-q0V51wAKNr1iwR0NWThw>
+    <xmx:42ViY_v7WugSbrkOwtdAvvJebZv3a7Ne63WDE9urc8aBDC1lWPRv_g>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 3E385B603E9; Wed,  2 Nov 2022 08:43:14 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-1087-g968661d8e1-fm-20221021.001-g968661d8
+Mime-Version: 1.0
+Message-Id: <1756ff9a-babc-40c6-8002-9f464e023c52@app.fastmail.com>
+In-Reply-To: <20221101215804.16262-1-afd@ti.com>
+References: <20221101215804.16262-1-afd@ti.com>
+Date:   Wed, 02 Nov 2022 13:42:54 +0100
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Andrew Davis" <afd@ti.com>, "Lee Jones" <lee@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        "Daniel Tang" <dt.tangr@gmail.com>,
+        "Fabian Vogt" <fabian@ritter-vogt.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 01/21] docs: gunyah: Introduce Gunyah Hypervisor
-Message-ID: <Y2Jj+FLcL8pYLv+q@debian.me>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-2-quic_eberman@quicinc.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="lcWsjmNz5hWimLOD"
-Content-Disposition: inline
-In-Reply-To: <20221026185846.3983888-2-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v4 0/9] TI-Nspire cleanups
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 1, 2022, at 22:57, Andrew Davis wrote:
+> Hello all,
+>
+> This series is an extended version of the series started here[0]
+> and here[1].
+>
+> We break out what was the first patch into one for DTS change and
+> one for code changes as suggested by Krzysztof. Those are now patches
+> 2 and 8 of this series (I kept the ACKs, hope that is okay).
+>
+> As also pointed out by Krzysztof syscon nodes need a specific
+> compatible, add that as patch 1.
+>
+> While I was adding that, I noticed some other dtbs_check issues,
+> so while here fixed some of those up too (patches 3-6).
 
---lcWsjmNz5hWimLOD
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Andrew,
 
-On Wed, Oct 26, 2022 at 11:58:26AM -0700, Elliot Berman wrote:
-> Gunyah is an open-source Type-1 hypervisor developed by Qualcomm. It
-> does not depend on any lower-privileged OS/kernel code for its core
-> functionality. This increases its security and can support a smaller
-> trusted computing based when compared to Type-2 hypervisors.
->=20
-> Add documentation describing the Gunyah hypervisor and the main
-> components of the Gunyah hypervisor which are of interest to Linux
-> virtualization development.
->=20
+Thanks for the cleanup series. All of this looks reasonable to
+me, but we need to decide how to merge it upstream. I can
+pick up the patches directly into the soc tree once everybody
+is happy with the latest version, though usually I prefer
+to take the patches or pull requests from the person listed
+in the MAINTAINERS file.I'm happy to
 
-LGTM, thanks.
+It looks like there has never been a maintainer listed for
+nspire, so it would be good to fix that. Between yourself,
+Daniel and Fabian, can you find one or more people that
+are willing to be listed as either reviewer or maintainer
+for future patches, and decide what status you want the
+platform to be listed at ("Maintained" or "Odd Fixes" I
+assume)?
 
-Reviewed-by: Bagas Sanjaya <bagasdotme@gmail.com>
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---lcWsjmNz5hWimLOD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY2Jj9QAKCRD2uYlJVVFO
-o8iZAP9ne1/t0CSHYZJHKuMWjnNVF9v2tjatTGFij3brCK5ccgEA6ZehG9xndGC0
-Ga0PcJr9HBhqMNopmGgdNKin3IzhMAs=
-=VAEi
------END PGP SIGNATURE-----
-
---lcWsjmNz5hWimLOD--
+       Arnd
