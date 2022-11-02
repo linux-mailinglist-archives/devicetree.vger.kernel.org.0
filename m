@@ -2,88 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66EB616F49
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3ED1616F6B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:11:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231421AbiKBVAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 17:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48552 "EHLO
+        id S231320AbiKBVLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 17:11:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230423AbiKBVAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:00:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D593FB4AA;
-        Wed,  2 Nov 2022 14:00:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 79DA461C30;
-        Wed,  2 Nov 2022 21:00:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C6BBBC433D7;
-        Wed,  2 Nov 2022 21:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667422815;
-        bh=rIUydBfZ/OIOgcTF4j0Jp0sVduCixsJqQhwy6N9z7Vg=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=O/NgJH9Dpiu5+pYxOaNH1309XAMaVISEQ8B68lj0vpUfHldjZpJpJEKW7WFiEIow8
-         gnunA76cu0/mLVIPOcEvJoBrg719r9r7k7e4aC0KUReAy3wNFTHzdsg/4grNNXzPbM
-         WxI7kVMnjjn34tqDqYFwsQKhZPNFCi+NWU0Jt6hu6+D9+igGtemzcMyqfjp55TN7ro
-         flpWVKc1l2gV1x4mzCNfaVLO8KRmV3iI3vACAP5LxdfVz6FnJ63AKv0p+d9onFj0ef
-         f1e4+c2s6ugkKezMfS/flvqnEF4irYG1J6oO4qMlmC3OTXXrdoGBOq3HBhaneBJuOI
-         cq+biWey9eYXg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AB6BBE270D5;
-        Wed,  2 Nov 2022 21:00:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231278AbiKBVLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:11:40 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909A5DFBF
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 14:11:38 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id x18so1576511qki.4
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 14:11:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SMdd6W9zqTykplxA9atF92tm5CBcUP1U7yvf5vUxJ94=;
+        b=qB3heRMEENXq8LFOVv7rITGt3zC5JeYlR5KthvYqttf4k6cy+wq7eT+G5PU0Y1gk+T
+         hIDyJ8EDJGC4oefNczl6sxRZJYwkHx7zYy0szk3EL69mVeSGtEEgYnxqWp1eJAqGUtDD
+         FzvCzCNYtJKaplARHRsXpCDCC/UuQgXbAqcA45tzUMB+KOnfLMBtdvJCUfKBMUfT+F1r
+         C6yUhosIbNAemIdWXHBCwCI1WMUJo/j4cJyUvfJvPQZrBI1zf/cBQehcdITcpYrDiyeD
+         L6tOkEedAVUpFSq63IEZskKrZ/HwskotE8pb/OT0LprAO9P7dw5nUXd7C51ynN90uOQQ
+         cqMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SMdd6W9zqTykplxA9atF92tm5CBcUP1U7yvf5vUxJ94=;
+        b=58fdroRijUsvx5LPTcDsMvwVEjewsYr5dULSdwjlaKg9cpNK0kWTRqOQOJTnARqvR+
+         oDHqj0bbEsziWIHKX93N2uHD+WwIgE1lUqKQ6S3CXPr1y6YZrvcWq15aamBWBNS5tRKR
+         Dtb/8Lz46zJtXlyr38HWq9nMKkaqNGY6PwuL8oIJMDVw3zytz8NEzToKGClvf8Krbitp
+         DbjDlSW1xyDuQsSxFUyHj+PAQdePLAsya+3zMcfVTgn/s4pCXAljt9CMFRlFn9sj8plE
+         wrviDAg6kk84isTydi4YL+L975rZMi6jjEMU4q/NxMQ2ZT5aDv8ko2PlI26hBsL0wlzi
+         fdGw==
+X-Gm-Message-State: ACrzQf2/ZclSJ5P0V7F9akcSVJiwjZ51wh8iU0ezEhmbJLmrtgLt9Bag
+        heGvXtgnihQGNBdMRG13I3pocg==
+X-Google-Smtp-Source: AMsMyM6Wkzj6KTSaNv+AilpDqn1fSqGn/N2Li1l/svMXz1ljJSNXtiq4HeywPXe80VDgV4C1XUmDFQ==
+X-Received: by 2002:a37:ef05:0:b0:6fa:630:2b4f with SMTP id j5-20020a37ef05000000b006fa06302b4fmr19416018qkk.41.1667423497764;
+        Wed, 02 Nov 2022 14:11:37 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id h10-20020ac846ca000000b0039853b7b771sm7139821qto.80.2022.11.02.14.11.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 14:11:37 -0700 (PDT)
+Message-ID: <1a7fd1fd-4f0d-bec3-ddd5-7c6a99a2ab01@linaro.org>
+Date:   Wed, 2 Nov 2022 17:11:35 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 1/3] dt-bindings: interconnect: Remove required reg
+ field
+Content-Language: en-US
+To:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221026190520.4004264-1-quic_molvera@quicinc.com>
+ <20221026190520.4004264-2-quic_molvera@quicinc.com>
+ <a214f513-fe28-2096-c2b0-2107e97f3ce2@linaro.org>
+ <64d0e5ef-fd36-6f25-2c39-00e8e1346af7@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <64d0e5ef-fd36-6f25-2c39-00e8e1346af7@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: broadcom-bluetooth: Add CYW4373A0 DT
- binding
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <166742281569.25440.9584575292031556354.git-patchwork-notify@kernel.org>
-Date:   Wed, 02 Nov 2022 21:00:15 +0000
-References: <20221102164705.14538-1-marex@denx.de>
-In-Reply-To: <20221102164705.14538-1-marex@denx.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-bluetooth@vger.kernel.org, pbrobinson@gmail.com,
-        robh@kernel.org, linus.walleij@linaro.org,
-        hakan.jansson@infineon.com, krzysztof.kozlowski@linaro.org,
-        luiz.von.dentz@intel.com, marcel@holtmann.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
-
-On Wed,  2 Nov 2022 17:47:04 +0100 you wrote:
-> CYW4373A0 is a Wi-Fi + Bluetooth combo device from Cypress.
-> This chip is present e.g. on muRata 2AE module. Extend the
-> binding with its DT compatible.
+On 31/10/2022 19:29, Melody Olvera wrote:
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Marek Vasut <marex@denx.de>
 > 
-> [...]
+> On 10/27/2022 8:29 AM, Krzysztof Kozlowski wrote:
+>> On 26/10/2022 15:05, Melody Olvera wrote:
+>>> Many of the *-virt compatible devices do not have a reg field
+>>> so remove it as required from the bindings.
+>> and some virt have it... This should be probably separate binding or if
+>> the list is small - allOf:if:then.
+> I attempted this; however I'm still seeing failures in dtb_check. I've added this
+> to the binding; does this look correct?
+>  allOf:
+>    - $ref: qcom,rpmh-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,qdu1000-clk-virt
+> +              - qcom,qdu1000-mc-virt
+> +
+> +    then:
+> +      required:
+> +        - compatible
 
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: net: broadcom-bluetooth: Add CYW4373A0 DT binding
-    https://git.kernel.org/bluetooth/bluetooth-next/c/0a8d4b84bbd5
-  - [v2,2/2] Bluetooth: hci_bcm: Add CYW4373A0 support
-    https://git.kernel.org/bluetooth/bluetooth-next/c/ce52c2f04177
+No, because we talk about reg, not compatible. You should not require
+reg instead for some compatibles... but then the schema is getting
+complicated.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+It's difficult to give you recommendation because I do not know what are
+all these "virt" interconnects. Why some have unit address, why some do not?
 
+Best regards,
+Krzysztof
 
