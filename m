@@ -2,180 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC26615730
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 03:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 405EF615767
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 03:14:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbiKBCBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 22:01:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33020 "EHLO
+        id S229637AbiKBCOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 22:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbiKBCBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 22:01:20 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB7B512ACA;
-        Tue,  1 Nov 2022 19:01:17 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id kt23so41609838ejc.7;
-        Tue, 01 Nov 2022 19:01:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wpkpMG7UiwPayNiAZQIqA2owOEcKN042OlaP9NIKByQ=;
-        b=PSI3BxsZxQhkVlAwBWePeEx4KtAfoo+szxImTtRUReTiDfr9ZDx6Sm5NPHqenJcNxT
-         C1Cc1XtX2d+q26GnaWUsavd/r/VG2SddcvxNhRrceGmgd8jXDP3zO8nuuVuiXE9yg8Hv
-         VromHHJwnoFv47aFFD6im43jbHCHm0qV2ut4Mm6hghqXVKBTtMMrOPSX4Es8NmfRxURn
-         Y2nNK2sDRLTEQ4u2C+01zkX51+PYOkgLN2dDilBwbJVMVTnY515pXXOwSNQHmXwZgrRC
-         ZExHO0WidqM2hqoKFAVYfQ30DpWzZE83Qd9SU2LqqYcsm7iUQBgPH/cZK8jnKEybEFn/
-         rKrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wpkpMG7UiwPayNiAZQIqA2owOEcKN042OlaP9NIKByQ=;
-        b=cgRV5/DyRKhMj01OIeUrLC6eWhGYLbnLGj5xQZeRvEQN0czm4IOkAvgIBr1u5Vn+4o
-         1RMmg2shoMW5l7mRnCzsQpldKVoAUFo3RpTHoH/VsFdKHoY4I9Ge1GZrjt105SSJex0Q
-         C9MyQrlnobGjz8cE7Tl4uuBuZlvqYXkoy1BcnEh093jL2d0e8dXxTm2lm4bej5ffDQUF
-         4Al2Y1IaOonsfKDLsW8uI51x3m7ZLflyWafQxaNn5/NQU/B5dDBSCIh2VgOw2im3lH9t
-         F7ep5+lj5LtaTgc34z/yaAwBbKPTFHToPX5taKLfJW44dbcZ99vtsMe4BawFLeQrfdQl
-         PwzQ==
-X-Gm-Message-State: ACrzQf1LEj69j6zNOfBDQruvaCua3lfpdAzPQMAtOPfb2Zn2tLrz/32M
-        zbkg4ho9d72OKhakyxVmeaKwgnbM7yWAj4KD7DU=
-X-Google-Smtp-Source: AMsMyM5uJ5eWQp6S+6Z4C0hK1rcz1qVltZNk5Qi3uW9GAkUnX1SsK5gFIxVzAh58sQenfPHh535CfkF5IlSn2uxJo/M=
-X-Received: by 2002:a17:906:8a7b:b0:7ac:baef:6de1 with SMTP id
- hy27-20020a1709068a7b00b007acbaef6de1mr21277925ejc.734.1667354476420; Tue, 01
- Nov 2022 19:01:16 -0700 (PDT)
+        with ESMTP id S230089AbiKBCOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 22:14:05 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70040.outbound.protection.outlook.com [40.107.7.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C522658D;
+        Tue,  1 Nov 2022 19:14:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eP47Vy6k3N4Q3fM4qe9FBmfnwEFsh4IXWNjHPmUuCeSwu/Rrqlm3F0WnSr4/5n5giSVe5ySbb8cdPOv7NgyT24yxNToG0ztee7gHcUQ6nOfCJTpeSn/owcB1DXmjoe1t/Q8HvY/JVgQi+hXHzaty7nN9i+MIWZrv8yogvcKDK0yHxNysRrJ456M627wOc++w3XdCg1um+OdkVKX6fCro74zA6Plh1YDh+WBHrxPcMluJqavguxBxtlcNKuLoyOIG0kOw2czJc+HS+CxNdaQprCeXiVgvweBWV02he9NyvISbUaPZG1LNcc6dQk1YI0iaSiaHubu/LNuKT3T/Zyf4yQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JID4PaiO5nznSHcr2xVkN0LyV+nGq95xo7ow94FDg3A=;
+ b=nDS4UOR7LMwr6tYqhFhI8D2paPVllfEzGieXhS3NmePG1+PXrDc2Vy4uKGzl26nwgxSoSsb4klQNHV0GXKnGxdxKQuU0az/O4qOMXGkjThl0OvqxP6YoBXl8FJGzZTgW7/KzWqCoI3YX+0f/TJ982LNtkIxKYhexcPZ4BVx85CxmnqhWK8BlstkIO8Dvfn7uURPuQyGIpDQWalNU1UB3pvMHXtlmzS9JKRgfiAAEVTKwiXUTrdvQQWylF1rqShavKcX2vpaheqCifxdy9Vg9elk9pDDsXJbeXcwWFZxyNRzSmqrRqF5nCxDtsCPzk78ZA+mjoe5UVObOdsbTQ9RiLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JID4PaiO5nznSHcr2xVkN0LyV+nGq95xo7ow94FDg3A=;
+ b=SVePSQZqhyt8J8J1AeQqWau7f8/tDsJPvmmGHzPgNsPlwb+MkP07g7kX+1dA7BG1lTKaD3LJWCHKyDWX82W8Q7l6gjdRzfJmEnjgS84hhlbvIoiCDm8xbsQzCEavGdbovP6IVLZAmp3q2B+c5U68Km3+Gfb8xS8wStEqsGlT1Qo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB9PR04MB8363.eurprd04.prod.outlook.com (2603:10a6:10:24b::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.16; Wed, 2 Nov
+ 2022 02:13:59 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::36a4:e1fc:67a2:c701]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::36a4:e1fc:67a2:c701%7]) with mapi id 15.20.5791.020; Wed, 2 Nov 2022
+ 02:13:59 +0000
+Message-ID: <b7be4912-542e-8fdc-6948-ac4626a63418@oss.nxp.com>
+Date:   Wed, 2 Nov 2022 10:13:45 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0
+Subject: Re: [PATCH 0/6] clk: imx93: fix and update
+From:   Peng Fan <peng.fan@oss.nxp.com>
+To:     abelvesa@kernel.org, abel.vesa@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-imx@nxp.com, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20221028095211.2598312-1-peng.fan@oss.nxp.com>
+Content-Language: en-US
+In-Reply-To: <20221028095211.2598312-1-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR03CA0114.apcprd03.prod.outlook.com
+ (2603:1096:4:91::18) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-3-quic_eberman@quicinc.com> <CABb+yY3JVNPG3dcyHNFxEeGEu3MN_pAOh3+cwexPPe2YG6SNUg@mail.gmail.com>
- <fb7e101f-8de0-d77e-30e1-74b882b19583@quicinc.com> <CABb+yY08jP+Q5xvzLf=7F1tULP6-eZz5EDiK9mBj2fAv=iZa_A@mail.gmail.com>
- <4cb58489-cd42-1868-9add-0c360065de23@quicinc.com> <CABb+yY2GA90RLazHZL7sLtC+ka-P8y6s00V2BVF4OMPTDi-rKg@mail.gmail.com>
- <62f7402d-f0e7-8e8a-e1a4-958ddbcf8d8b@quicinc.com>
-In-Reply-To: <62f7402d-f0e7-8e8a-e1a4-958ddbcf8d8b@quicinc.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Tue, 1 Nov 2022 21:01:04 -0500
-Message-ID: <CABb+yY0-rtt5CfzGA_D3THnfTO1pgstmVo2_1McEJ=JMdTcD2Q@mail.gmail.com>
-Subject: Re: [PATCH v6 02/21] dt-bindings: Add binding for gunyah hypervisor
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB9PR04MB8363:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1ed23f78-904c-4942-2821-08dabc77e718
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: U31DFqdiWvQfwMOE44m5/j7G6zGFC9vmfFyKPiIOd1MmMr6onEPoZuhDgkT+pOGiJUaMNdGnhiBq9x7ijE7avsU1zT1J3rsUmLUybpses8ss8m37WreDLPUSwpzIvWZTq23J2lTVKe7dTlfhFBV7ZavW65xXQJWivBi4zrm7+AgEAoedWin197WSfEZ9ILYTejK30ZtLuY+yzuqfBuff3F+UXQaFJlsBmGDY1v6+UBR90WOkY1Oz6xXc9LTpKloX86lKrEMaBZbnTgolBT+e3oGKz0+teR0Gl4+puGaOZHPzRFYhQy6NiQ9n2x5DVVkU+Ah0ztF3iFu9fSbnQKYit9l/VlnbAuIy+rCDlaI2nFNVxLGIPXwPW4yMp6lKTcBDIr+OrZGnTQjRGxy9KoBKM33GaGC6UIDGeEf+EBQhc9RmY/bLGcA9GCpHNy7AXbjPzPgKxX53eCCe3qRd9C9JNpwJPxgS/s7LaaruP2XDcHPE/KSXIp2g7M+NMj2bb2KXvQnOme6bkVgtkP3E7Xj/qMvu2mk7vgtV7FjEP9hH379aYbblCDfmB1OSAEidCHKf/jbSvLUFChEqm9bkJ10T/hImLkVG5XawTW8JxmMIuFNcG1sms8DhE76uY9qv7leYsnzSpuU92vdoyBTObzbFnNOyOTiGYYlkJ1Mv0cmrioM+AeWV1SELBmXCrXzrGCDtM9JopWeMKU+wDq0swemjBR6jZ7a49QkxrY+nF5gN98gcni6KePt4+c71pujMX41vlbJfEvqX6GyHAsDLEw3aL1BGXrnUScRPRvnVaXniDmENYDxot5anuxb5e0eFRhChIRtKV23Zxj7j97t9TZDDQJCI7gzoCzv2VoHuEM8z9GE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39860400002)(376002)(346002)(396003)(136003)(451199015)(478600001)(6486002)(31686004)(6666004)(6506007)(316002)(52116002)(53546011)(4326008)(66476007)(66556008)(8676002)(66946007)(6512007)(38350700002)(7416002)(921005)(38100700002)(41300700001)(5660300002)(186003)(8936002)(26005)(31696002)(2906002)(15650500001)(83380400001)(44832011)(86362001)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXdlRWszVDV2WklMeXdrMzdwRWhvWjJQQlUwV3NPaVRwdmlnSU5RNmpPamhP?=
+ =?utf-8?B?aUw5eVNEeVJhTGhhazJrTDU5cm5Da0NXbGxxQmxhc3p3d1NaVkVmWGlFMkgr?=
+ =?utf-8?B?emRVdnBETlhJNStrbVFFYVBkK01lU3pUQWYrbGtBbkFIMS9oYVJ5elFGVk1W?=
+ =?utf-8?B?d1hXa1JXa29HY25XejZzcHNqMTVsWE9YNEZYUDA5N3NvbXk4QVRWUTBqcHFn?=
+ =?utf-8?B?VFEzWGxKZER0VWl5MnJ4elBZSDBSNXljb09nTWNaRzI3Rk5ucE1yY2FGb1Yw?=
+ =?utf-8?B?YVZkOGV4TVRzdEhWd0xjbWM0T1ZEaHl4VkhjdVJERkU5UUM5cDEwMkJvbVgv?=
+ =?utf-8?B?WndwTUxRcUdMMjRsTys1QUVUY2RValhwbktLYUY4ZDN0RVFveWg3WUViOW96?=
+ =?utf-8?B?RkRqeXRXbzUzaUVBY29IZ0hnUkpJc3NlZ29wZmRiR201R2tiQk9JaXlLV2ha?=
+ =?utf-8?B?YllYVnZTQlgyWVY2YmQzRWFtdTBWS21sOUV0cTA4b3FpVWFCNE9iclg4UlZq?=
+ =?utf-8?B?aVZobmRsSVY1YWVXd3dqZGwzL0NvTXczeGNwWHFEY2Q2QjBVUFo4MG9XOE5M?=
+ =?utf-8?B?UEtMak9Kbjg5ZXZsaWRUVmh1QTMrdFhSUG43alNjekVRRlZsRDEwUzQwc1ZJ?=
+ =?utf-8?B?UnFnL0dzY0RRUjFhNnJrZkNEWFppZDVqRTNiOHdDZkIySHRsa1hvRGljNDBu?=
+ =?utf-8?B?N0Vva2NCU2V3K3Nub0tISUdWRFg0cXpXTUk3MGdFL2haek5nQWtYcEtUdkZ6?=
+ =?utf-8?B?dWl4b0NrOWx2Zks5R0E4QlNlY0c4cDlsVWVjakZZbUR1WkE5WXZZR2IyWmdK?=
+ =?utf-8?B?NkxxU2Q3TjFVSjRRWTh3NUhIcTJhMGcyTFlhQ01ERXpjckt0SmNlT3FRZ1g4?=
+ =?utf-8?B?VEowYkhidXJBVmY0aGQzczBBZWJhcFErODN1akZ6UUh4cVJWK2pHY2FqSXgv?=
+ =?utf-8?B?b1JRSkJJZ1R3aHJRcEFsdDZjWXcrVGNBYk9xN1ZIT3dRWGQrTHR2TTZDdmVI?=
+ =?utf-8?B?UXhObnEvdHRvRWVzNFlxUGREWXJQSEdXSjRaMTNsM0UxYVlCM3hnSUkxd0hY?=
+ =?utf-8?B?L2RhbURYOG9vaGtkR1kzdUs4QmxLdW1FbVdhd2RNdForMUNvY2NGS0Jnd2I1?=
+ =?utf-8?B?ZVROT3VEaGF3c0VFbHpON0tYZndnM0ZDOVorRlI4K3lnWHhIQlB0cmRYRWRs?=
+ =?utf-8?B?TFhXakZheVNWbjY2ZU90ajhxSmtYdUxTSHRvRFU4UWZNYzgxaXRjeWJKdnd6?=
+ =?utf-8?B?WEtLMlJqcjJ5M2t3R0FlK0J5eHE2bC9UVmpMWmRmVnZoc2dWVHdMazVBbG81?=
+ =?utf-8?B?Y1NGaEx5RXYrVTc3bHE0bFphMjRpejBPNHM0N291NUpOQXJNL29MZzhjdzhu?=
+ =?utf-8?B?VGVXbDVmTFlPZjBLc21ORzhFcjh5aUF3ZkVRSUZvblJETHk0cExpMlNFYmN4?=
+ =?utf-8?B?eXVmQmNVYTZzTGFNYkxFVjNZVUJZMGg5cFR3NlZrUDYrQ0NCMkxqRHVCL09B?=
+ =?utf-8?B?S05FWE1oTkdNamxVankvUHlZUW9FcHErM0ZyelNnMEd0ejlySGdkK3dLSFhj?=
+ =?utf-8?B?blU2QmFadHRsZFdVQTlQQ1NuejB2Q0pXWUJtV0JQUEM3QTVpRGJYMDhlUlVV?=
+ =?utf-8?B?Y1VXWW1JLzdTOXNGMWZHREhPRW4yYVV6bSt3QmZMQ3FSTzNhbktFNUI4bXg2?=
+ =?utf-8?B?Mk1YY0Y2cTFxNXFkdFJ5UHZSYkRGYWFKYVU2WCs2NDl5Wm5CTVNZR1hLb3Vo?=
+ =?utf-8?B?STA0UFJqY0oyWXBmU3RibXBzVHg4WnkxZ3o0TUtBa2hLWDZhcVZ5SHBsWTRX?=
+ =?utf-8?B?bmNnZEZWeGkya0QvNDdXd1RUazdjTnZiS0ZvL3JHV3JIaXlQYzRuNTVDYWxs?=
+ =?utf-8?B?eFNVZUp5SWo4d3hOMExuTUxkcS9jcFZOakVhbHFJVDRCS1FaT1F4d3d2eno0?=
+ =?utf-8?B?VERDVHZKc1hLanZQRXM0Y1hrM1FuYStrRi9wcTNteUZpMFB2TkFFUHRGTjBF?=
+ =?utf-8?B?NjZpdVJkaUhmNm1LcUFJV25QTGM4NzFSTVZheHhKV1FDWDZNajMxZDhJVWVB?=
+ =?utf-8?B?VGJRWDg5QUNIWk5rQUlFcFBsR0tKd0h1K2oySzVoOTlEaHprWkNMUUhyeDY1?=
+ =?utf-8?Q?f+fpFaXeneGxAgR0P1uBlaaRH?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1ed23f78-904c-4942-2821-08dabc77e718
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2022 02:13:59.4189
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UqLOazmGOg+nha6GagemclxdTflMvHcz91lzpi4SYeG/rZJqG5UQ4CnyNYfmvO91j6I+IWE8Y/1pXcTDzHqGLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8363
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 1, 2022 at 7:12 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->
->
->
-> On 11/1/2022 2:58 PM, Jassi Brar wrote:
-> > On Tue, Nov 1, 2022 at 3:35 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 11/1/2022 9:23 AM, Jassi Brar wrote:
-> >>> On Mon, Oct 31, 2022 at 10:20 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
-> >>>>
-> >>>> Hi Jassi,
-> >>>>
-> >>>> On 10/27/2022 7:33 PM, Jassi Brar wrote:
-> >>>>    > On Wed, Oct 26, 2022 at 1:59 PM Elliot Berman
-> >>>> <quic_eberman@quicinc.com> wrote:
-> >>>>    > .....
-> >>>>    >> +
-> >>>>    >> +        gunyah-resource-mgr@0 {
-> >>>>    >> +            compatible = "gunyah-resource-manager-1-0",
-> >>>> "gunyah-resource-manager";
-> >>>>    >> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX
-> >>>> full IRQ */
-> >>>>    >> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX
-> >>>> empty IRQ */
-> >>>>    >> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
-> >>>>    >> +                  /* TX, RX cap ids */
-> >>>>    >> +        };
-> >>>>    >>
-> >>>>    > All these resources are used only by the mailbox controller driver.
-> >>>>    > So, this should be the mailbox controller node, rather than the
-> >>>>    > mailbox user.> One option is to load gunyah-resource-manager as a
-> >>>> module that relies
-> >>>>    > on the gunyah-mailbox provider. That would also avoid the "Allow
-> >>>>    > direct registration to a channel" hack patch.
-> >>>>
-> >>>> A message queue to another guest VM wouldn't be known at boot time and
-> >>>> thus couldn't be described on the devicetree.
-> >>>>
-> >>> I think you need to implement of_xlate() ... or please tell me what
-> >>> exactly you need to specify in the dt.
-> >>
-> >> Dynamically created virtual machines can't be known on the dt, so there
-> >> is nothing to specify in the DT. There couldn't be a devicetree node for
-> >> the message queue client because that client is only exists once the VM
-> >> is created by userspace.
-> >>
-> > The underlying "physical channel" is the synchronous SMC instruction,
-> > which remains 1 irrespective of the number of mailbox instances
-> > created.
->
-> I disagree that the physical channel is the SMC instruction. Regardless
-> though, there are num_online_cpus() "physical channels" with this
-> perspective.
->
-> > So basically you are sharing one resource among users. Why doesn't the
-> > RM request the "smc instruction" channel once and share it among
-> > users?
->
-> I suppose in this scenario, a single mailbox channel would represent all
-> message queues? This would cause Linux to serialize *all* message queue
-> hypercalls. Sorry, I can only think negative implications.
->
-> Error handling needs to move into clients: if a TX message queue becomes
-> full or an RX message queue becomes empty, then we'll need to return
-> error back to the client right away. The clients would need to register
-> for the RTS/RTR interrupts to know when to send/receive messages and
-> have retry error handling. If the mailbox controller retried for the
-> clients as currently proposed, then we could get into a scenario where a
-> message queue could never be ready to send/receive and thus stuck
-> forever trying to process that message. The effect here would be that
-> the mailbox controller becomes a wrapper to some SMC instructions that
-> aren't related at the SMC instruction level.
->
-> A single channel would limit performance of SMP systems because only one
-> core could send/receive a message. There is no such limitation for
-> message queues to behave like this.
->
-This is just an illusion. If Gunyah can handle multiple calls from a
-VM parallely, even with the "bind-client-to-channel" hack you can't
-make sure different channels run on different cpu cores.  If you are
-ok with that, you could simply populate a mailbox controller with N
-channels and allocate them in any order the clients ask.
+Hi Abel, Stephen
 
--j
+On 10/28/2022 5:52 PM, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> V2:
+>   Update commit log for patch 3
+>   Add comment for critial clock for patch 5,6
+
+V2 was not added to patch subject when I send out this patchset.
+If you need to repost with V2, please let me know.
+
+Thanks,
+Peng.
+
+> 
+> patch 1 is reported by Dan and marked as fix
+> 
+> During our development, per updated reference mannual and design
+> information, correct enet and drop tpm 1/3, lpit 1/2.
+> 
+> The TPM/LPIT patch 3,4 are not marked as fixes, there is no user,
+> so update binding and driver both.
+> 
+> Patch 5 enable HSIO root always on
+> Patch 6 enable sysctr always on for cpuidle
+> 
+> Jacky Bai (2):
+>    clk: imx: keep hsio bus clock always on
+>    clk: imx93: keep sys ctr clock always on
+> 
+> Peng Fan (4):
+>    clk: imx93: unmap anatop base in error handling path
+>    clk: imx93: correct enet clock
+>    dt-bindings: clock: imx93: drop TPM1/3 LPIT1/2 entry
+>    clk: imx93: drop tpm1/3, lpit1/2 clk
+> 
+>   drivers/clk/imx/clk-imx93.c             | 38 ++++++++++++++-----------
+>   include/dt-bindings/clock/imx93-clock.h |  4 ---
+>   2 files changed, 21 insertions(+), 21 deletions(-)
+> 
