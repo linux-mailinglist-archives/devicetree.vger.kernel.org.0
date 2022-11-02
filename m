@@ -2,21 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FA86163BA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:18:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3991C6163BD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:18:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231302AbiKBNSX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 09:18:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57058 "EHLO
+        id S231391AbiKBNSY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 09:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231354AbiKBNR7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 09:17:59 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98CFC2AC41;
-        Wed,  2 Nov 2022 06:17:58 -0700 (PDT)
+        with ESMTP id S231361AbiKBNSA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 09:18:00 -0400
+X-Greylist: delayed 317 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 02 Nov 2022 06:17:58 PDT
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704AF2A97D;
+        Wed,  2 Nov 2022 06:17:57 -0700 (PDT)
 Received: from toolbox.toradex.int ([31.10.206.125]) by mrelay.perfora.net
- (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MguWM-1ocy110I8O-00M01X;
- Wed, 02 Nov 2022 14:12:15 +0100
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MGTgc-1olngA1i6K-00DIrP;
+ Wed, 02 Nov 2022 14:12:18 +0100
 From:   Marcel Ziswiler <marcel@ziswiler.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Peter Chen <peter.chen@kernel.org>,
@@ -32,34 +33,35 @@ Cc:     Peter Chen <peter.chen@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/6] arm64: dts: verdin-imx8mp: improve pinctrl for vbus-supplies
-Date:   Wed,  2 Nov 2022 14:11:58 +0100
-Message-Id: <20221102131203.35648-2-marcel@ziswiler.com>
+Subject: [PATCH v1 2/6] arm64: dts: verdin-imx8mp: remove usb_2 over-current detection disabling
+Date:   Wed,  2 Nov 2022 14:11:59 +0100
+Message-Id: <20221102131203.35648-3-marcel@ziswiler.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20221102131203.35648-1-marcel@ziswiler.com>
 References: <20221102131203.35648-1-marcel@ziswiler.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:6K6aIx412Q95eFSu342ICSPnePTvPJQYeqAFRnkoidvWyujjq9K
- 6vi5OtmiUNulQdyMC6qWkjrrdhF6iDOrJlkwGXuLVNI+qhATNHbZuHUxx3lS0FCGU8V7Pfi
- XULk2JXoXxsdwTgISrBvkfSHLKURmWgFA8VDQBzRVVekfxW/Ow5x5BRbx5DQpeQxMGk3Ww6
- Qnoa8gdCbam4iKzm3VNwA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:HM2wh7f99YA=:vCsDgXYZwDio1AQPezlTOo
- FGu01QJLsr0XkcVwxJ3Ru3nOODs0jk7iw4qajbQFPaqJOte8GbzRNhImYxfuaQx+VDctoDmcG
- 6FBeXYkRqFzDvONK/dpH/+JbHS6AgEOmyEZioVuq9ZzotDoa+mh+Tb4o6hZZpvhwIxS24DiaA
- RB6eUhvrb41oHAzIgKNX6hA/VwpMvR9mX/0MKn02YwgX1JqHyqgjo5M6xBgpEY8VG6hTkwcju
- 0dtDhcuFn/jVbUNCjplgrCGARTJ3+tjKNL8dPvujhT53nkQrVdM6ggaq5YxTIBSoGvIncGIsP
- Qq/1PuhHqmL7U/LdO+DMP2ZMKmubBklET61U8WYpCuJ4P/pMYnI1trAIo/DmaSR+e6osqXcs2
- s1b+sAutocnh3Vixv/rmKWrWBwY89h6/eR+GHB+BkCzPXQ7Ug3A9lRdIZbCyxREp5jBVJdmoO
- J9ediKKxWxLHeVe0bJVMjUph9hp/sTT1V51rh95XR0yNjNnQy7rTSr3SdJj/vgsnl+xI0ObRB
- Q/JFZOc8izMlkmLLSMZ8iri0Bs5Ny4Bd6P6/fzpXFLew5kqOZWk+79V7JcXC587dEkshJ+ZVv
- zhw6Jq5YLZx/kdjuIjrGJXLksguzs1kfOFhWQWgKdvpZu08B88vF2friP2g3ANjd36/nF8Ggw
- u3yganNeC3FW6S76kHVaBSbH4DRW8yWWTXJ2MJdTUO+eJHv7a4STE8B8MVEm/ij9Wn/emM7ww
- 8atEHC3GamQ4HM0p/B9IZbXdPS+sqlW91BqEoIuleCd8CMvdHA6e4lNREIWesMnnDBZ/wGLxo
- ZaZoJc1
+X-Provags-ID: V03:K1:czHBTzCluX/JCivsrSik2Qxz22JKvt9utshS16ntwY02MJhVPsM
+ mIuvhaKwK/IIK6tj4t7bbqKI7M79MGBSCZ19d81khW3RGh8TbiSRkpSrLyFRsSZ3Z8goo6P
+ Ush1T9cL4GgR5yfxMtVtLIZg6EkxcYE8p8ejb0de8cyHLJngmuUgVf7hC12aUHOa4r1K5CK
+ d0Bf7Zq5sX6wmAQcCiXnw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:OggyC/DFIKc=:fw57hSIdNBh1SkDcCC9YeU
+ H0sABP9TtOdCoNz7qTbOnjM3GE3ZQdc6vtYwa0Ylp8LnJc2q5RQ2O+BTQ5DlqvcqvX67mWckp
+ XIQHiEjiOnIaS+GkxC9lBvNwKAs2off2jH5xekNVITbMWe9w7KeloeBnPDlbgESe44Pp1qLyf
+ wk9mN6mrsAF3u5p9vivR0wMAi5bjOLAxdbB8+I+mugJT6/4w9GEIaEKHAZVaQif7IyYqNlb3M
+ tdBaCcGOIH081rJWgTAU5eElr3/O6DDdXo0yuWjU3/z0ku02899pQlcUDYP0HD/EU+OBRDn7r
+ vp0KWWvSOvelKyYe7OnlSYDghClliC8JhcLgi0Ll8uzqfiMoqPkEWFVtRtPKickaIZbPTEb3b
+ zu+bEnjrp+xxLRqPvB6BT2FbcYf16FW0gO+d4pG1DH+8oViCQ2iBtQiqwSa2G9Uhotj8KQsmp
+ PssQPGbZfdt2c1rooftigWENz1BhqZXQVFso7jqXVLFYRZwcAtUjoyXad+XELlgZ2S7XD5bj9
+ 4N4vgwyo6pqDQ9qf2VDk8nOHrkrdIk5Vvl3Y4h+mxDkldm5Xmv/UU4irXiG4csUvGJii+TauU
+ anrp5TgcPL2o7EwcBgK6Xq7QqjP1EfEze9RLJH0NqPX7VbAT6g5UFU8rKETC/rU+ji7OTsId9
+ 2I1cfKwFQ/JbzGltDBCu7UCQL6AtnnwJt/ZgE+E7G7yjZPgbqAWadWThhA2lNnxQcWA1WdtyR
+ T/idc2mxg5H4aPaCGpG/rZovzdaHafHWruAN4Jci6cl1w1HtiTiJdREPMU/mv73A4FmF5PkpR
+ a5hFNterHFwQmtaM+FxM+QGfDLKI4JMrzq9kOmss3vP4Ar3rfByy8ZGXOxruYdzzEfQJuOCR7
+ thcrOV3FZwo5uIvffcvQ==
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,38 +70,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-As we are using two fixed regulators for Verdin USB_1_EN (SODIMM 155)
-and Verdin USB_2_EN (SODIMM 185), those should be muxed as GPIOs rather
-than OTG_PWR.
+The disable-over-current property is only applicable for the
+ci-hdrc-usb2 and dwc2 drivers while the i.MX 8M Plus integrates dwc3
+IP. Therefore remove this property which does not really serve any
+purpose here.
 
 Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 ---
 
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index cc3b0725ce06..97e88440a251 100644
+index 97e88440a251..57cddf1bf6b3 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -1221,7 +1221,7 @@ pinctrl_uart4: uart4grp {
+@@ -828,7 +828,6 @@ &usb3_phy1 {
+ };
  
- 	pinctrl_usb1_vbus: usb1vbusgrp {
- 		fsl,pins =
--			<MX8MP_IOMUXC_GPIO1_IO12__USB1_OTG_PWR		0x19>;	/* SODIMM 155 */
-+			<MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12		0x106>;	/* SODIMM 155 */
- 	};
+ &usb_dwc3_1 {
+-	disable-over-current;
+ 	dr_mode = "host";
+ };
  
- 	/* USB_1_ID */
-@@ -1232,7 +1232,7 @@ pinctrl_usb_1_id: usb1idgrp {
- 
- 	pinctrl_usb2_vbus: usb2vbusgrp {
- 		fsl,pins =
--			<MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR		0x19>;	/* SODIMM 185 */
-+			<MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14		0x106>;	/* SODIMM 185 */
- 	};
- 
- 	/* On-module Wi-Fi */
 -- 
 2.36.1
 
