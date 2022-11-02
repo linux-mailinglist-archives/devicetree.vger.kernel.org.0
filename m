@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F78F616CC4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8730D616CC0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:44:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231479AbiKBSo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231436AbiKBSo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 2 Nov 2022 14:44:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39332 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbiKBSo1 (ORCPT
+        with ESMTP id S231394AbiKBSo1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:44:27 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9462D1D3
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:44:26 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id p8so29607612lfu.11
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:44:26 -0700 (PDT)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADB12D1CC
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:44:25 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id g7so29704975lfv.5
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:44:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=m9IFAoIiE6zk/68PG4L50nqjshUlH8V6wR65bpY1Vak=;
-        b=yn/vfHE6LozuJmD95+HrWoH82ZlB0zLDoaY4bc4O2qtmL9V2/xY8NRF3Jeb9iDtN0v
-         bVVa7tfENlg6q3FEb49B86k9ykRduXKY+gtj9DbpoHY8SzqUTxFfAom5RqUMSQqNxMFx
-         mxd6dfEwVYEYq4yYNh61eFuHvx8zUEpV+OlWp/9zoWYwe/ONtca9c0vwGT+H+SzJs5ak
-         yR4BekvoCsZNPeszYxengsxi3k0sZyExV+gL0NiMo/u1FisyfAceJa3CYObOX03KsC8f
-         Q6xl7sOdMLWj8I5+qs+q14IQP8kFJWI5YniMTrT9OkAlzEBsYUE5xdX45UmFVXrzofEu
-         tGPQ==
+        bh=i9r2jAN2ifM7pblPIEyP95isDltMBDbHzODH4f5j+ec=;
+        b=GkLtVQFrTmCoWJAdWKLUzRF0bkN0rJSMIkzNY/RbLd3/jsknE1BT12p03gt5WipbTl
+         P7pXWDwyiNYT9sb9mm5k430Z0UrLLTASEhhOfUmwr5c+CPB+wYCgBd1z/icDwKN386yK
+         reLfjyCBHptPoAP7vSkvAPlp9qE2Ngqzma1KeEHxRuwmL/zX6yfcU8q9GbEI/AqUfyug
+         1SCfY+ykv999+29pA64kLXlAVLGjMCqEitnJ75oppXpOhmV61r+c8eEb5A5DJPd4Bkyj
+         RYmMOmIf5Ssqto3A4akbaYyLmLjv8ATJJpjmUEAPBafJO55IB1PEIaqUIDOewTqNSvJx
+         hWVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m9IFAoIiE6zk/68PG4L50nqjshUlH8V6wR65bpY1Vak=;
-        b=pQfHti9Wd7nxBrNPzObqnklQJTfdWeytukI/5HCbvjmd6E8r7uf1/8kBXdfWQFdxdH
-         B1dfnq6Id2wqlevaPQJI3txkQXA+GiIhfCrSPMDgFyRVNtCJI3bI9aU8hiCuX4ljo3pJ
-         QTsP7hd6s6SNugsYiTnjADLCbcEt7vc6eSN3sTgL7qLRz+N8XDZjn8jaj/SXWeS25Lx+
-         uaUpPDLv8auJ8+4OunnnsTNinym6n4db6aIhyMBR5y1bAuogd+Ovcl68x30xrzITlRFd
-         IPhn2R8f+JJTHBBdWhKbmeos7AabPqOHFIkVUc8QZP7dd0qciKE83OjZJ7e57Wnv/US4
-         g8gw==
-X-Gm-Message-State: ACrzQf2l0YyhLLTGZW7qZzOj5crVQF/jY7hADjk97puzqYA76tvVVaPC
-        IHjlM76Ptq/frHP8qoXhGYyXlA==
-X-Google-Smtp-Source: AMsMyM4yJnkpdkDouKkNsFT3wdHhrbQSpdR2Dk71mqLLaRPuqYXDy19etdJWvMoHbhsWFCKlUNnNaA==
-X-Received: by 2002:a05:6512:ac8:b0:4a2:61e7:7963 with SMTP id n8-20020a0565120ac800b004a261e77963mr9685893lfu.363.1667414664824;
-        Wed, 02 Nov 2022 11:44:24 -0700 (PDT)
+        bh=i9r2jAN2ifM7pblPIEyP95isDltMBDbHzODH4f5j+ec=;
+        b=xJpVXVxBZLrL2pma9GGbYQ4WAASij5ZwQBSiHCDTcFSjHvV+L+JehuKcZUpnm6tEUe
+         MYjQAjAkXnN6HWim2QAzoGFMio3GjKa/CxENSo5YCzEGyCwvOr9aHUqPZwp/Lib0NjSJ
+         U9iuclIv+j24J7I4dQyU2Nyb8f2T04P635FUrO+YtalXlCHnI+5OIBd+OkJOuizBBQyH
+         mCRm4f7sGRG4CpYKc6JdANyRrYHS9IZ/murZdaQ4QqS2knfOCdfTF6EApLqHarA/Z2wt
+         so4apr88F8ZMdUrjlsycURzWZwSXeXdxe42z+yBW6dkJbhKIu5krrhWONi14L0S5h2y7
+         1K7g==
+X-Gm-Message-State: ACrzQf1rzoS2csV2mMeSkoY43QMwNdvffTqgdMReXdqn8WHlToyTpRcG
+        pgMk8bhK1McHm0cR2f5djBaw2g==
+X-Google-Smtp-Source: AMsMyM7cRAF+kWHvjLNKh5hA16h9oGLKiTSz4U9zXLRvrHTsSM081VyNEeJEIBJv5/JjmxmjG7nT3g==
+X-Received: by 2002:a05:6512:308d:b0:4a2:5958:3443 with SMTP id z13-20020a056512308d00b004a259583443mr9865150lfd.208.1667414665475;
+        Wed, 02 Nov 2022 11:44:25 -0700 (PDT)
 Received: from eriador.unikie.fi ([192.130.178.91])
         by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b00277092c03e7sm2277540ljo.33.2022.11.02.11.44.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 11:44:24 -0700 (PDT)
+        Wed, 02 Nov 2022 11:44:25 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
         Joerg Roedel <joro@8bytes.org>,
@@ -61,10 +61,11 @@ Cc:     Vinod Koul <vkoul@kernel.org>,
         Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [RFC PATCH v2 04/11] dt-bindings: arm-smmu: add special case for Google Cheza platform
-Date:   Wed,  2 Nov 2022 21:44:13 +0300
-Message-Id: <20221102184420.534094-5-dmitry.baryshkov@linaro.org>
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [RFC PATCH v2 05/11] dt-bindings: arm-smmu: Add generic qcom,smmu-500 bindings
+Date:   Wed,  2 Nov 2022 21:44:14 +0300
+Message-Id: <20221102184420.534094-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
 References: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
@@ -79,31 +80,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cheza fw does not properly program the GPU aperture to allow the
-GPU to update the SMMU pagetables for context switches. The board file
-works around this by dropping the "qcom,adreno-smmu" compat string.
-Add this usecase to arm,smmu.yaml schema.
+Add generic bindings for the Qualcomm variant of the ARM MMU-500. It is
+expected that all future platforms will use the generic qcom,smmu-500
+compat string in addition to SoC-specific and the generic arm,mmu-500
+ones. Older bindings are now described as deprecated.
 
+Note: I have split the sdx55 and sdx65 from the legacy bindings. They
+are not supported by the qcom SMMU implementation. I can suppose that
+they are using the generic implementation rather than the
+Qualcomm-speicific one.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/iommu/arm,smmu.yaml   | 28 ++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index abcb1ee4b58f..f44572cbb071 100644
+index f44572cbb071..3d4cc8996195 100644
 --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
 +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -66,6 +66,10 @@ properties:
-               - qcom,sdm845-smmu-v2
-           - const: qcom,adreno-smmu
+@@ -31,7 +31,7 @@ properties:
+               - qcom,sdm630-smmu-v2
            - const: qcom,smmu-v2
-+      - description: Qcom Adreno GPUs on Google Cheza platform
-+        items:
-+          - const: qcom,sdm845-smmu-v2
-+          - const: qcom,smmu-v2
-       - description: Marvell SoCs implementing "arm,mmu-500"
+ 
+-      - description: Qcom SoCs implementing "arm,mmu-500"
++      - description: Qcom SoCs implementing "qcom,smmu-500" and "arm,mmu-500"
          items:
-           - const: marvell,ap806-smmu-500
+           - enum:
+               - qcom,qcm2290-smmu-500
+@@ -40,8 +40,34 @@ properties:
+               - qcom,sc8180x-smmu-500
+               - qcom,sc8280xp-smmu-500
+               - qcom,sdm845-smmu-500
++              - qcom,sm6350-smmu-500
++              - qcom,sm6375-smmu-500
++              - qcom,sm8150-smmu-500
++              - qcom,sm8250-smmu-500
++              - qcom,sm8350-smmu-500
++              - qcom,sm8450-smmu-500
++          - const: qcom,smmu-500
++          - const: arm,mmu-500
++
++      - description: Qcom SoCs implementing "arm,mmu-500" (non-qcom implementation)
++        deprecated: true
++        items:
++          - enum:
+               - qcom,sdx55-smmu-500
+               - qcom,sdx65-smmu-500
++          - const: arm,mmu-500
++
++      - description: Qcom SoCs implementing "arm,mmu-500" (legacy binding)
++        deprecated: true
++        items:
++          # Do not add additional SoC to this list. Instead use two previous lists.
++          - enum:
++              - qcom,qcm2290-smmu-500
++              - qcom,sc7180-smmu-500
++              - qcom,sc7280-smmu-500
++              - qcom,sc8180x-smmu-500
++              - qcom,sc8280xp-smmu-500
++              - qcom,sdm845-smmu-500
+               - qcom,sm6350-smmu-500
+               - qcom,sm6375-smmu-500
+               - qcom,sm8150-smmu-500
 -- 
 2.35.1
 
