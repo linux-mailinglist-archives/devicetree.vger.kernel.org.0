@@ -2,112 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB55B616E75
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 188B4616E7B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:21:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbiKBUTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49852 "EHLO
+        id S230161AbiKBUVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:21:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbiKBUTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:19:39 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E682BDB;
-        Wed,  2 Nov 2022 13:19:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229551AbiKBUVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:21:19 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6B1E07;
+        Wed,  2 Nov 2022 13:21:19 -0700 (PDT)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0318CB82471;
-        Wed,  2 Nov 2022 20:19:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E05D0C433D6;
-        Wed,  2 Nov 2022 20:19:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667420374;
-        bh=UJBeGGaDkdPrb1N7Ca1Co7WF/+RDV33dOm4NiGaSn34=;
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8FB4F66028C5;
+        Wed,  2 Nov 2022 20:21:16 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667420477;
+        bh=NE948HkjaezAzBYfOXSQ7XoQiVmIbeuewynXUFErcXc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Gwt9T9xfnUcfx6exhcOtWB1OyKwvb9b5zOSIXim6Om+bkOP+t8SF111U12xJMR6uh
-         mA90H0inSNYKnaWi9WGhMKb5h1jQCI1/ZsS5AKMZpP6qCpqHAwYndmOsHFF/zqeFlu
-         L5BBm1h6frEsSiDupUn5IzyiyUHvz9zypRGoJomB+9DKlRxs3X2TxIOA34WrkJlMVr
-         cBS+CFh9MXYAmzftzLq61WRY3wzORWftEvWfVz8D+y6f3trDYb8jUPsHOXA+zXq2gk
-         IaCAwaW+vcMhk6TJ7mTF9gA9tTTt9aKPuxorHHGagqHETkUPyRRT88RBMSAYdNAX4Y
-         C4i82qwaSm31Q==
-Date:   Wed, 2 Nov 2022 21:19:31 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 3/9] dt-bindings: i2c: mv64xxx: Add F1C100s compatible
- string
-Message-ID: <Y2LQ0+6jUukyi1s8@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        b=hMqp992oQRDgBOvterq95Nb0XTsFLMFcAvDB4RDDqPvyJqAuBXfOJaa4ESr859qbh
+         7hXc0Rur93SwOVtstppierl9qRIHJuu4c3vw/w3fdDEWy6cIyJmPXF2AVDVvcZYbKd
+         /wtiyR8A78I08v2jtrTp1muHrjuEbydfL07ODxnE1uo4dFi41JvWv4vE3sxmeSPtio
+         AT0idVOognVchYJ2DAbvv5e7osCqhwSK5ScJyZtPt2AMtERw2/MrIFd2g8lDLXt/1Y
+         ejtOU9QIOOsXAslYkUcgQhUD5OjmVGRlergwbaLIiKHMV01NWe5o139CB/EpPakvls
+         qRKhpTxiz7Nlg==
+Date:   Wed, 2 Nov 2022 16:21:12 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Icenowy Zheng <uwu@icenowy.me>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        linux-i2c@vger.kernel.org
-References: <20221101141658.3631342-1-andre.przywara@arm.com>
- <20221101141658.3631342-4-andre.przywara@arm.com>
+        angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 4/7] arm64: dts: mediatek: mt8516: Fix the watchdog
+ node name
+Message-ID: <20221102202112.w77otebl23wesdaq@notapiano>
+References: <20221101090116.27130-1-allen-kh.cheng@mediatek.com>
+ <20221101090116.27130-5-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="i0H5vbWRv9yuAq9n"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20221101141658.3631342-4-andre.przywara@arm.com>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221101090116.27130-5-allen-kh.cheng@mediatek.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 01, 2022 at 05:01:13PM +0800, Allen-KH Cheng wrote:
+> The proper name is 'watchdog', not 'toprgu'.
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8516.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> index d1b67c82d761..fff59dc1b4d7 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> @@ -202,7 +202,7 @@
+>  			#clock-cells = <1>;
+>  		};
+>  
+> -		toprgu: toprgu@10007000 {
+> +		toprgu: watchdog@10007000 {
 
---i0H5vbWRv9yuAq9n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Rename the label to watchdog as well. It's not used elsewhere yet anyway, so
+won't add to the diff.
 
-On Tue, Nov 01, 2022 at 02:16:52PM +0000, Andre Przywara wrote:
-> The I2C controller IP used in the Allwinner F1C100s series of SoCs is
-> compatible with the ones used in the other Allwinner SoCs.
->=20
-> Add an F1C100s specific compatible string to the list of existing names.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Otherwise,
 
-Applied to for-next, thanks!
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-
---i0H5vbWRv9yuAq9n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmNi0NMACgkQFA3kzBSg
-KbYFuxAAhjjL4YIu6c6coZwrKc9AvFW0vKI5JpTEoSttV2QhDsV1mA32qmgX6neR
-2dJY+e2MLYl+U1etlJmHAMzQcQvScWXMuI5O+K8jfOY9Wj76vOaMBt3IWKneoAi4
-nU0caGoNyn00cb9aXrh6CWiEwEUabul1VU682RfDC8MQmF5Nmy3f7sR7S53PjWEX
-mzp+PqbMlQH+i5w9W0IQj9MP5tLgNAamoPIS3DDPBrZeIFtHW5g788+FSSasntuZ
-LNAl5pVkojeh1ZXrqS37JZls7TupV/nQUV7j7MMTU87e6Z4vyO/giMNT3Y/I69aS
-7hKawJ4WivL5eK9b4xosBT/9CS9rSkGgIQ1gtUy6gDJJgO2bMb28Jd/ubEv5g4Wg
-v6icX3AttMwa34bVzL/gcI6TsvdSTKxzdDdjjpvOoE21jwaY2812UdBjIZNIapv+
-Lp+aMKTUwkNJ51GfBYVArYNQvrKf2gwHoXJNveFaez5iFYUu2l7M/XFeNSaOFelt
-pUcRJ9GrUwm5QaGHQjenM3yZnkF2rCOqIF7Kp/aRxd79rj159NL/VOFwLyFxbyWF
-S5DzX2SU5d2Tuy5eJ3reOP6AaF5Y3kIGS8WFwpnMLxwAqNOyT7X79y8MWCOXtbDh
-Wh/fhkGpa9DQkjkWcL501IDswU8Q84IxJ3oqaLu1tKQ3k1sGLhM=
-=n/xP
------END PGP SIGNATURE-----
-
---i0H5vbWRv9yuAq9n--
+Thanks,
+Nícolas
