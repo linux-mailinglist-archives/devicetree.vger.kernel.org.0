@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F459616D6C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:06:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A296616D80
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:10:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231824AbiKBTGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 15:06:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35016 "EHLO
+        id S230491AbiKBTKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 15:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230012AbiKBTGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:06:36 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 330EA62F7;
-        Wed,  2 Nov 2022 12:06:30 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C9D2966028BD;
-        Wed,  2 Nov 2022 19:06:27 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667415989;
-        bh=psNsBgRZUfl25MmyYsegtoE6p8qBYKvjuaAigeczHcs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BzUZx3QI5rk9bRKJ/8KzAxkEVIXNJ+QBKyG0LMVSOyppAkTPIVMdu6NXv5wMN8oNo
-         4AlA3dZhpmeLUggTxnViPoZTn9mD0lydKzTacl/XHLlArSbkxB8EuV5xyjuB6NgXf0
-         1kUO1NR7iGdyuep8Kct9VqnrJMq3CDW+InY8tWOLJ+XmTEAZBAWiLdatnFUtLfpwr/
-         2gfDkryv8KWwn6Tyxg7hf3gOgoXh+3pvclEQrUl0gA4fljUi/oaPQca2B/7aIwrDhY
-         kr7YB7ZVMEk1PnQK6d5aqy22IftEu0y/eJMrdWSpiZDSHHvhCiXU5WRKfZG7lwt/ox
-         NWPNl0xlr28Bg==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     kernel@collabora.com, Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 5/5] arm64: dts: mediatek: asurada: Add aliases for i2c and mmc
-Date:   Wed,  2 Nov 2022 15:06:11 -0400
-Message-Id: <20221102190611.283546-6-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221102190611.283546-1-nfraprado@collabora.com>
-References: <20221102190611.283546-1-nfraprado@collabora.com>
+        with ESMTP id S231367AbiKBTJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:09:58 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9C8D102
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 12:09:53 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id h21so6962112qtu.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 12:09:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AIkEh7BXAQ8EfVcaCpQmqvlq6Pnzwaj79KpKIFXtqKk=;
+        b=D5NqaoeFxXGLhUM1iiPWsSusfvacuFdAOm6V8ErMS9WTejX9G+7XNSYvAnzL10LFFp
+         qE4b9Fd5IJns9Y169x8pYIfvEM0CEQ7UlfQ5ml7I2wQplpGk93Og//KQ6l66s2LeF7Ng
+         0QIQG2YvDP8l4BXttaBxEtpb+R11qglLFfU3r0tAVplqVAE9m+N5E+WLMYpPROr6YABD
+         dDv1ZnUkW2HQDoRNxvZRD8RCgvwZFB7bKffmiB6fpEfwy093n055DP70XMYf0MNtGMTY
+         cM6o2zeIscCb5OKxFh15wUhs+A2kcnIS8JdGXqbvwB/gsnlxMWnSn/3rzYMoDI8YAYem
+         JlNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AIkEh7BXAQ8EfVcaCpQmqvlq6Pnzwaj79KpKIFXtqKk=;
+        b=X0yZN0IJiMvPPrqibOS+X6Zm7Gmqt2Es8w7XczfDYjQShKSHuUsSBIH2ozwZWFYziQ
+         2UWl/hLtvJo2NUORbpMgDiODOBXXEwLkbG3BWfCvIZaRcAsAIzEotzccKtD3lfhGVwzD
+         rc2i0FbP2FmU+yK2bZeK3kiEz2ZVMYE1GOuILACMDKo23rnuvXKMI41xW8yGlcECvmPX
+         8fUknrJ7Y8aM3UjrRld1hvtFDcHAJj3GeJPfiD4zxxYzdvMkKb+73NrohK2VjBfvtbP0
+         WrTrWttfieVRTPVAhAGMDY6jU1DiyXy3tlk1OjZkTYnK/kpDysVnx+P0NLyr6F3MMD4X
+         xTfQ==
+X-Gm-Message-State: ACrzQf2D5VmlzzCLBB0tvIILYcpjTt4mlxvv7tLjRZIqbtzBQ4guWf0s
+        GsjKYsweb6Ze9/GA/aCkKvSv6Q==
+X-Google-Smtp-Source: AMsMyM5rtL01pS0TQ+i5UNqkH3/BIoMq0q2RjMMZmpCfyVX3jZh1yBtxA1LpksWIIs0gVwKIiDmLaA==
+X-Received: by 2002:a05:622a:407:b0:39a:836:acfe with SMTP id n7-20020a05622a040700b0039a0836acfemr20925776qtx.133.1667416192736;
+        Wed, 02 Nov 2022 12:09:52 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id bk20-20020a05620a1a1400b006f3e6933bacsm9098388qkb.113.2022.11.02.12.09.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 12:09:52 -0700 (PDT)
+Message-ID: <1fe8fd96-7770-0bda-c970-aa38d030ff3b@linaro.org>
+Date:   Wed, 2 Nov 2022 15:09:50 -0400
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 06/15] dt-bindings: ufs: Add "max-device-gear" property
+ for UFS device
+Content-Language: en-US
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        martin.petersen@oracle.com, jejb@linux.ibm.com,
+        andersson@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        quic_cang@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, ahalaney@redhat.com
+References: <20221031180217.32512-1-manivannan.sadhasivam@linaro.org>
+ <20221031180217.32512-7-manivannan.sadhasivam@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221031180217.32512-7-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add aliases for the i2c and mmc nodes on the Asurada platform DT to
-ensure that we get stable ids for those devices on userspace.
+On 31/10/2022 14:02, Manivannan Sadhasivam wrote:
+> The maximum gear supported by the UFS device can be specified using the
+> "max-device-gear" property. This allows the UFS controller to configure the
+> TX/RX gear before starting communication with the UFS device.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+This is confusing. The UFS PHY provides gear capability, so what is the
+"device" here? The attached memory? How could it report something else
+than phy?
 
----
+The last sentence also suggests that you statically encode gear to avoid
+runtime negotiation.
 
-Changes in v3:
-- Removed i2c4, 5, 6, 8 and 9 as they aren't used on asurada
-
-Changes in v2:
-- Added this commit
-
- arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-index ce9e43475f9e..9f12257ab4e7 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
-@@ -11,6 +11,13 @@
- 
- / {
- 	aliases {
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+		i2c3 = &i2c3;
-+		i2c7 = &i2c7;
-+		mmc0 = &mmc0;
-+		mmc1 = &mmc1;
- 		serial0 = &uart0;
- 	};
- 
--- 
-2.38.1
+Best regards,
+Krzysztof
 
