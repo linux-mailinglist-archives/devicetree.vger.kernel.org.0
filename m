@@ -2,112 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58EC4616BEC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BFA1616C09
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231287AbiKBSUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 14:20:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45724 "EHLO
+        id S229459AbiKBSYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 14:24:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231431AbiKBSUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:20:19 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE392F382
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:20:17 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id z30so12299209qkz.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:20:17 -0700 (PDT)
+        with ESMTP id S229561AbiKBSY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:24:29 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49DB91DF02;
+        Wed,  2 Nov 2022 11:24:28 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id b2so47612909eja.6;
+        Wed, 02 Nov 2022 11:24:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PgH8+iPkG2HkoR14yXypmLmMN1g+buscpWKRVlqLP/4=;
-        b=g5qhWsDeWUZf+m5OUQo8qmB9Ed32os7oG2djVX3jvfoPzImGy93QlZFzE0xA6JaAP1
-         i3nBl8QrDECNpiCLKSXqjf3AWRSkqVyrIqs/b70/uXT68xqI3AHpNevHd+oVLt67wHS+
-         moepsm+88S8MFFd04DVnhHYtvHAPXWHkbiNS9ULg9447FU5uC2UtvPRcg2ls1wAEPQkW
-         4952B9OeWlb0zlICo8DNbqbjQvZxbaDG1f5fn4LMfeRa/ZLfi5M/AcN/d7JndSxHH7jc
-         y/+1kWOVqGNwO5BZ7J16JdRX7c/2kc+wbCjvDyfiLFprwFxCNHZy+JajwlVUn/SSVPwP
-         hjtQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4QOOAo0r1f2eB5DLts+2NHykWcP4o2rs3NL8p/ceM7Q=;
+        b=P/VEzq10mQ9feW8Z8mtnoUahcCtRrzBpJymKhRtAaALAZrzAglFen+djRN7asHjv8p
+         PtlSkDfKe8Kq6RS6Bm5fbSY1NEO5ghz3hFBb32TaakeA6RS1D2iVjd0lLnZHlx4AyKyq
+         Nt3dxP0fIaKn+j1yCdXc7Rd0CGm+cl4hrzKid9YnGbek5eG372xrLa1z6Wgb8dRrzhmy
+         DQGHFFNB7k9bwojn4mGqLCgqGCkFFJFBPgTzeekWokMiZVP7DPv00D2IDo8DP07tpi8R
+         mAbIoPObR9QwEJVBm04alujSoQQIWDIEFhx7ea+MiGJ6FoFagFldozVJziU1HT730rDH
+         Hndw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PgH8+iPkG2HkoR14yXypmLmMN1g+buscpWKRVlqLP/4=;
-        b=Lf7Ou2r6sdyXuiDTSairdO0XyrgMoLzov2QVYER5ly+sNAXFsLF8HwtO/ICtci+O7Y
-         OLZHoFO1QlOKGjn1a+cl64aw4QnW8E8YhvMhs0zTr6QMt87n5O5AGtz2SNXa/PWK7a+0
-         hFr/kC3RphkiSXAVypLPrgwrw3MUeIvpo6c+fSbCANR1mCdVherX6ax7Ctlc3e+JLdR8
-         g1Rd4a5ylzyplSn4rhVOlfmmJO12Ck0V2bwovBXHLyufDIqOYemNAYYd1xJKLPFYzd3N
-         GTl96jeiMPTLFokWXeZEXbEM1eSQPzKpgEtgywrGS7mJ1VR0qdqWIqICoO1sE25F0DfL
-         vHyw==
-X-Gm-Message-State: ACrzQf2+Jj/zwrI3rLnxE2M3vlQ/stqhnP9UqkYv53QzN7uHO7y+BiBU
-        IPnxGGFxHO4ziiPRdX3K1XxNMg==
-X-Google-Smtp-Source: AMsMyM5GtSz9/EmO99tqJRfQlpAcEwjit/B/NA1gRPPe8Y5GADPc9XgrOLxcMC64wuxEdHAyb+b5vA==
-X-Received: by 2002:a37:96c4:0:b0:6f9:f3f1:8e4e with SMTP id y187-20020a3796c4000000b006f9f3f18e4emr18631503qkd.534.1667413216822;
-        Wed, 02 Nov 2022 11:20:16 -0700 (PDT)
-Received: from krzk-bin.. ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id t1-20020a05620a450100b006cbcdc6efedsm9081995qkp.41.2022.11.02.11.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 11:20:16 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>,
+        bh=4QOOAo0r1f2eB5DLts+2NHykWcP4o2rs3NL8p/ceM7Q=;
+        b=gUa5Bu4BkbGD6MU4tMSFBfbW7nBH4UC5q4lobQO1dFBmQRaIyL1f0bYSRJtO0oZJvs
+         I6zPCyErtzGm0d6Ad874RWnzu1Q/MoWe0cTvB/d5oFTbYlUvI0dVqY8YbDAWAeVDlBy/
+         e8T3QKR0CgFVgHiY7osnEMJI86BkxjKrZl0Hrzshr7h9bGdx5FMSjomfMgB1Y/9wKWd+
+         1fAWsqxx3xl9EWCGFRnVHRIkK9I0NJnCWwLDP8KDkIpoAlcjfFQnor+yifKHlbbP28uL
+         I03TwCXqJvccOvula1yLPjWM2SRlZqAAgi4LgK7TQAgQ8lCemzMiPWrgk41iv/4ZPWPN
+         5b0w==
+X-Gm-Message-State: ACrzQf0zPEq7hTI1noqrB6udMntYvn89qQeTWt2bBGhpcY5yvbaIsnGM
+        SgSN4rbyKuz2JuQSWZK4Uiyd0p6hQDsUNTPR5Uk=
+X-Google-Smtp-Source: AMsMyM424hFL7N1fZmZ40u+saEIYDQr35PSwihsP2Kvc98uvdYUlbDMISZ3jTfp45t+04ao4VgNadyyd+TS3kaJbdbE=
+X-Received: by 2002:a17:907:3e92:b0:7ad:d4f1:11d8 with SMTP id
+ hs18-20020a1709073e9200b007add4f111d8mr16351846ejc.291.1667413466744; Wed, 02
+ Nov 2022 11:24:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
+ <20221026185846.3983888-3-quic_eberman@quicinc.com> <CABb+yY3JVNPG3dcyHNFxEeGEu3MN_pAOh3+cwexPPe2YG6SNUg@mail.gmail.com>
+ <fb7e101f-8de0-d77e-30e1-74b882b19583@quicinc.com> <CABb+yY08jP+Q5xvzLf=7F1tULP6-eZz5EDiK9mBj2fAv=iZa_A@mail.gmail.com>
+ <4cb58489-cd42-1868-9add-0c360065de23@quicinc.com> <CABb+yY2GA90RLazHZL7sLtC+ka-P8y6s00V2BVF4OMPTDi-rKg@mail.gmail.com>
+ <62f7402d-f0e7-8e8a-e1a4-958ddbcf8d8b@quicinc.com> <CABb+yY0-rtt5CfzGA_D3THnfTO1pgstmVo2_1McEJ=JMdTcD2Q@mail.gmail.com>
+ <840d876c-6a09-59cf-fc66-c5752ad22d7e@quicinc.com>
+In-Reply-To: <840d876c-6a09-59cf-fc66-c5752ad22d7e@quicinc.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 2 Nov 2022 13:24:15 -0500
+Message-ID: <CABb+yY1rd2mzNz-ovaO2Di=9qeAKp4XeUUE+6yPbBiv7YjTCfw@mail.gmail.com>
+Subject: Re: [PATCH v6 02/21] dt-bindings: Add binding for gunyah hypervisor
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Amol Maheshwari <amahesh@qti.qualcomm.com>,
+        Kalle Valo <kvalo@kernel.org>, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: power: supply: bq25890: use one fallback compatible
-Date:   Wed,  2 Nov 2022 14:20:11 -0400
-Message-Id: <20221102182011.106040-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BQ2589[0256] seem compatible between each other in major aspects and
-remaining features are auto-detectable (by reading device revision ID
-register).  Existing DTS already uses the compatibles with a fallback,
-so adjust the bindings to reflect this and fix dtbs_check warning:
+On Wed, Nov 2, 2022 at 1:06 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+>
+> Hi Jassi,
+>
+> On 11/1/2022 7:01 PM, Jassi Brar wrote:
+> > On Tue, Nov 1, 2022 at 7:12 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+> >>
+> >>
+> >>
+> >> On 11/1/2022 2:58 PM, Jassi Brar wrote:
+> >>> On Tue, Nov 1, 2022 at 3:35 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+> >>>>
+> >>>>
+> >>>>
+> >>>> On 11/1/2022 9:23 AM, Jassi Brar wrote:
+> >>>>> On Mon, Oct 31, 2022 at 10:20 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
+> >>>>>>
+> >>>>>> Hi Jassi,
+> >>>>>>
+> >>>>>> On 10/27/2022 7:33 PM, Jassi Brar wrote:
+> >>>>>>     > On Wed, Oct 26, 2022 at 1:59 PM Elliot Berman
+> >>>>>> <quic_eberman@quicinc.com> wrote:
+> >>>>>>     > .....
+> >>>>>>     >> +
+> >>>>>>     >> +        gunyah-resource-mgr@0 {
+> >>>>>>     >> +            compatible = "gunyah-resource-manager-1-0",
+> >>>>>> "gunyah-resource-manager";
+> >>>>>>     >> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX
+> >>>>>> full IRQ */
+> >>>>>>     >> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX
+> >>>>>> empty IRQ */
+> >>>>>>     >> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
+> >>>>>>     >> +                  /* TX, RX cap ids */
+> >>>>>>     >> +        };
+> >>>>>>     >>
+> >>>>>>     > All these resources are used only by the mailbox controller driver.
+> >>>>>>     > So, this should be the mailbox controller node, rather than the
+> >>>>>>     > mailbox user.> One option is to load gunyah-resource-manager as a
+> >>>>>> module that relies
+> >>>>>>     > on the gunyah-mailbox provider. That would also avoid the "Allow
+> >>>>>>     > direct registration to a channel" hack patch.
+> >>>>>>
+> >>>>>> A message queue to another guest VM wouldn't be known at boot time and
+> >>>>>> thus couldn't be described on the devicetree.
+> >>>>>>
+> >>>>> I think you need to implement of_xlate() ... or please tell me what
+> >>>>> exactly you need to specify in the dt.
+> >>>>
+> >>>> Dynamically created virtual machines can't be known on the dt, so there
+> >>>> is nothing to specify in the DT. There couldn't be a devicetree node for
+> >>>> the message queue client because that client is only exists once the VM
+> >>>> is created by userspace.
+> >>>>
+> >>> The underlying "physical channel" is the synchronous SMC instruction,
+> >>> which remains 1 irrespective of the number of mailbox instances
+> >>> created.
+> >>
+> >> I disagree that the physical channel is the SMC instruction. Regardless
+> >> though, there are num_online_cpus() "physical channels" with this
+> >> perspective.
+> >>
+> >>> So basically you are sharing one resource among users. Why doesn't the
+> >>> RM request the "smc instruction" channel once and share it among
+> >>> users?
+> >>
+> >> I suppose in this scenario, a single mailbox channel would represent all
+> >> message queues? This would cause Linux to serialize *all* message queue
+> >> hypercalls. Sorry, I can only think negative implications.
+> >>
+> >> Error handling needs to move into clients: if a TX message queue becomes
+> >> full or an RX message queue becomes empty, then we'll need to return
+> >> error back to the client right away. The clients would need to register
+> >> for the RTS/RTR interrupts to know when to send/receive messages and
+> >> have retry error handling. If the mailbox controller retried for the
+> >> clients as currently proposed, then we could get into a scenario where a
+> >> message queue could never be ready to send/receive and thus stuck
+> >> forever trying to process that message. The effect here would be that
+> >> the mailbox controller becomes a wrapper to some SMC instructions that
+> >> aren't related at the SMC instruction level.
+> >>
+> >> A single channel would limit performance of SMP systems because only one
+> >> core could send/receive a message. There is no such limitation for
+> >> message queues to behave like this.
+> >>
+> > This is just an illusion. If Gunyah can handle multiple calls from a
+> > VM parallely, even with the "bind-client-to-channel" hack you can't
+> > make sure different channels run on different cpu cores.  If you are
+> > ok with that, you could simply populate a mailbox controller with N
+> > channels and allocate them in any order the clients ask.
+>
+> I wanted to make sure I understood the ask here completely. On what
+> basis is N chosen? Who would be the mailbox clients?
+>
+A channel structure is cheap, so any number that is not likely to run
+out. Say you have 10 possible users in a VM, set N=16. I know ideally
+it should be precise and flexible but the gain in simplicity makes the
+trade-off very acceptable.
 
-  arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dtb: charger@6a: compatible: ['ti,bq25895', 'ti,bq25890'] is too long
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/power/supply/bq25890.yaml  | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/power/supply/bq25890.yaml b/Documentation/devicetree/bindings/power/supply/bq25890.yaml
-index fd01ff10b4e0..ee51b6335e72 100644
---- a/Documentation/devicetree/bindings/power/supply/bq25890.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq25890.yaml
-@@ -15,11 +15,15 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - ti,bq25890
--      - ti,bq25892
--      - ti,bq25895
--      - ti,bq25896
-+    oneOf:
-+      - enum:
-+          - ti,bq25890
-+      - items:
-+          - enum:
-+              - ti,bq25892
-+              - ti,bq25895
-+              - ti,bq25896
-+          - const: ti,bq25890
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
-
+thanks.
