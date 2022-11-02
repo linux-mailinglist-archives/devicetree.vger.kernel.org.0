@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB903616C6A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:36:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE36B616CAF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:41:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231400AbiKBSgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 14:36:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
+        id S231347AbiKBSlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 14:41:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231358AbiKBSgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:36:41 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76407303F4;
-        Wed,  2 Nov 2022 11:35:50 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-13c569e5ff5so20859933fac.6;
-        Wed, 02 Nov 2022 11:35:50 -0700 (PDT)
+        with ESMTP id S231211AbiKBSlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:41:32 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918442CDF0
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:40:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1667414430;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=z6U2QWI3L7CELeN2uR9v9BKzosx2j/rMnyai3sfNG/I=;
+        b=I0mGPui4NpAu/5e86YRU+5O2E7k5zo+KNsiJUEayAB+rFi1Hpl62ljrLPkNP/szVXmrq/K
+        ovHyLjsC6DVvT6DWoBJV2KvkSxAb6REufsrenaVEfOpRG0n0/JPfg+s1RUXtVokaAeZb6f
+        MFSEnXB99c4veaGSAFi1/ew6b+QtsWo=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-256-rGUSqeVgPoKdCi1FX2Sc4Q-1; Wed, 02 Nov 2022 14:40:29 -0400
+X-MC-Unique: rGUSqeVgPoKdCi1FX2Sc4Q-1
+Received: by mail-qt1-f199.google.com with SMTP id g3-20020ac84b63000000b003a529c62a92so6162121qts.23
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:40:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=A/CuXeX5BAmh1fy0gv5umwNjOEiAdicnjnxUO4ZSgqI=;
-        b=ZWitSwO2UOAh7n6vGDEFLK0p/52dQ8/7C6YfFjZedEPdFPnvV8QRoiudEJCX/KOxKe
-         eCRF1TaYu3vTIokj9FEjpWGjLFONQgnglYODrhhxKsuHIQFrg8V2VxHO2pjz88CK1m+q
-         lNXcLVOimHCR2+hvD0bt90cbfjaDl61EyPIi70Hm0lt2umSmkNtp9iYHxj2w+TrCUSr3
-         H6HwSUzM0qXq4GzXVuZXiwuUksjsx5P+fTI2eUxxltdRIOw9QagC3LcnxlvAz8IW4Krk
-         tRpq2+cUtcaK0n7krBAWd1eAQ8MN/DPKqb+xayJPMj5kP8dzC3T2zZOTWZcZXKwXwbud
-         qcWg==
-X-Gm-Message-State: ACrzQf3qZKuwVu75OZ2+zaHNCM6pWQwlayUM6TrPza81PjS0HdGBBK3X
-        C0pTm1BJZfML1kesPnsjhQ==
-X-Google-Smtp-Source: AMsMyM7CmXp9Hfz0+ZuQVyxpx2aFwopthUXM7VzE06aXbO1uz1eEkTzlRg4N4mxvNNz525kGB6pndw==
-X-Received: by 2002:a05:6870:4607:b0:127:fd93:4752 with SMTP id z7-20020a056870460700b00127fd934752mr25203464oao.64.1667414149652;
-        Wed, 02 Nov 2022 11:35:49 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d22-20020a056830045600b0066210467fb1sm5384100otc.41.2022.11.02.11.35.48
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z6U2QWI3L7CELeN2uR9v9BKzosx2j/rMnyai3sfNG/I=;
+        b=6GDeLgXcVP+3zxEuoHwvRXXyC8uQJmYHQPJo+JYsoiibUHnGpLqx0+X1h9dw3eGnMo
+         nc3SAN4BFVU2snDbcRLX2vbjvgpkIrETo1un5yWu178pZX5dVl2+SY0zPcOHAmbYqPYJ
+         y3qwuvMuwHewzO9V6Myu65yCqen5web9nKPcIco0S/Cau/XKS9rR5JVWSuj8Ya1bg1ld
+         qre+DWRSxqb+O1t5dQ1gxIbHctwSu1Ll9R6t7WdeakJL28bF/yCEF8+EptU+Bh3pmcIO
+         KVsg8h8eVyhTUM/XuQV7RN2rRU4Xz1xfFtkpERDqlZ5wBnNESE9TcY3S+7GcVMjxltil
+         TiWA==
+X-Gm-Message-State: ACrzQf3Yih1IVofDLre5/XCUgpGEDUb/fq/XNmQwlRRy473vcMUBwMTt
+        8AsuEwgdbxRM1mDlsWZpsbcH1eEdbAUejdobYF832QoELRCJCP7he3oJRVp3p6ySi400mfChrXd
+        nmF+n4LjgTko8EM3MRzo4VA==
+X-Received: by 2002:a05:620a:2984:b0:6fa:6636:d4e5 with SMTP id r4-20020a05620a298400b006fa6636d4e5mr2471923qkp.622.1667414429136;
+        Wed, 02 Nov 2022 11:40:29 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM5T4ytHu3K/k7aIWWR9fQduopTkBaK9CqkhKpSxE2oFDFcMEEUfWbOKCZP3zXChPWrTaqbUlg==
+X-Received: by 2002:a05:620a:2984:b0:6fa:6636:d4e5 with SMTP id r4-20020a05620a298400b006fa6636d4e5mr2471904qkp.622.1667414428917;
+        Wed, 02 Nov 2022 11:40:28 -0700 (PDT)
+Received: from localhost (pool-100-0-210-47.bstnma.fios.verizon.net. [100.0.210.47])
+        by smtp.gmail.com with ESMTPSA id bm2-20020a05620a198200b006cfc7f9eea0sm8930499qkb.122.2022.11.02.11.40.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 11:35:49 -0700 (PDT)
-Received: (nullmailer pid 130546 invoked by uid 1000);
-        Wed, 02 Nov 2022 18:35:50 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Vivien Didelot <vivien.didelot@gmail.com>,
+        Wed, 02 Nov 2022 11:40:28 -0700 (PDT)
+Date:   Wed, 2 Nov 2022 14:40:27 -0400
+From:   Eric Chanudet <echanude@redhat.com>
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20221102161211.51139-1-krzysztof.kozlowski@linaro.org>
-References: <20221102161211.51139-1-krzysztof.kozlowski@linaro.org>
-Message-Id: <166741398630.127357.13160524174654511434.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: nxp,sja1105: document spi-cpol
-Date:   Wed, 02 Nov 2022 13:35:50 -0500
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        Brian Masney <bmasney@redhat.com>,
+        Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
+Message-ID: <20221102184027.236affysihqnivh5@echanude>
+References: <20221102103552.29388-1-quic_ppareek@quicinc.com>
+ <20221102103552.29388-3-quic_ppareek@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221102103552.29388-3-quic_ppareek@quicinc.com>
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,33 +85,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 02 Nov 2022 12:12:11 -0400, Krzysztof Kozlowski wrote:
-> Some boards use SJA1105 Ethernet Switch with SPI CPOL, so document this
-> to fix dtbs_check warnings:
+On Wed, Nov 02, 2022 at 04:05:52PM +0530, Parikshit Pareek wrote:
+> Introduce the Qualcomm SA8540P ride automotive platform, also known as
+> Qdrive-3 development board.
 > 
->   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
+> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
+> regulators, debug UART, PMICs, remoteprocs and USB.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> The SA8540P ride contains four PM8450 PMICs. A separate DTSI file has
+> been created for PMIC, so that it can be used for future SA8540P based
+> boards.
 > 
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> Tested-by: Brian Masney <bmasney@redhat.com>
+> Reviewed-by: Brian Masney <bmasney@redhat.com>
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Using the default defconfig on next-20221102, preventing
+qcom_q6v5_pas.ko to load avoids the board crash observed in v5, as
+found during v6 review by Brian.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+Tested-by: Eric Chanudet <echanude@redhat.com>
+Reviewed-by: Eric Chanudet <echanude@redhat.com>
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-ethernet-switch@1: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'fsl,spi-cs-sck-delay', 'fsl,spi-sck-cs-delay', 'spi-cpha' were unexpected)
-	arch/arm/boot/dts/ls1021a-tsn.dtb
-
-switch@0: Unevaluated properties are not allowed ('clocks', 'reset-gpios', 'spi-cpha' were unexpected)
-	arch/arm/boot/dts/imx6qp-prtwd3.dtb
-	arch/arm/boot/dts/stm32mp151a-prtt1c.dtb
+-- 
+Eric Chanudet
 
