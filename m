@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC25F615EAE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 10:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EBDF615EB0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 10:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231339AbiKBJCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 05:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34470 "EHLO
+        id S231352AbiKBJCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 05:02:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbiKBJCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 05:02:06 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6AA0286E3
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 02:01:49 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5so10231051wmo.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 02:01:49 -0700 (PDT)
+        with ESMTP id S229531AbiKBJCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 05:02:08 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE07286D9
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 02:01:51 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id n39-20020a05600c3ba700b003cf71011cddso1868511wms.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 02:01:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mzmAJH9YQHiTesc1z9ldOLJSqv+prtu196GqUJFfcRE=;
-        b=ILs12tG7hkbdb+cHXkxKXea+I+frdKuFfWAEQBS/FUNC8M4BZz+TZIN6TdQWbIXBqB
-         uWr1EoCMvueKuJXvqRVxJswPfnoUY5awGN/EBZGM27GsfzeCra3ziYie7SmsFzl5TcPG
-         TNfy2wsop4uUUTkqXh0xvxIXs29baDgvE2Zk6csI6nq82z3Wydw9OPr2iIIRcSVQkgAG
-         mG03T5lD2N+/SyrxE+/6lz1JjcaUvwEKgQA9BJRzd/84o27lzeNU40PCmrEfycndoEVk
-         eb2Ev0kBptHDyknyxypIq2wShneh6WbC4nC5kF9LRzDyfmUFzEFE07MkwG2Ot5Sqh3Lu
-         SlxQ==
+        bh=QxLf9y7woLTGZWQ/1COhhq7B5uoXCRxWOXrKftkdqiQ=;
+        b=o0jQjlRg6J1wa2XuGeOfg7m0FhkffKfSKeyrijbIT6CcU3cLCJC36MijXCtavSv/rs
+         2UonvwClMLIB7600BObtqyeSQIhUQadwTl2NAETYRdr1n+1Zn9B167NAEA5I/03UibPW
+         FL9POj/23RC/cy8/Ajhxc2rQXY1dW4N1lBbtfbYXeMCZtj1kSxv1WmlmHaZd4+vDdN4h
+         wnz+2wNCDZFyIVy6hJLqoa9rGAiE4j/7KhoyplqlUfFXqjHmdYNh346LYRoJS3ENt+lE
+         xKwT4CgwShnxpP5DkiiZwKQD1IQQdmuMmoEyor23uLhT+17F5LARZWo4qoSuU8dvQRWv
+         t0HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=mzmAJH9YQHiTesc1z9ldOLJSqv+prtu196GqUJFfcRE=;
-        b=O2nJ0niIo7xoaES2mqZpo6k7NK4grxzt6H1A7D6jrqJCkYww83L/mW4eOXgAS6m44+
-         YDzq/iqua46Txap03MVc51TLbbQfqYqX0r3OmUsnpLx06yhG0x6huqNiLSY3liaT8jzp
-         LQBsn5UiegahFsr+pKCWXzJaa3D4p8tQ+Soj4Kma8uFXSGlzSYMK72sECwxaL8WeGHH1
-         hE7vXZOEJ/f1s0kEHsQg76UdoBQZQeXcRkjtLCbGkVglKyqxhLqoFl7XslJSt4yJ7e2O
-         8nEwVmK2iqGDNQbp21vue9ISqsh8dbIlPiv57sk6E0fVCn4cBYJviCiRjR5SqXFLWeCe
-         Br7Q==
-X-Gm-Message-State: ACrzQf1xm2/NsDIWy5DaYEjYmSCL/5m2NKE35JC/8fhsIwBQ6YG/aJuA
-        xOKh0M6clM7Spv99VVL8dwFcRA==
-X-Google-Smtp-Source: AMsMyM7symkQrgKHjzoO57cPYLKB0VTs4nHaHnnnm9WbAAevST+d6XYEcpMQHfQ6g66VWM5OyjIxNA==
-X-Received: by 2002:a05:600c:1609:b0:3cf:4dc4:5a99 with SMTP id m9-20020a05600c160900b003cf4dc45a99mr14842484wmn.67.1667379708335;
-        Wed, 02 Nov 2022 02:01:48 -0700 (PDT)
+        bh=QxLf9y7woLTGZWQ/1COhhq7B5uoXCRxWOXrKftkdqiQ=;
+        b=d2pPb3uHjDUh68UTaIMO0JHTRv+CNrX8D+e9A94Sa6nBNXe3QL9AwfJAfxP1rRO9nF
+         dERfDCqikJOc15CCJTmeGnCzcmZ1o1WV6EGOCTHPu+LuavuyvCgQdLCYqE2ohLz8H+Xk
+         9W0/h6sl1IMkTQfhF8SzvepjbhkZGC3IykJWjoTobGTc9GNcu4ZqeD5Y/3zKfP6hxlGD
+         LEqfEYUkpXrk8k8wlIn+sP2x83xNYUVYBwUGy10/Hi8tomHxBJf6ZMJuhgpZjfjG1sfL
+         3Hz9WkDUAJck5n41dfc/borLNhT/jpfp7w9pD0vGm4H821C37JWBUWvBzLjcNLTZ8tgx
+         4Bpg==
+X-Gm-Message-State: ACrzQf01Q9NKdgKgr6RmKYkTVXIDXo6WOMvQfCdOg5Y/SefHIzg0KxJL
+        UpXmxU3FvRbkRlbyd8DCtDi4+dpA5hjLEi4g
+X-Google-Smtp-Source: AMsMyM7ayCKvyTqjAq7DvFb+MHshBo/YCnHNBlGdn3Z+Y0m0ln+f+/26P0G06KW0+1GcKvzdo+i0Gw==
+X-Received: by 2002:a05:600c:1987:b0:3c6:fd37:7776 with SMTP id t7-20020a05600c198700b003c6fd377776mr25389526wmq.72.1667379709992;
+        Wed, 02 Nov 2022 02:01:49 -0700 (PDT)
 Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id bd26-20020a05600c1f1a00b003cf6c2f9513sm1425322wmb.2.2022.11.02.02.01.47
+        by smtp.gmail.com with ESMTPSA id bd26-20020a05600c1f1a00b003cf6c2f9513sm1425322wmb.2.2022.11.02.02.01.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 02:01:47 -0700 (PDT)
+        Wed, 02 Nov 2022 02:01:49 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         konrad.dybcio@somainline.org, mturquette@baylibre.com,
@@ -58,10 +58,11 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org,
         Bjorn Andersson <quic_bjorande@quicinc.com>,
         dmitry.baryshkov@linaro.org, Jonathan Marek <jonathan@marek.ca>
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [PATCH v2 2/5] clk: qcom: dispcc-sm8250: Add RETAIN_FF_ENABLE flag for mdss_gdsc
-Date:   Wed,  2 Nov 2022 10:01:37 +0100
-Message-Id: <20221102090140.965450-3-robert.foss@linaro.org>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 3/5] dt-bindings: clock: dispcc-sm8250: Add EDP_LINK_DIV_CLK_SRC index
+Date:   Wed,  2 Nov 2022 10:01:38 +0100
+Message-Id: <20221102090140.965450-4-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221102090140.965450-1-robert.foss@linaro.org>
 References: <20221102090140.965450-1-robert.foss@linaro.org>
@@ -78,32 +79,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All SoC supported by this driver supports the RETAIN_FF_ENABLE flag,
-so it should be enabled here.
-
-This feature enables registers to maintain their state after
-dis/re-enabling the GDSC.
+Add this previously missing index, since it is supported by the SoCs
+targeted by the dispcc-sm8250 driver.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/clk/qcom/dispcc-sm8250.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/dt-bindings/clock/qcom,dispcc-sm8250.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-index 180ac2726f7e..a7606580cf22 100644
---- a/drivers/clk/qcom/dispcc-sm8250.c
-+++ b/drivers/clk/qcom/dispcc-sm8250.c
-@@ -1137,7 +1137,7 @@ static struct gdsc mdss_gdsc = {
- 		.name = "mdss_gdsc",
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
--	.flags = HW_CTRL,
-+	.flags = HW_CTRL | RETAIN_FF_ENABLE,
- };
+diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8250.h b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
+index ce001cbbc27f..767fdb27e514 100644
+--- a/include/dt-bindings/clock/qcom,dispcc-sm8250.h
++++ b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
+@@ -64,6 +64,7 @@
+ #define DISP_CC_MDSS_EDP_LINK_INTF_CLK		54
+ #define DISP_CC_MDSS_EDP_PIXEL_CLK		55
+ #define DISP_CC_MDSS_EDP_PIXEL_CLK_SRC		56
++#define DISP_CC_MDSS_EDP_LINK_DIV_CLK_SRC	57
  
- static struct clk_regmap *disp_cc_sm8250_clocks[] = {
+ /* DISP_CC Reset */
+ #define DISP_CC_MDSS_CORE_BCR			0
 -- 
 2.34.1
 
