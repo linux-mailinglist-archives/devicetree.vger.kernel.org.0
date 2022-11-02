@@ -2,169 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A116561665C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:42:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 518AF616668
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:44:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbiKBPmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 11:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55014 "EHLO
+        id S230248AbiKBPnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 11:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230431AbiKBPme (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:42:34 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5880B286C2
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 08:42:32 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id e129so16557884pgc.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 08:42:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d3T+apdPM9d/LVHvl4ssAZf/YXXS8AT6BrLPp56q6P4=;
-        b=bRoabxpWUjHKwQUA6JkZZIwcLtRde9H8Szf/vDnUvurleAFiQWwrgedTkyfECR07EJ
-         mNanCNLUePcOioA5/z/Bd0mCa+5+wDqMb/e9sEZ+R8d5HdEpoZACHT+IL5IxcrgXOoWK
-         63A4KtRgpD3JAY53QPxFEmVw+xDNCq8/IDxPjY3sCsQZLJNHoPN7WN2XcYJw0ddSCnWN
-         fSpJTl28VbRjRmg+gyk69ngOl6UuZmsaST0LfN0VGB9jGH/2ocnGfX8MTSxMCLu4wFWE
-         kAhpn8McWI0chHoTqw9HNUY+CnKLHkFvT+hH3lx50zat5pE6CgrNK33JbMTzJECZmyFb
-         Sf4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d3T+apdPM9d/LVHvl4ssAZf/YXXS8AT6BrLPp56q6P4=;
-        b=vMJxsI4I2ADIPdUoSGSy9jYNqGaXPio3YGeW/ms7RYzA2tS9dK6rZG4ogp7453pBlY
-         tpJNNvm2lJ+V/WRcdHHqd85ytX/OYy6tGPjE35KY2VALNQMCvS1E3QgCKHApEGcaykot
-         o0oizJRaItJGdHXf6DGsCT13UuJlSHYRVj6fMWWklmBS5TDfSBx3AbauXyoIhzj4xLMM
-         rkQPlTMwxzHuzjWarG2/vfsCWf3GZjyXdX/V+j0mHEosGJQ+/NWqSmotDkU20X+J3ozR
-         w5iIQhXP9kWUUcJlUDlCYje+5qm5CmUQyqJfV8Fx+Zh4GKLQsBVEpmWrOOA86QGmY1qc
-         y3OA==
-X-Gm-Message-State: ACrzQf2lXiuuSnLZ+N1Hc8fgTq0bnxi1GyK1o2inukFi4i+rfDjl3GqS
-        xYxrGRhweIBzkuUCNten5A5WX7Eq3o2YMxRgh5paXg==
-X-Google-Smtp-Source: AMsMyM5VlkFzEUiLRxmTPergQNEyNQ9URlJgnCoi+4jtnGNY54X56u4XM8yxlyw/sQGfd4bQDtFzgTMLMYWYGFCjToA=
-X-Received: by 2002:a05:6a00:170a:b0:563:a40a:b5e1 with SMTP id
- h10-20020a056a00170a00b00563a40ab5e1mr25480891pfc.40.1667403751851; Wed, 02
- Nov 2022 08:42:31 -0700 (PDT)
+        with ESMTP id S230362AbiKBPnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:43:18 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB8128E37;
+        Wed,  2 Nov 2022 08:43:17 -0700 (PDT)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 1E4A1D040B;
+        Wed,  2 Nov 2022 15:43:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1667403796; bh=Sa2yu283C843xl42uAUnQlOf6ITnpV7J7s5FQx4YUkc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=eCff1frAp3+BeQwABbYel+x2rxO1LUeMt3rqr0Wy0Ze4plmfx4GPCBgMVWCE2Sjbc
+         3gDT1J7DGg057LD1cPOykmHhsQbS0GvlVAGusT4pMTiXm2odcclP8nHaA/XDXlhija
+         +7vvdjoOhNFsUNgWB1/my02arVLQjwNEY0JOqSG8=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org, neil.armstrong@linaro.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afd@ti.com, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] bindings: pm8941-misc: rename misc node name
+Date:   Wed, 02 Nov 2022 16:43:14 +0100
+Message-ID: <8135515.T7Z3S40VBb@g550jk>
+In-Reply-To: <028adb9d-e8e7-33db-2aae-028a809a061a@linaro.org>
+References: <20221031175717.942237-1-luca@z3ntu.xyz> <20221031175717.942237-2-luca@z3ntu.xyz> <028adb9d-e8e7-33db-2aae-028a809a061a@linaro.org>
 MIME-Version: 1.0
-References: <20221026141631.696863-1-dinguyen@kernel.org> <20221026141631.696863-4-dinguyen@kernel.org>
-In-Reply-To: <20221026141631.696863-4-dinguyen@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 2 Nov 2022 16:41:55 +0100
-Message-ID: <CAPDyKFpe30P7HzF4yfo=oPt5EwytMtkcCdBakUXkeUYtbmHt7g@mail.gmail.com>
-Subject: Re: [PATCHv6 4/6] mmc: dw_mmc-pltfm: socfpga: add method to configure clk-phase
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     jh80.chung@samsung.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Oct 2022 at 16:16, Dinh Nguyen <dinguyen@kernel.org> wrote:
->
-> The clock-phase settings for the SDMMC controller in the SoCFPGA
-> platforms reside in a register in the System Manager. Add a method
-> to access that register through the syscon interface.
->
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
-> v6: not getting the clk-phase-sd-hs is not a hard failure
-> v5: change error handling from of_property_read_variable_u32_array()
->     support arm32 by reading the reg_shift
-> v4: no change
-> v3: add space before &socfpga_drv_data
-> v2: simplify clk-phase calculations
->
-> make property optional in driver
-> ---
->  drivers/mmc/host/dw_mmc-pltfm.c | 43 ++++++++++++++++++++++++++++++++-
->  1 file changed, 42 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/mmc/host/dw_mmc-pltfm.c b/drivers/mmc/host/dw_mmc-pltfm.c
-> index 9901208be797..fff6222d58e4 100644
-> --- a/drivers/mmc/host/dw_mmc-pltfm.c
-> +++ b/drivers/mmc/host/dw_mmc-pltfm.c
-> @@ -17,10 +17,16 @@
->  #include <linux/mmc/host.h>
->  #include <linux/mmc/mmc.h>
->  #include <linux/of.h>
-> +#include <linux/mfd/altera-sysmgr.h>
-> +#include <linux/regmap.h>
->
->  #include "dw_mmc.h"
->  #include "dw_mmc-pltfm.h"
->
-> +#define SOCFPGA_DW_MMC_CLK_PHASE_STEP  45
-> +#define SYSMGR_SDMMC_CTRL_SET(smplsel, drvsel, reg_shift) \
-> +       ((((smplsel) & 0x7) << reg_shift) | (((drvsel) & 0x7) << 0))
-> +
->  int dw_mci_pltfm_register(struct platform_device *pdev,
->                           const struct dw_mci_drv_data *drv_data)
->  {
-> @@ -62,9 +68,44 @@ const struct dev_pm_ops dw_mci_pltfm_pmops = {
->  };
->  EXPORT_SYMBOL_GPL(dw_mci_pltfm_pmops);
->
-> +static int dw_mci_socfpga_priv_init(struct dw_mci *host)
-> +{
-> +       struct device_node *np = host->dev->of_node;
-> +       struct regmap *sys_mgr_base_addr;
-> +       u32 clk_phase[2] = {0}, reg_offset, reg_shift;
-> +       int i, rc, hs_timing;
-> +
-> +       rc = of_property_read_variable_u32_array(np, "clk-phase-sd-hs", &clk_phase[0], 2, 0);
-> +       if (rc < 0) {
-> +               dev_info(host->dev, "Optional: clk-phase-sd-hs not found!\n");
+Hi Neil,
 
-Printing things about missing optional features doesn't really make
-sense. Please drop this.
+On Mittwoch, 2. November 2022 11:35:55 CET Neil Armstrong wrote:
+> Hi,
+> 
+> On 31/10/2022 18:57, Luca Weiss wrote:
+> > The spmi-pmic bindings is now using usb-detect@ for this node, so adjust
+> > the example to match.
+> 
+> Subject should be:
+> dt-bindings: pm8941-misc: rename misc node name
+> instead of:
+> bindings: pm8941-misc: rename misc node name
 
-> +               return 0;
-> +       }
-> +
-> +       sys_mgr_base_addr = altr_sysmgr_regmap_lookup_by_phandle(np, "altr,sysmgr-syscon");
-> +       if (IS_ERR(sys_mgr_base_addr)) {
-> +               dev_info(host->dev, "Optional: failed to find altr,sys-mgr regmap!\n");
+Also here I've followed the style of the previous commits to this file
 
-If the clk-phase-sd-hs property is found above, the altr,sysmgr-syscon
-property is required, isn't it?
+4fcdd677c4ea bindings: pm8941-misc: Add support for VBUS detection
+dd6f5afb1c2d bindings: pm8941-misc: Convert bindings to YAML
 
-In that case, perhaps this deserves a dev_warn instead?
+Though it seems other commits in this directory recently have used
+"dt-bindings: extcon: " prefix. Do you still want me to change it?
 
-> +               return 0;
-> +       }
-> +
-> +       of_property_read_u32_index(np, "altr,sysmgr-syscon", 1, &reg_offset);
-> +       of_property_read_u32_index(np, "altr,sysmgr-syscon", 2, &reg_shift);
-> +
-> +       for (i = 0; i < ARRAY_SIZE(clk_phase); i++)
-> +               clk_phase[i] /= SOCFPGA_DW_MMC_CLK_PHASE_STEP;
-> +
-> +       hs_timing = SYSMGR_SDMMC_CTRL_SET(clk_phase[0], clk_phase[1], reg_shift);
-> +       regmap_write(sys_mgr_base_addr, reg_offset, hs_timing);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct dw_mci_drv_data socfpga_drv_data = {
-> +       .init           = dw_mci_socfpga_priv_init,
-> +};
-> +
->  static const struct of_device_id dw_mci_pltfm_match[] = {
->         { .compatible = "snps,dw-mshc", },
-> -       { .compatible = "altr,socfpga-dw-mshc", },
-> +       { .compatible = "altr,socfpga-dw-mshc", .data = &socfpga_drv_data, },
->         { .compatible = "img,pistachio-dw-mshc", },
->         {},
->  };
+Regards
+Luca
 
-Kind regards
-Uffe
+> 
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> > 
+> >   Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> > b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml index
+> > 6a9c96f0352a..fbda899fd260 100644
+> > --- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> > +++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+> > 
+> > @@ -49,7 +49,7 @@ examples:
+> >               interrupt-controller;
+> >               #interrupt-cells = <4>;
+> > 
+> > -            usb_id: misc@900 {
+> > +            usb_id: usb-detect@900 {
+> > 
+> >                       compatible = "qcom,pm8941-misc";
+> >                       reg = <0x900>;
+> >                       interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
+> 
+> With subject fixed:
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+
+
+
