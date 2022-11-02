@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 221E6616547
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:41:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A52B616553
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbiKBOk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 10:40:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39156 "EHLO
+        id S229770AbiKBOst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 10:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230214AbiKBOkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:40:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AA327FED;
-        Wed,  2 Nov 2022 07:40:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E4503619EE;
-        Wed,  2 Nov 2022 14:40:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 732D3C433C1;
-        Wed,  2 Nov 2022 14:40:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667400054;
-        bh=yJDAKfXR0rwQeQPAXHxlSW65agHfJFahHKs7PZ3/gcc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ibXiXpsd8n+LNZcXyPpfMfdut8rv145tA8uQnZbUuwp9AKz6autOxtqmAFhorZDiS
-         CaopqvNdobuWUhXNSRlgoBfSdvPvDeZS09unQOHqsq3Qycx8R6/rp1XqR9WWiYfCpr
-         spLQIbfYrNA7SjWPi5vBoHchcjIMIbB/DLsOAMYS8xou3N0JU7umON393v+qIb5lhD
-         aDSk9cF3fBl4TZp0yBHlN9jBTpwvNdfyQwnKn63l+A1KNzjrLavFu8kNhzwKgr4n23
-         Kmjwa29OwRlEVUF5ymldFNs0gKzvvYW9uMY1OmbgdP/9YOLjp5sgPe/ZY5A1THlpgX
-         EVw58bSxOBOKQ==
-Date:   Wed, 2 Nov 2022 14:40:47 +0000
-From:   Lee Jones <lee@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Gross <agross@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 08/11] mfd: qcom-pm8xxx: drop unused PM8018 compatible
-Message-ID: <Y2KBbzFsMucTA5EF@google.com>
-References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v4-8-dac2dfaac703@linaro.org>
- <Y1/qnCyav/S35mRo@google.com>
- <69d57d4e-8a43-f8f5-f491-916197f6f4a8@linaro.org>
+        with ESMTP id S229708AbiKBOst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:48:49 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAAF28707
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:48:47 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A2EmQW9076254;
+        Wed, 2 Nov 2022 09:48:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667400506;
+        bh=eOSHnXqWTYI529L1yjlY6aosS1fMrClLluP3REC7tgo=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=dlKMZPPF1SIqd59hDBbLxYCjQ/NaP53s92oxG8QdM/VeySOl+yyk9Jyzy+GJzGN+z
+         ZnUuGm1XXnJo90cMDX8GMqiDfbXxZqXCZB+w5GaWZYwLCK+IlYYZbxK8176QyU2niS
+         O4Y3ERK+aFhlyDn2xw4XB2xAV60bqkPYi+rTj2S4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A2EmQ4K019569
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Nov 2022 09:48:26 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
+ 2022 09:48:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 2 Nov 2022 09:48:25 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A2EmPe7078110;
+        Wed, 2 Nov 2022 09:48:25 -0500
+Date:   Wed, 2 Nov 2022 09:48:25 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Matt Ranostay <mranostay@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 1/8] arm64: dts: ti: k3-j721s2-main: Add support for
+ USB
+Message-ID: <20221102144825.ljckw733rqnosx4x@joining>
+References: <20221101033308.33101-1-mranostay@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <69d57d4e-8a43-f8f5-f491-916197f6f4a8@linaro.org>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20221101033308.33101-1-mranostay@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,38 +65,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Nov 2022, Krzysztof Kozlowski wrote:
+Matt,
 
-> On 31/10/2022 11:32, Lee Jones wrote:
-> > On Fri, 21 Oct 2022, Neil Armstrong wrote:
-> > 
-> >> The PM8018 compatible is always used with PM8921 fallback, so PM8018
-> >> compatible can be safely removed from device ID table
-> >>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > 
-> > Tags should appear chronologically.
-> > 
+On 20:33-20221031, Matt Ranostay wrote:
+> From: Aswath Govindraju <a-govindraju@ti.com>
 > 
-> I would assume that as well, but `b4 trailers` disagrees. It documents
-> even this behavior (the chain of custody) here:
-> https://b4.docs.kernel.org/en/latest/config.html
+> Add support for single instance of USB 3.0 controller in J721S2 SoC.
 > 
-> So while I agree with you, I also prefer the tools to make the decision
-> instead of humans (to follow the process, assuming the tool implements
-> the process). Either the tool should be fixed or the tool's decision is
-> correct.
+> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Nishanth Menon <nm@ti.com>
+> Acked-by: Matt Ranostay <mranostay@ti.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 
-Take a look further down the thread, since this has already been
-heavily debated.  Not sure if there has been a clear winner or any
-kind of agreement yet (if there ever will be), but until there is or I
-until I am convinced otherwise, I'm going to continue on with the
-chronological method.
+This patch and elsewhere:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst#n419
+Quote:
 
-Also, as far as I'm aware, tools like `b4` and the-like haven't been
-mandated (yet?), so using its rules to dictate our actions probably
-isn't the correct approach.
+"
+Any further SoBs (Signed-off-by:'s) following the author's SoB are from
+people handling and transporting the patch, but were not involved in its
+development. SoB chains should reflect the **real** route a patch took
+as it was propagated to the maintainers and ultimately to Linus, with
+the first SoB entry signalling primary authorship of a single author.
+"
+
+you are part of the hand-off process towards upstream, So, please
+sign-off as part of the process.
+
+[...]
+
 
 -- 
-Lee Jones [李琼斯]
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
