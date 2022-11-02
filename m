@@ -2,290 +2,526 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC62616A75
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D12C616AA0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:26:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbiKBRTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 13:19:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45622 "EHLO
+        id S231452AbiKBR0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 13:26:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231197AbiKBRTT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:19:19 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F5241DA58
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 10:19:18 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id hh9so11725888qtb.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 10:19:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZuNZiwTspOvveszR9vgomjaKTTLMN+99lIN1mFkCiBk=;
-        b=JKARcNSCMLwZ7IU/UL9MiWjQPoJ1cRFxFHD0tzYYittrMegNLvmLBMCXjfNV+klloL
-         EVPH7OjB4uVsMg/M3ewL/q5JVH+U/LyolRAJ/B18LewR6Ws8mhRCFPNGHfh7FPh/36es
-         XwqAcIRedFJ2wTHYUfcAr2vc8V6mXuIEABm5tSHK9XXLVItKPLkJqKUiqvAKYGWmnvYe
-         xqkh1OHxRhN7Jk5gVDgwtoIuQ8uW9ABuHw0cYCwk2/1Wm4DSJ6x8QSZswpcZtBPocuDX
-         M6ZkS74X2VXIUBSjK8dr5IEKcnKcB4uJ1ELcdPlHTEKCh/VWetfVJQjViqDzw/LezmGJ
-         BGdw==
+        with ESMTP id S230266AbiKBR0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:26:30 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C596824BF2;
+        Wed,  2 Nov 2022 10:26:29 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id t62so9075173oib.12;
+        Wed, 02 Nov 2022 10:26:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZuNZiwTspOvveszR9vgomjaKTTLMN+99lIN1mFkCiBk=;
-        b=skvcAoH1slLwCHvKbuKJu40TpKoYZKob5eeMt8nyFaZLod8jeRPboXNl3EFfqLGNyJ
-         c5Ld6rp2HdySIIEjf6E5uU/04arQw4D9uDeJVm31Dx4FPVGBzdRnC6TouBaW400Orb/A
-         rWPI+fZ1sZFaPkUb26a3mEtWaj6UUXohbEo6siGLiamu0NF2hqIZnc2YW1lNhCrgZOXv
-         gAnyGAnKMc3T9FbCz6NOBDXk5ZqpraPbszpgQd1muyVD8hlYzwg7mlUv6lH9vv2VKrzy
-         IAn1uv91QgBHJChVlDJInmGtDUGAI4/H68Oh/mxv6Q3+RRoeF1yNUWkFyDlmcd1vsIIp
-         YXAg==
-X-Gm-Message-State: ACrzQf1eLuILL+BonKlCpR5CFnAhFzd2NCpMzqPLOuUbcQoyMqJ/6p1G
-        kU48HBsHqsqfutdrhzvEwT8/UA==
-X-Google-Smtp-Source: AMsMyM7AJKiOMK2DSsRIhiRMmUb/A9J9eolD1EuQgjzs2RDIUygjrtKgEnHrLWIQ6AEKqnpqd1IKRw==
-X-Received: by 2002:ac8:7216:0:b0:3a5:3cb0:958 with SMTP id a22-20020ac87216000000b003a53cb00958mr7172235qtp.113.1667409557232;
-        Wed, 02 Nov 2022 10:19:17 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id y24-20020a37f618000000b006cf19068261sm8637547qkj.116.2022.11.02.10.19.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 10:19:16 -0700 (PDT)
-Message-ID: <fdac2b61-4cfc-b673-1cd8-8e7ad19476b7@linaro.org>
-Date:   Wed, 2 Nov 2022 13:19:15 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i5ucE7utY+9rWJuTu+SYaTMIcDwxbMP5yxQMNvaqnTg=;
+        b=iH/smjJMb5gKhILE8hRRiWzuj9++SHuvRDZl6Jqk72F2iQ3YkSx6lZRYy4QeWS7I1N
+         CBi7mDI38HJAqB56L9pCRe2cEIuTSWxihypH6DCbUiF2gYA+IevgQI/pfx3FUsGvViLI
+         P4eEj36R0DBPFxE8R2X6D6oBLZtjPpXE+sTZGOXjxl1Ngr8bP6cUKmnWiyn2Lm+SSX92
+         ET/4lfLWuEk7YNan49KAXLu/KG5OjpIeaZtc0axd62rRFs4Tg/zv47iy5tSI9M7PkNhQ
+         QR2QMmfdk62BgAVz91zgZoN3t0YRfc6SraSsfBPLE1BQhymhl4h45VOfhyRA0QA6u7MP
+         raUQ==
+X-Gm-Message-State: ACrzQf3yRK3Gj8ClUIKeBc22jqVDE9dB3NV5hrD8iWGZ/rZ/93Mzn5pk
+        yzjxSiuP2PUX5WT91YuToU19Fc58/w==
+X-Google-Smtp-Source: AMsMyM5nhkVNaipfhuKJLdOHt1wApShkJVkAlyv5ykXDrA5lAUvDY75dHM3L7EmI5veCFgZI1soqyQ==
+X-Received: by 2002:a05:6808:144b:b0:35a:41f9:445f with SMTP id x11-20020a056808144b00b0035a41f9445fmr1611894oiv.171.1667409988929;
+        Wed, 02 Nov 2022 10:26:28 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a38-20020a056870d62600b0011bde9f5745sm6294369oaq.23.2022.11.02.10.26.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 10:26:28 -0700 (PDT)
+Received: (nullmailer pid 4189063 invoked by uid 1000);
+        Wed, 02 Nov 2022 17:26:30 -0000
+Date:   Wed, 2 Nov 2022 12:26:30 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        satish.nagireddy@getcruise.com
+Subject: Re: [PATCH v4 3/8] dt-bindings: media: add bindings for TI DS90UB960
+Message-ID: <20221102172630.GA4140587-robh@kernel.org>
+References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
+ <20221101132032.1542416-4-tomi.valkeinen@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221101165344.3455723-1-Naresh.Solanki@9elements.com>
- <20221101165344.3455723-2-Naresh.Solanki@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221101165344.3455723-2-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221101132032.1542416-4-tomi.valkeinen@ideasonboard.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/11/2022 12:53, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
+On Tue, Nov 01, 2022 at 03:20:27PM +0200, Tomi Valkeinen wrote:
+> Add DT bindings for TI DS90UB960 FPDLink-3 Deserializer.
 > 
-> The MAX597x is a hot swap controller with configurable fault protection.
-> It also has 10bit ADC for current & voltage measurements.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 > ---
->  .../devicetree/bindings/mfd/max5970.yaml      | 164 ++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/max5970.yaml
+>  .../bindings/media/i2c/ti,ds90ub960.yaml      | 392 ++++++++++++++++++
+>  1 file changed, 392 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/max5970.yaml b/Documentation/devicetree/bindings/mfd/max5970.yaml
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
 > new file mode 100644
-> index 000000000000..a0cc6a7543b5
+> index 000000000000..4456d9b3e2c7
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/max5970.yaml
-
-Filename: missing vendor prefix.
-
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> @@ -0,0 +1,392 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/mfd/max5970.yaml#
+> +$id: http://devicetree.org/schemas/media/i2c/ti,ds90ub960.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Regulator driver for MAX5970 smart switch from Maxim Integrated.
-
-Drop "driver"
-
+> +title: Texas Instruments DS90UB9XX Family FPD-Link Deserializer Hubs
 > +
 > +maintainers:
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+> +  - Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 > +
 > +description: |
-> +  The smart switch provides no output regulation, but independent fault protection
-> +  and voltage and current sensing.
-> +  Programming is done through I2C bus.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+
+Don't need '|'
+
+> +  The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
+> +  forwarding.
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - maxim,max5970
-> +      - maxim,max5978
+> +      - ti,ds90ub960-q1
+> +      - ti,ds90ub9702-q1
 > +
 > +  reg:
 > +    maxItems: 1
+> +    description:
+> +      i2c addresses for the deserializer and the serializers
 > +
-> +  interrupts:
+> +  reg-names:
+> +    items:
+> +      - const: main
+
+'reg-names' is not all that useful with only 1 entry.
+
+> +
+> +  clocks:
 > +    maxItems: 1
-> +
-> +  leds:
-> +    type: object
 > +    description:
-> +      Properties for single channel.
+> +      Reference clock connected to the REFCLK pin.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: refclk
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifier for the GPIO connected to the PDB pin.
+> +
+> +  i2c-alias-pool:
+
+Something common or could be? If not, then needs a vendor prefix.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint16-array
+> +    description:
+> +      i2c alias pool for remote devices.
+
+Needs a better description. What's an 'alias pool'?
+
+0-0xffff are valid values?
+
+> +
+> +  links:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +      manual-strobe:
+> +        type: boolean
+> +        description:
+> +          Enable manual strobe position and EQ level
 > +
 > +    patternProperties:
-> +      "^led@[0-3]$":
-> +        $ref: /schemas/leds/common.yaml#
+> +      '^link@[0-9a-f]+$':
 > +        type: object
+> +        additionalProperties: false
+> +        properties:
+> +          reg:
+> +            description: The link number
+> +            maxItems: 1
 > +
-> +    additionalProperties: true
+> +          i2c-alias:
 
-This should be rather: false
+Vendor prefix.
+
+> +            description: |
+> +              The i2c address used for the serializer. Transactions to this
+> +              address on the i2c bus where the deserializer resides are
+> +              forwarded to the serializer.
+> +
+> +          rx-mode:
+
+Vendor prefix. And so on...
+
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum:
+> +              - 0 # RAW10
+> +              - 1 # RAW12 HF
+> +              - 2 # RAW12 LF
+> +              - 3 # CSI2 SYNC
+> +              - 4 # CSI2 NON-SYNC
+> +            description: FPD-Link Input Mode
+> +
+> +          cdr-mode:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum:
+> +              - 0 # FPD3
+> +              - 1 # FPD4
+> +            description: FPD-Link CDR Mode
+> +
+> +          strobe-pos:
+> +            $ref: /schemas/types.yaml#/definitions/int32
+> +            minimum: -13
+> +            maximum: 13
+> +            description: Manual strobe position, from -13 to 13
+
+No need to put constraints in free form text.
 
 > +
-> +  vss1-supply:
-> +    description: Supply of the first channel.
+> +          eq-level:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            maximum: 14
+> +            description: Manual EQ level, from 0 to 14
 > +
-> +  "#io-channel-cells":
-> +    const: 1
+> +          serializer:
+> +            type: object
+> +            description: FPD-Link Serializer node
 > +
-> +  regulators:
-> +    type: object
-> +    description:
-> +      Properties for single channel.
+> +        required:
+> +          - reg
+> +          - i2c-alias
+> +          - rx-mode
+> +          - serializer
 > +
-> +    patternProperties:
-> +      "^(sw[0-1])$":
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 > +
-> +      shunt-resistor-micro-ohms:
-> +        description: |
-> +          The value of curent sense resistor in microohms.
-> +          Must be specified for each channel.
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+
+           additionalProperties: false
+
+> +        description: FPD-Link input 0
 > +
-> +    additionalProperties: true
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+
+               unevaluatedProperties: false
+
+Same for the other port nodes
+
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: FPD-Link input 1
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: FPD-Link input 2
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: FPD-Link input 3
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +
+> +      port@4:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: CSI-2 Output 0
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+
+Why the constraints on this endpoint? Are the other ones actually using 
+properties from video-interfaces.yaml? If not, then just reference 
+/properties/port and drop 'endpoint' instead.
+
+> +
+> +      port@5:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: CSI-2 Output 1
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - regulators
-> +  - vss1-supply
-> +
-> +allOf:
-> +  - $ref: /schemas/regulator/regulator.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - maxim,max5970
-> +    then:
-> +      properties:
-> +        vss2-supply:
-> +          description: Supply of the second channel.
-> +
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +            - description: voltage second channel
-> +            - description: current second channel
-> +          description: |
-> +            Voltage and current for first and second channel.
-> +      required:
-> +        - vss2-supply
-> +
-> +    else:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +          description: |
-> +            Voltage and current for first channel.
+> +  - clocks
+> +  - clock-names
+> +  - ports
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
 > +    i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
+> +      clock-frequency = <400000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      deser@3d {
+> +        compatible = "ti,ds90ub960-q1";
+> +
+> +        reg-names = "main";
+> +        reg       = <0x3d>;
+> +
+> +        clock-names = "refclk";
+> +        clocks = <&fixed_clock>;
+> +
+> +        powerdown-gpios = <&pca9555 7 GPIO_ACTIVE_LOW>;
+> +
+> +        i2c-alias-pool = /bits/ 16 <0x4a 0x4b 0x4c 0x4d 0x4e 0x4f>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          /* Port 0, Camera 0 */
+> +          port@0 {
+> +            reg = <0>;
+> +
+> +            ub960_fpd3_1_in: endpoint {
+> +              remote-endpoint = <&ub953_1_out>;
+> +
+> +              rx-mode = <0>;
 
-Use 4 spaces for example indentation.
+Looks like this is not defined under 'endpoint'.
 
-> +            leds {
+> +            };
+> +          };
+> +
+> +          /* Port 0, Camera 1 */
+> +          port@1 {
+> +            reg = <1>;
+> +
+> +            ub960_fpd3_2_in: endpoint {
+> +              remote-endpoint = <&ub913_2_out>;
+> +
+> +              rx-mode = <0>;
+> +            };
+> +          };
+> +
+> +          /* Port 4, CSI-2 TX */
+> +          port@4 {
+> +            reg = <4>;
+> +            ds90ub960_0_csi_out: endpoint {
+> +              clock-lanes = <0>;
+> +              data-lanes = <1 2 3 4>;
+> +              link-frequencies = /bits/ 64 <800000000>;
+> +              remote-endpoint = <&csi2_phy0>;
+> +            };
+> +          };
+> +        };
+> +
+> +        links {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          /* Link 0 has DS90UB953 serializer and IMX390 sensor */
+> +
+> +          link@0 {
+> +            reg = <0>;
+> +            i2c-alias = <68>;
+> +
+> +            rx-mode = <3>;
+> +
+> +            serializer1: serializer {
+> +              compatible = "ti,ds90ub953-q1";
+> +
+> +              gpio-controller;
+> +              #gpio-cells = <2>;
+> +
+> +              #clock-cells = <0>;
+> +
+> +              ports {
 > +                #address-cells = <1>;
 > +                #size-cells = <0>;
-> +                led@0 {
-> +                        reg = <0>;
-> +                        label = "led0";
-> +                        default-state = "on";
+> +
+> +                port@0 {
+> +                  reg = <0>;
+> +                  ub953_1_in: endpoint {
+> +                    clock-lanes = <0>;
+> +                    data-lanes = <1 2 3 4>;
+> +                    remote-endpoint = <&sensor_1_out>;
+> +                  };
 > +                };
-> +                led@1 {
-> +                        reg = <1>;
-> +                        label = "led1";
-> +                        default-state = "on";
+> +
+> +                port@1 {
+> +                  reg = <1>;
+> +
+> +                  ub953_1_out: endpoint {
+> +                    remote-endpoint = <&ub960_fpd3_1_in>;
+> +                  };
 > +                };
-> +            };
-
-What is this example about? It does not match your bindings.
-
-> +            regulator@3a {
-> +                    reg = <0x3a>;
-> +                    vss1-supply = <&p3v3>;
-> +                    compatible = "maxim,max5978";
+> +              };
 > +
-> +                    regulators {
-> +                            sw0_ref_0: SW0 {
-
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-> +                                   regulator-compatible = "SW0";
-> +                                   shunt-resistor-micro-ohms = <12000>;
-> +                            };
+> +              i2c {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                sensor@21 {
+> +                  compatible = "sony,imx390";
+> +                  reg = <0x21>;
+> +
+> +                  clocks = <&clk_cam_27M>;
+> +                  clock-names = "inck";
+> +
+> +                  xclr-gpios = <&serializer1 0 GPIO_ACTIVE_LOW>;
+> +                  error0-gpios = <&serializer1 1 GPIO_ACTIVE_HIGH>;
+> +                  error1-gpios = <&serializer1 2 GPIO_ACTIVE_HIGH>;
+> +                  comready-gpios = <&serializer1 3 GPIO_ACTIVE_HIGH>;
+> +
+> +                  port {
+> +                    sensor_1_out: endpoint {
+> +                      remote-endpoint = <&ub953_1_in>;
 > +                    };
+> +                  };
+> +                };
+> +              };
 > +            };
-> +    };
+> +          };  /* End of link@0 */
 > +
-> +  - |
-> +    i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
+> +          /* Link 1 has DS90UB913 serializer and OV10635 sensor */
 > +
-> +            regulator@3a {
-> +                    reg = <0x3a>;
-> +                    vss1-supply = <&p3v3>;
-> +                    vss2-supply = <&p5v>;
-> +                    compatible = "maxim,max5970";
-
-Compatible is first, then reg, then the rest.
+> +          link@1 {
+> +            reg = <1>;
+> +            i2c-alias = <69>;
 > +
-> +                    regulators {
-> +                            sw0_ref_1: SW0 {
-> +                                   regulator-compatible = "SW0";
-> +                                   shunt-resistor-micro-ohms = <12000>;
-> +                            };
-> +                            sw1_ref_1: SW1 {
-> +                                   regulator-compatible = "SW1";
-> +                                   shunt-resistor-micro-ohms = <10000>;
-> +                            };
+> +            rx-mode = <0>;
+> +
+> +            serializer2: serializer {
+> +              compatible = "ti,ds90ub913a-q1";
+> +
+> +              gpio-controller;
+> +              #gpio-cells = <2>;
+> +
+> +              clocks = <&clk_cam_48M>;
+> +              clock-names = "clkin";
+> +
+> +              #clock-cells = <0>;
+> +
+> +              ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                port@0 {
+> +                  reg = <0>;
+> +                  ub913_2_in: endpoint {
+> +                    remote-endpoint = <&sensor_2_out>;
+> +                  };
+> +                };
+> +
+> +                port@1 {
+> +                  reg = <1>;
+> +
+> +                  ub913_2_out: endpoint {
+> +                    remote-endpoint = <&ub960_fpd3_2_in>;
+> +                  };
+> +                };
+> +              };
+> +
+> +              i2c {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                sensor@30 {
+> +                  compatible = "ovti,ov10635";
+> +                  reg = <0x30>;
+> +
+> +                  clocks = <&serializer2>;
+> +                  clock-names = "xvclk";
+> +
+> +                  powerdown-gpios = <&serializer2 0 GPIO_ACTIVE_HIGH>;
+> +
+> +                  port {
+> +                    sensor_2_out: endpoint {
+> +                      remote-endpoint = <&ub913_2_in>;
+> +                      hsync-active = <1>;
+> +                      vsync-active = <1>;
+> +                      pclk-sample = <0>;
+> +                      bus-width = <10>;
 > +                    };
+> +                  };
+> +                };
+> +              };
 > +            };
+> +          }; /* End of link@1 */
+> +        };
+> +      };
 > +    };
 > +...
-
-Best regards,
-Krzysztof
-
+> -- 
+> 2.34.1
+> 
+> 
