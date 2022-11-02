@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C30B7616E45
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF847616E4A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:07:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230233AbiKBUHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:07:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41968 "EHLO
+        id S230433AbiKBUHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230368AbiKBUHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:07:09 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C587CC5
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:07:08 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id h24so11569qta.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:07:08 -0700 (PDT)
+        with ESMTP id S230396AbiKBUHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:07:46 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62C562DEF
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:07:42 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id e15so13248406qvo.4
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:07:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fbq5wk+YnpgVUoRnBL4dHvxRhi/ztOzX0R7nT8jQOuY=;
-        b=CnSuRn8uy5II05IgfRYmiBhSQjwdXvKKSHYIVMgF8Fd18KDyQJ396svHIJQWp6FFdm
-         nhxjEGwijoi6Zw3fdgSN3RWs8jdRRVcU2GmoCFG3Z22tUFCFxOZavf+QMUOyhD9j8Wyj
-         GglDb6aSJXHaATV2GCYAkvHIvyozn9GuP6djK878E7EAOOL9zHVJYplmQ2MX88AtfihC
-         5++95nYv246NeEG1mJ1gnZhHidrxmeD8onYxQF2RchwEWda1rvtastPjOl8kxEwy+QWb
-         7mR9tdw0xCJZAsn0XWj2MlpI+DVntOjRcLrj1OeE3p1QfXZ7xrSoa7es4kwfL3cUzBVo
-         wwcQ==
+        bh=yScNRjarivKfDtqMlxJNO+tYRVEciZkZDOJ/r9eV9sI=;
+        b=iG8TqQzC0L8eoK+iDHeEF4G0s4j+YcoMQTXpMOr2DWCJ3rk/aDRZEtxvayYnRuFx48
+         aoJ41dSKWetNuTW2VWmRWkenK3g7r79kfr5HrKEJ9Q7TlTg31lu3PF3dHM+0FG5z9dvD
+         Q9KMsJTSiMqBNcCBm9IBP9/m88Yk2VP0rMhXGQpgYl/303T0Mo4wJI3MhD0UcUmDVdIP
+         iYLGxa2fVKTJh7XeSKM+C1j07XAyzctYRAJEyZELe7D9D22PFxxzGpDlYuWFfbZwjdr/
+         fYECDSavMPomakOJM9x0LDXlJqut3LaUteId1WonwPyHJHWYP6INwVucqzqexGnwpeKB
+         7KNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fbq5wk+YnpgVUoRnBL4dHvxRhi/ztOzX0R7nT8jQOuY=;
-        b=wCOOByTGN3q27uqhpqAanOlHJJjl/qhPsW1vsKY1q/BwHXg2TnPwgX4bLSzixPnrOn
-         RtQD7xrgNbqNJ/5fh2/ryHTSSdnJmxUlC1EIh3abA3HQXxtSS6t0IbBj43awkQyLyOXM
-         k9sy78bX65UpqM7ie4pg59X7SJoyXJXUTmX6qlDjy/sF2kQNYimaC55Fmx/QihTQXi8M
-         RgHnkveMVJWIhVXfu3gCn2uTUT+gbtejYJ7Tc5QjxPmgazoqzY3JER0+4WKuN2t7jwWc
-         Vgm+UC10M1AyrhhiC9W0cabT8d4BSBT7aRIyP7NPBYNXipqIZui7xfHgm9S26golhyci
-         Y6XA==
-X-Gm-Message-State: ACrzQf1iVjXMxSM79C7EmVim/PnHoBstP3mjuJVqTQNFuaYv8umsLrIP
-        uFrDAokLHtVnBsN4z+Rr87jWwg==
-X-Google-Smtp-Source: AMsMyM5Kk/RZFdizMIz6HvnFAHCs4wChj8WG2oeMq3KPdRkT2jIPFcpEWmsZspWfStYa3jDdGZNn1A==
-X-Received: by 2002:ac8:708d:0:b0:3a5:28e7:cb38 with SMTP id y13-20020ac8708d000000b003a528e7cb38mr12832931qto.120.1667419627407;
-        Wed, 02 Nov 2022 13:07:07 -0700 (PDT)
+        bh=yScNRjarivKfDtqMlxJNO+tYRVEciZkZDOJ/r9eV9sI=;
+        b=cD9KvVhRWCSmf4QkT/kylpqarpA+EdSwv+ij3NDQWnq3g8EJYVOY1OyGtp5w9IhQ2b
+         1rhBZ0ln92s/TIkujzEDvaz9HedTGJ/Qymu90poP1QKOUeHu6890l/YkVI7zWpanfjNI
+         vYpGDs6jo/ZpprhPdQbmDkMICY2IN6Sb0aSLoEU+A1zqaAAflIvd2+zaYk/2D9o1GOGm
+         vBJ5H8Jf1gHq/u/ssMkqCodS2TtUAtSrkgLwpQeL5nHx/HFQ6bJQTXfC+KhesbGHAiqZ
+         VmY3dt+dAThyo8phE9MPrJMhQ1VWT80ym/js2x54Bq3kmHbCBhp4LTmxHhNgkcIU/U0N
+         2dNA==
+X-Gm-Message-State: ACrzQf0V3tq/fr5rRIaHTBI2YJZgZcL7UBW4L1160dVy25gWGEita52k
+        kGTTAx+eOo+CxIwkg8nHVJZrZA==
+X-Google-Smtp-Source: AMsMyM4kcZ+Bef8rAzp/gRnLKi34Q5h8gBnn5aCI4lcEwkQOufM341KFcDIfjfHBqxdQq29eqTErMw==
+X-Received: by 2002:a05:6214:5004:b0:4bb:f292:6fbc with SMTP id jo4-20020a056214500400b004bbf2926fbcmr17028076qvb.53.1667419661499;
+        Wed, 02 Nov 2022 13:07:41 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id x18-20020a05620a259200b006bc192d277csm9284763qko.10.2022.11.02.13.07.06
+        by smtp.gmail.com with ESMTPSA id h1-20020a05620a244100b006eeb3165554sm9358091qkn.19.2022.11.02.13.07.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:07:07 -0700 (PDT)
-Message-ID: <396f9218-65fc-f640-f9b4-55f94e7e7b17@linaro.org>
-Date:   Wed, 2 Nov 2022 16:07:06 -0400
+        Wed, 02 Nov 2022 13:07:41 -0700 (PDT)
+Message-ID: <4ed110e5-925c-77f9-e33f-efdc6dc82edb@linaro.org>
+Date:   Wed, 2 Nov 2022 16:07:39 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 05/12] arm64: dts: qcom: sc8280xp-pmics: Add PMK8280
- ADC7 block
+Subject: Re: [PATCH v2 08/12] arm64: dts: qcom: sc8280xp-x13s: Add PMK8280
+ VADC channels
 Content-Language: en-US
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         andersson@kernel.org
@@ -65,14 +65,15 @@ Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         steev@kali.org
 References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
- <20221029051449.30678-6-manivannan.sadhasivam@linaro.org>
+ <20221029051449.30678-9-manivannan.sadhasivam@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221029051449.30678-6-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20221029051449.30678-9-manivannan.sadhasivam@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,12 +81,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/10/2022 01:14, Manivannan Sadhasivam wrote:
-> Add support for ADC7 block available in PMK8280 for reading the
-> temperature via the AMUX pins.
+> Add VADC channels for measuring the on-chip die temperature and external
+> crystal osciallator temperature of PMK8280.
 > 
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 9 +++++++++
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
