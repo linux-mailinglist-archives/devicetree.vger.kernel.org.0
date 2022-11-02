@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 060E6616F09
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:45:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5011E616F19
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:47:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231354AbiKBUpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:45:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36588 "EHLO
+        id S230171AbiKBUrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:47:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229887AbiKBUpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:45:46 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F489597
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:45:45 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id k26so8107086qkg.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:45:45 -0700 (PDT)
+        with ESMTP id S231343AbiKBUri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:47:38 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A3165E9
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:47:36 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id w4so124503qts.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:47:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JnNVi/onk0XmnRagR34LdTKyHanICP4TJkvqJmX6lV0=;
-        b=Ok8VTXhWiVphi+jKBST1OXbwoqZl2mWGMh/yl88PUd+6oOOxJrl0F+9WQqRDMJFTKD
-         yd0CKTCFKnPTYC+bT2Fs84vPWewjkA7Uhuorc/pRhb+e6fJDRImdnibsUaz3+LokvxCB
-         GyavmueFSdSYnV2abWEcG0aGle9Fmft9ictEgnhSF5R4JruZSb3kwlLX0Z16PUCLfebB
-         wdR/kuLyb4wYx7bVg6gDQ7kPRvrgNPQmGJFn6rVcFFByNzeBWpsVpruAL/N+gq5HaLT6
-         fhq8IhE7kNY/yZ4sPYhKzZo7nBxcJV6h0bjUG6Hh7gWPZVU4N+ojfZfs/9+I73Z6Ac2C
-         gd1w==
+        bh=9FUCKdR5muWG/ydu/yl+po0EfXtg7fWrig8KkqMX+yM=;
+        b=FWmAttP5TwXac8ajZcb9YnhcjZRhjKSyxV3D8215oGsRblrGAedT7Um2FC9YfmcWl6
+         eLeeRpWglMSi/1Nq8d6lwbl5y4GBwfnTEtt0AaE5RujOstqGlDOtAo+jNGmHMYjzXY22
+         ZRVpsIv8QgWRUM173q3ZRq0I9LT2K6FbFIjd4/cURC1216cxoCxjD88eLbsNRj1SjrHT
+         WMlGVBqb0tl+MA+SfXI0KViQvYb3sDYaOkvJLXqpE9hfqRJmCzI5U8yuNE0xulo9KsZj
+         6hPfJbQUIuIHvwczlZzGO9SbynFkSbzT672BqVxtA0obXoM1Nj5TG4DrIsT/0o98BHrF
+         za6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JnNVi/onk0XmnRagR34LdTKyHanICP4TJkvqJmX6lV0=;
-        b=kzVo7qSpNlRKXJjVeGgkpiyh3gHbqfSq7styeW4n48QHdUQnOLf5ejx8omK3t07Q+I
-         heCkFcq1wFk6r8mKBWwsllYlxFEJMRAf7EV+dxkJCr3gkKaL2ocudXvjzXuGtPscUYWF
-         DijtnEtK5uqqoB43rn9UW+DzLZBet6pHTaxtrzCavTxA4THODKG/4a2qYVJ5KuiFxk+Q
-         ZGWEic9goNEFkROY3otjzszv6vRGCQn/eGWzLuVbk7m2/Z5cFV/hkzxZxpoeHXzomWvr
-         rA0mixyLnhVed1rBRmu3Zo61I2tBTIk4AUwD0XDwBq9QELGpfAKSkHAPscUNG1XX0PbB
-         YCcw==
-X-Gm-Message-State: ACrzQf0Y6qTlrsmI/foVplY/lArPhQaN35++NgDqbQ/ueK5y9I8wYIrN
-        B5UCNaPiTND9hehmAFPH845t4A==
-X-Google-Smtp-Source: AMsMyM4/lX3KYjZyNGJHPfwRa1MLlhvzTYN937WY6yPA/6InYBBS8LlqJfddbk5LoJa0H8+MJC3Wuw==
-X-Received: by 2002:a05:620a:248d:b0:6fa:713b:2924 with SMTP id i13-20020a05620a248d00b006fa713b2924mr1027865qkn.544.1667421944433;
-        Wed, 02 Nov 2022 13:45:44 -0700 (PDT)
+        bh=9FUCKdR5muWG/ydu/yl+po0EfXtg7fWrig8KkqMX+yM=;
+        b=NzKrsecBgTm9pMqV1pMc9ETQFLKYxkbacKkoK8OxIc060cr6ThhtYt1dn/Crio2EOK
+         Oh6p6h+3albPtMy038ELAO+qzc832qkRnV7LruU2SzneC0ptHvUnATCSNa7T2HDTVL+w
+         xCyzQgIBkp7mYUODhDkWfnJagOd3CqI9fJErokDPpELkU9JrbJaYFnbFHB5TjdHh1yrh
+         HRpMrt6JQztjHGFun/9x1IJmvUEQ+pB97DViKEzsUey6bNimO6miYOySYEy7lBU2M5dD
+         iAYfSR4OGR9pcuZsWDmVQY0YLJVg0YExHOw1j0FhaOLLC7gYnOPY4Xjh1RntrQN+v0UM
+         zYcg==
+X-Gm-Message-State: ACrzQf1INCZp+l+Xa8gKv7+2uATCCky2VQTlA1iFaSUxEFMql5iYVQfF
+        wK6ySK0zda6fvL4qCAc2aCUASg==
+X-Google-Smtp-Source: AMsMyM57MVsTku28IGR7kZ3gGsrJhSjU3Cp3FR7vGK6HxubhMZ9RMqYFZQEhv2VU2+XGyeeB3vDkyw==
+X-Received: by 2002:a05:622a:4d3:b0:3a5:c99:9471 with SMTP id q19-20020a05622a04d300b003a50c999471mr21455056qtx.325.1667422056067;
+        Wed, 02 Nov 2022 13:47:36 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id i5-20020ac84f45000000b0039ee562799csm7131875qtw.59.2022.11.02.13.45.43
+        by smtp.gmail.com with ESMTPSA id bl33-20020a05620a1aa100b006ed61f18651sm9223641qkb.16.2022.11.02.13.47.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:45:44 -0700 (PDT)
-Message-ID: <96923e06-acd5-bed4-4dd5-e5923d9a3189@linaro.org>
-Date:   Wed, 2 Nov 2022 16:45:43 -0400
+        Wed, 02 Nov 2022 13:47:35 -0700 (PDT)
+Message-ID: <060ad3b1-8a44-60d0-29d2-bdec6fd939c6@linaro.org>
+Date:   Wed, 2 Nov 2022 16:47:34 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 03/10] arm64: dts: qcom: sm6350-lena: Add SD Card Detect
- to sdc2 on/off pinctrl
+Subject: Re: [PATCH 10/20] arm64: dts: Update cache properties for marvell
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Rob.Herring@arm.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221030073232.22726-1-marijn.suijten@somainline.org>
- <20221030073232.22726-4-marijn.suijten@somainline.org>
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20221031092020.532456-1-pierre.gondois@arm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221030073232.22726-4-marijn.suijten@somainline.org>
+In-Reply-To: <20221031092020.532456-1-pierre.gondois@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,15 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/10/2022 03:32, Marijn Suijten wrote:
-> In addition to the sdc2 pins, set the SD Card Detect pin in a sane state
-> to be used as an interrupt when an SD Card is slotted in or removed.
+On 31/10/2022 05:20, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
+> The recently added init_of_cache_level() function checks
+> these properties. Add them if missing.
+> 
+> Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Your threading is broken.
 
 Best regards,
 Krzysztof
