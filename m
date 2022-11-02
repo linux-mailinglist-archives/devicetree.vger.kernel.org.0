@@ -2,108 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B5E616EF4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8878B616EFC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:44:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbiKBUnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35406 "EHLO
+        id S230060AbiKBUoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:44:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231222AbiKBUnj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:43:39 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5124164F2
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:43:38 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id z1so6741878qkl.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:43:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ltt9NnEIjGYG5lwZ6IHnSObeQ3raAW3TtWZ21QCUHmE=;
-        b=f7vI5crW47B36jradRBCcmIhyekL1RaywghaonA1HttPuiWTI4cKCEt+qm5zkoB7P2
-         Lh/mNN9AyR2t9poLz7zE1UXsvqlgxiX+w/gT/VEdADVZAs4qkkCcCwv0ZRiWyK3zf5ox
-         uI7rcJ8nG6pJbDp979SHFIclSffX/jjRzy01tv87kgL0nvtl+3sjWq0lSDfw4Ah+XWkE
-         DInQqk+6kr7eJfM+Sqmkh95rxOTrNuCP8SGXVTe2ZhePYnGudj40j7PSQu+rf3S6V+kr
-         4FHYjughcsRnQgzAixrQ90I2g/ByQQmjOLRjFoU8Ex3FX9iVqc3c2wkcPVNsuFUlyEAh
-         BHEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ltt9NnEIjGYG5lwZ6IHnSObeQ3raAW3TtWZ21QCUHmE=;
-        b=mAwjkvKumqGuvRbWJcvu0WQd2qVmUKATjoawKGjFGUHIUlM12/v5RZQtQu2IkrFQx2
-         EQpnrwDoyTIqt3XZHW67vW8RNF6tEayU1wVLdDPCMhIKtWqYyjkzpO9/d7oWCg6Lh+wp
-         lRy4tGAMrhMiJy3idYP4zV/yI2eEIqz8YVX43jplreFFrI8NNZ+NwMIWjLbuqcOGCf9S
-         LbhuLdgL0xGnZYtkRk59uMAXaPERxhnz1BjmD9M+D5KMZ0lGkFrlqiVLCdDnVObIq9ld
-         5rKooeVCRjo9QlUcLAe0VTJTKkz+JGefmAaqOaB9DlIoCoesZKAECGJT31vVGTk57xFs
-         pBwQ==
-X-Gm-Message-State: ACrzQf0p36a1FQmxnJ7yxUIw/m+yBxcipArIsPxik4VSDaq01mzkFA7N
-        V3zC5CX0xh/44pPs7Ij+lEcsAQ==
-X-Google-Smtp-Source: AMsMyM4oCbZg4lNyLR2GtlIfKfLa2p6djOGtmfr7BuAfYZIUxocU92p7n5dbJahyx9Shf5PRqLrfGg==
-X-Received: by 2002:a05:620a:152e:b0:6fa:3cb8:dd9c with SMTP id n14-20020a05620a152e00b006fa3cb8dd9cmr10779651qkk.82.1667421817473;
-        Wed, 02 Nov 2022 13:43:37 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id x30-20020a05620a0b5e00b006eeae49537bsm1815398qkg.98.2022.11.02.13.43.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:43:37 -0700 (PDT)
-Message-ID: <cdc79d9b-7afe-1aaf-3692-171370abaa3c@linaro.org>
-Date:   Wed, 2 Nov 2022 16:43:35 -0400
+        with ESMTP id S230207AbiKBUoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:44:38 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E677064C2
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:44:36 -0700 (PDT)
+Received: from [192.168.31.208] (unknown [194.29.137.22])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id DC9A91F987;
+        Wed,  2 Nov 2022 21:44:33 +0100 (CET)
+Message-ID: <d5f5756c-7372-d905-a321-0c2d19a43192@somainline.org>
+Date:   Wed, 2 Nov 2022 21:44:36 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 2/2] dt-bindings: thermal: mediatek: add compatible string
- for MT7986 SoC
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.or, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <136157bd1f94c64504f87ee2db6b3ed0a8dcc3de.1667254476.git.daniel@makrotopia.org>
- <1216e96b279d08230cb2aa61d536f44c1e9b800a.1667254476.git.daniel@makrotopia.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1216e96b279d08230cb2aa61d536f44c1e9b800a.1667254476.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: add sdm670 and pixel 3a device
+ trees
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20221101235722.53955-1-mailingradian@gmail.com>
+ <20221101235722.53955-5-mailingradian@gmail.com>
+ <bebf005c-3666-1442-47f7-dd000375af5d@somainline.org>
+ <5f13efce-844c-dd21-4e22-16b849dc3fa2@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <5f13efce-844c-dd21-4e22-16b849dc3fa2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 18:16, Daniel Golle wrote:
-> Add compatible string 'mediatek,mt7986-thermal' for V3 thermal unit
-> found in MT7981 and MT7986 SoCs.
-> 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-> index 5c7e7bdd029abf..efc16ab5b22b5d 100644
-> --- a/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-> +++ b/Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
-> @@ -13,6 +13,7 @@ Required properties:
->    - "mediatek,mt2701-thermal" : For MT2701 family of SoCs
->    - "mediatek,mt2712-thermal" : For MT2712 family of SoCs
->    - "mediatek,mt7622-thermal" : For MT7622 SoC
-> +  - "mediatek,mt7986-thermal" : For MT7981 and MT7986 SoC
 
-Then recommended is to have specific compatible followed by fallback (so
-7986 followed by 7981)
+On 02/11/2022 21:30, Krzysztof Kozlowski wrote:
+> On 02/11/2022 16:26, Konrad Dybcio wrote:
+>> On 02/11/2022 00:57, Richard Acayan wrote:
+>>> The Qualcomm Snapdragon 670 has been out for a while. Add a device tree
+>>> for it and the Google Pixel 3a as the first device.
+>>>
+>>> The Pixel 3a has the same bootloader issue as the Pixel 3 and will not work
+>>> on Android 10 bootloaders or later until it gets fixed for the Pixel 3.
+>>>
+>>> SoC Initial Features:
+>>>    - power management
+>>>    - clocks
+>>>    - pinctrl
+>>>    - eMMC
+>>>    - USB 2.0
+>>>    - GENI I2C
+>>>    - IOMMU
+>>>    - RPMh
+>>>    - interrupts
+>>>
+>>> Device-Specific Initial Features:
+>>>    - side buttons (keys)
+>>>    - regulators
+>>>    - touchscreen
+>>>
+>>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>>> ---
+>>>    arch/arm64/boot/dts/qcom/Makefile             |    1 +
+>>>    .../boot/dts/qcom/sdm670-google-sargo.dts     |  519 +++++++
+>>>    arch/arm64/boot/dts/qcom/sdm670.dtsi          | 1216 +++++++++++++++++
+>>>    3 files changed, 1736 insertions(+)
+>>>    create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+>>>    create mode 100644 arch/arm64/boot/dts/qcom/sdm670.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>>> index b0558d3389e5..4eb5d8829efb 100644
+>>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>>> @@ -124,6 +124,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
+>>> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+>>>    dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+>>> new file mode 100644
+>>> index 000000000000..fa3dee78e442
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+>>> @@ -0,0 +1,519 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Device tree for Google Pixel 3a, adapted from google-blueline device tree,
+>>> + * xiaomi-lavender device tree, and oneplus-common device tree.
+>>> + *
+>>> + * Copyright (c) 2022, Richard Acayan. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>>> +#include <dt-bindings/power/qcom-rpmpd.h>
+>>> +#include "sdm670.dtsi"
+>>> +#include "pm660.dtsi"
+>>> +#include "pm660l.dtsi"
+>>> +
+>>> +/delete-node/ &mpss_region;
+>>> +/delete-node/ &venus_mem;
+>>> +/delete-node/ &wlan_msa_mem;
+>>> +/delete-node/ &cdsp_mem;
+>>> +/delete-node/ &mba_region;
+>>> +/delete-node/ &adsp_mem;
+>>> +/delete-node/ &ipa_fw_mem;
+>>> +/delete-node/ &ipa_gsi_mem;
+>>> +/delete-node/ &gpu_mem;
+>>> +
+>>> +/ {
+>>> +	model = "Google Pixel 3a";
+>>> +	compatible = "google,sargo", "qcom,sdm670";
+>>> +	qcom,board-id = <0x00041e05 0>;
+>>> +	qcom,msm-id = <321 0x20001>;
+>>> +
+>>> +	aliases { };
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = "serial0:115200n8";
+>>> +
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +		ranges;
+>>> +
+>>> +		framebuffer@9c000000 {
+>>> +			compatible = "simple-framebuffer";
+>>> +			reg = <0x0 0x9c000000 0x0 (1080 * 2220 * 4)>;
+>>> +			width = <1080>;
+>>> +			height = <2220>;
+>>> +			stride = <(1080 * 4)>;
+>>> +			format = "a8r8g8b8";
+>>> +		};
+>>> +	};
+>>> +
+>>> +	reserved-memory {
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +
+>>> +		mpss_region: mpss@8b000000 {
+>> Please call the nodes memory@
+> I think the actual recommendation is to use the purpose as name:
+>
+> https://lore.kernel.org/linux-arm-msm/CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com/
+>
+> https://devicetree-specification.readthedocs.io/en/latest/chapter3-devicenodes.html#reserved-memory-child-nodes
+> (second paragraph)
 
-Best regards,
-Krzysztof
+Ok, my bad.
 
+
+Konrad
+
+>
+>
+> Best regards,
+> Krzysztof
+>
