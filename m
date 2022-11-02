@@ -2,80 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 130B0616A4D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:14:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC62616A75
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbiKBROf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 13:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40338 "EHLO
+        id S231205AbiKBRTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 13:19:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbiKBRON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:14:13 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0FF925E99;
-        Wed,  2 Nov 2022 10:14:07 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id y67so19886168oiy.1;
-        Wed, 02 Nov 2022 10:14:07 -0700 (PDT)
+        with ESMTP id S231197AbiKBRTT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:19:19 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F5241DA58
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 10:19:18 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id hh9so11725888qtb.13
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 10:19:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZuNZiwTspOvveszR9vgomjaKTTLMN+99lIN1mFkCiBk=;
+        b=JKARcNSCMLwZ7IU/UL9MiWjQPoJ1cRFxFHD0tzYYittrMegNLvmLBMCXjfNV+klloL
+         EVPH7OjB4uVsMg/M3ewL/q5JVH+U/LyolRAJ/B18LewR6Ws8mhRCFPNGHfh7FPh/36es
+         XwqAcIRedFJ2wTHYUfcAr2vc8V6mXuIEABm5tSHK9XXLVItKPLkJqKUiqvAKYGWmnvYe
+         xqkh1OHxRhN7Jk5gVDgwtoIuQ8uW9ABuHw0cYCwk2/1Wm4DSJ6x8QSZswpcZtBPocuDX
+         M6ZkS74X2VXIUBSjK8dr5IEKcnKcB4uJ1ELcdPlHTEKCh/VWetfVJQjViqDzw/LezmGJ
+         BGdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JTIZIOjl8oF+5s5jwaijQ6Kthz0JlQiH4L1lxXq0VtA=;
-        b=ihFX8qtC3EN5GYG1oHt6iJaQK4EC+rid4vMWu3uZdgeh43xVD1S+10sZCLDwPe02sA
-         J4KsHqjluFn+4XHOv+zPA8k7PM17MvE0OgErRHRM6TJYok4uZvK1zIHdN9oEA6dMjdLz
-         HnkzWbyqqc2osYE0a/YEo8r37yaeHAq34EfOPv0itlWn2JjKUYENdZwMsQDo1A2t4c3g
-         9nKjroQJrP/3toV+n9h3J02Y0YpPR437zOzPw6BPzIscoGhiBTYB+ALtC/v7mWImXTwU
-         FxBgYWNICEe5ZqBiq2krfg66C9Ch7cMd0Oj4d2YrsNgj4nDSiLc5mMHGmDUww9+pzePm
-         e+cg==
-X-Gm-Message-State: ACrzQf1DpioM3MUGpX/ztQ7b3iUMqr9MRi+X4AOc6SU/y3mSRhrun5jQ
-        8jVh270P5d7iw4qXxsazWA==
-X-Google-Smtp-Source: AMsMyM48p193/o2iDWjqe7mgVtGRjDXeBC3cmuZcEgnEuSbO7vYriIpF7gBPOO01bKgUQlv33gHJww==
-X-Received: by 2002:aca:6007:0:b0:35a:1bda:d213 with SMTP id u7-20020aca6007000000b0035a1bdad213mr7581750oib.181.1667409247069;
-        Wed, 02 Nov 2022 10:14:07 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l25-20020a4acf19000000b0044b125e5dabsm4655265oos.35.2022.11.02.10.14.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 10:14:06 -0700 (PDT)
-Received: (nullmailer pid 4138810 invoked by uid 1000);
-        Wed, 02 Nov 2022 17:14:08 -0000
-Date:   Wed, 2 Nov 2022 12:14:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     samuel@sholland.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, hverkuil-cisco@xs4all.nl,
-        wens@csie.org, mchehab@kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH 1/3] media: dt-bindings: media: Add Allwinner H6
- Deinterlace binding
-Message-ID: <166740924781.4138628.17832140187371545203.robh@kernel.org>
-References: <20221101123201.3021129-1-jernej.skrabec@gmail.com>
- <20221101123201.3021129-2-jernej.skrabec@gmail.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZuNZiwTspOvveszR9vgomjaKTTLMN+99lIN1mFkCiBk=;
+        b=skvcAoH1slLwCHvKbuKJu40TpKoYZKob5eeMt8nyFaZLod8jeRPboXNl3EFfqLGNyJ
+         c5Ld6rp2HdySIIEjf6E5uU/04arQw4D9uDeJVm31Dx4FPVGBzdRnC6TouBaW400Orb/A
+         rWPI+fZ1sZFaPkUb26a3mEtWaj6UUXohbEo6siGLiamu0NF2hqIZnc2YW1lNhCrgZOXv
+         gAnyGAnKMc3T9FbCz6NOBDXk5ZqpraPbszpgQd1muyVD8hlYzwg7mlUv6lH9vv2VKrzy
+         IAn1uv91QgBHJChVlDJInmGtDUGAI4/H68Oh/mxv6Q3+RRoeF1yNUWkFyDlmcd1vsIIp
+         YXAg==
+X-Gm-Message-State: ACrzQf1eLuILL+BonKlCpR5CFnAhFzd2NCpMzqPLOuUbcQoyMqJ/6p1G
+        kU48HBsHqsqfutdrhzvEwT8/UA==
+X-Google-Smtp-Source: AMsMyM7AJKiOMK2DSsRIhiRMmUb/A9J9eolD1EuQgjzs2RDIUygjrtKgEnHrLWIQ6AEKqnpqd1IKRw==
+X-Received: by 2002:ac8:7216:0:b0:3a5:3cb0:958 with SMTP id a22-20020ac87216000000b003a53cb00958mr7172235qtp.113.1667409557232;
+        Wed, 02 Nov 2022 10:19:17 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id y24-20020a37f618000000b006cf19068261sm8637547qkj.116.2022.11.02.10.19.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 10:19:16 -0700 (PDT)
+Message-ID: <fdac2b61-4cfc-b673-1cd8-8e7ad19476b7@linaro.org>
+Date:   Wed, 2 Nov 2022 13:19:15 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221101123201.3021129-2-jernej.skrabec@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
+ MAX5978
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221101165344.3455723-1-Naresh.Solanki@9elements.com>
+ <20221101165344.3455723-2-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221101165344.3455723-2-Naresh.Solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Tue, 01 Nov 2022 13:31:59 +0100, Jernej Skrabec wrote:
-> Allwinner H6 Deinterlace core is used for deinterlacing interlaced video
-> content.
+On 01/11/2022 12:53, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
 > 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> The MAX597x is a hot swap controller with configurable fault protection.
+> It also has 10bit ADC for current & voltage measurements.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 > ---
->  .../allwinner,sun50i-h6-deinterlace.yaml      | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun50i-h6-deinterlace.yaml
+>  .../devicetree/bindings/mfd/max5970.yaml      | 164 ++++++++++++++++++
+>  1 file changed, 164 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/max5970.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/mfd/max5970.yaml b/Documentation/devicetree/bindings/mfd/max5970.yaml
+> new file mode 100644
+> index 000000000000..a0cc6a7543b5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/max5970.yaml
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Filename: missing vendor prefix.
+
+> @@ -0,0 +1,164 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/max5970.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator driver for MAX5970 smart switch from Maxim Integrated.
+
+Drop "driver"
+
+> +
+> +maintainers:
+> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+> +
+> +description: |
+> +  The smart switch provides no output regulation, but independent fault protection
+> +  and voltage and current sensing.
+> +  Programming is done through I2C bus.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max5970
+> +      - maxim,max5978
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  leds:
+> +    type: object
+> +    description:
+> +      Properties for single channel.
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+> +        $ref: /schemas/leds/common.yaml#
+> +        type: object
+> +
+> +    additionalProperties: true
+
+This should be rather: false
+
+> +
+> +  vss1-supply:
+> +    description: Supply of the first channel.
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      Properties for single channel.
+> +
+> +    patternProperties:
+> +      "^(sw[0-1])$":
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description: |
+> +          The value of curent sense resistor in microohms.
+> +          Must be specified for each channel.
+> +
+> +    additionalProperties: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +  - vss1-supply
+> +
+> +allOf:
+> +  - $ref: /schemas/regulator/regulator.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - maxim,max5970
+> +    then:
+> +      properties:
+> +        vss2-supply:
+> +          description: Supply of the second channel.
+> +
+> +        io-channels:
+> +          items:
+> +            - description: voltage first channel
+> +            - description: current first channel
+> +            - description: voltage second channel
+> +            - description: current second channel
+> +          description: |
+> +            Voltage and current for first and second channel.
+> +      required:
+> +        - vss2-supply
+> +
+> +    else:
+> +      properties:
+> +        io-channels:
+> +          items:
+> +            - description: voltage first channel
+> +            - description: current first channel
+> +          description: |
+> +            Voltage and current for first channel.
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+
+Use 4 spaces for example indentation.
+
+> +            leds {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                led@0 {
+> +                        reg = <0>;
+> +                        label = "led0";
+> +                        default-state = "on";
+> +                };
+> +                led@1 {
+> +                        reg = <1>;
+> +                        label = "led1";
+> +                        default-state = "on";
+> +                };
+> +            };
+
+What is this example about? It does not match your bindings.
+
+> +            regulator@3a {
+> +                    reg = <0x3a>;
+> +                    vss1-supply = <&p3v3>;
+> +                    compatible = "maxim,max5978";
+> +
+> +                    regulators {
+> +                            sw0_ref_0: SW0 {
+
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +                                   regulator-compatible = "SW0";
+> +                                   shunt-resistor-micro-ohms = <12000>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> +
+> +  - |
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            regulator@3a {
+> +                    reg = <0x3a>;
+> +                    vss1-supply = <&p3v3>;
+> +                    vss2-supply = <&p5v>;
+> +                    compatible = "maxim,max5970";
+
+Compatible is first, then reg, then the rest.
+> +
+> +                    regulators {
+> +                            sw0_ref_1: SW0 {
+> +                                   regulator-compatible = "SW0";
+> +                                   shunt-resistor-micro-ohms = <12000>;
+> +                            };
+> +                            sw1_ref_1: SW1 {
+> +                                   regulator-compatible = "SW1";
+> +                                   shunt-resistor-micro-ohms = <10000>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> +...
+
+Best regards,
+Krzysztof
+
