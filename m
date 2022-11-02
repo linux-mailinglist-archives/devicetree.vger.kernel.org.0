@@ -2,88 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47E62616736
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B4A616834
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:16:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230073AbiKBQKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 12:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49848 "EHLO
+        id S231569AbiKBQQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 12:16:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231272AbiKBQKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:10:37 -0400
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC0482B1AF;
-        Wed,  2 Nov 2022 09:10:36 -0700 (PDT)
-Received: by mail-oi1-f173.google.com with SMTP id b124so7175274oia.4;
-        Wed, 02 Nov 2022 09:10:36 -0700 (PDT)
+        with ESMTP id S231783AbiKBQOZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:14:25 -0400
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FBB32CC80
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 09:12:15 -0700 (PDT)
+Received: by mail-qv1-xf2f.google.com with SMTP id t16so12755520qvm.9
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 09:12:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+k46DBLcoCo3dRtPWgKGi27HQ6890qJkjOHhJG/OTD4=;
+        b=lpZHL444MjaOGE7ePEMjfaD14yNrbOlNu054yVz8GPhDIzb+2HJAG8MOD68DWWCWp+
+         8W04hunQV6twCx2v1SY+9oBptITK1UBYixs3+5dMZf7ucBlekZGDkIxvwD5sJDtOUNf4
+         lDVSQIB3TgRshOBNYE/6f7pONQQVQ7VfyzQU3Ezu68cNplD4sg1bgI3n5iZtnJdAFq1a
+         e5ROv6coqDBGKeAferYVuXMGdAExxgqWTxxC7bG5DwbeeRhEgevFKZO1klsVa8hzAxPY
+         j9f+B7AMEL9CbNqMlZWQIhmOTJHmt7P6fycs3aDIbhAj1WkoKifDM1XZ4uuefDpLMszu
+         LKcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6VJS1eRrGEpJHqFbLWtcQx5ZPGULvRnL+9bh/Twyl1k=;
-        b=uEUlIqb1+B812jmbZqdTkOPQr8xOFbdCMZg99wqtoxovnBD5uHwc6NAzKpLfrib21o
-         6D12LF8/+7SjlUmpSvdOCIbTDs/H+f5LerHVew5t27jfBzQ+XltLar4zNRf7nnvkN1qz
-         8I+HOxzaLhvoJbdTBddx6ZDMWjJf4RX064uZRGMfu8oBRq4GTZgDs1OpjyhxPHrgdVea
-         ilFZOVIncdCNQv4qex+qRNJ0rD8QJ48DL/ryWkvuOnOhRQKCVMkl3U1dlo6SOajwpoxD
-         VBihi7CXjrZk3M7bsCEdrvl5SdY3G04kk/C26FOgRDHDviurF/Tv6af+EU0SXH57CZ1K
-         2LCg==
-X-Gm-Message-State: ACrzQf2UWuOoACna77pz7TqhJiOqbsfgu2P2ppBsrq/HUO7VaT8HAPQt
-        sOO5qPkQFf4IMShFxxAbkA==
-X-Google-Smtp-Source: AMsMyM6uvwcr+id62GI7restHplkU8LVzfDM4M4rB3BUnjN2xlN1CKN4Kar/50fuLvLckJshJYeTDw==
-X-Received: by 2002:a05:6808:2009:b0:35a:1a52:2716 with SMTP id q9-20020a056808200900b0035a1a522716mr7585504oiw.211.1667405436161;
-        Wed, 02 Nov 2022 09:10:36 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a25-20020a056870a19900b0012d6f3d370bsm6149597oaf.55.2022.11.02.09.10.35
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+k46DBLcoCo3dRtPWgKGi27HQ6890qJkjOHhJG/OTD4=;
+        b=p51gSND+spWCvNDr1FKqd98SpmdTBdwQzqhpqewt1NtGkVz5srIeE01Opmocrm1Puh
+         sRzNIrU+jRgYQ+V87Fw3RiezBtE62J91Z70WMVAYAIPx5MVK1VS/f8MU9uyGlVVVZf80
+         6GzQv3rlk4O46pxg0nbGsjENCQeSzCq2lTzpZB8R7I+VEzbqFuEyVDU2k2MhstIlMT4x
+         8sRZvPI5q+CeafnI8UEb9e8DzgKGfEI04kA3nA5MzWP8haC6yBgP5rfpcQc48BTTNuwQ
+         L5cFxi0/VCUhvVxbk5Xnz8YOg433RoHTmlrzJjDht2lPHrTclVUiJcF4DPBs7MhSI5si
+         Q09Q==
+X-Gm-Message-State: ACrzQf0bGlLWsDJ2ZwW5rcNTElp2vuUMhIuyA2Rl3rsIdj7jayi9c7SM
+        udQudDar9IBguzT6PmR7EFr1/g==
+X-Google-Smtp-Source: AMsMyM6YejYkb7b1cyNSYaRPfUs2k1VtqaMOpYa6/fCXbQyE837qgZ9RjnbvgAnAyXvdQlL9agXLJQ==
+X-Received: by 2002:a05:6214:300e:b0:4bb:717e:72a with SMTP id ke14-20020a056214300e00b004bb717e072amr21460970qvb.15.1667405534760;
+        Wed, 02 Nov 2022 09:12:14 -0700 (PDT)
+Received: from krzk-bin.. ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id s2-20020ac85282000000b0038d9555b580sm6778985qtn.44.2022.11.02.09.12.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 09:10:35 -0700 (PDT)
-Received: (nullmailer pid 3983046 invoked by uid 1000);
-        Wed, 02 Nov 2022 16:10:37 -0000
-Date:   Wed, 2 Nov 2022 11:10:37 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "chunxu . li" <chunxu.li@mediatek.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Jaroslav Kysela <perex@perex.cz>, devicetree@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
-        <nfraprado@collabora.com>, alsa-devel@alsa-project.org,
+        Wed, 02 Nov 2022 09:12:14 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v5 1/2] ASoC: mediatek: dt-bindings: modify machine
- bindings for two MICs case
-Message-ID: <166740543691.3982990.2425692188339189211.robh@kernel.org>
-References: <20221031122224.1846221-1-ajye_huang@compal.corp-partner.google.com>
- <20221031122224.1846221-2-ajye_huang@compal.corp-partner.google.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: net: nxp,sja1105: document spi-cpol
+Date:   Wed,  2 Nov 2022 12:12:11 -0400
+Message-Id: <20221102161211.51139-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031122224.1846221-2-ajye_huang@compal.corp-partner.google.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some boards use SJA1105 Ethernet Switch with SPI CPOL, so document this
+to fix dtbs_check warnings:
 
-On Mon, 31 Oct 2022 20:22:23 +0800, Ajye Huang wrote:
-> Add a property "dmic-gpios" for switching between two MICs.
-> 
-> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-> ---
->  .../sound/mt8186-mt6366-rt1019-rt5682s.yaml        | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
+  arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+index 1e26d876d146..a73905a50ee5 100644
+--- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+@@ -36,6 +36,8 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  spi-cpol: true
++
+   # Optional container node for the 2 internal MDIO buses of the SJA1110
+   # (one for the internal 100base-T1 PHYs and the other for the single
+   # 100base-TX PHY). The "reg" property does not have physical significance.
+-- 
+2.34.1
+
