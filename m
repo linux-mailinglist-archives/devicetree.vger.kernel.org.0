@@ -2,94 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 188B4616E7B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:21:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6608616E7F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:22:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbiKBUVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:21:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50706 "EHLO
+        id S230423AbiKBUWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiKBUVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:21:19 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6B1E07;
-        Wed,  2 Nov 2022 13:21:19 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8FB4F66028C5;
-        Wed,  2 Nov 2022 20:21:16 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667420477;
-        bh=NE948HkjaezAzBYfOXSQ7XoQiVmIbeuewynXUFErcXc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hMqp992oQRDgBOvterq95Nb0XTsFLMFcAvDB4RDDqPvyJqAuBXfOJaa4ESr859qbh
-         7hXc0Rur93SwOVtstppierl9qRIHJuu4c3vw/w3fdDEWy6cIyJmPXF2AVDVvcZYbKd
-         /wtiyR8A78I08v2jtrTp1muHrjuEbydfL07ODxnE1uo4dFi41JvWv4vE3sxmeSPtio
-         AT0idVOognVchYJ2DAbvv5e7osCqhwSK5ScJyZtPt2AMtERw2/MrIFd2g8lDLXt/1Y
-         ejtOU9QIOOsXAslYkUcgQhUD5OjmVGRlergwbaLIiKHMV01NWe5o139CB/EpPakvls
-         qRKhpTxiz7Nlg==
-Date:   Wed, 2 Nov 2022 16:21:12 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 4/7] arm64: dts: mediatek: mt8516: Fix the watchdog
- node name
-Message-ID: <20221102202112.w77otebl23wesdaq@notapiano>
-References: <20221101090116.27130-1-allen-kh.cheng@mediatek.com>
- <20221101090116.27130-5-allen-kh.cheng@mediatek.com>
+        with ESMTP id S230527AbiKBUWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:22:01 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281375FF6
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:21:59 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id h24so38087qta.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:21:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lNJVosPNdci0vHdXGVs2cdHuEF7DCHwmyiOAOfe3bjg=;
+        b=aag3Q6rvohNiU2mvHEM/YNYMwiTlmVlXjpg2FkFSf2xvsl4jlUZe2s3GGDSTnb7Ule
+         1ztKxAm0hvppt+0TkbP9fVRWxWHq18cr2bQ34aEgoo1yYATiCBtrbt31+X46FHnC5S3t
+         fpJJ/7woPzc6EzA+DxDjwd1K0+HMUUXFmjdKKGGtcM9c2OM+S7SWdzldPaBwFJF6PGfV
+         oqnugcvbFdyJMMLqniuNW+3OBLz5Tfo9miucJN/UvRfQG8tYKbFOsGlA/fTq6c9UMWm6
+         mWybycEUQ+vnkYg8oqXmEp4PBrgxWQh/xrKqwhFZ3QtnJK/VzTITp9l6uyTz3Cr+dgDU
+         mcuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lNJVosPNdci0vHdXGVs2cdHuEF7DCHwmyiOAOfe3bjg=;
+        b=U8tb8iGZTx44GMnIgQ47Y3gFTPngsc+LYhZAN+o57O8Zs8YD6i7h8/barvvAcgVsfK
+         e4E8i3T8F2cifxphftYU3r+PeJ8DAv6sg4QSPsd5FPfQpNrWvwBVIyI0XBQhih3o7vqf
+         5eY8uqkZe/z6B1Wr0pfsHRN69oTu/uLW8VxIOTqvxts+IPdgnZg2RwRHhWW4wkc8aW2H
+         HFTX4X0C9fTnyYDs5KcJjhor7xtddwuV94vibl43Ge+7gUarAJ92xz2SJHvG950G/deQ
+         yzglCUGzvfnVRVw2YvwDLiEeg8HhDTtwRYYWnuRlQGD7IwMmjnEYZoVkZE+fSIGo8PtL
+         UCaw==
+X-Gm-Message-State: ACrzQf1kyWnDniD49Ay8jbsliZUes1Ng193J76nwtWYYESYH62Ghvjr2
+        qRPOz9zLflFSuUPHgGLQrRwFzqyS5G2Vxw==
+X-Google-Smtp-Source: AMsMyM55attEsYX0NHeDvMJiDWhSkZby8BQWWdMuvTRAlvzA5XgZG0q3sde2KYvGY5AfXLic9icfWQ==
+X-Received: by 2002:ac8:5245:0:b0:3a5:3e52:2d97 with SMTP id y5-20020ac85245000000b003a53e522d97mr7396482qtn.121.1667420518371;
+        Wed, 02 Nov 2022 13:21:58 -0700 (PDT)
+Received: from krzk-bin.. ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id f11-20020ac8498b000000b00399ad646794sm7119581qtq.41.2022.11.02.13.21.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 13:21:58 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Pierre Gondois <pierre.gondois@arm.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob.Herring@arm.com, linux-samsung-soc@vger.kernel.org
+Subject: Re: (subset) [PATCH 06/20] arm64: dts: Update cache properties for exynos
+Date:   Wed,  2 Nov 2022 16:21:55 -0400
+Message-Id: <166742051292.139492.12539582422109367063.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221031091945.531874-1-pierre.gondois@arm.com>
+References: <20221031091945.531874-1-pierre.gondois@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221101090116.27130-5-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 01, 2022 at 05:01:13PM +0800, Allen-KH Cheng wrote:
-> The proper name is 'watchdog', not 'toprgu'.
+On Mon, 31 Oct 2022 10:19:45 +0100, Pierre Gondois wrote:
+> The DeviceTree Specification v0.3 specifies that the cache node
+> 'compatible' and 'cache-level' properties are 'required'. Cf.
+> s3.8 Multi-level and Shared Cache Nodes
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8516.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> The recently added init_of_cache_level() function checks
+> these properties. Add them if missing.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> index d1b67c82d761..fff59dc1b4d7 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> @@ -202,7 +202,7 @@
->  			#clock-cells = <1>;
->  		};
->  
-> -		toprgu: toprgu@10007000 {
-> +		toprgu: watchdog@10007000 {
+> [...]
 
-Rename the label to watchdog as well. It's not used elsewhere yet anyway, so
-won't add to the diff.
+Applied, thanks!
 
-Otherwise,
+[06/20] arm64: dts: Update cache properties for exynos
+        https://git.kernel.org/krzk/linux/c/58710ae94589a2b2baaab6b6986064b691124b0d
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Thanks,
-Nícolas
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
