@@ -2,209 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A860A61667C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:49:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DECC1616687
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:52:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbiKBPtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 11:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59144 "EHLO
+        id S230424AbiKBPwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 11:52:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbiKBPtD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:49:03 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ECB828705;
-        Wed,  2 Nov 2022 08:49:02 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id v81so10927056oie.5;
-        Wed, 02 Nov 2022 08:49:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MK3UVrAsoEazhaDhY6mHs9+uO9hdI5iIrEDX4RIM6wM=;
-        b=gigAia1dXed5tVm23HK58GhQBgTWX1ZGiuJoXn5yrPCP+yCtqedpADr3akfnRw+qDG
-         SqGyOW/ElttBLJDVCk3MjpOZ4WahAYYjFhNKjqPGYEH4qs1+ghPD0z+OBMZSdZvd7I0s
-         7BnDKF5SYhQV8iCgmzqKUd8IqQMhuM0PeMrFBmev/XPWu+pueh3W0q2O2Y9SkRVvqC1A
-         XSjGQs4wozgrNNeDsrnO3XfTUKoeqo8pRXk3XhkvDM5+vJ0SYhTh1EVjBVNymzcM4Vhn
-         7UOmuLwN+DU7r2sebG6jq8A68jDlLNOVgD6ZwI5yLn0nD5q+sG+CWN55p21G2P6pg2H2
-         GHDg==
-X-Gm-Message-State: ACrzQf3s2CU28PocR6tfcFAVAqMlBdeRxPfyG3NTIXMfbkHJcSI9RFRG
-        vLeElxmnTe/66YqywfVLNw==
-X-Google-Smtp-Source: AMsMyM53RvLjBXzutVxPQ2VTXB5G2Da0JimPwS28acf+1jQgx+5W7vC+Vccv0RwZp5bzsMRmH/fzig==
-X-Received: by 2002:a05:6808:41:b0:359:fe9f:49d8 with SMTP id v1-20020a056808004100b00359fe9f49d8mr10334426oic.148.1667404141774;
-        Wed, 02 Nov 2022 08:49:01 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d1-20020a4aeb81000000b00480fd9f311esm4606347ooj.13.2022.11.02.08.49.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 08:49:01 -0700 (PDT)
-Received: (nullmailer pid 3959461 invoked by uid 1000);
-        Wed, 02 Nov 2022 15:49:03 -0000
-Date:   Wed, 2 Nov 2022 10:49:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chester Lin <clin@suse.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S229591AbiKBPwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:52:38 -0400
+Received: from smtp-190f.mail.infomaniak.ch (smtp-190f.mail.infomaniak.ch [IPv6:2001:1600:3:17::190f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259202AC4E
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 08:52:37 -0700 (PDT)
+Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
+        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4N2WcK0L8xzMqNZt;
+        Wed,  2 Nov 2022 16:52:33 +0100 (CET)
+Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
+        by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4N2WcJ40DVzMpqBV;
+        Wed,  2 Nov 2022 16:52:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+        s=20220412; t=1667404352;
+        bh=hsmqP6LW9Hc8mmhziJ3amvKnlktfxLKv2Sastr0h7Mc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TQm8+MuVUwOG0FZujEOnW7Guwm64m8a1xGcEzqlHvLxisaRwxJuzqvTua50ZFeZ+X
+         WaTLDPNoYxMGvittPp5RHg9Qxp6YowAa+4AbXgQ0O7bT+VF+dU5UR0okp58kB1PKra
+         k1IgbmLnWIgyikD4GOCunTDajWVD1JyWv9QxjEUk=
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        s32@nxp.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Larisa Grigore <larisa.grigore@nxp.com>,
-        Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: add schema for NXP S32 SoCs
-Message-ID: <20221102154903.GA3726664-robh@kernel.org>
-References: <20221031100843.14579-1-clin@suse.com>
- <20221031100843.14579-2-clin@suse.com>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: colibri-imx6ull: Enable dual-role switching
+Date:   Wed,  2 Nov 2022 16:52:26 +0100
+Message-Id: <20221102155226.51587-1-dev@pschenker.ch>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031100843.14579-2-clin@suse.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 31, 2022 at 06:08:42PM +0800, Chester Lin wrote:
-> Add DT schema for the pinctrl driver of NXP S32 SoC family.
-> 
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> Signed-off-by: Chester Lin <clin@suse.com>
-> ---
->  .../pinctrl/nxp,s32cc-siul2-pinctrl.yaml      | 91 +++++++++++++++++++
->  1 file changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..eafb9091cbf7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32cc-siul2-pinctrl.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2022 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/nxp,s32cc-siul2-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP S32 Common Chassis SIUL2 iomux controller
-> +
-> +maintainers:
-> +  - Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-> +  - Chester Lin <clin@suse.com>
-> +
-> +description: |
-> +  Core driver for the pin controller found on S32 Common Chassis SoC.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,s32g-siul2-pinctrl
-> +
-> +  reg:
-> +    minItems: 5
-> +    maxItems: 6
-> +    description: A list of register regions to be reserved.
+From: Philippe Schenker <philippe.schenker@toradex.com>
 
-Need to be explicit about what each entry is.
+The Colibri standard provides a GPIO called USBC_DET to switch from
+USB Host to USB Device and back. The Colibri iMX6ULL does have the SoC
+ball USB_OTG1_VBUS connected in series with a capacitor to ground.
 
-> +
-> +  nxp,pins:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description:
-> +      A list of [start, end] pin ID boundaries that correspond to each of
-> +      the register regions reserved.
+This means that we need to provide to the extcon framework VBUS and ID
+events using the single GPIO we have. The Extcon USB GPIO driver does
+use id-gpio also for VBUS event, as in our case where vbus-gpio is
+absent.
 
-Looks like a matrix rather than an array.
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - nxp,pins
-> +
-> +patternProperties:
-> +  '_pins$':
+---
 
-s/_/-/
+ arch/arm/boot/dts/imx6ull-colibri.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-> +    type: object
+diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx6ull-colibri.dtsi
+index 577a424b0e1d..feb1fcd9a684 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
++++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
+@@ -24,6 +24,13 @@ backlight: backlight {
+ 		status = "okay";
+ 	};
+ 
++	extcon_usbc_det: usbc-det {
++		compatible = "linux,extcon-usb-gpio";
++		id-gpio = <&gpio5 2 GPIO_ACTIVE_HIGH>; /* SODIMM 137 / USBC_DET */
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_snvs_usbc_det>;
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		pinctrl-names = "default";
+@@ -275,6 +282,7 @@ &uart5 {
+ /* Colibri USBC */
+ &usbotg1 {
+ 	dr_mode = "otg";
++	extcon = <&extcon_usbc_det>, <&extcon_usbc_det>;
+ 	srp-disable;
+ 	hnp-disable;
+ 	adp-disable;
+-- 
+2.38.1
 
-       additionalProperties: false
-
-(and a blank line after)
-
-> +    patternProperties:
-> +      '_grp[0-9]$':
-
-s/_/-/
-
-> +        type: object
-> +        allOf:
-> +          - $ref: pinmux-node.yaml#
-> +          - $ref: pincfg-node.yaml#
-
-           unevaluatedProperties: false
-
-> +        description:
-> +          Pinctrl node's client devices specify pin muxes using subnodes,
-> +          which in turn use the standard properties below.
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    pinctrl: siul2-pinctrl@4009c240 {
-
-pinctrl@...
-
-> +        compatible = "nxp,s32g-siul2-pinctrl";
-> +
-> +              /* MSCR range */
-> +        reg = <0x4009c240 0x198>,
-> +              <0x44010400 0x2c>,
-> +              <0x44010480 0xbc>,
-> +              /* MSCR range */
-> +              <0x4009ca40 0x150>,
-> +              <0x44010c1c 0x45c>,
-> +              <0x440110f8 0x108>;
-
-What is in these holes in the memory map? Is this part of some larger 
-block? If so, that block needs to be described.
-
-> +
-> +                   /* MSCR range */
-> +        nxp,pins = <0   101>,
-> +                   <112 122>,
-> +                   <144 190>,
-> +                   /* IMCR range */
-> +                   <512 595>,
-> +                   <631 909>,
-> +                   <942 1007>;
-> +
-> +        llce_can0_pins {
-> +            llce_can0_grp0 {
-> +                pinmux = <0x2b0>;
-> +                input-enable;
-> +                slew-rate = <0x00>;
-> +            };
-> +
-> +            llce_can0_grp1 {
-> +                pinmux = <0x2c2>;
-> +                output-enable;
-> +                slew-rate = <0x00>;
-> +            };
-> +        };
-> +    };
-> +...
-> -- 
-> 2.37.3
-> 
-> 
