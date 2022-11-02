@@ -2,99 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B180616EA4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 306C6616EBE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbiKBU1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:27:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54782 "EHLO
+        id S231310AbiKBU2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:28:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231165AbiKBU1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:27:20 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28164625A
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:27:19 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id z6so55697qtv.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TIjZ3J5xeVmLQdMnQeTKwtayA5JvoM/NM+r28ILFbQY=;
-        b=cT3WOuv1N7Fg7sUjGZiektBObj9jIfXtE32VruazBwa1XlhePndHEuElchYVsjxWSl
-         /4SrL06jo94LkKT2PEufLp1cPjRsKm75vaQrxnfw1tdU2l0mb3FD/7NQMRYtwh0y6IUV
-         ZVefYLHMJY0lIF1/ROfoltdOpkOn7pvmH0tgX0gKGE0U5XM0UETjJLW9FGuYyAbc9/UJ
-         vTGpCHV9hxN6HlbIkSeiWW2GvARcAGp87/kV16VzNONkw2o7xZoPUQyfp0of4ae7hiPv
-         fO+x0+n/KPzXGuuByZFNgBD9P0u1tF74gXcjzuG7ZRxbWsGu2DLQ7K63rjL0sAeyXo7F
-         0K3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TIjZ3J5xeVmLQdMnQeTKwtayA5JvoM/NM+r28ILFbQY=;
-        b=0smAKh2nM4eq2MkiCuNO2HnLpURVZP4p5wbZ2VxEyKLSIwnFZfWsfJr83mfOi369DZ
-         KMfCj4aBXDyzF7C9TDiiLbvZlTbDW2ruRDhRZYjBem1CH/dC49mTYy1iP64BS5EHzNKa
-         jaqiFqBmeiealTo2SKOgXyLojsq0bYR3gW/OXEabaheK/pX/Ild71emVawycbGZ5NKpE
-         AywOUXGCIqb3McV8LKvghsVXkgBCqY9Ju0XZPRDMYYEtMAaIxcY+6y/yJAvTVMkBOWoa
-         EoqTTJva1j5yfh66OCVGz6A4Xm9BZDnqD4pxZUtRXZLurl+Tj4LcJy+9Mc8YiYoLEWNN
-         4TDg==
-X-Gm-Message-State: ACrzQf1zofDyzrpbmg+bikT/ZLxmEq/Cgb3EZWuMtUsEOg0xXYD/UxhM
-        DGajDFW3tzpeS0lN+P+CLdvH2g==
-X-Google-Smtp-Source: AMsMyM4ejC+/+6SPW/EzVJ7N+md7hUx/4px+irzyPLqe0sisRbKp24Rwa1stBfwznuy1fR5Am+3GXA==
-X-Received: by 2002:ac8:5d8d:0:b0:3a4:e2af:8cd4 with SMTP id d13-20020ac85d8d000000b003a4e2af8cd4mr22185922qtx.385.1667420838319;
-        Wed, 02 Nov 2022 13:27:18 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id bm8-20020a05620a198800b006ed138e89f2sm9195468qkb.123.2022.11.02.13.27.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:27:18 -0700 (PDT)
-Message-ID: <fbd52c74-4b25-79b0-07f9-e58d96002ac4@linaro.org>
-Date:   Wed, 2 Nov 2022 16:27:17 -0400
+        with ESMTP id S231319AbiKBU2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:28:43 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 725BD6586;
+        Wed,  2 Nov 2022 13:28:39 -0700 (PDT)
+Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id DBF9966028C5;
+        Wed,  2 Nov 2022 20:28:36 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667420918;
+        bh=/ko2vJsF1ZaY91iK2dzeVBA8AAnwCSYAbkzmOC5dXE8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ox55qbXiWDZ8z/Q0hnEf6X3Fq68SbXltALyWJHh+OBiMpwXugYJYLaACA/0dVcbba
+         HgDkOHGmjpuYVsD4Kzdc/xIHO8x6VjjGlxfTOCpoX++7NJUbu7uZPsCOFKETyviDb3
+         hUeg6tZ2PWoFSiNY//PitK/eybzT8aC+zT5eoLQ6ADCBTVk+2DeflIJcBFfyJIhSlU
+         4n4ySVfwVXpSedCjdJCHawmQ21QWiDfoOkPrMw9l07Qp3f5NYKPONrHjvM3H+uduKi
+         Cq6PkEBGsA39Mzl1ccZzOZIIa/+wPSCJdHpiPbITWEO17sYEsMjjMiggF+nunHwQbu
+         tiA0poKnDa0Pg==
+Date:   Wed, 2 Nov 2022 16:28:32 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        angelogioacchino.delregno@collabora.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 7/7] dt-bindings: watchdog: mediatek,mtk-wdt: Add
+ compatible for MT8173
+Message-ID: <20221102202832.toh46ayaflnky33c@notapiano>
+References: <20221101090116.27130-1-allen-kh.cheng@mediatek.com>
+ <20221101090116.27130-8-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v5 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221102085737.599100-1-Naresh.Solanki@9elements.com>
- <20221102085737.599100-2-Naresh.Solanki@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221102085737.599100-2-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221101090116.27130-8-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 04:57, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
+On Tue, Nov 01, 2022 at 05:01:16PM +0800, Allen-KH Cheng wrote:
+> Add the mediatek,mt8173-wdt compatible using mediatek,mt6589-wdt as
+> fallback.
 > 
-> The MAX597x is a hot swap controller with configurable fault protection.
-> It also has 10bit ADC for current & voltage measurements.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ---
->  .../devicetree/bindings/mfd/max5970.yaml      | 164 ++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/max5970.yaml
-> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-It seems I reviewed v4. Apply my comments from that one.
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Best regards,
-Krzysztof
-
+Thanks,
+Nícolas
