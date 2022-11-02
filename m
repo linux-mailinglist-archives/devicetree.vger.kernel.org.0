@@ -2,94 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A23616478
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 739D4616484
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:10:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbiKBOIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 10:08:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60508 "EHLO
+        id S231355AbiKBOKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 10:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231250AbiKBOId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:08:33 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B94F4614A;
-        Wed,  2 Nov 2022 07:08:30 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id p127so19266273oih.9;
-        Wed, 02 Nov 2022 07:08:30 -0700 (PDT)
+        with ESMTP id S231357AbiKBOKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:10:34 -0400
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73DC91CB37
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:10:31 -0700 (PDT)
+Received: by mail-qt1-x830.google.com with SMTP id cg5so2598772qtb.12
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 07:10:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=r3baLHNRjybhUwz1VU0EpNO+mXmWZFbwxaMY2qdvCTY=;
+        b=DjhE16/tTUTVdFjgcA3BT/LtmSUuv28pvQFIpl8ORPofZEozhGnObHSwmFZBGObNSi
+         hzZnR9IRHQEJYRfxDXJhI/YyjT04AnAq879/iczPm3+pr8+yKiNmP5yDXpFp32k5+ZAs
+         O8M70dWjOzVfoF3c2vfzHE3lg39oneXBo3w0jrE5NFlvyPx4mxkZ89jQiWQX9a9qmyKc
+         hA7tGLgXHI8MU1645wPN0iHjeTtd3N4wfLjierTYe49bPwE+EyBV4qw/tnkIKYPH3soO
+         ZZGjcRoTzwLAyfVaNwKZ0Gg3P/weB5NYm9DWga6U7cSAOQGdYmAhdkyDuwvpma9kycDz
+         cvHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6QvcNddTXKKBwZ+urXBXv3TzoNuF7Bn5HOULPsoWyIY=;
-        b=Xs9Mls8xC5/bXepD1nWQ6yqmUL1aGwR5fPzZ45h5FspOY3cLHy7gqs4Qn+CFn2roHK
-         GW2vT2IU3uIFH8hPn/pJPBTScxkqXFSDNlAM96Lngs1soGnwti8gNYwUyo/ZQTsDRtCZ
-         eIBF8stqLd2HqJibkNlEEpOqD6SofErxFzBLnw9B91K4m1PeRxjNMl2bHzRHoectHSxv
-         3GofN0G3k/QWWepOAtmktA3ffsWRpujf7+L+02EqTLCK8jMzwW995SJl09z1SbDOIdq3
-         4Mgqth7eLtOVLr/BllBD4XMrscnD+uDmBqwTdMYSAXIoHpzmiTD57/ilf4X9siLobMaK
-         NIlQ==
-X-Gm-Message-State: ACrzQf0oCeuqAiFRVjvW0iYAXnWe3Ye+CiPjCWztLDJzG1yfBAThUFcZ
-        oBrKuwrzFZg7SJKtVGJvwg==
-X-Google-Smtp-Source: AMsMyM6QVF209qs9DvlKoU3PuSWQgC61aGthVBmhLCIbNQc64NsMjehDIuFeqRt3ZVD3MlSOZ3pERA==
-X-Received: by 2002:a05:6808:e90:b0:345:6ee0:9a68 with SMTP id k16-20020a0568080e9000b003456ee09a68mr13951318oil.173.1667398109975;
-        Wed, 02 Nov 2022 07:08:29 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 5-20020a9d0685000000b0066c41be56e7sm4710485otx.55.2022.11.02.07.08.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 07:08:29 -0700 (PDT)
-Received: (nullmailer pid 3726569 invoked by uid 1000);
-        Wed, 02 Nov 2022 14:08:31 -0000
-Date:   Wed, 2 Nov 2022 09:08:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     Roger Quadros <rogerq@kernel.org>, Suman Anna <s-anna@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        vigneshr@ti.com, "Andrew F . Davis" <afd@ti.com>, nm@ti.com,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-remoteproc@vger.kernel.org, srk@ti.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v7 1/5] dt-bindings: remoteproc: Add PRU consumer bindings
-Message-ID: <166739811062.3726509.6286171416225934410.robh@kernel.org>
-References: <20221031073801.130541-1-danishanwar@ti.com>
- <20221031073801.130541-2-danishanwar@ti.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r3baLHNRjybhUwz1VU0EpNO+mXmWZFbwxaMY2qdvCTY=;
+        b=f8zcj8J6+lZ6HDPU01h54R5LEQxfwhWMuaPsF7DRdtfCsEzkr70tM5ddUhKDLhjHwg
+         nO8c9ILJTCJ8SNKdsfvr4nhTBoZHNOSZy+vDe0TMypQkkA9XNskFyinlvxWMx4NL3um7
+         tYpXb8sHS4l3ZHBJ4WdlK4CdIU/EapT8anT+GcC1Sz2HuhMS9/P+VmQ6RwaWDyxN35FO
+         Rq69gzWw5eSTAwi18PaqV6fE2QKOmS2uqyUdsTbEIvFy1Eekrr5p6zziQZb4NCpbA+k+
+         b4EjMNMWg+bcpNmTHecO63J5S2Po1txYHoQRKdYp1u0SkO44s9HQLOzOGXpasOgLxa7h
+         NhXg==
+X-Gm-Message-State: ACrzQf23zYTeMVNOxo562CCvrPExb+2LH900nJQfslM0yKAmpPhSUWnV
+        k6A2XbVQ/CT0YCF/RBn9fCUTJA==
+X-Google-Smtp-Source: AMsMyM7AK3jlPObOnz/rPlu+Up2ji8ZFVw+pIdHlReQDzjpBxb2W96SkuyWtnj/IOe72KUZ9Bx+5tQ==
+X-Received: by 2002:ac8:5d89:0:b0:3a4:f465:9434 with SMTP id d9-20020ac85d89000000b003a4f4659434mr19797213qtx.459.1667398230631;
+        Wed, 02 Nov 2022 07:10:30 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id bs6-20020a05620a470600b006b61b2cb1d2sm8623326qkb.46.2022.11.02.07.10.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 07:10:30 -0700 (PDT)
+Message-ID: <69d57d4e-8a43-f8f5-f491-916197f6f4a8@linaro.org>
+Date:   Wed, 2 Nov 2022 10:10:23 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031073801.130541-2-danishanwar@ti.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v4 08/11] mfd: qcom-pm8xxx: drop unused PM8018 compatible
+Content-Language: en-US
+To:     Lee Jones <lee@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Gross <agross@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
+ <20220928-mdm9615-dt-schema-fixes-v4-8-dac2dfaac703@linaro.org>
+ <Y1/qnCyav/S35mRo@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y1/qnCyav/S35mRo@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 31 Oct 2022 13:07:57 +0530, MD Danish Anwar wrote:
-> From: Suman Anna <s-anna@ti.com>
+On 31/10/2022 11:32, Lee Jones wrote:
+> On Fri, 21 Oct 2022, Neil Armstrong wrote:
 > 
-> Add DT schema binding for PRU consumers. The binding includes
-> all the common properties that can be used by different PRU consumer
-> or application nodes and supported by the PRU remoteproc driver.
-> These are used to configure the PRU hardware for specific user
-> applications.
+>> The PM8018 compatible is always used with PM8921 fallback, so PM8018
+>> compatible can be safely removed from device ID table
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > 
-> The application nodes themselves should define their own bindings.
-> 
-> Co-developed-by: Tero Kristo <t-kristo@ti.com>
-> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
->  .../bindings/remoteproc/ti,pru-consumer.yaml  | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> Tags should appear chronologically.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I would assume that as well, but `b4 trailers` disagrees. It documents
+even this behavior (the chain of custody) here:
+https://b4.docs.kernel.org/en/latest/config.html
+
+So while I agree with you, I also prefer the tools to make the decision
+instead of humans (to follow the process, assuming the tool implements
+the process). Either the tool should be fixed or the tool's decision is
+correct.
+
+Best regards,
+Krzysztof
+
