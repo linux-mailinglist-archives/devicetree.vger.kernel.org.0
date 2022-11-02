@@ -2,99 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E613615673
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 01:13:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E81B9615680
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 01:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229761AbiKBANb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Nov 2022 20:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44584 "EHLO
+        id S229650AbiKBAZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Nov 2022 20:25:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiKBANa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 20:13:30 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64AF1CC6;
-        Tue,  1 Nov 2022 17:13:27 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A1MiRXB001653;
-        Wed, 2 Nov 2022 00:13:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=JfppMY0X0fYI0iXcP7M2po93gSaKxuFL5ujKH3pEeeg=;
- b=AHIsYmwT4yZf6FuHnT6RqAGS66FpLn0jogPpmku51l8J+g7t/9aX6EpEzbJKjT6KaEL1
- An3dckKeJ4/CulRKuFl8D+ggfzu0/Md0xL8zIB/vWBqwwaw4CNZnN5G/WkNqnMgvGe6u
- Y7nrnSD4zI08oB5kFUFAv26wiclhnjCOS/wC60oK2XhSuh2GwPMuPOGaWwVE5JiRzyDy
- vFjr8sZAigDPS1+EA5q3E4NUUZmBFAoSEZL9iMwiUolb6RAgn08TNgnj/bwTr5i9WqZe
- NCR91MmaeB7aXRwF7WtFqaQIn6TKWV1kLycDpZ5s4QccWjNfJ/YUaS/0e1zdzeMVQN/H 1Q== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kk7nfgpe8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Nov 2022 00:13:01 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A20D0j6029653
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 2 Nov 2022 00:13:00 GMT
-Received: from [10.134.65.5] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Tue, 1 Nov 2022
- 17:12:59 -0700
-Message-ID: <3d2858fe-ea3e-159c-faff-5052cba1e08c@quicinc.com>
-Date:   Tue, 1 Nov 2022 17:12:58 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v6 10/21] gunyah: rsc_mgr: Add resource manager RPC core
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229516AbiKBAZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Nov 2022 20:25:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2D8760CE;
+        Tue,  1 Nov 2022 17:25:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6430FB8203F;
+        Wed,  2 Nov 2022 00:25:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A394AC433D6;
+        Wed,  2 Nov 2022 00:25:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667348728;
+        bh=RdDGCCWuDXt/h5zqPsN7VDDA69kM/I3XMBHvHbg8EeE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LHwCX0NLxyG124cZvHdNE3shqf/hPLQmwSAowtqNkDaWX8mKS3DIktPbVcMfOjkMS
+         y1tIC5C7kBTcRmp3qn5VuySQwNvgROlkRkiLLGHMRiJEqraCABs0WQpkYSwAvIXpMX
+         ru2j9twOdiuWefSsbduvZMnVWAniLjMoXwZrZ25UJtePWn820Zfxuko7RjJP3d2Q24
+         F5zKq5NqfH6AZ65DCEZwAZtRnjUvp2pVgX2/VQHnd0M9uhZ23jPin9E9nvH1wk0P95
+         p2F0zTgRSHErX53Z60FJ4RKPH5WQJiTLfCagJF6Gp5p6JaHMxkPu4ak6O4eHCDreVm
+         NgNJ/5fH5Az/A==
+Received: by pali.im (Postfix)
+        id 00E4C7F8; Wed,  2 Nov 2022 01:25:24 +0100 (CET)
+Date:   Wed, 2 Nov 2022 01:25:24 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Arnd Bergmann" <arnd@arndb.de>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-11-quic_eberman@quicinc.com>
- <Y2FfKCKZ3N8rOqcT@kroah.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <Y2FfKCKZ3N8rOqcT@kroah.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: v9smqBA09ubC9IbLN910FsFMUxKYYyx0
-X-Proofpoint-GUID: v9smqBA09ubC9IbLN910FsFMUxKYYyx0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-01_11,2022-11-01_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- spamscore=0 malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211010163
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] leds: Add support for Turris 1.x LEDs
+Message-ID: <20221102002524.dz4psje76odpt2ua@pali>
+References: <20220705000448.14337-1-pali@kernel.org>
+ <20220705155929.25565-1-pali@kernel.org>
+ <20220705155929.25565-2-pali@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220705155929.25565-2-pali@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -102,311 +60,589 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello! What with this driver? Its DTS part was already merged and ready to serve.
 
-
-On 11/1/2022 11:02 AM, Greg Kroah-Hartman wrote:
-> On Wed, Oct 26, 2022 at 11:58:35AM -0700, Elliot Berman wrote:
->> The resource manager is a special virtual machine which is always
->> running on a Gunyah system. It provides APIs for creating and destroying
->> VMs, secure memory management, sharing/lending of memory between VMs,
->> and setup of inter-VM communication. Calls to the resource manager are
->> made via message queues.
->>
->> This patch implements the basic probing and RPC mechanism to make those
->> API calls. Request/response calls can be made with gh_rm_call.
->> Drivers can also register to notifications pushed by RM via
->> gh_rm_register_notifier
->>
->> Specific API calls that resource manager supports will be implemented in
->> subsequent patches.
->>
->> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->> ---
->>   MAINTAINERS                    |   2 +-
->>   drivers/virt/gunyah/Kconfig    |  15 +
->>   drivers/virt/gunyah/Makefile   |   3 +
->>   drivers/virt/gunyah/rsc_mgr.c  | 602 +++++++++++++++++++++++++++++++++
->>   drivers/virt/gunyah/rsc_mgr.h  |  34 ++
->>   include/linux/gunyah_rsc_mgr.h |  26 ++
->>   6 files changed, 681 insertions(+), 1 deletion(-)
->>   create mode 100644 drivers/virt/gunyah/rsc_mgr.c
->>   create mode 100644 drivers/virt/gunyah/rsc_mgr.h
->>   create mode 100644 include/linux/gunyah_rsc_mgr.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 586539eadd3b..e072a0d2e553 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -8945,7 +8945,7 @@ F:	Documentation/virt/gunyah/
->>   F:	arch/arm64/gunyah/
->>   F:	drivers/mailbox/gunyah-msgq.c
->>   F:	drivers/virt/gunyah/
->> -F:	include/linux/gunyah.h
->> +F:	include/linux/gunyah*.h
->>   
->>   HABANALABS PCI DRIVER
->>   M:	Oded Gabbay <ogabbay@kernel.org>
->> diff --git a/drivers/virt/gunyah/Kconfig b/drivers/virt/gunyah/Kconfig
->> index 127156a678a6..4de88d80aa7b 100644
->> --- a/drivers/virt/gunyah/Kconfig
->> +++ b/drivers/virt/gunyah/Kconfig
->> @@ -10,3 +10,18 @@ config GUNYAH
->>   
->>   	  Say Y/M here to enable the drivers needed to interact in a Gunyah
->>   	  virtual environment.
->> +
->> +config GUNYAH_RESORUCE_MANAGER
->> +	tristate "Gunyah Resource Manager"
->> +	select MAILBOX
->> +	select GUNYAH_MESSAGE_QUEUES
->> +	depends on GUNYAH
->> +	default y
+On Tuesday 05 July 2022 17:59:29 Pali Rohár wrote:
+> This adds support for the RGB LEDs found on the front panel of the
+> Turris 1.x routers. There are 8 RGB LEDs that are controlled by
+> CZ.NIC CPLD firmware running on Lattice FPGA.
 > 
-> You only have "default y" if your machine can not boot without it.
-> Please do not add that here.
+> CPLD firmware provides HW triggering mode for all LEDs except WiFi LED
+> which is automatically enabled after power on reset. LAN LEDs share HW
+> registers for RGB colors settings, so it is not possible to set different
+> colors for individual LAN LEDs.
 > 
-
-There's a guideline in Documentation/kbuild/kconfig-language.rst to 
-provide some sane defaults for subdriver behavior. Here, CONFIG_GUNYAH 
-is default n. It's unlikely for someone to want to have Linux with base 
-Gunyah support (hypercalls and hypervisor detection) without also having 
-the Resource Manager driver. If it's better, I could change to default m?
-
->> +	help
->> +	  The resource manager (RM) is a privileged application VM supporting
->> +	  the Gunyah Hypervisor. Enable this driver to support communicating
->> +	  with Gunyah RM. This is typically required for a VM running under
->> +	  Gunyah wanting to have Gunyah-awareness.
->> +
->> +	  Say Y/M here if unsure.
->> +
->> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
->> index 2ac4ee64b89d..2c18b0a56413 100644
->> --- a/drivers/virt/gunyah/Makefile
->> +++ b/drivers/virt/gunyah/Makefile
->> @@ -1 +1,4 @@
->>   obj-$(CONFIG_GUNYAH) += gunyah.o
->> +
->> +gunyah_rsc_mgr-y += rsc_mgr.o
->> +obj-$(CONFIG_GUNYAH_RESORUCE_MANAGER) += gunyah_rsc_mgr.o
->> diff --git a/drivers/virt/gunyah/rsc_mgr.c b/drivers/virt/gunyah/rsc_mgr.c
->> new file mode 100644
->> index 000000000000..a9fde703cbbe
->> --- /dev/null
->> +++ b/drivers/virt/gunyah/rsc_mgr.c
->> @@ -0,0 +1,602 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#define pr_fmt(fmt) "gh_rsc_mgr: " fmt
+> CZ.NIC CPLD firmware is open source and available at:
+> https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
 > 
-> This is a driver, you should never need this as you should be using the
-> dev_*() calls, not pr_*() calls as you always have access to a struct
-> device, right?
+> This driver uses the multicolor LED framework and HW led triggers.
 > 
-> So you can drop this.
+> Signed-off-by: Pali Rohár <pali@kernel.org>
 > 
+> ---
+> Changes in v2:
+> * Use 0/1 instead of LED_OFF/LED_ON
+> * Add brightness_level device attribute
+> * Implement callback brightness_set instead of brightness_set_blocking
+> * Reset LEDs to default state before kernel reboots
+> ---
+>  .../testing/sysfs-class-led-driver-turris1x   |  31 ++
+>  drivers/leds/Kconfig                          |   9 +
+>  drivers/leds/Makefile                         |   1 +
+>  drivers/leds/leds-turris-1x.c                 | 474 ++++++++++++++++++
+>  4 files changed, 515 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-turris1x
+>  create mode 100644 drivers/leds/leds-turris-1x.c
 > 
-
-Ack
-
->> +
->> +#include <linux/of.h>
->> +#include <linux/slab.h>
->> +#include <linux/mutex.h>
->> +#include <linux/sched.h>
->> +#include <linux/gunyah.h>
->> +#include <linux/module.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/kthread.h>
->> +#include <linux/notifier.h>
->> +#include <linux/workqueue.h>
->> +#include <linux/completion.h>
->> +#include <linux/gunyah_rsc_mgr.h>
->> +#include <linux/platform_device.h>
->> +
->> +#include "rsc_mgr.h"
->> +
->> +/* Resource Manager Header */
->> +struct gh_rm_rpc_hdr {
->> +	u8 version : 4, hdr_words : 4;
->> +	u8 type : 2, fragments : 6;
+> diff --git a/Documentation/ABI/testing/sysfs-class-led-driver-turris1x b/Documentation/ABI/testing/sysfs-class-led-driver-turris1x
+> new file mode 100644
+> index 000000000000..bb8b82b43165
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-class-led-driver-turris1x
+> @@ -0,0 +1,31 @@
+> +What:		/sys/class/leds/<led>/device/brightness
+> +Date:		July 2022
+> +KernelVersion:	5.20
+> +Contact:	Pali Rohár <pali@kernel.org>
+> +Description:	(RW) On the back size of the Turris 1.x routers there is also
+> +		a button which can be used to control the intensity of all the
+> +		LEDs at once, so that if they are too bright, user can dim them.
+> +
+> +		The CPLD firmware cycles between 8 levels of this global
+> +		brightness (from 100% to 0%), but this setting can have any
+> +		integer value between 0 and 255. It is therefore convenient to be
+> +		able to change this setting from software.
+> +
+> +		Format: %u
+> +
+> +What:		/sys/class/leds/<led>/device/brightness_level
+> +Date:		July 2022
+> +KernelVersion:	5.20
+> +Contact:	Pali Rohár <pali@kernel.org>
+> +Description:	(RW) Current brightness level value (0-7).
+> +
+> +		Format: %u
+> +
+> +What:		/sys/class/leds/<led>/device/brightness_values
+> +Date:		July 2022
+> +KernelVersion:	5.20
+> +Contact:	Pali Rohár <pali@kernel.org>
+> +Description:	(RW) Values of all 8 levels between which CPLD firmware cycles
+> +		when brightness button is pressed.
+> +
+> +		Format: %u %u %u %u %u %u %u %u
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index a49979f41eee..71caf45c8ac3 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -157,6 +157,15 @@ config LEDS_EL15203000
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called leds-el15203000.
+>  
+> +config LEDS_TURRIS_1X
+> +	tristate "LED support for CZ.NIC's Turris 1.x"
+> +	depends on LEDS_CLASS_MULTICOLOR
+> +	depends on OF
+> +	select LEDS_TRIGGERS
+> +	help
+> +	  This option enables support for LEDs found on the front side of
+> +	  CZ.NIC's Turris 1.x routers.
+> +
+>  config LEDS_TURRIS_OMNIA
+>  	tristate "LED support for CZ.NIC's Turris Omnia"
+>  	depends on LEDS_CLASS_MULTICOLOR
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 4fd2f92cd198..de08083dbbca 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -82,6 +82,7 @@ obj-$(CONFIG_LEDS_TCA6507)		+= leds-tca6507.o
+>  obj-$(CONFIG_LEDS_TI_LMU_COMMON)	+= leds-ti-lmu-common.o
+>  obj-$(CONFIG_LEDS_TLC591XX)		+= leds-tlc591xx.o
+>  obj-$(CONFIG_LEDS_TPS6105X)		+= leds-tps6105x.o
+> +obj-$(CONFIG_LEDS_TURRIS_1X)		+= leds-turris-1x.o
+>  obj-$(CONFIG_LEDS_TURRIS_OMNIA)		+= leds-turris-omnia.o
+>  obj-$(CONFIG_LEDS_WM831X_STATUS)	+= leds-wm831x-status.o
+>  obj-$(CONFIG_LEDS_WM8350)		+= leds-wm8350.o
+> diff --git a/drivers/leds/leds-turris-1x.c b/drivers/leds/leds-turris-1x.c
+> new file mode 100644
+> index 000000000000..cf7567b64306
+> --- /dev/null
+> +++ b/drivers/leds/leds-turris-1x.c
+> @@ -0,0 +1,474 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// (C) 2022 Pali Rohár <pali@kernel.org>
+> +//
+> +// CZ.NIC's Turris 1.x LEDs driver, controlled by CPLD firmware:
+> +// https://gitlab.nic.cz/turris/hw/turris_cpld/-/blob/master/CZ_NIC_Router_CPLD.v
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/led-class-multicolor.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include "leds.h"
+> +
+> +/* LED registers starts at byte 0x13 in CPLD memory map */
+> +#define TURRIS1X_LED_REG_OFF(reg) ((reg)-0x13)
+> +
+> +/* LEDs 1-5 share common register for setting brightness */
+> +#define TURRIS1X_LED_BRIGHTNESS_OFF(idx)	({ const u8 _idx = (idx) & 7; \
+> +						   (_idx == 0) ? 0 : \
+> +						   (_idx <= 5) ? 1 : \
+> +						   (_idx - 4); })
+> +
+> +#define TURRIS1X_LED_BRIGHTNESS_REG(idx, color)	TURRIS1X_LED_REG_OFF(0x13 + \
+> +						  3 * TURRIS1X_LED_BRIGHTNESS_OFF(idx) + \
+> +						  ((color) & 3))
+> +#define TURRIS1X_LED_GLOBAL_LEVEL_REG		TURRIS1X_LED_REG_OFF(0x20)
+> +#define TURRIS1X_LED_GET_GLOBAL_BRIGHTNESS_REG	TURRIS1X_LED_REG_OFF(0x21)
+> +#define TURRIS1X_LED_SW_OVERRIDE_REG		TURRIS1X_LED_REG_OFF(0x22)
+> +#define TURRIS1X_LED_SW_DISABLE_REG		TURRIS1X_LED_REG_OFF(0x23)
+> +#define TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(lvl)	TURRIS1X_LED_REG_OFF(0x28 + ((lvl) & 7))
+> +
+> +struct turris1x_led {
+> +	struct led_classdev_mc mc_cdev;
+> +	struct mc_subled subled_info[3];
+> +	u32 reg;
+> +	bool registered;
+> +};
+> +
+> +#define to_turris1x_led(l)	container_of(l, struct turris1x_led, mc_cdev)
+> +
+> +struct turris1x_leds {
+> +	void __iomem *regs;
+> +	struct mutex lock;
+> +	struct turris1x_led leds[8];
+> +};
+> +
+> +static struct led_hw_trigger_type turris1x_hw_trigger_type;
+> +
+> +static int turris1x_hwtrig_activate(struct led_classdev *cdev)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(cdev->dev->parent);
+> +	struct turris1x_led *led = to_turris1x_led(lcdev_to_mccdev(cdev));
+> +	u8 val;
+> +
+> +	/* Disable software control of LED */
+> +	mutex_lock(&leds->lock);
+> +	val = readb(leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +	val &= ~BIT(led->reg);
+> +	writeb(val, leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +	mutex_unlock(&leds->lock);
+> +
+> +	return 0;
+> +}
+> +
+> +static void turris1x_hwtrig_deactivate(struct led_classdev *cdev)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(cdev->dev->parent);
+> +	struct turris1x_led *led = to_turris1x_led(lcdev_to_mccdev(cdev));
+> +	u8 val;
+> +
+> +	/* Enable software control of LED */
+> +	mutex_lock(&leds->lock);
+> +	val = readb(leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +	val |= BIT(led->reg);
+> +	writeb(val, leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +	mutex_unlock(&leds->lock);
+> +}
+> +
+> +static struct led_trigger turris1x_hw_trigger = {
+> +	.name		= "turris1x-cpld",
+> +	.activate	= turris1x_hwtrig_activate,
+> +	.deactivate	= turris1x_hwtrig_deactivate,
+> +	.trigger_type	= &turris1x_hw_trigger_type,
+> +};
+> +
+> +static enum led_brightness turris1x_led_brightness_get(struct led_classdev *cdev)
+> +{
+> +	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
+> +	struct turris1x_leds *leds = dev_get_drvdata(cdev->dev->parent);
+> +	struct turris1x_led *led = to_turris1x_led(mc_cdev);
+> +
+> +	if (!(readb(leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG) & BIT(led->reg)))
+> +		return 1;
+> +	else if (!(readb(leds->regs + TURRIS1X_LED_SW_DISABLE_REG) & BIT(led->reg)))
+> +		return 1;
+> +	else
+> +		return 0;
+> +}
+> +
+> +static void turris1x_led_brightness_set(struct led_classdev *cdev,
+> +					enum led_brightness brightness)
+> +{
+> +	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
+> +	struct turris1x_leds *leds = dev_get_drvdata(cdev->dev->parent);
+> +	struct turris1x_led *led = to_turris1x_led(mc_cdev);
+> +	int i, j;
+> +	u8 val;
+> +
+> +	mutex_lock(&leds->lock);
+> +
+> +	/* Set new brightness value for each color when LED is enabled */
+> +	if (brightness) {
+> +		led_mc_calc_color_components(mc_cdev, brightness);
+> +		for (i = 0; i < ARRAY_SIZE(led->subled_info); i++)
+> +			writeb(mc_cdev->subled_info[i].brightness,
+> +			       leds->regs + TURRIS1X_LED_BRIGHTNESS_REG(led->reg, i));
+> +
+> +		/*
+> +		 * LEDs 1-5 (LAN) share common color settings in same sets
+> +		 * of HW registers and therefore it is not possible to set
+> +		 * different colors. So when chaning color of one LED then
+> +		 * reflect color change for all of them.
+> +		 */
+> +		if (led->reg >= 1 && led->reg <= 5) {
+> +			for (j = 0; j < ARRAY_SIZE(leds->leds); j++) {
+> +				if (leds->leds[j].reg < 1 ||
+> +				    leds->leds[j].reg > 5 ||
+> +				    leds->leds[j].reg == led->reg)
+> +					continue;
+> +				for (i = 0; i < ARRAY_SIZE(led->subled_info); i++)
+> +					leds->leds[j].mc_cdev.subled_info[i].intensity =
+> +						mc_cdev->subled_info[i].intensity;
+> +			}
+> +		}
+> +	}
+> +
+> +	/* Enable / disable LED for software control */
+> +	val = readb(leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +	if (brightness && (val & BIT(led->reg)))
+> +		writeb(val & ~BIT(led->reg),
+> +		       leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +	else if (!brightness && !(val & BIT(led->reg)))
+> +		writeb(val | BIT(led->reg),
+> +		       leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +
+> +	mutex_unlock(&leds->lock);
+> +}
+> +
+> +static int turris1x_led_register(struct device *dev, struct turris1x_leds *leds,
+> +				 struct device_node *np, u8 val_sw_override,
+> +				 u8 val_sw_disable)
+> +{
+> +	struct led_init_data init_data = {};
+> +	struct led_classdev *cdev;
+> +	struct turris1x_led *led;
+> +	int ret, color;
+> +	u32 reg;
+> +	int i;
+> +
+> +	const unsigned int colors[ARRAY_SIZE(led->subled_info)] = {
+> +		LED_COLOR_ID_RED, LED_COLOR_ID_GREEN, LED_COLOR_ID_BLUE
+> +	};
+> +
+> +	ret = of_property_read_u32(np, "reg", &reg);
+> +	if (ret || reg >= ARRAY_SIZE(leds->leds)) {
+> +		dev_err(dev,
+> +			"Node %pOF: must contain 'reg' property with values between 0 and %u\n",
+> +			np, (unsigned int)ARRAY_SIZE(leds->leds) - 1);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = of_property_read_u32(np, "color", &color);
+> +	if (ret || color != LED_COLOR_ID_RGB) {
+> +		dev_err(dev,
+> +			"Node %pOF: must contain 'color' property with value LED_COLOR_ID_RGB\n",
+> +			np);
+> +		return -EINVAL;
+> +	}
+> +
+> +	led = &leds->leds[reg];
+> +
+> +	if (led->registered) {
+> +		dev_err(dev, "Node %pOF: duplicate 'reg' property %u\n",
+> +			     np, reg);
+> +		return -EINVAL;
+> +	}
+> +
+> +	led->registered = true;
+> +	led->reg = reg;
+> +
+> +	/* Set initial colors to what are currently in use */
+> +	for (i = 0; i < ARRAY_SIZE(led->subled_info); i++) {
+> +		led->subled_info[i].intensity =
+> +			readb(leds->regs + TURRIS1X_LED_BRIGHTNESS_REG(reg, i));
+> +		led->subled_info[i].color_index = colors[i];
+> +		led->subled_info[i].channel = i;
+> +	}
+> +
+> +	led->mc_cdev.subled_info = led->subled_info;
+> +	led->mc_cdev.num_colors = ARRAY_SIZE(led->subled_info);
+> +
+> +	init_data.fwnode = &np->fwnode;
+> +
+> +	cdev = &led->mc_cdev.led_cdev;
+> +	cdev->max_brightness = 1;
+> +	cdev->brightness_get = turris1x_led_brightness_get;
+> +	cdev->brightness_set = turris1x_led_brightness_set;
+> +
+> +	/* All LEDs except LED 6 (WiFi) can be controller by hardware trigger */
+> +	if (reg != 6)
+> +		cdev->trigger_type = &turris1x_hw_trigger_type;
+> +
+> +	/* Disable hardware trigger for LED 6 (WiFi) - allow software control */
+> +	if (reg == 6 && !(val_sw_override & BIT(6))) {
+> +		if (!(val_sw_disable & BIT(6))) {
+> +			val_sw_disable |= BIT(6);
+> +			writeb(val_sw_disable,
+> +			       leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +		}
+> +		val_sw_override |= BIT(6);
+> +		writeb(val_sw_override,
+> +		       leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +	}
+> +
+> +	if (!(val_sw_override & BIT(reg)))
+> +		cdev->default_trigger = turris1x_hw_trigger.name;
+> +
+> +	if (!(val_sw_override & BIT(reg)) || !(val_sw_disable & BIT(reg)))
+> +		cdev->brightness = 1;
+> +
+> +	ret = devm_led_classdev_multicolor_register_ext(dev, &led->mc_cdev,
+> +							&init_data);
+> +	if (ret) {
+> +		dev_err(dev, "Cannot register LED %pOF: %i\n", np, ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t brightness_show(struct device *dev, struct device_attribute *a,
+> +			       char *buf)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(dev);
+> +	unsigned int brightness;
+> +
+> +	/*
+> +	 * Current brightness value is available in read-only register
+> +	 * TURRIS1X_LED_GET_GLOBAL_BRIGHTNESS_REG. Equivalent code is:
+> +	 * level = readb(leds->regs + TURRIS1X_LED_GLOBAL_LEVEL_REG) & 7;
+> +	 * brightness = readb(leds->regs + TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(level));
+> +	 */
+> +	brightness = readb(leds->regs + TURRIS1X_LED_GET_GLOBAL_BRIGHTNESS_REG);
+> +
+> +	return sprintf(buf, "%u\n", brightness);
+> +}
+> +
+> +static ssize_t brightness_store(struct device *dev, struct device_attribute *a,
+> +				const char *buf, size_t count)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(dev);
+> +	int best_error, error, level, value;
+> +	unsigned long brightness;
+> +	u8 best_level;
+> +
+> +	if (kstrtoul(buf, 10, &brightness))
+> +		return -EINVAL;
+> +
+> +	if (brightness > 255)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Brightness can be set only to one of 8 predefined value levels
+> +	 * available in TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(level) registers.
+> +	 * Choose level which has nearest value to the specified brightness.
+> +	 */
+> +	best_level = 0;
+> +	best_error = INT_MAX;
+> +	for (level = 0; level < 8; level++) {
+> +		value = readb(leds->regs +
+> +			      TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(level));
+> +		error = abs(value - (int)brightness);
+> +		if (best_error > error) {
+> +			best_error = error;
+> +			best_level = level;
+> +		}
+> +	}
+> +
+> +	writeb(best_level, leds->regs + TURRIS1X_LED_GLOBAL_LEVEL_REG);
+> +
+> +	return count;
+> +}
+> +static DEVICE_ATTR_RW(brightness);
+> +
+> +static ssize_t brightness_level_show(struct device *dev,
+> +				     struct device_attribute *a, char *buf)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(dev);
+> +	unsigned int level;
+> +
+> +	level = readb(leds->regs + TURRIS1X_LED_GLOBAL_LEVEL_REG) & 7;
+> +
+> +	return sprintf(buf, "%u\n", level);
+> +}
+> +
+> +static ssize_t brightness_level_store(struct device *dev,
+> +				      struct device_attribute *a,
+> +				      const char *buf, size_t count)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(dev);
+> +	unsigned long level;
+> +
+> +	if (kstrtoul(buf, 10, &level))
+> +		return -EINVAL;
+> +
+> +	if (level > 7)
+> +		return -EINVAL;
+> +
+> +	writeb(level, leds->regs + TURRIS1X_LED_GLOBAL_LEVEL_REG);
+> +
+> +	return count;
+> +}
+> +static DEVICE_ATTR_RW(brightness_level);
+> +
+> +static ssize_t brightness_values_show(struct device *dev,
+> +				      struct device_attribute *a, char *buf)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(dev);
+> +	unsigned int vals[8];
+> +	int i;
+> +
+> +	for (i = 0; i < 8; i++)
+> +		vals[i] = readb(leds->regs +
+> +				TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(i));
+> +
+> +	return sprintf(buf, "%u %u %u %u %u %u %u %u\n", vals[0], vals[1],
+> +		       vals[2], vals[3], vals[4], vals[5], vals[6], vals[7]);
+> +}
+> +
+> +static ssize_t brightness_values_store(struct device *dev,
+> +				       struct device_attribute *a,
+> +				       const char *buf, size_t count)
+> +{
+> +	struct turris1x_leds *leds = dev_get_drvdata(dev);
+> +	unsigned int vals[8];
+> +	int nchars;
+> +	int i;
+> +
+> +	if (sscanf(buf, "%u %u %u %u %u %u %u %u%n", &vals[0], &vals[1],
+> +		   &vals[2], &vals[3], &vals[4], &vals[5], &vals[6], &vals[7],
+> +		   &nchars) != 8 || nchars + 1 < count)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < 8; i++)
+> +		writeb(vals[i],
+> +		       leds->regs + TURRIS1X_LED_GLOBAL_BRIGHTNESS_REG(i));
+> +
+> +	return count;
+> +}
+> +static DEVICE_ATTR_RW(brightness_values);
+> +
+> +static struct attribute *turris1x_leds_controller_attrs[] = {
+> +	&dev_attr_brightness.attr,
+> +	&dev_attr_brightness_level.attr,
+> +	&dev_attr_brightness_values.attr,
+> +	NULL,
+> +};
+> +ATTRIBUTE_GROUPS(turris1x_leds_controller);
+> +
+> +static int turris1x_leds_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev_of_node(dev);
+> +	struct device_node *child;
+> +	struct turris1x_leds *leds;
+> +	struct resource *res;
+> +	void __iomem *regs;
+> +	u8 val_sw_override;
+> +	u8 val_sw_disable;
+> +	int ret;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!res)
+> +		return -ENODEV;
+> +
+> +	regs = devm_ioremap_resource(dev, res);
+> +	if (IS_ERR(regs))
+> +		return PTR_ERR(regs);
+> +
+> +	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
+> +	if (!leds)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, leds);
+> +
+> +	leds->regs = regs;
+> +	mutex_init(&leds->lock);
+> +
+> +	ret = devm_led_trigger_register(dev, &turris1x_hw_trigger);
+> +	if (ret) {
+> +		dev_err(dev, "Cannot register private LED trigger: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	val_sw_override = readb(leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +	val_sw_disable = readb(leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +
+> +	for_each_available_child_of_node(np, child) {
+> +		ret = turris1x_led_register(dev, leds, child,
+> +					    val_sw_override, val_sw_disable);
+> +		if (ret) {
+> +			of_node_put(child);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	ret = devm_device_add_groups(dev, turris1x_leds_controller_groups);
+> +	if (ret) {
+> +		dev_err(dev, "Could not add attribute group!\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void turris1x_leds_shutdown(struct platform_device *pdev)
+> +{
+> +	struct turris1x_leds *leds = platform_get_drvdata(pdev);
+> +	int i, j;
+> +	u8 val;
+> +
+> +	/*
+> +	 * LED registers are persisent across board resets.
+> +	 * So reset LEDs to default state before kernel reboots.
+> +	 */
+> +
+> +	/* Disable software control of all LEDs except LED 6 (WiFi) */
+> +	writeb(BIT(6), leds->regs + TURRIS1X_LED_SW_OVERRIDE_REG);
+> +
+> +	/* Turn off LED 6 (WiFi) as there is no hardware trigger for it */
+> +	val = readb(leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +	writeb(val | BIT(6), leds->regs + TURRIS1X_LED_SW_DISABLE_REG);
+> +
+> +	/* Reset colors of all LEDs to default values */
+> +	for (i = 0; i < ARRAY_SIZE(leds->leds); i++) {
+> +		/* Skip LAN2-LAN5 LEDs which share color register with LAN1 */
+> +		if (i >= 2 && i <= 5)
+> +			continue;
+> +		for (j = 0; j < ARRAY_SIZE(leds->leds[i].subled_info); j++)
+> +			writeb(0xff,
+> +			       leds->regs + TURRIS1X_LED_BRIGHTNESS_REG(i, j));
+> +	}
+> +}
+> +
+> +static const struct of_device_id of_turris1x_leds_match[] = {
+> +	{ .compatible = "cznic,turris1x-leds" },
+> +	{},
+> +};
+> +
+> +static struct platform_driver turris1x_leds_driver = {
+> +	.probe = turris1x_leds_probe,
+> +	.shutdown = turris1x_leds_shutdown,
+> +	.driver = {
+> +		.name = "turris1x_leds",
+> +		.of_match_table = of_turris1x_leds_match,
+> +	},
+> +};
+> +module_platform_driver(turris1x_leds_driver);
+> +
+> +MODULE_AUTHOR("Pali Rohár <pali@kernel.org>");
+> +MODULE_DESCRIPTION("CZ.NIC's Turris 1.x LEDs");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:turris1x_leds");
+> -- 
+> 2.20.1
 > 
-> Ick, that's hard to read.  One variable per line please?
-
-Ack.
-
-> And why the bit packed stuff?  Are you sure this is the way to do this?
-> Why not use a bitmask instead?
-> 
-
-I felt bit packed implementation is cleaner and easier to map to 
-understanding what the fields are used for.
-
->> +	u16 seq;
->> +	u32 msg_id;
->> +} __packed;
->> +
->> +/* Standard reply header */
->> +struct gh_rm_rpc_reply_hdr {
->> +	struct gh_rm_rpc_hdr rpc_hdr;
->> +	u32 err_code;
->> +} __packed;
->> +
->> +/* RPC Header versions */
->> +#define GH_RM_RPC_HDR_VERSION_ONE	0x1
->> +
->> +/* RPC Header words */
->> +#define GH_RM_RPC_HDR_WORDS		0x2
->> +
->> +/* RPC Message types */
->> +#define GH_RM_RPC_TYPE_CONT		0x0
->> +#define GH_RM_RPC_TYPE_REQ		0x1
->> +#define GH_RM_RPC_TYPE_RPLY		0x2
->> +#define GH_RM_RPC_TYPE_NOTIF		0x3
->> +
->> +#define GH_RM_MAX_NUM_FRAGMENTS		62
->> +
->> +#define GH_RM_MAX_MSG_SIZE	(GH_MSGQ_MAX_MSG_SIZE - sizeof(struct gh_rm_rpc_hdr))
->> +
->> +/**
->> + * struct gh_rm_connection - Represents a complete message from resource manager
->> + * @payload: Combined payload of all the fragments (msg headers stripped off).
->> + * @size: Size of the payload.
->> + * @ret: Linux return code, set in case there was an error processing connection
->> + * @msg_id: Message ID from the header.
->> + * @type: GH_RM_RPC_TYPE_RPLY or GH_RM_RPC_TYPE_NOTIF.
->> + * @num_fragments: total number of fragments expected to be received.
->> + * @fragments_received: fragments received so far.
->> + * @rm_error: For request/reply sequences with standard replies.
->> + * @seq: Sequence ID for the main message.
->> + * @seq_done: Signals caller that the RM reply has been received
->> + */
->> +struct gh_rm_connection {
->> +	void *payload;
->> +	size_t size;
->> +	int ret;
->> +	u32 msg_id;
->> +	u8 type;
->> +
->> +	u8 num_fragments;
->> +	u8 fragments_received;
->> +
->> +	/* only for req/reply sequence */
->> +	u32 rm_error;
->> +	u16 seq;
->> +	struct completion seq_done;
->> +};
->> +
->> +struct gh_rm_notif_complete {
->> +	struct gh_rm_connection *conn;
->> +	struct work_struct work;
->> +};
->> +
->> +struct gh_rsc_mgr {
->> +	struct gunyah_resource tx_ghrsc, rx_ghrsc;
->> +	struct gh_msgq msgq;
->> +	struct mbox_client msgq_client;
->> +	struct gh_rm_connection *active_rx_connection;
->> +	int last_tx_ret;
->> +
->> +	struct idr call_idr;
->> +	struct mutex call_idr_lock;
->> +
->> +	struct mutex send_lock;
->> +
->> +	struct work_struct recv_work;
->> +};
->> +
->> +static struct gh_rsc_mgr *__rsc_mgr;
-> 
-> Sorry, no, you don't get to just limit yourself to one of these.  Please
-> make this properly handle any number of "resource managers", static
-> variables like this is not ok.
-> 
-
-There will only ever be one resource manager. optee, psci, and qcom_scm 
-use a similar approach.
-
->> +SRCU_NOTIFIER_HEAD_STATIC(gh_rm_notifier);
-> 
-> Why do you need a notifier list?
-> 
-> Who will register for this?  For what?  Why?
-> 
-
-The majority of notifications that RM sends to Linux will be related to 
-VM state, e.g. "VM crashed." I've not added the handling in VM manager 
-yet to reduce the number of patches in this series. It was used in the 
-previous series for the console driver. I can remove for now and 
-re-introduce it once VM manager makes use?
-
->> +static int gh_rm_drv_probe(struct platform_device *pdev)
->> +{
->> +	struct gh_rsc_mgr *rsc_mgr;
->> +	int ret;
->> +
->> +	rsc_mgr = devm_kzalloc(&pdev->dev, sizeof(*rsc_mgr), GFP_KERNEL);
->> +	if (!rsc_mgr)
->> +		return -ENOMEM;
->> +	platform_set_drvdata(pdev, rsc_mgr);
->> +
->> +	mutex_init(&rsc_mgr->call_idr_lock);
->> +	idr_init(&rsc_mgr->call_idr);
->> +	mutex_init(&rsc_mgr->send_lock);
->> +
->> +	ret = gh_msgq_platform_probe_direction(pdev, GUNYAH_RESOURCE_TYPE_MSGQ_TX, 0,
->> +						&rsc_mgr->tx_ghrsc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = gh_msgq_platform_probe_direction(pdev, GUNYAH_RESOURCE_TYPE_MSGQ_RX, 1,
->> +						&rsc_mgr->rx_ghrsc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	rsc_mgr->msgq_client.dev = &pdev->dev;
-> 
-> So your client device is the platform device, and not a new bridge
-> device that you create instead?  Why?
-> 
-
-Answered below
-
->> +	rsc_mgr->msgq_client.tx_block = true;
->> +	rsc_mgr->msgq_client.rx_callback = gh_rm_msgq_rx_data;
->> +	rsc_mgr->msgq_client.tx_done = gh_rm_msgq_tx_done;
->> +
->> +	ret = gh_msgq_init(&pdev->dev, &rsc_mgr->msgq, &rsc_mgr->msgq_client,
->> +				&rsc_mgr->tx_ghrsc, &rsc_mgr->rx_ghrsc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	__rsc_mgr = rsc_mgr;
->> +
->> +	return 0;
->> +}
->> +static struct platform_driver gh_rm_driver = {
->> +	.probe = gh_rm_drv_probe,
->> +	.remove = gh_rm_drv_remove,
->> +	.driver = {
->> +		.name = "gh_rsc_mgr",
->> +		.of_match_table = gh_rm_of_match,
->> +	},
-> 
-> Wait, why is this a platform driver?  This is binding to a real device
-> on a real bus, not a random platform description in DT, right?
-
-This a binding for a real device and not a "random platform description" 
-in DT to get the driver probed.
-
-> Or is it controlled by your DT?  I can't figure that out here, sorry.
-
-There is some info in Patch 2 about why the DT node exists and how it 
-looks. Essentially, The DT node is provided by Gunyah during boot and 
-describes how Linux can communicate with resource manager.
-
-Thanks,
-Elliot
