@@ -2,62 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC90616555
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEA2C6165B5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:04:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbiKBOvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 10:51:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41528 "EHLO
+        id S230124AbiKBPEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 11:04:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbiKBOvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:51:10 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011C52A700
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:51:07 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A2EopTU064892;
-        Wed, 2 Nov 2022 09:50:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667400651;
-        bh=ATCfvfeh2cJtdQTJVgRZ8kAKxa671yfA3L7iZ9NvMno=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=scucFKSHqYerHdLExO6+282zTjvDv3ZD5sDt+kwBccEf2ni5xtLszrVDMMNNXgv5J
-         ukuPIv/I3eLy8ggDyLF5gfjDXJLZkvMx6ELBA4Leu8EWfSvb5zB3wyOfT+KvGlacVg
-         IdXUsMRpvoW84rmc7eUkoIg78JObEtqRC/R3oF2g=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A2Eoph0008286
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Nov 2022 09:50:51 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
- 2022 09:50:50 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 2 Nov 2022 09:50:50 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A2Eoo2M081701;
-        Wed, 2 Nov 2022 09:50:50 -0500
-Date:   Wed, 2 Nov 2022 09:50:49 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Wadim Egorov <w.egorov@phytec.de>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: ti: Add bindings for PHYTEC AM64x
- based hardware
-Message-ID: <20221102145049.tpqo4qwhybbq6yuu@entitle>
-References: <20221102134923.3438022-1-w.egorov@phytec.de>
+        with ESMTP id S230493AbiKBPEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:04:16 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 823732B261
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 08:03:57 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id s20so5476081qkg.5
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 08:03:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zy78pOro/kNGaH6GiKHB1Btqlcj1EjPqbvOYH931OQc=;
+        b=Elh+yNpir9fVQH/ZqSBfiGNl24FRuTTs6B2iJO5xtICf02Lftb/tBUCWPDcIlAezKv
+         prMSGtaIbjTka4ojowDRQbWUxRqD4OaS0AU7jxtT9KNSWtZYhBDNjCuv6vsC3GuWiDJo
+         Sfo0iPKlqgZlzwBeSZNrex4iwr8AusiEpqU5SRJMCbQvSAYP1u3JYiT2mXngOA4sa0Gj
+         B985w7XSBFH5sAbNNv9V3qQfWkExTY9svD15unM0ZybnpHS+feMl3caGbQpvAJc36VIV
+         YESW61ElTlpJr5Civdksv2QCQt5rnBQ64YBHQVOypRK/5ENzfMvqNfLhAsGFqy7ieGR8
+         E2Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zy78pOro/kNGaH6GiKHB1Btqlcj1EjPqbvOYH931OQc=;
+        b=Gh+lX7yrwKujm5eXwmUPm4U1XB/6AhIgYJFg76crMrhwyZTHGf5GljLuMdRJeBfgzn
+         L54oA+orZfGKIdxezPB8QqqaLCELR4PXl5tz+4xzaqj41LW3UmG/TNlYcOUTit4A3EE1
+         QgV5GDhyZroTezrma2yZ+VG4CL9YnD+YYtpsvT3nXH7xicH/yneVxka+3t+XYd2a0obM
+         XtoCKtXZ3MwkRU1Ss5yPiUTgEturABS0EoqJrhRG0rcrlDNvxOgpVqSvOw5EVHHRllmu
+         s7MKjefNyXlnV/ZCDTtu+NA1vVS2kA0uDBEEay7JPrJOqV0VnydI7woY+JeWxKKoLIJ6
+         Cgbw==
+X-Gm-Message-State: ACrzQf1+/oVi/UfQlJIhsoowMuuhjjbmBpd+aVTydhZCpv27oY4tc7rD
+        mDOkp8r92Th/E7/jbRWce5Sg+C84ofl2ig==
+X-Google-Smtp-Source: AMsMyM5nABmPNo1XLYdsPzLxGDL/SItBhtuUNMUriLzYSJvmRMWrahFZimJxCAyJWz6ozdsyYVpVEw==
+X-Received: by 2002:a05:620a:29cd:b0:6d2:c5d6:6fe0 with SMTP id s13-20020a05620a29cd00b006d2c5d66fe0mr18452610qkp.148.1667401412454;
+        Wed, 02 Nov 2022 08:03:32 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id fb24-20020a05622a481800b003a51d65b8basm5786562qtb.36.2022.11.02.08.03.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 08:03:31 -0700 (PDT)
+Message-ID: <54e6c11b-d7f6-bb72-8604-652993b2d132@linaro.org>
+Date:   Wed, 2 Nov 2022 11:03:30 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20221102134923.3438022-1-w.egorov@phytec.de>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 1/4] dt-bindings: pwm: Add Apple PWM controller
+Content-Language: en-US
+To:     Sasha Finkelstein <fnkl.kernel@gmail.com>,
+        thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221102141513.49289-1-fnkl.kernel@gmail.com>
+ <20221102141513.49289-2-fnkl.kernel@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221102141513.49289-2-fnkl.kernel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,47 +78,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:49-20221102, Wadim Egorov wrote:
-> Add devicetree bindings for AM64x based phyCORE-AM64 SoM
-> and phyBOARD-Electra RDK.
-
-Please add a immutable link to the product (if possible with board
-information) etc.
-
+On 02/11/2022 10:15, Sasha Finkelstein wrote:
+> Apple SoCs such as the M1 contain a PWM controller used
+> among other things to control the keyboard backlight.
 > 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> index 28b8232e1c5b..2b9c045e39bf 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> @@ -38,6 +38,12 @@ properties:
->                - ti,am642-sk
->            - const: ti,am642
->  
-> +      - description: K3 AM642 SoC PHYTEC phyBOARD-Electra
-> +        items:
-> +          - const: phytec,am642-phyboard-electra-rdk
-> +          - const: phytec,am64-phycore-som
-> +          - const: ti,am642
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
 
-Are there more platforms on the route based on the SoM that we can add
-as a diff with a single board? Is this something we can club
-with the previous entry in a manner that allows us to not to duplicate
-ti,am642 ?
 
-> +
->        - description: K3 AM654 SoC
->          items:
->            - enum:
-> -- 
-> 2.34.1
-> 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Best regards,
+Krzysztof
+
