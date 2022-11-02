@@ -2,120 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A38D616DCA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F89616DD8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbiKBT0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 15:26:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49220 "EHLO
+        id S229640AbiKBTbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 15:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbiKBT0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:26:03 -0400
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F36185
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 12:26:02 -0700 (PDT)
-Received: by mail-qv1-xf32.google.com with SMTP id e15so13167295qvo.4
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 12:26:02 -0700 (PDT)
+        with ESMTP id S230209AbiKBTbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:31:47 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8913A236
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 12:31:46 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id l2so7314446qtq.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 12:31:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bZ0c9n3S/7R/juAKL/MuQmyZ52QEpr04qFxA/MunVX4=;
-        b=MY+dEW0wPbHYY6f/JC/JnMp+6uroYZomjMRscKoUq6BxwMFbFjj+DOp2TcG48TQidw
-         ++iqOOnhC5OtFyrEjofDZKkOqYkoP8GaxYNkpxR48rDubtqxit4hIpQsEy3pjeFVVBqx
-         DoGJgbrM0Y3zd9UoHaLDbeCzblFurOhmg0UXnUiYYjRCp/6alURNVgqkxPG/wmIu00Dh
-         mdbyaTI05vnqPLZuyw3IiBslvc2GcBUjLsIq0oIa/f8A3TcrOhhi3mzl5Gg6rdqlX1KG
-         aTKuu+l0MZ3yvNtvgN0RQKvPpndgwPRyNv3/MQMN4BbEE0OjX72E5QRvXygjJ0OFNkM/
-         edMg==
+        bh=p0AELgS4t8UtXBBZgsDFgqP0jEWoHaAvuWjU6NHb6SQ=;
+        b=Iakb+OUj9IoilnGvfeNtzEsL01KAarcp13cLMMRklCOMDpUZqiV5lhRzKtuL4rhArf
+         i86demCzggw4H1Y2OzwMK4JhIzr4OErllpHp3t0O9k47rbLa0WfnYA770SYQ1WcN9zHM
+         AN4RhKtqNB7cdTuT5iqbc11WObd2zQtQRWByyVcyIJn2lAqerE2GLV2QDKgbGd9fEvi0
+         ptEVDjLcIFX3YUZd9zcDARKXOnd8Q8CI+qy35CXOeYqSvEQF/jVVCeAxHQTcVzSimtyN
+         2tfylbIGALreo1vIg86tFpNtO2ZF922+jvMI0N62YJdpViBKvHdRCPu4BQ+FTXK2Ij36
+         +iBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bZ0c9n3S/7R/juAKL/MuQmyZ52QEpr04qFxA/MunVX4=;
-        b=SaihvmVCBqBdSsZVdyOHe0Lwjj3kFd4cwWz7CC/7zumEBRPlmvSJ5jaJIfBSs246tR
-         A/+b9T+jgL9dhzapFgRU9tookHiszyGxDFJ17rGjwGqln6fyvcyI6D0WxtrPTBCLvqcZ
-         MRJw6sV+e+tEogooaClqODlo1l/G9F8rrcutVVVMQMvHFyq6DFk2yHoihRnhx3TCqCgU
-         3Z21cJi28lEPw9rhEeYVHN/BGTJ8x7o/KtfbkCmGgocscterYnKgRdPdc/imYPSTGO3E
-         cUipCtIJPohA8tvIVnZ1etaxbsGe1UWy7lpxaEC/GSCLnbnuKQCwTzNF2U1DJyGzKGFC
-         lK2g==
-X-Gm-Message-State: ACrzQf21BCtP6QvCr6kBE12DuQ9ivftBY9DmQDEz7G+RCMrcvafraNc3
-        /swTSdH7ffqe7B2WKk3UllD4zw==
-X-Google-Smtp-Source: AMsMyM5vSN7AXGv7p2SjYikwAFRsnviWIYWPLTa+O5bLfxdrMR2RwAa4LE6i3kp35nDNdEbhEELSiQ==
-X-Received: by 2002:a05:6214:d6e:b0:4b9:692d:c486 with SMTP id 14-20020a0562140d6e00b004b9692dc486mr23080087qvs.104.1667417161687;
-        Wed, 02 Nov 2022 12:26:01 -0700 (PDT)
+        bh=p0AELgS4t8UtXBBZgsDFgqP0jEWoHaAvuWjU6NHb6SQ=;
+        b=OUXQkLgUugiSrcEOMNrXaYgQ5fPda54oVCVSkmf9mbY60ZiCqL7zd1J0M1X12WovDK
+         7wCC4fWYED82EIHz/BEK9j4FT1uwxMVUlW6RR0a9c8bAGSvvDqlJSEBKMJ+dIUW5sqNe
+         ZcQ4G5ONixmaPfGkKHHVsp5f0NpXSk8DSoODJAXkmZGWoDVrxV+VCp3cyfTny84ueasn
+         7pBgmYJG+XvX1vezqaKexqQMZ3/5EsGQvZkT20zeXzK2BXb8pXodmFxj+hyPowYIpRky
+         dUb1qxcPIhqjcC9DkvCl3MpZWaXuYFpJQvNfVq60jeljKXhSB77ojUDNxlBC5grBRffw
+         eXDQ==
+X-Gm-Message-State: ACrzQf071698nfivNvFPKqLK1yrf+uqYnw35cVEEIR04azhKRXtOhxeq
+        NO+KbAtwDmUJoChUuNWlRI50IA==
+X-Google-Smtp-Source: AMsMyM7z7rNWIYSPNcicrFJh2jxX77Z71tEvf2c8Chs+n6Cl1yTZ2zCa80YAN1l/iW4cVHjm6qBoaw==
+X-Received: by 2002:ac8:4c9a:0:b0:3a5:30b5:ff7c with SMTP id j26-20020ac84c9a000000b003a530b5ff7cmr11768311qtv.10.1667417505672;
+        Wed, 02 Nov 2022 12:31:45 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id r17-20020a05620a03d100b006eee3a09ff3sm8872607qkm.69.2022.11.02.12.25.59
+        by smtp.gmail.com with ESMTPSA id c5-20020ac80545000000b00399d5d564b7sm6962288qth.56.2022.11.02.12.31.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 12:26:00 -0700 (PDT)
-Message-ID: <e1233b16-4289-f193-2084-40ea0e587ef8@linaro.org>
-Date:   Wed, 2 Nov 2022 15:25:59 -0400
+        Wed, 02 Nov 2022 12:31:45 -0700 (PDT)
+Message-ID: <7aa2b5f4-c033-89e6-c6a3-f5fcf8c36afa@linaro.org>
+Date:   Wed, 2 Nov 2022 15:31:43 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom,gcc-ipq8074: Use common
- GCC schema
+Subject: Re: [PATCH 2/2] edac: xilinx: Added EDAC support for Xilinx DDR
+ controller
 Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Govind Singh <govinds@codeaurora.org>,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Taniya Das <tdas@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        krishna Lanka <quic_vamslank@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-References: <20221102163153.55460-1-krzysztof.kozlowski@linaro.org>
- <20221102191441.5EE6EC433D6@smtp.kernel.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-edac@vger.kernel.org
+Cc:     git@amd.com, devicetree@vger.kernel.org, michal.simek@xilinx.com,
+        rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org
+References: <20221102084608.28894-1-shubhrajyoti.datta@amd.com>
+ <20221102084608.28894-3-shubhrajyoti.datta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221102191441.5EE6EC433D6@smtp.kernel.org>
+In-Reply-To: <20221102084608.28894-3-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 15:14, Stephen Boyd wrote:
-> Quoting Krzysztof Kozlowski (2022-11-02 09:31:52)
->> Reference common Qualcomm GCC schema to remove common pieces.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Acked-by: Rob Herring <robh@kernel.org>
->>
->> ---
-> 
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> 
-> I figure Bjorn will apply them with other qcom clk patches.
+On 02/11/2022 04:46, Shubhrajyoti Datta wrote:
+> This patch adds EDAC support for Xilinx DDR Controller, this driver
 
-Bjorn,
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-I think you need to update your scripts:
-https://patchwork.ozlabs.org/project/devicetree-bindings/list/?series=325924
+> reports Correctable and Uncorrectable errors , and also creates
+
+No spaces before comma.
+
+> debugfs entries for error injection.
+> 
+> Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
+> 
+>  MAINTAINERS                      |    7 +
+>  drivers/edac/Kconfig             |   11 +
+>  drivers/edac/Makefile            |    1 +
+>  drivers/edac/xilinx_ddrmc_edac.c | 1250 ++++++++++++++++++++++++++++++
+>  4 files changed, 1269 insertions(+)
+>  create mode 100644 drivers/edac/xilinx_ddrmc_edac.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index cf0f18502372..cfeece1d75c5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22631,6 +22631,13 @@ S:	Maintained
+>  F:	drivers/soc/xilinx/xlnx_event_manager.c
+>  F:	include/linux/firmware/xlnx-event-manager.h
+>  
+> +XILINX VERSAL DDRMC EDAC DRIVER
+> +M:	Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> +M:	Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/memory-controllers/xlnx,versal-ddrmc-edac.yaml
+> +F:	drivers/edac/xilinx_ddrmc_edac.c
+> +
+
 
 Best regards,
 Krzysztof
