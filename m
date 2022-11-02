@@ -2,113 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F6F616AC6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC52616AD4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:36:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231249AbiKBRag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 13:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56426 "EHLO
+        id S229561AbiKBRgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 13:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231609AbiKBRaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:30:11 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B02517406
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 10:30:06 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id z14so25545956wrn.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 10:30:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=g+rK1oS5b52BUstGwWG9rUx1UdvvX13i+yEKBaYvTNQ=;
-        b=VD4MJW+qcwgnBm9szQ6+h6/LW+4yTBmfI3sFDOf2xthoO7MmLBx1eTeGY3MeeFuEb7
-         oGNDRpU1BzApBH2MZ7e8VOXw2pp0wZ9ZsMQRbrYBFsQ2ikSt4M+RrDX9Hi6CuZNFkmKy
-         tAWUw0M1kWfDgdW6vEA/N0WAdFI+Kh+s8LFASUK3kbZhooz33+bdWnMNuPkcCQL4Y++K
-         pTQ1TnPNk4ModOIomsgcehbQmISc7NNLnEaBEfs8grDehp7C8gg9+Safmkl/71BkP4IR
-         1mXl5xH+AfW6hfVHd1RyE13RPzYwn6/rJTE0W+Db0wRzHuqQSA3uaNExWFkBh34KGDNU
-         KZ8Q==
+        with ESMTP id S229457AbiKBRf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:35:59 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 740CC2DAA0;
+        Wed,  2 Nov 2022 10:35:58 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id y67so19947951oiy.1;
+        Wed, 02 Nov 2022 10:35:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g+rK1oS5b52BUstGwWG9rUx1UdvvX13i+yEKBaYvTNQ=;
-        b=Bxprzxr333QwSz94RdpiOtxSPeRofy4Y7dYIZUI/hmmeZU80HTht5pEQCZYoA8ndoA
-         V9gae8KPRKDDivhZf4xEcIo1KZkDJIypggBu2ujc77zaqkaG+wH7zG+twG/bzhm9b4Uz
-         lWNnyxe72YzC2IimLS+7Zs40xRBZuylQrRJwAG+Dbnlq27HRXxEFsogRWoD1zf5pGcGF
-         oF6d0eoS3TYY8TWSQMZWLtz2qud4qKMV6G2dDPdFzP9jHsBEORN3OVQd5U7c0uDFMczk
-         UK5rlU0FgGg0cfG7JzTYrlfS1zfqbcEjibXffoJ1icXVo66yiPs0UyTZy5iGFMR95MTr
-         DFeQ==
-X-Gm-Message-State: ACrzQf1NfB6CTrLbZtaUdHWEl95hrGvPnVHQZBJQsAYZpuXML7eZtUbI
-        /8a/qfYZZhjKr125MH6e566hAj97ll0eQ2ke6EirMA==
-X-Google-Smtp-Source: AMsMyM4+uiTjeEtL+Z6dWj5D18OHpZ4bBgrqXby9zaGCPTR2QKHUYJzfcJMmInKTZJQKz5CYR/UtzCeAgzxhi5IkKQA=
-X-Received: by 2002:a5d:6743:0:b0:236:6301:918 with SMTP id
- l3-20020a5d6743000000b0023663010918mr16200534wrw.247.1667410205063; Wed, 02
- Nov 2022 10:30:05 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L+RvV9HroI0e17hg2yo5PeRMsRDFO5hYneSn93G5vAw=;
+        b=vq89r9WaxZLs1bFnZiCBES67z1fuQxNaGJTxNHnvl9a5qVZK1S/1Z023dBc5YpXpyl
+         8hCgRHNWTtR9fbRlb+VnDqHgQIMHUQPS8zDSS9ebzjzRTbRNzxL6PAf6vh2HG9jArQhO
+         GykBt03jOmouSt2DUTL0WGsb7SPRREY78N7K73HzcLUx/D1OXXkRid/Qxixw2oh7CR2J
+         vS8Nm7oJDUIEU6TO5S6z6UGguyT27WJibEjlxeRjqFL0Qvw23isZjOgH9KHzZpcQ5lLq
+         EQpA26sS5SSAFAr7df+Lvus3qkre38JJbSlz6vQ1VVJD2C/1VFkIsofu59V9spnhwID0
+         xa5w==
+X-Gm-Message-State: ACrzQf3VDsQ8ynifRnbKvRcyUoMMo2TiSzYXtA7U22dapWPHUnXV59Pb
+        2FHyS9uKcIaO+hKcW/oqWg==
+X-Google-Smtp-Source: AMsMyM6S6yrU8ZP1Vft7Pfk72GvckKRnabbPfsNxEGLyAuPRkh1o8+IaC7Nwzw++fcYP0UzthbF41Q==
+X-Received: by 2002:a05:6808:178a:b0:359:fe7a:14ac with SMTP id bg10-20020a056808178a00b00359fe7a14acmr10682650oib.34.1667410557660;
+        Wed, 02 Nov 2022 10:35:57 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e66-20020a4a5545000000b004805e9e9f3dsm4713825oob.1.2022.11.02.10.35.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 10:35:57 -0700 (PDT)
+Received: (nullmailer pid 5954 invoked by uid 1000);
+        Wed, 02 Nov 2022 17:35:58 -0000
+Date:   Wed, 2 Nov 2022 12:35:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Andrew Davis <afd@ti.com>
+Cc:     Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/9] dt-bindings: mfd: Add TI-Nspire misc registers
+Message-ID: <20221102173558.GA4193055-robh@kernel.org>
+References: <20221101215804.16262-1-afd@ti.com>
+ <20221101215804.16262-2-afd@ti.com>
 MIME-Version: 1.0
-References: <20221102112451.128110-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20221102112451.128110-1-peng.fan@oss.nxp.com>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Wed, 2 Nov 2022 11:29:53 -0600
-Message-ID: <CANLsYky1j_BMD-Dg1Lath4bftE-0qPEod7fxcaN3UkKUpjP7dw@mail.gmail.com>
-Subject: Re: [PATCH V2 0/2] remoteproc: imx: add start up delay
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     andersson@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221101215804.16262-2-afd@ti.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Nov 2022 at 05:23, Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> V2:
->  Rebased on linux-next
->
-> V1:
->  https://lore.kernel.org/lkml/20220609123500.3492475-1-peng.fan@oss.nxp.com/
->
-> There is case that after remoteproc start remote processor[M4], the M4
-> runs slow and before M4 finish its own rpmsg framework initialization,
-> linux sends out vring kick message, then M4 firmware drops the kick
-> message. Some NXP released Cortex-M[x] images has such limitation that
-> it requires linux sends out vring kick message after M4 firmware finish
-> its rpmsg framework initialization.
->
-> The best case is to use a method to let M4 notify Linux that M4 has
-> finished initialization, but we could not patch released firmware,
-> then update driver to detect notification.
->
-> So add delay before linux send out vring kick message. It is not good to
-> use a fixed time delay in driver, so I choose to get that from device
-> tree.
->
+On Tue, Nov 01, 2022 at 04:57:56PM -0500, Andrew Davis wrote:
+> The TI Nspire devices contain a set of registers with a seemingly
+> miscellaneous set of functionality. This area is known simply as the
+> "misc" region.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  .../bindings/mfd/ti,nspire-misc.yaml          | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+> new file mode 100644
+> index 0000000000000..d409eae7537bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/ti,nspire-misc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI Nspire MISC hardware block
+> +
+> +maintainers:
+> +  - Andrew Davis <afd@ti.com>
+> +
+> +description: |
+> +  System controller node represents a register region containing a set
+> +  of miscellaneous registers. The registers are not cohesive enough to
+> +  represent as any specific type of device. The typical use-case is
+> +  for some other node's driver, or platform-specific code, to acquire
+> +  a reference to the syscon node (e.g. by phandle, node path, or
+> +  search using a specific compatible value), interrogate the node (or
+> +  associated OS driver) to determine the location of the registers,
+> +  and access the registers directly.
 
-From where I stand this is a hack to hide the lack of motivation to
-enact the real solution that is outlined above.  I also wonder how
-these problems were not caught during the testing phase.  Either find
-a way to upgrade your firmware or keep this in your internal tree.
+Looks like you copied the generic description? Describe what MISC 
+contains.
 
-> Peng Fan (2):
->   dt-bindings: remoteproc: imx_rproc: add fsl,startup-delay-ms
->   remoteproc: imx_rproc: delay after kick remote processor
->
->  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml    | 4 ++++
->  drivers/remoteproc/imx_rproc.c                           | 9 +++++++++
->  2 files changed, 13 insertions(+)
->
-> --
-> 2.37.1
->
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - ti,nspire-misc
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reboot:
+> +    $ref: "../power/reset/syscon-reboot.yaml"
+
+/schemas/power/...
+
+And no quotes needed.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reboot
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    misc: misc@900a0000 {
+> +      compatible = "ti,nspire-misc", "syscon", "simple-mfd";
+> +      reg = <0x900a0000 0x1000>;
+> +
+> +      reboot {
+> +        compatible = "syscon-reboot";
+> +        offset = <0x08>;
+> +        value = <0x02>;
+> +      };
+> +    };
+> -- 
+> 2.37.3
+> 
+> 
