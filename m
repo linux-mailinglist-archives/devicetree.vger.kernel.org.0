@@ -2,81 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9482616305
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 13:49:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB3261631B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 13:54:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229518AbiKBMt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 08:49:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59532 "EHLO
+        id S229557AbiKBMyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 08:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231127AbiKBMtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:49:24 -0400
-Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752F81127
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 05:49:21 -0700 (PDT)
-Received: by mail-vs1-xe2e.google.com with SMTP id k67so17101640vsk.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 05:49:21 -0700 (PDT)
+        with ESMTP id S231124AbiKBMyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:54:15 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18667275CF
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 05:54:15 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id l6so16187282pjj.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 05:54:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTzlSQ/JqaJK8Vz6/Tc/glOKLBJ6aePN0CckSYTF/Y0=;
-        b=Vs3KYI6bPyqdHwmE5lpds1l/i5wxR6AIg/vt8wE0rHElePkrEV2RsyRbEod1mjJ164
-         Oo29+SvP1xjsPcB/5v4HRucnek6OzHgF/NcZieygTLx/gcaDrrSVGxWWdrTRBrMOTt+L
-         FAaTqzUDPgWXN+N0l5VB9SSyj1p0GPo0/ehmX+1D0iUs69RU6jXrT2JGi8YHPO1rY0eK
-         Bnlv3DYS/vFTrIRaiTWhIY4aGnUN3USGiggkTxUkcp4d8JRTeJJ0bQqVmpXOgSftFajb
-         ULzavmAD5FATW/gAhC8CZEvmKcLkKBX6MpEEoRZXdrKF6HMxdwn9kWZGHxjqoq45xY5U
-         sLSQ==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Sz/uTvOc0gNmc74MGKA7yKeLqyFqD/joiI1SxwVZLms=;
+        b=gMco29rIHyjluL75KoUf2pw2XrSEdZCMQHDxALSkmifq+/s7GAD1xAYqY35LCOejLj
+         uuDAKkLdDsF7ZHyBZYyKfaJqYvFBOFhoAafty8TuEPIC64Lzaxt7PG3uk+VPn7pbQPt8
+         VduIYP3I2f9Ge7H5zmsibvH447LXtSH7OWZJRErQyiblliWhq9RATJYwZIRxn3LlUI/T
+         d35i3X5nNMLF9rk2uA6sWkKEppODkyP8II01Oy7LBkqUrkz6K5lD8nUl6a9cGPzUDU8T
+         qM33I6IW+PGklzw3hSVmr1A/9hanlqgtBiFL7BgoRBJWNMoOr3TbCBn4kf0S4FZ+5yQ3
+         A3QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RTzlSQ/JqaJK8Vz6/Tc/glOKLBJ6aePN0CckSYTF/Y0=;
-        b=x8P8ULE68ubE/6bGisk0M6SaSNy1NaQ5xfLSO8f+KbYmZrl9zy6Y9KF1aEwDak4FB5
-         RnTLwUpuYnFIc6DKdU84ABBGZzJ29hEn+eUt7qr44MXPls/tuZ2s16kI2a5dQ3agMrZk
-         PMtLQhz2DiOQnwPIZYytA81G8c+yP9hhdpt4JHP91oxQADo1iAOSN88l8seqRsIb23dC
-         oUv7cyomxumzQL6BfbZPFyPG2aAuUx0HcoM9hswOlK5dfOMCB260t75o9I9cqEi3ijwx
-         vxNMrlOSm3x6sl4uyuOVrW455uioOWFukgdneRXXO3zJ5BIAS3hO8gYx2yckkNOuvvwg
-         CvkQ==
-X-Gm-Message-State: ACrzQf3p0xrXrgK8XrRIPmr3dnnu5jaJ2Y3ye/xovBCjO7Qizv0OiAEJ
-        cDHraUv1zlYrDtoixarmFCTm289f36EpLL97x0P3hg==
-X-Google-Smtp-Source: AMsMyM7svrL1/L4Gw1i4b2mHC/iKcf1n444D8oDxpnsDRJtGJjhLQ10Fra1MvGf3TWYHdOdWvH6i1jwnXLdMSCFRumw=
-X-Received: by 2002:a67:ac0e:0:b0:3aa:86c3:e6fc with SMTP id
- v14-20020a67ac0e000000b003aa86c3e6fcmr11636263vse.9.1667393360465; Wed, 02
- Nov 2022 05:49:20 -0700 (PDT)
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sz/uTvOc0gNmc74MGKA7yKeLqyFqD/joiI1SxwVZLms=;
+        b=eZZoDUbtDOx+YTEb6KZqRvoqn+JtR3wydHS/T4xwOhGxCiyPUU44cerWqj6hXCfPaR
+         EnbHeO2yhXfJQa3thAdvY+seOJGzfqSzrkf9zHvxpXD84zxPxlsbJFVR5MuoN8S1xqjt
+         nEF2zGPYjb88WyroY/yguseePe7SIKG8I7mrc8ZrR37dDEe8bpXD48qlMcv1GzAeRzpL
+         cB3n59jQHlIJf0hYG+CauGl0UywxnbVmkInPakkU9JNorjcE00sQNVnvEhSvVsZmO47n
+         wvqwdNQbC0UCMSgqysnbHd9hPmaoQ5Old4dUj70bh65U4bb9PkuIFnVe6JN8GuZnOz1Z
+         dRYw==
+X-Gm-Message-State: ACrzQf0V4EO6YJYgcI2MEovT0hm7qFn5nIgkBAewmusW9/Woe48cTrQV
+        bNZipu0XRfY4RSBVwXL/3zUhWE06C8FSucO6JJI=
+X-Google-Smtp-Source: AMsMyM7zYTm0ZmdMgJfwEPWQ6iiPPfLaP2CNfbAaYJnLIqwwlD3fqJIoA9NFRLPSxXRzbf7xPG6t5iTECeAUTsi+Urw=
+X-Received: by 2002:a17:90b:2393:b0:213:ecb2:2e04 with SMTP id
+ mr19-20020a17090b239300b00213ecb22e04mr14468959pjb.100.1667393654447; Wed, 02
+ Nov 2022 05:54:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20221101082442.263448-1-chenweilong@huawei.com>
-In-Reply-To: <20221101082442.263448-1-chenweilong@huawei.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Wed, 2 Nov 2022 13:49:09 +0100
-Message-ID: <CAMRc=Mdi2ASr1Wq66YTQKTvW+ysU4bw=eN4=9tYUxcJWLPGNaQ@mail.gmail.com>
-Subject: Re: [PATCH next v3 1/2] gpio: hisi: Add initial device tree support
-To:     Weilong Chen <chenweilong@huawei.com>
-Cc:     f.fangjian@huawei.com, linus.walleij@linaro.org,
-        yangyicong@hisilicon.com, xuwei5@huawei.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Received: by 2002:a05:7022:662c:b0:46:197b:656c with HTTP; Wed, 2 Nov 2022
+ 05:54:13 -0700 (PDT)
+Reply-To: rihabmanyang1993@gmail.com
+From:   Rihab Manyang <omardiakhate751@gmail.com>
+Date:   Wed, 2 Nov 2022 12:54:13 +0000
+Message-ID: <CAAs2n94DKjX6ZC8g4kdP45u1f2UDWbY4NWRPx4w49bO+RiwOfg@mail.gmail.com>
+Subject: HI DEAR..
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:102b listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [omardiakhate751[at]gmail.com]
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [rihabmanyang1993[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [omardiakhate751[at]gmail.com]
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  3.0 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 1, 2022 at 9:17 AM Weilong Chen <chenweilong@huawei.com> wrote:
->
-> Add support for HiSilicon GPIO controller in embedded platform, which
-> boot from devicetree.
->
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
-> ---
-
-This is v3 - just like the previous version. Are there any changes?
-
-Also: you don't need that -next in your patch tag.
-
-Bart
+-- 
+My name is Rihab Manyang,i am here to search for a business partner and
+friend who will help me to invest my fund in his country.
