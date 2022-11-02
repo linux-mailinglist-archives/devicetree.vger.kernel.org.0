@@ -2,119 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3ED1616F6B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D3B8616F91
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:20:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231320AbiKBVLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 17:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52798 "EHLO
+        id S229875AbiKBVUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 17:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231278AbiKBVLk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:11:40 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 909A5DFBF
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 14:11:38 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id x18so1576511qki.4
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 14:11:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SMdd6W9zqTykplxA9atF92tm5CBcUP1U7yvf5vUxJ94=;
-        b=qB3heRMEENXq8LFOVv7rITGt3zC5JeYlR5KthvYqttf4k6cy+wq7eT+G5PU0Y1gk+T
-         hIDyJ8EDJGC4oefNczl6sxRZJYwkHx7zYy0szk3EL69mVeSGtEEgYnxqWp1eJAqGUtDD
-         FzvCzCNYtJKaplARHRsXpCDCC/UuQgXbAqcA45tzUMB+KOnfLMBtdvJCUfKBMUfT+F1r
-         C6yUhosIbNAemIdWXHBCwCI1WMUJo/j4cJyUvfJvPQZrBI1zf/cBQehcdITcpYrDiyeD
-         L6tOkEedAVUpFSq63IEZskKrZ/HwskotE8pb/OT0LprAO9P7dw5nUXd7C51ynN90uOQQ
-         cqMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SMdd6W9zqTykplxA9atF92tm5CBcUP1U7yvf5vUxJ94=;
-        b=58fdroRijUsvx5LPTcDsMvwVEjewsYr5dULSdwjlaKg9cpNK0kWTRqOQOJTnARqvR+
-         oDHqj0bbEsziWIHKX93N2uHD+WwIgE1lUqKQ6S3CXPr1y6YZrvcWq15aamBWBNS5tRKR
-         Dtb/8Lz46zJtXlyr38HWq9nMKkaqNGY6PwuL8oIJMDVw3zytz8NEzToKGClvf8Krbitp
-         DbjDlSW1xyDuQsSxFUyHj+PAQdePLAsya+3zMcfVTgn/s4pCXAljt9CMFRlFn9sj8plE
-         wrviDAg6kk84isTydi4YL+L975rZMi6jjEMU4q/NxMQ2ZT5aDv8ko2PlI26hBsL0wlzi
-         fdGw==
-X-Gm-Message-State: ACrzQf2/ZclSJ5P0V7F9akcSVJiwjZ51wh8iU0ezEhmbJLmrtgLt9Bag
-        heGvXtgnihQGNBdMRG13I3pocg==
-X-Google-Smtp-Source: AMsMyM6Wkzj6KTSaNv+AilpDqn1fSqGn/N2Li1l/svMXz1ljJSNXtiq4HeywPXe80VDgV4C1XUmDFQ==
-X-Received: by 2002:a37:ef05:0:b0:6fa:630:2b4f with SMTP id j5-20020a37ef05000000b006fa06302b4fmr19416018qkk.41.1667423497764;
-        Wed, 02 Nov 2022 14:11:37 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id h10-20020ac846ca000000b0039853b7b771sm7139821qto.80.2022.11.02.14.11.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 14:11:37 -0700 (PDT)
-Message-ID: <1a7fd1fd-4f0d-bec3-ddd5-7c6a99a2ab01@linaro.org>
-Date:   Wed, 2 Nov 2022 17:11:35 -0400
+        with ESMTP id S230242AbiKBVUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:20:51 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68DC2AC2;
+        Wed,  2 Nov 2022 14:20:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A0181B82414;
+        Wed,  2 Nov 2022 21:20:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE094C433D6;
+        Wed,  2 Nov 2022 21:20:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667424046;
+        bh=KxWz09Mvgj/5WrZqHX/ZJD0h7CGdGaqF4QLtpeE4PTM=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=hmjrThd9b+U48YarjtbPQgNvQPaXO3csUaryEvW1rX1Wf6Ay3okr7i9PXfoE8h9Tz
+         AK9PVVHOHgBKR8drHHOuFPl+gqwU1QCDBtJuCl52LVwowXn7iG8QelhqZhEw1fZOuX
+         RcIPOjUJ+aNC9WpdMc3N1XuAIhwtkOyyDqljF3bRq5GWETjXXbKVNaPOkeszZmnbIo
+         0F24hB/MNzGDwU12kraZltbVt96tpFN+sjTdpbK0OFgzyDhGo6QKURmu69t6M14rkP
+         NP0YUM/BOeqlyt6yQ/b7Dk/Z6zIZYxDVwl3G4U4Jx16K9B/g9ehrgEPXbrEUTy+Hn7
+         x1FntsOBTqVeA==
+Message-ID: <ee6c5a96-81c4-5729-f623-4b23bc3b8e0a@kernel.org>
+Date:   Wed, 2 Nov 2022 17:20:43 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v3 1/3] dt-bindings: interconnect: Remove required reg
- field
+Subject: Re: [PATCH 1/3] dt-bindings: Add bindings for aspeed pwm-tach.
 Content-Language: en-US
-To:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Odelu Kukatla <quic_okukatla@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221026190520.4004264-1-quic_molvera@quicinc.com>
- <20221026190520.4004264-2-quic_molvera@quicinc.com>
- <a214f513-fe28-2096-c2b0-2107e97f3ce2@linaro.org>
- <64d0e5ef-fd36-6f25-2c39-00e8e1346af7@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <64d0e5ef-fd36-6f25-2c39-00e8e1346af7@quicinc.com>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org, joel@jms.id.au,
+        andrew@aj.id.au, lee.jones@linaro.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
+        garnermic@meta.com
+References: <20221031103809.20225-1-billy_tsai@aspeedtech.com>
+ <20221031103809.20225-2-billy_tsai@aspeedtech.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20221031103809.20225-2-billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 19:29, Melody Olvera wrote:
+On 31/10/2022 06:38, Billy Tsai wrote:
+> Unlike the old design that the register setting of the TACH should based
+
+Drop full stop in subject. Drop redundant, second "bindings" in subject.
+
+> on the configure of the PWM. In ast26xx, the dependency between pwm and
+> tach controller is eliminated and becomes a separate hardware block. They
+> only shared the same base address, source clock and reset.
+> This patch adds device binding for aspeed pwm-tach device which is a
+> multi-function device include pwm and tach function and pwm/tach device
+
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> bindings which should be the child-node of pwm-tach device.
+
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
+
 > 
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 48 ++++++++++++
+>  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 76 +++++++++++++++++++
+>  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 64 ++++++++++++++++
+
+Split per subsystem. And Cc necessary people...
+
+>  3 files changed, 188 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+>  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
 > 
-> On 10/27/2022 8:29 AM, Krzysztof Kozlowski wrote:
->> On 26/10/2022 15:05, Melody Olvera wrote:
->>> Many of the *-virt compatible devices do not have a reg field
->>> so remove it as required from the bindings.
->> and some virt have it... This should be probably separate binding or if
->> the list is small - allOf:if:then.
-> I attempted this; however I'm still seeing failures in dtb_check. I've added this
-> to the binding; does this look correct?
->  allOf:
->    - $ref: qcom,rpmh-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,qdu1000-clk-virt
-> +              - qcom,qdu1000-mc-virt
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+> new file mode 100644
+> index 000000000000..838200fae30e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/aspeed,ast2600-tach.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +    then:
-> +      required:
-> +        - compatible
+> +title: Aspeed Ast2600 Tach controller
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +description: |
+> +  The Aspeed Tach controller can support upto 16 fan input.
+> +  This module is part of the ast2600-pwm-tach multi-function device. For more
+> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-tach
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  pinctrl-0: true
+> +
+> +  pinctrl-names:
+> +    const: default
 
-No, because we talk about reg, not compatible. You should not require
-reg instead for some compatibles... but then the schema is getting
-complicated.
+These should not be needed.
 
-It's difficult to give you recommendation because I do not know what are
-all these "virt" interconnects. Why some have unit address, why some do not?
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties:
+
+Instead patternProperties and put them above "required:"
+
+> +  type: object
+> +  properties:
+> +    reg:
+> +      description:
+> +        The tach channel used for this node.
+> +      maxItems: 1
+> +
+> +  required:
+> +    - reg
+
+additionalProperties on this level of indentation.
+
+> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+> new file mode 100644
+> index 000000000000..1eaf6fab2752
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/aspeed,ast2600-pwm-tach.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PWM Tach controller Device Tree Bindings
+
+Drop "Device Tree Bindings"
+
+
+> +
+> +description: |
+> +  The PWM Tach controller is represented as a multi-function device which
+> +  includes:
+> +    PWM
+> +    Tach
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - aspeed,ast2600-pwm-tach
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +
+> +patternProperties:
+> +  "^pwm(@[0-9a-f]+)?$":
+> +    $ref: ../pwm/aspeed,ast2600-pwm.yaml
+
+Full path, so: /schemas/pwm/aspeed,ast2600-pwm.yaml
+
+Why unit addresses are optional?
+
+> +
+> +  "^tach(@[0-9a-f]+)?$":
+> +    $ref: ../hwmon/aspeed,ast2600-tach.yaml
+
+Ditto
+
+Why unit addresses are optional?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ast2600-clock.h>
+> +    pwm_tach: pwm_tach@1e610000 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+No underscores in node names.
+
+> +      compatible = "aspeed,ast2600-pwm-tach", "syscon", "simple-mfd";
+> +      reg = <0x1e610000 0x100>;
+> +      clocks = <&syscon ASPEED_CLK_AHB>;
+> +      resets = <&syscon ASPEED_RESET_PWM>;
+> +
+> +      pwm: pwm {
+> +        compatible = "aspeed,ast2600-pwm";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+
+No need for address/size cells. No children.
+
+> +        #pwm-cells = <3>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_pwm0_default>;
+> +      };
+> +
+> +      tach: tach {
+> +        compatible = "aspeed,ast2600-tach";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+
+Ditto.
+
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_tach0_default>;
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+> new file mode 100644
+> index 000000000000..f501f8a769df
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/aspeed,ast2600-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Aspeed Ast2600 PWM controller
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +description: |
+> +  The Aspeed PWM controller can support upto 16 PWM outputs.
+
+s/can support/supports/
+s/upto/up to/
+
+> +  This module is part of the ast2600-pwm-tach multi-function device. For more
+> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
+> +
+
+Missing $ref to pwm.yaml
+
+> +properties:
+> +  compatible:
+
+
+Below, same comments apply.
+
+This is incomplete review.
 
 Best regards,
 Krzysztof
