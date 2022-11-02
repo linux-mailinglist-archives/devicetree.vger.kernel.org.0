@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF68616F05
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:45:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 060E6616F09
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231349AbiKBUpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:45:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
+        id S231354AbiKBUpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231345AbiKBUpc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:45:32 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FEFF6594
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:45:31 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id cg5so60366qtb.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:45:31 -0700 (PDT)
+        with ESMTP id S229887AbiKBUpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:45:46 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F489597
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:45:45 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id k26so8107086qkg.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:45:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NsgBnhD+StlYkJHjbJPv8coG9/eowe5XzdG3zACEu0g=;
-        b=kZz4fGbechWDCheoNWKozSE4TKIO6InaTFx5I3D7nkDm7xbo8Xxb4OZa3Vlx3J4InU
-         fViWih5UD5YOsQ/6scKHEmEIVaS1V9Y4jWTbxjQjlbNJ9vTneotv/lJR6aQeeIDuPHnB
-         C9K48XnJPc4djN3YSxV25lfojGVpTf+NCDD4JCFWcDQ+tIJNgJZDocyf3jtvpd4V3kex
-         W6F0oVczqneXLm15AL4wtH8R9nHZyw1/Q/r7FpAdHXRIEH+hoVVvCtfJ7SvSgJL+dhuO
-         qruSq8I3QLdwiyYIJ6MgJHjxTkDyYNQMs5SlWjOm4r1hRKJ1CxLNeEz3quPMN0uFapwM
-         PNcw==
+        bh=JnNVi/onk0XmnRagR34LdTKyHanICP4TJkvqJmX6lV0=;
+        b=Ok8VTXhWiVphi+jKBST1OXbwoqZl2mWGMh/yl88PUd+6oOOxJrl0F+9WQqRDMJFTKD
+         yd0CKTCFKnPTYC+bT2Fs84vPWewjkA7Uhuorc/pRhb+e6fJDRImdnibsUaz3+LokvxCB
+         GyavmueFSdSYnV2abWEcG0aGle9Fmft9ictEgnhSF5R4JruZSb3kwlLX0Z16PUCLfebB
+         wdR/kuLyb4wYx7bVg6gDQ7kPRvrgNPQmGJFn6rVcFFByNzeBWpsVpruAL/N+gq5HaLT6
+         fhq8IhE7kNY/yZ4sPYhKzZo7nBxcJV6h0bjUG6Hh7gWPZVU4N+ojfZfs/9+I73Z6Ac2C
+         gd1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NsgBnhD+StlYkJHjbJPv8coG9/eowe5XzdG3zACEu0g=;
-        b=Nfg8IXWe5DEwUNbdB1IOllBoj9Q52Y18TTo5SfRVBq4c0ZD8stMK5cM5MWH1p7Itl2
-         MLbKVaeiZAK1tj1LLfkgaoqNvfQGob8Yxli1MNP0pyy2QHNu3ixHaBS+mt98PkLyp4gd
-         hzMK7OlZWbOYAuZ5mFaLKi0kdl2n+CS/t+Eb5+iyMFe8mMZ5yjx4Me+mpr/xCP2KJ3YG
-         cKJmk3nxdc+e99mqEEURmHAxFqDjAARBRBe4jvm7rHMICSGXWQn6HMoq+UyHHa7TXrLc
-         Hxg9UtowvBSvuTjHPJUSsrOjgJmLnw10/QKKiVOt2nqVH4a3uoEzjLkNJ7Py6znrtXwh
-         f/Xg==
-X-Gm-Message-State: ACrzQf0O4iqhAWVocSaeu89DjBmAHhCGVJHX6+F5uTWChoFhGXo/bW1V
-        avUuYHrBYcqb/+Ryl7b3lp1eDQ==
-X-Google-Smtp-Source: AMsMyM5QI/mHGZBEb3PXe/1szUOQbbEBHCmLJnY1CHrW+2T+GlHfVm0lp/6P7wb4CDfKpSOUvPf+Ww==
-X-Received: by 2002:ac8:5bc9:0:b0:3a5:71c:61ac with SMTP id b9-20020ac85bc9000000b003a5071c61acmr21649224qtb.680.1667421930347;
-        Wed, 02 Nov 2022 13:45:30 -0700 (PDT)
+        bh=JnNVi/onk0XmnRagR34LdTKyHanICP4TJkvqJmX6lV0=;
+        b=kzVo7qSpNlRKXJjVeGgkpiyh3gHbqfSq7styeW4n48QHdUQnOLf5ejx8omK3t07Q+I
+         heCkFcq1wFk6r8mKBWwsllYlxFEJMRAf7EV+dxkJCr3gkKaL2ocudXvjzXuGtPscUYWF
+         DijtnEtK5uqqoB43rn9UW+DzLZBet6pHTaxtrzCavTxA4THODKG/4a2qYVJ5KuiFxk+Q
+         ZGWEic9goNEFkROY3otjzszv6vRGCQn/eGWzLuVbk7m2/Z5cFV/hkzxZxpoeHXzomWvr
+         rA0mixyLnhVed1rBRmu3Zo61I2tBTIk4AUwD0XDwBq9QELGpfAKSkHAPscUNG1XX0PbB
+         YCcw==
+X-Gm-Message-State: ACrzQf0Y6qTlrsmI/foVplY/lArPhQaN35++NgDqbQ/ueK5y9I8wYIrN
+        B5UCNaPiTND9hehmAFPH845t4A==
+X-Google-Smtp-Source: AMsMyM4/lX3KYjZyNGJHPfwRa1MLlhvzTYN937WY6yPA/6InYBBS8LlqJfddbk5LoJa0H8+MJC3Wuw==
+X-Received: by 2002:a05:620a:248d:b0:6fa:713b:2924 with SMTP id i13-20020a05620a248d00b006fa713b2924mr1027865qkn.544.1667421944433;
+        Wed, 02 Nov 2022 13:45:44 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id he40-20020a05622a602800b0039a55f78792sm7102776qtb.89.2022.11.02.13.45.29
+        by smtp.gmail.com with ESMTPSA id i5-20020ac84f45000000b0039ee562799csm7131875qtw.59.2022.11.02.13.45.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:45:30 -0700 (PDT)
-Message-ID: <2bde4bd8-44d3-7049-95c3-3f3f658ca304@linaro.org>
-Date:   Wed, 2 Nov 2022 16:45:28 -0400
+        Wed, 02 Nov 2022 13:45:44 -0700 (PDT)
+Message-ID: <96923e06-acd5-bed4-4dd5-e5923d9a3189@linaro.org>
+Date:   Wed, 2 Nov 2022 16:45:43 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 02/10] arm64: dts: qcom: sm6350: Add pinctrl for SDHCI 2
+Subject: Re: [PATCH 03/10] arm64: dts: qcom: sm6350-lena: Add SD Card Detect
+ to sdc2 on/off pinctrl
 Content-Language: en-US
 To:     Marijn Suijten <marijn.suijten@somainline.org>,
         phone-devel@vger.kernel.org
@@ -71,15 +72,14 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221030073232.22726-1-marijn.suijten@somainline.org>
- <20221030073232.22726-3-marijn.suijten@somainline.org>
+ <20221030073232.22726-4-marijn.suijten@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221030073232.22726-3-marijn.suijten@somainline.org>
+In-Reply-To: <20221030073232.22726-4-marijn.suijten@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,15 +87,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/10/2022 03:32, Marijn Suijten wrote:
-> Use the generic pin functions specifically for sdc2.
+> In addition to the sdc2 pins, set the SD Card Detect pin in a sane state
+> to be used as an interrupt when an SD Card is slotted in or removed.
 > 
 > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 44 ++++++++++++++++++++++++++++
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
