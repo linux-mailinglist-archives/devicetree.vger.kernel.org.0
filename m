@@ -2,90 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1743E616AE0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3671616AF1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:39:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230368AbiKBRhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 13:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33916 "EHLO
+        id S231320AbiKBRjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 13:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbiKBRhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:37:37 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8F92E680;
-        Wed,  2 Nov 2022 10:37:36 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id l127so3540500oia.8;
-        Wed, 02 Nov 2022 10:37:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ftRx1K2cF82HFee+HCYYE4a4Ril4i3Y5BOpEwEJzCU8=;
-        b=I6v1n35f5VTQJEYxD12R/HcbfStLxBu4TfWQOyEmVcxTU4knHTXs/Bj6rtSvi1t07D
-         3EwJ0YkRvdLmSCb/FA5HAKRi3FHX0E9nX6b/jZg/OlfOdRYnLK6dbARWlapbp565p8vd
-         Scd9bF8ZXMntbsTUN+AZ4nUhAmoFY7zHorajckiwVvVj/MixYjF31knxeSbBRyaFTYyL
-         43l5lLBsj2Jd2g58lC0savw3QyZPsK5MiWsGIeOBrqq8nR5ywo1+4KsWWf09+sd6+snP
-         fmWDeDCf3kqzizBZihGdoJYevIKCqOWE8wdYNClVmqP2h/aAjMftsfFZ/T1ZtooGoEO9
-         q6BA==
-X-Gm-Message-State: ACrzQf3EK18Fyw0QBypeQjAJvBbNv2iHBQ+O6t0/D7dPWhx0hyjC3Cin
-        p+MiS7qKsU65Rkdk/U2gtw==
-X-Google-Smtp-Source: AMsMyM5JTmQhxNjG7ItyUeS8hhJ5F6jd3b9R9T12OSXuAnqZpCUSLa0V8ha+VyS6aPK6IkJFFXy4ow==
-X-Received: by 2002:a05:6808:14c3:b0:359:ac8d:41e2 with SMTP id f3-20020a05680814c300b00359ac8d41e2mr21297701oiw.92.1667410655628;
-        Wed, 02 Nov 2022 10:37:35 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q10-20020a4aa88a000000b0049bdee12662sm2441426oom.6.2022.11.02.10.37.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 10:37:35 -0700 (PDT)
-Received: (nullmailer pid 8357 invoked by uid 1000);
-        Wed, 02 Nov 2022 17:37:36 -0000
-Date:   Wed, 2 Nov 2022 12:37:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Richard Acayan <mailingradian@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH 3/4] dt-bindings: firmware: scm: add sdm670 compatible
-Message-ID: <166741065625.8306.7344078584788460733.robh@kernel.org>
-References: <20221101235722.53955-1-mailingradian@gmail.com>
- <20221101235722.53955-4-mailingradian@gmail.com>
+        with ESMTP id S231445AbiKBRix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:38:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4A6DDC;
+        Wed,  2 Nov 2022 10:38:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC19461A32;
+        Wed,  2 Nov 2022 17:38:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E80CC433C1;
+        Wed,  2 Nov 2022 17:38:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667410731;
+        bh=/ON+gsXdFppkI6cKXNcthQ/QCtA2Pr6PzO03HRm7PDc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FjY+MwJ1cGJ3hWSa+inCk7llbc3rznAhNJ1KoHHNuIcE7dbjsUv6TqLQmaW0qxhbR
+         ZjqDy6Q+hBQqxrADq1wtPzX3iIfeJzAvB9eBi4EyhRH5qI6qUrilA0pnsi0DZzf7lB
+         /86Osba7IWuUp35Y7dIVFAQgn8847vJeyOkhrjFCFSAlVt7ryrhqYG0r9a+sm/IkXc
+         Y7XebqST9SSD39b8PE5vnS9RK565woRHiQtlPHmfRGMvfbyo8kScoWD0xCx5+SnFny
+         O2elFs8ly8wo8uRvOwSkaa8OsjQVJbufLxTxVaKJQAtRtktm95Sp8huiAXDIgCigw9
+         XyS+eTGTN0/VA==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     jh80.chung@samsung.com
+Cc:     dinguyen@kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCHv7 1/6] dt-bindings: mmc: synopsys-dw-mshc: document "altr,sysmgr-syscon"
+Date:   Wed,  2 Nov 2022 12:38:38 -0500
+Message-Id: <20221102173843.409039-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221101235722.53955-4-mailingradian@gmail.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the optional "altr,sysmgr-syscon" binding that is used to
+access the System Manager register that controls the SDMMC clock
+phase.
 
-On Tue, 01 Nov 2022 19:57:21 -0400, Richard Acayan wrote:
-> The Snapdragon 670 uses SCM as for PSCI power management. Document the
-> appropriate compatible string for it.
-> 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> ---
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+v7: and "not" for the required "altr,sysmgr-syscon" binding
+v6: make "altr,sysmgr-syscon" optional
+v5: document reg shift
+v4: add else statement
+v3: document that the "altr,sysmgr-syscon" binding is only applicable to
+    "altr,socfpga-dw-mshc"
+v2: document "altr,sysmgr-syscon" in the MMC section
+---
+ .../bindings/mmc/synopsys-dw-mshc.yaml        | 33 +++++++++++++++++--
+ 1 file changed, 30 insertions(+), 3 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+index ae6d6fca79e2..80dd3d72424f 100644
+--- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
++++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+@@ -6,9 +6,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Synopsys Designware Mobile Storage Host Controller Binding
+ 
+-allOf:
+-  - $ref: "synopsys-dw-mshc-common.yaml#"
+-
+ maintainers:
+   - Ulf Hansson <ulf.hansson@linaro.org>
+ 
+@@ -38,6 +35,36 @@ properties:
+       - const: biu
+       - const: ciu
+ 
++  altr,sysmgr-syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to the sysmgr node
++          - description: register offset that controls the SDMMC clock phase
++          - description: register shift for the smplsel(drive in) setting
++    description:
++      This property is optional. Contains the phandle to System Manager block
++      that contains the SDMMC clock-phase control register. The first value is
++      the pointer to the sysmgr, the 2nd value is the register offset for the
++      SDMMC clock phase register, and the 3rd value is the bit shift for the
++      smplsel(drive in) setting.
++
++allOf:
++  - $ref: "synopsys-dw-mshc-common.yaml#"
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: altr,socfpga-dw-mshc
++    then:
++      not:
++        required:
++          - altr,sysmgr-syscon
++    else:
++      properties:
++        altr,sysmgr-syscon: false
++
+ required:
+   - compatible
+   - reg
+-- 
+2.25.1
+
