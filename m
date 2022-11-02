@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66120616899
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:23:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB1D6168A6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbiKBQXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 12:23:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41182 "EHLO
+        id S231605AbiKBQYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 12:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231512AbiKBQX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:23:29 -0400
+        with ESMTP id S231523AbiKBQYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:24:25 -0400
 Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5462B2CE10
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 09:17:32 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id v8so5574048qkg.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 09:17:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F261A1093
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 09:19:27 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id k2so6495057qkk.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 09:19:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bJek6NkURfosAp/uchM0s6cEp+OyqcYE/P5UFkvDx6c=;
-        b=Beiw3KD5m0lV/hwTJJ4HkM8dOSrGiiegu49uo6QrhJ/Ek2JltLFdnlRfuJ90ZKJLk2
-         rs5qjFPoSzlBuFqtIsTu/wJ/tjYQqxoqW1vDt365YkD97j9BdBo5rSaSJ6zDYG5E5DZG
-         +MEwX2pHBQDnCfC5nl/IyrIz/5SVFK6FG2cSaXv1GiF7ZZl07BNezv3tJC68lIxQ6Ppc
-         TCl2T74zLwlCLik6amA+9TaPYdh0eygJEGAVler8+KiHV6gYKC/mFGxgeC0e/V7B+i+v
-         aoqkyADe1sOKPFx0wcOGUyNO6xRXqpyx3ZrmggMS8pdCij2u1g62wuG3ha11P97XEIUQ
-         dDSA==
+        bh=8+dadXVFqCoia/hpBdLne3NYLRvyf5yEyoSgvo5I6BM=;
+        b=TObbKuYy7nPg8oNPSValgebOVaZsjMYhJKJYx7aKLU4RuZIzrRIhxQp8V+DarvhjHQ
+         kM1KTC25DYkZJGqAsVJR3r6xOgv/1PB3dk/eDid8vkJd/pP2BtQmecndAdttJj5DBHa3
+         mPlwONoVPegx3IC2Gq2INbD2EYWbclezWdTamHMjymis8EVMRHDaNGKZe7K2iTGTAiYe
+         jfaYoYOPkyrUBI8fbBXC5uPAsv0m5L6kZqajhBJI2D+fIndYnFpr4t399HUwnh6yOnlk
+         ygp/fOmTC2xoDwT9I+OY8f3/D+3qDKG3wtR1lArRjqcC+REr90BdmVdeotxCOnct6ku7
+         KJoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bJek6NkURfosAp/uchM0s6cEp+OyqcYE/P5UFkvDx6c=;
-        b=FQJS6HLB2yF3x1yZ2gpKqHrYlS02BIYBt0sEm3gOxQ30QPsUlmoLYDP/NeJ6bQdFWr
-         DlJkUFj29HrLP8ddnU/hSJcjgGfhT/9+YXBO8dhbccK/NJOtqH/zTs5gjJRvqTIIowAj
-         WHuUPPI8TCAb0wIiTD3VFQz02BlTOiGk8Eca0xyCzTtqGGqHAVjbgH2jhRCQAy/4ukEd
-         Z426bLL9LYGWOGfdXZxADGOolDfJka/AmylGeh3P5C3FHI1UJdQE37H7MmF2CEnzLXVc
-         5NcNbRdfWlbm2ptgi1r9/vM96AKJICYJ/RYWiH+xaxSwAl+fEJxrQ59/P6SL4LIPN9oQ
-         n9vw==
-X-Gm-Message-State: ACrzQf08eosSIVL4z9bf0L12JOBLj5g6DRRLcZLWS/BE/nK4/HZV/+la
-        ZZPa4H7v4+4L1CjnNqHGkNG8aw==
-X-Google-Smtp-Source: AMsMyM6jI/HdsQJ1lS99LjoIpegy8BZrn9T/tm8NZcJHyPfkCUONRJvFwq4pMfMr751vTSJTlDVwgw==
-X-Received: by 2002:a37:de0a:0:b0:6fa:422c:1fda with SMTP id h10-20020a37de0a000000b006fa422c1fdamr8696702qkj.607.1667405851525;
-        Wed, 02 Nov 2022 09:17:31 -0700 (PDT)
+        bh=8+dadXVFqCoia/hpBdLne3NYLRvyf5yEyoSgvo5I6BM=;
+        b=qRkkEMiTDO73eP/WbD2Rxyjk/LvLwBU+UTPVfjiAMPssPFhTh4Hh2ZiOjjOuxtrYhr
+         4yCcJYoNAQLncF72wMso34rZrvmllHn7CSIMmd3M9qpau8Bw2ij9+94H1sxfP7zhLAWY
+         W+96ucR5OiUZygeSwjJrwPw6g0lT3rDOzITEXs2E3jPI7/BgxK8f3pGheuEA8hTvjvyj
+         DvD3VRLHziAQ4zFMcN8V45H3bKtkWTKJzIeH9NaGMp6xVcf2U50OimBiD39bGzyDKkBw
+         DsGw3E5dOBNkmPX0rVCgqyFCMIzfAyjkEXWlug1OkCZrlpUWN8LEGiDyi/mZs02igbOz
+         c7nQ==
+X-Gm-Message-State: ACrzQf2Ihv742UFtpguyD9ykHzMVhUS4XSpWAvdpbimPumBq4gB4Apjf
+        3CwkgrewUVPsZM7M2FBaF/Zfbw==
+X-Google-Smtp-Source: AMsMyM4bfAu9rx5kzzrk6jmkaHycCDsic51/wAojbsHDb41AJ/LndIGKdkwgHTpqj+hrnlU9ip57jg==
+X-Received: by 2002:a37:2f42:0:b0:6fa:65:6f71 with SMTP id v63-20020a372f42000000b006fa00656f71mr17960308qkh.191.1667405966985;
+        Wed, 02 Nov 2022 09:19:26 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id u21-20020ae9c015000000b006eecc4a0de9sm8578474qkk.62.2022.11.02.09.17.30
+        by smtp.gmail.com with ESMTPSA id x13-20020ac86b4d000000b003988b3d5280sm6751132qts.70.2022.11.02.09.19.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 09:17:30 -0700 (PDT)
-Message-ID: <abc9ed33-26d2-b850-8c7a-78cb1735ddb2@linaro.org>
-Date:   Wed, 2 Nov 2022 12:17:29 -0400
+        Wed, 02 Nov 2022 09:19:26 -0700 (PDT)
+Message-ID: <d475d80b-37b5-29ee-4a5d-dee8c4083834@linaro.org>
+Date:   Wed, 2 Nov 2022 12:19:25 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v5 1/3] dt-bindings: clock: add loongson-2 clock include
- file
+Subject: Re: [PATCH 1/2] dt-bindings: leds-lp55xx: add ti,disable-charge-pump
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Maarten Zanders <maarten.zanders@mind.be>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-References: <20221028025504.13247-1-zhuyinbo@loongson.cn>
- <01a38c4c-b42a-c170-3c3d-0b7e087bfaa4@linaro.org>
- <2bd0f05d-a5c4-3c5c-ccbc-3e3385cc0a1d@loongson.cn>
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221028133501.95833-1-maarten.zanders@mind.be>
+ <20221028133501.95833-2-maarten.zanders@mind.be>
+ <34c4037b-d152-412d-e551-dd3ea27b6b46@linaro.org>
+ <7cbb1cc5-e333-db25-77e2-7a1ebda70e24@mind.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2bd0f05d-a5c4-3c5c-ccbc-3e3385cc0a1d@loongson.cn>
+In-Reply-To: <7cbb1cc5-e333-db25-77e2-7a1ebda70e24@mind.be>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -86,28 +80,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2022 22:54, Yinbo Zhu wrote:
+On 29/10/2022 03:48, Maarten Zanders wrote:
 > 
+> On 10/29/22 00:07, Krzysztof Kozlowski wrote:
+>> Drop | 
+> OK.
+>>> +      Disable the internal charge pump.
+>> Does it mean that it is enabled by default?
 > 
-> 在 2022/10/28 下午7:43, Krzysztof Kozlowski 写道:
->> On 27/10/2022 22:55, Yinbo Zhu wrote:
->>> This file defines all Loongson-2 SoC clock indexes, it should be
->>> included in the device tree in which there's device using the
->>> clocks.
->>>
->>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>> Change in v5:
->>> 		1. Replace loongson2/Loongson2 with loongson-2/Loongson-2.
->>> 		2. Replace soc with SoC.
->>>
->>
->> Where is the rest of the changelog?
-> What you're asking is where the replacement string is located.  it was 
-> in commit log.
+> The device default after reset is "off".
+> The current implementation sets it to "auto".
+> Other possible modes are "bypass" and "boost".
+> 
+> Should I change to an optional "ti,charge_pump_mode" as string and set 
+> default to "auto"?
 
-I am asking why there is only v5 changelog? Where is v4, v3, v2?
+enum makes more sense in that case. Just don't user underscores in
+property names.
 
 Best regards,
 Krzysztof
