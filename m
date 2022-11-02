@@ -2,131 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 472AA616DF0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:44:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BCE616DF3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiKBToe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 15:44:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54462 "EHLO
+        id S230086AbiKBTpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 15:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbiKBTod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:44:33 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1FE2BF4;
-        Wed,  2 Nov 2022 12:44:31 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A2JiKvL125223;
-        Wed, 2 Nov 2022 14:44:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667418260;
-        bh=73fJ/vUrAbwYd4seHXK+hQNCfqrK2dd66XKeNvDJbXQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=puP9EyhnKGWKqLSG4MiIQLfqovo/GwHLupylvfRuqgYQH2dlVBYDqezZL2NIBs01V
-         NkTq4SissumgQYKuaj4bPBlxNoPzhMEorRx0hgSbQP82kiQ6VoP4anDc6LVqwwyIp0
-         VRJof68/QpNPidD3958+CeSKdd2ITwgRcXbBmlpo=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A2JiK4f051375
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Nov 2022 14:44:20 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
- 2022 14:44:20 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 2 Nov 2022 14:44:20 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A2JiKDT103584;
-        Wed, 2 Nov 2022 14:44:20 -0500
-Date:   Wed, 2 Nov 2022 14:44:20 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Jayesh Choudhary <j-choudhary@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>, <j-keerthy@ti.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am65-main: drop RNG clock
-Message-ID: <20221102194420.umwuyk374g2mgg45@unlucky>
-References: <20221031213237.52275-1-j-choudhary@ti.com>
- <20221031213237.52275-2-j-choudhary@ti.com>
- <20221102151706.krsi5lujydb4nswa@daybreak>
- <4f954c08-6a2e-93b5-6806-7b27b247496e@ti.com>
+        with ESMTP id S229534AbiKBTo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:44:59 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30527E0C9;
+        Wed,  2 Nov 2022 12:44:58 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id AA2C385072;
+        Wed,  2 Nov 2022 20:44:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1667418296;
+        bh=KQ7SPCMB51dJ/SDQrgfQd7I0irSU0npFOfzmrtjSj9s=;
+        h=From:To:Cc:Subject:Date:From;
+        b=J0uE51469gUM12NI6cFJa89HAAeecNA1IrEgK6P0PihizPQEZ3iy+BErEdBdXd5/7
+         PxogYYzYHEPXjkGZO0wd/ZUqO+nNOz3RuAVI3jzO6KXeoBCATli5eDizsdyyapWnXd
+         AQFup/oRQIowdzvUda3B/8hiuKTqt9hnpTs0PopH3pXZhXHfp94fVJep9sGBOf7uz7
+         ug+wMYjuyuLsjznKWcCd5Ui3jetf5ABPKLzK6ywnoZVkAAFIeDLtQmDvGfpCKef6jE
+         DwHqQJjBt0eE6CtKHev1F2Eue27FdaGcsSRSORfzsf/ktpMrzBz2iCKFz6pN2667jx
+         iunwrS5tj8nQg==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     linux-watchdog@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Subject: [PATCH RESEND] dt-bindings: watchdog: gpio: Convert bindings to YAML
+Date:   Wed,  2 Nov 2022 20:44:36 +0100
+Message-Id: <20221102194436.123316-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <4f954c08-6a2e-93b5-6806-7b27b247496e@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:04-20221102, Andrew Davis wrote:
-> On 11/2/22 10:17 AM, Nishanth Menon wrote:
-> > On 03:02-20221101, Jayesh Choudhary wrote:
-> > > Drop RNG clock property as it is not controlled by rng-driver.
-> > 
-> > Does'nt tell me what is the alternative? why is the hardware description
-> > not sufficient for control?
-> > 
-> > https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/clocks.html#clocks-for-sa2-ul0-device
-> > Looks like a perfectly valid description - do we have a bug and firmware
-> > does'nt allow control here?
-> > 
-> 
-> We have three input clocks feeding the SA2UL module, x1, x2, pka. PKA goes
-> to the PKA sub-module (isn't it nice when they make things simple). But x1 and
-> x2 are miscellaneous and bus clocks respectively and route to several sub-modules.
-> 
-> All we drop here is the clock handle in the RNG sub-module, as that sub-module is
-> not the owner of that clock (the parent SA2UL is). The alternative we could implement
-> is to move the clock node up to the parent SA2UL node.
-> 
-> > > 
-> > > Fixes: b366b2409c97 ("arm64: dts: ti: k3-am6: Add crypto accelarator node")
-> > > Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> > > ---
-> > >   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 1 -
-> > >   1 file changed, 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > > index 4005a73cfea9..e166d7b7e3a1 100644
-> > > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> > > @@ -126,7 +126,6 @@ rng: rng@4e10000 {
-> > >   			compatible = "inside-secure,safexcel-eip76";
-> > >   			reg = <0x0 0x4e10000 0x0 0x7d>;
-> > >   			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> > > -			clocks = <&k3_clks 136 1>;
-> > 
-> > Does this mean that the crypto module's power-domains property should be
-> > dropped as well?
-> > 
-> 
-> Why? the power-domains property is in the correct spot (up in the parent node).
-> 
-> Now it is true we cant actually shut the SA2UL down since it is owned
-> by the security processor, but since it is marked TI_SCI_PD_SHARED this
-> should be fine.
+Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
 
-The idea of the descriptions were to describe what is controllable by
-firmware, if there is no control due to the specified reason, it is a
-device tree bug, and should be documented when dropping it. If it serves
-a purpose in the firmware by indicating usage for example - it has valid
-reason to stick around as it is expected to be used by firmware for some
-specific reason.
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: linux-watchdog@vger.kernel.org
+To: devicetree@vger.kernel.org
+---
+NOTE: The Maintainer entry should likely be changed, although it seems
+      like this driver and its matching bindings are now unmaintained.
+---
+ .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 ------------
+ .../bindings/watchdog/linux,wdt-gpio.yaml     | 44 +++++++++++++++++++
+ 2 files changed, 44 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
 
-The commit description does bring up the above mentioned questions and
-must be explained appropriately.
-
+diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt b/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+deleted file mode 100644
+index 198794963786b..0000000000000
+--- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-* GPIO-controlled Watchdog
+-
+-Required Properties:
+-- compatible: Should contain "linux,wdt-gpio".
+-- gpios: From common gpio binding; gpio connection to WDT reset pin.
+-- hw_algo: The algorithm used by the driver. Should be one of the
+-  following values:
+-  - toggle: Either a high-to-low or a low-to-high transition clears
+-    the WDT counter. The watchdog timer is disabled when GPIO is
+-    left floating or connected to a three-state buffer.
+-  - level: Low or high level starts counting WDT timeout,
+-    the opposite level disables the WDT. Active level is determined
+-    by the GPIO flags.
+-- hw_margin_ms: Maximum time to reset watchdog circuit (milliseconds).
+-
+-Optional Properties:
+-- always-running: If the watchdog timer cannot be disabled, add this flag to
+-  have the driver keep toggling the signal without a client. It will only cease
+-  to toggle the signal when the device is open and the timeout elapsed.
+-
+-Example:
+-	watchdog: watchdog {
+-		/* ADM706 */
+-		compatible = "linux,wdt-gpio";
+-		gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
+-		hw_algo = "toggle";
+-		hw_margin_ms = <1600>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+new file mode 100644
+index 0000000000000..6b014d60c9471
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/linux,wdt-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO-controlled Watchdog
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  compatible:
++    const: linux,wdt-gpio
++
++  gpios:
++    description: gpio connection to WDT reset pin
++    maxItems: 1
++
++  hw_algo:
++    description: The algorithm used by the driver.
++    enum: [ level, toggle ]
++
++  hw_margin_ms:
++    description: Maximum time to reset watchdog circuit (milliseconds).
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    watchdog {
++        compatible = "linux,wdt-gpio";
++        gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
++        hw_algo = "toggle";
++        hw_margin_ms = <1600>;
++    };
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.35.1
+
