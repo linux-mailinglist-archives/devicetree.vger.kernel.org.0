@@ -2,95 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E44616C3F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB903616C6A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:36:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231180AbiKBSdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 14:33:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
+        id S231400AbiKBSgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 14:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231138AbiKBSdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:33:42 -0400
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392892F004
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:33:41 -0700 (PDT)
-Received: by mail-qk1-x72d.google.com with SMTP id f8so12349698qkg.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:33:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q92riiS7ubzxoWF6UuL2jfQgGcw0qGoG//c8sRPlZ6Q=;
-        b=kGcLjV7SmNNbbGA/s5728760o5U/Yl+OT//qiK+lbm1ZFISPUnYEn8Gi1sB78euRC8
-         vszdivvxXScOtJ1ZFruWtROVGOoHJ0As/vBBHiwRZrQyUCENP770io+HaedrF9VMiZvP
-         uq0YYkkB1g/zE4DSaz1E9mNmI/Fwubaj7oVYqEZl7yr1Mlxqv+DGVt6lv9auwZEKlWZ0
-         BshgmtK3Ko3qg950J6/jr+hJWnQWCCpfZfB5xf8R1w36/bh7O/Xa979/DozoS7RwRcxT
-         /XgllTzxF0MZNp2G5hkr+JhWfDvtdGmmV2WUgtYtYfyx6WDXOrYQeqnWs7Cg9SKMUO/V
-         Zp9Q==
+        with ESMTP id S231358AbiKBSgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:36:41 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76407303F4;
+        Wed,  2 Nov 2022 11:35:50 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-13c569e5ff5so20859933fac.6;
+        Wed, 02 Nov 2022 11:35:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q92riiS7ubzxoWF6UuL2jfQgGcw0qGoG//c8sRPlZ6Q=;
-        b=8GaX5ZHaG4exMz35oILPmh6qitLGDhaYJgcbaiF2TJotwnkMgIiqePLAHHE+jKkDQx
-         ZVU6NjA1oZH+lDNCK+AjhVWujz1OLky7Wo/c7V+qYQAEyJc96kK27Tpdnrc/JD8ADgBX
-         tmjm371j2oh4ozAk4L2eRUmLNJeFMIO+9/l8nYvVBYsHgbYGLarNPXMRt2qXRX065Ant
-         ckkC7JNDL2jC3T/M3/su0TCs3+eBqji8xnrq1oPFo3GYuERhvzjKl0hvlrFvtmPSlrC4
-         KpkYjA9MVJ84Ht28UU+szl9Ca7BoG1GVc0cPtjDPyJoL0dxrqcZDEHa7dEvVl1kcKzJZ
-         AdrA==
-X-Gm-Message-State: ACrzQf2r8Gy0PwFoDEAT/dNssR6ebrckrDXxRYDb5F2lSPC1o1TsD2Lc
-        FxkjgJsMpI3kgzzMOTklXQ2dqXRLOayo9g==
-X-Google-Smtp-Source: AMsMyM6n+O//qDHsWRWUhV8NoPCYi8OjtMbiw8u1VyQm+AKGMgDct3y60PhFqUC4AGL9jpSTDfaFcQ==
-X-Received: by 2002:a05:620a:ecd:b0:6fa:2bb0:7d86 with SMTP id x13-20020a05620a0ecd00b006fa2bb07d86mr12957581qkm.296.1667414020390;
-        Wed, 02 Nov 2022 11:33:40 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id cm8-20020a05622a250800b003a530a32f67sm3506976qtb.65.2022.11.02.11.33.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 11:33:39 -0700 (PDT)
-Message-ID: <9619c472-4fad-c71c-591c-12f5ef7e0a79@linaro.org>
-Date:   Wed, 2 Nov 2022 14:33:38 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio/adc: qcom,spmi-iadc: use double
- compatibles
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afd@ti.com, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221031182456.952648-1-luca@z3ntu.xyz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221031182456.952648-1-luca@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=A/CuXeX5BAmh1fy0gv5umwNjOEiAdicnjnxUO4ZSgqI=;
+        b=ZWitSwO2UOAh7n6vGDEFLK0p/52dQ8/7C6YfFjZedEPdFPnvV8QRoiudEJCX/KOxKe
+         eCRF1TaYu3vTIokj9FEjpWGjLFONQgnglYODrhhxKsuHIQFrg8V2VxHO2pjz88CK1m+q
+         lNXcLVOimHCR2+hvD0bt90cbfjaDl61EyPIi70Hm0lt2umSmkNtp9iYHxj2w+TrCUSr3
+         H6HwSUzM0qXq4GzXVuZXiwuUksjsx5P+fTI2eUxxltdRIOw9QagC3LcnxlvAz8IW4Krk
+         tRpq2+cUtcaK0n7krBAWd1eAQ8MN/DPKqb+xayJPMj5kP8dzC3T2zZOTWZcZXKwXwbud
+         qcWg==
+X-Gm-Message-State: ACrzQf3qZKuwVu75OZ2+zaHNCM6pWQwlayUM6TrPza81PjS0HdGBBK3X
+        C0pTm1BJZfML1kesPnsjhQ==
+X-Google-Smtp-Source: AMsMyM7CmXp9Hfz0+ZuQVyxpx2aFwopthUXM7VzE06aXbO1uz1eEkTzlRg4N4mxvNNz525kGB6pndw==
+X-Received: by 2002:a05:6870:4607:b0:127:fd93:4752 with SMTP id z7-20020a056870460700b00127fd934752mr25203464oao.64.1667414149652;
+        Wed, 02 Nov 2022 11:35:49 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d22-20020a056830045600b0066210467fb1sm5384100otc.41.2022.11.02.11.35.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 11:35:49 -0700 (PDT)
+Received: (nullmailer pid 130546 invoked by uid 1000);
+        Wed, 02 Nov 2022 18:35:50 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20221102161211.51139-1-krzysztof.kozlowski@linaro.org>
+References: <20221102161211.51139-1-krzysztof.kozlowski@linaro.org>
+Message-Id: <166741398630.127357.13160524174654511434.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: nxp,sja1105: document spi-cpol
+Date:   Wed, 02 Nov 2022 13:35:50 -0500
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 14:24, Luca Weiss wrote:
-> As in other bindings, let's use specific compatibles together with the
-> fallback compatible. Adjust the bindings for it.
+
+On Wed, 02 Nov 2022 12:12:11 -0400, Krzysztof Kozlowski wrote:
+> Some boards use SJA1105 Ethernet Switch with SPI CPOL, so document this
+> to fix dtbs_check warnings:
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+>   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> Changes in v2:
-> * New patch
+>  Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Best regards,
-Krzysztof
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+ethernet-switch@1: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'fsl,spi-cs-sck-delay', 'fsl,spi-sck-cs-delay', 'spi-cpha' were unexpected)
+	arch/arm/boot/dts/ls1021a-tsn.dtb
+
+switch@0: Unevaluated properties are not allowed ('clocks', 'reset-gpios', 'spi-cpha' were unexpected)
+	arch/arm/boot/dts/imx6qp-prtwd3.dtb
+	arch/arm/boot/dts/stm32mp151a-prtt1c.dtb
 
