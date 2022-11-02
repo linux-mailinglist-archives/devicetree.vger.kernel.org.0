@@ -2,69 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E0FC61645A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F60C616469
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:06:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiKBOD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 10:03:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
+        id S231153AbiKBOGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 10:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiKBOD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:03:57 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA49BC8
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:03:54 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id u7so12463642qvn.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 07:03:54 -0700 (PDT)
+        with ESMTP id S231230AbiKBOGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:06:15 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF51ADFDD
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:06:09 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id a27so8040546qtw.10
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 07:06:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pywIRCPuC2MFbuylTPqRj5zD/GzM0s7PD59oXY9A6TY=;
-        b=Fv3BR0IWU6Mu64TYqH1aeAggacF0YoDIO1TF9/HD5YQsLgVwmeetHc2Q0UZJblS6vQ
-         GdeznqYKMJJCwU36X7ujN2vVL/o+AnibDLoucDXu2nJou1ttPPuVk/73xQyQ1uEfjwe1
-         Gcx5cM+VcnWwmC1r/74VgXk04nxgdicOLtEy5VwKo/4oLu5w7kkm81fSmZFehyrNmHKO
-         CxYfIXX2XSJrr4Sv8dzqB4Q3XdMNCiTPmYBRO3uNhaLG09FK+hFTNfVd2wYdqD4aZXzr
-         2wCq1cFMVRzMnNA9R/+zD0nFUZ/BdGY0itltb78MbFXAv79VzZOXltD7Ve4K3sFIPts2
-         B0iA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u8I8YjQ9OqUc6+GXG53gLGhk3YKl1A1Hqfq8bNeyg7s=;
+        b=c5vP3TPcjZjzxw9dKO2SqHTHPqZ1AzM4z3wXUVVp6W8bdlRd39ueWbqZlywB79jxxE
+         1gXqDBQFaeYvMGKVCV4ToXBizObJHA375ezQQo2yyj6pA24jIyUDIO54t2EFvYzjc+0/
+         ytlJqAGvbPgxRkFBZD4z4dG4ShSlDe+mhV3HdFajV7o/qnEiW+pN6v12B75h67zNIGTd
+         zeMlN3HU3YNw2MRNpeOa8nUGFiqhCmfmmDze5nzLcpNPMAYgJnG9vbmsBaZ9lZxXAv69
+         OUBi8LJZhG0u2qpP529z4wWjTY3Z+37iq1zH8kPfuqgIfCzmGxNQbTWbWPmGbfJTw05X
+         xM1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pywIRCPuC2MFbuylTPqRj5zD/GzM0s7PD59oXY9A6TY=;
-        b=MPWoxWTb/oAhyYNXekYdf+Frrdz+5HezISkR5tiJwIdpNU3OS46Eh7Q7mMTJPM/r3e
-         /R93ELQfMF9nrEsN86Tmg2Hnn8FPrIwF5pjhF0pHUUNofzuf44WfMmcLYmeAjB+5R+uf
-         mxnviBw1vl3wpt3WCFiBB14Ws7jJLYfCcgOQokFJ3JCIcelYPaM/H7LkBybESs8xlVEu
-         8ZUsxiJqpbVSWX/cYLsOZVLMfXubSKcCHIVEU06BCeWmT3TIxsqq9POlBAFjvnZDVG8Y
-         HLvIk97eMItRQU/mScK1WdHoH7huApvyxhApLzYnfWfuM1+klPgAENkjxBrvE0vdpkLM
-         jzxw==
-X-Gm-Message-State: ACrzQf0JQPcuxLoTucvDcomqx4yDWyi2iQmkJeIw61JbipYk+AH2UH56
-        7A7PI1we/XkqnP2LpYqZVtKVBA==
-X-Google-Smtp-Source: AMsMyM6VJAYZR7opShbPCFk8B4tgC5r7eMS47AqJmXIMeK1P1Z1U3UOf03hUYsPeHopf1Hl5a1e86Q==
-X-Received: by 2002:a05:6214:1cc2:b0:4bb:c676:5bda with SMTP id g2-20020a0562141cc200b004bbc6765bdamr20120695qvd.0.1667397833691;
-        Wed, 02 Nov 2022 07:03:53 -0700 (PDT)
-Received: from krzk-bin.. ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id bn5-20020a05620a2ac500b006bb78d095c5sm7533392qkb.79.2022.11.02.07.03.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 07:03:53 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        "B. Niedermayr" <benedikt.niedermayr@siemens.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        tony@atomide.com, rogerq@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v9 0/2] gpmc wait pin additions
-Date:   Wed,  2 Nov 2022 10:03:50 -0400
-Message-Id: <166739782624.6087.4220604389047260115.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221102133047.1654449-1-benedikt.niedermayr@siemens.com>
-References: <20221102133047.1654449-1-benedikt.niedermayr@siemens.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u8I8YjQ9OqUc6+GXG53gLGhk3YKl1A1Hqfq8bNeyg7s=;
+        b=DVIu+8xgAIXQRZUPQrqz/22WB4ZFa6gtZduIvUCFHd444T2/AitXDtzPhSTCAXBShV
+         o6trELtcK4KmU3G/QDfIvA0jeJVZbjoS3gzgc8iKuBbxugZK1jM5M7b5aW6I4VqY/zaV
+         htqvVUmbp3LIspVuzfh8/vnoWEHCkqlzQo3J2cvyPxtqrZoqfManAVUiC7zdtfxL+D8u
+         enu160gPJSD35dkIIufF4NvSPEmt5pAr8UawZLja3dntO5FmkUfkoLgebApvwDmZvCG8
+         5cbm87HUIjjv/WYOXgah9N/nGZQGNDSp9AyodRaeD2a4f6n0s+EH9Cpp+T/7DwfLqhOx
+         8hOw==
+X-Gm-Message-State: ACrzQf3LdYgzwRHSpn8GEzJQxIigi9xCfwSWQuHtgYt8xQDkaiJ5WSLD
+        yY+qAu0aa39YynC0pr5L8gXBGQ==
+X-Google-Smtp-Source: AMsMyM4biLkm76K7n7SPP0fluVyArsIz/1B7B+io23fFXwfhoBFDs/OenMBXMdxJAIpIkYaxQIDEdg==
+X-Received: by 2002:a05:622a:40ce:b0:3a5:42f9:dea1 with SMTP id ch14-20020a05622a40ce00b003a542f9dea1mr3714746qtb.311.1667397969007;
+        Wed, 02 Nov 2022 07:06:09 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id q25-20020a37f719000000b006fa16fe93bbsm8299113qkj.15.2022.11.02.07.06.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 07:06:08 -0700 (PDT)
+Message-ID: <04ce7d6d-8f78-8cea-0efb-59c5db001713@linaro.org>
+Date:   Wed, 2 Nov 2022 10:06:06 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 0/5] Add PWM for MStar SoCs
+Content-Language: en-US
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-pwm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220907131241.31941-1-romain.perier@gmail.com>
+ <CABgxDoKeJrVK2NxJXd=MicdBWUyusf1aGbgKvyrOyB7m0xbPaQ@mail.gmail.com>
+ <fdeeeb4e-c66c-5c18-41f0-41a9f27ad8e3@linaro.org>
+ <CABgxDo+2OXLy7-xEetQ4zzaPQbB4tbQ=WtdcU494Uo5xWpPkVg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CABgxDo+2OXLy7-xEetQ4zzaPQbB4tbQ=WtdcU494Uo5xWpPkVg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,25 +83,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Nov 2022 14:30:45 +0100, B. Niedermayr wrote:
-> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+On 29/10/2022 03:48, Romain Perier wrote:
+> Hi
 > 
-> Currently it is not possible to configure the WAIT0PINPOLARITY and
-> WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via
-> device tree properties.
+> This is what I already do and what I do for every patch series, usually ^^
+> And I send To: the maintainers and everyone else in Cc: , as the process or
+> other maintainers suggest.
 > 
-> It is also not possible to use the same wait-pin for different
-> cs-regions.
+> The command was run on 6.0 for the first v1 I think .
 > 
-> [...]
+> I have forgot something ?
 
-Applied, thanks!
-
-[1/2] memory: omap-gpmc: wait pin additions
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/89aed3cd5cb951113b766cddd9c2df43cfbdafd5
-[2/2] dt-bindings: memory-controllers: gpmc-child: add wait-pin polarity
-      https://git.kernel.org/krzk/linux-mem-ctrl/c/1f1e46b83b7db08c8db31816c857e27da84d4ca3
+You forgot to Cc at least me. I did not check other missing entries.
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
