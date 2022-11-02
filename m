@@ -2,111 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE36B616CAF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9BF9616CB7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbiKBSlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 14:41:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35488 "EHLO
+        id S231475AbiKBSo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 14:44:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231211AbiKBSlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:41:32 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918442CDF0
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:40:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1667414430;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=z6U2QWI3L7CELeN2uR9v9BKzosx2j/rMnyai3sfNG/I=;
-        b=I0mGPui4NpAu/5e86YRU+5O2E7k5zo+KNsiJUEayAB+rFi1Hpl62ljrLPkNP/szVXmrq/K
-        ovHyLjsC6DVvT6DWoBJV2KvkSxAb6REufsrenaVEfOpRG0n0/JPfg+s1RUXtVokaAeZb6f
-        MFSEnXB99c4veaGSAFi1/ew6b+QtsWo=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-256-rGUSqeVgPoKdCi1FX2Sc4Q-1; Wed, 02 Nov 2022 14:40:29 -0400
-X-MC-Unique: rGUSqeVgPoKdCi1FX2Sc4Q-1
-Received: by mail-qt1-f199.google.com with SMTP id g3-20020ac84b63000000b003a529c62a92so6162121qts.23
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:40:29 -0700 (PDT)
+        with ESMTP id S231448AbiKBSoZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:44:25 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 620302D1E3
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:44:23 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id o12so29663971lfq.9
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:44:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t9I1z4AXsJK+25P06vSnuu3hIZEjku7ef8TqnyD4Aqg=;
+        b=kTDv3XtmSj8ZzEhElD+tS6kV/E5rjqnEgwJn+7OtiDgaoylq7zpGu0O8MsV6YUggqZ
+         tpoR7YynzbGW8BD0B0/UuAIE45M6gqQ/QoVDCinax2fD7nl54xrTH6lMwTC9ZlxNIYUr
+         +/gLjkbwGIac99WXTE1xsNir/QYRDCCahPRSLYhR2Q1fYoksslmTLMH+ImFxUYv5e1x7
+         uA4RKNM482d0SL/u3Sakay2t8ryF0pezayc0lb/ZgxbkAyz3TvYU3X0yEI6tWgpNQZ7H
+         uQdFIYxdSZL4Bfy60szDSIzNerJ7fz/TUlwQN46zBj/z2yK5gbEXKEKdNj0Ag3Fw8LyB
+         u9SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z6U2QWI3L7CELeN2uR9v9BKzosx2j/rMnyai3sfNG/I=;
-        b=6GDeLgXcVP+3zxEuoHwvRXXyC8uQJmYHQPJo+JYsoiibUHnGpLqx0+X1h9dw3eGnMo
-         nc3SAN4BFVU2snDbcRLX2vbjvgpkIrETo1un5yWu178pZX5dVl2+SY0zPcOHAmbYqPYJ
-         y3qwuvMuwHewzO9V6Myu65yCqen5web9nKPcIco0S/Cau/XKS9rR5JVWSuj8Ya1bg1ld
-         qre+DWRSxqb+O1t5dQ1gxIbHctwSu1Ll9R6t7WdeakJL28bF/yCEF8+EptU+Bh3pmcIO
-         KVsg8h8eVyhTUM/XuQV7RN2rRU4Xz1xfFtkpERDqlZ5wBnNESE9TcY3S+7GcVMjxltil
-         TiWA==
-X-Gm-Message-State: ACrzQf3Yih1IVofDLre5/XCUgpGEDUb/fq/XNmQwlRRy473vcMUBwMTt
-        8AsuEwgdbxRM1mDlsWZpsbcH1eEdbAUejdobYF832QoELRCJCP7he3oJRVp3p6ySi400mfChrXd
-        nmF+n4LjgTko8EM3MRzo4VA==
-X-Received: by 2002:a05:620a:2984:b0:6fa:6636:d4e5 with SMTP id r4-20020a05620a298400b006fa6636d4e5mr2471923qkp.622.1667414429136;
-        Wed, 02 Nov 2022 11:40:29 -0700 (PDT)
-X-Google-Smtp-Source: AMsMyM5T4ytHu3K/k7aIWWR9fQduopTkBaK9CqkhKpSxE2oFDFcMEEUfWbOKCZP3zXChPWrTaqbUlg==
-X-Received: by 2002:a05:620a:2984:b0:6fa:6636:d4e5 with SMTP id r4-20020a05620a298400b006fa6636d4e5mr2471904qkp.622.1667414428917;
-        Wed, 02 Nov 2022 11:40:28 -0700 (PDT)
-Received: from localhost (pool-100-0-210-47.bstnma.fios.verizon.net. [100.0.210.47])
-        by smtp.gmail.com with ESMTPSA id bm2-20020a05620a198200b006cfc7f9eea0sm8930499qkb.122.2022.11.02.11.40.28
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=t9I1z4AXsJK+25P06vSnuu3hIZEjku7ef8TqnyD4Aqg=;
+        b=4OQAiCBn/1k1irzXe9qGHSCRqbnyrK67ANERth/zIvItDzyd69uWPhWIa1NKPcT8iq
+         FOjd6heUiTvicV1yUdqN8cVB3UZW/J2/7e94oB12uxFK/bu444f7y5BxB1PM5He8aohf
+         DwXGIJO/yZlvINx6roHdeUhjoCNE2BUPOxVVdxu3J0++8e6BOfHuDe7fvGMy5NqNBnPQ
+         Sq5QD1WbsRCJVWFwHm0JS9sJB00JGH/ZeTtofrmVeKg4l46aJjkkaiqsh51jYwyNr7jF
+         B4E+rho8xVCG3lbu8TKmgNNE2jC69OsukIVu7+iZR9b2rflO3sGz7A+2m6uielORI2TQ
+         C8Jw==
+X-Gm-Message-State: ACrzQf2k9M65RoWl4c4jT0Oo44+IwNkZBRSS5tf1gsIHv0SqvnGN7RZs
+        0a9uzbEdeAyLbmmoVYEVf7zzfg==
+X-Google-Smtp-Source: AMsMyM5KhE+waYR30gx/0w7uAuJpT6jJfFha4iriDSYOuqxv78t3C1EPaBfdCNkuA9y8K6jwgl3ddQ==
+X-Received: by 2002:ac2:4d2e:0:b0:4a4:7ed0:76c0 with SMTP id h14-20020ac24d2e000000b004a47ed076c0mr9309861lfk.240.1667414661707;
+        Wed, 02 Nov 2022 11:44:21 -0700 (PDT)
+Received: from eriador.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id t8-20020a05651c204800b00277092c03e7sm2277540ljo.33.2022.11.02.11.44.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 11:40:28 -0700 (PDT)
-Date:   Wed, 2 Nov 2022 14:40:27 -0400
-From:   Eric Chanudet <echanude@redhat.com>
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Wed, 02 Nov 2022 11:44:21 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        Brian Masney <bmasney@redhat.com>,
-        Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: add SA8540P ride(Qdrive-3)
-Message-ID: <20221102184027.236affysihqnivh5@echanude>
-References: <20221102103552.29388-1-quic_ppareek@quicinc.com>
- <20221102103552.29388-3-quic_ppareek@quicinc.com>
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: [RFC PATCH v2 00/11] iommu/arm-smmu-qcom: Rework Qualcomm SMMU bindings and implementation
+Date:   Wed,  2 Nov 2022 21:44:09 +0300
+Message-Id: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221102103552.29388-3-quic_ppareek@quicinc.com>
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 02, 2022 at 04:05:52PM +0530, Parikshit Pareek wrote:
-> Introduce the Qualcomm SA8540P ride automotive platform, also known as
-> Qdrive-3 development board.
-> 
-> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
-> regulators, debug UART, PMICs, remoteprocs and USB.
-> 
-> The SA8540P ride contains four PM8450 PMICs. A separate DTSI file has
-> been created for PMIC, so that it can be used for future SA8540P based
-> boards.
-> 
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> Tested-by: Brian Masney <bmasney@redhat.com>
-> Reviewed-by: Brian Masney <bmasney@redhat.com>
+The main goal of this patchset is to define a generic qcom,smmu-500
+binding to be used by newer Qualcomm platforms instead of defining each
+and every SoC line with no actual differences between the compats.
 
-Using the default defconfig on next-20221102, preventing
-qcom_q6v5_pas.ko to load avoids the board crash observed in v5, as
-found during v6 review by Brian.
+While preparing this change it was required to cleanup the existing
+bindings and to rework the way the arm-smmu-qcom implementation handles
+binding to IOMMU devices.
 
-Tested-by: Eric Chanudet <echanude@redhat.com>
-Reviewed-by: Eric Chanudet <echanude@redhat.com>
+Changes since RFC v1:
+ - Added the dts patch fixing order of clocks in msm8996.dtsi
+ - Fixed the DT bot errors
+ - Added separate clause for Google Cheza devices
+
+Dmitry Baryshkov (11):
+  arm64: dts: qcom: msm8996: change order of SMMU clocks on this
+    platform
+  dt-bindings: arm-smmu: Add missing Qualcomm SMMU compatibles
+  dt-bindings: arm-smmu: fix clocks/clock-names schema
+  dt-bindings: arm-smmu: add special case for Google Cheza platform
+  dt-bindings: arm-smmu: Add generic qcom,smmu-500 bindings
+  iommu/arm-smmu-qcom: Move implementation data into match data
+  iommu/arm-smmu-qcom: Move the qcom,adreno-smmu check into
+    qcom_smmu_create
+  iommu/arm-smmu-qcom: provide separate implementation for
+    SDM845-smmu-500
+  iommu/arm-smmu-qcom: Merge table from arm-smmu-qcom-debug into match
+    data
+  iommu/arm-smmu-qcom: Stop using mmu500 reset for v2 MMUs
+  iommu/arm-smmu-qcom: Add generic qcom,smmu-500 match entry
+
+ .../devicetree/bindings/iommu/arm,smmu.yaml   | 172 +++++++++++++++++-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  31 ++--
+ .../iommu/arm/arm-smmu/arm-smmu-qcom-debug.c  |  91 ---------
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c    | 156 +++++++++++-----
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.h    |  21 ++-
+ 5 files changed, 307 insertions(+), 164 deletions(-)
 
 -- 
-Eric Chanudet
+2.35.1
 
