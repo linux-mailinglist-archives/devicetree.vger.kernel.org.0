@@ -2,60 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D3B8616F91
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B686E616FAE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:26:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229875AbiKBVUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 17:20:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
+        id S229637AbiKBV0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 17:26:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbiKBVUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:20:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68DC2AC2;
-        Wed,  2 Nov 2022 14:20:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A0181B82414;
-        Wed,  2 Nov 2022 21:20:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE094C433D6;
-        Wed,  2 Nov 2022 21:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667424046;
-        bh=KxWz09Mvgj/5WrZqHX/ZJD0h7CGdGaqF4QLtpeE4PTM=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=hmjrThd9b+U48YarjtbPQgNvQPaXO3csUaryEvW1rX1Wf6Ay3okr7i9PXfoE8h9Tz
-         AK9PVVHOHgBKR8drHHOuFPl+gqwU1QCDBtJuCl52LVwowXn7iG8QelhqZhEw1fZOuX
-         RcIPOjUJ+aNC9WpdMc3N1XuAIhwtkOyyDqljF3bRq5GWETjXXbKVNaPOkeszZmnbIo
-         0F24hB/MNzGDwU12kraZltbVt96tpFN+sjTdpbK0OFgzyDhGo6QKURmu69t6M14rkP
-         NP0YUM/BOeqlyt6yQ/b7Dk/Z6zIZYxDVwl3G4U4Jx16K9B/g9ehrgEPXbrEUTy+Hn7
-         x1FntsOBTqVeA==
-Message-ID: <ee6c5a96-81c4-5729-f623-4b23bc3b8e0a@kernel.org>
-Date:   Wed, 2 Nov 2022 17:20:43 -0400
+        with ESMTP id S229975AbiKBV0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:26:45 -0400
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 893FD386;
+        Wed,  2 Nov 2022 14:26:44 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id 16-20020a9d0490000000b0066938311495so11001320otm.4;
+        Wed, 02 Nov 2022 14:26:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PLVVe6D1itbH1t6TKZAaQSu2DyfSrBfDR8AvY6oDwp4=;
+        b=istveK+X30PNzCvzMKd5qimsJM/F2pXq9o8LSiEWNJIBP/HlkryAQ+HT5lKLnoZdSb
+         C7ZkGOico2jq0DbA+Zl32RcKc3LHSWxZF934Gpol1Ur5noAvEv/Qzo4qinXMW/OcGwBc
+         F7Sno6Kd7QtKqgMsbL6FGQCCemut4UsInpkW2OEbPbFz7zR8YXOzsyfCiBPLaQhhvtzr
+         BU1GMERkhtPHRrco/DREy0hU6HE7UWuKc2wcJt3vDMpCIwACll75KS6Br5Ku2kEJM/9Q
+         MN4A8/zDzkTqDtNnJCgVqQ4bLW3p6VcPTLf0H2gMoDodVWrjMMLDonMSuXHtoUxq6eXC
+         pFxA==
+X-Gm-Message-State: ACrzQf3mDaXeS3mExcALrUovkWd3hQ1mI8mgIHkXHcvVAlDmq+jKOtKs
+        O8J14ZVqxFevtvs+dBAAsg==
+X-Google-Smtp-Source: AMsMyM4uVetPtwuq+hlBmHbM1YIUjngA5Gvk4Jh6qRS5JFArR2DXbdZ0Ml6KflGi7R4f8uTVhQirXw==
+X-Received: by 2002:a9d:7212:0:b0:66c:753a:840f with SMTP id u18-20020a9d7212000000b0066c753a840fmr2927409otj.158.1667424403726;
+        Wed, 02 Nov 2022 14:26:43 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s34-20020a056870612200b0013d7fffbc3csm606191oae.58.2022.11.02.14.26.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 14:26:43 -0700 (PDT)
+Received: (nullmailer pid 503263 invoked by uid 1000);
+        Wed, 02 Nov 2022 21:26:45 -0000
+Date:   Wed, 2 Nov 2022 16:26:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Andrew Davis <afd@ti.com>
+Cc:     Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/9] dt-bindings: mfd: Add TI-Nspire misc registers
+Message-ID: <20221102212645.GA459441-robh@kernel.org>
+References: <20221101215804.16262-1-afd@ti.com>
+ <20221101215804.16262-2-afd@ti.com>
+ <20221102173558.GA4193055-robh@kernel.org>
+ <c5e39861-dd81-7c9f-cbb5-2bfbef55ed41@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 1/3] dt-bindings: Add bindings for aspeed pwm-tach.
-Content-Language: en-US
-To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org, joel@jms.id.au,
-        andrew@aj.id.au, lee.jones@linaro.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
-        garnermic@meta.com
-References: <20221031103809.20225-1-billy_tsai@aspeedtech.com>
- <20221031103809.20225-2-billy_tsai@aspeedtech.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20221031103809.20225-2-billy_tsai@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c5e39861-dd81-7c9f-cbb5-2bfbef55ed41@ti.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,250 +72,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 06:38, Billy Tsai wrote:
-> Unlike the old design that the register setting of the TACH should based
-
-Drop full stop in subject. Drop redundant, second "bindings" in subject.
-
-> on the configure of the PWM. In ast26xx, the dependency between pwm and
-> tach controller is eliminated and becomes a separate hardware block. They
-> only shared the same base address, source clock and reset.
-> This patch adds device binding for aspeed pwm-tach device which is a
-> multi-function device include pwm and tach function and pwm/tach device
-
-Do not use "This commit/patch".
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> bindings which should be the child-node of pwm-tach device.
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
+On Wed, Nov 02, 2022 at 02:05:28PM -0500, Andrew Davis wrote:
+> On 11/2/22 12:35 PM, Rob Herring wrote:
+> > On Tue, Nov 01, 2022 at 04:57:56PM -0500, Andrew Davis wrote:
+> > > The TI Nspire devices contain a set of registers with a seemingly
+> > > miscellaneous set of functionality. This area is known simply as the
+> > > "misc" region.
+> > > 
+> > > Signed-off-by: Andrew Davis <afd@ti.com>
+> > > ---
+> > >   .../bindings/mfd/ti,nspire-misc.yaml          | 55 +++++++++++++++++++
+> > >   1 file changed, 55 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+> > > new file mode 100644
+> > > index 0000000000000..d409eae7537bd
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+> > > @@ -0,0 +1,55 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +# Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/ti,nspire-misc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: TI Nspire MISC hardware block
+> > > +
+> > > +maintainers:
+> > > +  - Andrew Davis <afd@ti.com>
+> > > +
+> > > +description: |
+> > > +  System controller node represents a register region containing a set
+> > > +  of miscellaneous registers. The registers are not cohesive enough to
+> > > +  represent as any specific type of device. The typical use-case is
+> > > +  for some other node's driver, or platform-specific code, to acquire
+> > > +  a reference to the syscon node (e.g. by phandle, node path, or
+> > > +  search using a specific compatible value), interrogate the node (or
+> > > +  associated OS driver) to determine the location of the registers,
+> > > +  and access the registers directly.
+> > 
+> > Looks like you copied the generic description? Describe what MISC
+> > contains.
+> > 
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 48 ++++++++++++
->  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 76 +++++++++++++++++++
->  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 64 ++++++++++++++++
+> I don't know what all MISC contains (or maybe I do, but it is not
+> publicly available so I'm not going to add anything that hasn't
+> already been found by clean-room reverse engineering [0]).
 
-Split per subsystem. And Cc necessary people...
+Put whatever you are comfortable with, but not a duplicate generic 
+description. You know it at least it has reboot registers...
 
->  3 files changed, 188 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
->  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> new file mode 100644
-> index 000000000000..838200fae30e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/aspeed,ast2600-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed Ast2600 Tach controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The Aspeed Tach controller can support upto 16 fan input.
-> +  This module is part of the ast2600-pwm-tach multi-function device. For more
-> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-tach
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  pinctrl-0: true
-> +
-> +  pinctrl-names:
-> +    const: default
+> This is the point I was trying to make in that thread on v3. The
+> node's content *is* the hardware description. Every time a new
+> register is found it could have just been added to the DT. But now
+> we also have to go back here and add the exact same information
+> to the binding, every time. We don't require that for simple-bus,
+> should simple-mfd be given the same flexibility?
 
-These should not be needed.
+The thing with any MFD is it makes up a device even if it's 'simple', so 
+it's important to get a full picture of the device. It could evolve to 
+not being 'simple'.
 
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties:
+For example, if you came along and wanted to make it a clock provider, 
+you'd probably create a clock child node that's just a compatible and 
+'#clock-cells'. The feedback would be just add '#clock-cells' to the 
+'ti,nspire-misc' node. So yes, I want to see additions.
 
-Instead patternProperties and put them above "required:"
-
-> +  type: object
-> +  properties:
-> +    reg:
-> +      description:
-> +        The tach channel used for this node.
-> +      maxItems: 1
-> +
-> +  required:
-> +    - reg
-
-additionalProperties on this level of indentation.
-
-> diff --git a/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
-> new file mode 100644
-> index 000000000000..1eaf6fab2752
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/aspeed,ast2600-pwm-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PWM Tach controller Device Tree Bindings
-
-Drop "Device Tree Bindings"
-
-
-> +
-> +description: |
-> +  The PWM Tach controller is represented as a multi-function device which
-> +  includes:
-> +    PWM
-> +    Tach
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - aspeed,ast2600-pwm-tach
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +
-> +patternProperties:
-> +  "^pwm(@[0-9a-f]+)?$":
-> +    $ref: ../pwm/aspeed,ast2600-pwm.yaml
-
-Full path, so: /schemas/pwm/aspeed,ast2600-pwm.yaml
-
-Why unit addresses are optional?
-
-> +
-> +  "^tach(@[0-9a-f]+)?$":
-> +    $ref: ../hwmon/aspeed,ast2600-tach.yaml
-
-Ditto
-
-Why unit addresses are optional?
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/ast2600-clock.h>
-> +    pwm_tach: pwm_tach@1e610000 {
-
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-No underscores in node names.
-
-> +      compatible = "aspeed,ast2600-pwm-tach", "syscon", "simple-mfd";
-> +      reg = <0x1e610000 0x100>;
-> +      clocks = <&syscon ASPEED_CLK_AHB>;
-> +      resets = <&syscon ASPEED_RESET_PWM>;
-> +
-> +      pwm: pwm {
-> +        compatible = "aspeed,ast2600-pwm";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-No need for address/size cells. No children.
-
-> +        #pwm-cells = <3>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&pinctrl_pwm0_default>;
-> +      };
-> +
-> +      tach: tach {
-> +        compatible = "aspeed,ast2600-tach";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-
-Ditto.
-
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&pinctrl_tach0_default>;
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> new file mode 100644
-> index 000000000000..f501f8a769df
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/aspeed,ast2600-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Aspeed Ast2600 PWM controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The Aspeed PWM controller can support upto 16 PWM outputs.
-
-s/can support/supports/
-s/upto/up to/
-
-> +  This module is part of the ast2600-pwm-tach multi-function device. For more
-> +  details see ../mfd/aspeed,ast2600-pwm-tach.yaml.
-> +
-
-Missing $ref to pwm.yaml
-
-> +properties:
-> +  compatible:
-
-
-Below, same comments apply.
-
-This is incomplete review.
-
-Best regards,
-Krzysztof
-
+Rob
