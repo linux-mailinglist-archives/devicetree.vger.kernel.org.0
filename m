@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D59C616E36
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A8D6616E3B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 21:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbiKBUDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 16:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
+        id S229539AbiKBUFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 16:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbiKBUDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:03:11 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233DF1D9
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:03:10 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id h24so3596qta.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:03:10 -0700 (PDT)
+        with ESMTP id S229561AbiKBUFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 16:05:37 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E967610F
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 13:05:36 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id l2so7377538qtq.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 13:05:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=517spUF1kwfdZsdZ7/2zDcp2hjttlHr/tComnIWdl1M=;
-        b=tinB3Gji0G1MZQ/+Z6bdF7M3u1iPSbkrXmozh9/ZKWdCdZ+RTqWc5vkjk9Ts+Y/tri
-         uvGW5ulhLUzLaUduzEDPWRsAspkBOpasmmGZbMJF31RSmH6TGdHA6A1xT5lrjwJIb9Zw
-         6g9NiVDvjc3GAIUJlcAQQnjvimlA5ysVktrH4mnOV18aNAsG4mqWnouKQO9RoIuIAY6/
-         zxy9gUJWKWAF4kwlEhShVD3386a8eza5cIi5n9csfOU87ijw4czLSU466gCm/2ZCUiCo
-         QUHafIdEgFRCqBjxb3vjnUQt1P1GufbRNXp3bNeSiXbof+EQHOO9CttQpQuQafXnd/tw
-         mA7A==
+        bh=SbIgqqObVXdUI+2kRb0g0D7mPHoI2Zb5+1JVblPI98M=;
+        b=J9SWxs9gKCeEeRjMUQ2pArglxl+xWOM5y+UgWQ4aXBy+oT1b0DvFjJA6HSbAs58P0P
+         faMXLJQ+6PG40rsKk+qgm1cT96B/O8CJG9zDpGZWegdooaas7UAAU+c7zokYd5wADFgZ
+         SCQkws/e3fFB4G+8wYMdf+yQkicFHISIXZwr51cs9Cg8aiJ10wUIVYwCIOAvCWZJ4DXL
+         HC9dWKPEu36+7S+/mGym/F7sNxDpGTvmMGT14/AgaKnUW59Mp0muiWDsQxiMSMKeyhAz
+         vA6eSYR0uCQLad1ATj/7Udra//Lgnyp3tLsKwo6CYHdwNOVQfx7mHBvX/Y11kBXkjgpb
+         vm+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=517spUF1kwfdZsdZ7/2zDcp2hjttlHr/tComnIWdl1M=;
-        b=Zrb94s87xLtKl4zCqtq8gRZntqeI+SSg0PG++wpd1BdKRY7LlxXCG9lIu/naelfWOH
-         xulJHmISyZR4O3U8ovkd8xVWG6WW2N9RN0I9tZz4iUKt73KvF4GeerY8TlwyoUtgzCrU
-         UOtm4vb0v1uM4LlFCqluMzyLGVV60Mu127XhlsSKjxAiYvLcElYAsDSbnyzUHaJB9pPu
-         tZHx59TZxKIbZR6qrX1BwrWk6g8OVqphNpmpTFm5SwdZdHa/mXHCsPDfd4YCqTcJXu04
-         ypYutoFT+1SuRfRjkbsQn55DSd9LYhoostC0zNAe+N6+c7fpoh33gWYYFIp3hoI/NTKz
-         FBjg==
-X-Gm-Message-State: ACrzQf3l3zCuUA2HDz9rdUuKRJCfMuQfG7MDi0Ji/4Zg9PKWC6kzSfq5
-        0FNCFGq55FJtxPKU30L24kJVjg==
-X-Google-Smtp-Source: AMsMyM71M4tXWg/0+TGpHv1kwjmlS5QW+YALrs4Jc8kAEFVEOejhHclXgDolpirSwzzZUQ6cYdqeog==
-X-Received: by 2002:ac8:520c:0:b0:3a5:3ae3:5936 with SMTP id r12-20020ac8520c000000b003a53ae35936mr8078118qtn.529.1667419389237;
-        Wed, 02 Nov 2022 13:03:09 -0700 (PDT)
+        bh=SbIgqqObVXdUI+2kRb0g0D7mPHoI2Zb5+1JVblPI98M=;
+        b=hPY4RRrSKauxuXum04UGzviNrEoTjnq9u5/+PJO3KjO7FnFGpKZPjMA9s6eij0Myfg
+         Oa0FW4NFYzPHTmfevG5La9MsQsOHLra8FuyAY2cRZHxmDmbjQ3cmK1rtkelKiYxsOGDW
+         p53t4WqjPW6dyTzsb8acXDFWCLgx2OyQgHf+fwN8+e3K4Zucw81CtnaqWfkgZgMe5f+p
+         ZhbmE3/VmoYADuM310R+1YNUsKcoOutmQE5bXy/Fffd4ifrWhTSskk5jA9El2qHNLxeH
+         tE6zF/Syq44m/UaGLwpnFNjWvNAA2W74VzuOvKmy05zJcGDURq7Cpd4bE3CYXv+wYLAR
+         lbLA==
+X-Gm-Message-State: ACrzQf3CkHR63yXubOZAV88cGlmM73H8BPRV1OSvMThefUSQC3Yq6xph
+        zL5DnnFSa/hw+mn5XXWEq8QU+g==
+X-Google-Smtp-Source: AMsMyM4t71OGBZ8EeEH9/n3fCJ+rJhQVOX1h4DQDN3U3XpmX88UiFX8Mkf2I2k7xBe76iGkg4rBHnQ==
+X-Received: by 2002:ac8:4893:0:b0:3a5:18ce:c034 with SMTP id i19-20020ac84893000000b003a518cec034mr18715622qtq.137.1667419536060;
+        Wed, 02 Nov 2022 13:05:36 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id x18-20020a05620a259200b006bc192d277csm9277769qko.10.2022.11.02.13.03.08
+        by smtp.gmail.com with ESMTPSA id q21-20020a05620a0d9500b006eec09eed39sm9157848qkl.40.2022.11.02.13.05.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:03:08 -0700 (PDT)
-Message-ID: <50209486-8f86-c84c-8493-c48a6b57e6c6@linaro.org>
-Date:   Wed, 2 Nov 2022 16:03:07 -0400
+        Wed, 02 Nov 2022 13:05:35 -0700 (PDT)
+Message-ID: <d11609d5-963a-de41-86f9-7451f460b6fa@linaro.org>
+Date:   Wed, 2 Nov 2022 16:05:34 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: Add MSM8976 device tree
+Subject: Re: [PATCH 14/15] scsi: ufs: ufs-qcom: Add support for finding HS
+ gear on new UFS versions
 Content-Language: en-US
-To:     Adam Skladowski <a39.skl@gmail.com>
-Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
+        andersson@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, quic_cang@quicinc.com,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221101191659.172416-1-a39.skl@gmail.com>
- <20221101191659.172416-2-a39.skl@gmail.com>
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-scsi@vger.kernel.org
+References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
+ <20221029141633.295650-15-manivannan.sadhasivam@linaro.org>
+ <cf8dcf53-f131-68f4-c6aa-d41e02ac6d5c@linaro.org>
+ <20221031145647.GC10515@thinkpad>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221101191659.172416-2-a39.skl@gmail.com>
+In-Reply-To: <20221031145647.GC10515@thinkpad>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,362 +83,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/11/2022 15:16, Adam Skladowski wrote:
-> Add a base DT for MSM8976 SoC.
+On 31/10/2022 10:56, Manivannan Sadhasivam wrote:
+>>>   		if (hs_gear > UFS_HS_G2)
+>>>   			return UFS_HS_G2;
+>>> +	} else if (host->hw_ver.major > 0x3) {
+>>> +		/*
+>>> +		 * Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
+>>> +		 * controller/PHY can be configured to run in two gear speeds). But that
+>>> +		 * requires an agreement between the UFS controller and the device. Below
+>>> +		 * code tries to find the max gear of both and decides which gear to use.
+>>> +		 *
+>>> +		 * First get the max gear supported by the UFS device if available.
+>>> +		 * If the property is not defined in devicetree, then use the default gear.
+>>> +		 */
+>>> +		ret = of_property_read_u32(dev->of_node, "max-gear", &max_gear);
+>>> +		if (ret)
+>>> +			goto err_out;
+>>
+>> Can we detect the UFS device's max gear somehow? If not, the 'max-gear'
+>> property name doesn't sound good. Maybe calling it 'device-gear' would be
+>> better.
+>>
 > 
-> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8976.dtsi | 1310 +++++++++++++++++++++++++
->  1 file changed, 1310 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8976.dtsi
+> UFS device probing depends on PHY init sequence. So technically we cannot know
+> the max gear of the device without using an init sequence, but this information
+> is static and should be known to a board manufacturer. That's why I decided to
+> use this property. Another option is to use a fixed init sequence for probing
+> the device and do a re-init after knowing it's max gear but that is not
+> recommended.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> new file mode 100644
-> index 0000000000000..c073f16faa7ee
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
-> @@ -0,0 +1,1310 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
-> +
-> +#include <dt-bindings/clock/qcom,gcc-msm8976.h>
-> +#include <dt-bindings/clock/qcom,rpmcc.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/power/qcom-rpmpd.h>
-> +#include <dt-bindings/thermal/thermal.h>
-> +
-> +/ {
-> +	interrupt-parent = <&intc>;
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	chosen { };
-> +
-> +	clocks {
-> +		xo_board_clk: xo_board_clk {
 
-No underscores in node names.
+Why it is not recommended? By whom? You init on some default low gear
+(support for some is mandated by UFS spec) and then allow faster gears
+while you know the capabilities.
 
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <19200000>;
-> +		};
-> +
-> +		sleep_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <32768>;
-> +		};
-> +	};
-> +
-
-(...)
-
-> +
-> +		tcsr_mutex: hwlock@1905000 {
-> +			compatible = "qcom,tcsr-mutex";
-> +			reg = <0x01905000 0x20000>;
-> +			#hwlock-cells = <1>;
-> +		};
-> +
-> +		tcsr: syscon@1937000 {
-> +			compatible = "qcom,tcsr-msm8976", "syscon";
-
-Where is the documentation?
-
-> +			reg = <0x01937000 0x30000>;
-> +		};
-> +
-> +		mdss: mdss@1a00000 {
-> +			compatible = "qcom,mdss";
-> +
-> +			reg = <0x01a00000 0x1000>,
-> +			      <0x01ab0000 0x1040>;
-> +			reg-names = "mdss_phys",
-> +				    "vbif_phys";
-> +
-> +			power-domains = <&gcc MDSS_GDSC>;
-> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			interrupt-controller;
-> +			#interrupt-cells = <1>;
-> +
-> +			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +				 <&gcc GCC_MDSS_AXI_CLK>,
-> +				 <&gcc GCC_MDSS_VSYNC_CLK>,
-> +				 <&gcc GCC_MDSS_MDP_CLK>;
-> +			clock-names = "iface",
-> +				      "bus",
-> +				      "vsync",
-> +				      "core";
-> +
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +
-> +			status = "disabled";
-> +
-> +			mdp: mdp@1a01000 {
-
-I think other DTSes use different node name...
-
-> +				compatible = "qcom,mdp5";
-> +				reg = <0x01a01000 0x89000>;
-> +				reg-names = "mdp_phys";
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <0>;
-> +
-> +				power-domains = <&gcc MDSS_GDSC>;
-> +
-> +				clocks = <&gcc GCC_MDSS_AHB_CLK>,
-> +					 <&gcc GCC_MDSS_AXI_CLK>,
-> +					 <&gcc GCC_MDSS_MDP_CLK>,
-> +					 <&gcc GCC_MDSS_VSYNC_CLK>,
-> +					 <&gcc GCC_MDP_TBU_CLK>,
-> +					 <&gcc GCC_MDP_RT_TBU_CLK>;
-> +				clock-names = "iface",
-> +					      "bus",
-> +					      "core",
-> +					      "vsync",
-> +					      "tbu",
-> +					      "tbu_rt";
-> +				iommus = <&apps_iommu 0x17>;
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						mdp5_intf1_out: endpoint {
-> +							remote-endpoint = <&dsi0_in>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						mdp5_intf2_out: endpoint {
-> +							remote-endpoint = <&dsi1_in>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			dsi0: dsi@1a94000 {
-> +				compatible = "qcom,mdss-dsi-ctrl";
-> +				reg = <0x01a94000 0x2d4>;
-> +				reg-names = "dsi_ctrl";
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <4>;
-> +
-> +				assigned-clocks = <&gcc GCC_MDSS_BYTE0_CLK_SRC>,
-> +						  <&gcc GCC_MDSS_PCLK0_CLK_SRC>;
-> +				assigned-clock-parents = <&dsi0_phy 0>,
-> +							 <&dsi0_phy 1>;
-> +
-> +				clocks = <&gcc GCC_MDSS_MDP_CLK>,
-> +					 <&gcc GCC_MDSS_AHB_CLK>,
-> +					 <&gcc GCC_MDSS_AXI_CLK>,
-> +					 <&gcc GCC_MDSS_BYTE0_CLK>,
-> +					 <&gcc GCC_MDSS_PCLK0_CLK>,
-> +					 <&gcc GCC_MDSS_ESC0_CLK>;
-> +				clock-names = "mdp_core",
-> +					      "iface",
-> +					      "bus",
-> +					      "byte",
-> +					      "pixel",
-> +					      "core";
-> +
-> +				phys = <&dsi0_phy>;
-> +
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						dsi0_in: endpoint {
-> +							remote-endpoint = <&mdp5_intf1_out>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						dsi0_out: endpoint {
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			dsi0_phy: phy@1a94400 {
-> +				compatible = "qcom,dsi-phy-28nm-hpm-fam-b";
-> +				reg = <0x01a94400 0x20c>,
-> +				      <0x01a94b80 0x2c>,
-> +				      <0x01a94a00 0xd4>;
-> +				reg-names = "dsi_phy",
-> +					    "dsi_phy_regulator",
-> +					    "dsi_pll";
-> +
-> +				#clock-cells = <1>;
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&gcc GCC_MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +				clock-names = "iface", "ref";
-> +
-> +				status = "disabled";
-> +			};
-> +
-> +			dsi1: dsi@1a96000 {
-> +				compatible = "qcom,mdss-dsi-ctrl";
-> +				reg = <0x01a96000 0x2d4>;
-> +				reg-names = "dsi_ctrl";
-> +
-> +				interrupt-parent = <&mdss>;
-> +				interrupts = <5>;
-> +
-> +				assigned-clocks = <&gcc GCC_MDSS_BYTE1_CLK_SRC>,
-> +						  <&gcc GCC_MDSS_PCLK1_CLK_SRC>;
-> +				assigned-clock-parents = <&dsi1_phy 0>,
-> +							 <&dsi1_phy 1>;
-> +
-> +				clocks = <&gcc GCC_MDSS_MDP_CLK>,
-> +					 <&gcc GCC_MDSS_AHB_CLK>,
-> +					 <&gcc GCC_MDSS_AXI_CLK>,
-> +					 <&gcc GCC_MDSS_BYTE1_CLK>,
-> +					 <&gcc GCC_MDSS_PCLK1_CLK>,
-> +					 <&gcc GCC_MDSS_ESC1_CLK>;
-> +				clock-names = "mdp_core",
-> +					      "iface",
-> +					      "bus",
-> +					      "byte",
-> +					      "pixel",
-> +					      "core";
-> +
-> +				phys = <&dsi1_phy>;
-> +
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						dsi1_in: endpoint {
-> +							remote-endpoint = <&mdp5_intf2_out>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						dsi1_out: endpoint {
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			dsi1_phy: phy@1a96400 {
-> +				compatible = "qcom,dsi-phy-28nm-hpm-fam-b";
-> +				reg = <0x01a96400 0x20c>,
-> +				      <0x01a96b80 0x2c>,
-> +				      <0x01a96a00 0xd4>;
-> +				reg-names = "dsi_phy",
-> +					    "dsi_phy_regulator",
-> +					    "dsi_pll";
-> +
-> +				#clock-cells = <1>;
-> +				#phy-cells = <0>;
-> +
-> +				clocks = <&gcc GCC_MDSS_AHB_CLK>, <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +				clock-names = "iface", "ref";
-> +
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		apps_iommu: iommu@1e00000 {
-> +			compatible = "qcom,msm-iommu-v1";
-> +			ranges  = <0 0x01e20000 0x20000>;
-> +
-> +			clocks = <&gcc GCC_SMMU_CFG_CLK>,
-> +				 <&gcc GCC_APSS_TCU_CLK>;
-> +			clock-names = "iface", "bus";
-> +
-> +			qcom,iommu-secure-id = <17>;
-> +
-> +			#address-cells = <1>;
-> +			#iommu-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			/* MDP_0 */
-> +			iommu-ctx@17000 {
-> +				compatible = "qcom,msm-iommu-v1-ns";
-> +				reg = <0x17000 0x1000>;
-> +				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-> +			};
-> +		};
-> +
-> +		spmi_bus: spmi@200f000 {
-> +			compatible = "qcom,spmi-pmic-arb";
-> +			reg = <0x0200f000 0x1000>,
-> +			      <0x02400000 0x800000>,
-> +			      <0x02c00000 0x800000>,
-> +			      <0x03800000 0x200000>,
-> +			      <0x0200a000 0x2100>;
-> +			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
-> +			interrupt-names = "periph_irq";
-> +			interrupts = <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>;
-> +			qcom,ee = <0>;
-> +			qcom,channel = <0>;
-> +			interrupt-controller;
-> +
-> +			#interrupt-cells = <4>;
-> +			#address-cells = <2>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		sdhc_1: mmc@7824900 {
-> +			compatible = "qcom,sdhci-msm-v4";
-> +
-> +			reg = <0x07824900 0x500>, <0x07824000 0x800>;
-> +			reg-names = "hc", "core";
-> +
-> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +				 <&gcc GCC_SDCC1_APPS_CLK>,
-> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +			clock-names = "iface", "core", "xo";
-> +
-> +			power-domains = <&rpmpd MSM8976_VDDCX>;
-> +			operating-points-v2 = <&sdhc1_opp_table>;
-> +
-> +			pinctrl-names = "default", "sleep";
-> +			pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on &sdc1_rclk_on>;
-> +			pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off &sdc1_rclk_off>;
-> +
-> +			mmc-hs400-1_8v;
-> +			mmc-hs200-1_8v;
-> +			mmc-ddr-1_8v;
-> +			bus-width = <8>;
-> +			non-removable;
-> +
-> +			status = "disabled";
-> +
-> +			sdhc1_opp_table: opp-table-sdhc1 {
-
-Did you test the DTS with dtbs_check?
+> We need "max" keyword because this property specifies the maximum gear at which
+> the device could operate and not necessarily the gear at which it operates.
+> Maybe, "max-device-gear" would make it clear.
 
 
 Best regards,
