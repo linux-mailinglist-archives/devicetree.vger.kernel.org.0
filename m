@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA7F6166AC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:58:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 443426166AF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:58:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbiKBP6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 11:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36922 "EHLO
+        id S229846AbiKBP6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 11:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbiKBP6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:58:14 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848FA2B634;
-        Wed,  2 Nov 2022 08:58:12 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id x21so24248832ljg.10;
-        Wed, 02 Nov 2022 08:58:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vxrpJJ0/0vnVYdAZjE38mJeVD3TgThnRraSG3AuzU+E=;
-        b=MGwWCwMTVi8h/OuAkw2JkJ2WSaW6A4X9ZAQXUnCDCfN7fs+SNrAo9vCsUwRJ9ozebK
-         coZQuFNSG4u1WQzIoeQxL8vd0rS/PmXrey49+pBPVSs+iEffvKwz0clU37UIMdAPIBS4
-         cYxFn4h35MK/yMwWJG37k++17NxGKbnT8ueDsV/+xOoGWkLB8yfKbpod2skcTJpTBQji
-         jFAUakAe40UgEH0hvBeFvvROiJpCp+cXo9eevyPR8Cf0+kf4MEa3ouqNVc1039O4dZPX
-         tymeAA4ODop9+tmVb+IqL9gPk4sdPa3DTSytO2GphAGM67YMmO9RpcGQPtdOD8+lB16M
-         xYGQ==
+        with ESMTP id S231140AbiKBP6Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:58:25 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 308352B63F;
+        Wed,  2 Nov 2022 08:58:24 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id 16-20020a9d0490000000b0066938311495so10515074otm.4;
+        Wed, 02 Nov 2022 08:58:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vxrpJJ0/0vnVYdAZjE38mJeVD3TgThnRraSG3AuzU+E=;
-        b=aRa+/ygVQMeSU4gq6AcvMmfGXEFw5c/DPeXkqYwrQ+P4o2wWDotPHIM0MCFUbIk4Cr
-         hOOHaGY1f46rn47SL+bJ8ByIfgvWcCHhNit1rVjw5RkJwT55f6WQpgjzp+ObzsdRX2HN
-         tF6SYg9Hw6RhTp/OobhDxNMXvoNJpIOi6S91F3sZEnKjABt/mEBoRBwIxx5UNc4g9ffH
-         cLXIB5fgrR+NZXHBaMJUE29ov3TaNMp/lzrf9Tn8EWehvYZjPnowgFqmOHtBDuoqfNwC
-         0IJx1fg2JDSbetVpObDtByqaxPjeNMTCbDoyQHKEI1JUzvt58sE+iBUMur2xMcgyj3iX
-         2k6w==
-X-Gm-Message-State: ACrzQf0yAM95ediQz9X5BGD18a92NpUgv3ie7DkxVlXUIxjf3Fp6CASv
-        0NDX3kxtgTjujW1XvxXxJDBfdcS+AWH8axn5sd8=
-X-Google-Smtp-Source: AMsMyM60gGchkEkwbirb8r1GfQPxQal/ndKoAXVepiKC0Yw/FUgLWjK1pSoep9a8s2ddsmH1W+2WWacIUvHNV3W188w=
-X-Received: by 2002:a2e:834b:0:b0:26d:e1f8:1453 with SMTP id
- l11-20020a2e834b000000b0026de1f81453mr8946318ljh.65.1667404690835; Wed, 02
- Nov 2022 08:58:10 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Oa2mr0U3KqvEwJuScZMv4vEnQCNwkxhCzMMRCjtQd8=;
+        b=wPET9zyytL3stC8A0a0u1P7kADbVOfllYv8NNNoz14nD2Vk94OCFPlSXaXmLkefVxY
+         Z+/dyMZfymCTbGmZQVrIx/wPfDb9lEavcr0hp5uwSiBsLdqwdOcg+/XP5NJPC3RqX1U4
+         5PdOmVpGbsrgsfG2kKlC7nYdAxn2AsNi4mxmTeWYQhN7UimAa1JVxoNi45AHhugfTMNh
+         QfJWeFRRq9UaZ7HH0PAKNzVS36iikWgOlDb+yzID1o9VtfF9dQMcvHiuPlOWzwsp/Qbx
+         X0TnRFe+7ViCq6Jv63rDjulZNK3u2UTpmf7bzq+8QhWhnWN5eKL8wGQNlK07icg/aQQX
+         fC1A==
+X-Gm-Message-State: ACrzQf1knNmJhrBR7rdfVnHzFqo04iH07rHpWSfv+0+kiQGZBKI3H5O+
+        aENTWVMPAA57ZVdSFM5R+A==
+X-Google-Smtp-Source: AMsMyM7YzP5LC5WYCWNyfVyHoLOCA5UFQJcFWDv0tjZ9hGCO3ONQ/cAk17lE/lNMBrsl1AJeXpEwGQ==
+X-Received: by 2002:a05:6830:4114:b0:661:c422:191a with SMTP id w20-20020a056830411400b00661c422191amr12437806ott.286.1667404703323;
+        Wed, 02 Nov 2022 08:58:23 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id l4-20020a0568301d6400b0066c495a651dsm4050628oti.38.2022.11.02.08.58.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 08:58:22 -0700 (PDT)
+Received: (nullmailer pid 3969605 invoked by uid 1000);
+        Wed, 02 Nov 2022 15:58:24 -0000
+Date:   Wed, 2 Nov 2022 10:58:24 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Joy Zou <joy.zou@nxp.com>
+Cc:     shengjiu.wang@nxp.com, festevam@gmail.com, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, dev@lynxeye.de, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
+        martink@posteo.de, vkoul@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        alexander.stein@ew.tq-group.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, david@ixit.cz, linux-imx@nxp.com,
+        hongxing.zhu@nxp.com, aford173@gmail.com, peng.fan@nxp.com,
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH v9 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT
+ schema
+Message-ID: <166740470387.3969545.8351119964620233012.robh@kernel.org>
+References: <20221031105028.598502-1-joy.zou@nxp.com>
+ <20221031105028.598502-2-joy.zou@nxp.com>
 MIME-Version: 1.0
-References: <20221102141513.49289-1-fnkl.kernel@gmail.com> <20221102141513.49289-3-fnkl.kernel@gmail.com>
- <OS0PR01MB59227A9E7B8A471E4D6B665786399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB59227A9E7B8A471E4D6B665786399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date:   Wed, 2 Nov 2022 18:57:59 +0300
-Message-ID: <CAMT+MTT1ptFymwDdOe=OXYzKfOPHdQbAfpx_9LBYn+C9NFhddg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] pwm: Add Apple PWM controller
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "marcan@marcan.st" <marcan@marcan.st>,
-        "sven@svenpeter.dev" <sven@svenpeter.dev>,
-        "alyssa@rosenzweig.io" <alyssa@rosenzweig.io>,
-        "asahi@lists.linux.dev" <asahi@lists.linux.dev>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221031105028.598502-2-joy.zou@nxp.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,23 +71,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Nov 2022 at 18:33, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > +     clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> > +     if (IS_ERR(clk))
-> > +             return PTR_ERR(clk);
->
-> What is your use case?
->
-> PWM is configured by bootloader intially??
->
-> Or
->
-> PWM is configured by Linux not by the bootloader?
->
-> Or
->
-> Driver needs to support both ??
 
-The PWM device itself is configured by linux, but the clock it uses is
-the systemwide 24 MHz clock, and that is configured by platform
-firmware.
+On Mon, 31 Oct 2022 18:50:27 +0800, Joy Zou wrote:
+> Convert the i.MX SDMA binding to DT schema format using json-schema.
+> 
+> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma, fsl,imx35-to1-sdma
+> and fsl,imx35-to2-sdma are not used. So need to delete it. The compatibles
+> fsl,imx50-sdma, fsl,imx6sll-sdma and fsl,imx6sl-sdma are added. The
+> original binding don't list all compatible used.
+> 
+> In addition, add new peripheral types HDMI Audio.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+> Changes in v9:
+> add the dma-common quotes.
+> delete the dma-controller quotes.
+> 
+> Changes in v8:
+> add the dma-controller quotes.
+> delete #dma-cells in required.
+> 
+> Changes in v6:
+> delete tag Acked-by from commit message.
+> 
+> Changes in v5:
+> modify the commit message fromat.
+> add additionalProperties, because delete the quotes in patch v4.
+> delete unevaluatedProperties due to similar to additionalProperties.
+> modification fsl,sdma-event-remap items and description.
+> 
+> Changes in v4:
+> modify the commit message.
+> delete the quotes in patch.
+> modify the compatible in patch.
+> delete maxitems and add items for clock-names property.
+> add iram property.
+> 
+> Changes in v3:
+> modify the commit message.
+> modify the filename.
+> modify the maintainer.
+> delete the unnecessary comment.
+> modify the compatible and run dt_binding_check and dtbs_check.
+> add clocks and clock-names property.
+> delete the reg description and add maxItems.
+> delete the interrupts description and add maxItems.
+> add ref for gpr property.
+> modify the fsl,sdma-event-remap ref type and add items.
+> delete consumer example.
+> 
+> Changes in v2:
+> convert imx sdma bindings to DT schema.
+> ---
+>  .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 149 ++++++++++++++++++
+>  .../devicetree/bindings/dma/fsl-imx-sdma.txt  | 118 --------------
+>  2 files changed, 149 insertions(+), 118 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
