@@ -2,634 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88C90615DE1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 09:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CC6615DE9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 09:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbiKBIgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 04:36:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43720 "EHLO
+        id S230045AbiKBIiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 04:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbiKBIgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 04:36:35 -0400
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B76A19C;
-        Wed,  2 Nov 2022 01:36:33 -0700 (PDT)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 2A28BAHw072663;
-        Wed, 2 Nov 2022 16:11:11 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 2 Nov
- 2022 16:34:24 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <joel@jms.id.au>, <andrew@aj.id.au>, <lee.jones@linaro.org>,
-        <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <p.zabel@pengutronix.de>, <billy_tsai@aspeedtech.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <BMC-SW@aspeedtech.com>,
-        <garnermic@meta.com>
-CC:     kernel test robot <lkp@intel.com>
-Subject: [v3 3/3] hwmon: Add Aspeed ast2600 TACH support
-Date:   Wed, 2 Nov 2022 16:36:01 +0800
-Message-ID: <20221102083601.10456-4-billy_tsai@aspeedtech.com>
+        with ESMTP id S229537AbiKBIiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 04:38:09 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0165624BF8
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 01:38:07 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id k7so6185934pll.6
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 01:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hJGPayayBC+qiXWCRJ9hCea3jMLnq0xughVCq6oneVg=;
+        b=gN4V9bRPfg+ByaCH9eEFI9fo3j+dMH85dRfTdT6af1MPxrg+tYKB9STPS4aU1807of
+         qBopKXYNWkvAR8hU4d67qrvd1VB2Tn8vTPmusnvsB9cKmUJHlFXwlx9fsQlSZlpOdlDF
+         ueUxbN6NkPAdKzC3uC0fyk8l00j0Qcq9Rex9deakVsgCAunyOEvobYr2oKG0NOmCcZfG
+         lQxbP2MVAxgtKZvDe5XhTMP8IQKsavFu+nX8tEktwoTq29h4WCjy/9GSwXbNDY/Ik7g8
+         /u+hcRLb40tbJ73yU6RCGut6lLAzmgRuGcuWpnsgUljwnctLRaJrldE21VieEdmnx0cR
+         tokw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hJGPayayBC+qiXWCRJ9hCea3jMLnq0xughVCq6oneVg=;
+        b=zdOelNLx61rGX6+THCBZ8AJgya0XL6c7yrvnvM54aB3IJP747PgPzdsU8EZ9uZ0QDL
+         oSmQeOvU7Ca/k7kYd/Kiyiosvj61zMZEdrVjYS+TFKf4ASGmnzzFiQqElTmIOKvrYfYP
+         N61TWpCCunLfhYMxdrmvAV/ajpRDoX1USDzEgUObuas3sOcQR/GftakJMb+XTurJOXvd
+         FMs2G5catPm8cA09CygrPVwF+AdT+hWO02uHFBF+9ibckF7O8h7m9LepQsImwk86q+Y/
+         Gmywdzu5FzNKY4Uvt7sErADkECI+XfDScMPVm8SxjRAa5SrLv88B8vN9GxPqeYlfV7V7
+         5pwg==
+X-Gm-Message-State: ACrzQf3A1MXAlFE22+DIx6pwcgK64tc9xldvY9uYA5sW1HxIyC9dP16O
+        AMpZNXMvOAwomjv0vRjWCJOg
+X-Google-Smtp-Source: AMsMyM4WLiSemzP8HxeHMzFWxYd6s821xdZtEiVTp/bjtw30qjIodM/m3P4WoBtLWihcH023PIE+WA==
+X-Received: by 2002:a17:90a:b792:b0:214:2a4a:4bbc with SMTP id m18-20020a17090ab79200b002142a4a4bbcmr2887944pjr.81.1667378287222;
+        Wed, 02 Nov 2022 01:38:07 -0700 (PDT)
+Received: from localhost.localdomain ([117.193.209.178])
+        by smtp.gmail.com with ESMTPSA id x19-20020aa79573000000b0056bcb102e7bsm7887770pfq.68.2022.11.02.01.38.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 01:38:06 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org, viresh.kumar@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        robh+dt@kernel.org
+Cc:     johan@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/3] qcom-cpufreq-hw: Add CPU clock provider support
+Date:   Wed,  2 Nov 2022 14:07:48 +0530
+Message-Id: <20221102083751.56330-1-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221102083601.10456-1-billy_tsai@aspeedtech.com>
-References: <20221102083601.10456-1-billy_tsai@aspeedtech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 2A28BAHw072663
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add the support of Tachometer which can use to monitor the
-frequency of the input. The tach supports up to 16 channels and it's part
-function of multi-function device "pwm-tach controller".
+Hello,
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-Reported-by: kernel test robot <lkp@intel.com>
----
- Documentation/hwmon/index.rst               |   1 +
- Documentation/hwmon/tach-aspeed-ast2600.rst |  28 ++
- drivers/hwmon/Kconfig                       |   9 +
- drivers/hwmon/Makefile                      |   1 +
- drivers/hwmon/tach-aspeed-ast2600.c         | 476 ++++++++++++++++++++
- 5 files changed, 515 insertions(+)
- create mode 100644 Documentation/hwmon/tach-aspeed-ast2600.rst
- create mode 100644 drivers/hwmon/tach-aspeed-ast2600.c
+This series adds clock provider support to the Qcom CPUFreq driver for
+supplying the clocks to the CPU cores in Qcom SoCs.
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index f790f1260c33..c4c0559fd4fa 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -179,6 +179,7 @@ Hardware Monitoring Kernel Drivers
-    smsc47m1
-    sparx5-temp
-    stpddc60
-+   tach-aspeed-ast2600
-    tc654
-    tc74
-    thmc50
-diff --git a/Documentation/hwmon/tach-aspeed-ast2600.rst b/Documentation/hwmon/tach-aspeed-ast2600.rst
-new file mode 100644
-index 000000000000..8967f60672dc
---- /dev/null
-+++ b/Documentation/hwmon/tach-aspeed-ast2600.rst
-@@ -0,0 +1,28 @@
-+Kernel driver tach-aspeed-ast2600
-+==============================
-+
-+Supported chips:
-+	ASPEED AST2600
-+
-+Authors:
-+	<billy_tsai@aspeedtech.com>
-+
-+Description:
-+------------
-+This driver implements support for ASPEED AST2600 Fan Tacho controller.
-+The controller supports up to 16 tachometer inputs.
-+
-+The driver provides the following sensor accesses in sysfs:
-+=============== ======= =====================================================
-+fanX_input	ro	provide current fan rotation value in RPM as reported
-+			by the fan to the device.
-+fanX_div	rw	Fan divisor: Supported value are power of 4 (1, 4, 16
-+                        64, ... 4194304)
-+                        The larger divisor, the less rpm accuracy and the less
-+                        affected by fan signal glitch.
-+fanX_min	rw      Fan minimum RPM which can used to change the timeout
-+                        value for controller polling the result.
-+fanX_max	rw      Fan maximum RPM which can used to change the polling
-+                        period of the driver.
-+fanX_pulses	rw      Fan pulses per resolution.
-+=============== ======= ======================================================
-diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index fa2356398744..a84c15b73aa6 100644
---- a/drivers/hwmon/Kconfig
-+++ b/drivers/hwmon/Kconfig
-@@ -397,6 +397,15 @@ config SENSORS_ASPEED
- 	  This driver can also be built as a module. If so, the module
- 	  will be called aspeed_pwm_tacho.
- 
-+config SENSORS_TACH_ASPEED_AST2600
-+	tristate "ASPEED ast2600 Tachometer support"
-+	select REGMAP
-+	help
-+	  This driver provides support for Aspeed ast2600 Tachometer.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called tach-aspeed-ast2600.
-+
- config SENSORS_ATXP1
- 	tristate "Attansic ATXP1 VID controller"
- 	depends on I2C
-diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index d2497b2644e6..7e2d708e93b8 100644
---- a/drivers/hwmon/Makefile
-+++ b/drivers/hwmon/Makefile
-@@ -51,6 +51,7 @@ obj-$(CONFIG_SENSORS_ARM_SCMI)	+= scmi-hwmon.o
- obj-$(CONFIG_SENSORS_ARM_SCPI)	+= scpi-hwmon.o
- obj-$(CONFIG_SENSORS_AS370)	+= as370-hwmon.o
- obj-$(CONFIG_SENSORS_ASC7621)	+= asc7621.o
-+obj-$(CONFIG_SENSORS_TACH_ASPEED_AST2600) += tach-aspeed-ast2600.o
- obj-$(CONFIG_SENSORS_ASPEED)	+= aspeed-pwm-tacho.o
- obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
- obj-$(CONFIG_SENSORS_AXI_FAN_CONTROL) += axi-fan-control.o
-diff --git a/drivers/hwmon/tach-aspeed-ast2600.c b/drivers/hwmon/tach-aspeed-ast2600.c
-new file mode 100644
-index 000000000000..c10e6bc3c035
---- /dev/null
-+++ b/drivers/hwmon/tach-aspeed-ast2600.c
-@@ -0,0 +1,476 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) ASPEED Technology Inc.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/errno.h>
-+#include <linux/hwmon.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+#include <linux/sysfs.h>
-+
-+/* The channel number of Aspeed tach controller */
-+#define TACH_ASPEED_NR_TACHS		16
-+/* TACH Control Register */
-+#define TACH_ASPEED_CTRL(ch)		(((ch) * 0x10) + 0x08)
-+#define TACH_ASPEED_IER			BIT(31)
-+#define TACH_ASPEED_INVERS_LIMIT	BIT(30)
-+#define TACH_ASPEED_LOOPBACK		BIT(29)
-+#define TACH_ASPEED_ENABLE		BIT(28)
-+#define TACH_ASPEED_DEBOUNCE_MASK	GENMASK(27, 26)
-+#define TACH_ASPEED_DEBOUNCE_BIT	26
-+#define TACH_ASPEED_IO_EDGE_MASK	GENMASK(25, 24)
-+#define TACH_ASPEED_IO_EDGE_BIT		24
-+#define TACH_ASPEED_CLK_DIV_T_MASK	GENMASK(23, 20)
-+#define TACH_ASPEED_CLK_DIV_BIT		20
-+#define TACH_ASPEED_THRESHOLD_MASK	GENMASK(19, 0)
-+/* [27:26] */
-+#define DEBOUNCE_3_CLK			0x00
-+#define DEBOUNCE_2_CLK			0x01
-+#define DEBOUNCE_1_CLK			0x02
-+#define DEBOUNCE_0_CLK			0x03
-+/* [25:24] */
-+#define F2F_EDGES			0x00
-+#define R2R_EDGES			0x01
-+#define BOTH_EDGES			0x02
-+/* [23:20] */
-+/* divisor = 4 to the nth power, n = register value */
-+#define DEFAULT_TACH_DIV		1024
-+#define DIV_TO_REG(divisor)		(ilog2(divisor) >> 1)
-+
-+/* TACH Status Register */
-+#define TACH_ASPEED_STS(ch)		(((ch) * 0x10) + 0x0C)
-+
-+/*PWM_TACH_STS */
-+#define TACH_ASPEED_ISR			BIT(31)
-+#define TACH_ASPEED_PWM_OUT		BIT(25)
-+#define TACH_ASPEED_PWM_OEN		BIT(24)
-+#define TACH_ASPEED_DEB_INPUT		BIT(23)
-+#define TACH_ASPEED_RAW_INPUT		BIT(22)
-+#define TACH_ASPEED_VALUE_UPDATE	BIT(21)
-+#define TACH_ASPEED_FULL_MEASUREMENT	BIT(20)
-+#define TACH_ASPEED_VALUE_MASK		GENMASK(19, 0)
-+/**********************************************************
-+ * Software setting
-+ *********************************************************/
-+#define DEFAULT_FAN_MIN_RPM		1000
-+#define DEFAULT_FAN_PULSE_PR		2
-+/*
-+ * Add this value to avoid CPU consuming a lot of resources in waiting rpm
-+ * updating. Assume the max rpm of fan is 60000, the fastest period of updating
-+ * tach value will be equal to (1000000 * 2 * 60) / (2 * max_rpm) = 1000us.
-+ */
-+#define DEFAULT_FAN_MAX_RPM		60000
-+
-+struct aspeed_tach_channel_params {
-+	int limited_inverse;
-+	u16 threshold;
-+	u8 tach_edge;
-+	u8 tach_debounce;
-+	u8 pulse_pr;
-+	u32 min_rpm;
-+	u32 max_rpm;
-+	u32 divisor;
-+	u32 sample_period; /* unit is us */
-+	u32 polling_period; /* unit is us */
-+};
-+
-+struct aspeed_tach_data {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct clk *clk;
-+	struct reset_control *reset;
-+	bool tach_present[TACH_ASPEED_NR_TACHS];
-+	struct aspeed_tach_channel_params *tach_channel;
-+};
-+
-+static void aspeed_update_tach_sample_period(struct aspeed_tach_data *priv,
-+					     u8 fan_tach_ch)
-+{
-+	u32 tach_period_us;
-+	u8 pulse_pr = priv->tach_channel[fan_tach_ch].pulse_pr;
-+	u32 min_rpm = priv->tach_channel[fan_tach_ch].min_rpm;
-+
-+	/*
-+	 * min(Tach input clock) = (PulsePR * minRPM) / 60
-+	 * max(Tach input period) = 60 / (PulsePR * minRPM)
-+	 * Tach sample period > 2 * max(Tach input period) = (2*60) / (PulsePR * minRPM)
-+	 */
-+	tach_period_us = (USEC_PER_SEC * 2 * 60) / (pulse_pr * min_rpm);
-+	/* Add the margin (about 1.5) of tach sample period to avoid sample miss */
-+	tach_period_us = (tach_period_us * 1500) >> 10;
-+	dev_dbg(priv->dev, "tach%d sample period = %dus", fan_tach_ch, tach_period_us);
-+	priv->tach_channel[fan_tach_ch].sample_period = tach_period_us;
-+}
-+
-+static void aspeed_update_tach_polling_period(struct aspeed_tach_data *priv,
-+					      u8 fan_tach_ch)
-+{
-+	u32 tach_period_us;
-+	u8 pulse_pr = priv->tach_channel[fan_tach_ch].pulse_pr;
-+	u32 max_rpm = priv->tach_channel[fan_tach_ch].max_rpm;
-+
-+	tach_period_us = (USEC_PER_SEC * 2 * 60) / (pulse_pr * max_rpm);
-+	dev_dbg(priv->dev, "tach%d polling period = %dus", fan_tach_ch, tach_period_us);
-+	priv->tach_channel[fan_tach_ch].polling_period = tach_period_us;
-+}
-+
-+static void aspeed_tach_ch_enable(struct aspeed_tach_data *priv, u8 tach_ch,
-+				  bool enable)
-+{
-+	if (enable)
-+		regmap_set_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+				TACH_ASPEED_ENABLE);
-+	else
-+		regmap_clear_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+				  TACH_ASPEED_ENABLE);
-+}
-+
-+static int aspeed_get_fan_tach_ch_rpm(struct aspeed_tach_data *priv,
-+				      u8 fan_tach_ch)
-+{
-+	u32 raw_data, tach_div, val;
-+	unsigned long clk_source;
-+	u64 rpm;
-+	int ret;
-+
-+	ret = regmap_read_poll_timeout(priv->regmap, TACH_ASPEED_STS(fan_tach_ch), val,
-+				       (val & TACH_ASPEED_FULL_MEASUREMENT) &&
-+					       (val & TACH_ASPEED_VALUE_UPDATE),
-+				       priv->tach_channel[fan_tach_ch].polling_period,
-+				       priv->tach_channel[fan_tach_ch].sample_period);
-+
-+	if (ret) {
-+		/* return 0 if we didn't get an answer because of timeout */
-+		if (ret == -ETIMEDOUT)
-+			return 0;
-+		return ret;
-+	}
-+
-+	raw_data = val & TACH_ASPEED_VALUE_MASK;
-+	/*
-+	 * We need the mode to determine if the raw_data is double (from
-+	 * counting both edges).
-+	 */
-+	if (priv->tach_channel[fan_tach_ch].tach_edge == BOTH_EDGES)
-+		raw_data <<= 1;
-+
-+	tach_div = raw_data * (priv->tach_channel[fan_tach_ch].divisor) *
-+		   (priv->tach_channel[fan_tach_ch].pulse_pr);
-+
-+	clk_source = clk_get_rate(priv->clk);
-+	dev_dbg(priv->dev, "clk %ld, raw_data %d , tach_div %d\n", clk_source,
-+		raw_data, tach_div);
-+
-+	if (tach_div == 0)
-+		return -EDOM;
-+
-+	rpm = (u64)clk_source * 60;
-+	do_div(rpm, tach_div);
-+
-+	return rpm;
-+}
-+
-+static int aspeed_tach_hwmon_read(struct device *dev,
-+				  enum hwmon_sensor_types type, u32 attr,
-+				  int channel, long *val)
-+{
-+	struct aspeed_tach_data *priv = dev_get_drvdata(dev);
-+	u32 reg_val;
-+	int ret;
-+
-+	switch (attr) {
-+	case hwmon_fan_input:
-+		ret = aspeed_get_fan_tach_ch_rpm(priv, channel);
-+		if (ret < 0)
-+			return ret;
-+		*val = ret;
-+		break;
-+	case hwmon_fan_min:
-+		*val = priv->tach_channel[channel].min_rpm;
-+		break;
-+	case hwmon_fan_max:
-+		*val = priv->tach_channel[channel].max_rpm;
-+		break;
-+	case hwmon_fan_div:
-+		regmap_read(priv->regmap, TACH_ASPEED_CTRL(channel), &reg_val);
-+		reg_val = FIELD_GET(TACH_ASPEED_CLK_DIV_T_MASK, reg_val);
-+		*val = BIT(reg_val << 1);
-+		break;
-+	case hwmon_fan_pulses:
-+		*val = priv->tach_channel[channel].pulse_pr;
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+	return 0;
-+}
-+
-+static int aspeed_tach_hwmon_write(struct device *dev,
-+				   enum hwmon_sensor_types type, u32 attr,
-+				   int channel, long val)
-+{
-+	struct aspeed_tach_data *priv = dev_get_drvdata(dev);
-+
-+	switch (attr) {
-+	case hwmon_fan_min:
-+		priv->tach_channel[channel].min_rpm = val;
-+		aspeed_update_tach_sample_period(priv, channel);
-+		break;
-+	case hwmon_fan_max:
-+		priv->tach_channel[channel].max_rpm = val;
-+		aspeed_update_tach_polling_period(priv, channel);
-+		break;
-+	case hwmon_fan_div:
-+		if (!(is_power_of_2(val) && !(ilog2(val) % 2))) {
-+			dev_err(dev,
-+				"fan_div value %ld not supported. Only support power of 4\n",
-+				val);
-+			return -EINVAL;
-+		}
-+		priv->tach_channel[channel].divisor = val;
-+		regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(channel),
-+				  TACH_ASPEED_CLK_DIV_T_MASK,
-+				  DIV_TO_REG(priv->tach_channel[channel].divisor)
-+					  << TACH_ASPEED_CLK_DIV_BIT);
-+		break;
-+	case hwmon_fan_pulses:
-+		priv->tach_channel[channel].pulse_pr = val;
-+		aspeed_update_tach_sample_period(priv, channel);
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+static umode_t aspeed_tach_dev_is_visible(const void *drvdata,
-+					  enum hwmon_sensor_types type,
-+					  u32 attr, int channel)
-+{
-+	const struct aspeed_tach_data *priv = drvdata;
-+
-+	if (!priv->tach_present[channel])
-+		return 0;
-+	switch (attr) {
-+	case hwmon_fan_input:
-+		return 0444;
-+	case hwmon_fan_min:
-+	case hwmon_fan_max:
-+	case hwmon_fan_div:
-+	case hwmon_fan_pulses:
-+		return 0644;
-+	}
-+	return 0;
-+}
-+
-+static const struct hwmon_ops aspeed_tach_ops = {
-+	.is_visible = aspeed_tach_dev_is_visible,
-+	.read = aspeed_tach_hwmon_read,
-+	.write = aspeed_tach_hwmon_write,
-+};
-+
-+static const struct hwmon_channel_info *aspeed_tach_info[] = {
-+	HWMON_CHANNEL_INFO(fan,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES,
-+			   HWMON_F_INPUT | HWMON_F_MIN | HWMON_F_MAX |
-+				   HWMON_F_DIV | HWMON_F_PULSES),
-+	NULL
-+};
-+
-+static const struct hwmon_chip_info aspeed_tach_chip_info = {
-+	.ops = &aspeed_tach_ops,
-+	.info = aspeed_tach_info,
-+};
-+
-+static void aspeed_create_fan_tach_channel(struct aspeed_tach_data *priv,
-+					   u32 tach_ch)
-+{
-+	priv->tach_present[tach_ch] = true;
-+	priv->tach_channel[tach_ch].limited_inverse = 0;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_INVERS_LIMIT,
-+			  priv->tach_channel[tach_ch].limited_inverse ?
-+				  TACH_ASPEED_INVERS_LIMIT :
-+				  0);
-+
-+	priv->tach_channel[tach_ch].tach_debounce = DEBOUNCE_3_CLK;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_DEBOUNCE_MASK,
-+			  priv->tach_channel[tach_ch].tach_debounce
-+				  << TACH_ASPEED_DEBOUNCE_BIT);
-+
-+	priv->tach_channel[tach_ch].tach_edge = F2F_EDGES;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_IO_EDGE_MASK,
-+			  priv->tach_channel[tach_ch].tach_edge
-+				  << TACH_ASPEED_IO_EDGE_BIT);
-+
-+	priv->tach_channel[tach_ch].divisor = DEFAULT_TACH_DIV;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_CLK_DIV_T_MASK,
-+			  DIV_TO_REG(priv->tach_channel[tach_ch].divisor)
-+				  << TACH_ASPEED_CLK_DIV_BIT);
-+
-+	priv->tach_channel[tach_ch].threshold = 0;
-+	regmap_write_bits(priv->regmap, TACH_ASPEED_CTRL(tach_ch),
-+			  TACH_ASPEED_THRESHOLD_MASK,
-+			  priv->tach_channel[tach_ch].threshold);
-+
-+	priv->tach_channel[tach_ch].pulse_pr = DEFAULT_FAN_PULSE_PR;
-+	priv->tach_channel[tach_ch].min_rpm = DEFAULT_FAN_MIN_RPM;
-+	aspeed_update_tach_sample_period(priv, tach_ch);
-+
-+	priv->tach_channel[tach_ch].max_rpm = DEFAULT_FAN_MAX_RPM;
-+	aspeed_update_tach_polling_period(priv, tach_ch);
-+
-+	aspeed_tach_ch_enable(priv, tach_ch, true);
-+}
-+
-+static int aspeed_tach_create_fan(struct device *dev, struct device_node *child,
-+				  struct aspeed_tach_data *priv)
-+{
-+	u32 tach_channel;
-+	int ret;
-+
-+	ret = of_property_read_u32(child, "reg", &tach_channel);
-+	if (ret)
-+		return ret;
-+
-+	aspeed_create_fan_tach_channel(priv, tach_channel);
-+
-+	return 0;
-+}
-+
-+static void aspeed_tach_reset_assert(void *data)
-+{
-+	struct reset_control *rst = data;
-+
-+	reset_control_assert(rst);
-+}
-+
-+static int aspeed_tach_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np, *child;
-+	struct aspeed_tach_data *priv;
-+	struct device *hwmon;
-+	struct platform_device *parent_dev;
-+	int ret;
-+
-+	np = dev->parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
-+		return dev_err_probe(dev, -ENODEV,
-+				     "Unsupported tach device binding\n");
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	priv->dev = &pdev->dev;
-+	priv->tach_channel =
-+		devm_kcalloc(dev, TACH_ASPEED_NR_TACHS,
-+			     sizeof(*priv->tach_channel), GFP_KERNEL);
-+
-+	priv->regmap = syscon_node_to_regmap(np);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "Couldn't get regmap\n");
-+	parent_dev = of_find_device_by_node(np);
-+	priv->clk = devm_clk_get_enabled(&parent_dev->dev, NULL);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "Couldn't get clock\n");
-+
-+	priv->reset = devm_reset_control_get_shared(&parent_dev->dev, NULL);
-+	if (IS_ERR(priv->reset))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset),
-+				     "Couldn't get reset control\n");
-+
-+	ret = reset_control_deassert(priv->reset);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Couldn't deassert reset control\n");
-+
-+	ret = devm_add_action_or_reset(dev, aspeed_tach_reset_assert,
-+				       priv->reset);
-+	if (ret)
-+		return ret;
-+
-+	for_each_child_of_node(dev->of_node, child) {
-+		ret = aspeed_tach_create_fan(dev, child, priv);
-+		if (ret) {
-+			of_node_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	hwmon = devm_hwmon_device_register_with_info(dev, "aspeed_tach", priv,
-+						     &aspeed_tach_chip_info, NULL);
-+	ret = PTR_ERR_OR_ZERO(hwmon);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to register hwmon device\n");
-+	return 0;
-+}
-+
-+static const struct of_device_id of_stach_match_table[] = {
-+	{
-+		.compatible = "aspeed,ast2600-tach",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, of_stach_match_table);
-+
-+static struct platform_driver aspeed_tach_driver = {
-+	.probe		= aspeed_tach_probe,
-+	.driver		= {
-+		.name	= "aspeed_tach",
-+		.of_match_table = of_stach_match_table,
-+	},
-+};
-+
-+module_platform_driver(aspeed_tach_driver);
-+
-+MODULE_AUTHOR("Billy Tsai <billy_tsai@aspeedtech.com>");
-+MODULE_DESCRIPTION("Aspeed ast2600 TACH device driver");
-+MODULE_LICENSE("GPL v2");
-+
+The Qualcomm platforms making use of CPUFreq HW Engine (EPSS/OSM) supply
+clocks to the CPU cores. But this is not represented clearly in devicetree.
+There is no clock coming out of the CPUFreq HW node to the CPU. This created
+an issue [1] with the OPP core when a recent enhancement series was submitted.
+Eventhough the issue got fixed in the OPP framework in the meantime, that's
+not a proper solution and this series aims to fix it properly.
+
+There was also an attempt made by Viresh [2] to fix the issue by moving the
+clocks supplied to the CPUFreq HW node to the CPU. But that was not accepted
+since those clocks belong to the CPUFreq HW node only.
+
+The proposal here is to add clock provider support to the Qcom CPUFreq HW
+driver to supply clocks to the CPUs that comes out of the EPSS/OSM block.
+This correctly reflects the hardware implementation.
+
+The clock provider is a simple one that just provides the frequency of the
+clocks supplied to each frequency domain in the SoC using .recalc_rate()
+callback. The frequency supplied by the driver will be the actual frequency
+that comes out of the EPSS/OSM block after the DCVS operation. This frequency
+is not same as what the CPUFreq framework has set but it is the one that gets
+supplied to the CPUs after throttling by LMh.
+
+This series has been tested on SM8450 based dev board with the OPP hack removed
+and hence there is a DTS change only for that platform. Once this series gets
+accepted, rest of the platform DTS can also be modified and finally the hack on
+the OPP core can be dropped.
+
+Thanks,
+Mani
+
+[1] https://lore.kernel.org/lkml/YsxSkswzsqgMOc0l@hovoldconsulting.com/
+[2] https://lore.kernel.org/lkml/20220801054255.GA12039@thinkpad/t/
+
+Changes in v3:
+
+* Submitted the cpufreq driver cleanup patches as a separate series as
+  suggested by Viresh
+* Removed static keyword from clk_init_data declaration
+
+Changes in v2:
+
+* Moved the qcom_cpufreq_data allocation to probe
+* Added single clock provider with multiple clks for each freq domain
+* Moved soc_data to qcom_cpufreq struct
+* Added Rob's review for binding
+
+Manivannan Sadhasivam (3):
+  dt-bindings: cpufreq: cpufreq-qcom-hw: Add cpufreq clock provider
+  arm64: dts: qcom: sm8450: Supply clock from cpufreq node to CPUs
+  cpufreq: qcom-hw: Add CPU clock provider support
+
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 12 ++++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |  9 ++++
+ drivers/cpufreq/qcom-cpufreq-hw.c             | 43 +++++++++++++++++++
+ 3 files changed, 64 insertions(+)
+
 -- 
 2.25.1
 
