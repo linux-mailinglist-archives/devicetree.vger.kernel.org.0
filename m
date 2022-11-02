@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20879615C79
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 07:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BC7615C81
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 07:54:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbiKBGul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 02:50:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48922 "EHLO
+        id S229436AbiKBGy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 02:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbiKBGuk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 02:50:40 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C13201AA
-        for <devicetree@vger.kernel.org>; Tue,  1 Nov 2022 23:50:38 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id io19so15685975plb.8
-        for <devicetree@vger.kernel.org>; Tue, 01 Nov 2022 23:50:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GXMD3gyfvxWm4qyf9rawBC7bW9w48hpLGmrypv4ln1g=;
-        b=wkdjC1PniWFSbFrDePUQAaP9UVwGpIgFBA0HEmknycO0fpZaOLVIcTuvLe9MXUXPuO
-         OqMN+nxIDrX2qi8687Nmr8KNh2EJ7a0Z3JlW5+L7iHCqhj8OfZ+IQdXaZK37VWSQ26Ko
-         XBvmjbyMqyPOTU75V5sUEvv3kjUGYVzkzV+dxUzsB90IfYx9OnfkJB3kjVy99Ye3xRYw
-         tPaa8K+ed/Z33ISnDtjJFfPnVhAl+VojVMhd3KxLnP9PVSG4CXpVcK3A4Mvq5O/iUFZW
-         a5iHtG52TJZSY8wHwtB+/YQcHwE8F7x+QfAIKcUVYKUv8hRuyy8y7tl2GUPFcK1UanoA
-         gHgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GXMD3gyfvxWm4qyf9rawBC7bW9w48hpLGmrypv4ln1g=;
-        b=uEwVT+aeEW08SZoofEMi/fUeEsBBVUC8QsqrwBka2Ow4jWjAy8yR6E2LK0sfgIjfB3
-         tj2nnS0WTCMN23Z6FuGderP7m24EmAyT21rAs6CpNjJzKwNpgPgQrH/XUBIEjtSMmvLb
-         /Y3oVG+bUa2fl95ieA/doJcF9LE/vP81d3E9MM0QuyLIV9nh6CMfHFcustPZAmVQNwH6
-         s+vlsHbQXfgUtmnvW4dYLV48CegtPa/j5h4fo0Cr2NCnfGSDjojS+Yj2hGIFJcXQpYkN
-         W9045T4/p8ZTsnm/oo+xA3k2nKe127oFqy0zc/H6zXZ5Yj/Nvm+OPtAjcVzK5ujDfWVZ
-         JYHA==
-X-Gm-Message-State: ACrzQf12OieZMvexwQfav+8O5UJ4FFfLcHqNi5/HJYvi3gXKhlzuPOLT
-        bOFU9A7A8fIm43m6h7GvUuBKYw==
-X-Google-Smtp-Source: AMsMyM7OvQSo6gb7wQUvtS2ULXR7iqGuA2Ug2BbbNx40CAc1ubs+jJVTckNeJREbLffs4UtWPWyuzw==
-X-Received: by 2002:a17:902:ea04:b0:187:4923:56f4 with SMTP id s4-20020a170902ea0400b00187492356f4mr1288331plg.97.1667371838052;
-        Tue, 01 Nov 2022 23:50:38 -0700 (PDT)
-Received: from localhost ([122.172.84.80])
-        by smtp.gmail.com with ESMTPSA id c28-20020aa7953c000000b005624e2e0508sm7602798pfp.207.2022.11.01.23.50.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Nov 2022 23:50:37 -0700 (PDT)
-Date:   Wed, 2 Nov 2022 12:20:35 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        rafael@kernel.org, robh+dt@kernel.org, johan@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 3/7] cpufreq: qcom-hw: Remove un-necessary
- cpumask_empty() check
-Message-ID: <20221102065035.nf7m33acsjp4foit@vireshk-i7>
-References: <20221025073254.1564622-1-manivannan.sadhasivam@linaro.org>
- <20221025073254.1564622-4-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S230045AbiKBGyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 02:54:25 -0400
+Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEEF25EB6;
+        Tue,  1 Nov 2022 23:54:20 -0700 (PDT)
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 02 Nov 2022 14:54:18 +0800
+Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
+        by mse.ite.com.tw with ESMTP id 2A26sG9M042974;
+        Wed, 2 Nov 2022 14:54:16 +0800 (GMT-8)
+        (envelope-from allen.chen@ite.com.tw)
+Received: from CSBMAIL1.internal.ite.com.tw (192.168.65.58) by
+ CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.14; Wed, 2 Nov 2022 14:54:17 +0800
+Received: from CSBMAIL1.internal.ite.com.tw ([fe80::dd22:b444:859b:61c7]) by
+ CSBMAIL1.internal.ite.com.tw ([fe80::dd22:b444:859b:61c7%18]) with mapi id
+ 15.01.2176.014; Wed, 2 Nov 2022 14:54:17 +0800
+From:   <allen.chen@ite.com.tw>
+To:     <krzysztof.kozlowski@linaro.org>
+CC:     <treapking@chromium.org>, <Jau-Chih.Tseng@ite.com.tw>,
+        <Hermes.Wu@ite.com.tw>, <Kenneth.Hung@ite.com.tw>,
+        <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
+        <robert.foss@linaro.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>, <airlied@linux.ie>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v6 1/2] dt-bindings: it6505: add properties to restrict
+ output bandwidth
+Thread-Topic: [PATCH v6 1/2] dt-bindings: it6505: add properties to restrict
+ output bandwidth
+Thread-Index: AQHY6nDorSjdzmskUUWkM7FpU3Wft64rCzsw
+Date:   Wed, 2 Nov 2022 06:54:17 +0000
+Message-ID: <18659f5a5b2c4fd7b76731836aeb713d@ite.com.tw>
+References: <20221027030155.59238-1-allen.chen@ite.com.tw>
+ <20221027030155.59238-2-allen.chen@ite.com.tw>
+ <d6f14e09-0c24-e19a-0951-bb3ca2219e79@linaro.org>
+In-Reply-To: <d6f14e09-0c24-e19a-0951-bb3ca2219e79@linaro.org>
+Accept-Language: en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.70.46]
+x-tm-snts-smtp: 7143E6E1BFEC61F7C88593D80B7E457DAF9E4169CD17B876763D7280031D059E2002:8
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221025073254.1564622-4-manivannan.sadhasivam@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-MAIL: mse.ite.com.tw 2A26sG9M042974
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,37 +68,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-10-22, 13:02, Manivannan Sadhasivam wrote:
-> CPUFreq core will always set the "policy->cpus" bitmask with the bitfield
-> of the CPU that goes first per domain/policy. So there is no way the
-> "policy->cpus" bitmask will be empty during qcom_cpufreq_hw_cpu_init().
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  drivers/cpufreq/qcom-cpufreq-hw.c | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-> index d5ef3c66c762..a5b3b8d0e164 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-> @@ -552,11 +552,6 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->  		data->per_core_dcvs = true;
->  
->  	qcom_get_related_cpus(index, policy->cpus);
-> -	if (cpumask_empty(policy->cpus)) {
-> -		dev_err(dev, "Domain-%d failed to get related CPUs\n", index);
-> -		ret = -ENOENT;
-> -		goto error;
-> -	}
->  
->  	policy->driver_data = data;
->  	policy->dvfs_possible_from_any_cpu = true;
-
-Applied. Thanks.
-
-I tried applying 4-6 as well, but git am failed. You can send such
-cleanups separately, so they don't need to wait for others to reviews.
-
--- 
-viresh
+aGkNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEtyenlzenRvZiBLb3psb3dz
+a2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gDQpTZW50OiBGcmlkYXksIE9jdG9i
+ZXIgMjgsIDIwMjIgOTo1OSBBTQ0KVG86IEFsbGVuIENoZW4gKOmZs+afj+WuhykgPGFsbGVuLmNo
+ZW5AaXRlLmNvbS50dz4NCkNjOiBQaW4tWWVuIExpbiA8dHJlYXBraW5nQGNocm9taXVtLm9yZz47
+IEphdS1DaGloIFRzZW5nICjmm77mmK3mmbopIDxKYXUtQ2hpaC5Uc2VuZ0BpdGUuY29tLnR3Pjsg
+SGVybWVzIFd1ICjlkLPkvbPlro8pIDxIZXJtZXMuV3VAaXRlLmNvbS50dz47IEtlbm5ldGggSHVu
+ZyAo5rSq5a625YCrKSA8S2VubmV0aC5IdW5nQGl0ZS5jb20udHc+OyBBbmRyemVqIEhhamRhIDxh
+bmRyemVqLmhhamRhQGludGVsLmNvbT47IE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxp
+YnJlLmNvbT47IFJvYmVydCBGb3NzIDxyb2JlcnQuZm9zc0BsaW5hcm8ub3JnPjsgTGF1cmVudCBQ
+aW5jaGFydCA8TGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPjsgSm9uYXMgS2FybG1h
+biA8am9uYXNAa3dpYm9vLnNlPjsgSmVybmVqIFNrcmFiZWMgPGplcm5lai5za3JhYmVjQGdtYWls
+LmNvbT47IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT47IERhbmllbCBWZXR0ZXIgPGRh
+bmllbEBmZndsbC5jaD47IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0
+b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+OyBvcGVuIGxp
+c3Q6RFJNIERSSVZFUlMgPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBvcGVuIGxp
+c3Q6T1BFTiBGSVJNV0FSRSBBTkQgRkxBVFRFTkVEIERFVklDRSBUUkVFIEJJTkRJTkdTIDxkZXZp
+Y2V0cmVlQHZnZXIua2VybmVsLm9yZz47IG9wZW4gbGlzdCA8bGludXgta2VybmVsQHZnZXIua2Vy
+bmVsLm9yZz4NClN1YmplY3Q6IFJlOiBbUEFUQ0ggdjYgMS8yXSBkdC1iaW5kaW5nczogaXQ2NTA1
+OiBhZGQgcHJvcGVydGllcyB0byByZXN0cmljdCBvdXRwdXQgYmFuZHdpZHRoDQoNCk9uIDI2LzEw
+LzIwMjIgMjM6MDEsIGFsbGVuIHdyb3RlOg0KPiBGcm9tOiBhbGxlbiBjaGVuIDxhbGxlbi5jaGVu
+QGl0ZS5jb20udHc+DQo+IA0KPiBBZGQgcHJvcGVydGllcyB0byByZXN0cmljdCBkcCBvdXRwdXQg
+ZGF0YS1sYW5lcyBhbmQgY2xvY2suDQoNClRoaXMgaXMgYSBmcmllbmRseSByZW1pbmRlciBkdXJp
+bmcgdGhlIHJldmlldyBwcm9jZXNzLg0KDQpJdCBzZWVtcyBteSBwcmV2aW91cyBjb21tZW50cyB3
+ZXJlIG5vdCBmdWxseSBhZGRyZXNzZWQuIE1heWJlIG15IGZlZWRiYWNrIGdvdCBsb3N0IGJldHdl
+ZW4gdGhlIHF1b3RlcywgbWF5YmUgeW91IGp1c3QgZm9yZ290IHRvIGFwcGx5IGl0Lg0KUGxlYXNl
+IGdvIGJhY2sgdG8gdGhlIHByZXZpb3VzIGRpc2N1c3Npb24gYW5kIGVpdGhlciBpbXBsZW1lbnQg
+YWxsIHJlcXVlc3RlZCBjaGFuZ2VzIG9yIGtlZXAgZGlzY3Vzc2luZyB0aGVtLg0KDQpUaGFuayB5
+b3UuDQoNCj09PiBJIGFtIHNvcnJ5IEkgZGlkbid0IGZpbmQgdGhlIG1pc3NpbmcgYWR2aWNlIHlv
+dSBzYWlkLiBDb3VsZCB5b3UgZXhwbGFpbiBpdCBhZ2Fpbj8NCg0KUm9iIGFza2VkIC0gQ29tbWl0
+IG1zZyBzaG91bGQgZXhwbGFpbiByZWFzb24gZm9yIGJyZWFraW5nIHVzZXJzLg0KDQo+IA0KPiBT
+aWduZWQtb2ZmLWJ5OiBQaW4tWWVuIExpbiA8dHJlYXBraW5nQGNocm9taXVtLm9yZz4NCj4gU2ln
+bmVkLW9mZi1ieTogQWxsZW4gQ2hlbiA8YWxsZW4uY2hlbkBpdGUuY29tLnR3Pg0KPiAtLS0NCj4g
+IC4uLi9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9pdGUsaXQ2NTA1LnlhbWwgICB8IDY4ICsrKysr
+KysrKysrKysrKysrLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA2MiBpbnNlcnRpb25zKCspLCA2IGRl
+bGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCANCj4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvaXRlLGl0NjUwNS55YW1sIA0KPiBiL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9pdGUsaXQ2NTA1LnlhbWwN
+Cj4gaW5kZXggODMzZDExYjIzMDNhNy4uYjE2YTlkOTEyN2RkYiAxMDA2NDQNCj4gLS0tIGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL2l0ZSxpdDY1MDUu
+eWFtbA0KPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9i
+cmlkZ2UvaXRlLGl0NjUwNS55YW1sDQo+IEBAIC01Miw5ICs1Miw0OSBAQCBwcm9wZXJ0aWVzOg0K
+PiAgICAgIG1heEl0ZW1zOiAxDQo+ICAgICAgZGVzY3JpcHRpb246IGV4dGNvbiBzcGVjaWZpZXIg
+Zm9yIHRoZSBQb3dlciBEZWxpdmVyeQ0KPiAgDQo+IC0gIHBvcnQ6DQo+IC0gICAgJHJlZjogL3Nj
+aGVtYXMvZ3JhcGgueWFtbCMvcHJvcGVydGllcy9wb3J0DQo+IC0gICAgZGVzY3JpcHRpb246IEEg
+cG9ydCBub2RlIHBvaW50aW5nIHRvIERQSSBob3N0IHBvcnQgbm9kZQ0KPiArICBwb3J0czoNCj4g
+KyAgICAkcmVmOiAvc2NoZW1hcy9ncmFwaC55YW1sIy9wcm9wZXJ0aWVzL3BvcnRzDQo+ICsNCj4g
+KyAgICBwcm9wZXJ0aWVzOg0KPiArICAgICAgcG9ydEAwOg0KPiArICAgICAgICAkcmVmOiAvc2No
+ZW1hcy9ncmFwaC55YW1sIy8kZGVmcy9wb3J0LWJhc2UNCj4gKyAgICAgICAgdW5ldmFsdWF0ZWRQ
+cm9wZXJ0aWVzOiBmYWxzZQ0KPiArICAgICAgICBkZXNjcmlwdGlvbjogQSBwb3J0IG5vZGUgcG9p
+bnRpbmcgdG8gRFBJIGhvc3QgcG9ydCBub2RlDQo+ICsNCj4gKyAgICAgICAgcHJvcGVydGllczoN
+Cj4gKyAgICAgICAgICBlbmRwb2ludDoNCj4gKyAgICAgICAgICAgICRyZWY6IC9zY2hlbWFzL2dy
+YXBoLnlhbWwjLyRkZWZzL2VuZHBvaW50LWJhc2UNCj4gKyAgICAgICAgICAgIHVuZXZhbHVhdGVk
+UHJvcGVydGllczogZmFsc2UNCj4gKw0KPiArICAgICAgICAgICAgcHJvcGVydGllczoNCj4gKyAg
+ICAgICAgICAgICAgbGluay1mcmVxdWVuY2llczoNCj4gKyAgICAgICAgICAgICAgICBtaW5JdGVt
+czogMQ0KPiArICAgICAgICAgICAgICAgIG1heEl0ZW1zOiAxDQo+ICsgICAgICAgICAgICAgICAg
+ZGVzY3JpcHRpb246IEFsbG93ZWQgbWF4IGxpbmsgZnJlcXVlbmNpZXMgaW4gSHoNCj4gKw0KPiAr
+ICAgICAgcG9ydEAxOg0KPiArICAgICAgICAkcmVmOiAvc2NoZW1hcy9ncmFwaC55YW1sIy8kZGVm
+cy9wb3J0LWJhc2UNCj4gKyAgICAgICAgdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0KPiAr
+ICAgICAgICBkZXNjcmlwdGlvbjogVmlkZW8gcG9ydCBmb3IgRFAgb3V0cHV0DQo+ICsNCj4gKyAg
+ICAgICAgcHJvcGVydGllczoNCj4gKyAgICAgICAgICBlbmRwb2ludDoNCj4gKyAgICAgICAgICAg
+ICRyZWY6IC9zY2hlbWFzL2dyYXBoLnlhbWwjLyRkZWZzL2VuZHBvaW50LWJhc2UNCj4gKyAgICAg
+ICAgICAgIHVuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UNCj4gKw0KPiArICAgICAgICAgICAg
+cHJvcGVydGllczoNCj4gKyAgICAgICAgICAgICAgZGF0YS1sYW5lczoNCj4gKyAgICAgICAgICAg
+ICAgICBtaW5JdGVtczogMQ0KPiArICAgICAgICAgICAgICAgIHVuaXF1ZUl0ZW1zOiB0cnVlDQo+
+ICsgICAgICAgICAgICAgICAgaXRlbXM6DQo+ICsgICAgICAgICAgICAgICAgICAtIGVudW06IFsg
+MCwgMSBdDQo+ICsgICAgICAgICAgICAgICAgICAtIGNvbnN0OiAxDQo+ICsgICAgICAgICAgICAg
+ICAgICAtIGNvbnN0OiAyDQo+ICsgICAgICAgICAgICAgICAgICAtIGNvbnN0OiAzDQo+ICsNCg0K
+VGhpcyBsb29rcyBvay4NCg0KQmVzdCByZWdhcmRzLA0KS3J6eXN6dG9mDQoNCg==
