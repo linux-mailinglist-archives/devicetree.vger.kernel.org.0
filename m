@@ -2,111 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 518AF616668
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F043D616675
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:48:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbiKBPnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 11:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55324 "EHLO
+        id S230089AbiKBPs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 11:48:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230362AbiKBPnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:43:18 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB8128E37;
-        Wed,  2 Nov 2022 08:43:17 -0700 (PDT)
-Received: from g550jk.localnet (unknown [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 1E4A1D040B;
-        Wed,  2 Nov 2022 15:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1667403796; bh=Sa2yu283C843xl42uAUnQlOf6ITnpV7J7s5FQx4YUkc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=eCff1frAp3+BeQwABbYel+x2rxO1LUeMt3rqr0Wy0Ze4plmfx4GPCBgMVWCE2Sjbc
-         3gDT1J7DGg057LD1cPOykmHhsQbS0GvlVAGusT4pMTiXm2odcclP8nHaA/XDXlhija
-         +7vvdjoOhNFsUNgWB1/my02arVLQjwNEY0JOqSG8=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org, neil.armstrong@linaro.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afd@ti.com, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] bindings: pm8941-misc: rename misc node name
-Date:   Wed, 02 Nov 2022 16:43:14 +0100
-Message-ID: <8135515.T7Z3S40VBb@g550jk>
-In-Reply-To: <028adb9d-e8e7-33db-2aae-028a809a061a@linaro.org>
-References: <20221031175717.942237-1-luca@z3ntu.xyz> <20221031175717.942237-2-luca@z3ntu.xyz> <028adb9d-e8e7-33db-2aae-028a809a061a@linaro.org>
+        with ESMTP id S229553AbiKBPs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:48:27 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B28286FD
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 08:48:26 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id h10so12719777qvq.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 08:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DqcHEbUhCxHVF2jWXX9rIliz1pXonUtemL5GAsoaHYk=;
+        b=cjJzrwScQSgi/EZHgfDyhONjigKwZTUHGMRYmsipn6PDa/tNpPT/r2YTXbwn+PRKJ4
+         hvzoTNyiUfkrVhEJfrY/3QI261jDZLrgAhiEEfSyujwWfrmCA47QPAcaRWNz83HrWHcC
+         oSBkL/Puj1M+J8+qZCePxUcHVUMGN6VMGWnKOQIcaLXmxQlCOZoxjDMHjtrOTcHIqTM8
+         flR7MAuX6cP0wvRF6Hwx/xzO3ezPAqetNe8ghGHlaO57R5Y8am849P9vRJUIkM+YNNWq
+         rldzL5zpeBkMlu+KVhL+JAIcsiW8ZuqfkRkD4l68HPX4D2c5AdQNJVLVy4LNtv9FgbRt
+         RR9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DqcHEbUhCxHVF2jWXX9rIliz1pXonUtemL5GAsoaHYk=;
+        b=xg6zfjKjq942OXKnN7FihKSquOXiu466ZCKBh72IybOZOUc7A0U3Fe28zWb4zA/Wh0
+         MITniYueu7lghX92EvD2fp7bw7UvD+7ZS7GI7fAklg0EvDiVrrbskxHvW07xTlZsGVln
+         7phH1kVBty440z8kcMdXOdCRPa7+bo6CLoKi7P1i/jYVICtP8h8t1iHg2AUxo+GZE+e3
+         vnjscTzz6O8azHti5cB4zqYDAVG3/BQ3/HrfWP5By2j01jmkanQn9wGo+yKPkLwh9PJS
+         TNjek2YF3grEVfzmzkmO+tRRPVZK9Ohvc/SzgsGJrc0wLQpx3JGCuOMkLI7ZrnWxv2wz
+         aPUw==
+X-Gm-Message-State: ACrzQf3VOUtg+vP7CxE8EERZ1v3xFxk5oyaJ+iipEseRsK6cT5sqCL4E
+        uyU1yucMdsRVfyc5r/x0rjrRWw==
+X-Google-Smtp-Source: AMsMyM5lWMNbK9eIVv4y7NtTus+Bm2qBB8TllawiBRSGYs8TQbhuMAvGKmpM6iRqg5hbBhBe4lXZUQ==
+X-Received: by 2002:a05:6214:ccd:b0:4bb:663c:8018 with SMTP id 13-20020a0562140ccd00b004bb663c8018mr22348600qvx.24.1667404105566;
+        Wed, 02 Nov 2022 08:48:25 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id w20-20020a05620a445400b006cbe3be300esm1361638qkp.12.2022.11.02.08.48.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 08:48:24 -0700 (PDT)
+Message-ID: <4d981879-f6e2-8046-1a34-f11abfb19187@linaro.org>
+Date:   Wed, 2 Nov 2022 11:48:22 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH] dt-bindings: net: constrain number of 'reg' in ethernet
+ ports
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        UNGLinuxDriver@microchip.com, Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Martin Botka <martin.botka@somainline.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        krishna Lanka <quic_vamslank@quicinc.com>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Govind Singh <govinds@codeaurora.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20221028140326.43470-1-krzysztof.kozlowski@linaro.org>
+ <20221028140326.43470-2-krzysztof.kozlowski@linaro.org>
+ <20221031185737.GA3249912-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221031185737.GA3249912-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
-
-On Mittwoch, 2. November 2022 11:35:55 CET Neil Armstrong wrote:
-> Hi,
+On 31/10/2022 14:57, Rob Herring wrote:
+> On Fri, Oct 28, 2022 at 10:03:25AM -0400, Krzysztof Kozlowski wrote:
+>> 'reg' without any constraints allows multiple items which is not the
+>> intention for Ethernet controller's port number.
+>>
 > 
-> On 31/10/2022 18:57, Luca Weiss wrote:
-> > The spmi-pmic bindings is now using usb-detect@ for this node, so adjust
-> > the example to match.
-> 
-> Subject should be:
-> dt-bindings: pm8941-misc: rename misc node name
-> instead of:
-> bindings: pm8941-misc: rename misc node name
+> Shouldn't this constrained by dsa-port.yaml (or the under review 
+> ethernet switch schemas that split out the DSA parts)?
 
-Also here I've followed the style of the previous commits to this file
+dsa-port should indeed have such change (I'll send one), but these
+schemas do not reference it.
 
-4fcdd677c4ea bindings: pm8941-misc: Add support for VBUS detection
-dd6f5afb1c2d bindings: pm8941-misc: Convert bindings to YAML
+They reference only ethernet-controller, which does not even mention
+'reg' port. I'll describe it better in commit msg.
 
-Though it seems other commits in this directory recently have used
-"dt-bindings: extcon: " prefix. Do you still want me to change it?
+ethernet-switch is not yet referenced in the schemas changed here. It
+would not be applicable to asix,ax88178.yaml and microchip,lan95xx.yaml.
+To others - probably it would be applicable.
 
-Regards
-Luca
-
-> 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > 
-> >   Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> > b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml index
-> > 6a9c96f0352a..fbda899fd260 100644
-> > --- a/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> > +++ b/Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
-> > 
-> > @@ -49,7 +49,7 @@ examples:
-> >               interrupt-controller;
-> >               #interrupt-cells = <4>;
-> > 
-> > -            usb_id: misc@900 {
-> > +            usb_id: usb-detect@900 {
-> > 
-> >                       compatible = "qcom,pm8941-misc";
-> >                       reg = <0x900>;
-> >                       interrupts = <0x0 0x9 0 IRQ_TYPE_EDGE_BOTH>;
-> 
-> With subject fixed:
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-
-
+Best regards,
+Krzysztof
 
