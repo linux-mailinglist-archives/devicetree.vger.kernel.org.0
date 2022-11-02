@@ -2,157 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2DC06165E1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A4F616601
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 16:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbiKBPST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 11:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
+        id S229676AbiKBPXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 11:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbiKBPSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:18:18 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AFCB205F7
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 08:18:16 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id w14so25013724wru.8
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 08:18:16 -0700 (PDT)
+        with ESMTP id S229587AbiKBPXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 11:23:05 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57D7E65F1
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 08:23:02 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id hh9so11486932qtb.13
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 08:23:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T9e18AuOzDnWHjh6xr+jQAEK5xQcjVqynS6u486cJkU=;
-        b=vVrjNop7hjPDib3wv1ot+HsH3VyGY3cb14mf3za4DKjEZmUbSC2uxLrZbr9QnoCHIu
-         H5/e2OqFLFx7fZkBeLMA/uQdUWoNIURrEKKCt52vEpTGslev/6AHfGyDdH6Xw00LZfAg
-         xm48kYROY6HxVm/Z8NRksM6sxlqr1ajMCnMD9W/j/StqwddMDD1fomQALLVGYcL5Y5jG
-         S0FCj+Aiqu+7h2ZpCXDkrzX6H1bLjZwnOcSwHRODkxDKNvivnbIhWku2tiTBb1p4VZg8
-         0noIDWAH+red8jcQl3qJxEQ1NLTvQBBtk0t431y/RiB7OiE3vYU4m+zt5DQK8o2lu0W7
-         G9mQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5DBOh0seZgVfpZ5tlyQZIQ8LgeABKZUQUWQr8sZ8L+M=;
+        b=OHUJ9LQ+YcZvdDRODUwinUi0s4L6WDWIhSOMy3lhOeAtiy05cbA6YnLCLpYkGl1ZZB
+         xWoZmwOGmI1ofM/jlpj+t6Bqs4uMbFfTiajcru0Ckv2Ih15i7W001X0lio0AXIPuyKzX
+         TQnS7LZRnGXWWkG3DrrZo5HGRmom2HIokZCV9v+N+4DH8cE2xUpgsL1phg6+lrRbGrbT
+         DDjbeCTptWa0tQlC8PnsPHkmomakmoVBpmGU6cgBVpuOI2EdnVWMjaPihhigSVZmeFbZ
+         HoAaMP+Uo220bFxfLSQZf1G/aR/aEIIHcf7/AIv6vM/eT9bh57JmrtHFPUbn54zQaa9Y
+         IfUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=T9e18AuOzDnWHjh6xr+jQAEK5xQcjVqynS6u486cJkU=;
-        b=B+41mvEsrxLCzA2GJuOvRzjISNnk+WXA8rK9Luabg77SOCRZFqU/nAsXbsw00y8VoN
-         z6R2CrKfBgpSed0Zcdqo6tL7S3M4MoEOKGC2GhqBy1bi/jEzVSQvWsMNGFILrduUHG+G
-         6qE8XLF0cDQWo+munWqPAzNcn9BQ4qQEXWR7zfKf5m8p4rAaV0zSXR+KqKIS+cVhdS9u
-         egaoCjOGbk7GyW2eCx0V1EHFva4NoSU8nldCEQQ3M4tQW8bSxa5aOA/AiSAfZpqBcUTq
-         y2uDRYPtL8V3t4Yfkfjjsj5/ZbrqMJk8ueGF2lvuMaaCTzFrciY40IQm2tPW2ivp0Mil
-         Y39w==
-X-Gm-Message-State: ACrzQf09FqhKGZtSaQB5XU4ZqYjKkKIpRRf3Unp2fgD6O3j9rvn24mv5
-        XaVSbYgOV58Nuep48xJfTbnJfQ==
-X-Google-Smtp-Source: AMsMyM6o4omJsNxu8orKzfd9naeNFZCxwtIS7R+A+z31p3n+znaJYmIV7aHiK1qWp4qPwRtqSSxMKQ==
-X-Received: by 2002:a5d:5967:0:b0:236:bd27:f1b8 with SMTP id e39-20020a5d5967000000b00236bd27f1b8mr13149257wri.390.1667402294756;
-        Wed, 02 Nov 2022 08:18:14 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id bq13-20020a5d5a0d000000b002365921c9aesm13332818wrb.77.2022.11.02.08.18.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 08:18:14 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Wed, 02 Nov 2022 16:18:09 +0100
-Subject: [PATCH v6 3/3] iommu/mediatek: add support for MT8365 SoC
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5DBOh0seZgVfpZ5tlyQZIQ8LgeABKZUQUWQr8sZ8L+M=;
+        b=Mu3ci74L3dojD2Awr4GKziNBxjkxPry3qsVehh81QYoa7anrHS41WweAntG5WTFgn0
+         FpSh/BM/1KQhWA3OB1s4sD1BMLlAUTAZZ2uihFT3nQAZlbrq/TNcoo13h/bu+knCzp32
+         1Nr4cICOfRXqBpNqtKgN1oqAJYLS3X+TPsW70jmBsOR1R0J6AgEC2TxGdTwPCmfFoIoC
+         x11+7lOkh/OjPU7aKIxuNwuheIrpD7w74njb5RM2aNkP3QJgZC7Pz43OS7yaur3Gknxs
+         8EPd2hXNfCjT90cvah9BBMpc0JlLsGWe2JaL8zGl8UiCBiY7vt+pSAWugBdbmACIAnWc
+         FqCw==
+X-Gm-Message-State: ACrzQf3Ry6EVzgp47WC9nn9+omiqXqIZpQhdyOPrZi9RS1g6y2KOUQD1
+        SSUBAa4IiPwGINHdcF98vF0GUQ==
+X-Google-Smtp-Source: AMsMyM4xHlDk7Aw1fehJcfDTAAhh/xQs5ETuj4GUQm09yy35CI3KEq6yxgP08X9zUDqwqL5Su7YqFw==
+X-Received: by 2002:a05:622a:1751:b0:39c:cbba:d07d with SMTP id l17-20020a05622a175100b0039ccbbad07dmr19882299qtk.30.1667402581464;
+        Wed, 02 Nov 2022 08:23:01 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id v5-20020a05620a0f0500b006bba46e5eeasm8731216qkl.37.2022.11.02.08.23.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 08:23:00 -0700 (PDT)
+Message-ID: <9f2a50db-0cfe-b9ce-11f4-be406cb9888e@linaro.org>
+Date:   Wed, 2 Nov 2022 11:22:59 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20221001-iommu-support-v6-3-be4fe8da254b@baylibre.com>
-References: <20221001-iommu-support-v6-0-be4fe8da254b@baylibre.com>
-In-Reply-To: <20221001-iommu-support-v6-0-be4fe8da254b@baylibre.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.10.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2006; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=Q4NYYQifFh9zAugrVsdD24zlf7qYZx8w4pW2A66Dgc4=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBjYooyAnt/3uDKzQTl89xfXRYOhl4D1bU+Q7od77hw
- ErFRlkKJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCY2KKMgAKCRArRkmdfjHURUUFD/
- 93Y7hT8/4BU2SdrJ0KdhJzQYPpku8B/wTpGm45+uiAJV6r77tTcgbr7cZSyBAy+xZY+qRMrPGUBVqU
- Ajk7HHfEUF/WzcXIHzB6KHGSf9c+3D+rNDm6yBs9CXUg0xfe0jkc81bUSf/+aC6XtdBECiWrNn70Xv
- z5QtntaQBOINOB63LBBI96uXqH0grV99uYxelModQWaNKjnnyBzEdHxp8ey/RqZ0oQfTDV7oFTgjA7
- otXN+ux0mGGPdZ8oBe/GvEX7L5kok0LuiJZcKejE4YliRSfIv38O7OauoXtk1LSHQs91f/ddL+dRQ/
- D/6p8qf/2vv/21M10jkcf8Vk4zfQDIEnzYEFFVeBl9/nvHmPrT2oszCCkzDs0hPP+zvuvmkZIgY4CI
- OmxgXt/hKzfsvct9x2WMTlzCxfeeVIxdCJA2d085AYXb6LA6Y71MFI4I9mcLrMqxo1v4+vhdbJPpOQ
- nY62Wdcvc1qqNbkJy+SJeKRq5wGQNEItSFfJ6+zZgY8aXAKh/1KIkUZhzpAHk7yY9THS1T/eoTjH/z
- 5M0Trb/g65/NJvhAz1Qyl8HK/QEaIFN/SNGss5FWTgsbx0b8C8HXFFpcQFm9qXM2DGFncyqqxx1QCp
- 5n+o0IQHkJLe15tSnQyvryaHLrSaEv3uepvuEH7vMOAwwx+nTTeoRryGDb0g==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v2 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML
+ schemas of Xilinx NWL PCIe Root Port Bridge
+Content-Language: en-US
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bhelgaas@google.com, michals@xilinx.com, robh+dt@kernel.org,
+        nagaradhesh.yeleswarapu@amd.com, bharat.kumar.gogada@amd.com
+References: <20221101052049.3946283-1-thippeswamy.havalige@amd.com>
+ <20221101052049.3946283-2-thippeswamy.havalige@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221101052049.3946283-2-thippeswamy.havalige@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+On 01/11/2022 01:20, Thippeswamy Havalige wrote:
+> Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
+> dt binding.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
+>  .../bindings/pci/xilinx-nwl-pcie.txt          |  73 ----------
+>  .../bindings/pci/xlnx,nwl-pcie.yaml           | 137 ++++++++++++++++++
+>  2 files changed, 137 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+> deleted file mode 100644
+> index f56f8c58c5d9..000000000000
+> --- a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -* Xilinx NWL PCIe Root Port Bridge DT description
+> -
+> -Required properties:
+> -- compatible: Should contain "xlnx,nwl-pcie-2.11"
+> -- #address-cells: Address representation for root ports, set to <3>
+> -- #size-cells: Size representation for root ports, set to <2>
+> -- #interrupt-cells: specifies the number of cells needed to encode an
+> -	interrupt source. The value must be 1.
+> -- reg: Should contain Bridge, PCIe Controller registers location,
+> -	configuration space, and length
+> -- reg-names: Must include the following entries:
+> -	"breg": bridge registers
+> -	"pcireg": PCIe controller registers
+> -	"cfg": configuration space region
+> -- device_type: must be "pci"
+> -- interrupts: Should contain NWL PCIe interrupt
+> -- interrupt-names: Must include the following entries:
+> -	"msi1, msi0": interrupt asserted when an MSI is received
+> -	"intx": interrupt asserted when a legacy interrupt is received
+> -	"misc": interrupt asserted when miscellaneous interrupt is received
+> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
+> -	mapping of the PCI interface to interrupt numbers.
+> -- ranges: ranges for the PCI memory regions (I/O space region is not
+> -	supported by hardware)
+> -	Please refer to the standard PCI bus binding document for a more
+> -	detailed explanation
+> -- msi-controller: indicates that this is MSI controller node
+> -- msi-parent:  MSI parent of the root complex itself
+> -- legacy-interrupt-controller: Interrupt controller device node for Legacy
+> -	interrupts
+> -	- interrupt-controller: identifies the node as an interrupt controller
+> -	- #interrupt-cells: should be set to 1
+> -	- #address-cells: specifies the number of cells needed to encode an
+> -		address. The value must be 0.
+> -
+> -Optional properties:
+> -- dma-coherent: present if DMA operations are coherent
+> -- clocks: Input clock specifier. Refer to common clock bindings
+> -
+> -Example:
+> -++++++++
+> -
+> -nwl_pcie: pcie@fd0e0000 {
+> -	#address-cells = <3>;
+> -	#size-cells = <2>;
+> -	compatible = "xlnx,nwl-pcie-2.11";
+> -	#interrupt-cells = <1>;
+> -	msi-controller;
+> -	device_type = "pci";
+> -	interrupt-parent = <&gic>;
+> -	interrupts = <0 114 4>, <0 115 4>, <0 116 4>, <0 117 4>, <0 118 4>;
+> -	interrupt-names = "msi0", "msi1", "intx", "dummy", "misc";
+> -	interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+> -	interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
+> -			<0x0 0x0 0x0 0x2 &pcie_intc 0x2>,
+> -			<0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
+> -			<0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
+> -
+> -	msi-parent = <&nwl_pcie>;
+> -	reg = <0x0 0xfd0e0000 0x0 0x1000>,
+> -	      <0x0 0xfd480000 0x0 0x1000>,
+> -	      <0x80 0x00000000 0x0 0x1000000>;
+> -	reg-names = "breg", "pcireg", "cfg";
+> -	ranges = <0x02000000 0x00000000 0xe0000000 0x00000000 0xe0000000 0x00000000 0x10000000  /* non-prefetchable memory */
+> -		  0x43000000 0x00000006 0x00000000 0x00000006 0x00000000 0x00000002 0x00000000>;/* prefetchable memory */
+> -
+> -	pcie_intc: legacy-interrupt-controller {
+> -		interrupt-controller;
+> -		#address-cells = <0>;
+> -		#interrupt-cells = <1>;
+> -	};
+> -
+> -};
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> new file mode 100644
+> index 000000000000..f6634be618a2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/xlnx,nwl-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx NWL PCIe Root Port Bridge
+> +
+> +maintainers:
+> +  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,nwl-pcie-2.11
+> +
+> +  reg:
+> +    items:
+> +      - description: PCIe bridge registers location.
+> +      - description: PCIe Controller registers location.
+> +      - description: PCIe Configuration space region.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: breg
 
-Add IOMMU support for MT8365 SoC.
+const: bridge
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Reviewed-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Tested-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- drivers/iommu/mtk_iommu.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+> +      - const: pcireg
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index 563e3c54a0e2..aff7a9190749 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -170,6 +170,7 @@ enum mtk_iommu_plat {
- 	M4U_MT8186,
- 	M4U_MT8192,
- 	M4U_MT8195,
-+	M4U_MT8365,
- };
- 
- struct mtk_iommu_iova_region {
-@@ -1525,6 +1526,17 @@ static const struct mtk_iommu_plat_data mt8195_data_vpp = {
- 			   {4, MTK_INVALID_LARBID, MTK_INVALID_LARBID, MTK_INVALID_LARBID, 6}},
- };
- 
-+static const struct mtk_iommu_plat_data mt8365_data = {
-+	.m4u_plat	= M4U_MT8365,
-+	.flags		= RESET_AXI | INT_ID_PORT_WIDTH_6,
-+	.inv_sel_reg	= REG_MMU_INV_SEL_GEN1,
-+	.banks_num	= 1,
-+	.banks_enable	= {true},
-+	.iova_region	= single_domain,
-+	.iova_region_nr	= ARRAY_SIZE(single_domain),
-+	.larbid_remap	= {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear mapping. */
-+};
-+
- static const struct of_device_id mtk_iommu_of_ids[] = {
- 	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
- 	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
-@@ -1537,6 +1549,7 @@ static const struct of_device_id mtk_iommu_of_ids[] = {
- 	{ .compatible = "mediatek,mt8195-iommu-infra", .data = &mt8195_data_infra},
- 	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data = &mt8195_data_vdo},
- 	{ .compatible = "mediatek,mt8195-iommu-vpp",   .data = &mt8195_data_vpp},
-+	{ .compatible = "mediatek,mt8365-m4u", .data = &mt8365_data},
- 	{}
- };
- 
+const: pci
 
--- 
-b4 0.10.1
+> +      - const: cfg
+> +
+> +  interrupts:
+> +    items:
+> +      - description: msi0 interrupt asserted when an MSI is received
+> +      - description: msi1 interrupt asserted when an MSI is received
+> +      - description: interrupt asserted when a legacy interrupt is received
+> +      - description: unused interrupt(dummy)
+> +      - description: interrupt asserted when miscellaneous interrupt is received
+> +
+> +  interrupt-names:
+> +    maxItems: 5
+
+I didn't notice last time - what are the names? They need to be defined.
+
+> +
+> +  interrupt-map-mask:
+> +    items:
+> +      - const: 0
+> +      - const: 0
+> +      - const: 0
+> +      - const: 7
+> +
+
+Best regards,
+Krzysztof
+
