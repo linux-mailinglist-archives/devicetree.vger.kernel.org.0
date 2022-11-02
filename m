@@ -2,205 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D25E616D14
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66250616D22
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:49:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231740AbiKBSrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 14:47:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42272 "EHLO
+        id S231669AbiKBStp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 14:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231694AbiKBSrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:47:18 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD062FFDD
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:47:12 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id fz10so6222567qtb.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:47:12 -0700 (PDT)
+        with ESMTP id S231760AbiKBSt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:49:28 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027703121F
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 11:49:13 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id k2so6812860qkk.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 11:49:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wtKcJi4R+48TsMqCQH8XbgPczt6c7dDfQAB3HD59hhY=;
-        b=pfumJRZiHgyJtXnF8PDr9lKiJtTxPbqBr1M1hCs6+w3gsHb3qhj7zcyp30HmvnyZjt
-         nY51eJMa4l0wv1s/JGywDrh7oO19aAsyEiieQ/7q0RntsmIjE90KfUtY4kzzlCmTgaCk
-         IqaVAr0069VGzZNijegHpWaNlTeHpIaGa7TuPDAkkc3cEngVPMx3+/JgNezm9OHrqyqJ
-         v+fCkElj1RSKTTZ2m9UwiTZ0Q4c3lsr63S7Kf8juhl9tWLLge9nZKtwbIrcZeb/ynqId
-         AZ8ImC5YP698K5O0sEHzd/xM8KXBr/L6ovJoW1TQcVHE21bHXw33jqHqoB68nyEBMPTn
-         +5tA==
+        bh=vJYNZtf6bcoMnKqaGiq/9/aXJ5dsTFIfamsATLeB19E=;
+        b=su9C3G8MIg7QWTFg8X40a81l1pos9whecNkXv05SZCVv+Ifq5/Lnwt2vr1Mb3MLuIQ
+         jRDedwfIwrB71P37sh22Y4/0wD8UqyzKEZzEh02MJZUwMEQFcO5dOUAFaR9UtAPt36jH
+         +NNP2HWHC6hFOsr/iEvUj7AbwFGSyb5wYB88wcSSpZEO6YR7ELmy9c791KfrDJIMxUYI
+         ooT60YMIA4kC6fqE9keso+2NvSE2Feil4aQJ8LtpS3yIsbOa+wFRCid3h08+7r2uhoew
+         ZtyOTEQ0l+lhc07lbsGCV/lSw+Lt1gs5woqu8nyK9eFwAXAXjC6jh7xz6zZX0hR+um9A
+         x4Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wtKcJi4R+48TsMqCQH8XbgPczt6c7dDfQAB3HD59hhY=;
-        b=x0QxVdZlBj8QjvxUHVd/ZCy18u0TaR3//+MzctSEn8N1zxzoK+59pSVI4FYQA6vHSe
-         d3i0DV5mZIUgTg70hXM+0dl73g5ib4og2ZWR8hHVVUluZYU3H0fTgp88xPo/SFZSVSQO
-         M61hiPJoeV/O/fe8DozKY7Lryv/pmn117+MnHAd1qwYXkgLGk6seoSbwGMghK6mw2r0t
-         LvuVbvBBp6m4eHcELLaui+GMT+giJ8+3VPQx4/lHRukXiLDBBgeL8Ldpm5dNzNYJ4phf
-         jba37QgvNZF0CEn/BD7/z1l1SPT8NmIhMI9YD0mZQ6K0YABKP7ClFRhZ5SytTpOohOdy
-         z3gw==
-X-Gm-Message-State: ACrzQf1LyZD+OiJtyd8ynDoQaBGyArtgULT4ZDFpvPj5vFy8u/s91qn5
-        7Srwx4GZKY7LfIOiI02dfBM5Mw==
-X-Google-Smtp-Source: AMsMyM7tImKnGk9XhaAiOo0zzhJ2EQR6Zs464t+GgKh7kg2gdsVZ7zA3dCADMCh4CvutPud+rvmN1A==
-X-Received: by 2002:a05:622a:64f:b0:3a5:d40:b58d with SMTP id a15-20020a05622a064f00b003a50d40b58dmr21547399qtb.308.1667414832073;
-        Wed, 02 Nov 2022 11:47:12 -0700 (PDT)
+        bh=vJYNZtf6bcoMnKqaGiq/9/aXJ5dsTFIfamsATLeB19E=;
+        b=It57zl3CNMxgcPG/X3vgc2TvgNrsfv/v21O26PCnObLYgN8DxUE8I2d3+maeXSrS4s
+         R1zTlLOmZpkvNlFucVwpKGPKcYgM00UiT3iq2SYlwmpo3loqUC4I0dABwRnxnOELNWe7
+         7l3ayapox65d4el7iClAu+Dguk9B/C6xdiorUAX+aw2+74jqYS/8kpuamwUCEvxyE20A
+         o7FPaVWrBzJND1UdrfIlXKHuHEtSyNewhIfCKWm6UO/mBb7xrTW7B6Lo8EgCSMv+RBKX
+         MhMmtaW4uK7TYJfJIpPBpvvrKSxGcrpJNAiqKhlctHq7H8V+fPj0yNqryvdowWJ/+ZIG
+         sZpQ==
+X-Gm-Message-State: ACrzQf0IA/WrsSPr91SmMDZCI5B/kFAQsfD6eY2ZBDg2c8uFdiBdU4Cy
+        Yq/XqA6iVXxJUfQD+E8niqlIhg==
+X-Google-Smtp-Source: AMsMyM4QrsNd0t8S2FzfTh26X1GqKLWJtIRgo6E0399IOn8EDRnsAkEWhLADnj/2PxhsqfSVcY2Vlg==
+X-Received: by 2002:a37:65c9:0:b0:6fa:1ef8:fa10 with SMTP id z192-20020a3765c9000000b006fa1ef8fa10mr15636685qkb.648.1667414953134;
+        Wed, 02 Nov 2022 11:49:13 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id g19-20020a05620a40d300b006eea4b5abcesm9162922qko.89.2022.11.02.11.47.10
+        by smtp.gmail.com with ESMTPSA id q4-20020ac87344000000b0039442ee69c5sm6861556qtp.91.2022.11.02.11.49.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 11:47:11 -0700 (PDT)
-Message-ID: <c9c3bffc-0d2a-ef67-ccab-ee040608405a@linaro.org>
-Date:   Wed, 2 Nov 2022 14:47:09 -0400
+        Wed, 02 Nov 2022 11:49:12 -0700 (PDT)
+Message-ID: <f387a864-5683-f4a1-ee9a-3c92b2ca5e1c@linaro.org>
+Date:   Wed, 2 Nov 2022 14:49:11 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v5 02/13] dt-bindings: Add binding for gunyah hypervisor
+Subject: Re: [PATCH] dt-bindings: net: nxp,sja1105: document spi-cpol
 Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221011000840.289033-1-quic_eberman@quicinc.com>
- <20221011000840.289033-3-quic_eberman@quicinc.com>
- <20221012155645.GA2173829-robh@kernel.org>
- <ca13eb92-9b5b-19fd-27a5-f91f5048b142@quicinc.com>
- <CAL_Jsq+cR5AEa5i1u-_L6sP6nYXS6qgaVWZ=KwxpUbxV3ZW-BA@mail.gmail.com>
- <75ef3cc5-3b19-9eab-b3eb-56fa254d92bd@quicinc.com>
- <79673829-a079-201f-91e1-790eb7cc3a4b@linaro.org>
- <df09560d-803b-33f6-69ed-6d377d05d336@quicinc.com>
+        linux-kernel@vger.kernel.org
+References: <20221102161211.51139-1-krzysztof.kozlowski@linaro.org>
+ <166741398630.127357.13160524174654511434.robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <df09560d-803b-33f6-69ed-6d377d05d336@quicinc.com>
+In-Reply-To: <166741398630.127357.13160524174654511434.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 23:19, Elliot Berman wrote:
+On 02/11/2022 14:35, Rob Herring wrote:
 > 
-> 
-> On 10/27/2022 12:55 PM, Krzysztof Kozlowski wrote:
->> On 27/10/2022 12:17, Elliot Berman wrote:
->>> Hi Rob,
->>>
->>> On 10/26/2022 2:16 PM, Rob Herring wrote:
->>>> On Thu, Oct 13, 2022 at 6:59 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>>>>
->>>>>
->>>>> On 10/12/2022 8:56 AM, Rob Herring wrote:
->>>>>> On Mon, Oct 10, 2022 at 05:08:29PM -0700, Elliot Berman wrote:
->>>>>>> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
->>>>>>> Resource Manager applies a devicetree overlay describing the virtual
->>>>>>> platform configuration of the guest VM, such as the message queue
->>>>>>> capability IDs for communicating with the Resource Manager. This
->>>>>>> information is not otherwise discoverable by a VM: the Gunyah hypervisor
->>>>>>> core does not provide a direct interface to discover capability IDs nor
->>>>>>> a way to communicate with RM without having already known the
->>>>>>> corresponding message queue capability ID. Add the DT bindings that
->>>>>>> Gunyah adheres for the hypervisor node and message queues.
->>>>>>>
->>>>>>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
->>>>>>> ---
->>>>>>>     .../bindings/firmware/gunyah-hypervisor.yaml  | 87 +++++++++++++++++++
->>>>>>>     MAINTAINERS                                   |  1 +
->>>>>>>     2 files changed, 88 insertions(+)
->>>>>>>     create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..f0a14101e2fd
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->>>>>>> @@ -0,0 +1,87 @@
->>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>> +
->>>>>>> +title: Gunyah Hypervisor
->>>>>>> +
->>>>>>> +maintainers:
->>>>>>> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
->>>>>>> +  - Elliot Berman <quic_eberman@quicinc.com>
->>>>>>> +
->>>>>>> +description: |+
->>>>>>> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
->>>>>>
->>>>>> How you end up with the node (applying an overlay) is not relavent to
->>>>>> the binding.
->>>>>>
->>>>>>> +  describes the basic configuration of the hypervisor. Virtual machines use this information to determine
->>>>>>> +  the capability IDs of the message queues used to communicate with the Gunyah Resource Manager.
->>>>>>
->>>>>> Wrap at 80. That is the coding standard still though 100 is deemed
->>>>>> allowed. And yamllint only complains at 110 because I didn't care to fix
->>>>>> everyones lines over 100.
->>>>>>
->>>>>>> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
->>>>>>> +
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    items:
->>>>>>> +      - const: gunyah-hypervisor-1.0
->>>>>>> +      - const: gunyah-hypervisor
->>>>>>
->>>>>> 2 compatibles implies a difference between the 2. What's the difference?
->>>>>> Where does '1.0' come from?
->>>>>>
->>>>>
->>>>> There's no difference. I thought the convention was to have
->>>>> device-specific compatible and the generic compatible. "device-specific"
->>>>> here would be specific to version of Gunyah since it's software.
->>>>
->>>> No, that's just what people do because "vendor,new-soc",
->>>> "vendor,old-soc" seems to bother them for some reason. At the end of
->>>> the day, it's just a string identifier that means something. If
->>>> there's no difference in that 'something', then there is no point in
->>>> having more than one string.
->>>>
->>>> You only need something specific enough to discover the rest from the
->>>> firmware. When that changes, then you add a new compatible. Of course,
->>>> if you want existing OSs to work, then better not change the
->>>> compatible.
->>>>
->>>
->>> Thanks for the info, I'll drop the "-1.0" suffix.
+> On Wed, 02 Nov 2022 12:12:11 -0400, Krzysztof Kozlowski wrote:
+>> Some boards use SJA1105 Ethernet Switch with SPI CPOL, so document this
+>> to fix dtbs_check warnings:
 >>
->> You still did not answer from where does 1.0 come from... Compatibles
->> are usually expected to be specific.
+>>   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
 >>
 > 
-> The 1.0 comes from the Gunyah version. This is the same version returned 
-> by "hyp_identify" hypercall.
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/
+> 
+> 
+> ethernet-switch@1: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'fsl,spi-cs-sck-delay', 'fsl,spi-sck-cs-delay', 'spi-cpha' were unexpected)
+> 	arch/arm/boot/dts/ls1021a-tsn.dtb
 
-Then dropping 1.0 makes sense - your SW provides auto-detection.
+I'll add cpha, but fsl,spi-cs-sck-delay are coming from unconverted
+schema - spi-fsl-dspi.txt.
+
+> 
+> switch@0: Unevaluated properties are not allowed ('clocks', 'reset-gpios', 'spi-cpha' were unexpected)
+> 	arch/arm/boot/dts/imx6qp-prtwd3.dtb
+> 	arch/arm/boot/dts/stm32mp151a-prtt1c.dtb
+> 
 
 Best regards,
 Krzysztof
