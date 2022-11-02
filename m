@@ -2,97 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EB3261631B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 13:54:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F12616332
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 13:59:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiKBMyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 08:54:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
+        id S231153AbiKBM7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 08:59:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231124AbiKBMyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:54:15 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18667275CF
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 05:54:15 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id l6so16187282pjj.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 05:54:15 -0700 (PDT)
+        with ESMTP id S230388AbiKBM7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:59:45 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0642871C
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 05:59:44 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id 128so16199302pga.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 05:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sz/uTvOc0gNmc74MGKA7yKeLqyFqD/joiI1SxwVZLms=;
-        b=gMco29rIHyjluL75KoUf2pw2XrSEdZCMQHDxALSkmifq+/s7GAD1xAYqY35LCOejLj
-         uuDAKkLdDsF7ZHyBZYyKfaJqYvFBOFhoAafty8TuEPIC64Lzaxt7PG3uk+VPn7pbQPt8
-         VduIYP3I2f9Ge7H5zmsibvH447LXtSH7OWZJRErQyiblliWhq9RATJYwZIRxn3LlUI/T
-         d35i3X5nNMLF9rk2uA6sWkKEppODkyP8II01Oy7LBkqUrkz6K5lD8nUl6a9cGPzUDU8T
-         qM33I6IW+PGklzw3hSVmr1A/9hanlqgtBiFL7BgoRBJWNMoOr3TbCBn4kf0S4FZ+5yQ3
-         A3QA==
+        d=compal-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y7JeNjduJ11iTjItlrELM3uT2g5gNbw14nHXxfp2BQo=;
+        b=KPv16VgSY+zS/r0qBRp9hB7SGa38CEdYWE8qXB+FuB+/CGBU/BGQakBKmqCwFgRkTx
+         3d3eGwXk7jed+3ksnRqcUhjjLqTSdLQSwduXMA/1y45BGUR2vHTtJj4Xe8BbKkz51UK9
+         ntKVKdYdde655Jj8YsfI38h/1qxED8fTfgRMzxU9J6+dgD9Ev+j46DDfhUgPPzbB/WMJ
+         WWx0nDilpyH6UQghabPcUKFVkyn0EmS/kybPV8rLJSoHWFrgabZTaP1GmN3pXG+mxH34
+         bwbViDK28GpqXvpo1e08gjfg6nkMVh5eBK6LjaW4IwMH6GWJvwXPS2/hNM3tisMOmngI
+         Oyfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sz/uTvOc0gNmc74MGKA7yKeLqyFqD/joiI1SxwVZLms=;
-        b=eZZoDUbtDOx+YTEb6KZqRvoqn+JtR3wydHS/T4xwOhGxCiyPUU44cerWqj6hXCfPaR
-         EnbHeO2yhXfJQa3thAdvY+seOJGzfqSzrkf9zHvxpXD84zxPxlsbJFVR5MuoN8S1xqjt
-         nEF2zGPYjb88WyroY/yguseePe7SIKG8I7mrc8ZrR37dDEe8bpXD48qlMcv1GzAeRzpL
-         cB3n59jQHlIJf0hYG+CauGl0UywxnbVmkInPakkU9JNorjcE00sQNVnvEhSvVsZmO47n
-         wvqwdNQbC0UCMSgqysnbHd9hPmaoQ5Old4dUj70bh65U4bb9PkuIFnVe6JN8GuZnOz1Z
-         dRYw==
-X-Gm-Message-State: ACrzQf0V4EO6YJYgcI2MEovT0hm7qFn5nIgkBAewmusW9/Woe48cTrQV
-        bNZipu0XRfY4RSBVwXL/3zUhWE06C8FSucO6JJI=
-X-Google-Smtp-Source: AMsMyM7zYTm0ZmdMgJfwEPWQ6iiPPfLaP2CNfbAaYJnLIqwwlD3fqJIoA9NFRLPSxXRzbf7xPG6t5iTECeAUTsi+Urw=
-X-Received: by 2002:a17:90b:2393:b0:213:ecb2:2e04 with SMTP id
- mr19-20020a17090b239300b00213ecb22e04mr14468959pjb.100.1667393654447; Wed, 02
- Nov 2022 05:54:14 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y7JeNjduJ11iTjItlrELM3uT2g5gNbw14nHXxfp2BQo=;
+        b=MaZ8iC9hyvrA1aGP3zvxeG3PiEI7J5OUURvFT0Tfo3TXY3mdIfJgn8DQ7fipu8YnKB
+         /V9NaxeSxqNnto5Cad10jk4Hqpv0kX0ErXi7M3MQKM8Juhj+IXDOctNnu9ylchpsHGpU
+         omkMnctc6k4U3AAHs6oO/0QkNj+tPgI6YUMA9p5/OUbVf+ckiHFlv2JWFTXsEZ9SRfuh
+         zXttTH9vPOAZVteCm7QEZjPV0HzNJkrNcABgcWLvA7LrOfG0lEls3CCpL8KLxRRldDTZ
+         Kvyb92Rqg++PTRbLqU/BSdaj6UsFdDCiJBEGfRJ+ZIcyuqdWVnYLXCoO5y4ekTP5sVvQ
+         dYsQ==
+X-Gm-Message-State: ACrzQf3KJro86kL+p6u0cOFmdTplSJ9+fcCZ/lRsl/jrmHcpf7Srd+I+
+        aCl59KukrO+mHts7aQo2pPrCGg==
+X-Google-Smtp-Source: AMsMyM45Yjmw8JpdtXQkZ9vOIRK40sRXZtsKoP2XWwt+qHD2TbV0WaKrxJVHL1PtY7KzniIjkj5zsA==
+X-Received: by 2002:a63:93:0:b0:470:9d3:7d48 with SMTP id 141-20020a630093000000b0047009d37d48mr2183665pga.425.1667393983888;
+        Wed, 02 Nov 2022 05:59:43 -0700 (PDT)
+Received: from localhost.localdomain (118-167-210-180.dynamic-ip.hinet.net. [118.167.210.180])
+        by smtp.gmail.com with ESMTPSA id k14-20020a170902d58e00b0017f59ebafe7sm8259345plh.212.2022.11.02.05.59.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 05:59:43 -0700 (PDT)
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        "chunxu . li" <chunxu.li@mediatek.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: [PATCH v6 0/2] Modify documentation and machine driver for mt8186_rt1019_rt5682s sound card
+Date:   Wed,  2 Nov 2022 20:59:34 +0800
+Message-Id: <20221102125936.2176748-1-ajye_huang@compal.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Received: by 2002:a05:7022:662c:b0:46:197b:656c with HTTP; Wed, 2 Nov 2022
- 05:54:13 -0700 (PDT)
-Reply-To: rihabmanyang1993@gmail.com
-From:   Rihab Manyang <omardiakhate751@gmail.com>
-Date:   Wed, 2 Nov 2022 12:54:13 +0000
-Message-ID: <CAAs2n94DKjX6ZC8g4kdP45u1f2UDWbY4NWRPx4w49bO+RiwOfg@mail.gmail.com>
-Subject: HI DEAR..
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:102b listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [omardiakhate751[at]gmail.com]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [rihabmanyang1993[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [omardiakhate751[at]gmail.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  3.0 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v6:
+- dmic codec driver: 
+  - Modify "FrontMic" to "Front Mic" and "RearMic" to "Rear Mic"
+    to consisit with commit 3cfbf07c6d27 mentioned in description.
+
+v5:
+- Documentation: 
+  - Add #include <dt-bindings/gpio/gpio.h> in order to use
+    GPIO_ACTIVE_HIGH.
+  - Remove the change-id in message.
+
+v4:
+- Documentation: 
+  - Fix the FATAL ERROR: Unable to parse input tree.
+
+v3:
+- Documentation: 
+  - Add an explain example in description.
+  - Add the pinctrl-name and pinctrl id in its example.
+
+v2:
+- dmic codec driver: 
+  - Remove the unnecessary use of_property_read_bool()
+
+v1:
+- Documentation: Add dmic-gpios optional prop for two DMICs case.
+- dmic codec driver: 
+  - "dmic-gpios" property is used for amixer control to switch
+     the dmic signal source between the Front and Rear Dmic.
+
+Thanks for the review!
+
+Ajye Huang (2):
+  ASoC: mediatek: dt-bindings: modify machine bindings for two MICs case
+  ASoC: mediatek: mt8186-rt5682: Modify machine driver for two DMICs
+    case
+
+ .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   |  14 ++-
+ .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     | 102 +++++++++++++++++-
+ 2 files changed, 114 insertions(+), 2 deletions(-)
+
 -- 
-My name is Rihab Manyang,i am here to search for a business partner and
-friend who will help me to invest my fund in his country.
+2.25.1
+
