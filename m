@@ -2,104 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3317E616B8A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 917FB616BDB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 19:19:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbiKBSGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 14:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35364 "EHLO
+        id S231294AbiKBSTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 14:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbiKBSGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:06:22 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E660521278;
-        Wed,  2 Nov 2022 11:06:20 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A2I0B8U032383;
-        Wed, 2 Nov 2022 18:05:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=9bd16qJOxFxmn3WuYuWKXuBoDrhtl72XvI6Qp1P+n1A=;
- b=dYhgQ32blGE3d2HIJ/kzqiQTidud8dXQ9N8sDv9bi6l3+ynTQAKx8iUJiI8zn7trV5S0
- vWURgtF8O6OSIqcRMkBaYFzSR+kMRSLj99P1GdYhf6SoHWr8ymnOl2uk8mTsdb5VzF8f
- x8INJ/YEBMUQqQwGaFzck/bFY7/+NKbQlZ9+ECFkj7Dzl+itWDh2P6Y1baitEX8t0oWm
- lyAkeA0VQ/qi0xPvLj5jepQ7YHZUsF3CzBDTkbMoaXsYRW6mOJgzCHAUVNEwQyBseuxR
- lA9w/MzNe4o4Cf8C7UUSgcYXVTaGG9wdVKlaHh+jXORuLBUj5EqT16XWkfuF99+Q7InM zQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kkweg80h7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 02 Nov 2022 18:05:54 +0000
-Received: from nasanex01b.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A2I5rNQ021036
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 2 Nov 2022 18:05:54 GMT
-Received: from [10.134.65.5] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Wed, 2 Nov 2022
- 11:05:53 -0700
-Message-ID: <840d876c-6a09-59cf-fc66-c5752ad22d7e@quicinc.com>
-Date:   Wed, 2 Nov 2022 11:05:52 -0700
+        with ESMTP id S231289AbiKBSTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 14:19:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB372F016;
+        Wed,  2 Nov 2022 11:19:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 28106B82429;
+        Wed,  2 Nov 2022 18:19:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA534C43145;
+        Wed,  2 Nov 2022 18:19:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667413175;
+        bh=ByC8WrBr65R1FHnYm1bG2iBmanhGcnHFrTlrNhwgv9I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bvxGXj7UcpjIlwlOO3Si5m4Boq+XXLd0gL/TvGFf/LtJd7Ph0QNwzv13RXPo4nFKr
+         ux+mAfYvQZ/T7HQuv3qWrU6rgoxXhUGtiadfAHIr0Y0BDKg+V4qPJOa6zg6Y0nURWT
+         mc5Jz/XC/APTUiCVdkfMmCpLeRNuhDQfnHmM9TLEj/6AmuLeyd3OUIfnVHqaMWDTPV
+         2EWLYW0AsKCy/tlIw/R7B1zrLIpup7xuibv+D33vs48IO+QFfuSvcFSPSPR1IS0fi+
+         GwQEK83D1BZu+duczaPKs5sLPZQXDq42lajbd7jhwg46rDbfVReAVp54hweOjkdMbS
+         z4C0cnzwlZRHQ==
+Received: by mail-lf1-f49.google.com with SMTP id g7so29602180lfv.5;
+        Wed, 02 Nov 2022 11:19:35 -0700 (PDT)
+X-Gm-Message-State: ACrzQf26isgZVdhYIpzg83U+PK+DGwyS0WoY1zDDPSoGrQChapRDA75Y
+        uF87BPsvwBYIUygWi0mYOEiYK79q5Q4SSmBZAw==
+X-Google-Smtp-Source: AMsMyM6XQ3NC5gBobYHWQcBcHOobrD1WFx27yP9ubnkL/AtrLYNZY8dUZB57wcoTBz1HIHNzPxaicM/OyX8pqvkFHwA=
+X-Received: by 2002:a19:5048:0:b0:4b1:3856:e422 with SMTP id
+ z8-20020a195048000000b004b13856e422mr2174132lfj.368.1667413173675; Wed, 02
+ Nov 2022 11:19:33 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v6 02/21] dt-bindings: Add binding for gunyah hypervisor
-Content-Language: en-US
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+References: <20221101095156.30591-1-billy_tsai@aspeedtech.com>
+ <20221101095156.30591-2-billy_tsai@aspeedtech.com> <20221101184033.GA1879756-robh@kernel.org>
+ <C4090559-71D3-4DC4-A994-474D375DC4EF@aspeedtech.com>
+In-Reply-To: <C4090559-71D3-4DC4-A994-474D375DC4EF@aspeedtech.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 2 Nov 2022 13:19:24 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+eiFO9JyJW=2SB-HLHJLrXggO+7kwG8G-6Zt=K2QnFUA@mail.gmail.com>
+Message-ID: <CAL_Jsq+eiFO9JyJW=2SB-HLHJLrXggO+7kwG8G-6Zt=K2QnFUA@mail.gmail.com>
+Subject: Re: [v2 1/3] dt-bindings: Add bindings for aspeed pwm-tach.
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Marc Zyngier" <maz@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-3-quic_eberman@quicinc.com>
- <CABb+yY3JVNPG3dcyHNFxEeGEu3MN_pAOh3+cwexPPe2YG6SNUg@mail.gmail.com>
- <fb7e101f-8de0-d77e-30e1-74b882b19583@quicinc.com>
- <CABb+yY08jP+Q5xvzLf=7F1tULP6-eZz5EDiK9mBj2fAv=iZa_A@mail.gmail.com>
- <4cb58489-cd42-1868-9add-0c360065de23@quicinc.com>
- <CABb+yY2GA90RLazHZL7sLtC+ka-P8y6s00V2BVF4OMPTDi-rKg@mail.gmail.com>
- <62f7402d-f0e7-8e8a-e1a4-958ddbcf8d8b@quicinc.com>
- <CABb+yY0-rtt5CfzGA_D3THnfTO1pgstmVo2_1McEJ=JMdTcD2Q@mail.gmail.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <CABb+yY0-rtt5CfzGA_D3THnfTO1pgstmVo2_1McEJ=JMdTcD2Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: xgq7az1uubtFEhv7QA1MXokBI2i9xs46
-X-Proofpoint-ORIG-GUID: xgq7az1uubtFEhv7QA1MXokBI2i9xs46
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-02_14,2022-11-02_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 lowpriorityscore=0 phishscore=0 mlxlogscore=854
- impostorscore=0 adultscore=0 malwarescore=0 mlxscore=0 spamscore=0
- bulkscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211020118
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "garnermic@meta.com" <garnermic@meta.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -107,97 +77,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jassi,
+On Tue, Nov 1, 2022 at 10:21 PM Billy Tsai <billy_tsai@aspeedtech.com> wrote:
+>
+> Hi Rob,
+>
+> On 2022/11/2, 2:40 AM, "Rob Herring" <robh@kernel.org> wrote:
+>
+>   >  On Tue, Nov 01, 2022 at 05:51:54PM +0800, Billy Tsai wrote:
+>   >  > This patch adds device binding for aspeed pwm-tach device which is a
+>   >  > multi-function device include pwm and tach function and pwm/tach device
+>   >  > bindings which should be the child-node of pwm-tach device.
+>   >  >
+>   >  > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+>   >  > ---
+>   >  >  .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 48 ++++++++++++
+>   >  >  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 76 +++++++++++++++++++
+>   >  >  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 64 ++++++++++++++++
+>   >  >  3 files changed, 188 insertions(+)
+>   >  >  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+>   >  >  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+>   >  >  create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+>
+>   >  I'm pretty sure I've said this before, but I'm not taking more fan
+>   >  controller bindings without comming up with a common binding. Please see
+>   >  this series[1] and help ensure it meets your needs.
+>
+>   >  Rob
+>
+>   >  [1] 20221013094838.1529153-2-Naresh.Solanki@9elements.com <https://lore.kernel.org/all/<a href=>/">https://lore.kernel.org/all/20221013094838.1529153-2-Naresh.Solanki@9elements.com/
+>
+> The link you provide doesn't meet my needs. This is fan binding.
 
-On 11/1/2022 7:01 PM, Jassi Brar wrote:
-> On Tue, Nov 1, 2022 at 7:12 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>
->>
->>
->> On 11/1/2022 2:58 PM, Jassi Brar wrote:
->>> On Tue, Nov 1, 2022 at 3:35 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>>>
->>>>
->>>>
->>>> On 11/1/2022 9:23 AM, Jassi Brar wrote:
->>>>> On Mon, Oct 31, 2022 at 10:20 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>>>>>
->>>>>> Hi Jassi,
->>>>>>
->>>>>> On 10/27/2022 7:33 PM, Jassi Brar wrote:
->>>>>>     > On Wed, Oct 26, 2022 at 1:59 PM Elliot Berman
->>>>>> <quic_eberman@quicinc.com> wrote:
->>>>>>     > .....
->>>>>>     >> +
->>>>>>     >> +        gunyah-resource-mgr@0 {
->>>>>>     >> +            compatible = "gunyah-resource-manager-1-0",
->>>>>> "gunyah-resource-manager";
->>>>>>     >> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX
->>>>>> full IRQ */
->>>>>>     >> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX
->>>>>> empty IRQ */
->>>>>>     >> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
->>>>>>     >> +                  /* TX, RX cap ids */
->>>>>>     >> +        };
->>>>>>     >>
->>>>>>     > All these resources are used only by the mailbox controller driver.
->>>>>>     > So, this should be the mailbox controller node, rather than the
->>>>>>     > mailbox user.> One option is to load gunyah-resource-manager as a
->>>>>> module that relies
->>>>>>     > on the gunyah-mailbox provider. That would also avoid the "Allow
->>>>>>     > direct registration to a channel" hack patch.
->>>>>>
->>>>>> A message queue to another guest VM wouldn't be known at boot time and
->>>>>> thus couldn't be described on the devicetree.
->>>>>>
->>>>> I think you need to implement of_xlate() ... or please tell me what
->>>>> exactly you need to specify in the dt.
->>>>
->>>> Dynamically created virtual machines can't be known on the dt, so there
->>>> is nothing to specify in the DT. There couldn't be a devicetree node for
->>>> the message queue client because that client is only exists once the VM
->>>> is created by userspace.
->>>>
->>> The underlying "physical channel" is the synchronous SMC instruction,
->>> which remains 1 irrespective of the number of mailbox instances
->>> created.
->>
->> I disagree that the physical channel is the SMC instruction. Regardless
->> though, there are num_online_cpus() "physical channels" with this
->> perspective.
->>
->>> So basically you are sharing one resource among users. Why doesn't the
->>> RM request the "smc instruction" channel once and share it among
->>> users?
->>
->> I suppose in this scenario, a single mailbox channel would represent all
->> message queues? This would cause Linux to serialize *all* message queue
->> hypercalls. Sorry, I can only think negative implications.
->>
->> Error handling needs to move into clients: if a TX message queue becomes
->> full or an RX message queue becomes empty, then we'll need to return
->> error back to the client right away. The clients would need to register
->> for the RTS/RTR interrupts to know when to send/receive messages and
->> have retry error handling. If the mailbox controller retried for the
->> clients as currently proposed, then we could get into a scenario where a
->> message queue could never be ready to send/receive and thus stuck
->> forever trying to process that message. The effect here would be that
->> the mailbox controller becomes a wrapper to some SMC instructions that
->> aren't related at the SMC instruction level.
->>
->> A single channel would limit performance of SMP systems because only one
->> core could send/receive a message. There is no such limitation for
->> message queues to behave like this.
->>
-> This is just an illusion. If Gunyah can handle multiple calls from a
-> VM parallely, even with the "bind-client-to-channel" hack you can't
-> make sure different channels run on different cpu cores.  If you are
-> ok with that, you could simply populate a mailbox controller with N
-> channels and allocate them in any order the clients ask.
+A PWM and Tach controller is for fans, no?
 
-I wanted to make sure I understood the ask here completely. On what 
-basis is N chosen? Who would be the mailbox clients?
+As I said, contribute to it so that it does meet your needs.
 
-Thanks,
-Elliot
+> As I told before
+> "This patch doesn't use to binding the fan control h/w. It is used to binding the two independent h/w blocks.
+> One is used to provide pwm output and another is used to monitor the speed of the input."
+> My patch is used to point out that the pwm and the tach is the different function and don't need to
+> bind together. You can not only combine them as the fan usage but also treat them as the individual module for
+> use. For example: the pwm can use to be the beeper (pwm-beeper.c), the tach can be used to monitor any device's speed.
 
+That all sounds like requirements that you have which you should
+ensure the fan binding can support.
+
+I've already said to use the PWM binding in the fan binding exactly
+for the purpose of hooking up the PWMs to other things. Whether the
+tach controller is useful for something other than fans, I don't know.
+Seems less likely. The max6639 also has a tach controller. So if other
+uses are possible for you, then it could be possible for any other h/w
+like the max6639.
+
+Rob
