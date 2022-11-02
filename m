@@ -2,65 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5BFC616A30
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:11:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB35B616A43
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 18:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbiKBRLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 13:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36626 "EHLO
+        id S230311AbiKBRNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 13:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231255AbiKBRLF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:11:05 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4056E17E38;
-        Wed,  2 Nov 2022 10:11:04 -0700 (PDT)
-Received: (Authenticated sender: kory.maincent@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 957D3100009;
-        Wed,  2 Nov 2022 17:10:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1667409063;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=C2xVfnlmooK7Qg1BmLHoWVwjVfzC1dVIJEO1AD5E1VU=;
-        b=FwF9YkUVYzUrCoshasYZIRNKboNo6j1i0R4ypo9aBEDT5lyrnQWloO6wdIb3IXD9Hc0KGA
-        bLyFCSbR9kqnEUDp2so6a7Pxk/ablv5ycwC91CsTv+Vh5mpBxPfC/hx4QRMi6sy5ZtR9hB
-        AZMqkdZAdt/N6zVYqACerzJvn8yxIke3Ou+HN9V38aAv6MDbkfJtqulndK4Ib1xwE2Z6x6
-        R7lYDSFPvQU/SPcZQAb7hv1fP1qvDWzYZDT2W2G32zNyUyZm8WoaiaVQx5Heas1TB5NXr4
-        358zV1riX4xRPxQr82Jag2b6IEUy8q6hB6/vPA8gd93Db4f1mQKmHiAXe/0+/w==
-From:   =?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>
-To:     viresh.kumar@linaro.org, Bhavna Yadav <bhavna.yadav@st.com>,
-        Vijay Kumar Mishra <vijay.kumar@st.com>,
-        Rajeev Kumar <rajeev-dlh.kumar@st.com>,
-        Deepak Sikri <deepak.sikri@st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     Kory Maincent <kory.maincent@bootlin.com>,
-        thomas.petazzoni@bootlin.com, Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Alexandre Ghiti <alexandre.ghiti@canonical.com>,
-        Vipul Kumar Samar <vipulkumar.samar@st.com>,
-        Vipin Kumar <vipin.kumar@st.com>
-Subject: [PATCH v2 6/6] clk: spear: Fix SSP clock definition on SPEAr600
-Date:   Wed,  2 Nov 2022 18:10:10 +0100
-Message-Id: <20221102171012.49150-7-kory.maincent@bootlin.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221102171012.49150-1-kory.maincent@bootlin.com>
-References: <20221102171012.49150-1-kory.maincent@bootlin.com>
+        with ESMTP id S231312AbiKBRN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 13:13:29 -0400
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4F063E7;
+        Wed,  2 Nov 2022 10:13:26 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so10631141otb.8;
+        Wed, 02 Nov 2022 10:13:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AtCmOyazdlPr8IFINMztXSIcqGGdfwLEM9wCe7FOq2A=;
+        b=arhkjc6KKweymQz21OV1TtxI5uu7D3DaKO9DhmKwTP+stqtJmaribPhuQSaPz3c+Ds
+         ZIJjqaAhi7TNlZqRPILw/r3xYkF3CIKMVRbdVLTvchcXZ3nfyzBIjw9+aqJYM/mroF7x
+         cUlKXtcy4+WBkalsKlD9A4zHQPPqYsQFzRMHUVARUrE6qvJxINGKGXzHtF1OR17BXEVH
+         OU9hootFK8ib7sx4Z/5l89SW92bY/uY6h27k/fX2vUddXYV9vtlcMQS/hvtkJRFWk/zI
+         LoLPoasI61+5jd4vzOYumBHJJJX5xTheaN0nezCpfj6stSsvoU0y54NFsYYbjUFAqPPS
+         TvqQ==
+X-Gm-Message-State: ACrzQf1Sp22x7GIFxdRsFE/5f18RLbZgOQICsg4yMlndqss0atJzTQRx
+        nzZQ/1Lgqo7YwMrFFWiERg==
+X-Google-Smtp-Source: AMsMyM6BuKM1boyK4sJAx5Q3fFBFuRydAB8uofuGARf+cqKyY4zzptmIRNcXFPzzLKFDCzQLqwFpfQ==
+X-Received: by 2002:a9d:62d8:0:b0:66c:4f88:78ff with SMTP id z24-20020a9d62d8000000b0066c4f8878ffmr8900209otk.269.1667409205659;
+        Wed, 02 Nov 2022 10:13:25 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r5-20020a9d5cc5000000b0066c2ab15b13sm5303308oti.42.2022.11.02.10.13.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 10:13:25 -0700 (PDT)
+Received: (nullmailer pid 4131422 invoked by uid 1000);
+        Wed, 02 Nov 2022 17:13:26 -0000
+Date:   Wed, 2 Nov 2022 12:13:26 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Weilong Chen <chenweilong@huawei.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, xuwei5@huawei.com,
+        f.fangjian@huawei.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        yangyicong@hisilicon.com, brgl@bgdev.pl
+Subject: Re: [PATCH next v3 2/2] dt-bindings: gpio: add entry for
+ hisilicon,ascend910-gpio
+Message-ID: <166740920604.4131176.3460424297227537626.robh@kernel.org>
+References: <20221101082442.263448-1-chenweilong@huawei.com>
+ <20221101082442.263448-2-chenweilong@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221101082442.263448-2-chenweilong@huawei.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,40 +67,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kory Maincent <kory.maincent@bootlin.com>
 
-There is no SPEAr600 device named "ssp-pl022.x". Instead, the description
-of the SSP (Synchronous Serial Port) was recently added to the Device Tree,
-and the device name is "xxx.spi", so we should associate the SSP gateable
-clock to these device names.
+On Tue, 01 Nov 2022 16:24:42 +0800, Weilong Chen wrote:
+> Add the new compatible for HiSilicon gpio controller driver.
+> 
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> ---
+> Change since v2:
+> - No change.
+> Link: https://lore.kernel.org/lkml/20221028022453.163186-2-chenweilong@huawei.com/
+> 
+> Change since v1:
+> - Drop "Device Tree Bindings" and reg's description
+> - Move description in top-level description.
+> - Add gpio-cells to required
+> - Use additionalProperties and decimal numbers
+> - Use IRQ flags
+> - Use vendor,soc-ipblock format
+> Link: https://lore.kernel.org/lkml/20221026034219.172880-2-chenweilong@huawei.com/
+> 
+>  .../gpio/hisilicon,ascend910-gpio.yaml        | 56 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/hisilicon,ascend910-gpio.yaml
+> 
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
----
- drivers/clk/spear/spear6xx_clock.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/clk/spear/spear6xx_clock.c b/drivers/clk/spear/spear6xx_clock.c
-index ee0ed89f2954..adfa118520c3 100644
---- a/drivers/clk/spear/spear6xx_clock.c
-+++ b/drivers/clk/spear/spear6xx_clock.c
-@@ -326,13 +326,13 @@ void __init spear6xx_clk_init(void __iomem *misc_base)
- 
- 	clk = clk_register_gate(NULL, "ssp0_clk", "apb_clk", 0, PERIP1_CLK_ENB,
- 			SSP0_CLK_ENB, 0, &_lock);
--	clk_register_clkdev(clk, NULL, "ssp-pl022.0");
-+	clk_register_clkdev(clk, NULL, "d0100000.spi");
- 
- 	clk = clk_register_gate(NULL, "ssp1_clk", "apb_clk", 0, PERIP1_CLK_ENB,
- 			SSP1_CLK_ENB, 0, &_lock);
--	clk_register_clkdev(clk, NULL, "ssp-pl022.1");
-+	clk_register_clkdev(clk, NULL, "d0180000.spi");
- 
- 	clk = clk_register_gate(NULL, "ssp2_clk", "apb_clk", 0, PERIP1_CLK_ENB,
- 			SSP2_CLK_ENB, 0, &_lock);
--	clk_register_clkdev(clk, NULL, "ssp-pl022.2");
-+	clk_register_clkdev(clk, NULL, "d8180000.spi");
- }
--- 
-2.25.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
