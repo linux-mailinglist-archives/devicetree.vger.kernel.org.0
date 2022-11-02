@@ -2,110 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9505661641E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4254161642A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:59:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230418AbiKBNz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 09:55:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
+        id S229964AbiKBN7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 09:59:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiKBNz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 09:55:27 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCC12A262
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 06:55:21 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id bk15so24622470wrb.13
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 06:55:21 -0700 (PDT)
+        with ESMTP id S230452AbiKBN7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 09:59:35 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342FD2BFF
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 06:59:34 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id w10so12486720qvr.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 06:59:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=liIWxgnrKB54svAZTpFgbikolxVnlfVc0BGgGZkfhjg=;
-        b=Z9Y0jFYRdBXTbT/NsetraCzA6Hx/LsJK8GvYTwmGE7/44i5Dos9kQhq4dyTmyLbP+6
-         PfJdJNfxHY4KFvT+XX97pojpx1ufh/8Up64nZcKAmyVqDq9nzPOgtGzG5PmE9V/LgW1w
-         /EU7qjBFX04dYaGRArio8gk19Cbw5xbsAxtxNqXmxXtBhtwVP6atTXX1ui3h/Gnt13BM
-         0O6/r05ywa3CbkZ4NmLrSxi4aFxbDJHoDSSdzzatYfCldit1bn+1ZLyxrOjXZ95qmoJM
-         MHubLiH2tyKfgaRnLU6RoJgmbm7q3SgwNBVfpatEPe4Cyu3hutzQ2QTT40rAfcis7qPh
-         C9pg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JJetwfvjxdIvW4nB9rlQ19J4HqAikiDjl+rr3LFuEmM=;
+        b=aOtOzlnQIGHFhEufTKaooGBt7MAhROj6VHRjy2Ye/b/0cuLg/b/Wc48xBVUSIBxAyI
+         YGNpNyC6v69ZYTA6xQ6mSu3WU0aR3JbuLOGUUiwZQEyQHOYTn0R23uyL25I3Ro7mXgXl
+         IpAYkeRNQaTBRydfFK00pZoqyQJZDDx9u4tc1gAoY9DmQCPl8SdXU7DpygDgY5yuF6w2
+         UNqJwR/R41tiVbii+KNoiN2jp19gwQUbAXu7fv/zk+Ti5h3r+9cd3ygLVtg/XvxPNbh3
+         NmsrGWbv5xH3Gq3YzQlhrCIIrDINXPxJpegBQBOtHD+sDNPIPosjlwnihW1bUHthtthh
+         BOmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=liIWxgnrKB54svAZTpFgbikolxVnlfVc0BGgGZkfhjg=;
-        b=oYfvlEtKVULldb10osIqp7WDtB/isiPzHUULSYsx1tJnyaWkxFlgqehXFc8l308+NI
-         U/wScnJAeAd0Qw8J/9fu+ESBTmQay/nNQR+PxR9QkTiqO0SSCFXbIEZ8Rn0rVJ1f0T4i
-         8OKdckVhqtPfdzt91BYoBEpbzHsj1DSM/JpCPGjwcsR3+bZQl+Mc9sf55SlCtEkZ1b9k
-         YNolLbZbnYNfw53NYRTKgT1heN4OQBcWoR7QK15DIJw92BjhqDUhwtHlNSychYK2rOs4
-         oKRnriOAwJ4PjYVuaU7JXyZ9KuV81fU/DBfpNHnVt09glM94Qqacp8mvatuzAYOE863K
-         9a7Q==
-X-Gm-Message-State: ACrzQf0iMHIpMyBid68Z9JQcEUkd/L9xUvTZN7DMU2MLvh5V1sZq3ysr
-        eGeLybMU8+3OZ9n3nX/E0rhvFw==
-X-Google-Smtp-Source: AMsMyM402qsrhIO6ldQJS2gMhEnDQv3oqTkbMUS2+MeWiGtoJh42ic09+34ohyg5+1+SYhUV3rE4KA==
-X-Received: by 2002:a5d:598d:0:b0:236:8ef5:867d with SMTP id n13-20020a5d598d000000b002368ef5867dmr14927482wri.162.1667397320480;
-        Wed, 02 Nov 2022 06:55:20 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id b9-20020a5d45c9000000b0022e36c1113fsm12491311wrs.13.2022.11.02.06.55.19
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JJetwfvjxdIvW4nB9rlQ19J4HqAikiDjl+rr3LFuEmM=;
+        b=xoHOf2ZTZlxfX2LEa75O3l4R7hVkrkKw6YBYKWi+/3rw2iTNPwj0EW+gvKcI/0xBh+
+         JjsyQIroB96MpCIctcq24mE+D6D5En0me7cAJXvpkeMQAU6MHU5+mdGoLob1WyoLjshJ
+         bC6T+aZ4yDaTmeC6z4mfUHQ1xe75nBdoZRZ7LH6D+SoXuUeHLVNFbykRpaTHchamKmQw
+         mTlQGXIo8Rh8g7m5PEkVIrj1BMK+lQM8FnpnRe836nqzmuWY3riC1w9HJzae+dAx8PM9
+         Q3MO4EjgVAXLPWcEGGbv1ZmMLyYNKvhpb5OJFGfpNntkXK+LPe5I3zoVVpl0j9AAsN/o
+         2dsw==
+X-Gm-Message-State: ACrzQf3AEfmwm7qWaIVvZfdoIgfEQgilcTW2CQhpNd/mZWY8UZ7slY14
+        P1YrgnfKinYY1iqjPiES5CHNkg==
+X-Google-Smtp-Source: AMsMyM72GAbGWe0Tdc1dmRgk2Dt4EiaIN1W2Ehtlt3gZ8JhcjPyq8e68X7xpg2f5M1FlJMPS//ze/g==
+X-Received: by 2002:a05:6214:cac:b0:4bb:5477:c24d with SMTP id s12-20020a0562140cac00b004bb5477c24dmr21014882qvs.116.1667397573259;
+        Wed, 02 Nov 2022 06:59:33 -0700 (PDT)
+Received: from krzk-bin.. ([2601:586:5000:570:28d9:4790:bc16:cc93])
+        by smtp.gmail.com with ESMTPSA id p7-20020ac87407000000b0039c72bb51f3sm6601960qtq.86.2022.11.02.06.59.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 06:55:20 -0700 (PDT)
-Date:   Wed, 2 Nov 2022 13:55:18 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: backlight: qcom-wled: Add PMI8950
- compatible
-Message-ID: <Y2J2xp9w4Hvethb7@maple.lan>
-References: <20221101161801.1058969-1-luca@z3ntu.xyz>
+        Wed, 02 Nov 2022 06:59:32 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>,
+        linux-kernel@vger.kernel.org,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        kernel-janitors@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] MAINTAINERS: adjust ARM PRIMECELL PL35X SMC DRIVER after dt-binding renaming
+Date:   Wed,  2 Nov 2022 09:59:30 -0400
+Message-Id: <166739756718.5285.12762879609460217696.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20221031110223.30203-1-lukas.bulwahn@gmail.com>
+References: <20221031110223.30203-1-lukas.bulwahn@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221101161801.1058969-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 01, 2022 at 05:17:59PM +0100, Luca Weiss wrote:
-> Document the compatible for the wled block found in PMI8950.
->
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+On Mon, 31 Oct 2022 12:02:23 +0100, Lukas Bulwahn wrote:
+> Commit de67fa80c669 ("dt-bindings: memory-controllers: arm,pl353-smc:
+> Extend to support 'arm,pl354' SMC") renames the arm,pl353-smc.yaml
+> memory-controller dt-binding, but misses to adjust its reference in
+> MAINTAINERS.
+> 
+> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
+> broken file pattern.
+> 
+> [...]
 
-FWIW:
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+Applied, thanks!
 
+[1/1] MAINTAINERS: adjust ARM PRIMECELL PL35X SMC DRIVER after dt-binding renaming
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/3821e96a01d658e770074331b56cec88c169a418
 
-> ---
-> Changes since v2:
-> * New patch
->
->  Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-> index 4c15693f7a01..5ac8605a53b1 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-> +++ b/Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
-> @@ -19,6 +19,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,pm8941-wled
-> +      - qcom,pmi8950-wled
->        - qcom,pmi8994-wled
->        - qcom,pmi8998-wled
->        - qcom,pm660l-wled
-> --
-> 2.38.1
->
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
