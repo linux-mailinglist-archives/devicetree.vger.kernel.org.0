@@ -2,115 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C8F616D51
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69004616D5D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 20:06:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbiKBTBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 15:01:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55138 "EHLO
+        id S231489AbiKBTGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 15:06:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231631AbiKBTBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:01:16 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6456C1D2
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 12:01:14 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id s20so5990806qkg.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 12:01:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sVOm0gkttgsBAWPoT64yXGgGPw+pzS3zQxWBnd3fbbM=;
-        b=i/HQi3+YSYC4jl29Z8UKo0eGiXSyRDdGn4mkSvN62YT4Kv6F+iAA5WlbkShic6K7Ge
-         dpfcxIaQTgRrZWIyS0J60QvBV+WO9zPMfIl+beTkO3MBAJ9Sfu2qHgIkCc9rrVSOfNB4
-         wJ7PHYjlTi2SG6BrbqfSTnRlqwRYx8VgYcEEmoS6mZ6lNRElq9RYyY9T/LQkMEuQm2hY
-         QY/Fw0Mo0DdH3usOMcc0KfEwcjxiEnOhYSrfq7oo5GnqsWdJ/kWV9f8wPW8JXHnfljXy
-         3rwpmi2qMBH50/rjntk4qkn2aww2sKw6FRjXQcLURrNfKwDXr3NWDJxXHX7ahRdMEFMc
-         SG6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sVOm0gkttgsBAWPoT64yXGgGPw+pzS3zQxWBnd3fbbM=;
-        b=F3oRQbLJsUzcO5CJdVc6mKz84llb3JLzIM7xKt4EWwzbraFOswGn+9p8C2fgwE4tTB
-         vpd4ZehIIVACVbdpU8T/17w8zBA3rPrzClDvxB7HlbpM7e+wVu66/tvOrzhDU7a/d6T6
-         yO73IpDEP9ImGb44KiabGrBeOLtXHWuyD+eZH48D4YyMoGBxS9RybfyGuBjD82R/ZcdN
-         0bwoKWyl/ydgB8tbaR0r18qsWisea14JraK7t7w19jBD02U/UvG/l0OXQg40EyJcczXy
-         sdd99HosSLjDWdGcWZ+CyDYIHW/u9rkivbc7U4RkjPpLWy4TWDLWHjG2o87l5+/iQAhi
-         DV9Q==
-X-Gm-Message-State: ACrzQf2Mkc0qGvXC/F6w6Pa4v9+KysfU4oOmQPHA1/FRghjwFznoojdO
-        MjsFeHWoB1WEt+DN+x58iY5QFA==
-X-Google-Smtp-Source: AMsMyM5G/bzcAiZVcMOSMNvjC2XSgKcFvvH+T7uTTncVFc0P+4YkvEk+N6yFwcrX6orIRxb2K63QhQ==
-X-Received: by 2002:ae9:d806:0:b0:6f1:15cc:d870 with SMTP id u6-20020ae9d806000000b006f115ccd870mr18717294qkf.114.1667415673550;
-        Wed, 02 Nov 2022 12:01:13 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id de36-20020a05620a372400b006ce9e880c6fsm8844655qkb.111.2022.11.02.12.01.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 12:01:12 -0700 (PDT)
-Message-ID: <91ebdf1b-d6e2-47a2-ae1c-bc1848bb74c2@linaro.org>
-Date:   Wed, 2 Nov 2022 15:01:11 -0400
+        with ESMTP id S231445AbiKBTGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 15:06:03 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927A92D4;
+        Wed,  2 Nov 2022 12:06:01 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A2J5TAb077081;
+        Wed, 2 Nov 2022 14:05:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667415929;
+        bh=mzZxMJVEQJpXDhPObxYGdoDYN7/gCqvCB8snGGAKPqw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=ud4Dk8CNutSABAEQ8bFYxzZUYQMXzbgLf+Tgt8LFI1Lr+7fYPpXCTzBchXH1fixL/
+         91oxTNbVg//JFqaLWf/j5vWzyb8vXGIn/Ejar8qqbY6j7kKMkUlx3VeSTGv7ubaScU
+         t45aWlDphfeVnhZqLSQK82OGKVkLGuHYuJoroVg8=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A2J5TbQ018384
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 2 Nov 2022 14:05:29 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
+ 2022 14:05:29 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Wed, 2 Nov 2022 14:05:29 -0500
+Received: from [10.249.33.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A2J5SAm110083;
+        Wed, 2 Nov 2022 14:05:28 -0500
+Message-ID: <c5e39861-dd81-7c9f-cbb5-2bfbef55ed41@ti.com>
+Date:   Wed, 2 Nov 2022 14:05:28 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH V2 1/2] dt-bindings: remoteproc: imx_rproc: add
- fsl,startup-delay-ms
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v4 1/9] dt-bindings: mfd: Add TI-Nspire misc registers
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, andersson@kernel.org,
-        mathieu.poirier@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20221102112451.128110-1-peng.fan@oss.nxp.com>
- <20221102112451.128110-2-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221102112451.128110-2-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rob Herring <robh@kernel.org>
+CC:     Lee Jones <lee@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Tang <dt.tangr@gmail.com>,
+        Fabian Vogt <fabian@ritter-vogt.de>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20221101215804.16262-1-afd@ti.com>
+ <20221101215804.16262-2-afd@ti.com>
+ <20221102173558.GA4193055-robh@kernel.org>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20221102173558.GA4193055-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 07:24, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 11/2/22 12:35 PM, Rob Herring wrote:
+> On Tue, Nov 01, 2022 at 04:57:56PM -0500, Andrew Davis wrote:
+>> The TI Nspire devices contain a set of registers with a seemingly
+>> miscellaneous set of functionality. This area is known simply as the
+>> "misc" region.
+>>
+>> Signed-off-by: Andrew Davis <afd@ti.com>
+>> ---
+>>   .../bindings/mfd/ti,nspire-misc.yaml          | 55 +++++++++++++++++++
+>>   1 file changed, 55 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+>> new file mode 100644
+>> index 0000000000000..d409eae7537bd
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,nspire-misc.yaml
+>> @@ -0,0 +1,55 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mfd/ti,nspire-misc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI Nspire MISC hardware block
+>> +
+>> +maintainers:
+>> +  - Andrew Davis <afd@ti.com>
+>> +
+>> +description: |
+>> +  System controller node represents a register region containing a set
+>> +  of miscellaneous registers. The registers are not cohesive enough to
+>> +  represent as any specific type of device. The typical use-case is
+>> +  for some other node's driver, or platform-specific code, to acquire
+>> +  a reference to the syscon node (e.g. by phandle, node path, or
+>> +  search using a specific compatible value), interrogate the node (or
+>> +  associated OS driver) to determine the location of the registers,
+>> +  and access the registers directly.
 > 
-> add fsl,startup-delay-ms property indicating delay some time after just
-> kicks remote processor.
-
-Start sentences with capital letter.
-
+> Looks like you copied the generic description? Describe what MISC
+> contains.
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml         | 4 ++++
->  1 file changed, 4 insertions(+)
+
+I don't know what all MISC contains (or maybe I do, but it is not
+publicly available so I'm not going to add anything that hasn't
+already been found by clean-room reverse engineering [0]).
+
+This is the point I was trying to make in that thread on v3. The
+node's content *is* the hardware description. Every time a new
+register is found it could have just been added to the DT. But now
+we also have to go back here and add the exact same information
+to the binding, every time. We don't require that for simple-bus,
+should simple-mfd be given the same flexibility?
+
+[0] https://hackspire.org/index.php?title=Memory-mapped_I/O_ports_on_Classic#900A0000_-_Miscellaneous
+
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - ti,nspire-misc
+>> +      - const: syscon
+>> +      - const: simple-mfd
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  reboot:
+>> +    $ref: "../power/reset/syscon-reboot.yaml"
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index ad3b8d4ccd91..d99d3342ad52 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -76,6 +76,10 @@ properties:
->        This property is to specify the resource id of the remote processor in SoC
->        which supports SCFW
->  
-> +  fsl,startup-delay-ms:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> /schemas/power/...
+> 
+> And no quotes needed.
+> 
 
-Drop quotes.
+Will fix.
 
-> +    description: Startup time that remote processor ready for communication
+Andrew
 
-Looks quite hacky...
-
-Best regards,
-Krzysztof
-
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reboot
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    misc: misc@900a0000 {
+>> +      compatible = "ti,nspire-misc", "syscon", "simple-mfd";
+>> +      reg = <0x900a0000 0x1000>;
+>> +
+>> +      reboot {
+>> +        compatible = "syscon-reboot";
+>> +        offset = <0x08>;
+>> +        value = <0x02>;
+>> +      };
+>> +    };
+>> -- 
+>> 2.37.3
+>>
+>>
