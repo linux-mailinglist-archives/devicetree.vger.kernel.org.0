@@ -2,112 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 739D4616484
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:10:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 716CE6164BA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 15:17:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231355AbiKBOKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 10:10:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34610 "EHLO
+        id S231341AbiKBORS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 10:17:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231357AbiKBOKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:10:34 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73DC91CB37
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 07:10:31 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id cg5so2598772qtb.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 07:10:31 -0700 (PDT)
+        with ESMTP id S231362AbiKBORQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 10:17:16 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47BB327CC7;
+        Wed,  2 Nov 2022 07:17:13 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id a67so26645786edf.12;
+        Wed, 02 Nov 2022 07:17:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r3baLHNRjybhUwz1VU0EpNO+mXmWZFbwxaMY2qdvCTY=;
-        b=DjhE16/tTUTVdFjgcA3BT/LtmSUuv28pvQFIpl8ORPofZEozhGnObHSwmFZBGObNSi
-         hzZnR9IRHQEJYRfxDXJhI/YyjT04AnAq879/iczPm3+pr8+yKiNmP5yDXpFp32k5+ZAs
-         O8M70dWjOzVfoF3c2vfzHE3lg39oneXBo3w0jrE5NFlvyPx4mxkZ89jQiWQX9a9qmyKc
-         hA7tGLgXHI8MU1645wPN0iHjeTtd3N4wfLjierTYe49bPwE+EyBV4qw/tnkIKYPH3soO
-         ZZGjcRoTzwLAyfVaNwKZ0Gg3P/weB5NYm9DWga6U7cSAOQGdYmAhdkyDuwvpma9kycDz
-         cvHg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0Tx9qzuOwx4JUlHp6FkZ/5WKZ4d6lYz+D1HQa2LD1tA=;
+        b=EsCUjDCGvuVNc+ZigO1adhkMaFllrxPwJiMmH/+MVP0eLnT14RddOwiZVy7TvY1/qS
+         TzksJ+8HrWbW4EVKdWXNmisIHRooHPtEA6sn7edEUQan2h5aE6kGfmye558mnGqb490m
+         mmNXHOBMMLIS9MGKcRcVMIpIryB8zXz7brhX4cSYbY8bvBL3nBA2HtJDiP9yJjz603Mc
+         ZzzgTlKg6SFs29tlhcNttEaAdWKteOQ9lUF89bGqD6ApUTgKQvTTivquO3oDYSIyFm+f
+         IzVGEV+lJt7hVD2uSnsrHzTNwmqdZjEM8xsU9Q/RVATUb3MJZtio9IiyFqQvnoaFcDHv
+         sANg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r3baLHNRjybhUwz1VU0EpNO+mXmWZFbwxaMY2qdvCTY=;
-        b=f8zcj8J6+lZ6HDPU01h54R5LEQxfwhWMuaPsF7DRdtfCsEzkr70tM5ddUhKDLhjHwg
-         nO8c9ILJTCJ8SNKdsfvr4nhTBoZHNOSZy+vDe0TMypQkkA9XNskFyinlvxWMx4NL3um7
-         tYpXb8sHS4l3ZHBJ4WdlK4CdIU/EapT8anT+GcC1Sz2HuhMS9/P+VmQ6RwaWDyxN35FO
-         Rq69gzWw5eSTAwi18PaqV6fE2QKOmS2uqyUdsTbEIvFy1Eekrr5p6zziQZb4NCpbA+k+
-         b4EjMNMWg+bcpNmTHecO63J5S2Po1txYHoQRKdYp1u0SkO44s9HQLOzOGXpasOgLxa7h
-         NhXg==
-X-Gm-Message-State: ACrzQf23zYTeMVNOxo562CCvrPExb+2LH900nJQfslM0yKAmpPhSUWnV
-        k6A2XbVQ/CT0YCF/RBn9fCUTJA==
-X-Google-Smtp-Source: AMsMyM7AK3jlPObOnz/rPlu+Up2ji8ZFVw+pIdHlReQDzjpBxb2W96SkuyWtnj/IOe72KUZ9Bx+5tQ==
-X-Received: by 2002:ac8:5d89:0:b0:3a4:f465:9434 with SMTP id d9-20020ac85d89000000b003a4f4659434mr19797213qtx.459.1667398230631;
-        Wed, 02 Nov 2022 07:10:30 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:28d9:4790:bc16:cc93? ([2601:586:5000:570:28d9:4790:bc16:cc93])
-        by smtp.gmail.com with ESMTPSA id bs6-20020a05620a470600b006b61b2cb1d2sm8623326qkb.46.2022.11.02.07.10.29
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0Tx9qzuOwx4JUlHp6FkZ/5WKZ4d6lYz+D1HQa2LD1tA=;
+        b=BJvZAg9GRtj1MJgsYISBu8YMEgmATz3a7B3fRwx3H1dVZrrbkdVsWD0gjnBilHiyNi
+         PqGUsLQW1D74L0+pVBzQhGbQCDhRwAAfTyN5Pfpa9RhF7Pe/cHyapGlKhcPxmX5Ip8C8
+         2wF0ySCPbXRzuOjulnE5+V+woVyWFGkJY0zIxUvs736jsJfymnAB8Jn92D0mpfZxgxwb
+         VuQxuQ1mSKh9Osl6rwHOaNVBoZGa6FitHdAYmwhgVnMVWP0kfDhW9tCbJTjoxRmfkWYX
+         7TU0OtiXSdqWtkolau0/LB5fdHoMZXtRqYqJvS2Xni0ZZ4eDDlDecuf5ixaIOkywWgjG
+         OfMg==
+X-Gm-Message-State: ACrzQf2+QKSlGCHPnCS2AfNKNY2zXxmZ35t1Ty0HPWFqsKkquASIWNGA
+        cv0wlpe5Dp0CY+qDofo917k=
+X-Google-Smtp-Source: AMsMyM7uhvWm2LP2gaUwQPtrSbRrlDUn+5GMSQB+lMctsBGZd4XE5wBj+rMs0BWRyxi2RkLDFicCMA==
+X-Received: by 2002:a05:6402:2937:b0:461:32aa:32da with SMTP id ee55-20020a056402293700b0046132aa32damr24299542edb.78.1667398631862;
+        Wed, 02 Nov 2022 07:17:11 -0700 (PDT)
+Received: from localhost ([88.227.60.86])
+        by smtp.gmail.com with UTF8SMTPSA id my15-20020a1709065a4f00b0078d38cda2b1sm5376305ejc.202.2022.11.02.07.17.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 07:10:30 -0700 (PDT)
-Message-ID: <69d57d4e-8a43-f8f5-f491-916197f6f4a8@linaro.org>
-Date:   Wed, 2 Nov 2022 10:10:23 -0400
+        Wed, 02 Nov 2022 07:17:11 -0700 (PDT)
+From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
+To:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sasha Finkelstein <fnkl.kernel@gmail.com>
+Subject: [PATCH v2 0/4] PWM and keyboard backlight driver for ARM Macs
+Date:   Wed,  2 Nov 2022 17:15:09 +0300
+Message-Id: <20221102141513.49289-1-fnkl.kernel@gmail.com>
+X-Mailer: git-send-email 2.24.3 (Apple Git-128)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 08/11] mfd: qcom-pm8xxx: drop unused PM8018 compatible
-Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Gross <agross@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220928-mdm9615-dt-schema-fixes-v4-0-dac2dfaac703@linaro.org>
- <20220928-mdm9615-dt-schema-fixes-v4-8-dac2dfaac703@linaro.org>
- <Y1/qnCyav/S35mRo@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y1/qnCyav/S35mRo@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 11:32, Lee Jones wrote:
-> On Fri, 21 Oct 2022, Neil Armstrong wrote:
-> 
->> The PM8018 compatible is always used with PM8921 fallback, so PM8018
->> compatible can be safely removed from device ID table
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> Tags should appear chronologically.
-> 
+Hi,
 
-I would assume that as well, but `b4 trailers` disagrees. It documents
-even this behavior (the chain of custody) here:
-https://b4.docs.kernel.org/en/latest/config.html
+This is the v2 of the patch series to add PWM and keyboard backlight
+drivers for ARM macs. The changes from v1 address the review
+comments on that patch set.
 
-So while I agree with you, I also prefer the tools to make the decision
-instead of humans (to follow the process, assuming the tool implements
-the process). Either the tool should be fixed or the tool's decision is
-correct.
+v1: https://www.spinics.net/lists/linux-pwm/msg19500.html
 
-Best regards,
-Krzysztof
+Best Regards.
+
+Sasha Finkelstein (4):
+  dt-bindings: pwm: Add Apple PWM controller
+  pwm: Add Apple PWM controller
+  arm64: dts: apple: t8103: Add PWM controller
+  MAINTAINERS: Add entries for Apple PWM driver
+
+ .../bindings/pwm/apple,s5l-fpwm.yaml          |  51 +++++++
+ MAINTAINERS                                   |   2 +
+ arch/arm64/boot/dts/apple/t8103-j293.dts      |  20 +++
+ arch/arm64/boot/dts/apple/t8103-j313.dts      |  20 +++
+ arch/arm64/boot/dts/apple/t8103.dtsi          |   9 ++
+ drivers/pwm/Kconfig                           |  12 ++
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-apple.c                       | 127 ++++++++++++++++++
+ 8 files changed, 242 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/apple,s5l-fpwm.yaml
+ create mode 100644 drivers/pwm/pwm-apple.c
+
+-- 
+2.37.3
 
