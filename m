@@ -2,50 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4DC616FC7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEBA7616FCC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 22:31:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbiKBVaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 17:30:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36770 "EHLO
+        id S230353AbiKBVbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 17:31:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbiKBVaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:30:18 -0400
+        with ESMTP id S230374AbiKBVbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 17:31:15 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FDE865EE;
-        Wed,  2 Nov 2022 14:30:17 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AE8DE0AC;
+        Wed,  2 Nov 2022 14:31:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0BDF861C35;
-        Wed,  2 Nov 2022 21:30:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADE2CC433C1;
-        Wed,  2 Nov 2022 21:30:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C9D7F61C35;
+        Wed,  2 Nov 2022 21:31:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4DBAC433C1;
+        Wed,  2 Nov 2022 21:31:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667424616;
-        bh=T3mJmhSAuT7wBGow+rimgDEfkaf+AtaXS+wjdVZAWpY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Ugk8JScx/1xcMRGpQ6MuVKfbLOM9maaGPP7V8GwC4FjONW9jrgLtgcmKWJ7r118xH
-         JTNddBLr4SxSJf8kZkg1Q94gwAN4LIfcg1urR8x+8GdM1kgAhaaEp5jqwd8ZMtjOTu
-         ap1JaToLYpiNIrEcUTrKbV1jdjZBqbm2nkndLWiAikXNmSaE/zJ+BNhJxxg8Q9fz/p
-         1WeSXsOTnboVn4ujPEGOiXyyoyGKbMkpUgIhH7FI7+jKeK36rVQ2gExdVg/dIU3gTg
-         TIvhKBusGtwhrQ8bkdh1GeuaN2ZyRynzIKucKviOAyIBnnH+sOI+3iWjRiGcPGouFm
-         C22lcsJREaztw==
-Message-ID: <5cb7cad9-bd58-ad5b-0a0c-eb2f879663c4@kernel.org>
-Date:   Wed, 2 Nov 2022 17:30:14 -0400
+        s=k20201202; t=1667424671;
+        bh=uj1On4sityXve9n4oIzQfWoyfP20tL7E6nqXIQO6hhw=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=oYtrJabWAjMaLg5J+fC3o6K0oFCrEWf26yhgKJCiSrdQtwF+TJCOjcouJBAOSzI3x
+         4fTtxtWi9RvoQAr5P5aVrzeTur9p8up8mJOvRCejPHrizZex2j4HYwGsgdawOakUhU
+         JGevFV4YUbIZOnYgsjHP8+bVNBxm4z8gTY+YoEtLoqnCk0e6AWJHVX378VaXDHEbNi
+         viPEqUpSe39UNJ4NkcCfMkTvexrizdxXxTw2PQfj/NbRXoQ1cVmcBVMRhK1vuIBt/w
+         nh+I68opL2yfL6mXlYSZ37gQkzgja4t27OiDJQdu4mqqhvJNlinU/ZSy7j1TlKqCP2
+         bkcQiGQWgh92Q==
+Message-ID: <2854316e-0874-c8f7-b090-96217dd4a4e5@kernel.org>
+Date:   Wed, 2 Nov 2022 17:31:08 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH RESEND] dt-bindings: watchdog: gpio: Convert bindings to
- YAML
+Subject: Re: [v3 1/3] dt-bindings: Add bindings for aspeed pwm-tach.
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     linux-watchdog@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-References: <20221102194436.123316-1-marex@denx.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org, joel@jms.id.au,
+        andrew@aj.id.au, lee.jones@linaro.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, BMC-SW@aspeedtech.com,
+        garnermic@meta.com
+References: <20221102083601.10456-1-billy_tsai@aspeedtech.com>
+ <20221102083601.10456-2-billy_tsai@aspeedtech.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20221102194436.123316-1-marex@denx.de>
+In-Reply-To: <20221102083601.10456-2-billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -58,113 +63,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 15:44, Marek Vasut wrote:
-> Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
+On 02/11/2022 04:35, Billy Tsai wrote:
+> This patch adds device binding for aspeed pwm-tach device which is a
+> multi-function device include pwm and tach function and pwm/tach device
+> bindings which should be the child-node of pwm-tach device.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 > ---
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-> Cc: linux-watchdog@vger.kernel.org
-> To: devicetree@vger.kernel.org
-> ---
-> NOTE: The Maintainer entry should likely be changed, although it seems
->       like this driver and its matching bindings are now unmaintained.
+>  .../bindings/hwmon/aspeed,ast2600-tach.yaml   | 48 ++++++++++++
+>  .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml | 76 +++++++++++++++++++
+>  .../bindings/pwm/aspeed,ast2600-pwm.yaml      | 64 ++++++++++++++++
+>  3 files changed, 188 insertions(+)
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+You sent several versions and still did not Cc me...
 
-Even if driver does not have updated maintainers entry, generic rules apply.
-
-
-> ---
->  .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 ------------
->  .../bindings/watchdog/linux,wdt-gpio.yaml     | 44 +++++++++++++++++++
->  2 files changed, 44 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt b/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-> deleted file mode 100644
-> index 198794963786b..0000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
-> +++ /dev/null
-> @@ -1,28 +0,0 @@
-> -* GPIO-controlled Watchdog
-> -
-> -Required Properties:
-> -- compatible: Should contain "linux,wdt-gpio".
-> -- gpios: From common gpio binding; gpio connection to WDT reset pin.
-> -- hw_algo: The algorithm used by the driver. Should be one of the
-> -  following values:
-> -  - toggle: Either a high-to-low or a low-to-high transition clears
-> -    the WDT counter. The watchdog timer is disabled when GPIO is
-> -    left floating or connected to a three-state buffer.
-> -  - level: Low or high level starts counting WDT timeout,
-> -    the opposite level disables the WDT. Active level is determined
-> -    by the GPIO flags.
-> -- hw_margin_ms: Maximum time to reset watchdog circuit (milliseconds).
-> -
-> -Optional Properties:
-> -- always-running: If the watchdog timer cannot be disabled, add this flag to
-> -  have the driver keep toggling the signal without a client. It will only cease
-> -  to toggle the signal when the device is open and the timeout elapsed.
-> -
-> -Example:
-> -	watchdog: watchdog {
-> -		/* ADM706 */
-> -		compatible = "linux,wdt-gpio";
-> -		gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
-> -		hw_algo = "toggle";
-> -		hw_margin_ms = <1600>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
-> new file mode 100644
-> index 0000000000000..6b014d60c9471
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/linux,wdt-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO-controlled Watchdog
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +properties:
-> +  compatible:
-> +    const: linux,wdt-gpio
-> +
-> +  gpios:
-> +    description: gpio connection to WDT reset pin
-> +    maxItems: 1
-> +
-> +  hw_algo:
-> +    description: The algorithm used by the driver.
-> +    enum: [ level, toggle ]
-> +
-> +  hw_margin_ms:
-> +    description: Maximum time to reset watchdog circuit (milliseconds).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - compatible
-
-Several other properties were required.
-
-> +
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
-
-Drop quotes
-
+My previous feedback applies.
 
 Best regards,
 Krzysztof
