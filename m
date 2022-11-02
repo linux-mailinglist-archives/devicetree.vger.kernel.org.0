@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F0661697D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C17E616990
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232030AbiKBQnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 12:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39928 "EHLO
+        id S231408AbiKBQp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 12:45:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232043AbiKBQn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:43:27 -0400
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1D020BD1;
-        Wed,  2 Nov 2022 09:38:43 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id 16-20020a9d0490000000b0066938311495so10578517otm.4;
-        Wed, 02 Nov 2022 09:38:43 -0700 (PDT)
+        with ESMTP id S230509AbiKBQoq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:44:46 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CDCA5FBC;
+        Wed,  2 Nov 2022 09:41:08 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id b9so10793050ljr.5;
+        Wed, 02 Nov 2022 09:41:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lmabQ6QIrPhC6gHbbbnIOeOPPxHLqb9/uiOG+55mjHA=;
+        b=EHXyQjGjv+nNN+CsohFOura4RO576Rjv0DVdD2nvgit2YYAI9ZuXI30zP8hsJMsetM
+         P+KFkGBH7LdzTUn16idjtEATjLbO3ah88mFwF2yeRSmI7Vx877Ixlp/UxXB7vFNmNitw
+         I90PzzpQF+JADtng9we9CUcvh8PI4eJtVMAhUGliOPARXfEkpGysY/UXKJtH4YPkVBlR
+         Xu9KTK4FVR+J8Ok9hqSyUBCI+8stYzJ/OrjiZddwXFYHcW1Qk+1wlFUQiXpmM2e73TUu
+         4MRFv/91gaXZxTds9QUXWoUVFPrhvWfR4O77n99gO0tPKUjDuWCYAZkW6/8T6vf1FtGO
+         /RLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U9ksTZ83TtbRKPPlqnz00eQ8hM+aPwJfXyLg4128WEI=;
-        b=cSW1HcnV9v9A6i8Q8SA9vRUqUA+6paC59MZklYcnI1NRCRX5WTI+9AtODGGeJ0cY+O
-         UkuTv0xxvOT6VGI/VNgU6Tg7zA3wLLZrOJkNe8xIcp83jvugNyHJB+OH4U1LpFmtJ0Rd
-         YPQ9TGmyP0UQ5dQiTAgr3qq9+gRRMWdBJ4MMl0KAIdOiDxqXrcIitJ/65fW4p8wxNZ7M
-         gPPrSKBmj33Q7zmEyA9Q5XLcSdm+1mKwaIiqRHgL4zYgS6iOFtAv9uNuQ/KwWccCXn0n
-         703LsEyZa9UjPYSIkpRc7jzGt/Xc9vVsqGmfEGeJE+uAFB7IPjzYrC/pDaKVF8BqZLJq
-         f4Yg==
-X-Gm-Message-State: ACrzQf0wR1HhE111VXE8oWlvBLW49WH8qreNrc4xMEMc+oTGrF2YsCrE
-        qKN7oobEO4FlayJyC3NJgA==
-X-Google-Smtp-Source: AMsMyM5E0phLlXbOOPIfqMi0psVJ3aAAbDHqmPGVzw82Uj2oW84WOtt0Hpm0fYkA+oJBV56lx5Ewuw==
-X-Received: by 2002:a05:6830:1f34:b0:66c:4a42:9ca5 with SMTP id e20-20020a0568301f3400b0066c4a429ca5mr10015204oth.175.1667407123140;
-        Wed, 02 Nov 2022 09:38:43 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bh23-20020a056808181700b003547a3401e6sm4722569oib.43.2022.11.02.09.38.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 09:38:42 -0700 (PDT)
-Received: (nullmailer pid 4014126 invoked by uid 1000);
-        Wed, 02 Nov 2022 16:38:44 -0000
-Date:   Wed, 2 Nov 2022 11:38:44 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     linux-media@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Tu <shawnx.tu@intel.com>
-Subject: Re: [PATCH v4 5/9] media: dt-bindings: ov5645: Convert OV5645
- binding to a schema
-Message-ID: <166740712341.4014070.1564117171862683626.robh@kernel.org>
-References: <20221031232202.131945-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20221031232202.131945-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lmabQ6QIrPhC6gHbbbnIOeOPPxHLqb9/uiOG+55mjHA=;
+        b=uychgPNBSxIaSY6UNZmM2ygvBfyN0v5TiZcnSq89ChZ8Ez1zt2ttsrupAJVHWGHNQT
+         jN3jKH8AnyTyDCE2GcOHQk0aEh4OUvXTTv0D7ig9fm8tg1nicToroEX3vgtBFkrqFoDV
+         lMh9zeMkK+piHLlGCKYkv3j2NLo/SpjktcTYMZmbbENrzA97s3FPl/whH4BotsA5bBzR
+         eZ5FqPNhPJHZHXK77ChrY7YaMXUZpUGNENidiVX5xuw7Q1BsDUxFAxxRd4VA/zGs8phd
+         KGDjNvtfJXjknVPrxV/JGCQfRtAC6U7DACYFTmiZIyzhy+svuKOoYEOFrtmN7lD/iK6j
+         S6IQ==
+X-Gm-Message-State: ACrzQf2uBaVjJPfh35GXrRQ39fY3+9ABwEHqdNe1i/NJUWFgNSUsSkYe
+        ze8bdqoTEh3ig+YOJ3GysoO//XDepw9z6NfGc9c=
+X-Google-Smtp-Source: AMsMyM50B4ChTwri3pNUdk19+lDukowim5+VjCFJbaPQpHVCNpnBCROgFwgMd33+grSqlAzw939nkrL9s+SZ1N04mtw=
+X-Received: by 2002:a05:651c:12c2:b0:26c:13b9:a694 with SMTP id
+ 2-20020a05651c12c200b0026c13b9a694mr10190419lje.79.1667407266631; Wed, 02 Nov
+ 2022 09:41:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031232202.131945-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+References: <20221102141513.49289-1-fnkl.kernel@gmail.com> <20221102141513.49289-3-fnkl.kernel@gmail.com>
+ <OS0PR01MB59227A9E7B8A471E4D6B665786399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMT+MTT1ptFymwDdOe=OXYzKfOPHdQbAfpx_9LBYn+C9NFhddg@mail.gmail.com>
+ <OS0PR01MB592217539BCA46FD8F523C2386399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMT+MTQLJZsDSOtcQqV8e_j0XKfjNm+dVjeo7ocMjcYOPLAPvA@mail.gmail.com> <OS0PR01MB5922EC4F1AF0D8501D7CB1BF86399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922EC4F1AF0D8501D7CB1BF86399@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date:   Wed, 2 Nov 2022 19:40:55 +0300
+Message-ID: <CAMT+MTT+Z=K7BNq=KWGxaT=x9BOfdDecsZ6E7eGhjN5OHRjy=w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] pwm: Add Apple PWM controller
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "marcan@marcan.st" <marcan@marcan.st>,
+        "sven@svenpeter.dev" <sven@svenpeter.dev>,
+        "alyssa@rosenzweig.io" <alyssa@rosenzweig.io>,
+        "asahi@lists.linux.dev" <asahi@lists.linux.dev>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,54 +81,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 31 Oct 2022 23:21:58 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Convert the simple OV5645 Device Tree binding to json-schema.
-> 
-> The previous binding marked the below properties as required which was a
-> driver requirement and not the device requirement so just drop them from
-> the required list during the conversion.
-> - clock-frequency
-> - enable-gpios
-> - reset-gpios
-> 
-> Also drop the "clock-names" property as we have a single clock source for
-> the sensor and the driver has been updated to drop the clk referencing by
-> name.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> v3->v4:
-> * Used 4 spaces for example node
-> * Added reg property after compatible
-> 
-> v3:
-> * No change
-> 
-> v2 -> v3
-> * Dropped clock-names property
-> * Marked power supplies as mandatory
-> * Dropped the comment for voltage power supplies
-> * Included RB tag from Laurent
-> * Driver change to drop clock-names [0]
-> 
-> [0] https://lore.kernel.org/linux-media/Yyh%2F3uzOJOu3drEB@pendragon.ideasonboard.com/T/#t
-> 
-> v1 -> v2
-> * Dropped ref to video-interface-devices.yaml#
-> * Dropped driver specific required items from the list
-> * Updated commit message
-> * Dropped clock-lanes and bus-type from the port and example node
-> * Marked data-lanes as required in port node
-> ---
->  .../devicetree/bindings/media/i2c/ov5645.txt  |  54 ---------
->  .../bindings/media/i2c/ovti,ov5645.yaml       | 104 ++++++++++++++++++
->  2 files changed, 104 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5645.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5645.yaml
-> 
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Wed, 2 Nov 2022 at 19:29, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>
+> Then enable the clk whenever pwm is enabled
+> And disable the clk whenever pwm is disabled.
+I can do that, but I do not see the point in doing that. This clock is
+active whenever the system is turned on, all this will result in is
+some unnecessary clock refcount increments/decrements.
