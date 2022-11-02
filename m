@@ -2,51 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0126168D9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B74F46168DF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:30:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbiKBQaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 12:30:13 -0400
+        id S231665AbiKBQah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 12:30:37 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231871AbiKBQ3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:29:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D697910FD8;
-        Wed,  2 Nov 2022 09:25:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6326A619EF;
-        Wed,  2 Nov 2022 16:25:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EEC7C433D7;
-        Wed,  2 Nov 2022 16:25:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667406355;
-        bh=+g1CgBWkIiMCbv1W/RcPuKT/+Deqx9LhmW0ABdObp08=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=A8QSWhP/rftuVfFFPICgaABwav32s0xmeqyUuxJYFHIEGZF4gW+PMdm2PU0NsFisA
-         3XRuvVCtRki8WIERAAyML5hO2LKWQ7gu51+XAeuzBCw/X1YG/1wb1eSpzfDMBsxCxP
-         88IdVy5+ZW8rpxK2iEMaZEDAwrLKjklEG3Xy+mhg4PVh6G+yUqVANfwehO01kqrR+Z
-         jGjjqpPyF4EN4SKpY0pH1nLVFBlr+/ANBp6euLURL0JhUrRnOcjmVzVUJaZG3xQrze
-         1LiNU6e4eVbt5Gz0egi6IPbGObLzvGNrT2BSLdDgMRX9gW8PWyAbWYU/Feu6cQ7T3Q
-         VkEYfhIRd0Ctg==
-From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, lgirdwood@gmail.com
-In-Reply-To: <1667183334-16511-1-git-send-email-u0084500@gmail.com>
-References: <1667183334-16511-1-git-send-email-u0084500@gmail.com>
-Subject: Re: [PATCH v3 0/2] Add support for Richtek RT6190 36V 4-wwtich regulator
-Message-Id: <166740635395.287466.16386075560173939069.b4-ty@kernel.org>
-Date:   Wed, 02 Nov 2022 16:25:53 +0000
+        with ESMTP id S231627AbiKBQaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:30:11 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC6B117E13
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 09:26:18 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id t1so7305360wmi.4
+        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 09:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=zv7Fq5k50QWQLxnPbss2vXizhHRaHgo0CLWyEMOtNXY=;
+        b=XLT+2bOf52xM6JdQqN+Tbi3UN/LLLCaptLMtL5KvSTYPvI/lUr4ONN2+m47aatNmUE
+         rdrtReOAY4RmLpenQiqcMEofRRUhxktec1oIjlF4j6H6wmkxi5XEDnpOZ9QGJaSBxv+F
+         LhWZTjMyJ0KzHsT2tice4ZplDy8smvhGjPpxQ+xekviGu2gOZfr+P+dYshaOnkeqsqVi
+         uLKwI/Sm12ueV22i0iRvO64/ABCyk4cZb6c2neFCEhma60LYtaOmfJBEUoWMY7xkEKJ/
+         WLGsayqA2AIVW/hhoObdJU0oqJ/+fBkdyyFvsfYKhIOtXxaDfx5ozca5oUxePLiG0MUO
+         U5Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zv7Fq5k50QWQLxnPbss2vXizhHRaHgo0CLWyEMOtNXY=;
+        b=iU9TRjJE/JUjD+vjCLeGB0tOcxYEzY1afHGWKW64eOiGQYhqBNUy6pPFpuhgJYipdB
+         5u5hVP4i36HKvu8vnPvq3ka8IZ2saV0p3O2n1yeWhYQRBZNBBrR5klPqtSefsq0pyh30
+         WYXAMFDoBd9YUWnV2G647IZ0xsy8ZqwqT4+lomzkdxttZxNTDpFyh04rRqIZm5/8olSd
+         qZliD9utvUTApO/MmE4iS0WsCze8yt15L7Vy3pCIs1DB019Ri+1+dDkz4DJQls/0D50X
+         H2ahVTo5zxc/rgRbcs5hf3VkfONtGY2HobHLP0i6msKZK8I5p9rB8SxpetHDM3UAq5IH
+         e0DQ==
+X-Gm-Message-State: ACrzQf1k74I+duUC0JHOhYX4BFPQaovjqlM3yqsqzZEuoHC7FuGM/4BQ
+        /bZkNHlfy4rAZpvDdSlKBXGIyA==
+X-Google-Smtp-Source: AMsMyM58DL/hkAn4DnGcSmAn4Lnobs2eqhlbRBLy1/I33qod5riKNI2cBWPxvRt82gxskj2IR0PZIw==
+X-Received: by 2002:a05:600c:4ed1:b0:3cf:86ab:3a0f with SMTP id g17-20020a05600c4ed100b003cf86ab3a0fmr2853053wmq.106.1667406377451;
+        Wed, 02 Nov 2022 09:26:17 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:3541:e8cb:4c8c:e204? ([2a01:e0a:982:cbb0:3541:e8cb:4c8c:e204])
+        by smtp.gmail.com with ESMTPSA id v7-20020a05600c444700b003c70191f267sm2844571wmn.39.2022.11.02.09.26.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Nov 2022 09:26:17 -0700 (PDT)
+Message-ID: <f7f0ced5-d8b8-08cb-e354-780dc69a68cd@linaro.org>
+Date:   Wed, 2 Nov 2022 17:26:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fc921
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/4] dt-bindings: reset: document Odroid Go Ultra
+ power-off
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20221031-b4-odroid-go-ultra-initial-v1-0-42e3dbea86d5@linaro.org>
+ <20221031-b4-odroid-go-ultra-initial-v1-1-42e3dbea86d5@linaro.org>
+ <20221102162344.GA3993882-robh@kernel.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20221102162344.GA3993882-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,44 +85,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Oct 2022 10:28:52 +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+Hi,
+
+On 02/11/2022 17:23, Rob Herring wrote:
+> On Mon, Oct 31, 2022 at 05:47:25PM +0100, Neil Armstrong wrote:
+>> The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
+>> to its two PMICs in order, this represents the poweroff scheme needed to complet
+>> a clean poeroff of the system.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../reset/hardkernel,odroid-go-ultra-poweroff.yaml | 42 ++++++++++++++++++++++
+>>   1 file changed, 42 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml
+>> new file mode 100644
+>> index 000000000000..65e42258717c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/reset/hardkernel,odroid-go-ultra-poweroff.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hardkernel Odroid Go Ultra poweroff
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <neil.armstrong@linaro.org>
+>> +
+>> +description:
+>> +  The Hardkernel Odroid Go Ultra poweroff scheme requires requesting a poweroff
+>> +  to its two PMICs in order, this represents the poweroff scheme needed to complete
+>> +  a clean poeroff of the system.
 > 
-> The RT6190 is a 4-switch Buck-Boost controller designed for USB power delivery
-> (USB PD). It operates with wide input voltage range from 4.5V to 36V, and the
-> output voltage can be programmable between 3V and 36V. It implements peak
-> current mode control mechanism to deliver up to 100W power with the
-> programmable constant voltage and constant current output. It also has built-in
-> charge pumps for driving external low-cost N-MOSFETs to control the power path.
+> You don't really need a node for this. Test against the top level
+> compatible and then find the PMIC nodes by their compatible strings.
+
+Hmm ok, indeed would be simpler.
+
+Neil
+
 > 
-> [...]
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: hardkernel,odroid-go-ultra-poweroff
+>> +
+>> +  hardkernel,rk817-pmic:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: Phandle to the RK817 PMIC node
+>> +
+>> +  hardkernel,rk818-pmic:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: Phandle to the RK818 PMIC node
+>> +
+>> +required:
+>> +  - compatible
+>> +  - hardkernel,rk817-pmic
+>> +  - hardkernel,rk818-pmic
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    poweroff {
+>> +        compatible = "hardkernel,odroid-go-ultra-poweroff";
+>> +        hardkernel,rk817-pmic = <&rk817>;
+>> +        hardkernel,rk818-pmic = <&rk818>;
+>> +    };
+>>
+>> -- 
+>> b4 0.10.1
+>>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/2] dt-bindings: regulator: Add bindings for Richtek RT6190 regulator
-      commit: 8facce4349d46fbc2ac4f6da3786130ddd104440
-[2/2] regulator: rt6190: Add support for Richtek RT6190 regulator
-      commit: e6999e7cca7eecd64c27dc72c51d11cb33079a0c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
