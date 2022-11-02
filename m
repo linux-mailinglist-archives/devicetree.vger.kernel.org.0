@@ -2,243 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B80D616337
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:00:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A917761633B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 14:00:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231305AbiKBNAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 09:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40890 "EHLO
+        id S231144AbiKBNAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 09:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbiKBM77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 08:59:59 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF0B52A421
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 05:59:52 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id s196so16184204pgs.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Nov 2022 05:59:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=compal-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mlsbvkprHgJ0IvQTZa5UDDXjtB5OH5rT8mURrSqNxzk=;
-        b=XfdLwi+fBWNdR07gP135luAlA0nVau1Cw5zbb2hxknBCIkfwtYOc/bfFZnoJtyPaX2
-         HgKFu0slPqynpEHStt2ORdu8T+yki9L6MGZ0bnVFrD7v2GVqrFOsi626LAgaNMeZPSAa
-         3/J1Ain+MxYBdhDS9Esbyuqm88vYSKSy8J+l+qYqwtBMpaE3KnecHcGFNq+SS82Gp7Gv
-         3+yzLmBYbl1sFCnH2Hx4ga4ybt4UqW3fy/4VtTUC+ldwiyw5FeAMEcfqXsbLpNCyn4hE
-         KoQVDSSes9KK+3XnPOVvIMzAYS+hDKzEE9UGSMD7sRlFCrDHBMXpiE9zU6HLlX4pFIPZ
-         7PsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mlsbvkprHgJ0IvQTZa5UDDXjtB5OH5rT8mURrSqNxzk=;
-        b=vMUbPPsEXVlZNb+qXsVOBhV/78l5hPtF99jaWBq14KFERvY0OjdNgIFx2UWNeDc9o1
-         AERDU/VvFPegIG6baTpYQZJQRnvRK5p7JZiQgg3Lrw4krT//CUSH9fjFy2CtORZj1LxV
-         SjU9uuyryW4F4viv2STOtWiZgJHMbwkmHOqQux9qiWijnFTmY1aQmNdu127jiEQTxG82
-         6w+gC5C2wFwI94zu1gNY8VfqP7SDc5Jr2sfla1HU2IxfQ2n6DO6XL6L1hKW+A2kmhTWX
-         GSeNLLz0n80LY43vaghcOMhKQCJOYwW9hXSHyARQSUNXFBUkrdBmo+76F3dHR9BRuyn+
-         4r6Q==
-X-Gm-Message-State: ACrzQf1FxzOZ6wfyo0IOtvCvJp+w9TtHyD7dBOBdH5ISP96BHqLHPo+f
-        DMsBN2zXDkAM1Sts+2hnn6g0LQ==
-X-Google-Smtp-Source: AMsMyM57eJFobr+3azOKWBFaR8GmbVtKN1BTYzoXsux0SGZ8FxcKEpPB1rhY9C/MHc7zeWxAHCwOgg==
-X-Received: by 2002:a63:5d12:0:b0:46e:cd38:3f76 with SMTP id r18-20020a635d12000000b0046ecd383f76mr21099814pgb.64.1667393992283;
-        Wed, 02 Nov 2022 05:59:52 -0700 (PDT)
-Received: from localhost.localdomain (118-167-210-180.dynamic-ip.hinet.net. [118.167.210.180])
-        by smtp.gmail.com with ESMTPSA id k14-20020a170902d58e00b0017f59ebafe7sm8259345plh.212.2022.11.02.05.59.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 05:59:51 -0700 (PDT)
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        "chunxu . li" <chunxu.li@mediatek.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: [PATCH v6 2/2] ASoC: mediatek: mt8186-rt5682: Modify machine driver for two DMICs case
-Date:   Wed,  2 Nov 2022 20:59:36 +0800
-Message-Id: <20221102125936.2176748-3-ajye_huang@compal.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221102125936.2176748-1-ajye_huang@compal.corp-partner.google.com>
-References: <20221102125936.2176748-1-ajye_huang@compal.corp-partner.google.com>
+        with ESMTP id S231307AbiKBNAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 09:00:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B84329C9D;
+        Wed,  2 Nov 2022 06:00:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7719A61944;
+        Wed,  2 Nov 2022 13:00:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CAC0EC433B5;
+        Wed,  2 Nov 2022 13:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667394018;
+        bh=10Z6uXDE6nv9we1caDEijEa5FDJ4Ne5WNxQT8wsxKq0=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=bdVHI4Rc1FXA/QJuXfbM4fFxr7sbY8APi129r0O+8pnK1ATFKTzkn0K5KvjC/JLqA
+         TNvVb/Yq9MhD0BBL2it1zqDCH/KFO6zfDoeK8eojkVwtjMXu2HFnhGpl6GpO0TBPGQ
+         dAXsj2HiMPWu1ZZryImhk+JZT8hkDijfB35OXqZj7Vn/UgPI+sfwftL/ijGa+7EByc
+         VjJWi79wUvdPEOn/Cv2IKyS9NOnCy6pdaWt5SHrg+mmlHQPclvuK21rgN+dKg+fgp2
+         dYO7up3BMmGKk9oyTE1rAqyBMvVfSN6gr/ymzgG3gbteM3OTT0mBVNjDtmUkKaYKTj
+         Ms0BBvXO2PXEg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AE52FE270D2;
+        Wed,  2 Nov 2022 13:00:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v7 0/3] net: ethernet: renesas: Add support for "Ethernet
+ Switch"
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <166739401870.9062.8744215770877095925.git-patchwork-notify@kernel.org>
+Date:   Wed, 02 Nov 2022 13:00:18 +0000
+References: <20221031123242.2528208-1-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20221031123242.2528208-1-yoshihiro.shimoda.uh@renesas.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having two DMICs, a front DMIC and a Rear DMIC,
-but only host audio input AUX port0 is used for these two Dmics.
-A "dmic-gpios" property is used for a mixer control to switch
-the dmic signal source between the Front and Rear Dmic.
+Hello:
 
-Refer to this one as an example,
-commit 3cfbf07c6d27
-("ASoC: qcom: sc7180: Modify machine driver for 2mic")
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
----
- .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     | 102 +++++++++++++++++-
- 1 file changed, 101 insertions(+), 1 deletion(-)
+On Mon, 31 Oct 2022 21:32:39 +0900 you wrote:
+> This patch series is based on next-20221027.
+> 
+> Add initial support for Renesas "Ethernet Switch" device of R-Car S4-8.
+> The hardware has features about forwarding for an ethernet switch
+> device. But, for now, it acts as ethernet controllers so that any
+> forwarding offload features are not supported. So, any switchdev
+> header files and DSA framework are not used.
+> 
+> [...]
 
-diff --git a/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c b/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
-index 2414c5b77233..16d834f3153d 100644
---- a/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
-+++ b/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
-@@ -7,6 +7,8 @@
- // Author: Jiaxin Yu <jiaxin.yu@mediatek.com>
- //
- 
-+#include <linux/gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/input.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-@@ -39,6 +41,8 @@
- 
- struct mt8186_mt6366_rt1019_rt5682s_priv {
- 	struct snd_soc_jack headset_jack, hdmi_jack;
-+	struct gpio_desc *dmic_sel;
-+	int dmic_switch;
- };
- 
- /* Headset jack detection DAPM pins */
-@@ -68,6 +72,94 @@ static struct snd_soc_codec_conf mt8186_mt6366_rt1019_rt5682s_codec_conf[] = {
- 	},
- };
- 
-+static int dmic_get(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct mtk_soc_card_data *soc_card_data =
-+		snd_soc_card_get_drvdata(dapm->card);
-+	struct mt8186_mt6366_rt1019_rt5682s_priv *priv = soc_card_data->mach_priv;
-+
-+	ucontrol->value.integer.value[0] = priv->dmic_switch;
-+	return 0;
-+}
-+
-+static int dmic_set(struct snd_kcontrol *kcontrol,
-+		    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct mtk_soc_card_data *soc_card_data =
-+		snd_soc_card_get_drvdata(dapm->card);
-+	struct mt8186_mt6366_rt1019_rt5682s_priv *priv = soc_card_data->mach_priv;
-+
-+	priv->dmic_switch = ucontrol->value.integer.value[0];
-+	if (priv->dmic_sel) {
-+		gpiod_set_value(priv->dmic_sel, priv->dmic_switch);
-+		dev_info(dapm->card->dev, "dmic_set_value %d\n",
-+			 priv->dmic_switch);
-+	}
-+	return 0;
-+}
-+
-+static const char * const dmic_mux_text[] = {
-+	"Front Mic",
-+	"Rear Mic",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(mt8186_dmic_enum,
-+			    SND_SOC_NOPM, 0, dmic_mux_text);
-+
-+static const struct snd_kcontrol_new mt8186_dmic_mux_control =
-+	SOC_DAPM_ENUM_EXT("DMIC Select Mux", mt8186_dmic_enum,
-+			  dmic_get, dmic_set);
-+
-+static const struct snd_soc_dapm_widget dmic_widgets[] = {
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+	SND_SOC_DAPM_MUX("Dmic Mux", SND_SOC_NOPM, 0, 0, &mt8186_dmic_mux_control),
-+};
-+
-+static const struct snd_soc_dapm_route dmic_map[] = {
-+	/* digital mics */
-+	{"Dmic Mux", "Front Mic", "DMIC"},
-+	{"Dmic Mux", "Rear Mic", "DMIC"},
-+};
-+
-+static int primary_codec_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_card *card = rtd->card;
-+	struct mtk_soc_card_data *soc_card_data = snd_soc_card_get_drvdata(card);
-+	struct mt8186_mt6366_rt1019_rt5682s_priv *priv = soc_card_data->mach_priv;
-+	int ret;
-+
-+	ret = mt8186_mt6366_init(rtd);
-+
-+	if (ret) {
-+		dev_err(card->dev, "mt8186_mt6366_init failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (!priv->dmic_sel) {
-+		dev_info(card->dev, "dmic_sel is null\n");
-+		return ret;
-+	}
-+
-+	ret = snd_soc_dapm_new_controls(&card->dapm, dmic_widgets,
-+					ARRAY_SIZE(dmic_widgets));
-+	if (ret) {
-+		dev_err(card->dev, "DMic widget addition failed: %d\n", ret);
-+		/* Don't need to add routes if widget addition failed */
-+		return ret;
-+	}
-+
-+	ret = snd_soc_dapm_add_routes(&card->dapm, dmic_map,
-+				      ARRAY_SIZE(dmic_map));
-+
-+	if (ret)
-+		dev_err(card->dev, "DMic map addition failed: %d\n", ret);
-+
-+	return ret;
-+}
-+
- static int mt8186_rt5682s_init(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct snd_soc_component *cmpnt_afe =
-@@ -775,7 +867,7 @@ static struct snd_soc_dai_link mt8186_mt6366_rt1019_rt5682s_dai_links[] = {
- 		.dpcm_playback = 1,
- 		.dpcm_capture = 1,
- 		.ignore_suspend = 1,
--		.init = mt8186_mt6366_init,
-+		.init = primary_codec_init,
- 		SND_SOC_DAILINK_REG(adda),
- 	},
- 	{
-@@ -1015,6 +1107,14 @@ static int mt8186_mt6366_rt1019_rt5682s_dev_probe(struct platform_device *pdev)
- 
- 	soc_card_data->mach_priv = mach_priv;
- 
-+	mach_priv->dmic_sel = devm_gpiod_get_optional(&pdev->dev,
-+						      "dmic", GPIOD_OUT_LOW);
-+	if (IS_ERR(mach_priv->dmic_sel)) {
-+		dev_err(&pdev->dev, "DMIC gpio failed err=%ld\n",
-+			PTR_ERR(mach_priv->dmic_sel));
-+		return PTR_ERR(mach_priv->dmic_sel);
-+	}
-+
- 	adsp_node = of_parse_phandle(pdev->dev.of_node, "mediatek,adsp", 0);
- 	if (adsp_node) {
- 		struct mtk_sof_priv *sof_priv;
+Here is the summary with links:
+  - [v7,1/3] dt-bindings: net: renesas: Document Renesas Ethernet Switch
+    https://git.kernel.org/netdev/net-next/c/f9edd82774c0
+  - [v7,2/3] net: ethernet: renesas: Add support for "Ethernet Switch"
+    https://git.kernel.org/netdev/net-next/c/3590918b5d07
+  - [v7,3/3] net: ethernet: renesas: rswitch: Add R-Car Gen4 gPTP support
+    https://git.kernel.org/netdev/net-next/c/6c6fa1a00ad3
+
+You are awesome, thank you!
 -- 
-2.25.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
