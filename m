@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 653BF61696B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C4E616974
+	for <lists+devicetree@lfdr.de>; Wed,  2 Nov 2022 17:42:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231250AbiKBQmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 12:42:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40248 "EHLO
+        id S232038AbiKBQmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 12:42:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231206AbiKBQl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:41:28 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDFA2EF7F;
-        Wed,  2 Nov 2022 09:36:32 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id s206so19771750oie.3;
-        Wed, 02 Nov 2022 09:36:32 -0700 (PDT)
+        with ESMTP id S232099AbiKBQmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 12:42:04 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F132ED4F;
+        Wed,  2 Nov 2022 09:37:06 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id l127so3367168oia.8;
+        Wed, 02 Nov 2022 09:37:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FRIqLJzpvdwIsDIOcNax6l0J9MVGIRrkQsstguh+rBk=;
-        b=g/H88GxN4bVs32cwQBEtJLJsx8INqrSR70gMgMpnsKshhMvI+MLOM+HZ3Q6Gyzmqmd
-         mVkup6iheAtFWrXi6lq8gznk0eSDXoeLex1S2SnA+jNDibsY+oWuz+vaVc2MbWwvi1sQ
-         ugCjhl+tSa6mTp/ZVOWLdjhLZzBbPuogH6qkCYcMOrK73XE0e9pHPInzUc3MvlTzea/s
-         HWxWqI6PuzVLl1JlGJLSH2rX+/jjFI19ADbZUbWHAQmcYz+xZMPU1EvdMoO+ArblsbJ5
-         R1OJE9EBLBwZOvCAzYg+lAit+geFO7U4MRU5K6fJ+KRxoXKRXNP6CjHzIWatc2MRe3WP
-         k+xA==
-X-Gm-Message-State: ACrzQf0DihwtM3wB5nIqfIaR7DeCx3JsdJ5yXP8SGqy+trQZiPbPZCsT
-        zEJZqnj+neGnkDcR0pj0ytPi5L28LQ==
-X-Google-Smtp-Source: AMsMyM5u79XwB1oojudnF/swJR8GY9Ou/GyZn4heWLOqUMQVIwupIAfM9Q1SjJhm3a7xF5I08t//Gg==
-X-Received: by 2002:a05:6808:140a:b0:355:230f:b7f1 with SMTP id w10-20020a056808140a00b00355230fb7f1mr22368338oiv.8.1667406992060;
-        Wed, 02 Nov 2022 09:36:32 -0700 (PDT)
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8IPGxGLkD8As1GeJY5oeoH1phDYt4Av4JKr4840Jm8Y=;
+        b=ADowVvC+MoMKVj+hjspVatZ+eNLYar0xS00x12LMbMAAois4xhSU5XSoXdEhxAwLU7
+         +rMDxCVwYs3YYOhS8u31mO0lJVoyYffsj+7vbDB11OxeJ+V86iKw8YvfUXDv0f1vQYJj
+         cSWiE677XhIu0lVvQ0meBk08/KVW0IKgkXKZcRkRc1XSq2v/1B2Z/cuOyyB1ZSIAyYQ/
+         Y/1fOhks5NG0kWua8IeWBvhZGaDBtfmXJZ7wI5PdXSeDHOqTE3vOL7EofRGSPKO2GFaa
+         Crf+xY65nxAL5GDW91CFrubKjYaRbVzBNyT3SfZEw2QWrrIowHXoYHPUcw5PyBj9SJ8k
+         s5uw==
+X-Gm-Message-State: ACrzQf1j0+uWg+3xm+EJyy0z7YSP0ap6PHQZ8uOVlN6OI9ESvS2A2R0Q
+        yuK5W8/GotShedP6gAuZJg==
+X-Google-Smtp-Source: AMsMyM6PfkexEnFF5ueqQBi7Z38vRQ66nOVbGxRwh7cGgAQdHJAYlhuoFPMkoiRF/71lDerNONVVNw==
+X-Received: by 2002:a05:6808:118c:b0:34f:9fc9:ce15 with SMTP id j12-20020a056808118c00b0034f9fc9ce15mr5868351oil.220.1667407025923;
+        Wed, 02 Nov 2022 09:37:05 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id cz40-20020a05687064a800b0013bc40b09dasm6131312oab.17.2022.11.02.09.36.31
+        by smtp.gmail.com with ESMTPSA id n1-20020a4ad401000000b00425806a20f5sm4603995oos.3.2022.11.02.09.37.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Nov 2022 09:36:31 -0700 (PDT)
-Received: (nullmailer pid 4011499 invoked by uid 1000);
-        Wed, 02 Nov 2022 16:36:33 -0000
-Date:   Wed, 2 Nov 2022 11:36:33 -0500
+        Wed, 02 Nov 2022 09:37:05 -0700 (PDT)
+Received: (nullmailer pid 4012210 invoked by uid 1000);
+        Wed, 02 Nov 2022 16:37:07 -0000
+Date:   Wed, 2 Nov 2022 11:37:07 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Luiz Augusto von Dentz <luiz.von.dentz@intel.com>,
-        linux-bluetooth@vger.kernel.org,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hakan Jansson <hakan.jansson@infineon.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: broadcom-bluetooth: Add CYW4373A0
- DT binding
-Message-ID: <166740699221.4011442.14503424852131271758.robh@kernel.org>
-References: <20221031204804.195267-1-marex@denx.de>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.or, linux-arm-kernel@lists.infradead.org,
+        Zhang Rui <rui.zhang@intel.com>
+Subject: Re: [PATCH 2/2] dt-bindings: thermal: mediatek: add compatible
+ string for MT7986 SoC
+Message-ID: <166740702669.4012151.14909545026991021834.robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221031204804.195267-1-marex@denx.de>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,23 +66,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 31 Oct 2022 21:48:03 +0100, Marek Vasut wrote:
-> CYW4373A0 is a Wi-Fi + Bluetooth combo device from Cypress.
-> This chip is present e.g. on muRata 2AE module. Extend the
-> binding with its DT compatible.
+On Mon, 31 Oct 2022 22:16:53 +0000, Daniel Golle wrote:
+> Add compatible string 'mediatek,mt7986-thermal' for V3 thermal unit
+> found in MT7981 and MT7986 SoCs.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
-> Cc: Hakan Jansson <hakan.jansson@infineon.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Luiz Augusto von Dentz <luiz.von.dentz@intel.com>
-> Cc: Marcel Holtmann <marcel@holtmann.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-bluetooth@vger.kernel.org
-> ---
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 1 +
+>  Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
