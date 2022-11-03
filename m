@@ -2,186 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E31FC6174B7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 04:04:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C04F96174DC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 04:21:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbiKCDEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 23:04:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54262 "EHLO
+        id S230197AbiKCDU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 23:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiKCDEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 23:04:33 -0400
-Received: from out29-220.mail.aliyun.com (out29-220.mail.aliyun.com [115.124.29.220])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37EAC14009;
-        Wed,  2 Nov 2022 20:04:29 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1124278|-1;BR=01201311R171S89rulernew998_84748_2000303;CH=blue;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0170385-0.00343638-0.979525;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047209;MF=lee@arducam.com;NM=1;PH=DS;RN=6;RT=6;SR=0;TI=SMTPD_---.Q-5jzWp_1667444665;
-Received: from localhost(mailfrom:lee@arducam.com fp:SMTPD_---.Q-5jzWp_1667444665)
-          by smtp.aliyun-inc.com;
-          Thu, 03 Nov 2022 11:04:26 +0800
-Date:   Thu, 3 Nov 2022 11:04:24 +0800
-From:   lee <lee@arducam.com>
-To:     linux-media@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
- binding
-Message-ID: <20221103110424.00007a48@arducam.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S229457AbiKCDUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 23:20:52 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A6013F74;
+        Wed,  2 Nov 2022 20:20:51 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id n186so743188oih.7;
+        Wed, 02 Nov 2022 20:20:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L9LEoUWJvpUFOWNZZSHLTT8Vj3FE8ZbDHe08yAKC0s8=;
+        b=wJivIGi4u9AcDsQVrpKZgZWwy7gb6N/17rLjUiOrVJXHXtf7/jdPCAGwvHQlCFPuhX
+         PihmDQ8jqs53U3JhKCVYMmEcg6fZ2DA1iX5+YKaMIL7WOez2JS3M35TWWhT+8Fx5KP4x
+         1B4MA0WGb87ZYKxYsE+NJMMrfK7BvDIiH93eARjrAe4Hn/BcNZt1MtynkI+VByIHk/FY
+         nbQHNRuB6LERhCJOgBM/I2wYaH9NrKrXciAVg164W5HpvQlqPYfLxj8Zle2RveNEEANb
+         hSP2875WmyHbz/XNGNpK8ZptOvVjprPXZu8+yTKMnYnKqbMrSyHbJs+ZoMxsWK8olWuh
+         S6oQ==
+X-Gm-Message-State: ACrzQf2/JhGxUanNS9t8ue9EZkYDVx9lLB0Zo5a4un0i9hQl/bYHKRxx
+        M4h/CH1s6sMRUY0KSIzS5g==
+X-Google-Smtp-Source: AMsMyM4x9J/gNXs66sXJG0Hy26y6zYfJGYKLSTEOTu+BoRTCA1i0xSYSWxYDuz+zEQkxansG7DLxNA==
+X-Received: by 2002:a05:6808:2082:b0:35a:224:983b with SMTP id s2-20020a056808208200b0035a0224983bmr11413143oiw.179.1667445651094;
+        Wed, 02 Nov 2022 20:20:51 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c14-20020a4ad20e000000b004982f2d3c03sm5059059oos.25.2022.11.02.20.20.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Nov 2022 20:20:50 -0700 (PDT)
+Received: (nullmailer pid 1058925 invoked by uid 1000);
+        Thu, 03 Nov 2022 03:20:51 -0000
+Date:   Wed, 2 Nov 2022 22:20:51 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC PATCH v3 2/2] soc: renesas: Add L2 cache management for
+ RZ/Five SoC
+Message-ID: <20221103032051.GD459441-robh@kernel.org>
+References: <20221019220242.4746-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221019220242.4746-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221021020500.GA2157489-robh@kernel.org>
+ <CA+V-a8v0jEFj+XKAtyAaTBFmX3bObBZgGd6n1LB3OnTU_W002w@mail.gmail.com>
+ <Y1Md4bMYJHI34HuJ@spud>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y1Md4bMYJHI34HuJ@spud>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML device tree binding for IMX519 CMOS image sensor, and
-the relevant MAINTAINERS entries.
+On Fri, Oct 21, 2022 at 11:32:01PM +0100, Conor Dooley wrote:
+> On Fri, Oct 21, 2022 at 11:05:40PM +0100, Lad, Prabhakar wrote:
+> > Hi Rob,
+> > 
+> > Thank you for the review.
+> > 
+> > On Fri, Oct 21, 2022 at 3:05 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, Oct 19, 2022 at 11:02:42PM +0100, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > On the AX45MP core, cache coherency is a specification option so it may
+> > > > not be supported. In this case DMA will fail. As a workaround, firstly we
+> > > > allocate a global dma coherent pool from which DMA allocations are taken
+> > > > and marked as non-cacheable + bufferable using the PMA region as specified
+> > > > in the device tree. Synchronization callbacks are implemented to
+> > > > synchronize when doing DMA transactions.
+> > > >
+> > > > The Andes AX45MP core has a Programmable Physical Memory Attributes (PMA)
+> > > > block that allows dynamic adjustment of memory attributes in the runtime.
+> > > > It contains a configurable amount of PMA entries implemented as CSR
+> > > > registers to control the attributes of memory locations in interest.
+> > > >
+> > > > Below are the memory attributes supported:
+> > > > * Device, Non-bufferable
+> > > > * Device, bufferable
+> > > > * Memory, Non-cacheable, Non-bufferable
+> > > > * Memory, Non-cacheable, Bufferable
+> > > > * Memory, Write-back, No-allocate
+> > > > * Memory, Write-back, Read-allocate
+> > > > * Memory, Write-back, Write-allocate
+> > > > * Memory, Write-back, Read and Write-allocate
+> > > >
+> > > > This patch adds support to configure the memory attributes of the memory
+> > > > regions as passed from the l2 cache node and exposes the cache management
+> > > > ops.
+> > > >
+> > > > More info about PMA (section 10.3):
+> > > > http://www.andestech.com/wp-content/uploads/AX45MP-1C-Rev.-5.0.0-Datasheet.pdf
+> > > >
+> > > > This feature is based on the work posted [0] by Vincent Chen
+> > > > <vincentc@andestech.com> for the Andes AndeStart RISC-V CPU.
+> > > >
+> > > > [0] https://lore.kernel.org/lkml/1540982130-28248-1-git-send-email-vincentc@andestech.com/
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > ---
+> > > >  arch/riscv/include/asm/cacheflush.h    |   8 +
+> > > >  arch/riscv/include/asm/errata_list.h   |   2 +
+> > > >  arch/riscv/mm/dma-noncoherent.c        |  20 ++
+> > > >  drivers/soc/renesas/Kconfig            |   5 +
+> > > >  drivers/soc/renesas/Makefile           |   4 +
+> > > >  drivers/soc/renesas/rzf/Kconfig        |   6 +
+> > > >  drivers/soc/renesas/rzf/Makefile       |   3 +
+> > > >  drivers/soc/renesas/rzf/ax45mp_cache.c | 431 +++++++++++++++++++++++++
+> > >
+> > > How many cache drivers do we have around now? I've seen a few bindings
+> > > go by. I'm guessing it is time to stop putting the drivers in the
+> > > drivers/soc/ dumping ground.
+> > >
+> > The main reason this driver is not in arch/riscv is that it has vendor
+> > specific extensions. Due to this reason it was agreed during the LPC
+> > that vendor specific extension should be maintained by SoC vendors and
+> > was agreed that this can go into drivers/soc/renesas folder instead.
+> 
+> Does not in drivers/soc mean they need to go into arch/riscv?
+> The outcome of the chat at the LPC BoF was more that the cache drivers
+> themselves should not be be routed via the arch maintainers, no?
 
-Signed-off-by: Lee Jackson <lee@arducam.com>
----
- .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
- MAINTAINERS                                   |   9 ++
- 2 files changed, 116 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+drivers/cache/ or something is what I'm suggesting starting. The first 
+thing is probably making an inventory of how many we already have.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-new file mode 100644
-index 000000000000..9b6cda96f613
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-@@ -0,0 +1,107 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
-+
-+maintainers:
-+  - Lee Jackson <lee@arducam.com>
-+
-+description: |-
-+  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
-+  with an active array size of 4656H x 3496V. It is programmable through
-+  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
-+  Image data is sent through MIPI CSI-2, which is configured as either 2 or
-+  4 data lanes.
-+
-+properties:
-+  compatible:
-+    const: sony,imx519
-+
-+  reg:
-+    description: I2C device address
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  VDIG-supply:
-+    description:
-+      Digital I/O voltage supply, 1.05 volts
-+
-+  VANA-supply:
-+    description:
-+      Analog voltage supply, 2.8 volts
-+
-+  VDDL-supply:
-+    description:
-+      Digital core voltage supply, 1.8 volts
-+
-+  reset-gpios:
-+    description: |-
-+      Reference to the GPIO connected to the xclr pin, if any.
-+      Must be released (set high) after all supplies and INCK are applied.
-+
-+port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            description: |-
-+              The driver only supports two-lane operation.
-+            items:
-+              - const: 1
-+              - const: 2
-+
-+          clock-noncontinuous: true
-+          link-frequencies: true
-+
-+        required:
-+          - data-lanes
-+          - link-frequencies
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - VANA-supply
-+  - VDIG-supply
-+  - VDDL-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        imx519: sensor@1a {
-+            compatible = "sony,imx519";
-+            reg = <0x1a>;
-+            clocks = <&imx519_clk>;
-+            VANA-supply = <&imx519_vana>;   /* 2.8v */
-+            VDIG-supply = <&imx519_vdig>;   /* 1.05v */
-+            VDDL-supply = <&imx519_vddl>;   /* 1.8v */
-+
-+            port {
-+                imx519_0: endpoint {
-+                    remote-endpoint = <&csi1_ep>;
-+                    data-lanes = <1 2>;
-+                    clock-noncontinuous;
-+                    link-frequencies = /bits/ 64 <493500000>;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e04d944005ba..5a617ab8c9b2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19236,6 +19236,15 @@ T:	git git://linuxtv.org/media_tree.git
- F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
- F:	drivers/media/i2c/imx412.c
- 
-+SONY IMX519 SENSOR DRIVER
-+M:	Arducam Kernel Maintenance <info@arducam.com>
-+M:	Lee Jackson <lee@arducam.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-+F:	drivers/media/i2c/imx519.c
-+
- SONY MEMORYSTICK SUBSYSTEM
- M:	Maxim Levitsky <maximlevitsky@gmail.com>
- M:	Alex Dubov <oakad@yahoo.com>
--- 
-2.25.1
+Rob
