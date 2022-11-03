@@ -2,322 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CD48617C15
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:01:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38977617C23
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbiKCMBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33506 "EHLO
+        id S230348AbiKCMHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbiKCMBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:01:41 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00826DF11;
-        Thu,  3 Nov 2022 05:01:39 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id f7so2621523edc.6;
-        Thu, 03 Nov 2022 05:01:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4IQVmkJIfw+G4+zEwXF78WRi81YVym7RqqN9ditiGR8=;
-        b=TaNdyEtKa8K1l5TrTQk2XV0W1b3PzqvsN2Lk8J0y6odluB6ib+TZQvGS61ahyrCdPe
-         TgvYEf/idRaUC5aGbV4+Q8Sy7HksLdzJdwix+oPCRjjFk5W0Ygsv806WZAfnxLNKMNtC
-         Oj6DNwxhsfRRj1AJdktzoIgCy+2WlNaq7t2QHFtBWsHmlED9oy3BJVpZRHosrEyP4Xec
-         aWgjwBvWnA9KIvvCAK0JMAOFcAXkJz1gVL8O5HbIHVXA2CFIIUHaRbNra+E7zZRP75Mm
-         og00eEcGwLEJCJ31wB2VaRqrKzhhclgdNRyx4Um8JfG0SJIYRO7nE5kEWN9GuTNCG25R
-         ScGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4IQVmkJIfw+G4+zEwXF78WRi81YVym7RqqN9ditiGR8=;
-        b=Tm9ihkPVQ7eEqAyYhwtZpoxA6zGEKhc5LR5GVEGrhxZieT+GTAEkeOYunLX/bPKKpr
-         968y3w7ktdBV7prbRpq5CMw22KWtyd/z90cnk+wUbxVF4T4OJz3d0DJNFEwh5CHJsT4M
-         HC0WDQyZptvi4fWrb+o0ccWQWRRw6c6jKG+jgcX8Rr7r5b+DSBLi3tDoDHD37YZ3M8Si
-         quzuYbCV5OqtMpwmJEjE5HUd77hXKLZSNtrUntMugCZjwYSWmYIiE+kJWAHJW5lprCMv
-         YlATeVfAX8bGIJwrD/v+1btabyCzk+JgzkvGhu3TMi74LhK9RKT0JHj41aBRC+HSHR8k
-         hn6w==
-X-Gm-Message-State: ACrzQf1LVv/ELOego7AKRqWtMRyPsOEMR6aLWEvcuxaG5VKGhLg3re6r
-        5DayzHyAAbEcKw/gMSYJeMM=
-X-Google-Smtp-Source: AMsMyM4wATwlk4RPzcgKvOZwf5w68fr1EQLtWQEbJimqtPpuKgIfUB7wEIzz5GV/vTRA5xxHcfZkdQ==
-X-Received: by 2002:aa7:d385:0:b0:461:8cd3:b38b with SMTP id x5-20020aa7d385000000b004618cd3b38bmr29914191edq.172.1667476898409;
-        Thu, 03 Nov 2022 05:01:38 -0700 (PDT)
-Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id qq18-20020a17090720d200b0077016f4c6d4sm423983ejb.55.2022.11.03.05.01.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 05:01:37 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH] dt-bindings: pwm: tegra: Convert to json-schema
-Date:   Thu,  3 Nov 2022 13:01:37 +0100
-Message-Id: <20221103120137.1467905-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S229700AbiKCMHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:07:45 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9457E12770;
+        Thu,  3 Nov 2022 05:07:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1667477260; x=1699013260;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2DlODcOsTLW0fyOz2IK+T+MiYhTj9WLOX3p0sgEZ288=;
+  b=ey1C2xA31Ixs4KxTdSYo2rTdH6LZPwb6uYFQCkna7z4qKH56nhat6x62
+   jBa6GItGsZ5F7DLbxtdHbILbFsc1xFlglE3dv4ck1sDIsusHfP1pAACPB
+   2OL0V6WuinzPmgiFa0k0vZSoOKJH0qgy027OXNKLk20kGROAe+d1rkYzi
+   1GsXFWa1A45m2OAu/AdBk3i00VGa40UcDa8UvOiLplZnw7n2ZYxn5f53J
+   3BmX9BYBI6atmGE2GIWmiaeFCyHqKIKY2sMruAIbJYHoyzhgH2cC0tzDJ
+   F3OBW/GHMqUC94/V5gLaJe2Hl7h+QxW9HSJByDMg0nOy6c13AZv0/4R7z
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; 
+   d="scan'208";a="185191671"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Nov 2022 05:07:38 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.12; Thu, 3 Nov 2022 05:07:30 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
+ Transport; Thu, 3 Nov 2022 05:07:28 -0700
+Date:   Thu, 3 Nov 2022 12:07:12 +0000
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Evgenii Shatokhin <e.shatokhin@yadro.com>
+CC:     <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <frowand.list@gmail.com>,
+        <robh+dt@kernel.org>, <mick@ics.forth.gr>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <Valentina.FernandezAlanis@microchip.com>,
+        <Daire.McNamara@microchip.com>, <linux@yadro.com>,
+        <heinrich.schuchardt@canonical.com>
+Subject: Re: RISC-V reserved memory problems
+Message-ID: <Y2Ou8OjB8Ag5oViI@wendy>
+References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
+ <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
+ <daa4b708-2af7-9179-90ee-e3c800d990bc@yadro.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <daa4b708-2af7-9179-90ee-e3c800d990bc@yadro.com>
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Thu, Nov 03, 2022 at 02:46:37PM +0300, Evgenii Shatokhin wrote:
+> Hi,
+> 
+> On 16.08.2022 23:41, Conor.Dooley@microchip.com wrote:
+> > Hey all,
+> > We've run into a bit of a problem with reserved memory on PolarFire, or
+> > more accurately a pair of problems that seem to have opposite fixes.
+> > 
+> > The first of these problems is triggered when trying to implement a
+> > remoteproc driver. To get the reserved memory buffer, remoteproc
+> > does an of_reserved_mem_lookup(), something like:
+> > 
+> > 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
+> > 	if (!np)
+> > 		return -EINVAL;
+> > 
+> > 	rmem = of_reserved_mem_lookup(np);
+> > 	if (!rmem)
+> > 		return -EINVAL;
+> > 
+> > of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
+> > a match - but this was triggering kernel panics for us. We did some
+> > debugging and found that the name string's pointer was pointing to an
+> > address in the 0x4000_0000 range. The minimum reproduction for this
+> > crash is attached - it hacks in some print_reserved_mem()s into
+> > setup_vm_final() around a tlb flush so you can see the before/after.
+> > (You'll need a reserved memory node in your dts to replicate)
+> > 
+> > The output is like so, with the same crash as in the remoteproc driver:
+> > 
+> > [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
+> > [    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80200000
+> > [    0.000000] Machine model: Microchip PolarFire-SoC Icicle Kit
+> > [    0.000000] earlycon: ns16550a0 at MMIO32 0x0000000020100000 (options '115200n8')
+> > [    0.000000] printk: bootconsole [ns16550a0] enabled
+> > [    0.000000] printk: debug: skip boot console de-registration.
+> > [    0.000000] efi: UEFI not found.
+> > [    0.000000] before flush
+> > [    0.000000] OF: reserved mem: debug name is fabricbuf@ae000000
+> > [    0.000000] after flush
+> > [    0.000000] Unable to handle kernel paging request at virtual address 00000000401c31ac
+> > [    0.000000] Oops [#1]
+> > [    0.000000] Modules linked in:
+> > [    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 6.0.0-rc1-00001-g0d9d6953d834 #1
+> > [    0.000000] Hardware name: Microchip PolarFire-SoC Icicle Kit (DT)
+> > [    0.000000] epc : string+0x4a/0xea
+> > [    0.000000]  ra : vsnprintf+0x1e4/0x336
+> > [    0.000000] epc : ffffffff80335ea0 ra : ffffffff80338936 sp : ffffffff81203be0
+> > [    0.000000]  gp : ffffffff812e0a98 tp : ffffffff8120de40 t0 : 0000000000000000
+> > [    0.000000]  t1 : ffffffff81203e28 t2 : 7265736572203a46 s0 : ffffffff81203c20
+> > [    0.000000]  s1 : ffffffff81203e28 a0 : ffffffff81203d22 a1 : 0000000000000000
+> > [    0.000000]  a2 : ffffffff81203d08 a3 : 0000000081203d21 a4 : ffffffffffffffff
+> > [    0.000000]  a5 : 00000000401c31ac a6 : ffff0a00ffffff04 a7 : ffffffffffffffff
+> > [    0.000000]  s2 : ffffffff81203d08 s3 : ffffffff81203d00 s4 : 0000000000000008
+> > [    0.000000]  s5 : ffffffff000000ff s6 : 0000000000ffffff s7 : 00000000ffffff00
+> > [    0.000000]  s8 : ffffffff80d9821a s9 : ffffffff81203d22 s10: 0000000000000002
+> > [    0.000000]  s11: ffffffff80d9821c t3 : ffffffff812f3617 t4 : ffffffff812f3617
+> > [    0.000000]  t5 : ffffffff812f3618 t6 : ffffffff81203d08
+> > [    0.000000] status: 0000000200000100 badaddr: 00000000401c31ac cause: 000000000000000d
+> > [    0.000000] [<ffffffff80338936>] vsnprintf+0x1e4/0x336
+> > [    0.000000] [<ffffffff80055ae2>] vprintk_store+0xf6/0x344
+> > [    0.000000] [<ffffffff80055d86>] vprintk_emit+0x56/0x192
+> > [    0.000000] [<ffffffff80055ed8>] vprintk_default+0x16/0x1e
+> > [    0.000000] [<ffffffff800563d2>] vprintk+0x72/0x80
+> > [    0.000000] [<ffffffff806813b2>] _printk+0x36/0x50
+> > [    0.000000] [<ffffffff8068af48>] print_reserved_mem+0x1c/0x24
+> > [    0.000000] [<ffffffff808057ec>] paging_init+0x528/0x5bc
+> > [    0.000000] [<ffffffff808031ae>] setup_arch+0xd0/0x592
+> > [    0.000000] [<ffffffff8080070e>] start_kernel+0x82/0x73c
+> > [    0.000000] ---[ end trace 0000000000000000 ]---
+> > [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
+> > [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
+> > 
+> > We traced this back to early_init_fdt_scan_reserved_mem() in
+> > setup_bootmem() - moving it later back up the boot sequence to
+> > after the dt has been remapped etc has fixed the problem for us.
+> > 
+> > The least movement to get it working is attached, and also pushed
+> > here: git.kernel.org/conor/c/1735589baefc
+> 
+> Any updates on this?
 
-Convert the Tegra PWFM bindings from the free-form text format to
-json-schema.
+"Yes". I /briefly/ chatted with Palmer about this at Plumbers. (see
+below). Funny timing from you replying though, I'm planning on spending
+the next days/week/weeks trying to sort this whole thing out - it's come
+to a head for us.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../bindings/pwm/nvidia,tegra20-pwm.txt       |  77 ----------
- .../bindings/pwm/nvidia,tegra20-pwm.yaml      | 144 ++++++++++++++++++
- 2 files changed, 144 insertions(+), 77 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
+> I have encountered the same issue with invalid reserved_mem[i].name pointers
+> recently, while working on a remoteproc driver for our RISC-V-based SoC.
+> 
+> I can confirm that "riscv: fix reserved memory setup"
+> (git.kernel.org/conor/c/1735589baefc) fixes the issue in our kernel based on
+> 5.15.x.
 
-diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
-deleted file mode 100644
-index 74c41e34c3b6..000000000000
---- a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
-+++ /dev/null
-@@ -1,77 +0,0 @@
--Tegra SoC PWFM controller
--
--Required properties:
--- compatible: Must be:
--  - "nvidia,tegra20-pwm": for Tegra20
--  - "nvidia,tegra30-pwm", "nvidia,tegra20-pwm": for Tegra30
--  - "nvidia,tegra114-pwm", "nvidia,tegra20-pwm": for Tegra114
--  - "nvidia,tegra124-pwm", "nvidia,tegra20-pwm": for Tegra124
--  - "nvidia,tegra132-pwm", "nvidia,tegra20-pwm": for Tegra132
--  - "nvidia,tegra210-pwm", "nvidia,tegra20-pwm": for Tegra210
--  - "nvidia,tegra186-pwm": for Tegra186
--  - "nvidia,tegra194-pwm": for Tegra194
--- reg: physical base address and length of the controller's registers
--- #pwm-cells: should be 2. See pwm.yaml in this directory for a description of
--  the cells format.
--- clocks: Must contain one entry, for the module clock.
--  See ../clocks/clock-bindings.txt for details.
--- resets: Must contain an entry for each entry in reset-names.
--  See ../reset/reset.txt for details.
--- reset-names: Must include the following entries:
--  - pwm
--
--Optional properties:
--============================
--In some of the interface like PWM based regulator device, it is required
--to configure the pins differently in different states, especially in suspend
--state of the system. The configuration of pin is provided via the pinctrl
--DT node as detailed in the pinctrl DT binding document
--	Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
--The PWM node will have following optional properties.
--pinctrl-names:	Pin state names. Must be "default" and "sleep".
--pinctrl-0:	phandle for the default/active state of pin configurations.
--pinctrl-1:	phandle for the sleep state of pin configurations.
--
--Example:
--
--	pwm: pwm@7000a000 {
--		compatible = "nvidia,tegra20-pwm";
--		reg = <0x7000a000 0x100>;
--		#pwm-cells = <2>;
--		clocks = <&tegra_car 17>;
--		resets = <&tegra_car 17>;
--		reset-names = "pwm";
--	};
--
--
--Example with the pin configuration for suspend and resume:
--=========================================================
--Suppose pin PE7 (On Tegra210) interfaced with the regulator device and
--it requires PWM output to be tristated when system enters suspend.
--Following will be DT binding to achieve this:
--
--#include <dt-bindings/pinctrl/pinctrl-tegra.h>
--
--	pinmux@700008d4 {
--		pwm_active_state: pwm_active_state {
--                        pe7 {
--                                nvidia,pins = "pe7";
--                                nvidia,tristate = <TEGRA_PIN_DISABLE>;
--			};
--		};
--
--		pwm_sleep_state: pwm_sleep_state {
--                        pe7 {
--                                nvidia,pins = "pe7";
--                                nvidia,tristate = <TEGRA_PIN_ENABLE>;
--			};
--		};
--	};
--
--	pwm@7000a000 {
--		/* Mandatory PWM properties */
--		pinctrl-names = "default", "sleep";
--		pinctrl-0 = <&pwm_active_state>;
--		pinctrl-1 = <&pwm_sleep_state>;
--	};
-diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
-new file mode 100644
-index 000000000000..9c73e78ff434
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
-@@ -0,0 +1,144 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/nvidia,tegra20-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra PWFM controller
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Jon Hunter <jonathanh@nvidia.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: nvidia,tegra20-pwm
-+
-+      - items:
-+          - enum:
-+              - nvidia,tegra30-pwm
-+              - nvidia,tegra114-pwm
-+              - nvidia,tegra124-pwm
-+              - nvidia,tegra132-pwm
-+              - nvidia,tegra210-pwm
-+          - enum:
-+              - nvidia,tegra20-pwm
-+
-+      - items:
-+          - const: nvidia,tegra186-pwm
-+
-+      - items:
-+          - const: nvidia,tegra194-pwm
-+          - const: nvidia,tegra186-pwm
-+
-+      - items:
-+          - const: nvidia,tegra234-pwm
-+          - const: nvidia,tegra194-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: module clock
-+
-+  clock-names:
-+    items:
-+      - const: pwm
-+
-+  resets:
-+    items:
-+      - description: module reset
-+
-+  reset-names:
-+    items:
-+      - const: pwm
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+  pinctrl-names:
-+    items:
-+      - const: default
-+      - const: sleep
-+
-+  pinctrl-0:
-+    description: configuration for the default/active state
-+
-+  pinctrl-1:
-+    description: configuration for the sleep state
-+
-+  operating-points-v2:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+
-+  power-domains:
-+    items:
-+      - description: phandle to the core power domain
-+
-+allOf:
-+  - $ref: pwm.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - resets
-+  - reset-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra20-car.h>
-+
-+    pwm: pwm@7000a000 {
-+        compatible = "nvidia,tegra20-pwm";
-+        reg = <0x7000a000 0x100>;
-+        #pwm-cells = <2>;
-+        clocks = <&tegra_car TEGRA20_CLK_PWM>;
-+        resets = <&tegra_car 17>;
-+        reset-names = "pwm";
-+    };
-+
-+  # Example with the pin configuration for suspend and resume:
-+  # ==========================================================
-+  # Suppose pin PE7 (On Tegra210) interfaced with the regulator device and it requires PWM output
-+  # to be tristated when system enters suspend.
-+  - |
-+    #include <dt-bindings/clock/tegra210-car.h>
-+    #include <dt-bindings/pinctrl/pinctrl-tegra.h>
-+
-+    pinmux@700008d4 {
-+        compatible = "nvidia,tegra210-pinmux";
-+        reg = <0x700008d4 0x29c>, /* Pad control registers */
-+              <0x70003000 0x294>; /* Mux registers */
-+
-+        pwm_active_state: pwm_active_state {
-+            pe7 {
-+                nvidia,pins = "pe7";
-+                nvidia,tristate = <TEGRA_PIN_DISABLE>;
-+            };
-+        };
-+
-+        pwm_sleep_state: pwm_sleep_state {
-+            pe7 {
-+                nvidia,pins = "pe7";
-+                nvidia,tristate = <TEGRA_PIN_ENABLE>;
-+            };
-+        };
-+    };
-+
-+    pwm@7000a000 {
-+        compatible = "nvidia,tegra210-pwm", "nvidia,tegra20-pwm";
-+        reg = <0x7000a000 0x100>;
-+        clocks = <&tegra_car TEGRA210_CLK_PWM>;
-+        clock-names = "pwm";
-+        resets = <&tegra_car 17>;
-+        reset-names = "pwm";
-+        #pwm-cells = <2>;
-+        pinctrl-names = "default", "sleep";
-+        pinctrl-0 = <&pwm_active_state>;
-+        pinctrl-1 = <&pwm_sleep_state>;
-+    };
--- 
-2.38.1
+Aye, we're on 5.15 for our vendor tree too so that's where we found the
+problem initally.
+
+> Your patch does not seem to have any adverse side-effects either, so:
+
+This patch itself, from what we can see, doesn't have any adverse
+side-effects. The other issue that I pointed out in this mail with
+reserved memory allocations requires an opposite fix, so there's
+something else going on that needs digging into. When I spoke with
+Palmer, I said I'd spend the time looking at it but just have not got
+around to doing it until now.
+I think it may make some sense to try and merge this patch as it at least
+makes things better and unblocks people wanting to upstream remoteproc
+drivers etc.
+And then when I (eventually?) come up with something better maybe it can
+build on that.
+
+I'll resend this patch as standalone early next week unless I've somehow
+made a breakthrough between now and then.
+
+> Tested-by: Evgenii Shatokhin <e.shatokhin@yadro.com>
+
+Thanks!
+
+> If there are newer versions or variants of the fix, I'll be glad to test
+> them too.
+
+This patch is currently the most recent work I have done, but hopefully
+that's going to change.
+
+> By the way, I wonder why arm and aarch64 do not seem to be affected by the
+> issue. As far as I can see, these architectures also populate reserved_mem[]
+> before switching to the final memory mapping during kernel init. I have not
+> dug deep into that though.
+
+Aye, that's at least where I will be starting to do comparisons..
+
+> > The second problem is a bit more complicated to explain - but we
+> > found the solution conflicted with the remoteproc fix as we had
+> > to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
+> > process to solve this one.
+> > 
+> > We want to have a node in our devicetree that contains some memory
+> > that is non-cached & marked as reserved-memory. Maybe we have just
+> > missed something, but from what we've seen:
+> > - the really early setup looks at the dtb, picks the highest bit
+> >     of memory and puts the dtb etc there so it can start using it
+> > - early_init_fdt_scan_reserved_mem() is then called, which figures
+> >     out if memory is reserved or not.
+> > 
+> > Unfortunately, the highest bit of memory is the non-cached bit so
+> > everything falls over, but we can avoid this by moving the call to
+> > early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
+> > takes place right before it in setup_bootmem().
+> > 
+> > Obviously, both of these changes are moving the function call in
+> > opposite directions and we can only really do one of them. We are not
+> > sure if what we are doing with the non-cached reserved-memory section
+> > is just not permitted & cannot work - or if this is something that
+> > was overlooked for RISC-V specifically and works for other archs.
+> > 
+> > It does seem like the first issue is a real bug, and I am happy to
+> > submit the patch for that whenever - but having two problems with
+> > opposite fixes seemed as if there was something else lurking that we
+> > just don't have enough understanding to detect.
+> > 
+> > Any help would be great!
 
