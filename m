@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AE1617735
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:10:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9C25617738
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:10:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230520AbiKCHJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 03:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44914 "EHLO
+        id S231167AbiKCHKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 03:10:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbiKCHJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:09:50 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F8164E3
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:09:47 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d10so837740pfh.6
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 00:09:47 -0700 (PDT)
+        with ESMTP id S230465AbiKCHJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:09:57 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A691D1006B
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:09:52 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id c15-20020a17090a1d0f00b0021365864446so1004597pjd.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 00:09:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vtTSpSbfumSkzodKqVV1fmVK+FiEe5+Z9JKtf5BK8+4=;
-        b=wKzByP+Yy0l5kz/xLzh4XJ/LnUCChNU3MarJzDTcDJrXNkW9XTw+OqT/ZezjJeTE2t
-         P1uEl6O+ECIE5pvBpiWgaub3JlWpd3PiGvKMVIIrAHdpBKNzivoHR+m65oKQK6N9gge/
-         xK3BtQ3MEF0Mba/ktuZJykfkFFfvlsSOB2bU00suBM7ClgL//n9rFUdPafYokI9P+4ju
-         WSpi4l8GFZJ/Ytm5QUN29ouMf/g+wnix9Sl12hFHPXsII8fNy97LITddl+xWxjjcHeAB
-         7C5BQbC3rGZ5jeh+Jt+/YSjoON/Nj6oGteiTx5hg++Q0s2Hn5XkY9bgXICLc/nEa6LLW
-         +LAg==
+        bh=sNnO/JypOAt/4mb47yViotiM/3nDhVevoD9t+FcxiWU=;
+        b=gB/XxAjBKF+5AjI0SAFaNnpDy8e2aX+xn6H5xJI6S1lPc/4om5sj5iGnn7J2+l281y
+         KfqjtBol3mM/bkr3+E6gGp/Bt8bch0nuhpbS0qrDBkTjJ980T/DwSi4ynwq8DqYGLt83
+         1drc0WDeI4aZpg9B7Q8r27yIyuLPobsRd8wXyOgLJoZUb5N2f7oM3Z2GItokAvxTKK9h
+         P4lTYWODdWoLx2vDghJ5ip7KELUunLeInAt51isGxZOrb+g+yaNyyNsb/qF8B0wb789t
+         jOtry401XUuI8hoj+TS5Rmv85h35Plp6OaWbmkrXhh40zqLB/JCyQ3QKALy29T0pKaMw
+         Ub6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vtTSpSbfumSkzodKqVV1fmVK+FiEe5+Z9JKtf5BK8+4=;
-        b=mHg745aI2tRIVZSEj4nU0zl8YuKfHIN0Q0P+rotJxFbd7vTdcoANlg5WTRmDzSEF5G
-         7sYZNKeer05FwDYlbZaj9LDcuyqRBQYjE4cJekBsbPgAo4bT3ohqnTwgfJk/Fv/cdCQw
-         sCbKUk1Tz+f99Y25E9MefoE+4AA5Mfj1/7yBdYdjdnSHMf32vCUj9XVYKA1mBvwb2THV
-         pc19H8sZZ1tW1MBxemjBHgORZ8TKky21YqL3QSZZkfrPjtHZEig91Dz1QxBRYzcJXg+K
-         asgEWP/uvvmBT8a82dxSrICxr9FxAmPcWIvZZ+l8PwnawLTQbE7FenvUMkAoxt9s+yQ1
-         3+ng==
-X-Gm-Message-State: ACrzQf06NSuBqb1u73lmIC/Gse0ZijuOwxJBLL8/f1rf1MTVxcAFdHzk
-        VGNRFHznS0ElO0BIQo2ayV3i
-X-Google-Smtp-Source: AMsMyM6DuYxF8np6A8GEqCOjPNuPMJe+voD7BLrX8PJGiwMWRjK12iB2oygJ89zASk7SOlC0291G5Q==
-X-Received: by 2002:a63:1a45:0:b0:439:49b4:9672 with SMTP id a5-20020a631a45000000b0043949b49672mr24643996pgm.551.1667459386844;
-        Thu, 03 Nov 2022 00:09:46 -0700 (PDT)
+        bh=sNnO/JypOAt/4mb47yViotiM/3nDhVevoD9t+FcxiWU=;
+        b=HeW1qVU21O+omETnkGHPSyCsaOCjSCtGZAOrpV9bxiPQCbsotxgbYYrsOxnadQTRW8
+         AoRTIW5ev802LGggJQIY831NAHuF/bWWU/ow+Gazo1TJh/vfp10dBzUpEZ+5yXJujkj2
+         3o4NnYRazl9Umem9M51vRAMNOcoNSvzaYJ0O0Uw4/tfHKXcYY07wLvtKXR0XK3sV5BzC
+         ZEIr1uEnhRsRk3/IAul1lGLOF89Vos3WNkrG07DgdyrhVPj/BIoLNjlQZ5OtBTHEX2LK
+         0W6dMqytD5o35ceV9aghXnRVXoaVLCScRV2qtY3gMOaiJPce+we9LJ/MntalFy5wHBIY
+         cIMg==
+X-Gm-Message-State: ACrzQf0HijPbaYUsZp0BxZxsMbf7HQviJwjKI7EJ2+dJVq/q1RQCaLXt
+        uV4KrZDNF1JZQEWHu6NTOsaNtg44GG1Q
+X-Google-Smtp-Source: AMsMyM5jOZKtLsy/lSqi141RLNUaylntx5dv/WkYDP9v6GhBElj6sCtTGzdAYCnHkf7l2xFXX/z65A==
+X-Received: by 2002:a17:90b:438e:b0:213:c985:b5dd with SMTP id in14-20020a17090b438e00b00213c985b5ddmr24985395pjb.116.1667459392187;
+        Thu, 03 Nov 2022 00:09:52 -0700 (PDT)
 Received: from localhost.localdomain ([117.193.208.64])
-        by smtp.gmail.com with ESMTPSA id s9-20020a170903214900b00186748fe6ccsm9451244ple.214.2022.11.03.00.09.41
+        by smtp.gmail.com with ESMTPSA id s9-20020a170903214900b00186748fe6ccsm9451244ple.214.2022.11.03.00.09.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 00:09:46 -0700 (PDT)
+        Thu, 03 Nov 2022 00:09:51 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     andersson@kernel.org
 Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
@@ -58,9 +58,9 @@ Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
         steev@kali.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 03/12] arm64: dts: qcom: sc8280xp-pmics: Add thermal zones for PM8280_{1/2} PMICs
-Date:   Thu,  3 Nov 2022 12:39:02 +0530
-Message-Id: <20221103070911.20019-4-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 04/12] arm64: dts: qcom: sc8280xp-pmics: Add support for PMK8280 RESIN input
+Date:   Thu,  3 Nov 2022 12:39:03 +0530
+Message-Id: <20221103070911.20019-5-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20221103070911.20019-1-manivannan.sadhasivam@linaro.org>
 References: <20221103070911.20019-1-manivannan.sadhasivam@linaro.org>
@@ -68,79 +68,41 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones for the PM8280_{1/2} PMICs by using the temperature
-alarm blocks as the thermal sensors. Temperature trip points are
-inherited from PM8350 PMIC.
+The RESIN input can be used to reset the PMK8280 PMIC. Enabling the
+RESIN block allows the PMK8280 to detect reset input via RESIN_N pin.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 44 ++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-index 5de47b1434a4..397ff4995003 100644
+index 397ff4995003..4a3464f5e6e9 100644
 --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
-@@ -7,6 +7,50 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
+@@ -68,6 +68,12 @@ pmk8280_pon_pwrkey: pwrkey {
+ 				linux,code = <KEY_POWER>;
+ 				status = "disabled";
+ 			};
++
++			pmk8280_pon_resin: resin {
++				compatible = "qcom,pmk8350-resin";
++				interrupts = <0x0 0x13 0x6 IRQ_TYPE_EDGE_BOTH>;
++				status = "disabled";
++			};
+ 		};
+ 	};
  
-+/ {
-+	thermal-zones {
-+		pm8280_1_thermal: pm8280-1-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8280_1_temp_alarm>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				trip1 {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		pm8280_2_thermal: pm8280-2-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8280_2_temp_alarm>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				trip1 {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &spmi_bus {
- 	pmk8280: pmic@0 {
- 		compatible = "qcom,pmk8350", "qcom,spmi-pmic";
 -- 
 2.25.1
 
