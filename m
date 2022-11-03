@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41AB46186A5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 18:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BF2A6186B5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 18:57:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbiKCRxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 13:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60938 "EHLO
+        id S231800AbiKCR5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 13:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbiKCRxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 13:53:33 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6761A05F
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 10:53:33 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id y13so2310054pfp.7
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 10:53:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gh4tHwGdYqiA6FfBVtb4eaTZECdeDr+dtEfH6mIg700=;
-        b=WiDvzWb07Nd95ou0RXLpYHaRo0kqVVVo4n0ExPUJKESfL6TOqXt408h6C23wWmKp30
-         y53OsxEJOr2nNl1zjx+MOeonIGReZVmncVdT3AKaX4T6VpduRz0TcpNeGPdLMLAcc8ZJ
-         lYAGFpMAvDJnVY3BpApDarK+s8PlKyvls1lTwv4JzGXxExA2TERW6nphT5UI8TuNNMYP
-         pLC4P26Jt+2epBkG4bCuqbsG5jospL06fhiTw4JmaCpPJ80cIFRXmw2bCJVbdb5H1W9E
-         hHt7GfPG4A4Myu29eLDVDtCCi3OmiQaW5ZyqRjv3BpAzuKQXeDQi/XEOrn7jGfVtDo9k
-         b9MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gh4tHwGdYqiA6FfBVtb4eaTZECdeDr+dtEfH6mIg700=;
-        b=rfYdeqVJZYdfNQFI2wCgpD9R6gYRFlSubHTCwhVG8VGuu93NNuBcX7yjylMcej4Ujb
-         VSvOzkw01weAOIjKoVTivzISU4jGpaI3Ot9TaQoCKwmHtjsgDhdamqvQ81nio9ugulq7
-         EKS0QCiRCZMfwFdLK4qucX7Pt9nDI6MbZT04j5pS3FfLx4+b2jRi6QWOKbBo/7X7uNZL
-         JHhSubz9jJsUpZjfrqyXZlFAgdtfrKgJ6IkzAms9qkQwOUvcR2WNm/GVlhGgN/WTTTM9
-         bSily+Mt0Dw5J6r7f1ydo9vgIps1f3KRlzQCPt4I6yi7nAGhvFVDoPGNKqhMnH3ulh41
-         fG6g==
-X-Gm-Message-State: ACrzQf3qRMnTQWynMfKlliTQ4mfcfS8XOZOCAiHbshTdCl7F4YF/YDn8
-        5gIVQftIpntSFktWphSvwcC7ZQ==
-X-Google-Smtp-Source: AMsMyM4ulepeXPsIA0hp3ORHkqmjCQ+/YpaBJ+3a+Y7uY7qnn6UlIRDNR9vuLc2PYRku4Evi49vFsg==
-X-Received: by 2002:a63:f50e:0:b0:470:274b:53a2 with SMTP id w14-20020a63f50e000000b00470274b53a2mr2355814pgh.524.1667498012612;
-        Thu, 03 Nov 2022 10:53:32 -0700 (PDT)
-Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
-        by smtp.gmail.com with ESMTPSA id o12-20020a170902d4cc00b00180cf894b67sm972393plg.130.2022.11.03.10.53.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 10:53:32 -0700 (PDT)
-Message-ID: <dc6c8f79-9830-dd1b-a064-3b25a3b74a35@9elements.com>
-Date:   Thu, 3 Nov 2022 23:23:28 +0530
+        with ESMTP id S231567AbiKCR5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 13:57:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9131DA57;
+        Thu,  3 Nov 2022 10:57:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6108DB82960;
+        Thu,  3 Nov 2022 17:57:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88FC9C433C1;
+        Thu,  3 Nov 2022 17:57:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667498235;
+        bh=epCxwcXuQo83AK3kK4fWvFDQ4y5LpONxVgcHjBSV7lg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tl4HkpiEZpgIPUU/d6xsk4oz+mwoF+GPMzxh7x1P4w+Wkl4POcuB0DHBJGWdekkZd
+         GWwgm/+JvEfoq9edztarzU/pCH/j2m9cU3i6Vd1HKModcrsbXwU5TwaDgzXK+cO/1w
+         ifJ1EeIFoeTqbFGSpFEbYkBQeR567T8Sq3tsq7+Jrr5ps9cxZK2GZfRJsR7NImnLqm
+         jeoAovm2YC/VPlon+m6pTBJgiHY5BwvjLrw6mxHlOmpZC9kSYSTZ8FCpt9vLRrlWO1
+         Fe78eqMWAz10VzAxCiYqG9X/BtWf+wFviqb3qmIWL5YEZVbuvtk7+XEclMPCvNvKgP
+         ujBM1onujsV/A==
+Date:   Thu, 3 Nov 2022 18:57:11 +0100
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v3 net-next 3/8] net: ethernet: mtk_wed: introduce wed
+ mcu support
+Message-ID: <Y2QA989WNCTuqnDU@lore-desk>
+References: <cover.1667466887.git.lorenzo@kernel.org>
+ <01c82e3783373e04b609d60075ef7ecf71d0d24d.1667466887.git.lorenzo@kernel.org>
+ <5248b495-710b-ad72-7813-869dc660cf31@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
- <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
- <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
-Content-Language: en-US
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-In-Reply-To: <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Qxb2BrJNPvdY5tSy"
+Content-Disposition: inline
+In-Reply-To: <5248b495-710b-ad72-7813-869dc660cf31@collabora.com>
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,21 +64,184 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On 03-11-2022 06:43 pm, Krzysztof Kozlowski wrote:
->> +examples:
->> +  - |
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        regulator@3a {
->> +           compatible = "maxim,max5978";
->> +           reg = <0x3a>;
->> +           vss1-supply = <&p3v3>;
->> +
->> +           regulators {
->> +               sw0_ref_0: SW0 {
-> No improvements here.
-I've addressed 4 space indentation, bindings are matched, compatible is 
-moved to first, then reg then the rest.
+--Qxb2BrJNPvdY5tSy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+> Il 03/11/22 10:28, Lorenzo Bianconi ha scritto:
+> > From: Sujuan Chen <sujuan.chen@mediatek.com>
+> >=20
+> > Introduce WED mcu support used to configure WED WO chip.
+> > This is a preliminary patch in order to add RX Wireless
+> > Ethernet Dispatch available on MT7986 SoC.
+> >=20
+> > Tested-by: Daniel Golle <daniel@makrotopia.org>
+> > Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
+> > ---
+> >   drivers/net/ethernet/mediatek/Makefile       |   2 +-
+> >   drivers/net/ethernet/mediatek/mtk_wed_mcu.c  | 364 +++++++++++++++++++
+> >   drivers/net/ethernet/mediatek/mtk_wed_regs.h |   1 +
+> >   drivers/net/ethernet/mediatek/mtk_wed_wo.h   | 152 ++++++++
+> >   include/linux/soc/mediatek/mtk_wed.h         |  29 ++
+> >   5 files changed, 547 insertions(+), 1 deletion(-)
+> >   create mode 100644 drivers/net/ethernet/mediatek/mtk_wed_mcu.c
+> >   create mode 100644 drivers/net/ethernet/mediatek/mtk_wed_wo.h
+> >=20
+> > diff --git a/drivers/net/ethernet/mediatek/Makefile b/drivers/net/ether=
+net/mediatek/Makefile
+> > index 45ba0970504a..d4bdefa77159 100644
+> > --- a/drivers/net/ethernet/mediatek/Makefile
+> > +++ b/drivers/net/ethernet/mediatek/Makefile
+> > @@ -5,7 +5,7 @@
+> >   obj-$(CONFIG_NET_MEDIATEK_SOC) +=3D mtk_eth.o
+> >   mtk_eth-y :=3D mtk_eth_soc.o mtk_sgmii.o mtk_eth_path.o mtk_ppe.o mtk=
+_ppe_debugfs.o mtk_ppe_offload.o
+> > -mtk_eth-$(CONFIG_NET_MEDIATEK_SOC_WED) +=3D mtk_wed.o
+> > +mtk_eth-$(CONFIG_NET_MEDIATEK_SOC_WED) +=3D mtk_wed.o mtk_wed_mcu.o
+> >   ifdef CONFIG_DEBUG_FS
+> >   mtk_eth-$(CONFIG_NET_MEDIATEK_SOC_WED) +=3D mtk_wed_debugfs.o
+> >   endif
+> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_mcu.c b/drivers/net/=
+ethernet/mediatek/mtk_wed_mcu.c
+> > new file mode 100644
+> > index 000000000000..20987eecfb52
+> > --- /dev/null
+> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_mcu.c
+>=20
+> ..snip..
+>=20
+> > +
+> > +int mtk_wed_mcu_init(struct mtk_wed_wo *wo)
+> > +{
+> > +	u32 val;
+> > +	int ret;
+> > +
+> > +	skb_queue_head_init(&wo->mcu.res_q);
+> > +	init_waitqueue_head(&wo->mcu.wait);
+> > +	mutex_init(&wo->mcu.mutex);
+> > +
+> > +	ret =3D mtk_wed_mcu_load_firmware(wo);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	do {
+> > +		/* get dummy cr */
+> > +		val =3D wed_r32(wo->hw->wed_dev,
+> > +			      MTK_WED_SCR0 + 4 * MTK_WED_DUMMY_CR_FWDL);
+> > +	} while (val && !time_after(jiffies, jiffies + MTK_FW_DL_TIMEOUT));
+>=20
+> Here you can use readx_poll_timeout() instead: please do so.
+
+ack, I will fix it in v4
+
+>=20
+> > +
+> > +	return val ? -EBUSY : 0;
+> > +}
+> > +
+> > +MODULE_FIRMWARE(MT7986_FIRMWARE_WO0);
+> > +MODULE_FIRMWARE(MT7986_FIRMWARE_WO1);
+> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_regs.h b/drivers/net=
+/ethernet/mediatek/mtk_wed_regs.h
+> > index e270fb336143..c940b3bb215b 100644
+> > --- a/drivers/net/ethernet/mediatek/mtk_wed_regs.h
+> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_regs.h
+> > @@ -152,6 +152,7 @@ struct mtk_wdma_desc {
+> >   #define MTK_WED_RING_RX(_n)				(0x400 + (_n) * 0x10)
+> > +#define MTK_WED_SCR0					0x3c0
+> >   #define MTK_WED_WPDMA_INT_TRIGGER			0x504
+> >   #define MTK_WED_WPDMA_INT_TRIGGER_RX_DONE		BIT(1)
+> >   #define MTK_WED_WPDMA_INT_TRIGGER_TX_DONE		GENMASK(5, 4)
+> > diff --git a/drivers/net/ethernet/mediatek/mtk_wed_wo.h b/drivers/net/e=
+thernet/mediatek/mtk_wed_wo.h
+> > new file mode 100644
+> > index 000000000000..2ef3ccdec5bf
+> > --- /dev/null
+> > +++ b/drivers/net/ethernet/mediatek/mtk_wed_wo.h
+> > @@ -0,0 +1,152 @@
+>=20
+>=20
+> ..snip..
+>=20
+> > +
+> > +#define MTK_WO_MCU_CFG_LS_BASE				0 /* XXX: 0x15194000 */
+>=20
+> Since that definition is zero, you can safely remove it: like so, the ones
+> following will be a bit more readable.
+
+(removing the XXX) this is a pattern already used in the driver and in mt76=
+=2E I
+would prefer to keep it as it is.
+
+>=20
+> > +#define MTK_WO_MCU_CFG_LS_HW_VER_ADDR			(MTK_WO_MCU_CFG_LS_BASE + 0x00=
+0)
+> > +#define MTK_WO_MCU_CFG_LS_FW_VER_ADDR			(MTK_WO_MCU_CFG_LS_BASE + 0x00=
+4)
+> > +#define MTK_WO_MCU_CFG_LS_CFG_DBG1_ADDR			(MTK_WO_MCU_CFG_LS_BASE + 0x=
+00c)
+> > +#define MTK_WO_MCU_CFG_LS_CFG_DBG2_ADDR			(MTK_WO_MCU_CFG_LS_BASE + 0x=
+010)
+> > +#define MTK_WO_MCU_CFG_LS_WF_MCCR_ADDR			(MTK_WO_MCU_CFG_LS_BASE + 0x0=
+14)
+> > +#define MTK_WO_MCU_CFG_LS_WF_MCCR_SET_ADDR		(MTK_WO_MCU_CFG_LS_BASE + =
+0x018)
+> > +#define MTK_WO_MCU_CFG_LS_WF_MCCR_CLR_ADDR		(MTK_WO_MCU_CFG_LS_BASE + =
+0x01c)
+> > +#define MTK_WO_MCU_CFG_LS_WF_MCU_CFG_WM_WA_ADDR		(MTK_WO_MCU_CFG_LS_BA=
+SE + 0x050)
+> > +#define MTK_WO_MCU_CFG_LS_WM_BOOT_ADDR_ADDR		(MTK_WO_MCU_CFG_LS_BASE +=
+ 0x060)
+> > +#define MTK_WO_MCU_CFG_LS_WA_BOOT_ADDR_ADDR		(MTK_WO_MCU_CFG_LS_BASE +=
+ 0x064)
+>=20
+> ..snip..
+>=20
+> > +
+> > +static inline int
+> > +mtk_wed_mcu_check_msg(struct mtk_wed_wo *wo, struct sk_buff *skb)
+> > +{
+> > +	struct mtk_wed_mcu_hdr *hdr =3D (struct mtk_wed_mcu_hdr *)skb->data;
+> > +
+> > +	if (hdr->version)
+>=20
+> 	if (hdr->version || skb->len < sizeof(*hdr) || skb->len !=3D le16_to_cpu=
+(hdr->length))
+> 		return -EINVAL;
+
+This is just a matter of test, I would prefer as it is.
+
+>=20
+>=20
+> > +		return -EINVAL;
+> > +
+> > +	if (skb->len < sizeof(*hdr))
+> > +		return -EINVAL;
+> > +
+> > +	if (skb->len !=3D le16_to_cpu(hdr->length))
+> > +		return -EINVAL;
+> > +
+> > +	return 0;
+> > +}
+> > +
+>=20
+> Regards,
+> Angelo
+>=20
+
+--Qxb2BrJNPvdY5tSy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCY2QA9wAKCRA6cBh0uS2t
+rMhpAQDc9B6HxmY3gmPng0upEbDvspJB1OpZ+c0/aZdHHXsryAD/cIMRUWxDR5Qo
+8lKx2gmO4kmxM2y2GoYPcoKMESn/7QE=
+=Etms
+-----END PGP SIGNATURE-----
+
+--Qxb2BrJNPvdY5tSy--
