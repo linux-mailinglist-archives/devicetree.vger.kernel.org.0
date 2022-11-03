@@ -2,76 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E26AE618CD1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 00:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E405C618CFF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 00:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230340AbiKCXd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 19:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54540 "EHLO
+        id S230329AbiKCXtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 19:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbiKCXdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 19:33:24 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713775FDB;
-        Thu,  3 Nov 2022 16:33:23 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id 13so9348935ejn.3;
-        Thu, 03 Nov 2022 16:33:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UQYI60HPFAeQV3YgrEAYhfzgwL+NL+uq4fz1h8XP5dY=;
-        b=fVmN0B/VlowI6Xn6+GPMC+FIrSh+IcVpVD1CnIcvpBt4BaY+TeHDofCBqwtyTpYSj4
-         mEXXoYTTIOazczI1l0VrX3UkYfaiPgetWGwxJhGetTpdEcmh8VHxewPtzb5JJflZbdvv
-         VdDsQmCJnJkkA/UEZ1Xr9t+EpfU0UuUNwI+u3LQt6X7gVwsWjAk3PklTLgIiDJ8casoQ
-         jUcJCc0uIBNSIWNxFMfH/Xtum0VUwO5r1vBNS5jqDkojQOrRuI8aJTJeZvY/aVhHFVPi
-         teiZy9b9ebqaZuzNYQ8AGkCw84Af5WSkSfqv5PyZxU2XCae6TG5ZwpVTu/dFX5JRQrL0
-         LlbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UQYI60HPFAeQV3YgrEAYhfzgwL+NL+uq4fz1h8XP5dY=;
-        b=aLuIFkZMXNL6wvNeWs2V5ZnvqgKGaPnAuprbTkVDImWsV9dPNhDXo9YWVMNVRp3009
-         2l8XO9tFij/YqX2DQNQHQBDEUS/QBMfItrc3R5kmnV8D6rEoamzIBNcaLnP9/SamyeIm
-         yAe4TRRByVQIKhX1ufwcKqrxCbN3NsAmu1yvckepAgnMLN2XOrQ+ceTdu1hyk/xOAwzz
-         HVF5vR7CHm9/9mvVbM3shscA56axQBDjCfJlsWKX5iCFi1TN0MMjHiq2+oIN3HvsJKXg
-         +3YJ568vm+Owh/1Ote+/jlmo7KGutvsTgLKaXd7c/QcRf8oq47zuTGI5pNdhBCUIZ2W4
-         fKTw==
-X-Gm-Message-State: ACrzQf2Y/2j8Xzth2/DCze4bz6Ku4+QE5TGTCD50a8PET1OO6jHodf4v
-        pqvokkdm9pis4Gf5dYdYj8hLsRtGXvHN6R4P
-X-Google-Smtp-Source: AMsMyM558McdR6z3sk0s8EHwfqs7lwfHYIHx/lvR6x55rn3hWrQqaTXqK0OJ4I25i/zAejh+DDlvxQ==
-X-Received: by 2002:a17:906:7d8c:b0:7ae:159d:1146 with SMTP id v12-20020a1709067d8c00b007ae159d1146mr6347842ejo.528.1667518401916;
-        Thu, 03 Nov 2022 16:33:21 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id s28-20020a056402037c00b0045bccd8ab83sm1131934edw.1.2022.11.03.16.33.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 16:33:21 -0700 (PDT)
-Date:   Fri, 4 Nov 2022 01:33:19 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229873AbiKCXtl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 19:49:41 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C8D640A;
+        Thu,  3 Nov 2022 16:49:39 -0700 (PDT)
+Received: from [192.168.31.208] (unknown [194.29.137.22])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 632151FF01;
+        Fri,  4 Nov 2022 00:49:35 +0100 (CET)
+Message-ID: <1a4423c2-42e6-756d-50d8-a844534eae0d@somainline.org>
+Date:   Fri, 4 Nov 2022 00:49:34 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: add sdm670 and pixel 3a device
+ trees
+To:     Richard Acayan <mailingradian@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
-Message-ID: <20221103233319.m2wq5o2w3ccvw5cu@skbuf>
-References: <20221102185232.131168-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221102185232.131168-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20221103230349.212861-1-mailingradian@gmail.com>
+ <20221103230349.212861-5-mailingradian@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20221103230349.212861-5-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,40 +58,201 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Wed, Nov 02, 2022 at 02:52:32PM -0400, Krzysztof Kozlowski wrote:
-> Some boards use SJA1105 Ethernet Switch with SPI CPOL and CPHA, so
-> document this to fix dtbs_check warnings:
-> 
->   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+On 04/11/2022 00:03, Richard Acayan wrote:
+> The Qualcomm Snapdragon 670 has been out for a while. Add a device tree
+> for it and the Google Pixel 3a as the first device.
+>
+> The Pixel 3a has the same bootloader issue as the Pixel 3 and will not work
+> on Android 10 bootloaders or later until it gets fixed for the Pixel 3.
+>
+> SoC Initial Features:
+>   - power management
+>   - clocks
+>   - pinctrl
+>   - eMMC
+>   - USB 2.0
+>   - GENI I2C
+>   - IOMMU
+>   - RPMh
+>   - interrupts
+>
+> Device-Specific Initial Features:
+>   - side buttons (keys)
+>   - regulators
+>   - touchscreen
+>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
-> 
-> Changes since v1:
-> 1. Add also cpha
-> ---
->  Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-> index 1e26d876d146..3debbf0f3789 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-> @@ -36,6 +36,9 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  spi-cpha: true
-> +  spi-cpol: true
+>   arch/arm64/boot/dts/qcom/Makefile             |    1 +
+>   .../boot/dts/qcom/sdm670-google-sargo.dts     |  532 ++++++++
+>   arch/arm64/boot/dts/qcom/sdm670.dtsi          | 1169 +++++++++++++++++
+>   3 files changed, 1702 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+>   create mode 100644 arch/arm64/boot/dts/qcom/sdm670.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index b0558d3389e5..4eb5d8829efb 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -124,6 +124,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-voyager.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> new file mode 100644
+> index 000000000000..3a01859dd42c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
+> @@ -0,0 +1,532 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device tree for Google Pixel 3a, adapted from google-blueline device tree,
+> + * xiaomi-lavender device tree, and oneplus-common device tree.
+> + *
+> + * Copyright (c) 2022, Richard Acayan. All rights reserved.
+> + */
 > +
->    # Optional container node for the 2 internal MDIO buses of the SJA1110
->    # (one for the internal 100base-T1 PHYs and the other for the single
->    # 100base-TX PHY). The "reg" property does not have physical significance.
-> -- 
-> 2.34.1
-> 
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +#include <dt-bindings/power/qcom-rpmpd.h>
+> +#include "sdm670.dtsi"
+> +#include "pm660.dtsi"
+> +#include "pm660l.dtsi"
+> +
+> +/delete-node/ &mpss_region;
+> +/delete-node/ &venus_mem;
+> +/delete-node/ &wlan_msa_mem;
+> +/delete-node/ &cdsp_mem;
+> +/delete-node/ &mba_region;
+> +/delete-node/ &adsp_mem;
+> +/delete-node/ &ipa_fw_mem;
+> +/delete-node/ &ipa_gsi_mem;
+> +/delete-node/ &gpu_mem;
+> +
+> +/ {
+> +	model = "Google Pixel 3a";
+> +	compatible = "google,sargo", "qcom,sdm670";
+> +	qcom,board-id = <0x00041e05 0>;
+> +	qcom,msm-id = <321 0x20001>;
+> +
+> +	aliases { };
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		framebuffer@9c000000 {
+> +			compatible = "simple-framebuffer";
+> +			reg = <0x0 0x9c000000 0x0 (1080 * 2220 * 4)>;
 
-Don't these belong to spi-peripheral-props.yaml?
+Please use '0x0' and '0' consistently in reg properties.
+
+
+> +			width = <1080>;
+> +			height = <2220>;
+> +			stride = <(1080 * 4)>;
+> +			format = "a8r8g8b8";
+> +		};
+> +	};
+> +
+
+[...]
+
+
+>
+> +
+> +&i2c9 {
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +
+> +	synaptics-rmi4-i2c@20 {
+> +		compatible = "syna,rmi4-i2c";
+> +		reg = <0x20>;
+> +		#address-cells = <0x1>;
+> +		#size-cells = <0x0>;
+
+#-cells properties should have decimal values.
+
+
+[...]
+
+
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> new file mode 100644
+> index 000000000000..cbebe29ca6f8
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> @@ -0,0 +1,1169 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * SDM670 SoC device tree source, adapted from SDM845 SoC device tree
+> + *
+> + * Copyright (c) 2018, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Richard Acayan. All rights reserved.
+> + */
+> +
+
+[...]
+
+
+> +
+> +		gpi_dma0: dma-controller@800000 {
+> +			#dma-cells = <3>;
+> +			compatible = "qcom,sdm670-gpi-dma", "qcom,sdm845-gpi-dma";
+> +			reg = <0 0x00800000 0 0x60000>;
+> +			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 254 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>;
+> +			dma-channels = <13>;
+> +			dma-channel-mask = <0xfa>;
+> +			iommus = <&apps_smmu 0x0016 0x0>;
+
+&apps_smmu 0x16 0x0
+
+
+[...]
+> +
+> +		intc: interrupt-controller@17a00000 {
+> +			compatible = "arm,gic-v3";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +			#interrupt-cells = <3>;
+> +			interrupt-controller;
+> +			reg = <0 0x17a00000 0 0x10000>,     /* GICD */
+> +			      <0 0x17a60000 0 0x100000>;    /* GICR * 8 */
+
+reg second, #cells and ranges last, please.
+
+
+Other than that, lgtm
+
+
+Konrad
+
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +	};
+> +};
