@@ -2,118 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9FB7617E15
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:39:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CAD2617E19
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:40:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231555AbiKCNjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 09:39:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40682 "EHLO
+        id S230111AbiKCNkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 09:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231596AbiKCNjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:39:16 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67B63B9F;
-        Thu,  3 Nov 2022 06:39:15 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id 13so5340719ejn.3;
-        Thu, 03 Nov 2022 06:39:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HuoiIm8f1+pLkMCMfNs8Z4K3LzZnaZWtse5hncoBXug=;
-        b=WOIOrTs5wDw45r6z1U4MpbhJq9ZryvRk3zOzSYUmYMec/MQxf3XmaBKYvPOrW9phMZ
-         UAswei6GmqvYKULPZKvu4EC06uAQ3oUPdBDaCRnvqBxURM5H8nk3rW7ZwO9vnG+KibgH
-         /kthT9vb9jS7RjOfaei8dc5/58TXTJsFwgDhJNGQ0fasmyfpK6C4NtDXrAgdEAvBNbKt
-         t2AvI09T0oeHAtBBYcRli8B7NjxKYYktBKvoMLPeardsdEa7xfCz/8ReTq4U8ouZmFP2
-         +CxXTIzPpF1A5apjqogM+4+goqbUNtpG4Jj2t8eAG/jProlkpbSvAbr+EnMfNxk+8l7p
-         DNIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HuoiIm8f1+pLkMCMfNs8Z4K3LzZnaZWtse5hncoBXug=;
-        b=WTGcB4mfmuYgXsuMexgM7/gTyWIClX5IWrdBnx6nkqk3UEeOEiDdbG8deVeN/ednm5
-         SuX5z5at4zWAPf4pyGX658GIirxf9JocyzajrY0PnlL7WiuzLwpMkdXP4wuOOSzRGH/p
-         XuvGGuXXEoUHbWIVF9Q9aSnsy8kNBru65/pm2RBFp9WVHS58YR/paXaR/H/JsEMzrDRn
-         Re3YELRgV652MzCDXMyFV1LIZ9r5YV8/6pGO6J+HdQksZJR7GAv5b+xdZLOacubcZ1XF
-         GgqIrG1VPefQQXl3SasjeZ+7245zbk60SKNwq2VUjGJunZBZLMrrAg987PEZ4uUS+Ab7
-         kCqA==
-X-Gm-Message-State: ACrzQf3GkLbVF+op4d5q+PsvG7CAtaKbhzKSQGurYvIGw0kjubSGeB5p
-        2gdm9nctHtVFkrQMfCsg8bo=
-X-Google-Smtp-Source: AMsMyM515jSAgrgtrPv6W8cuyVKGjXoGniUUGUbH7rNavvWKdzFTbZakrYtH2QbWOm5oPcugOCAcuQ==
-X-Received: by 2002:a17:906:fe45:b0:788:15a5:7495 with SMTP id wz5-20020a170906fe4500b0078815a57495mr29363453ejb.633.1667482753890;
-        Thu, 03 Nov 2022 06:39:13 -0700 (PDT)
-Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id x20-20020a1709064a9400b0074136cac2e7sm510618eju.81.2022.11.03.06.39.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 06:39:13 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-tegra@vger.kernel.org, asahi@lists.linux.dev,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH v10 5/5] iommu: dma: Use of_iommu_get_resv_regions()
-Date:   Thu,  3 Nov 2022 14:39:00 +0100
-Message-Id: <20221103133900.1473855-6-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221103133900.1473855-1-thierry.reding@gmail.com>
-References: <20221103133900.1473855-1-thierry.reding@gmail.com>
+        with ESMTP id S230167AbiKCNkK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:40:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3209AB4A8
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 06:40:09 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1oqaRr-0007c7-IJ; Thu, 03 Nov 2022 14:39:59 +0100
+Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1oqaRp-0005ti-Tm; Thu, 03 Nov 2022 14:39:57 +0100
+Date:   Thu, 3 Nov 2022 14:39:57 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc:     vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        harini.katakam@amd.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        git@amd.com, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: dmaengine: zynqmp_dma: add xlnx,bus-width
+ required property
+Message-ID: <20221103133957.GA28423@pengutronix.de>
+References: <1667448757-7001-1-git-send-email-radhey.shyam.pandey@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1667448757-7001-1-git-send-email-radhey.shyam.pandey@amd.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Thu, 03 Nov 2022 09:42:37 +0530, Radhey Shyam Pandey wrote:
+> xlnx,bus-width is a required property. In yaml conversion somehow
+> it got missed out. Bring it back and mention it in required list.
+> Also add Harini and myself to the maintainer list.
+> 
+> Fixes: 5a04982df8da ("dt-bindings: dmaengine: zynqmp_dma: convert to yaml")
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 
-For device tree nodes, use the standard of_iommu_get_resv_regions()
-implementation to obtain the reserved memory regions associated with a
-device.
+Reviewed-by: Michael Tretter <m.tretter@pengutronix.de>
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/iommu/dma-iommu.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-index 9297b741f5e8..709b05d3aad2 100644
---- a/drivers/iommu/dma-iommu.c
-+++ b/drivers/iommu/dma-iommu.c
-@@ -23,6 +23,7 @@
- #include <linux/memremap.h>
- #include <linux/mm.h>
- #include <linux/mutex.h>
-+#include <linux/of_iommu.h>
- #include <linux/pci.h>
- #include <linux/scatterlist.h>
- #include <linux/spinlock.h>
-@@ -391,6 +392,8 @@ void iommu_dma_get_resv_regions(struct device *dev, struct list_head *list)
- 	if (!is_of_node(dev_iommu_fwspec_get(dev)->iommu_fwnode))
- 		iort_iommu_get_resv_regions(dev, list);
- 
-+	if (dev->of_node)
-+		of_iommu_get_resv_regions(dev, list);
- }
- EXPORT_SYMBOL(iommu_dma_get_resv_regions);
- 
--- 
-2.38.1
-
+> ---
+>  .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml    | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
+> index c0a1408b12ec..a10019d3a650 100644
+> --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
+> +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
+> @@ -13,6 +13,8 @@ description: |
+>  
+>  maintainers:
+>    - Michael Tretter <m.tretter@pengutronix.de>
+> +  - Harini Katakam <harini.katakam@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>  
+>  allOf:
+>    - $ref: "../dma-controller.yaml#"
+> @@ -65,6 +67,7 @@ required:
+>    - interrupts
+>    - clocks
+>    - clock-names
+> +  - xlnx,bus-width
+>  
+>  additionalProperties: false
+>  
+> 
+> base-commit: 9abf2313adc1ca1b6180c508c25f22f9395cc780
+> -- 
+> 2.25.1
+> 
+> 
