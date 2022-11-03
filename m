@@ -2,157 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FFCD617CC0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:37:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C8C617CC7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:38:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbiKCMhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:37:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54794 "EHLO
+        id S231789AbiKCMh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231754AbiKCMhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:37:07 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C379014036;
-        Thu,  3 Nov 2022 05:36:58 -0700 (PDT)
-Received: from canpemm500009.china.huawei.com (unknown [172.30.72.53])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4N33822hZFzpW8Y;
-        Thu,  3 Nov 2022 20:33:22 +0800 (CST)
-Received: from [10.67.102.169] (10.67.102.169) by
- canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 3 Nov 2022 20:36:56 +0800
-CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linus.walleij@linaro.org>,
-        <brgl@bgdev.pl>, <xuwei5@huawei.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <yangyicong@hisilicon.com>
-Subject: Re: [PATCH next v3 2/2] dt-bindings: gpio: add entry for
- hisilicon,ascend910-gpio
-To:     Weilong Chen <chenweilong@huawei.com>, <f.fangjian@huawei.com>
-References: <20221101082442.263448-1-chenweilong@huawei.com>
- <20221101082442.263448-2-chenweilong@huawei.com>
-From:   Yicong Yang <yangyicong@huawei.com>
-Message-ID: <322c65cf-2b89-a73c-ba7e-983ac8fb8b3e@huawei.com>
-Date:   Thu, 3 Nov 2022 20:36:56 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        with ESMTP id S231807AbiKCMhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:37:23 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF613140B5
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:37:13 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id l2so1059161qtq.11
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:37:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wLG01xuzkl0xodwDLAu36WoQsSaHKq4o1Mky6mwfR2I=;
+        b=dSCYhv40lbvonPzw6rR7ErUo35vEt96iWhQdtv5TFq8O7OlUK5lZ2DRMoqecIr3+D9
+         qLkfiSDMzM/H6UXur+8hvegmFzchTXnQAzMJzxxjke4H84eu+UpBbNDlCUN5FjjAS2ZV
+         Wh5lcf8lFqG7B8t+SB+/9ILxLUKapuj27McHF61EpBoXRcnXWZziCpTay5cKpNdhiEEa
+         +53vlqZxcOIJaeePxEnWJ/j66MZf4su3EOs2tbG3QctphrhE8xHBfQ7303Lj4+JWjBBX
+         QmyLmv1c7jcctNUQldhiALKUsqO/NvF3vVvr67ZMEOKQjZpps5CBQs27/JZqGV0FIaFy
+         5C/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wLG01xuzkl0xodwDLAu36WoQsSaHKq4o1Mky6mwfR2I=;
+        b=R38TzxBMW0ueIVGmxx0iaERsdXBRcVvXdU9nhvhZoEo7wjmtuDaa4avVPkJkktqQKN
+         LUCVa/o4ueRkyQs5GBhf/F2All1aIDdwyRExbiKpCDAFfLN5RaReJ0nttGPO7n+jzCMO
+         +X4ocMnM2ShS4ETjX/NZoeIKRpMLl34xmYe0dOACbXXjsMdy6Tf1Qjj1K6uqxz6v3l9e
+         JqwKYAhkn3uHmjmi4jZOAxpY6WqTElMEI750W/leDEZVyeeypBrh9C+qOHYxkklkR0rI
+         5IrcPiNHK2rtwieNHBBAbC7Bksb4EcmDg9GRqaIID7SLDMyYWHS0P/6vP1ROFj/I7po4
+         vfEw==
+X-Gm-Message-State: ACrzQf1OzdIr3OVrIYBwRcc6krRZ3rOZ46sd7Kng4cBpG8U7Z2QfS8+P
+        m1C0SaM4g1dFFsd4fuiD5C791A==
+X-Google-Smtp-Source: AMsMyM4GUnTircemkIRH9aYYUynvdRniDY3f9fYBskcCFu1IqZO6WCnFMSiVH5QUM3HsoPKql6ytDQ==
+X-Received: by 2002:a05:622a:17cf:b0:3a5:1f74:959b with SMTP id u15-20020a05622a17cf00b003a51f74959bmr19493248qtk.684.1667479032860;
+        Thu, 03 Nov 2022 05:37:12 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id cd5-20020a05622a418500b0035d08c1da35sm453102qtb.45.2022.11.03.05.37.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 05:37:12 -0700 (PDT)
+Message-ID: <09a7de3e-6431-1815-5ea0-072cbda81875@linaro.org>
+Date:   Thu, 3 Nov 2022 08:37:11 -0400
 MIME-Version: 1.0
-In-Reply-To: <20221101082442.263448-2-chenweilong@huawei.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v9 0/2] gpmc wait pin additions
+Content-Language: en-US
+To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
+Cc:     "rogerq@kernel.org" <rogerq@kernel.org>,
+        "tony@atomide.com" <tony@atomide.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+References: <20221102133047.1654449-1-benedikt.niedermayr@siemens.com>
+ <4582c561-bcdf-a880-cfe5-6813e1c66555@linaro.org>
+ <3d067d7ce32abd6a78ee9a914e81393f48f46a37.camel@siemens.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3d067d7ce32abd6a78ee9a914e81393f48f46a37.camel@siemens.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.169]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- canpemm500009.china.huawei.com (7.192.105.203)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/11/1 16:24, Weilong Chen wrote:
-> Add the new compatible for HiSilicon gpio controller driver.
+On 03/11/2022 04:13, Niedermayr, BENEDIKT wrote:
+> On Wed, 2022-11-02 at 10:02 -0400, Krzysztof Kozlowski wrote:
+>> On 02/11/2022 09:30, B. Niedermayr wrote:
+>>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
+>>>
+>>> Currently it is not possible to configure the WAIT0PINPOLARITY and
+>>> WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via
+>>> device tree properties.
+>>>
+>>> It is also not possible to use the same wait-pin for different
+>>> cs-regions.
+>>>
+>>> While the current implementation may fullfill most usecases, it may not
+>>> be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where
+>>> more complex interfacing options where possible.
+>>>
+>>> For example interfacing an ASIC which offers multiple cs-regions but
+>>> only one waitpin the current driver and dt-bindings are not sufficient.
+>>>
+>>> While using the same waitpin for different cs-regions worked for older
+>>> kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
+>>> newer kernels (>5.10).
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
 > 
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> Thanks for the hint.
+> 
+> Was everything OK with v9 (except that I resendet the tagged patch)? Until v8 I wasn't aware of that. I thought I added the tag for v9. 
 
-Looks good to me,
+You did not add the tag you received.
 
-Reviewed-by: Yicong Yang <yangyicong@hisilicon.com>
+Best regards,
+Krzysztof
 
-> ---
-> Change since v2:
-> - No change.
-> Link: https://lore.kernel.org/lkml/20221028022453.163186-2-chenweilong@huawei.com/
-> 
-> Change since v1:
-> - Drop "Device Tree Bindings" and reg's description
-> - Move description in top-level description.
-> - Add gpio-cells to required
-> - Use additionalProperties and decimal numbers
-> - Use IRQ flags
-> - Use vendor,soc-ipblock format
-> Link: https://lore.kernel.org/lkml/20221026034219.172880-2-chenweilong@huawei.com/
-> 
->  .../gpio/hisilicon,ascend910-gpio.yaml        | 56 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/hisilicon,ascend910-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/hisilicon,ascend910-gpio.yaml b/Documentation/devicetree/bindings/gpio/hisilicon,ascend910-gpio.yaml
-> new file mode 100644
-> index 000000000000..735d97d645a0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/hisilicon,ascend910-gpio.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/hisilicon,ascend910-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HiSilicon common GPIO controller
-> +
-> +maintainers:
-> +  - Jay Fang <f.fangjian@huawei.com>
-> +
-> +description:
-> +  The HiSilicon common GPIO controller can be used for many different
-> +  types of SoC such as Huawei Ascend AI series chips.
-> +
-> +properties:
-> +  compatible:
-> +    const: hisilicon,ascend910-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  ngpios:
-> +    minimum: 1
-> +    maximum: 32
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - ngpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    gpio@840d0000 {
-> +      compatible = "hisilicon,ascend910-gpio";
-> +      reg = <0x840d0000 0x1000>;
-> +      ngpios = <32>;
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +      interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d42e34d1e8e2..74ac2e7a8e4b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9212,6 +9212,7 @@ HISILICON GPIO DRIVER
->  M:	Jay Fang <f.fangjian@huawei.com>
->  L:	linux-gpio@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/gpio/hisilicon,ascend910-gpio.yaml
->  F:	drivers/gpio/gpio-hisi.c
->  
->  HISILICON HIGH PERFORMANCE RSA ENGINE DRIVER (HPRE)
-> 
