@@ -2,105 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F206184C7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B8F6184E9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:40:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231940AbiKCQfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 12:35:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58400 "EHLO
+        id S232131AbiKCQkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 12:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232321AbiKCQex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:34:53 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B7191E712
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 09:33:00 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id z1so1477712qkl.9
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 09:33:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RKUFy7ieLF5LsV/tUUgZVZtMlIYHNIb+otGAUnhMelU=;
-        b=IamZAUgJg0IXAd4USwAjT5ZVQ8xTLKBUgUKDR8JA/fKfgQ0LwEwruIj7GQtAy93jKz
-         7KPDfurJsfUro8NuhfcsJqTjK1gYGUoFnZ7Q0f/alKn+aOdlXYAUaDTHKD5R08ilNbDB
-         9R1F6fvIUqh+/tVEKZ7tN99fj0/Fp9KZvo3uw3AJ/PxGLw1X4trHHwN9FXgefABFVuUS
-         kcgBfxZTXuGPLwM1RNY+Ffe/YeUSkdPaBpEwd+KYVAVKUH8NpodXTXuD7dShHCunYbgq
-         tOJNaDwSSpop2KZex1SVWKGvf+idhPavQ6DutT4jq6BXaP7rDRpCMo08Pw40zOSISfe/
-         CneQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RKUFy7ieLF5LsV/tUUgZVZtMlIYHNIb+otGAUnhMelU=;
-        b=8BBhZTt6V+f8g0kwZqKRa5rqAu7l0NY2H5K9X9AC9cju7VyGwYPreA03IDDEKdx73c
-         dKxeq/bfFM7L+5JUQKWddp8L4cAfhSMvL47uc4QtvmDZo+WuFsmY7b6ntSgH6X/v3U1m
-         8cUYqHZIDqEYnJc35R51Sn3nueMxyx9+qFvQzMHEsqTEFq9QbY668Vo+SbWuEpi3crpc
-         HCOuNRxCXnGSy1wEAthXR+R1E0vSQfsRkcifkvr3LhB24IkkGeXpqyk6rDb14jJcFSGR
-         p5vixgNVCUEpNcY4jsvdZCFu4PH6rUqBZgVmpmm/r2wF0A86Xh6zRHBSaPGeFYN18TUI
-         yBFg==
-X-Gm-Message-State: ACrzQf2UAZt9An1Gvn1nL200W72kYcv5MJQJwpoWGGhA1IcE8i+JUUV+
-        pfcjQn2epaRubmoBETnNo/sHQw==
-X-Google-Smtp-Source: AMsMyM7u/7kABK8eTzftwB5GlQ2WHsPpYG8n1Mx/V5Muo7sySe6zOp+2bo/Nbr6YpLLWyqANV+zpWQ==
-X-Received: by 2002:a05:620a:ec6:b0:6fa:1c5b:2be4 with SMTP id x6-20020a05620a0ec600b006fa1c5b2be4mr20378775qkm.85.1667493179131;
-        Thu, 03 Nov 2022 09:32:59 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id y19-20020a05620a44d300b006fa2dde9db8sm1033150qkp.95.2022.11.03.09.32.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 09:32:58 -0700 (PDT)
-Message-ID: <a3dee3e4-a245-3198-301e-b1812bd6983c@linaro.org>
-Date:   Thu, 3 Nov 2022 12:32:57 -0400
+        with ESMTP id S232004AbiKCQkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:40:32 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71751DA68;
+        Thu,  3 Nov 2022 09:37:27 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EDAED2000D;
+        Thu,  3 Nov 2022 16:37:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1667493446;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=zTw0rJyfzCU40CW+dZ1YvahU2CazOwg5lrh3lQQZgCU=;
+        b=RUbwfgNxPWLD/qMctemXMvGjRP1/wxqMt5r9TQo6ojqaLuHkNv3SJossKCkglMWsQRtrV5
+        LKIUh2N0Rg4bs1cukYfX1Ewb5oARubepBf/G2SaNWzPu2cU4elm3rOusZSStAT33Yh1Hp5
+        go/iZsrGkIOx/DIZM0r3Ro/5xfrnMX3LK28N3ZHfCbFpyOn9+6H1pU/nYQo7hcoL95Vzt8
+        yeG0xkRjlquAGvkOND4FoJolX+of89lCC4VG7vR3++xNIteflDWjlgSs3MzJAK+2Lcafj6
+        5NFZK1NOhF8SYKz49WCzcSQVTXugd5l8Ipn+cA+dG3X6lY8Mr+SPSkLSll6QFw==
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v8 0/6] Allwinner A31/A83T MIPI CSI-2 and A31 ISP / ISP Driver
+Date:   Thu,  3 Nov 2022 17:37:11 +0100
+Message-Id: <20221103163717.246217-1-paul.kocialkowski@bootlin.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v1 6/7] ARM: configs: multi_v7_defconfig: Enable HPE GXP
- USB Driver
-Content-Language: en-US
-To:     richard.yu@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221103160625.15574-1-richard.yu@hpe.com>
- <20221103160625.15574-7-richard.yu@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103160625.15574-7-richard.yu@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 12:06, richard.yu@hpe.com wrote:
-> From: Richard Yu <richard.yu@hpe.com>
-> 
-> Enable the USB driver on the HPE GXP BMC.
-> 
-> Signed-off-by: Richard Yu <richard.yu@hpe.com>
-> ---
->  arch/arm/configs/multi_v7_defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-> index 12b35008571f..940632995b9b 100644
-> --- a/arch/arm/configs/multi_v7_defconfig
-> +++ b/arch/arm/configs/multi_v7_defconfig
-> @@ -836,6 +836,7 @@ CONFIG_USB_XHCI_HCD=y
->  CONFIG_USB_XHCI_MVEBU=y
->  CONFIG_USB_XHCI_TEGRA=m
->  CONFIG_USB_BRCMSTB=m
-> +CONFIG_USB_GXP_UDC=y
+This part only concerns the introduction of the new ISP driver and related
+adaptation of the CSI driver.
 
-Module
+Most non-dt patches still need reviewing but should be pretty straightforward.
+The ISP driver itself was thoroughly discussed and the concerns that were
+raised about it have been resolved. Since this multi-part series has been going
+on for a while, it would be great to see it merged soon!
 
-Best regards,
-Krzysztof
+Changes since v7:
+- Rebased on the latest media tree;
+- Followed media/video pipeline helpers changes.
+
+Changes since v6:
+- Added a per-compatible check for the required port in dt binding;
+- Reworded ISP output port description in dt binding;
+- Reversed ISP detection order to have fwnode first;
+- Removed info print when ISP link is detected;
+- Added warn print when ISP is linked but not enabled in config;
+- Fixed sun6i_csi_isp_detect return type;
+- Removed useless initialization in sun6i_csi_isp_detect;
+- Fixed typo in sun6i_csi_isp_detect;
+- Added collected tags;
+
+Changes since v5:
+- Rebased on latest media tree;
+- Added collected tag;
+- Switched to using media_pad_remote_pad_first;
+- Switched to using media_pad_remote_pad_unique.
+
+Changes since v4:
+- Fixed device-tree binding indent-align;
+- Added collected tag;
+- Rebased on latest media tree;
+
+Changes since v3:
+- Removed the v4l2 controls handler from the driver;
+- Added variant structure for table sizes;
+- Removed the info message about video device registration;
+- Removed comments in uAPI header;
+- Used '/schemas/graph.yaml#/properties/port' whenever possible in bindings;
+- Added CSI patches dependent on the ISP driver;
+- Rebased on the latest media tree;
+
+Changes since all-in-one v2:
+- Updated Kconfig to follow the latest media-wide changes;
+- Reworked async subdev handling with a dedicated structure holding the
+  corresponding source to avoid matching in the driver;
+- Switched to clock-managed regmap mmio;
+- Used helper to get a single enabled link for an entity's pad, to replace
+  source selection at link_validate time and select the remote source at
+  stream on time instead;
+- Added mutex for mbus format serialization;
+- Used endpoint-base instead of video-interface for "internal" endpoints
+  in device-tree schema;
+- Added TODO with unstaging requirements;
+- Various cosmetic cleanups;
+- Updated copyright years;
+
+
+Paul Kocialkowski (6):
+  dt-bindings: media: Add Allwinner A31 ISP bindings documentation
+  dt-bindings: media: sun6i-a31-csi: Add internal output port to the ISP
+  staging: media: Add support for the Allwinner A31 ISP
+  MAINTAINERS: Add entry for the Allwinner A31 ISP driver
+  media: sun6i-csi: Detect the availability of the ISP
+  media: sun6i-csi: Add support for hooking to the isp devices
+
+ .../media/allwinner,sun6i-a31-csi.yaml        |   4 +
+ .../media/allwinner,sun6i-a31-isp.yaml        | 101 +++
+ MAINTAINERS                                   |   9 +
+ .../platform/sunxi/sun6i-csi/sun6i_csi.c      |  75 +-
+ .../platform/sunxi/sun6i-csi/sun6i_csi.h      |  10 +
+ .../sunxi/sun6i-csi/sun6i_csi_bridge.c        |  32 +-
+ .../sunxi/sun6i-csi/sun6i_csi_capture.c       |  19 +-
+ .../sunxi/sun6i-csi/sun6i_csi_capture.h       |   1 +
+ drivers/staging/media/sunxi/Kconfig           |   1 +
+ drivers/staging/media/sunxi/Makefile          |   1 +
+ drivers/staging/media/sunxi/sun6i-isp/Kconfig |  15 +
+ .../staging/media/sunxi/sun6i-isp/Makefile    |   4 +
+ .../staging/media/sunxi/sun6i-isp/TODO.txt    |   6 +
+ .../staging/media/sunxi/sun6i-isp/sun6i_isp.c | 555 +++++++++++++
+ .../staging/media/sunxi/sun6i-isp/sun6i_isp.h |  90 +++
+ .../media/sunxi/sun6i-isp/sun6i_isp_capture.c | 742 ++++++++++++++++++
+ .../media/sunxi/sun6i-isp/sun6i_isp_capture.h |  78 ++
+ .../media/sunxi/sun6i-isp/sun6i_isp_params.c  | 566 +++++++++++++
+ .../media/sunxi/sun6i-isp/sun6i_isp_params.h  |  52 ++
+ .../media/sunxi/sun6i-isp/sun6i_isp_proc.c    | 577 ++++++++++++++
+ .../media/sunxi/sun6i-isp/sun6i_isp_proc.h    |  66 ++
+ .../media/sunxi/sun6i-isp/sun6i_isp_reg.h     | 275 +++++++
+ .../sunxi/sun6i-isp/uapi/sun6i-isp-config.h   |  43 +
+ 23 files changed, 3309 insertions(+), 13 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/Kconfig
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/Makefile
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/TODO.txt
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp.c
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp.h
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.c
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_capture.h
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_params.c
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_params.h
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.c
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_proc.h
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/sun6i_isp_reg.h
+ create mode 100644 drivers/staging/media/sunxi/sun6i-isp/uapi/sun6i-isp-config.h
+
+-- 
+2.38.1
 
