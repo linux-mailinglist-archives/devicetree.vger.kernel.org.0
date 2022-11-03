@@ -2,85 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F675617711
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1630C61772C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:09:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbiKCHCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 03:02:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40316 "EHLO
+        id S230045AbiKCHJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 03:09:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbiKCHCI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:02:08 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88CDC63AF;
-        Thu,  3 Nov 2022 00:02:05 -0700 (PDT)
-Received: (Authenticated sender: peter@korsgaard.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id BEB39E0002;
-        Thu,  3 Nov 2022 07:02:01 +0000 (UTC)
-Received: from peko by dell.be.48ers.dk with local (Exim 4.94.2)
-        (envelope-from <peter@korsgaard.com>)
-        id 1oqUEi-0085pf-In; Thu, 03 Nov 2022 08:02:00 +0100
-From:   Peter Korsgaard <peter@korsgaard.com>
-To:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Cc:     <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <michal.simek@xilinx.com>,
-        <m.tretter@pengutronix.de>, <harini.katakam@amd.com>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: Re: [PATCH] dt-bindings: dmaengine: zynqmp_dma: add xlnx,bus-width
- required property
-References: <1667448757-7001-1-git-send-email-radhey.shyam.pandey@amd.com>
-Date:   Thu, 03 Nov 2022 08:02:00 +0100
-In-Reply-To: <1667448757-7001-1-git-send-email-radhey.shyam.pandey@amd.com>
-        (Radhey Shyam Pandey's message of "Thu, 3 Nov 2022 09:42:37 +0530")
-Message-ID: <87fsf0r05z.fsf@dell.be.48ers.dk>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
+        with ESMTP id S229771AbiKCHJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:09:33 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A902E1
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:09:30 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id f63so930658pgc.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 00:09:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LkHnq8wlBfVlfriOmpPxlarX6Xf3b38smcgL/6sjikk=;
+        b=wS2uOLCGL26kIPInJbuPEphCBlVt9LYrHO5YFaJZW8jNi1oRmOIMF5llWI+ea7hIHh
+         Qs6+HZ5pGkKYGqCgNuGhsN5lYxkOaWY+L8GFuVR6reQ6ZkgUCUCcmENSuWq9BWtosvJc
+         BJwPqF3DwiWgrVlkjgG6CE7j6hUgtuRQdmbyEzyAoNVtOezBhvn5TE6po5uKLxluSsiM
+         Dx2Bc7WHqcG6Cefat8nuFFg6hYpPC2VNPLTezH1IuLY1lxKbmlJR9v+58iCkKjVosWLS
+         iqKMWYcCOWZ5KvNsFKYLfucvu7W3L2pwYBsgFyLXZcm/SzDRpOFWLZiJVQbjI4YZJDtT
+         wOog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LkHnq8wlBfVlfriOmpPxlarX6Xf3b38smcgL/6sjikk=;
+        b=ytF5PGz0xeXUL4Iyt9NENL9/qQDu9wAb0YPymP4gNypLuD/Zfq7Q+tJPRtXuALlmfS
+         KDof5vgTh1dHcUNug5CxGA+9kKfdxWM02vLAPdcSSWiEdzT1dwAY/8XBd8QSXXmg2dbU
+         QJD52EfEWwW/o5vtqxZd5BgYwQfiGCg1NHTCF3Ogz0eT+uyLcT0QaYokdYmsDGtQd0xE
+         3um7DU1LaugH7gjhLkAGfR7pTSqtWWp5qyaQ0pG6Ygpih6w+0EVS87Kp34AzbVQJNMiJ
+         Y722KZwNAd6JkrtwkV8ansusA4hOrcvcGAn3LD2s2Ia0p3D18eKQr6wEq/GXkICN/OQP
+         IxUg==
+X-Gm-Message-State: ACrzQf2yQPTWJYV14XJXd1kNQOF5XuzOksAaY9fVqDqpVgyowZpxEe1w
+        6n8McvF3Al2kcivcpdNCM55k
+X-Google-Smtp-Source: AMsMyM7jg3itAXy7IHb+R1SjQ46Pz5fBBfKvaFnZurczcTzD3RIEfyMsxzGdTcAzH6bE2QZ5QTPK4g==
+X-Received: by 2002:a63:5853:0:b0:46f:fdfc:a651 with SMTP id i19-20020a635853000000b0046ffdfca651mr8243896pgm.385.1667459369822;
+        Thu, 03 Nov 2022 00:09:29 -0700 (PDT)
+Received: from localhost.localdomain ([117.193.208.64])
+        by smtp.gmail.com with ESMTPSA id s9-20020a170903214900b00186748fe6ccsm9451244ple.214.2022.11.03.00.09.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 00:09:28 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     andersson@kernel.org
+Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        steev@kali.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 00/12] sc8280xp-pmic updates and X13s thermal zone support
+Date:   Thu,  3 Nov 2022 12:38:59 +0530
+Message-Id: <20221103070911.20019-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->>>>> "Radhey" == Radhey Shyam Pandey <radhey.shyam.pandey@amd.com> writes:
+Hello,
 
- > xlnx,bus-width is a required property. In yaml conversion somehow
- > it got missed out. Bring it back and mention it in required list.
- > Also add Harini and myself to the maintainer list.
+This series adds below updates to sc8280xp-pmics:
 
- > Fixes: 5a04982df8da ("dt-bindings: dmaengine: zynqmp_dma: convert to yaml")
- > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
- > ---
- >  .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml    | 3 +++
- >  1 file changed, 3 insertions(+)
+PM8280_{1/2}:
+- Temp alarm
+- Thermal zones
+- VADC channels
+- ADC_TM5 channels
 
- > diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
- > index c0a1408b12ec..a10019d3a650 100644
- > --- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
- > +++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
- > @@ -13,6 +13,8 @@ description: |
- 
- >  maintainers:
- >    - Michael Tretter <m.tretter@pengutronix.de>
- > +  - Harini Katakam <harini.katakam@amd.com>
- > +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+PMK8280:
+- ADC7 block
+- VADC channels
+- TM5 block
 
-That should ideally be in a separate patch.
+PMR735A:
+- VADC channels
 
+Also adds the thermal zone support to Lenovo X13s based on the thermistor
+SYS_THERM6 that provides the laptop skin temperature.
 
- >  allOf:
- >    - $ref: "../dma-controller.yaml#"
- > @@ -65,6 +67,7 @@ required:
- >    - interrupts
- >    - clocks
- >    - clock-names
- > +  - xlnx,bus-width
+The sc8280xp-pmics is based on the new PMIC7 architecture. In this, all the
+ADC/TM5 measurements are collected by the primary PMIC PMK8280 from other
+slave PMICs PM8280_{1/2}, PMR735A using the Programmable Boot Sequence (PBS)
+and exposed them over the individual channels.
 
-Reviewed-by: Peter Korsgaard <peter@korsgaard.com>
+PMK8280 uses the Slave ID (SID) for identifying each slave PMICs in a system.
+This ID is not static for each PMIC but rather set for each platform by the
+hardware designers. So this series allows the configurable SID by modifying the
+binding to accept SID values instead of hardcoding them.
+
+This series is tested on Lenovo X13s laptop by monitoring the temperature of
+the 8 on-board thermistors through IIO interface. The thermal zone support is
+validated by adding loads to the CPUs and making sure the skin temperature stays
+below the threshold provided in DT.
+
+Thanks,
+Mani
+
+Changes in v3:
+
+* Used thermistor index in node names for VADC channels. This is required by IIO
+* Collected reviews
+* Rearranged the dt properties (Konrad)
+
+Changes in v2:
+
+* Fixed issues reported by Krzysztof and "make dtbs_check"
+* Collected reviews from Krzysztof
+* Added the Lenovo X13s thermal zone patch
+
+Manivannan Sadhasivam (12):
+  dt-bindings: iio: qcom: adc7-pm8350: Allow specifying SID for channels
+  arm64: dts: qcom: sc8280xp-pmics: Add temp alarm for PM8280_{1/2}
+    PMICs
+  arm64: dts: qcom: sc8280xp-pmics: Add thermal zones for PM8280_{1/2}
+    PMICs
+  arm64: dts: qcom: sc8280xp-pmics: Add support for PMK8280 RESIN input
+  arm64: dts: qcom: sc8280xp-pmics: Add PMK8280 ADC7 block
+  arm64: dts: qcom: sc8280xp-pmics: Add support for TM5 block in PMK8280
+  arm64: dts: qcom: sc8280xp-x13s: Enable PMK8280 RESIN input
+  arm64: dts: qcom: sc8280xp-x13s: Add PMK8280 VADC channels
+  arm64: dts: qcom: sc8280xp-x13s: Add PM8280_{1/2} VADC channels
+  arm64: dts: qcom: sc8280xp-x13s: Add PMR735A VADC channel
+  arm64: dts: qcom: sc8280xp-x13s: Add PM8280_{1/2} ADC_TM5 channels
+  arm64: dts: qcom: sc8280xp-x13s: Add thermal zone support
+
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |   6 +-
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 204 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi  |  84 ++++++++
+ .../dt-bindings/iio/qcom,spmi-adc7-pm8350.h   |  90 ++++----
+ 4 files changed, 334 insertions(+), 50 deletions(-)
 
 -- 
-Bye, Peter Korsgaard
+2.25.1
+
