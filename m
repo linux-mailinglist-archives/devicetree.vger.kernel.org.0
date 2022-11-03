@@ -2,107 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B06F617C65
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D982617C6C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:21:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231136AbiKCMTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:19:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45034 "EHLO
+        id S231634AbiKCMVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:21:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230005AbiKCMTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:19:45 -0400
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A13278;
-        Thu,  3 Nov 2022 05:19:44 -0700 (PDT)
-Received: from canpemm500009.china.huawei.com (unknown [172.30.72.56])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4N32mv4S8nzJnL4;
-        Thu,  3 Nov 2022 20:16:47 +0800 (CST)
-Received: from [10.67.102.169] (10.67.102.169) by
- canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.31; Thu, 3 Nov 2022 20:19:42 +0800
-CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linus.walleij@linaro.org>,
-        <brgl@bgdev.pl>, <yangyicong@hisilicon.com>, <robh+dt@kernel.org>,
-        <xuwei5@huawei.com>, <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH next v3 1/2] gpio: hisi: Add initial device tree support
-To:     Weilong Chen <chenweilong@huawei.com>, <f.fangjian@huawei.com>
-References: <20221101082442.263448-1-chenweilong@huawei.com>
-From:   Yicong Yang <yangyicong@huawei.com>
-Message-ID: <bb081979-10d6-5d6e-8e87-9a317fb09455@huawei.com>
-Date:   Thu, 3 Nov 2022 20:19:42 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.1
+        with ESMTP id S230121AbiKCMVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:21:50 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EAC025D1
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:21:48 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id i9so931991qki.10
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:21:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=P+5YUCvZqbd7CB2bQQ6MOe7ruJKblRITAjPMVct4pI8=;
+        b=CO/f0A0UqCf3wCwPKnaBeTqdgR6dBumZAGDTOy0GPfBAk5+rSxhjYmofU5K1KyJHkp
+         bQyvFZSpUmpU7EU32AtkXmOH+YUqkO0wCQVAXj6hRkJlUlGjZyI1U1Juy+GHmBg5ztKs
+         CpFVbEqN3F0rO6soGDKfnafyjrgbVh7rwGF/DvRWV7EwaS87hgEqkKoZOEHbbntSFtvV
+         wX9fFHnuskwD2YM3PQX53UFKeGDcnv7gCWFo2ApNWPKd/6DHJm7u8Tz2L+ff2M4zdIWQ
+         8myc7gDWb3DMVbw62yk+cAxfoED7cJAZhrpKrLeoNIAoGIH9mQU9e7eoFWrdFGfi0Xb2
+         62GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=P+5YUCvZqbd7CB2bQQ6MOe7ruJKblRITAjPMVct4pI8=;
+        b=oN66WmOJwVpkOIsbUjqb1d+wub69Msh1OQWzznwtW4LvlbxvBluncwKyKlBkBD4mdf
+         t8URM3HH/dvmJv7PDz9SK6RzxFczFLwqcpTw4SARJ0xQVlWdT7eXl1sNVrik3iZN4i0/
+         abnxNtUM79aF81XkSjX2JW0zY2SK/8oO9gd/TCkHpRdKP7P55nbOrCiClgN3f5zsVbT5
+         xDaDQJkfTYuvCq+ZxuyotTXxLvjWTexUWlySJxPx1n+LOCFymt3HLsGQyakWgewL2ZyH
+         z3DlASvPeI7H6zy3WiDum0IlIF9bwR1IGtK6I3B23XudJMBpvjMsclBCv5ejpAJ6g0zh
+         odkg==
+X-Gm-Message-State: ACrzQf2XPUXkngvNv6CkiMsWYHUdlJxh/QdWBdp/9Vmj3mSMqRIO06Ck
+        Non+bzGY6+7MGjKfMg9YhTadRQ==
+X-Google-Smtp-Source: AMsMyM6SDfF7cMxptMVQxQuncXmO78QNH8O+ogTcFC6KAzOv0cS/F4ORrpJhJoSy97C4UYtYyZxdXQ==
+X-Received: by 2002:a37:5e41:0:b0:6ce:79e2:68af with SMTP id s62-20020a375e41000000b006ce79e268afmr21736389qkb.239.1667478107634;
+        Thu, 03 Nov 2022 05:21:47 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id r23-20020ae9d617000000b006f474e6a715sm606366qkk.131.2022.11.03.05.21.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 05:21:46 -0700 (PDT)
+Message-ID: <10086127-c733-364c-25da-0332c2336925@linaro.org>
+Date:   Thu, 3 Nov 2022 08:21:45 -0400
 MIME-Version: 1.0
-In-Reply-To: <20221101082442.263448-1-chenweilong@huawei.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH 09/10] dt-bindings: interconnect: qcom,msm8998-bwmon: Add
+ sc8280xp bwmon instances
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mike Tipton <quic_mdtipton@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221028034155.5580-1-quic_bjorande@quicinc.com>
+ <20221028034155.5580-10-quic_bjorande@quicinc.com>
+ <0ada5a42-02f4-50ce-e65c-1a5fa9966900@linaro.org>
+ <20221103033741.GA5525@core-thresher1.qualcomm.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221103033741.GA5525@core-thresher1.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.102.169]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- canpemm500009.china.huawei.com (7.192.105.203)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/11/1 16:24, Weilong Chen wrote:
-> Add support for HiSilicon GPIO controller in embedded platform, which
-> boot from devicetree.
+On 02/11/2022 23:37, Bjorn Andersson wrote:
+> On Fri, Oct 28, 2022 at 06:15:50PM -0400, Krzysztof Kozlowski wrote:
+>> On 27/10/2022 23:41, Bjorn Andersson wrote:
+>>> The sc8280xp platform has two BWMON instances, one v4 and one v5. Extend
+>>> the existing qcom,msm8998-bwmon and qcom,sc7280-llcc-bwmon to describe
+>>> these.
+>>>
+>>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>>> ---
+>>>  .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml | 5 +++++
+>>>  1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+>>> index be29e0b80995..223cd6ecf279 100644
+>>> --- a/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml
+>>> @@ -25,9 +25,14 @@ properties:
+>>>        - items:
+>>>            - enum:
+>>>                - qcom,sc7280-cpu-bwmon
+>>> +              - qcom,sc8280xp-bwmon
+>>
+>> qcom,sc8280xp-cpu-bwmon
+>> To match sc7280. I think it's better than my initial choice for
+>> qcom,sdm845-bwmon without the cpu part.
+>>
 > 
-> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
+> As discussed back then, we omitted "cpu" because there where multiple instances
+> of the bwmon block. Would you prefer we give it the "cpu" compatible and
+> potentially us it for non-cpu measurements?
 
-Reviewed-by: Yicong Yang <yangyicong@hisilicon.com>
+I think yes, because we actually do not know whether measuring on
+non-cpu instances would work without some adjustments...
 
-> ---
-> Change since v2:
-> - Drop wrong use ACPI_PTR/of_match_ptr
-> Link: https://lore.kernel.org/lkml/20221028022453.163186-1-chenweilong@huawei.com/
-> 
->  drivers/gpio/Kconfig     | 2 +-
->  drivers/gpio/gpio-hisi.c | 7 +++++++
->  2 files changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index e034f752e7ce..71a7880af59d 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -310,7 +310,7 @@ config GPIO_GRGPIO
->  
->  config GPIO_HISI
->  	tristate "HiSilicon GPIO controller driver"
-> -	depends on (ARM64 && ACPI) || COMPILE_TEST
-> +	depends on ARM64 || COMPILE_TEST
->  	select GPIO_GENERIC
->  	select GPIOLIB_IRQCHIP
->  	help
-> diff --git a/drivers/gpio/gpio-hisi.c b/drivers/gpio/gpio-hisi.c
-> index 3caabef5c7a2..55bd69043bf4 100644
-> --- a/drivers/gpio/gpio-hisi.c
-> +++ b/drivers/gpio/gpio-hisi.c
-> @@ -221,6 +221,12 @@ static const struct acpi_device_id hisi_gpio_acpi_match[] = {
->  };
->  MODULE_DEVICE_TABLE(acpi, hisi_gpio_acpi_match);
->  
-> +static const struct of_device_id hisi_gpio_dts_match[] = {
-> +	{ .compatible = "hisilicon,ascend910-gpio", },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, hisi_gpio_dts_match);
-> +
->  static void hisi_gpio_get_pdata(struct device *dev,
->  				struct hisi_gpio *hisi_gpio)
->  {
-> @@ -311,6 +317,7 @@ static struct platform_driver hisi_gpio_driver = {
->  	.driver		= {
->  		.name	= HISI_GPIO_DRIVER_NAME,
->  		.acpi_match_table = hisi_gpio_acpi_match,
-> +		.of_match_table = hisi_gpio_dts_match,
->  	},
->  	.probe		= hisi_gpio_probe,
->  };
-> 
+Best regards,
+Krzysztof
+
