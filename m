@@ -2,140 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA5A617F04
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC850617F0D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:13:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231544AbiKCONA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 10:13:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34764 "EHLO
+        id S230487AbiKCON4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 10:13:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231367AbiKCOMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:12:49 -0400
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A60511A10
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 07:12:42 -0700 (PDT)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20221103141240euoutp02a600933080b46886093dfe3c12c8bcae~kGI4ptxKf0824308243euoutp02E
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 14:12:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20221103141240euoutp02a600933080b46886093dfe3c12c8bcae~kGI4ptxKf0824308243euoutp02E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1667484760;
-        bh=ikLgX5+rC6etpCFPJGJZsqRLbkT4hXzogxYFAeG3eE0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GxIlWX3o2pwr3Um5Mpb7mSuABrl94qylelYbiTvo/yfExwvIinGkADnzyiTW+x5qY
-         5UJ3VeLLlQKuYyGR1c6B2Lpmn0gH6+jh3DNAokUp6YjWww62ADPgxJY1PEduqJNhTz
-         HWB6wJ9QERmi9pONtTfa9Hn1ttevRoWhhWU8tm1E=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20221103141240eucas1p1214a82150536870f5d1392a3e326cc3b~kGI4O4Q_X1074310743eucas1p1X;
-        Thu,  3 Nov 2022 14:12:40 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 9C.EB.29727.85CC3636; Thu,  3
-        Nov 2022 14:12:40 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20221103141239eucas1p167f44609369010a20293d5123214426d~kGI3lHwri2591525915eucas1p1L;
-        Thu,  3 Nov 2022 14:12:39 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20221103141239eusmtrp24f5d9beb1b97a2911cbd2c4e6abc37cc~kGI3hJchK2293622936eusmtrp2c;
-        Thu,  3 Nov 2022 14:12:39 +0000 (GMT)
-X-AuditID: cbfec7f2-205ff7000001741f-f8-6363cc585153
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 11.ED.10862.75CC3636; Thu,  3
-        Nov 2022 14:12:39 +0000 (GMT)
-Received: from AMDC2765.digital.local (unknown [106.120.51.73]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20221103141238eusmtip2b65d8b299762ab3b9d2cc75c389d6a6d~kGI2387YI1617316173eusmtip2T;
-        Thu,  3 Nov 2022 14:12:38 +0000 (GMT)
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-To:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Johan Hovold <johan@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH 2/2] of: export of_device_add()
-Date:   Thu,  3 Nov 2022 15:12:33 +0100
-Message-Id: <20221103141233.20179-2-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221103141233.20179-1-m.szyprowski@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBKsWRmVeSWpSXmKPExsWy7djP87oRZ5KTDXov8VnMP3KO1WLmm/9s
-        Fs2L17NZNN3oYbXY+3oru8XlXXPYLGac38dksWhZK7PF2iN32S1a9x5ht9i8rp3dYtWCA+wO
-        PB6Lv99j9tg56y67x6ZVnWwed67tYfPYP3cNu0ffllWMHlv2f2b0+LxJLoAjissmJTUnsyy1
-        SN8ugStjzfb/zAXHWCt235zE1MB4naWLkZNDQsBE4s2DNYxdjFwcQgIrGCWuXZ0L5XxhlHj/
-        vYMFwvnMKHFhwxFmmJZLMx9CJZYzSsx+9YQdruXqsr3sIFVsAoYSXW+72EBsEYEaiZ0XN7OB
-        FDELXGGSmDOpnwkkISygL/H+9F9GEJtFQFVi78wtYDavgK3Evj1LodbJS6zecADI5uDgFLCT
-        eNvNBDJHQuAKh0TTghdQNS4S676/hPpIWOLV8S3sELaMxP+d86Ea2hklFvy+D+VMYJRoeH6L
-        EaLKWuLOuV9sIBuYBTQl1u/Shwg7Spz9C7KNA8jmk7jxVhAkzAxkTto2nRkizCvR0SYEUa0m
-        Mev4Ori1By9cgjrNQ2L+gilskACayCjRfeYtywRG+VkIyxYwMq5iFE8tLc5NTy02zEst1ytO
-        zC0uzUvXS87P3cQITDyn/x3/tINx7quPeocYmTgYDzFKcDArifB+2pacLMSbklhZlVqUH19U
-        mpNafIhRmoNFSZyXbYZWspBAemJJanZqakFqEUyWiYNTqoGp8IHyU0tHh8QLch1hGu8dvuZy
-        NGxVv31HV3j7q6Jq7xPfC8+LsGp/ZTlcJhLjE743aYsXW59Bmmvashu7eo+oZC1dMDnA7M0D
-        poNioYrHjW+Yt+ffidr74JHtlVa7Ip0Ned+/NU122bvu8G/Rc+svXfmSmKSYevnTydtKse8f
-        e2xlLrX8x1NXv8I//I4p35HmU0/DJ3BwPfM3/hf740DY6m035wva+m099J+t7uJsGdFzvtM8
-        Xh2MXO6poSr5Lie8brnO+7tz70/blbh6Mf9jTbVHsYvdvklW7N4b0TI7NPrxInNRlT8sL2I+
-        ZOyTehzwNDCLI3kPl0T959rlEYVuay76Wux4ub0qr0IyvcJViaU4I9FQi7moOBEAWvI9yKsD
-        AAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOLMWRmVeSWpSXmKPExsVy+t/xe7rhZ5KTDc60qlnMP3KO1WLmm/9s
-        Fs2L17NZNN3oYbXY+3oru8XlXXPYLGac38dksWhZK7PF2iN32S1a9x5ht9i8rp3dYtWCA+wO
-        PB6Lv99j9tg56y67x6ZVnWwed67tYfPYP3cNu0ffllWMHlv2f2b0+LxJLoAjSs+mKL+0JFUh
-        I7+4xFYp2tDCSM/Q0kLPyMRSz9DYPNbKyFRJ384mJTUnsyy1SN8uQS9jzfb/zAXHWCt235zE
-        1MB4naWLkZNDQsBE4tLMh2C2kMBSRom+lRwQcRmJk9MaWCFsYYk/17rYuhi5gGo+MUocn3qC
-        DSTBJmAo0fUWIiEi0MAosWPyXyYQh1ngBpPEhLl9YFXCAvoS70//ZQSxWQRUJfbO3AJm8wrY
-        Suzbs5QZYoW8xOoNB4BsDg5OATuJt91MIKYQUMm1ndETGPkWMDKsYhRJLS3OTc8tNtIrTswt
-        Ls1L10vOz93ECIyBbcd+btnBuPLVR71DjEwcjIcYJTiYlUR4P21LThbiTUmsrEotyo8vKs1J
-        LT7EaAp0xURmKdHkfGAU5pXEG5oZmBqamFkamFqaGSuJ83oWdCQKCaQnlqRmp6YWpBbB9DFx
-        cEo1MC3U/WTBbOP/Skf2i1s5y9ub17Jkt34693QVZ0PiUen93r+LTRuv5z1mit/ix3h2CsPD
-        9weN7wjPmJA16a7z5K/cDz/sbNplv0idTa1+br6hbt4ZAc6w5yzfa3sW+0q2x8/RqvD0dtbg
-        9Xu2qu/2dr/G7jw9f/uQJU7nC9eG/dBKuh3WxMnqfNybxzTupsMy4SeRcQv186e1PLlv7DZL
-        W+2XUoOglWOcnsF14UUv7BI3LDj/7ZpF+KrMD3zdC+VVUua9n+NhWf8iIZJn0+QFClcC7t0X
-        vVxQuDzsE/uOGyvjJxtcPh/qxtZ+d8+MJ9881rB+uOc3ie/K0da8p9tXLjXbvfCU7cXHNyZt
-        /Bn6dKYSS3FGoqEWc1FxIgANDhUICgMAAA==
-X-CMS-MailID: 20221103141239eucas1p167f44609369010a20293d5123214426d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20221103141239eucas1p167f44609369010a20293d5123214426d
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20221103141239eucas1p167f44609369010a20293d5123214426d
-References: <20221103141233.20179-1-m.szyprowski@samsung.com>
-        <CGME20221103141239eucas1p167f44609369010a20293d5123214426d@eucas1p1.samsung.com>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231661AbiKCONg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:13:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23927DF83;
+        Thu,  3 Nov 2022 07:13:34 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 63F156600371;
+        Thu,  3 Nov 2022 14:13:32 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667484813;
+        bh=YMDhUlxAMoErZnevFRjtflBeFHbeFJyuQG5fGsxeGjU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=carv6v1UqdiDgoqsuWL22pY1kUvuJsxrgk8qTDZ+C6kuQ1qfAPxBPVIPxF+iqhkue
+         UJ9jOaHf4rK5kG6e5wGwak13uscIVpVNvxwi/KN7BEOc1qieEVM50xtZeDskrnWu/i
+         OvCT91g3/MWGeXArj24tr+8vV5Vpezs0Y0aRm3x4uF65ZrlsYzXWBK5wC44+5yNOrK
+         DNeIgAdrhA9BLwavhxNWIBrbsg4lUVfr7jfWKIRVrXS2/qlAdp7eT8Zyf+Hi69kEZQ
+         DxpRHbTNsjigCFi9SvkZZJ0OlVtrkcu/l9utQleQ+gsNGMnFAVL5bCw0iXul0Wkahk
+         /LHChCd6BcPrQ==
+Message-ID: <3046551a-62d7-2990-afb6-75fe2e20d8cb@collabora.com>
+Date:   Thu, 3 Nov 2022 15:13:29 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3 net-next 1/8] arm64: dts: mediatek: mt7986: add support
+ for RX Wireless Ethernet Dispatch
+Content-Language: en-US
+To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
+        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org
+References: <cover.1667466887.git.lorenzo@kernel.org>
+ <4bd5f6626174ac042c0e9b9f2ffff40c3c72b88a.1667466887.git.lorenzo@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <4bd5f6626174ac042c0e9b9f2ffff40c3c72b88a.1667466887.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Export of_device_add() function to let DWC3 driver (Exynos variant) to
-instantiate DWC3 core device from the respective child OF-node with a
-custom, addtional properties added.
+Il 03/11/22 10:28, Lorenzo Bianconi ha scritto:
+> Similar to TX Wireless Ethernet Dispatch, introduce RX Wireless Ethernet
+> Dispatch to offload traffic received by the wlan interface to lan/wan
+> one.
+> 
+> Co-developed-by: Sujuan Chen <sujuan.chen@mediatek.com>
+> Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- drivers/of/device.c | 1 +
- 1 file changed, 1 insertion(+)
+Hello Lorenzo,
+thanks for the patch! However, there's something to improve...
 
-diff --git a/drivers/of/device.c b/drivers/of/device.c
-index 8cefe5a7d04e..bc60c9b6863c 100644
---- a/drivers/of/device.c
-+++ b/drivers/of/device.c
-@@ -52,6 +52,7 @@ int of_device_add(struct platform_device *ofdev)
- 
- 	return device_add(&ofdev->dev);
- }
-+EXPORT_SYMBOL(of_device_add);
- 
- static void
- of_dma_set_restricted_buffer(struct device *dev, struct device_node *np)
--- 
-2.17.1
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 75 +++++++++++++++++++++++
+>   1 file changed, 75 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> index 72e0d9722e07..b0a593c6020e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+
+..snip..
+
+> @@ -226,6 +252,12 @@ ethsys: syscon@15000000 {
+>   			 reg = <0 0x15000000 0 0x1000>;
+>   			 #clock-cells = <1>;
+>   			 #reset-cells = <1>;
+> +
+> +			ethsysrst: reset-controller {
+
+That's not right. It works, yes, but your ethsys rightfully declares #reset-cells,
+because it is supposed to also be a reset controller (even though I don't see any
+reset controller registering action in clk-mt7986-eth.c).
+
+Please document the ethernet reset in the appropriate dt-bindings header and
+register the reset controller in clk-mt7986-eth.c.
+
+Finally, you won't need any "ti,syscon-reset" node, and resets will look like
+
+	resets = <&ethsys MT7986_ETHSYS_SOMETHING_SWRST>;
+
+If you need any hint about how to do that, please check clk-mt8195-infra_ao.c.
+
+Regards,
+Angelo
 
