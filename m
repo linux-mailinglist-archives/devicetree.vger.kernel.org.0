@@ -2,298 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59948618756
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:20:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BF98618758
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:20:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231395AbiKCSU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 14:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54682 "EHLO
+        id S231404AbiKCSUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 14:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230423AbiKCSUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:20:25 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68EF13E87
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:20:23 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2849683F4E;
-        Thu,  3 Nov 2022 19:20:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667499622;
-        bh=n51u6LhFoceBViiV5/DmLIF5y/lACNEMtpDmoM1ErXc=;
-        h=From:To:Cc:Subject:Date:From;
-        b=ab735NtMzRYBxdhstvZORIGr01mtOwOhEMCz8Fbz1ff9sJNKPBqQapxV2fcrsxNcD
-         wynSaiiR5UCr+ZM5qJys8B/3J45OoKAJwNgGO0YDgasAY4w7IpyCSr9IxLugN83WJ2
-         0snxXbTsquw91C7WccW3Wxs3ZiFGBqblgP0337LlLL2eXsde4bsqXU4MGvpY2H8uyZ
-         jokf3H8NLVisfOIPYY/lCpxjvnTi8GuK7dZBJospVxIcASonniORmYtaKCN2TUx3Wh
-         BeuVICOP7ABTqPrDiy6DbJW5giqa1h0YYibKE+x6tvsaZCHNzc3vkW86kixk20hkGf
-         ikvGff5Udw8cA==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        alsa-devel@alsa-project.org
-Subject: [PATCH] ASoC: dt-bindings: fsl-sai: Convert to YAML DT schema
-Date:   Thu,  3 Nov 2022 19:20:16 +0100
-Message-Id: <20221103182016.95808-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S231330AbiKCSUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:20:48 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C4F112633
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:20:47 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id u8-20020a17090a5e4800b002106dcdd4a0so6057280pji.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:20:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qjre8fS+9GViFqByLAyAAoZAyQGtJAkIzdGZFWs/uEM=;
+        b=F/ztarU0i2pP/28LjCo+KRL2ZOnrAYcPT9/Qb1KZj6z7sko+JVW2Tnqv2RS27v66mw
+         gWqH4pbR6KdQ2b+j/2GaVgO8j6MvfGCLoePsZRlLwJCU05FdpNDZPhhoB4Njj5iLKGRY
+         /fgFtuCH+0QLHKODGhjgxoWnAlDNrMSAXUvVd04RkMNi0rU5w/igC5FKd2JPTA0HPND4
+         sCYC7mtGe3MSaG/UfMMiMwcVMEVpCMrYD2ybsH0yGuvUlf+QpetFcklip800dRGhoNgW
+         vynerNDFklqpX1merQwgD4qfIw6Bubp6zWItbfSqqIp10ZJ4oOs0N2oiYBcNY29xqBnM
+         UXDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qjre8fS+9GViFqByLAyAAoZAyQGtJAkIzdGZFWs/uEM=;
+        b=Q5hBw4iwheP2S/yCIb5BW/blsABScrzsq4JMSOkzPIoHPtl9zlHRrdiOh5CERmwIpZ
+         kbkKWbuKtMD73U5LoKJv+erX9pD6Tyhg0UecXdtSkSgo20I+kwTXHFLoVQJiKv2rrebH
+         5jlpS7KK0Qtj1MirH9nWk+r1efx2WxMu/otkeSIFjUVpq/ncEyalcqlohpkK4JjVESeE
+         MWwczcnxMq3YEpQvXSpkerbP2sBKuG9Mm6Se8t38ISB5uHKeS7qxuGCQ3v0OMdA91hke
+         LvWTFrlSRs58H1bJ6woA2lS2Rqp0qEdb/Qq6UfcNnzl5G/zAY0HfsRHYQFeKraJnzi7+
+         yA+A==
+X-Gm-Message-State: ACrzQf0UsWizaP5mzNdevRElaZYRHrU+rS2IiruJL0MA/bIghFAGMS/O
+        lINCNl8bYzjeA114UElYCtu5oQ==
+X-Google-Smtp-Source: AMsMyM6uE+XKGYfv9vRMAA/DxbRTR0KKTAqQ4fFJ2yoC9/emk8bT9TSf2H09N1x8/vE2qUH5rCQJPA==
+X-Received: by 2002:a17:90a:5987:b0:215:d4e8:6f7f with SMTP id l7-20020a17090a598700b00215d4e86f7fmr8311685pji.246.1667499647000;
+        Thu, 03 Nov 2022 11:20:47 -0700 (PDT)
+Received: from ?IPV6:2405:201:d02f:da6a:d4a2:1253:adfc:370? ([2405:201:d02f:da6a:d4a2:1253:adfc:370])
+        by smtp.gmail.com with ESMTPSA id z12-20020a170903018c00b00186e8526790sm997572plg.127.2022.11.03.11.20.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 11:20:46 -0700 (PDT)
+Message-ID: <b9b77873-9004-425c-276d-ea5ef8ebf7dc@9elements.com>
+Date:   Thu, 3 Nov 2022 23:50:42 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
+ MAX5978
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
+ <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+ <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
+ <dc6c8f79-9830-dd1b-a064-3b25a3b74a35@9elements.com>
+ <613d7971-37d6-c8db-523e-cf3cbdcd5287@linaro.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <613d7971-37d6-c8db-523e-cf3cbdcd5287@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the SAI bindings to YAML DT schema to permit validation.
-Add Shengjiu as maintainer, derived from sound/soc/fsl/fsl_sai.c
-get_maintainer result.
 
-Describe existing used combinations of compatible strings, add the
-missing imx7d-sai compatible string which is used on i.MX7 .
 
-Properties lsb-first, fsl,sai-synchronous-rx, fsl,sai-asynchronous,
-fsl,dataline are no longer listed as required, since those are clearly
-optional, even the description says so, so does their usage.
+On 03-11-2022 11:31 pm, Krzysztof Kozlowski wrote:
+> OK, so indeed there are improvements.
+> 
+> Yet still you did not improve the warnings coming from the binding -
+> this does not match your binding. Test the binding and you will see big
+> fat warning.
+Not sure what I've missed but below is the output:
+make dt_binding_check -j1 V=1
+make -f ./scripts/Makefile.build obj=scripts/basic
+make -f ./scripts/Makefile.build obj=scripts/dtc
+make -f ./scripts/Makefile.build obj=Documentation/devicetree/bindings
+   dt-extract-example 
+Documentation/devicetree/bindings/mfd/maxim,max5970.yaml > 
+Documentation/devicetree/bindings/mfd/maxim,max5970.example.dts
+   gcc -E 
+-Wp,-MMD,Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.d.pre.tmp 
+-nostdinc -I./scripts/dtc/include-prefixes -undef -D__DTS__ -x 
+assembler-with-cpp -o 
+Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.dts.tmp 
+Documentation/devicetree/bindings/mfd/maxim,max5970.example.dts ; 
+./scripts/dtc/dtc -o 
+Documentation/devicetree/bindings/mfd/maxim,max5970.example.dtb -b 0 
+-iDocumentation/devicetree/bindings/mfd/ 
+-i./scripts/dtc/include-prefixes -Wno-avoid_unnecessary_addr_size 
+-Wno-graph_child_address -Wno-interrupt_provider 
+-Wno-unique_unit_address -Wunique_unit_address_if_enabled -d 
+Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.d.dtc.tmp 
+Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.dts.tmp 
+; cat 
+Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.d.pre.tmp 
+Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.d.dtc.tmp 
+ > Documentation/devicetree/bindings/mfd/.maxim_max5970.example.dtb.d ; 
+dt-validate  -u ./Documentation/devicetree/bindings -p 
+./Documentation/devicetree/bindings/processed-schema.json 
+Documentation/devicetree/bindings/mfd/maxim,max5970.example.dtb || true
 
-Fix the undefined edma channel macro per arch/arm/boot/dts/vfxxx.dtsi ,
-use the value itself just like in the vfxxx.dtsi .
-
-Document interrupts property, which was previously undocumented, but
-it is required property of this IP.
-
-Document #sound-sai-cells, which should be zero for this IP.
-
-Document fsl,imx6ul-iomuxc-gpr and its dependency on MX6UL and
-fsl,sai-mclk-direction-output .
-
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Nicolin Chen <nicoleotsuka@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Takashi Iwai <tiwai@suse.com>
-Cc: Xiubo Li <Xiubo.Lee@gmail.com>
-Cc: alsa-devel@alsa-project.org
-To: devicetree@vger.kernel.org
----
- .../devicetree/bindings/sound/fsl-sai.yaml    | 188 ++++++++++++++++++
- 1 file changed, 188 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/fsl-sai.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.yaml b/Documentation/devicetree/bindings/sound/fsl-sai.yaml
-new file mode 100644
-index 0000000000000..e6620a127f419
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl-sai.yaml
-@@ -0,0 +1,188 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl-sai.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale Synchronous Audio Interface (SAI).
-+
-+maintainers:
-+  - Shengjiu Wang <shengjiu.wang@gmail.com>
-+
-+description:
-+  The SAI is based on I2S module that used communicating with audio
-+  codecs, which provides a synchronous audio interface that supports
-+  fullduplex serial interfaces with frame synchronization such as I2S,
-+  AC97, TDM, and codec/DSP interfaces.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx6ul-sai
-+              - fsl,imx7d-sai
-+          - const: fsl,imx6sx-sai
-+
-+      - items:
-+          - enum:
-+              - fsl,imx8mm-sai
-+              - fsl,imx8mn-sai
-+              - fsl,imx8mp-sai
-+          - const: fsl,imx8mq-sai
-+
-+      - items:
-+          - enum:
-+              - fsl,imx6sx-sai
-+              - fsl,imx7ulp-sai
-+              - fsl,imx8mq-sai
-+              - fsl,imx8qm-sai
-+              - fsl,imx8ulp-sai
-+              - fsl,vf610-sai
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 4
-+    maxItems: 6
-+
-+  clock-names:
-+    minItems: 4
-+    items:
-+      - const: bus
-+      - const: mclk1
-+      - const: mclk2
-+      - const: mclk3
-+      - const: pll8k
-+      - const: pll11k
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  lsb-first:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      Configures whether the LSB or the MSB is transmitted first for the
-+      fifo data. If this property is absent, the MSB is transmitted first
-+      as default, or the LSB is transmitted first.
-+
-+  fsl,sai-synchronous-rx:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      This is a boolean property. If present, indicating that SAI will
-+      work in the synchronous mode (sync Tx with Rx) which means both
-+      the transmitter and the receiver will send and receive data by
-+      following receiver's bit clocks and frame sync clocks.
-+      If both fsl,sai-asynchronous and fsl,sai-synchronous-rx are
-+      absent, the default synchronous mode (sync Rx with Tx) will
-+      be used, which means both transmitter and receiver will send
-+      and receive data by following clocks of transmitter.
-+      fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
-+
-+  fsl,sai-asynchronous:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      If present, indicating that SAI will work in the asynchronous
-+      mode, which means both transmitter and receiver will send and
-+      receive data by following their own bit clocks and frame sync
-+      clocks separately.
-+      If both fsl,sai-asynchronous and fsl,sai-synchronous-rx are
-+      absent, the default synchronous mode (sync Rx with Tx) will
-+      be used, which means both transmitter and receiver will send
-+      and receive data by following clocks of transmitter.
-+      fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
-+
-+  fsl,dataline:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Configure the dataline. It has 3 values for each configuration:
-+      first one means the type: I2S(1) or PDM(2)
-+      second one is dataline mask for 'rx'
-+      third one is dataline mask for 'tx'.
-+      for example: fsl,dataline = <1 0xff 0xff 2 0xff 0x11>;
-+      means I2S type rx mask is 0xff, tx mask is 0xff, PDM type
-+      rx mask is 0xff, tx mask is 0x11 (dataline 1 and 4 enabled).
-+
-+  fsl,sai-mclk-direction-output:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      If present, indicates that SAI will output the SAI MCLK clock.
-+
-+  fsl,imx6ul-iomuxc-gpr:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to MX6UL IOMUXC GPR shared register file.
-+
-+  big-endian:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+     Required if all the SAI registers are big-endian rather
-+     than little-endian.
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6ul-sai
-+    then:
-+      dependencies:
-+        fsl,imx6ul-iomuxc-gpr: [ "fsl,sai-mclk-direction-output" ]
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - fsl,imx6ul-sai
-+                - fsl,imx8mm-sai
-+                - fsl,imx8mn-sai
-+                - fsl,imx8mp-sai
-+                - fsl,imx8mq-sai
-+    then:
-+      properties:
-+        fsl,sai-mclk-direction-output: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/vf610-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    sai@40031000 {
-+      compatible = "fsl,vf610-sai";
-+      reg = <0x40031000 0x1000>;
-+      interrupts = <86 IRQ_TYPE_LEVEL_HIGH>;
-+      pinctrl-names = "default";
-+      pinctrl-0 = <&pinctrl_sai2_1>;
-+      clocks = <&clks VF610_CLK_PLATFORM_BUS>, <&clks VF610_CLK_SAI2>,
-+               <&clks 0>, <&clks 0>;
-+      clock-names = "bus", "mclk1", "mclk2", "mclk3";
-+      dma-names = "tx", "rx";
-+      dmas = <&edma0 0 21>, <&edma0 0 20>;
-+      big-endian;
-+      lsb-first;
-+    };
--- 
-2.35.1
-
+Didn't get any error or warning on example.
+Made sure python package dt-schema is updated as well.
