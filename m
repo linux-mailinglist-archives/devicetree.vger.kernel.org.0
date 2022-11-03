@@ -2,72 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89720617E05
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:38:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59831617E0C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbiKCNiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 09:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39590 "EHLO
+        id S230396AbiKCNjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 09:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230460AbiKCNiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:38:00 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1A913D1A;
-        Thu,  3 Nov 2022 06:38:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B50BCB8279B;
-        Thu,  3 Nov 2022 13:37:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E21A4C433D6;
-        Thu,  3 Nov 2022 13:37:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1667482677;
-        bh=gawcDZeowT9wB7PlFAyKqWpC3J+QyRN7jsvw+U1PKe0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SADon+tXRKutSGiqv7FUfI74t7fF8iWGhJiVM7eKBa0mGEUAebJbRasd+PCA+zI2S
-         NANoQmKIUm1bHpS8SECPC/j5au0qr862KimHq+Z/jqyL8HhClbj0AThftqS8HN+XW9
-         oW3fJCbX0VzMtwrmzQnf3ImEezqN8uutotTeAewU=
-Date:   Thu, 3 Nov 2022 22:38:37 +0900
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Appana Durga Kedareswara rao 
-        <appana.durga.kedareswara.rao@amd.com>
-Cc:     appanad@amd.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, appana.durga.rao@xilinx.com,
-        michal.simek@xilinx.com, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com, arnd@arndb.de,
-        linux-arm-kernel@lists.infradead.org, git@amd.com,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v6 4/4] drivers: misc: Add Support for TMR Inject IP
-Message-ID: <Y2PEXawGI/JhyaGK@kroah.com>
-References: <20221103091500.3022212-1-appana.durga.kedareswara.rao@amd.com>
- <20221103091500.3022212-5-appana.durga.kedareswara.rao@amd.com>
+        with ESMTP id S230389AbiKCNjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:39:07 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 638ADE21;
+        Thu,  3 Nov 2022 06:39:06 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id n12so5229814eja.11;
+        Thu, 03 Nov 2022 06:39:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z10ie4YimZPTB5alKBTkQ5yy8IFqW2xEzKQg8IUrI5Q=;
+        b=pgr5Gx3bBX3g/9j+1rndCGqX8oJwyStHDPVna9E2jr1olHBAOL65lY9sGZ6C0dHKRZ
+         s1TGcsfld0juH7eqdNCaQV1RW/OlCIaRyeK1JRqNjRErKEkKLKDbxMCSaLVW1Svvc3s7
+         cuFoP3jF06NJ2GcQEsqf8J5ZFmvPii8SNmm/f1dQnv2l1x2ZSDTPomqMw7v19lelSmgX
+         xhF1hrXsEymIQ5xZxdJk6iH+lqrislUIHJxTtHZ0nmEkXQp+ao63XwV50SsZeIDizGie
+         vXA+plFEoeXOspjFxWN7rJXbcM4+adZ14ONPJh+A0VDmSVPTnM9GF904xdWvCtGantsv
+         ZkaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z10ie4YimZPTB5alKBTkQ5yy8IFqW2xEzKQg8IUrI5Q=;
+        b=BzeZvQjv4a3XCD+Jq4ldHSiYqEk1FE4OjxgsTEazste6tc1puivEogQl8uBc1SDdJo
+         dsEhVrCO2bCyXD1qqybNu8asj8iBjTXcq2/09XfDhIRgfslxmc+Q6hPLrzAzhZ5QpJsI
+         kyieEECx4pbq67TPCbxN6SIRSoPbbhKypWUzFRGZsaDQSAP2FG7TLw6uBxCObROsyPQt
+         cM6lxc4M09kfdTEEACX3LjkXcnJdfdIerb3mu0pQc0fMb1tV4Iyjsqxte1D0qJYFmo15
+         eRpJqzgFMGI233g2SkxxGcO4+3tfLJ5loGeEg0Hmpvc72eGK0SolSsdd5JfB6oB+09a4
+         9MYw==
+X-Gm-Message-State: ACrzQf0ko8UuLMF3NGwvukAa0bFTQZgvJ02Jy3W9dNu75SKWFhoyHSN/
+        1EO6bHzDf+jRvg+mYTpRYiw=
+X-Google-Smtp-Source: AMsMyM6UxqoEJfmd6WlvwItfcqSFLkxUnSH8wF8LywPjgOn86RkLU8h80fxh0vildnlRCzP/vfWbpg==
+X-Received: by 2002:a17:907:80d:b0:73d:a576:dfbd with SMTP id wv13-20020a170907080d00b0073da576dfbdmr28805551ejb.402.1667482744700;
+        Thu, 03 Nov 2022 06:39:04 -0700 (PDT)
+Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id qp18-20020a170907207200b007ad86f86b4fsm517328ejb.69.2022.11.03.06.39.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 06:39:03 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Ashish Mhetre <amhetre@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Janne Grunau <j@jannau.net>, Sameer Pujar <spujar@nvidia.com>,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-tegra@vger.kernel.org, asahi@lists.linux.dev
+Subject: [PATCH v10 0/5] iommu: Support mappings/reservations in reserved-memory regions
+Date:   Thu,  3 Nov 2022 14:38:55 +0100
+Message-Id: <20221103133900.1473855-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221103091500.3022212-5-appana.durga.kedareswara.rao@amd.com>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 02:45:00PM +0530, Appana Durga Kedareswara rao wrote:
-> The Triple Modular Redundancy(TMR) provides functional fault injection by
-> changing selected MicroBlaze instructions, which provides the possibility
-> to verify that the TMR subsystem error detection and fault recovery logic
-> is working properly.
-> 
-> Usage:
-> echo 1 > /sys/kernel/debug/xtmr_inject/inject_fault/inject_fault
-> 
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
-> Reported-by: kernel test robot <lkp@intel.com>
+From: Thierry Reding <treding@nvidia.com>
 
-The test robot did not report the lack of this driver in the kernel and
-need to be mentioned here, sorry.
+Hi,
+
+This version has several fixes over the previous v9, which can be found
+here:
+
+  https://lore.kernel.org/all/20220923123557.866972-1-thierry.reding@gmail.com/
+
+Most notably this addresses an issue with DMA address translations
+failing across bus boundaries with mismatching #address-cells (2 vs. 1)
+properties. The proposed fix is to treat DMA parents as creating a DMA
+bus that is separate from the control bus, and therefore stop address
+translation for DMA at the last DMA parent.
+
+Other than that this includes minor fixups to the DT bindings as well as
+some rework to the OF/IOMMU core code to be more easily extensible in
+the future.
+
+I've also dropped the tegra-smmu patches for now since they have
+accumulated some bitrot and probably need more revision and testing.
+
+An example is included in the DT bindings, but here is an extract of
+what I've used to test this:
+
+        reserved-memory {
+                #address-cells = <2>;
+                #size-cells = <2>;
+                ranges;
+
+                /*
+                 * Creates an identity mapping for the framebuffer that
+                 * the firmware has setup to scan out a bootsplash from.
+                 */
+                fb: framebuffer@92cb2000 {
+                        reg = <0x0 0x92cb2000 0x0 0x00800000>;
+                        iommu-addresses = <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+                };
+
+                /*
+                 * Creates a reservation in the IOVA space to prevent
+                 * any buffers from being mapped to that region. Note
+                 * that on Tegra the range is actually quite different
+                 * from this, but it would conflict with the display
+                 * driver that I tested this against, so this is just
+                 * a dummy region for testing.
+                 */
+                adsp: reservation-adsp {
+                        iommu-addresses = <&dc0 0x0 0x90000000 0x0 0x00010000>;
+                };
+        };
+
+        host1x@50000000 {
+                dc@54200000 {
+                        memory-region = <&fb>, <&adsp>;
+                };
+        };
+
+This is abbreviated a little to focus on the essentials. Note also that
+the ADSP reservation is not actually used on this device and the driver
+for this doesn't exist yet, but I wanted to include this variant for
+testing, because we'll want to use these bindings for the reservation
+use-case as well at some point.
+
+I've also been able to make use of this binding and the IOMMU code in
+conjunction with the simple-framebuffer driver to hand over a display
+configuration set up by UEFI to the Linux kernel.
+
+Janne has confirmed[0] this to be suitable for indirect mappings as
+well, though these patches don't implement that feature yet. Potential
+extensions to this have been discussed but are not yet included at this
+time to not further complicate things.
+
+Thierry
+
+[0]: https://lore.kernel.org/all/20220909144504.GA4024@jannau.net/
+
+Thierry Reding (5):
+  of: Introduce of_translate_dma_region()
+  of: Stop DMA translation at last DMA parent
+  dt-bindings: reserved-memory: Document iommu-addresses
+  iommu: Implement of_iommu_get_resv_regions()
+  iommu: dma: Use of_iommu_get_resv_regions()
+
+ .../reserved-memory/reserved-memory.yaml      | 73 ++++++++++++++
+ drivers/iommu/dma-iommu.c                     |  3 +
+ drivers/iommu/of_iommu.c                      | 94 +++++++++++++++++++
+ drivers/of/address.c                          | 58 +++++++++++-
+ include/linux/of_address.h                    |  2 +
+ include/linux/of_iommu.h                      |  8 ++
+ 6 files changed, 235 insertions(+), 3 deletions(-)
+
+-- 
+2.38.1
 
