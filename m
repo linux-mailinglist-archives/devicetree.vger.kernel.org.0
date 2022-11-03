@@ -2,237 +2,383 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C95F618092
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15EDF6180AC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:10:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232055AbiKCPHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 11:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
+        id S232098AbiKCPKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 11:10:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231901AbiKCPH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:07:27 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 020EC1B1DA;
-        Thu,  3 Nov 2022 08:05:04 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id c18-20020a056830349200b0066c47e192f0so1114448otu.12;
-        Thu, 03 Nov 2022 08:05:03 -0700 (PDT)
+        with ESMTP id S232105AbiKCPJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:09:59 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD941B785
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 08:08:52 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id v8so1283237qkg.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 08:08:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n+LMDPVxiSEBWz30xQrCRDeHZy70LgG1o1jfGXqxYeY=;
-        b=UMeYriPiO7lwL6z/qS1RudNvF22v90Ona84GJxHd7cVu8922bHAXNvmfRq9OTVZrzX
-         EF1oV1qH7wXpcXYCltJr+t6tbHs0jTA+luZDZNHE/UujMCesgRqLdKoa1auEuwEIFMi5
-         LFak0tc+Hk7bPEtEAL/5qqZEDeXaT/g0YTlvmcKQbHNRFWYuHp8L1FqrIltEtwZsFdBk
-         eLs3jPtFrTTverMvMpTgp0CAJC+gpkeL/9opDie4Dyg56T8nuWVCPlsMarZjXxV1n0Rz
-         cAVzt10cXG5+HKkHGouHmoHhNO0wQNMI62UZl72HfNCohmt/IbxouIIMW4tZwNOb3br2
-         riJw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l+EbiXy8hAP8VoNeBUH8kmx6qnfyvhvIHdBBRAmU5R4=;
+        b=OG8EyXDCnL1LKRvTvPRHdeCYPRnOIPoCGKIqnexGpgNzpywiOvEGk0BzugzSpulEJ3
+         PhCBbjQqAqTSsHPczIDxxMzZ5q7uXrdJDfl/3Fso/mvshPOdJ3dggTannDZGwRYfZ2Fg
+         X+uTsfTkM8z/73k/3iENP+1GrX3o2njxob3LGbDwVzx+RytLTL+dlqtXbt466SuSwoFe
+         npXXFxveRYWxdU6/dASR18z6MiJQwMUM0AGdu0oRrVd8g6jEnhoPbqgQNV98XuhLTEUf
+         CjoTMwq/XHc7c1oaYp8qOJjTLUmJl0iNVqmZ35kwtbdJEibXt2dG64ix6ABBHM38bCcq
+         8uoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n+LMDPVxiSEBWz30xQrCRDeHZy70LgG1o1jfGXqxYeY=;
-        b=AbKndLr17PL6apic9MTuh5oEUkY1vvoX3ODZiBh0H1ody1IPB7FWnwJDyvXk5qBK0T
-         /QcxfgFpbkQhbwqkoHYbVRzhjnVKL5giEclaRglFcqDjMHaEPHvWRH2nGwbQbTfxkafo
-         i/Sm1DPp82jvr0wYayiosxcowETFVOwYDpuFGnv3mlRfgGL+nFUwJpgJTr/wl45eSQlt
-         tFZQESXs5vgKTQWhKiooMpVW1AgZyTpw4FybqrrxXlrKrdeL+TMM008+IQBZxqjx4rXH
-         NdKB+BAKVSHu3lcFISm/TQPW4KnWdt8NVS75hy8WeqqGMU5II61MIFWf94an3ydf4KvE
-         yq7g==
-X-Gm-Message-State: ACrzQf1hAQWR7jGus5MHSfOULea8iw/72ufibgIWwlAa+d32DRWgYlDq
-        ruOE1NWiNZ1CIQ2H7AJpzAw=
-X-Google-Smtp-Source: AMsMyM6y+XpWcpKs5/mVvU7JTTwYNV8cL+uzhoilDVBfn/1sVPOneHDsBvhPnvMTZTlhwVvLyei2qw==
-X-Received: by 2002:a9d:2ae8:0:b0:667:d857:55bc with SMTP id e95-20020a9d2ae8000000b00667d85755bcmr15348603otb.50.1667487903310;
-        Thu, 03 Nov 2022 08:05:03 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u29-20020a056870d59d00b0013b09a56d59sm482055oao.27.2022.11.03.08.04.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 08:05:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 3 Nov 2022 08:04:58 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     linux-watchdog@vger.kernel.org, wim@linux-watchdog.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, Anson.Huang@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] watchdog: imx2_wdg: suspend watchdog in WAIT mode
-Message-ID: <20221103150458.GA146501@roeck-us.net>
-References: <20221103100358.176099-1-andrej.picej@norik.com>
- <20221103100358.176099-2-andrej.picej@norik.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l+EbiXy8hAP8VoNeBUH8kmx6qnfyvhvIHdBBRAmU5R4=;
+        b=DgUAYFRUSGFseCXEaOS/vGCCfm/AXSB/1yuscug9FdzTOEsLVOFI5lG/t9SQl8S0fY
+         Q+qNiYNHpdb906WblDqxkZXty5h9Lltfa4tZ6Hwqpw76gmGN66VYamuskyf/L2pjSpNi
+         0XAnIlsfgZ3TPa9K/jg1+yFueq2+c6D24E0A4ui/f/3R4XUgyKv0SfNHG6Z+RtC8hLQr
+         IuBuuS2SC0Q+yhijNYO0Pn269H5P7CknBns18BZ+JMymjt34NymlI6yYRAqDnKhd7mmX
+         PwxvYuT4kqLRMOihSrxqb0C6tISHNbaJdXoco44oD32uXfuAOYd4dniITwNLBg1PDYiQ
+         42kw==
+X-Gm-Message-State: ACrzQf1JRW+6vVIFQL9LNfo+iAAnro7FNGQ0SjUrKQdPOoKDgmEM88J7
+        nec51Mmfq9a/TOJAR/XaAQaG/w==
+X-Google-Smtp-Source: AMsMyM6H2OQKbEbvh+qBl09dMiE4Iho9/knHDmPJlnQFflAX3jWAvGOhMYn2dhpItHW/cdlf5kGSYg==
+X-Received: by 2002:a37:a09:0:b0:6f9:9f68:5296 with SMTP id 9-20020a370a09000000b006f99f685296mr22239487qkk.83.1667488131730;
+        Thu, 03 Nov 2022 08:08:51 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id u4-20020a37ab04000000b006f9e103260dsm881423qke.91.2022.11.03.08.08.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 08:08:50 -0700 (PDT)
+Message-ID: <6d1bd86e-29f0-a3b2-700b-978d64990d56@linaro.org>
+Date:   Thu, 3 Nov 2022 11:08:49 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221103100358.176099-2-andrej.picej@norik.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v3 net-next 2/8] dt-bindings: net: mediatek: add WED RX
+ binding for MT7986 eth driver
+Content-Language: en-US
+To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
+Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
+        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
+        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
+        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org
+References: <cover.1667466887.git.lorenzo@kernel.org>
+ <2d92c3e282c6a788e54370604f966fc7a5b479bf.1667466887.git.lorenzo@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2d92c3e282c6a788e54370604f966fc7a5b479bf.1667466887.git.lorenzo@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 11:03:56AM +0100, Andrej Picej wrote:
-> Putting device into the "Suspend-To-Idle" mode causes watchdog to
-> trigger and resets the board after set watchdog timeout period elapses.
+On 03/11/2022 05:28, Lorenzo Bianconi wrote:
+> Document the binding for the RX Wireless Ethernet Dispatch core on the
+> MT7986 ethernet driver used to offload traffic received by WLAN NIC and
+> forwarded to LAN/WAN one.
 > 
-> Introduce new device-tree property "fsl,suspend-in-wait" which suspends
-> watchdog in WAIT mode. This is done by setting WDW bit in WCR
-> (Watchdog Control Register). Watchdog operation is restored after
-> exiting WAIT mode as expected. WAIT mode corresponds with Linux's
-> "Suspend-To-Idle".
-> 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-
-For my reference:
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-This will have to wait for dt approval.
-
-Thanks,
-Guenter
-
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
-> Changes in v3:
->  - fix spelling in commit message,
->  - fix and simplify property handling in probe,
->  - add a comment about unknown interaction between imx7d no-ping
->    functionality and "fsl,suspend-in-wait",
->  - property support handled by of_device_id data pointer.
+>  .../arm/mediatek/mediatek,mt7622-wed.yaml     | 62 ++++++++++++++++++-
+>  .../arm/mediatek/mediatek,mt7986-wo-boot.yaml | 47 ++++++++++++++
+>  .../arm/mediatek/mediatek,mt7986-wo-ccif.yaml | 50 +++++++++++++++
+>  .../arm/mediatek/mediatek,mt7986-wo-dlm.yaml  | 50 +++++++++++++++
+>  4 files changed, 206 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml
+>  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml
 > 
-> Changes in v2:
->  - validate the property with compatible string, as this functionality
->    is not supported by all devices.
-> ---
->  drivers/watchdog/imx2_wdt.c | 55 +++++++++++++++++++++++++++++++++++--
->  1 file changed, 52 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
-> index d0c5d47ddede..19ab7b3d286b 100644
-> --- a/drivers/watchdog/imx2_wdt.c
-> +++ b/drivers/watchdog/imx2_wdt.c
-> @@ -27,6 +27,7 @@
->  #include <linux/module.h>
->  #include <linux/moduleparam.h>
->  #include <linux/of_address.h>
-> +#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/watchdog.h>
-> @@ -35,6 +36,7 @@
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.yaml
+> index 84fb0a146b6e..9e34c5d15cec 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-wed.yaml
+> @@ -1,8 +1,8 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt7622-wed.yaml#"
+> -$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7622-wed.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+Split the cleanups from essential/functional changes.
+
 >  
->  #define IMX2_WDT_WCR		0x00		/* Control Register */
->  #define IMX2_WDT_WCR_WT		(0xFF << 8)	/* -> Watchdog Timeout Field */
-> +#define IMX2_WDT_WCR_WDW	BIT(7)		/* -> Watchdog disable for WAIT */
->  #define IMX2_WDT_WCR_WDA	BIT(5)		/* -> External Reset WDOG_B */
->  #define IMX2_WDT_WCR_SRS	BIT(4)		/* -> Software Reset Signal */
->  #define IMX2_WDT_WCR_WRE	BIT(3)		/* -> WDOG Reset Enable */
-> @@ -60,13 +62,19 @@
+>  title: MediaTek Wireless Ethernet Dispatch Controller for MT7622
 >  
->  #define WDOG_SEC_TO_COUNT(s)	((s * 2 - 1) << 8)
+> @@ -29,6 +29,50 @@ properties:
+>    interrupts:
+>      maxItems: 1
 >  
-> +struct imx2_wdt_data {
-> +	bool wdw_supported;
-> +};
+> +  memory-region:
+> +    items:
+> +      - description:
+> +          Phandle for the node used to run firmware EMI region
+
+Merge above two lines. Drop "phandle for the node used to run"
+
+> +      - description:
+> +          Phandle for the node used to run firmware ILM region
+> +      - description:
+> +          Phandle for the node used to run firmware CPU DATA region
 > +
->  struct imx2_wdt_device {
->  	struct clk *clk;
->  	struct regmap *regmap;
->  	struct watchdog_device wdog;
-> +	const struct imx2_wdt_data *data;
->  	bool ext_reset;
->  	bool clk_is_on;
->  	bool no_ping;
-> +	bool sleep_wait;
->  };
->  
->  static bool nowayout = WATCHDOG_NOWAYOUT;
-> @@ -129,6 +137,9 @@ static inline void imx2_wdt_setup(struct watchdog_device *wdog)
->  
->  	/* Suspend timer in low power mode, write once-only */
->  	val |= IMX2_WDT_WCR_WDZST;
-> +	/* Suspend timer in low power WAIT mode, write once-only */
-> +	if (wdev->sleep_wait)
-> +		val |= IMX2_WDT_WCR_WDW;
->  	/* Strip the old watchdog Time-Out value */
->  	val &= ~IMX2_WDT_WCR_WT;
->  	/* Generate internal chip-level reset if WDOG times out */
-> @@ -292,6 +303,8 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
->  	wdog->max_hw_heartbeat_ms = IMX2_WDT_MAX_TIME * 1000;
->  	wdog->parent		= dev;
->  
-> +	wdev->data = of_device_get_match_data(dev);
+> +  memory-region-names:
+> +    items:
+> +      - const: wo-emi
+> +      - const: wo-ilm
+> +      - const: wo-data
 > +
->  	ret = platform_get_irq(pdev, 0);
->  	if (ret > 0)
->  		if (!devm_request_irq(dev, ret, imx2_wdt_isr, 0,
-> @@ -313,9 +326,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
->  
->  	wdev->ext_reset = of_property_read_bool(dev->of_node,
->  						"fsl,ext-reset-output");
+> +  mediatek,wo-ccif:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the mediatek wed-wo controller.
+
+Drop "Phandle to". Same in other cases.
+
 > +
-> +	if (of_property_read_bool(dev->of_node, "fsl,suspend-in-wait")) {
-> +		if (!wdev->data->wdw_supported) {
-> +			dev_err(dev, "suspend-in-wait not supported\n");
-> +			return -EINVAL;
-> +		}
-> +		wdev->sleep_wait = true;
-> +	}
+> +  mediatek,wo-boot:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the mediatek wed-wo boot interface.
 > +
->  	/*
->  	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
-> -	 * during suspend.
-> +	 * during suspend. Interaction with "fsl,suspend-in-wait" is unknown!
->  	 */
->  	wdev->no_ping = !of_device_is_compatible(dev->of_node, "fsl,imx7d-wdt");
->  	platform_set_drvdata(pdev, wdog);
-> @@ -417,9 +439,36 @@ static int __maybe_unused imx2_wdt_resume(struct device *dev)
->  static SIMPLE_DEV_PM_OPS(imx2_wdt_pm_ops, imx2_wdt_suspend,
->  			 imx2_wdt_resume);
->  
-> +struct imx2_wdt_data imx_wdt = {
-> +	.wdw_supported = true,
-> +};
+> +  mediatek,wo-dlm:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the mediatek wed-wo rx hw ring.
+
+rx->RX?
+hw->HW?
+
 > +
-> +struct imx2_wdt_data imx_wdt_legacy = {
-> +	.wdw_supported = false,
-> +};
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt7622-wed
+> +    then:
+> +      properties:
+> +        memory-region-names: false
+> +        memory-region: false
+> +        mediatek,wo-boot: false
+> +        mediatek,wo-ccif: false
+> +        mediatek,wo-dlm: false
 > +
->  static const struct of_device_id imx2_wdt_dt_ids[] = {
-> -	{ .compatible = "fsl,imx21-wdt", },
-> -	{ .compatible = "fsl,imx7d-wdt", },
-> +	{ .compatible = "fsl,imx21-wdt", .data = &imx_wdt_legacy },
-> +	{ .compatible = "fsl,imx25-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx27-wdt", .data = &imx_wdt_legacy },
-> +	{ .compatible = "fsl,imx31-wdt", .data = &imx_wdt_legacy },
-> +	{ .compatible = "fsl,imx35-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx50-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx51-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx53-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx6q-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx6sl-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx6sll-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx6sx-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx6ul-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx7d-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx8mm-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx8mn-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx8mp-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,imx8mq-wdt", .data = &imx_wdt },
-> +	{ .compatible = "fsl,ls1012a-wdt", .data = &imx_wdt_legacy },
-> +	{ .compatible = "fsl,ls1043a-wdt", .data = &imx_wdt_legacy },
-> +	{ .compatible = "fsl,vf610-wdt", .data = &imx_wdt },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, imx2_wdt_dt_ids);
-> -- 
-> 2.25.1
-> 
+>  required:
+>    - compatible
+>    - reg
+> @@ -44,8 +88,20 @@ examples:
+>        #address-cells = <2>;
+>        #size-cells = <2>;
+>        wed0: wed@1020a000 {
+> -        compatible = "mediatek,mt7622-wed","syscon";
+> +        compatible = "mediatek,mt7622-wed", "syscon";
+>          reg = <0 0x1020a000 0 0x1000>;
+>          interrupts = <GIC_SPI 214 IRQ_TYPE_LEVEL_LOW>;
+>        };
+> +
+> +      wed1: wed@15010000 {
+
+That's a separate example. - |
+Drop wed1 label.
+
+> +        compatible = "mediatek,mt7986-wed", "syscon";
+
+And where is the compatible added?
+
+> +        reg = <0 0x15010000 0 0x1000>;
+> +        interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        memory-region = <&wo_emi>, <&wo_data>, <&wo_ilm>;
+> +        memory-region-names = "wo-emi", "wo-ilm", "wo-data";
+> +        mediatek,wo-ccif = <&wo_ccif0>;
+> +        mediatek,wo-boot = <&wo_boot>;
+> +        mediatek,wo-dlm = <&wo_dlm0>;
+> +      };
+>      };
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml
+> new file mode 100644
+> index 000000000000..6c3c514c48ef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml
+
+arm is only for top-level stuff. Choose appropriate subsystem, soc as
+last resort.
+
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-boot.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title:
+> +  MediaTek Wireless Ethernet Dispatch WO boot controller interface for MT7986
+> +
+> +maintainers:
+> +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> +  - Felix Fietkau <nbd@nbd.name>
+> +
+> +description:
+> +  The mediatek wo-boot provides a configuration interface for WED WO
+> +  boot controller on MT7986 soc.
+
+And what is "WED WO boot controller?
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt7986-wo-boot
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      wo_boot: syscon@15194000 {
+> +        compatible = "mediatek,mt7986-wo-boot", "syscon";
+> +        reg = <0 0x15194000 0 0x1000>;
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml
+> new file mode 100644
+> index 000000000000..6357a206587a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-ccif.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Wireless Ethernet Dispatch WO controller interface for MT7986
+> +
+> +maintainers:
+> +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> +  - Felix Fietkau <nbd@nbd.name>
+> +
+> +description:
+> +  The mediatek wo-ccif provides a configuration interface for WED WO
+> +  controller on MT7986 soc.
+
+All previous comments apply.
+
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt7986-wo-ccif
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      wo_ccif0: syscon@151a5000 {
+> +        compatible = "mediatek,mt7986-wo-ccif", "syscon";
+> +        reg = <0 0x151a5000 0 0x1000>;
+> +        interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml
+> new file mode 100644
+> index 000000000000..a499956d9e07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-dlm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Wireless Ethernet Dispatch WO hw rx ring interface for MT7986
+> +
+> +maintainers:
+> +  - Lorenzo Bianconi <lorenzo@kernel.org>
+> +  - Felix Fietkau <nbd@nbd.name>
+> +
+> +description:
+> +  The mediatek wo-dlm provides a configuration interface for WED WO
+> +  rx ring on MT7986 soc.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt7986-wo-dlm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      wo_dlm0: wo-dlm@151e8000 {
+
+Node names should be generic.
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+Best regards,
+Krzysztof
+
