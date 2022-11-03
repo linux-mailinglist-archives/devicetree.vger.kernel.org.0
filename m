@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 515CD618ACE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 22:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6AF6618AD9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 22:53:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbiKCVt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 17:49:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56480 "EHLO
+        id S229487AbiKCVxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 17:53:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbiKCVt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 17:49:56 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3606DC28
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 14:49:54 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id e15so2070672qvo.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 14:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V8QtDCFHOraW9Y7IqsYd/UFa1rfIHZvfyAsyDi6Qwdg=;
-        b=M2nVq5bVyFHCMBy3LqUUyoyGzcUx7+jYexrzLeiPhqXVvYrMuZx4hVoRzLWELLpmuu
-         Cp6nK1CPv7uqIXsO3pva00le+/d1DYlERAhQDs+3+wSNquMOqYcZu0dgYUeH4ey9Rd7H
-         WPs68ycKBrReM+k5Qw1mABUd8f3ciWdLxWOWwN6cJnFDXuV8jamOkHH97hSdjDufpjM8
-         s9QhA0PbsNl2IW0LloQBtH0COrZSWvHhxIbs9FykBwLUboIkdUflEJHx/VF6N/4oocl2
-         7XPe2KUftsDqCmjgzixrig+UPXZUkLQNo4GdNiaIsIssTduyvH7kHC1uiay1V+Gs+6Cp
-         6rSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=V8QtDCFHOraW9Y7IqsYd/UFa1rfIHZvfyAsyDi6Qwdg=;
-        b=SjWOvohnppMFyln7XasXt3oc/641v/r8TO3Paks8Kpj0+0orYylNjjuaI0hBtEJWmi
-         FcnXv+2HNlCWb1YVM211wGFg2rO1wl4laVKiI0lBv85YkytAdS7DBQ+hwKU+bBYWp+zS
-         75gZh9UgVznjsBzlfOUCXxE0E97JbHzIGN5XJKjRcQIKWIbafZy4JN+hImGq1wsGiXgO
-         HYWa8pdRrbJuZo3sQzrr/76CFPeJCo6e/1T1CSDTODMsb7TFqci+m7wru9rEcDoNjHSr
-         6T7RUp8+Q/BC0+4XZZhnpu3L/8pLKRn2jYtbWbSs3auBvVPlh+RYngHwlW4MYiwlffc+
-         TudA==
-X-Gm-Message-State: ACrzQf1HGxDJhxYB9ijnwBc9z3JOlDPXe/WSXKmfRvKeHdF/0fCZbiCx
-        WR1ByckMDShTWRPym21LC/8R4A==
-X-Google-Smtp-Source: AMsMyM4iQLYIldOnaf9wcMSRiHwQW1630DS9sQWvEOmcUONZV0/oQhuiJD+3J5g7vYXcQOIWH+AEWA==
-X-Received: by 2002:a0c:e3d3:0:b0:4bb:c033:76fc with SMTP id e19-20020a0ce3d3000000b004bbc03376fcmr27528310qvl.117.1667512193313;
-        Thu, 03 Nov 2022 14:49:53 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id k16-20020a05620a139000b006aedb35d8a1sm1502448qki.74.2022.11.03.14.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 14:49:52 -0700 (PDT)
-Message-ID: <9396ee97-d6f3-f13b-8929-56c3920ee395@linaro.org>
-Date:   Thu, 3 Nov 2022 17:49:51 -0400
+        with ESMTP id S229708AbiKCVxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 17:53:08 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8ECD64CE;
+        Thu,  3 Nov 2022 14:53:07 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A3Lr1QL057487;
+        Thu, 3 Nov 2022 16:53:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667512381;
+        bh=095CCfkd4aT/HzwXJyHyWqHHeUC0ZhvKHQ8qi1QPuco=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Ho1aSFAqDETv2W6tvKdUJ6pXncuFi8GDPS52bTi7L5tJpjviZvNHYxXpEB288+EjH
+         NmpO6bkc9Yfz4i4FdaR5V/qBCylnjp1gBuw3QEY2plrUuN0VZS7LzlA1+RsL3ZG+N5
+         FcD4cPeUXGRc3psScRgXyP8boYnmd0sYTno4jsMA=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A3Lr1bZ126536
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Nov 2022 16:53:01 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 3 Nov
+ 2022 16:53:01 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 3 Nov 2022 16:53:01 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A3Lr1nX031270;
+        Thu, 3 Nov 2022 16:53:01 -0500
+Date:   Thu, 3 Nov 2022 16:53:01 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rahul T R <r-ravikumar@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jkridner@gmail.com>
+Subject: Re: [PATCH v7 1/2] arm64: dts: ti: k3-j721e-main: Add dts nodes for
+ EHRPWMs
+Message-ID: <20221103215301.xlq3zj775jv4zezb@stability>
+References: <20221103174743.16827-1-r-ravikumar@ti.com>
+ <20221103174743.16827-2-r-ravikumar@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v8 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221103213425.2474772-1-Naresh.Solanki@9elements.com>
- <20221103213425.2474772-2-Naresh.Solanki@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103213425.2474772-2-Naresh.Solanki@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221103174743.16827-2-r-ravikumar@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,168 +67,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 17:34, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
+On 23:17-20221103, Rahul T R wrote:
+> From: Vijay Pothukuchi <vijayp@ti.com>
 > 
+> Add dts nodes for 6 EHRPWM instances on SoC
 
-Subject: drop redundant (second) word "bindings"
+OK - I  am able to understand why you'd want this to be disabled because
+I have the background, however, the intent of a commit message is to
+provide information to folks who is not me.
 
-> The MAX597x is a hot swap controller with configurable fault protection.
-> It also has 10bit ADC for current & voltage measurements.
+To give you a guidance, please see how Andrew has done
+in https://lore.kernel.org/linux-arm-kernel/20221028142417.10642-10-afd@ti.com/
+
+You are permitted to disable, but you need to provide explanation why
+you are choosing to do that by default.
+
 > 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-
-Isn't this third version per day? That's too many. Please keep it one
-per day (usually).
-
-
+> Signed-off-by: Vijay Pothukuchi <vijayp@ti.com>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
 > ---
->  .../bindings/mfd/maxim,max5970.yaml           | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 68 ++++++++++++++++++++++-
+>  1 file changed, 67 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> new file mode 100644
-> index 000000000000..25079c518f68
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> @@ -0,0 +1,170 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 5c4a0e28cde5..bc3146e24816 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -66,7 +66,73 @@ usb_serdes_mux: mux-controller@4000 {
+>  			#mux-control-cells = <1>;
+>  			mux-reg-masks = <0x4000 0x8000000>, /* USB0 to SERDES0/3 mux */
+>  					<0x4010 0x8000000>; /* USB1 to SERDES1/2 mux */
+> -	    };
+> +		};
 > +
-> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+> +		ehrpwm_tbclk: clock-controller@4140 {
+> +			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
+> +			reg = <0x4140 0x18>;
+> +			#clock-cells = <1>;
+> +		};
+> +	};
 > +
-> +maintainers:
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+> +	main_ehrpwm0: pwm@3000000 {
+> +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> +		#pwm-cells = <3>;
+> +		reg = <0x00 0x3000000 0x00 0x100>;
+> +		power-domains = <&k3_pds 83 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 83 0>;
+> +		clock-names = "tbclk", "fck";
+> +		status = "disabled";
+> +	};
 > +
-> +description: |
-> +  The smart switch provides no output regulation, but independent fault protection
-> +  and voltage and current sensing.
-> +  Programming is done through I2C bus.
+> +	main_ehrpwm1: pwm@3010000 {
+> +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> +		#pwm-cells = <3>;
+> +		reg = <0x00 0x3010000 0x00 0x100>;
+> +		power-domains = <&k3_pds 84 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 84 0>;
+> +		clock-names = "tbclk", "fck";
+> +		status = "disabled";
+> +	};
 > +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+> +	main_ehrpwm2: pwm@3020000 {
+> +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> +		#pwm-cells = <3>;
+> +		reg = <0x00 0x3020000 0x00 0x100>;
+> +		power-domains = <&k3_pds 85 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 85 0>;
+> +		clock-names = "tbclk", "fck";
+> +		status = "disabled";
+> +	};
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max5970
-> +      - maxim,max5978
+> +	main_ehrpwm3: pwm@3030000 {
+> +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> +		#pwm-cells = <3>;
+> +		reg = <0x00 0x3030000 0x00 0x100>;
+> +		power-domains = <&k3_pds 86 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 86 0>;
+> +		clock-names = "tbclk", "fck";
+> +		status = "disabled";
+> +	};
 > +
-> +  reg:
-> +    maxItems: 1
+> +	main_ehrpwm4: pwm@3040000 {
+> +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> +		#pwm-cells = <3>;
+> +		reg = <0x00 0x3040000 0x00 0x100>;
+> +		power-domains = <&k3_pds 87 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 87 0>;
+> +		clock-names = "tbclk", "fck";
+> +		status = "disabled";
+> +	};
 > +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  leds:
-> +    type: object
-> +    description:
-> +      Properties for single channel.
+> +	main_ehrpwm5: pwm@3050000 {
+> +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> +		#pwm-cells = <3>;
+> +		reg = <0x00 0x3050000 0x00 0x100>;
+> +		power-domains = <&k3_pds 88 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 88 0>;
+> +		clock-names = "tbclk", "fck";
+> +		status = "disabled";
+>  	};
+>  
+>  	gic500: interrupt-controller@1800000 {
+> -- 
+> 2.38.0
+> 
 
-This description seems odd. You have here several leds, so what is the
-single channel?
-
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^led@[0-3]$":
-> +        $ref: /schemas/leds/common.yaml#
-> +        type: object
-> +
-> +    additionalProperties: false
-> +
-> +  vss1-supply:
-> +    description: Supply of the first channel.
-> +
-> +  vss2-supply:
-> +    description: Supply of the first channel.
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +  regulators:
-> +    type: object
-> +    description:
-> +      Properties for single channel.
-
-That's another odd description.
-
-> +
-> +    patternProperties:
-> +      "^(SW[0-1])$":
-
-This should be lowercase. You also do not need ().
-
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description: |
-> +          The value of curent sense resistor in microohms.
-> +          Must be specified for each channel.
-
-Drop last sentence and instead add "required:" with proper indent.
-
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +  - vss1-supply
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - maxim,max5970
-> +    then:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +            - description: voltage second channel
-> +            - description: current second channel
-> +          description: |
-> +            Voltage and current for first and second channel.
-
-I do not understand the description.
-
-Also, add it in the existing example.
-
-> +      required:
-> +        - vss2-supply
-> +    else:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +          description: |
-> +            Voltage and current for first channel.
-
-Same question for the description.
-
-> +
-> +additionalProperties: false
-> +
-
-Best regards,
-Krzysztof
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
