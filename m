@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB93617B3E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 12:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42422617B3B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 12:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbiKCLBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 07:01:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35294 "EHLO
+        id S229700AbiKCLBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 07:01:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231394AbiKCLBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 07:01:30 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38601182C
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 04:01:27 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id r18so1320695pgr.12
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 04:01:27 -0700 (PDT)
+        with ESMTP id S231405AbiKCLBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 07:01:32 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED03611834
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 04:01:31 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id v28so1233330pfi.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 04:01:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rdlSJiSDdFVNFGf7aj1iVzyqCpSjnjyK7zZt5V+eoFk=;
-        b=UAmCLml2yroJcnFXFQvvkzy2aNsqlmSGQS5t8dAlzArMlFBKaJvBqOYgjVuzPCG/bE
-         L2WuZiDJamaQQHF2ZtSeEUW7/i0igpivEDO/H0L4WEvA96KyIp4Ir6RN5mH65cTc+2M7
-         uSNZPqD1dPevSMC1cs4iZuhIbno4Gm1Rqm0SPA93wu+ObgvakF0ME6NX0J9HsYvsCZvF
-         gYm49A8S1d6ELns4/t72kFySs2bKD4wSQcIFa2W4uAii1H6TKDUFwRr3OI63qafeKe4t
-         1/WNmtSiTXdFO7DIb5EO1TUOV4ctgbAKuGeVs62PKSYpI4fPzdnAVRZR26VNUsmsW+eI
-         RMcA==
+        bh=E6BayU7+whKMo3/qWo30Lf+/AWFHgaDluxjQcRS3B+I=;
+        b=zBFjYYnEhLeXIdKyW1HwYfCDZkwamdYAyCaULgx22W6EDH2VciVt6JBdjuhARELL7Z
+         B6TRmjSnBhSjw1uHc1PgyjAgbZqRJCo/5A1nWb5bHfG6WOF/WuQVA4HTv7b0a2xLswx1
+         HYopKypv+/vT4/DxU0fHpK1pQNpu1pB7+3PElCF168ELSPW39BWfKleEHxSU9J0Fy7KB
+         YvV1ZlHt3T1RcAuYWKU57QZY6hn+uM3jd72mlvRAKS7NYweoyk951Iy2kJIO03mAzs65
+         VNKwiTb/seEZcw+57WkozNYEn0gMa3GDAhUC+tFjhSNTyu07QiIx4cWUWLhKftY/l7dd
+         FQfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rdlSJiSDdFVNFGf7aj1iVzyqCpSjnjyK7zZt5V+eoFk=;
-        b=Q0e+j0QAKCdV8YtHGfdsgJcv9LKzDxdRnKIwJ2abrI0tTfiKtrRVcOwKgEcdji5c9w
-         xCqZi8u5Lyc4r0yYP32PhCNXisdOGd7D9QmMmWhzR9e2qUvrjEviu/uOrmjx6STDPGfV
-         wV/t8C9L7Pp2Up0zx1A9uwkiDHT5eAkrBc+zHQ9zrnPYigicTKb8tD4u1adClS4A1pAj
-         a5pPm7mwjsx+H5qgKy8BtF4BQ7+sr7ls6/rj3N9NmJXRn7Y5aerLuUgpJzhfQz+XsXQd
-         PDTpSUNuG+NNoCz5GqmmyFzfGyRxFecHr3pOIemDB5qXDsktnFqEBuPammcADQ521Yf8
-         ahKA==
-X-Gm-Message-State: ACrzQf2g5KbGAIAafOAhNGXmAgfKfr5m+of/KyVZ5LauPXL78IvQE5Kb
-        RGF9farszfY6C/okzMzGJLO3Mg==
-X-Google-Smtp-Source: AMsMyM5Tmy8uLzzWKsj3p8zB/Bu8mxxZ/K6C/aTTqngKlL9AKMx2cTWBUah3RAb1oXK+BGWrxzA2qQ==
-X-Received: by 2002:a05:6a00:140f:b0:56e:1190:e731 with SMTP id l15-20020a056a00140f00b0056e1190e731mr7920554pfu.39.1667473287402;
-        Thu, 03 Nov 2022 04:01:27 -0700 (PDT)
+        bh=E6BayU7+whKMo3/qWo30Lf+/AWFHgaDluxjQcRS3B+I=;
+        b=OypDzLjTV3zIT86WDsjkI0VFleYZDq+D3FThFWGOM61sEGWmvEavlKF5+sPSMHzWOz
+         Y9C8sd1eqKB/vFuam8hTrHCpf6iAMtQrO55hM0T0gZtlzgdLAoECEpHtyCgSrAinSCuH
+         qDocxYpmrnQCyJYQlsu6HTtMJ1cGEwEX7rYLXTd8TbhnVbLJHpysg4dRETcJzjgZTDm1
+         XxBgrJAeTzAV7vpwjaht1+r0/ORJKKDd1FEH1Z78cyUI4R3BsJQHZSigr6S8H3l2CJKQ
+         o+/OiIw/flOH76nZ7v/9S3BhPEZfe1uRxkZtm5N6HKBXuf9PHvAl7bWwmdJ80PaL2vgO
+         VhYA==
+X-Gm-Message-State: ACrzQf23PQULpHs2g408yGzgOVHzbzQWWVe6ly6wPmyDr7xVPHxW1+MU
+        Ioz2M6RiGvZEd78+4v3d0hv+jw==
+X-Google-Smtp-Source: AMsMyM4HjVW6bkRyhyG5xTtXGuUSaciInOBhBw7kerR3KeoO2GrpLemNgw+shfbnxFL628VqHpEE9g==
+X-Received: by 2002:a63:3347:0:b0:470:1a94:4bf with SMTP id z68-20020a633347000000b004701a9404bfmr3864142pgz.374.1667473291406;
+        Thu, 03 Nov 2022 04:01:31 -0700 (PDT)
 Received: from localhost ([122.172.84.80])
-        by smtp.gmail.com with ESMTPSA id gm22-20020a17090b101600b002132f3e71c6sm684726pjb.52.2022.11.03.04.01.22
+        by smtp.gmail.com with ESMTPSA id f3-20020a170902f38300b0016c50179b1esm355601ple.152.2022.11.03.04.01.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 04:01:22 -0700 (PDT)
+        Thu, 03 Nov 2022 04:01:30 -0700 (PDT)
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     James Calligeros <jcalligeros99@gmail.com>,
         Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
@@ -57,9 +57,9 @@ Cc:     Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org,
         Vincent Guittot <vincent.guittot@linaro.org>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/5] dt-bindings: opp: Fix usage of current in microwatt property
-Date:   Thu,  3 Nov 2022 16:31:04 +0530
-Message-Id: <f7eefa76db8c7d01b4bdaafa6acc4cb84c193fe0.1667473008.git.viresh.kumar@linaro.org>
+Subject: [PATCH 2/5] dt-bindings: opp: Fix named microwatt property
+Date:   Thu,  3 Nov 2022 16:31:05 +0530
+Message-Id: <52bfa57ae698da9881e8a9302473e87f5757d5b6.1667473008.git.viresh.kumar@linaro.org>
 X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
 In-Reply-To: <cover.1667473008.git.viresh.kumar@linaro.org>
 References: <cover.1667473008.git.viresh.kumar@linaro.org>
@@ -75,26 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The bindings mentions "current" instead of "power". Fix it.
+The named microwatt-<name> property should look exactly like microvolt
+and microamp properties. There were some differences, fix them.
 
 Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 ---
- Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-index 66d0ec763f0b..cb025b0a346d 100644
+index cb025b0a346d..cf9c2f7bddc2 100644
 --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
 +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-@@ -108,7 +108,7 @@ select: false
-           The power for the OPP in micro-Watts.
+@@ -230,9 +230,9 @@ select: false
+         minItems: 1
+         maxItems: 8   # Should be enough regulators
  
-           Entries for multiple regulators shall be provided in the same field
--          separated by angular brackets <>. If current values aren't required
-+          separated by angular brackets <>. If power values aren't required
-           for a regulator, then it shall be filled with 0. If power values
-           aren't required for any of the regulators, then this field is not
-           required. The OPP binding doesn't provide any provisions to relate the
+-      '^opp-microwatt':
++      '^opp-microwatt-':
+         description:
+-          Named opp-microwatt property. Similar to opp-microamp property,
++          Named opp-microwatt property. Similar to opp-microamp-<name> property,
+           but for microwatt instead.
+         $ref: /schemas/types.yaml#/definitions/uint32-array
+         minItems: 1
 -- 
 2.31.1.272.g89b43f80a514
 
