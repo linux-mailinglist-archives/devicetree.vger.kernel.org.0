@@ -2,102 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEA916178AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 945BF6178B1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:29:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiKCI2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 04:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38620 "EHLO
+        id S229759AbiKCI3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 04:29:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbiKCI2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:28:09 -0400
-Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81775F46;
-        Thu,  3 Nov 2022 01:28:06 -0700 (PDT)
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 03 Nov 2022 16:28:04 +0800
-Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
-        by mse.ite.com.tw with ESMTP id 2A38RwWI072844;
-        Thu, 3 Nov 2022 16:27:58 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from CSBMAIL1.internal.ite.com.tw (192.168.65.58) by
- CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.14; Thu, 3 Nov 2022 16:27:58 +0800
-Received: from CSBMAIL1.internal.ite.com.tw ([fe80::dd22:b444:859b:61c7]) by
- CSBMAIL1.internal.ite.com.tw ([fe80::dd22:b444:859b:61c7%18]) with mapi id
- 15.01.2176.014; Thu, 3 Nov 2022 16:27:58 +0800
-From:   <allen.chen@ite.com.tw>
-To:     <krzysztof.kozlowski@linaro.org>
-CC:     <treapking@chromium.org>, <Jau-Chih.Tseng@ite.com.tw>,
-        <Hermes.Wu@ite.com.tw>, <Kenneth.Hung@ite.com.tw>,
-        <andrzej.hajda@intel.com>, <narmstrong@baylibre.com>,
-        <robert.foss@linaro.org>, <Laurent.pinchart@ideasonboard.com>,
-        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>, <airlied@linux.ie>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v6 1/2] dt-bindings: it6505: add properties to restrict
- output bandwidth
-Thread-Topic: [PATCH v6 1/2] dt-bindings: it6505: add properties to restrict
- output bandwidth
-Thread-Index: AQHY6nDorSjdzmskUUWkM7FpU3Wft64rCzswgABLlgCAAZBVsA==
-Date:   Thu, 3 Nov 2022 08:27:58 +0000
-Message-ID: <df7f841e07764433b87085eeaef5733f@ite.com.tw>
-References: <20221027030155.59238-1-allen.chen@ite.com.tw>
- <20221027030155.59238-2-allen.chen@ite.com.tw>
- <d6f14e09-0c24-e19a-0951-bb3ca2219e79@linaro.org>
- <18659f5a5b2c4fd7b76731836aeb713d@ite.com.tw>
- <30ce6ed4-cbea-7b82-cca5-8920fc1eddad@linaro.org>
-In-Reply-To: <30ce6ed4-cbea-7b82-cca5-8920fc1eddad@linaro.org>
-Accept-Language: en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.70.46]
-x-tm-snts-smtp: 2BDF71C3B6F730D79AF473E1C57B57AB6758B3A083D2EB534B4436160364AF662002:8
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229587AbiKCI3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:29:46 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D863711A;
+        Thu,  3 Nov 2022 01:29:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667464185; x=1699000185;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nhzYPUwoc2molQBCwNVn4uqguZHlXyZ1jSm1Y79u20Y=;
+  b=KIvowcUsCYS4slAr1TxaAOvaLjD2VUwhrZ3pBEghijnwHP4s0kgCKPUV
+   zs80mSsAvjRUIwWU85y/CtmStHQnattjp5YN01LbmkXgONlTnsYtvcdPe
+   s1wHdAM7jdj9C2H73+4jXMOp6xJaEydTnoHBg62pO+VqHbWPR7Dv958r/
+   SibBnsXHB9QBvGiSS5txNnh601fKbWkQElk3MeOvgZJ4vI/eGhn2X9EAH
+   QTpnpe/HoSOcaQPG8zpp9Rgif59shSN0lCHCJmLdlvQjNpk4XX+TrxImE
+   LpQPS1mwsdGHWYah+R+ubUvFSiEuDFkHNhF38kSH527LrAzb1LY4K1gS9
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,235,1661810400"; 
+   d="scan'208";a="27127637"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Nov 2022 09:29:43 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 03 Nov 2022 09:29:43 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 03 Nov 2022 09:29:43 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667464183; x=1699000183;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=nhzYPUwoc2molQBCwNVn4uqguZHlXyZ1jSm1Y79u20Y=;
+  b=e42VJ7IXPFvp+zmNrKjhGvCmi+0RhzV9vtvix+TWORZJppjhWb10eaFT
+   tLI8Vp9+riMwmzaYnGYjo4EQZJkctUs8iThJ+swjuXe1uY1gH3L4A+2mA
+   +mqXHdEFuKCW09RHH+0cowIk2TwKpK/Gyb5hfLm6GhujlHutP846TSyfS
+   FlElL/f8exOGiifiAvNH6kyISadKvr1wQjhG5tjEfPE9zrcaZmhenwuc7
+   ZnQzmrDEiAd4/vSnKCl9cS/t89H6JOCiRZSoKrn4rmZdk5KHlJlFk9DJV
+   hCLI9D8FHhHQs9bbI/9S2JU7TaESFWrcEROXLAvVxQs4AeVZk/5CVdfVx
+   A==;
+X-IronPort-AV: E=Sophos;i="5.95,235,1661810400"; 
+   d="scan'208";a="27127636"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Nov 2022 09:29:42 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3812A280056;
+        Thu,  3 Nov 2022 09:29:42 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH 2/3] dt-bindings: imx6q-pcie: Handle various PD configurations
+Date:   Thu, 03 Nov 2022 09:29:42 +0100
+Message-ID: <3645906.iIbC2pHGDl@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20221102215729.147335-2-marex@denx.de>
+References: <20221102215729.147335-1-marex@denx.de> <20221102215729.147335-2-marex@denx.de>
 MIME-Version: 1.0
-X-MAIL: mse.ite.com.tw 2A38RwWI072844
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
-        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-aGkNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEtyenlzenRvZiBLb3psb3dz
-a2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4gDQpTZW50OiBUaHVyc2RheSwgTm92
-ZW1iZXIgMywgMjAyMiAxMjozNCBBTQ0KVG86IEFsbGVuIENoZW4gKOmZs+afj+WuhykgPGFsbGVu
-LmNoZW5AaXRlLmNvbS50dz4NCkNjOiB0cmVhcGtpbmdAY2hyb21pdW0ub3JnOyBKYXUtQ2hpaCBU
-c2VuZyAo5pu+5pit5pm6KSA8SmF1LUNoaWguVHNlbmdAaXRlLmNvbS50dz47IEhlcm1lcyBXdSAo
-5ZCz5L2z5a6PKSA8SGVybWVzLld1QGl0ZS5jb20udHc+OyBLZW5uZXRoIEh1bmcgKOa0quWutuWA
-qykgPEtlbm5ldGguSHVuZ0BpdGUuY29tLnR3PjsgYW5kcnplai5oYWpkYUBpbnRlbC5jb207IG5h
-cm1zdHJvbmdAYmF5bGlicmUuY29tOyByb2JlcnQuZm9zc0BsaW5hcm8ub3JnOyBMYXVyZW50LnBp
-bmNoYXJ0QGlkZWFzb25ib2FyZC5jb207IGpvbmFzQGt3aWJvby5zZTsgamVybmVqLnNrcmFiZWNA
-Z21haWwuY29tOyBhaXJsaWVkQGxpbnV4LmllOyBkYW5pZWxAZmZ3bGwuY2g7IHJvYmgrZHRAa2Vy
-bmVsLm9yZzsga3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnOyBkcmktZGV2ZWxAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2Vy
-bmVsQHZnZXIua2VybmVsLm9yZw0KU3ViamVjdDogUmU6IFtQQVRDSCB2NiAxLzJdIGR0LWJpbmRp
-bmdzOiBpdDY1MDU6IGFkZCBwcm9wZXJ0aWVzIHRvIHJlc3RyaWN0IG91dHB1dCBiYW5kd2lkdGgN
-Cg0KT24gMDIvMTEvMjAyMiAwMjo1NCwgYWxsZW4uY2hlbkBpdGUuY29tLnR3IHdyb3RlOg0KPiBP
-biAyNi8xMC8yMDIyIDIzOjAxLCBhbGxlbiB3cm90ZToNCj4+IEZyb206IGFsbGVuIGNoZW4gPGFs
-bGVuLmNoZW5AaXRlLmNvbS50dz4NCj4+DQo+PiBBZGQgcHJvcGVydGllcyB0byByZXN0cmljdCBk
-cCBvdXRwdXQgZGF0YS1sYW5lcyBhbmQgY2xvY2suDQo+IA0KPiBUaGlzIGlzIGEgZnJpZW5kbHkg
-cmVtaW5kZXIgZHVyaW5nIHRoZSByZXZpZXcgcHJvY2Vzcy4NCj4gDQo+IEl0IHNlZW1zIG15IHBy
-ZXZpb3VzIGNvbW1lbnRzIHdlcmUgbm90IGZ1bGx5IGFkZHJlc3NlZC4gTWF5YmUgbXkgZmVlZGJh
-Y2sgZ290IGxvc3QgYmV0d2VlbiB0aGUgcXVvdGVzLCBtYXliZSB5b3UganVzdCBmb3Jnb3QgdG8g
-YXBwbHkgaXQuDQo+IFBsZWFzZSBnbyBiYWNrIHRvIHRoZSBwcmV2aW91cyBkaXNjdXNzaW9uIGFu
-ZCBlaXRoZXIgaW1wbGVtZW50IGFsbCByZXF1ZXN0ZWQgY2hhbmdlcyBvciBrZWVwIGRpc2N1c3Np
-bmcgdGhlbS4NCj4gDQo+IFRoYW5rIHlvdS4NCj4gDQo+ID09PiBJIGFtIHNvcnJ5IEkgZGlkbid0
-IGZpbmQgdGhlIG1pc3NpbmcgYWR2aWNlIHlvdSBzYWlkLiBDb3VsZCB5b3UgZXhwbGFpbiBpdCBh
-Z2Fpbj8NCj4gDQo+IFJvYiBhc2tlZCAtIENvbW1pdCBtc2cgc2hvdWxkIGV4cGxhaW4gcmVhc29u
-IGZvciBicmVha2luZyB1c2Vycy4NCg0KQW5kIHdoZXJlIGlzIHRoZSByZWFzb24/IEkgc2F3IG9u
-bHkgb25lIHNlbnRlbmNlICJBZGQgcHJvcGVydGllcyB0byByZXN0cmljdCBkcCBvdXRwdXQgZGF0
-YS1sYW5lcyBhbmQgY2xvY2suIg0KPT0+IEkgd2lsbCBhZGQgdGhlIGNvbW1pdCBtc2cgaW4gdjcu
-IFRoYW5rcyBmb3IgdGhlIHN1Z2dlc3Rpb24uDQoNCkJlc3QgcmVnYXJkcywNCktyenlzenRvZg0K
-DQo=
+Hi Marek,
+
+Am Mittwoch, 2. November 2022, 22:57:28 CET schrieb Marek Vasut:
+> The i.MX SoCs have various power domain configurations routed into
+> the PCIe IP. MX6SX is the only one which contains 2 domains and also
+> uses power-domain-names. MX6QDL do not use any domains. All the rest
+> uses one domain and does not use power-domain-names anymore.
+> 
+> Document all those configurations in the DT binding document.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> To: devicetree@vger.kernel.org
+> ---
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 47 ++++++++++++++-----
+>  1 file changed, 34 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
+> 1cfea8ca72576..fc8d4d7b80b38 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -68,19 +68,6 @@ properties:
+>      description: A phandle to an fsl,imx7d-pcie-phy node. Additional
+>        required properties for imx7d-pcie and imx8mq-pcie.
+> 
+> -  power-domains:
+> -    items:
+> -      - description: The phandle pointing to the DISPLAY domain for
+> -          imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
+> -          imx8mq-pcie.
+> -      - description: The phandle pointing to the PCIE_PHY power domains
+> -          for imx6sx-pcie.
+> -
+> -  power-domain-names:
+> -    items:
+> -      - const: pcie
+> -      - const: pcie_phy
+> -
+>    resets:
+>      maxItems: 3
+>      description: Phandles to PCIe-related reset lines exposed by SRC
+> @@ -241,6 +228,40 @@ allOf:
+>                  - const: pcie_bus
+>                  - const: pcie_phy
+> 
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx6sx-pcie
+> +    then:
+> +      properties:
+> +        power-domains:
+> +          items:
+> +            - description: The phandle pointing to the DISPLAY domain for
+> +                imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
+> +                imx8mq-pcie.
+> +            - description: The phandle pointing to the PCIE_PHY power
+> domains +                for imx6sx-pcie.
+> +        power-domain-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_phy
+> +    else:
+> +      if:
+> +        not:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                enum:
+> +                  - fsl,imx6q-pcie
+> +                  - fsl,imx6qp-pcie
+> +      then:
+> +        properties:
+> +          power-domains:
+> +            description: |
+> +               The phandle pointing to the DISPLAY domain for imx6sx-pcie,
+> to +               PCIE_PHY power domain for imx7d-pcie and imx8mq-pcie. +
+
+Doesn't it makes more sense to keep the power-domains descriptions in the 
+common part on top, as before, but adjust minItems/maxItems for each 
+compatible?
+
+Regards,
+Alexander
+
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/imx6qdl-clock.h>
+
+
+
+
