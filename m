@@ -2,143 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3389F61846F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B266F618474
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:30:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231666AbiKCQaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 12:30:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54856 "EHLO
+        id S231778AbiKCQau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 12:30:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231324AbiKCQaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:30:22 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98694B92;
-        Thu,  3 Nov 2022 09:30:20 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A3GToek119565;
-        Thu, 3 Nov 2022 11:29:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667492990;
-        bh=tku/OEvVMYCVyJUwEFWbSTgXMuBEfZMv78bmcEijKEU=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=NI9urWluRQ1mAozq+guJV0WCseYHWaz89rZOHQku5axa2KGRwPtoY4XRk7RoRWeuO
-         Z/WYOnoY/Oho88F4rkakWLjh2voQYoM8ihJl8I0SX6Mf4QR8UjnQ+83fce1TkajChi
-         goB8VhRG2859EkhvsRTDnQIxkmlnTTjfIadXe+pY=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A3GToL9072450
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Nov 2022 11:29:50 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 3 Nov
- 2022 11:29:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 3 Nov 2022 11:29:50 -0500
-Received: from [10.250.32.80] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A3GTnWQ003709;
-        Thu, 3 Nov 2022 11:29:49 -0500
-Message-ID: <67f9ce4b-1ed6-fc41-c133-1fbafb743830@ti.com>
-Date:   Thu, 3 Nov 2022 11:29:49 -0500
+        with ESMTP id S231829AbiKCQar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:30:47 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25C51B9DB
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 09:30:29 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id z30so1454794qkz.13
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 09:30:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uHNMJF8XWCG/HlS4+eCjG2CgBguyze4jH3mOvZx8Epg=;
+        b=G1ZhYVb8T+FZ4BgBVxLLoQE87vgaX58qMUgd9tNRxudHWdFqHOrOjKyy0axzacXM3h
+         CMVDYWUjAiBjxwOf4AjBnim4hN7N1AWbe/75vpEDULus3YNRtuRHfZiuwCRo4m1xoTBu
+         RbL8LgY8u+AJRiYxQmobQILA2kh5LvcPbwh2G0xNL2P3mCklSd2LLTaGuUjujZ4X4YSo
+         jI2yuU4BvCFJ1V/a3SSQahnPPPqmdLJMTaeXPAFCXLsO5Kb9wn1HQ1O4kQFWM+fLMJY3
+         VaGxwtYwQwsVuEPcnRa34oMzIBC245hOYz97SulJ7vsQSTlAzxQi0PhouSyeaOzxVRtk
+         zosA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uHNMJF8XWCG/HlS4+eCjG2CgBguyze4jH3mOvZx8Epg=;
+        b=2ing4MnxiKwIEE+2OIoBWHwnMmCDuFOluwdHhDDM1Aa4VBcLijBpzdw7Ws/LVm4Li0
+         Tzivo563/aM3O1LeYOWTJ+XlEZIrBtRbPo6aXRDq1RJG6IwC/Bn/naZcZRTZdh6J+8xl
+         +OKnFi4fPcN4B2F60aBrA9Xm12BDkxoOM6a/sscdXQUlVNtxMlxgyVcy2JbYOAJo3I/T
+         z+T+y/uE+FCoeLPqpMKhLOEU2CkDSPGqS+9eRdlXSCq/4Ki+CyP5Xsy1wMmy+SelYxiI
+         EfdEdpYtgMCu2zIURg77BiS/FgGE1+oajg5kpFkt2HarO4LMYP8xCJ6ePZcVuiBQn/uS
+         IFDA==
+X-Gm-Message-State: ACrzQf0zv5IRjkpMLCIsGbmvuPCaeBYiY995JE4v9upAghvvh40eHdT4
+        kDMn/fiwgNDI7NiTbAxFdFXOqA==
+X-Google-Smtp-Source: AMsMyM44aLhA23EfLSlswOnvlGa6pp5mgrDyi2ujgIpGR2aSX5ZTJXEBlIpP7pSqO/tnkk5hNMUObw==
+X-Received: by 2002:a05:620a:56b:b0:6fa:3110:5aa8 with SMTP id p11-20020a05620a056b00b006fa31105aa8mr15586230qkp.343.1667493028896;
+        Thu, 03 Nov 2022 09:30:28 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id g10-20020a05620a40ca00b006f9ddaaf01esm1006172qko.102.2022.11.03.09.30.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 09:30:28 -0700 (PDT)
+Message-ID: <08f88129-23db-ff29-4ad4-07adfe3bae9d@linaro.org>
+Date:   Thu, 3 Nov 2022 12:30:27 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v4 7/9] ARM: dts: nspire: Use MATRIX_KEY macro for
- linux,keymap
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v1 3/7] dt-bindings: usb: hpe,gxp-udcg: Add binding for
+ gxp gadget group
 Content-Language: en-US
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-CC:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Tang <dt.tangr@gmail.com>,
-        Fabian Vogt <fabian@ritter-vogt.de>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221101215804.16262-1-afd@ti.com>
- <20221101215804.16262-8-afd@ti.com>
- <CAKdAkRTQ2bjQEn1HM=ZMHdC8Goyf1rUDNfMkNK3jMA2CR-t4eg@mail.gmail.com>
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <CAKdAkRTQ2bjQEn1HM=ZMHdC8Goyf1rUDNfMkNK3jMA2CR-t4eg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     richard.yu@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        balbi@kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20221103160625.15574-1-richard.yu@hpe.com>
+ <20221103160625.15574-4-richard.yu@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221103160625.15574-4-richard.yu@hpe.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/2/22 11:07 PM, Dmitry Torokhov wrote:
-> Hi Andrew,
+On 03/11/2022 12:06, richard.yu@hpe.com wrote:
+> From: Richard Yu <richard.yu@hpe.com>
 > 
-> On Tue, Nov 1, 2022 at 2:59 PM Andrew Davis <afd@ti.com> wrote:
->>
->> This looks better and allows us to see the row and column numbers
->> more easily. Switch to this macro here.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   arch/arm/boot/dts/nspire-clp.dts | 90 ++++++++++++++++++++++++--------
->>   arch/arm/boot/dts/nspire-cx.dts  | 90 ++++++++++++++++++++++++--------
->>   arch/arm/boot/dts/nspire-tp.dts  | 90 ++++++++++++++++++++++++--------
->>   3 files changed, 204 insertions(+), 66 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/nspire-clp.dts b/arch/arm/boot/dts/nspire-clp.dts
->> index f52f38c615886..916ede0c2499c 100644
->> --- a/arch/arm/boot/dts/nspire-clp.dts
->> +++ b/arch/arm/boot/dts/nspire-clp.dts
->> @@ -6,32 +6,78 @@
->>    */
->>   /dts-v1/;
->>
->> +#include <dt-bindings/input/input.h>
->> +
->>   /include/ "nspire-classic.dtsi"
->>
->>   &keypad {
->>          linux,keymap = <
->> -       0x0000001c      0x0001001c      0x00020039
->> -       0x0004002c      0x00050034      0x00060015
->> -       0x0007000b      0x0008002d      0x01000033
->> -       0x0101004e      0x01020011      0x01030004
->> -       0x0104002f      0x01050003      0x01060016
->> -       0x01070002      0x01080014      0x02000062
->> -       0x0201000c      0x0202001f      0x02030007
->> -       0x02040013      0x02050006      0x02060010
->> -       0x02070005      0x02080019      0x03000027
->> -       0x03010037      0x03020018      0x0303000a
->> -       0x03040031      0x03050009      0x03060032
->> -       0x03070008      0x03080026      0x04000028
->> -       0x04010035      0x04020025      0x04040024
->> -       0x04060017      0x04080023      0x05000028
->> -       0x05020022      0x0503001b      0x05040021
->> -       0x0505001a      0x05060012      0x0507006f
->> -       0x05080020      0x0509002a      0x0601001c
->> -       0x0602002e      0x06030068      0x06040030
->> -       0x0605006d      0x0606001e      0x06070001
->> -       0x0608002b      0x0609000f      0x07000067
->> -       0x0702006a      0x0704006c      0x07060069
->> -       0x0707000e      0x0708001d      0x070a000d
->> +               MATRIX_KEY(0,  0, 0x1c)
->> +               MATRIX_KEY(0,  1, 0x1c)
->> +               MATRIX_KEY(0,  2, 0x39)
+> Create documentation for the hpe,gxp-udcg binding to support access to
+> the gxp USB gadget group.
 > 
-> Can this also be switched over to using KEY_* macros to describe the
-> keycodes emitted?
-> 
+> Signed-off-by: Richard Yu <richard.yu@hpe.com>
+> ---
 
-That's going to be done in a follow up patch. This change here was
-done mechanically, but moving to KEY_* might need to be double
-checked by hand since some of these do not seem to map how one
-would expect to the function on the keypad.
 
-Thanks,
-Andrew
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
