@@ -2,115 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C8C617CC7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D082F617CDA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:42:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbiKCMh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
+        id S230427AbiKCMmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231807AbiKCMhX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:37:23 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF613140B5
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:37:13 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id l2so1059161qtq.11
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:37:13 -0700 (PDT)
+        with ESMTP id S230433AbiKCMmI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:42:08 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CE6CE16
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:42:06 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id x18so985675qki.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:42:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wLG01xuzkl0xodwDLAu36WoQsSaHKq4o1Mky6mwfR2I=;
-        b=dSCYhv40lbvonPzw6rR7ErUo35vEt96iWhQdtv5TFq8O7OlUK5lZ2DRMoqecIr3+D9
-         qLkfiSDMzM/H6UXur+8hvegmFzchTXnQAzMJzxxjke4H84eu+UpBbNDlCUN5FjjAS2ZV
-         Wh5lcf8lFqG7B8t+SB+/9ILxLUKapuj27McHF61EpBoXRcnXWZziCpTay5cKpNdhiEEa
-         +53vlqZxcOIJaeePxEnWJ/j66MZf4su3EOs2tbG3QctphrhE8xHBfQ7303Lj4+JWjBBX
-         QmyLmv1c7jcctNUQldhiALKUsqO/NvF3vVvr67ZMEOKQjZpps5CBQs27/JZqGV0FIaFy
-         5C/g==
+        bh=fFdGhL73S/+jHEKQ09FOVskOFKjEeT/ObTagmldOE64=;
+        b=UhmeO6dkRKxYTsnynk/YmKaLWxoLJBGfhdaWkpXQLT3rL/PT4GHc0w+oNEST+f5Wpu
+         5BdVJ8+j3f/X92lXb7YmGoivnrWQM4GlAlOC8rfVWGIn1/NtdDayvaqUmtvAOxavq3fA
+         Bx/fE3WzHSdqQx7S9U55JLVyoEmz5rhu7na071j9GRsVUcc5ZIhmE1zUIKzgoR8Gpflk
+         cITiBzoaDcwIL1FmZ5tw9ebS22dAO+Dz4AO3SD/1XpIlWDHCCru4v9iVwui2NBb7jORP
+         VgiKcuWXv22YucB5k33HTGfleht/wsklijLF6GMU/+0zM6c6iI6xJ0XjY5LuwPPs8fWI
+         yzTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wLG01xuzkl0xodwDLAu36WoQsSaHKq4o1Mky6mwfR2I=;
-        b=R38TzxBMW0ueIVGmxx0iaERsdXBRcVvXdU9nhvhZoEo7wjmtuDaa4avVPkJkktqQKN
-         LUCVa/o4ueRkyQs5GBhf/F2All1aIDdwyRExbiKpCDAFfLN5RaReJ0nttGPO7n+jzCMO
-         +X4ocMnM2ShS4ETjX/NZoeIKRpMLl34xmYe0dOACbXXjsMdy6Tf1Qjj1K6uqxz6v3l9e
-         JqwKYAhkn3uHmjmi4jZOAxpY6WqTElMEI750W/leDEZVyeeypBrh9C+qOHYxkklkR0rI
-         5IrcPiNHK2rtwieNHBBAbC7Bksb4EcmDg9GRqaIID7SLDMyYWHS0P/6vP1ROFj/I7po4
-         vfEw==
-X-Gm-Message-State: ACrzQf1OzdIr3OVrIYBwRcc6krRZ3rOZ46sd7Kng4cBpG8U7Z2QfS8+P
-        m1C0SaM4g1dFFsd4fuiD5C791A==
-X-Google-Smtp-Source: AMsMyM4GUnTircemkIRH9aYYUynvdRniDY3f9fYBskcCFu1IqZO6WCnFMSiVH5QUM3HsoPKql6ytDQ==
-X-Received: by 2002:a05:622a:17cf:b0:3a5:1f74:959b with SMTP id u15-20020a05622a17cf00b003a51f74959bmr19493248qtk.684.1667479032860;
-        Thu, 03 Nov 2022 05:37:12 -0700 (PDT)
+        bh=fFdGhL73S/+jHEKQ09FOVskOFKjEeT/ObTagmldOE64=;
+        b=jIr7g1EGiBWGd9+suMErBUbVOsWQBPJAJ4UYiwya9BX+TzNNj8oVJ+SzlXI1c43JBk
+         MMNcZCfR7u5UwNbbddcwmUKNF2RW/R4qDP4OoPhlmI6CX+zQmVuQgNLHLGUSjTzkhaes
+         bUCinSw8ORI0isXAalxTqQYDWLsn5DKwW+wwCZIETja6lSbJGzcgcWkbC6QJMkQOTSyv
+         5F/yFNO61dbPAWQ+lxaLJziiE5EmLCWkk4/l80TqdpdbCDsdEKAHzGuXBGoiOIZPoXaL
+         DHi2qFu5RbXZ6z7wBcmdSA2XxYReccHEL23gR8nCBp9/rWKGtEnBT+y4mgoGH9SgUstt
+         hI1Q==
+X-Gm-Message-State: ACrzQf0YuHCWEA3c74VUl2XZLF9dOv6Hv9T9INR6JZCYoshzv5VFE6Ew
+        duyEkhEhOPBQqeymNTNdj6O9yg==
+X-Google-Smtp-Source: AMsMyM7R//pf51CVGfWXHj1GX9wXIzb+LdZphgfmS3saxxTdD1hymSha/Gf+R6TY1XxlbN54wUNd2w==
+X-Received: by 2002:a05:620a:430a:b0:6f6:589b:463d with SMTP id u10-20020a05620a430a00b006f6589b463dmr21155132qko.139.1667479325519;
+        Thu, 03 Nov 2022 05:42:05 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id cd5-20020a05622a418500b0035d08c1da35sm453102qtb.45.2022.11.03.05.37.11
+        by smtp.gmail.com with ESMTPSA id bm7-20020a05620a198700b006ed138e89f2sm648038qkb.123.2022.11.03.05.42.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 05:37:12 -0700 (PDT)
-Message-ID: <09a7de3e-6431-1815-5ea0-072cbda81875@linaro.org>
-Date:   Thu, 3 Nov 2022 08:37:11 -0400
+        Thu, 03 Nov 2022 05:42:04 -0700 (PDT)
+Message-ID: <38e1762b-527f-e913-768b-1149486a9f72@linaro.org>
+Date:   Thu, 3 Nov 2022 08:42:03 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v9 0/2] gpmc wait pin additions
+Subject: Re: [PATCH 3/3] arch: arm64: ti: Add support for AM68 SK base board
 Content-Language: en-US
-To:     "Niedermayr, BENEDIKT" <benedikt.niedermayr@siemens.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-Cc:     "rogerq@kernel.org" <rogerq@kernel.org>,
-        "tony@atomide.com" <tony@atomide.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20221102133047.1654449-1-benedikt.niedermayr@siemens.com>
- <4582c561-bcdf-a880-cfe5-6813e1c66555@linaro.org>
- <3d067d7ce32abd6a78ee9a914e81393f48f46a37.camel@siemens.com>
+To:     Sinthu Raja M <sinthu.raja@mistralsolutions.com>
+Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+References: <20221018123849.23695-1-sinthu.raja@ti.com>
+ <20221018123849.23695-4-sinthu.raja@ti.com>
+ <3f1afad0-1e93-4843-defd-ca32c308cc9e@linaro.org>
+ <CAEd-yTTtQhhECw7jSQb38ThaOT_CtFmHy0dJt3SaKxn1KzSgKg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3d067d7ce32abd6a78ee9a914e81393f48f46a37.camel@siemens.com>
+In-Reply-To: <CAEd-yTTtQhhECw7jSQb38ThaOT_CtFmHy0dJt3SaKxn1KzSgKg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 04:13, Niedermayr, BENEDIKT wrote:
-> On Wed, 2022-11-02 at 10:02 -0400, Krzysztof Kozlowski wrote:
->> On 02/11/2022 09:30, B. Niedermayr wrote:
->>> From: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
->>>
->>> Currently it is not possible to configure the WAIT0PINPOLARITY and
->>> WAIT1PINPOLARITY bits of the GPMC_CONFIG register directly via
->>> device tree properties.
->>>
->>> It is also not possible to use the same wait-pin for different
->>> cs-regions.
->>>
->>> While the current implementation may fullfill most usecases, it may not
->>> be sufficient for more complex setups (e.g. FPGA/ASIC interfaces), where
->>> more complex interfacing options where possible.
->>>
->>> For example interfacing an ASIC which offers multiple cs-regions but
->>> only one waitpin the current driver and dt-bindings are not sufficient.
->>>
->>> While using the same waitpin for different cs-regions worked for older
->>> kernels (4.14) the omap-gpmc.c driver refused to probe (-EBUSY) with
->>> newer kernels (>5.10).
+On 03/11/2022 04:38, Sinthu Raja M wrote:
+> On Tue, Oct 18, 2022 at 6:33 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> This is a friendly reminder during the review process.
+>> On 18/10/2022 08:38, Sinthu Raja wrote:
+>>> From: Sinthu Raja <sinthu.raja@ti.com>
+>>>
+>>> The SK architecture comprises of baseboard and a SOM board. It is
+>>> as follows,
+>>>
+>>>        +--------------------------------------+---+
+>>>        |                                      |   |<--Connectors
+>>>        |                                      +---|
+>>>        |      +---------------------------+   |   |
+>>>        |      | SOM                       |   +---|
+>>>        |      |                           |   |   |
+>>>        |      |                           |   +---| Power Supply
+>>>        |      |                           |       |   |
+>>>        |      +---------------------------+       |   |
+>>>        |                                          |<--+
+>>>        |           BASE BOARD                     |
+>>>        +------------------------------------------+
 >>
->> It looks like you received a tag and forgot to add it.
-> 
-> Thanks for the hint.
-> 
-> Was everything OK with v9 (except that I resendet the tagged patch)? Until v8 I wasn't aware of that. I thought I added the tag for v9. 
+>> This is pretty straightforward for SoM, I am not sure what's the benefit
+>> to add it.
+>>
+>>>
+>>> AM68 Starter Kit's baseboard contains most of the actual connectors,
+>>> power supply etc. The System on Module (SoM) is plugged on to the base
+>>> board. Therefore, add support for peripherals brought out in the base
+>>> board.
+>>>
+>>> Schematics: https://www.ti.com/lit/zip/SPRR463
+>>>
+>>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/Makefile               |   2 +
+>>>  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 459 ++++++++++++++++++
+>>>  2 files changed, 461 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>>> index 4555a5be2257..498b089d96f8 100644
+>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>> @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>>>
+>>>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+>>>
+>>> +dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+>>> +
+>>
+>> Alphabetical order, although does not look like other entries are ordered...
+>>
+>>>  dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+>>>  dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>>> new file mode 100644
+>>> index 000000000000..f51cbd2e3b72
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+>>> @@ -0,0 +1,459 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+>>> + *
+>>> + * Base Board: https://www.ti.com/lit/zip/SPRR463
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "k3-am68-sk-som.dtsi"
+>>> +#include <dt-bindings/net/ti-dp83867.h>
+>>> +#include <dt-bindings/phy/phy-cadence.h>
+>>> +#include <dt-bindings/phy/phy.h>
+>>> +#include <dt-bindings/mux/ti-serdes.h>
+>>> +
+>>> +/ {
+>>> +     compatible = "ti,am68-sk", "ti,j721s2";
+>>> +     model = "Texas Instruments AM68 SK";
+>>> +
+>>> +     chosen {
+>>> +             stdout-path = "serial2:115200n8";
+>>> +             bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x2880000";
+>>
+>> None of these bootargs are suitable for mainline. earlycon for sure - it
+>> is pure debug option.
+> Krzysztof,
+> In AM68 SK the Linux console is on main_uart8, so to be consistent
+> with other J7 families of devices aliasing the serial port to ttyS2. I
+> am quite confused why these bootargs are not suitable for mainline. I
+> check the below documentation section 2.3, as mentioned it can be used
+> as kernel parameters. Please correct me if I am wrong.
+> https://www.kernel.org/doc/html/latest/devicetree/usage-model.html?highlight=bootargs
 
-You did not add the tag you received.
+Why? Console is defined by stdout path, so why do you need to redefine
+it? Bootargs are for debugging so why all users in entire world by
+default must debug?
 
 Best regards,
 Krzysztof
