@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F6E7618289
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F2F361829D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:25:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231524AbiKCPXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 11:23:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
+        id S231272AbiKCPZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 11:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231657AbiKCPXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:23:22 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B913B10B4
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 08:23:20 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id v8so1315439qkg.12
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 08:23:20 -0700 (PDT)
+        with ESMTP id S231297AbiKCPZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:25:03 -0400
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2399063F9
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 08:24:56 -0700 (PDT)
+Received: by mail-qk1-x72f.google.com with SMTP id 8so1350158qka.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 08:24:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f7W935H1KbRw0Ag8QHM/Yn3lqfyL9ka2fjOWNd1WB1I=;
-        b=c6nzyMKW9ZnRtwa3zp76mKQ0QUn6sfJTsCuR8G4mpyrAxY54i5HSj7n6qSXMzftZ17
-         80m8TF5uOv4YXZFb5VC0HmjwMnd6inedHNSNgA/GcUaOnKei0IiD8BOi1vbZsOT3tCrI
-         2rYW/hQUTMKwCfn/T+utoFWvmmllBQXjZ2ykiqhGEKoT+MMUr/5ktX6RzNjmD+Ui3/H9
-         fy2n71ovs22yMfa2zo0wpjYYsPnfkDH99eq4X9KS1qirEdUCL8ckTwy/BMhKjCVuj5pf
-         aQFXgOmQYassXRfNcYJx49mTSK1RIhc+rbvLzJdyLlYLDfmWSt5LntqoE0eIHTUc7aCs
-         aKTA==
+        bh=+GK+kN47VRDh5Rd9IAtghxyhLdbPgGlBTCLcifjdKfY=;
+        b=CuVdKrpYE2rQRg37FPIg+JZrk4NzKKxt219BGe3CMQvQo8Lmp2ckSDbzhj0bEEUIDL
+         fxTOSuzkB/5KrS//gXY6ySrTmRgRg8/Y7fvynh6m65Zh2OXxQ4VX2GSRl9UBvObPXaiB
+         +vOZCa0xjXVbfTNBKAzOFM+Bk77Hb1sPLlBuXe4pMZ5UDc+2YdWojicrTPpwK/H61Iio
+         yq7H5MfkITJRWQYoPFpDcBb9983wRkk5uycAbX1edw4j+1IfEOYvTWUb0TabE5T1YL68
+         HomjjXu09Q9xuXt2iGFj5ybrYfCG6zH2HK1fcjAIOuAUFslSMbvF1EvI5XH6vconk6NT
+         K1+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f7W935H1KbRw0Ag8QHM/Yn3lqfyL9ka2fjOWNd1WB1I=;
-        b=UfA8f6frfiIWfTivkE4+DNgJznk1m9dQQoh80sUSmc00+VJTPmhuFHYeuu+P1qZJS4
-         3nY7D+T2N3dU5oJ2e1NCFYp9ogLg+30jH9UFMNSZ9bmo1wFt8Btu8gHM6ph5qp6ZQwqO
-         QhHcl42RW3BRfrX51SIxd/BFNn3XV+osSL3IUbozhJn/52iUBKl1kdMiT9CR4vBlZy/+
-         ScHNy6wYgB7ZdtARM7XEF5JK69pN3y0nsJM3xoPuftTYRdfDhguK/3iWPTm0IWLlfMcb
-         +85IJdPEBj/og5YWy4GdwNQJ6svx5ApCL5VA5640YePgtciVk6Xec9i/LIqRXXqm+jId
-         ivmg==
-X-Gm-Message-State: ACrzQf1IfT+Y06B9zPi6BoqUPZrb3kpAHYf8HLzYeti16yg9L+t5ct1D
-        SX+kuaut8RfnT6DlTzxBh0NM5Q==
-X-Google-Smtp-Source: AMsMyM5I530rv1Yc4w34Zr+5MBIkr1bF9RF9uIG79s0fyenDsdb3MXMg/hmpxWiucjGppUIk5oaTNg==
-X-Received: by 2002:a37:de03:0:b0:6ee:88a2:eb9a with SMTP id h3-20020a37de03000000b006ee88a2eb9amr22330615qkj.241.1667488999874;
-        Thu, 03 Nov 2022 08:23:19 -0700 (PDT)
+        bh=+GK+kN47VRDh5Rd9IAtghxyhLdbPgGlBTCLcifjdKfY=;
+        b=A4PhtKfZK8CQad0IGlv3iJj/rC0XODGJUeJP28PbHmPRC4l72DP0PdwvXhv0yfMOsD
+         pjkjXWEPlB8SxM/pT/UKN8i5lk7nNEqqfhV/VGO/pEjTBuxxklOLpPgrArY/cOgPVipv
+         BrZJBi9khk8VU5RxZJANkg2qI9YkdXE8OsllILg1CGA3ZvvwZVg33NFRTCjNtmN/0blX
+         60b7zSzyn+AKdk5F+pStz4m7DrZOu3NzgeHmIQiJsC3PYhO2LuZQVWpYj99u/mEnbunq
+         eAk2bi1qYwXEn4MF+c7EcrWlZl+gSQ3M25XrSR7KDtrHxo7eTKrVfYPuts9XRZs0jkVd
+         mbUw==
+X-Gm-Message-State: ACrzQf0YqhfdsNjNw3TheAXEv5mxcn7hiUHbCoGiqcwu1G66i5irdihP
+        0bi66P2bw+KWaeSH2IE1cbd2nQ==
+X-Google-Smtp-Source: AMsMyM4JfQZmP8W7rxOWSLWL8ATCWGxBIJQoz0Nkbogfi2BmdP8tf0y5Xg2ivz3gto0bPNF2tfnghQ==
+X-Received: by 2002:a05:620a:1256:b0:6fa:4c67:4d9c with SMTP id a22-20020a05620a125600b006fa4c674d9cmr10696457qkl.713.1667489095268;
+        Thu, 03 Nov 2022 08:24:55 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id h6-20020ac85046000000b003a494b61e67sm675911qtm.46.2022.11.03.08.23.18
+        by smtp.gmail.com with ESMTPSA id p20-20020a05620a15f400b006b953a7929csm907379qkm.73.2022.11.03.08.24.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 08:23:19 -0700 (PDT)
-Message-ID: <a170e4e8-fc9d-9be1-35ba-733f24cb93e8@linaro.org>
-Date:   Thu, 3 Nov 2022 11:23:17 -0400
+        Thu, 03 Nov 2022 08:24:54 -0700 (PDT)
+Message-ID: <a2b1ffe3-e2bc-25d5-f665-363db09bd959@linaro.org>
+Date:   Thu, 3 Nov 2022 11:24:53 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 06/15] dt-bindings: ufs: Add "max-device-gear" property
- for UFS device
+Subject: Re: [PATCH v2 02/12] dt-bindings: display: mediatek: add MT8195 hdmi
+ bindings
 Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        ahalaney@redhat.com
-References: <20221031180217.32512-1-manivannan.sadhasivam@linaro.org>
- <20221031180217.32512-7-manivannan.sadhasivam@linaro.org>
- <1fe8fd96-7770-0bda-c970-aa38d030ff3b@linaro.org>
- <20221103122850.GD8434@thinkpad>
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        David Airlie <airlied@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jitao shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     stuart.lee@mediatek.com, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, mac.shen@mediatek.com,
+        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20220919-v2-0-8419dcf4f09d@baylibre.com>
+ <20220919-v2-2-8419dcf4f09d@baylibre.com>
+ <c91ee3ce-3f30-a3ef-bb38-8571e488b6b6@linaro.org>
+ <CABnWg9t3w4o4rmNosvYCpqG-h8DESerajH7OsXEYofRf2kr1Xg@mail.gmail.com>
+ <6bb3ab49-1c12-6863-a49a-2fd1f34de561@linaro.org>
+ <CABnWg9uDki0ZtkxU1BPZq0ZU1mi4zFjasw+e3pQYb+Nv1MThLA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103122850.GD8434@thinkpad>
+In-Reply-To: <CABnWg9uDki0ZtkxU1BPZq0ZU1mi4zFjasw+e3pQYb+Nv1MThLA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,54 +94,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 08:28, Manivannan Sadhasivam wrote:
-> On Wed, Nov 02, 2022 at 03:09:50PM -0400, Krzysztof Kozlowski wrote:
->> On 31/10/2022 14:02, Manivannan Sadhasivam wrote:
->>> The maximum gear supported by the UFS device can be specified using the
->>> "max-device-gear" property. This allows the UFS controller to configure the
->>> TX/RX gear before starting communication with the UFS device.
+On 03/11/2022 11:17, Guillaume Ranquet wrote:
+> On Thu, 03 Nov 2022 13:45, Krzysztof Kozlowski
+>>> This is an i2c adapter, not a device.
+>>> And as it lives inside the HDMI hw block, I've omitted using an address here.
+>>>
+>>> Is this valid? or should this be expressed differently?
 >>
->> This is confusing. The UFS PHY provides gear capability, so what is the
->> "device" here? The attached memory? How could it report something else
->> than phy?
->>
+>> What is an I2C adapter? Did you mean I2C controller (master)?
 > 
-> This is the norm with any storage protocol, right? Both host and device
-> (memory) can support different speeds and the OEM can choose to put any
-> combinations (even though it might not be very efficient).
-> 
-> For instance,
-> 
-> PHY (G4) -> Device (G3)
+> Yes, a controller.
+> This is an I2C controller connected to the HDMI connector, it is used
+> to exchange data on the Display Data Channel with
+> the display (such as EDID).
 
-Yes and look at MMC - no need to define "max mode" supported by eMMC.
-You define the modes supported by controller but the memory capabilities
-are being autodetected and negotiated.
-
-> 
-> From the host perspective we know what the PHY can support but that's not the
-> same with the device until probing it. And probing requires using a minimum
-> supported gear. For sure we can use something like G2/G3 and reinit later but
-> as I learnt, that approach was rejected by the community when submitted
-> by Qualcomm earlier.
-
-It should be then referenced somewhere as it might be a reason to accept
-the property.
-
-> 
->> The last sentence also suggests that you statically encode gear to avoid
->> runtime negotiation.
->>
-> 
-> Yes, the OEM should know what the max gear speed they want to run, so getting
-> this info from DT makes sense.
-
-Not really if it is auto-detectable. Just because things are static is
-not the sole reason to put them into DT. The reason is - they are not
-detectable by OS/firmware thus we must have them in DT to be able to
-know it.
-
-
+OK, then the node name is "i2c".
 
 Best regards,
 Krzysztof
