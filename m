@@ -2,230 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38977617C23
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C3B617C3C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:12:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbiKCMHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35752 "EHLO
+        id S231493AbiKCMMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:12:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229700AbiKCMHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:07:45 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9457E12770;
-        Thu,  3 Nov 2022 05:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1667477260; x=1699013260;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2DlODcOsTLW0fyOz2IK+T+MiYhTj9WLOX3p0sgEZ288=;
-  b=ey1C2xA31Ixs4KxTdSYo2rTdH6LZPwb6uYFQCkna7z4qKH56nhat6x62
-   jBa6GItGsZ5F7DLbxtdHbILbFsc1xFlglE3dv4ck1sDIsusHfP1pAACPB
-   2OL0V6WuinzPmgiFa0k0vZSoOKJH0qgy027OXNKLk20kGROAe+d1rkYzi
-   1GsXFWa1A45m2OAu/AdBk3i00VGa40UcDa8UvOiLplZnw7n2ZYxn5f53J
-   3BmX9BYBI6atmGE2GIWmiaeFCyHqKIKY2sMruAIbJYHoyzhgH2cC0tzDJ
-   F3OBW/GHMqUC94/V5gLaJe2Hl7h+QxW9HSJByDMg0nOy6c13AZv0/4R7z
-   w==;
-X-IronPort-AV: E=Sophos;i="5.95,235,1661842800"; 
-   d="scan'208";a="185191671"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Nov 2022 05:07:38 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.12; Thu, 3 Nov 2022 05:07:30 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.12 via Frontend
- Transport; Thu, 3 Nov 2022 05:07:28 -0700
-Date:   Thu, 3 Nov 2022 12:07:12 +0000
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Evgenii Shatokhin <e.shatokhin@yadro.com>
-CC:     <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <frowand.list@gmail.com>,
-        <robh+dt@kernel.org>, <mick@ics.forth.gr>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <aou@eecs.berkeley.edu>, <Valentina.FernandezAlanis@microchip.com>,
-        <Daire.McNamara@microchip.com>, <linux@yadro.com>,
-        <heinrich.schuchardt@canonical.com>
-Subject: Re: RISC-V reserved memory problems
-Message-ID: <Y2Ou8OjB8Ag5oViI@wendy>
-References: <8e10bf15-9fa9-fe90-1656-35bf3e87e7f8@microchip.com>
- <f8e67f82-103d-156c-deb0-d6d6e2756f5e@microchip.com>
- <daa4b708-2af7-9179-90ee-e3c800d990bc@yadro.com>
+        with ESMTP id S231386AbiKCMMh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:12:37 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D15B9F7B
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:12:35 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id b29so1380781pfp.13
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:12:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rieV2SdG8Mne1lxC+rYgGfokYn80pf6/u2BwWRn0Sa8=;
+        b=c0tT0ytkIGnqZS9md6cRj/skv0p3s9o9YUJ12rIVp0tf5XWrqoZpQ5jyc2bASunn08
+         avIYT7RBqtT9KBIrhIYDT8tiJuJwPppPNvui1v3S3QQXNz6k3Vd1rObtd6IgQ6AEumgH
+         I6P+N/0tDH6AVwNnv3ICutpmT4ETirJ404d5S3vEdysntZgqLcR5Io8DX3NIM/BVhRQA
+         ekjvNUflGxsTbQLgqH3dkh8BF9lOPk+dgSk5bdmTugtnNmfcbBsksse1sZTW9aEsaoGA
+         QKMUmTdvBmruOuLf4sCwi4ndNH9krFSE147UDQcYr/dJKYEbYfPlc2rgh9btp4sK/eib
+         gIcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rieV2SdG8Mne1lxC+rYgGfokYn80pf6/u2BwWRn0Sa8=;
+        b=ycw7OgP0weCNlc82TduL1hRK2VurUZWPEKnXlgpLBI2FnOmpn7k95Ot03nvNWtTDrB
+         H+/mu4vOO2IxB5PagW3xOA7C56/9nssuBLZadYHOGp+oXlqClApbcjX0CNRPl2nnttN1
+         UyjmREkhmT2SBSYEa+BHZ8KmjQiRiViWBUBph39s4kYC+ZoQnG8SC9kwse7jS+7sCEXF
+         hqNpQ6XK7wFdlrO0QS44kDV1NKm7CerEjfSDpX7LIFhDXwsfWAJzRiaMzEj0rKIUnml3
+         cjQNL8TztRL/wecRDBVnq6CYZm+rYy2U1q91EZVqhvBi7G7GlAbrBqbotBWCMUFGB+ow
+         fAcw==
+X-Gm-Message-State: ACrzQf27uFCYMKMaH48dSwQ9VjjXGrIa0d/kHmJj8T/njWoFpL9VP5XG
+        7DhDMiQ6VyuB6AQyg/zXIzUp
+X-Google-Smtp-Source: AMsMyM5MvSMm8DZRRoUBG8baRgK1tsDVj6xLuyNJi/jpppTIwzgYHsAlA4LC9r7rDPe2PErVWX/yCQ==
+X-Received: by 2002:a05:6a00:cd4:b0:56c:b47:a743 with SMTP id b20-20020a056a000cd400b0056c0b47a743mr29723853pfv.25.1667477555333;
+        Thu, 03 Nov 2022 05:12:35 -0700 (PDT)
+Received: from thinkpad ([59.92.102.81])
+        by smtp.gmail.com with ESMTPSA id d1-20020a17090a114100b0021358bd24b9sm3240468pje.21.2022.11.03.05.12.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 05:12:34 -0700 (PDT)
+Date:   Thu, 3 Nov 2022 17:42:28 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        steev@kali.org
+Subject: Re: [PATCH v2 12/12] arm64: dts: qcom: sc8280xp-x13s: Add thermal
+ zone support
+Message-ID: <20221103121228.GB8434@thinkpad>
+References: <20221029051449.30678-1-manivannan.sadhasivam@linaro.org>
+ <20221029051449.30678-13-manivannan.sadhasivam@linaro.org>
+ <90b7e0e0-a354-f64d-8c53-aa80df684a3a@somainline.org>
+ <20221103055014.GA8434@thinkpad>
+ <e46c817b-1a3b-d20c-22e7-a67b7684f17b@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <daa4b708-2af7-9179-90ee-e3c800d990bc@yadro.com>
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e46c817b-1a3b-d20c-22e7-a67b7684f17b@somainline.org>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 02:46:37PM +0300, Evgenii Shatokhin wrote:
-> Hi,
+On Thu, Nov 03, 2022 at 11:02:30AM +0100, Konrad Dybcio wrote:
 > 
-> On 16.08.2022 23:41, Conor.Dooley@microchip.com wrote:
-> > Hey all,
-> > We've run into a bit of a problem with reserved memory on PolarFire, or
-> > more accurately a pair of problems that seem to have opposite fixes.
-> > 
-> > The first of these problems is triggered when trying to implement a
-> > remoteproc driver. To get the reserved memory buffer, remoteproc
-> > does an of_reserved_mem_lookup(), something like:
-> > 
-> > 	np = of_parse_phandle(pdev->of_node, "memory-region", 0);
-> > 	if (!np)
-> > 		return -EINVAL;
-> > 
-> > 	rmem = of_reserved_mem_lookup(np);
-> > 	if (!rmem)
-> > 		return -EINVAL;
-> > 
-> > of_reserved_mem_lookup() then uses reserved_mem[i].name to try and find
-> > a match - but this was triggering kernel panics for us. We did some
-> > debugging and found that the name string's pointer was pointing to an
-> > address in the 0x4000_0000 range. The minimum reproduction for this
-> > crash is attached - it hacks in some print_reserved_mem()s into
-> > setup_vm_final() around a tlb flush so you can see the before/after.
-> > (You'll need a reserved memory node in your dts to replicate)
-> > 
-> > The output is like so, with the same crash as in the remoteproc driver:
-> > 
-> > [    0.000000] Linux version 6.0.0-rc1-00001-g0d9d6953d834 (conor@wendy) (riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Aug 16 13:42:09 IST 2022
-> > [    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80200000
-> > [    0.000000] Machine model: Microchip PolarFire-SoC Icicle Kit
-> > [    0.000000] earlycon: ns16550a0 at MMIO32 0x0000000020100000 (options '115200n8')
-> > [    0.000000] printk: bootconsole [ns16550a0] enabled
-> > [    0.000000] printk: debug: skip boot console de-registration.
-> > [    0.000000] efi: UEFI not found.
-> > [    0.000000] before flush
-> > [    0.000000] OF: reserved mem: debug name is fabricbuf@ae000000
-> > [    0.000000] after flush
-> > [    0.000000] Unable to handle kernel paging request at virtual address 00000000401c31ac
-> > [    0.000000] Oops [#1]
-> > [    0.000000] Modules linked in:
-> > [    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 6.0.0-rc1-00001-g0d9d6953d834 #1
-> > [    0.000000] Hardware name: Microchip PolarFire-SoC Icicle Kit (DT)
-> > [    0.000000] epc : string+0x4a/0xea
-> > [    0.000000]  ra : vsnprintf+0x1e4/0x336
-> > [    0.000000] epc : ffffffff80335ea0 ra : ffffffff80338936 sp : ffffffff81203be0
-> > [    0.000000]  gp : ffffffff812e0a98 tp : ffffffff8120de40 t0 : 0000000000000000
-> > [    0.000000]  t1 : ffffffff81203e28 t2 : 7265736572203a46 s0 : ffffffff81203c20
-> > [    0.000000]  s1 : ffffffff81203e28 a0 : ffffffff81203d22 a1 : 0000000000000000
-> > [    0.000000]  a2 : ffffffff81203d08 a3 : 0000000081203d21 a4 : ffffffffffffffff
-> > [    0.000000]  a5 : 00000000401c31ac a6 : ffff0a00ffffff04 a7 : ffffffffffffffff
-> > [    0.000000]  s2 : ffffffff81203d08 s3 : ffffffff81203d00 s4 : 0000000000000008
-> > [    0.000000]  s5 : ffffffff000000ff s6 : 0000000000ffffff s7 : 00000000ffffff00
-> > [    0.000000]  s8 : ffffffff80d9821a s9 : ffffffff81203d22 s10: 0000000000000002
-> > [    0.000000]  s11: ffffffff80d9821c t3 : ffffffff812f3617 t4 : ffffffff812f3617
-> > [    0.000000]  t5 : ffffffff812f3618 t6 : ffffffff81203d08
-> > [    0.000000] status: 0000000200000100 badaddr: 00000000401c31ac cause: 000000000000000d
-> > [    0.000000] [<ffffffff80338936>] vsnprintf+0x1e4/0x336
-> > [    0.000000] [<ffffffff80055ae2>] vprintk_store+0xf6/0x344
-> > [    0.000000] [<ffffffff80055d86>] vprintk_emit+0x56/0x192
-> > [    0.000000] [<ffffffff80055ed8>] vprintk_default+0x16/0x1e
-> > [    0.000000] [<ffffffff800563d2>] vprintk+0x72/0x80
-> > [    0.000000] [<ffffffff806813b2>] _printk+0x36/0x50
-> > [    0.000000] [<ffffffff8068af48>] print_reserved_mem+0x1c/0x24
-> > [    0.000000] [<ffffffff808057ec>] paging_init+0x528/0x5bc
-> > [    0.000000] [<ffffffff808031ae>] setup_arch+0xd0/0x592
-> > [    0.000000] [<ffffffff8080070e>] start_kernel+0x82/0x73c
-> > [    0.000000] ---[ end trace 0000000000000000 ]---
-> > [    0.000000] Kernel panic - not syncing: Attempted to kill the idle task!
-> > [    0.000000] ---[ end Kernel panic - not syncing: Attempted to kill the idle task! ]---
-> > 
-> > We traced this back to early_init_fdt_scan_reserved_mem() in
-> > setup_bootmem() - moving it later back up the boot sequence to
-> > after the dt has been remapped etc has fixed the problem for us.
-> > 
-> > The least movement to get it working is attached, and also pushed
-> > here: git.kernel.org/conor/c/1735589baefc
+> On 03/11/2022 06:50, Manivannan Sadhasivam wrote:
+> > On Sat, Oct 29, 2022 at 04:29:05PM +0200, Konrad Dybcio wrote:
+> > > 
+> > > On 29.10.2022 07:14, Manivannan Sadhasivam wrote:
+> > > > Add thermal zone support by making use of the thermistor SYS_THERM6.
+> > > > Based on experiments, this thermistor seems to reflect the actual
+> > > > surface temperature of the laptop.
+> > > > 
+> > > > For the cooling device, all BIG CPU cores are throttle down to keep the
+> > > s/throttle/throttled
+> > > 
+> > > Is it okay to let the 4xA78C run at full throttle in thermal emergencies though?
+> > I don't get it. Can you elaborate?
 > 
-> Any updates on this?
-
-"Yes". I /briefly/ chatted with Palmer about this at Plumbers. (see
-below). Funny timing from you replying though, I'm planning on spending
-the next days/week/weeks trying to sort this whole thing out - it's come
-to a head for us.
-
-> I have encountered the same issue with invalid reserved_mem[i].name pointers
-> recently, while working on a remoteproc driver for our RISC-V-based SoC.
+> 8280xp has 4xA78C and 4xX1C. You only added the latter ones to the cooling
+> map.
 > 
-> I can confirm that "riscv: fix reserved memory setup"
-> (git.kernel.org/conor/c/1735589baefc) fixes the issue in our kernel based on
-> 5.15.x.
 
-Aye, we're on 5.15 for our vendor tree too so that's where we found the
-problem initally.
+Right, that's because the first 4 cores doesn't contribute to thermal much and
+thottling them doesn't yield any thermal gain.
 
-> Your patch does not seem to have any adverse side-effects either, so:
+Thanks,
+Mani
 
-This patch itself, from what we can see, doesn't have any adverse
-side-effects. The other issue that I pointed out in this mail with
-reserved memory allocations requires an opposite fix, so there's
-something else going on that needs digging into. When I spoke with
-Palmer, I said I'd spend the time looking at it but just have not got
-around to doing it until now.
-I think it may make some sense to try and merge this patch as it at least
-makes things better and unblocks people wanting to upstream remoteproc
-drivers etc.
-And then when I (eventually?) come up with something better maybe it can
-build on that.
-
-I'll resend this patch as standalone early next week unless I've somehow
-made a breakthrough between now and then.
-
-> Tested-by: Evgenii Shatokhin <e.shatokhin@yadro.com>
-
-Thanks!
-
-> If there are newer versions or variants of the fix, I'll be glad to test
-> them too.
-
-This patch is currently the most recent work I have done, but hopefully
-that's going to change.
-
-> By the way, I wonder why arm and aarch64 do not seem to be affected by the
-> issue. As far as I can see, these architectures also populate reserved_mem[]
-> before switching to the final memory mapping during kernel init. I have not
-> dug deep into that though.
-
-Aye, that's at least where I will be starting to do comparisons..
-
-> > The second problem is a bit more complicated to explain - but we
-> > found the solution conflicted with the remoteproc fix as we had
-> > to move early_init_fdt_scan_reserved_mem() _earlier_ in the boot
-> > process to solve this one.
+> 
 > > 
-> > We want to have a node in our devicetree that contains some memory
-> > that is non-cached & marked as reserved-memory. Maybe we have just
-> > missed something, but from what we've seen:
-> > - the really early setup looks at the dtb, picks the highest bit
-> >     of memory and puts the dtb etc there so it can start using it
-> > - early_init_fdt_scan_reserved_mem() is then called, which figures
-> >     out if memory is reserved or not.
+> > > > temperature at a sane level.
+> > > > 
+> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > ---
+> > > >   .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 46 +++++++++++++++++++
+> > > >   1 file changed, 46 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > > > index ca77c19c6d0d..96e2fa72f782 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > > > @@ -29,6 +29,52 @@ backlight {
+> > > >   		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
+> > > >   	};
+> > > > +	thermal-zones {
+> > > > +		skin-temp-thermal {
+> > > > +			polling-delay-passive = <250>;
+> > > > +			polling-delay = <0>;
+> > > > +			thermal-sensors = <&pmk8280_adc_tm 5>;
+> > > > +
+> > > > +			trips {
+> > > > +				skin_temp_alert0: trip-point0 {
+> > > > +					temperature = <55000>;
+> > > > +					hysteresis = <1000>;
+> > > > +					type = "passive";
+> > > > +				};
+> > > > +
+> > > > +				skin_temp_alert1: trip-point1 {
+> > > > +					temperature = <58000>;
+> > > > +					hysteresis = <1000>;
+> > > > +					type = "passive";
+> > > > +				};
+> > > > +
+> > > > +				skin-temp-crit {
+> > > > +					temperature = <73000>;
+> > > Ouch, I didn't know we were serving burnt fingers at the cafeteria today :D
+> > > 
+> > > Or maybe this just looks scary.. The laptop looks plastic, so maybe it won't cause instant
+> > > burns?
+> > > 
+> > 73c is what the reasonable number I came up with after some experiments. At
+> > this point the temperature won't burn your finger but crossing this surely
+> > would (that's what happening without this series).
+> 
+> Ok, then I suppose it's fine. Thanks!
+> 
+> 
+> Konrad
+> 
 > > 
-> > Unfortunately, the highest bit of memory is the non-cached bit so
-> > everything falls over, but we can avoid this by moving the call to
-> > early_init_fdt_scan_reserved_mem() above the dtb memblock alloc that
-> > takes place right before it in setup_bootmem().
+> > Thanks,
+> > Mani
 > > 
-> > Obviously, both of these changes are moving the function call in
-> > opposite directions and we can only really do one of them. We are not
-> > sure if what we are doing with the non-cached reserved-memory section
-> > is just not permitted & cannot work - or if this is something that
-> > was overlooked for RISC-V specifically and works for other archs.
-> > 
-> > It does seem like the first issue is a real bug, and I am happy to
-> > submit the patch for that whenever - but having two problems with
-> > opposite fixes seemed as if there was something else lurking that we
-> > just don't have enough understanding to detect.
-> > 
-> > Any help would be great!
+> > > Konrad
+> > > > +					hysteresis = <1000>;
+> > > > +					type = "critical";
+> > > > +				};
+> > > > +			};
+> > > > +
+> > > > +			cooling-maps {
+> > > > +				map0 {
+> > > > +					trip = <&skin_temp_alert0>;
+> > > > +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > > > +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > > > +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > > > +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> > > > +				};
+> > > > +
+> > > > +				map1 {
+> > > > +					trip = <&skin_temp_alert1>;
+> > > > +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > > > +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > > > +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > > > +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> > > > +				};
+> > > > +			};
+> > > > +		};
+> > > > +	};
+> > > > +
+> > > >   	vreg_edp_bl: regulator-edp-bl {
+> > > >   		compatible = "regulator-fixed";
 
+-- 
+மணிவண்ணன் சதாசிவம்
