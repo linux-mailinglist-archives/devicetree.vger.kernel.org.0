@@ -2,113 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F2F361829D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5080C6182B8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:27:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231272AbiKCPZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 11:25:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34328 "EHLO
+        id S232204AbiKCP13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 11:27:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbiKCPZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:25:03 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2399063F9
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 08:24:56 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id 8so1350158qka.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 08:24:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+GK+kN47VRDh5Rd9IAtghxyhLdbPgGlBTCLcifjdKfY=;
-        b=CuVdKrpYE2rQRg37FPIg+JZrk4NzKKxt219BGe3CMQvQo8Lmp2ckSDbzhj0bEEUIDL
-         fxTOSuzkB/5KrS//gXY6ySrTmRgRg8/Y7fvynh6m65Zh2OXxQ4VX2GSRl9UBvObPXaiB
-         +vOZCa0xjXVbfTNBKAzOFM+Bk77Hb1sPLlBuXe4pMZ5UDc+2YdWojicrTPpwK/H61Iio
-         yq7H5MfkITJRWQYoPFpDcBb9983wRkk5uycAbX1edw4j+1IfEOYvTWUb0TabE5T1YL68
-         HomjjXu09Q9xuXt2iGFj5ybrYfCG6zH2HK1fcjAIOuAUFslSMbvF1EvI5XH6vconk6NT
-         K1+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+GK+kN47VRDh5Rd9IAtghxyhLdbPgGlBTCLcifjdKfY=;
-        b=A4PhtKfZK8CQad0IGlv3iJj/rC0XODGJUeJP28PbHmPRC4l72DP0PdwvXhv0yfMOsD
-         pjkjXWEPlB8SxM/pT/UKN8i5lk7nNEqqfhV/VGO/pEjTBuxxklOLpPgrArY/cOgPVipv
-         BrZJBi9khk8VU5RxZJANkg2qI9YkdXE8OsllILg1CGA3ZvvwZVg33NFRTCjNtmN/0blX
-         60b7zSzyn+AKdk5F+pStz4m7DrZOu3NzgeHmIQiJsC3PYhO2LuZQVWpYj99u/mEnbunq
-         eAk2bi1qYwXEn4MF+c7EcrWlZl+gSQ3M25XrSR7KDtrHxo7eTKrVfYPuts9XRZs0jkVd
-         mbUw==
-X-Gm-Message-State: ACrzQf0YqhfdsNjNw3TheAXEv5mxcn7hiUHbCoGiqcwu1G66i5irdihP
-        0bi66P2bw+KWaeSH2IE1cbd2nQ==
-X-Google-Smtp-Source: AMsMyM4JfQZmP8W7rxOWSLWL8ATCWGxBIJQoz0Nkbogfi2BmdP8tf0y5Xg2ivz3gto0bPNF2tfnghQ==
-X-Received: by 2002:a05:620a:1256:b0:6fa:4c67:4d9c with SMTP id a22-20020a05620a125600b006fa4c674d9cmr10696457qkl.713.1667489095268;
-        Thu, 03 Nov 2022 08:24:55 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id p20-20020a05620a15f400b006b953a7929csm907379qkm.73.2022.11.03.08.24.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 08:24:54 -0700 (PDT)
-Message-ID: <a2b1ffe3-e2bc-25d5-f665-363db09bd959@linaro.org>
-Date:   Thu, 3 Nov 2022 11:24:53 -0400
+        with ESMTP id S232214AbiKCP1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:27:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E1D1B1FD;
+        Thu,  3 Nov 2022 08:27:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1751361F3F;
+        Thu,  3 Nov 2022 15:27:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1E4BC433D6;
+        Thu,  3 Nov 2022 15:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667489232;
+        bh=9B6TUpcxiiK6nYvO+tZ9kBnE+5WGkzDACOo23ch8WCA=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=tZ5WpOZ7axSdC5g+29cT7yfgHFK7yRD4IMa9dxMheFgkrT+RotkRJIfGpMbS8c2oB
+         GLepVRcm47TWGrS8XxZEjPXQd/dhZ6MHaRdTgQE31CF/NUJyg5qIHfYpybQjsxv1Sz
+         H2ohLNem3YsF5qko+37yaXfV8sIS4HQIKF6qKwpuokjcSPbDtfVxb/xymZ2rriGS6M
+         ddt5ca0zSqtZofSKXTQ+7ZluG2cY4BnUqNrxvVVUcEo4//EFGYCwRch+2ymfS8cz/T
+         BrzbhTK7MwpypzEP6XkeN5A91xn5vzWYaYa2FDwBHNazQQjScK29irhQTMFeGE2Bhn
+         0tGxzRJKJruRQ==
+Message-ID: <576c42c4-1256-304d-3513-7bf02cddb220@kernel.org>
+Date:   Thu, 3 Nov 2022 11:27:09 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v2 02/12] dt-bindings: display: mediatek: add MT8195 hdmi
- bindings
+Subject: Re: [PATCH 1/3] dt-bindings: Add bindings for aspeed pwm-tach.
 Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        David Airlie <airlied@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jitao shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     stuart.lee@mediatek.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, mac.shen@mediatek.com,
-        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20220919-v2-0-8419dcf4f09d@baylibre.com>
- <20220919-v2-2-8419dcf4f09d@baylibre.com>
- <c91ee3ce-3f30-a3ef-bb38-8571e488b6b6@linaro.org>
- <CABnWg9t3w4o4rmNosvYCpqG-h8DESerajH7OsXEYofRf2kr1Xg@mail.gmail.com>
- <6bb3ab49-1c12-6863-a49a-2fd1f34de561@linaro.org>
- <CABnWg9uDki0ZtkxU1BPZq0ZU1mi4zFjasw+e3pQYb+Nv1MThLA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABnWg9uDki0ZtkxU1BPZq0ZU1mi4zFjasw+e3pQYb+Nv1MThLA@mail.gmail.com>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        "garnermic@meta.com" <garnermic@meta.com>
+References: <20221031103809.20225-1-billy_tsai@aspeedtech.com>
+ <20221031103809.20225-2-billy_tsai@aspeedtech.com>
+ <ee6c5a96-81c4-5729-f623-4b23bc3b8e0a@kernel.org>
+ <2508B515-E153-42C2-B013-2A64A110BCF2@aspeedtech.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <2508B515-E153-42C2-B013-2A64A110BCF2@aspeedtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 11:17, Guillaume Ranquet wrote:
-> On Thu, 03 Nov 2022 13:45, Krzysztof Kozlowski
->>> This is an i2c adapter, not a device.
->>> And as it lives inside the HDMI hw block, I've omitted using an address here.
->>>
->>> Is this valid? or should this be expressed differently?
->>
->> What is an I2C adapter? Did you mean I2C controller (master)?
+On 03/11/2022 06:36, Billy Tsai wrote:
 > 
-> Yes, a controller.
-> This is an I2C controller connected to the HDMI connector, it is used
-> to exchange data on the Display Data Channel with
-> the display (such as EDID).
+> On 2022/11/3, 5:20 AM, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
+> 
+>     On 31/10/2022 06:38, Billy Tsai wrote:
+>     > > +patternProperties:
+>     > > +  "^pwm(@[0-9a-f]+)?$":
+>     > > +    $ref: ../pwm/aspeed,ast2600-pwm.yaml
+> 
+>     > Full path, so: /schemas/pwm/aspeed,ast2600-pwm.yaml
+> 
+>     > Why unit addresses are optional?
+> 
+>     > > +
+>     > > +  "^tach(@[0-9a-f]+)?$":
+>     > > +    $ref: ../hwmon/aspeed,ast2600-tach.yaml
+> 
+>     > Ditto
+> 
+>     > Why unit addresses are optional?
+> 
+> The pwm_tach is not the bus. I will use
+> pwm:
+>     type: object
+>     $ref: "/schemas/pwm/aspeed,ast2600-pwm.yaml"
+> 
+> tach:
+>     type: object
+>     $ref: "/schemas/hwmon/aspeed,ast2600-tach.yaml"
+> to replace it.
+> 
+>     > > +
+>     > > +additionalProperties: false
+>     > > +
+>     > > +examples:
+>     > > +  - |
+>     > > +    #include <dt-bindings/clock/ast2600-clock.h>
+>     > > +    pwm_tach: pwm_tach@1e610000 {
+> 
+>     > Node names should be generic.
+>     > https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> This is the mfd with pwm and tach, so they are combined as the node name.
+> 
+>     > No underscores in node names.
+> 
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#table-1
+> I see that the underscore is the valid characters for node names.
+> Did I miss any information?
 
-OK, then the node name is "i2c".
+W=2 warnings.
 
 Best regards,
 Krzysztof
