@@ -2,287 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C504D6186DA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFA46186F7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbiKCSCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 14:02:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36488 "EHLO
+        id S229587AbiKCSE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 14:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231396AbiKCSCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:02:18 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF47A1C412
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:00:12 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id u7so1643451qvn.13
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:00:12 -0700 (PDT)
+        with ESMTP id S230194AbiKCSEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:04:11 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 405F623BE3
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:01:52 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id k2so1659534qkk.7
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:01:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/DF0gYT6jJS2DoTjVBzKYDYrhEGRDI4zCqa9jCJ/7eQ=;
-        b=IhoLoP3mwLpRy4nrwoo81yGLrQRJTGKg3dBXLkslTUFxl5zsrT3uGwp2cobcU0it9Q
-         C3CCSrpLcleEAPA53NNqVktWgnFqxuE/ajCRewU5x5+nGZE/C8iKwVY6zYzHFA/2z5jU
-         GyP8HKtY/goEyNfAkHHTsixDotGlDrJg/MyHaBfF7LNHmSaywxQHf25guoNUpoVpLScx
-         Y0Q9DurjY0uw/KiDW7iqruiVXrkGk0zmMr6BS1Jg6YhdPVQ1qyvZ8gBxPV+XaBQBr6kR
-         h3+k/qNexXFkupp6TWgMyO5Y1ZCoRdbaWtb6DA29G41GrsYFtkCN6IvM+ULVEYgSrG3S
-         tFdQ==
+        bh=b6lzWnndPEx47JNYnBGGhAjHV67Tdq93TKvJyHkVGpU=;
+        b=DViLWviJRNiRKOZurROMuetripDeQl1g19sw3T0TpCXaliobtAcUpHInTkjSEZib9D
+         7MkOjvKLSFviFdXN+hq26Fa5jwANIC5E0nvuHZMsH1ZMn4+BH7MWbRHQW/RwCVq6WX1f
+         oYlqXdDmpAXr9dMLKOlPFXsohahRnHVSfZ/5JnhN2gEAOapUL85ILJoN+Cc9GICOlsuV
+         5SnIbPzuMXfe4Njcg3+x/kXixf6qYP3BXBlHlHybmibb4qqkdZSY4b8lvmT1wjB3fmWr
+         reAyQsiNMRFxuqCzOkiT41wiOdztpQybVWUX3E5LxJsoTndf6ejCMr2bhS71rXNrXpOk
+         4X3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/DF0gYT6jJS2DoTjVBzKYDYrhEGRDI4zCqa9jCJ/7eQ=;
-        b=Ou8TcxXGLxemlbadI8X91ObpXg/y89L/nO3UI5jtipBK625a3+gtDAVERZ8bP6zaqw
-         C6zIlQGit6hJ9KAd7Vg6VYkqTuwT4XpUWGPgh0lU9TL94BTlekaB92Ikjp8c66oJaNLn
-         kPQo5EJZN6IlXb6B/a5xJsOBvD7DdokdwRmKLYLSLgle3BgrSp9m7atibWuB7KSDD4Hn
-         gg0hT9o9WVvWYinASlOks+zNM/d0JdNq0tNoq7DeqJAP6LwYjSBAB7VD8lVZ5JuxDj7l
-         xNmhzGj646bTFoeCtvGRJ86Oqzid+pN+3eaN2fPcWG8MYFj+pIH0sMjZLa+bXhsB5YgK
-         08Gg==
-X-Gm-Message-State: ACrzQf2ox0er2QvnYQ1S/g860+a3LIpIhuh7Mji+h1uoqszdbXkhs+46
-        /iH+dvE2hiK/l7i9InGLGmmOxA==
-X-Google-Smtp-Source: AMsMyM7t/tYjxw7gvw0BE7+B84lBobFVhCq3i1RPX9g8PP5m1xNdfXgX20GAHj2NmVrvxhxQI2gcAQ==
-X-Received: by 2002:a05:6214:76d:b0:4bb:e59a:17dc with SMTP id f13-20020a056214076d00b004bbe59a17dcmr23494431qvz.125.1667498411617;
-        Thu, 03 Nov 2022 11:00:11 -0700 (PDT)
+        bh=b6lzWnndPEx47JNYnBGGhAjHV67Tdq93TKvJyHkVGpU=;
+        b=Yc+QvrGJQsg2RZxsu5VTZNVs4Bq+XR7kq96z6VgdPaJ1rdnlHO4H0T3RvjAL4QQIBB
+         abx32l3O02nOpBCR1afoORR4xe5pCa0aOGlKEiEa/UNPmy6+LGuiPF9Vb2ZWtYghNPvD
+         FWQu4D6b4RaH24VQOha0Utj0pU4gyHH5UToPLVZAfxKsEgDsIbhccG55E4wNzXn+2t/u
+         CG6Wb6Yc7cE+pDIy4A7qx3jEeSS8hOVBmu+JXrl0y/hFsP8hO3lexkFLxINufAloCF45
+         IoI+VmYDkZBRdOkKqjf7VP1MZHrlCgaiw5I6WBaXDgPXC1hCyIP//wbXFai/TvewhX00
+         Of5Q==
+X-Gm-Message-State: ACrzQf1PaRRMFt7Nitue3DdMIWtYHKjM/kZ+2F5oscqNPM1RqRQ5/Y0Z
+        inkVtCXG6QsyX/wcON3U2/2ZEg==
+X-Google-Smtp-Source: AMsMyM7TEv/8Z00e6YSXU/dDrn8qkVeUkqCQmw0hY0PNeKAia77RHB8u/EgrArZ2PPcHaORZnrqD3g==
+X-Received: by 2002:a05:620a:28cc:b0:6ee:78fe:c519 with SMTP id l12-20020a05620a28cc00b006ee78fec519mr21850553qkp.345.1667498511178;
+        Thu, 03 Nov 2022 11:01:51 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id i18-20020a05620a405200b006fa8299b4d5sm720239qko.100.2022.11.03.11.00.09
+        by smtp.gmail.com with ESMTPSA id fy5-20020a05622a5a0500b003a533886612sm926956qtb.3.2022.11.03.11.01.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 11:00:10 -0700 (PDT)
-Message-ID: <aa7e325f-2986-005a-3d0a-579ac46491f6@linaro.org>
-Date:   Thu, 3 Nov 2022 14:00:09 -0400
+        Thu, 03 Nov 2022 11:01:50 -0700 (PDT)
+Message-ID: <613d7971-37d6-c8db-523e-cf3cbdcd5287@linaro.org>
+Date:   Thu, 3 Nov 2022 14:01:49 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v3 net-next 2/8] dt-bindings: net: mediatek: add WED RX
- binding for MT7986 eth driver
+Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
+ MAX5978
 Content-Language: en-US
-To:     Lorenzo Bianconi <lorenzo.bianconi@redhat.com>
-Cc:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org,
-        nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, Bo.Jiao@mediatek.com,
-        sujuan.chen@mediatek.com, ryder.Lee@mediatek.com,
-        evelyn.tsai@mediatek.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, daniel@makrotopia.org,
-        krzysztof.kozlowski+dt@linaro.org
-References: <cover.1667466887.git.lorenzo@kernel.org>
- <2d92c3e282c6a788e54370604f966fc7a5b479bf.1667466887.git.lorenzo@kernel.org>
- <6d1bd86e-29f0-a3b2-700b-978d64990d56@linaro.org>
- <Y2P/jq34IjyM2iXu@lore-desk>
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
+ <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+ <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
+ <dc6c8f79-9830-dd1b-a064-3b25a3b74a35@9elements.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y2P/jq34IjyM2iXu@lore-desk>
+In-Reply-To: <dc6c8f79-9830-dd1b-a064-3b25a3b74a35@9elements.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 13:51, Lorenzo Bianconi wrote:
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml
->>> new file mode 100644
->>> index 000000000000..6c3c514c48ef
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-boot.yaml
->>
->> arm is only for top-level stuff. Choose appropriate subsystem, soc as
->> last resort.
+On 03/11/2022 13:53, Naresh Solanki wrote:
+> Hi Krzysztof,
 > 
-> these chips are used only for networking so is net folder fine?
-
-So this is some MMIO and no actual device? Then rather soc.
-
-> 
->>
->>> @@ -0,0 +1,47 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-boot.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title:
->>> +  MediaTek Wireless Ethernet Dispatch WO boot controller interface for MT7986
->>> +
->>> +maintainers:
->>> +  - Lorenzo Bianconi <lorenzo@kernel.org>
->>> +  - Felix Fietkau <nbd@nbd.name>
->>> +
->>> +description:
->>> +  The mediatek wo-boot provides a configuration interface for WED WO
->>> +  boot controller on MT7986 soc.
->>
->> And what is "WED WO boot controller?
-> 
-> WED WO is a chip used for networking packet processing offloaded to the Soc
-> (e.g. packet reordering). WED WO boot is the memory used to store start address
-> of wo firmware. Anyway I will let Sujuan comment on this.
-
-A bit more should be in description.
-
-> 
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - mediatek,mt7986-wo-boot
->>> +      - const: syscon
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
+> On 03-11-2022 06:43 pm, Krzysztof Kozlowski wrote:
 >>> +examples:
 >>> +  - |
->>> +    soc {
->>> +      #address-cells = <2>;
->>> +      #size-cells = <2>;
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +        regulator@3a {
+>>> +           compatible = "maxim,max5978";
+>>> +           reg = <0x3a>;
+>>> +           vss1-supply = <&p3v3>;
 >>> +
->>> +      wo_boot: syscon@15194000 {
->>> +        compatible = "mediatek,mt7986-wo-boot", "syscon";
->>> +        reg = <0 0x15194000 0 0x1000>;
->>> +      };
->>> +    };
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml
->>> new file mode 100644
->>> index 000000000000..6357a206587a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-ccif.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-ccif.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek Wireless Ethernet Dispatch WO controller interface for MT7986
->>> +
->>> +maintainers:
->>> +  - Lorenzo Bianconi <lorenzo@kernel.org>
->>> +  - Felix Fietkau <nbd@nbd.name>
->>> +
->>> +description:
->>> +  The mediatek wo-ccif provides a configuration interface for WED WO
->>> +  controller on MT7986 soc.
->>
->> All previous comments apply.
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - mediatek,mt7986-wo-ccif
->>> +      - const: syscon
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    soc {
->>> +      #address-cells = <2>;
->>> +      #size-cells = <2>;
->>> +
->>> +      wo_ccif0: syscon@151a5000 {
->>> +        compatible = "mediatek,mt7986-wo-ccif", "syscon";
->>> +        reg = <0 0x151a5000 0 0x1000>;
->>> +        interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
->>> +      };
->>> +    };
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml
->>> new file mode 100644
->>> index 000000000000..a499956d9e07
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7986-wo-dlm.yaml
->>> @@ -0,0 +1,50 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7986-wo-dlm.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek Wireless Ethernet Dispatch WO hw rx ring interface for MT7986
->>> +
->>> +maintainers:
->>> +  - Lorenzo Bianconi <lorenzo@kernel.org>
->>> +  - Felix Fietkau <nbd@nbd.name>
->>> +
->>> +description:
->>> +  The mediatek wo-dlm provides a configuration interface for WED WO
->>> +  rx ring on MT7986 soc.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: mediatek,mt7986-wo-dlm
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  resets:
->>> +    maxItems: 1
->>> +
->>> +  reset-names:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - resets
->>> +  - reset-names
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    soc {
->>> +      #address-cells = <2>;
->>> +      #size-cells = <2>;
->>> +
->>> +      wo_dlm0: wo-dlm@151e8000 {
->>
->> Node names should be generic.
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> DLM is a chip used to store the data rx ring of wo firmware. I do not have a
-> better node name (naming is always hard). Can you please suggest a better name?
+>>> +           regulators {
+>>> +               sw0_ref_0: SW0 {
+>> No improvements here.
+> I've addressed 4 space indentation, bindings are matched, compatible is 
+> moved to first, then reg then the rest.
 
-The problem is that you added three new devices which seem to be for the
-same device - WED. It looks like some hacky way of avoid proper hardware
-description - let's model everything as MMIO and syscons...
+OK, so indeed there are improvements.
 
-For such model - register addresses exposed as separate devices - I do
-not have appropriate name, but the real problem is not in the name. It's
-in the hardware description.
-
+Yet still you did not improve the warnings coming from the binding -
+this does not match your binding. Test the binding and you will see big
+fat warning.
 
 Best regards,
 Krzysztof
