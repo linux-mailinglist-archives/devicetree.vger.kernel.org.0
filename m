@@ -2,101 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 133B3617A8A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 11:04:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F2F617AB6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 11:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbiKCKE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 06:04:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41682 "EHLO
+        id S230383AbiKCKTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 06:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbiKCKE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 06:04:28 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E31B1F0;
-        Thu,  3 Nov 2022 03:04:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=HL/7H+fZFpuFCnct+yiKKIoU0SNeD7m+YyJFOGqoENc=; b=CcrPiQK4f5PZRgeY78c3T/U/WR
-        ElZnDHm8q36yYziBlYFuYjhH1soN7aL5DLt2ydiqk+Y0vpdQd5/ekKV2eCHdmNz/ysffIGUQ+P2TM
-        R6vfLLa/D82RQlB+f+u1qo7O5adHCf0tHCO3BYrlDcqdfHKOFfcGaB2udsCs6M0DqIdwrVVQQqh87
-        Iko4e3JaqbyRr4PipF0Um+KYNE/UVQu6QR/krNk8HCTq0hVPqbNrIlonq3yQdUe7IEXLX1aAt1lf9
-        CKcYncV2XZdThWpvSOMYlGKSLmeGhSb4TpJ7rla7Ld56xrgSopGyzrDFw9lllK+StO2cgZ1/QlKA7
-        ztmtG5Iw==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:37996 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.95)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1oqX52-008HsM-LI;
-        Thu, 03 Nov 2022 11:04:20 +0100
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     linux-watchdog@vger.kernel.org
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, Anson.Huang@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] ARM: dts: imx6ul/ull: suspend i.MX6UL watchdog in wait mode
-Date:   Thu,  3 Nov 2022 11:03:58 +0100
-Message-Id: <20221103100358.176099-4-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221103100358.176099-1-andrej.picej@norik.com>
-References: <20221103100358.176099-1-andrej.picej@norik.com>
+        with ESMTP id S229754AbiKCKTQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 06:19:16 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2480C65FE;
+        Thu,  3 Nov 2022 03:19:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1D1491FB;
+        Thu,  3 Nov 2022 03:19:22 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A6B43F5A1;
+        Thu,  3 Nov 2022 03:19:14 -0700 (PDT)
+Date:   Thu, 3 Nov 2022 10:19:11 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, cristian.marussi@arm.com, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
+        quic_avajid@quicinc.com, Souvik.Chakravarty@arm.com,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [RFC 1/2] dt-bindings: firmware: arm,scmi: Add support for
+ memlat vendor protocol
+Message-ID: <20221103101911.2qr3cla5mm4ctoe3@bogus>
+References: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
+ <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It was discovered that the watchdog triggers when the device is put into
-"Suspend-To-Idle"/"freeze" low-power mode. Setting WDW bit disables
-watchdog when the device is put into WAIT mode.
+On Thu, Nov 03, 2022 at 10:28:31AM +0530, Sibi Sankar wrote:
+> Add bindings support for the SCMI QTI memlat (memory latency) vendor
+> protocol. The memlat vendor protocol enables the frequency scaling of
+> various buses (L3/LLCC/DDR) based on the memory latency governor
+> running on the CPUSS Control Processor.
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  .../devicetree/bindings/firmware/arm,scmi.yaml     | 164 +++++++++++++++++++++
+>  1 file changed, 164 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 1c0388da6721..efc8a5a8bffe 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -189,6 +189,47 @@ properties:
+>        reg:
+>          const: 0x18
+>  
+> +  protocol@80:
+> +    type: object
+> +    properties:
+> +      reg:
+> +        const: 0x80
+> +
+> +      qcom,bus-type:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        items:
+> +          minItems: 1
+> +        description:
+> +          Identifier of the bus type to be scaled by the memlat protocol.
+> +
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
----
-Changes in v3:
- - no changes
+Why is this part of the provider of the service ?
 
-Changes in v2:
- - no changes
----
- arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+> +      cpu-map:
+> +        type: object
+> +        description:
+> +          The list of all cpu cluster configurations to be tracked by the memlat protocol
+> +
+> +        patternProperties:
+> +          '^cluster[0-9]':
+> +            type: object
+> +            description:
+> +              Each cluster node describes the frequency domain associated with the
+> +              CPUFREQ HW engine and bandwidth requirements of the buses to be scaled.
+> +
+> +            properties:
+> +              operating-points-v2: true
+> +
+> +              qcom,freq-domain:
+> +                $ref: /schemas/types.yaml#/definitions/phandle-array
+> +                description:
+> +                  Reference to the frequency domain of the CPUFREQ HW engine
+> +                items:
+> +                  - items:
+> +                      - description: phandle to CPUFREQ HW engine
+> +                      - description: frequency domain associated with the cluster
+> +
+> +            required:
+> +              - qcom,freq-domain
+> +              - operating-points-v2
+> +
 
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi b/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
-index 3cddc68917a0..5168ed0ffec3 100644
---- a/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-phytec-phycore-som.dtsi
-@@ -102,6 +102,10 @@ &usdhc2 {
- 	status = "disabled";
- };
- 
-+&wdog1 {
-+	fsl,suspend-in-wait;
-+};
-+
- &iomuxc {
- 	pinctrl_enet1: enet1grp {
- 		fsl,pins = <
+I would avoid all these here as part of provider node. It should be part
+of the consumer to have all these details and do what it needs to do with
+any such information.
+
 -- 
-2.25.1
-
+Regards,
+Sudeep
