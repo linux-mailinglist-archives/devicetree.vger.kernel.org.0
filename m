@@ -2,110 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEDCB617AEB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 11:37:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9406E617AFB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 11:41:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbiKCKhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 06:37:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52406 "EHLO
+        id S230196AbiKCKl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 06:41:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbiKCKhc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 06:37:32 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4953CD103;
-        Thu,  3 Nov 2022 03:37:31 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3C5D71FB;
-        Thu,  3 Nov 2022 03:37:37 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A74C3F5A1;
-        Thu,  3 Nov 2022 03:37:29 -0700 (PDT)
-Date:   Thu, 3 Nov 2022 10:37:26 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, cristian.marussi@arm.com, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, konrad.dybcio@somainline.org,
-        quic_avajid@quicinc.com, Souvik.Chakravarty@arm.com,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [RFC 2/2] firmware: arm_scmi: Add SCMI QTI Memlat vendor protocol
-Message-ID: <20221103103726.kdepm7jeb2gnncnb@bogus>
-References: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
- <1667451512-9655-3-git-send-email-quic_sibis@quicinc.com>
- <20221103102444.c5ngcxupohwdzntf@bogus>
+        with ESMTP id S229788AbiKCKl2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 06:41:28 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 781AC631A
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 03:41:26 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id q9so4180950ejd.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 03:41:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WJokNyfXsCHzHhZF3TL//PDU1JvZ46K3PIWK/gOZZuI=;
+        b=cFIhQ81JA3YY/XzEOzxBh6nMxd5/p5ttgyCdyUDqeCiaKaENelgFHPrucTAMElMzNO
+         jdkFcxkGaNeX2NdnlnwQQis5j+qJdPNDxB1cT3tDyP7uKMjwoXyk+/MiwOp1qAbVda2D
+         PY9IGj+5FibWVQbKinJlLwfagyMh8ShnSoeaE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WJokNyfXsCHzHhZF3TL//PDU1JvZ46K3PIWK/gOZZuI=;
+        b=PTMYMTHwg7D+1/jLnF2eRy+JZUyPIGXuy86T3vnhBEycfgANuQ6b/9e7cu19y0famk
+         ucu4zaAD4SPB3AMtT/BtFTWZd4Cq+RuNS8AquvBbfA+44Zkq0do254ewV8Og9bXfHGBP
+         WDqjG84v+YBbP8po7chn8SZcVR3A85IQLlVNw9hl0G3Dso2my1GIF96SU6lYEhGHzCwz
+         sedRi7DnstN8+dIT1eLHGkcdu6ul7hzOe/4TvQDtr+973GL69Z+5A6lNjxg6pOBlIEbI
+         U0JHOb9EbpOPoTQ74PLs1HtZGFx0kAdl8T8uT0AB6NI/UyyfNI279elVDCPn93yUx5QO
+         qKUA==
+X-Gm-Message-State: ACrzQf2wLavFuRj20kP9yhSAzlrObUyOz6YDBDnTuGIr2qqFWmKFBMW0
+        /ICq70ETSf4opnbFnikJJRyrgw==
+X-Google-Smtp-Source: AMsMyM5ATwqnrGV+GBiR/mYmj1FwznRzYR4xh+/j7BPh0zdyKAJcKFGz+rW5zZceGoP+CRZqkxY9Mw==
+X-Received: by 2002:a17:906:6a27:b0:7a6:c537:ba4 with SMTP id qw39-20020a1709066a2700b007a6c5370ba4mr26921174ejc.517.1667472085066;
+        Thu, 03 Nov 2022 03:41:25 -0700 (PDT)
+Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-54-207.cust.vodafonedsl.it. [188.217.54.207])
+        by smtp.gmail.com with ESMTPSA id e25-20020a170906315900b007836d075152sm316558eje.187.2022.11.03.03.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 03:41:23 -0700 (PDT)
+Date:   Thu, 3 Nov 2022 11:41:21 +0100
+From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+To:     Aakarsh Jain <aakarsh.jain@samsung.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, smitha.t@samsung.com
+Subject: Re: [PATCH 1/3] arm64: exynos: Add new compatible string for
+ Exynos3250 SoC.
+Message-ID: <20221103104121.GA4937@tom-ThinkPad-T14s-Gen-2i>
+References: <CGME20221102125810epcas5p36e6caf41f602debe17f25f13969fd6dc@epcas5p3.samsung.com>
+ <20221102130602.48969-1-aakarsh.jain@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221103102444.c5ngcxupohwdzntf@bogus>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221102130602.48969-1-aakarsh.jain@samsung.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 10:24:44AM +0000, Sudeep Holla wrote:
-> On Thu, Nov 03, 2022 at 10:28:32AM +0530, Sibi Sankar wrote:
-> > Add support for the SCMI QTI memlat (memory latency) vendor protocol.
-> > The QTI memlat vendor protocol takes in several tuneables including the
-> > IPM ratio (Instructions Per Miss), bus bandwidth requirements and PMU
-> > maps to enable frequency scaling of various buses (L3/LLCC/DDR) performed
-> > by the memory latency governor running on the CPUSS Control Processor.
-> > 
-> > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> > ---
-> >  drivers/firmware/arm_scmi/Kconfig              |  10 +
-> >  drivers/firmware/arm_scmi/Makefile             |   1 +
-> >  drivers/firmware/arm_scmi/qcom_memlat_vendor.c | 269 +++++++++++++++++++++++++
-> >  include/linux/scmi_protocol.h                  |  36 ++++
-> >  4 files changed, 316 insertions(+)
-> >  create mode 100644 drivers/firmware/arm_scmi/qcom_memlat_vendor.c
-> > 
-> > diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
-> > index a14f65444b35..814a3fc37dc1 100644
-> > --- a/drivers/firmware/arm_scmi/Kconfig
-> > +++ b/drivers/firmware/arm_scmi/Kconfig
-> > @@ -136,6 +136,16 @@ config ARM_SCMI_TRANSPORT_VIRTIO_ATOMIC_ENABLE
-> >  
-> >  endif #ARM_SCMI_PROTOCOL
-> >  
-> > +config QTI_SCMI_MEMLAT_PROTOCOL
-> > +	tristate "Qualcomm Technologies, Inc. SCMI MEMLAT vendor Protocol"
-> > +	depends on ARM_SCMI_PROTOCOL && QCOM_CPUCP_MBOX
+Hi Aakarsh,
+
+On Wed, Nov 02, 2022 at 06:36:00PM +0530, Aakarsh Jain wrote:
+> Exynos3250 uses the same compatible as Exynos5420, but both
+> the MFC IPs found in these SoC are different interms of clock
+> property. So using same compatible for both SoC is not correct.
+> Lets have a separate compatible for Exynos3250 and Exynos5420
+> to differentiate these SoCs.
 > 
-> If you have set the transport correctly, there should be no need for any
-> such dependency.
+> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com> 
+> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/media/s5p-mfc.txt | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
-> > +	help
-> > +	  The SCMI QTI memlat vendor protocol adds support for the frequency
-> > +	  scaling of buses (L3/LLCC/DDR) by the QTI HW memlat governor running
-> > +	  on the CPUSS Control Processor (CPUCP).
-> > +
-> > +	  Say Y here if you want to build this driver.
-> > +
+> We are already in process of converting this txt file to yaml.
+> https://patchwork.kernel.org/project/linux-media/patch/
+> 20221011122516.32135-2-aakarsh.jain@samsung.com/
+> modifying this txt binding for completeness.
 > 
-> I don't think it is scalable to have a config option for each vendor+protocol
-> Kconfig. IMO just one config for all qcom vendor protocol please.
+> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+> index aa54c8159d9f..4ff1898e5a51 100644
+> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
+> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
+> @@ -11,9 +11,10 @@ Required properties:
+>  	(a) "samsung,mfc-v5" for MFC v5 present in Exynos4 SoCs
+>  	(b) "samsung,mfc-v6" for MFC v6 present in Exynos5 SoCs
+>  	(c) "samsung,mfc-v7" for MFC v7 present in Exynos5420 SoC
+> -	(d) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
+> -	(e) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433 SoC
+> -	(f) "samsung,mfc-v10" for MFC v10 present in Exynos7880 SoC
+> +	(d) "samsung,exynos3250-mfc" for MFC v7 present in Exynos3250 SoC
+> +	(e) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
+> +	(f) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433 SoC
+> +	(g) "samsung,mfc-v10" for MFC v10 present in Exynos7880 SoC
+>  
+>    - reg : Physical base address of the IP registers and length of memory
+>  	  mapped region.
+> -- 
+> 2.17.1
 > 
 
-Sorry pressed send too early before I could write the main part :(.
-Can you please also add the driver using this protocol in the next revision.
-What framework does that fit in ? Devfreq ? I am very much interested in
-that as it helps in distributing the responsibility across these correctly.
-I think that could be one of the reason I don't like all the information
-dump you have in the DT binding proposed in the provider node. It needs to
-move out but in order to understand where to, we need full picture here.
-So please provide the same. 
+Looks good to me.
 
-Also it doesn't hurt to describe in detail: what theses "several tuneables"
-are and where are they expected to arrive from or targeted to ?
-Is CPUSS Control Processor responsible for CPU DVFS or not ?
-Does it just control DVFS of L3/LLCC and DDR or is there a bigger list ?
-All these information matters as your current DT proposal seem to be
-tightly coupled with only few of these.
+Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
 
---
 Regards,
-Sudeep
+Tommaso
+
+-- 
+Tommaso Merciai
+Embedded Linux Engineer
+tommaso.merciai@amarulasolutions.com
+__________________________________
+
+Amarula Solutions SRL
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+T. +39 042 243 5310
+info@amarulasolutions.com
+www.amarulasolutions.com
