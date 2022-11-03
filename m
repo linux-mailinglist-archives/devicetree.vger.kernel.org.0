@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F63617E54
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B82617E71
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:53:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229560AbiKCNrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 09:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47100 "EHLO
+        id S229496AbiKCNxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 09:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiKCNrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:47:48 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAABF21B0
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 06:47:46 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id n18so1106038qvt.11
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 06:47:46 -0700 (PDT)
+        with ESMTP id S229551AbiKCNxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:53:53 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C263C774
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 06:53:51 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id x13so1131961qvn.6
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 06:53:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/2Nr5wIdGbAWm3WH/I4UVUKpbhCh82dprUQ26IZeMhc=;
-        b=qPv7iGDsarIyeVkPtASpJ9T0zxFA9vMYe5noup38EWHE174XLESSO8pOb+cAor4t9T
-         ohhqAr79b6QEkwtwsx1unZIDNieHhMgFD9w9spQ4q/VBD5K4xYW68UL2J9qaz1sr6Qt9
-         azDBNxlr5M/IQ4Ff9DHEhfwoCRVapzw1g0YsApKJoFs0cSqXJ2Q7SHX/X0YoeZbRbzOx
-         BymutPAUVmDMaT8ZbF4AFM7Ajszy/g2+5VFI3IeKTLVfTKsjqPpXt6WrbOUBszbc7IAe
-         /5k9YdNLB5XOFmjitCa51wUbm3bUWV+u5wZwSVmsl8M9vNCHMCGUzZFSZWkv8rLhmt9H
-         ye/g==
+        bh=SOnq3Q7cbBeOTNlE0Pk9c0a++XuWD6tqMEfNSX20zFE=;
+        b=P4KAzYIKuFAX55nKGJB3Fq+iRQhlrik/s59/DNPfH48Vupwss5dy586W9qL+8E5+pD
+         NBiY6bNORsMg1h8mSwpuGHLYX46j1f8yU7+CLpiI3mafoJ5Bbgz4eyGJCi6wyt3kpBwU
+         0HZzDKJl5q6SsE0vdbFIFmDa1gk+zESwIta6TF7RybBq+aEx1xNMHbTUw1xvTfjEqfKe
+         I7FhCng/91v8nAgDx1yrOfd2SeNpw732SstdrXMlH9ZoC9O9qZn+N/1Xeoi30+7tRws3
+         QvFUppU8F2QvHGynpiw+Thh34/c+H7mVil2C7SnNOf2TbGVkdt3dwDWQ0N7cE078RirM
+         BAJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/2Nr5wIdGbAWm3WH/I4UVUKpbhCh82dprUQ26IZeMhc=;
-        b=JBhE268zxAiTGZTJ06Lfwg8p2rzc97W2pmlZEsbaJEE2+ChQzu95ZrnoK1THU6Btgb
-         /oyxfBPoA/svifKDrDqYSWQ9R52iL81iwg/fGIzQKbWscHjzyY0PFt9ZiNaYz/egIp9z
-         dvTU3awVAbrMzNtV2Y7lzYeB3ov5+b2SiSBGMRz2biVdRtNTC9c6CAhiBMdGD48F8rJQ
-         2Gm1xEshsvh5URVOo+CKSE2GiZp0lv8d2reyk22Jhcc8DRJNHYhfDpLxXYDM7NCwO+mg
-         +kT484tLf6C5cbevEllCTmEx55XKnvUz/OPIZuUUt2NvHYwFMR9jTqt9YdcQDGKckCXS
-         odww==
-X-Gm-Message-State: ACrzQf3syCnK4kAgXfHPb9bl40meOLpcRL1w9Cb0z/I5ntGuxF5lSsps
-        5WW7C2PD8cMi5d17Zlz7CzbYmw==
-X-Google-Smtp-Source: AMsMyM4EEMjML/TvKjG45RThBKF8f13QmyxMU3XEC+DuAu8ouWpZko/uukZBffWcUYkLAXPI5btEJw==
-X-Received: by 2002:a05:6214:20aa:b0:4bb:7e1a:9df0 with SMTP id 10-20020a05621420aa00b004bb7e1a9df0mr26673735qvd.34.1667483265779;
-        Thu, 03 Nov 2022 06:47:45 -0700 (PDT)
+        bh=SOnq3Q7cbBeOTNlE0Pk9c0a++XuWD6tqMEfNSX20zFE=;
+        b=IvBhaHCRRTOSJ5mQRx9ezBRfienON/wlzfiwAMpCHyv6+1WTQQBxoldZZSIk9UDEbW
+         iiswOMlik46LCKEADmnj7h6GL/MVSemEHLH+Z4vFYXmbg9NqHESArhfh4M5/5T5+f83q
+         bqgWZJESwTKUjS2Xq59hqzJa4jwGbyHg/9AJ1HokeHXjkrpowP5/MrcaGqSZwGLjuhjQ
+         GPw8FVGQX722tFa/4gQQ1K0HmYnDu0RsfeylkFIE6oYCciutQdYIDGHrGm2pygeMuBLP
+         tad4eCyNhUJgdtC4jkif3s7tz37JSTb9xkBr9PiI2v1juGfxbNyjkF7i01mIxU4+u/P1
+         poKA==
+X-Gm-Message-State: ACrzQf1Rm397pZ468hJIcw5IOE8Glx2GAyUyV2ER4ZxelBbSQj3+hFBM
+        Ncaw2c9mKdUgwa9Yq7UwTXwCFA==
+X-Google-Smtp-Source: AMsMyM5skPuWzCFccIM23T9uUZq3VbVuLp+5LeS6JiEfsRkrXTqIzSMyVYOtF/zFvUzQlWHeyQX11A==
+X-Received: by 2002:a0c:90a2:0:b0:47b:6b36:f94a with SMTP id p31-20020a0c90a2000000b0047b6b36f94amr27057499qvp.26.1667483630525;
+        Thu, 03 Nov 2022 06:53:50 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id x17-20020a05620a449100b006fa31bf2f3dsm802424qkp.47.2022.11.03.06.47.44
+        by smtp.gmail.com with ESMTPSA id bv7-20020a05622a0a0700b003a5092ed8cdsm575356qtb.9.2022.11.03.06.53.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 06:47:45 -0700 (PDT)
-Message-ID: <07fca6e0-994f-ed08-632c-dd26bc7086b8@linaro.org>
-Date:   Thu, 3 Nov 2022 09:47:43 -0400
+        Thu, 03 Nov 2022 06:53:49 -0700 (PDT)
+Message-ID: <a73e76b9-f186-a818-713b-3c14033f27cb@linaro.org>
+Date:   Thu, 3 Nov 2022 09:53:48 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [RESEND PATCH v1] dt-bindings: display/msm: convert MDP5 schema
- to YAML format
+Subject: Re: [PATCH v9 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma to DT
+ schema
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221102220844.569977-1-dmitry.baryshkov@linaro.org>
+To:     Joy Zou <joy.zou@nxp.com>, vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com
+Cc:     shengjiu.wang@nxp.com, martink@posteo.de, dev@lynxeye.de,
+        alexander.stein@ew.tq-group.com, peng.fan@nxp.com, david@ixit.cz,
+        aford173@gmail.com, hongxing.zhu@nxp.com, linux-imx@nxp.com,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221031105028.598502-1-joy.zou@nxp.com>
+ <20221031105028.598502-2-joy.zou@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221102220844.569977-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221031105028.598502-2-joy.zou@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,106 +81,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 18:08, Dmitry Baryshkov wrote:
-> Convert the mdp5.txt into the yaml format. Changes to the existing (txt) schema:
->  - MSM8996 has additional "iommu" clock, define it separately
->  - Add new properties used on some of platforms:
->    - interconnects, interconnect-names
->    - iommus
->    - power-domains
->    - operating-points-v2, opp-table
+On 31/10/2022 06:50, Joy Zou wrote:
+> Convert the i.MX SDMA binding to DT schema format using json-schema.
 > 
+> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma, fsl,imx35-to1-sdma
+> and fsl,imx35-to2-sdma are not used. So need to delete it. The compatibles
+> fsl,imx50-sdma, fsl,imx6sll-sdma and fsl,imx6sl-sdma are added. The
+> original binding don't list all compatible used.
+> 
+> In addition, add new peripheral types HDMI Audio.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+> Changes in v9:
+> add the dma-common quotes.
+> delete the dma-controller quotes.
 
-Thank you for your patch. There is something to discuss/improve.
+I have no clue what you are doing here... Do you know what are "quotes"?
+I linked last time explanation of "quotes", so did you read it?
 
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - minItems: 4
-> +        items:
-> +          - const: iface
-> +          - const: bus
-> +          - const: core
-> +          - const: vsync
-> +          - const: lut
-> +          - const: tbu
-> +          - const: tbu_rt
-> +        #MSM8996 has additional iommu clock
-> +      - items:
-> +          - const: iface
-> +          - const: bus
-> +          - const: core
-> +          - const: iommu
-> +          - const: vsync
-> +
-> +  interconnects:
-> +    minItems: 1
-> +    items:
-> +      - description: Interconnect path from mdp0 (or a single mdp) port to the data bus
-> +      - description: Interconnect path from mdp1 port to the data bus
-> +      - description: Interconnect path from rotator port to the data bus
-> +
-> +  interconnect-names:
-> +    minItems: 1
-> +    items:
-> +      - const: mdp0-mem
-> +      - const: mdp1-mem
-> +      - const: rotator-mem
-> +
-> +  iommus:
-> +    items:
-> +      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  operating-points-v2: true
-> +  opp-table:
-> +    type: object
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-> +      Contains the list of output ports from DPU device. These ports
-> +      connect to interfaces that are external to the DPU hardware,
-> +      such as DSI, DP etc.
 
-You could include here information about number of ports per variant.
+> 
+> Changes in v8:
+> add the dma-controller quotes.
+> delete #dma-cells in required.
+> 
+> Changes in v6:
+> delete tag Acked-by from commit message.
+> 
+> Changes in v5:
+> modify the commit message fromat.
+> add additionalProperties, because delete the quotes in patch v4.
+> delete unevaluatedProperties due to similar to additionalProperties.
+> modification fsl,sdma-event-remap items and description.
+> 
+> Changes in v4:
+> modify the commit message.
+> delete the quotes in patch.
+> modify the compatible in patch.
+> delete maxitems and add items for clock-names property.
+> add iram property.
+> 
+> Changes in v3:
+> modify the commit message.
+> modify the filename.
+> modify the maintainer.
+> delete the unnecessary comment.
+> modify the compatible and run dt_binding_check and dtbs_check.
+> add clocks and clock-names property.
+> delete the reg description and add maxItems.
+> delete the interrupts description and add maxItems.
+> add ref for gpr property.
+> modify the fsl,sdma-event-remap ref type and add items.
+> delete consumer example.
+> 
+> Changes in v2:
+> convert imx sdma bindings to DT schema.
+> ---
+>  .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 149 ++++++++++++++++++
+>  .../devicetree/bindings/dma/fsl-imx-sdma.txt  | 118 --------------
+>  2 files changed, 149 insertions(+), 118 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+> new file mode 100644
+> index 000000000000..95d0391a1f39
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/fsl,imx-sdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
+> +
+> +maintainers:
+> +  - Joy Zou <joy.zou@nxp.com>
+> +
+> +allOf:
+> +  - $ref: dma-common.yaml#
 
-> +
-> +    patternProperties:
-> +      "^port@[0-9a-f]+$":
+That's wrong. This should be dma-controller. Why this was changed?
 
-[0-3]
 
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +    # at least one port is required
-> +    required:
-> +      - port@0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-msm8916.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mdp@1a01000 {
-
-display-controller@......
-
-> +        compatible = "qcom,mdp5";
-> +        reg = <0x1a01000 0x90000>;
-> +        reg-names = "mdp_phys";
-> +
 
 Best regards,
 Krzysztof
