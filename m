@@ -2,452 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7F86189A6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 21:37:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF1416189CF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 21:45:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230297AbiKCUhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 16:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44294 "EHLO
+        id S229704AbiKCUpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 16:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbiKCUht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 16:37:49 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7911E3C1;
-        Thu,  3 Nov 2022 13:37:47 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B9AEA84CDF;
-        Thu,  3 Nov 2022 21:37:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667507865;
-        bh=OTf2OWcpQCgJC22BtfYnnR6Xq3cweAbV+o8r8tQLzj8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=zOkt36lPYl+2uX1HvV3l/YG9ED3hgRKmkxDoRl5lm2XzdZOj5fBXRY+2hdWhARNlN
-         pAK4ne0VRKc9IZDHr7lsxCHDGY+5t8kPjC+UPz8YvSE8gDkbWuBCU4UZQq9MzNv55P
-         GR4ND4zcY2OadvepnwYOK8Dn1Lz1fghTEyR+MQIR9oJRZB+XzXbX700rhFi5e0jcks
-         LMBR38iadwO2T+Mxxm3WiPln8t6jQBkO3M/c2mt6vyizV/QG92lg931l5iYu3ZO8D1
-         e4xuArmqwe+k9rpkI9wh6yM+TRpll3c7muySld3EdjUexKowra4WLx+5N7jkmMKGA8
-         VCqx+a0/Nv5Sw==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229587AbiKCUpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 16:45:49 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27CAD1CFD2;
+        Thu,  3 Nov 2022 13:45:49 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id q1-20020a17090a750100b002139ec1e999so2924876pjk.1;
+        Thu, 03 Nov 2022 13:45:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TLGL+1sBhWgs2XefR8YTN33XJCg0oqxzr77Q79l6mlE=;
+        b=fUHfb08ygdfQEamXM9zHbvfr3Gyk4DgXzrJGP6pYGyGx3iS25SGccmMiP28DUkdHOB
+         CjDr2tcd+/XQUAtdx7AxrPd9/eqM40jnQH/s1otATz/lNkQvoh8Qx1ZSNGv0O0W94aut
+         JyAR1fjH3oOBICyL/y/mkUq6jZX8BDtMOow3n43lqDuk1Xv7FQ0LJ3zs/VrhESgQz6N/
+         1tZE85YD2KnzN4k5bAKYoM+EOoIwnr0mio77E9cq76crETR5G21vEp65EeG+DdahUKYj
+         +I9byiyjxHOizx5z0IEdDc2jyYrXH1GbOO2XwXTQSrK+OcOInS4+XgdvFskKKBBh7/e3
+         eYhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TLGL+1sBhWgs2XefR8YTN33XJCg0oqxzr77Q79l6mlE=;
+        b=08DAcqyCDLYWrgI9pOy4A+hkkxDKta8P/pKjg0cPIc6ZxkeozdBW/2DKaP7Awae6MM
+         ibbqPSp9wdAGTgquQtX5k5Czckyj4lpbfkVuYEfwzLuOIN81NpKdE6ZiChI86yUahHnZ
+         Gh0VYMSoQAlfsi8LcSv7JdqtOc4H/+Jh8OE78YuBg7MK8kCNeBHbn7VnfSUDgIChbVfI
+         YXJQt52OOfcwfhT95xbAOvn+U9J18gG9VNC6Y4pkeP842V7TT8oAPf08BwXnERA8UCBj
+         D7b1pktFj8RGHG4oqmHprP7HtF1HrnnOBI41oGqg9JQfj6GTcHhOJB3MQUH9mm78H9CG
+         eBUg==
+X-Gm-Message-State: ACrzQf26MGiAfkFBmqbxKXO5iGRROjCqnt4zANC4Ncf4ErcoWe3zSQp6
+        dVRg75vTOulEoaCT1LW90Q2gHo15T04=
+X-Google-Smtp-Source: AMsMyM7nWdeDmd9380z+yPFUYDyp3AXPhjRf+v30Xcxkxakb97UmFBc2uzh1ldowGZg04rAeZ/xFkA==
+X-Received: by 2002:a17:90a:e38b:b0:212:d42a:c0a9 with SMTP id b11-20020a17090ae38b00b00212d42ac0a9mr49817372pjz.179.1667508348480;
+        Thu, 03 Nov 2022 13:45:48 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id 76-20020a62194f000000b0056c3d3f5a8dsm1191648pfz.56.2022.11.03.13.45.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 13:45:47 -0700 (PDT)
+Date:   Thu, 3 Nov 2022 13:45:44 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        linux-usb@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: usb: usb251xb: Convert to YAML schema
-Date:   Thu,  3 Nov 2022 21:37:41 +0100
-Message-Id: <20221103203741.116730-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH 8/9] dt-bindings: input: sun4i-lradc-keys: Add F1C100s
+ compatible
+Message-ID: <Y2QoeAo8bM7YYJJc@google.com>
+References: <20221101141658.3631342-1-andre.przywara@arm.com>
+ <20221101141658.3631342-9-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221101141658.3631342-9-andre.przywara@arm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the usb251xb hub DT bindings from text to yaml schema so it is
-possible to validate DTs against the schema.
+On Tue, Nov 01, 2022 at 02:16:57PM +0000, Andre Przywara wrote:
+> The Allwinner F1C100s series of SoCs contain a LRADC (aka. KEYADC)
+> compatible to the version in other SoCs.
+> The manual doesn't mention the ratio of the input voltage that is used,
+> but comparing actual measurements with the values in the register
+> suggests that it is 3/4 of Vref.
+> 
+> Add an F1C100s compatible string to the list, and pair it with the
+> A83T fallback. Since the A64 is the same, combined both using an enum.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Adjust the example to describe two different hubs at different I2C bus
-addresses, to avoid I2C address collission in the example.
+Applied, thank you.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Richard Leitner <richard.leitner@skidata.com>
-Cc: linux-usb@vger.kernel.org
-Cc: devicetree@vger.kernel.org
----
-V2: - Switch from uint16-item to uint16 for all of vendor-id,product-id,
-      device-id,language-id
-    - Use default: to specify the default values of properties
----
- .../devicetree/bindings/usb/usb251xb.txt      |  89 ------
- .../devicetree/bindings/usb/usb251xb.yaml     | 267 ++++++++++++++++++
- 2 files changed, 267 insertions(+), 89 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/usb251xb.txt
- create mode 100644 Documentation/devicetree/bindings/usb/usb251xb.yaml
-
-diff --git a/Documentation/devicetree/bindings/usb/usb251xb.txt b/Documentation/devicetree/bindings/usb/usb251xb.txt
-deleted file mode 100644
-index 1a934eab175ee..0000000000000
---- a/Documentation/devicetree/bindings/usb/usb251xb.txt
-+++ /dev/null
-@@ -1,89 +0,0 @@
--Microchip USB 2.0 Hi-Speed Hub Controller
--
--The device node for the configuration of a Microchip USB251x/xBi USB 2.0
--Hi-Speed Controller.
--
--Required properties :
-- - compatible : Should be "microchip,usb251xb" or one of the specific types:
--	"microchip,usb2512b", "microchip,usb2512bi", "microchip,usb2513b",
--	"microchip,usb2513bi", "microchip,usb2514b", "microchip,usb2514bi",
--	"microchip,usb2517", "microchip,usb2517i", "microchip,usb2422"
-- - reg : I2C address on the selected bus (default is <0x2C>)
--
--Optional properties :
-- - reset-gpios : Should specify the gpio for hub reset
-- - vdd-supply : Should specify the phandle to the regulator supplying vdd
-- - skip-config : Skip Hub configuration, but only send the USB-Attach command
-- - vendor-id : Set USB Vendor ID of the hub (16 bit, default is 0x0424)
-- - product-id : Set USB Product ID of the hub (16 bit, default depends on type)
-- - device-id : Set USB Device ID of the hub (16 bit, default is 0x0bb3)
-- - language-id : Set USB Language ID (16 bit, default is 0x0000)
-- - manufacturer : Set USB Manufacturer string (max 31 characters long)
-- - product : Set USB Product string (max 31 characters long)
-- - serial : Set USB Serial string (max 31 characters long)
-- - {bus,self}-powered : selects between self- and bus-powered operation
--	(boolean, default is self-powered)
-- - disable-hi-speed : disable USB Hi-Speed support (boolean)
-- - {multi,single}-tt : selects between multi- and single-transaction-translator
--	(boolean, default is multi-tt)
-- - disable-eop : disable End of Packet generation in full-speed mode (boolean)
-- - {ganged,individual}-sensing : select over-current sense type in self-powered
--	mode (boolean, default is individual)
-- - {ganged,individual}-port-switching : select port power switching mode
--	(boolean, default is individual)
-- - dynamic-power-switching : enable auto-switching from self- to bus-powered
--	operation if the local power source is removed or unavailable (boolean)
-- - oc-delay-us : Delay time (in microseconds) for filtering the over-current
--	sense inputs. Valid values are 100, 4000, 8000 (default) and 16000. If
--	an invalid value is given, the default is used instead.
-- - compound-device : indicate the hub is part of a compound device (boolean)
-- - port-mapping-mode : enable port mapping mode (boolean)
-- - led-{usb,speed}-mode : led usb/speed indication mode selection
--	(boolean, default is speed mode)
-- - string-support : enable string descriptor support (required for manufacturer,
--	product and serial string configuration)
-- - non-removable-ports : Should specify the ports which have a non-removable
--	device connected.
-- - sp-disabled-ports : Specifies the ports which will be self-power disabled
-- - bp-disabled-ports : Specifies the ports which will be bus-power disabled
-- - sp-max-total-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry including a permanently
--	attached peripheral (range: 0 - 100000 uA, default 1000 uA)
-- - bp-max-total-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry including a permanently
--	attached peripheral (range: 0 - 510000 uA, default 100000 uA)
-- - sp-max-removable-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry excluding a permanently
--	attached peripheral (range: 0 - 100000 uA, default 1000 uA)
-- - bp-max-removable-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry excluding a permanently
--	attached peripheral (range: 0 - 510000 uA, default 100000 uA)
-- - power-on-time-ms : Specifies the time it takes from the time the host
--	initiates the power-on sequence to a port until the port has adequate
--	power. The value is given in ms in a 0 - 510 range (default is 100ms).
-- - swap-dx-lanes : Specifies the ports which will swap the differential-pair
--	(D+/D-), default is not-swapped.
--
--Examples:
--	usb2512b@2c {
--		compatible = "microchip,usb2512b";
--		reg = <0x2c>;
--		reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
--	};
--
--	usb2514b@2c {
--		compatible = "microchip,usb2514b";
--		reg = <0x2c>;
--		vendor-id = /bits/ 16 <0x0000>;
--		product-id = /bits/ 16 <0x0000>;
--		string-support;
--		manufacturer = "Foo";
--		product = "Foo-Bar";
--		serial = "1234567890A";
--		/* correct misplaced usb connectors on port 1,2 */
--		swap-dx-lanes = <1 2>;
--	};
-diff --git a/Documentation/devicetree/bindings/usb/usb251xb.yaml b/Documentation/devicetree/bindings/usb/usb251xb.yaml
-new file mode 100644
-index 0000000000000..7a8d9d67f4044
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/usb251xb.yaml
-@@ -0,0 +1,267 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/usb251xb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip USB 2.0 Hi-Speed Hub Controller
-+
-+maintainers:
-+  - Richard Leitner <richard.leitner@skidata.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,usb2422
-+      - microchip,usb2512b
-+      - microchip,usb2512bi
-+      - microchip,usb2513b
-+      - microchip,usb2513bi
-+      - microchip,usb2514b
-+      - microchip,usb2514bi
-+      - microchip,usb2517
-+      - microchip,usb2517i
-+      - microchip,usb251xb
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: |
-+      Should specify the gpio for hub reset
-+
-+  vdd-supply:
-+    description: |
-+      Should specify the phandle to the regulator supplying vdd
-+
-+  skip-config:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      Skip Hub configuration, but only send the USB-Attach command
-+
-+  vendor-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    default: 0x0424
-+    description: |
-+      Set USB Vendor ID of the hub
-+
-+  product-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    description: |
-+      Set USB Product ID of the hub
-+
-+  device-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    default: 0x0bb3
-+    description: |
-+      Set USB Device ID of the hub
-+
-+  language-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    default: 0x0000
-+    description: |
-+      Set USB Language ID
-+
-+  manufacturer:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Set USB Manufacturer string (max 31 characters long)
-+
-+  product:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Set USB Product string (max 31 characters long)
-+
-+  serial:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Set USB Serial string (max 31 characters long)
-+
-+  bus-powered:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between self- and bus-powered operation
-+      (boolean, default is self-powered)
-+
-+  self-powered:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between self- and bus-powered operation
-+      (boolean, default is self-powered)
-+
-+  disable-hi-speed:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      disable USB Hi-Speed support (boolean)
-+
-+  multi-tt:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between multi- and single-transaction-translator
-+      (boolean, default is multi-tt)
-+
-+  single-tt:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between multi- and single-transaction-translator
-+      (boolean, default is multi-tt)
-+
-+  disable-eop:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      disable End of Packet generation in full-speed mode (boolean)
-+
-+  ganged-sensing:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select over-current sense type in self-powered mode
-+      (boolean, default is individual)
-+
-+  individual-sensing:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select over-current sense type in self-powered mode
-+      (boolean, default is individual)
-+
-+  ganged-port-switching:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select port power switching mode (boolean, default is individual)
-+
-+  individual-port-switching:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select port power switching mode (boolean, default is individual)
-+
-+  dynamic-power-switching:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      enable auto-switching from self- to bus-powered operation if the
-+      local power source is removed or unavailable (boolean)
-+
-+  oc-delay-us:
-+    enum: [100, 4000, 8000, 16000]
-+    description: |
-+      Delay time (in microseconds) for filtering the over-current sense
-+      inputs. Valid values are 100, 4000, 8000 (default) and 16000. If
-+      an invalid value is given, the default is used instead.
-+
-+  compound-device:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      indicate the hub is part of a compound device (boolean)
-+
-+  port-mapping-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      enable port mapping mode (boolean)
-+
-+  led-usb-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      led usb/speed indication mode selection (boolean, default is speed mode)
-+
-+  led-speed-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      led usb/speed indication mode selection (boolean, default is speed mode)
-+
-+  string-support:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      enable string descriptor support (required for manufacturer, product
-+      and serial string configuration)
-+
-+  non-removable-ports:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Should specify the ports which have a non-removable device connected.
-+
-+  sp-disabled-ports:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Specifies the ports which will be self-power disabled
-+
-+  bp-disabled-ports:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Specifies the ports which will be bus-power disabled
-+
-+  sp-max-total-current-microamp:
-+    maximum: 100000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry including a permanently
-+      attached peripheral (range: 0 - 100000 uA, default 1000 uA)
-+
-+  bp-max-total-current-microamp:
-+    maximum: 510000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry including a permanently
-+      attached peripheral (range: 0 - 510000 uA, default 100000 uA)
-+
-+  sp-max-removable-current-microamp:
-+    maximum: 100000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry excluding a permanently
-+      attached peripheral (range: 0 - 100000 uA, default 1000 uA)
-+
-+  bp-max-removable-current-microamp:
-+    maximum: 510000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry excluding a permanently
-+      attached peripheral (range: 0 - 510000 uA, default 100000 uA)
-+
-+  power-on-time-ms:
-+    maximum: 510
-+    description: |
-+      Specifies the time it takes from the time the host initiates the
-+      power-on sequence to a port until the port has adequate power.
-+      The value is given in ms in a 0 - 510 range (default is 100ms).
-+
-+  swap-dx-lanes:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Specifies the ports which will swap the differential-pair (D+/D-),
-+      default is not-swapped.
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      usb2512b@2c {
-+        compatible = "microchip,usb2512b";
-+        reg = <0x2c>;
-+        reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-+      };
-+
-+      usb2514b@2d {
-+        compatible = "microchip,usb2514b";
-+        reg = <0x2d>;
-+        vendor-id = /bits/ 16 <0x0000>;
-+        product-id = /bits/ 16 <0x0000>;
-+        string-support;
-+        manufacturer = "Foo";
-+        product = "Foo-Bar";
-+        serial = "1234567890A";
-+        /* correct misplaced usb connectors on port 1,2 */
-+        swap-dx-lanes = <1 2>;
-+      };
-+    };
 -- 
-2.35.1
-
+Dmitry
