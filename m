@@ -2,185 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA6EA617D90
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E8A617DA1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:13:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbiKCNM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 09:12:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
+        id S231221AbiKCNNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 09:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbiKCNM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:12:27 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 668FD6269;
-        Thu,  3 Nov 2022 06:12:26 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8Axjrc5vmNj1zwEAA--.9714S3;
-        Thu, 03 Nov 2022 21:12:25 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxZ1ctvmNjswcMAA--.16743S3;
-        Thu, 03 Nov 2022 21:12:23 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Jianmin Lv <lvjianmin@loongson.cn>,
-        Yun Liu <liuyun@loongson.cn>,
-        Yang Li <yang.lee@linux.alibaba.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        loongarch@lists.linux.dev, Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v10 2/2] dt-bindings: hpet: add loongson-2 hpet
-Date:   Thu,  3 Nov 2022 21:12:02 +0800
-Message-Id: <20221103131202.12481-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221103131202.12481-1-zhuyinbo@loongson.cn>
-References: <20221103131202.12481-1-zhuyinbo@loongson.cn>
+        with ESMTP id S231749AbiKCNNh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:13:37 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B631088
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 06:13:21 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id e15so1052108qvo.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 06:13:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VAwv5pVuHPh2HWRN8QElP8yISKr8Z4y4F+eLXOpxHSw=;
+        b=N7k7ZCf/Z56m45wIbweMUAbkl4/OdW3aPhkdTk3WKcemN0fhRFG8pQ9uo8xQfm5/mZ
+         SEX0toaGhFjEoVyaDB8edQYAFOrBuAvrf3nPff0QUXCSE71JNPUCN6HRxsfuiLgNIsJB
+         LhW61T0Eu6ZVVunvIB+l4s3HVzHhpvt6XNVBXr5wT1+UQUSMUTVSipYtakO2vva7HKe/
+         5Tg/LKE1Bkjxg5qIpqjOWczatOsOTg+IIsghM9pPt6qnKaUSI+M/L/WYLB0ufisJ3C/G
+         0K/JJmOKWC17dQbfM6AJ2kMAiS26VS73SDlsuZRGkQu4izl/3QO3x9v6tboYXwDqmMve
+         +rLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VAwv5pVuHPh2HWRN8QElP8yISKr8Z4y4F+eLXOpxHSw=;
+        b=R9JgLsRoIvnPi0bJVKfmkKLfOOyXiyOBbMjPYBHOuGSQhfm4JS8ijNl3eQS/XqltHQ
+         k4uo1/p+FjtbLnKqbVlF61fwCybt+KNO8p3OlY3QDVkthFUL6Apl9NG5pyAT2g0p7plk
+         f/hbeRSQL4XF+v9luAmJqrll6UYLNyclWqUmqCllq27lCYkNtIimTt04Ik8+R0KAtjsl
+         hwjG7i9KqLS8cIfmlDVx5fGjA8lS7JfQqEQ4+5mI8JZHTxn29b+LeyWnsOAJiESr+j5Z
+         xJBcdNeyAtnjqljT7kRY6KzAXgstrj7UaVeB+BZmYkpxlnrA+TZ2FJMKFNJN0bPJuN73
+         bamA==
+X-Gm-Message-State: ACrzQf3lAtugVQyl9+W+X8R3xZjjYiBUmB48DB1qsy58+1VEQ7AewA2z
+        G6yVDHICTZbwwyTjCwvY2W1CBVKpWuqgQw==
+X-Google-Smtp-Source: AMsMyM4zBsi1eFnqnwyIs3CkXy7J5tFp34bs+8/IFq4ef7X6E3Wbe46k4jkzwfs9g9CmbIRSjJa94g==
+X-Received: by 2002:ad4:5fc5:0:b0:4bb:6360:e80 with SMTP id jq5-20020ad45fc5000000b004bb63600e80mr26039109qvb.63.1667481200638;
+        Thu, 03 Nov 2022 06:13:20 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id v20-20020a05622a189400b003a540320070sm535368qtc.6.2022.11.03.06.13.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 06:13:20 -0700 (PDT)
+Message-ID: <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
+Date:   Thu, 3 Nov 2022 09:13:18 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxZ1ctvmNjswcMAA--.16743S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4fWFWxJr1UAw1DKFg_yoW5KFy7pF
-        s7CF93Jr47tF13u39xKFyI93Z5Zas5AF9rWr17tw1UAF98X3W5XF1xKa4DZ3y3GrWxWay7
-        XFySkw18Ka1j9r7anT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq
-        07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7
-        xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x
-        0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xF
-        xVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWw
-        C2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_
-        Xr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
-        WUCwCI42IY6I8E87Iv67AKxVW8Jr0_Cr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-        JbIYCTnIWIevJa73UjIFyTuYvjxU7w0eDUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
+ MAX5978
+Content-Language: en-US
+To:     Naresh Solanki <naresh.solanki@9elements.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
+References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
+ <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 High Precision Event Timer (HPET) binding
-with DT schema format using json-schema.
+On 03/11/2022 04:05, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
+> 
+> The MAX597x is a hot swap controller with configurable fault protection.
+> It also has 10bit ADC for current & voltage measurements.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ---
+>  .../bindings/mfd/maxim,max5970.yaml           | 164 ++++++++++++++++++
+>  1 file changed, 164 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> new file mode 100644
+> index 000000000000..fc9d6d3647b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+> @@ -0,0 +1,164 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/max5970.yaml#
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v10:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-                2. This patch need rely on clock patch, which patchwork  
-		   link was "https://patchwork.kernel.org/project/linux-clk/list/?series=691497".
-Change in v9:
-                1. This patch need rely on clock patch, which patchwork  
-		   link was "https://patchwork.kernel.org/project/linux-clk/list/?series=691497".
-		2. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v8:
-                1. This patch need rely on clock patch, which patchwork  
-		   link was "https://patchwork.kernel.org/project/linux-clk/list/?series=691497".
-		2. Add all history change log information.
-Change in v7:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v6:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v5:
-		1. Replace string loongson2/Loongson2 with Loongson-2/loongson-2.
-		2. Add the patch review information.
-Change in v4: 
-                1. Fixup the clock-names that replace apb-clk with apb.
-                2. This patch need rely on clock patch, which patchwork  
-                   link was "https://patchwork.kernel.org/project/linux-clk/list/?series=688892".
-Change in v3:
-		1. Update dts that base on common clock framework.
-Change in v2:
-		1. Drop the  "hpet0" label.
-		2. Modify the hpet node name to timer.
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
- .../bindings/timer/loongson,ls2k-hpet.yaml    | 50 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
+> +
+> +maintainers:
+> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
+> +
+> +description: |
+> +  The smart switch provides no output regulation, but independent fault protection
+> +  and voltage and current sensing.
+> +  Programming is done through I2C bus.
+> +
+> +  Datasheets:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max5970
+> +      - maxim,max5978
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  leds:
+> +    type: object
+> +    description:
+> +      Properties for single channel.
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+> +        $ref: /schemas/leds/common.yaml#
+> +        type: object
+> +
+> +    additionalProperties: true
+> +
+> +  vss1-supply:
+> +    description: Supply of the first channel.
+> +
+> +  vss2-supply:
+> +    description: Supply of the first channel.
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +  regulators:
+> +    type: object
+> +    description:
+> +      Properties for single channel.
+> +
+> +    patternProperties:
+> +      "^(sw[0-1])$":
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        type: object
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description: |
+> +          The value of curent sense resistor in microohms.
+> +          Must be specified for each channel.
+> +
+> +    additionalProperties: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+> +  - vss1-supply
+> +
+> +
 
-diff --git a/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
-new file mode 100644
-index 000000000000..30685c8fbead
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/loongson,ls2k-hpet.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 High Precision Event Timer (HPET)
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-hpet
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: SoC apb clock
-+
-+  clock-names:
-+    items:
-+      - const: apb
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/loongson,ls2k-clk.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    timer@1fe24000 {
-+        compatible = "loongson,ls2k-hpet";
-+        reg = <0x1fe24000 0x15f>;
-+        clocks = <&clk LOONGSON2_APB_CLK>;
-+        clock-names = "apb";
-+        interrupt-parent = <&liointc0>;
-+        interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 52519695a458..939af260fe0f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12030,6 +12030,7 @@ LOONGSON-2 SOC SERIES HPET DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-kernel@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/timer/loongson,ls2k-hpet.yaml
- F:	drivers/clocksource/loongson2_hpet.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.20.1
+Just one blank line.
+
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - maxim,max5970
+> +    then:
+> +      properties:
+> +        io-channels:
+> +          items:
+> +            - description: voltage first channel
+> +            - description: current first channel
+> +            - description: voltage second channel
+> +            - description: current second channel
+> +          description: |
+> +            Voltage and current for first and second channel.
+> +      required:
+> +        - vss2-supply
+> +    else:
+> +      properties:
+> +        io-channels:
+> +          items:
+> +            - description: voltage first channel
+> +            - description: current first channel
+> +          description: |
+> +            Voltage and current for first channel.
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        regulator@3a {
+> +           compatible = "maxim,max5978";
+> +           reg = <0x3a>;
+> +           vss1-supply = <&p3v3>;
+> +
+> +           regulators {
+> +               sw0_ref_0: SW0 {
+
+No improvements here.
+
+Best regards,
+Krzysztof
 
