@@ -2,102 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1E8617B57
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 12:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BB1617B8C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 12:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbiKCLHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 07:07:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38926 "EHLO
+        id S230012AbiKCLdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 07:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231221AbiKCLHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 07:07:06 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC33CBE18;
-        Thu,  3 Nov 2022 04:06:57 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id s24so1706035ljs.11;
-        Thu, 03 Nov 2022 04:06:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/BTcWVjtXSZSkCQ1GALEBnjM9+/hwTFKKg35iMvIMGY=;
-        b=oud1g9ZMqLDjFKnJw3i6rvN0O4t7lBu/3LHPl3VqpSNLNxAfYh163km8ZYY8kZaSIF
-         BN280xffsYQ0VuhCepliSlEiUADM0HAiwykfvKkJ2XV7XeQzM0CkIwp9gmGmKog58q5B
-         GsJ3TpN0gCIXw1nWa+ANf+E7M7AU2i5fS8ZJ1axQRwVXDhSBz4G4byYtEOpKqsRT9naX
-         Uud5LZypcMJzgZ37SjcGwvw20GwH3l2Mc/fV+YUyvZQw9k/F+qyNX6i4YMdJYjiHXkxs
-         wkg4uQCd7es1fowvp2JTVvupaF+nF5DE5RvpoLXk03NFN5biaX35ks7Ld/wUg21j6Vq3
-         Jqgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/BTcWVjtXSZSkCQ1GALEBnjM9+/hwTFKKg35iMvIMGY=;
-        b=Vg52wjmRqFISKyosX66XcXqnPTCESPv6DJqewIjXpAWkwzou4gdWs7Lk3yQ3mrfUu9
-         cp3s2b9NXhPSSvTnLMfld4ifAQ6pa+DNjNp5p0BYxSgQAi3Tk2x3bfZgkvMS0DHWKa2h
-         TrFvVhMkg0MJQ7M0hcvGpSSpJvQGXhV4mfWTRrtlGjpzcT5J3JhhXo8Q/zbsT2hnesoH
-         4jLM9EO6NSK59KphJwLgQv3lSMX2pgsu7hX+yYKjM9LNqK3Ta4KR3+uH2MKNLTH+yRMz
-         16t1wvPFnGsJCVujuP5Wim9RtSVDu7jgA+iqVCxRUFre7ZMHw4wYloLTPMCKQxP+YiGS
-         IhgA==
-X-Gm-Message-State: ACrzQf2zM5PXXY6jXeFe5BgEZ5X7J7jKe4TzzwQsJR/ANBuwzqjRoF6A
-        I63EY7toN/hHuFEQXfDBoPQ=
-X-Google-Smtp-Source: AMsMyM43QOm7yilsbK6QKwf2hny+JmUTPdBUCm8RW/zJJKj54JuHUVLK0zMH45002kgfr1MNhvBvLw==
-X-Received: by 2002:a05:651c:12c6:b0:277:124e:ce05 with SMTP id 6-20020a05651c12c600b00277124ece05mr11757310lje.38.1667473616170;
-        Thu, 03 Nov 2022 04:06:56 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id 2-20020a2eb942000000b002773a9b5898sm52611ljs.138.2022.11.03.04.06.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 04:06:55 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] mips: dts: bcm63268: add TWD block timer
-Date:   Thu,  3 Nov 2022 12:06:41 +0100
-Message-Id: <20221103110641.22305-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S229823AbiKCLc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 07:32:59 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C92C411A32;
+        Thu,  3 Nov 2022 04:32:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 27025CE257D;
+        Thu,  3 Nov 2022 11:32:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E85BC433B5;
+        Thu,  3 Nov 2022 11:32:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667475175;
+        bh=uiqDMEcOZwxNGgwDvcubrHmOWMlm8hOhW9gFyMNNyPY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r0NkacfzR2k1n5fDpBBmGuncSGs0MH0QZrO5qNaUx3jd+LjIXankFdyHLEO68UxAG
+         PK2IIKCwj7OOXynyd7o/b5XXseG5Nt1cEQyUE6cCHY6czxN/I7AYEXCM26IOQlRsWL
+         900z0KtlkbOK6XwvYQKfk00GMMxvjeL7FyBb/cKkG7nI7K9TV7SPFpVX+Xzp/rF08N
+         ySrkqOn1jEZL0HSsB9ldMPm37hDjwRtz/GCbrYCRO7VxjZjgrJGcL0NS70ZCUpyOeS
+         kLK4QT4tTUDR6UrmydH4vkTqftGlU9M1Pg8u4g1xw94NpCY5XOuvoYfqxqoU++f29O
+         IbaV7uK8L6XNw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oqYSa-0006lO-TC; Thu, 03 Nov 2022 12:32:37 +0100
+Date:   Thu, 3 Nov 2022 12:32:36 +0100
+From:   Johan Hovold <johan@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        johan+linaro@kernel.org, quic_jprakash@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, steev@kali.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 11/12] arm64: dts: qcom: sc8280xp-x13s: Add
+ PM8280_{1/2} ADC_TM5 channels
+Message-ID: <Y2Om1N8X/Qkr9rYI@hovoldconsulting.com>
+References: <20221103095810.64606-1-manivannan.sadhasivam@linaro.org>
+ <20221103095810.64606-12-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221103095810.64606-12-manivannan.sadhasivam@linaro.org>
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, Nov 03, 2022 at 03:28:09PM +0530, Manivannan Sadhasivam wrote:
+> Add ADC_TM5 channels of PM8280_{1/2} for monitoring the temperature from
+> external thermistors connected to AMUX pins. The temperature measurements
+> are collected from the PMK8280's VADC channels that expose the
+> measurements from secondary PMICs PM8280_{1/2}.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index 7677fe5cf28e..bdaacf1abf9f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -254,6 +254,74 @@ pmic-die-temp@403 {
+>  	};
+>  };
+>  
+> +&pmk8280_adc_tm {
 
-BCM63268 TWD contains block with 3 timers. Add binding for it.
+Please try to keep the nodes sorted alphabetically (e.g. this one should
+go before &pmk8280_pon_pwrkey).
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/mips/boot/dts/brcm/bcm63268.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/arch/mips/boot/dts/brcm/bcm63268.dtsi b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-index 8926417a8fbc..b55cf84ba114 100644
---- a/arch/mips/boot/dts/brcm/bcm63268.dtsi
-+++ b/arch/mips/boot/dts/brcm/bcm63268.dtsi
-@@ -110,6 +110,11 @@ timer-mfd@10000080 {
- 			reg = <0x10000080 0x30>;
- 			ranges = <0x0 0x10000080 0x30>;
- 
-+			timer@0 {
-+				compatible = "brcm,bcm6345-timer";
-+				reg = <0x0 0x1c>;
-+			}
-+
- 			wdt: watchdog@1c {
- 				compatible = "brcm,bcm7038-wdt";
- 				reg = <0x1c 0xc>;
--- 
-2.34.1
-
+Johan
