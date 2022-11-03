@@ -2,119 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AABF0617B35
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 12:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BCA4617B37
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 12:01:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbiKCLA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 07:00:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34782 "EHLO
+        id S230394AbiKCLBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 07:01:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230394AbiKCLAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 07:00:24 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A514260F8
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 04:00:20 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id t10so1771488ljj.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 04:00:20 -0700 (PDT)
+        with ESMTP id S230165AbiKCLBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 07:01:17 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8DB9B7D7
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 04:01:16 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id m14-20020a17090a3f8e00b00212dab39bcdso4872209pjc.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 04:01:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Icfy7/ajkmyLk6hMvKQbC30yuWAmXdJyXwjuviZ2GXw=;
-        b=Qt1zlwOAovCXwa/B4/Fe/j9Ye55DSXpeRUsJeyiSTmhZxPmcs4ahZosMu8zrUMUW5Y
-         M4i0VjcRVEJQP8PWHgqYBNcZJKlLoABDt0Km5EyECYB8RKxOgBTq5imhajDBZAKOEAmW
-         mw8HW2x41abqC8zBmrk8unqx+htDcygL/2zpomCQsz3Xa1UiMCXXpi2ZIIxD3o4y8HB3
-         0NwXAMQEVTaP/sr0TzRkivbmCtrZAh2fPoep/fo8WM9qs/fzla+1mi71U+ckDe1yH2PR
-         s9kaQJZQRhCeUzwCQRsHKAuLM7YCoWLpiK4qgV/Kkjdb5oxG4BaXpJwDGvHYoDXnE0IF
-         +PMg==
+        bh=Ay8rIDfAS1vKzFBT8OPzZHG4KC+WK17k+CTXHHbF524=;
+        b=F7u8vLHf3k4t6Ojxj0wPVNF0odVtSYGzJ7dal3LBHzOzk0NP6WfWAoqERZUf/n/lyy
+         ro+jSMxTAhkSGSq25iMQbPtlIPrwh3oCl6vTw9Lg95AeMQvH22HLht+fOW1U8GPlC6Si
+         6BNw7+oJJAFgCrFvGdwQ5mhW2G0tEk/+96qJngXj7L5JFjdWGtTwbQ2kHEBXWE1Qsh43
+         sO4FCbk8xnS/2ho9xjGjd7nk/hUpeKtlB2tiHqCLWBtebcRor8a9dvrffix9a1Pzj8fL
+         iaheCXDz7uZaNZF2o2ZdXErpkQCGNE1EsdiBp+vwpskuCQbp0UaqlNvsOif7TSOs0X6J
+         cmSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Icfy7/ajkmyLk6hMvKQbC30yuWAmXdJyXwjuviZ2GXw=;
-        b=uuVBa5U7h8xrVmNRBL2TOPEP57ubqmK3yEWtNUYuFy3U10nrgtP3Q1Mdqhj6VOqkO6
-         EK16CW4PXuzmzjMcmiEL0n40veej9eybBpeICC3bXgOAM1zRklFqw4bSH0jyLYwQKRhG
-         cA/ZLv6s22IWm9y+0MxB3reu3MstGVNx6lCfW/cAzuBzXHuZglJLrvX4BUVgFvcWSKV/
-         1Zrq7+eLBYvBPCjTvhcLbqxkBXOMcZiGi76GLMQcAOl7bCouYAGR+105xd8NzYJKqOhy
-         eGHNva4TkHpQG0fxiLA7yyxJoScBZ/Soed9nyNEMEZ90C9xDc++P10JkqoiSfUQdBQHc
-         ZUvA==
-X-Gm-Message-State: ACrzQf1ln8o4HqH81VknZ/I4Qu+1wDjKXRqelESEBXDnKOGNZtXMQSoE
-        XotnbcURIbuPY6uZdLp5OsE=
-X-Google-Smtp-Source: AMsMyM7ZMo5kzOOsPJKzGNiSaXUODvFOpvyXG9xG4Pf8YCk/wfEncm7uWLjYfGtFb0S6fu1r3p+EKg==
-X-Received: by 2002:a2e:a548:0:b0:277:10ed:e12f with SMTP id e8-20020a2ea548000000b0027710ede12fmr10642906ljn.11.1667473218858;
-        Thu, 03 Nov 2022 04:00:18 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id x9-20020a056512046900b004b0317a1035sm88823lfd.109.2022.11.03.04.00.17
+        bh=Ay8rIDfAS1vKzFBT8OPzZHG4KC+WK17k+CTXHHbF524=;
+        b=aHYIJsiBOUKk7RuASwi2Nf+d/T3iRKYXVYswQAD1wJVDPGNuOAHvaSf3CtU80BRtTq
+         912gjgZvGhXfbPqOE4OWbZ27W+POmFWvjrkr/9HBZF7FJE7zd2r7gqghvXui1NbApxaS
+         HUBMF/TXxI0HtzH6OLCBBTXRGP0iDqvq8swIMCGu+NITni1WpRFzJ5Q6rgJY4Y/kDj2c
+         6z8eswT9AGbPBPbx//OldPdNxNhXS9VHhV/fCoMf4obxuGFSBl8G/eYLOVfDh1HOk4j8
+         ztgBcLcJAF+6LmSGqfPKkOx42qPVbi4ivFxHDywI/io1bBXoRMOnxz0EU4apOjHMewdW
+         fjaA==
+X-Gm-Message-State: ACrzQf34gbt43ZyvYUNsxt9xH88Z7SVypgdsVw1RnXmueFcfyUb3EcIi
+        fmPAUCu/f6kkV05lJ1cPMua3rA==
+X-Google-Smtp-Source: AMsMyM6YB+L8bLYmn+hlc1I5brGQsvzfYouZ8a2S+xu0StVwOU25oSYcJOX2kxEwJeAgcOxQ9BS6WA==
+X-Received: by 2002:a17:903:cd:b0:186:878e:3b08 with SMTP id x13-20020a17090300cd00b00186878e3b08mr29228986plc.93.1667473276274;
+        Thu, 03 Nov 2022 04:01:16 -0700 (PDT)
+Received: from localhost ([122.172.84.80])
+        by smtp.gmail.com with ESMTPSA id x15-20020a170902ec8f00b001868bf6a7b8sm363976plg.146.2022.11.03.04.01.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 04:00:18 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: broadcom: bcmbca: bcm6858: add TWD block
-Date:   Thu,  3 Nov 2022 12:00:15 +0100
-Message-Id: <20221103110015.21761-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Thu, 03 Nov 2022 04:01:15 -0700 (PDT)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     James Calligeros <jcalligeros99@gmail.com>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] OPP: Allow power/current values without voltage
+Date:   Thu,  3 Nov 2022 16:31:03 +0530
+Message-Id: <cover.1667473008.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hello,
 
-BCM6858 contains TWD block with timers, watchdog, and reset subblocks.
-Describe it.
+Some platforms, such as Apple Silicon, do not describe their device's
+voltage regulators in the DT as they cannot be controlled by the kernel
+and/or rely on opaque firmware algorithms to control their voltage and
+current characteristics at runtime. They can, however, experimentally
+determine the power consumption of a given device at a given OPP, taking
+advantage of opp-microwatt to provide EAS on such devices as was initially
+intended.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../boot/dts/broadcom/bcmbca/bcm6858.dtsi     | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+But the OPP core currently doesn't parse the opp-microwatt property if
+opp-microvolt isn't present. This patch series targets to change this approach.
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-index 29a880c6c858..d8b23be14210 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-@@ -109,6 +109,25 @@ bus@ff800000 {
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0xff800000 0x62000>;
- 
-+		twd: timer-mfd@400 {
-+			compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
-+			reg = <0x400 0x4c>;
-+			ranges = <0x0 0x400 0x4c>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			timer@0 {
-+				compatible = "brcm,bcm63138-timer";
-+				reg = <0x0 0x28>;
-+			};
-+
-+			watchdog@28 {
-+				compatible = "brcm,bcm6345-wdt";
-+				reg = <0x28 0x8>;
-+			};
-+		};
-+
- 		uart0: serial@640 {
- 			compatible = "brcm,bcm6345-uart";
- 			reg = <0x640 0x18>;
+This first fixes few mistakes in the DT bindings, followed by code
+reorganization. And the last commit, from James, fixes the problem at hand.
+
+I have tested all combinations on my Hikey board, hope it doesn't break
+anything.
+
+James Calligeros (1):
+  OPP: decouple dt properties in opp_parse_supplies()
+
+Viresh Kumar (4):
+  dt-bindings: opp: Fix usage of current in microwatt property
+  dt-bindings: opp: Fix named microwatt property
+  OPP: Parse named opp-microwatt property too
+  OPP: Simplify opp_parse_supplies() by restructuring it
+
+ .../devicetree/bindings/opp/opp-v2-base.yaml  |   6 +-
+ drivers/opp/of.c                              | 228 ++++++++----------
+ 2 files changed, 102 insertions(+), 132 deletions(-)
+
 -- 
-2.34.1
+2.31.1.272.g89b43f80a514
 
