@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B937D618905
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 20:54:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6747618908
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 20:54:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230341AbiKCTyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 15:54:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46824 "EHLO
+        id S230165AbiKCTyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 15:54:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230336AbiKCTxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 15:53:47 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACF11FCE0
+        with ESMTP id S230383AbiKCTxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 15:53:48 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86411FCCC
         for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 12:53:47 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id ml12so1906894qvb.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 12:53:46 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id v8so1857220qkg.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 12:53:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
         bh=Qi/QHriO9WLQrr+WCirZAkAs6AyTOYgHq/qkN2NOeAY=;
-        b=hyOVUenakbhimpBLe4rmEpbp4laB8yVoIzkgZ0Go7fnS1YY/EUj0RndvLYOdyp21hc
-         AoSMLyQHYqqCqG+g0NgFxbVStOY5sxLOPrMSu2sDNW/L7jxNT0v/h30XE7o4eRGb1CM2
-         p+hwpbfgLIGIUM2Y5kzXfZ/EdzsDrryoP3pEnxfiAbpRz94QjhY0QKcuVd683sqJuadN
-         I2HlhLzw7b8Z0E9GGv1l6RFEZh6CKrMUl+StnZ31qbx6tFuKsMqbELu2vse2lUiAZ0hY
-         nfzdkoGWpo8F2RurQkdkczNaar0/e92wH0V8NdUypy9ULrgRpuMicbvRkjwvjq7CApAM
-         U4Tw==
+        b=cBKnf4Y1p3+pN9MdezNdYjZKCwgXSR88lGmahi0XjLm9TisFhJ7LKE8GC4wJvyUshH
+         B0XrcUJEhnrQ7tDMJ3sDi0VpA7PRZSxVQgH52RiiC9hmvSnLsqnAhHtZP/6p/rGqpH7k
+         F4fpsTPXvFw9iTIRgx9h1W3tXABfb4iC1zEye4Y/80iYt5D9u12gqAxREHJoFy4SqKqJ
+         ZUrUOMP/okpkL7R9b4QIS/cDSm8zQiQDaDRcSzF5yIoYZWlU4blkusbC6amjtKViFBta
+         1SRvnix4Ba5TqRcyeHyY1C/5QFcTiQTj0FipNndPvKgXRaIe1RQk11PgEXU0s5a89rrB
+         IwhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
         bh=Qi/QHriO9WLQrr+WCirZAkAs6AyTOYgHq/qkN2NOeAY=;
-        b=mRqIidEDVUFTNV7I01Np3aQUcrOB0j70R4mfCBzKQ59FdRf+MuPCN0hq/1WeYmTePN
-         4OvVycA936ITCvLiHh6HtBCAp7GY3zmoVqDNxUrDPZ5OLnlppdox6neYZdDlc3RCFa4D
-         N5xFRpWE5xXEcvA4WeTrk7IZvJ7uZTUYdlvuZCi2ZCEZNJaSw55fK7CTNt1DkXIrnLVg
-         ed0cvGxOB0Yv/gMayDnnMo/ylH6DIMrmw0+a0Mp33tJj/BvB5C85+j+t31X6MnyXwzOp
-         NgA7qi5ETZA4uvpr5eS4Zrv/IYuaDPJf11xB77+2tITMYzOBWQZX8YXgPhG3HcyjGJIk
-         vO4w==
-X-Gm-Message-State: ACrzQf2hwdfnBfvlYSh63vEpfbFZrHEpGQPDB2Es2LpcpY2mM2HIanoJ
-        4sxZ8wX9l1TSY73IE4WOffGaUw==
-X-Google-Smtp-Source: AMsMyM67CGOGnsKJJ2m829zic/y/kudxtYEKdM/yBMe08cw4Li7s1lduovri1Y843bkDlJ8rGOUcoA==
-X-Received: by 2002:a05:6214:20e2:b0:4bb:7aa5:bf0a with SMTP id 2-20020a05621420e200b004bb7aa5bf0amr28398378qvk.112.1667505226196;
-        Thu, 03 Nov 2022 12:53:46 -0700 (PDT)
+        b=dtgn6aewR/b9O6KF6dY9g10sMCfsLxCvB3gFfwWIe2VpyOzOqNA8YtwzTMKWs9aQlF
+         SSv971wBYmrewbcxUztc8Z1ucAlavdovb7aO6femSfVYDh0092DL4yHRKG8xL23Nq7HM
+         aHQp8BWEFjw+oSpaItpswMfsJbA+4SBOHxlWQ6M6uySkRAd21g6QLNj6zHBCS2roIDgA
+         84AqATvZhfahAUK4qr0OeCwmsqwfdj09U2Wa9sKtqq9ZCqvNkwqQFgMmnG/emtEw9vY4
+         e5i5oeOlW2UYN85JUIeMLfed1IAn/2nslr7T8kp7Fh5S+4kdD+7oxbTFxLQOR2SHdKI1
+         37+Q==
+X-Gm-Message-State: ACrzQf2mrOoNFmDRPkWGdnhtyAmt7r7O81dDOHogyN4Oup/Vg2nB1o3H
+        txiBGnr4tQooD84DQxophicrFg==
+X-Google-Smtp-Source: AMsMyM4yhWaJCxNpHi/v3VKOjOMfzR/+GK0OT1VhHzDrako56nPe7wmtV4XL2pkQu6H1U4JIPBpB0Q==
+X-Received: by 2002:a05:620a:29cf:b0:6d3:2762:57e5 with SMTP id s15-20020a05620a29cf00b006d3276257e5mr23610520qkp.389.1667505227505;
+        Thu, 03 Nov 2022 12:53:47 -0700 (PDT)
 Received: from krzk-bin.. ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id de41-20020a05620a372900b006b615cd8c13sm1328892qkb.106.2022.11.03.12.53.44
+        by smtp.gmail.com with ESMTPSA id de41-20020a05620a372900b006b615cd8c13sm1328892qkb.106.2022.11.03.12.53.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 12:53:45 -0700 (PDT)
+        Thu, 03 Nov 2022 12:53:47 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -64,9 +64,9 @@ To:     Andy Gross <agross@kernel.org>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ASoC: codecs: lpass-wsa-macro: parse clock-output-names
-Date:   Thu,  3 Nov 2022 15:53:40 -0400
-Message-Id: <20221103195341.174972-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] ASoC: codecs: wsa-macro: parse clock-output-names
+Date:   Thu,  3 Nov 2022 15:53:41 -0400
+Message-Id: <20221103195341.174972-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221103195341.174972-1-krzysztof.kozlowski@linaro.org>
 References: <20221103195341.174972-1-krzysztof.kozlowski@linaro.org>
