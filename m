@@ -2,60 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 611E96175C2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 05:42:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C0846175D8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 05:59:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiKCEmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 00:42:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35844 "EHLO
+        id S229666AbiKCE71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 00:59:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbiKCEmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 00:42:37 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44177175BE
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 21:42:37 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A34gVtU060248;
-        Wed, 2 Nov 2022 23:42:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667450552;
-        bh=2vWsXnJDtt3+RxVROIV3BAOZKS5Zl/tW4eoVo7lBOc4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=aqnllL8ShAWd5H/NI4OJaetzQcoj6zod0h4NodQ9T+bDl7iCf0msaelitizEe2kBj
-         2sypdDHdbjmVNVb3hkqn05rXBQw8gR1MI8jHf4yq1bLZF2Rfr2nSQoyAV1NUoqgQNz
-         Z/DuqaVPeWIbgbka7Vx3eZEIarIm0KcT6sLpoDTY=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A34gVYn081935
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Nov 2022 23:42:31 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
- 2022 23:42:31 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 2 Nov 2022 23:42:31 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A34gQ4r053797;
-        Wed, 2 Nov 2022 23:42:29 -0500
-From:   Matt Ranostay <mranostay@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v5 8/8] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-Date:   Wed, 2 Nov 2022 21:41:25 -0700
-Message-ID: <20221103044125.172864-9-mranostay@ti.com>
-X-Mailer: git-send-email 2.38.GIT
-In-Reply-To: <20221103044125.172864-1-mranostay@ti.com>
-References: <20221103044125.172864-1-mranostay@ti.com>
+        with ESMTP id S229461AbiKCE71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 00:59:27 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BB817E1E;
+        Wed,  2 Nov 2022 21:59:24 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A34gIlJ002831;
+        Thu, 3 Nov 2022 04:59:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=pzAfUujfgyx2soS+jvSWnljo9EBbCo8FnhU0j8z3GiM=;
+ b=WzvkdtSB8dPNHTZycpB5FHYs2F6opz3brP1sjeZCh3qXzBK8b128wk7ET6xF+28MJL7G
+ BJsEdGrgKmCGOASkgPRp0hsiGDyTRGD5HpunuJvRInloEX/9d2bvn6kSfq7Jr32zdZyE
+ rr9t2CDSxniZJ1QP6e4xmgMvuOBK2MvoP3IEHJ84+To/8O7hBftjr+OX83iQDEqDF80h
+ zpOT18ij1grT06ndIJVcAPBx5peS5mcs6bfwofuRs7oVHxEt0EeoWbR567hzmxREmwTH
+ PkVjSgNvYKkLcVTRSBj4t05prFaWnaXZPT6E0iifgmyp1NACpNEc/M8dAF6luGQQP8NG Yw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3km6tnr2fc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Nov 2022 04:59:14 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A34xDrq000688
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 3 Nov 2022 04:59:13 GMT
+Received: from blr-ubuntu-87.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.29; Wed, 2 Nov 2022 21:59:10 -0700
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+To:     <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <robh+dt@kernel.org>, <sudeep.holla@arm.com>,
+        <cristian.marussi@arm.com>
+CC:     <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <konrad.dybcio@somainline.org>, <quic_avajid@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+Subject: [RFC 0/2] Add support for SCMI QTI Memlat Vendor Protocol
+Date:   Thu, 3 Nov 2022 10:28:30 +0530
+Message-ID: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 72A2vlz4NC6tNXzgA4pkOPkaGRBHslF0
+X-Proofpoint-ORIG-GUID: 72A2vlz4NC6tNXzgA4pkOPkaGRBHslF0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-02_15,2022-11-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=812
+ priorityscore=1501 lowpriorityscore=0 spamscore=0 mlxscore=0 bulkscore=0
+ impostorscore=0 suspectscore=0 adultscore=0 malwarescore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
+ definitions=main-2211030035
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,44 +75,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswath Govindraju <a-govindraju@ti.com>
+The patch series documents the bindings and adds support for the
+SCMI QTI memlat (memory latency) vendor protocol. The protocol takes
+in several tuneables including the IPM ratio (Instructions Per Miss),
+bus bandwidth requirements and PMU maps to enable frequency scaling
+of various buses (L3/LLCC/DDR). The scaling is performed by the HW
+memory latency governor running on the CPUSS Control Processor.
 
-x1 lane PCIe slot in the common processor board is enabled and connected to
-J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+Depends on CPUCP mailbox driver:
+https://patchwork.kernel.org/project/linux-arm-msm/cover/1663135386-26270-1-git-send-email-quic_sibis@quicinc.com/
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
----
- .../boot/dts/ti/k3-j721s2-common-proc-board.dts    | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Sibi Sankar (2):
+  dt-bindings: firmware: arm,scmi: Add support for memlat vendor
+    protocol
+  firmware: arm_scmi: Add SCMI QTI Memlat vendor protocol
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index 0503e690cfaf..862611784ab3 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -374,6 +374,20 @@ flash@0{
- 	};
- };
- 
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+	status = "disabled";
-+};
-+
- &mcu_mcan0 {
- 	status = "okay";
- 	pinctrl-names = "default";
+ .../devicetree/bindings/firmware/arm,scmi.yaml     | 164 +++++++++++++
+ drivers/firmware/arm_scmi/Kconfig                  |  10 +
+ drivers/firmware/arm_scmi/Makefile                 |   1 +
+ drivers/firmware/arm_scmi/qcom_memlat_vendor.c     | 269 +++++++++++++++++++++
+ include/linux/scmi_protocol.h                      |  36 +++
+ 5 files changed, 480 insertions(+)
+ create mode 100644 drivers/firmware/arm_scmi/qcom_memlat_vendor.c
+
 -- 
-2.38.GIT
+2.7.4
 
