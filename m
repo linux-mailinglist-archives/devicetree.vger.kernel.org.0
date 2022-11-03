@@ -2,114 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0FF617CF4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98D7A617D33
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231650AbiKCMqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33142 "EHLO
+        id S231491AbiKCNBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 09:01:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbiKCMqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:46:13 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C15711162
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:46:13 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id x15so1080436qtv.9
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:46:13 -0700 (PDT)
+        with ESMTP id S229587AbiKCNBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:01:02 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21E811C27;
+        Thu,  3 Nov 2022 06:00:57 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id d26so4938509eje.10;
+        Thu, 03 Nov 2022 06:00:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yGm7wbTciWDJS7qmpqQ3ufS50mFVa2yb9x+7BoqLpII=;
-        b=qDuHKKPzpdz33t7ixNmaA5Jq4D6VNL+K147HV/FEkQB+NvN2GLYXD3q+G1n/EhyydT
-         mc+amok9gUlQCoub6CBSQucIgTAMH7XVSeOD8nnKS8+U9dHbXKKTpgn2q829hOucW2qW
-         boslcXZcvJmnXbE40+x56mqW3z78ORvK2F3/8T3Vn0GRYP0Hcy/w+5HiYLc0HfWWj/DG
-         4rwXkQCdXw2Fz5I+J5HsqkVrs+oN2sixOEnI21i36bWG8Kd/rkumxLY4+VYH0FH264Dg
-         yUTzSrN9RwMVBWY2IAgvqS0rMaL2sITwou3TZAeGG7D2q/YFQqiawwA/jAEb4S41JsZT
-         93bw==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6MYelN//Q/E2vMta9U+Xs76q3K1G2NMd4FZE+wVe7Lw=;
+        b=VjyxWZ1fRTjhvkhkYBhCNm9Oa6bWzhYIfrCjqQsiJWN6d2pvoYSSbsWruJReRZb3hi
+         DYisX6gB/dLh8DNSuYJXttQkhIu+AmKP7wfPbfHt5XFG8Fu+66dBMk9ViR0ZibaRWane
+         VFvt7KD2W1r+5CdCUA5c3KX82t2/oTWqBNZClIysyPrxXUdB8vIjrS/gY+mPHSR8rs1U
+         l9EcUksyaiFTi/rDurfd+V1jQsAAxFlOW7TtOPgpIMAbKdrQY1EwTdJf0GKoNGLPFBIh
+         E/5lU6NDORvB/+P8ZPI3takZQ/ZULb76qibqMGa4oK8QglXT3OGUSJRLmP/REunrUPPq
+         d/mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yGm7wbTciWDJS7qmpqQ3ufS50mFVa2yb9x+7BoqLpII=;
-        b=XFIxl1s8HmcRyFkfDOMqpgntYWlDmwZdgXtqrNe7o4l9wuUiPb6jsSKatmOytWsB8v
-         OkVuJfs6vrxJ9fTzdHDrXSuEyYacZsqp8rRXvuILN9qw06A8afnuC88qdwn+rbQf85Qt
-         HZPGF/069mFlygUWy/WJPOlvN3USd2jaGlZwxP5K+fM98EEXO5EP/D+4rKSwrmXpihUZ
-         d9kC69pM1USrjE5qVDMxowzUV/gfiZIcI6wbkZJZDIXOpJe7ZkCbZ04g9c2JZVEFegUl
-         4LnIkm6+sZvQ3WzYZqSRsqXF7WOuzrnWNnRxFsvtle2GT1RGzcAWhTL1vjAN4YLpRahm
-         5kpQ==
-X-Gm-Message-State: ACrzQf0z3xBecfcPrV8fJmmVwOzUFoutyEs6JSh+SHut7yDtJAaGaVKs
-        ZIG0ADCIN/g1A3Yf9uNTPlTPrg==
-X-Google-Smtp-Source: AMsMyM7qSGREB3yZtzh4NB3yiFrMVNwRE3iO2Jdqd329JikQegHzwdbB8mxPOwlUSvCzLS9OKhKiww==
-X-Received: by 2002:a05:622a:181:b0:3a5:492b:c3af with SMTP id s1-20020a05622a018100b003a5492bc3afmr6142031qtw.383.1667479572295;
-        Thu, 03 Nov 2022 05:46:12 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id fc11-20020a05622a488b00b00399d5d564b7sm454947qtb.56.2022.11.03.05.46.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 05:46:11 -0700 (PDT)
-Message-ID: <f4ca26c6-6c03-b7e7-3d5e-f6bc42c3a785@linaro.org>
-Date:   Thu, 3 Nov 2022 08:46:10 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6MYelN//Q/E2vMta9U+Xs76q3K1G2NMd4FZE+wVe7Lw=;
+        b=qWBrozk/+fP6lWWP0p7nYCVrg4lVBrGFrI2OecPykvsLfS9gvVU8XkpJvmtLbKai/r
+         tURHhcu261xOIvOPA3Cc/aotLQMXf3MbM88dJH2o9wYaqqcc/Ej+UfsMKYWjrvbpw7j0
+         Q0nYzNCHDg9myJdgjnd7PuP0iYK8m1tRcX4VguAlyZoW5M771+s4pjX8VUlgRpkr/idb
+         uliw6IXH2j8RXS67BKMy+iEs8Q8dkEioku3rEVfn6z4BDr22lN2SHZeNMeJmmSkNZ/CP
+         ItLjmgVTYO0wqMy8utGiBp+4JiYSeMDmozW6NTh9JnXEQ3FkGHWeSmVRNJJygtmvOuyZ
+         yqPQ==
+X-Gm-Message-State: ACrzQf2uHwjZV1zg750bS0iVJK8qW6mA4WWNQEmnD0ypJ3KMCeQfP07i
+        Kb92gd9YWvprjiAY5mCUPgk=
+X-Google-Smtp-Source: AMsMyM4xWyRbJjq+3sqhOby5jARfiFPG8l82b/4OXPPk5Ifu3e/Hp1hss3/xzpBPbqotsYk56FBvbQ==
+X-Received: by 2002:a17:906:9bc8:b0:7ad:7e6a:50ac with SMTP id de8-20020a1709069bc800b007ad7e6a50acmr29819289ejc.66.1667480456184;
+        Thu, 03 Nov 2022 06:00:56 -0700 (PDT)
+Received: from localhost.localdomain ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id q12-20020a17090676cc00b00779a605c777sm451829ejn.192.2022.11.03.06.00.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 06:00:55 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH v4 00/13] Support more parts in LTC2983
+Date:   Thu,  3 Nov 2022 15:00:28 +0200
+Message-Id: <20221103130041.2153295-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 2/3] media: s5p-mfc:Add variant data for MFC v7 hardware
- for Exynos 3250 SOC
-Content-Language: en-US
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     andrzej.hajda@intel.com, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl, ezequiel@vanguardiasur.com.ar,
-        jernej.skrabec@gmail.com, benjamin.gaignard@collabora.com,
-        krzysztof.kozlowski+dt@linaro.org, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
-        smitha.t@samsung.com
-References: <20221102130602.48969-1-aakarsh.jain@samsung.com>
- <CGME20221102125813epcas5p40a38f17a267276ff8b2bc5861b5d450d@epcas5p4.samsung.com>
- <20221102130602.48969-2-aakarsh.jain@samsung.com>
- <c55d29d2-a70a-f2ae-b605-1c63051202bf@linaro.org>
- <aadbb452-506d-89cc-28d9-497369c0018e@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <aadbb452-506d-89cc-28d9-497369c0018e@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 08:44, Marek Szyprowski wrote:
-> On 03.11.2022 13:35, Krzysztof Kozlowski wrote:
->> On 02/11/2022 09:06, Aakarsh Jain wrote:
->>> commit "5441e9dafdfc6dc40fa" which adds mfc v7 support for
->> Please run scripts/checkpatch.pl and fix reported warnings.
->>
->>> Exynos3250 and used the same compatible string as used by
->>> Exynos5240 but both the IPs are a bit different in terms of
->>> IP clock.
->>> Lets add variant driver data based on the new compatible string
->>> "samsung,exynos3250-mfc" for Exynos3250 SoC.
->> Aren't you just missing the clock on Exynos3250?
-> 
-> Nope, the Exynos3250 variant indeed has only one clock and the driver 
-> code simply ignored the -ENOENT error while getting the clocks, see the 
-> code in drivers/media/platform/samsung/s5p-mfc/s5p_mfc_pm.c, so it 
-> worked fine even without it.
-> 
-> IMHO it is a good idea to clean this up.
+Add support for the following parts:
+ * LTC2984
+ * LTC2986
+ * LTM2985
 
-OK, then please make the new compatible followed by old.
+The LTC2984 is a variant of the LTC2983 with EEPROM.
+The LTC2986 is a variant of the LTC2983 with only 10 channels,
+EEPROM and support for active analog temperature sensors.
+The LTM2985 is software-compatible with the LTC2986.
 
-Best regards,
-Krzysztof
+Also, make bulk write buffer DMA-safe.
+Besides that, refine the binding.
+
+V1 -> V2:
+ * add Fixes tag
+ * add patch that fixes the regmap_bulk_write() call with stack allocated
+   buffer
+ * add patch that refines the binding in preperation for adding new
+   parts support to it
+ * do not use stack allocated buffer for writing the EEPROM key
+
+V2 -> V3:
+ * drop minItems if equal to maxItems
+ * drop adi,single-ended conditions because of recent dtschema
+   restrictions (even though they're valid in jsonschema and the last
+   dtschema tag)
+ * drop "allocate iio channels once" patch since it's been picked as a fix
+
+V3 -> V4:
+  * add pipe for 'adi,mux-delay-config-us' description
+  * add pipe for 'adi,rtd-curve' description
+  * keep newlines after descriptions
+  * move 'adi,current-rotate' to conditional
+  * put 'adi,custom-steinhart' in the original place
+  * keep 'minItems' for 'adi,custom-steinhart'
+  * override 'enum' to forbid auto-range in 'adi,excitation-current-nanoamp'
+    when using custom thermistors
+  * split refine patch into multiple patches
+    - use generic node name in example
+    - describe broken mux delay property
+    - refine descriptions
+    - change default excitation for custom thermistors
+    - require 4 wire rtd for current rotate
+    - require custom sensor tables
+    - describe matrix items
+    - remove qutations from phandle ref
+    - use hex for sensor address
+    - add default values
+
+Cosmin Tanislav (13):
+  iio: temperature: ltc2983: make bulk write buffer DMA-safe
+  dt-bindings: iio: temperature: ltc2983: add default values
+  dt-bindings: iio: temperature: ltc2983: use hex for sensor address
+  dt-bindings: iio: temperature: ltc2983: remove qutations from phandle
+    ref
+  dt-bindings: iio: temperature: ltc2983: describe matrix items
+  dt-bindings: iio: temperature: ltc2983: require custom sensor tables
+  dt-bindings: iio: temperature: ltc2983: require 4 wire rtd for current
+    rotate
+  dt-bindings: iio: temperature: ltc2983: change default excitation for
+    custom thermistors
+  dt-bindings: iio: temperature: ltc2983: refine descriptions
+  dt-bindings: iio: temperature: ltc2983: describe broken mux delay
+    property
+  dt-bindings: iio: temperature: ltc2983: use generic node name in
+    example
+  dt-bindings: iio: temperature: ltc2983: support more parts
+  iio: temperature: ltc2983: support more parts
+
+ .../bindings/iio/temperature/adi,ltc2983.yaml | 335 +++++++++++-------
+ drivers/iio/temperature/ltc2983.c             | 193 +++++++++-
+ 2 files changed, 389 insertions(+), 139 deletions(-)
+
+-- 
+2.38.1
 
