@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 641DD618731
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:14:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 652E5618734
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:14:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbiKCSOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 14:14:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50864 "EHLO
+        id S230491AbiKCSOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 14:14:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbiKCSOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:14:45 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8A896466
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:14:43 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id i5-20020a1c3b05000000b003cf47dcd316so3924935wma.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:14:43 -0700 (PDT)
+        with ESMTP id S230419AbiKCSOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:14:47 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F366252
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:14:45 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id v7so1684169wmn.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:14:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=B/U/F+0RMZTg6izVpulD63LQRaLW/I74SsRWCBM6RrQ=;
-        b=JqsGAPkugzPWEY/QK/ba6O11TdN/xz9kFK7zJCOJ8fDedzjks82r/tNsCtWs0tT7O7
-         fN3aYih3CSfPfsh9M2JdQI5G0HMAkI0QqwVqu2v0thHPzPrgbRnXSgB8iB17Kfz2BxoC
-         f64uc2rvactjKuRNaSrc4HWUtgFBOZlKfQVcUHhgbXSwdOLBvUyjNaaNfWs6z9kCZbLl
-         lt+OCL6hPizb/4QGk3OBRSuSWv7pwKyXRHSvxZ358/ZB2OqetpkxSVYNLkgScYziv4sP
-         CMp+gO5GS0gFmKpTkOB6mJwjfkWoaopawHgoDZYJ1jIhdUdB92Ji+m7v27IkgkhzFsno
-         h9oQ==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gpWkdxUe4lkq+ssLF6RjxVO7r2F+0rfvCYX5i/7pnv8=;
+        b=pQ7icVZZVpaKZBpDM7CnZUN2NFuwCgKUP487ZR6s1hC9c9p83rb0/NwpjmKwOmQNba
+         ZmxHLWmO7HWbEsWkMPXDl9PUuxspiHDQ4/6K9z0r+5+mBJfk68G/8m4FLwSpOZ5hcqn+
+         PHIb1shU/+ggQPgi3Idn3lGTOL3jwbesowvfBwsetHBnRMrCk1xjMKvYIldcaEJi5FrH
+         61QSBXGQOUuRBhC2NoRseSooFtkwlZoqZPo2N2tSewvSWrdb0ro7TIg8Co6b6PQnM5cX
+         iCKdryzsN5RkRr94hV3VB90VuOQjIrWGZy5UiLU+gzw/c13S60dC3Q1nYJJcwje8UiwW
+         ZaiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B/U/F+0RMZTg6izVpulD63LQRaLW/I74SsRWCBM6RrQ=;
-        b=rhDHmJLozYpIs//h4qIWfJ81g0mxL/O6KQiXytXQsVFhVNZ2HR4AgMKvyewcv8l86z
-         +eUECmR+Pe/EAHa1K3qJ97A1uvM0v4FCBZ8pvhM9+UwFn7M0/aUu5O6oUsgVMg5w/Bv2
-         M0cwYBb527La2cmrH3I0ev6pN8lL3MpLw/I1Rt0TNRwopcflf+FSMYb8hdPXGj5CAIAo
-         FwDtILMrsno74e/xwehpffMYpa67zMAO/ivgswGksI1Dj6YVb35j97lYQL8HQgZ1o5WO
-         hvvuUV8gFORfDcQerX6fUqqKrrX/sS6AFJSGev3vOZDtlxH65sqAwAgEHIgzum0qj3qm
-         2qnQ==
-X-Gm-Message-State: ACrzQf1tCv0f8oZLC7UIpSWoTCI5fWZwVObzoDgKO5ZnoQfWjzBLhTQf
-        8fftryO7rhIdlLR+vH6vNn5JRg==
-X-Google-Smtp-Source: AMsMyM72yJTivNBhzs8qu13Mgo+FanuE5j3ElGM59crwQb+Zfh1WyWeFP0xjp693nPpU1/LJTvGVCQ==
-X-Received: by 2002:a05:600c:1694:b0:3cf:56a9:fe64 with SMTP id k20-20020a05600c169400b003cf56a9fe64mr25532921wmn.112.1667499282563;
-        Thu, 03 Nov 2022 11:14:42 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gpWkdxUe4lkq+ssLF6RjxVO7r2F+0rfvCYX5i/7pnv8=;
+        b=wcP/l299cGqZzY29ZyLe2NERdaIZ6DRBtp1mqnC2fMiLRpC+CvsJFolryTy5Q3+Ujr
+         nfsz3tNvO2/T0TUC/+y/yX1yaEZSNTjGPEL9BrxsFEmwXGzytbqYQG+d98Kpu8BDvEiS
+         dZMfGJvh1nER9HNWdt94YmjVzq+JDmFhL9hYf8DERqV/osDZNF+M/2es6PA7oA8cG+aQ
+         9ApGCjpHXR8zrCB9F0XrvUdRcxwVvLPhiqemNb4GcfGycxDwyuI59KyftRbtG+GcgQi2
+         EbtVYAe45OfYvy9VIVES4NGvmV5rcgKTAqJCoVZiLzDWLyVDA118hYiWVVHCA7MSgh4G
+         b1Mw==
+X-Gm-Message-State: ACrzQf1XP4CgM2/rL2buxGCTII27A2qx2Mn4I3S6NMX2GbzkdWWaFrJr
+        3j/egbvX++/8gGYkXBUoeRvTsw==
+X-Google-Smtp-Source: AMsMyM6Dlg+6MyWEJenu9b6cXcpqx/uWksNoEfL5vwliylACxNYieSQiRpmky/X9UFOi5JgiHiCp1g==
+X-Received: by 2002:a7b:c398:0:b0:3c7:87f:3b48 with SMTP id s24-20020a7bc398000000b003c7087f3b48mr20787901wmj.65.1667499283930;
+        Thu, 03 Nov 2022 11:14:43 -0700 (PDT)
 Received: from baylibre-ThinkPad-T14s-Gen-2i.. (254.31.102.84.rev.sfr.net. [84.102.31.254])
-        by smtp.gmail.com with ESMTPSA id h19-20020a1ccc13000000b003b49ab8ff53sm639212wmb.8.2022.11.03.11.14.41
+        by smtp.gmail.com with ESMTPSA id h19-20020a1ccc13000000b003b49ab8ff53sm639212wmb.8.2022.11.03.11.14.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 11:14:41 -0700 (PDT)
+        Thu, 03 Nov 2022 11:14:43 -0700 (PDT)
 From:   Julien Panis <jpanis@baylibre.com>
 To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] AM62x watchdog support
-Date:   Thu,  3 Nov 2022 19:14:38 +0100
-Message-Id: <20221103181440.232727-1-jpanis@baylibre.com>
+Subject: [PATCH v2 1/2] arm64: dts: ti: k3-am62: add watchdog nodes
+Date:   Thu,  3 Nov 2022 19:14:39 +0100
+Message-Id: <20221103181440.232727-2-jpanis@baylibre.com>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221103181440.232727-1-jpanis@baylibre.com>
+References: <20221103181440.232727-1-jpanis@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -68,28 +71,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series adds support for AM62x watchdog.
+Add nodes for watchdogs :
+- 5 in main domain
+- 1 in MCU domain
+- 1 in wakeup domain
 
-Changes since v0:
-	- Mark MCU & WKUP watchdogs as reserved
-Link: https://lore.kernel.org/all/20220630070826.11074-1-jpanis@baylibre.com/
-
-Changes since v1:
-	- Rebase patch to v6.1-rc3
-Link: https://lore.kernel.org/all/20220718122328.251602-1-jpanis@baylibre.com/
-
-Julien Panis (2):
-  arm64: dts: ti: k3-am62: add watchdog nodes
-  arm64: dts: ti: k3-am625-sk: mark MCU and WKUP watchdogs as reserved
-
+Signed-off-by: Julien Panis <jpanis@baylibre.com>
+---
  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  9 +++++
- arch/arm64/boot/dts/ti/k3-am625-sk.dts     | 10 +++++
- 4 files changed, 73 insertions(+)
+ 3 files changed, 63 insertions(+)
 
-
-base-commit: 30a0b95b1335e12efef89dd78518ed3e4a71a763
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 03660476364f..fb8480d7cf76 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -591,6 +591,51 @@ main_mcan0: can@20701000 {
+ 		bosch,mram-cfg = <0x0 128 64 64 64 64 32 32>;
+ 	};
+ 
++	main_rti0: watchdog@e000000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e000000 0x00 0x100>;
++		clocks = <&k3_clks 125 0>;
++		power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 125 0>;
++		assigned-clock-parents = <&k3_clks 125 2>;
++	};
++
++	main_rti1: watchdog@e010000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e010000 0x00 0x100>;
++		clocks = <&k3_clks 126 0>;
++		power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 126 0>;
++		assigned-clock-parents = <&k3_clks 126 2>;
++	};
++
++	main_rti2: watchdog@e020000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e020000 0x00 0x100>;
++		clocks = <&k3_clks 127 0>;
++		power-domains = <&k3_pds 127 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 127 0>;
++		assigned-clock-parents = <&k3_clks 127 2>;
++	};
++
++	main_rti3: watchdog@e030000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e030000 0x00 0x100>;
++		clocks = <&k3_clks 128 0>;
++		power-domains = <&k3_pds 128 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 128 0>;
++		assigned-clock-parents = <&k3_clks 128 2>;
++	};
++
++	main_rti15: watchdog@e0f0000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x0e0f0000 0x00 0x100>;
++		clocks = <&k3_clks 130 0>;
++		power-domains = <&k3_pds 130 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 130 0>;
++		assigned-clock-parents = <&k3_clks 130 2>;
++	};
++
+ 	epwm0: pwm@23000000 {
+ 		compatible = "ti,am64-epwm", "ti,am3352-ehrpwm";
+ 		#pwm-cells = <3>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+index f56c803560f2..f82e94def774 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+@@ -81,4 +81,13 @@ mcu_gpio0: gpio@4201000 {
+ 		clocks = <&k3_clks 79 0>;
+ 		clock-names = "gpio";
+ 	};
++
++	mcu_rti0: watchdog@4880000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x04880000 0x00 0x100>;
++		clocks = <&k3_clks 131 0>;
++		power-domains = <&k3_pds 131 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 131 0>;
++		assigned-clock-parents = <&k3_clks 131 2>;
++	};
+ };
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+index 4090134676cf..3c95ac3a0dd5 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+@@ -38,4 +38,13 @@ wkup_i2c0: i2c@2b200000 {
+ 		clocks = <&k3_clks 107 4>;
+ 		clock-names = "fck";
+ 	};
++
++	wkup_rti0: watchdog@2b000000 {
++		compatible = "ti,j7-rti-wdt";
++		reg = <0x00 0x2b000000 0x00 0x100>;
++		clocks = <&k3_clks 132 0>;
++		power-domains = <&k3_pds 132 TI_SCI_PD_EXCLUSIVE>;
++		assigned-clocks = <&k3_clks 132 0>;
++		assigned-clock-parents = <&k3_clks 132 2>;
++	};
+ };
 -- 
 2.37.3
 
