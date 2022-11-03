@@ -2,132 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9546617FDA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:44:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0C7D61802E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:54:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbiKCOo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 10:44:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59676 "EHLO
+        id S231428AbiKCOyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 10:54:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230202AbiKCOoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:44:22 -0400
-Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C27630E;
-        Thu,  3 Nov 2022 07:44:20 -0700 (PDT)
-Received: (Authenticated sender: foss@0leil.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id D516B10000E;
-        Thu,  3 Nov 2022 14:44:06 +0000 (UTC)
-From:   Quentin Schulz <foss+kernel@0leil.net>
-To:     hadess@hadess.net, hdegoede@redhat.com, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, wens@csie.org,
-        jernej.skrabec@gmail.com, samuel@sholland.org, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org, heiko@sntech.de
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: [RFC PATCH 0/7] fix reset line polarity for Goodix touchscreen controllers
-Date:   Thu,  3 Nov 2022 15:43:45 +0100
-Message-Id: <20221103-upstream-goodix-reset-v1-0-87b49ae589f1@theobroma-systems.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S231757AbiKCOxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:53:40 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1071928E
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 07:53:36 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id mi9so1265326qvb.8
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 07:53:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jrYaAHvMcvAgON2HJIoIE2IBvbz54WPBWq/9VlMTUN8=;
+        b=xcBA91hGHInB4KTtVPZW2NQt5yB4tHUi+auIQ6aJYlat/DX9nRYEWLG9Ju6DkX7E2K
+         9K7S29pUk6u7a8H9r7lF/QBisDa55jpu6giSceDXlOJF/9E+QYs4tAUglvDUaot0WRCM
+         m/BmMgMBcveJe63QYdIu3qRKbj+vqqfT6C7c7iLuulV/Q4QCWSANGqOhqinFzqDXS82c
+         0pmIhZRPXfhk3x3v1x2Mc/6FM+5r8Y9gqyeoDYjkibFZgqJCl9ZCDNiN1LDyNZOoTqCn
+         06ISmv0xruPzl9gWKgb6/6yqcHJ7wcUsHRIR85oVIA20GiSO+hRapVkziB2ab/mNIOEi
+         NKbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jrYaAHvMcvAgON2HJIoIE2IBvbz54WPBWq/9VlMTUN8=;
+        b=LhEiYBBVLjrRMsSNQn9278FtPSv2PR8AgnL+WThmIX+MNTEAHh1xDsuBhT8SOk4t+d
+         FY7W7EQEaPh1+eXB98p+GXbJk6bMRvAK/M8nEXB4k3HbGQ+imBvWgw0NZS2LjBU+CiOy
+         BkjnrOY4Tqea9zIEv9gWPvcIXdvOsbPmmAMhpYrGH69fg6T1QqUNfhH8N2wokougayDG
+         9hED1WUnPQO8VQ5YfyBawLlKxd5NOA0gAAOhSghXuQeQbhktt23bkvwqfU3QAKDLS9Bs
+         NNx2bv+wICQ0JfGMjY/diyEH6TRX7MgAIg5BT3Mg/fFxMstfD5wj+o6jWum/J7QFUwKJ
+         gg/Q==
+X-Gm-Message-State: ACrzQf2jNTIcNxA3oADD9bKoYrFsH92iduMCwDoOZ93Irr8hUXy5yHjq
+        Sk9rvv+kuv+EZgDK2UeeDAARoA==
+X-Google-Smtp-Source: AMsMyM4G+1DZEOjki9fpIe4QcPidcY8eOdH1TWlR9Lt+Oie2mvIlCmefsBFT1cU8J35Ccx3tvnphJw==
+X-Received: by 2002:a05:6214:258b:b0:4bc:246c:dd01 with SMTP id fq11-20020a056214258b00b004bc246cdd01mr7632303qvb.64.1667487215489;
+        Thu, 03 Nov 2022 07:53:35 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id y12-20020a37f60c000000b006cfaee39ccesm833591qkj.114.2022.11.03.07.53.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 07:53:34 -0700 (PDT)
+Message-ID: <26249f27-dbea-c30e-a2ea-df5cb4290b3e@linaro.org>
+Date:   Thu, 3 Nov 2022 10:53:33 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH] dt-bindings: pwm: tegra: Convert to json-schema
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20221103120137.1467905-1-thierry.reding@gmail.com>
+ <18d66cce-64ae-aeaa-e9cf-9426c5d214f5@linaro.org> <Y2PSgwfqZ9BfXSFw@orome>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Y2PSgwfqZ9BfXSFw@orome>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Goodix touchscreen controller has a reset line active low. It happens to
-also be used to configure its i2c address at runtime. If the reset line is
-incorrectly asserted, the address will be wrongly configured. This cost me a few
-hours yesterday, trying to figure out why the touchscreen wouldn't work.
+On 03/11/2022 10:38, Thierry Reding wrote:
 
-The driver is "asserting" this reset GPIO by setting its output to 0, probably
-to reflect the physical state of the line. However, this relies on the fact that
-the Device Tree node setting the reset line polarity to active high, which is
-incorrect since the reset is active low in hardware.
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: pwm
+>>
+>> This wasn't in original binding and does not look needed. Mention
+>> changes from pure conversion.
+> 
+> At some point (looks like with the switch to 64-bit ARM) we started
+> adding these for consistency because we were noticing that sometimes
+> either we were missing clock entries or newer SoC generations gained
+> additional clocks. Whenever that happened it would become somewhat
+> cumbersome to describe this in device tree bindings and/or driver
+> code, so consistently adding a clock-names property preventively
+> even if only a single clock was used in the first iteration seemed a
+> prudent thing to do.
 
-To fix this inconsistency, the polarity is inverted to not confuse the user
-about the reset line polarity.
+Adding undocumented properties "preventively" is not the correct
+approach. Either you document them, or you do not add them.
 
-This is marked as RFC because it breaks DT compatibility and also the Google
-CoachZ device is the only one with an active low polarity for the reset GPIO
-in DT, so not sure if it is a typo or its state is actually inverted (so GPIO
-active high to drive the reset line low). Changing it anyways since the polarity
-is changed in the driver so it needs to be changed in DT too.
+The property with one item and name matching the function is not really
+a good approach, not helpful. Drop it.
 
-I'm all ears if there's a better way to handle this. We could document this in
-the DT binding but this kinda breaks the promise we make that the DT is not
-bound to the driver implementation.
+> 
+> So these are not technically necessary, but many device tree files will
+> have these entries, so this is here for those to pass validation.
 
-Thanks,
-Quentin
+Drop it from DTS then.
 
-To: Bastien Nocera <hadess@hadess.net>
-To: Hans de Goede <hdegoede@redhat.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-To: Shawn Guo <shawnguo@kernel.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-To: Pengutronix Kernel Team <kernel@pengutronix.de>
-To: Fabio Estevam <festevam@gmail.com>
-To: NXP Linux Team <linux-imx@nxp.com>
-To: Chen-Yu Tsai <wens@csie.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Samuel Holland <samuel@sholland.org>
-To: Andy Gross <agross@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@somainline.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-input@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-sunxi@lists.linux.dev
-Cc: linux-arm-msm@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-
----
-Quentin Schulz (7):
-      Input: goodix - fix reset polarity
-      ARM: dts: imx: fix touchscreen reset GPIO polarity
-      ARM: dts: sunxi: fix touchscreen reset GPIO polarity
-      arm64: dts: allwinner: fix touchscreen reset GPIO polarity
-      arm64: dts: imx: fix touchscreen reset GPIO polarity
-      arm64: dts: qcom: fix touchscreen reset GPIO polarity
-      arm64: dts: rockchip: fix touchscreen reset GPIO polarity
-
- arch/arm/boot/dts/imx6q-kp.dtsi                                  | 2 +-
- arch/arm/boot/dts/imx6ul-kontron-bl-43.dts                       | 2 +-
- arch/arm/boot/dts/sun7i-a20-wexler-tab7200.dts                   | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-amarula-relic.dts       | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-oceanic-5205-5inmfd.dts | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi          | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts             | 2 +-
- arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts                  | 2 +-
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts          | 2 +-
- arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts                  | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi              | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi            | 2 +-
- arch/arm64/boot/dts/qcom/sc7180-trogdor-mrbland.dtsi             | 2 +-
- arch/arm64/boot/dts/rockchip/px30-evb.dts                        | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi               | 2 +-
- arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts                 | 2 +-
- drivers/input/touchscreen/goodix.c                               | 4 ++--
- 17 files changed, 18 insertions(+), 18 deletions(-)
----
-base-commit: 8e5423e991e8cd0988d0c4a3f4ac4ca1af7d148a
-change-id: 20221103-upstream-goodix-reset-aa1c65994f57
-
+> 
+> Note that the property doesn't show up along the "clocks" property in
+> "required:" below.
+> 
+>>
 Best regards,
--- 
-Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Krzysztof
+
