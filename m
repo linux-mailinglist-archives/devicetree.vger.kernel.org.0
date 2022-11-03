@@ -2,145 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 580EA618B51
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 23:21:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B5A618B58
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 23:24:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231304AbiKCWVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 18:21:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43318 "EHLO
+        id S229993AbiKCWYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 18:24:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230336AbiKCWVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 18:21:41 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE851F9C3
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 15:21:39 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id h21so2158533qtu.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 15:21:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Vi/pWwgGFs4pXzg7F1f4rBtGcIgo+CI+e4hAiYlYSug=;
-        b=gCQrA1mESAHroZExu5yboI7YitKs8V66ouZfsz1dAghoX9z/eu7dcqx7XxwzfGYq9i
-         dqFz3S3xkBhQWa8DNRIxGDsNVVTFf7ujh1Gl2oFDfdhmI3Z7JY9KTazDjbvMWT6Emqer
-         Eg3U7XlfoN0f6RXzeEZ05D7fWJZ2Is+T/Sdof72bjT5lW3YT5IdwaLgLF1gP57ysFb3x
-         wmUhMCtakRcaI3Mei5/02Q7CYwzXBjwSvUhM8uwZyKusaQs1JeatXu/Lfm0+GrQE4k2x
-         wxYCiGVkcJyA9+YhIC9Qy5+9wdjBQC1yfpGNsYSfRajgctIk7bYVQRSjPXO1YO53tYWA
-         PAzw==
+        with ESMTP id S229985AbiKCWYL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 18:24:11 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952EE1400A
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 15:24:10 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-13be3ef361dso3778799fac.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 15:24:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Vi/pWwgGFs4pXzg7F1f4rBtGcIgo+CI+e4hAiYlYSug=;
-        b=OGAAmZYo+VYKZV3qdSW1znJQeQta3OB9292vLGGCg4wcRq6uzihNnNV4UJhGQiI0+7
-         nkf8Ahs2/WyixMJTUv+EtUrt8KuCyyhnOpH06RrPV9mo7qRzDli53/KKsuzDIgVAyp+S
-         uj2pogUU4iLIAQylGEjLjDTZuIqBagjPBQ33tFB8kJmd8WF6vDgVJ2FXc2P/wHMog5P9
-         GlPWspY5FbZ3eaR3oX7bZPNuDGrKVAv0nA+uNXUZht/SH8uajYn7dZ846OQxRdekIe32
-         IUupp+fKTtCFsaBNbIDiPR+0o7i3llrsPFblvJ8ma3KU/stY2yLQhYT927wp8LemqPSM
-         lwfw==
-X-Gm-Message-State: ACrzQf22U6BiBYkNMNLtDt9dPDvlZCcTr25UUBj6EOiAeTXVlnlkVY0N
-        3M38ivEecSdu3R7PzFjEpR+wUg==
-X-Google-Smtp-Source: AMsMyM4dV+l3qpT2GaeRAl+EKAxXhDQLiMQslAFWNumDisNbRwbsB45L9HEavd86pL52uLDz5fe2Dg==
-X-Received: by 2002:ac8:7651:0:b0:3a5:528c:f326 with SMTP id i17-20020ac87651000000b003a5528cf326mr4491581qtr.586.1667514098561;
-        Thu, 03 Nov 2022 15:21:38 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id k7-20020ac81407000000b0039cd4d87aacsm1264139qtj.15.2022.11.03.15.21.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 15:21:37 -0700 (PDT)
-Message-ID: <035a66e3-0b21-18de-0899-fb2ee22df15f@linaro.org>
-Date:   Thu, 3 Nov 2022 18:21:36 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: msm8916-alcatel-idol347: add LED
- indicator
-Content-Language: en-US
-To:     Vincent Knecht <vincent.knecht@mailoo.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221029145557.106920-1-vincent.knecht@mailoo.org>
- <20221029145557.106920-2-vincent.knecht@mailoo.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221029145557.106920-2-vincent.knecht@mailoo.org>
-Content-Type: text/plain; charset=UTF-8
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=AOI36shM2qFISu/+jzA+JcOl1pqRzE1Kzqrcj41MDwY=;
+        b=sMecT5JK1PnWHvPNXHrB/rU5+b9yV9rfgHfRSFTGwlj8WWRAWMyNTKNLi2nw0+nm2V
+         ofDSPA6naVQqMuFnyxk+yOxEOAAoWHnF8ojB3ypC7hjmi/71Rea51L6OcsjHDSU1K2X8
+         uU6G5YEY29NSqQMmQv0C3Q4QHW7odwiajG8/l8RX/KiByKNC1a67Z4DOIhnZTAhR0cOI
+         QyO8Lirux0qfOQRVG+KxGQgXWYmeXGK51qUTbqTpSI7YeaDWPxgfcm7SmrJRbR3oJuqx
+         pT5Y7rNNY01Abfpnlqg02gN1W8nlAGmMVVO9ba8Or33RpWY9zU08/Fs6k4L3faFvmOd5
+         Xcaw==
+X-Gm-Message-State: ACrzQf0lhmxOPgtBC60y2U/bAYnUBa+w3X3v3OYLyPtwWGUqYXlpxXCt
+        US5HjVWtC9gQ0aru4X83tw==
+X-Google-Smtp-Source: AMsMyM66EA91nNfrRDIcdTNA2Nh0/OFN70NnT5GE9OiATuFxTVxk0FfQ6krQyiINAjezkSYrXtXX+A==
+X-Received: by 2002:a05:6870:41ca:b0:12b:9637:1cda with SMTP id z10-20020a05687041ca00b0012b96371cdamr19055660oac.114.1667514249741;
+        Thu, 03 Nov 2022 15:24:09 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id 4-20020aca0504000000b00353fe4fb4casm861322oif.48.2022.11.03.15.24.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 15:24:09 -0700 (PDT)
+Received: (nullmailer pid 159590 invoked by uid 1000);
+        Thu, 03 Nov 2022 22:24:10 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, Mark Brown <broonie@kernel.org>,
+        Xiubo Li <Xiubo.Lee@gmail.com>, Takashi Iwai <tiwai@suse.com>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>
+In-Reply-To: <20221103182016.95808-1-marex@denx.de>
+References: <20221103182016.95808-1-marex@denx.de>
+Message-Id: <166751410849.156062.3606952852541846345.robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl-sai: Convert to YAML DT schema
+Date:   Thu, 03 Nov 2022 17:24:10 -0500
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/10/2022 10:55, Vincent Knecht wrote:
-> Add si-en,sn3190 LED controller to enable white LED indicator.
+
+On Thu, 03 Nov 2022 19:20:16 +0100, Marek Vasut wrote:
+> Convert the SAI bindings to YAML DT schema to permit validation.
+> Add Shengjiu as maintainer, derived from sound/soc/fsl/fsl_sai.c
+> get_maintainer result.
 > 
-> This requires adding the additional "enable" gpio that the OEM
-> choose to use, despite it not being mentioned in si-en,sn3190
-> datasheet nor supported by the driver.
+> Describe existing used combinations of compatible strings, add the
+> missing imx7d-sai compatible string which is used on i.MX7 .
 > 
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> Properties lsb-first, fsl,sai-synchronous-rx, fsl,sai-asynchronous,
+> fsl,dataline are no longer listed as required, since those are clearly
+> optional, even the description says so, so does their usage.
+> 
+> Fix the undefined edma channel macro per arch/arm/boot/dts/vfxxx.dtsi ,
+> use the value itself just like in the vfxxx.dtsi .
+> 
+> Document interrupts property, which was previously undocumented, but
+> it is required property of this IP.
+> 
+> Document #sound-sai-cells, which should be zero for this IP.
+> 
+> Document fsl,imx6ul-iomuxc-gpr and its dependency on MX6UL and
+> fsl,sai-mclk-direction-output .
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Jaroslav Kysela <perex@perex.cz>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Nicolin Chen <nicoleotsuka@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shengjiu Wang <shengjiu.wang@gmail.com>
+> Cc: Takashi Iwai <tiwai@suse.com>
+> Cc: Xiubo Li <Xiubo.Lee@gmail.com>
+> Cc: alsa-devel@alsa-project.org
+> To: devicetree@vger.kernel.org
+> ---
+>  .../devicetree/bindings/sound/fsl-sai.yaml    | 188 ++++++++++++++++++
+>  1 file changed, 188 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl-sai.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-> index 3a0a593899ae..952ae092e6ae 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-> @@ -130,6 +130,27 @@ gyroscope@68 {
->  	};
->  };
->  
-> +&blsp_i2c6 {
-> +	status = "okay";
-> +
-> +	led-controller@68 {
-> +		compatible = "si-en,sn3190";
-> +		reg = <0x68>;
-> +		shutdown-gpios = <&msmgpio 89 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&led_enable_default &led_shutdown_default>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		led@1 {
-> +			reg = <1>;
-> +			led-max-microamp = <5000>;
-> +			function = LED_FUNCTION_INDICATOR;
-> +			color = <LED_COLOR_ID_WHITE>;
-> +		};
-> +	};
-> +};
-> +
->  &pm8916_resin {
->  	status = "okay";
->  	linux,code = <KEY_VOLUMEDOWN>;
-> @@ -306,6 +327,29 @@ gyro_int_default: gyro-int-default {
->  		bias-disable;
->  	};
->  
-> +	/*
-> +	 * The OEM wired an additional GPIO to be asserted so that
-> +	 * the si-en,sn3190 LED IC works. Since this GPIO is not
-> +	 * part of the IC datasheet nor supported by the driver,
-> +	 * force it asserted here.
-> +	 */
-> +	led_enable_default: led-enable-default {
 
-Add suffix to node name: "-state"
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Same in other places. Bindings require it now.
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: fsl,dataline:0: [1, 255, 255, 2, 255, 17] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: clock-names:1: 'mclk1' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: clock-names:2: 'mclk2' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: clock-names:3: 'mclk3' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: clock-names:4: 'pll8k' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: dma-names:0: 'tx' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: dma-names:1: 'rx' was expected
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: fsl,dataline: size is 32, expected 8
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,sai.example.dtb: sai@30010000: Unevaluated properties are not allowed ('clock-names', 'dma-names', 'fsl,dataline' were unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl-sai.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
