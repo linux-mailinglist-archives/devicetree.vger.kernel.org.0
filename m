@@ -2,93 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E65066189D0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 21:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C886189E5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 21:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230222AbiKCUqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 16:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47950 "EHLO
+        id S229699AbiKCUtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 16:49:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbiKCUqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 16:46:01 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA2620BF0;
-        Thu,  3 Nov 2022 13:46:01 -0700 (PDT)
-Received: from notapiano (unknown [IPv6:2600:4041:5b1a:cd00:524d:e95d:1a9c:492a])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BC4E9660295F;
-        Thu,  3 Nov 2022 20:45:56 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667508359;
-        bh=ISVrpYt4PR/qsbbqqG5f/trgN2UjQtmT5vQsGuTNWYQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aPffSOWHfvf3cv7PtJFElqX+kIJyAs5RUE5oMEjV9GXiGcZsze8QTHbE4ouhQedUN
-         bnO4/UoNxjIMaeETlEinj3tg6typI5IjS4OJF2CgxBYKtrgJOcgfIJ4m898oekR9aS
-         ArbRbzSExbF8FzJ/U4nEkpUvKJG3QPpBqZVY5VqsWJJcBxIC6Ni9+sI3aM7W9kqg2v
-         6orABOsR2DhsSCFMXEcZDai78MVOp+N2ia8JV18M0W9LuzcJFlMlNolxpqVZ6Pu6bD
-         Sb9pYH/MkEIavj3ibVF9UQfQ6vNmvrqj4ObF3cGK/pVIDR5d8AHySEo9EE59mDt2fm
-         B/a6hGxIi8Q+g==
-Date:   Thu, 3 Nov 2022 16:45:52 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, linux@roeck-us.net,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
-        singo.chang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v27 08/11] soc: mediatek: mmsys: add mmsys for support 64
- reset bits
-Message-ID: <20221103204552.5aklyrn7mbdhxw63@notapiano>
-References: <20221103032512.9144-1-nancy.lin@mediatek.com>
- <20221103032512.9144-9-nancy.lin@mediatek.com>
+        with ESMTP id S229672AbiKCUtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 16:49:11 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76E7620BCD
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 13:49:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=oijAjFsRVhq0aa+m08HEjKONuzl
+        CulWOERem8aFjwTc=; b=EshHGB99WnuFmV5X+YNLMWqXraPiMR8fnnb7o0vK4jV
+        Z9C/NIgL577ycBPpIn68fNhFJW9iacZX1l4wUuQT4dOGztXGH7QhJXTYEynMUV7c
+        VFaarD59f3AndJpoBn2zy3mkRcsZhxGNMTmEHzm+DWf3hKQLZqTZjTg67p8HXOXU
+        =
+Received: (qmail 2784596 invoked from network); 3 Nov 2022 21:49:04 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Nov 2022 21:49:04 +0100
+X-UD-Smtp-Session: l3s3148p1@V65wFpfsQocujns0
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: timer: renesas,tmu: Add r8a779g0 support
+Date:   Thu,  3 Nov 2022 21:48:58 +0100
+Message-Id: <20221103204859.24667-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20221103032512.9144-9-nancy.lin@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 11:25:09AM +0800, Nancy.Lin wrote:
-> Add mmsys for support 64 reset bits. It is a preparation for MT8195
-> vdosys1 HW reset. MT8195 vdosys1 has more than 32 reset bits.
-> 
-> 1. Add the number of reset bits in mmsys private data
-> 2. move the whole "reset register code section" behind the
-> "get mmsys->data" code section for getting the num_resets in mmsys->data.
-> 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Tested-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> Change-Id: Ic7c30ad6c4f74a6b2ebf75fc0e3f9f207b0416d1
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
+ Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Again, no Change-Id please.
+diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+index 60f4c059bcff..a67e427a9e7e 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+@@ -38,6 +38,7 @@ properties:
+           - renesas,tmu-r8a77995 # R-Car D3
+           - renesas,tmu-r8a779a0 # R-Car V3U
+           - renesas,tmu-r8a779f0 # R-Car S4-8
++          - renesas,tmu-r8a779g0 # R-Car V4H
+       - const: renesas,tmu
+ 
+   reg:
+-- 
+2.35.1
 
-Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-Thanks,
-Nícolas
