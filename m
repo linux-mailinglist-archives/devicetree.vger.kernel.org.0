@@ -2,55 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77CA5617CAE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6728E617CAB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:35:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231685AbiKCMft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:35:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53146 "EHLO
+        id S231659AbiKCMfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:35:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbiKCMfr (ORCPT
+        with ESMTP id S231674AbiKCMfr (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:35:47 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95FA8C767;
-        Thu,  3 Nov 2022 05:35:42 -0700 (PDT)
-Received: by mail-oo1-f47.google.com with SMTP id r10-20020a4aa2ca000000b0049dd7ad4128so233253ool.13;
-        Thu, 03 Nov 2022 05:35:42 -0700 (PDT)
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE7FCE34;
+        Thu,  3 Nov 2022 05:35:45 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-13b103a3e5dso1960563fac.2;
+        Thu, 03 Nov 2022 05:35:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=37gqwegML5cFk127JC1GKqU7RUWY09eVP0GPmdF2rjw=;
-        b=QxxllMPdu2nBS1TRSc/uXcFhfwJoqJx1ZOcwpVrzDcsq/4PYktRNoPcjccc+Ecum5A
-         8esbVOKgoZT2hPW+7FStSMEIzIjCgtmoiQkqsyPbBhcqmYzg+5oM9nEBj8QFoAG54tGD
-         7eC/gxK6YpqQmEPu05KUIZ8kRh56quZZ/O/sqfH3uIoBF0dNaN4hMxIS30vcMb7TzQ6U
-         YBCc3ACatskIiXTPslDewsxRFWj9qc1rc1hWxuWABAMRNNgixDA2xGr7nrHPgZL17KcT
-         N+wbvgFwcAdSx3mh52WAoUOeWMO/w7e6NVIqFIM6YNoYGA91XE9JnsMzQ0TshsppelpT
-         hZ8g==
-X-Gm-Message-State: ACrzQf0jy+YtXZlrlcRcKr9r3cQr8oy/3vwVUSCiA80/46gOvL+j7uxO
-        jgg+UdsHtKrTz+FeUJPX9KwdFbXVVw==
-X-Google-Smtp-Source: AMsMyM48TMvYPaH8D/31MMApGEGFR+YQRii6tLBH7rjEQZYsztaem4Q3RUubEE57iJIb8kPmRGLAXg==
-X-Received: by 2002:a4a:e411:0:b0:442:c893:86b7 with SMTP id t17-20020a4ae411000000b00442c89386b7mr12705591oov.22.1667478941761;
-        Thu, 03 Nov 2022 05:35:41 -0700 (PDT)
+        bh=Yt3Or6Hc5rWqEW44VauNHB/7Tdn75AHTUvKCFRqx6Wc=;
+        b=2WjMeBbPdh3AlSBURB/riF+SbSUaANbXERUrLPBWYN/BIbwkS2em62UA13Iv2YumRq
+         OiBkah3bYPr/PZOPpyKbE0M0B4DmUr9pB1Q+mfvVNvnts+pYv4kMmOR9TqqV/6SZEhz+
+         /Dl87guf/UXjZwg7Sctm6JpkTGCzX0SJkV1YbnIgnCoT9FBPi+5IkZnjkfljDU2X8bS/
+         APzb/ibQW+0ZKGT9LPi20Y7d66bJZyaFbrX7+tZs6mWXKhV8W5gLGPlYh1go5lLE2Dzy
+         A5YNpyi96rVraEEfDNH85roH7Q7gpWUNMjtNKK1qoyvEP4ZfJfbfYS4iUJB3wkm5Axku
+         y9Hw==
+X-Gm-Message-State: ACrzQf3L4jcQFthKCs6uYVnXJrY4f4PBJmD0nArOQKggmB8QVSExmNz0
+        iiQqkzFCifFhRq8ZSDDSbA==
+X-Google-Smtp-Source: AMsMyM5EZi2Ftm7ol57J/diP8OEESwv2NPojF/XnBc6X1Sc0OTdJguH3vf/QhIAZetkm6LiKQlU1qg==
+X-Received: by 2002:a05:6870:f59e:b0:132:bcd:565f with SMTP id eh30-20020a056870f59e00b001320bcd565fmr26806687oab.254.1667478944707;
+        Thu, 03 Nov 2022 05:35:44 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v19-20020a0568301bd300b00668953207b2sm253918ota.80.2022.11.03.05.35.40
+        by smtp.gmail.com with ESMTPSA id u11-20020a056871008b00b0013d7fffbc3csm261177oaa.58.2022.11.03.05.35.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 05:35:41 -0700 (PDT)
-Received: (nullmailer pid 2140207 invoked by uid 1000);
+        Thu, 03 Nov 2022 05:35:44 -0700 (PDT)
+Received: (nullmailer pid 2140210 invoked by uid 1000);
         Thu, 03 Nov 2022 12:35:43 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     lee <lee@arducam.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org,
-        linux-media@vger.kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20221103110424.00007a48@arducam.com>
-References: <20221103110424.00007a48@arducam.com>
-Message-Id: <166747792046.2121835.13837905037920698930.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor binding
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
+        linux-arm-msm@vger.kernel.org, sudeep.holla@arm.com,
+        andersson@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, cristian.marussi@arm.com,
+        devicetree@vger.kernel.org, quic_avajid@quicinc.com
+In-Reply-To: <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
+References: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
+ <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
+Message-Id: <166747792111.2121881.1520386544436651390.robh@kernel.org>
+Subject: Re: [RFC 1/2] dt-bindings: firmware: arm,scmi: Add support for memlat
+ vendor protocol
 Date:   Thu, 03 Nov 2022 07:35:43 -0500
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -64,29 +68,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 03 Nov 2022 11:04:24 +0800, lee wrote:
-> Add YAML device tree binding for IMX519 CMOS image sensor, and
-> the relevant MAINTAINERS entries.
+On Thu, 03 Nov 2022 10:28:31 +0530, Sibi Sankar wrote:
+> Add bindings support for the SCMI QTI memlat (memory latency) vendor
+> protocol. The memlat vendor protocol enables the frequency scaling of
+> various buses (L3/LLCC/DDR) based on the memory latency governor
+> running on the CPUSS Control Processor.
 > 
-> Signed-off-by: Lee Jackson <lee@arducam.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
->  .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
->  MAINTAINERS                                   |   9 ++
->  2 files changed, 116 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+>  .../devicetree/bindings/firmware/arm,scmi.yaml     | 164 +++++++++++++++++++++
+>  1 file changed, 164 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml:48:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml: 'port' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx519.example.dtb: sensor@1a: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/arm,scmi.example.dtb: scmi: mbox-names: ['tx'] is too short
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+Documentation/devicetree/bindings/firmware/arm,scmi.example.dtb:0:0: /example-3/soc/mailbox@17400000: failed to match any schema with compatible: ['qcom,cpucp-mbox']
 
 doc reference errors (make refcheckdocs):
 
