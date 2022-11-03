@@ -2,171 +2,437 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4536178BC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:34:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4440C6178E0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbiKCIeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 04:34:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
+        id S230292AbiKCIiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 04:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbiKCIeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:34:15 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 063AF2705;
-        Thu,  3 Nov 2022 01:34:13 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8BxXbcFfWNjzy8EAA--.5317S3;
-        Thu, 03 Nov 2022 16:34:13 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxV1cAfWNjsYcLAA--.15570S3;
-        Thu, 03 Nov 2022 16:34:12 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhanghongchen <zhanghongchen@loongson.cn>,
-        Liu Peibao <liupeibao@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v10 2/2] dt-bindings: thermal: add loongson-2 thermal
-Date:   Thu,  3 Nov 2022 16:34:07 +0800
-Message-Id: <20221103083407.4039-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221103083407.4039-1-zhuyinbo@loongson.cn>
-References: <20221103083407.4039-1-zhuyinbo@loongson.cn>
+        with ESMTP id S230527AbiKCIit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:38:49 -0400
+Received: from egress-ip33a.ess.de.barracuda.com (egress-ip33a.ess.de.barracuda.com [18.185.115.192])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E0AF3E
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 01:38:47 -0700 (PDT)
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198]) by mx-outbound45-120.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 03 Nov 2022 08:38:43 +0000
+Received: by mail-lj1-f198.google.com with SMTP id a3-20020a2eb163000000b00276fff42408so427866ljm.9
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 01:38:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=unGhO75KNj5F0H5HYdUSY/HSB5t1NyvgLXBVFy7qw9A=;
+        b=nXE3GBOIaAyTMlR5PK4M500jWWXvkYflqSs3gRNfemucWWvMug9fpuqMQTBexPZfYO
+         2fVaxjbsBUyxzKBRraCNXI2mu5qWyJKXynK5PH/VAyU5HHzHO5CIPeotaDTpNjBZ3KaS
+         SujQaLgUPpg1jTPyUW9D1tCTcRnS3kaepmv58=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=unGhO75KNj5F0H5HYdUSY/HSB5t1NyvgLXBVFy7qw9A=;
+        b=L6j8lTIBfmShUgVPUa6ssRITe9z1A3Y0FM6i2PtnO2KTToLDFAHuc1QKqJA+bdnhQg
+         Nso+JPjuTOQks73xRITPl9MGzxiy2c+LX4JTE/tMEbymwHzSXGKBWPTFkMKQ555c2up4
+         foDrPY7SMhaV0NGqpWD+PFVsOhog6cOFJ3zdRpZuJ2mevK1Nqga9U++N2NRn1U7jk4vw
+         8TuZq3Z+JC5fRrU1xdY/RTSInj3wFB1f0a4dVK7y8HVVcW4T1+aNbuvtuYjhYeyqm8Vs
+         llmk2UFSEFU4Vc/E5FA4MMqg3iiiud6LbAJ6E/Ie9B88U1E7xUyshFNEV1zeQKp8nHDO
+         zhKw==
+X-Gm-Message-State: ACrzQf2HKMLoeAmZbpwK1W92eohZWqxN82swrCr9NwXW8u9IYAOuu7xo
+        kwLTaGeuMEsCSqonjavivNeLi8a2zYVbR49q1jx9z3cZDh77/0bOtbxa8CdCtyE8H4PkKWrssZ+
+        ++mFmz9YYgeluGeiq1fUbmxk0mcJKLW4WjXQos4WTzuRyysPJidaOwBN6mXtAqp5hgEE+Wq61Lg
+        ==
+X-Received: by 2002:a05:6512:503:b0:4af:1cbe:1ac6 with SMTP id o3-20020a056512050300b004af1cbe1ac6mr10126541lfb.651.1667464722794;
+        Thu, 03 Nov 2022 01:38:42 -0700 (PDT)
+X-Google-Smtp-Source: AMsMyM4ZyFMVq5uHecpJAHlwx4mG7Qoyx4MnhULZRvHxykMYE79HFvEHbflsZJ5RaemrbjWPWVouUofspQQIlIXuwuc=
+X-Received: by 2002:a05:6512:503:b0:4af:1cbe:1ac6 with SMTP id
+ o3-20020a056512050300b004af1cbe1ac6mr10126533lfb.651.1667464722470; Thu, 03
+ Nov 2022 01:38:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxV1cAfWNjsYcLAA--.15570S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4rWr1DJr47trW5ZFb_yoW5CrW3pF
-        47C3WDJrWv9F17uanIkFyxArsYvFnYyFZrXrs7Kw15Kr98Xa4aq3y7K3WDu393Wr1jgFWU
-        uFySkr4UCF1DArJanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUAVWUZwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2
-        Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
-        1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-        Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I
-        6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
-        0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-        JbIYCTnIWIevJa73UjIFyTuYvjxUzrcfUUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20221018123849.23695-1-sinthu.raja@ti.com> <20221018123849.23695-4-sinthu.raja@ti.com>
+ <3f1afad0-1e93-4843-defd-ca32c308cc9e@linaro.org>
+In-Reply-To: <3f1afad0-1e93-4843-defd-ca32c308cc9e@linaro.org>
+From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
+Date:   Thu, 3 Nov 2022 14:08:30 +0530
+Message-ID: <CAEd-yTTtQhhECw7jSQb38ThaOT_CtFmHy0dJt3SaKxn1KzSgKg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arch: arm64: ti: Add support for AM68 SK base board
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-BESS-ID: 1667464723-311640-5380-4968-1
+X-BESS-VER: 2019.1_20221024.2147
+X-BESS-Apparent-Source-IP: 209.85.208.198
+X-BESS-Outbound-Spam-Score: 0.50
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.243897 [from 
+        cloudscan10-63.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+        0.50 BSF_RULE7568M          META: Custom Rule 7568M 
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_RULE7568M, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 thermal binding with DT schema format using
-json-schema.
+On Tue, Oct 18, 2022 at 6:33 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 18/10/2022 08:38, Sinthu Raja wrote:
+> > From: Sinthu Raja <sinthu.raja@ti.com>
+> >
+> > The SK architecture comprises of baseboard and a SOM board. It is
+> > as follows,
+> >
+> >        +--------------------------------------+---+
+> >        |                                      |   |<--Connectors
+> >        |                                      +---|
+> >        |      +---------------------------+   |   |
+> >        |      | SOM                       |   +---|
+> >        |      |                           |   |   |
+> >        |      |                           |   +---| Power Supply
+> >        |      |                           |       |   |
+> >        |      +---------------------------+       |   |
+> >        |                                          |<--+
+> >        |           BASE BOARD                     |
+> >        +------------------------------------------+
+>
+> This is pretty straightforward for SoM, I am not sure what's the benefit
+> to add it.
+>
+> >
+> > AM68 Starter Kit's baseboard contains most of the actual connectors,
+> > power supply etc. The System on Module (SoM) is plugged on to the base
+> > board. Therefore, add support for peripherals brought out in the base
+> > board.
+> >
+> > Schematics: https://www.ti.com/lit/zip/SPRR463
+> >
+> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/Makefile               |   2 +
+> >  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 459 ++++++++++++++++++
+> >  2 files changed, 461 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> > index 4555a5be2257..498b089d96f8 100644
+> > --- a/arch/arm64/boot/dts/ti/Makefile
+> > +++ b/arch/arm64/boot/dts/ti/Makefile
+> > @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+> >
+> >  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+> >
+> > +dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+> > +
+>
+> Alphabetical order, although does not look like other entries are ordered...
+>
+> >  dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+> >  dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+> >
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > new file mode 100644
+> > index 000000000000..f51cbd2e3b72
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
+> > @@ -0,0 +1,459 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+> > + *
+> > + * Base Board: https://www.ti.com/lit/zip/SPRR463
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "k3-am68-sk-som.dtsi"
+> > +#include <dt-bindings/net/ti-dp83867.h>
+> > +#include <dt-bindings/phy/phy-cadence.h>
+> > +#include <dt-bindings/phy/phy.h>
+> > +#include <dt-bindings/mux/ti-serdes.h>
+> > +
+> > +/ {
+> > +     compatible = "ti,am68-sk", "ti,j721s2";
+> > +     model = "Texas Instruments AM68 SK";
+> > +
+> > +     chosen {
+> > +             stdout-path = "serial2:115200n8";
+> > +             bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x2880000";
+>
+> None of these bootargs are suitable for mainline. earlycon for sure - it
+> is pure debug option.
+Krzysztof,
+In AM68 SK the Linux console is on main_uart8, so to be consistent
+with other J7 families of devices aliasing the serial port to ttyS2. I
+am quite confused why these bootargs are not suitable for mainline. I
+check the below documentation section 2.3, as mentioned it can be used
+as kernel parameters. Please correct me if I am wrong.
+https://www.kernel.org/doc/html/latest/devicetree/usage-model.html?highlight=bootargs
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Change in v10:
-		1. Add all history change log information.
-Change in v9:
-		1. NO change, but other patch in this series of patches set
-		   has changes.
-Change in v8:
-                1. Replace string Loongson2/loongson2 with Loongson-2/loongson-2.
-Change in v7:
-		1. Split the modification of patch 3 and merge it into this patch.
-Change in v6:
-		1. Fix the warning "reg: [[0, 534779136], [0, 48]] is too long"
-		   when compile the yaml.
-Change in v5:
-		1. Keep use same quotes "'" in all places. 
-Change in v4:
-		1. Fixup the compatible.
-		2. Update the binding file name.
-		3. Include irq.h to fix compile issue.
-Change in v3:
-		1. Remove the sensor id.
-		2. Remove the interrupt-parent in thermal required property.
-		3. Update the thermal binding file name.
-		4. Fixup the commit log information.
-Change in v2:
-		1. Add description and type about the "id".	
-		2. Make the filename was based on compatible.
+>
+> > +     };
+> > +
+> > +     aliases {
+> > +             serial2 = &main_uart8;
+> > +             mmc1 = &main_sdhci1;
+> > +             can0 = &mcu_mcan0;
+> > +             can1 = &mcu_mcan1;
+> > +             can2 = &main_mcan6;
+> > +             can3 = &main_mcan7;
+> > +     };
+> > +
+> > +     vusb_main: fixedregulator-vusb-main5v0 {
+>
+> Not "fixedregulator-" but just "regulator-"
+>
+> Same in other places.
+>
+> > +             /* USB MAIN INPUT 5V DC */
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vusb-main5v0";
+> > +             regulator-min-microvolt = <5000000>;
+> > +             regulator-max-microvolt = <5000000>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vsys_3v3: fixedregulator-vsys3v3 {
+> > +             /* Output of LM5141 */
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vsys_3v3";
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             vin-supply = <&vusb_main>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vdd_mmc1: fixedregulator-sd {
+> > +             /* Output of TPS22918 */
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vdd_mmc1";
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             regulator-boot-on;
+> > +             enable-active-high;
+> > +             vin-supply = <&vsys_3v3>;
+> > +             gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     vdd_sd_dv: gpio-regulator-TLV71033 {
+>
+> 1. regulator-xxxxxx
+> 2. lowercase node name
+>
+> > +             /* Output of TLV71033 */
+> > +             compatible = "regulator-gpio";
+> > +             regulator-name = "tlv71033";
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&vdd_sd_dv_pins_default>;
+> > +             regulator-min-microvolt = <1800000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +             regulator-boot-on;
+> > +             vin-supply = <&vsys_3v3>;
+> > +             gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;> +           states = <1800000 0x0>,
+> > +                      <3300000 0x1>;
+> > +     };
+> > +
+> > +     vsys_io_1v8: regulator-vsys-io-1v8 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vsys_io_1v8";
+> > +             regulator-min-microvolt = <1800000>;
+> > +             regulator-max-microvolt = <1800000>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vsys_io_1v2: regulator-vsys-io-1v2 {
+> > +             compatible = "regulator-fixed";
+> > +             regulator-name = "vsys_io_1v2";
+> > +             regulator-min-microvolt = <1200000>;
+> > +             regulator-max-microvolt = <1200000>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     transceiver1: can-phy0 {
+> > +             compatible = "ti,tcan1042";
+> > +             #phy-cells = <0>;
+> > +             max-bitrate = <5000000>;
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&mcu_mcan0_pins_default>;
+> > +             standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     transceiver2: can-phy1 {
+> > +             compatible = "ti,tcan1042";
+> > +             #phy-cells = <0>;
+> > +             max-bitrate = <5000000>;
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&mcu_mcan1_pins_default>;
+> > +             standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     transceiver3: can-phy2 {
+> > +             compatible = "ti,tcan1042";
+> > +             #phy-cells = <0>;
+> > +             max-bitrate = <5000000>;
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&main_mcan6_pins_default>;
+> > +             standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     transceiver4: can-phy3 {
+> > +             compatible = "ti,tcan1042";
+> > +             #phy-cells = <0>;
+> > +             max-bitrate = <5000000>;
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&main_mcan7_pins_default>;
+> > +             standby-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +};
+> > +
+> > +&main_pmx0 {
+> > +
+>
+> No need for blank line.
+>
+> > +     main_uart8_pins_default: main-uart8-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x0d0, PIN_INPUT, 11) /* (AF26) SPI0_CS1.UART8_RXD */
+> > +                     J721S2_IOPAD(0x0d4, PIN_OUTPUT, 11) /* (AH27) SPI0_CLK.UART8_TXD */
+> > +             >;
+> > +     };
+> > +
+> > +     main_i2c0_pins_default: i2c0_pins_default {
+>
+> No underscores in node names. Why do you use here different style than
+> in other places?
+>
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x0e0, PIN_INPUT, 0) /* (AH25) I2C0_SCL */
+> > +                     J721S2_IOPAD(0x0e4, PIN_INPUT, 0) /* (AE24) I2C0_SDA */
+> > +             >;
+> > +     };
+> > +
+> > +     main_mmc1_pins_default: main-mmc1-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x104, PIN_INPUT, 0) /* (P23) MMC1_CLK */
+> > +                     J721S2_IOPAD(0x108, PIN_INPUT, 0) /* (N24) MMC1_CMD */
+> > +                     J721S2_IOPAD(0x0fc, PIN_INPUT, 0) /* (M23) MMC1_DAT0 */
+> > +                     J721S2_IOPAD(0x0f8, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
+> > +                     J721S2_IOPAD(0x0f4, PIN_INPUT, 0) /* (R24) MMC1_DAT2 */
+> > +                     J721S2_IOPAD(0x0f0, PIN_INPUT, 0) /* (R22) MMC1_DAT3 */
+> > +                     J721S2_IOPAD(0x0e8, PIN_INPUT, 8) /* (AE25) TIMER_IO0.MMC1_SDCD */
+> > +             >;
+> > +     };
+> > +
+> > +     vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x0c4, PIN_INPUT, 7) /* (AB26) ECAP0_IN_APWM_OUT.GPIO0_49 */
+> > +             >;
+> > +     };
+> > +
+> > +     main_usbss0_pins_default: main-usbss0-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x0ec, PIN_OUTPUT, 6) /* (AG25) TIMER_IO1.USB0_DRVVBUS */
+> > +             >;
+> > +     };
+> > +
+> > +     main_mcan6_pins_default: mcan6_pins_default {
+>
+> Be sure you tested the DTS against bindings. Please run `make
+> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
+> for instructions).
+>
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x098, PIN_INPUT, 0) /* (V25) MCASP0_AXR10.MCAN6_RX */
+> > +                     J721S2_IOPAD(0x094, PIN_INPUT, 0) /* (AA25) MCASP0_AXR9.MCAN6_TX */
+> > +             >;
+> > +     };
+> > +
+> > +     main_mcan7_pins_default: mcan7_pins_default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_IOPAD(0x0a0, PIN_INPUT, 0) /* (AB25) MCASP0_AXR12.MCAN7_RX */
+> > +                     J721S2_IOPAD(0x09c, PIN_INPUT, 0) /* (T24) MCASP0_AXR11.MCAN7_TX */
+> > +             >;
+> > +     };
+> > +
+> > +};
+> > +
+> > +&wkup_pmx0 {
+> > +     mcu_cpsw_pins_default: mcu-cpsw-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_WKUP_IOPAD(0x094, PIN_INPUT, 0) /* (B22) MCU_RGMII1_RD0 */
+> > +                     J721S2_WKUP_IOPAD(0x090, PIN_INPUT, 0) /* (B21) MCU_RGMII1_RD1 */
+> > +                     J721S2_WKUP_IOPAD(0x08c, PIN_INPUT, 0) /* (C22) MCU_RGMII1_RD2 */
+> > +                     J721S2_WKUP_IOPAD(0x088, PIN_INPUT, 0) /* (D23) MCU_RGMII1_RD3 */
+> > +                     J721S2_WKUP_IOPAD(0x084, PIN_INPUT, 0) /* (D22) MCU_RGMII1_RXC */
+> > +                     J721S2_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (E23) MCU_RGMII1_RX_CTL */
+> > +                     J721S2_WKUP_IOPAD(0x07c, PIN_OUTPUT, 0) /* (F23) MCU_RGMII1_TD0 */
+> > +                     J721S2_WKUP_IOPAD(0x078, PIN_OUTPUT, 0) /* (G22) MCU_RGMII1_TD1 */
+> > +                     J721S2_WKUP_IOPAD(0x074, PIN_OUTPUT, 0) /* (E21) MCU_RGMII1_TD2 */
+> > +                     J721S2_WKUP_IOPAD(0x070, PIN_OUTPUT, 0) /* (E22) MCU_RGMII1_TD3 */
+> > +                     J721S2_WKUP_IOPAD(0x080, PIN_OUTPUT, 0) /* (F21) MCU_RGMII1_TXC */
+> > +                     J721S2_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (F22) MCU_RGMII1_TX_CTL */
+> > +             >;
+> > +     };
+> > +
+> > +     mcu_mdio_pins_default: mcu-mdio-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_WKUP_IOPAD(0x09c, PIN_OUTPUT, 0) /* (A21) MCU_MDIO0_MDC */
+> > +                     J721S2_WKUP_IOPAD(0x098, PIN_INPUT, 0) /* (A22) MCU_MDIO0_MDIO */
+> > +             >;
+> > +     };
+> > +
+> > +     mcu_mcan0_pins_default: mcu-mcan0-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_WKUP_IOPAD(0x0bc, PIN_INPUT, 0) /* (E28) MCU_MCAN0_RX */
+> > +                     J721S2_WKUP_IOPAD(0x0b8, PIN_OUTPUT, 0) /* (E27) MCU_MCAN0_TX */
+> > +             >;
+> > +     };
+> > +
+> > +     mcu_mcan1_pins_default: mcu-mcan1-pins-default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_WKUP_IOPAD(0x0d4, PIN_INPUT, 0) /* (F26) WKUP_GPIO0_5.MCU_MCAN1_RX */
+> > +                     J721S2_WKUP_IOPAD(0x0d0, PIN_OUTPUT, 0) /* (C23) WKUP_GPIO0_4.MCU_MCAN1_TX*/
+> > +             >;
+> > +     };
+> > +
+> > +     mcu_i2c1_pins_default: mcu_i2c1_pins_default {
+> > +             pinctrl-single,pins = <
+> > +                     J721S2_WKUP_IOPAD(0x0e0, PIN_INPUT, 0) /* (F24) WKUP_GPIO0_8.MCU_I2C1_SCL */
+> > +                     J721S2_WKUP_IOPAD(0x0e4, PIN_INPUT, 0) /* (H26) WKUP_GPIO0_9.MCU_I2C1_SDA */
+> > +             >;
+> > +     };
+> > +
+>
+> Drop line
+>
+> > +};
+> > +
+> > +&main_gpio2 {
+> > +     status = "disabled";
+> > +};
+> > +
+> Best regards,
+> Krzysztof
+>
 
- .../thermal/loongson,ls2k-thermal.yaml        | 43 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
 
-diff --git a/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-new file mode 100644
-index 000000000000..c0637e2d6d57
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/loongson,ls2k-thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Thermal sensors on Loongson-2 SoCs
-+
-+maintainers:
-+  - zhanghongchen <zhanghongchen@loongson.cn>
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-thermal
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  '#thermal-sensor-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#thermal-sensor-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    thermal: thermal-sensor@1fe01500 {
-+        compatible = "loongson,ls2k-thermal";
-+        reg = <0x1fe01500 0x30>;
-+        interrupt-parent = <&liointc0>;
-+        interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+        #thermal-sensor-cells = <1>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 37ab451d9258..3aff8b8723b1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12015,6 +12015,7 @@ M:	zhanghongchen <zhanghongchen@loongson.cn>
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/loongson,ls2k-thermal.yaml
- F:	drivers/thermal/loongson2_thermal.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
 -- 
-2.33.0
-
+With Regards
+Sinthu Raja
