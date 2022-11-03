@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC266175A1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 05:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA456175B8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 05:41:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbiKCEfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 00:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32882 "EHLO
+        id S229992AbiKCElT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 00:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbiKCEft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 00:35:49 -0400
+        with ESMTP id S229553AbiKCElT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 00:41:19 -0400
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DF9FDC
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 21:35:48 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A34ZZmQ100805;
-        Wed, 2 Nov 2022 23:35:35 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B38D813E39;
+        Wed,  2 Nov 2022 21:41:18 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A34fC10101650;
+        Wed, 2 Nov 2022 23:41:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667450135;
-        bh=BW/eLgiq+fhatrc6xdG1C4Em5AEQX/Y9g07DfhwQdog=;
+        s=ti-com-17Q1; t=1667450472;
+        bh=qRgigdUB+JO8RWvpkMw1yw+cmZ02/R3jTn8jQPa8YWs=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Kj7q2gELxPJAMb6JtaghgnvAWjhHow4evzcIa2r/ZNkK6mkJmi2MT95g9S1RirAj2
-         84NBJfUimGuJFJw/tPQQFxCMRXbpB6HMQ5uabDOXYjTViaw8aNrgP3XEPS5tTWPltq
-         AXboy6UJ77cS4/fW1ng5rO5l+E3QcIumI1zfUG8E=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A34ZZIq078996
+        b=VOJd6CWIH0P8P4Byqw8MldUBjanlZxeVT0uIgVvgn9wpWeGw2Vy2To/9TKBzEMwHf
+         SOZl8YSQ/aJaOfMia/+SDUseNaBldEGvvlLnX1VUew6XXGMV/amSbyqZBlX8wUhaq6
+         hVQnc8Jc7jflkCE8x1DYP67h/1U+lX6jd5hwMm20=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A34fC2E041582
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Nov 2022 23:35:35 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 2 Nov 2022 23:41:12 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
- 2022 23:35:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 23:41:12 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 2 Nov 2022 23:35:35 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A34ZZlm038314;
-        Wed, 2 Nov 2022 23:35:35 -0500
-Date:   Wed, 2 Nov 2022 23:35:35 -0500
+ Frontend Transport; Wed, 2 Nov 2022 23:41:12 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A34fCaU050477;
+        Wed, 2 Nov 2022 23:41:12 -0500
+Date:   Wed, 2 Nov 2022 23:41:11 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Julien Panis <jpanis@baylibre.com>
+To:     Rahul T R <r-ravikumar@ti.com>
 CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 0/2] AM62x watchdog support
-Message-ID: <20221103043535.ulijdvdmwoz2xbsv@exert>
-References: <20220718122328.251602-1-jpanis@baylibre.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jkridner@gmail.com>
+Subject: Re: [PATCH v6 0/2] Enable RPi header on j721e sk
+Message-ID: <20221103044111.hui7wya64fzjxfgp@wrongdoer>
+References: <20221021172932.16731-1-r-ravikumar@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220718122328.251602-1-jpanis@baylibre.com>
+In-Reply-To: <20221021172932.16731-1-r-ravikumar@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -64,37 +65,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:23-20220718, Julien Panis wrote:
-> This patch series adds support for AM62x watchdog.
+On 22:59-20221021, Rahul T R wrote:
+> The following series of patches enables RPi header
+> on j721e sk. It is a 40 pin io expasion header which
+> brings out i2c5, ehrpwm 2,3 and some pins of gpio 0,1
 > 
-> Changes since v0:
-> 	- Mark MCU & WKUP watchdogs as reserved
-> 
-> Julien Panis (2):
->   arm64: dts: ti: k3-am62: add watchdog nodes
->   arm64: dts: ti: k3-am625-sk: mark MCU and WKUP watchdogs as reserved
-> 
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  9 +++++
->  arch/arm64/boot/dts/ti/k3-am625-sk.dts     | 10 +++++
->  4 files changed, 73 insertions(+)
-> 
+> v6:
+>    - Rebased to 6.1-rc1
 
-Could you rebase the series to the latest next?
+Now that the cleanups are in place, we'd need one additional rebase
+please.
 
-Also, cosmetics:
-a) Patches are of the order [PATCH] indicating v1, [PATCH V2] indicating
-   v2 etc.. Also when sending subsequent versions, it is a good practise
-   to keep links (typically lore or patchworks) to the previous versions
-   of the patches along with change log. See comments such as [1].
-   Change logs and lore links help new reviewers quickly catchup on the
-   discussions so far.
-
-b) please keep lkml in CC.
-
-
-[1] https://lore.kernel.org/all/Y1+q2Usm9ecicXqp@google.com/
 -- 
 Regards,
 Nishanth Menon
