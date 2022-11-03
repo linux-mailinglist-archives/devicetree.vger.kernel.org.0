@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6728E617CAB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:35:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F96E617CB0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231659AbiKCMfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:35:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53154 "EHLO
+        id S231695AbiKCMfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:35:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231674AbiKCMfr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:35:47 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE7FCE34;
-        Thu,  3 Nov 2022 05:35:45 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-13b103a3e5dso1960563fac.2;
-        Thu, 03 Nov 2022 05:35:45 -0700 (PDT)
+        with ESMTP id S231688AbiKCMfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:35:50 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC82CE05;
+        Thu,  3 Nov 2022 05:35:46 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-13b6c1c89bdso1898329fac.13;
+        Thu, 03 Nov 2022 05:35:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Yt3Or6Hc5rWqEW44VauNHB/7Tdn75AHTUvKCFRqx6Wc=;
-        b=2WjMeBbPdh3AlSBURB/riF+SbSUaANbXERUrLPBWYN/BIbwkS2em62UA13Iv2YumRq
-         OiBkah3bYPr/PZOPpyKbE0M0B4DmUr9pB1Q+mfvVNvnts+pYv4kMmOR9TqqV/6SZEhz+
-         /Dl87guf/UXjZwg7Sctm6JpkTGCzX0SJkV1YbnIgnCoT9FBPi+5IkZnjkfljDU2X8bS/
-         APzb/ibQW+0ZKGT9LPi20Y7d66bJZyaFbrX7+tZs6mWXKhV8W5gLGPlYh1go5lLE2Dzy
-         A5YNpyi96rVraEEfDNH85roH7Q7gpWUNMjtNKK1qoyvEP4ZfJfbfYS4iUJB3wkm5Axku
-         y9Hw==
-X-Gm-Message-State: ACrzQf3L4jcQFthKCs6uYVnXJrY4f4PBJmD0nArOQKggmB8QVSExmNz0
-        iiQqkzFCifFhRq8ZSDDSbA==
-X-Google-Smtp-Source: AMsMyM5EZi2Ftm7ol57J/diP8OEESwv2NPojF/XnBc6X1Sc0OTdJguH3vf/QhIAZetkm6LiKQlU1qg==
-X-Received: by 2002:a05:6870:f59e:b0:132:bcd:565f with SMTP id eh30-20020a056870f59e00b001320bcd565fmr26806687oab.254.1667478944707;
-        Thu, 03 Nov 2022 05:35:44 -0700 (PDT)
+        bh=cQZ3pBlIi0rpM5a6PfKlKhrsDTBhVGlbxomkgGlrwXA=;
+        b=0iYnD0eCqzz1iQ9xu2fEnIyODpwkK34BEYUrzoLSCBYvsVhkxCTNjLVaKC8ni1umTY
+         HLRXuQvtGdkljOmvhPiDJUP6HKN35SjBaHEUQ8twcAshTbwCNXcc4i4yw2v7cJLrYEyC
+         T8cIqlJtkmm7+8Gn+7lpOxT3nN2VFwK23ABXT8MEv8BmHWuP3UvdUJ135S7VdJUzH0mK
+         TcPGwR8kf1cwapPKanSG9sPxxQZxsVxfvmbGMgZ0A1UEMRYa8VL0RqNy231sc4DKDixT
+         wqHcqS7tYFwPm0Ut1fUamGXPWvXAitkZ1EZQIPKJAz8lgtBwcab8KFwYYSWMdQoxkFkE
+         wkuQ==
+X-Gm-Message-State: ACrzQf3Rdl3u6RDxzcX97x1ogRAD1e2im3O16PZrb16miZk3Piqj76uq
+        gMgBxA4a8PlB3VPhD8pFRfxrykT0DQ==
+X-Google-Smtp-Source: AMsMyM5WlQVuFfI3Hej6zl5+YtqKpPvfhlpNxJetQLlWzU3YMepE7Sxq8fKeSZ/kC1fuVSxpMI5JvQ==
+X-Received: by 2002:a05:6870:8999:b0:133:15f9:82fd with SMTP id f25-20020a056870899900b0013315f982fdmr17446407oaq.276.1667478946042;
+        Thu, 03 Nov 2022 05:35:46 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u11-20020a056871008b00b0013d7fffbc3csm261177oaa.58.2022.11.03.05.35.43
+        by smtp.gmail.com with ESMTPSA id u11-20020a056871008b00b0013d7fffbc3csm261196oaa.58.2022.11.03.05.35.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 05:35:44 -0700 (PDT)
-Received: (nullmailer pid 2140210 invoked by uid 1000);
+        Thu, 03 Nov 2022 05:35:45 -0700 (PDT)
+Received: (nullmailer pid 2140212 invoked by uid 1000);
         Thu, 03 Nov 2022 12:35:43 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        linux-arm-msm@vger.kernel.org, sudeep.holla@arm.com,
-        andersson@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, cristian.marussi@arm.com,
-        devicetree@vger.kernel.org, quic_avajid@quicinc.com
-In-Reply-To: <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
-References: <1667451512-9655-1-git-send-email-quic_sibis@quicinc.com>
- <1667451512-9655-2-git-send-email-quic_sibis@quicinc.com>
-Message-Id: <166747792111.2121881.1520386544436651390.robh@kernel.org>
-Subject: Re: [RFC 1/2] dt-bindings: firmware: arm,scmi: Add support for memlat
- vendor protocol
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Marcello Sylvester Bauer <sylv@sylv.io>,
+        Lee Jones <lee@kernel.org>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>
+In-Reply-To: <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
+ <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+Message-Id: <166747792187.2121919.17636248726524785287.robh@kernel.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and MAX5978
 Date:   Thu, 03 Nov 2022 07:35:43 -0500
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -68,16 +69,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 03 Nov 2022 10:28:31 +0530, Sibi Sankar wrote:
-> Add bindings support for the SCMI QTI memlat (memory latency) vendor
-> protocol. The memlat vendor protocol enables the frequency scaling of
-> various buses (L3/LLCC/DDR) based on the memory latency governor
-> running on the CPUSS Control Processor.
+On Thu, 03 Nov 2022 09:05:44 +0100, Naresh Solanki wrote:
+> From: Marcello Sylvester Bauer <sylv@sylv.io>
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> The MAX597x is a hot swap controller with configurable fault protection.
+> It also has 10bit ADC for current & voltage measurements.
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 > ---
->  .../devicetree/bindings/firmware/arm,scmi.yaml     | 164 +++++++++++++++++++++
+>  .../bindings/mfd/maxim,max5970.yaml           | 164 ++++++++++++++++++
 >  1 file changed, 164 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -86,9 +90,8 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/arm,scmi.example.dtb: scmi: mbox-names: ['tx'] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dtb:0:0: /example-3/soc/mailbox@17400000: failed to match any schema with compatible: ['qcom,cpucp-mbox']
+./Documentation/devicetree/bindings/mfd/maxim,max5970.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/mfd/maxim,max5970.yaml#
 
 doc reference errors (make refcheckdocs):
 
