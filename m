@@ -2,121 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A63F61787F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:16:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F7B361784D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:06:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbiKCIP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 04:15:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33128 "EHLO
+        id S231360AbiKCIGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 04:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbiKCIP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:15:59 -0400
-X-Greylist: delayed 617 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 03 Nov 2022 01:15:55 PDT
-Received: from smtp-out-01.comm2000.it (smtp-out-01.comm2000.it [212.97.32.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA45E14;
-        Thu,  3 Nov 2022 01:15:55 -0700 (PDT)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: francesco@dolcini.it)
-        by smtp-out-01.comm2000.it (Postfix) with ESMTPSA id 70F61842C87;
-        Thu,  3 Nov 2022 09:04:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailserver.it;
-        s=mailsrv; t=1667462730;
-        bh=yOfY9eB7qu7TqUunKx7AkuCRtrNlolkJbCg5vWbHkSs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=1OFovVjhXynjTKz/QW5UZoWQeetj8oiaI3Qc1kqnpKvDr25wLL5QwyrCi35/fbQKD
-         4+aJPG2bT56xfXOD/9Dof7Xb6ydNoQ4nkAY/HnnHbu/HRd5vdubBSX58iLor9IONTC
-         aLc+/qmXD9PqlEqT6J7q56QpiG/uO4e3EWV3a0U4KTCKPyGnKCRUdCPjImeZmH6pJZ
-         HSOGCq+5m6O7khYqTk5kXPWaO6tCJj1LMiuewHdzeFF6WleviNas6qdpte9GOBpH6+
-         WOEk/0AKfpqVAmDDkLAv6FiqITLmeo8pbALt6YZYotqt/URIL/Xkcph4e/ZPupaga+
-         zCsJaUxK7xn0A==
-Date:   Thu, 3 Nov 2022 09:04:53 +0100
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Philippe Schenker <dev@pschenker.ch>
-Subject: Re: [PATCH] ARM: dts: colibri-imx6ull: Enable dual-role switching
-Message-ID: <Y2N2JYGvmzLjpGUq@francesco-nb.int.toradex.com>
-References: <20221102155226.51587-1-dev@pschenker.ch>
- <4964263.31r3eYUQgx@steina-w>
+        with ESMTP id S231171AbiKCIFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:05:53 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD4C6179
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 01:05:51 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id j15so1453140wrq.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 01:05:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TUH7vAgoJUphxioLNXds6rGlOzYEcAircCf1ge6nrIo=;
+        b=JoHSfg+vpDusiIbQMrw2c7lVK41imhpUvVnnzZfcvqpsrzG4T0Q1KjGf2p6zQjQmPj
+         yWbGEH5Vi8rz0ZIT2QVRv+RC+IfimnGTbeTg3V1oXKGfbboQNN0D6nARkgisZ80zR54D
+         bVxBRWNvjoZbcFYB8CJN+RuAytsuC7MNziU8IEBEy5FaSyforP8BbZzeYzzCN7HbE4Kn
+         LOJz3qCXXVkDveKbsCOKAP5a+O+1o/oKW9HtGKKC7mc1S33yPwmxiBFCkNFs13eIhTkZ
+         CbgY01TT4ioIDfQccbJFkp896Pn9CzEqC6RDJK4IXuKNnuJDql61Iytgqac3SQEjZTEs
+         tAqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TUH7vAgoJUphxioLNXds6rGlOzYEcAircCf1ge6nrIo=;
+        b=Y11g4y8FXHH9QcOBn1QX10zsK42S8h+Em0Z6VO7tfj3+zgaWiAyCIQIw9XGcR/VBl8
+         sX6ICO8pjSzMraH9gn9zTVqbMYZVnlsUXBKXNMLXqbJjZFepaccxyL2v9jJrjDvhfEv5
+         UynQjf37fR7mgIvvTGdYHzn5YD7yBCh9X7gepu5ZiMUE2V2AFayi4H1VSK3FVuQAgaWP
+         k5AQNiJYjwVnl5bp/6i23uxK/XoPKO+im6BD+RcUPU9cGZxZxyCp/2teYHE9h30KZkXR
+         sSvZxdwzyi3//yA9+7pKC5QLPzz8e838JkUqBSDkNZEHkSXhRBn5Z79G1fBGab5A6d2I
+         ef2A==
+X-Gm-Message-State: ACrzQf2AEwWoXFFpK+wunaA5+kVVbWToklCl0QVVLcrJWACHC62K7SrR
+        yYq8tU1/nQngLrKGJJNZXf79i+zEs2beLJpY
+X-Google-Smtp-Source: AMsMyM7KT1IwDbASF+AOD1JQpnxdIHTYTJWKjGSBl0HbB6wjIDRRUCZDAoqx6pbgClUwXYzwY4jPkQ==
+X-Received: by 2002:a05:6000:808:b0:236:9822:718d with SMTP id bt8-20020a056000080800b002369822718dmr17825381wrb.254.1667462750179;
+        Thu, 03 Nov 2022 01:05:50 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id r9-20020a05600c424900b003bfaba19a8fsm402772wmm.35.2022.11.03.01.05.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 01:05:49 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Naresh Solanki <Naresh.Solanki@9elements.com>
+Subject: [PATCH v6 0/2] mfd: max597x: Add support for max597x
+Date:   Thu,  3 Nov 2022 09:05:43 +0100
+Message-Id: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4964263.31r3eYUQgx@steina-w>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 08:46:58AM +0100, Alexander Stein wrote:
-> Hi Philippe,
-> 
-> Am Mittwoch, 2. November 2022, 16:52:26 CET schrieb Philippe Schenker:
-> > From: Philippe Schenker <philippe.schenker@toradex.com>
-> > 
-> > The Colibri standard provides a GPIO called USBC_DET to switch from
-> > USB Host to USB Device and back. The Colibri iMX6ULL does have the SoC
-> > ball USB_OTG1_VBUS connected in series with a capacitor to ground.
-> > 
-> > This means that we need to provide to the extcon framework VBUS and ID
-> > events using the single GPIO we have. The Extcon USB GPIO driver does
-> > use id-gpio also for VBUS event, as in our case where vbus-gpio is
-> > absent.
-> > 
-> > Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> > 
-> > ---
-> > 
-> >  arch/arm/boot/dts/imx6ull-colibri.dtsi | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > b/arch/arm/boot/dts/imx6ull-colibri.dtsi index 577a424b0e1d..feb1fcd9a684
-> > 100644
-> > --- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > +++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
-> > @@ -24,6 +24,13 @@ backlight: backlight {
-> >  		status = "okay";
-> >  	};
-> > 
-> > +	extcon_usbc_det: usbc-det {
-> > +		compatible = "linux,extcon-usb-gpio";
-> > +		id-gpio = <&gpio5 2 GPIO_ACTIVE_HIGH>; /* SODIMM 137 / 
-> USBC_DET */
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pinctrl_snvs_usbc_det>;
-> > +	};
-> > +
-> >  	gpio-keys {
-> >  		compatible = "gpio-keys";
-> >  		pinctrl-names = "default";
-> > @@ -275,6 +282,7 @@ &uart5 {
-> >  /* Colibri USBC */
-> >  &usbotg1 {
-> >  	dr_mode = "otg";
-> > +	extcon = <&extcon_usbc_det>, <&extcon_usbc_det>;
-> 
-> How came you up with this double entries? Is there some documentation you need 
-> two phandles?
+max597x is multifunction device with hot swap controller, fault
+protection & upto four indication leds.
 
-extcon-usb-gpio provides both vbus/otg_id with a single handle, however
-the integration in chipidea is somehow weird, the first entry is supposed to be
-used to read the vbus, the second one to read the otg_id.
+max5978 has single hot swap controller whereas max5970 has two hot swap
+controllers.
 
-So if you need to read both you really need to have the handle twice ...
+Changes in V6:
+- Update missing vendor prefix
+- Update indentation in example
+Changes in V5:
+- Fix dt schema error
+Changes in V4:
+- Add NULL entry for of_device_id
+- Memory allocation check
+Changes in V3:
+- Address code review comment
+Changes in V2:
+- Update depends in Kconfig.
 
-Francesco
+Marcello Sylvester Bauer (1):
+  dt-bindings: mfd: Add bindings for MAX5970 and MAX5978
+
+Patrick Rudolph (1):
+  mfd: max597x: Add support for MAX5970 and MAX5978
+
+ .../bindings/mfd/maxim,max5970.yaml           | 164 ++++++++++++++++++
+ drivers/mfd/Kconfig                           |  12 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max597x.c                         |  92 ++++++++++
+ include/linux/mfd/max597x.h                   | 103 +++++++++++
+ 5 files changed, 372 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
+ create mode 100644 drivers/mfd/max597x.c
+ create mode 100644 include/linux/mfd/max597x.h
+
+
+base-commit: 6b780408be034213edfb5946889882cb29f8f159
+-- 
+2.37.3
 
