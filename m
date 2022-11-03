@@ -2,79 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 669C461794E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 10:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0BA3617988
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 10:14:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231433AbiKCJCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 05:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58950 "EHLO
+        id S229548AbiKCJOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 05:14:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231419AbiKCJCG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 05:02:06 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AA31DE97;
-        Thu,  3 Nov 2022 02:02:05 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BD62166028FD;
-        Thu,  3 Nov 2022 09:02:02 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667466123;
-        bh=510sRv24hOV1wpfQEDVR+KdeGI/4GV2/R4TwmE7oPTo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=b7JGsFlCs/MU7fEVavBB6XxS8v6BhCjRuqpMmoKIDO0a9l1RNaXW2L6iFe3r/bG1m
-         X4j4kgy+y0d4+zrajo5whvXJtsV0DikSKzE1O0Uec1JtRvpNfbkvz7+1Wg3WkL3laY
-         7t1A28s7Am24y3vQ9ob45CGTcv7KATTpkQVdQB/V7mptozX1qdg/UJjC3qhXFe0DwA
-         B3TMK4xzBt9x+72LdAZoLXYZD1NTtF0jXy9/FAfQzwtEgjOlZShw1SWYhICP+oVd3E
-         F4IVMalJrfqjvG+0qsBie820NHmgh3y7yEG+zoJtNsI29MndXzqYpo65JIebFAnuMo
-         GQH+u99wHyRHw==
-Message-ID: <c1b8df00-2be6-9cf2-0e1e-b4c838fd12cc@collabora.com>
-Date:   Thu, 3 Nov 2022 10:02:00 +0100
+        with ESMTP id S230497AbiKCJNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 05:13:30 -0400
+Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F42ADF6D;
+        Thu,  3 Nov 2022 02:13:00 -0700 (PDT)
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 03 Nov 2022 17:12:59 +0800
+Received: from CSBMAIL1.internal.ite.com.tw (CSBMAIL1.internal.ite.com.tw [192.168.65.58])
+        by mse.ite.com.tw with ESMTP id 2A39CtA0002280;
+        Thu, 3 Nov 2022 17:12:55 +0800 (GMT-8)
+        (envelope-from allen.chen@ite.com.tw)
+Received: from VirtualBox.internal.ite.com.tw (192.168.70.46) by
+ CSBMAIL1.internal.ite.com.tw (192.168.65.58) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2176.14; Thu, 3 Nov 2022 17:12:55 +0800
+From:   allen <allen.chen@ite.com.tw>
+CC:     Allen Chen <allen.chen@ite.com.tw>,
+        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
+        Hermes Wu <Hermes.Wu@ite.com.tw>,
+        Kenneth Hung <Kenneth.Hung@ite.com.tw>,
+        Pin-yen Lin <treapking@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 0/2] *** IT6505 driver read dt properties ***
+Date:   Thu, 3 Nov 2022 17:12:41 +0800
+Message-ID: <20221103091243.96036-1-allen.chen@ite.com.tw>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v6 1/2] ASoC: mediatek: dt-bindings: modify machine
- bindings for two MICs case
-Content-Language: en-US
-To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        "chunxu . li" <chunxu.li@mediatek.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20221102125936.2176748-1-ajye_huang@compal.corp-partner.google.com>
- <20221102125936.2176748-2-ajye_huang@compal.corp-partner.google.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20221102125936.2176748-2-ajye_huang@compal.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.70.46]
+X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
+ CSBMAIL1.internal.ite.com.tw (192.168.65.58)
+X-TM-SNTS-SMTP: 2838FB2AFEA8CFF14AC738512C4416578E0EBA9D159E75B0586F7E1864BEC8E92002:8
+X-MAIL: mse.ite.com.tw 2A39CtA0002280
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 02/11/22 13:59, Ajye Huang ha scritto:
-> Add a property "dmic-gpios" for switching between two MICs.
-> 
-> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+This series let driver can read properties from dt to restrict dp output
+bandwidth.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Changes in v3:
+-Rename property name.
 
+Changes in v4:
+-Use data-lanes and link-frequencies instead of "ite,dp-output-data-lane-count" and "ite,dp-output-max-pixel-clock-mhz".
+
+Changes in v5:
+-Add a port and a endpoint.
+-Move data-lanes property to the output endpoint.
+
+Changes in v6:
+-Modified data-lanes description by suggestion.
+
+Changes in v7:
+-Add commit messages to explain reason for breaking users.
+
+allen chen (2):
+  dt-bindings: it6505: add properties to restrict output bandwidth
+  drm/bridge: add it6505 driver to read data-lanes and link-frequencies
+    from dt
+
+ .../bindings/display/bridge/ite,it6505.yaml   | 68 ++++++++++++++--
+ drivers/gpu/drm/bridge/ite-it6505.c           | 80 ++++++++++++++++++-
+ 2 files changed, 139 insertions(+), 9 deletions(-)
+
+-- 
+2.25.1
 
