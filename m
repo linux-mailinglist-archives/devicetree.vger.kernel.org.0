@@ -2,80 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 041FD6183D8
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C066183DF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:12:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbiKCQJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 12:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37430 "EHLO
+        id S231482AbiKCQMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 12:12:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231764AbiKCQJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:09:34 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B97881D0CB
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 09:09:08 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id w10so1444307qvr.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 09:09:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rdupXZP9IFvwGILZVl/bXkxyiQBrd2eY1VoR9aqF3f8=;
-        b=kU9c5IXpOAFVRhtLb9VD0DkbGRRrvofFv5ZaV90ha/Z5Pjkds75ssplzse/sexzY2G
-         t4ryGbivPIq5eSqm2hV/0dAwUzPEMCCIJ7IJRnzOREaD1PNNjDgXONaIUuG5SH/QjqQR
-         3dv/jK1oPs2gFsxHCbY/35BjVKfQcu1hH2SrX4u02/Pgev80Go7zikIubUdilCydjnb4
-         uS+ZTwvF+YU7OOrP+9J53OwRZvWgphfr/OKoqL8LwDCAjuNGqCtpBaTKOeVQdumMuMzl
-         DuT9fb/j515nbCluQBt4Ica6G2qsI6tmDSlLeDAcXAD2dMbVsBU2/uToc6o34YF6j2Zl
-         38WA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rdupXZP9IFvwGILZVl/bXkxyiQBrd2eY1VoR9aqF3f8=;
-        b=F1gfuRwO/ZAc46/fcy/8nMIEspQhJhBEaheU5pE/ltDg+41oaSKPLmKSCXRAAnghM5
-         uLAavuardH5Kzc8jTw8WY3inC05P+sOAzLdlE4jEIVUMYwj66DVazJQBmI3w7Pj4vOBs
-         m4R+pnIHkwZ2QcKyVfyld0BZprDootvHJelrveejYhyoCsvbPpXzPGKXBPBcdYXkbgX9
-         OkusDtu8CL7w1kOng/BTQWutNOCQph1iAagMtPhkGujJ7AxydAe5wGK4OPalQejk7lx/
-         PXxp0vr4w1bv+qewL+06E2fvmGfkaTmUVbypbJZYKjEy1QMkO7dPVC0e5/l50uL+N8SD
-         2Jxg==
-X-Gm-Message-State: ACrzQf0mq4HMv8D8v69TrT0t73Y3JIhI+CSTlcYJ0O7TE6u7sPIJa+uT
-        K8O1W33FADsrwupDA9IQ/xvv6g==
-X-Google-Smtp-Source: AMsMyM4Na22MQCEkYmNGL/H4cHE5jOAZx/Jxn3T2uL4LmjrXMvv/w3qjaGdleg7s97ZnEYStiL1OmA==
-X-Received: by 2002:a05:6214:194c:b0:4bb:6d2f:3e7c with SMTP id q12-20020a056214194c00b004bb6d2f3e7cmr27602892qvk.4.1667491747673;
-        Thu, 03 Nov 2022 09:09:07 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id h18-20020a05620a401200b006ee8874f5fasm1018291qko.53.2022.11.03.09.09.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 09:09:07 -0700 (PDT)
-Message-ID: <287a41ec-b004-54a7-1ac3-07cc4db5fbbf@linaro.org>
-Date:   Thu, 3 Nov 2022 12:09:05 -0400
+        with ESMTP id S231476AbiKCQMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:12:30 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D31C7B;
+        Thu,  3 Nov 2022 09:12:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1A266B82930;
+        Thu,  3 Nov 2022 16:12:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65ABEC433C1;
+        Thu,  3 Nov 2022 16:12:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667491946;
+        bh=rxJ+PEuX4lEDxQLdMP5WnH8IwPUpq7Xc+dBWHGFGPoo=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=YC0IJl6Kz+an28MXCqym+l2SQHVzJZ8Fonizg2bqJ0/0YzcAKZ2BYFgZ3VRA1NWKq
+         INQTFPEauhFCx79o/y6Cf8g59EeWsc6VykrbiNWlESu7JjtljKWvaS+mA6KzldSUkN
+         t3glByYfEETLGdLxH5FJiHaECJeHqLQJcg3UKkeZ8uIBPtRN7ZeRPszCUMszOdgiYP
+         MNSF4dmKIyg9bSfGfl14mSvLn0rDIwlmUG4c4s/fRc3vgdcAxxYP6/oKSBhsvVB5sg
+         kqYgh7WGzgHxkI2adwUG1PrL5a3B9PWIlaQAsDY/GYUUgDPVK9nxVVUahh/2a3lO+L
+         Igv0FqX0oQ6uA==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Zev Weiss <zev@bewilderbeest.net>, devicetree@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Mike Rapoport <rppt@kernel.org>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Naresh Solanki <naresh.solanki@9elements.com>
+In-Reply-To: <20221031233704.22575-1-zev@bewilderbeest.net>
+References: <20221031233704.22575-1-zev@bewilderbeest.net>
+Subject: Re: [PATCH v2 0/3] regulator: Add DT support for regulator-output connectors
+Message-Id: <166749194409.389017.2951606632954136901.b4-ty@kernel.org>
+Date:   Thu, 03 Nov 2022 16:12:24 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v4 1/3] dt-bindings: qcom-iommu: Add Qualcomm MSM8953
- compatible
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221016161554.673006-1-luca@z3ntu.xyz>
- <20221016161554.673006-2-luca@z3ntu.xyz> <5615419.DvuYhMxLoT@g550jk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5615419.DvuYhMxLoT@g550jk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fc921
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,24 +59,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2022 12:26, Luca Weiss wrote:
-> Hi all,
+On Mon, 31 Oct 2022 16:37:01 -0700, Zev Weiss wrote:
+> This is v2 of my recent series adding support for userspace-controlled
+> regulator-supplied power outputs [2].  This is an important feature
+> for some kinds of BMC (baseboard management controller) systems where
+> the BMC provides an operator with manual control of a set of DC power
+> outputs.
 > 
-> On Sonntag, 16. Oktober 2022 18:15:51 CET Luca Weiss wrote:
->> Document the compatible used for IOMMU on the msm8953 SoC.
->>
->> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->> Acked-by: Rob Herring <robh@kernel.org>
+> As in a broadly similar patchset that was recently almost merged [0],
+> this takes the approach of providing support by extending the existing
+> userspace-consumer regulator driver.  A couple questions about the
+> userspace-consumer driver came up along the way, however.
 > 
-> Could someone please pick up this patch?
-> 
-> Looking at the file history, there's not much but maybe @Rob could you take 
-> this? Or maybe Bjorn?
-> 
+> [...]
 
-Use "iommu:" in the subject (dt-bindings: iommu: qcom:) so IOMMU
-maintainers notice it...
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
+Thanks!
+
+[1/3] regulator: devres: Add devm_regulator_bulk_get_exclusive()
+      commit: fd1845069711cdf1b1aaaa0f22311b7736396331
+[2/3] dt-bindings: regulator: Add regulator-output binding
+      commit: 14b8ad4c2580231fc45c2313ef822a15bb12f63f
+[3/3] regulator: userspace-consumer: Handle regulator-output DT nodes
+      commit: 5c51d4afcf3fd36159713556402e16cfab794ae9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
