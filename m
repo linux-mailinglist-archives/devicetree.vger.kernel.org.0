@@ -2,84 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 945BF6178B1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:29:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF43B6178B4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiKCI3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 04:29:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39774 "EHLO
+        id S229570AbiKCIdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 04:33:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbiKCI3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:29:46 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D863711A;
-        Thu,  3 Nov 2022 01:29:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1667464185; x=1699000185;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nhzYPUwoc2molQBCwNVn4uqguZHlXyZ1jSm1Y79u20Y=;
-  b=KIvowcUsCYS4slAr1TxaAOvaLjD2VUwhrZ3pBEghijnwHP4s0kgCKPUV
-   zs80mSsAvjRUIwWU85y/CtmStHQnattjp5YN01LbmkXgONlTnsYtvcdPe
-   s1wHdAM7jdj9C2H73+4jXMOp6xJaEydTnoHBg62pO+VqHbWPR7Dv958r/
-   SibBnsXHB9QBvGiSS5txNnh601fKbWkQElk3MeOvgZJ4vI/eGhn2X9EAH
-   QTpnpe/HoSOcaQPG8zpp9Rgif59shSN0lCHCJmLdlvQjNpk4XX+TrxImE
-   LpQPS1mwsdGHWYah+R+ubUvFSiEuDFkHNhF38kSH527LrAzb1LY4K1gS9
-   w==;
-X-IronPort-AV: E=Sophos;i="5.95,235,1661810400"; 
-   d="scan'208";a="27127637"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 03 Nov 2022 09:29:43 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 03 Nov 2022 09:29:43 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 03 Nov 2022 09:29:43 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1667464183; x=1699000183;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=nhzYPUwoc2molQBCwNVn4uqguZHlXyZ1jSm1Y79u20Y=;
-  b=e42VJ7IXPFvp+zmNrKjhGvCmi+0RhzV9vtvix+TWORZJppjhWb10eaFT
-   tLI8Vp9+riMwmzaYnGYjo4EQZJkctUs8iThJ+swjuXe1uY1gH3L4A+2mA
-   +mqXHdEFuKCW09RHH+0cowIk2TwKpK/Gyb5hfLm6GhujlHutP846TSyfS
-   FlElL/f8exOGiifiAvNH6kyISadKvr1wQjhG5tjEfPE9zrcaZmhenwuc7
-   ZnQzmrDEiAd4/vSnKCl9cS/t89H6JOCiRZSoKrn4rmZdk5KHlJlFk9DJV
-   hCLI9D8FHhHQs9bbI/9S2JU7TaESFWrcEROXLAvVxQs4AeVZk/5CVdfVx
-   A==;
-X-IronPort-AV: E=Sophos;i="5.95,235,1661810400"; 
-   d="scan'208";a="27127636"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 03 Nov 2022 09:29:42 +0100
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 3812A280056;
-        Thu,  3 Nov 2022 09:29:42 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH 2/3] dt-bindings: imx6q-pcie: Handle various PD configurations
-Date:   Thu, 03 Nov 2022 09:29:42 +0100
-Message-ID: <3645906.iIbC2pHGDl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20221102215729.147335-2-marex@denx.de>
-References: <20221102215729.147335-1-marex@denx.de> <20221102215729.147335-2-marex@denx.de>
+        with ESMTP id S229587AbiKCIdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:33:12 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EFD8B7A;
+        Thu,  3 Nov 2022 01:33:10 -0700 (PDT)
+Received: from kwepemi500015.china.huawei.com (unknown [172.30.72.54])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4N2xj547lVzRnwC;
+        Thu,  3 Nov 2022 16:28:09 +0800 (CST)
+Received: from [10.40.188.234] (10.40.188.234) by
+ kwepemi500015.china.huawei.com (7.221.188.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 3 Nov 2022 16:33:08 +0800
+Subject: Re: [PATCH next v3 1/2] gpio: hisi: Add initial device tree support
+To:     Weilong Chen <chenweilong@huawei.com>, <linus.walleij@linaro.org>,
+        <brgl@bgdev.pl>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20221029113542.170210-1-chenweilong@huawei.com>
+From:   Jay Fang <f.fangjian@huawei.com>
+Message-ID: <a2e03ec4-219d-7587-48a6-d03c2fc1f1cb@huawei.com>
+Date:   Thu, 3 Nov 2022 16:33:07 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <20221029113542.170210-1-chenweilong@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.188.234]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ kwepemi500015.china.huawei.com (7.221.188.92)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,104 +50,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
-
-Am Mittwoch, 2. November 2022, 22:57:28 CET schrieb Marek Vasut:
-> The i.MX SoCs have various power domain configurations routed into
-> the PCIe IP. MX6SX is the only one which contains 2 domains and also
-> uses power-domain-names. MX6QDL do not use any domains. All the rest
-> uses one domain and does not use power-domain-names anymore.
+On 2022/10/29 19:35, Weilong Chen wrote:
+> Add support for HiSilicon GPIO controller in embedded platform, which
+> boot from devicetree.
 > 
-> Document all those configurations in the DT binding document.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
 > ---
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Richard Zhu <hongxing.zhu@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> To: devicetree@vger.kernel.org
-> ---
->  .../bindings/pci/fsl,imx6q-pcie.yaml          | 47 ++++++++++++++-----
->  1 file changed, 34 insertions(+), 13 deletions(-)
+> Change since v2:
+> - No change
+> Link: https://lore.kernel.org/lkml/20221028022453.163186-1-chenweilong@huawei.com/#r
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
-> 1cfea8ca72576..fc8d4d7b80b38 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -68,19 +68,6 @@ properties:
->      description: A phandle to an fsl,imx7d-pcie-phy node. Additional
->        required properties for imx7d-pcie and imx8mq-pcie.
+>  drivers/gpio/Kconfig     |  2 +-
+>  drivers/gpio/gpio-hisi.c | 15 ++++++++++++++-
+>  2 files changed, 15 insertions(+), 2 deletions(-)
 > 
-> -  power-domains:
-> -    items:
-> -      - description: The phandle pointing to the DISPLAY domain for
-> -          imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
-> -          imx8mq-pcie.
-> -      - description: The phandle pointing to the PCIE_PHY power domains
-> -          for imx6sx-pcie.
-> -
-> -  power-domain-names:
-> -    items:
-> -      - const: pcie
-> -      - const: pcie_phy
-> -
->    resets:
->      maxItems: 3
->      description: Phandles to PCIe-related reset lines exposed by SRC
-> @@ -241,6 +228,40 @@ allOf:
->                  - const: pcie_bus
->                  - const: pcie_phy
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index e034f752e7ce..71a7880af59d 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -310,7 +310,7 @@ config GPIO_GRGPIO
+>  
+>  config GPIO_HISI
+>  	tristate "HiSilicon GPIO controller driver"
+> -	depends on (ARM64 && ACPI) || COMPILE_TEST
+> +	depends on ARM64 || COMPILE_TEST
+>  	select GPIO_GENERIC
+>  	select GPIOLIB_IRQCHIP
+>  	help
+> diff --git a/drivers/gpio/gpio-hisi.c b/drivers/gpio/gpio-hisi.c
+> index 3caabef5c7a2..92cf575f2eab 100644
+> --- a/drivers/gpio/gpio-hisi.c
+> +++ b/drivers/gpio/gpio-hisi.c
+> @@ -1,8 +1,10 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /* Copyright (c) 2020 HiSilicon Limited. */
+> +#include <linux/acpi.h>
+>  #include <linux/gpio/driver.h>
+>  #include <linux/module.h>
+>  #include <linux/mod_devicetable.h>
+> +#include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+>  
+> @@ -215,11 +217,21 @@ static void hisi_gpio_init_irq(struct hisi_gpio *hisi_gpio)
+>  	hisi_gpio_write_reg(chip, HISI_GPIO_INTCOMB_MASK_WX, 1);
+>  }
+>  
+> +#ifdef CONFIG_ACPI
+>  static const struct acpi_device_id hisi_gpio_acpi_match[] = {
+>  	{"HISI0184", 0},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(acpi, hisi_gpio_acpi_match);
+> +#endif
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id hisi_gpio_dts_match[] = {
+> +	{ .compatible = "hisilicon,ascend910-gpio", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, hisi_gpio_dts_match);
+> +#endif
+>  
+>  static void hisi_gpio_get_pdata(struct device *dev,
+>  				struct hisi_gpio *hisi_gpio)
+> @@ -310,7 +322,8 @@ static int hisi_gpio_probe(struct platform_device *pdev)
+>  static struct platform_driver hisi_gpio_driver = {
+>  	.driver		= {
+>  		.name	= HISI_GPIO_DRIVER_NAME,
+> -		.acpi_match_table = hisi_gpio_acpi_match,
+> +		.acpi_match_table = ACPI_PTR(hisi_gpio_acpi_match),
+> +		.of_match_table = of_match_ptr(hisi_gpio_dts_match),
+>  	},
+>  	.probe		= hisi_gpio_probe,
+>  };
 > 
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx6sx-pcie
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: The phandle pointing to the DISPLAY domain for
-> +                imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
-> +                imx8mq-pcie.
-> +            - description: The phandle pointing to the PCIE_PHY power
-> domains +                for imx6sx-pcie.
-> +        power-domain-names:
-> +          items:
-> +            - const: pcie
-> +            - const: pcie_phy
-> +    else:
-> +      if:
-> +        not:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                enum:
-> +                  - fsl,imx6q-pcie
-> +                  - fsl,imx6qp-pcie
-> +      then:
-> +        properties:
-> +          power-domains:
-> +            description: |
-> +               The phandle pointing to the DISPLAY domain for imx6sx-pcie,
-> to +               PCIE_PHY power domain for imx7d-pcie and imx8mq-pcie. +
-
-Doesn't it makes more sense to keep the power-domains descriptions in the 
-common part on top, as before, but adjust minItems/maxItems for each 
-compatible?
-
-Regards,
-Alexander
-
->  examples:
->    - |
->      #include <dt-bindings/clock/imx6qdl-clock.h>
-
-
-
-
+Acked-by: Jay Fang <f.fangjian@huawei.com>
