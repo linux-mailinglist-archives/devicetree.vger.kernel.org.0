@@ -2,157 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8714161762D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 06:30:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8C94617601
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 06:08:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230494AbiKCFaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 01:30:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56480 "EHLO
+        id S229733AbiKCFIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 01:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbiKCF3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 01:29:52 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0C718B15
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 22:29:50 -0700 (PDT)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221103052948epoutp02c9509b5676cba85a9c8c33676dd38591~j-AXF696p2709227092epoutp024
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:29:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221103052948epoutp02c9509b5676cba85a9c8c33676dd38591~j-AXF696p2709227092epoutp024
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1667453388;
-        bh=4qBUx2QDAhX1kh6nWGZRrxqRso5GJ9KFQ9asXvnAyPw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TCf1eeLb/cphCZsdXUjB5YhbZmH5OEB0fdWgNx1eFWbS/dW2ADxVKJw4zYu1Ddg7T
-         mpbaV+2IB4gVuJAXkh1cpKfNr7WuTCgWEfvPdlqgetHJnLZN5mJuNpPfjIh2wLoK1g
-         4ZE0fn0YdXzZlBT8Wd32+GmClgxhjcMoUTq183YI=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20221103052948epcas5p4fdbc03d2b51af6b5a457ec218d039a24~j-AWbyKkz2152821528epcas5p47;
-        Thu,  3 Nov 2022 05:29:48 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.174]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4N2slB1Z6lz4x9Q5; Thu,  3 Nov
-        2022 05:29:42 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        5D.9B.56352.4C153636; Thu,  3 Nov 2022 14:29:40 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20221102125816epcas5p23e16fefd6b820e7dd7d9a93f0d48f40d~jxeo9kLch3082130821epcas5p2t;
-        Wed,  2 Nov 2022 12:58:16 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20221102125816epsmtrp2841e089a1f09752becc1a2fcd866e6ff~jxeo8XqlW1846518465epsmtrp2n;
-        Wed,  2 Nov 2022 12:58:16 +0000 (GMT)
-X-AuditID: b6c32a4b-5f7fe7000001dc20-1e-636351c4b7b0
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F5.04.14392.86962636; Wed,  2 Nov 2022 21:58:16 +0900 (KST)
-Received: from cheetah.sa.corp.samsungelectronics.net (unknown
-        [107.109.115.53]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20221102125813epsmtip1dad99ce1b696e3f0129399b84bed9246~jxel4p4wh2204122041epsmtip1w;
-        Wed,  2 Nov 2022 12:58:13 +0000 (GMT)
-From:   Aakarsh Jain <aakarsh.jain@samsung.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com,
-        aakarsh.jain@samsung.com
-Subject: [PATCH 3/3] arm64: dts: exynos: Rename compatible string property
- from version to SOC specific
-Date:   Wed,  2 Nov 2022 18:36:02 +0530
-Message-Id: <20221102130602.48969-3-aakarsh.jain@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20221102130602.48969-1-aakarsh.jain@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WTf0xbVRTHve+1r2VJ2RNw3qGM2o05MLB2tPWyAPMHmS9iIgtZpkwHj/IC
-        jP5KX3E6MQwnzoEg3YbKj3SGHy4yfpaf7WBltDgyhckkoLGFCSOj4HAUGYu4aWnZ/O9z7vme
-        8z05914+HuAggvnZaj2jU9NKEbGJ02ULD4+0H1AoxPbTz6PZngouumnsIlDt/dsYmqpd5qCB
-        9k4e6hirwtGFq/1cdN4+wkXdV6Y5qG3Okx2tcHLQ7fPNALkqJwlUOvc7jkwz41z0s6WaQJ+3
-        dnJRk93JQ/UToxj61vQPhmo6/+Khwj47Dzl7uwD65FM79hKkGo2NgOpx1gFqos6NU+ZKJ4+q
-        7XVhlKnhNEE5xnsJqr0unyoc/JtDlXY0AKrIPkFQy6Zt1LWVZV6SICUnNouhMxidkFErNBnZ
-        6sw4UWJy6qupMrlYEimJQS+KhGpaxcSJEt5IityfrfSsQCR8j1bmeo6SaJYV7Y6P1Wly9Yww
-        S8Pq40SMNkOplWqjWFrF5qozo9SMfq9ELN4j8wjTcrJKrBWY9iH//cliI+cEGOQVAT8+JKXw
-        Qd9JUAQ28QPISwBaVy9wfIEbwHutbYQvuAdg2czI45KqW0PYOgeQfQAWNDI+USEGv+xq9VTw
-        +QQZCYe7leuaILIAwJnP9OsanDRw4G+lc/h6IpDMhsVflXgbccgweP1ug9dAQMbBjxe/x31m
-        ofBia7+X/ch4uPprkXdWSP7Lhw7bNOYTJUBb9yrHx4Fw/mrHxqTBcHmxj/CxAs7UuDaaKmFL
-        77kN/T7YP1bNWR8aJ8Nhi2W37zgEll9r9rbHSX9YsnZrw0oAe4yPeCesdtzn+vhZaLtYD3xM
-        weXVIa5vKQYAG69M4WVgW+X/Ft8A0AC2MlpWlcmwMm20mjn2+NYUGpUJeJ95RGIPmL55N2oA
-        YHwwACAfFwUJ8ocPKwIEGfQHxxmdJlWXq2TYASDzLNCABz+l0Hj+iVqfKpHGiKVyuVwaEy2X
-        iJ4W1H4doQggM2k9k8MwWkb3qA7j+wWfwKp2pi3tSSwZNAfLXNb0j96xVO+fY+U7lpbWaDAw
-        fybeanMLi7Gyhu3H9lrXDJOgX7s1fSRv0OxfrhgOfHvKvch9+SfZ0aJdB85SjifNhWHtK9Gn
-        Di0s1BQmpJf8EpEoVje/6U/XZAsFE/nFZfrra7uMl17fkTpkGzuqL7icYXGGza9aD4pTjpyq
-        C3nQPR5U/2HtEWOoS0CEzQ5/McS0bD5cVvDdjYdRubPl9Xkr7gXpnRvyUdVbm59pyjuk6GvV
-        /ek2O9rOvJCywDZZDMLLSPNKwROT50LOhqruGM3bf3jOteXgjyrDa6FhseZ3ccnIyag/0rYk
-        5+8z6ZOPM5axyYl0EYfNoiURuI6l/wPUiL67bwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprCIsWRmVeSWpSXmKPExsWy7bCSnG5GZlKyweJDehZPd8xktXgwbxub
-        xeIfz5ks7i/+zGJxaPNWdostV2YzWyw/foDVYv6Rc6wW2w8+YrHY+AIoe3HmXRaL5/PXMVq8
-        nHWPzaLvxUNmi02Pr7FaXN41h82iZ8NWVou1R+6yWyy9fpHJYtmmP0wWi7Z+Ybdo3XuE3eLu
-        nm2MFi1tR5gcJDzWzFvD6LHj7hJGj+tLPjF77Jx1l91j8Z6XTB6bVnWyedy5tofNY/OSeo/W
-        o79YPPq2rGL06Dpync3j8yY5j1NfP7MH8EZx2aSk5mSWpRbp2yVwZfTun8lU8I+j4l73PJYG
-        xqPsXYycHBICJhKzn5xg6mLk4hAS2M0osWXuPSaIhIzE/7ZjUEXCEiv/PWeHKGpmkpix8yJj
-        FyMHB5uArsTZ7TkgcRGBVkaJ6ys7wSYxC6xkkbi9sQdskrBAusTedZ0sIDaLgKrE+Q+rwKby
-        CthKNL07xgyxQV5i9YYDYDangJ3E95tdjCC2EFDNxp7rzBMY+RYwMqxilEwtKM5Nzy02LDDM
-        Sy3XK07MLS7NS9dLzs/dxAiOOC3NHYzbV33QO8TIxMF4iFGCg1lJhLf+bHSyEG9KYmVValF+
-        fFFpTmrxIUZpDhYlcd4LXSfjhQTSE0tSs1NTC1KLYLJMHJxSDUzrnd8vDtdntam0iT/k85RP
-        XVH3/67fUZ8k8wPcw54X9D4933VpRuUWU/Yz2lr1G97Fbf7y1HUxh4BheuLWAKZlR+9fNfr+
-        hT/voKsx07u/p46K3GB8ntV+RWa1vP46SV7jw6vvJ+fZm1xfu8Vn8//f9w8XX1dhXc0qOJHv
-        yYfGjAc8Mg83i+svv6fmWGvNG7cks+pZGcvxhZ6qVw7psAfn23PPrmpN674qzrLNwEzxx/1u
-        3V+SSnKqRuJBTPNqnp71budiF+xnPLGToWZ6AXtB+5HkhFmZFoKfxS+X3/l85PPqYzHz+57y
-        ls5zrO9sfBzwg99UVvlC+Ha56bdU3/u+iHPp+tNeKcib0njYXImlOCPRUIu5qDgRAMv2evAn
-        AwAA
-X-CMS-MailID: 20221102125816epcas5p23e16fefd6b820e7dd7d9a93f0d48f40d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221102125816epcas5p23e16fefd6b820e7dd7d9a93f0d48f40d
-References: <20221102130602.48969-1-aakarsh.jain@samsung.com>
-        <CGME20221102125816epcas5p23e16fefd6b820e7dd7d9a93f0d48f40d@epcas5p2.samsung.com>
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229459AbiKCFIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 01:08:19 -0400
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com (mail-eopbgr20064.outbound.protection.outlook.com [40.107.2.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ADCE18B01;
+        Wed,  2 Nov 2022 22:08:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R0AVXTsM0mXxL/6SHkX4sj9BTzjnYWBo92YyAmBvfLCYsUAPHIatQblGJlO/MLrv84p2/9ekeBOvYF/BDBCQb6sgUcfW0RzPyW26zdZ6lNB9pUcohGz1d4HMtFXeDVSHOmn3e1JWsAC8hQCpuOg+6JGAGUkZ5uF9eOB1Ynn20M/OqiwJC4xwJ2JTCLyArxwHHN17t6KcKZGyoGvTxypge4dqPutlK/mXwAtm+f4OgY02zdqvt0ghfyV6FiVp1/uIQffXnAtCF8fiWC0vdwnUXzLijY0uKeg+TSoHlSS/Sv4ZFCjdjPFtdMYhTEuWfzg+Q+ycakrvdqEInkMwgVMOGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ESU28PmRmNCz3CY3dTxtqSFw/NcI8402WVJeardR9aQ=;
+ b=dpgKsArP1kAGPqnkgBsRWxukfCGP9qvv95D8gXeMqzFJYD97QJOzltep4NeWQ39ECclG0b3B3/M/Cg+JEDHLX4EleVZwMU/UEKsQNhaIvdAU8eyO2Em3EZstdK/H1Ut/6KH6XQkL092MKe30XmavMRRiuh9Y4g4fRdmPR0IUpsL/Tx6+sjFYHTvEvTbN+WbvjeEpoa6adSfYvmefWOkm23CltivHz/SAkOUx3LVv1F0v/8BQIiXeXKyHUihZBVT1B/IAgFbY5o69NDmDeBeiazz+8iVPv5WaY60683RIWepPChOTZbr3F2MCzrqpOR3JuPUBbXVt2Yyu37amk3pzWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ESU28PmRmNCz3CY3dTxtqSFw/NcI8402WVJeardR9aQ=;
+ b=sLdiod6myNqvZ//5Iv5IeCRrVv4rwElrWdp0w+hX7UH5PtFgJefzjYiBaGgndUofdRFd7PRucyLF0JXBKMvMGV0t86dJqXt/mS1XmSTniXicxAn1M5Fb14dzrr8OX1gr/z49i7GDnNQ/6AEr6wB+aCEoDQgKe5qryhgxEu/9YHU=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM0PR04MB6834.eurprd04.prod.outlook.com (2603:10a6:208:17e::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.15; Thu, 3 Nov
+ 2022 05:08:15 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::36a4:e1fc:67a2:c701]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::36a4:e1fc:67a2:c701%7]) with mapi id 15.20.5791.020; Thu, 3 Nov 2022
+ 05:08:15 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC:     "andersson@kernel.org" <andersson@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH V2 0/2] remoteproc: imx: add start up delay
+Thread-Topic: [PATCH V2 0/2] remoteproc: imx: add start up delay
+Thread-Index: AQHY7q2EQ7vW7H0K9kapWb8mOaD0564r5BSAgADBV2A=
+Date:   Thu, 3 Nov 2022 05:08:15 +0000
+Message-ID: <DU0PR04MB94170F02CF6BD02D7869A75388389@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20221102112451.128110-1-peng.fan@oss.nxp.com>
+ <CANLsYky1j_BMD-Dg1Lath4bftE-0qPEod7fxcaN3UkKUpjP7dw@mail.gmail.com>
+In-Reply-To: <CANLsYky1j_BMD-Dg1Lath4bftE-0qPEod7fxcaN3UkKUpjP7dw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AM0PR04MB6834:EE_
+x-ms-office365-filtering-correlation-id: a639903b-bef6-4d50-1db3-08dabd596a30
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ypv5EnPjMppB6KOklj9Z0Tfd2JGuAqalaQX7SzcjTI/vmPHK10HMX7uaZc7UC/ygDwTXqg9+R3gdY/c2gQZI9wlKw5ol+QUyLhkmP/xOL1Sn8jsgiD7iMzH5c62o+hUiTRM8K+4ZTO8AkgDy3X/a+M74QPIHsSoi8o9ZegZZ48eHRzLY5/jQj0lBq2CNOuBCRhUMGLxIzVDE0tLw1zgK539n280iFEXjOvBeH+XGlG+jURwzhDdqilMLw6n5cnS5pw5VWV6FcHZSaU+n8Ky5Ultgk29EUBTTuGOSoKrij0D2S+WaehWqFRwFkXRhGI5GKUM8sOSrt1iy2nb+J1fNLFjb1kS34+6eGnjB/KUCDw7DenV4m4JaCcvcGVJZ9Xx5tU9GivOdtmcXuf4fZw18pMz/e6nc2Zi66ExdTsn+2UZFYZOXCUHFa34Tv6bXLz/wzypTQ5bEcyW7mLgaBQOXeaGzyYAuPsn8qbZ151OTHblxXoqY+ymKIn8FhHYU8cM7CdOUslVK1hiN4dNYtk2dicKrgJaGOc7GADT7unEZAQuUC0LUgAM2j84pttHRcQ55gyGQtK9ZStj9LPvL2YQAFEgAwq5MqdhdBNZ6lAiURHoNWRdrEdq+u1bFkBor+70nQNRmht8dtwpo9CLN5oGU+sBydCYghiYdRwFQX+XaUZHa2JnOX6VQlD+Ahbds+ngsq2J0r663acY2KYoz7LoaYFdc9uOQ1xO9E2xs5t25BzSbBaC+KbI9JNOkprnh4zoIojZNpeH8fHDbk+eg6RRnbzqljs43KFiq/2/m178ulHQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(396003)(366004)(39860400002)(376002)(136003)(451199015)(38070700005)(122000001)(38100700002)(55016003)(86362001)(33656002)(71200400001)(76116006)(966005)(2906002)(44832011)(8676002)(64756008)(5660300002)(4326008)(66556008)(41300700001)(66476007)(66946007)(9686003)(45080400002)(52536014)(8936002)(54906003)(316002)(7696005)(66446008)(110136005)(478600001)(7416002)(186003)(26005)(6506007)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?t04DOPxBtSB/Y0uRzMuFmdg2KtQucBFM6tFRuKZC/NgFZCt+5QR6ytjas5yf?=
+ =?us-ascii?Q?UxBsfnBq/cjFa6zkxiWrEkUymWEo84x/IpllumrYXsThpOGm8r01Stzpc0Lq?=
+ =?us-ascii?Q?foyUkoyqBflmyQVIr/C07xbYH1IehfaJUh8o+YJz6+04XaIxtDtEIq+Nza0k?=
+ =?us-ascii?Q?85SZsU2u3hv2iMa3tdiLZ4tY2XEXGtTbfOCX1G/O/zYHacCu0S2FEftVIxaQ?=
+ =?us-ascii?Q?F/uHSEPwfGvKQNVnwp0bcnD6wvuD+/zdxvLTowE2wE+N3AeM14bR/mNG4QJd?=
+ =?us-ascii?Q?iltfAy7Kp+B54V41dkaxktf2XBULhtq4fTeGni28DoYduJGQa003dhc5oDOZ?=
+ =?us-ascii?Q?EFBRSEOiQkbx3Wgblesol7xT43WECP8KaRte83Z8S29XrUlAwxj2ovaNiTRL?=
+ =?us-ascii?Q?W/93WNgV/2NVjtzSovi/yXMAdz8Ozrka7zAsyRt6L6zrPrnmaoAEunrRwIr5?=
+ =?us-ascii?Q?iAYqrljQ2Nub/SuGMe7pnFrrwj3ZbvW+ydfxk6LhbOmlB6VRwnJ2m7s7LHj2?=
+ =?us-ascii?Q?iI7dMUy2f7RkOELfOty36mD+0k9ThJ5tg5LchRKjUJ0yuLu76ftxs2bHz1fQ?=
+ =?us-ascii?Q?qteZiduWnwZz//ylGEx67p2trgyc4oKfOE7CloOhIwQClYMByDNnPxES1aHs?=
+ =?us-ascii?Q?Ooq0njhni/bhDaDxw+SggA0GWs2bskTMFeUWxvY0PCEpbmu8xbat0dg8Y6gd?=
+ =?us-ascii?Q?50LKsTeW2wJIiCnV6iHKYT1wjUeR4wsC/bI2CfZUfsfN0eg0CvG26ge0UZbv?=
+ =?us-ascii?Q?M2n7BmTvalVqVfuL5XfRySp2VfJf18F1QtHLpeGr+HGVzQwyWVKVM3HG8d1K?=
+ =?us-ascii?Q?l4lN3AcsqV5PlumAeB3guElaXFfoI6diOxw+Mc6dgPinoZ6R+pp3WlgJTDH2?=
+ =?us-ascii?Q?9++JjSB0JUAn3XAvVctn0OfK72ngJxjJ0pPlFlTmc/e87gPWH8aSgQmuEOQn?=
+ =?us-ascii?Q?5+ue/MZgtqlpZLEKxbK30g4jsFj3bo8Q3cxQOSvppd1ld2LDbF4gbjrF7GCR?=
+ =?us-ascii?Q?sOt7xrLIgum9AKRTlsw3lMQjK6zUYYhfgk1lWech6TQQOnPS+Pocg6/0WVY3?=
+ =?us-ascii?Q?ECaS+UKX9mufy1E55cR8tVLy8zTCWw3mvqVju1xnLtnkuV0e1osj3H+S+0OP?=
+ =?us-ascii?Q?uT391x4dbM0mcd6lQUzqNXlvstkXT9I3/hi1ie4pA16MYgnDgavb4OE0MaQr?=
+ =?us-ascii?Q?ipF3YUfxjGnzalj7l2mDXRGyLW/FzTr/Uvu5LQO/HVl7/45bNoF2QlSGxY6I?=
+ =?us-ascii?Q?ZdIVz/ZIkMmLDhoyr46WEG7whjhHZR4NxkY1BD1eVAmHkhQKFJ2oWGDEQI7k?=
+ =?us-ascii?Q?KNOb7q/nT/ooRqeImRJUZ3YKDQxGhSxixWZJYQ+T236xN0ElPD1iocmNeD6i?=
+ =?us-ascii?Q?mlLgOi61YaaKipGSnJy+X7Avlxb47ImjrshEku2N2N6GpgAo7kFz05SZUz2h?=
+ =?us-ascii?Q?3MPz1jyvC8Hw0XB44uxh4YqROP+Cv14n2bdKXFQ1ApkHsmcFm+uSmQnInXnl?=
+ =?us-ascii?Q?os5y0zD3Z9trjH6EG86PfAxPxbNKv1+Jr1BqN0z9MZ0eUaO/5T0Fo7Vg0h3s?=
+ =?us-ascii?Q?Y5Ow0Jiz47ovt4HyxHc=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a639903b-bef6-4d50-1db3-08dabd596a30
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2022 05:08:15.7311
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DhwJUvd7LWngUMlm3WDkok1+tHsAx86wQ12cQszSz2HBEVl9VkhI8WZ227ZJgbSIu9kysge+uL7ex0XFunnJcg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6834
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit "752d3a23d1f68de87e3c" which adds MFC codec device node
-for exynos3250 SOC. Since exynos3250.dtsi and exynos5420.dtsi are
-using same compatible string as "samsung,mfc-v7" but their
-node properties are different.As both SoCs have MFC v7 hardware
-module but with different clock hierarchy and complexity.
-So renaming compatible string from version specific to SOC based.
+> Subject: Re: [PATCH V2 0/2] remoteproc: imx: add start up delay
+>=20
+> On Wed, 2 Nov 2022 at 05:23, Peng Fan (OSS) <peng.fan@oss.nxp.com>
+> wrote:
+> >
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > V2:
+> >  Rebased on linux-next
+> >
+> > V1:
+> >
+> >
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flore
+> > .kernel.org%2Flkml%2F20220609123500.3492475-1-
+> peng.fan%40oss.nxp.com%2
+> >
+> F&amp;data=3D05%7C01%7Cpeng.fan%40nxp.com%7Cf14584bdef9349e744ca
+> 08dabcf7
+> >
+> e1be%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63803007007
+> 2451509%7
+> >
+> CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJ
+> BTiI6Ik1
+> >
+> haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DCk73gkOPpNVT
+> kcZL8olCZP8B
+> > %2BrIpZHV48uZBl2R8HdM%3D&amp;reserved=3D0
+> >
+> > There is case that after remoteproc start remote processor[M4], the M4
+> > runs slow and before M4 finish its own rpmsg framework initialization,
+> > linux sends out vring kick message, then M4 firmware drops the kick
+> > message. Some NXP released Cortex-M[x] images has such limitation that
+> > it requires linux sends out vring kick message after M4 firmware
+> > finish its rpmsg framework initialization.
+> >
+> > The best case is to use a method to let M4 notify Linux that M4 has
+> > finished initialization, but we could not patch released firmware,
+> > then update driver to detect notification.
+> >
+> > So add delay before linux send out vring kick message. It is not good
+> > to use a fixed time delay in driver, so I choose to get that from
+> > device tree.
+> >
+>=20
+> From where I stand this is a hack to hide the lack of motivation to enact=
+ the
+> real solution that is outlined above.  I also wonder how these problems
+> were not caught during the testing phase.  Either find a way to upgrade y=
+our
+> firmware or keep this in your internal tree.
+In the beginning, i.mx not migrated to use remoteproc, i.MX release only su=
+pport
+uboot kick Cortex-M core and use downstream imx_rpmsg driver to
+communicate with remote core. There is no runtime stop/start.
 
-Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
-Fixes: 752d3a23d1f6 ("ARM: dts: add MFC codec device node for exynos3250")
-Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
----
- arch/arm/boot/dts/exynos3250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+After migrated to remoteproc, we do see some issue, but old firmware was
+there.
 
-diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
-index 326b9e0ed8d3..98105c64f7d9 100644
---- a/arch/arm/boot/dts/exynos3250.dtsi
-+++ b/arch/arm/boot/dts/exynos3250.dtsi
-@@ -485,7 +485,7 @@
- 		};
- 
- 		mfc: codec@13400000 {
--			compatible = "samsung,mfc-v7";
-+			compatible = "samsung,exynos3250-mfc";
- 			reg = <0x13400000 0x10000>;
- 			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-names = "mfc", "sclk_mfc";
--- 
-2.17.1
+Thanks,
+Peng.
 
+>=20
+> > Peng Fan (2):
+> >   dt-bindings: remoteproc: imx_rproc: add fsl,startup-delay-ms
+> >   remoteproc: imx_rproc: delay after kick remote processor
+> >
+> >  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml    | 4 ++++
+> >  drivers/remoteproc/imx_rproc.c                           | 9 +++++++++
+> >  2 files changed, 13 insertions(+)
+> >
+> > --
+> > 2.37.1
+> >
