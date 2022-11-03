@@ -2,87 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E63EA618C8A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 00:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D032618C94
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 00:10:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbiKCXHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 19:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41364 "EHLO
+        id S229481AbiKCXKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 19:10:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230435AbiKCXHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 19:07:16 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E7E1822BF3;
-        Thu,  3 Nov 2022 16:07:14 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.96,135,1665414000"; 
-   d="scan'208";a="141406977"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 04 Nov 2022 08:07:14 +0900
-Received: from mulinux.home (unknown [10.226.92.174])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7EC78400B9D5;
-        Fri,  4 Nov 2022 08:07:10 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH 3/3] arm64: dts: renesas: r9a09g011: Fix I2C SoC specific strings
-Date:   Thu,  3 Nov 2022 23:06:48 +0000
-Message-Id: <20221103230648.53748-4-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221103230648.53748-1-fabrizio.castro.jz@renesas.com>
-References: <20221103230648.53748-1-fabrizio.castro.jz@renesas.com>
+        with ESMTP id S229493AbiKCXKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 19:10:15 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BC601A2;
+        Thu,  3 Nov 2022 16:10:14 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A3NA4Op027636;
+        Thu, 3 Nov 2022 18:10:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667517004;
+        bh=6/HFSvVUEf1V1TsTR4Af7hNZvxZCNT+ggIy/5UrcLjI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ZuUgdLJo3NaaMLpXlp2CIvNyh+TT6pGohbBtIWQQCBbY8eGPP4K8K72jSFqBCrWR6
+         Bjb4iPxrtiLBkoQuhWgqBr0Nz+3s+HRKtbQEUcnKQMotWFea6gKnlCzII++qFSfSy5
+         qmpqpzjuzUhoSZLZVm0Vd1taZ2ureqX0AMYBOFp0=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A3NA3kl048757
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Nov 2022 18:10:03 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 3 Nov
+ 2022 18:10:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 3 Nov 2022 18:10:02 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A3NA2hG031936;
+        Thu, 3 Nov 2022 18:10:02 -0500
+Date:   Thu, 3 Nov 2022 18:10:02 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Julien Panis <jpanis@baylibre.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am625-sk: mark MCU and WKUP
+ watchdogs as reserved
+Message-ID: <20221103231002.fqsstlkpgaoa5wm7@tasty>
+References: <20221103181440.232727-1-jpanis@baylibre.com>
+ <20221103181440.232727-3-jpanis@baylibre.com>
+ <20221103214754.5feylk5sfem2lvhf@magnetize>
+ <35284213-db06-8b6d-8c94-4279f61d6296@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <35284213-db06-8b6d-8c94-4279f61d6296@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-s/renesas,i2c-r9a09g011/renesas,r9a09g011-i2c/g for consistency.
+On 17:36-20221103, Andrew Davis wrote:
+> On 11/3/22 4:47 PM, Nishanth Menon wrote:
+> > On 19:14-20221103, Julien Panis wrote:
+> > > MCU wdt is typically used by M4F.
+> > > Wake up wdt is typically used by DM (R5) firmware.
+> > > 
+> > > Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> > > ---
+> > >   arch/arm64/boot/dts/ti/k3-am625-sk.dts | 10 ++++++++++
+> > >   1 file changed, 10 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> > > index 93a5f0817efc..9ade591ef563 100644
+> > > --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> > > +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> > > @@ -503,6 +503,16 @@ &main_mcan0 {
+> > >   	status = "disabled";
+> > >   };
+> > > +&mcu_rti0 {
+> > > +	/* MCU RTI0 is used by M4F firmware */
+> > > +	status = "reserved";
+> > > +};
+> > > +
+> > > +&wkup_rti0 {
+> > > +	/* WKUP RTI0 is used by DM firmware */
+> > > +	status = "reserved";
+> > > +};
+> > > +
+> > 
+> > If this is the typical usage, should'nt we do this in soc.dtsi than
+> > sprinkle this through various boards?
+> > 
+> > Andrew: ?
+> 
+> These are only "reserved" for certain firmware, you choose your RPROCs
+> and firmware down at the bottom level in board DTs. So I'd say these
+> statuses should be set at this same level here.
+> 
+> DM firmware might be the exception as it should always be present,
+> but for M4F firmware, meh, leave it here.
+> 
 
-renesas,i2c-r9a09g011 is not actually used by the driver, therefore
-changing this doesn't cause any harm.
+That makes sense.. Julien: Could you address this please?
 
-Fixes: 54ac6794df9d ("arm64: dts: renesas: r9a09g011: Add i2c nodes")
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-index 1948d2e6bcae..2ccd48ee9880 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-@@ -126,7 +126,7 @@ cpg: clock-controller@a3500000 {
- 		i2c0: i2c@a4030000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "renesas,i2c-r9a09g011", "renesas,rzv2m-i2c";
-+			compatible = "renesas,r9a09g011-i2c", "renesas,rzv2m-i2c";
- 			reg = <0 0xa4030000 0 0x80>;
- 			interrupts = <GIC_SPI 232 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 236 IRQ_TYPE_EDGE_RISING>;
-@@ -140,7 +140,7 @@ i2c0: i2c@a4030000 {
- 		i2c2: i2c@a4030100 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "renesas,i2c-r9a09g011", "renesas,rzv2m-i2c";
-+			compatible = "renesas,r9a09g011-i2c", "renesas,rzv2m-i2c";
- 			reg = <0 0xa4030100 0 0x80>;
- 			interrupts = <GIC_SPI 234 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 238 IRQ_TYPE_EDGE_RISING>;
 -- 
-2.34.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
