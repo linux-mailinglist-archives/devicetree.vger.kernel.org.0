@@ -2,148 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F59617752
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:11:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CCCE61776D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbiKCHLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 03:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45028 "EHLO
+        id S230320AbiKCHOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 03:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbiKCHKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:10:48 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF53A10069
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:10:35 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id l6so860815pjj.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 00:10:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mH8K/6eg5Lh08TfiTAW9SH/au0kXMjW1a4OsBDcVWqM=;
-        b=ZrpmvktuoNhallTRgxhKQWglgv0B8LbAU1PTDwPFaf4kgpbfOwqNdrjuUyEYePAhmn
-         v4ka3TNaMdkeY8ZVY2T2rQ0f8guNpPWfWma2a9Yvp85ab9hutZ6UK3cy7HUmFdgqOCfd
-         GnKXbWoyhIecHnsbgAYaKyOxfc5gZfd8rk9quMhI4WpVKYLgV53MWkF+opti+4DIs2LD
-         xlUsF7jtqt98uNmlEs9MrQUhTBg7WgBXzFR+yP0j8yfbq/TYfaCvo5wJl/I7SqYuE/0p
-         92zAmBBlwYZYtT5WTc+4WwHUSjSJTho/+IY30WbkLUmdhQwzfPTtzMVjvrNqMJ7rPt/M
-         GOEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mH8K/6eg5Lh08TfiTAW9SH/au0kXMjW1a4OsBDcVWqM=;
-        b=2iKMgE79Hdcu9Pe3Surp/J/fAcCBqVuP/HxvUtfeywYP0jE8/jfkWnRF3fK9YmiBzp
-         R4nko7kDxE4RTzIMtEXX2en+TSIGJ5abAhYqMJCvZWF/eozvaJNpPYX42oe/lRNqPUBj
-         /n0i5q2PAzXPFr1Z6huJTxz+ynmVZiIya6n3pVEsAQL+4K4kViZo0nuxKspLBWS4nELi
-         CRYUg5/c8OT7gP70SEYKqNhpTvw2A2C7rDErXzVPnEHLaxl+RhdsEv4tTlq3ETgQlbpE
-         6VFmnAkflYjv8V0b69Tjtxodke7Mtnu3z2f3gaznTrCGnaK+4PSlrSvFWq6kjlFNrVf5
-         H0PQ==
-X-Gm-Message-State: ACrzQf0EUTK0K1FOunhx4jcuvxJnTy2nn6UVyYf3ZumG3mo9YhLybTCw
-        vZ3H1uCqw2ysmOm41xLn76d7
-X-Google-Smtp-Source: AMsMyM54CWyBk4TvLqKM0kCdmNpeBWyLDMlWh55Ntk+biSUah5rCsEOht738OFK0w9dK2KGfEeYZzA==
-X-Received: by 2002:a17:903:2c2:b0:182:df88:e6d3 with SMTP id s2-20020a17090302c200b00182df88e6d3mr28273709plk.81.1667459435320;
-        Thu, 03 Nov 2022 00:10:35 -0700 (PDT)
-Received: from localhost.localdomain ([117.193.208.64])
-        by smtp.gmail.com with ESMTPSA id s9-20020a170903214900b00186748fe6ccsm9451244ple.214.2022.11.03.00.10.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 00:10:34 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     andersson@kernel.org
-Cc:     konrad.dybcio@somainline.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        quic_jprakash@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        steev@kali.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 12/12] arm64: dts: qcom: sc8280xp-x13s: Add thermal zone support
-Date:   Thu,  3 Nov 2022 12:39:11 +0530
-Message-Id: <20221103070911.20019-13-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221103070911.20019-1-manivannan.sadhasivam@linaro.org>
-References: <20221103070911.20019-1-manivannan.sadhasivam@linaro.org>
+        with ESMTP id S231192AbiKCHOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:14:44 -0400
+Received: from smtp.smtpout.orange.fr (smtp-11.smtpout.orange.fr [80.12.242.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBF23896
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:14:41 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.100.34])
+        by smtp.orange.fr with ESMTPA
+        id qUQtofbR69RnzqUQtoOzUF; Thu, 03 Nov 2022 08:14:39 +0100
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Thu, 03 Nov 2022 08:14:39 +0100
+X-ME-IP: 86.243.100.34
+Message-ID: <997182bc-f3de-71df-f241-dc6f52662f04@wanadoo.fr>
+Date:   Thu, 3 Nov 2022 08:14:35 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v8 1/2] clocksource: loongson2_hpet: add hpet driver
+ support
+To:     zhuyinbo@loongson.cn
+References: <20221103065351.32603-1-zhuyinbo@loongson.cn>
+Content-Language: fr, en-US
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     chenhuacai@kernel.org, daniel.lezcano@linaro.org,
+        devicetree@vger.kernel.org, jiaxun.yang@flygoat.com,
+        kernel@xen0n.name, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, liuyun@loongson.cn,
+        loongarch@lists.linux.dev, lvjianmin@loongson.cn,
+        robh+dt@kernel.org, tglx@linutronix.de, yang.lee@linux.alibaba.com
+In-Reply-To: <20221103065351.32603-1-zhuyinbo@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zone support by making use of the thermistor SYS_THERM6.
-Based on experiments, this thermistor seems to reflect the actual
-surface temperature of the laptop.
+Le 03/11/2022 à 07:53, Yinbo Zhu a écrit :
+> HPET (High Precision Event Timer) defines a new set of timers, which
+> are used by the operating system to schedule threads, interrupt the
+> kernel and interrupt the multimedia timer server. The operating
+> system can assign different timers to different applications. By
+> configuration, each timer can generate interrupt independently.
+> 
+> The Loongson-2 HPET module includes a main count and three comparators,
+> all of which are 32 bits wide. Among the three comparators, only
+> one comparator supports periodic interrupt, all three comparators
+> support non periodic interrupts.
+> 
+> Signed-off-by: Yinbo Zhu <zhuyinbo-cXZgJK919ebM1kAEIRd3EQ@public.gmane.org>
+> ---
 
-For the cooling device, all BIG CPU cores are throttle down to keep the
-temperature at a sane level.
+[...]
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Hi, a few nits below.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index fdeb7718a596..7d2b53ceaa54 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -29,6 +29,52 @@ backlight {
- 		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
- 	};
- 
-+	thermal-zones {
-+		skin-temp-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8280_adc_tm 5>;
-+
-+			trips {
-+				skin_temp_alert0: trip-point0 {
-+					temperature = <55000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				skin_temp_alert1: trip-point1 {
-+					temperature = <58000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+
-+				skin-temp-crit {
-+					temperature = <73000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&skin_temp_alert0>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+
-+				map1 {
-+					trip = <&skin_temp_alert1>;
-+					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
-+
- 	vreg_edp_bl: regulator-edp-bl {
- 		compatible = "regulator-fixed";
- 
--- 
-2.25.1
+> +static int hpet_request_irq(struct clock_event_device *cd)
+> +{
+> +	unsigned long flags = IRQD_NO_BALANCING | IRQF_TIMER;
+> +
+> +	if (request_irq(cd->irq, hpet_irq_handler, flags, "hpet", NULL)) {
+> +		pr_err("Failed to register hpet interrupt\n");
+
+Maybe s/register/request/ ?
+
+> +		return -1;
+> +	}
+> +
+> +	disable_irq(cd->irq);
+> +	irq_set_affinity(cd->irq, cd->cpumask);
+> +	enable_irq(cd->irq);
+> +
+> +	return 0;
+> +}
+> +
+
+[...]
+
+> +static int __init loongson2_hpet_init(struct device_node *np)
+> +{
+> +	int ret;
+> +	struct clk *clk;
+> +
+> +	hpet_mmio_base = of_iomap(np, 0);
+> +	if (!hpet_mmio_base) {
+> +		pr_err("hpet: unable to map loongson2 hpet registers\n");
+> +		goto err;
+
+'ret' is un-initialised at this point, and of_iomap() has failed, so 
+there is no need to undo it in the error handling path.
+
+> +	}
+> +
+> +	ret = -EINVAL;
+
+Could be done at declataion, a few lines above.
+
+> +	hpet_t0_irq = irq_of_parse_and_map(np, 0);
+> +	if (hpet_t0_irq <= 0) {
+> +		pr_err("hpet: unable to get IRQ from DT, %d\n", hpet_t0_irq);
+> +		goto err;
+> +	}
+> +
+> +	clk = of_clk_get(np, 0);
+> +	if (!IS_ERR(clk)) {
+> +		hpet_freq = clk_get_rate(clk);
+> +		clk_put(clk);
+> +	} else
+> +		goto err;
+
+Test for:
+	if (IS_ERR(clk))
+		goto err;
+
+and keep :
+	hpet_freq = clk_get_rate(clk);
+	clk_put(clk);
+
+with less indentation in the normal path?
+
+CJ
+
+> +
+> +	hpet_irq_flags = HPET_TN_LEVEL;
+> +
+> +	loongson2_hpet_clocksource_init();
+> +
+> +	loongson2_hpet_clockevent_init();
+> +
+> +	return 0;
+> +
+> +err:
+> +	iounmap(hpet_mmio_base);
+> +	return ret;
+> +}
+> +
+> +TIMER_OF_DECLARE(loongson2_hpet, "loongson,ls2k-hpet", loongson2_hpet_init);
 
