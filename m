@@ -2,158 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE67F61788A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:20:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A382D6178A1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 09:25:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbiKCIUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 04:20:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34578 "EHLO
+        id S229875AbiKCIZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 04:25:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230233AbiKCIUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:20:01 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5415A6387;
-        Thu,  3 Nov 2022 01:19:59 -0700 (PDT)
-Received: from loongson.cn (unknown [10.180.13.64])
-        by gateway (Coremail) with SMTP id _____8Axz7eteWNjRS8EAA--.9735S3;
-        Thu, 03 Nov 2022 16:19:57 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.180.13.64])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxDuKkeWNjx4ELAA--.33587S3;
-        Thu, 03 Nov 2022 16:19:55 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hector Martin <marcan@marcan.st>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Brian Norris <briannorris@chromium.org>,
-        Sven Peter <sven@svenpeter.dev>, loongarch@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 2/2] dt-bindings: soc: add loongson-2 chipid
-Date:   Thu,  3 Nov 2022 16:19:42 +0800
-Message-Id: <20221103081942.3529-2-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20221103081942.3529-1-zhuyinbo@loongson.cn>
-References: <20221103081942.3529-1-zhuyinbo@loongson.cn>
+        with ESMTP id S229579AbiKCIZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 04:25:15 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CFED6168;
+        Thu,  3 Nov 2022 01:25:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667463914; x=1698999914;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=2r8XOQHsUrbaJSTuWBrN7e0+u5i0EbmM5QIq6etLik0=;
+  b=JvTOm0YN94I0zWfW7aDRVtVXa0MnXxHCopL5qrA8+OOnDMaFzs+TkDCb
+   jxe4MqG2rxmvsQ2oMBCr/v2TOp5qje081Si42pPPIGzHYk4cT08E9rFFY
+   9U40aH8DV6OatOKtPc3pS5nJVKhJkvviRedlxwVtVu4+2U7Ybw6RQqXbc
+   kYP3zANWLxxwaHMAk8aaD/v2tdP1sfEXOOQhJ02fJKrrGqaf0fb66KzqX
+   hQBRh5H2XxF+RweYSnJYkp1FAfiXBs6r7COipR72lV+pyifauGrQWouQ4
+   9N/p4x0wC8cebCWbQ5cFco5kGYvFbDRV8MJ1lfKlNqryvCuHFZP1GEDlj
+   g==;
+X-IronPort-AV: E=Sophos;i="5.95,235,1661810400"; 
+   d="scan'208";a="27127502"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Nov 2022 09:25:12 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 03 Nov 2022 09:25:12 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 03 Nov 2022 09:25:12 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667463912; x=1698999912;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=2r8XOQHsUrbaJSTuWBrN7e0+u5i0EbmM5QIq6etLik0=;
+  b=PK67dABSA8JXGS8ZUFkoi7t0r+o5ZxlBdZumbVGIarUiLJdKF38KPsYn
+   aaoERMSuxRSqfR3ne8XCbe73S9XoFj8c24gcem7xaCqPkmylZQfM0tfqG
+   OcPWBE/k+GeSlH26Zz42qXnKNAYe7piJcXCFd//dqLlXy32vzueMcWUzM
+   59qFrh5U6eyLZsF844qQKBCXC98MRGrUX2nClUNqEhZpB7OA9eWnn5iid
+   r5KAT+Sy72gGAyFLbSoBZYe3b4qvlJrECbdHrOP2PsngPhvZEeGmFrm42
+   qoM/o3rbELmIpJ7T/93oxIrjHlMwn1ErLG7xV847Gi1bW1uFJr9slTjK+
+   w==;
+X-IronPort-AV: E=Sophos;i="5.95,235,1661810400"; 
+   d="scan'208";a="27127501"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Nov 2022 09:25:11 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AFC42280056;
+        Thu,  3 Nov 2022 09:25:11 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Marek Vasut <marex@denx.de>
+Cc:     linux-pci@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH 1/3] dt-bindings: imx6q-pcie: Handle various clock configurations
+Date:   Thu, 03 Nov 2022 09:25:12 +0100
+Message-ID: <7630472.EvYhyI6sBW@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20221102215729.147335-1-marex@denx.de>
+References: <20221102215729.147335-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxDuKkeWNjx4ELAA--.33587S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxXF47tF4kJw17CF4UtF4xZwb_yoW5Gryrpa
-        17Cr95KF4Iq3W7uanxKa4Ik3WrZF93AanFgFZFyw13KrWqgw1Fqw13K3WDZa17Zr17JayU
-        uFyfKr45WF48Cr7anT9S1TB71UUUUbJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bSxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jw0_GFyle2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2
-        Ij64vIr41l42xK82IY6x8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
-        1I0E14v26r1q6r43MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
-        Wlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26ryj
-        6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
-        0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4U
-        JbIYCTnIWIevJa73UjIFyTuYvjxUciL0UUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Loongson-2 SoC chipid binding with DT schema format using
-json-schema.
+Hi Marek,
 
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-Change in v5:
-		1. Add all history change log information.
-		2. Add reviewed-by information.
-Change in v4:
-		1. NO change, but other patch in this series of patches set	
-		   has changes.
-Change in v3:
-		1. Drop "driver" and describe instead what is GUTS, including
-		   its acronym.
-		2. Add desciption about the SoC register.
-		3. Fixup dts node name.
-		4. Replace string loongson2/Loongson2 with loongson-2/Loongson-2
-                   in binding file and commit message.
-Change in v2:
-		1. NO change, but other patch in this series of patches set	
-		   has changes.
+Am Mittwoch, 2. November 2022, 22:57:27 CET schrieb Marek Vasut:
+> The i.MX SoCs have various clock configurations routed into the PCIe IP,
+> the list of clock is below. Document all those configurations in the DT
+> binding document.
+> 
+> All SoCs: pcie, pcie_bus
+> 6QDL, 7D: + pcie_phy
+> 6SX:      + pcie_phy          pcie_inbound_axi
+> 8MQ:      + pcie_phy pcie_aux
+> 8MM, 8MP: +          pcie_aux
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> To: devicetree@vger.kernel.org
+> ---
+>  .../bindings/pci/fsl,imx6q-pcie.yaml          | 74 +++++++++++++++++--
+>  1 file changed, 69 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
+> 376e739bcad40..1cfea8ca72576 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -14,9 +14,6 @@ description: |+
+>    This PCIe host controller is based on the Synopsys DesignWare PCIe IP
+>    and thus inherits all the common properties defined in snps,dw-pcie.yaml.
+> 
+> -allOf:
+> -  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -60,8 +57,8 @@ properties:
+>      items:
+>        - const: pcie
+>        - const: pcie_bus
+> -      - const: pcie_phy
+> -      - const: pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie
+> +      - enum: [pcie_phy, pcie_aux]
+> +      - enum: [pcie_inbound_axi, pcie_aux]
+> 
+>    num-lanes:
+>      const: 1
+> @@ -177,6 +174,73 @@ required:
+> 
+>  unevaluatedProperties: false
+> 
+> +allOf:
+> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx6sx-pcie
+> +              - fsl,imx8mq-pcie
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 4
+> +        clock-names:
+> +          maxItems: 4
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: fsl,imx6sx-pcie
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcie
+> +            - const: pcie_bus
+> +            - const: pcie_phy
+> +            - const: pcie_inbound_axi
+> +    else:
+> +      if:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: fsl,imx8mq-pcie
+> +      then:
+> +        properties:
+> +          clock-names:
+> +            items:
+> +              - const: pcie
+> +              - const: pcie_bus
+> +              - const: pcie_phy
+> +              - const: pcie_aux
+> +      else:
+> +        if:
+> +          properties:
+> +            compatible:
+> +              contains:
+> +                enum:
+> +                  - fsl,imx8mm-pcie
+> +                  - fsl,imx8mp-pcie
+> +        then:
+> +          properties:
+> +            clock-names:
+> +              items:
+> +                - const: pcie
+> +                - const: pcie_bus
+> +                - const: pcie_aux
+> +        else:
+> +          properties:
+> +            clock-names:
+> +              items:
+> +                - const: pcie
+> +                - const: pcie_bus
+> +                - const: pcie_phy
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/imx6qdl-clock.h>
 
- .../bindings/hwinfo/loongson,ls2k-chipid.yaml | 38 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
+Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-diff --git a/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml b/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-new file mode 100644
-index 000000000000..9d0c36ec1982
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwinfo/loongson,ls2k-chipid.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Loongson-2 SoC ChipID
-+
-+maintainers:
-+  - Yinbo Zhu <zhuyinbo@loongson.cn>
-+
-+description: |
-+  Loongson-2 SoC contains many groups of global utilities register
-+  blocks, of which the ChipID group registers record SoC version,
-+  feature, vendor and id information.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-chipid
-+
-+  reg:
-+    maxItems: 1
-+
-+  little-endian: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    chipid: chipid@1fe00000 {
-+        compatible = "loongson,ls2k-chipid";
-+        reg = <0x1fe00000 0x3ffc>;
-+        little-endian;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 20ce056ae207..916b2d9cffc0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12045,6 +12045,7 @@ LOONGSON-2 SOC SERIES GUTS DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	loongarch@lists.linux.dev
- S:	Maintained
-+F:	Documentation/devicetree/bindings/hwinfo/loongson,ls2k-chipid.yaml
- F:	drivers/soc/loongson/loongson2_guts.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
--- 
-2.20.1
 
