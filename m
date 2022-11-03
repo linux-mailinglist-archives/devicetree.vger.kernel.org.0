@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F08D3618751
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C10D618752
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:19:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231244AbiKCSTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 14:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54354 "EHLO
+        id S230203AbiKCSTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 14:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbiKCSTg (ORCPT
+        with ESMTP id S230423AbiKCSTg (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:19:36 -0400
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A74D12633
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBFBD13D53
         for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:19:34 -0700 (PDT)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 3E8D184F6E;
+        by phobos.denx.de (Postfix) with ESMTPSA id C431685076;
         Thu,  3 Nov 2022 19:19:32 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667499572;
-        bh=5/xChkNIjljhJg9+TOK54VTFTgYJEZvGpNPhmkJA94I=;
+        s=phobos-20191101; t=1667499573;
+        bh=0taUmY72/R5c8QMl4HIAlEn4dIqhJeXD4IqGNt5Uydc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=O+SDLRgWtqoP9OaTQ0vOClmwQ/RC1LDYP8I3Sn2nwuMewJBfY/6BXC+YtCH53qLDU
-         X8ZCeSchztKofBNv7E1T4J/VlRHgsELFhlc2S7658CXwLcK//kdXGceU9kcDthpljP
-         iyz5zXNp0P1F3BkTPolcr3/ioHAEs2/1PfyMr1JlUUi24WkiSSacQCQXSBe7SP520/
-         3DG79ey9O6x+ALRtc1Rv7+1ourQqp1P+glkJkxLTyVNrtvo/3LVmmjU7KMvPRk5B2U
-         MEzcLyWb0tzCaibZaSneDlLSVDuu2ebFi+mlL7ZQwVDYVRLtilU6SJoIBag4pQezje
-         tp7k9c2G12Ryw==
+        b=ETPD9uQXFh4P0gzRAkDHZ+ZrNw5kagV1TECT8X1yj6rZraB2Pt8ufmeV2bC4qoH4C
+         YEBButbG2gRB3g+Opxq4kjK7hXD0cTYFz16ZbjZ0n9WWKk6OzoF8Uy3yk1UdnartXN
+         ZYwo+BxvoN1J8thmwDidzSqBWx4U7gs5PaLx7MOcv569SLzwkuYZSrnUg8nngFYggH
+         fM8hvP3KUQGvPFZ+aZeORgZejnFdxlUEk74pJGF+d7PrF3D2PghWeqKRXUKILXnKZs
+         QDpd75vbUaPEyXHAiXIk5y/GyUChqXqKQOTVI2QGrpZ7E6epZ7YCtUWoVAq57pBlM7
+         GVJPVT2tSVmjA==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
@@ -49,9 +49,9 @@ Cc:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Shawn Guo <shawnguo@kernel.org>,
         Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: imx8mm: Swap SAI DMA order
-Date:   Thu,  3 Nov 2022 19:19:19 +0100
-Message-Id: <20221103181920.95736-2-marex@denx.de>
+Subject: [PATCH 3/3] arm64: dts: imx8mn: Swap SAI DMA order
+Date:   Thu,  3 Nov 2022 19:19:20 +0100
+Message-Id: <20221103181920.95736-3-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221103181920.95736-1-marex@denx.de>
 References: <20221103181920.95736-1-marex@denx.de>
@@ -101,28 +101,17 @@ Cc: Tim Harvey <tharvey@gateworks.com>
 Cc: devicetree@vger.kernel.org
 To: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 20 ++++++++++----------
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 20 ++++++++++----------
  1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 45fd7371ee7e9..40cc02c886d7b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -321,8 +321,8 @@ sai1: sai@30010000 {
- 						 <&clk IMX8MM_CLK_SAI1_ROOT>,
- 						 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>;
- 					clock-names = "bus", "mclk1", "mclk2", "mclk3";
--					dmas = <&sdma2 0 2 0>, <&sdma2 1 2 0>;
--					dma-names = "rx", "tx";
-+					dmas = <&sdma2 1 2 0>, <&sdma2 0 2 0>;
-+					dma-names = "tx", "rx";
- 					status = "disabled";
- 				};
- 
-@@ -335,8 +335,8 @@ sai2: sai@30020000 {
- 						<&clk IMX8MM_CLK_SAI2_ROOT>,
- 						<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>;
- 					clock-names = "bus", "mclk1", "mclk2", "mclk3";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index 607c97009399e..fba9f5519daa7 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -301,8 +301,8 @@ sai2: sai@30020000 {
+ 						<&clk IMX8MN_CLK_SAI2_ROOT>,
+ 						<&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>;
+ 					clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
 -					dmas = <&sdma2 2 2 0>, <&sdma2 3 2 0>;
 -					dma-names = "rx", "tx";
 +					dmas = <&sdma2 3 2 0>, <&sdma2 2 2 0>;
@@ -130,10 +119,10 @@ index 45fd7371ee7e9..40cc02c886d7b 100644
  					status = "disabled";
  				};
  
-@@ -349,8 +349,8 @@ sai3: sai@30030000 {
- 						 <&clk IMX8MM_CLK_SAI3_ROOT>,
- 						 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>;
- 					clock-names = "bus", "mclk1", "mclk2", "mclk3";
+@@ -315,8 +315,8 @@ sai3: sai@30030000 {
+ 						 <&clk IMX8MN_CLK_SAI3_ROOT>,
+ 						 <&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>;
+ 					clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
 -					dmas = <&sdma2 4 2 0>, <&sdma2 5 2 0>;
 -					dma-names = "rx", "tx";
 +					dmas = <&sdma2 5 2 0>, <&sdma2 4 2 0>;
@@ -141,24 +130,35 @@ index 45fd7371ee7e9..40cc02c886d7b 100644
  					status = "disabled";
  				};
  
-@@ -363,8 +363,8 @@ sai5: sai@30050000 {
- 						 <&clk IMX8MM_CLK_SAI5_ROOT>,
- 						 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>;
- 					clock-names = "bus", "mclk1", "mclk2", "mclk3";
+@@ -329,8 +329,8 @@ sai5: sai@30050000 {
+ 						 <&clk IMX8MN_CLK_SAI5_ROOT>,
+ 						 <&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>;
+ 					clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
 -					dmas = <&sdma2 8 2 0>, <&sdma2 9 2 0>;
 -					dma-names = "rx", "tx";
 +					dmas = <&sdma2 9 2 0>, <&sdma2 8 2 0>;
 +					dma-names = "tx", "rx";
+ 					fsl,shared-interrupt;
+ 					fsl,dataline = <0 0xf 0xf>;
  					status = "disabled";
- 				};
- 
-@@ -377,8 +377,8 @@ sai6: sai@30060000 {
- 						 <&clk IMX8MM_CLK_SAI6_ROOT>,
- 						 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>;
- 					clock-names = "bus", "mclk1", "mclk2", "mclk3";
+@@ -345,8 +345,8 @@ sai6: sai@30060000 {
+ 						 <&clk IMX8MN_CLK_SAI6_ROOT>,
+ 						 <&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>;
+ 					clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
 -					dmas = <&sdma2 10 2 0>, <&sdma2 11 2 0>;
 -					dma-names = "rx", "tx";
 +					dmas = <&sdma2 11 2 0>, <&sdma2 10 2 0>;
++					dma-names = "tx", "rx";
+ 					status = "disabled";
+ 				};
+ 
+@@ -402,8 +402,8 @@ sai7: sai@300b0000 {
+ 						 <&clk IMX8MN_CLK_SAI7_ROOT>,
+ 						 <&clk IMX8MN_CLK_DUMMY>, <&clk IMX8MN_CLK_DUMMY>;
+ 					clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
+-					dmas = <&sdma2 12 2 0>, <&sdma2 13 2 0>;
+-					dma-names = "rx", "tx";
++					dmas = <&sdma2 13 2 0>, <&sdma2 12 2 0>;
 +					dma-names = "tx", "rx";
  					status = "disabled";
  				};
