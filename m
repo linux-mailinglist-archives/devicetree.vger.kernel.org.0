@@ -2,111 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDFA46186F7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 641DD618731
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 19:14:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229587AbiKCSE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 14:04:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42942 "EHLO
+        id S230156AbiKCSOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 14:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230194AbiKCSEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:04:11 -0400
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 405F623BE3
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:01:52 -0700 (PDT)
-Received: by mail-qk1-x735.google.com with SMTP id k2so1659534qkk.7
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:01:52 -0700 (PDT)
+        with ESMTP id S230165AbiKCSOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 14:14:45 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8A896466
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 11:14:43 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id i5-20020a1c3b05000000b003cf47dcd316so3924935wma.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 11:14:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=b6lzWnndPEx47JNYnBGGhAjHV67Tdq93TKvJyHkVGpU=;
-        b=DViLWviJRNiRKOZurROMuetripDeQl1g19sw3T0TpCXaliobtAcUpHInTkjSEZib9D
-         7MkOjvKLSFviFdXN+hq26Fa5jwANIC5E0nvuHZMsH1ZMn4+BH7MWbRHQW/RwCVq6WX1f
-         oYlqXdDmpAXr9dMLKOlPFXsohahRnHVSfZ/5JnhN2gEAOapUL85ILJoN+Cc9GICOlsuV
-         5SnIbPzuMXfe4Njcg3+x/kXixf6qYP3BXBlHlHybmibb4qqkdZSY4b8lvmT1wjB3fmWr
-         reAyQsiNMRFxuqCzOkiT41wiOdztpQybVWUX3E5LxJsoTndf6ejCMr2bhS71rXNrXpOk
-         4X3Q==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B/U/F+0RMZTg6izVpulD63LQRaLW/I74SsRWCBM6RrQ=;
+        b=JqsGAPkugzPWEY/QK/ba6O11TdN/xz9kFK7zJCOJ8fDedzjks82r/tNsCtWs0tT7O7
+         fN3aYih3CSfPfsh9M2JdQI5G0HMAkI0QqwVqu2v0thHPzPrgbRnXSgB8iB17Kfz2BxoC
+         f64uc2rvactjKuRNaSrc4HWUtgFBOZlKfQVcUHhgbXSwdOLBvUyjNaaNfWs6z9kCZbLl
+         lt+OCL6hPizb/4QGk3OBRSuSWv7pwKyXRHSvxZ358/ZB2OqetpkxSVYNLkgScYziv4sP
+         CMp+gO5GS0gFmKpTkOB6mJwjfkWoaopawHgoDZYJ1jIhdUdB92Ji+m7v27IkgkhzFsno
+         h9oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=b6lzWnndPEx47JNYnBGGhAjHV67Tdq93TKvJyHkVGpU=;
-        b=Yc+QvrGJQsg2RZxsu5VTZNVs4Bq+XR7kq96z6VgdPaJ1rdnlHO4H0T3RvjAL4QQIBB
-         abx32l3O02nOpBCR1afoORR4xe5pCa0aOGlKEiEa/UNPmy6+LGuiPF9Vb2ZWtYghNPvD
-         FWQu4D6b4RaH24VQOha0Utj0pU4gyHH5UToPLVZAfxKsEgDsIbhccG55E4wNzXn+2t/u
-         CG6Wb6Yc7cE+pDIy4A7qx3jEeSS8hOVBmu+JXrl0y/hFsP8hO3lexkFLxINufAloCF45
-         IoI+VmYDkZBRdOkKqjf7VP1MZHrlCgaiw5I6WBaXDgPXC1hCyIP//wbXFai/TvewhX00
-         Of5Q==
-X-Gm-Message-State: ACrzQf1PaRRMFt7Nitue3DdMIWtYHKjM/kZ+2F5oscqNPM1RqRQ5/Y0Z
-        inkVtCXG6QsyX/wcON3U2/2ZEg==
-X-Google-Smtp-Source: AMsMyM7TEv/8Z00e6YSXU/dDrn8qkVeUkqCQmw0hY0PNeKAia77RHB8u/EgrArZ2PPcHaORZnrqD3g==
-X-Received: by 2002:a05:620a:28cc:b0:6ee:78fe:c519 with SMTP id l12-20020a05620a28cc00b006ee78fec519mr21850553qkp.345.1667498511178;
-        Thu, 03 Nov 2022 11:01:51 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id fy5-20020a05622a5a0500b003a533886612sm926956qtb.3.2022.11.03.11.01.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 11:01:50 -0700 (PDT)
-Message-ID: <613d7971-37d6-c8db-523e-cf3cbdcd5287@linaro.org>
-Date:   Thu, 3 Nov 2022 14:01:49 -0400
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B/U/F+0RMZTg6izVpulD63LQRaLW/I74SsRWCBM6RrQ=;
+        b=rhDHmJLozYpIs//h4qIWfJ81g0mxL/O6KQiXytXQsVFhVNZ2HR4AgMKvyewcv8l86z
+         +eUECmR+Pe/EAHa1K3qJ97A1uvM0v4FCBZ8pvhM9+UwFn7M0/aUu5O6oUsgVMg5w/Bv2
+         M0cwYBb527La2cmrH3I0ev6pN8lL3MpLw/I1Rt0TNRwopcflf+FSMYb8hdPXGj5CAIAo
+         FwDtILMrsno74e/xwehpffMYpa67zMAO/ivgswGksI1Dj6YVb35j97lYQL8HQgZ1o5WO
+         hvvuUV8gFORfDcQerX6fUqqKrrX/sS6AFJSGev3vOZDtlxH65sqAwAgEHIgzum0qj3qm
+         2qnQ==
+X-Gm-Message-State: ACrzQf1tCv0f8oZLC7UIpSWoTCI5fWZwVObzoDgKO5ZnoQfWjzBLhTQf
+        8fftryO7rhIdlLR+vH6vNn5JRg==
+X-Google-Smtp-Source: AMsMyM72yJTivNBhzs8qu13Mgo+FanuE5j3ElGM59crwQb+Zfh1WyWeFP0xjp693nPpU1/LJTvGVCQ==
+X-Received: by 2002:a05:600c:1694:b0:3cf:56a9:fe64 with SMTP id k20-20020a05600c169400b003cf56a9fe64mr25532921wmn.112.1667499282563;
+        Thu, 03 Nov 2022 11:14:42 -0700 (PDT)
+Received: from baylibre-ThinkPad-T14s-Gen-2i.. (254.31.102.84.rev.sfr.net. [84.102.31.254])
+        by smtp.gmail.com with ESMTPSA id h19-20020a1ccc13000000b003b49ab8ff53sm639212wmb.8.2022.11.03.11.14.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 11:14:41 -0700 (PDT)
+From:   Julien Panis <jpanis@baylibre.com>
+To:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] AM62x watchdog support
+Date:   Thu,  3 Nov 2022 19:14:38 +0100
+Message-Id: <20221103181440.232727-1-jpanis@baylibre.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
-Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
- <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
- <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
- <dc6c8f79-9830-dd1b-a064-3b25a3b74a35@9elements.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dc6c8f79-9830-dd1b-a064-3b25a3b74a35@9elements.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 13:53, Naresh Solanki wrote:
-> Hi Krzysztof,
-> 
-> On 03-11-2022 06:43 pm, Krzysztof Kozlowski wrote:
->>> +examples:
->>> +  - |
->>> +    i2c {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +        regulator@3a {
->>> +           compatible = "maxim,max5978";
->>> +           reg = <0x3a>;
->>> +           vss1-supply = <&p3v3>;
->>> +
->>> +           regulators {
->>> +               sw0_ref_0: SW0 {
->> No improvements here.
-> I've addressed 4 space indentation, bindings are matched, compatible is 
-> moved to first, then reg then the rest.
+This patch series adds support for AM62x watchdog.
 
-OK, so indeed there are improvements.
+Changes since v0:
+	- Mark MCU & WKUP watchdogs as reserved
+Link: https://lore.kernel.org/all/20220630070826.11074-1-jpanis@baylibre.com/
 
-Yet still you did not improve the warnings coming from the binding -
-this does not match your binding. Test the binding and you will see big
-fat warning.
+Changes since v1:
+	- Rebase patch to v6.1-rc3
+Link: https://lore.kernel.org/all/20220718122328.251602-1-jpanis@baylibre.com/
 
-Best regards,
-Krzysztof
+Julien Panis (2):
+  arm64: dts: ti: k3-am62: add watchdog nodes
+  arm64: dts: ti: k3-am625-sk: mark MCU and WKUP watchdogs as reserved
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 45 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  9 +++++
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  9 +++++
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts     | 10 +++++
+ 4 files changed, 73 insertions(+)
+
+
+base-commit: 30a0b95b1335e12efef89dd78518ed3e4a71a763
+-- 
+2.37.3
 
