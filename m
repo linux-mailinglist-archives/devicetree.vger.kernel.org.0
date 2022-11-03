@@ -2,61 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 984F361843F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:25:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 236EB618467
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:30:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229598AbiKCQZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 12:25:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50238 "EHLO
+        id S230389AbiKCQaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 12:30:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbiKCQZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:25:52 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE881B9C1;
-        Thu,  3 Nov 2022 09:25:48 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 12F5C8519D;
-        Thu,  3 Nov 2022 17:25:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667492747;
-        bh=WmqemEiN44sB8bjhEdAs3Y9GDPso0HE+fIgfuWW6ajU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oT4yP+7rHFVq+sDHC//fTF2i+fRPBAubWRNCEct0UOViAgOX+lzvVC5khCVbvx1VK
-         TEK+tnwDKYahHgNdc7H2deCcf+l9Ew5EduIQmy1nzuL6bhWlP1HmzriFDvL9ltuJSr
-         61kg25LtticqDdbr4RgVdddYh7rvDIdLvQBs0V1prkKI+wnWxDz3XfL2a3xi+Fc7sj
-         /ftUrVA1tSvhUfMkveVrMq3Mq8mwpgFzCEQeZEhDZoBdOB4x5yMydydPSlWq7WtkpL
-         LjyILm78HkRI60ipZfYLro3sVEeuXWKvA0Er9Zps5tCoHloTQFudHltG4k66t/P1QM
-         m6KOy5CEO12NA==
-Message-ID: <2908d3ff-f476-4750-90cf-1554492c69c9@denx.de>
-Date:   Thu, 3 Nov 2022 17:25:46 +0100
+        with ESMTP id S229487AbiKCQ3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:29:52 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3B5D2F6
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 09:29:51 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id e15so1571871qts.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 09:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=WzI5WHDGOhILd2kGTGSG7qJD/oMtmbhddu8DVRjwYa8=;
+        b=iR4qWTvnQ9PK6KX3xLXJJOzYzuLeNPTJ5QqMlgdV6aYVyeuiPSztQohCxcwzupcZTM
+         f89PBCC8TnTlTF6PqvJjVqVcFJGCC/heuJ7SggeKGyIK5RBL/rhxsShENw67NTrptTjg
+         QcDX+40Neuew+11KbTD2vFZIwcfH/FmvMq6sgGHh5OJ3xzpc9gjHa+A3n0cuEFwlRPtB
+         eIFb0mZDmTmyvoo1ImX4gAi0P4jxR1GowJpiwwcfXsdRLYQe4do09L6uX8uk/P4DfjL3
+         9GbCQF8s+hNNU72F2ZUgombhRPuUhfYn6rLYDEKRDmW1rDNuv9uia1VJQJBe1WcLCgq8
+         ULiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WzI5WHDGOhILd2kGTGSG7qJD/oMtmbhddu8DVRjwYa8=;
+        b=bEYiBTqMGG7HoGobvBohG7abb7QicWpREwdcG8Drqvqv2zVwArrr6e3iFXWpcUv4ko
+         3jH+N+d+SmFomOXnpzBXA2XYi/dUbYwfPeioEyqNfCq+6gPFTonZPDDs2mxwNAzpP2/c
+         UYLcd4BwEU/RYCa7xdfJAxXhNlNKyS6LGUECz+lhq16BJbCkuQSxXDVvLxm/JXsiNvHP
+         //NGLvZtr+MRqgw1FWWNlU2uVNmpR5s9EN1gHabVLLTTNR+/6JwBMBOHTWohJDiA75Aa
+         btV9UAsnQ3zp3r6lBSkn317RR7sgz/2N2tYNiJIpMlCF8lCy54EDhl1ujyCTp1jkcrXj
+         e65Q==
+X-Gm-Message-State: ACrzQf0NyYGpdd1FPH7jxPE08Bo+pjf8KBfVBYPojpHczebgFCI1Hdq1
+        EJX2k1Ncw28iRW1orl+gsorwdg==
+X-Google-Smtp-Source: AMsMyM6uaWdvy7fAoM8b3ziC+Hx3Fsa/5e0pLstybGOQYB7L/NfOxWftJpK5SmD4Fz4HdYXb6c01mA==
+X-Received: by 2002:a05:622a:10e:b0:398:d464:eefa with SMTP id u14-20020a05622a010e00b00398d464eefamr25748915qtw.172.1667492990935;
+        Thu, 03 Nov 2022 09:29:50 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id h15-20020a05620a244f00b006fa468342a3sm1044435qkn.108.2022.11.03.09.29.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 09:29:50 -0700 (PDT)
+Message-ID: <b85230d4-8fce-ba49-0d6b-8c4d20132cda@linaro.org>
+Date:   Thu, 3 Nov 2022 12:29:49 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH 2/3] dt-bindings: imx6q-pcie: Handle various PD
- configurations
+ Thunderbird/102.4.1
+Subject: Re: [PATCH v1 2/7] dt-bindings: usb: hpe,gxp-udc: Add binding for gxp
+ gadget
+To:     richard.yu@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
+        balbi@kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20221103160625.15574-1-richard.yu@hpe.com>
+ <20221103160625.15574-3-richard.yu@hpe.com>
 Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-References: <20221102215729.147335-1-marex@denx.de>
- <20221102215729.147335-2-marex@denx.de> <3645906.iIbC2pHGDl@steina-w>
- <CAL_JsqLg893rWwEQhgf_9=78WNiA7bstqPVvP6SQe4SyAhhyUw@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAL_JsqLg893rWwEQhgf_9=78WNiA7bstqPVvP6SQe4SyAhhyUw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221103160625.15574-3-richard.yu@hpe.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,171 +78,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/3/22 13:32, Rob Herring wrote:
-> On Thu, Nov 3, 2022 at 3:29 AM Alexander Stein
-> <alexander.stein@ew.tq-group.com> wrote:
->>
->> Hi Marek,
->>
->> Am Mittwoch, 2. November 2022, 22:57:28 CET schrieb Marek Vasut:
->>> The i.MX SoCs have various power domain configurations routed into
->>> the PCIe IP. MX6SX is the only one which contains 2 domains and also
->>> uses power-domain-names. MX6QDL do not use any domains. All the rest
->>> uses one domain and does not use power-domain-names anymore.
->>>
->>> Document all those configurations in the DT binding document.
->>>
->>> Signed-off-by: Marek Vasut <marex@denx.de>
->>> ---
->>> Cc: Fabio Estevam <festevam@gmail.com>
->>> Cc: Lucas Stach <l.stach@pengutronix.de>
->>> Cc: Richard Zhu <hongxing.zhu@nxp.com>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Shawn Guo <shawnguo@kernel.org>
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: NXP Linux Team <linux-imx@nxp.com>
->>> To: devicetree@vger.kernel.org
->>> ---
->>>   .../bindings/pci/fsl,imx6q-pcie.yaml          | 47 ++++++++++++++-----
->>>   1 file changed, 34 insertions(+), 13 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
->>> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
->>> 1cfea8ca72576..fc8d4d7b80b38 100644
->>> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
->>> @@ -68,19 +68,6 @@ properties:
->>>       description: A phandle to an fsl,imx7d-pcie-phy node. Additional
->>>         required properties for imx7d-pcie and imx8mq-pcie.
->>>
->>> -  power-domains:
->>> -    items:
->>> -      - description: The phandle pointing to the DISPLAY domain for
->>> -          imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
->>> -          imx8mq-pcie.
->>> -      - description: The phandle pointing to the PCIE_PHY power domains
->>> -          for imx6sx-pcie.
->>> -
->>> -  power-domain-names:
->>> -    items:
->>> -      - const: pcie
->>> -      - const: pcie_phy
->>> -
->>>     resets:
->>>       maxItems: 3
->>>       description: Phandles to PCIe-related reset lines exposed by SRC
->>> @@ -241,6 +228,40 @@ allOf:
->>>                   - const: pcie_bus
->>>                   - const: pcie_phy
->>>
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            const: fsl,imx6sx-pcie
->>> +    then:
->>> +      properties:
->>> +        power-domains:
->>> +          items:
->>> +            - description: The phandle pointing to the DISPLAY domain for
->>> +                imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
->>> +                imx8mq-pcie.
->>> +            - description: The phandle pointing to the PCIE_PHY power
->>> domains +                for imx6sx-pcie.
->>> +        power-domain-names:
->>> +          items:
->>> +            - const: pcie
->>> +            - const: pcie_phy
->>> +    else:
->>> +      if:
->>> +        not:
->>> +          properties:
->>> +            compatible:
->>> +              contains:
->>> +                enum:
->>> +                  - fsl,imx6q-pcie
->>> +                  - fsl,imx6qp-pcie
->>> +      then:
->>> +        properties:
->>> +          power-domains:
->>> +            description: |
->>> +               The phandle pointing to the DISPLAY domain for imx6sx-pcie,
->>> to +               PCIE_PHY power domain for imx7d-pcie and imx8mq-pcie. +
->>
->> Doesn't it makes more sense to keep the power-domains descriptions in the
->> common part on top, as before, but adjust minItems/maxItems for each
->> compatible?
+On 03/11/2022 12:06, richard.yu@hpe.com wrote:
+> From: Richard Yu <richard.yu@hpe.com>
 > 
-> Yes. Keep properties defined at the top level.
 
-The problem I keep running into here is that if I apply patch like below 
-(basically what you and Alex are suggesting), I get this warning:
+Subject: Drop redundant second "binding" word.
 
-arch/arm64/boot/dts/freescale/imx8mm-board.dtb: pcie@33800000: 
-power-domains: [[86]] is too short
+> Create documentation for the hpe,gxp-udc binding to support access to
+> the virtual USB device.
+> 
+> Signed-off-by: Richard Yu <richard.yu@hpe.com>
+> ---
+>  .../devicetree/bindings/usb/hpe,gxp-udc.yaml  | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/hpe,gxp-udc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/hpe,gxp-udc.yaml b/Documentation/devicetree/bindings/usb/hpe,gxp-udc.yaml
+> new file mode 100644
+> index 000000000000..f1ec4df8c3d3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/hpe,gxp-udc.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/hpe,gxp-udc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HPE GXP Gadget Universal Device Controller (UDC)
+> +
+> +maintainers:
+> +  - Richard Yu <richard.yu@hpe.com>
+> +  - Jean-Marie Verdun <verdun@hpe.com>
+> +  - Nick Hawkins <nick.hawkins@hpe.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: hpe,gxp-udc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdevnum:
+> +    description:
+> +      virtual device number.
 
-I think that's because power-domains: contains items: and to validate 
-that imx8mm.dtsi with pcie@33800000 { power-domains = <&pgc_pcie>; };, I 
-would need to get rid of those items: ? Which is what I did in the 
-aforementioned patch for imx8m, that's why I removed it from the common 
-part.
+That's unusual property... Why numbering devices is part of DT (hardware
+description)?
 
-diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml 
-b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-index 12c7baba489aa..ec5e8dfe541ea 100644
---- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-@@ -68,6 +68,18 @@ properties:
-      description: A phandle to an fsl,imx7d-pcie-phy node. Additional
-        required properties for imx7d-pcie and imx8mq-pcie.
+> +
+> +  fepnum:
+> +    description:
+> +      number of the flexible end-points this device is needed.
 
-+  power-domains:
-+    items:
-+      - description: The phandle pointing to the DISPLAY domain for
-+          imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
-+          imx8mq-pcie.
-+      - description: The phandle pointing to the PCIE_PHY power domains
-+          for imx6sx-pcie.
-+  power-domain-names:
-+    items:
-+      - const: pcie
-+      - const: pcie_phy
-+
-    resets:
-      maxItems: 2
-      description: Phandles to PCIe-related reset lines exposed by SRC
-@@ -235,16 +247,11 @@ allOf:
-      then:
-        properties:
-          power-domains:
--          items:
--            - description: The phandle pointing to the DISPLAY domain for
--                imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
--                imx8mq-pcie.
--            - description: The phandle pointing to the PCIE_PHY power 
-domains
--                for imx6sx-pcie.
-+          minItems: 2
-+          maxItems: 2
-          power-domain-names:
--          items:
--            - const: pcie
--            - const: pcie_phy
-+          minItems: 2
-+          maxItems: 2
-      else:
-        if:
-          not:
-@@ -257,9 +264,8 @@ allOf:
-        then:
-          properties:
-            power-domains:
--            description: |
--               The phandle pointing to the DISPLAY domain for 
-imx6sx-pcie, to
--               PCIE_PHY power domain for imx7d-pcie and imx8mq-pcie.
-+            minItems: 1
-+            maxItems: 1
+Similar question.
 
-    - if:
-        properties:
+BTW, if you end sentence with '.', it means it is an sentence, so you
+need to start it with capital letter.
+
+> +
+> +  hpe,syscon-phandle:
+
+phandle is redudant. You need rather specific name, so "hpe,ehci-syscon"
+or whatever it is.
+
+
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+
+
+No quotes.
+
+> +    description:
+> +      Phandle to the gxp vEHCI controller access vDevice registers.
+
+Drop "Phandle to"
+
+Isn't "gxp" a GXP?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - vdevnum
+> +  - fepnum
+> +  - hpe,syscon-phandle
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    udc@80401000 {
+
+Node name "usb", I think it is more popular for USB controllers.
+
+> +      compatible = "hpe,gxp-udc";
+> +      reg = <0x80401000 0x1000>;
+> +      interrupts = <13>;
+> +      interrupt-parent = <&vic1>;
+> +      vdevnum = <0>;
+> +      fepnum = <7>;
+> +      hpe,syscon-phandle = <&udc_system_controller>;
+> +    };
+
+Best regards,
+Krzysztof
+
