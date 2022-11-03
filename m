@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E8A617DA1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:13:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2C1D617DB5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 14:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231221AbiKCNNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 09:13:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53176 "EHLO
+        id S231484AbiKCNUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 09:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231749AbiKCNNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:13:37 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B631088
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 06:13:21 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id e15so1052108qvo.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 06:13:21 -0700 (PDT)
+        with ESMTP id S230520AbiKCNUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 09:20:23 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC0364EA
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 06:20:21 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id f8so1062152qkg.3
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 06:20:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VAwv5pVuHPh2HWRN8QElP8yISKr8Z4y4F+eLXOpxHSw=;
-        b=N7k7ZCf/Z56m45wIbweMUAbkl4/OdW3aPhkdTk3WKcemN0fhRFG8pQ9uo8xQfm5/mZ
-         SEX0toaGhFjEoVyaDB8edQYAFOrBuAvrf3nPff0QUXCSE71JNPUCN6HRxsfuiLgNIsJB
-         LhW61T0Eu6ZVVunvIB+l4s3HVzHhpvt6XNVBXr5wT1+UQUSMUTVSipYtakO2vva7HKe/
-         5Tg/LKE1Bkjxg5qIpqjOWczatOsOTg+IIsghM9pPt6qnKaUSI+M/L/WYLB0ufisJ3C/G
-         0K/JJmOKWC17dQbfM6AJ2kMAiS26VS73SDlsuZRGkQu4izl/3QO3x9v6tboYXwDqmMve
-         +rLA==
+        bh=uspOLGGocbq7u+IpHZsmh0HxQTXZmKwmF6cTvBu1Rvg=;
+        b=TlrLCLvHLsZBk79eT7LdRVQjhTURKZedGehFo010NXK259LQDCx5OZ7j/OrUXYsb/l
+         lDOjbgVQ1g9neJajqbaVK2f1VhCdPbI8bcyVseuG481Oug1Lz9N/sWef/y0udPkoJ94H
+         Ge5hFVZjB9D90guZvJgJd67oBRby6aHCjRVlTkCi8VqgMQvdEhUyWjZA+cJKBPmB0Lst
+         LesqEoA4spvnyC5LTKvfJwQgocuZX9qRPyfoRXtj8JDNQXzIwPQCmi8/3v+A0xVWHkHp
+         HolSiy0FbA1s6DxNw06lQD/MUYfs1FeFL/GAsIneNCI7kGLk1NkHmgQcLUjw34pwu3AM
+         57pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VAwv5pVuHPh2HWRN8QElP8yISKr8Z4y4F+eLXOpxHSw=;
-        b=R9JgLsRoIvnPi0bJVKfmkKLfOOyXiyOBbMjPYBHOuGSQhfm4JS8ijNl3eQS/XqltHQ
-         k4uo1/p+FjtbLnKqbVlF61fwCybt+KNO8p3OlY3QDVkthFUL6Apl9NG5pyAT2g0p7plk
-         f/hbeRSQL4XF+v9luAmJqrll6UYLNyclWqUmqCllq27lCYkNtIimTt04Ik8+R0KAtjsl
-         hwjG7i9KqLS8cIfmlDVx5fGjA8lS7JfQqEQ4+5mI8JZHTxn29b+LeyWnsOAJiESr+j5Z
-         xJBcdNeyAtnjqljT7kRY6KzAXgstrj7UaVeB+BZmYkpxlnrA+TZ2FJMKFNJN0bPJuN73
-         bamA==
-X-Gm-Message-State: ACrzQf3lAtugVQyl9+W+X8R3xZjjYiBUmB48DB1qsy58+1VEQ7AewA2z
-        G6yVDHICTZbwwyTjCwvY2W1CBVKpWuqgQw==
-X-Google-Smtp-Source: AMsMyM4zBsi1eFnqnwyIs3CkXy7J5tFp34bs+8/IFq4ef7X6E3Wbe46k4jkzwfs9g9CmbIRSjJa94g==
-X-Received: by 2002:ad4:5fc5:0:b0:4bb:6360:e80 with SMTP id jq5-20020ad45fc5000000b004bb63600e80mr26039109qvb.63.1667481200638;
-        Thu, 03 Nov 2022 06:13:20 -0700 (PDT)
+        bh=uspOLGGocbq7u+IpHZsmh0HxQTXZmKwmF6cTvBu1Rvg=;
+        b=xy0clz80ZJtRq6QDhXtgfSHQzjlCxoLs0bAQgvmI1XZ63H8aamvMQbamQvpiAFXCy1
+         I7vrTdZ1JENc4HxGwl2LRj7tpY9KsBPOZhxKM87Toq213/ErlvDQf3we415WLyY5CAe+
+         RHPk/zeIgV0fwFPi4MaMb+ogB3RF7dKwqqg9/xuCvJLpz/vLAYuZyi5mKjs65LjrCj30
+         hYjze/PqxMcgWUqqc+tD+FaOyTz1Q59rFRgdQaxTL4vCZRZGd1p55B4V+vYXOwhFY5gO
+         0t2CY7DE0Bz3GTEcEWVQ7DPVhk9Dh1wsvYBLjpB5Ma121KSXNg6RiXS3fupg0kIQ5xPM
+         TBAg==
+X-Gm-Message-State: ACrzQf20aiTsb2g6V2FwW9gC4Ioi6hJcm5/FVvMPhyHyUKfiAqIveS3U
+        rSPiYrSpxoXhWWYehqpJuShJ9g==
+X-Google-Smtp-Source: AMsMyM6zD3Dvbb/9SA6r/DVJhEPxH88V7aUL08JxAgMrAMGk1ICrkVjBArxs4eMzbL3GDzjbdEdnaw==
+X-Received: by 2002:a37:9404:0:b0:6fa:729c:2ce0 with SMTP id w4-20020a379404000000b006fa729c2ce0mr3256676qkd.28.1667481620228;
+        Thu, 03 Nov 2022 06:20:20 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id v20-20020a05622a189400b003a540320070sm535368qtc.6.2022.11.03.06.13.19
+        by smtp.gmail.com with ESMTPSA id i1-20020ac87641000000b0039c72bb51f3sm497464qtr.86.2022.11.03.06.20.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 06:13:20 -0700 (PDT)
-Message-ID: <0c23e569-61e1-3eba-f9fc-4b42ed228b52@linaro.org>
-Date:   Thu, 3 Nov 2022 09:13:18 -0400
+        Thu, 03 Nov 2022 06:20:19 -0700 (PDT)
+Message-ID: <da8761f9-419f-105b-9180-8ddf7f51f20f@linaro.org>
+Date:   Thu, 3 Nov 2022 09:20:18 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v6 1/2] dt-bindings: mfd: Add bindings for MAX5970 and
- MAX5978
+Subject: Re: [PATCH] dt-bindings: dmaengine: zynqmp_dma: add xlnx,bus-width
+ required property
 Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>
-References: <20221103080545.1400424-1-Naresh.Solanki@9elements.com>
- <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+To:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+        vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     michal.simek@xilinx.com, m.tretter@pengutronix.de,
+        harini.katakam@amd.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        git@amd.com
+References: <1667448757-7001-1-git-send-email-radhey.shyam.pandey@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103080545.1400424-2-Naresh.Solanki@9elements.com>
+In-Reply-To: <1667448757-7001-1-git-send-email-radhey.shyam.pandey@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,154 +78,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 04:05, Naresh Solanki wrote:
-> From: Marcello Sylvester Bauer <sylv@sylv.io>
+On 03/11/2022 00:12, Radhey Shyam Pandey wrote:
+> xlnx,bus-width is a required property. In yaml conversion somehow
+> it got missed out. Bring it back and mention it in required list.
+> Also add Harini and myself to the maintainer list.
 > 
-> The MAX597x is a hot swap controller with configurable fault protection.
-> It also has 10bit ADC for current & voltage measurements.
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> Fixes: 5a04982df8da ("dt-bindings: dmaengine: zynqmp_dma: convert to yaml")
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > ---
->  .../bindings/mfd/maxim,max5970.yaml           | 164 ++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> new file mode 100644
-> index 000000000000..fc9d6d3647b3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/max5970.yaml#
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Regulator for MAX5970 smart switch from Maxim Integrated.
-> +
-> +maintainers:
-> +  - Patrick Rudolph <patrick.rudolph@9elements.com>
-> +
-> +description: |
-> +  The smart switch provides no output regulation, but independent fault protection
-> +  and voltage and current sensing.
-> +  Programming is done through I2C bus.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5970.pdf
-> +    https://datasheets.maximintegrated.com/en/ds/MAX5978.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max5970
-> +      - maxim,max5978
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  leds:
-> +    type: object
-> +    description:
-> +      Properties for single channel.
-> +
-> +    patternProperties:
-> +      "^led@[0-3]$":
-> +        $ref: /schemas/leds/common.yaml#
-> +        type: object
-> +
-> +    additionalProperties: true
-> +
-> +  vss1-supply:
-> +    description: Supply of the first channel.
-> +
-> +  vss2-supply:
-> +    description: Supply of the first channel.
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +  regulators:
-> +    type: object
-> +    description:
-> +      Properties for single channel.
-> +
-> +    patternProperties:
-> +      "^(sw[0-1])$":
-> +        $ref: /schemas/regulator/regulator.yaml#
-> +        type: object
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description: |
-> +          The value of curent sense resistor in microohms.
-> +          Must be specified for each channel.
-> +
-> +    additionalProperties: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +  - vss1-supply
-> +
-> +
-
-Just one blank line.
-
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - maxim,max5970
-> +    then:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +            - description: voltage second channel
-> +            - description: current second channel
-> +          description: |
-> +            Voltage and current for first and second channel.
-> +      required:
-> +        - vss2-supply
-> +    else:
-> +      properties:
-> +        io-channels:
-> +          items:
-> +            - description: voltage first channel
-> +            - description: current first channel
-> +          description: |
-> +            Voltage and current for first channel.
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        regulator@3a {
-> +           compatible = "maxim,max5978";
-> +           reg = <0x3a>;
-> +           vss1-supply = <&p3v3>;
-> +
-> +           regulators {
-> +               sw0_ref_0: SW0 {
-
-No improvements here.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
