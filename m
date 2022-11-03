@@ -2,309 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07133618210
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3888D618282
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 16:22:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231984AbiKCPRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 11:17:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57848 "EHLO
+        id S232103AbiKCPWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 11:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232083AbiKCPRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:17:17 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25C41582A
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 08:17:14 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id u11so2614973ljk.6
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 08:17:14 -0700 (PDT)
+        with ESMTP id S231687AbiKCPWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 11:22:34 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAAD75FA2;
+        Thu,  3 Nov 2022 08:22:33 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id v27so3589771eda.1;
+        Thu, 03 Nov 2022 08:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMIGCst1E5FAAxeJFJkmLvsSRBUT4nIQSQ8HrU7lElk=;
-        b=rZTm6D+9wrr5NMuKjwiyWM/wANopi9ZBzu+73zoUUZamwmI9Wp1UzGtz65L39GFHAa
-         ueN7YEavrKgyI2y8dRywfut2DmpqibYASxNuU+tvkXv+Oln6l8X6l2nEK98yxEQ7V4nd
-         J+rZ0Hak05nfWne9YZlsX55S4u595qwJQedfruyy6tNqlM1i9Ywl/FBwVAwyNoY9lQPp
-         gX7HORQRsf/9BuXI79WfTsK9eGWdJR3jrluEvwGrMAZVX/Oax6aUCNS3NzzRwpXZ1uB4
-         glfYuougZSTiZboChZk0uBDNn5MF3w553wd7r6Pj9ik7+rZhkFqftPo9135dN/dMroOT
-         c2Yw==
+        d=gmail.com; s=20210112;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c4hUxaoIlltMyh1kRECVN8fWa254kax7h7Dn3jeyI1Q=;
+        b=apo/gUXTaM65duG9bPvYsBeaMkkEt1eh6vqG9adwjowV0QP+1ZYKtRXa0uwMsg6JmM
+         YebznARCLJzZbgys0z7kFPgt8p8uEl0ROpemr81enP768veAivTr3Qyzmef9N8nJyGTT
+         XL4NyNATLldzkoBh3ekCLotevY1op/+VuzDYLqW0dqBydoB+v7QgCvWMGLRsPObCtz/v
+         ab7ScnygSwC96Bc22E8+Sp2rnbAYONMdJdARRsIGAYKdzfw0dYSWFQK/N3R+GDWOMwxb
+         8BGzoJK4liO1jFiMZ8n4QEWgBxK0hV2e6Z5ZdhPAw0Dasx3VUHegygZx+yR4SwDw8YE2
+         YsCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zMIGCst1E5FAAxeJFJkmLvsSRBUT4nIQSQ8HrU7lElk=;
-        b=p/m/7DQTIA/ANmoCWO3Yt1k+3LUlRzTyWHjvuAytDxvfTO2yS9pfFNtciwiXbNglJB
-         wjYiMjxuVKm9eDBCaZ/tGY/xbNRSFR6LQ+40A0Son8Z5nAGocNsa1Ep1APJf8/6GTbX7
-         QANjsDrb1nEDla4VSDQo/FIcQBWbL1qyLseKB0z45LcoNLM72hIqp+5CGbGWKdWDCWmU
-         jDGLjJLrpr40NnJdri0LN39U00YeCWCM1vSSusti2XQBokqv5qUjOY1G0RKA2TMZlNpX
-         oVoJCLraMpSeIL2NqznW9ezVOm6TRlmU3PX6KVT2a5kbWNRcVHguWiRpS+o3xdJZEkr7
-         u6vw==
-X-Gm-Message-State: ACrzQf04mhvIX8p9R9M/tlPJSgG4jhTg1NpXpghq8Mxd3bObsk8gHo5c
-        H8vjJWbkzRsmJTOJqrMcOkmXZSDk9o+0nveWPvGfWQ==
-X-Google-Smtp-Source: AMsMyM5sM/soeeRCI/qJ75zYexRAjufkAYu9hKvyCzUz+VB4Z02VVK67yQnEJDo7RVKJlVEeZEpME0L7fyuS9mMB2KM=
-X-Received: by 2002:a2e:2e0c:0:b0:277:75bb:429e with SMTP id
- u12-20020a2e2e0c000000b0027775bb429emr3705962lju.314.1667488632950; Thu, 03
- Nov 2022 08:17:12 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 3 Nov 2022 08:17:12 -0700
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220919-v2-0-8419dcf4f09d@baylibre.com> <20220919-v2-2-8419dcf4f09d@baylibre.com>
- <c91ee3ce-3f30-a3ef-bb38-8571e488b6b6@linaro.org> <CABnWg9t3w4o4rmNosvYCpqG-h8DESerajH7OsXEYofRf2kr1Xg@mail.gmail.com>
- <6bb3ab49-1c12-6863-a49a-2fd1f34de561@linaro.org>
-In-Reply-To: <6bb3ab49-1c12-6863-a49a-2fd1f34de561@linaro.org>
-MIME-Version: 1.0
-Date:   Thu, 3 Nov 2022 08:17:12 -0700
-Message-ID: <CABnWg9uDki0ZtkxU1BPZq0ZU1mi4zFjasw+e3pQYb+Nv1MThLA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/12] dt-bindings: display: mediatek: add MT8195 hdmi bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        David Airlie <airlied@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jitao shi <jitao.shi@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=c4hUxaoIlltMyh1kRECVN8fWa254kax7h7Dn3jeyI1Q=;
+        b=y55FAFezOE7ZkPMb/Wjo4abco7BVudInLvX1KAQSnWHlsJCKPxa1pyrE1M+Pow8VMI
+         wrQSZRgLAlBzMCJefEqyKXq4jNoRWn1tKXfqKgoOM7RfAy39D3ogbhPVgr6b10V+NKfT
+         Jdutue+7+sLu+JwulSe1yKH/tqiqIF1D/S0BPQHyk9W9Bdkn/Ha4QBnGkXPhqSCq1nEu
+         DEBTnEHOf2nUHq6Mo4UI+HBsUKzZG1qAouooNvTqHAG9bPGZ8wUdc4maztaWknrvN5A4
+         iyoak6ORoGnyHMV4sz7FlJa0VHzrYh0xjrQDIdGRN9NbsTAaddEe8RhsWkOwoXzl4Ws8
+         F1LA==
+X-Gm-Message-State: ACrzQf2Gf2184IWNxeiUDdJpN1MFKIndwStUjRADVbaaqqOE4QbIJwpV
+        pT//27UY/6WGpWgMX1pLCydp8jymltY=
+X-Google-Smtp-Source: AMsMyM6wesHXaLffx0Rh0B1YQrNuPz5gFMw3OgGZSw9rjc0lLHupdZDocVcR2sM727S7iOLIWqmneg==
+X-Received: by 2002:a05:6402:3988:b0:44e:6f08:ddfb with SMTP id fk8-20020a056402398800b0044e6f08ddfbmr29907587edb.89.1667488952171;
+        Thu, 03 Nov 2022 08:22:32 -0700 (PDT)
+Received: from orome (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f12-20020a170906c08c00b007ad4a555499sm577292ejz.204.2022.11.03.08.22.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 08:22:31 -0700 (PDT)
+Date:   Thu, 3 Nov 2022 16:22:29 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     stuart.lee@mediatek.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, mac.shen@mediatek.com,
-        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra: Enable PWM3 for Jetson Orin
+Message-ID: <Y2PctR6+8o8l7cG2@orome>
+References: <20221025142538.33156-1-jonathanh@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/GahLIfkoQQ9DEsF"
+Content-Disposition: inline
+In-Reply-To: <20221025142538.33156-1-jonathanh@nvidia.com>
+User-Agent: Mutt/2.2.7 (2022-08-07)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Nov 2022 13:45, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->On 02/11/2022 09:31, Guillaume Ranquet wrote:
->> On Fri, 14 Oct 2022 18:08, Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>> On 14/10/2022 11:15, Guillaume Ranquet wrote:
->>>> Add mt8195 SoC bindings for hdmi and hdmi-ddc
->>>>
->>>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->>>> ---
->>>>  .../bindings/display/mediatek/mediatek,hdmi.yaml   | 67 +++++++++++++++++-----
->>>>  .../display/mediatek/mediatek,mt8195-hdmi-ddc.yaml | 51 ++++++++++++++++
->>>>  2 files changed, 104 insertions(+), 14 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
->>>> index bdaf0b51e68c..955026cd7ca5 100644
->>>> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
->>>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.yaml
->>>> @@ -21,26 +21,21 @@ properties:
->>>>        - mediatek,mt7623-hdmi
->>>>        - mediatek,mt8167-hdmi
->>>>        - mediatek,mt8173-hdmi
->>>> +      - mediatek,mt8195-hdmi
->>>>
->>>>    reg:
->>>>      maxItems: 1
->>>>
->>>> -  interrupts:
->>>> -    maxItems: 1
->>>> -
->>>
->>> This change is not really explained in commit msg...
->>>
->>>>    clocks:
->>>> -    items:
->>>> -      - description: Pixel Clock
->>>> -      - description: HDMI PLL
->>>> -      - description: Bit Clock
->>>> -      - description: S/PDIF Clock
->>>> +    minItems: 4
->>>> +    maxItems: 4
->>>>
->>>>    clock-names:
->>>> -    items:
->>>> -      - const: pixel
->>>> -      - const: pll
->>>> -      - const: bclk
->>>> -      - const: spdif
->>>> +    minItems: 4
->>>> +    maxItems: 4
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>>
->>>>    phys:
->>>>      maxItems: 1
->>>> @@ -58,6 +53,9 @@ properties:
->>>>      description: |
->>>>        phandle link and register offset to the system configuration registers.
->>>>
->>>> +  power-domains:
->>>> +    maxItems: 1
->>>> +
->>>>    ports:
->>>>      $ref: /schemas/graph.yaml#/properties/ports
->>>>
->>>> @@ -86,9 +84,50 @@ required:
->>>>    - clock-names
->>>>    - phys
->>>>    - phy-names
->>>> -  - mediatek,syscon-hdmi
->>>>    - ports
->>>>
->>>> +allOf:
->>>> +  - if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            const: mediatek,mt8195-hdmi
->>>> +    then:
->>>> +      properties:
->>>> +        clocks:
->>>> +          items:
->>>> +            - description: APB
->>>> +            - description: HDCP
->>>> +            - description: HDCP 24M
->>>> +            - description: Split HDMI
->>>> +        clock-names:
->>>> +          items:
->>>> +            - const: hdmi_apb_sel
->>>> +            - const: hdcp_sel
->>>> +            - const: hdcp24_sel
->>>> +            - const: split_hdmi
->>>> +
->>>> +      required:
->>>> +        - power-domains
->>>> +    else:
->>>> +      properties:
->>>> +        clocks:
->>>> +          items:
->>>> +            - description: Pixel Clock
->>>> +            - description: HDMI PLL
->>>> +            - description: Bit Clock
->>>> +            - description: S/PDIF Clock
->>>> +
->>>> +        clock-names:
->>>> +          items:
->>>> +            - const: pixel
->>>> +            - const: pll
->>>> +            - const: bclk
->>>> +            - const: spdif
->>>> +
->>>> +      required:
->>>> +        - mediatek,syscon-hdmi
->>>> +
->>>>  additionalProperties: false
->>>>
->>>>  examples:
->>>> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
->>>> new file mode 100644
->>>> index 000000000000..0fe0a2a2f17f
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
->>>> @@ -0,0 +1,51 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Mediatek HDMI DDC for mt8195
->>>> +
->>>> +maintainers:
->>>> +  - CK Hu <ck.hu@mediatek.com>
->>>> +  - Jitao shi <jitao.shi@mediatek.com>
->>>> +
->>>> +description: |
->>>> +  The HDMI DDC i2c controller is used to interface with the HDMI DDC pins.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - mediatek,mt8195-hdmi-ddc
->>>
->>> I think I wrote it - you already have bindings for HDMI DDC. I doubt
->>> that these are different and it looks like you model the bindings
->>> according to your driver. That's not the way.
->>
->> Hi Krzysztof,
->>
->> I've made a separate binding as this new IP is integrated into the
->> HDMI hw block.
->> The difference it makes is that the hw is slightly simpler to describe
->> as the IP doesn't
->> have it's own range of registers or an interrupt line.
->>
->> I can use the "legacy mediatek mtk ddc binding" if I modify it to have
->> the reg and
->> interrupt properties not being required for mt8195.
->
->OK, it is reasonable - such stuff should be in commit msg, so we won't
->keep asking.
->
 
-I'll sum this up in the commit msg for V3 then.
+--/GahLIfkoQQ9DEsF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>
->> Would that work better for you?
->>
->>>
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 1
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: ddc
->>>> +
->>>> +  mediatek,hdmi:
->>>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>>> +    description:
->>>> +      A phandle to the mt8195 hdmi controller
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - clocks
->>>> +  - clock-names
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>> +    hdmiddc0: ddc_i2c {
->>>
->>> Node names should be generic - ddc.
->>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->>>
->>> No underscores in node names.
->>>
->>> Additionally I2C devices have addresses on the bus. Why this one doesn't?
->>>
->>
->> This is an i2c adapter, not a device.
->> And as it lives inside the HDMI hw block, I've omitted using an address here.
->>
->> Is this valid? or should this be expressed differently?
->
->What is an I2C adapter? Did you mean I2C controller (master)?
+On Tue, Oct 25, 2022 at 03:25:38PM +0100, Jon Hunter wrote:
+> Enable PMW3 for the Jetson AGX Orin platform which is used for
+> operating the PWM Fan.
+>=20
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  .../boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts      | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Yes, a controller.
-This is an I2C controller connected to the HDMI connector, it is used
-to exchange data on the Display Data Channel with
-the display (such as EDID).
+I've squashed this into the same patch that enables the fan.
 
-Thx,
-Guillaume.
+Thanks,
+Thierry
 
->
->Best regards,
->Krzysztof
->
+--/GahLIfkoQQ9DEsF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmNj3LUACgkQ3SOs138+
+s6Fd4RAAwgaHcc7AaTuZzgiAzQsH5fdZJHu6kV5yo8aAazlITD50hcyf7Yx9WE/h
+0jWe24w2cCSr2eMCgBPCNkmofIyu0P93b6b9wVimb/reBhdjCQhfrodA4ihxWqhB
+umwd6MSjFRIBcnJfgEimOsyG5SgICP2gW81pzhYNh/LwSoRexLuZYWcZF73pnWm7
+UIuaNhtI8o4wbsKZDXGSb+Oy9lEqkxMeyQA9QAbKiVJfdqOaKn1Hgw0ocyHBPPPY
+TX5WgyC/8AX0vx39gd5366FOkiYgcmOZ7lkfOnN8z62nnDGoEHRU4NzVWJuCCQl+
+IffWUv41Fvpy+odvOIkQUV5Wt0nGfzbdXZZ67rtt+MtrvMwoOyBKEfseH18fyJ0f
+mXbAUsYFKwKhkeLca74c6ASciEtMZmKMYaWIThecg8vPr1wRBNGkPm6Z6+GTw8mg
+4qdxLReOfKyUx3Nrciv831XpBM1NjvaBpk1wnXqqhlenvgrkwCCKVIpQtDEr6JqV
+TJ77ApYW62CRvhRBQ1gHDq+G3qEuSAEwJvgRzZhBAYuXn1EEQVwiWxWSnltBSZqZ
+ZHXGiI97pLFnFC/NBS1h1odddcL53pVeOuDUdF7MU0J57H0JTcYldRDlwTl9LLLz
+WhNfbf+HVe08Q4lofZv9q8Pw2U8Jpu7BPLKiz0eM0G7hR4ZNtLc=
+=La7F
+-----END PGP SIGNATURE-----
+
+--/GahLIfkoQQ9DEsF--
