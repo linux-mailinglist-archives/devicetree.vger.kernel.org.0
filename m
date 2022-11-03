@@ -2,80 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F97B617C5F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:18:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B06F617C65
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231587AbiKCMSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:18:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44476 "EHLO
+        id S231136AbiKCMTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231589AbiKCMSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:18:41 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B33B7651
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:18:39 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id d59-20020a17090a6f4100b00213202d77e1so5011248pjk.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:18:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ygNaIetYDLkI+evDCg3dhQCdfjyfTMAjhVLdsT971NY=;
-        b=mKz/1aczMZ67kTZ72O3gcxFhmzopOSkKcpsO+Zp+R7ACs0+SVrXT34MSkh0JnSvUJN
-         pRes/DTOnYOA8IDbUkq/gJQLe1wzu6wqXPbIEf8Z5j2U4Oussq9WhGVLvmbqCQl7KWko
-         rB5FUMv/+nw/R55JC15gAsLd1ax+R+4DY+WziYtSTAeHYUiYbXjgJoSXwD13wiftzrB7
-         1p5mIBQCHHzjZq7Jvp8h6WCuOTgBx33PKq9wiCsAH7lleXn9pxW4jZE6H3Z69RiVsGEN
-         yy1Kvp/t9VIWZrElYKgL3xf/ahnl3wOZnhXoyqhT6B7i1YydkW/foSQxDOO5P8fLGW3h
-         uG+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ygNaIetYDLkI+evDCg3dhQCdfjyfTMAjhVLdsT971NY=;
-        b=Hy+xuyVa7dz0kZUTp7XH65i9QaqAbsOOHT68hwYdPzoSDDTWCxnk5ieDN1HmyJkT3l
-         E+b6ch0DXZWwo9aLEnji/ECPnlx2/xa+9Aa8KmJOoNRVUNCitMOsTE6YejOBmQlAQ/e8
-         +TlWFuyGaTCZlM8GXK3s9XmcRwtJPk/MY4RBaIWH/GgT43+u5jBvj+/ng6QepFIneUf0
-         n8RUsueWvZikGEXVQ48r1qah9I8L7pv6D3qLORpzo7IWNoPfm5W181k1l6ymsPNl9Jvc
-         u2uD+TxvLO3txYI1Cn+4YU7pbcv1PKrF00Jki1LwyKK3IHjpzQVWscPGYX3LUVRoxq0Y
-         TSBA==
-X-Gm-Message-State: ACrzQf17QzwDVs6ROn/tMGuzsslR3cBHhNy+fNO4m3uut4QzdjcNE2JA
-        uiItcDcB6h+acaA9aU5A3hb5
-X-Google-Smtp-Source: AMsMyM7l5kGXg75re2lQpzMr+ympZfelYvdDLHbZqWdB90Zy+RAplKpykYidN+wfIs5fosIq4Kwf2Q==
-X-Received: by 2002:a17:902:cec8:b0:186:8553:79c8 with SMTP id d8-20020a170902cec800b00186855379c8mr29444683plg.160.1667477918804;
-        Thu, 03 Nov 2022 05:18:38 -0700 (PDT)
-Received: from thinkpad ([59.92.102.81])
-        by smtp.gmail.com with ESMTPSA id w189-20020a6282c6000000b0056c04dee930sm614950pfd.120.2022.11.03.05.18.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 05:18:37 -0700 (PDT)
-Date:   Thu, 3 Nov 2022 17:48:30 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        martin.petersen@oracle.com, jejb@linux.ibm.com,
-        andersson@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, quic_cang@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH 14/15] scsi: ufs: ufs-qcom: Add support for finding HS
- gear on new UFS versions
-Message-ID: <20221103121830.GC8434@thinkpad>
-References: <20221029141633.295650-1-manivannan.sadhasivam@linaro.org>
- <20221029141633.295650-15-manivannan.sadhasivam@linaro.org>
- <cf8dcf53-f131-68f4-c6aa-d41e02ac6d5c@linaro.org>
- <20221031145647.GC10515@thinkpad>
- <d11609d5-963a-de41-86f9-7451f460b6fa@linaro.org>
+        with ESMTP id S230005AbiKCMTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:19:45 -0400
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A13278;
+        Thu,  3 Nov 2022 05:19:44 -0700 (PDT)
+Received: from canpemm500009.china.huawei.com (unknown [172.30.72.56])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4N32mv4S8nzJnL4;
+        Thu,  3 Nov 2022 20:16:47 +0800 (CST)
+Received: from [10.67.102.169] (10.67.102.169) by
+ canpemm500009.china.huawei.com (7.192.105.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.31; Thu, 3 Nov 2022 20:19:42 +0800
+CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linus.walleij@linaro.org>,
+        <brgl@bgdev.pl>, <yangyicong@hisilicon.com>, <robh+dt@kernel.org>,
+        <xuwei5@huawei.com>, <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH next v3 1/2] gpio: hisi: Add initial device tree support
+To:     Weilong Chen <chenweilong@huawei.com>, <f.fangjian@huawei.com>
+References: <20221101082442.263448-1-chenweilong@huawei.com>
+From:   Yicong Yang <yangyicong@huawei.com>
+Message-ID: <bb081979-10d6-5d6e-8e87-9a317fb09455@huawei.com>
+Date:   Thu, 3 Nov 2022 20:19:42 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d11609d5-963a-de41-86f9-7451f460b6fa@linaro.org>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS autolearn=no
+In-Reply-To: <20221101082442.263448-1-chenweilong@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.169]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ canpemm500009.china.huawei.com (7.192.105.203)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,56 +50,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 02, 2022 at 04:05:34PM -0400, Krzysztof Kozlowski wrote:
-> On 31/10/2022 10:56, Manivannan Sadhasivam wrote:
-> >>>   		if (hs_gear > UFS_HS_G2)
-> >>>   			return UFS_HS_G2;
-> >>> +	} else if (host->hw_ver.major > 0x3) {
-> >>> +		/*
-> >>> +		 * Starting from UFS controller v4, Qcom supports dual gear mode (i.e., the
-> >>> +		 * controller/PHY can be configured to run in two gear speeds). But that
-> >>> +		 * requires an agreement between the UFS controller and the device. Below
-> >>> +		 * code tries to find the max gear of both and decides which gear to use.
-> >>> +		 *
-> >>> +		 * First get the max gear supported by the UFS device if available.
-> >>> +		 * If the property is not defined in devicetree, then use the default gear.
-> >>> +		 */
-> >>> +		ret = of_property_read_u32(dev->of_node, "max-gear", &max_gear);
-> >>> +		if (ret)
-> >>> +			goto err_out;
-> >>
-> >> Can we detect the UFS device's max gear somehow? If not, the 'max-gear'
-> >> property name doesn't sound good. Maybe calling it 'device-gear' would be
-> >> better.
-> >>
-> > 
-> > UFS device probing depends on PHY init sequence. So technically we cannot know
-> > the max gear of the device without using an init sequence, but this information
-> > is static and should be known to a board manufacturer. That's why I decided to
-> > use this property. Another option is to use a fixed init sequence for probing
-> > the device and do a re-init after knowing it's max gear but that is not
-> > recommended.
-> > 
+On 2022/11/1 16:24, Weilong Chen wrote:
+> Add support for HiSilicon GPIO controller in embedded platform, which
+> boot from devicetree.
 > 
-> Why it is not recommended? By whom? You init on some default low gear
-> (support for some is mandated by UFS spec) and then allow faster gears
-> while you know the capabilities.
-> 
+> Signed-off-by: Weilong Chen <chenweilong@huawei.com>
 
-This approach is what used in Qcom downstream. I learned that when they tried
-submitting to mailing list, it got rejected. So I came up with this approach.
+Reviewed-by: Yicong Yang <yangyicong@hisilicon.com>
 
-Thanks,
-Mani
-
-> > We need "max" keyword because this property specifies the maximum gear at which
-> > the device could operate and not necessarily the gear at which it operates.
-> > Maybe, "max-device-gear" would make it clear.
+> ---
+> Change since v2:
+> - Drop wrong use ACPI_PTR/of_match_ptr
+> Link: https://lore.kernel.org/lkml/20221028022453.163186-1-chenweilong@huawei.com/
 > 
+>  drivers/gpio/Kconfig     | 2 +-
+>  drivers/gpio/gpio-hisi.c | 7 +++++++
+>  2 files changed, 8 insertions(+), 1 deletion(-)
 > 
-> Best regards,
-> Krzysztof
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index e034f752e7ce..71a7880af59d 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -310,7 +310,7 @@ config GPIO_GRGPIO
+>  
+>  config GPIO_HISI
+>  	tristate "HiSilicon GPIO controller driver"
+> -	depends on (ARM64 && ACPI) || COMPILE_TEST
+> +	depends on ARM64 || COMPILE_TEST
+>  	select GPIO_GENERIC
+>  	select GPIOLIB_IRQCHIP
+>  	help
+> diff --git a/drivers/gpio/gpio-hisi.c b/drivers/gpio/gpio-hisi.c
+> index 3caabef5c7a2..55bd69043bf4 100644
+> --- a/drivers/gpio/gpio-hisi.c
+> +++ b/drivers/gpio/gpio-hisi.c
+> @@ -221,6 +221,12 @@ static const struct acpi_device_id hisi_gpio_acpi_match[] = {
+>  };
+>  MODULE_DEVICE_TABLE(acpi, hisi_gpio_acpi_match);
+>  
+> +static const struct of_device_id hisi_gpio_dts_match[] = {
+> +	{ .compatible = "hisilicon,ascend910-gpio", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, hisi_gpio_dts_match);
+> +
+>  static void hisi_gpio_get_pdata(struct device *dev,
+>  				struct hisi_gpio *hisi_gpio)
+>  {
+> @@ -311,6 +317,7 @@ static struct platform_driver hisi_gpio_driver = {
+>  	.driver		= {
+>  		.name	= HISI_GPIO_DRIVER_NAME,
+>  		.acpi_match_table = hisi_gpio_acpi_match,
+> +		.of_match_table = hisi_gpio_dts_match,
+>  	},
+>  	.probe		= hisi_gpio_probe,
+>  };
 > 
-
--- 
-மணிவண்ணன் சதாசிவம்
