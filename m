@@ -2,111 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC850617F0D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:13:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96CC4617F13
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:14:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbiKCON4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 10:13:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36010 "EHLO
+        id S231201AbiKCOOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 10:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbiKCONg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:13:36 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23927DF83;
-        Thu,  3 Nov 2022 07:13:34 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 63F156600371;
-        Thu,  3 Nov 2022 14:13:32 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667484813;
-        bh=YMDhUlxAMoErZnevFRjtflBeFHbeFJyuQG5fGsxeGjU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=carv6v1UqdiDgoqsuWL22pY1kUvuJsxrgk8qTDZ+C6kuQ1qfAPxBPVIPxF+iqhkue
-         UJ9jOaHf4rK5kG6e5wGwak13uscIVpVNvxwi/KN7BEOc1qieEVM50xtZeDskrnWu/i
-         OvCT91g3/MWGeXArj24tr+8vV5Vpezs0Y0aRm3x4uF65ZrlsYzXWBK5wC44+5yNOrK
-         DNeIgAdrhA9BLwavhxNWIBrbsg4lUVfr7jfWKIRVrXS2/qlAdp7eT8Zyf+Hi69kEZQ
-         DxpRHbTNsjigCFi9SvkZZJ0OlVtrkcu/l9utQleQ+gsNGMnFAVL5bCw0iXul0Wkahk
-         /LHChCd6BcPrQ==
-Message-ID: <3046551a-62d7-2990-afb6-75fe2e20d8cb@collabora.com>
-Date:   Thu, 3 Nov 2022 15:13:29 +0100
+        with ESMTP id S231382AbiKCOOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:14:08 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCBE12600
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 07:14:06 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id x15so1255037qtv.9
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 07:14:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gYQGyQS8DP53gudD2LS5QIdA9P5CghjE18cB5YGbwNo=;
+        b=YPDKiBDhL3GTpZFC90CenZCcTm0lE7QqO55q9u1umahiJTGoPAQLmtFarcCsEC9GZm
+         t0CEAHuLk/CEY6FBw0kT1KXS9kk9QOLfCvn+33jtBVakvMMvkhMKrBeexfM0UvVHqTtj
+         XCjhtlDs/6cE9RBRWSpX7lhwg+ZeGlFdKCfFw16lTGQ+p2TggKvQKgl1ahgTHVR0ggke
+         jcfcmuMQyRA/ZPoOAVQETCm/ni4tG6SDPWa67ZNbXaVGHdkKYHCebIbYB+dM8FDMxFtz
+         Ch5pRimZDh/fOgYp3eiSyMl4H3w3syxlw/qPcs5N3jTS8wf9UKpLQMJngWgEHrOJILNv
+         SR+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gYQGyQS8DP53gudD2LS5QIdA9P5CghjE18cB5YGbwNo=;
+        b=lpjIRBKUILAxJMkmnu5vBA+t/pMXTycI478hfDaRwu8C5V6mBKfm5W0Bcy/lyLggMX
+         +AMbM0VL99ef9jM83vJqu3/xOUEYIrSi72CHV6Efr4/65adQxJJ+mDPsphZxeq+YesM8
+         LYs56Wko9UCn30hG39z7Oc4QHSZ+JgEc7zk1zZ64vb2f1wiA8brtZNTPpmASU1asz3/9
+         hbYa66n02Bo2XqCv4BGEtDg4uA1t6klTFW/WMypCr4qV75+bdF6xprOjPUNGuiHXHCIc
+         5YJesym8wDHOuDaAN6r3Niy7aRut+Tlhl+J7TDhezPADm9kYtdDw4kWOaYjf/4zO2YJV
+         l4/A==
+X-Gm-Message-State: ACrzQf06e2SwofNO6QPdc+lw5u80QZ5P/EpURyKeKgyI7khpxlRo5EhG
+        fCOIRK+wr610EbqYhORlQJlR4w==
+X-Google-Smtp-Source: AMsMyM4DvdwTxW9AjaVe1eLPMpQG5yb5nGRTwsLMR0Kn6Zlxx66//tEHqZs8S0U7aS/vvhsbS4CKNQ==
+X-Received: by 2002:a05:622a:114b:b0:3a5:4b2e:41e2 with SMTP id f11-20020a05622a114b00b003a54b2e41e2mr5982956qty.255.1667484845775;
+        Thu, 03 Nov 2022 07:14:05 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id e2-20020ac84902000000b0039cb5c9dbacsm596518qtq.22.2022.11.03.07.14.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 07:14:05 -0700 (PDT)
+Message-ID: <18d66cce-64ae-aeaa-e9cf-9426c5d214f5@linaro.org>
+Date:   Thu, 3 Nov 2022 10:14:04 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v3 net-next 1/8] arm64: dts: mediatek: mt7986: add support
- for RX Wireless Ethernet Dispatch
+ Thunderbird/102.4.1
+Subject: Re: [PATCH] dt-bindings: pwm: tegra: Convert to json-schema
 Content-Language: en-US
-To:     Lorenzo Bianconi <lorenzo@kernel.org>, netdev@vger.kernel.org
-Cc:     nbd@nbd.name, john@phrozen.org, sean.wang@mediatek.com,
-        Mark-MC.Lee@mediatek.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
-        linux-mediatek@lists.infradead.org, lorenzo.bianconi@redhat.com,
-        Bo.Jiao@mediatek.com, sujuan.chen@mediatek.com,
-        ryder.Lee@mediatek.com, evelyn.tsai@mediatek.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        daniel@makrotopia.org, krzysztof.kozlowski+dt@linaro.org
-References: <cover.1667466887.git.lorenzo@kernel.org>
- <4bd5f6626174ac042c0e9b9f2ffff40c3c72b88a.1667466887.git.lorenzo@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <4bd5f6626174ac042c0e9b9f2ffff40c3c72b88a.1667466887.git.lorenzo@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20221103120137.1467905-1-thierry.reding@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221103120137.1467905-1-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 03/11/22 10:28, Lorenzo Bianconi ha scritto:
-> Similar to TX Wireless Ethernet Dispatch, introduce RX Wireless Ethernet
-> Dispatch to offload traffic received by the wlan interface to lan/wan
-> one.
+On 03/11/2022 08:01, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Co-developed-by: Sujuan Chen <sujuan.chen@mediatek.com>
-> Signed-off-by: Sujuan Chen <sujuan.chen@mediatek.com>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-
-Hello Lorenzo,
-thanks for the patch! However, there's something to improve...
-
+> Convert the Tegra PWFM bindings from the free-form text format to
+> json-schema.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 75 +++++++++++++++++++++++
->   1 file changed, 75 insertions(+)
+>  .../bindings/pwm/nvidia,tegra20-pwm.txt       |  77 ----------
+>  .../bindings/pwm/nvidia,tegra20-pwm.yaml      | 144 ++++++++++++++++++
+>  2 files changed, 144 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 72e0d9722e07..b0a593c6020e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-
-..snip..
-
-> @@ -226,6 +252,12 @@ ethsys: syscon@15000000 {
->   			 reg = <0 0x15000000 0 0x1000>;
->   			 #clock-cells = <1>;
->   			 #reset-cells = <1>;
+> diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
+> deleted file mode 100644
+> index 74c41e34c3b6..000000000000
+> --- a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
+> +++ /dev/null
+> @@ -1,77 +0,0 @@
+> -Tegra SoC PWFM controller
+> -
+> -Required properties:
+> -- compatible: Must be:
+> -  - "nvidia,tegra20-pwm": for Tegra20
+> -  - "nvidia,tegra30-pwm", "nvidia,tegra20-pwm": for Tegra30
+> -  - "nvidia,tegra114-pwm", "nvidia,tegra20-pwm": for Tegra114
+> -  - "nvidia,tegra124-pwm", "nvidia,tegra20-pwm": for Tegra124
+> -  - "nvidia,tegra132-pwm", "nvidia,tegra20-pwm": for Tegra132
+> -  - "nvidia,tegra210-pwm", "nvidia,tegra20-pwm": for Tegra210
+> -  - "nvidia,tegra186-pwm": for Tegra186
+> -  - "nvidia,tegra194-pwm": for Tegra194
+> -- reg: physical base address and length of the controller's registers
+> -- #pwm-cells: should be 2. See pwm.yaml in this directory for a description of
+> -  the cells format.
+> -- clocks: Must contain one entry, for the module clock.
+> -  See ../clocks/clock-bindings.txt for details.
+> -- resets: Must contain an entry for each entry in reset-names.
+> -  See ../reset/reset.txt for details.
+> -- reset-names: Must include the following entries:
+> -  - pwm
+> -
+> -Optional properties:
+> -============================
+> -In some of the interface like PWM based regulator device, it is required
+> -to configure the pins differently in different states, especially in suspend
+> -state of the system. The configuration of pin is provided via the pinctrl
+> -DT node as detailed in the pinctrl DT binding document
+> -	Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
+> -
+> -The PWM node will have following optional properties.
+> -pinctrl-names:	Pin state names. Must be "default" and "sleep".
+> -pinctrl-0:	phandle for the default/active state of pin configurations.
+> -pinctrl-1:	phandle for the sleep state of pin configurations.
+> -
+> -Example:
+> -
+> -	pwm: pwm@7000a000 {
+> -		compatible = "nvidia,tegra20-pwm";
+> -		reg = <0x7000a000 0x100>;
+> -		#pwm-cells = <2>;
+> -		clocks = <&tegra_car 17>;
+> -		resets = <&tegra_car 17>;
+> -		reset-names = "pwm";
+> -	};
+> -
+> -
+> -Example with the pin configuration for suspend and resume:
+> -=========================================================
+> -Suppose pin PE7 (On Tegra210) interfaced with the regulator device and
+> -it requires PWM output to be tristated when system enters suspend.
+> -Following will be DT binding to achieve this:
+> -
+> -#include <dt-bindings/pinctrl/pinctrl-tegra.h>
+> -
+> -	pinmux@700008d4 {
+> -		pwm_active_state: pwm_active_state {
+> -                        pe7 {
+> -                                nvidia,pins = "pe7";
+> -                                nvidia,tristate = <TEGRA_PIN_DISABLE>;
+> -			};
+> -		};
+> -
+> -		pwm_sleep_state: pwm_sleep_state {
+> -                        pe7 {
+> -                                nvidia,pins = "pe7";
+> -                                nvidia,tristate = <TEGRA_PIN_ENABLE>;
+> -			};
+> -		};
+> -	};
+> -
+> -	pwm@7000a000 {
+> -		/* Mandatory PWM properties */
+> -		pinctrl-names = "default", "sleep";
+> -		pinctrl-0 = <&pwm_active_state>;
+> -		pinctrl-1 = <&pwm_sleep_state>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
+> new file mode 100644
+> index 000000000000..9c73e78ff434
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/nvidia,tegra20-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +			ethsysrst: reset-controller {
+> +title: NVIDIA Tegra PWFM controller
+> +
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: nvidia,tegra20-pwm
+> +
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra30-pwm
+> +              - nvidia,tegra114-pwm
+> +              - nvidia,tegra124-pwm
+> +              - nvidia,tegra132-pwm
+> +              - nvidia,tegra210-pwm
+> +          - enum:
+> +              - nvidia,tegra20-pwm
+> +
+> +      - items:
+> +          - const: nvidia,tegra186-pwm
 
-That's not right. It works, yes, but your ethsys rightfully declares #reset-cells,
-because it is supposed to also be a reset controller (even though I don't see any
-reset controller registering action in clk-mt7986-eth.c).
+I guess you wanted to keep some order between nvidia,tegra20-pwm and
+nvidia,tegra186-pwm, but this creates impression you will have here more
+items, which of course cannot happen. So either keep this one with
+tegra20 as one enum or drop "items".
 
-Please document the ethernet reset in the appropriate dt-bindings header and
-register the reset controller in clk-mt7986-eth.c.
+> +
+> +      - items:
+> +          - const: nvidia,tegra194-pwm
+> +          - const: nvidia,tegra186-pwm
+> +
+> +      - items:
+> +          - const: nvidia,tegra234-pwm
+> +          - const: nvidia,tegra194-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: module clock
 
-Finally, you won't need any "ti,syscon-reset" node, and resets will look like
+Just maxItems: 1, because description is not really helping.
 
-	resets = <&ethsys MT7986_ETHSYS_SOMETHING_SWRST>;
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pwm
 
-If you need any hint about how to do that, please check clk-mt8195-infra_ao.c.
+This wasn't in original binding and does not look needed. Mention
+changes from pure conversion.
 
-Regards,
-Angelo
+> +
+> +  resets:
+> +    items:
+> +      - description: module reset
+> +
+> +  reset-names:
+> +    items:
+> +      - const: pwm
+> +
+> +  "#pwm-cells":
+> +    const: 2
+> +
+> +  pinctrl-names:
+> +    items:
+> +      - const: default
+> +      - const: sleep
+> +
+> +  pinctrl-0:
+> +    description: configuration for the default/active state
+> +
+> +  pinctrl-1:
+> +    description: configuration for the sleep state
+> +
+> +  operating-points-v2:
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+
+Drop quotes. We should actually define it in some common schema.
+
+> +
+> +  power-domains:
+> +    items:
+> +      - description: phandle to the core power domain
+> +
+> +allOf:
+> +  - $ref: pwm.yaml
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/tegra20-car.h>
+> +
+> +    pwm: pwm@7000a000 {
+> +        compatible = "nvidia,tegra20-pwm";
+> +        reg = <0x7000a000 0x100>;
+> +        #pwm-cells = <2>;
+> +        clocks = <&tegra_car TEGRA20_CLK_PWM>;
+> +        resets = <&tegra_car 17>;
+> +        reset-names = "pwm";
+> +    };
+> +
+> +  # Example with the pin configuration for suspend and resume:
+> +  # ==========================================================
+> +  # Suppose pin PE7 (On Tegra210) interfaced with the regulator device and it requires PWM output
+> +  # to be tristated when system enters suspend.
+> +  - |
+> +    #include <dt-bindings/clock/tegra210-car.h>
+> +    #include <dt-bindings/pinctrl/pinctrl-tegra.h>
+> +
+> +    pinmux@700008d4 {
+> +        compatible = "nvidia,tegra210-pinmux";
+> +        reg = <0x700008d4 0x29c>, /* Pad control registers */
+> +              <0x70003000 0x294>; /* Mux registers */
+> +
+> +        pwm_active_state: pwm_active_state {
+
+No underscores in node names.
+
+
+Best regards,
+Krzysztof
 
