@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E53A56175BA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 05:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF6C56175BB
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 05:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbiKCEln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 00:41:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35268 "EHLO
+        id S229688AbiKCElt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 00:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbiKCElk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 00:41:40 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AC817425
-        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 21:41:39 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A34fWBD112652;
-        Wed, 2 Nov 2022 23:41:32 -0500
+        with ESMTP id S229553AbiKCEls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 00:41:48 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4349817423
+        for <devicetree@vger.kernel.org>; Wed,  2 Nov 2022 21:41:48 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A34fgTb060118;
+        Wed, 2 Nov 2022 23:41:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667450492;
-        bh=yts+e6PEG2V1khNQKTTe98rwV6m/Wgusb7LBzdqgrlg=;
-        h=From:To:CC:Subject:Date;
-        b=iYGDh2vRMiIJdDct2zzdfRjHA/xRJ0SRQi2TE5jas8wAbkYgi8d8DTqJlDg5jzb8j
-         k1GnsNSGi7f5fJHV3nVB4y0oPCKTup7YU6Vl2FdxFFJriViT2VKaVdUyi0wm9fAXID
-         eBSoFF/a/T5stfExsIOQLO+UP+qG71mOWBVBtPRw=
+        s=ti-com-17Q1; t=1667450502;
+        bh=weGwygFRF/8Q4WVH3RtKHfZLEQqLWJj7t7uB1DHFVdw=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=Kpfu1z23ZxFFq+7cMtoAHfuY+8CEcBK8gFBXUbLiEskvPiPT02mv8cunHRv5cSHV7
+         uhfEtozboYkU2zpXP3CNu3gEWc7XKVsTHA5bTJKa848diQ2xNHKlPNbtVCFu5YxI5I
+         FtpyU7dTrtdkStJnDIc4K31m7Jh9ivTPKe560Huw=
 Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A34fW4N041721
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A34fgE4031542
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 2 Nov 2022 23:41:32 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
+        Wed, 2 Nov 2022 23:41:42 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
  (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Wed, 2 Nov
- 2022 23:41:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 23:41:41 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Wed, 2 Nov 2022 23:41:31 -0500
+ Frontend Transport; Wed, 2 Nov 2022 23:41:41 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A34fRdU016655;
-        Wed, 2 Nov 2022 23:41:30 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A34fY9L017088;
+        Wed, 2 Nov 2022 23:41:40 -0500
 From:   Matt Ranostay <mranostay@ti.com>
 To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
         <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
 CC:     <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>
-Subject: [PATCH v5 0/8] J721S2: Add support for additional IPs
-Date:   Wed, 2 Nov 2022 21:41:17 -0700
-Message-ID: <20221103044125.172864-1-mranostay@ti.com>
+Subject: [PATCH v5 1/8] arm64: dts: ti: k3-j721s2-main: Add support for USB
+Date:   Wed, 2 Nov 2022 21:41:18 -0700
+Message-ID: <20221103044125.172864-2-mranostay@ti.com>
 X-Mailer: git-send-email 2.38.GIT
+In-Reply-To: <20221103044125.172864-1-mranostay@ti.com>
+References: <20221103044125.172864-1-mranostay@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -61,52 +63,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following series of patches add support for the following
-on J721S2 common processor board,
+From: Aswath Govindraju <a-govindraju@ti.com>
 
-- USB
-- SerDes
-- OSPI
-- PCIe
+Add support for single instance of USB 3.0 controller in J721S2 SoC.
 
-Changes from v1:
-* Resolve issues with dt schema reporting
-* Minor changes related to consistency on node naming and value
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Nishanth Menon <nm@ti.com>
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Signed-off-by: Matt Ranostay <mranostay@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-Changes from v2:
-* Added PCIe RC + EP enablement patchsets
-* Added device-id for j722s2 PCIe host in dt documentation
-* Reworked SERDES + WIZ enablement patchset to use properies for clocks
-  defines versus entire devicetree nodes. Results in cleaner code that
-  doesn't break dt-schema or the driver functionality.
-
-Changes from v3:
-* Rebased changes on top of '[PATCH 00/12] TI J7x Disable Incomplete DT Nodes'
-* Removed "dt-bindings: PCI: Add host mode device-id for j721s2 platform" patch and
-  send it own series to avoid a dependency that would hold up other patches in this
-  series
-
-Changes from v4:
-* Add my Signed-off-by lines to all patchsets
-
-Aswath Govindraju (7):
-  arm64: dts: ti: k3-j721s2-main: Add support for USB
-  arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
-  arm64: dts: ti: k3-j721s2-common-proc-board: Enable SERDES0
-  arm64: dts: ti: k3-j721s2-common-proc-board: Add USB support
-  arm64: dts: ti: k3-j721s2: Add support for OSPI Flashes
-  arm64: dts: ti: k3-j721s2-main: Add PCIe device tree node
-  arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-
-Matt Ranostay (1):
-  arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ device tree node
-
- .../dts/ti/k3-j721s2-common-proc-board.dts    |  92 +++++++++++
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 156 ++++++++++++++++++
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 +++++
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  42 +++++
- 4 files changed, 330 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index d1ec26110376..93b71d079b4f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -26,6 +26,20 @@ l3cache-sram@200000 {
+ 		};
+ 	};
+ 
++	scm_conf: syscon@104000 {
++		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
++		reg = <0x00 0x00104000 0x00 0x18000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x00 0x00 0x00104000 0x18000>;
++
++		usb_serdes_mux: mux-controller-0 {
++			compatible = "mmio-mux";
++			#mux-control-cells = <1>;
++			mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
++		};
++	};
++
+ 	gic500: interrupt-controller@1800000 {
+ 		compatible = "arm,gic-v3";
+ 		#address-cells = <2>;
+@@ -726,6 +740,34 @@ cpts@310d0000 {
+ 		};
+ 	};
+ 
++	usbss0: cdns-usb@4104000 {
++		compatible = "ti,j721e-usb";
++		reg = <0x00 0x04104000 0x00 0x100>;
++		clocks = <&k3_clks 360 16>, <&k3_clks 360 15>;
++		clock-names = "ref", "lpm";
++		assigned-clocks = <&k3_clks 360 16>; /* USB2_REFCLK */
++		assigned-clock-parents = <&k3_clks 360 17>;
++		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++		dma-coherent;
++
++		usb0: usb@6000000 {
++			compatible = "cdns,usb3";
++			reg = <0x00 0x06000000 0x00 0x10000>,
++			      <0x00 0x06010000 0x00 0x10000>,
++			      <0x00 0x06020000 0x00 0x10000>;
++			reg-names = "otg", "xhci", "dev";
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "host", "peripheral", "otg";
++			maximum-speed = "super-speed";
++			dr_mode = "otg";
++		};
++	};
++
+ 	main_mcan0: can@2701000 {
+ 		compatible = "bosch,m_can";
+ 		reg = <0x00 0x02701000 0x00 0x200>,
 -- 
 2.38.GIT
 
