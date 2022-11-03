@@ -2,103 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CE68617CA2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51594617CA8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:35:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbiKCMfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:35:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52674 "EHLO
+        id S230473AbiKCMfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231638AbiKCMfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:35:12 -0400
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C24261007F
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:35:09 -0700 (PDT)
-Received: by mail-qt1-x82d.google.com with SMTP id a27so1060636qtw.10
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:35:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AIhE5tTAyhN78d6a2N8YuzGDstI/Nrsk3pPBZ8RS5Yk=;
-        b=YYxU3yG4i+301n1Yz40+nRHTTCJgk1T3Tym8Fiq6TDBNv+1KQ4YVl6p/PAtepKSRD/
-         AIuaoJN05BZEoSv/ZELW0H8b95Yj6W8Pfqke5EVawTofFSVabfowL6RiNCh8h0Mnfauw
-         Jo6HIrq42XRW2eoecTxq7xKJl6vSQCEAsPKnJS35EL5OhpMOzofeqXHyv3m4EyVFWoSq
-         yXqs1qabKHqDSDOGe1/5dZ0G3CLWkvLyJru+ZQPcJOwCJ4i+OpC2VQ7YtkI/+8j6qpr2
-         1MmZTTMG/XDpeZoV8ZpuELpevhdvTClO6G2jAgSPmKgf9BLX/7lXlAi01DBFSsUWkIxh
-         NrWQ==
+        with ESMTP id S230402AbiKCMfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:35:45 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F6ACE05;
+        Thu,  3 Nov 2022 05:35:44 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id l127so1760266oia.8;
+        Thu, 03 Nov 2022 05:35:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AIhE5tTAyhN78d6a2N8YuzGDstI/Nrsk3pPBZ8RS5Yk=;
-        b=bmfgNtv/sTxUbshNe8M1Nfv8RTRZQokWDPo5F2z3KobDOt6F3cv2uBg4LcpjAyke55
-         p9zOCVPdWZb988y6N2XU2kQXFB6VUzctxq3c3NhHoErLK7kZGLnjIdA26b0SteGmwr9Y
-         0s/VjRHHtKd63mydbS8HdBxXsNtkDF7grJgxdhsqEUdTR98ufm8asixj2pYQTakA2I6O
-         OIYxDldbW/YgJyB767NcQaeJED8COnAtavgIfYqc1rJFPVRjjUdzlpxkHZ26JlTcCuZU
-         ty5Yaa2sCluQZxSvFnr/RWthRI6+PSo592dMmwGJjNWRNOj2uPTamnfv54XJXgAqOtKl
-         F7fA==
-X-Gm-Message-State: ACrzQf3XhP2LWTahFKBZAISjv839ynjSZtM94BlJ0XmwyfrjBWUkUzsi
-        h+Q2mMJ+hYo6b8u2tKlGS2gOVg==
-X-Google-Smtp-Source: AMsMyM7xMUwtyr9tB3lj38zP1zS2TpQYq3vUnnA9LpvU4xyURUGwzF3DryKpyfcka2lcnVJDZ1anMg==
-X-Received: by 2002:a05:622a:5d1:b0:3a5:3818:a067 with SMTP id d17-20020a05622a05d100b003a53818a067mr12241551qtb.574.1667478908921;
-        Thu, 03 Nov 2022 05:35:08 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id c11-20020ac8054b000000b003a527d29a41sm424304qth.75.2022.11.03.05.35.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 05:35:08 -0700 (PDT)
-Message-ID: <c55d29d2-a70a-f2ae-b605-1c63051202bf@linaro.org>
-Date:   Thu, 3 Nov 2022 08:35:06 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 2/3] media: s5p-mfc:Add variant data for MFC v7 hardware
- for Exynos 3250 SOC
-Content-Language: en-US
-To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
-        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
-        david.plowman@raspberrypi.com, mark.rutland@arm.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
-        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
-        pankaj.dubey@samsung.com, smitha.t@samsung.com
-References: <20221102130602.48969-1-aakarsh.jain@samsung.com>
- <CGME20221102125813epcas5p40a38f17a267276ff8b2bc5861b5d450d@epcas5p4.samsung.com>
- <20221102130602.48969-2-aakarsh.jain@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221102130602.48969-2-aakarsh.jain@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ctEEsQads5CkLo5mL4IgkHvsmT6QfdTNkCjoMhVmie4=;
+        b=QjpOKStMUxMEPjzKdWTTqrLV6m2OEDoINzaeXZ4vc6i89R4CDocTjyK/U8ciAJaM78
+         XYntS/qoNXvtCFwG1+ctbWQDR30Hn7OMtKMZ0pp/hZ+eafRMP8SbmnrxbcMii2W0489E
+         UVr6yPaHztLCnUtM7Z8dBuLTMQDMPTJlU2GkHIrYzJOqensREk2mASchV4ZXuY+bNB8/
+         6Uapl1tuEheSSjJLNvGophvA803hsxNyKIt2w98syXNY1Hc9UQAVthHqNazqXCrtSNfH
+         Hj58E3snLzfDDyD0LbhB69vV/UZ/vs0X7KFa0w9aQLhS7EyXlOgsT1VdbLpOG2KtTMFj
+         AXTQ==
+X-Gm-Message-State: ACrzQf3ZJrW8OWh6jPBBIK8d9+JMbLvAK9N/XWNCsZt8DvJ/U1BwjgDp
+        W3IM7ZN7WmHd5WPwOv/oeQ==
+X-Google-Smtp-Source: AMsMyM4xY/9BuzTrmryi5ty1sqLwq35btnBjzkYxON4t40SWLzFPD+VKjWKbsuflHqiB8xaJJr8VKA==
+X-Received: by 2002:a05:6808:1186:b0:351:99bf:876c with SMTP id j6-20020a056808118600b0035199bf876cmr16166187oil.54.1667478943209;
+        Thu, 03 Nov 2022 05:35:43 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a44-20020a056870d62c00b00130e66a7644sm296445oaq.25.2022.11.03.05.35.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 05:35:42 -0700 (PDT)
+Received: (nullmailer pid 2140216 invoked by uid 1000);
+        Thu, 03 Nov 2022 12:35:43 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-tegra@vger.kernel.org,
+        Uwe =?utf-8?q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20221103120137.1467905-1-thierry.reding@gmail.com>
+References: <20221103120137.1467905-1-thierry.reding@gmail.com>
+Message-Id: <166747792400.2122024.7504112765764946849.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: pwm: tegra: Convert to json-schema
+Date:   Thu, 03 Nov 2022 07:35:43 -0500
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 09:06, Aakarsh Jain wrote:
-> commit "5441e9dafdfc6dc40fa" which adds mfc v7 support for
 
-Please run scripts/checkpatch.pl and fix reported warnings.
+On Thu, 03 Nov 2022 13:01:37 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Convert the Tegra PWFM bindings from the free-form text format to
+> json-schema.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../bindings/pwm/nvidia,tegra20-pwm.txt       |  77 ----------
+>  .../bindings/pwm/nvidia,tegra20-pwm.yaml      | 144 ++++++++++++++++++
+>  2 files changed, 144 insertions(+), 77 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
+> 
 
-> Exynos3250 and used the same compatible string as used by
-> Exynos5240 but both the IPs are a bit different in terms of
-> IP clock.
-> Lets add variant driver data based on the new compatible string
-> "samsung,exynos3250-mfc" for Exynos3250 SoC.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Aren't you just missing the clock on Exynos3250?
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.example.dtb:0:0: /example-1/pinmux@700008d4: failed to match any schema with compatible: ['nvidia,tegra210-pinmux']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
