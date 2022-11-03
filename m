@@ -2,152 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CCCE61776D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F14617797
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 08:23:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbiKCHOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 03:14:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51466 "EHLO
+        id S231182AbiKCHXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 03:23:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231192AbiKCHOo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:14:44 -0400
-Received: from smtp.smtpout.orange.fr (smtp-11.smtpout.orange.fr [80.12.242.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBF23896
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:14:41 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.100.34])
-        by smtp.orange.fr with ESMTPA
-        id qUQtofbR69RnzqUQtoOzUF; Thu, 03 Nov 2022 08:14:39 +0100
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 03 Nov 2022 08:14:39 +0100
-X-ME-IP: 86.243.100.34
-Message-ID: <997182bc-f3de-71df-f241-dc6f52662f04@wanadoo.fr>
-Date:   Thu, 3 Nov 2022 08:14:35 +0100
+        with ESMTP id S230471AbiKCHXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 03:23:54 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A90FCC
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 00:23:53 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A37NicV006859;
+        Thu, 3 Nov 2022 02:23:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667460224;
+        bh=UVkcWVmcysisWxLBoNao8wqYoryxSKNJ+Y83oiHc6+I=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=dE7CHf9qCprs2CcrAo+VKgvZ4O5Rkp/vVgmg3EGeamKIdypO2nYRlGNiWEIKClwqO
+         rB7Fjv/CVz1+6caY/Ufe1vnuaMQ6TGmWhJDOwAvax0wcWuwOQ3ZPAiQxcPt6D4Qzs1
+         TRTyau7q8CtyK9vEXRXZhq6uv7B6RASMI+l5eguY=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A37NiK4030688
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Nov 2022 02:23:44 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 3 Nov
+ 2022 02:23:43 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 3 Nov 2022 02:23:43 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A37NhB2083793;
+        Thu, 3 Nov 2022 02:23:43 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
+        <vigneshr@ti.com>, <mranostay@ti.com>, <miquel.raynal@bootlin.com>,
+        <robh+dt@kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: rename clock-names adc_tsc_fck to fck
+Date:   Thu, 3 Nov 2022 02:23:42 -0500
+Message-ID: <166746020740.2058.2273830543196413507.b4-ty@ti.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20221024151648.394623-1-mranostay@ti.com>
+References: <20221024151648.394623-1-mranostay@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v8 1/2] clocksource: loongson2_hpet: add hpet driver
- support
-To:     zhuyinbo@loongson.cn
-References: <20221103065351.32603-1-zhuyinbo@loongson.cn>
-Content-Language: fr, en-US
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     chenhuacai@kernel.org, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org, jiaxun.yang@flygoat.com,
-        kernel@xen0n.name, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, liuyun@loongson.cn,
-        loongarch@lists.linux.dev, lvjianmin@loongson.cn,
-        robh+dt@kernel.org, tglx@linutronix.de, yang.lee@linux.alibaba.com
-In-Reply-To: <20221103065351.32603-1-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 03/11/2022 à 07:53, Yinbo Zhu a écrit :
-> HPET (High Precision Event Timer) defines a new set of timers, which
-> are used by the operating system to schedule threads, interrupt the
-> kernel and interrupt the multimedia timer server. The operating
-> system can assign different timers to different applications. By
-> configuration, each timer can generate interrupt independently.
+Hi Matt Ranostay,
+
+On Mon, 24 Oct 2022 08:16:48 -0700, Matt Ranostay wrote:
+> Avoid the following warnings from dt-schema by just renaming the
+> clock-names string from adc_tsc_fck to fck so it matches the values in
+> ti,am3359-tscadc.yaml
 > 
-> The Loongson-2 HPET module includes a main count and three comparators,
-> all of which are 32 bits wide. Among the three comparators, only
-> one comparator supports periodic interrupt, all three comparators
-> support non periodic interrupts.
+> tscadc@40200000: clock-names:0: 'fck' was expected
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo-cXZgJK919ebM1kAEIRd3EQ@public.gmane.org>
-> ---
+> 
+> [...]
 
-[...]
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Hi, a few nits below.
+[1/1] arm64: dts: ti: rename clock-names adc_tsc_fck to fck
+      commit: e5bad300e46c5bd0c5cf0a89c74116fbbf608a8c
 
-> +static int hpet_request_irq(struct clock_event_device *cd)
-> +{
-> +	unsigned long flags = IRQD_NO_BALANCING | IRQF_TIMER;
-> +
-> +	if (request_irq(cd->irq, hpet_irq_handler, flags, "hpet", NULL)) {
-> +		pr_err("Failed to register hpet interrupt\n");
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Maybe s/register/request/ ?
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +		return -1;
-> +	}
-> +
-> +	disable_irq(cd->irq);
-> +	irq_set_affinity(cd->irq, cd->cpumask);
-> +	enable_irq(cd->irq);
-> +
-> +	return 0;
-> +}
-> +
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-[...]
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> +static int __init loongson2_hpet_init(struct device_node *np)
-> +{
-> +	int ret;
-> +	struct clk *clk;
-> +
-> +	hpet_mmio_base = of_iomap(np, 0);
-> +	if (!hpet_mmio_base) {
-> +		pr_err("hpet: unable to map loongson2 hpet registers\n");
-> +		goto err;
-
-'ret' is un-initialised at this point, and of_iomap() has failed, so 
-there is no need to undo it in the error handling path.
-
-> +	}
-> +
-> +	ret = -EINVAL;
-
-Could be done at declataion, a few lines above.
-
-> +	hpet_t0_irq = irq_of_parse_and_map(np, 0);
-> +	if (hpet_t0_irq <= 0) {
-> +		pr_err("hpet: unable to get IRQ from DT, %d\n", hpet_t0_irq);
-> +		goto err;
-> +	}
-> +
-> +	clk = of_clk_get(np, 0);
-> +	if (!IS_ERR(clk)) {
-> +		hpet_freq = clk_get_rate(clk);
-> +		clk_put(clk);
-> +	} else
-> +		goto err;
-
-Test for:
-	if (IS_ERR(clk))
-		goto err;
-
-and keep :
-	hpet_freq = clk_get_rate(clk);
-	clk_put(clk);
-
-with less indentation in the normal path?
-
-CJ
-
-> +
-> +	hpet_irq_flags = HPET_TN_LEVEL;
-> +
-> +	loongson2_hpet_clocksource_init();
-> +
-> +	loongson2_hpet_clockevent_init();
-> +
-> +	return 0;
-> +
-> +err:
-> +	iounmap(hpet_mmio_base);
-> +	return ret;
-> +}
-> +
-> +TIMER_OF_DECLARE(loongson2_hpet, "loongson,ls2k-hpet", loongson2_hpet_init);
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
