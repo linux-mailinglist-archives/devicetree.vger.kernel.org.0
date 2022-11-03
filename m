@@ -2,117 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE256174A4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 03:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E31FC6174B7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 04:04:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231396AbiKCC5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Nov 2022 22:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49814 "EHLO
+        id S230197AbiKCDEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Nov 2022 23:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231244AbiKCC5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 22:57:12 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58AA8B494;
-        Wed,  2 Nov 2022 19:57:11 -0700 (PDT)
-X-UUID: 04637ab86aee4656b8bf92dffdb795ab-20221103
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=4dZ2hELix6uqbfomrJGOrcGfF37xwYRVvGq3rzYT48w=;
-        b=FMgKIxljPzCkcaoYH6TsK4Fwr3DNttdU76dv/ukJfGITvD2m08jCSLzMVdpmP39r+ubaN5PTSCWmBztxemB+go6F/ZsHqRhulWEvAPnSeHahC/cZ0Z/wKWhtZ1fDdASF0MreqiHWBj5c5fHcyM/vivOml9SsAk9ETtiBi6Qjk+0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.12,REQID:003d1042-3376-4249-bbd0-351bea4e718e,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:62cd327,CLOUDID:e2ee7581-3116-4fbc-b86b-83475c3df513,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 04637ab86aee4656b8bf92dffdb795ab-20221103
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1688554991; Thu, 03 Nov 2022 10:57:06 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 3 Nov 2022 10:57:04 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Thu, 3 Nov 2022 10:57:04 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Ryder Lee <ryder.lee@mediatek.com>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>
-Subject: [PATCH v5 3/3] arm64: dts: mt8195: Add venc node
-Date:   Thu, 3 Nov 2022 10:56:56 +0800
-Message-ID: <20221103025656.8714-4-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20221103025656.8714-1-tinghan.shen@mediatek.com>
-References: <20221103025656.8714-1-tinghan.shen@mediatek.com>
+        with ESMTP id S229587AbiKCDEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Nov 2022 23:04:33 -0400
+Received: from out29-220.mail.aliyun.com (out29-220.mail.aliyun.com [115.124.29.220])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37EAC14009;
+        Wed,  2 Nov 2022 20:04:29 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1124278|-1;BR=01201311R171S89rulernew998_84748_2000303;CH=blue;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0170385-0.00343638-0.979525;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047209;MF=lee@arducam.com;NM=1;PH=DS;RN=6;RT=6;SR=0;TI=SMTPD_---.Q-5jzWp_1667444665;
+Received: from localhost(mailfrom:lee@arducam.com fp:SMTPD_---.Q-5jzWp_1667444665)
+          by smtp.aliyun-inc.com;
+          Thu, 03 Nov 2022 11:04:26 +0800
+Date:   Thu, 3 Nov 2022 11:04:24 +0800
+From:   lee <lee@arducam.com>
+To:     linux-media@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
+ binding
+Message-ID: <20221103110424.00007a48@arducam.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add venc node for mt8195 SoC.
+Add YAML device tree binding for IMX519 CMOS image sensor, and
+the relevant MAINTAINERS entries.
 
-Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Lee Jackson <lee@arducam.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   9 ++
+ 2 files changed, 116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 7d74a5211091..dbfc15174de3 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -2109,6 +2109,30 @@
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
- 		};
- 
-+		venc: video-codec@1a020000 {
-+			compatible = "mediatek,mt8195-vcodec-enc";
-+			reg = <0 0x1a020000 0 0x10000>;
-+			iommus = <&iommu_vdo M4U_PORT_L19_VENC_RCPU>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_REC>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_BSDMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_SV_COMV>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_RD_COMV>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_CUR_LUMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_CUR_CHROMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
-+				 <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
-+			interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
-+			mediatek,scp = <&scp>;
-+			clocks = <&vencsys CLK_VENC_VENC>;
-+			clock-names = "venc_sel";
-+			assigned-clocks = <&topckgen CLK_TOP_VENC>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D4>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-+		};
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+new file mode 100644
+index 000000000000..9b6cda96f613
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 		vencsys_core1: clock-controller@1b000000 {
- 			compatible = "mediatek,mt8195-vencsys_core1";
- 			reg = <0 0x1b000000 0 0x1000>;
++title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
++
++maintainers:
++  - Lee Jackson <lee@arducam.com>
++
++description: |-
++  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
++  with an active array size of 4656H x 3496V. It is programmable through
++  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
++  Image data is sent through MIPI CSI-2, which is configured as either 2 or
++  4 data lanes.
++
++properties:
++  compatible:
++    const: sony,imx519
++
++  reg:
++    description: I2C device address
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  VDIG-supply:
++    description:
++      Digital I/O voltage supply, 1.05 volts
++
++  VANA-supply:
++    description:
++      Analog voltage supply, 2.8 volts
++
++  VDDL-supply:
++    description:
++      Digital core voltage supply, 1.8 volts
++
++  reset-gpios:
++    description: |-
++      Reference to the GPIO connected to the xclr pin, if any.
++      Must be released (set high) after all supplies and INCK are applied.
++
++port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            description: |-
++              The driver only supports two-lane operation.
++            items:
++              - const: 1
++              - const: 2
++
++          clock-noncontinuous: true
++          link-frequencies: true
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - VANA-supply
++  - VDIG-supply
++  - VDDL-supply
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        imx519: sensor@1a {
++            compatible = "sony,imx519";
++            reg = <0x1a>;
++            clocks = <&imx519_clk>;
++            VANA-supply = <&imx519_vana>;   /* 2.8v */
++            VDIG-supply = <&imx519_vdig>;   /* 1.05v */
++            VDDL-supply = <&imx519_vddl>;   /* 1.8v */
++
++            port {
++                imx519_0: endpoint {
++                    remote-endpoint = <&csi1_ep>;
++                    data-lanes = <1 2>;
++                    clock-noncontinuous;
++                    link-frequencies = /bits/ 64 <493500000>;
++                };
++            };
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e04d944005ba..5a617ab8c9b2 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19236,6 +19236,15 @@ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+ F:	drivers/media/i2c/imx412.c
+ 
++SONY IMX519 SENSOR DRIVER
++M:	Arducam Kernel Maintenance <info@arducam.com>
++M:	Lee Jackson <lee@arducam.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
++F:	drivers/media/i2c/imx519.c
++
+ SONY MEMORYSTICK SUBSYSTEM
+ M:	Maxim Levitsky <maximlevitsky@gmail.com>
+ M:	Alex Dubov <oakad@yahoo.com>
 -- 
-2.18.0
-
+2.25.1
