@@ -2,184 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D082F617CDA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9975B617CDE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 13:44:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbiKCMmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 08:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58722 "EHLO
+        id S231244AbiKCMoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 08:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230433AbiKCMmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:42:08 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CE6CE16
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:42:06 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id x18so985675qki.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 05:42:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fFdGhL73S/+jHEKQ09FOVskOFKjEeT/ObTagmldOE64=;
-        b=UhmeO6dkRKxYTsnynk/YmKaLWxoLJBGfhdaWkpXQLT3rL/PT4GHc0w+oNEST+f5Wpu
-         5BdVJ8+j3f/X92lXb7YmGoivnrWQM4GlAlOC8rfVWGIn1/NtdDayvaqUmtvAOxavq3fA
-         Bx/fE3WzHSdqQx7S9U55JLVyoEmz5rhu7na071j9GRsVUcc5ZIhmE1zUIKzgoR8Gpflk
-         cITiBzoaDcwIL1FmZ5tw9ebS22dAO+Dz4AO3SD/1XpIlWDHCCru4v9iVwui2NBb7jORP
-         VgiKcuWXv22YucB5k33HTGfleht/wsklijLF6GMU/+0zM6c6iI6xJ0XjY5LuwPPs8fWI
-         yzTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fFdGhL73S/+jHEKQ09FOVskOFKjEeT/ObTagmldOE64=;
-        b=jIr7g1EGiBWGd9+suMErBUbVOsWQBPJAJ4UYiwya9BX+TzNNj8oVJ+SzlXI1c43JBk
-         MMNcZCfR7u5UwNbbddcwmUKNF2RW/R4qDP4OoPhlmI6CX+zQmVuQgNLHLGUSjTzkhaes
-         bUCinSw8ORI0isXAalxTqQYDWLsn5DKwW+wwCZIETja6lSbJGzcgcWkbC6QJMkQOTSyv
-         5F/yFNO61dbPAWQ+lxaLJziiE5EmLCWkk4/l80TqdpdbCDsdEKAHzGuXBGoiOIZPoXaL
-         DHi2qFu5RbXZ6z7wBcmdSA2XxYReccHEL23gR8nCBp9/rWKGtEnBT+y4mgoGH9SgUstt
-         hI1Q==
-X-Gm-Message-State: ACrzQf0YuHCWEA3c74VUl2XZLF9dOv6Hv9T9INR6JZCYoshzv5VFE6Ew
-        duyEkhEhOPBQqeymNTNdj6O9yg==
-X-Google-Smtp-Source: AMsMyM7R//pf51CVGfWXHj1GX9wXIzb+LdZphgfmS3saxxTdD1hymSha/Gf+R6TY1XxlbN54wUNd2w==
-X-Received: by 2002:a05:620a:430a:b0:6f6:589b:463d with SMTP id u10-20020a05620a430a00b006f6589b463dmr21155132qko.139.1667479325519;
-        Thu, 03 Nov 2022 05:42:05 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id bm7-20020a05620a198700b006ed138e89f2sm648038qkb.123.2022.11.03.05.42.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 05:42:04 -0700 (PDT)
-Message-ID: <38e1762b-527f-e913-768b-1149486a9f72@linaro.org>
-Date:   Thu, 3 Nov 2022 08:42:03 -0400
+        with ESMTP id S229805AbiKCMoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 08:44:15 -0400
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C33101EF
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 05:44:11 -0700 (PDT)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20221103124407euoutp0165b7158e999b6d817bbf48869c42b4e1~kE7j6RO2K2485724857euoutp01B
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 12:44:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20221103124407euoutp0165b7158e999b6d817bbf48869c42b4e1~kE7j6RO2K2485724857euoutp01B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1667479447;
+        bh=B8EIxwkHWzNB8cLxt3UbHYSl/fF2qLDPOKhcKQWxZSg=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=vc4Nq/xAH4WSpwAnmwBKvQbVpyJsCjQELDvgNd+uc/euI1TzPFmJAEs6JgMI3Hi/K
+         ggetFC4vyCM1Q/lsD5e7XW52HO0DGT3PapX2HeANx8QB+IyOy0aDnSELSnRgJYAbJO
+         Y5FcgsZzFtp7riiQObMkyEWHAs94+mXVEygEwbV4=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20221103124406eucas1p1d076d20e0b1b94706c9baf30aa51cfad~kE7jZX9Rf2728927289eucas1p1Y;
+        Thu,  3 Nov 2022 12:44:06 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 35.2C.07817.697B3636; Thu,  3
+        Nov 2022 12:44:06 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20221103124406eucas1p23727d05069d1c388d2a59bc5d865d3f4~kE7i7sM9v1951319513eucas1p2s;
+        Thu,  3 Nov 2022 12:44:06 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20221103124406eusmtrp2538cb3ad859c157d8add95ce11e7a2c2~kE7i6lQ6m0302803028eusmtrp2f;
+        Thu,  3 Nov 2022 12:44:06 +0000 (GMT)
+X-AuditID: cbfec7f4-8abff70000011e89-7c-6363b796e314
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id CA.7F.10862.697B3636; Thu,  3
+        Nov 2022 12:44:06 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20221103124404eusmtip1182775ac9b999fe766f39bcd3c2f271c~kE7hxl4ra0287302873eusmtip11;
+        Thu,  3 Nov 2022 12:44:04 +0000 (GMT)
+Message-ID: <aadbb452-506d-89cc-28d9-497369c0018e@samsung.com>
+Date:   Thu, 3 Nov 2022 13:44:04 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH 3/3] arch: arm64: ti: Add support for AM68 SK base board
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0)
+        Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH 2/3] media: s5p-mfc:Add variant data for MFC v7 hardware
+ for Exynos 3250 SOC
 Content-Language: en-US
-To:     Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-References: <20221018123849.23695-1-sinthu.raja@ti.com>
- <20221018123849.23695-4-sinthu.raja@ti.com>
- <3f1afad0-1e93-4843-defd-ca32c308cc9e@linaro.org>
- <CAEd-yTTtQhhECw7jSQb38ThaOT_CtFmHy0dJt3SaKxn1KzSgKg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAEd-yTTtQhhECw7jSQb38ThaOT_CtFmHy0dJt3SaKxn1KzSgKg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Aakarsh Jain <aakarsh.jain@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     andrzej.hajda@intel.com, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl, ezequiel@vanguardiasur.com.ar,
+        jernej.skrabec@gmail.com, benjamin.gaignard@collabora.com,
+        krzysztof.kozlowski+dt@linaro.org, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        smitha.t@samsung.com
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <c55d29d2-a70a-f2ae-b605-1c63051202bf@linaro.org>
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sf1CTZRzned93716mw5cJ8Sie6FTu4goELJ+rjrMifP3xB93lcdl1Nccb
+        cDGkTYi8E5Fy4iKY1JhbxPgNTmQ2YIAB5iIHzAzNmCdMUukGepwNsGguaduLxX+fz+f7/Tyf
+        z/PcQ+Gib8i1VFbOIVaeI8kWkwLCcvnvn5+v7JJKt2pLt6Dfu3U89Fu1hUT1Cy4MTdTPEcja
+        3slHHTe+xlGz7XseMgxc5aGuS3cJ9O2Ub3pN5ySQy9AG0LT+NonKpu7gqO+Bz2G+N8pDv1yo
+        IlHp+U4eanRcw1CT2Yuhus55PjreN8BHzl4LQJ8pB7AdkGmtbgVMt7MBMI6GWZzp0Tv5TH3v
+        NMaYjSdJZny0l2TaG44yx3/0EExZhxEwqgEHycyZ1zPDj+b4qcL9glfS2eysfFYel/S+IFNb
+        pOTlFvMLilu1RBG4yVOBYArS2+AJdzmhAgJKRLcAeLnyD8CReQD/NCiXyByADeZS8qnFenaY
+        xw2aAbx+rgnjiBvAKyNdfP+WkE6C7YP/YH5M0JvhOZ0L5/RQOKSbJPw4nE6H331uCeDV9AHo
+        uVMbKIXTEfDWpCFwaBg9CWBdbUugIU6P4fBMT2OgB0nHQ9WMKoCDfWmO1nt8zh0Fu2aqcL8B
+        0joB1CgXMK54MjTd1QAOr4b3bR18Dq+Diz1cHKRPAFjzeGKJqAEsct1acrwMx696fHGUL+JZ
+        aLoQx8mvwtqJYuCXIR0Cb86EciVCYIVFi3OyEJYoRdx2NNTb2v6LvTRyHVcDsX7Zw+iXPYB+
+        2XX0/+fWAMIIItg8hSyDVSTksB/HKiQyRV5ORqz0oMwMfD/Y/sQ23w2a77tjrQCjgBVACheH
+        CY/+9I5UJEyXfHKYlR98T56XzSqsIJIixBFC8nSMVERnSA6xH7JsLit/OsWo4LVFWJlNrUks
+        0G1dQ/WP64MTCwxu86aP3kguaU7cbE+xD52aHau3Dz6q2uONzt1p+ivLcLsjoSfauLHem3tE
+        n/7VC6sKtFF5IDRoxcPG9k9z3A+9Z+t+sOSXvXWk4820ocKofRd3qSPzy4NkHk21LOz1FdvS
+        sofNV36N363ev33Dhie7z3gL8ZJRw/Dwuz3uHakp87si96xzGVMPnFrpCv8AW3DavzjpmBVM
+        T6orM7fHJYcf6zvsqUgoLMlsA888MK1POtb0Zdde+vGgmbjRL1OnhZIxa06fJxQWzcq3RxYr
+        +kOG+srHYqqiX0rZZ9tb6TVtefFiwc7XNmLEc3NTLZuKpatqFoPEhCJTEh+DyxWSfwHyTmoL
+        MAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLKsWRmVeSWpSXmKPExsVy+t/xu7rTticnG5xvYLV4umMmq8WDedvY
+        LBb/eM5kcX/xZxaLQ5u3sltsuTKb2WL58QOsFvOPnGO12H7wEYvFxhdA2Ysz77JYPJ+/jtHi
+        5ax7bBZ9Lx4yW+x9DdSx6fE1VovLu+awWfRs2MpqsfT6RSaLZZv+MFks2vqF3aJ17xF2i7t7
+        tjFatLQdYXKQ8Fgzbw2jx467Sxg9ri/5xOyxc9Zddo/Fe14yeWxa1cnmcefaHjaPzUvqPVqP
+        /mLx6NuyitGj68h1No/Pm+Q8Tn39zB7AG6VnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdo
+        bB5rZWSqpG9nk5Kak1mWWqRvl6CXMb2hjbWgib2iac10lgbGG6xdjJwcEgImEodWnwKzhQSW
+        Mkqs7uGAiMtInJzWAFUjLPHnWhdbFyMXUM17RomJnZsYQRK8AnYSm0/8ZQKxWQRUJNbOfM4M
+        EReUODnzCUsXIweHqECKxLdzdSBhYYEkiV8PF4LNZBYQl7j1ZD4TyEwRgSeMEis7vjKCOMwC
+        t5klzq+fzA6x7SejxOcTG8E2sAkYSnS9BTmDk4MTaPP1NY/ZIUaZSXRt7WKEsOUltr+dwzyB
+        UWgWkkNmIdk4C0nLLCQtCxhZVjGKpJYW56bnFhvpFSfmFpfmpesl5+duYgSmm23Hfm7Zwbjy
+        1Ue9Q4xMHIyHGCU4mJVEeOvPRicL8aYkVlalFuXHF5XmpBYfYjQFhsZEZinR5HxgwssriTc0
+        MzA1NDGzNDC1NDNWEuf1LOhIFBJITyxJzU5NLUgtgulj4uCUamDiSeKLNn5o0axR7LvKlsGN
+        c1WITs+jOabHVEUnhL/6f+rD5qxD7Hr/Y7wffJ/VHP/+zplio6tuMzLd9aNn6TncaLrM8b6y
+        ft/ehtzLKqbCOzi6Um5k1F7vO9mY+SzueNEalnMGzZOdwoWrblzbeX73Xy7m5edqDm1QX/4/
+        afXPS1wCFZWNnGW8lzZVfS7nkH7Ur+HyZS/PNLnFlw9Pyg0/utfE7nncnaiwyuvvis5Lz7CU
+        5qreEm6wNapgW+ipnQrSWRpcTh8vTT0crjB39ofHHzn/bz9nGDDl55drvhM9Jt40710wU8jp
+        0bVC8x8fYlv1p63cyat6jW3Hna3LzTclubeLTr41J/NY+ME5Oh6pSizFGYmGWsxFxYkAMVUw
+        7cADAAA=
+X-CMS-MailID: 20221103124406eucas1p23727d05069d1c388d2a59bc5d865d3f4
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20221102125813epcas5p40a38f17a267276ff8b2bc5861b5d450d
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20221102125813epcas5p40a38f17a267276ff8b2bc5861b5d450d
+References: <20221102130602.48969-1-aakarsh.jain@samsung.com>
+        <CGME20221102125813epcas5p40a38f17a267276ff8b2bc5861b5d450d@epcas5p4.samsung.com>
+        <20221102130602.48969-2-aakarsh.jain@samsung.com>
+        <c55d29d2-a70a-f2ae-b605-1c63051202bf@linaro.org>
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 04:38, Sinthu Raja M wrote:
-> On Tue, Oct 18, 2022 at 6:33 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 18/10/2022 08:38, Sinthu Raja wrote:
->>> From: Sinthu Raja <sinthu.raja@ti.com>
->>>
->>> The SK architecture comprises of baseboard and a SOM board. It is
->>> as follows,
->>>
->>>        +--------------------------------------+---+
->>>        |                                      |   |<--Connectors
->>>        |                                      +---|
->>>        |      +---------------------------+   |   |
->>>        |      | SOM                       |   +---|
->>>        |      |                           |   |   |
->>>        |      |                           |   +---| Power Supply
->>>        |      |                           |       |   |
->>>        |      +---------------------------+       |   |
->>>        |                                          |<--+
->>>        |           BASE BOARD                     |
->>>        +------------------------------------------+
->>
->> This is pretty straightforward for SoM, I am not sure what's the benefit
->> to add it.
->>
->>>
->>> AM68 Starter Kit's baseboard contains most of the actual connectors,
->>> power supply etc. The System on Module (SoM) is plugged on to the base
->>> board. Therefore, add support for peripherals brought out in the base
->>> board.
->>>
->>> Schematics: https://www.ti.com/lit/zip/SPRR463
->>>
->>> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/Makefile               |   2 +
->>>  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 459 ++++++++++++++++++
->>>  2 files changed, 461 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>> index 4555a5be2257..498b089d96f8 100644
->>> --- a/arch/arm64/boot/dts/ti/Makefile
->>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>> @@ -19,6 +19,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
->>>
->>>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
->>>
->>> +dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
->>> +
->>
->> Alphabetical order, although does not look like other entries are ordered...
->>
->>>  dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->>>  dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->>> new file mode 100644
->>> index 000000000000..f51cbd2e3b72
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
->>> @@ -0,0 +1,459 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->>> + *
->>> + * Base Board: https://www.ti.com/lit/zip/SPRR463
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "k3-am68-sk-som.dtsi"
->>> +#include <dt-bindings/net/ti-dp83867.h>
->>> +#include <dt-bindings/phy/phy-cadence.h>
->>> +#include <dt-bindings/phy/phy.h>
->>> +#include <dt-bindings/mux/ti-serdes.h>
->>> +
->>> +/ {
->>> +     compatible = "ti,am68-sk", "ti,j721s2";
->>> +     model = "Texas Instruments AM68 SK";
->>> +
->>> +     chosen {
->>> +             stdout-path = "serial2:115200n8";
->>> +             bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x2880000";
->>
->> None of these bootargs are suitable for mainline. earlycon for sure - it
->> is pure debug option.
-> Krzysztof,
-> In AM68 SK the Linux console is on main_uart8, so to be consistent
-> with other J7 families of devices aliasing the serial port to ttyS2. I
-> am quite confused why these bootargs are not suitable for mainline. I
-> check the below documentation section 2.3, as mentioned it can be used
-> as kernel parameters. Please correct me if I am wrong.
-> https://www.kernel.org/doc/html/latest/devicetree/usage-model.html?highlight=bootargs
+On 03.11.2022 13:35, Krzysztof Kozlowski wrote:
+> On 02/11/2022 09:06, Aakarsh Jain wrote:
+>> commit "5441e9dafdfc6dc40fa" which adds mfc v7 support for
+> Please run scripts/checkpatch.pl and fix reported warnings.
+>
+>> Exynos3250 and used the same compatible string as used by
+>> Exynos5240 but both the IPs are a bit different in terms of
+>> IP clock.
+>> Lets add variant driver data based on the new compatible string
+>> "samsung,exynos3250-mfc" for Exynos3250 SoC.
+> Aren't you just missing the clock on Exynos3250?
 
-Why? Console is defined by stdout path, so why do you need to redefine
-it? Bootargs are for debugging so why all users in entire world by
-default must debug?
+Nope, the Exynos3250 variant indeed has only one clock and the driver 
+code simply ignored the -ENOENT error while getting the clocks, see the 
+code in drivers/media/platform/samsung/s5p-mfc/s5p_mfc_pm.c, so it 
+worked fine even without it.
 
-Best regards,
-Krzysztof
+IMHO it is a good idea to clean this up.
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
