@@ -2,75 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B266F618474
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B156E61847F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231778AbiKCQau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 12:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
+        id S231913AbiKCQbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 12:31:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231829AbiKCQar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:30:47 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B25C51B9DB
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 09:30:29 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id z30so1454794qkz.13
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 09:30:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uHNMJF8XWCG/HlS4+eCjG2CgBguyze4jH3mOvZx8Epg=;
-        b=G1ZhYVb8T+FZ4BgBVxLLoQE87vgaX58qMUgd9tNRxudHWdFqHOrOjKyy0axzacXM3h
-         CMVDYWUjAiBjxwOf4AjBnim4hN7N1AWbe/75vpEDULus3YNRtuRHfZiuwCRo4m1xoTBu
-         RbL8LgY8u+AJRiYxQmobQILA2kh5LvcPbwh2G0xNL2P3mCklSd2LLTaGuUjujZ4X4YSo
-         jI2yuU4BvCFJ1V/a3SSQahnPPPqmdLJMTaeXPAFCXLsO5Kb9wn1HQ1O4kQFWM+fLMJY3
-         VaGxwtYwQwsVuEPcnRa34oMzIBC245hOYz97SulJ7vsQSTlAzxQi0PhouSyeaOzxVRtk
-         zosA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uHNMJF8XWCG/HlS4+eCjG2CgBguyze4jH3mOvZx8Epg=;
-        b=2ing4MnxiKwIEE+2OIoBWHwnMmCDuFOluwdHhDDM1Aa4VBcLijBpzdw7Ws/LVm4Li0
-         Tzivo563/aM3O1LeYOWTJ+XlEZIrBtRbPo6aXRDq1RJG6IwC/Bn/naZcZRTZdh6J+8xl
-         +OKnFi4fPcN4B2F60aBrA9Xm12BDkxoOM6a/sscdXQUlVNtxMlxgyVcy2JbYOAJo3I/T
-         z+T+y/uE+FCoeLPqpMKhLOEU2CkDSPGqS+9eRdlXSCq/4Ki+CyP5Xsy1wMmy+SelYxiI
-         EfdEdpYtgMCu2zIURg77BiS/FgGE1+oajg5kpFkt2HarO4LMYP8xCJ6ePZcVuiBQn/uS
-         IFDA==
-X-Gm-Message-State: ACrzQf0zv5IRjkpMLCIsGbmvuPCaeBYiY995JE4v9upAghvvh40eHdT4
-        kDMn/fiwgNDI7NiTbAxFdFXOqA==
-X-Google-Smtp-Source: AMsMyM44aLhA23EfLSlswOnvlGa6pp5mgrDyi2ujgIpGR2aSX5ZTJXEBlIpP7pSqO/tnkk5hNMUObw==
-X-Received: by 2002:a05:620a:56b:b0:6fa:3110:5aa8 with SMTP id p11-20020a05620a056b00b006fa31105aa8mr15586230qkp.343.1667493028896;
-        Thu, 03 Nov 2022 09:30:28 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id g10-20020a05620a40ca00b006f9ddaaf01esm1006172qko.102.2022.11.03.09.30.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 09:30:28 -0700 (PDT)
-Message-ID: <08f88129-23db-ff29-4ad4-07adfe3bae9d@linaro.org>
-Date:   Thu, 3 Nov 2022 12:30:27 -0400
+        with ESMTP id S232089AbiKCQb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:31:29 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 953331D300;
+        Thu,  3 Nov 2022 09:31:14 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id EFF3284B26;
+        Thu,  3 Nov 2022 17:31:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1667493073;
+        bh=vNWJCYJcObPBb11Tmj7KXR9wbcEWaCMFJbG9Obc33kg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=RjbrIbBgIdMdjJcWOFxQoxyK6frMjA9jSbR07mpY7QUZqCzmEMCjiwjBDDSgQMOOq
+         hEpXFfJFYKDRKffeOFpxjliDXpjLn6o9s9gtdUovDEAPRY+B6wwLZzPCBDsjHcNjFs
+         OR3aPQUxVVehOR+ddAdjYPb/y4UxIuKQpG+zZ7Y43AwfGQCD76+LkOfgylwl7Uc4+h
+         X00UigcTJRaIgAwEMgKlMKZEYVaH/0CM0uOuF8064XSNkFGI8BLGxNLvx9CsrTyiQo
+         4JboPbgJrzdbRssEKfcIltyBf/bsNzVIczNFbTFGJxkMfYb2QuSkh9LHWjLAuDhQ+X
+         VVL0jvoysdRHw==
+Message-ID: <a7db27cb-bb50-ed13-f2b7-54a8f66b1b97@denx.de>
+Date:   Thu, 3 Nov 2022 17:31:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v1 3/7] dt-bindings: usb: hpe,gxp-udcg: Add binding for
- gxp gadget group
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2] dt-bindings: watchdog: gpio: Convert bindings to YAML
 Content-Language: en-US
-To:     richard.yu@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20221103160625.15574-1-richard.yu@hpe.com>
- <20221103160625.15574-4-richard.yu@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103160625.15574-4-richard.yu@hpe.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+References: <20221103012205.GA2109899@roeck-us.net>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20221103012205.GA2109899@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,18 +57,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 12:06, richard.yu@hpe.com wrote:
-> From: Richard Yu <richard.yu@hpe.com>
+On 11/3/22 02:22, Guenter Roeck wrote:
+> On Wed, Nov 02, 2022 at 11:05:30PM +0100, Marek Vasut wrote:
+>> Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Guenter Roeck <linux@roeck-us.net>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+>> Cc: linux-watchdog@vger.kernel.org
+>> To: devicetree@vger.kernel.org
+>> ---
+>> V2: - Add missing required: properties
+>>      - Drop quotes around ref: referenced schema file name
+>> ---
+>> NOTE: The Maintainer entry should likely be changed, although it seems
+>>        like this driver and its matching bindings are now unmaintained.
 > 
-> Create documentation for the hpe,gxp-udcg binding to support access to
-> the gxp USB gadget group.
+> I still can not parse this note. The MAINTAINERS entry for watchdog devices
+> includes
 > 
-> Signed-off-by: Richard Yu <richard.yu@hpe.com>
-> ---
+> F:      Documentation/devicetree/bindings/watchdog/
+> F:      drivers/watchdog/
+> 
+> which should cover both the old and the new bindings as well as the driver.
+> 
+> Please explain.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+I don't mind placing you and Wim into the yaml DT maintainer section if 
+that's OK with you ?
