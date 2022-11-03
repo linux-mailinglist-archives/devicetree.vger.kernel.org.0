@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2259A6183CA
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8236183BA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 17:07:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbiKCQIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 12:08:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
+        id S232107AbiKCQHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 12:07:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229655AbiKCQIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:08:02 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2298186CE;
-        Thu,  3 Nov 2022 09:08:00 -0700 (PDT)
-Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2A3G58fH032335;
-        Thu, 3 Nov 2022 16:07:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id; s=pps0720;
- bh=+aiS1pjwEHcEX1Zp6i3H1B9SfrKa5wgk5D2pcFH54k4=;
- b=SwRTk503W29eD7VvZMX4b2OHMxVTTbXun9r6c20s3m2cD1hWFLOvH15RTvnrysEu/Wnz
- UM24MW54ePBsyLaJSKyD8Wz+koNRjr9P2rMduab8apR21T2gXpdkdTLBj3cgQYcKHMCk
- 6buvzCA+E8H3FD1lSxg4il5ykXXS9k+yJOD6GCJK8EuOGDUSxsoytxejEcizrAddGvMb
- uRJYjTAB15QX6w6omVcpaXamA3YeKJFpzsoKWW27eoa9y2RVVzOWCG6+Su0Fvtx5pEPH
- H2y8AqApSf4SvodSx87Gmc6eeKYJqMCVzy33sO2Nd8wqK7mbjWES1EAe8Uh3Ppdj4bmu MA== 
-Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3kmg470byu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 03 Nov 2022 16:07:33 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id CAFA5295B6;
-        Thu,  3 Nov 2022 16:07:32 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id DE4448036BB;
-        Thu,  3 Nov 2022 16:07:31 +0000 (UTC)
-From:   richard.yu@hpe.com
-To:     verdun@hpe.com, nick.hawkins@hpe.com, richard.yu@hpe.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux@armlinux.org.uk,
-        balbi@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 0/7] Add USB Driver for HPE GXP Architecture
-Date:   Thu,  3 Nov 2022 11:06:18 -0500
-Message-Id: <20221103160625.15574-1-richard.yu@hpe.com>
-X-Mailer: git-send-email 2.17.1
-X-Proofpoint-GUID: bZl2FMsLGf_4V0Yh9k8kVtQo6Fqi2g3Z
-X-Proofpoint-ORIG-GUID: bZl2FMsLGf_4V0Yh9k8kVtQo6Fqi2g3Z
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-03_04,2022-11-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=417
- impostorscore=0 phishscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0
- suspectscore=0 malwarescore=0 clxscore=1011 priorityscore=1501 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211030107
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232252AbiKCQHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 12:07:03 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C590E2D
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 09:06:22 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id j6so1409711qvn.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 09:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BAwWVgTndPY/btJdMWBIl8yfS+4klgWQn8G3RCVkmhs=;
+        b=vGY8dP8EH3AfGZTE0Boh+fFEXkvrnnMIRVpUONpp7uYHujUJyCbc9+kyd8lkvZyeaF
+         ysN7/h9tkeplmo1K16z2c8Bd8b0dLkItq8xSJtsCsp4uleaaP1jI2ni5FzHUL27RiPiC
+         zrvKpUP2Z5vjKvPXBaPmEDHAP7fmnY1sIbAIp9jCBxcebkmAXEU1K8U3ISCk6F98twYd
+         aRxquHWkE1mXymB/JFzEkx/QS/7yDzjM5g0p6uoNE8ILFViQhhSiZMbPG/D72wxR6wIw
+         cD1jL7j8XaYbewfGU9gg8ghsAZRJ+W08In+MY6VOOoBw6/M0OUONF+OFRmy9zOEdDy+Q
+         3L/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BAwWVgTndPY/btJdMWBIl8yfS+4klgWQn8G3RCVkmhs=;
+        b=fdVBWLkWZf2XmavX/zQPfTrdBpTQ+vAE4EuGIIWl9sZA+RFpt+I5B+2OkfVEFL/Kxf
+         yw/KqEHZhJJAa5V+WxJM+vtmCf8VbbZIKaCZHdacPqTU7ARae0N/mCz4OXmV5CCr1NvV
+         zsYUQBG8Jh/+U0Y3vPxJHkk5K8XJzZ3D2iBNJbwcsZF15wT9dtp5UbZwnGpkioEy+aqn
+         5NS+41YXUMO9Lxysv1zBE5z8ZylQQ9ui8ePX9SWSFcJ3WCOKHnn0gc8b1iIG/Ls6o5e8
+         ikdyBnGFjQD4y/LDP3GOZBUhJXwXkwQSI2e6u0GBaJvyRLST6GFcFf0Mhkpa/zn/GSND
+         Vw6Q==
+X-Gm-Message-State: ACrzQf1T0bMVpi7EVrMmj733/ve2XCbwVAglbemIm+5vWiPsTzhCU79E
+        Fe/bSv1Qm485KyRvO/NiwCrRhg==
+X-Google-Smtp-Source: AMsMyM5uzhsQnE4eql7/hkVuYY8+64udvAuHMLB4kBHRWoVA/Pr7DYZbZUM/Ty6d9E42fiFm1SzayQ==
+X-Received: by 2002:a05:6214:f21:b0:4bb:b1f7:4cb7 with SMTP id iw1-20020a0562140f2100b004bbb1f74cb7mr27252582qvb.107.1667491581214;
+        Thu, 03 Nov 2022 09:06:21 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
+        by smtp.gmail.com with ESMTPSA id l16-20020a37f910000000b006ecdfcf9d81sm993778qkj.84.2022.11.03.09.06.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Nov 2022 09:06:20 -0700 (PDT)
+Message-ID: <326aeb6b-e2f3-dfb5-b604-a4d2d32e412e@linaro.org>
+Date:   Thu, 3 Nov 2022 12:06:19 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.1
+Subject: Re: [PATCH net-next] net: axiemac: add PM callbacks to support
+ suspend/resume
+Content-Language: en-US
+To:     Andy Chiu <andy.chiu@sifive.com>, davem@davemloft.net,
+        kuba@kernel.org, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        pabeni@redhat.com, edumazet@google.com, greentime.hu@sifive.com
+References: <20221101011139.900930-1-andy.chiu@sifive.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221101011139.900930-1-andy.chiu@sifive.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Yu <richard.yu@hpe.com>
+On 31/10/2022 21:11, Andy Chiu wrote:
+> Support basic system-wide suspend and resume functions
+> 
+> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
+> ---
+>  .../net/ethernet/xilinx/xilinx_axienet_main.c | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+> 
 
-The GXP vEHCI controller presents an 8 port EHCI compatible PCI function
-to host software. Each EHCI port is logically connected to a
-corresponding set of virtual device registers.
+Why Ccing us?
 
-Richard Yu (7):
-  usb: gadget: udc: gxp_udc: add gxp USB support
-  dt-bindings: usb: hpe,gxp-udc: Add binding for gxp gadget
-  dt-bindings: usb: hpe,gxp-udcg: Add binding for gxp gadget group
-  dt-bindings: usb: hpe,gxp-vuhc: add binding for gxp vEHCI
-  ARM: dts: hpe: Add UDC nodes
-  ARM: configs: multi_v7_defconfig: Enable HPE GXP USB Driver
-  MAINTAINERS: add USB support to GXP
-
- .../devicetree/bindings/usb/hpe,gxp-udc.yaml  |   57 +
- .../devicetree/bindings/usb/hpe,gxp-udcg.yaml |   34 +
- .../devicetree/bindings/usb/hpe,gxp-vuhc.yaml |   34 +
- MAINTAINERS                                   |    5 +
- arch/arm/boot/dts/hpe-gxp.dtsi                |   30 +
- arch/arm/configs/multi_v7_defconfig           |    1 +
- drivers/usb/gadget/udc/Kconfig                |    6 +
- drivers/usb/gadget/udc/Makefile               |    1 +
- drivers/usb/gadget/udc/gxp_udc.c              | 1300 +++++++++++++++++
- 9 files changed, 1468 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/hpe,gxp-udc.yaml
- create mode 100644 Documentation/devicetree/bindings/usb/hpe,gxp-udcg.yaml
- create mode 100644 Documentation/devicetree/bindings/usb/hpe,gxp-vuhc.yaml
- create mode 100644 drivers/usb/gadget/udc/gxp_udc.c
-
--- 
-2.17.1
+Best regards,
+Krzysztof
 
