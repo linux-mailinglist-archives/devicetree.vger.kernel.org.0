@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96CC4617F13
-	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:14:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C53617F48
+	for <lists+devicetree@lfdr.de>; Thu,  3 Nov 2022 15:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbiKCOOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 10:14:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36318 "EHLO
+        id S231169AbiKCOTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 10:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231382AbiKCOOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:14:08 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCBE12600
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 07:14:06 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id x15so1255037qtv.9
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 07:14:06 -0700 (PDT)
+        with ESMTP id S231415AbiKCOTa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 10:19:30 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD6C193F8
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 07:19:11 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id j4so3128524lfk.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 07:19:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gYQGyQS8DP53gudD2LS5QIdA9P5CghjE18cB5YGbwNo=;
-        b=YPDKiBDhL3GTpZFC90CenZCcTm0lE7QqO55q9u1umahiJTGoPAQLmtFarcCsEC9GZm
-         t0CEAHuLk/CEY6FBw0kT1KXS9kk9QOLfCvn+33jtBVakvMMvkhMKrBeexfM0UvVHqTtj
-         XCjhtlDs/6cE9RBRWSpX7lhwg+ZeGlFdKCfFw16lTGQ+p2TggKvQKgl1ahgTHVR0ggke
-         jcfcmuMQyRA/ZPoOAVQETCm/ni4tG6SDPWa67ZNbXaVGHdkKYHCebIbYB+dM8FDMxFtz
-         Ch5pRimZDh/fOgYp3eiSyMl4H3w3syxlw/qPcs5N3jTS8wf9UKpLQMJngWgEHrOJILNv
-         SR+A==
+        bh=eQeJmfmldXG6hvj59+k+TbhmV1qXG3RlPlcNF3t/Ui4=;
+        b=eIfFSn41vRIjqtDk+mjUsF7IHFNarF4VsRCOuE8POYhXnp6oyBT+6h9EQ1bjtm5BWh
+         AZ+EbEpHlwSptAfm8e1snxWMK+7TlKekN7dEgqanRoSeyPN5aTtMofJ13dBGwQsr80Ez
+         wBcE5Jn9tDj00EqMtqXabzEmRFMzQ0WOW9aavZ0tJ/f5n8H0HzJLt79JwtfTc76HeF36
+         TKy1YClxtnIW6Dd/gNcrQBanCHacDuJsOzBzmTKY6dyC8+fNm1Zj1cWneI9kpuL25iyv
+         PgnXfvXtdFp0Mbb5x//hk1sNCLRL4BpRs6BfgqjR3yNsSUQbyeYjSWa41lJ7Zjeq9GG/
+         iakQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gYQGyQS8DP53gudD2LS5QIdA9P5CghjE18cB5YGbwNo=;
-        b=lpjIRBKUILAxJMkmnu5vBA+t/pMXTycI478hfDaRwu8C5V6mBKfm5W0Bcy/lyLggMX
-         +AMbM0VL99ef9jM83vJqu3/xOUEYIrSi72CHV6Efr4/65adQxJJ+mDPsphZxeq+YesM8
-         LYs56Wko9UCn30hG39z7Oc4QHSZ+JgEc7zk1zZ64vb2f1wiA8brtZNTPpmASU1asz3/9
-         hbYa66n02Bo2XqCv4BGEtDg4uA1t6klTFW/WMypCr4qV75+bdF6xprOjPUNGuiHXHCIc
-         5YJesym8wDHOuDaAN6r3Niy7aRut+Tlhl+J7TDhezPADm9kYtdDw4kWOaYjf/4zO2YJV
-         l4/A==
-X-Gm-Message-State: ACrzQf06e2SwofNO6QPdc+lw5u80QZ5P/EpURyKeKgyI7khpxlRo5EhG
-        fCOIRK+wr610EbqYhORlQJlR4w==
-X-Google-Smtp-Source: AMsMyM4DvdwTxW9AjaVe1eLPMpQG5yb5nGRTwsLMR0Kn6Zlxx66//tEHqZs8S0U7aS/vvhsbS4CKNQ==
-X-Received: by 2002:a05:622a:114b:b0:3a5:4b2e:41e2 with SMTP id f11-20020a05622a114b00b003a54b2e41e2mr5982956qty.255.1667484845775;
-        Thu, 03 Nov 2022 07:14:05 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:a35d:9f85:e3f7:d9fb? ([2601:586:5000:570:a35d:9f85:e3f7:d9fb])
-        by smtp.gmail.com with ESMTPSA id e2-20020ac84902000000b0039cb5c9dbacsm596518qtq.22.2022.11.03.07.14.04
+        bh=eQeJmfmldXG6hvj59+k+TbhmV1qXG3RlPlcNF3t/Ui4=;
+        b=ee9Xuy9yxCLjKbrI9CLfTs3FoAg0Ozi3cc2dTFeWjEMyLm9t4fBvgl4k6M/SXkBT2G
+         z6X9Qd2tgLoXo8lq5hHYYjgsFvj2DvrUYEutJkkwixbpp6CUB3vfiHNEcZXfjKLIvpW2
+         nPGBaa/As4q4UsvOtu4U5V1zWffu9iwPujGT+xto9btyxd1HBd2f78piUFWLV4JmoBl/
+         xewmAynNx+V9yuxmx9l6gFkhiq5D0PUEf6pKBn7ntFAaHCquT/ldj0WqMTqL6tFG7oAg
+         u5qIkjxsQjt+P77IfU7YI5C0O/u1aMJpzvLMe/95o0oNFK79iOemOpufDjgA3sn1yexY
+         J3Pg==
+X-Gm-Message-State: ACrzQf0aIrqcvXxG5M6mU4hEvyImjJx4jvhU8YH1t7jeL/kYT4l4o90G
+        bNf8amHEzEeajthpiQ1/TGehsA==
+X-Google-Smtp-Source: AMsMyM65B2GojMWZBZ7SW9Nj3gk8ZeKbb0JxUBUaGHgAfQk1+agMmGU6PEhntoiaifEbaTv7V4bKUQ==
+X-Received: by 2002:ac2:4842:0:b0:4a0:53a0:51c with SMTP id 2-20020ac24842000000b004a053a0051cmr11288589lfy.202.1667485150143;
+        Thu, 03 Nov 2022 07:19:10 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id b24-20020a056512061800b0049876c1bb24sm144454lfe.225.2022.11.03.07.19.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 07:14:05 -0700 (PDT)
-Message-ID: <18d66cce-64ae-aeaa-e9cf-9426c5d214f5@linaro.org>
-Date:   Thu, 3 Nov 2022 10:14:04 -0400
+        Thu, 03 Nov 2022 07:19:09 -0700 (PDT)
+Message-ID: <b1aea0c6-1f62-57bd-3ea2-6e4334e1003e@linaro.org>
+Date:   Thu, 3 Nov 2022 17:19:08 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH] dt-bindings: pwm: tegra: Convert to json-schema
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20221103120137.1467905-1-thierry.reding@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103120137.1467905-1-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v1 9/9] arm64: dts: qcom: sm8350-hdk: Enable lt9611uxc
+ dsi-hdmi bridge
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robdclark@gmail.com, quic_abhinavk@quicinc.com, sean@poorly.run,
+        airlied@linux.ie, daniel@ffwll.ch, quic_kalyant@quicinc.com,
+        swboyd@chromium.org, angelogioacchino.delregno@somainline.org,
+        loic.poulain@linaro.org, quic_vpolimer@quicinc.com,
+        vkoul@kernel.org, dianders@chromium.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org,
+        Jonathan Marek <jonathan@marek.ca>, vinod.koul@linaro.org,
+        quic_jesszhan@quicinc.com
+References: <20221028120812.339100-1-robert.foss@linaro.org>
+ <20221028120812.339100-10-robert.foss@linaro.org>
+ <bbce3d37-019b-a652-4f1d-18fb9493f7de@linaro.org>
+In-Reply-To: <bbce3d37-019b-a652-4f1d-18fb9493f7de@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -77,247 +87,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 08:01, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On 28/10/2022 16:56, Dmitry Baryshkov wrote:
+> On 28/10/2022 15:08, Robert Foss wrote:
+>> The sm8350-hdk ships with the LT9611 UXC DSI/HDMI bridge chip.
+>>
+>> In order to toggle the board to enable the HDMI output,
+>> switch #7 & #8 on the rightmost multi-switch package have
+>> to be toggled to On.
 > 
-> Convert the Tegra PWFM bindings from the free-form text format to
-> json-schema.
+> Since this doesn't look like a default setup, it would probably make 
+> sense to move this to new sm8350-hdk-hdmi.dts with the comment regarding 
+> necessary switch changes at the top of the file.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  .../bindings/pwm/nvidia,tegra20-pwm.txt       |  77 ----------
->  .../bindings/pwm/nvidia,tegra20-pwm.yaml      | 144 ++++++++++++++++++
->  2 files changed, 144 insertions(+), 77 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
->  create mode 100644 Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
-> deleted file mode 100644
-> index 74c41e34c3b6..000000000000
-> --- a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.txt
-> +++ /dev/null
-> @@ -1,77 +0,0 @@
-> -Tegra SoC PWFM controller
-> -
-> -Required properties:
-> -- compatible: Must be:
-> -  - "nvidia,tegra20-pwm": for Tegra20
-> -  - "nvidia,tegra30-pwm", "nvidia,tegra20-pwm": for Tegra30
-> -  - "nvidia,tegra114-pwm", "nvidia,tegra20-pwm": for Tegra114
-> -  - "nvidia,tegra124-pwm", "nvidia,tegra20-pwm": for Tegra124
-> -  - "nvidia,tegra132-pwm", "nvidia,tegra20-pwm": for Tegra132
-> -  - "nvidia,tegra210-pwm", "nvidia,tegra20-pwm": for Tegra210
-> -  - "nvidia,tegra186-pwm": for Tegra186
-> -  - "nvidia,tegra194-pwm": for Tegra194
-> -- reg: physical base address and length of the controller's registers
-> -- #pwm-cells: should be 2. See pwm.yaml in this directory for a description of
-> -  the cells format.
-> -- clocks: Must contain one entry, for the module clock.
-> -  See ../clocks/clock-bindings.txt for details.
-> -- resets: Must contain an entry for each entry in reset-names.
-> -  See ../reset/reset.txt for details.
-> -- reset-names: Must include the following entries:
-> -  - pwm
-> -
-> -Optional properties:
-> -============================
-> -In some of the interface like PWM based regulator device, it is required
-> -to configure the pins differently in different states, especially in suspend
-> -state of the system. The configuration of pin is provided via the pinctrl
-> -DT node as detailed in the pinctrl DT binding document
-> -	Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> -
-> -The PWM node will have following optional properties.
-> -pinctrl-names:	Pin state names. Must be "default" and "sleep".
-> -pinctrl-0:	phandle for the default/active state of pin configurations.
-> -pinctrl-1:	phandle for the sleep state of pin configurations.
-> -
-> -Example:
-> -
-> -	pwm: pwm@7000a000 {
-> -		compatible = "nvidia,tegra20-pwm";
-> -		reg = <0x7000a000 0x100>;
-> -		#pwm-cells = <2>;
-> -		clocks = <&tegra_car 17>;
-> -		resets = <&tegra_car 17>;
-> -		reset-names = "pwm";
-> -	};
-> -
-> -
-> -Example with the pin configuration for suspend and resume:
-> -=========================================================
-> -Suppose pin PE7 (On Tegra210) interfaced with the regulator device and
-> -it requires PWM output to be tristated when system enters suspend.
-> -Following will be DT binding to achieve this:
-> -
-> -#include <dt-bindings/pinctrl/pinctrl-tegra.h>
-> -
-> -	pinmux@700008d4 {
-> -		pwm_active_state: pwm_active_state {
-> -                        pe7 {
-> -                                nvidia,pins = "pe7";
-> -                                nvidia,tristate = <TEGRA_PIN_DISABLE>;
-> -			};
-> -		};
-> -
-> -		pwm_sleep_state: pwm_sleep_state {
-> -                        pe7 {
-> -                                nvidia,pins = "pe7";
-> -                                nvidia,tristate = <TEGRA_PIN_ENABLE>;
-> -			};
-> -		};
-> -	};
-> -
-> -	pwm@7000a000 {
-> -		/* Mandatory PWM properties */
-> -		pinctrl-names = "default", "sleep";
-> -		pinctrl-0 = <&pwm_active_state>;
-> -		pinctrl-1 = <&pwm_sleep_state>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
-> new file mode 100644
-> index 000000000000..9c73e78ff434
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/nvidia,tegra20-pwm.yaml
-> @@ -0,0 +1,144 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/nvidia,tegra20-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra PWFM controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: nvidia,tegra20-pwm
-> +
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra30-pwm
-> +              - nvidia,tegra114-pwm
-> +              - nvidia,tegra124-pwm
-> +              - nvidia,tegra132-pwm
-> +              - nvidia,tegra210-pwm
-> +          - enum:
-> +              - nvidia,tegra20-pwm
-> +
-> +      - items:
-> +          - const: nvidia,tegra186-pwm
 
-I guess you wanted to keep some order between nvidia,tegra20-pwm and
-nvidia,tegra186-pwm, but this creates impression you will have here more
-items, which of course cannot happen. So either keep this one with
-tegra20 as one enum or drop "items".
-
-> +
-> +      - items:
-> +          - const: nvidia,tegra194-pwm
-> +          - const: nvidia,tegra186-pwm
-> +
-> +      - items:
-> +          - const: nvidia,tegra234-pwm
-> +          - const: nvidia,tegra194-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: module clock
-
-Just maxItems: 1, because description is not really helping.
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pwm
-
-This wasn't in original binding and does not look needed. Mention
-changes from pure conversion.
-
-> +
-> +  resets:
-> +    items:
-> +      - description: module reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: pwm
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +  pinctrl-names:
-> +    items:
-> +      - const: default
-> +      - const: sleep
-> +
-> +  pinctrl-0:
-> +    description: configuration for the default/active state
-> +
-> +  pinctrl-1:
-> +    description: configuration for the sleep state
-> +
-> +  operating-points-v2:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-
-Drop quotes. We should actually define it in some common schema.
-
-> +
-> +  power-domains:
-> +    items:
-> +      - description: phandle to the core power domain
-> +
-> +allOf:
-> +  - $ref: pwm.yaml
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - reset-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra20-car.h>
-> +
-> +    pwm: pwm@7000a000 {
-> +        compatible = "nvidia,tegra20-pwm";
-> +        reg = <0x7000a000 0x100>;
-> +        #pwm-cells = <2>;
-> +        clocks = <&tegra_car TEGRA20_CLK_PWM>;
-> +        resets = <&tegra_car 17>;
-> +        reset-names = "pwm";
-> +    };
-> +
-> +  # Example with the pin configuration for suspend and resume:
-> +  # ==========================================================
-> +  # Suppose pin PE7 (On Tegra210) interfaced with the regulator device and it requires PWM output
-> +  # to be tristated when system enters suspend.
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/pinctrl/pinctrl-tegra.h>
-> +
-> +    pinmux@700008d4 {
-> +        compatible = "nvidia,tegra210-pinmux";
-> +        reg = <0x700008d4 0x29c>, /* Pad control registers */
-> +              <0x70003000 0x294>; /* Mux registers */
-> +
-> +        pwm_active_state: pwm_active_state {
-
-No underscores in node names.
+Please excuse me here. I checked the Lantronix site. It clearly names 
+'Optional Display/Expansion board mates to DSI connectors'. So, you were 
+correct, the HDMI should be in the base setup, while DSI panel should 
+come as the extending DT file.
 
 
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
