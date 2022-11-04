@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AFA661A046
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 19:50:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76A3E61A052
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 19:53:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbiKDSua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 14:50:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
+        id S229608AbiKDSxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 14:53:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbiKDSu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 14:50:29 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA375F70;
-        Fri,  4 Nov 2022 11:50:28 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id g10so6069001oif.10;
-        Fri, 04 Nov 2022 11:50:28 -0700 (PDT)
+        with ESMTP id S229537AbiKDSxo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 14:53:44 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE3243AF6;
+        Fri,  4 Nov 2022 11:53:43 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-13b23e29e36so6471766fac.8;
+        Fri, 04 Nov 2022 11:53:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JFZemGAiz+864ig6tHEwR4+zzxKN7GhJUHozYh5QjjI=;
-        b=GG/jE/pffRQmCB2QL+cRGeYDbEZl+QSXz2A9L2QDFJu4PZ9xgrYD3bxMrKiLGzpD+F
-         YZyBUpUrQUFB/Ls6E8l20JhgLbQaN3D5Bcyw9pFMFvGi8uE/eIcZbM0pmYfum8Z1P62p
-         lu8sgIRGS6q+Rm0He2A10M7ABFDM4ow7jQurenkvpoe7AnCcjAAvLVjbUysKo515yneZ
-         cCNqy4S983rHpUizGQFR4LA0Mj5nkONR+PdlJIwLomTVxFx7COl5bIwQtj2A1CriKkoe
-         bbm53k3rX7s1FcZugzTw27xdNrG4G9TApeKU66V/RO/4PNAmcotoQ0huYsISZwvez8NG
-         mPLw==
-X-Gm-Message-State: ACrzQf39tKJwsCG8/B6/Sne7Es9oBBe+lNVYl1y14Ddf0Wv2vTvdEiZT
-        mI6hfwt6a+0fSHjiVdop5w==
-X-Google-Smtp-Source: AMsMyM4NoyUsswYjaKUMH0fuD+Uj0sffbrFfd4AIvYQU1cWGLEOTRHBHp8TuRNKoTVHgwGqgdiwtkw==
-X-Received: by 2002:a54:4016:0:b0:35a:3878:f22a with SMTP id x22-20020a544016000000b0035a3878f22amr9656904oie.47.1667587827748;
-        Fri, 04 Nov 2022 11:50:27 -0700 (PDT)
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5fmOKByI3KZe2A+MbL7heqgNPSfdsbAmN+AppMoJZ00=;
+        b=peqruPVsiV3zFegg4kUY8ZkQdFRUe6+LI/k2DVlFrZSVAhM4LZYnpJszsrc3JE6ZRe
+         bLwrlNsxyU2RmQ8OYg8S5DGCF9OtbLMFE8tYEb8MKhJUSNx8YS8WOM75ViyUYaKNvH9o
+         LOrl1ZoDN2bcA5fVpe5GbtokB9HomtPT2mBFserf5eQTlRcHKAlE5eIb6A0I2Tn25OHE
+         mFGz7Dfx1V2inEf/7J/6tGqs4oXCPcOLL0uUAz49GyWKf9nbGXZWT0WThMIL5IbZQ/ZJ
+         /DiSWuyA3cPyet6gHCiDJcJwBE7gl9GfVIki84zhhB+lv8ZXC8AJ1c8PEBjOPWf5Inox
+         oQ5Q==
+X-Gm-Message-State: ACrzQf1wcPaVR/mXL9n69S4o63zotFE+aTM/wRSbmNImFOerOb8oBcWg
+        OLHsjPxegEF9CcLYiazAFw==
+X-Google-Smtp-Source: AMsMyM7H12TuDK4Qcc7Lp3VgFO0eqWpI/aipb/7bHwsocq/OaNXhxdKmKwIjE8/ecQst2AvBtkN/qw==
+X-Received: by 2002:a05:6870:42c3:b0:136:4251:1642 with SMTP id z3-20020a05687042c300b0013642511642mr22945908oah.210.1667588022771;
+        Fri, 04 Nov 2022 11:53:42 -0700 (PDT)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 2-20020aca2102000000b0035173c2fddasm1726258oiz.51.2022.11.04.11.50.26
+        by smtp.gmail.com with ESMTPSA id i9-20020a4ac509000000b0049e9fbf1615sm1328008ooq.48.2022.11.04.11.53.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 11:50:27 -0700 (PDT)
-Received: (nullmailer pid 2243197 invoked by uid 1000);
-        Fri, 04 Nov 2022 18:50:28 -0000
-Date:   Fri, 4 Nov 2022 13:50:28 -0500
+        Fri, 04 Nov 2022 11:53:42 -0700 (PDT)
+Received: (nullmailer pid 2245794 invoked by uid 1000);
+        Fri, 04 Nov 2022 18:53:43 -0000
+Date:   Fri, 4 Nov 2022 13:53:43 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Colin Foster <colin.foster@in-advantage.com>
 Cc:     linux-mediatek@lists.infradead.org,
@@ -62,15 +62,16 @@ Cc:     linux-mediatek@lists.infradead.org,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Andrew Lunn <andrew@lunn.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 net-next 5/6] dt-bindings: net: add generic
- ethernet-switch-port binding
-Message-ID: <20221104185028.GB2133300-robh@kernel.org>
+Subject: Re: [PATCH v2 net-next 3/6] dt-bindings: net: dsa: mediatek,mt7530:
+ remove unnecessary dsa-port reference
+Message-ID: <20221104185343.GC2133300-robh@kernel.org>
 References: <20221104045204.746124-1-colin.foster@in-advantage.com>
- <20221104045204.746124-6-colin.foster@in-advantage.com>
+ <20221104045204.746124-4-colin.foster@in-advantage.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20221104045204.746124-6-colin.foster@in-advantage.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20221104045204.746124-4-colin.foster@in-advantage.com>
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -81,142 +82,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 09:52:03PM -0700, Colin Foster wrote:
-> The dsa-port.yaml binding had several references that can be common to all
-> ethernet ports, not just dsa-specific ones. Break out the generic bindings
-> to ethernet-switch-port.yaml they can be used by non-dsa drivers.
+On Thu, Nov 03, 2022 at 09:52:01PM -0700, Colin Foster wrote:
+> dsa.yaml contains a reference to dsa-port.yaml, so a duplicate reference to
+> the binding isn't necessary. Remove this unnecessary reference.
 > 
 > Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
 > Suggested-by: Vladimir Oltean <olteanv@gmail.com>
+> Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
 > 
 > v1 -> v2
->   * Remove accidental addition of
->     "$ref: /schemas/net/ethernet-switch-port.yaml" which should be kept
->     out of dsa-port so that it doesn't get referenced multiple times
->     through both ethernet-switch and dsa-port.
+>   * Add Reviewed-by
 > 
 > ---
->  .../devicetree/bindings/net/dsa/dsa-port.yaml | 27 +-----------
->  .../bindings/net/ethernet-switch-port.yaml    | 44 +++++++++++++++++++
->  .../bindings/net/ethernet-switch.yaml         |  4 +-
->  MAINTAINERS                                   |  1 +
->  4 files changed, 49 insertions(+), 27 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
+>  Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml | 3 ---
+>  1 file changed, 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> index 10ad7e71097b..d97fb87cccb0 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/net/dsa/dsa-port.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> index f2e9ff3f580b..81f291105660 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> @@ -159,8 +159,6 @@ patternProperties:
+>          type: object
+>          description: Ethernet switch ports
 >  
-> -title: Ethernet Switch port Device Tree Bindings
-> +title: DSA Switch port Device Tree Bindings
+> -        unevaluatedProperties: false
+> -
+
+You just allowed this node to have any property.
+
+>          properties:
+>            reg:
+>              description:
+> @@ -168,7 +166,6 @@ patternProperties:
+>                for user ports.
 >  
->  maintainers:
->    - Andrew Lunn <andrew@lunn.ch>
-> @@ -14,13 +14,7 @@ maintainers:
->  description:
->    Ethernet switch port Description
->  
-> -allOf:
-> -  - $ref: /schemas/net/ethernet-controller.yaml#
-> -
->  properties:
-> -  reg:
-> -    description: Port number
-> -
->    label:
->      description:
->        Describes the label associated with this port, which will become
-> @@ -57,25 +51,6 @@ properties:
->        - rtl8_4t
->        - seville
->  
-> -  phy-handle: true
-> -
-> -  phy-mode: true
-> -
-> -  fixed-link: true
-> -
-> -  mac-address: true
-> -
-> -  sfp: true
-> -
-> -  managed: true
-> -
-> -  rx-internal-delay-ps: true
-> -
-> -  tx-internal-delay-ps: true
-> -
-> -required:
-> -  - reg
-> -
->  # CPU and DSA ports must have phylink-compatible link descriptions
->  if:
->    oneOf:
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
-> new file mode 100644
-> index 000000000000..cb1e5e12bf0a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/ethernet-switch-port.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ethernet Switch port Device Tree Bindings
-> +
-> +maintainers:
-> +  - Andrew Lunn <andrew@lunn.ch>
-> +  - Florian Fainelli <f.fainelli@gmail.com>
-> +  - Vivien Didelot <vivien.didelot@gmail.com>
-> +
-> +description:
-> +  Ethernet switch port Description
-> +
-> +$ref: ethernet-controller.yaml#
-> +
-> +properties:
-> +  reg:
-> +    description: Port number
-> +
-> +  phy-handle: true
-> +
-> +  phy-mode: true
-> +
-> +  fixed-link: true
-> +
-> +  mac-address: true
-> +
-> +  sfp: true
-> +
-> +  managed: true
-> +
-> +  rx-internal-delay-ps: true
-> +
-> +  tx-internal-delay-ps: true
-
-I know this is just copied, but these have no effect on validation. I 
-assume what they are meant to be is these are the subset of 
-ethernet-controller.yaml which are allowed, but that would only work 
-with 'additionalProperties: false'. That wouldn't work because we also 
-want to users to extend this with custom properties. What's needed here 
-is a list of properties not allowed:
-
-disallowed-prop: false
-
-Or we can just allow anything from ethernet-controller.yaml and drop 
-this list.
-
-> +
-> +required:
-> +  - reg
-> +
-> +additionalProperties: true
-> +
-> +...
+>          allOf:
+> -          - $ref: dsa-port.yaml#
+>            - if:
+>                required: [ ethernet ]
+>              then:
+> -- 
+> 2.25.1
+> 
+> 
