@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4517E6193AB
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 10:38:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2B906193B9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 10:41:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231130AbiKDJiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 05:38:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54048 "EHLO
+        id S231320AbiKDJl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 05:41:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229756AbiKDJiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 05:38:09 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058239586
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 02:38:08 -0700 (PDT)
+        with ESMTP id S230139AbiKDJlw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 05:41:52 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F53326578;
+        Fri,  4 Nov 2022 02:41:51 -0700 (PDT)
 Received: from [192.168.31.208] (unknown [194.29.137.22])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D30873EEDF;
-        Fri,  4 Nov 2022 10:38:06 +0100 (CET)
-Message-ID: <0060c22a-0dfe-40bf-c877-7fb86c97872b@somainline.org>
-Date:   Fri, 4 Nov 2022 10:38:06 +0100
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id CC786401FC;
+        Fri,  4 Nov 2022 10:41:48 +0100 (CET)
+Message-ID: <a7489c04-4aa6-5ec5-315b-fcdf93f1ea7b@somainline.org>
+Date:   Fri, 4 Nov 2022 10:41:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [PATCH v10 4/4] arm64: dts: qcom: sc7280: add
- sc7280-herobrine-audio-rt5682-3mic3.dtsi for evoker
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp: update UFS PHY nodes
+To:     Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20221104061941.2739938-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20221104141515.v10.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
+        Brian Masney <bmasney@redhat.com>,
+        Shazad Hussain <quic_shazhuss@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221104092045.17410-1-johan+linaro@kernel.org>
+ <20221104092045.17410-3-johan+linaro@kernel.org>
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221104141515.v10.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
+In-Reply-To: <20221104092045.17410-3-johan+linaro@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -50,246 +50,111 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 04/11/2022 07:19, Sheng-Liang Pan wrote:
-> add specific 3mic setting as sc7280-herobrine-audio-rt5682-3mic.dtsi,
-> so we can include sc7280-herobrine-audio-rt5682-3mic.dtsi for evoker
-> as it uses rt5682 with 3 mics.
+On 04/11/2022 10:20, Johan Hovold wrote:
+> Update the UFS PHY nodes to match the new binding.
 >
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > ---
->
-> Changes in v10:
-> - add evoker include specific sc7280-herobrine-audio-rt5682-3mic.dtsi setting
->
->   .../sc7280-herobrine-audio-rt5682-3mic.dtsi   | 194 ++++++++++++++++++
->   .../boot/dts/qcom/sc7280-herobrine-evoker.dts |   2 +
->   2 files changed, 196 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
-> new file mode 100644
-> index 0000000000000..01bc8ee93b19a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
-> @@ -0,0 +1,194 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + *
-> + * This file defines the common audio settings for the child boards
-> + * using rt5682 codec and having 3 dmics connected to sc7280.
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +/ {
-> +	/* BOARD-SPECIFIC TOP LEVEL NODES */
-> +	sound: sound {
-> +		compatible = "google,sc7280-herobrine";
-> +		model = "sc7280-rt5682-max98360a-3mic";
-> +
-> +		status = "okay";
 
-I don't see it being disabled anywhere, probably can drop this line.
-
-
-> +		audio-routing =
-> +			"VA DMIC0", "vdd-micb",
-> +			"VA DMIC1", "vdd-micb",
-> +			"VA DMIC2", "vdd-micb",
-> +			"VA DMIC3", "vdd-micb",
-> +
-> +			"Headphone Jack", "HPOL",
-> +			"Headphone Jack", "HPOR";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		dai-link@0 {
-> +			link-name = "MAX98360";
-> +			reg = <0>;
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&max98360a>;
-> +			};
-> +		};
-> +
-> +		dai-link@1 {
-> +			link-name = "DisplayPort";
-> +			reg = <1>;
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu LPASS_DP_RX>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&mdss_dp>;
-> +			};
-> +		};
-> +
-> +		dai-link@2 {
-> +			link-name = "ALC5682";
-> +			reg = <2>;
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&alc5682 0 /* aif1 */>;
-> +			};
-> +		};
-> +
-> +		dai-link@4 {
-> +			link-name = "DMIC";
-> +			reg = <4>;
-> +
-> +			cpu {
-> +				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&lpass_va_macro 0>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +hp_i2c: &i2c2 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-
-Status last in all nodes, please.
-
-
-> +
-> +	alc5682: codec@1a {
-> +		compatible = "realtek,rt5682s";
-> +		reg = <0x1a>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hp_irq>;
-> +
-> +		#sound-dai-cells = <1>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
-> +
-> +		AVDD-supply = <&pp1800_alc5682>;
-> +		MICVDD-supply = <&pp3300_codec>;
-> +
-> +		realtek,dmic1-data-pin = <1>;
-> +		realtek,dmic1-clk-pin = <2>;
-> +		realtek,jd-src = <1>;
-> +		realtek,dmic-clk-rate-hz = <2048000>;
-> +	};
-> +};
-> +
-> +&lpass_cpu {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mi2s0_data0>, <&mi2s0_data1>, <&mi2s0_mclk>, <&mi2s0_sclk>, <&mi2s0_ws>,
-> +			<&mi2s1_data0>, <&mi2s1_sclk>, <&mi2s1_ws>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	dai-link@0 {
-> +		reg = <MI2S_PRIMARY>;
-> +		qcom,playback-sd-lines = <1>;
-> +		qcom,capture-sd-lines = <0>;
-> +	};
-> +
-> +	dai-link@1 {
-> +		reg = <MI2S_SECONDARY>;
-> +		qcom,playback-sd-lines = <0>;
-> +	};
-> +
-> +	dai-link@5 {
-> +		reg = <LPASS_DP_RX>;
-> +	};
-> +
-> +	dai-link@25 {
-> +		reg = <LPASS_CDC_DMA_VA_TX0>;
-> +	};
-> +};
-> +
-> +&lpass_va_macro {
-> +	status = "okay";
-> +	vdd-micb-supply = <&pp1800_l2c>;
-> +	pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>, <&lpass_dmic23_clk>,
-> +			<&lpass_dmic23_data>;
-> +};
-> +
-> +&mi2s0_data0 {
-
-Keep the node references sorted alphabetically, please.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
 
 Konrad
 
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&mi2s0_data1 {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&mi2s0_mclk {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&mi2s0_sclk {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&mi2s0_ws {
-> +	drive-strength = <6>;
-> +	bias-disable;
-> +};
-> +
-> +&lpass_dmic01_clk {
-> +	drive-strength = <8>;
-> +	bias-disable;
-> +};
-> +
-> +&lpass_dmic01_clk_sleep {
-> +	drive-strength = <2>;
-> +};
-> +
-> +&lpass_dmic01_data {
-> +	bias-pull-down;
-> +};
-> +
-> +&lpass_dmic23_clk {
-> +	drive-strength = <8>;
-> +	bias-disable;
-> +};
-> +
-> +&lpass_dmic23_clk_sleep {
-> +	drive-strength = <2>;
-> +};
-> +
-> +&lpass_dmic23_data {
-> +	bias-pull-down;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-> index dcdd4eecfe670..d608682f9742b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-> @@ -8,6 +8,8 @@
->   /dts-v1/;
+>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 49 +++++++++-----------------
+>   1 file changed, 17 insertions(+), 32 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index e0d0fb6994b5..1b309fa93484 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -896,7 +896,7 @@ ufs_mem_hc: ufs@1d84000 {
+>   				     "jedec,ufs-2.0";
+>   			reg = <0 0x01d84000 0 0x3000>;
+>   			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> -			phys = <&ufs_mem_phy_lanes>;
+> +			phys = <&ufs_mem_phy>;
+>   			phy-names = "ufsphy";
+>   			lanes-per-direction = <2>;
+>   			#reset-cells = <1>;
+> @@ -937,27 +937,20 @@ ufs_mem_hc: ufs@1d84000 {
 >   
->   #include "sc7280-herobrine-evoker.dtsi"
-> +#include "sc7280-herobrine-audio-rt5682-3mic.dtsi"
+>   		ufs_mem_phy: phy@1d87000 {
+>   			compatible = "qcom,sc8280xp-qmp-ufs-phy";
+> -			reg = <0 0x01d87000 0 0x1c8>;
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+> -			clock-names = "ref",
+> -				      "ref_aux";
+> +			reg = <0 0x01d87000 0 0x1000>;
 > +
+>   			clocks = <&gcc GCC_UFS_CARD_CLKREF_CLK>,
+>   				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
+> +			clock-names = "ref", "ref_aux";
+> +
+> +			power-domains = <&gcc UFS_PHY_GDSC>;
 >   
->   / {
->   	model = "Google Evoker";
+>   			resets = <&ufs_mem_hc 0>;
+>   			reset-names = "ufsphy";
+> -			status = "disabled";
+>   
+> -			ufs_mem_phy_lanes: phy@1d87400 {
+> -				reg = <0 0x01d87400 0 0x108>,
+> -				      <0 0x01d87600 0 0x1e0>,
+> -				      <0 0x01d87c00 0 0x1dc>,
+> -				      <0 0x01d87800 0 0x108>,
+> -				      <0 0x01d87a00 0 0x1e0>;
+> -				#phy-cells = <0>;
+> -			};
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+>   		};
+>   
+>   		ufs_card_hc: ufs@1da4000 {
+> @@ -965,7 +958,7 @@ ufs_card_hc: ufs@1da4000 {
+>   				     "jedec,ufs-2.0";
+>   			reg = <0 0x01da4000 0 0x3000>;
+>   			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+> -			phys = <&ufs_card_phy_lanes>;
+> +			phys = <&ufs_card_phy>;
+>   			phy-names = "ufsphy";
+>   			lanes-per-direction = <2>;
+>   			#reset-cells = <1>;
+> @@ -1005,28 +998,20 @@ ufs_card_hc: ufs@1da4000 {
+>   
+>   		ufs_card_phy: phy@1da7000 {
+>   			compatible = "qcom,sc8280xp-qmp-ufs-phy";
+> -			reg = <0 0x01da7000 0 0x1c8>;
+> -			#address-cells = <2>;
+> -			#size-cells = <2>;
+> -			ranges;
+> -			clock-names = "ref",
+> -				      "ref_aux";
+> +			reg = <0 0x01da7000 0 0x1000>;
+> +
+>   			clocks = <&gcc GCC_UFS_1_CARD_CLKREF_CLK>,
+>   				 <&gcc GCC_UFS_CARD_PHY_AUX_CLK>;
+> +			clock-names = "ref", "ref_aux";
+> +
+> +			power-domains = <&gcc UFS_CARD_GDSC>;
+>   
+>   			resets = <&ufs_card_hc 0>;
+>   			reset-names = "ufsphy";
+>   
+> -			status = "disabled";
+> +			#phy-cells = <0>;
+>   
+> -			ufs_card_phy_lanes: phy@1da7400 {
+> -				reg = <0 0x01da7400 0 0x108>,
+> -				      <0 0x01da7600 0 0x1e0>,
+> -				      <0 0x01da7c00 0 0x1dc>,
+> -				      <0 0x01da7800 0 0x108>,
+> -				      <0 0x01da7a00 0 0x1e0>;
+> -				#phy-cells = <0>;
+> -			};
+> +			status = "disabled";
+>   		};
+>   
+>   		tcsr_mutex: hwlock@1f40000 {
