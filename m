@@ -2,204 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A78E61A610
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 00:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A60261A626
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 00:56:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbiKDXol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 19:44:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34788 "EHLO
+        id S229540AbiKDX4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 19:56:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiKDXok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 19:44:40 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BB3D2EF7E
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 16:44:39 -0700 (PDT)
-Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id C34073F73D;
-        Sat,  5 Nov 2022 00:44:36 +0100 (CET)
-Date:   Sat, 5 Nov 2022 00:44:35 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add configuration for PMI8950
- peripheral
-Message-ID: <20221104234435.xwjpwfxs73puvfca@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        AngeloGioacchino Del Regno <kholk11@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221101161801.1058969-1-luca@z3ntu.xyz>
- <20221101161801.1058969-2-luca@z3ntu.xyz>
+        with ESMTP id S229459AbiKDX4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 19:56:40 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D33419AE;
+        Fri,  4 Nov 2022 16:56:38 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A4NuGqF128891;
+        Fri, 4 Nov 2022 18:56:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667606176;
+        bh=UlbNzkDg0ggQlnGUGBncbnN9YSuiR3U5KDuKzBuB8/M=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=AqDByRhPUpYeQ0LvtMslbAljya41OofpiIy20WttGKXReojlbappURd8mLzO2PsE/
+         Gt/hRmoU4to1cDW8JrX5Y0nVFy72VZnJ05K+8MPL9J2VhKKJxFJqQoGrELgBQmslxv
+         0hl1pYEj8QylreNCKGxBx95PNphIwLD2sZjBdDNE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A4NuGrH081722
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Nov 2022 18:56:16 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
+ 2022 18:56:16 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 4 Nov 2022 18:56:16 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A4NuFMP010215;
+        Fri, 4 Nov 2022 18:56:15 -0500
+Date:   Fri, 4 Nov 2022 18:56:15 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rahul T R <r-ravikumar@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jkridner@gmail.com>
+Subject: Re: [PATCH v7 2/2] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi
+ Header
+Message-ID: <20221104235615.gfwjxpcs2ldmp5dk@reflux>
+References: <20221103174743.16827-1-r-ravikumar@ti.com>
+ <20221103174743.16827-3-r-ravikumar@ti.com>
+ <20221103215440.7dmcvkmeni4xs2et@municipal>
+ <20221104051554.nqoehxtv7rdtmkyi@uda0490373>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20221101161801.1058969-2-luca@z3ntu.xyz>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20221104051554.nqoehxtv7rdtmkyi@uda0490373>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-11-01 17:18:00, Luca Weiss wrote:
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> 
-> The PMI8950 features integrated peripherals like ADC, GPIO controller,
-> MPPs and others.
-> 
-> [luca@z3ntu.xyz: remove pm8950, style changes for 2022 standards, add wled]
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-> Changes since v2:
-> * Pick up patch, and adjust as mentioned above sign-offs
-> 
->  arch/arm64/boot/dts/qcom/pmi8950.dtsi | 97 +++++++++++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pmi8950.dtsi b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> new file mode 100644
-> index 000000000000..32d27e2187e3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmi8950.dtsi
-> @@ -0,0 +1,97 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2019, AngeloGioacchino Del Regno <kholk11@gmail.com>
-> +
-> +#include <dt-bindings/iio/qcom,spmi-vadc.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +&spmi_bus {
-> +	pmic@2 {
-> +		compatible = "qcom,pmi8950", "qcom,spmi-pmic";
-> +		reg = <0x2 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pmi8950_vadc: adc@3100 {
-> +			compatible = "qcom,spmi-vadc";
-> +			reg = <0x3100>;
-> +			interrupts = <0x2 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#io-channel-cells = <1>;
-> +
-> +			adc-chan@0 {
-> +				reg = <VADC_USBIN>;
-> +				qcom,pre-scaling = <1 4>;
-> +				label = "usbin";
+On 10:45-20221104, Rahul T R wrote:
+[...]
+> > OK I am confused now. What about the pwm nodes? don't they need to be
+> > muxed?
+>=20
+> As per the discussions in the v4 of this series
+> the suggestion was to enable only gpio and i2c by
+> default
+>=20
+> https://lore.kernel.org/all/20220620144322.x54zitvhjreiy3ey@uda0490373/
 
-I've previously sent a patch with labels in the node name instead [1],
-what's the preferred way nowadays?
 
-[1]: https://lore.kernel.org/linux-arm-msm/20220926190148.283805-4-marijn.suijten@somainline.org/
+Thanks for reminding me about this discussion - it is useful to add that
+information in the patch diffstat to avoid wondering about why.
 
-> +			};
-> +
-> +			adc-chan@1 {
-> +				reg = <VADC_DCIN>;
-> +				qcom,pre-scaling = <1 4>;
-> +				label = "dcin";
-> +			};
-> +
-> +			adc-chan@2 {
-> +				reg = <VADC_VCHG_SNS>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "vchg_sns";
 
-Shall we use hyphens in labels (especially if using them as node names).
+Also please fix what ever wraparound scheme you use to 70/75
+characters for commit message please - I dont think you want me to
+have to manually fix the same for your patches
 
-> +			};
-> +
-> +			adc-chan@9 {
-> +				reg = <VADC_REF_625MV>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "ref_625mv";
-> +			};
-> +
-> +			adc-chan@a {
-> +				reg = <VADC_REF_1250MV>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "ref_1250v";
+Here is an example from my vimrc:
+map <F9> =1B{!}par 70=0D
 
-mv* :)
-
-> +			};
-> +
-> +			adc-chan@d {
-> +				reg = <VADC_SPARE2>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "chg_temp";
-> +			};
-> +		};
-> +
-> +		pmi8950_mpps: mpps@a000 {
-> +			compatible = "qcom,pmi8950-mpp", "qcom,spmi-mpp";
-> +			reg = <0xa000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmi8950_mpps 0 0 4>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		pmi8950_gpio: gpio@c000 {
-
-It seems more common to name this label plural pmi8950_gpioS?
-
-> +			compatible = "qcom,pmi8950-gpio", "qcom,spmi-gpio";
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmi8950_gpio 0 0 2>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pmic@3 {
-> +		compatible = "qcom,pmi8950", "qcom,spmi-pmic";
-> +		reg = <0x3 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pmi8950_wled: leds@d800 {
-> +			compatible = "qcom,pmi8950-wled";
-> +			reg = <0xd800>, <0xd900>;
-> +			interrupts = <0x3 0xd8 0x02 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "short";
-> +			label = "backlight";
-
-Same question here about using the node name instead, and dropping the
-label altogether.
-
-- Marijn
-
-> +
-> +			status = "disabled";
-> +		};
-> +	};
-> +};
-> -- 
-> 2.38.1
-> 
+--=20
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
+ 849D 1736 249D
