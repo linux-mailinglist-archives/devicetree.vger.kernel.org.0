@@ -2,2305 +2,647 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7BCE61946D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 11:27:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CCF6194AF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 11:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231665AbiKDK1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 06:27:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50142 "EHLO
+        id S230509AbiKDKmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 06:42:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbiKDK1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 06:27:32 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C99726486;
-        Fri,  4 Nov 2022 03:27:27 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A4AR3Jn040505;
-        Fri, 4 Nov 2022 05:27:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667557623;
-        bh=c7jBDuFlMFwcDSwuyI6coz93ullh8/bmWu45AVppv/c=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=K+DdyW+VjktQO/K6RC7JNbg+84wmqap07HF/epIxkpiCVu4qn67sPP6/gpmPaRU/9
-         aUYtPdvUnT9qgr272HiztAIznoJAKwr/PIbgycgnzq3YgTa03d4k/UbRXCxpfHgLO2
-         dbokdndU5XR6hV4GdY5xjUgpNso3bD666WuDXVR8=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A4AR3UM128115
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Nov 2022 05:27:03 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
- 2022 05:27:03 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 4 Nov 2022 05:27:03 -0500
-Received: from [10.24.69.114] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A4AQwsH120506;
-        Fri, 4 Nov 2022 05:26:59 -0500
-Message-ID: <2c239e2e-252e-1215-85eb-af516c746e8e@ti.com>
-Date:   Fri, 4 Nov 2022 15:56:58 +0530
+        with ESMTP id S229994AbiKDKmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 06:42:21 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66AA410C
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 03:42:16 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id f5so12193805ejc.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 03:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UCcUCpDY+k7yo73Nnyn69El+q92NDyvk5BnNNXNe6EM=;
+        b=IxUH3epHkGjsPLvMltnQZHvJPfummT21+da/H1aKkKPSxH/RSqSYrZar5F9BHIYN9u
+         o6zRKogdD/8evoYh+7Mgqzj9LnXjvRh2rZLdnkXL5E/VT1F3stkSVxN189w8T4y2KpnU
+         /yuQm9UvwHmYUORt7ogFa9O4PPL4+f7C+EC/baVGdZRbg2+X81c2iIunsxZmya6663Z1
+         H0CRF6QaBDEnbm1cO2uADvEIOrIsn2m3mhTkrnBHlGmjaS/YnuTh0QuQmH2MM9YM/Rlf
+         w3K6pBmFhM9l04BqxFGC0gB/yxv7XHZsljsvKkAVLXbigRcPW3h8Zpw5elbsFJC7DpeE
+         eAew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UCcUCpDY+k7yo73Nnyn69El+q92NDyvk5BnNNXNe6EM=;
+        b=3Eseqk304tDZMYmEMIWx97k/VvoQ+wUG77M+sW70qli7iYIU+NdUJ2kYxduqWUm8ui
+         KJrNH3ZsGG0KkxebQLe88bMUz1+nMGyEhK6LLrGcioVwUwOBjyr6gWAhdjYOHpgkwr3X
+         +2+RJ+Zt5hVX0NFj4DrNuC0RSt1NqEWhnvJILsbXzj9wkHouxGT/ieJoQpCgqTib6DtE
+         q/sRSV9EG2bx/op2iexBOJyGOfSfJ2T5jKXOKxkBef6oMObmh4vW41zMO6DHEraVwBCC
+         5X5LbjFGeeuaWSSeS14wzhNapsmN0XzaM6ge1JIVgZCZ9eb3fbYfIQIl6rmredepv7zw
+         dVhg==
+X-Gm-Message-State: ACrzQf05i8C5XBlMmrrwrSWyNQOBwh0aK2YjUuyjnT/OnVPZczm71YYe
+        HHv8kxHyeMEsdpnfOZcJjgw=
+X-Google-Smtp-Source: AMsMyM6fLI5mpFeomh4MbXTBTBL0wFo6ACQb+UPmsbjRW+WWOJOyUpmGEH0ZcmEsY5uoTeYyH5QiCw==
+X-Received: by 2002:a17:906:5a4c:b0:7ae:2964:11e3 with SMTP id my12-20020a1709065a4c00b007ae296411e3mr5117570ejc.556.1667558534760;
+        Fri, 04 Nov 2022 03:42:14 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id et19-20020a170907295300b007aacfce2a91sm1629047ejc.27.2022.11.04.03.42.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 03:42:14 -0700 (PDT)
+Message-ID: <153f4c5f-32d8-2b00-78fb-230beb3bb7b1@gmail.com>
+Date:   Fri, 4 Nov 2022 11:42:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v2 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
+ Thunderbird/102.3.0
+Subject: Re: [PATCH v6 2/6] ARM: dts: rockchip: Add Rockchip RV1126 SoC
+To:     Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Jon Lin <jon.lin@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>
+References: <20221102124607.297083-1-jagan@edgeble.ai>
+ <20221102124607.297083-2-jagan@edgeble.ai>
 Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <linux-kernel@vger.kernel.org>, <davem@davemloft.net>,
-        <edumazet@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>,
-        <vigneshr@ti.com>, <robh+dt@kernel.org>, <afd@ti.com>
-References: <20220531095108.21757-1-p-mohan@ti.com>
- <20220531095108.21757-3-p-mohan@ti.com> <YpzN0u+hRgVuzPX9@lunn.ch>
-From:   Md Danish Anwar <a0501179@ti.com>
-In-Reply-To: <YpzN0u+hRgVuzPX9@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20221102124607.297083-2-jagan@edgeble.ai>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Jagan,
 
-I am Danish, new addition to TI team. Puranjay left TI, I'll be posting
-upstream patches for Programmable Real-time Unit and Industrial Communication
-Subsystem Gigabit (PRU_ICSSG).
+When I run this command below I get a lot text on my screen.
+Could you fix them all?
+Some more comments below.
 
-On 05/06/22 21:07, Andrew Lunn wrote:
->> +static inline u32 addr_to_da0(const u8 *addr)
->> +{
->> +	return (u32)(addr[0] | addr[1] << 8 |
->> +		addr[2] << 16 | addr[3] << 24);
->> +};
->> +
->> +static inline u32 addr_to_da1(const u8 *addr)
->> +{
->> +	return (u32)(addr[4] | addr[5] << 8);
->> +};
+Johan
+
+===
+
+ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- make dtbs_check
+
+On 11/2/22 13:46, Jagan Teki wrote:
+> RV1126 is a high-performance vision processor SoC for IPC/CVR,
+> especially for AI related application.
 > 
-> No inline functions please.
+> It is based on quad-core ARM Cortex-A7 32-bit core which integrates
+> NEON and FPU. There is a 32KB I-cache and 32KB D-cache for each core
+> and 512KB unified L2 cache. It has build-in NPU supports INT8/INT16
+> hybrid operation and computing power is up to 2.0TOPs.
 > 
-
-Sure I will remove the inline function.
-
-There are total 8 instances where the above two inline functions are called.
-So if I removed these inline functions there are two approaches to address the
-8 instances.
-
-1. Instead of calling these functions, I should use the return logic "(u32)
-(addr[4] | addr[5] << 8);" at all the 8 instances.
-2. I can define a macro for this logic and call the macro for all the 8 instances.
-
-Please let me know which approach should I go with. Also if you have any other
-approach, please let me know.
-
->> +
->> +static void rx_class_ft1_set_start_len(struct regmap *miig_rt, int slice,
->> +				       u16 start, u8 len)
->> +{
->> +	u32 offset, val;
->> +
->> +	offset = offs[slice].ft1_start_len;
->> +	val = FT1_LEN(len) | FT1_START(start);
->> +	regmap_write(miig_rt, offset, val);
->> +}
->> +
->> +static void rx_class_ft1_set_da(struct regmap *miig_rt, int slice,
->> +				int n, const u8 *addr)
->> +{
->> +	u32 offset;
->> +
->> +	offset = FT1_N_REG(slice, n, FT1_DA0);
->> +	regmap_write(miig_rt, offset, addr_to_da0(addr));
->> +	offset = FT1_N_REG(slice, n, FT1_DA1);
->> +	regmap_write(miig_rt, offset, addr_to_da1(addr));
->> +}
->> +
->> +static void rx_class_ft1_set_da_mask(struct regmap *miig_rt, int slice,
->> +				     int n, const u8 *addr)
->> +{
->> +	u32 offset;
->> +
->> +	offset = FT1_N_REG(slice, n, FT1_DA0_MASK);
->> +	regmap_write(miig_rt, offset, addr_to_da0(addr));
->> +	offset = FT1_N_REG(slice, n, FT1_DA1_MASK);
->> +	regmap_write(miig_rt, offset, addr_to_da1(addr));
->> +}
->> +
->> +static void rx_class_ft1_cfg_set_type(struct regmap *miig_rt, int slice, int n,
->> +				      enum ft1_cfg_type type)
->> +{
->> +	u32 offset;
->> +
->> +	offset = offs[slice].ft1_cfg;
->> +	regmap_update_bits(miig_rt, offset, FT1_CFG_MASK(n),
->> +			   type << FT1_CFG_SHIFT(n));
->> +}
->> +
->> +static void rx_class_sel_set_type(struct regmap *miig_rt, int slice, int n,
->> +				  enum rx_class_sel_type type)
->> +{
->> +	u32 offset;
->> +
->> +	offset = offs[slice].rx_class_cfg1;
->> +	regmap_update_bits(miig_rt, offset, RX_CLASS_SEL_MASK(n),
->> +			   type << RX_CLASS_SEL_SHIFT(n));
->> +}
->> +
->> +static void rx_class_set_and(struct regmap *miig_rt, int slice, int n,
->> +			     u32 data)
->> +{
->> +	u32 offset;
->> +
->> +	offset = RX_CLASS_N_REG(slice, n, RX_CLASS_AND_EN);
->> +	regmap_write(miig_rt, offset, data);
->> +}
->> +
->> +static void rx_class_set_or(struct regmap *miig_rt, int slice, int n,
->> +			    u32 data)
->> +{
->> +	u32 offset;
->> +
->> +	offset = RX_CLASS_N_REG(slice, n, RX_CLASS_OR_EN);
->> +	regmap_write(miig_rt, offset, data);
->> +}
->> +
->> +void icssg_class_set_host_mac_addr(struct regmap *miig_rt, const u8 *mac)
->> +{
->> +	regmap_write(miig_rt, MAC_INTERFACE_0, addr_to_da0(mac));
->> +	regmap_write(miig_rt, MAC_INTERFACE_1, addr_to_da1(mac));
->> +}
->> +
->> +void icssg_class_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac)
->> +{
->> +	regmap_write(miig_rt, offs[slice].mac0, addr_to_da0(mac));
->> +	regmap_write(miig_rt, offs[slice].mac1, addr_to_da1(mac));
->> +}
->> +
->> +/* disable all RX traffic */
->> +void icssg_class_disable(struct regmap *miig_rt, int slice)
->> +{
->> +	u32 data, offset;
->> +	int n;
->> +
->> +	/* Enable RX_L2_G */
->> +	regmap_update_bits(miig_rt, ICSSG_CFG_OFFSET, ICSSG_CFG_RX_L2_G_EN,
->> +			   ICSSG_CFG_RX_L2_G_EN);
->> +
->> +	for (n = 0; n < ICSSG_NUM_CLASSIFIERS; n++) {
->> +		/* AND_EN = 0 */
->> +		rx_class_set_and(miig_rt, slice, n, 0);
->> +		/* OR_EN = 0 */
->> +		rx_class_set_or(miig_rt, slice, n, 0);
->> +
->> +		/* set CFG1 to OR */
->> +		rx_class_sel_set_type(miig_rt, slice, n, RX_CLASS_SEL_TYPE_OR);
->> +
->> +		/* configure gate */
->> +		offset = RX_CLASS_GATES_N_REG(slice, n);
->> +		regmap_read(miig_rt, offset, &data);
->> +		/* clear class_raw so we go through filters */
->> +		data &= ~RX_CLASS_GATES_RAW_MASK;
->> +		/* set allow and phase mask */
->> +		data |= RX_CLASS_GATES_ALLOW_MASK | RX_CLASS_GATES_PHASE_MASK;
->> +		regmap_write(miig_rt, offset, data);
->> +	}
->> +
->> +	/* FT1 Disabled */
->> +	for (n = 0; n < ICSSG_NUM_FT1_SLOTS; n++) {
->> +		u8 addr[] = { 0, 0, 0, 0, 0, 0, };
->> +
->> +		rx_class_ft1_cfg_set_type(miig_rt, slice, n,
->> +					  FT1_CFG_TYPE_DISABLED);
->> +		rx_class_ft1_set_da(miig_rt, slice, n, addr);
->> +		rx_class_ft1_set_da_mask(miig_rt, slice, n, addr);
->> +	}
->> +
->> +	/* clear CFG2 */
->> +	regmap_write(miig_rt, offs[slice].rx_class_cfg2, 0);
->> +}
->> +
->> +void icssg_class_default(struct regmap *miig_rt, int slice, bool allmulti)
->> +{
->> +	int classifiers_in_use = 1;
->> +	u32 data;
->> +	int n;
->> +
->> +	/* defaults */
->> +	icssg_class_disable(miig_rt, slice);
->> +
->> +	/* Setup Classifier */
->> +	for (n = 0; n < classifiers_in_use; n++) {
->> +		/* match on Broadcast or MAC_PRU address */
->> +		data = RX_CLASS_FT_BC | RX_CLASS_FT_DA_P;
->> +
->> +		/* multicast? */
->> +		if (allmulti)
->> +			data |= RX_CLASS_FT_MC;
->> +
->> +		rx_class_set_or(miig_rt, slice, n, data);
->> +
->> +		/* set CFG1 for OR_OR_AND for classifier */
->> +		rx_class_sel_set_type(miig_rt, slice, n,
->> +				      RX_CLASS_SEL_TYPE_OR_OR_AND);
->> +	}
->> +
->> +	/* clear CFG2 */
->> +	regmap_write(miig_rt, offs[slice].rx_class_cfg2, 0);
->> +}
->> +
->> +/* required for SAV check */
->> +void icssg_ft1_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac_addr)
->> +{
->> +	u8 mask_addr[] = { 0, 0, 0, 0, 0, 0, };
->> +
->> +	rx_class_ft1_set_start_len(miig_rt, slice, 0, 6);
->> +	rx_class_ft1_set_da(miig_rt, slice, 0, mac_addr);
->> +	rx_class_ft1_set_da_mask(miig_rt, slice, 0, mask_addr);
->> +	rx_class_ft1_cfg_set_type(miig_rt, slice, 0, FT1_CFG_TYPE_EQ);
->> +}
->> diff --git a/drivers/net/ethernet/ti/icssg_config.c b/drivers/net/ethernet/ti/icssg_config.c
->> new file mode 100644
->> index 000000000000..a88ea4933802
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssg_config.c
->> @@ -0,0 +1,440 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/* ICSSG Ethernet driver
->> + *
->> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com
->> + */
->> +
->> +#include <linux/iopoll.h>
->> +#include <linux/regmap.h>
->> +#include <uapi/linux/if_ether.h>
->> +#include "icssg_config.h"
->> +#include "icssg_prueth.h"
->> +#include "icssg_switch_map.h"
->> +#include "icssg_mii_rt.h"
->> +
->> +/* TX IPG Values to be set for 100M link speed. These values are
->> + * in ocp_clk cycles. So need change if ocp_clk is changed for a specific
->> + * h/w design.
->> + */
->> +
->> +/* IPG is in core_clk cycles */
->> +#define MII_RT_TX_IPG_100M	0x17
->> +#define MII_RT_TX_IPG_1G	0xb
->> +
->> +#define	ICSSG_QUEUES_MAX		64
->> +#define	ICSSG_QUEUE_OFFSET		0xd00
->> +#define	ICSSG_QUEUE_PEEK_OFFSET		0xe00
->> +#define	ICSSG_QUEUE_CNT_OFFSET		0xe40
->> +#define	ICSSG_QUEUE_RESET_OFFSET	0xf40
->> +
->> +#define	ICSSG_NUM_TX_QUEUES	8
->> +
->> +#define	RECYCLE_Q_SLICE0	16
->> +#define	RECYCLE_Q_SLICE1	17
->> +
->> +#define	ICSSG_NUM_OTHER_QUEUES	5	/* port, host and special queues */
->> +
->> +#define	PORT_HI_Q_SLICE0	32
->> +#define	PORT_LO_Q_SLICE0	33
->> +#define	HOST_HI_Q_SLICE0	34
->> +#define	HOST_LO_Q_SLICE0	35
->> +#define	HOST_SPL_Q_SLICE0	40	/* Special Queue */
->> +
->> +#define	PORT_HI_Q_SLICE1	36
->> +#define	PORT_LO_Q_SLICE1	37
->> +#define	HOST_HI_Q_SLICE1	38
->> +#define	HOST_LO_Q_SLICE1	39
->> +#define	HOST_SPL_Q_SLICE1	41	/* Special Queue */
->> +
->> +#define MII_RXCFG_DEFAULT	(PRUSS_MII_RT_RXCFG_RX_ENABLE | \
->> +				 PRUSS_MII_RT_RXCFG_RX_DATA_RDY_MODE_DIS | \
->> +				 PRUSS_MII_RT_RXCFG_RX_L2_EN | \
->> +				 PRUSS_MII_RT_RXCFG_RX_L2_EOF_SCLR_DIS)
->> +
->> +#define MII_TXCFG_DEFAULT	(PRUSS_MII_RT_TXCFG_TX_ENABLE | \
->> +				 PRUSS_MII_RT_TXCFG_TX_AUTO_PREAMBLE | \
->> +				 PRUSS_MII_RT_TXCFG_TX_32_MODE_EN | \
->> +				 PRUSS_MII_RT_TXCFG_TX_IPG_WIRE_CLK_EN)
->> +
->> +#define ICSSG_CFG_DEFAULT	(ICSSG_CFG_TX_L1_EN | \
->> +				 ICSSG_CFG_TX_L2_EN | ICSSG_CFG_RX_L2_G_EN | \
->> +				 ICSSG_CFG_TX_PRU_EN | \
->> +				 ICSSG_CFG_SGMII_MODE)
->> +
->> +#define FDB_GEN_CFG1		0x60
->> +#define SMEM_VLAN_OFFSET	8
->> +#define SMEM_VLAN_OFFSET_MASK	GENMASK(25, 8)
->> +
->> +#define FDB_GEN_CFG2		0x64
->> +#define FDB_VLAN_EN		BIT(6)
->> +#define FDB_HOST_EN		BIT(2)
->> +#define FDB_PRU1_EN		BIT(1)
->> +#define FDB_PRU0_EN		BIT(0)
->> +#define FDB_EN_ALL		(FDB_PRU0_EN | FDB_PRU1_EN | \
->> +				 FDB_HOST_EN | FDB_VLAN_EN)
->> +
->> +struct map {
->> +	int queue;
->> +	u32 pd_addr_start;
->> +	u32 flags;
->> +	bool special;
->> +};
->> +
->> +struct map hwq_map[2][ICSSG_NUM_OTHER_QUEUES] = {
->> +	{
->> +		{ PORT_HI_Q_SLICE0, PORT_DESC0_HI, 0x200000, 0 },
->> +		{ PORT_LO_Q_SLICE0, PORT_DESC0_LO, 0, 0 },
->> +		{ HOST_HI_Q_SLICE0, HOST_DESC0_HI, 0x200000, 0 },
->> +		{ HOST_LO_Q_SLICE0, HOST_DESC0_LO, 0, 0 },
->> +		{ HOST_SPL_Q_SLICE0, HOST_SPPD0, 0x400000, 1 },
->> +	},
->> +	{
->> +		{ PORT_HI_Q_SLICE1, PORT_DESC1_HI, 0xa00000, 0 },
->> +		{ PORT_LO_Q_SLICE1, PORT_DESC1_LO, 0x800000, 0 },
->> +		{ HOST_HI_Q_SLICE1, HOST_DESC1_HI, 0xa00000, 0 },
->> +		{ HOST_LO_Q_SLICE1, HOST_DESC1_LO, 0x800000, 0 },
->> +		{ HOST_SPL_Q_SLICE1, HOST_SPPD1, 0xc00000, 1 },
->> +	},
->> +};
->> +
->> +static void icssg_config_mii_init(struct prueth_emac *emac)
->> +{
->> +	struct prueth *prueth = emac->prueth;
->> +	struct regmap *mii_rt = prueth->mii_rt;
->> +	int slice = prueth_emac_slice(emac);
->> +	u32 rxcfg_reg, txcfg_reg, pcnt_reg;
->> +	u32 rxcfg, txcfg;
->> +
->> +	rxcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RXCFG0 :
->> +				       PRUSS_MII_RT_RXCFG1;
->> +	txcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_TXCFG0 :
->> +				       PRUSS_MII_RT_TXCFG1;
->> +	pcnt_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RX_PCNT0 :
->> +				       PRUSS_MII_RT_RX_PCNT1;
->> +
->> +	rxcfg = MII_RXCFG_DEFAULT;
->> +	txcfg = MII_TXCFG_DEFAULT;
->> +
->> +	if (slice == ICSS_MII1)
->> +		rxcfg |= PRUSS_MII_RT_RXCFG_RX_MUX_SEL;
->> +
->> +	/* In MII mode TX lines swapped inside ICSSG, so TX_MUX_SEL cfg need
->> +	 * to be swapped also comparing to RGMII mode.
->> +	 */
->> +	if (emac->phy_if == PHY_INTERFACE_MODE_MII && slice == ICSS_MII0)
->> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
->> +	else if (emac->phy_if != PHY_INTERFACE_MODE_MII && slice == ICSS_MII1)
->> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
->> +
->> +	regmap_write(mii_rt, rxcfg_reg, rxcfg);
->> +	regmap_write(mii_rt, txcfg_reg, txcfg);
->> +	regmap_write(mii_rt, pcnt_reg, 0x1);
->> +}
->> +
->> +static void icssg_miig_queues_init(struct prueth *prueth, int slice)
->> +{
->> +	struct regmap *miig_rt = prueth->miig_rt;
->> +	void __iomem *smem = prueth->shram.va;
->> +	u8 pd[ICSSG_SPECIAL_PD_SIZE];
->> +	int queue = 0, i, j;
->> +	u32 *pdword;
->> +
->> +	/* reset hwqueues */
->> +	if (slice)
->> +		queue = ICSSG_NUM_TX_QUEUES;
->> +
->> +	for (i = 0; i < ICSSG_NUM_TX_QUEUES; i++) {
->> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
->> +		queue++;
->> +	}
->> +
->> +	queue = slice ? RECYCLE_Q_SLICE1 : RECYCLE_Q_SLICE0;
->> +	regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
->> +
->> +	for (i = 0; i < ICSSG_NUM_OTHER_QUEUES; i++) {
->> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET,
->> +			     hwq_map[slice][i].queue);
->> +	}
->> +
->> +	/* initialize packet descriptors in SMEM */
->> +	/* push pakcet descriptors to hwqueues */
->> +
->> +	pdword = (u32 *)pd;
->> +	for (j = 0; j < ICSSG_NUM_OTHER_QUEUES; j++) {
->> +		struct map *mp;
->> +		int pd_size, num_pds;
->> +		u32 pdaddr;
->> +
->> +		mp = &hwq_map[slice][j];
->> +		if (mp->special) {
->> +			pd_size = ICSSG_SPECIAL_PD_SIZE;
->> +			num_pds = ICSSG_NUM_SPECIAL_PDS;
->> +		} else	{
->> +			pd_size = ICSSG_NORMAL_PD_SIZE;
->> +			num_pds = ICSSG_NUM_NORMAL_PDS;
->> +		}
->> +
->> +		for (i = 0; i < num_pds; i++) {
->> +			memset(pd, 0, pd_size);
->> +
->> +			pdword[0] &= cpu_to_le32(ICSSG_FLAG_MASK);
->> +			pdword[0] |= cpu_to_le32(mp->flags);
->> +			pdaddr = mp->pd_addr_start + i * pd_size;
->> +
->> +			memcpy_toio(smem + pdaddr, pd, pd_size);
->> +			queue = mp->queue;
->> +			regmap_write(miig_rt, ICSSG_QUEUE_OFFSET + 4 * queue,
->> +				     pdaddr);
->> +		}
->> +	}
->> +}
->> +
->> +void icssg_config_ipg(struct prueth_emac *emac)
->> +{
->> +	struct prueth *prueth = emac->prueth;
->> +	int slice = prueth_emac_slice(emac);
->> +
->> +	switch (emac->speed) {
->> +	case SPEED_1000:
->> +		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_1G);
->> +		break;
->> +	case SPEED_100:
->> +		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
->> +		break;
->> +	default:
->> +		/* Other links speeds not supported */
->> +		netdev_err(emac->ndev, "Unsupported link speed\n");
->> +		return;
->> +	}
->> +}
->> +
->> +static void emac_r30_cmd_init(struct prueth_emac *emac)
->> +{
->> +	int i;
->> +	struct icssg_r30_cmd *p;
->> +
->> +	p = emac->dram.va + MGR_R30_CMD_OFFSET;
->> +
->> +	for (i = 0; i < 4; i++)
->> +		writel(EMAC_NONE, &p->cmd[i]);
->> +}
->> +
->> +static int emac_r30_is_done(struct prueth_emac *emac)
->> +{
->> +	const struct icssg_r30_cmd *p;
->> +	int i;
->> +	u32 cmd;
->> +
->> +	p = emac->dram.va + MGR_R30_CMD_OFFSET;
->> +
->> +	for (i = 0; i < 4; i++) {
->> +		cmd = readl(&p->cmd[i]);
->> +		if (cmd != EMAC_NONE)
->> +			return 0;
->> +	}
->> +
->> +	return 1;
->> +}
->> +
->> +static int prueth_emac_buffer_setup(struct prueth_emac *emac)
->> +{
->> +	struct icssg_buffer_pool_cfg *bpool_cfg;
->> +	struct prueth *prueth = emac->prueth;
->> +	int slice = prueth_emac_slice(emac);
->> +	struct icssg_rxq_ctx *rxq_ctx;
->> +	u32 addr;
->> +	int i;
->> +
->> +	/* Layout to have 64KB aligned buffer pool
->> +	 * |BPOOL0|BPOOL1|RX_CTX0|RX_CTX1|
->> +	 */
->> +
->> +	addr = lower_32_bits(prueth->msmcram.pa);
->> +	if (slice)
->> +		addr += PRUETH_NUM_BUF_POOLS * PRUETH_EMAC_BUF_POOL_SIZE;
->> +
->> +	if (addr % SZ_64K) {
->> +		dev_warn(prueth->dev, "buffer pool needs to be 64KB aligned\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	bpool_cfg = emac->dram.va + BUFFER_POOL_0_ADDR_OFFSET;
->> +	/* workaround for f/w bug. bpool 0 needs to be initilalized */
->> +	bpool_cfg[0].addr = cpu_to_le32(addr);
->> +	bpool_cfg[0].len = 0;
->> +
->> +	for (i = PRUETH_EMAC_BUF_POOL_START;
->> +	     i < (PRUETH_EMAC_BUF_POOL_START + PRUETH_NUM_BUF_POOLS);
->> +	     i++) {
->> +		bpool_cfg[i].addr = cpu_to_le32(addr);
->> +		bpool_cfg[i].len = cpu_to_le32(PRUETH_EMAC_BUF_POOL_SIZE);
->> +		addr += PRUETH_EMAC_BUF_POOL_SIZE;
->> +	}
->> +
->> +	if (!slice)
->> +		addr += PRUETH_NUM_BUF_POOLS * PRUETH_EMAC_BUF_POOL_SIZE;
->> +	else
->> +		addr += PRUETH_EMAC_RX_CTX_BUF_SIZE * 2;
->> +
->> +	/* Pre-emptible RX buffer queue */
->> +	rxq_ctx = emac->dram.va + HOST_RX_Q_PRE_CONTEXT_OFFSET;
->> +	for (i = 0; i < 3; i++)
->> +		rxq_ctx->start[i] = cpu_to_le32(addr);
->> +
->> +	addr += PRUETH_EMAC_RX_CTX_BUF_SIZE;
->> +	rxq_ctx->end = cpu_to_le32(addr);
->> +
->> +	/* Express RX buffer queue */
->> +	rxq_ctx = emac->dram.va + HOST_RX_Q_EXP_CONTEXT_OFFSET;
->> +	for (i = 0; i < 3; i++)
->> +		rxq_ctx->start[i] = cpu_to_le32(addr);
->> +
->> +	addr += PRUETH_EMAC_RX_CTX_BUF_SIZE;
->> +	rxq_ctx->end = cpu_to_le32(addr);
->> +
->> +	return 0;
->> +}
->> +
->> +static void icssg_init_emac_mode(struct prueth *prueth)
->> +{
->> +	/* When the device is configured as a bridge and it is being brought back
->> +	 * to the emac mode, the host mac address has to be set as 0.
->> +	 */
->> +	u8 mac[ETH_ALEN] = { 0 };
->> +
->> +	if (prueth->emacs_initialized)
->> +		return;
->> +
->> +	regmap_update_bits(prueth->miig_rt, FDB_GEN_CFG1, SMEM_VLAN_OFFSET_MASK, 0);
->> +	regmap_write(prueth->miig_rt, FDB_GEN_CFG2, 0);
->> +	/* Clear host MAC address */
->> +	icssg_class_set_host_mac_addr(prueth->miig_rt, mac);
->> +}
->> +
->> +int icssg_config(struct prueth *prueth, struct prueth_emac *emac, int slice)
->> +{
->> +	void *config = emac->dram.va + ICSSG_CONFIG_OFFSET;
->> +	u8 *cfg_byte_ptr = config;
->> +	struct icssg_flow_cfg *flow_cfg;
->> +	u32 mask;
->> +	int ret;
->> +
->> +	icssg_init_emac_mode(prueth);
->> +
->> +	memset_io(config, 0, TAS_GATE_MASK_LIST0);
->> +	icssg_miig_queues_init(prueth, slice);
->> +
->> +	emac->speed = SPEED_1000;
->> +	emac->duplex = DUPLEX_FULL;
->> +	if (!phy_interface_mode_is_rgmii(emac->phy_if)) {
->> +		emac->speed = SPEED_100;
->> +		emac->duplex = DUPLEX_FULL;
->> +	}
->> +	regmap_update_bits(prueth->miig_rt, ICSSG_CFG_OFFSET, ICSSG_CFG_DEFAULT, ICSSG_CFG_DEFAULT);
->> +	icssg_miig_set_interface_mode(prueth->miig_rt, slice, emac->phy_if);
->> +	icssg_config_mii_init(emac);
->> +	icssg_config_ipg(emac);
->> +	icssg_update_rgmii_cfg(prueth->miig_rt, emac);
->> +
->> +	/* set GPI mode */
->> +	pruss_cfg_gpimode(prueth->pruss, prueth->pru_id[slice],
->> +			  PRUSS_GPI_MODE_MII);
->> +
->> +	/* enable XFR shift for PRU and RTU */
->> +	mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
->> +	pruss_cfg_update(prueth->pruss, PRUSS_CFG_SPP, mask, mask);
->> +
->> +	/* set C28 to 0x100 */
->> +	pru_rproc_set_ctable(prueth->pru[slice], PRU_C28, 0x100 << 8);
->> +	pru_rproc_set_ctable(prueth->rtu[slice], PRU_C28, 0x100 << 8);
->> +	pru_rproc_set_ctable(prueth->txpru[slice], PRU_C28, 0x100 << 8);
->> +
->> +	flow_cfg = config + PSI_L_REGULAR_FLOW_ID_BASE_OFFSET;
->> +	flow_cfg->rx_base_flow = cpu_to_le32(emac->rx_flow_id_base);
->> +	flow_cfg->mgm_base_flow = 0;
->> +	*(cfg_byte_ptr + SPL_PKT_DEFAULT_PRIORITY) = 0;
->> +	*(cfg_byte_ptr + QUEUE_NUM_UNTAGGED) = 0x0;
->> +
->> +	ret = prueth_emac_buffer_setup(emac);
->> +	if (ret)
->> +		return ret;
->> +
->> +	emac_r30_cmd_init(emac);
->> +
->> +	return 0;
->> +}
->> +
->> +static struct icssg_r30_cmd emac_r32_bitmask[] = {
->> +	{{0xffff0004, 0xffff0100, 0xffff0100, EMAC_NONE}},	/* EMAC_PORT_DISABLE */
->> +	{{0xfffb0040, 0xfeff0200, 0xfeff0200, EMAC_NONE}},	/* EMAC_PORT_BLOCK */
->> +	{{0xffbb0000, 0xfcff0000, 0xdcff0000, EMAC_NONE}},	/* EMAC_PORT_FORWARD */
->> +	{{0xffbb0000, 0xfcff0000, 0xfcff2000, EMAC_NONE}},	/* EMAC_PORT_FORWARD_WO_LEARNING */
->> +	{{0xffff0001, EMAC_NONE,  EMAC_NONE, EMAC_NONE}},	/* ACCEPT ALL */
->> +	{{0xfffe0002, EMAC_NONE,  EMAC_NONE, EMAC_NONE}},	/* ACCEPT TAGGED */
->> +	{{0xfffc0000, EMAC_NONE,  EMAC_NONE, EMAC_NONE}},	/* ACCEPT UNTAGGED and PRIO */
->> +	{{EMAC_NONE,  0xffff0020, EMAC_NONE, EMAC_NONE}},	/* TAS Trigger List change */
->> +	{{EMAC_NONE,  0xdfff1000, EMAC_NONE, EMAC_NONE}},	/* TAS set state ENABLE*/
->> +	{{EMAC_NONE,  0xefff2000, EMAC_NONE, EMAC_NONE}},	/* TAS set state RESET*/
->> +	{{EMAC_NONE,  0xcfff0000, EMAC_NONE, EMAC_NONE}},	/* TAS set state DISABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xffff0400, EMAC_NONE}},	/* UC flooding ENABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xfbff0000, EMAC_NONE}},	/* UC flooding DISABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xffff0800, EMAC_NONE}},	/* MC flooding ENABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xf7ff0000, EMAC_NONE}},	/* MC flooding DISABLE*/
->> +	{{EMAC_NONE,  0xffff4000, EMAC_NONE, EMAC_NONE}},	/* Preemption on Tx ENABLE*/
->> +	{{EMAC_NONE,  0xbfff0000, EMAC_NONE, EMAC_NONE}},	/* Preemption on Tx DISABLE*/
->> +	{{0xffff0010,  EMAC_NONE, 0xffff0010, EMAC_NONE}},	/* VLAN AWARE*/
->> +	{{0xffef0000,  EMAC_NONE, 0xffef0000, EMAC_NONE}}	/* VLAN UNWARE*/
->> +};
->> +
->> +int emac_set_port_state(struct prueth_emac *emac,
->> +			enum icssg_port_state_cmd cmd)
->> +{
->> +	struct icssg_r30_cmd *p;
->> +	int ret = -ETIMEDOUT;
->> +	int done = 0;
->> +	int i;
->> +
->> +	p = emac->dram.va + MGR_R30_CMD_OFFSET;
->> +
->> +	if (cmd >= ICSSG_EMAC_PORT_MAX_COMMANDS) {
->> +		netdev_err(emac->ndev, "invalid port command\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	/* only one command at a time allowed to firmware */
->> +	mutex_lock(&emac->cmd_lock);
->> +
->> +	for (i = 0; i < 4; i++)
->> +		writel(emac_r32_bitmask[cmd].cmd[i], &p->cmd[i]);
->> +
->> +	/* wait for done */
->> +	ret = read_poll_timeout(emac_r30_is_done, done, done == 1,
->> +				1000, 10000, false, emac);
->> +
->> +	if (ret == -ETIMEDOUT)
->> +		netdev_err(emac->ndev, "timeout waiting for command done\n");
->> +
->> +	mutex_unlock(&emac->cmd_lock);
->> +
->> +	return ret;
->> +}
->> +
->> +void icssg_config_set_speed(struct prueth_emac *emac)
->> +{
->> +	u8 fw_speed;
->> +
->> +	switch (emac->speed) {
->> +	case SPEED_1000:
->> +		fw_speed = FW_LINK_SPEED_1G;
->> +		break;
->> +	case SPEED_100:
->> +		fw_speed = FW_LINK_SPEED_100M;
->> +		break;
->> +	default:
->> +		/* Other links speeds not supported */
->> +		netdev_err(emac->ndev, "Unsupported link speed\n");
->> +		return;
->> +	}
->> +
->> +	writeb(fw_speed, emac->dram.va + PORT_LINK_SPEED_OFFSET);
->> +}
->> diff --git a/drivers/net/ethernet/ti/icssg_config.h b/drivers/net/ethernet/ti/icssg_config.h
->> new file mode 100644
->> index 000000000000..43eb0922172a
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssg_config.h
->> @@ -0,0 +1,200 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/* Texas Instruments ICSSG Ethernet driver
->> + *
->> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->> + *
->> + */
->> +
->> +#ifndef __NET_TI_ICSSG_CONFIG_H
->> +#define __NET_TI_ICSSG_CONFIG_H
->> +
->> +struct icssg_buffer_pool_cfg {
->> +	__le32	addr;
->> +	__le32	len;
->> +} __packed;
->> +
->> +struct icssg_flow_cfg {
->> +	__le16 rx_base_flow;
->> +	__le16 mgm_base_flow;
->> +} __packed;
->> +
->> +#define PRUETH_PKT_TYPE_CMD	0x10
->> +#define PRUETH_NAV_PS_DATA_SIZE	16	/* Protocol specific data size */
->> +#define PRUETH_NAV_SW_DATA_SIZE	16	/* SW related data size */
->> +#define PRUETH_MAX_TX_DESC	512
->> +#define PRUETH_MAX_RX_DESC	512
->> +#define PRUETH_MAX_RX_FLOWS	1	/* excluding default flow */
->> +#define PRUETH_RX_FLOW_DATA	0
->> +
->> +#define PRUETH_EMAC_BUF_POOL_SIZE	SZ_8K
->> +#define PRUETH_EMAC_POOLS_PER_SLICE	24
->> +#define PRUETH_EMAC_BUF_POOL_START	8
->> +#define PRUETH_NUM_BUF_POOLS	8
->> +#define PRUETH_EMAC_RX_CTX_BUF_SIZE	SZ_16K	/* per slice */
->> +#define MSMC_RAM_SIZE	\
->> +	(2 * (PRUETH_EMAC_BUF_POOL_SIZE * PRUETH_NUM_BUF_POOLS + \
->> +	 PRUETH_EMAC_RX_CTX_BUF_SIZE * 2))
->> +
->> +struct icssg_rxq_ctx {
->> +	__le32 start[3];
->> +	__le32 end;
->> +} __packed;
->> +
->> +/* Load time Fiwmware Configuration */
->> +
->> +#define ICSSG_FW_MGMT_CMD_HEADER	0x81
->> +#define ICSSG_FW_MGMT_FDB_CMD_TYPE	0x03
->> +#define ICSSG_FW_MGMT_CMD_TYPE		0x04
->> +#define ICSSG_FW_MGMT_PKT		0x80000000
->> +
->> +struct icssg_r30_cmd {
->> +	u32 cmd[4];
->> +} __packed;
->> +
->> +enum icssg_port_state_cmd {
->> +	ICSSG_EMAC_PORT_DISABLE = 0,
->> +	ICSSG_EMAC_PORT_BLOCK,
->> +	ICSSG_EMAC_PORT_FORWARD,
->> +	ICSSG_EMAC_PORT_FORWARD_WO_LEARNING,
->> +	ICSSG_EMAC_PORT_ACCEPT_ALL,
->> +	ICSSG_EMAC_PORT_ACCEPT_TAGGED,
->> +	ICSSG_EMAC_PORT_ACCEPT_UNTAGGED_N_PRIO,
->> +	ICSSG_EMAC_PORT_TAS_TRIGGER,
->> +	ICSSG_EMAC_PORT_TAS_ENABLE,
->> +	ICSSG_EMAC_PORT_TAS_RESET,
->> +	ICSSG_EMAC_PORT_TAS_DISABLE,
->> +	ICSSG_EMAC_PORT_UC_FLOODING_ENABLE,
->> +	ICSSG_EMAC_PORT_UC_FLOODING_DISABLE,
->> +	ICSSG_EMAC_PORT_MC_FLOODING_ENABLE,
->> +	ICSSG_EMAC_PORT_MC_FLOODING_DISABLE,
->> +	ICSSG_EMAC_PORT_PREMPT_TX_ENABLE,
->> +	ICSSG_EMAC_PORT_PREMPT_TX_DISABLE,
->> +	ICSSG_EMAC_PORT_VLAN_AWARE_ENABLE,
->> +	ICSSG_EMAC_PORT_VLAN_AWARE_DISABLE,
->> +	ICSSG_EMAC_PORT_MAX_COMMANDS
->> +};
->> +
->> +#define EMAC_NONE           0xffff0000
->> +#define EMAC_PRU0_P_DI      0xffff0004
->> +#define EMAC_PRU1_P_DI      0xffff0040
->> +#define EMAC_TX_P_DI        0xffff0100
->> +
->> +#define EMAC_PRU0_P_EN      0xfffb0000
->> +#define EMAC_PRU1_P_EN      0xffbf0000
->> +#define EMAC_TX_P_EN        0xfeff0000
->> +
->> +#define EMAC_P_BLOCK        0xffff0040
->> +#define EMAC_TX_P_BLOCK     0xffff0200
->> +#define EMAC_P_UNBLOCK      0xffbf0000
->> +#define EMAC_TX_P_UNBLOCK   0xfdff0000
->> +#define EMAC_LEAN_EN        0xfff70000
->> +#define EMAC_LEAN_DI        0xffff0008
->> +
->> +#define EMAC_ACCEPT_ALL     0xffff0001
->> +#define EMAC_ACCEPT_TAG     0xfffe0002
->> +#define EMAC_ACCEPT_PRIOR   0xfffc0000
->> +
->> +/* Config area lies in DRAM */
->> +#define ICSSG_CONFIG_OFFSET	0x0
->> +
->> +/* Config area lies in shared RAM */
->> +#define ICSSG_CONFIG_OFFSET_SLICE0   0
->> +#define ICSSG_CONFIG_OFFSET_SLICE1   0x8000
->> +
->> +#define ICSSG_NUM_NORMAL_PDS	64
->> +#define ICSSG_NUM_SPECIAL_PDS	16
->> +
->> +#define ICSSG_NORMAL_PD_SIZE	8
->> +#define ICSSG_SPECIAL_PD_SIZE	20
->> +
->> +#define ICSSG_FLAG_MASK		0xff00ffff
->> +
->> +struct icssg_setclock_desc {
->> +	u8 request;
->> +	u8 restore;
->> +	u8 acknowledgment;
->> +	u8 cmp_status;
->> +	u32 margin;
->> +	u32 cyclecounter0_set;
->> +	u32 cyclecounter1_set;
->> +	u32 iepcount_set;
->> +	u32 rsvd1;
->> +	u32 rsvd2;
->> +	u32 CMP0_current;
->> +	u32 iepcount_current;
->> +	u32 difference;
->> +	u32 cyclecounter0_new;
->> +	u32 cyclecounter1_new;
->> +	u32 CMP0_new;
->> +} __packed;
->> +
->> +#define ICSSG_CMD_POP_SLICE0	56
->> +#define ICSSG_CMD_POP_SLICE1	60
->> +
->> +#define ICSSG_CMD_PUSH_SLICE0	57
->> +#define ICSSG_CMD_PUSH_SLICE1	61
->> +
->> +#define ICSSG_RSP_POP_SLICE0	58
->> +#define ICSSG_RSP_POP_SLICE1	62
->> +
->> +#define ICSSG_RSP_PUSH_SLICE0	56
->> +#define ICSSG_RSP_PUSH_SLICE1	60
->> +
->> +#define ICSSG_TS_POP_SLICE0	59
->> +#define ICSSG_TS_POP_SLICE1	63
->> +
->> +#define ICSSG_TS_PUSH_SLICE0	40
->> +#define ICSSG_TS_PUSH_SLICE1	41
->> +
->> +/* FDB FID_C2 flag definitions */
->> +/* Indicates host port membership.*/
->> +#define ICSSG_FDB_ENTRY_P0_MEMBERSHIP         BIT(0)
->> +/* Indicates that MAC ID is connected to physical port 1 */
->> +#define ICSSG_FDB_ENTRY_P1_MEMBERSHIP         BIT(1)
->> +/* Indicates that MAC ID is connected to physical port 2 */
->> +#define ICSSG_FDB_ENTRY_P2_MEMBERSHIP         BIT(2)
->> +/* Ageable bit is set for learned entries and cleared for static entries */
->> +#define ICSSG_FDB_ENTRY_AGEABLE               BIT(3)
->> +/* If set for DA then packet is determined to be a special packet */
->> +#define ICSSG_FDB_ENTRY_BLOCK                 BIT(4)
->> +/* If set for DA then the SA from the packet is not learned */
->> +#define ICSSG_FDB_ENTRY_SECURE                BIT(5)
->> +/* If set, it means packet has been seen recently with source address + FID
->> + * matching MAC address/FID of entry
->> + */
->> +#define ICSSG_FDB_ENTRY_TOUCHED               BIT(6)
->> +/* Set if entry is valid */
->> +#define ICSSG_FDB_ENTRY_VALID                 BIT(7)
->> +
->> +/**
->> + * struct prueth_vlan_tbl - VLAN table entries struct in ICSSG SMEM
->> + * @fid_c1: membership and forwarding rules flag to this table. See
->> + *          above to defines for bit definitions
->> + * @fid: FDB index for this VID (there is 1-1 mapping b/w VID and FID)
->> + */
->> +struct prueth_vlan_tbl {
->> +	u8 fid_c1;
->> +	u8 fid;
->> +} __packed;
->> +
->> +/**
->> + * struct prueth_fdb_slot - Result of FDB slot lookup
->> + * @mac: MAC address
->> + * @fid: fid to be associated with MAC
->> + * @fid_c2: FID_C2 entry for this MAC
->> + */
->> +struct prueth_fdb_slot {
->> +	u8 mac[ETH_ALEN];
->> +	u8 fid;
->> +	u8 fid_c2;
->> +} __packed;
->> +
->> +enum icssg_ietfpe_verify_states {
->> +	ICSSG_IETFPE_STATE_UNKNOWN = 0,
->> +	ICSSG_IETFPE_STATE_INITIAL,
->> +	ICSSG_IETFPE_STATE_VERIFYING,
->> +	ICSSG_IETFPE_STATE_SUCCEEDED,
->> +	ICSSG_IETFPE_STATE_FAILED,
->> +	ICSSG_IETFPE_STATE_DISABLED
->> +};
->> +#endif /* __NET_TI_ICSSG_CONFIG_H */
->> diff --git a/drivers/net/ethernet/ti/icssg_ethtool.c b/drivers/net/ethernet/ti/icssg_ethtool.c
->> new file mode 100644
->> index 000000000000..fd09d223b0ae
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssg_ethtool.c
->> @@ -0,0 +1,319 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/* Texas Instruments ICSSG Ethernet driver
->> + *
->> + * Copyright (C) 2018-2022 Texas Instruments Incorporated - https://www.ti.com/
->> + *
->> + */
->> +
->> +#include "icssg_prueth.h"
->> +#include <linux/regmap.h>
->> +
->> +static u32 stats_base[] = {	0x54c,	/* Slice 0 stats start */
->> +				0xb18,	/* Slice 1 stats start */
->> +};
->> +
->> +struct miig_stats_regs {
->> +	/* Rx */
->> +	u32 rx_good_frames;
->> +	u32 rx_broadcast_frames;
->> +	u32 rx_multicast_frames;
->> +	u32 rx_crc_error_frames;
->> +	u32 rx_mii_error_frames;
->> +	u32 rx_odd_nibble_frames;
->> +	u32 rx_frame_max_size;
->> +	u32 rx_max_size_error_frames;
->> +	u32 rx_frame_min_size;
->> +	u32 rx_min_size_error_frames;
->> +	u32 rx_overrun_frames;
->> +	u32 rx_class0_hits;
->> +	u32 rx_class1_hits;
->> +	u32 rx_class2_hits;
->> +	u32 rx_class3_hits;
->> +	u32 rx_class4_hits;
->> +	u32 rx_class5_hits;
->> +	u32 rx_class6_hits;
->> +	u32 rx_class7_hits;
->> +	u32 rx_class8_hits;
->> +	u32 rx_class9_hits;
->> +	u32 rx_class10_hits;
->> +	u32 rx_class11_hits;
->> +	u32 rx_class12_hits;
->> +	u32 rx_class13_hits;
->> +	u32 rx_class14_hits;
->> +	u32 rx_class15_hits;
->> +	u32 rx_smd_frags;
->> +	u32 rx_bucket1_size;
->> +	u32 rx_bucket2_size;
->> +	u32 rx_bucket3_size;
->> +	u32 rx_bucket4_size;
->> +	u32 rx_64B_frames;
->> +	u32 rx_bucket1_frames;
->> +	u32 rx_bucket2_frames;
->> +	u32 rx_bucket3_frames;
->> +	u32 rx_bucket4_frames;
->> +	u32 rx_bucket5_frames;
->> +	u32 rx_total_bytes;
->> +	u32 rx_tx_total_bytes;
->> +	/* Tx */
->> +	u32 tx_good_frames;
->> +	u32 tx_broadcast_frames;
->> +	u32 tx_multicast_frames;
->> +	u32 tx_odd_nibble_frames;
->> +	u32 tx_underflow_errors;
->> +	u32 tx_frame_max_size;
->> +	u32 tx_max_size_error_frames;
->> +	u32 tx_frame_min_size;
->> +	u32 tx_min_size_error_frames;
->> +	u32 tx_bucket1_size;
->> +	u32 tx_bucket2_size;
->> +	u32 tx_bucket3_size;
->> +	u32 tx_bucket4_size;
->> +	u32 tx_64B_frames;
->> +	u32 tx_bucket1_frames;
->> +	u32 tx_bucket2_frames;
->> +	u32 tx_bucket3_frames;
->> +	u32 tx_bucket4_frames;
->> +	u32 tx_bucket5_frames;
->> +	u32 tx_total_bytes;
->> +};
->> +
->> +#define ICSSG_STATS(field)				\
->> +{							\
->> +	#field,						\
->> +	offsetof(struct miig_stats_regs, field),	\
->> +}
->> +
->> +struct icssg_stats {
->> +	char name[ETH_GSTRING_LEN];
->> +	u32 offset;
->> +};
->> +
->> +static const struct icssg_stats icssg_ethtool_stats[] = {
->> +	/* Rx */
->> +	ICSSG_STATS(rx_good_frames),
->> +	ICSSG_STATS(rx_broadcast_frames),
->> +	ICSSG_STATS(rx_multicast_frames),
->> +	ICSSG_STATS(rx_crc_error_frames),
->> +	ICSSG_STATS(rx_mii_error_frames),
->> +	ICSSG_STATS(rx_odd_nibble_frames),
->> +	ICSSG_STATS(rx_frame_max_size),
->> +	ICSSG_STATS(rx_max_size_error_frames),
->> +	ICSSG_STATS(rx_frame_min_size),
->> +	ICSSG_STATS(rx_min_size_error_frames),
->> +	ICSSG_STATS(rx_overrun_frames),
->> +	ICSSG_STATS(rx_class0_hits),
->> +	ICSSG_STATS(rx_class1_hits),
->> +	ICSSG_STATS(rx_class2_hits),
->> +	ICSSG_STATS(rx_class3_hits),
->> +	ICSSG_STATS(rx_class4_hits),
->> +	ICSSG_STATS(rx_class5_hits),
->> +	ICSSG_STATS(rx_class6_hits),
->> +	ICSSG_STATS(rx_class7_hits),
->> +	ICSSG_STATS(rx_class8_hits),
->> +	ICSSG_STATS(rx_class9_hits),
->> +	ICSSG_STATS(rx_class10_hits),
->> +	ICSSG_STATS(rx_class11_hits),
->> +	ICSSG_STATS(rx_class12_hits),
->> +	ICSSG_STATS(rx_class13_hits),
->> +	ICSSG_STATS(rx_class14_hits),
->> +	ICSSG_STATS(rx_class15_hits),
->> +	ICSSG_STATS(rx_smd_frags),
->> +	ICSSG_STATS(rx_bucket1_size),
->> +	ICSSG_STATS(rx_bucket2_size),
->> +	ICSSG_STATS(rx_bucket3_size),
->> +	ICSSG_STATS(rx_bucket4_size),
->> +	ICSSG_STATS(rx_64B_frames),
->> +	ICSSG_STATS(rx_bucket1_frames),
->> +	ICSSG_STATS(rx_bucket2_frames),
->> +	ICSSG_STATS(rx_bucket3_frames),
->> +	ICSSG_STATS(rx_bucket4_frames),
->> +	ICSSG_STATS(rx_bucket5_frames),
->> +	ICSSG_STATS(rx_total_bytes),
->> +	ICSSG_STATS(rx_tx_total_bytes),
->> +	/* Tx */
->> +	ICSSG_STATS(tx_good_frames),
->> +	ICSSG_STATS(tx_broadcast_frames),
->> +	ICSSG_STATS(tx_multicast_frames),
->> +	ICSSG_STATS(tx_odd_nibble_frames),
->> +	ICSSG_STATS(tx_underflow_errors),
->> +	ICSSG_STATS(tx_frame_max_size),
->> +	ICSSG_STATS(tx_max_size_error_frames),
->> +	ICSSG_STATS(tx_frame_min_size),
->> +	ICSSG_STATS(tx_min_size_error_frames),
->> +	ICSSG_STATS(tx_bucket1_size),
->> +	ICSSG_STATS(tx_bucket2_size),
->> +	ICSSG_STATS(tx_bucket3_size),
->> +	ICSSG_STATS(tx_bucket4_size),
->> +	ICSSG_STATS(tx_64B_frames),
->> +	ICSSG_STATS(tx_bucket1_frames),
->> +	ICSSG_STATS(tx_bucket2_frames),
->> +	ICSSG_STATS(tx_bucket3_frames),
->> +	ICSSG_STATS(tx_bucket4_frames),
->> +	ICSSG_STATS(tx_bucket5_frames),
->> +	ICSSG_STATS(tx_total_bytes),
->> +};
->> +
->> +static void emac_get_drvinfo(struct net_device *ndev,
->> +			     struct ethtool_drvinfo *info)
->> +{
->> +	struct prueth_emac *emac = netdev_priv(ndev);
->> +	struct prueth *prueth = emac->prueth;
->> +
->> +	strscpy(info->driver, dev_driver_string(prueth->dev),
->> +		sizeof(info->driver));
->> +	strscpy(info->bus_info, dev_name(prueth->dev), sizeof(info->bus_info));
->> +}
->> +
->> +static u32 emac_get_msglevel(struct net_device *ndev)
->> +{
->> +	struct prueth_emac *emac = netdev_priv(ndev);
->> +
->> +	return emac->msg_enable;
->> +}
->> +
->> +static void emac_set_msglevel(struct net_device *ndev, u32 value)
->> +{
->> +	struct prueth_emac *emac = netdev_priv(ndev);
->> +
->> +	emac->msg_enable = value;
->> +}
->> +
->> +static int emac_get_link_ksettings(struct net_device *ndev,
->> +				   struct ethtool_link_ksettings *ecmd)
->> +{
->> +	return phy_ethtool_get_link_ksettings(ndev, ecmd);
->> +}
->> +
->> +static int emac_set_link_ksettings(struct net_device *ndev,
->> +				   const struct ethtool_link_ksettings *ecmd)
->> +{
->> +	return phy_ethtool_set_link_ksettings(ndev, ecmd);
->> +}
->> +
->> +static int emac_get_eee(struct net_device *ndev, struct ethtool_eee *edata)
->> +{
->> +	if (!ndev->phydev)
->> +		return -EOPNOTSUPP;
->> +
->> +	return phy_ethtool_get_eee(ndev->phydev, edata);
->> +}
->> +
->> +static int emac_set_eee(struct net_device *ndev, struct ethtool_eee *edata)
->> +{
->> +	if (!ndev->phydev)
->> +		return -EOPNOTSUPP;
->> +
->> +	return phy_ethtool_set_eee(ndev->phydev, edata);
->> +}
->> +
->> +static int emac_nway_reset(struct net_device *ndev)
->> +{
->> +	return phy_ethtool_nway_reset(ndev);
->> +}
->> +
->> +static const char emac_ethtool_priv_flags[][ETH_GSTRING_LEN] = {
->> +#define EMAC_PRIV_IET_FRAME_PREEMPTION  BIT(0)
->> +	"iet-frame-preemption",
->> +#define EMAC_PRIV_IET_MAC_VERIFY                BIT(1)
->> +	"iet-mac-verify",
->> +};
+> This patch add basic core dtsi support.
 > 
-> Please move the #define outside of the array. They are not easy to
-> see.
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> ---
+> Changes for v6:
+> - add psci node
+> Changes for v5:
+> - none
+> Changes for v4:
+> - update i2c0
+> - rebase on -next
+> Changes for v3:
+> - update cru and power file names
+> Changes for v2:
+> - split pinctrl in separate patch
 > 
+>  arch/arm/boot/dts/rv1126.dtsi | 439 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 439 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/rv1126.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/rv1126.dtsi b/arch/arm/boot/dts/rv1126.dtsi
+> new file mode 100644
+> index 000000000000..867f17ab0efd
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/rv1126.dtsi
+> @@ -0,0 +1,439 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Fuzhou Rockchip Electronics Co., Ltd.
 
-Sure, I'll move the #define to outside of the array.
-This is how the structure would look like.
+> + * Copyright (c) 2022 Edgeble AI Technologies Pvt. Ltd.
 
-#define EMAC_PRIV_IET_FRAME_PREEMPTION  BIT(0)
-#define EMAC_PRIV_IET_MAC_VERIFY		BIT(1)
+Is this an advertisement?
+Maybe remove?
+Was there added substantial new code?
+Compared to the original there was mainly parts removed, sorted and restyled here and there I think.
 
-static const char emac_ethtool_priv_flags[][ETH_GSTRING_LEN] = {
-	"iet-frame-preemption",
-	"iet-mac-verify",
-};
+https://github.com/rockchip-linux/kernel/blob/develop-5.10/arch/arm/boot/dts/rv1126.dtsi
+
+> + */
+> +
+> +#include <dt-bindings/clock/rockchip,rv1126-cru.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include <dt-bindings/power/rockchip,rv1126-power.h>
+> +#include <dt-bindings/soc/rockchip,boot-mode.h>
+> +
+> +/ {
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +
+> +	compatible = "rockchip,rv1126";
+> +
+> +	interrupt-parent = <&gic>;
+> +
+
+> +	aliases {
+> +		i2c0 = &i2c0;
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +		serial2 = &uart2;
+> +		serial3 = &uart3;
+> +		serial4 = &uart4;
+> +		serial5 = &uart5;
+> +	};
+
+Comment by Krzysztof:
+https://lore.kernel.org/all/f2652e0e-fb08-efb4-e25a-36a335f0c457@linaro.org/
+
+No, not only mmc. UART, I2C, SPI - all of these should go to the board.
+
+Comment by Arnd:
+https://lore.kernel.org/linux-rockchip/CAK8P3a25iYksubCnQb1-e5yj=crEsK37RB9Hn4ZGZMwcVVrG7g@mail.gmail.com/
+
+Each board should have its own aliases node that describes
+exactly which of the devices are wired up on that board, and
+in which order. If there are connectors on the board that
+are labeled in some form, then the aliases are meant to
+match what is written on the board or in its documentation.
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@f00 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			reg = <0xf00>;
+> +			enable-method = "psci";
+> +			clocks = <&cru ARMCLK>;
+> +		};
+> +
+> +		cpu1: cpu@f01 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			reg = <0xf01>;
+> +			enable-method = "psci";
+> +			clocks = <&cru ARMCLK>;
+> +		};
+> +
+> +		cpu2: cpu@f02 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			reg = <0xf02>;
+> +			enable-method = "psci";
+> +			clocks = <&cru ARMCLK>;
+> +		};
+> +
+> +		cpu3: cpu@f03 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a7";
+> +			reg = <0xf03>;
+> +			enable-method = "psci";
+> +			clocks = <&cru ARMCLK>;
+> +		};
+> +	};
+> +
+> +	arm-pmu {
+> +		compatible = "arm,cortex-a7-pmu";
+> +		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 126 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv7-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> +		clock-frequency = <24000000>;
+> +	};
+> +
+> +	xin24m: oscillator {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xin24m";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	grf: syscon@fe000000 {
+> +		compatible = "rockchip,rv1126-grf", "syscon", "simple-mfd";
+> +		reg = <0xfe000000 0x20000>;
+> +	};
+> +
+> +	pmugrf: syscon@fe020000 {
+> +		compatible = "rockchip,rv1126-pmugrf", "syscon", "simple-mfd";
+> +		reg = <0xfe020000 0x1000>;
+> +
+> +		pmu_io_domains: io-domains {
+> +			compatible = "rockchip,rv1126-pmu-io-voltage-domain";
+> +			status = "disabled";
+> +		};
+> +	};
+> +
+> +	qos_emmc: qos@fe860000 {
+> +		compatible = "rockchip,rv1126-qos", "syscon";
+> +		reg = <0xfe860000 0x20>;
+> +	};
+> +
+> +	qos_nandc: qos@fe860080 {
+> +		compatible = "rockchip,rv1126-qos", "syscon";
+> +		reg = <0xfe860080 0x20>;
+> +	};
+> +
+> +	qos_sfc: qos@fe860200 {
+> +		compatible = "rockchip,rv1126-qos", "syscon";
+> +		reg = <0xfe860200 0x20>;
+> +	};
+> +
+> +	qos_sdio: qos@fe86c000 {
+> +		compatible = "rockchip,rv1126-qos", "syscon";
+> +		reg = <0xfe86c000 0x20>;
+> +	};
+> +
+> +	gic: interrupt-controller@feff0000 {
+> +		compatible = "arm,gic-400";
+> +		interrupt-controller;
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <0>;
+> +
+> +		reg = <0xfeff1000 0x1000>,
+> +		      <0xfeff2000 0x2000>,
+> +		      <0xfeff4000 0x2000>,
+> +		      <0xfeff6000 0x2000>;
+> +		interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> +	};
+> +
+> +	pmu: power-management@ff3e0000 {
+
+> +		compatible = "rockchip,rv1126-pmu", "syscon", "simple-mfd";
+
+arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb:0:0: /power-management@ff3e0000: failed to match any schema with compatible: ['rockchip,rv1126-pmu', 'syscon', 'simple-mfd']
 
 
-> 	Andrew
-> 
+> +		reg = <0xff3e0000 0x1000>;
+> +
+> +		power: power-controller {
+> +			compatible = "rockchip,rv1126-power-controller";
+> +			#power-domain-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			power-domain@RV1126_PD_NVM {
+> +				reg = <RV1126_PD_NVM>;
+> +				clocks = <&cru HCLK_EMMC>,
+> +					 <&cru CLK_EMMC>,
+> +					 <&cru HCLK_NANDC>,
+> +					 <&cru CLK_NANDC>,
+> +					 <&cru HCLK_SFC>,
+> +					 <&cru HCLK_SFCXIP>,
+> +					 <&cru SCLK_SFC>;
+> +				pm_qos = <&qos_emmc>,
+> +					 <&qos_nandc>,
+> +					 <&qos_sfc>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +
+> +			power-domain@RV1126_PD_SDIO {
+> +				reg = <RV1126_PD_SDIO>;
+> +				clocks = <&cru HCLK_SDIO>,
+> +					 <&cru CLK_SDIO>;
+> +				pm_qos = <&qos_sdio>;
+> +				#power-domain-cells = <0>;
+> +			};
+> +		};
+> +	};
+> +
+> +	i2c0: i2c@ff3f0000 {
+> +		compatible = "rockchip,rv1126-i2c", "rockchip,rk3399-i2c";
+> +		reg = <0xff3f0000 0x1000>;
+> +		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+> +		rockchip,grf = <&pmugrf>;
+> +		clocks = <&pmucru CLK_I2C0>, <&pmucru PCLK_I2C0>;
+> +		clock-names = "i2c", "pclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&i2c0_xfer>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		status = "disabled";
+> +	};
+> +
 
-Thanks and Regards,
-Danish.
+> +	dmac: dma-controller@ff4e0000 {
 
-> From mboxrd@z Thu Jan  1 00:00:00 1970
-> Return-Path: <linux-arm-kernel-bounces+linux-arm-kernel=archiver.kernel.org@lists.infradead.org>
-> X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-> 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
-> Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-> 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-> 	(No client certificate requested)
-> 	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13488C43334
-> 	for <linux-arm-kernel@archiver.kernel.org>; Sun,  5 Jun 2022 15:39:36 +0000 (UTC)
-> DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-> 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:
-> 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-> 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-> 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-> 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-> 	List-Owner; bh=b6fYa0q+XFwyIpbdKM0aAD9nKwyDSWVpkOMmA80Mzq4=; b=olQyG9xAfPyO0y
-> 	vAK24MXpqlDj0lAj5hChVz0fLkJgC4quh9pGM4/44+YhRgd1I37AGAAlyVHxayUECyFmLPbOhXAhA
-> 	iZbsNjL7uAcqj7t3J+dBL3BRQmgKGBpwEak18gYG7V+OnAOCvaQ3w+ccsYql0mlf96tMNK+JZTyZa
-> 	qZdylMVGr8FKMbIFRyVZiE9wGsw0hLwZ64vIHOjs5SCqA8B6Qnq5AaXmpXLxLXgwj3IYg6IUIo3TP
-> 	vFopdmNaVDm5xSbpMAQxrt49ita2lUHEzV41GfNocGgs3vSkn1T4uViaDIY5+mOwoOjDfK7lm3D1h
-> 	LpsUsHl9aE5HlG5hMehA==;
-> Received: from localhost ([::1] helo=bombadil.infradead.org)
-> 	by bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux))
-> 	id 1nxsKN-00ElzW-35; Sun, 05 Jun 2022 15:38:07 +0000
-> Received: from vps0.lunn.ch ([185.16.172.187])
-> 	by bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux))
-> 	id 1nxsKH-00ElyS-AH
-> 	for linux-arm-kernel@lists.infradead.org; Sun, 05 Jun 2022 15:38:05 +0000
-> DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-> 	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-> 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-> 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-> 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-> 	bh=fage9o/WkrlxF6CHaFSVzs3PXs0ms4frqc7xdvWybXY=; b=Ld+ZYslRThTJYx7sMAt/vrjFI6
-> 	IklFvvGj0QTnGKp/EkPLgktZvia+CIDqH9Imv+DaGiA5TyTs52f7vkeskXB7uj7d2HAOOmvf7NToQ
-> 	nrLe9ZY8V0eos9i8IFGrSc3VLv6ivkVuHlzOCIqvXcDKoWtz9maiSDDZWQoAhLiDuS8o=;
-> Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-> 	(envelope-from <andrew@lunn.ch>)
-> 	id 1nxsKA-005eXu-EB; Sun, 05 Jun 2022 17:37:54 +0200
-> Date: Sun, 5 Jun 2022 17:37:54 +0200
-> From: Andrew Lunn <andrew@lunn.ch>
-> To: Puranjay Mohan <p-mohan@ti.com>
-> Subject: Re: [PATCH v2 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-> Message-ID: <YpzN0u+hRgVuzPX9@lunn.ch>
-> References: <20220531095108.21757-1-p-mohan@ti.com>
->  <20220531095108.21757-3-p-mohan@ti.com>
-> MIME-Version: 1.0
-> Content-Disposition: inline
-> In-Reply-To: <20220531095108.21757-3-p-mohan@ti.com>
-> X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-> X-CRM114-CacheID: sfid-20220605_083801_726047_1B97979E 
-> X-CRM114-Status: GOOD (  26.73  )
-> X-BeenThere: linux-arm-kernel@lists.infradead.org
-> X-Mailman-Version: 2.1.34
-> Precedence: list
-> List-Id: <linux-arm-kernel.lists.infradead.org>
-> List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
->  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
-> List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
-> List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
-> List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
-> List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
->  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-> Cc: nm@ti.com, devicetree@vger.kernel.org, grygorii.strashko@ti.com, vigneshr@ti.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org, kishon@ti.com, rogerq@kernel.org, afd@ti.com, edumazet@google.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, ssantosh@kernel.org, davem@davemloft.net, linux-arm-kernel@lists.infradead.org
-> Content-Type: text/plain; charset="us-ascii"
-> Content-Transfer-Encoding: 7bit
-> Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-> Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=archiver.kernel.org@lists.infradead.org
-> 
->> +static inline u32 addr_to_da0(const u8 *addr)
->> +{
->> +	return (u32)(addr[0] | addr[1] << 8 |
->> +		addr[2] << 16 | addr[3] << 24);
->> +};
->> +
->> +static inline u32 addr_to_da1(const u8 *addr)
->> +{
->> +	return (u32)(addr[4] | addr[5] << 8);
->> +};
-> 
-> No inline functions please.
-> 
->> +
->> +static void rx_class_ft1_set_start_len(struct regmap *miig_rt, int slice,
->> +				       u16 start, u8 len)
->> +{
->> +	u32 offset, val;
->> +
->> +	offset = offs[slice].ft1_start_len;
->> +	val = FT1_LEN(len) | FT1_START(start);
->> +	regmap_write(miig_rt, offset, val);
->> +}
->> +
->> +static void rx_class_ft1_set_da(struct regmap *miig_rt, int slice,
->> +				int n, const u8 *addr)
->> +{
->> +	u32 offset;
->> +
->> +	offset = FT1_N_REG(slice, n, FT1_DA0);
->> +	regmap_write(miig_rt, offset, addr_to_da0(addr));
->> +	offset = FT1_N_REG(slice, n, FT1_DA1);
->> +	regmap_write(miig_rt, offset, addr_to_da1(addr));
->> +}
->> +
->> +static void rx_class_ft1_set_da_mask(struct regmap *miig_rt, int slice,
->> +				     int n, const u8 *addr)
->> +{
->> +	u32 offset;
->> +
->> +	offset = FT1_N_REG(slice, n, FT1_DA0_MASK);
->> +	regmap_write(miig_rt, offset, addr_to_da0(addr));
->> +	offset = FT1_N_REG(slice, n, FT1_DA1_MASK);
->> +	regmap_write(miig_rt, offset, addr_to_da1(addr));
->> +}
->> +
->> +static void rx_class_ft1_cfg_set_type(struct regmap *miig_rt, int slice, int n,
->> +				      enum ft1_cfg_type type)
->> +{
->> +	u32 offset;
->> +
->> +	offset = offs[slice].ft1_cfg;
->> +	regmap_update_bits(miig_rt, offset, FT1_CFG_MASK(n),
->> +			   type << FT1_CFG_SHIFT(n));
->> +}
->> +
->> +static void rx_class_sel_set_type(struct regmap *miig_rt, int slice, int n,
->> +				  enum rx_class_sel_type type)
->> +{
->> +	u32 offset;
->> +
->> +	offset = offs[slice].rx_class_cfg1;
->> +	regmap_update_bits(miig_rt, offset, RX_CLASS_SEL_MASK(n),
->> +			   type << RX_CLASS_SEL_SHIFT(n));
->> +}
->> +
->> +static void rx_class_set_and(struct regmap *miig_rt, int slice, int n,
->> +			     u32 data)
->> +{
->> +	u32 offset;
->> +
->> +	offset = RX_CLASS_N_REG(slice, n, RX_CLASS_AND_EN);
->> +	regmap_write(miig_rt, offset, data);
->> +}
->> +
->> +static void rx_class_set_or(struct regmap *miig_rt, int slice, int n,
->> +			    u32 data)
->> +{
->> +	u32 offset;
->> +
->> +	offset = RX_CLASS_N_REG(slice, n, RX_CLASS_OR_EN);
->> +	regmap_write(miig_rt, offset, data);
->> +}
->> +
->> +void icssg_class_set_host_mac_addr(struct regmap *miig_rt, const u8 *mac)
->> +{
->> +	regmap_write(miig_rt, MAC_INTERFACE_0, addr_to_da0(mac));
->> +	regmap_write(miig_rt, MAC_INTERFACE_1, addr_to_da1(mac));
->> +}
->> +
->> +void icssg_class_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac)
->> +{
->> +	regmap_write(miig_rt, offs[slice].mac0, addr_to_da0(mac));
->> +	regmap_write(miig_rt, offs[slice].mac1, addr_to_da1(mac));
->> +}
->> +
->> +/* disable all RX traffic */
->> +void icssg_class_disable(struct regmap *miig_rt, int slice)
->> +{
->> +	u32 data, offset;
->> +	int n;
->> +
->> +	/* Enable RX_L2_G */
->> +	regmap_update_bits(miig_rt, ICSSG_CFG_OFFSET, ICSSG_CFG_RX_L2_G_EN,
->> +			   ICSSG_CFG_RX_L2_G_EN);
->> +
->> +	for (n = 0; n < ICSSG_NUM_CLASSIFIERS; n++) {
->> +		/* AND_EN = 0 */
->> +		rx_class_set_and(miig_rt, slice, n, 0);
->> +		/* OR_EN = 0 */
->> +		rx_class_set_or(miig_rt, slice, n, 0);
->> +
->> +		/* set CFG1 to OR */
->> +		rx_class_sel_set_type(miig_rt, slice, n, RX_CLASS_SEL_TYPE_OR);
->> +
->> +		/* configure gate */
->> +		offset = RX_CLASS_GATES_N_REG(slice, n);
->> +		regmap_read(miig_rt, offset, &data);
->> +		/* clear class_raw so we go through filters */
->> +		data &= ~RX_CLASS_GATES_RAW_MASK;
->> +		/* set allow and phase mask */
->> +		data |= RX_CLASS_GATES_ALLOW_MASK | RX_CLASS_GATES_PHASE_MASK;
->> +		regmap_write(miig_rt, offset, data);
->> +	}
->> +
->> +	/* FT1 Disabled */
->> +	for (n = 0; n < ICSSG_NUM_FT1_SLOTS; n++) {
->> +		u8 addr[] = { 0, 0, 0, 0, 0, 0, };
->> +
->> +		rx_class_ft1_cfg_set_type(miig_rt, slice, n,
->> +					  FT1_CFG_TYPE_DISABLED);
->> +		rx_class_ft1_set_da(miig_rt, slice, n, addr);
->> +		rx_class_ft1_set_da_mask(miig_rt, slice, n, addr);
->> +	}
->> +
->> +	/* clear CFG2 */
->> +	regmap_write(miig_rt, offs[slice].rx_class_cfg2, 0);
->> +}
->> +
->> +void icssg_class_default(struct regmap *miig_rt, int slice, bool allmulti)
->> +{
->> +	int classifiers_in_use = 1;
->> +	u32 data;
->> +	int n;
->> +
->> +	/* defaults */
->> +	icssg_class_disable(miig_rt, slice);
->> +
->> +	/* Setup Classifier */
->> +	for (n = 0; n < classifiers_in_use; n++) {
->> +		/* match on Broadcast or MAC_PRU address */
->> +		data = RX_CLASS_FT_BC | RX_CLASS_FT_DA_P;
->> +
->> +		/* multicast? */
->> +		if (allmulti)
->> +			data |= RX_CLASS_FT_MC;
->> +
->> +		rx_class_set_or(miig_rt, slice, n, data);
->> +
->> +		/* set CFG1 for OR_OR_AND for classifier */
->> +		rx_class_sel_set_type(miig_rt, slice, n,
->> +				      RX_CLASS_SEL_TYPE_OR_OR_AND);
->> +	}
->> +
->> +	/* clear CFG2 */
->> +	regmap_write(miig_rt, offs[slice].rx_class_cfg2, 0);
->> +}
->> +
->> +/* required for SAV check */
->> +void icssg_ft1_set_mac_addr(struct regmap *miig_rt, int slice, u8 *mac_addr)
->> +{
->> +	u8 mask_addr[] = { 0, 0, 0, 0, 0, 0, };
->> +
->> +	rx_class_ft1_set_start_len(miig_rt, slice, 0, 6);
->> +	rx_class_ft1_set_da(miig_rt, slice, 0, mac_addr);
->> +	rx_class_ft1_set_da_mask(miig_rt, slice, 0, mask_addr);
->> +	rx_class_ft1_cfg_set_type(miig_rt, slice, 0, FT1_CFG_TYPE_EQ);
->> +}
->> diff --git a/drivers/net/ethernet/ti/icssg_config.c b/drivers/net/ethernet/ti/icssg_config.c
->> new file mode 100644
->> index 000000000000..a88ea4933802
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssg_config.c
->> @@ -0,0 +1,440 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/* ICSSG Ethernet driver
->> + *
->> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com
->> + */
->> +
->> +#include <linux/iopoll.h>
->> +#include <linux/regmap.h>
->> +#include <uapi/linux/if_ether.h>
->> +#include "icssg_config.h"
->> +#include "icssg_prueth.h"
->> +#include "icssg_switch_map.h"
->> +#include "icssg_mii_rt.h"
->> +
->> +/* TX IPG Values to be set for 100M link speed. These values are
->> + * in ocp_clk cycles. So need change if ocp_clk is changed for a specific
->> + * h/w design.
->> + */
->> +
->> +/* IPG is in core_clk cycles */
->> +#define MII_RT_TX_IPG_100M	0x17
->> +#define MII_RT_TX_IPG_1G	0xb
->> +
->> +#define	ICSSG_QUEUES_MAX		64
->> +#define	ICSSG_QUEUE_OFFSET		0xd00
->> +#define	ICSSG_QUEUE_PEEK_OFFSET		0xe00
->> +#define	ICSSG_QUEUE_CNT_OFFSET		0xe40
->> +#define	ICSSG_QUEUE_RESET_OFFSET	0xf40
->> +
->> +#define	ICSSG_NUM_TX_QUEUES	8
->> +
->> +#define	RECYCLE_Q_SLICE0	16
->> +#define	RECYCLE_Q_SLICE1	17
->> +
->> +#define	ICSSG_NUM_OTHER_QUEUES	5	/* port, host and special queues */
->> +
->> +#define	PORT_HI_Q_SLICE0	32
->> +#define	PORT_LO_Q_SLICE0	33
->> +#define	HOST_HI_Q_SLICE0	34
->> +#define	HOST_LO_Q_SLICE0	35
->> +#define	HOST_SPL_Q_SLICE0	40	/* Special Queue */
->> +
->> +#define	PORT_HI_Q_SLICE1	36
->> +#define	PORT_LO_Q_SLICE1	37
->> +#define	HOST_HI_Q_SLICE1	38
->> +#define	HOST_LO_Q_SLICE1	39
->> +#define	HOST_SPL_Q_SLICE1	41	/* Special Queue */
->> +
->> +#define MII_RXCFG_DEFAULT	(PRUSS_MII_RT_RXCFG_RX_ENABLE | \
->> +				 PRUSS_MII_RT_RXCFG_RX_DATA_RDY_MODE_DIS | \
->> +				 PRUSS_MII_RT_RXCFG_RX_L2_EN | \
->> +				 PRUSS_MII_RT_RXCFG_RX_L2_EOF_SCLR_DIS)
->> +
->> +#define MII_TXCFG_DEFAULT	(PRUSS_MII_RT_TXCFG_TX_ENABLE | \
->> +				 PRUSS_MII_RT_TXCFG_TX_AUTO_PREAMBLE | \
->> +				 PRUSS_MII_RT_TXCFG_TX_32_MODE_EN | \
->> +				 PRUSS_MII_RT_TXCFG_TX_IPG_WIRE_CLK_EN)
->> +
->> +#define ICSSG_CFG_DEFAULT	(ICSSG_CFG_TX_L1_EN | \
->> +				 ICSSG_CFG_TX_L2_EN | ICSSG_CFG_RX_L2_G_EN | \
->> +				 ICSSG_CFG_TX_PRU_EN | \
->> +				 ICSSG_CFG_SGMII_MODE)
->> +
->> +#define FDB_GEN_CFG1		0x60
->> +#define SMEM_VLAN_OFFSET	8
->> +#define SMEM_VLAN_OFFSET_MASK	GENMASK(25, 8)
->> +
->> +#define FDB_GEN_CFG2		0x64
->> +#define FDB_VLAN_EN		BIT(6)
->> +#define FDB_HOST_EN		BIT(2)
->> +#define FDB_PRU1_EN		BIT(1)
->> +#define FDB_PRU0_EN		BIT(0)
->> +#define FDB_EN_ALL		(FDB_PRU0_EN | FDB_PRU1_EN | \
->> +				 FDB_HOST_EN | FDB_VLAN_EN)
->> +
->> +struct map {
->> +	int queue;
->> +	u32 pd_addr_start;
->> +	u32 flags;
->> +	bool special;
->> +};
->> +
->> +struct map hwq_map[2][ICSSG_NUM_OTHER_QUEUES] = {
->> +	{
->> +		{ PORT_HI_Q_SLICE0, PORT_DESC0_HI, 0x200000, 0 },
->> +		{ PORT_LO_Q_SLICE0, PORT_DESC0_LO, 0, 0 },
->> +		{ HOST_HI_Q_SLICE0, HOST_DESC0_HI, 0x200000, 0 },
->> +		{ HOST_LO_Q_SLICE0, HOST_DESC0_LO, 0, 0 },
->> +		{ HOST_SPL_Q_SLICE0, HOST_SPPD0, 0x400000, 1 },
->> +	},
->> +	{
->> +		{ PORT_HI_Q_SLICE1, PORT_DESC1_HI, 0xa00000, 0 },
->> +		{ PORT_LO_Q_SLICE1, PORT_DESC1_LO, 0x800000, 0 },
->> +		{ HOST_HI_Q_SLICE1, HOST_DESC1_HI, 0xa00000, 0 },
->> +		{ HOST_LO_Q_SLICE1, HOST_DESC1_LO, 0x800000, 0 },
->> +		{ HOST_SPL_Q_SLICE1, HOST_SPPD1, 0xc00000, 1 },
->> +	},
->> +};
->> +
->> +static void icssg_config_mii_init(struct prueth_emac *emac)
->> +{
->> +	struct prueth *prueth = emac->prueth;
->> +	struct regmap *mii_rt = prueth->mii_rt;
->> +	int slice = prueth_emac_slice(emac);
->> +	u32 rxcfg_reg, txcfg_reg, pcnt_reg;
->> +	u32 rxcfg, txcfg;
->> +
->> +	rxcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RXCFG0 :
->> +				       PRUSS_MII_RT_RXCFG1;
->> +	txcfg_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_TXCFG0 :
->> +				       PRUSS_MII_RT_TXCFG1;
->> +	pcnt_reg = (slice == ICSS_MII0) ? PRUSS_MII_RT_RX_PCNT0 :
->> +				       PRUSS_MII_RT_RX_PCNT1;
->> +
->> +	rxcfg = MII_RXCFG_DEFAULT;
->> +	txcfg = MII_TXCFG_DEFAULT;
->> +
->> +	if (slice == ICSS_MII1)
->> +		rxcfg |= PRUSS_MII_RT_RXCFG_RX_MUX_SEL;
->> +
->> +	/* In MII mode TX lines swapped inside ICSSG, so TX_MUX_SEL cfg need
->> +	 * to be swapped also comparing to RGMII mode.
->> +	 */
->> +	if (emac->phy_if == PHY_INTERFACE_MODE_MII && slice == ICSS_MII0)
->> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
->> +	else if (emac->phy_if != PHY_INTERFACE_MODE_MII && slice == ICSS_MII1)
->> +		txcfg |= PRUSS_MII_RT_TXCFG_TX_MUX_SEL;
->> +
->> +	regmap_write(mii_rt, rxcfg_reg, rxcfg);
->> +	regmap_write(mii_rt, txcfg_reg, txcfg);
->> +	regmap_write(mii_rt, pcnt_reg, 0x1);
->> +}
->> +
->> +static void icssg_miig_queues_init(struct prueth *prueth, int slice)
->> +{
->> +	struct regmap *miig_rt = prueth->miig_rt;
->> +	void __iomem *smem = prueth->shram.va;
->> +	u8 pd[ICSSG_SPECIAL_PD_SIZE];
->> +	int queue = 0, i, j;
->> +	u32 *pdword;
->> +
->> +	/* reset hwqueues */
->> +	if (slice)
->> +		queue = ICSSG_NUM_TX_QUEUES;
->> +
->> +	for (i = 0; i < ICSSG_NUM_TX_QUEUES; i++) {
->> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
->> +		queue++;
->> +	}
->> +
->> +	queue = slice ? RECYCLE_Q_SLICE1 : RECYCLE_Q_SLICE0;
->> +	regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET, queue);
->> +
->> +	for (i = 0; i < ICSSG_NUM_OTHER_QUEUES; i++) {
->> +		regmap_write(miig_rt, ICSSG_QUEUE_RESET_OFFSET,
->> +			     hwq_map[slice][i].queue);
->> +	}
->> +
->> +	/* initialize packet descriptors in SMEM */
->> +	/* push pakcet descriptors to hwqueues */
->> +
->> +	pdword = (u32 *)pd;
->> +	for (j = 0; j < ICSSG_NUM_OTHER_QUEUES; j++) {
->> +		struct map *mp;
->> +		int pd_size, num_pds;
->> +		u32 pdaddr;
->> +
->> +		mp = &hwq_map[slice][j];
->> +		if (mp->special) {
->> +			pd_size = ICSSG_SPECIAL_PD_SIZE;
->> +			num_pds = ICSSG_NUM_SPECIAL_PDS;
->> +		} else	{
->> +			pd_size = ICSSG_NORMAL_PD_SIZE;
->> +			num_pds = ICSSG_NUM_NORMAL_PDS;
->> +		}
->> +
->> +		for (i = 0; i < num_pds; i++) {
->> +			memset(pd, 0, pd_size);
->> +
->> +			pdword[0] &= cpu_to_le32(ICSSG_FLAG_MASK);
->> +			pdword[0] |= cpu_to_le32(mp->flags);
->> +			pdaddr = mp->pd_addr_start + i * pd_size;
->> +
->> +			memcpy_toio(smem + pdaddr, pd, pd_size);
->> +			queue = mp->queue;
->> +			regmap_write(miig_rt, ICSSG_QUEUE_OFFSET + 4 * queue,
->> +				     pdaddr);
->> +		}
->> +	}
->> +}
->> +
->> +void icssg_config_ipg(struct prueth_emac *emac)
->> +{
->> +	struct prueth *prueth = emac->prueth;
->> +	int slice = prueth_emac_slice(emac);
->> +
->> +	switch (emac->speed) {
->> +	case SPEED_1000:
->> +		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_1G);
->> +		break;
->> +	case SPEED_100:
->> +		icssg_mii_update_ipg(prueth->mii_rt, slice, MII_RT_TX_IPG_100M);
->> +		break;
->> +	default:
->> +		/* Other links speeds not supported */
->> +		netdev_err(emac->ndev, "Unsupported link speed\n");
->> +		return;
->> +	}
->> +}
->> +
->> +static void emac_r30_cmd_init(struct prueth_emac *emac)
->> +{
->> +	int i;
->> +	struct icssg_r30_cmd *p;
->> +
->> +	p = emac->dram.va + MGR_R30_CMD_OFFSET;
->> +
->> +	for (i = 0; i < 4; i++)
->> +		writel(EMAC_NONE, &p->cmd[i]);
->> +}
->> +
->> +static int emac_r30_is_done(struct prueth_emac *emac)
->> +{
->> +	const struct icssg_r30_cmd *p;
->> +	int i;
->> +	u32 cmd;
->> +
->> +	p = emac->dram.va + MGR_R30_CMD_OFFSET;
->> +
->> +	for (i = 0; i < 4; i++) {
->> +		cmd = readl(&p->cmd[i]);
->> +		if (cmd != EMAC_NONE)
->> +			return 0;
->> +	}
->> +
->> +	return 1;
->> +}
->> +
->> +static int prueth_emac_buffer_setup(struct prueth_emac *emac)
->> +{
->> +	struct icssg_buffer_pool_cfg *bpool_cfg;
->> +	struct prueth *prueth = emac->prueth;
->> +	int slice = prueth_emac_slice(emac);
->> +	struct icssg_rxq_ctx *rxq_ctx;
->> +	u32 addr;
->> +	int i;
->> +
->> +	/* Layout to have 64KB aligned buffer pool
->> +	 * |BPOOL0|BPOOL1|RX_CTX0|RX_CTX1|
->> +	 */
->> +
->> +	addr = lower_32_bits(prueth->msmcram.pa);
->> +	if (slice)
->> +		addr += PRUETH_NUM_BUF_POOLS * PRUETH_EMAC_BUF_POOL_SIZE;
->> +
->> +	if (addr % SZ_64K) {
->> +		dev_warn(prueth->dev, "buffer pool needs to be 64KB aligned\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	bpool_cfg = emac->dram.va + BUFFER_POOL_0_ADDR_OFFSET;
->> +	/* workaround for f/w bug. bpool 0 needs to be initilalized */
->> +	bpool_cfg[0].addr = cpu_to_le32(addr);
->> +	bpool_cfg[0].len = 0;
->> +
->> +	for (i = PRUETH_EMAC_BUF_POOL_START;
->> +	     i < (PRUETH_EMAC_BUF_POOL_START + PRUETH_NUM_BUF_POOLS);
->> +	     i++) {
->> +		bpool_cfg[i].addr = cpu_to_le32(addr);
->> +		bpool_cfg[i].len = cpu_to_le32(PRUETH_EMAC_BUF_POOL_SIZE);
->> +		addr += PRUETH_EMAC_BUF_POOL_SIZE;
->> +	}
->> +
->> +	if (!slice)
->> +		addr += PRUETH_NUM_BUF_POOLS * PRUETH_EMAC_BUF_POOL_SIZE;
->> +	else
->> +		addr += PRUETH_EMAC_RX_CTX_BUF_SIZE * 2;
->> +
->> +	/* Pre-emptible RX buffer queue */
->> +	rxq_ctx = emac->dram.va + HOST_RX_Q_PRE_CONTEXT_OFFSET;
->> +	for (i = 0; i < 3; i++)
->> +		rxq_ctx->start[i] = cpu_to_le32(addr);
->> +
->> +	addr += PRUETH_EMAC_RX_CTX_BUF_SIZE;
->> +	rxq_ctx->end = cpu_to_le32(addr);
->> +
->> +	/* Express RX buffer queue */
->> +	rxq_ctx = emac->dram.va + HOST_RX_Q_EXP_CONTEXT_OFFSET;
->> +	for (i = 0; i < 3; i++)
->> +		rxq_ctx->start[i] = cpu_to_le32(addr);
->> +
->> +	addr += PRUETH_EMAC_RX_CTX_BUF_SIZE;
->> +	rxq_ctx->end = cpu_to_le32(addr);
->> +
->> +	return 0;
->> +}
->> +
->> +static void icssg_init_emac_mode(struct prueth *prueth)
->> +{
->> +	/* When the device is configured as a bridge and it is being brought back
->> +	 * to the emac mode, the host mac address has to be set as 0.
->> +	 */
->> +	u8 mac[ETH_ALEN] = { 0 };
->> +
->> +	if (prueth->emacs_initialized)
->> +		return;
->> +
->> +	regmap_update_bits(prueth->miig_rt, FDB_GEN_CFG1, SMEM_VLAN_OFFSET_MASK, 0);
->> +	regmap_write(prueth->miig_rt, FDB_GEN_CFG2, 0);
->> +	/* Clear host MAC address */
->> +	icssg_class_set_host_mac_addr(prueth->miig_rt, mac);
->> +}
->> +
->> +int icssg_config(struct prueth *prueth, struct prueth_emac *emac, int slice)
->> +{
->> +	void *config = emac->dram.va + ICSSG_CONFIG_OFFSET;
->> +	u8 *cfg_byte_ptr = config;
->> +	struct icssg_flow_cfg *flow_cfg;
->> +	u32 mask;
->> +	int ret;
->> +
->> +	icssg_init_emac_mode(prueth);
->> +
->> +	memset_io(config, 0, TAS_GATE_MASK_LIST0);
->> +	icssg_miig_queues_init(prueth, slice);
->> +
->> +	emac->speed = SPEED_1000;
->> +	emac->duplex = DUPLEX_FULL;
->> +	if (!phy_interface_mode_is_rgmii(emac->phy_if)) {
->> +		emac->speed = SPEED_100;
->> +		emac->duplex = DUPLEX_FULL;
->> +	}
->> +	regmap_update_bits(prueth->miig_rt, ICSSG_CFG_OFFSET, ICSSG_CFG_DEFAULT, ICSSG_CFG_DEFAULT);
->> +	icssg_miig_set_interface_mode(prueth->miig_rt, slice, emac->phy_if);
->> +	icssg_config_mii_init(emac);
->> +	icssg_config_ipg(emac);
->> +	icssg_update_rgmii_cfg(prueth->miig_rt, emac);
->> +
->> +	/* set GPI mode */
->> +	pruss_cfg_gpimode(prueth->pruss, prueth->pru_id[slice],
->> +			  PRUSS_GPI_MODE_MII);
->> +
->> +	/* enable XFR shift for PRU and RTU */
->> +	mask = PRUSS_SPP_XFER_SHIFT_EN | PRUSS_SPP_RTU_XFR_SHIFT_EN;
->> +	pruss_cfg_update(prueth->pruss, PRUSS_CFG_SPP, mask, mask);
->> +
->> +	/* set C28 to 0x100 */
->> +	pru_rproc_set_ctable(prueth->pru[slice], PRU_C28, 0x100 << 8);
->> +	pru_rproc_set_ctable(prueth->rtu[slice], PRU_C28, 0x100 << 8);
->> +	pru_rproc_set_ctable(prueth->txpru[slice], PRU_C28, 0x100 << 8);
->> +
->> +	flow_cfg = config + PSI_L_REGULAR_FLOW_ID_BASE_OFFSET;
->> +	flow_cfg->rx_base_flow = cpu_to_le32(emac->rx_flow_id_base);
->> +	flow_cfg->mgm_base_flow = 0;
->> +	*(cfg_byte_ptr + SPL_PKT_DEFAULT_PRIORITY) = 0;
->> +	*(cfg_byte_ptr + QUEUE_NUM_UNTAGGED) = 0x0;
->> +
->> +	ret = prueth_emac_buffer_setup(emac);
->> +	if (ret)
->> +		return ret;
->> +
->> +	emac_r30_cmd_init(emac);
->> +
->> +	return 0;
->> +}
->> +
->> +static struct icssg_r30_cmd emac_r32_bitmask[] = {
->> +	{{0xffff0004, 0xffff0100, 0xffff0100, EMAC_NONE}},	/* EMAC_PORT_DISABLE */
->> +	{{0xfffb0040, 0xfeff0200, 0xfeff0200, EMAC_NONE}},	/* EMAC_PORT_BLOCK */
->> +	{{0xffbb0000, 0xfcff0000, 0xdcff0000, EMAC_NONE}},	/* EMAC_PORT_FORWARD */
->> +	{{0xffbb0000, 0xfcff0000, 0xfcff2000, EMAC_NONE}},	/* EMAC_PORT_FORWARD_WO_LEARNING */
->> +	{{0xffff0001, EMAC_NONE,  EMAC_NONE, EMAC_NONE}},	/* ACCEPT ALL */
->> +	{{0xfffe0002, EMAC_NONE,  EMAC_NONE, EMAC_NONE}},	/* ACCEPT TAGGED */
->> +	{{0xfffc0000, EMAC_NONE,  EMAC_NONE, EMAC_NONE}},	/* ACCEPT UNTAGGED and PRIO */
->> +	{{EMAC_NONE,  0xffff0020, EMAC_NONE, EMAC_NONE}},	/* TAS Trigger List change */
->> +	{{EMAC_NONE,  0xdfff1000, EMAC_NONE, EMAC_NONE}},	/* TAS set state ENABLE*/
->> +	{{EMAC_NONE,  0xefff2000, EMAC_NONE, EMAC_NONE}},	/* TAS set state RESET*/
->> +	{{EMAC_NONE,  0xcfff0000, EMAC_NONE, EMAC_NONE}},	/* TAS set state DISABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xffff0400, EMAC_NONE}},	/* UC flooding ENABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xfbff0000, EMAC_NONE}},	/* UC flooding DISABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xffff0800, EMAC_NONE}},	/* MC flooding ENABLE*/
->> +	{{EMAC_NONE,  EMAC_NONE,  0xf7ff0000, EMAC_NONE}},	/* MC flooding DISABLE*/
->> +	{{EMAC_NONE,  0xffff4000, EMAC_NONE, EMAC_NONE}},	/* Preemption on Tx ENABLE*/
->> +	{{EMAC_NONE,  0xbfff0000, EMAC_NONE, EMAC_NONE}},	/* Preemption on Tx DISABLE*/
->> +	{{0xffff0010,  EMAC_NONE, 0xffff0010, EMAC_NONE}},	/* VLAN AWARE*/
->> +	{{0xffef0000,  EMAC_NONE, 0xffef0000, EMAC_NONE}}	/* VLAN UNWARE*/
->> +};
->> +
->> +int emac_set_port_state(struct prueth_emac *emac,
->> +			enum icssg_port_state_cmd cmd)
->> +{
->> +	struct icssg_r30_cmd *p;
->> +	int ret = -ETIMEDOUT;
->> +	int done = 0;
->> +	int i;
->> +
->> +	p = emac->dram.va + MGR_R30_CMD_OFFSET;
->> +
->> +	if (cmd >= ICSSG_EMAC_PORT_MAX_COMMANDS) {
->> +		netdev_err(emac->ndev, "invalid port command\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	/* only one command at a time allowed to firmware */
->> +	mutex_lock(&emac->cmd_lock);
->> +
->> +	for (i = 0; i < 4; i++)
->> +		writel(emac_r32_bitmask[cmd].cmd[i], &p->cmd[i]);
->> +
->> +	/* wait for done */
->> +	ret = read_poll_timeout(emac_r30_is_done, done, done == 1,
->> +				1000, 10000, false, emac);
->> +
->> +	if (ret == -ETIMEDOUT)
->> +		netdev_err(emac->ndev, "timeout waiting for command done\n");
->> +
->> +	mutex_unlock(&emac->cmd_lock);
->> +
->> +	return ret;
->> +}
->> +
->> +void icssg_config_set_speed(struct prueth_emac *emac)
->> +{
->> +	u8 fw_speed;
->> +
->> +	switch (emac->speed) {
->> +	case SPEED_1000:
->> +		fw_speed = FW_LINK_SPEED_1G;
->> +		break;
->> +	case SPEED_100:
->> +		fw_speed = FW_LINK_SPEED_100M;
->> +		break;
->> +	default:
->> +		/* Other links speeds not supported */
->> +		netdev_err(emac->ndev, "Unsupported link speed\n");
->> +		return;
->> +	}
->> +
->> +	writeb(fw_speed, emac->dram.va + PORT_LINK_SPEED_OFFSET);
->> +}
->> diff --git a/drivers/net/ethernet/ti/icssg_config.h b/drivers/net/ethernet/ti/icssg_config.h
->> new file mode 100644
->> index 000000000000..43eb0922172a
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssg_config.h
->> @@ -0,0 +1,200 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +/* Texas Instruments ICSSG Ethernet driver
->> + *
->> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->> + *
->> + */
->> +
->> +#ifndef __NET_TI_ICSSG_CONFIG_H
->> +#define __NET_TI_ICSSG_CONFIG_H
->> +
->> +struct icssg_buffer_pool_cfg {
->> +	__le32	addr;
->> +	__le32	len;
->> +} __packed;
->> +
->> +struct icssg_flow_cfg {
->> +	__le16 rx_base_flow;
->> +	__le16 mgm_base_flow;
->> +} __packed;
->> +
->> +#define PRUETH_PKT_TYPE_CMD	0x10
->> +#define PRUETH_NAV_PS_DATA_SIZE	16	/* Protocol specific data size */
->> +#define PRUETH_NAV_SW_DATA_SIZE	16	/* SW related data size */
->> +#define PRUETH_MAX_TX_DESC	512
->> +#define PRUETH_MAX_RX_DESC	512
->> +#define PRUETH_MAX_RX_FLOWS	1	/* excluding default flow */
->> +#define PRUETH_RX_FLOW_DATA	0
->> +
->> +#define PRUETH_EMAC_BUF_POOL_SIZE	SZ_8K
->> +#define PRUETH_EMAC_POOLS_PER_SLICE	24
->> +#define PRUETH_EMAC_BUF_POOL_START	8
->> +#define PRUETH_NUM_BUF_POOLS	8
->> +#define PRUETH_EMAC_RX_CTX_BUF_SIZE	SZ_16K	/* per slice */
->> +#define MSMC_RAM_SIZE	\
->> +	(2 * (PRUETH_EMAC_BUF_POOL_SIZE * PRUETH_NUM_BUF_POOLS + \
->> +	 PRUETH_EMAC_RX_CTX_BUF_SIZE * 2))
->> +
->> +struct icssg_rxq_ctx {
->> +	__le32 start[3];
->> +	__le32 end;
->> +} __packed;
->> +
->> +/* Load time Fiwmware Configuration */
->> +
->> +#define ICSSG_FW_MGMT_CMD_HEADER	0x81
->> +#define ICSSG_FW_MGMT_FDB_CMD_TYPE	0x03
->> +#define ICSSG_FW_MGMT_CMD_TYPE		0x04
->> +#define ICSSG_FW_MGMT_PKT		0x80000000
->> +
->> +struct icssg_r30_cmd {
->> +	u32 cmd[4];
->> +} __packed;
->> +
->> +enum icssg_port_state_cmd {
->> +	ICSSG_EMAC_PORT_DISABLE = 0,
->> +	ICSSG_EMAC_PORT_BLOCK,
->> +	ICSSG_EMAC_PORT_FORWARD,
->> +	ICSSG_EMAC_PORT_FORWARD_WO_LEARNING,
->> +	ICSSG_EMAC_PORT_ACCEPT_ALL,
->> +	ICSSG_EMAC_PORT_ACCEPT_TAGGED,
->> +	ICSSG_EMAC_PORT_ACCEPT_UNTAGGED_N_PRIO,
->> +	ICSSG_EMAC_PORT_TAS_TRIGGER,
->> +	ICSSG_EMAC_PORT_TAS_ENABLE,
->> +	ICSSG_EMAC_PORT_TAS_RESET,
->> +	ICSSG_EMAC_PORT_TAS_DISABLE,
->> +	ICSSG_EMAC_PORT_UC_FLOODING_ENABLE,
->> +	ICSSG_EMAC_PORT_UC_FLOODING_DISABLE,
->> +	ICSSG_EMAC_PORT_MC_FLOODING_ENABLE,
->> +	ICSSG_EMAC_PORT_MC_FLOODING_DISABLE,
->> +	ICSSG_EMAC_PORT_PREMPT_TX_ENABLE,
->> +	ICSSG_EMAC_PORT_PREMPT_TX_DISABLE,
->> +	ICSSG_EMAC_PORT_VLAN_AWARE_ENABLE,
->> +	ICSSG_EMAC_PORT_VLAN_AWARE_DISABLE,
->> +	ICSSG_EMAC_PORT_MAX_COMMANDS
->> +};
->> +
->> +#define EMAC_NONE           0xffff0000
->> +#define EMAC_PRU0_P_DI      0xffff0004
->> +#define EMAC_PRU1_P_DI      0xffff0040
->> +#define EMAC_TX_P_DI        0xffff0100
->> +
->> +#define EMAC_PRU0_P_EN      0xfffb0000
->> +#define EMAC_PRU1_P_EN      0xffbf0000
->> +#define EMAC_TX_P_EN        0xfeff0000
->> +
->> +#define EMAC_P_BLOCK        0xffff0040
->> +#define EMAC_TX_P_BLOCK     0xffff0200
->> +#define EMAC_P_UNBLOCK      0xffbf0000
->> +#define EMAC_TX_P_UNBLOCK   0xfdff0000
->> +#define EMAC_LEAN_EN        0xfff70000
->> +#define EMAC_LEAN_DI        0xffff0008
->> +
->> +#define EMAC_ACCEPT_ALL     0xffff0001
->> +#define EMAC_ACCEPT_TAG     0xfffe0002
->> +#define EMAC_ACCEPT_PRIOR   0xfffc0000
->> +
->> +/* Config area lies in DRAM */
->> +#define ICSSG_CONFIG_OFFSET	0x0
->> +
->> +/* Config area lies in shared RAM */
->> +#define ICSSG_CONFIG_OFFSET_SLICE0   0
->> +#define ICSSG_CONFIG_OFFSET_SLICE1   0x8000
->> +
->> +#define ICSSG_NUM_NORMAL_PDS	64
->> +#define ICSSG_NUM_SPECIAL_PDS	16
->> +
->> +#define ICSSG_NORMAL_PD_SIZE	8
->> +#define ICSSG_SPECIAL_PD_SIZE	20
->> +
->> +#define ICSSG_FLAG_MASK		0xff00ffff
->> +
->> +struct icssg_setclock_desc {
->> +	u8 request;
->> +	u8 restore;
->> +	u8 acknowledgment;
->> +	u8 cmp_status;
->> +	u32 margin;
->> +	u32 cyclecounter0_set;
->> +	u32 cyclecounter1_set;
->> +	u32 iepcount_set;
->> +	u32 rsvd1;
->> +	u32 rsvd2;
->> +	u32 CMP0_current;
->> +	u32 iepcount_current;
->> +	u32 difference;
->> +	u32 cyclecounter0_new;
->> +	u32 cyclecounter1_new;
->> +	u32 CMP0_new;
->> +} __packed;
->> +
->> +#define ICSSG_CMD_POP_SLICE0	56
->> +#define ICSSG_CMD_POP_SLICE1	60
->> +
->> +#define ICSSG_CMD_PUSH_SLICE0	57
->> +#define ICSSG_CMD_PUSH_SLICE1	61
->> +
->> +#define ICSSG_RSP_POP_SLICE0	58
->> +#define ICSSG_RSP_POP_SLICE1	62
->> +
->> +#define ICSSG_RSP_PUSH_SLICE0	56
->> +#define ICSSG_RSP_PUSH_SLICE1	60
->> +
->> +#define ICSSG_TS_POP_SLICE0	59
->> +#define ICSSG_TS_POP_SLICE1	63
->> +
->> +#define ICSSG_TS_PUSH_SLICE0	40
->> +#define ICSSG_TS_PUSH_SLICE1	41
->> +
->> +/* FDB FID_C2 flag definitions */
->> +/* Indicates host port membership.*/
->> +#define ICSSG_FDB_ENTRY_P0_MEMBERSHIP         BIT(0)
->> +/* Indicates that MAC ID is connected to physical port 1 */
->> +#define ICSSG_FDB_ENTRY_P1_MEMBERSHIP         BIT(1)
->> +/* Indicates that MAC ID is connected to physical port 2 */
->> +#define ICSSG_FDB_ENTRY_P2_MEMBERSHIP         BIT(2)
->> +/* Ageable bit is set for learned entries and cleared for static entries */
->> +#define ICSSG_FDB_ENTRY_AGEABLE               BIT(3)
->> +/* If set for DA then packet is determined to be a special packet */
->> +#define ICSSG_FDB_ENTRY_BLOCK                 BIT(4)
->> +/* If set for DA then the SA from the packet is not learned */
->> +#define ICSSG_FDB_ENTRY_SECURE                BIT(5)
->> +/* If set, it means packet has been seen recently with source address + FID
->> + * matching MAC address/FID of entry
->> + */
->> +#define ICSSG_FDB_ENTRY_TOUCHED               BIT(6)
->> +/* Set if entry is valid */
->> +#define ICSSG_FDB_ENTRY_VALID                 BIT(7)
->> +
->> +/**
->> + * struct prueth_vlan_tbl - VLAN table entries struct in ICSSG SMEM
->> + * @fid_c1: membership and forwarding rules flag to this table. See
->> + *          above to defines for bit definitions
->> + * @fid: FDB index for this VID (there is 1-1 mapping b/w VID and FID)
->> + */
->> +struct prueth_vlan_tbl {
->> +	u8 fid_c1;
->> +	u8 fid;
->> +} __packed;
->> +
->> +/**
->> + * struct prueth_fdb_slot - Result of FDB slot lookup
->> + * @mac: MAC address
->> + * @fid: fid to be associated with MAC
->> + * @fid_c2: FID_C2 entry for this MAC
->> + */
->> +struct prueth_fdb_slot {
->> +	u8 mac[ETH_ALEN];
->> +	u8 fid;
->> +	u8 fid_c2;
->> +} __packed;
->> +
->> +enum icssg_ietfpe_verify_states {
->> +	ICSSG_IETFPE_STATE_UNKNOWN = 0,
->> +	ICSSG_IETFPE_STATE_INITIAL,
->> +	ICSSG_IETFPE_STATE_VERIFYING,
->> +	ICSSG_IETFPE_STATE_SUCCEEDED,
->> +	ICSSG_IETFPE_STATE_FAILED,
->> +	ICSSG_IETFPE_STATE_DISABLED
->> +};
->> +#endif /* __NET_TI_ICSSG_CONFIG_H */
->> diff --git a/drivers/net/ethernet/ti/icssg_ethtool.c b/drivers/net/ethernet/ti/icssg_ethtool.c
->> new file mode 100644
->> index 000000000000..fd09d223b0ae
->> --- /dev/null
->> +++ b/drivers/net/ethernet/ti/icssg_ethtool.c
->> @@ -0,0 +1,319 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/* Texas Instruments ICSSG Ethernet driver
->> + *
->> + * Copyright (C) 2018-2022 Texas Instruments Incorporated - https://www.ti.com/
->> + *
->> + */
->> +
->> +#include "icssg_prueth.h"
->> +#include <linux/regmap.h>
->> +
->> +static u32 stats_base[] = {	0x54c,	/* Slice 0 stats start */
->> +				0xb18,	/* Slice 1 stats start */
->> +};
->> +
->> +struct miig_stats_regs {
->> +	/* Rx */
->> +	u32 rx_good_frames;
->> +	u32 rx_broadcast_frames;
->> +	u32 rx_multicast_frames;
->> +	u32 rx_crc_error_frames;
->> +	u32 rx_mii_error_frames;
->> +	u32 rx_odd_nibble_frames;
->> +	u32 rx_frame_max_size;
->> +	u32 rx_max_size_error_frames;
->> +	u32 rx_frame_min_size;
->> +	u32 rx_min_size_error_frames;
->> +	u32 rx_overrun_frames;
->> +	u32 rx_class0_hits;
->> +	u32 rx_class1_hits;
->> +	u32 rx_class2_hits;
->> +	u32 rx_class3_hits;
->> +	u32 rx_class4_hits;
->> +	u32 rx_class5_hits;
->> +	u32 rx_class6_hits;
->> +	u32 rx_class7_hits;
->> +	u32 rx_class8_hits;
->> +	u32 rx_class9_hits;
->> +	u32 rx_class10_hits;
->> +	u32 rx_class11_hits;
->> +	u32 rx_class12_hits;
->> +	u32 rx_class13_hits;
->> +	u32 rx_class14_hits;
->> +	u32 rx_class15_hits;
->> +	u32 rx_smd_frags;
->> +	u32 rx_bucket1_size;
->> +	u32 rx_bucket2_size;
->> +	u32 rx_bucket3_size;
->> +	u32 rx_bucket4_size;
->> +	u32 rx_64B_frames;
->> +	u32 rx_bucket1_frames;
->> +	u32 rx_bucket2_frames;
->> +	u32 rx_bucket3_frames;
->> +	u32 rx_bucket4_frames;
->> +	u32 rx_bucket5_frames;
->> +	u32 rx_total_bytes;
->> +	u32 rx_tx_total_bytes;
->> +	/* Tx */
->> +	u32 tx_good_frames;
->> +	u32 tx_broadcast_frames;
->> +	u32 tx_multicast_frames;
->> +	u32 tx_odd_nibble_frames;
->> +	u32 tx_underflow_errors;
->> +	u32 tx_frame_max_size;
->> +	u32 tx_max_size_error_frames;
->> +	u32 tx_frame_min_size;
->> +	u32 tx_min_size_error_frames;
->> +	u32 tx_bucket1_size;
->> +	u32 tx_bucket2_size;
->> +	u32 tx_bucket3_size;
->> +	u32 tx_bucket4_size;
->> +	u32 tx_64B_frames;
->> +	u32 tx_bucket1_frames;
->> +	u32 tx_bucket2_frames;
->> +	u32 tx_bucket3_frames;
->> +	u32 tx_bucket4_frames;
->> +	u32 tx_bucket5_frames;
->> +	u32 tx_total_bytes;
->> +};
->> +
->> +#define ICSSG_STATS(field)				\
->> +{							\
->> +	#field,						\
->> +	offsetof(struct miig_stats_regs, field),	\
->> +}
->> +
->> +struct icssg_stats {
->> +	char name[ETH_GSTRING_LEN];
->> +	u32 offset;
->> +};
->> +
->> +static const struct icssg_stats icssg_ethtool_stats[] = {
->> +	/* Rx */
->> +	ICSSG_STATS(rx_good_frames),
->> +	ICSSG_STATS(rx_broadcast_frames),
->> +	ICSSG_STATS(rx_multicast_frames),
->> +	ICSSG_STATS(rx_crc_error_frames),
->> +	ICSSG_STATS(rx_mii_error_frames),
->> +	ICSSG_STATS(rx_odd_nibble_frames),
->> +	ICSSG_STATS(rx_frame_max_size),
->> +	ICSSG_STATS(rx_max_size_error_frames),
->> +	ICSSG_STATS(rx_frame_min_size),
->> +	ICSSG_STATS(rx_min_size_error_frames),
->> +	ICSSG_STATS(rx_overrun_frames),
->> +	ICSSG_STATS(rx_class0_hits),
->> +	ICSSG_STATS(rx_class1_hits),
->> +	ICSSG_STATS(rx_class2_hits),
->> +	ICSSG_STATS(rx_class3_hits),
->> +	ICSSG_STATS(rx_class4_hits),
->> +	ICSSG_STATS(rx_class5_hits),
->> +	ICSSG_STATS(rx_class6_hits),
->> +	ICSSG_STATS(rx_class7_hits),
->> +	ICSSG_STATS(rx_class8_hits),
->> +	ICSSG_STATS(rx_class9_hits),
->> +	ICSSG_STATS(rx_class10_hits),
->> +	ICSSG_STATS(rx_class11_hits),
->> +	ICSSG_STATS(rx_class12_hits),
->> +	ICSSG_STATS(rx_class13_hits),
->> +	ICSSG_STATS(rx_class14_hits),
->> +	ICSSG_STATS(rx_class15_hits),
->> +	ICSSG_STATS(rx_smd_frags),
->> +	ICSSG_STATS(rx_bucket1_size),
->> +	ICSSG_STATS(rx_bucket2_size),
->> +	ICSSG_STATS(rx_bucket3_size),
->> +	ICSSG_STATS(rx_bucket4_size),
->> +	ICSSG_STATS(rx_64B_frames),
->> +	ICSSG_STATS(rx_bucket1_frames),
->> +	ICSSG_STATS(rx_bucket2_frames),
->> +	ICSSG_STATS(rx_bucket3_frames),
->> +	ICSSG_STATS(rx_bucket4_frames),
->> +	ICSSG_STATS(rx_bucket5_frames),
->> +	ICSSG_STATS(rx_total_bytes),
->> +	ICSSG_STATS(rx_tx_total_bytes),
->> +	/* Tx */
->> +	ICSSG_STATS(tx_good_frames),
->> +	ICSSG_STATS(tx_broadcast_frames),
->> +	ICSSG_STATS(tx_multicast_frames),
->> +	ICSSG_STATS(tx_odd_nibble_frames),
->> +	ICSSG_STATS(tx_underflow_errors),
->> +	ICSSG_STATS(tx_frame_max_size),
->> +	ICSSG_STATS(tx_max_size_error_frames),
->> +	ICSSG_STATS(tx_frame_min_size),
->> +	ICSSG_STATS(tx_min_size_error_frames),
->> +	ICSSG_STATS(tx_bucket1_size),
->> +	ICSSG_STATS(tx_bucket2_size),
->> +	ICSSG_STATS(tx_bucket3_size),
->> +	ICSSG_STATS(tx_bucket4_size),
->> +	ICSSG_STATS(tx_64B_frames),
->> +	ICSSG_STATS(tx_bucket1_frames),
->> +	ICSSG_STATS(tx_bucket2_frames),
->> +	ICSSG_STATS(tx_bucket3_frames),
->> +	ICSSG_STATS(tx_bucket4_frames),
->> +	ICSSG_STATS(tx_bucket5_frames),
->> +	ICSSG_STATS(tx_total_bytes),
->> +};
->> +
->> +static void emac_get_drvinfo(struct net_device *ndev,
->> +			     struct ethtool_drvinfo *info)
->> +{
->> +	struct prueth_emac *emac = netdev_priv(ndev);
->> +	struct prueth *prueth = emac->prueth;
->> +
->> +	strscpy(info->driver, dev_driver_string(prueth->dev),
->> +		sizeof(info->driver));
->> +	strscpy(info->bus_info, dev_name(prueth->dev), sizeof(info->bus_info));
->> +}
->> +
->> +static u32 emac_get_msglevel(struct net_device *ndev)
->> +{
->> +	struct prueth_emac *emac = netdev_priv(ndev);
->> +
->> +	return emac->msg_enable;
->> +}
->> +
->> +static void emac_set_msglevel(struct net_device *ndev, u32 value)
->> +{
->> +	struct prueth_emac *emac = netdev_priv(ndev);
->> +
->> +	emac->msg_enable = value;
->> +}
->> +
->> +static int emac_get_link_ksettings(struct net_device *ndev,
->> +				   struct ethtool_link_ksettings *ecmd)
->> +{
->> +	return phy_ethtool_get_link_ksettings(ndev, ecmd);
->> +}
->> +
->> +static int emac_set_link_ksettings(struct net_device *ndev,
->> +				   const struct ethtool_link_ksettings *ecmd)
->> +{
->> +	return phy_ethtool_set_link_ksettings(ndev, ecmd);
->> +}
->> +
->> +static int emac_get_eee(struct net_device *ndev, struct ethtool_eee *edata)
->> +{
->> +	if (!ndev->phydev)
->> +		return -EOPNOTSUPP;
->> +
->> +	return phy_ethtool_get_eee(ndev->phydev, edata);
->> +}
->> +
->> +static int emac_set_eee(struct net_device *ndev, struct ethtool_eee *edata)
->> +{
->> +	if (!ndev->phydev)
->> +		return -EOPNOTSUPP;
->> +
->> +	return phy_ethtool_set_eee(ndev->phydev, edata);
->> +}
->> +
->> +static int emac_nway_reset(struct net_device *ndev)
->> +{
->> +	return phy_ethtool_nway_reset(ndev);
->> +}
->> +
->> +static const char emac_ethtool_priv_flags[][ETH_GSTRING_LEN] = {
->> +#define EMAC_PRIV_IET_FRAME_PREEMPTION  BIT(0)
->> +	"iet-frame-preemption",
->> +#define EMAC_PRIV_IET_MAC_VERIFY                BIT(1)
->> +	"iet-mac-verify",
->> +};
-> 
-> Please move the #define outside of the array. They are not easy to
-> see.
-> 
-> 	Andrew
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+Sort nodes with reg property on reg address.
+
+> +		compatible = "arm,pl330", "arm,primecell";
+> +		reg = <0xff4e0000 0x4000>;
+> +		interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> +		#dma-cells = <1>;
+> +		arm,pl330-periph-burst;
+> +		clocks = <&cru ACLK_DMAC>;
+> +		clock-names = "apb_pclk";
+> +	};
+> +
+> +	uart1: serial@ff410000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff410000 0x100>;
+> +		interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&pmucru SCLK_UART1>, <&pmucru PCLK_UART1>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		dmas = <&dmac 7>, <&dmac 6>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart1m0_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	pmucru: clock-controller@ff480000 {
+> +		compatible = "rockchip,rv1126-pmucru";
+> +		reg = <0xff480000 0x1000>;
+> +		rockchip,grf = <&grf>;
+> +		#clock-cells = <1>;
+> +		#reset-cells = <1>;
+> +	};
+> +
+> +	cru: clock-controller@ff490000 {
+> +		compatible = "rockchip,rv1126-cru";
+> +		reg = <0xff490000 0x1000>;
+> +		clocks = <&xin24m>;
+> +		clock-names = "xin24m";
+> +		rockchip,grf = <&grf>;
+> +		#clock-cells = <1>;
+> +		#reset-cells = <1>;
+> +	};
+> +
+> +	uart0: serial@ff560000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff560000 0x100>;
+> +		interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		dmas = <&dmac 5>, <&dmac 4>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart0_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart2: serial@ff570000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff570000 0x100>;
+> +		interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		dmas = <&dmac 9>, <&dmac 8>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart2m1_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart3: serial@ff580000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff580000 0x100>;
+> +		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		dmas = <&dmac 11>, <&dmac 10>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart3m0_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart4: serial@ff590000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff590000 0x100>;
+> +		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		dmas = <&dmac 13>, <&dmac 12>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart4m0_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	uart5: serial@ff5a0000 {
+> +		compatible = "rockchip,rv1126-uart", "snps,dw-apb-uart";
+> +		reg = <0xff5a0000 0x100>;
+> +		interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+> +		clock-frequency = <24000000>;
+> +		clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+> +		dmas = <&dmac 15>, <&dmac 14>;
+> +		clock-names = "baudclk", "apb_pclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&uart5m0_xfer>;
+> +		reg-shift = <2>;
+> +		reg-io-width = <4>;
+> +		status = "disabled";
+> +	};
+> +
+> +	saradc: saradc@ff5e0000 {
+
+> +		compatible = "rockchip,rk3399-saradc";
+
+compatible = "rockchip,rv1126-saradc", "rockchip,rk3399-saradc";
+
+Add to document.
+
+> +		reg = <0xff5e0000 0x100>;
+> +		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +		#io-channel-cells = <1>;
+> +		clocks = <&cru CLK_SARADC>, <&cru PCLK_SARADC>;
+> +		clock-names = "saradc", "apb_pclk";
+> +		resets = <&cru SRST_SARADC_P>;
+> +		reset-names = "saradc-apb";
+> +		status = "disabled";
+> +	};
+> +
+> +	timer: timer@ff660000 {
+
+> +		compatible = "rockchip,rk3288-timer";
+
+compatible = "rockchip,rv1126-timer", "rockchip,rk3288-timer";
+
+Add to document after my patch:
+
+[PATCH v2 2/4] dt-bindings: timer: rockchip: add rockchip,rk3128-timer
+https://lore.kernel.org/linux-rockchip/0e57f38f-bace-8556-7258-aa0b3c0ac103@gmail.com/T/#u
+
+> +		reg = <0xff660000 0x20>;
+> +		interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru PCLK_TIMER>, <&cru CLK_TIMER0>;
+> +		clock-names = "pclk", "timer";
+> +	};
+> +
+> +	emmc: mmc@ffc50000 {
+> +		compatible = "rockchip,rv1126-dw-mshc", "rockchip,rk3288-dw-mshc";
+> +		reg = <0xffc50000 0x4000>;
+> +		interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru HCLK_EMMC>, <&cru CLK_EMMC>,
+> +			 <&cru SCLK_EMMC_DRV>, <&cru SCLK_EMMC_SAMPLE>;
+> +		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+> +		fifo-depth = <0x100>;
+> +		max-frequency = <200000000>;
+
+> +		power-domains = <&power RV1126_PD_NVM>;
+
+/arch/arm/boot/dts/rv1126-edgeble-neu2-io.dtb: mmc@ffc50000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+	From schema: /Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+
+Add power-domains property to rockchip-dw-mshc.yaml.
+
+
+> +		status = "disabled";
+> +	};
+> +
+> +	sdmmc: mmc@ffc60000 {
+> +		compatible = "rockchip,rv1126-dw-mshc", "rockchip,rk3288-dw-mshc";
+> +		reg = <0xffc60000 0x4000>;
+> +		interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru HCLK_SDMMC>, <&cru CLK_SDMMC>,
+> +			 <&cru SCLK_SDMMC_DRV>, <&cru SCLK_SDMMC_SAMPLE>;
+> +		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+> +		fifo-depth = <0x100>;
+> +		max-frequency = <200000000>;
+> +		status = "disabled";
+> +	};
+> +
+> +	sdio: mmc@ffc70000 {
+> +		compatible = "rockchip,rv1126-dw-mshc", "rockchip,rk3288-dw-mshc";
+> +		reg = <0xffc70000 0x4000>;
+> +		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
+> +		clocks = <&cru HCLK_SDIO>, <&cru CLK_SDIO>,
+> +			 <&cru SCLK_SDIO_DRV>, <&cru SCLK_SDIO_SAMPLE>;
+> +		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+> +		fifo-depth = <0x100>;
+> +		max-frequency = <200000000>;
+> +		power-domains = <&power RV1126_PD_SDIO>;
+> +		status = "disabled";
+> +	};
+> +
+> +	pinctrl: pinctrl {
+> +		compatible = "rockchip,rv1126-pinctrl";
+> +		rockchip,grf = <&grf>;
+> +		rockchip,pmu = <&pmugrf>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+
+> +		gpio0: gpio0@ff460000 {
+
+gpio
+
+Use generic node name.
+
+
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0xff460000 0x100>;
+> +			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&pmucru PCLK_GPIO0>, <&pmucru DBCLK_GPIO0>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+
+> +		gpio1: gpio1@ff620000 {
+
+same
+
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0xff620000 0x100>;
+> +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+
+> +		gpio2: gpio2@ff630000 {
+
+same
+
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0xff630000 0x100>;
+> +			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+
+> +		gpio3: gpio3@ff640000 {
+
+same
+
+> +			compatible = "rockchip,gpio-bank";
+> +			reg = <0xff640000 0x100>;
+> +			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO3>, <&cru DBCLK_GPIO3>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		gpio4: gpio4@ff650000 {
+
+> +			compatible = "rockchip,gpio-bank";
+
+same
+
+> +			reg = <0xff650000 0x100>;
+> +			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cru PCLK_GPIO4>, <&cru DBCLK_GPIO4>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +};
+> +
+> +#include "rv1126-pinctrl.dtsi"
