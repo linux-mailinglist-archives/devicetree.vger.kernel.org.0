@@ -2,166 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F1F619B54
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37360619B5D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232512AbiKDPTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 11:19:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32934 "EHLO
+        id S232153AbiKDPXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 11:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbiKDPTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:19:47 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 91075656F;
-        Fri,  4 Nov 2022 08:19:46 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.96,137,1665414000"; 
-   d="scan'208";a="139000238"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Nov 2022 00:19:46 +0900
-Received: from localhost.localdomain (unknown [10.226.93.164])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 47B184006A8E;
-        Sat,  5 Nov 2022 00:19:42 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG binding
-Date:   Fri,  4 Nov 2022 15:19:34 +0000
-Message-Id: <20221104151935.1783791-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221104151935.1783791-1-biju.das.jz@bp.renesas.com>
-References: <20221104151935.1783791-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S231278AbiKDPXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:23:22 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE09B64C7
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 08:23:19 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id bg9-20020a05600c3c8900b003bf249616b0so3379080wmb.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 08:23:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ffzbfhF3JArv7StgArm/RAFAqMlZRvQlnFlIWw7AfHE=;
+        b=u9WdLqJ7Y3Il1XZzawnfIogEzoT2KbWmJgZrl4NV5G82E3vrA85NkOLlEXuzyRGFr3
+         RihCxDkNrspkw0QbcklMFaFzNg7gsE1LS4YsXr8KGyjLe4gV6n/D3GoXOOMrCBbRk8cJ
+         g9lbLIK6YjwTkNnj8mYV0mVhvMtazHkScwLA9hh8kuPdcrssApjroi5DsFQq43efJ97n
+         ZIqMZX9iCBlvK4VCnDYrma7ECAp3qGzE/K2hzrSffcpTIkweNxvfyXb4ITE350tP23Ly
+         cJcMx3JL77Wwf7OdjQwVbPkoQqxBeglYDyvqIRqSEkrqtdOOVPFhgQxVPxM704fjGRo6
+         JAVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ffzbfhF3JArv7StgArm/RAFAqMlZRvQlnFlIWw7AfHE=;
+        b=K+GhQGwt7teake6/9/QOHXu8wjYBx6jp4PoVFOUvx7JVpMlfzsdwST8QnCirZ6/hoL
+         yDn98caKy7AW0yWU8A0fuy9LAD2dDoIvpyDrPnyNGM91NgfctayP8l+zYpC4vOOZnQkR
+         9Wr8JwaW1y/cRlcNPVswyNnJPRdDyutGPro7FwkqgOImZqCwhrq9tsJWuwpQDWcjIvJb
+         9YQXxcSD2M4Rhq1RVuinnwl7oLWV//WkNwTLVIE6y48PJDROsKVTCpIHWQ9tMQVoKY0e
+         0fyYu2ueDyTM692VXrp119/6jXjrVVb18zDNp7LYZdVdFLxjE84JUYR5LP14UFt825n2
+         kzBQ==
+X-Gm-Message-State: ACrzQf1cEzE+Lg2HHGBu9zmqahi5XD0IRYD2lZY/suGfCd4w+DfY7p/l
+        NlggiP1DCpQKiImdfTVrdZVdJw==
+X-Google-Smtp-Source: AMsMyM45TVc9nPqMJY2z6TPt7mcR5KZMm/yEkKf6aLpRWwtO/5VCzvKONKn6EGt02j+W+L5GApDM2w==
+X-Received: by 2002:a05:600c:3c8e:b0:3b4:d224:addf with SMTP id bg14-20020a05600c3c8e00b003b4d224addfmr34469845wmb.132.1667575398358;
+        Fri, 04 Nov 2022 08:23:18 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id l41-20020a05600c08a900b003b4935f04a4sm3689764wmp.5.2022.11.04.08.23.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Nov 2022 08:23:17 -0700 (PDT)
+From:   Jerome Neanne <jneanne@baylibre.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        shawnguo@kernel.org, geert+renesas@glider.be,
+        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
+        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
+        jeff@labundy.com
+Cc:     afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, jneanne@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: [PATCH v7 0/6] Add support for TI TPS65219 PMIC.
+Date:   Fri,  4 Nov 2022 16:23:05 +0100
+Message-Id: <20221104152311.1098603-1-jneanne@baylibre.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the RZ/G2L Port Output Enable for GPT (POEG).
+From: Jerome NEANNE <jneanne@baylibre.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2->v3:
- * Removed Rb tag from Rob as there are some changes introduced.
- * Added companion property, so that poeg can link with gpt device
- * Documented renesas,id, as identifier for POEGG{A,B,C,D}.
- * Updated the example.
-v1->v2:
- * Updated the description.
-REF->v1:
- * Modelled as pincontrol as most of its configuration is intended to be
-   static.
- * Updated reg size in example.
----
- .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 86 +++++++++++++++++++
- 1 file changed, 86 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+Hi everyone,
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
-new file mode 100644
-index 000000000000..8adf01682de5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/renesas,rzg2l-poeg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  The output pins(GTIOCxA and GTIOCxB) of the general PWM timer (GPT) can be
-+  disabled by using the port output enabling function for the GPT (POEG).
-+  Specifically, either of the following ways can be used.
-+  * Input level detection of the GTETRGA to GTETRGD pins.
-+  * Output-disable request from the GPT.
-+  * SSF bit setting(ie, by setting POEGGn.SSF to 1)
-+
-+  The state of the GTIOCxA and the GTIOCxB pins when the output is disabled,
-+  are controlled by the GPT module.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-poeg  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-poeg  # RZ/V2L
-+      - const: renesas,rzg2l-poeg
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  companion:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle of a companion.
-+
-+  renesas,id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 1, 2, 3 ]
-+    description: |
-+      POEG group index. Valid values are:
-+        <0> : POEG group A (default)
-+        <1> : POEG group B
-+        <2> : POEG group C
-+        <3> : POEG group D
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - power-domains
-+  - resets
-+  - renesas,id
-+  - companion
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    poeggd: poeg@10049400 {
-+        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
-+        reg = <0x10049400 0x400>;
-+        interrupts = <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&cpg CPG_MOD R9A07G044_POEG_D_CLKP>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_POEG_D_RST>;
-+        renesas,id = <3>;
-+        companion = <&gpt>;
-+    };
+bindings and regulator are already there, it has been rebased on master
+6.1:
+git@github.com:torvalds/linux.git
+commit 8f71a2b3f435f29b787537d1abedaa7d8ebe6647
+
+All review feedback have been integrated.
+
+Changes in v7:
+- defconfig: change commit message to indicate why (Krzysztof Kozlowski).
+- mfd: integrate all feedback from Lee Jones and Biju Das.  
+
+Regards,
+Jerome
+
+Previous versions:i
+v6 - https://lore.kernel.org/all/20221011140549.16761-1-jneanne@baylibre.com/
+v5 - https://lore.kernel.org/lkml/20220913121419.15420-1-jneanne@baylibre.com/
+v4 - https://lore.kernel.org/lkml/20220825150224.826258-1-msp@baylibre.com/
+v3 - https://lore.kernel.org/lkml/20220805121852.21254-1-jneanne@baylibre.com/
+v2 - https://lore.kernel.org/lkml/20220726103355.17684-1-jneanne@baylibre.com/
+v1 - https://lore.kernel.org/lkml/20220719091742.3221-1-jneanne@baylibre.com/
+
+Jerome NEANNE (1):
+  DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC support for AM642 SK
+    board.
+
+Jerome Neanne (4):
+  DONOTMERGE: arm64: dts: ti: Add pinmux and irq mapping for TPS65219
+    external interrupts
+  DONOTMERGE: arm64: dts: ti: k3-am642-sk: Enable tps65219 power-button
+  mfd: tps65219: Add driver for TI TPS65219 PMIC
+  arm64: defconfig: Add tps65219 as modules
+
+Markus Schneider-Pargmann (1):
+  Input: Add tps65219 interrupt driven powerbutton
+
+ MAINTAINERS                             |   1 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 115 ++++++++
+ arch/arm64/configs/defconfig            |   3 +
+ drivers/input/misc/Kconfig              |  10 +
+ drivers/input/misc/Makefile             |   1 +
+ drivers/input/misc/tps65219-pwrbutton.c | 148 ++++++++++
+ drivers/mfd/Kconfig                     |  14 +
+ drivers/mfd/Makefile                    |   1 +
+ drivers/mfd/tps65219.c                  | 299 ++++++++++++++++++++
+ include/linux/mfd/tps65219.h            | 345 ++++++++++++++++++++++++
+ 10 files changed, 937 insertions(+)
+ create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+ create mode 100644 drivers/mfd/tps65219.c
+ create mode 100644 include/linux/mfd/tps65219.h
+
 -- 
 2.25.1
 
