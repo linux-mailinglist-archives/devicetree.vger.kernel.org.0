@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FBC1619687
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:48:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0CC619693
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:52:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231931AbiKDMse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 08:48:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
+        id S231965AbiKDMwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 08:52:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbiKDMsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:48:33 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F9FB4B0
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 05:48:31 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id 8so2959111qka.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 05:48:31 -0700 (PDT)
+        with ESMTP id S231962AbiKDMwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:52:38 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A3882E68F
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 05:52:37 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id x13so3100587qvn.6
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 05:52:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wqi3a7cqHo4gFUwQ2K8FyfWJWVq426ywagQKpCR6FTQ=;
-        b=ceYrr4P00mg2C+4LXesfpJ2xHjDKHdtvHNKCey4w9AOIBHLXMjmQIsKUhWfypjJryJ
-         oWq1DVFTeKx2bb3TOHIy84crddZ+w0Uk4EISB6W0OYMDRcPpXoCxDFjKbsiJOzrbXxq0
-         szAr9OIV1X2DxT4VSzxs8m3mofyW6/xv/m+e8vru1aEUPV9xhDUE4FKM4u8MywqYr+Ob
-         n/5OwmJAyDQhUNsresN9GUFsYuJOhjBFrnmXpmkJTd4l4TWy9GikmG3M7JOB204EJQe/
-         yRrcrtAlZ0pPD1GbBMLa6bXszAGAopdxZfE2sywzAK+Jeq001QhFcTzUvtfS335heTsa
-         9Few==
+        bh=VlkkXrMP3qc3O7UVgaKaQ13gTOpZiVN/WX+OdmtFZ0Y=;
+        b=I6PHIpZxMgyqprbXT52oM74eJqSe+4hW54gwGaugDZlkGxd6mvyxNcsJiE15r7cbi7
+         cQwv5Bi7naAQ0aoMqV4/vtvD81ziqbGwuVKH9kuy0zQkbZUNlROGvQUoKB3dmJ5sBsXG
+         CBycOQShUgE/3URhXZ+R0pkHDbqD3wmmgozMNjPj0l67ZPfpQKTPzSDsht8Ab1HuEg2a
+         Q6xgxZR3K/vdfpy63MuKrmewGISC+QRolefFk6wTJ9jR+aOlJxdE5suCkGbbe+j5eLze
+         aLm3J3S9qKVaJ0V/v1bSiRHlcNPbh8zXLdMN0+I4Pgw2HKbixZUQSoPo+xr6ZVVZ1Z9d
+         NFhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wqi3a7cqHo4gFUwQ2K8FyfWJWVq426ywagQKpCR6FTQ=;
-        b=HzpNaNGmorke11EIn0wnVR60ULt3al6knE7zeMJ+ZCtixUvpct2JoPpjYbwhyQunfW
-         KtCbcntsb5GJM7Vrfumd2SliBjxrQ2vhzfESJkz9LZlgH5T2hSbH27brpkybYbHnG/E5
-         5/SmHdlhN567zq0royMmUvDK/Yw51qKaw6ookHfwbtJRns8p6Czd/gqb2/SreAjzi8kx
-         +zXIQCp0xtAWzFwjiOSLYWlySwb/8iGB7LLtF0hRODppR2oce1O1npTKsBdToOI/AQ+4
-         eyzR7ZL1TM7eV2Dy9yLzpTo8MqpRy/4YfCGbBh9v1Ii512HaYg0iaQglgMyTztOYpV2e
-         Dwgw==
-X-Gm-Message-State: ACrzQf2p54wQVrU/7sTNN7WBdwaDhyrqsxhTrxFQiuv4ETxz8c8gAKjg
-        F1khMcVJUgPL22xXAAy0NpcuqQ==
-X-Google-Smtp-Source: AMsMyM7hFBnhwzxMdmYULTQCkhwuO6DS/PcegMqy/ry3a33q/5BTspu8Y7iX3IJ6fzly0f3yRTxyig==
-X-Received: by 2002:a05:620a:22cf:b0:6fa:1e61:9cda with SMTP id o15-20020a05620a22cf00b006fa1e619cdamr22976665qki.774.1667566110890;
-        Fri, 04 Nov 2022 05:48:30 -0700 (PDT)
+        bh=VlkkXrMP3qc3O7UVgaKaQ13gTOpZiVN/WX+OdmtFZ0Y=;
+        b=OkjS2p60JWBJoZe/Da83piNW1rtU0PBEtIEW5GABYMuNFd3l+4dLoSMQnWW77yHZ4G
+         7BGqMLfWEpfxtg1zdRZ85DQQH76sY1L0VC/HDyZn1rdfFnEAl1y4VBhp1OoZwjiOSOQI
+         IFBWHBo6acfYYVNLvSMH8OGPsCyJkxc870cEhaNHArdbZvxc2ZngQ3X7wleShPK6yFxv
+         9vgVMTpEsnvlVnCmH4Yxcm2ZzYSV0Bk0pucItdWfdp5LGpCG/PfMjnDXl/miAxHN72wW
+         jpcadCOTNUn5nI18PF8wwAMPtJcBNtbbBhMuWEjriOLaVBK1MGj6N7SJeyTjvb9LldTM
+         pG3w==
+X-Gm-Message-State: ACrzQf3zPeaaUMvMrWZQ0zVZ4xDdsiQlqZVrzI81M8wCnlMD8ijPvORk
+        epD/9ijsKVMIgMslT4y1e0oJHA==
+X-Google-Smtp-Source: AMsMyM6U6Jl/QselPPtBXjH1wXtMIO5tCVFJ4WlIMIy8tQU8YdCdrUJ2ONo41djo4/Z0JeXAveEz5w==
+X-Received: by 2002:a05:6214:c26:b0:4bb:f330:fe03 with SMTP id a6-20020a0562140c2600b004bbf330fe03mr26071983qvd.94.1667566356445;
+        Fri, 04 Nov 2022 05:52:36 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id x8-20020ac85388000000b0039cc82a319asm2311507qtp.76.2022.11.04.05.48.29
+        by smtp.gmail.com with ESMTPSA id m17-20020a05620a24d100b006fa7b5ea2d1sm2878901qkn.125.2022.11.04.05.52.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 05:48:30 -0700 (PDT)
-Message-ID: <a764159c-e67e-1ee7-4b0f-1a08a06b3b3a@linaro.org>
-Date:   Fri, 4 Nov 2022 08:48:28 -0400
+        Fri, 04 Nov 2022 05:52:35 -0700 (PDT)
+Message-ID: <9badb45b-5e90-6796-061d-4166bc80a564@linaro.org>
+Date:   Fri, 4 Nov 2022 08:52:33 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/4] dt-bindings: net: Add EQoS compatible for FSD SoC
+Subject: Re: [PATCH v2 3/8] dt-bindings: display/msm: add support for the
+ display on SM8450
 Content-Language: en-US
-To:     Sriranjani P <sriranjani.p@samsung.com>, peppe.cavallaro@st.com,
-        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-        richardcochran@gmail.com
-Cc:     netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Pankaj Dubey <pankaj.dubey@samsung.com>,
-        Jayati Sahu <jayati.sahu@samsung.com>
-References: <20221104120517.77980-1-sriranjani.p@samsung.com>
- <CGME20221104115841epcas5p490b99811e257b8f3f965748df0a57be5@epcas5p4.samsung.com>
- <20221104120517.77980-2-sriranjani.p@samsung.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221102231309.583587-1-dmitry.baryshkov@linaro.org>
+ <20221102231309.583587-4-dmitry.baryshkov@linaro.org>
+ <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
+ <ee0880ad-0513-ffea-d80a-9eaac3a85c90@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104120517.77980-2-sriranjani.p@samsung.com>
+In-Reply-To: <ee0880ad-0513-ffea-d80a-9eaac3a85c90@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,26 +87,238 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 08:05, Sriranjani P wrote:
-> Add FSD Ethernet compatible in dt-bindings document
+On 04/11/2022 08:34, Dmitry Baryshkov wrote:
+> On 03/11/2022 17:03, Krzysztof Kozlowski wrote:
+>> On 02/11/2022 19:13, Dmitry Baryshkov wrote:
+>>> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
+>>> SM8450 platform.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   .../bindings/display/msm/qcom,sm8450-dpu.yaml | 132 +++++++
+>>>   .../display/msm/qcom,sm8450-mdss.yaml         | 349 ++++++++++++++++++
+>>>   2 files changed, 481 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>>> new file mode 100644
+>>> index 000000000000..b8c508c50bc5
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>>> @@ -0,0 +1,132 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm SM8450 Display DPU
+>>> +
+>>> +maintainers:
+>>> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> +
+>>> +$ref: /schemas/display/msm/dpu-common.yaml#
+>>
+>> There is no such file and I could not fine any dependency mentioned in
+>> cover letter. I guess you miss link to your refactor series?
 > 
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Eric Dumazet <edumazet@google.com>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Paolo Abeni <pabeni@redhat.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
-> Cc: Jose Abreu <joabreu@synopsys.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Jayati Sahu <jayati.sahu@samsung.com>
-> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+> Excuse me, yes. However the refactoring should be already a part of 
+> linux-next, so I didn't think that I should especially point to it.
 
-I did not get cover letter and patch 2. Your CC list is incomplete.
+Not in yesterday's next.
 
-For the record - DTS will not go via net-net but Samsung SoC tree.
+> 
+>> This also means bot won't be able to test it...
+> 
+> How does bot detects the base commit? Should i use --base? Or does it 
+> work on top of linux-next?
+
+I think bot tests on rc1, so even next would not help here. Anyway
+that's just a remark that you won't get automated test email.
+
+> 
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,sm8450-dpu
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: Address offset and size for mdp register set
+>>> +      - description: Address offset and size for vbif register set
+>>> +
+>>> +  reg-names:
+>>> +    items:
+>>> +      - const: mdp
+>>> +      - const: vbif
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: Display hf axi clock
+>>> +      - description: Display sf axi clock
+>>> +      - description: Display ahb clock
+>>> +      - description: Display lut clock
+>>> +      - description: Display core clock
+>>> +      - description: Display vsync clock
+>>
+>> Drop "clock", less typing.
+> 
+> Ack
+> 
+>>
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: bus
+>>> +      - const: nrt_bus
+>>> +      - const: iface
+>>> +      - const: lut
+>>> +      - const: core
+>>> +      - const: vsync
+>>> +
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
+>>> +    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/interconnect/qcom,sm8450.h>
+>>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>>> +
+>>> +    display-controller@ae01000 {
+>>> +        compatible = "qcom,sm8450-dpu";
+>>> +        reg = <0x0ae01000 0x8f000>,
+>>> +              <0x0aeb0000 0x2008>;
+>>> +        reg-names = "mdp", "vbif";
+>>> +
+>>> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+>>> +                <&gcc GCC_DISP_SF_AXI_CLK>,
+>>> +                <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>>> +                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+>>> +                <&dispcc DISP_CC_MDSS_MDP_CLK>,
+>>> +                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+>>> +        clock-names = "bus",
+>>> +                      "nrt_bus",
+>>> +                      "iface",
+>>> +                      "lut",
+>>> +                      "core",
+>>> +                      "vsync";
+>>> +
+>>> +        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+>>> +        assigned-clock-rates = <19200000>;
+>>> +
+>>> +        operating-points-v2 = <&mdp_opp_table>;
+>>> +        power-domains = <&rpmhpd SM8450_MMCX>;
+>>> +
+>>> +        interrupt-parent = <&mdss>;
+>>> +        interrupts = <0>;
+>>> +
+>>> +        ports {
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +
+>>> +            port@0 {
+>>> +                reg = <0>;
+>>> +                dpu_intf1_out: endpoint {
+>>> +                    remote-endpoint = <&dsi0_in>;
+>>> +                };
+>>> +            };
+>>> +
+>>> +            port@1 {
+>>> +                reg = <1>;
+>>> +                dpu_intf2_out: endpoint {
+>>> +                    remote-endpoint = <&dsi1_in>;
+>>> +                };
+>>> +            };
+>>> +        };
+>>> +
+>>> +        mdp_opp_table: opp-table {
+>>> +            compatible = "operating-points-v2";
+>>> +
+>>> +            opp-172000000{
+>>> +                opp-hz = /bits/ 64 <172000000>;
+>>> +                required-opps = <&rpmhpd_opp_low_svs_d1>;
+>>> +            };
+>>> +
+>>> +            opp-200000000 {
+>>> +                opp-hz = /bits/ 64 <200000000>;
+>>> +                required-opps = <&rpmhpd_opp_low_svs>;
+>>> +            };
+>>> +
+>>> +            opp-325000000 {
+>>> +                opp-hz = /bits/ 64 <325000000>;
+>>> +                required-opps = <&rpmhpd_opp_svs>;
+>>> +            };
+>>> +
+>>> +            opp-375000000 {
+>>> +                opp-hz = /bits/ 64 <375000000>;
+>>> +                required-opps = <&rpmhpd_opp_svs_l1>;
+>>> +            };
+>>> +
+>>> +            opp-500000000 {
+>>> +                opp-hz = /bits/ 64 <500000000>;
+>>> +                required-opps = <&rpmhpd_opp_nom>;
+>>> +            };
+>>> +        };
+>>> +    };
+>>> +...
+>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+>>> new file mode 100644
+>>> index 000000000000..05c606e6ada3
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+>>> @@ -0,0 +1,349 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm SM8450 Display MDSS
+>>> +
+>>> +maintainers:
+>>> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> +
+>>> +description:
+>>> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
+>>
+>> Drop "Device tree bindings for" and rewrite the sentence (e.g. drop "that").
+>>
+>>> +  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
+>>> +  bindings of MDSS are mentioned for SM8450 target.
+>>
+>> Drop last sentence.
+>>
+>>> +
+>>> +$ref: /schemas/display/msm/mdss-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>
+>> Drop items.
+>>
+>>> +      - const: qcom,sm8450-mdss
+>>
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: Display AHB clock from gcc
+>>> +      - description: Display hf axi clock
+>>> +      - description: Display sf axi clock
+>>> +      - description: Display core clock
+>>
+>> Drop trailing "clocks" (the first "AHB clock" is ok)
+> 
+> Hmm, not sure that I understand the difference, but fine with me.
+
+Not much different, but for me AHB is a bus, so "Display AHB from gcc"
+suggests a bit gcc provides some bus, but you want bus clock. AXI is
+also a bus... so maybe drop clock everywhere.
+
 
 Best regards,
 Krzysztof
