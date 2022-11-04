@@ -2,71 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2703F619E14
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:06:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5338A619E2F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:10:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbiKDRF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 13:05:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52780 "EHLO
+        id S229779AbiKDRKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 13:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230051AbiKDRF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:05:58 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88B8C3E081
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 10:05:57 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id k26so3456331qkg.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 10:05:57 -0700 (PDT)
+        with ESMTP id S230029AbiKDRKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:10:44 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987053F06F
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 10:10:43 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id hh9so3380251qtb.13
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 10:10:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QmgwhFKSfmRVfZGc4RFN5XxR8b40r2de6Oo0rq1T4LM=;
-        b=JbUTll5MUjsFEpb6RFMbBc3v4wZC7nXCGMHb5OK0Dj1brJXpSu1B6bkm7Y7U9ncuKG
-         iqnkdFnjDpJ/4iU0uVw5784Yk5pIFbYFFk7YLX74gaga3r1+BZWyM8k/tte7jaoZfLp+
-         SlEYGRI1opxkZ1YRf0Y4i8oWvqEnxRFm1RUa5eAOVfW4YOseCzkAaRrueQgSzuEEILvk
-         i9eEPWx2w/roHu+WfzQFQEo2ebRYbXiUsIeEZxCb/+ZMK51rTc/95nl1+OfG4qFyIvkk
-         nOUuPaSW/ZFDusLt/V5JBCTDb231pwqVnE35hOL+wY7KG8B6OE9IbAc/plX1LmlgWrEp
-         VTzA==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=id/m4PJka4ak4GkQ5lhsmXVKkGfCwtyssjK4t6uoVVs=;
+        b=YpYUlOVpQsjVYotS+k/BFPz+cRTPQ5vTloCHMLkCjHLIfGt1sRcorDcdKrTfPQEiqk
+         tC2r7PFLRgUCwyg1yxnLs8A+9AIKQOcEOYgfr9Y+fSccJ8E33COJ0Wjy9lAcAOJvCvMX
+         loB9GS6Ij+dwj4Cx2LQrL7d14cRjVhkpy278zCiILi3y39khCqrq3MjXNlHREjjYIYnp
+         a1a3fSrFoD0I8zrZ0aYVEMBlWH+OVySQK2urEgSOpF/+5CXZhLmJxTfew+OHQNpw19jr
+         poS+XzDuYc/wZ8HPTLLkOvGfAoJYfWk64T9HxQJxZVkRKsXejYO5WnBGpiKXbFLObkOv
+         ERoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QmgwhFKSfmRVfZGc4RFN5XxR8b40r2de6Oo0rq1T4LM=;
-        b=WvSI6p8Qe+hBcCGV5lCn9sP8A1mJHYMUAmyTksqUB2av2XlYU3STAH+jdbxdArqZj7
-         TqSLKbP+HiyWMhRLLjSyeuoBQbk+ieHk/Nrnn49Kl4wh1583A3a7D9vxmRTAx5gTRZbk
-         iAihtJVOlpMHmD7AQ6357WCv3Jl9fOaOAY4meOhzysXaA+7+0vTXyfFcHJrVSC94qR3v
-         1m3/3N7nyQy/0ybayvs6Lt0M/TPWpEJMh2WtMGWvs/1NUqU26BiBeT8I9hnVHSxpUmcs
-         FB49UVey2z8YmF7f45Ilos/LX4AE7I7CPTBJfIo2F66MZQRfXg0g8VzgdHRIo0ofxhgP
-         JKXg==
-X-Gm-Message-State: ACrzQf2JPbGGGNpvJ0XPu2s0zAffVYreVQjMBakDJqApc0mnMxqUg4X7
-        +YKyw3e7LkApfzx9rXNHBvX7xQ==
-X-Google-Smtp-Source: AMsMyM6iuA5yKil9gA8TtmEMRoCASMZ22sLHJHjAsR2lUWcHqXr3ZMn45PnxakMpdKdj3KTXVDfCSQ==
-X-Received: by 2002:a37:2d84:0:b0:6fa:1747:5369 with SMTP id t126-20020a372d84000000b006fa17475369mr25414271qkh.693.1667581556663;
-        Fri, 04 Nov 2022 10:05:56 -0700 (PDT)
-Received: from krzk-bin.. ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id c11-20020ac8054b000000b003a527d29a41sm2667370qth.75.2022.11.04.10.05.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 10:05:55 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: clock: qcom,sdm845-lpasscc: convert to dtschema
-Date:   Fri,  4 Nov 2022 13:05:52 -0400
-Message-Id: <20221104170552.72242-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=id/m4PJka4ak4GkQ5lhsmXVKkGfCwtyssjK4t6uoVVs=;
+        b=UOrh9q5AfNhwwT7ApicXXRKXDHnE9f3Ww/aCzpac8AMzWJW3FqKN8xgVshjnevyL1W
+         6NqExZD3IDj4bQmoi2HYxyH4KwRiM8S4lvJVOr3+KplYjNMcPaoM2FiMvLNEhWzNKmov
+         t8Q05Oan5/OdU73qypRrqiFwJhDkeySFTjTFxCCywQZBw8iPrbidLdYRust2JqLDepN4
+         MpKG9NiZpx206EYdXYJjezVo29PYS4YdN1aT3BflJNrtO68kh7uHz2hQ4QKatbc6nR0r
+         Dur+l/T8t5bS48Z9Zjn+IOR9GYPVxRsx7DUO4EnshT7azEOwSY+UeTqiyyzYydmFVorl
+         li3g==
+X-Gm-Message-State: ACrzQf0YnzKG8MobsgFh08hlylCLIB1V5UZIlYI53lNkr7FDqqCMMxXO
+        yVVJacjYXk3k1AAmPJg+rC0rVw==
+X-Google-Smtp-Source: AMsMyM48TwKakdoi9XI56ZSm+s+EMx3vzp3w+5I2ovZFXE5AyQzdRvdUY24WMzPQKglZPH02FN/pCA==
+X-Received: by 2002:a05:622a:196:b0:3a5:40ab:592c with SMTP id s22-20020a05622a019600b003a540ab592cmr15386971qtw.103.1667581842757;
+        Fri, 04 Nov 2022 10:10:42 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
+        by smtp.gmail.com with ESMTPSA id s9-20020a05620a29c900b006cec8001bf4sm3282124qkp.26.2022.11.04.10.10.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 10:10:42 -0700 (PDT)
+Message-ID: <c0a6a3a1-c12d-75b4-fe1d-026ab0740b58@linaro.org>
+Date:   Fri, 4 Nov 2022 13:10:40 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 2/3] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs
+ property
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20221104145938.1782464-1-biju.das.jz@bp.renesas.com>
+ <20221104145938.1782464-3-biju.das.jz@bp.renesas.com>
+ <dea44f32-e10f-0164-0175-4fe2e5d053a2@linaro.org>
+ <OS0PR01MB5922D1D1143BB6F83A894D0E863B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <OS0PR01MB5922D1D1143BB6F83A894D0E863B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,101 +87,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm SDM845 LPASS clock controller bindings to DT schema.
+On 04/11/2022 12:52, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Subject: Re: [PATCH 2/3] dt-bindings: pwm: rzg2l-gpt: Document
+>> renesas,poegs property
+>>
+>> On 04/11/2022 10:59, Biju Das wrote:
+>>> RZ/G2L GPT IP supports output pin disable function by dead time
+>> error
+>>> and detecting short-circuits between output pins.
+>>>
+>>> Add documentation for the optional property renesas,poegs to link a
+>>> pair of GPT IOs with POEG.
+>>>
+>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>> ---
+>>>  .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 19
+>> +++++++++++++++++++
+>>>  1 file changed, 19 insertions(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+>>> b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+>>> index 620d5ae4ae30..32f9deae89e5 100644
+>>> --- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+>>> +++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+>>> @@ -245,6 +245,24 @@ properties:
+>>>    resets:
+>>>      maxItems: 1
+>>>
+>>> +  renesas,poegs:
+>>> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+>>
+>> No need for quotes.
+>>
+>>> +    items:
+>>
+>> You miss here maxItems... but if you have just one item, then below
+>> "items" should be " - items"
+>>
+>>> +      items:
+>>> +        - description: phandle to POEG instance that serves the
+>> output disable
+>>> +        - description: An index identifying pair of GPT channels.
+>>> +                       <0> - GPT channels 0 and 1
+>>> +                       <1> - GPT channels 2 and 3
+>>> +                       <2> - GPT channels 4 and 5
+>>> +                       <3> - GPT channels 6 and 7
+>>> +                       <4> - GPT channels 8 and 9
+>>> +                       <5> - GPT channels 10 and 11
+>>> +                       <6> - GPT channels 12 and 13
+>>> +                       <7> - GPT channels 14 and 15
+>>
+>> then this could bave enum or minimum/maximum. Can you try if these
+>> work?
+> 
+> Yes, checks are passing with below changes.
+> Will send V2 later once I get feedback for driver changes/ from other reviewers.
+> 
+> renesas,poegs:
+> -    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>      items:
+> +      maxItems: 8
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/clock/qcom,lpasscc.txt           | 26 ----------
- .../bindings/clock/qcom,sdm845-lpasscc.yaml   | 47 +++++++++++++++++++
- 2 files changed, 47 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/qcom,lpasscc.txt
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml
+and it might also require minItems: 1
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,lpasscc.txt b/Documentation/devicetree/bindings/clock/qcom,lpasscc.txt
-deleted file mode 100644
-index b9e9787045b9..000000000000
---- a/Documentation/devicetree/bindings/clock/qcom,lpasscc.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Qualcomm LPASS Clock Controller Binding
-------------------------------------------------
--
--Required properties :
--- compatible		: shall contain "qcom,sdm845-lpasscc"
--- #clock-cells		: from common clock binding, shall contain 1.
--- reg			: shall contain base register address and size,
--			  in the order
--			Index-0 maps to LPASS_CC register region
--			Index-1 maps to LPASS_QDSP6SS register region
--
--Optional properties :
--- reg-names	: register names of LPASS domain
--		 "cc", "qdsp6ss".
--
--Example:
--
--The below node has to be defined in the cases where the LPASS peripheral loader
--would bring the subsystem out of reset.
--
--	lpasscc: clock-controller@17014000 {
--		compatible = "qcom,sdm845-lpasscc";
--		reg = <0x17014000 0x1f004>, <0x17300000 0x200>;
--		reg-names = "cc", "qdsp6ss";
--		#clock-cells = <1>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml
-new file mode 100644
-index 000000000000..10aa9b6e8d89
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sdm845-lpasscc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SDM845 LPASS Clock Controller
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description: |
-+  Qualcomm SDM845 LPASS (Low Power Audio SubSystem) Clock Controller.
-+
-+  See also:: include/dt-bindings/clock/qcom,lpass-sdm845.h
-+
-+properties:
-+  compatible:
-+    const: qcom,sdm845-lpasscc
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: cc
-+      - const: qdsp6ss
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@17014000 {
-+        compatible = "qcom,sdm845-lpasscc";
-+        reg = <0x17014000 0x1f004>, <0x17300000 0x200>;
-+        reg-names = "cc", "qdsp6ss";
-+        #clock-cells = <1>;
-+    };
--- 
-2.34.1
+Thank you for changes.
+
+Best regards,
+Krzysztof
 
