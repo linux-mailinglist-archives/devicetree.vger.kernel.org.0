@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AE1C61A341
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D3DC61A35A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229766AbiKDVWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 17:22:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36782 "EHLO
+        id S229950AbiKDVcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 17:32:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbiKDVWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:22:25 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3258A6402
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:22:22 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id l11so9443709edb.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:22:22 -0700 (PDT)
+        with ESMTP id S229700AbiKDVb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:31:59 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923942DA92
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:31:57 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id sc25so16449724ejc.12
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:31:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dv6vKhA7/0tx8qHpzhe0LvJShqWbHA3mx3+c4jsPwTY=;
-        b=e8Y3LSf/63D1wdxvc49AwexkfvAzLZy5y17OJ3AWONYSg1lc+iq2rn3y/0cvcAQ9Lo
-         CcgIRwJinTJaPhFMRaZ8g2eadHQfgAwFVXwp0scKVcPVOhrreRQVNVoPsv0KRIAN5SZT
-         ctiPB/cYzg179q6JMJVJjEHK45YMEMj/Rqg45SxiMAvpB0a0vsAVXxa6rnyrqLQBiFka
-         Y14+CERUpL4MSo/HtjDJKuJKk27MhgwMmxrXN4iUn5/K0+MoCaG5WsSl0zt4QUmZk6eD
-         8QCZAwq/iFUVAXV76iaYM7XwYdqDhJYLKYlr37PIO+2gJcb0TQMbA8bXvme19vBPZdBi
-         MBJQ==
+        bh=AXeLyBT66GcyNMkGNLXyVq2BhJDegmKs2IP6Dg3V8qs=;
+        b=s4ZFu+PCO6R25MJtYlf69zGk3gnbGDZkaUqyPYLtWvW6MIMnBIjnyTKebSWOx9jAnF
+         6LiEgJJ0FDwh04Zurj3z1tPIq9+Lr+nYILvIKiw1U1tJ3njQ9J3EooL7eICl+nZ1IEIX
+         nfDiUD5j8fbuAqAgnFbqHSQBGbciDdKaruJ8U26Syo6k/m5HNSw40sAl6gq7mCfwTopi
+         lt6wyHQ59TL/bHONQ9xyM2dZVQyVMnj7+UnZ4WwOhAdvzMtigS+X7RaUR1iC4NjsdImw
+         G6z9z01hWRlXxPGHwJEqMKVZ6uvExDq3RKgmJO61cryUMW630NioRgpW2cCA2OYcsvFj
+         l11w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Dv6vKhA7/0tx8qHpzhe0LvJShqWbHA3mx3+c4jsPwTY=;
-        b=8J1wtDTBRVYto/jvKPv7sWgG1YFLSe10uCqPchpmbWA3SIx7s2zbsdYL9YxgkS2sYF
-         ketFayKhPGzyV6/aEsPPZWNux8o9NZstCIFUrEWVS55A0/pr1o48EQRQ1X6N/YxtEZPO
-         9rd+T2m8AXofrczP0QRg7Dz9I9gYDs+E7OT/vgx09+dNElqxnV6VznZOkwS/5YPuZ+MD
-         U6/b9aB/fnWiKlf06UpKI1yQHqt0HWVbHf9Icbx5U6oZpn/XCURy6HBuwjEWLTt0MeTL
-         FXZxZGPNx80J2big8Og0S7oNtJltcIHIiNKrjo1+gGgq6eY14Neq6O2gADAB/05pe8Hg
-         XGCA==
-X-Gm-Message-State: ACrzQf2TWAX/xDGF9T/q6Jci9d9q2h0C/NhYnWU8ILMcM1L8bbj4884M
-        tCzpZUH1cOALLZ5AL3xAdSQimg==
-X-Google-Smtp-Source: AMsMyM7y7SOuTkKGl6VWuaHdUhj0dWMHNRFxppBbKmTRgGVCK3dL0OYx+rdnxb5yojNcWQiLMLbJ0w==
-X-Received: by 2002:a05:6402:40cc:b0:462:555e:5f73 with SMTP id z12-20020a05640240cc00b00462555e5f73mr39047300edb.259.1667596940754;
-        Fri, 04 Nov 2022 14:22:20 -0700 (PDT)
+        bh=AXeLyBT66GcyNMkGNLXyVq2BhJDegmKs2IP6Dg3V8qs=;
+        b=5dQKb/kgTnvSCMKXtmAvsbmLkqCS5V89K5ogEyOqS4tON35FdU0HWl2UitAxeO2xnL
+         yFtPZl4ea+r52UPF8d5brC6liiIxJURqoSKOzATxUZBNFw7+BpQ01aA6B1gBqyAy19qP
+         PnlvF6YJYlAbYRw+mv8O0KrrFUufEu8P+UmWzcpXuAqQEv5UyJOpLIxRk4Bg1FAnIaBE
+         BpPTl0F+wFDEDSSjWI1D07eS6OEKt25IXegW3TqppdRp/CfJKbppANd7mnH/Zity2g3K
+         iKEicAohgW3+uPCQSMUGIl54sJcKJKmB9nBRSozpNR4ZZtBsSIl8dlVE83crsSZHq0ue
+         60VA==
+X-Gm-Message-State: ACrzQf3Xba+nXM7KHuGlZN2aB5txJcES/eJ7qF4QoeIQxF+nsIXgLkY+
+        DqZ3tIww8s1DmKg+4/ckd1bs1g==
+X-Google-Smtp-Source: AMsMyM5b811dTOciUQ1WKFKeaNpDRnVgKPJ8hWO1y+EM8yeTBh4emwKaqkeDo/SAaFhkTuhBWRukyw==
+X-Received: by 2002:a17:907:746:b0:741:4a1b:cb1f with SMTP id xc6-20020a170907074600b007414a1bcb1fmr35116157ejb.370.1667597516128;
+        Fri, 04 Nov 2022 14:31:56 -0700 (PDT)
 Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id ku15-20020a170907788f00b0079de6b05c99sm31378ejc.138.2022.11.04.14.22.19
+        by smtp.gmail.com with ESMTPSA id m19-20020aa7c493000000b00458dc7e8ecasm263591edq.72.2022.11.04.14.31.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 14:22:20 -0700 (PDT)
-Date:   Fri, 4 Nov 2022 23:22:18 +0200
+        Fri, 04 Nov 2022 14:31:55 -0700 (PDT)
+Date:   Fri, 4 Nov 2022 23:31:54 +0200
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
@@ -57,79 +57,54 @@ Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com,
         linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>, Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH 4/6] clk: imx93: drop tpm1/3, lpit1/2 clk
-Message-ID: <Y2WCiogMOlFDv2Ic@linaro.org>
+        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 6/6] clk: imx93: keep sys ctr clock always on
+Message-ID: <Y2WEyhj7L8nyoBuu@linaro.org>
 References: <20221028095211.2598312-1-peng.fan@oss.nxp.com>
- <20221028095211.2598312-5-peng.fan@oss.nxp.com>
+ <20221028095211.2598312-7-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221028095211.2598312-5-peng.fan@oss.nxp.com>
+In-Reply-To: <20221028095211.2598312-7-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-28 17:52:09, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 22-10-28 17:52:11, Peng Fan (OSS) wrote:
+> From: Jacky Bai <ping.bai@nxp.com>
 > 
-> Per Reference Mannual System Clocks Table,
-> LPIT1 and TPM1 sources from bus_aon_root
-> LPIT2 and TPM3 sources from bus_wakeup_root
+> Keep sys ctr clock always on to make sure its register
+> can be accessed for cpuidle.
 > 
-> So update driver to reflect that.
-> 
-> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
 Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
 > ---
->  drivers/clk/imx/clk-imx93.c | 12 ++++--------
->  1 file changed, 4 insertions(+), 8 deletions(-)
+>  drivers/clk/imx/clk-imx93.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
-> index 7fdc30062a46..422ad3c89845 100644
+> index 7dace96f36df..b42a877ecca1 100644
 > --- a/drivers/clk/imx/clk-imx93.c
 > +++ b/drivers/clk/imx/clk-imx93.c
-> @@ -64,13 +64,9 @@ static const struct imx93_clk_root {
->  	{ IMX93_CLK_M33_SYSTICK,	"m33_systick_root",	0x0480,	LOW_SPEED_IO_SEL, },
->  	{ IMX93_CLK_FLEXIO1,		"flexio1_root",		0x0500,	LOW_SPEED_IO_SEL, },
->  	{ IMX93_CLK_FLEXIO2,		"flexio2_root",		0x0580,	LOW_SPEED_IO_SEL, },
-> -	{ IMX93_CLK_LPIT1,		"lpit1_root",		0x0600,	LOW_SPEED_IO_SEL, },
-> -	{ IMX93_CLK_LPIT2,		"lpit2_root",		0x0680,	LOW_SPEED_IO_SEL, },
->  	{ IMX93_CLK_LPTMR1,		"lptmr1_root",		0x0700,	LOW_SPEED_IO_SEL, },
->  	{ IMX93_CLK_LPTMR2,		"lptmr2_root",		0x0780,	LOW_SPEED_IO_SEL, },
-> -	{ IMX93_CLK_TPM1,		"tpm1_root",		0x0800,	TPM_SEL, },
->  	{ IMX93_CLK_TPM2,		"tpm2_root",		0x0880,	TPM_SEL, },
-> -	{ IMX93_CLK_TPM3,		"tpm3_root",		0x0900,	TPM_SEL, },
->  	{ IMX93_CLK_TPM4,		"tpm4_root",		0x0980,	TPM_SEL, },
->  	{ IMX93_CLK_TPM5,		"tpm5_root",		0x0a00,	TPM_SEL, },
->  	{ IMX93_CLK_TPM6,		"tpm6_root",		0x0a80,	TPM_SEL, },
-> @@ -177,13 +173,13 @@ static const struct imx93_clk_ccgr {
->  	{ IMX93_CLK_GPIO4_GATE,		"gpio4",	"bus_wakeup_root",	0x8940, },
->  	{ IMX93_CLK_FLEXIO1_GATE,	"flexio1",	"flexio1_root",		0x8980, },
->  	{ IMX93_CLK_FLEXIO2_GATE,	"flexio2",	"flexio2_root",		0x89c0, },
-> -	{ IMX93_CLK_LPIT1_GATE,		"lpit1",	"lpit1_root",		0x8a00, },
-> -	{ IMX93_CLK_LPIT2_GATE,		"lpit2",	"lpit2_root",		0x8a40, },
-> +	{ IMX93_CLK_LPIT1_GATE,		"lpit1",	"bus_aon_root",		0x8a00, },
-> +	{ IMX93_CLK_LPIT2_GATE,		"lpit2",	"bus_wakeup_root",	0x8a40, },
->  	{ IMX93_CLK_LPTMR1_GATE,	"lptmr1",	"lptmr1_root",		0x8a80, },
->  	{ IMX93_CLK_LPTMR2_GATE,	"lptmr2",	"lptmr2_root",		0x8ac0, },
-> -	{ IMX93_CLK_TPM1_GATE,		"tpm1",		"tpm1_root",		0x8b00, },
-> +	{ IMX93_CLK_TPM1_GATE,		"tpm1",		"bus_aon_root",		0x8b00, },
->  	{ IMX93_CLK_TPM2_GATE,		"tpm2",		"tpm2_root",		0x8b40, },
-> -	{ IMX93_CLK_TPM3_GATE,		"tpm3",		"tpm3_root",		0x8b80, },
-> +	{ IMX93_CLK_TPM3_GATE,		"tpm3",		"bus_wakeup_root",	0x8b80, },
->  	{ IMX93_CLK_TPM4_GATE,		"tpm4",		"tpm4_root",		0x8bc0, },
->  	{ IMX93_CLK_TPM5_GATE,		"tpm5",		"tpm5_root",		0x8c00, },
->  	{ IMX93_CLK_TPM6_GATE,		"tpm6",		"tpm6_root",		0x8c40, },
+> @@ -242,7 +242,8 @@ static const struct imx93_clk_ccgr {
+>  	{ IMX93_CLK_HSIO_32K_GATE,	"hsio_32k",	"osc_32k",		0x9dc0, },
+>  	{ IMX93_CLK_ENET1_GATE,		"enet1",	"wakeup_axi_root",	0x9e00, },
+>  	{ IMX93_CLK_ENET_QOS_GATE,	"enet_qos",	"wakeup_axi_root",	0x9e40, },
+> -	{ IMX93_CLK_SYS_CNT_GATE,	"sys_cnt",	"osc_24m",		0x9e80, },
+> +	/* Critical because clk accessed during CPU idle */
+> +	{ IMX93_CLK_SYS_CNT_GATE,	"sys_cnt",	"osc_24m",		0x9e80, CLK_IS_CRITICAL},
+>  	{ IMX93_CLK_TSTMR1_GATE,	"tstmr1",	"bus_aon_root",		0x9ec0, },
+>  	{ IMX93_CLK_TSTMR2_GATE,	"tstmr2",	"bus_wakeup_root",	0x9f00, },
+>  	{ IMX93_CLK_TMC_GATE,		"tmc",		"osc_24m",		0x9f40, },
 > -- 
 > 2.37.1
 > 
