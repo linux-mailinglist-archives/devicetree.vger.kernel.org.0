@@ -2,592 +2,445 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A327C61A1C6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 21:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD5161A1D6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 21:03:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229872AbiKDUB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 16:01:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48886 "EHLO
+        id S229995AbiKDUDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 16:03:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiKDUBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 16:01:20 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015AB45A25;
-        Fri,  4 Nov 2022 13:01:15 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id cb2-20020a056830618200b00661b6e5dcd8so3255869otb.8;
-        Fri, 04 Nov 2022 13:01:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PYDs6dB0C2b0gB8M0Zdr9P8IBo/8uaCtQ18Wgj0HndI=;
-        b=UGqiXDZQWSMqCn04bhW4+A7mSIb9Dcifi6WwzvJ94Jd+MxebOMA8FzUIK9zdjq/eak
-         e8ebMpoq+bwmjM7VE5W3EY2FzcHcNSWO/LU3R3cUGPfiwBK2l7ZbbLxLuVCs1N7hFeDX
-         af27WL4BnCDa8XvTnYG3lULRDShk9QgSXgKLro0v8CHdGupzLbjsmq9pz4qiqT+W3lbB
-         5ozhdCSR5h9OxoCtY9cjhJPDyykGH42rLlSS8hZBOoqIXEHxrV2RtUwTVKEgq7fd1++C
-         OLWDoZghMxx/2ZoPDVM4FHMQ4NyvYscqpNLWwBswGKvDWkn7D6Pp93L7Z5yLSDWgiJYj
-         o9Hw==
+        with ESMTP id S229939AbiKDUCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 16:02:55 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F9651C01;
+        Fri,  4 Nov 2022 13:02:12 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id l127so6258350oia.8;
+        Fri, 04 Nov 2022 13:02:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PYDs6dB0C2b0gB8M0Zdr9P8IBo/8uaCtQ18Wgj0HndI=;
-        b=aUWFz4YJLubRiyrfAWmb9RfRoHtpqWuQ3/3/hVyPOU6KscCSAPt7kMZWOLsmlXcMyG
-         NUV0JbnrvAfMaGeHRO3K5ymtXF6Q4moEFYhK7RLQFXi/Xbzazkr9mSKkSB/s5kbBmYci
-         t08dbo2C5B06MdzcyuirZ+SE/nSQsuK2XykJ1DsIzc4XF9rQ+2dHeEtDkvL3gvabWAX1
-         dI9icb2sQpmuJlo/hIvjj2/l9Lz01P5Na+rcMgWt2W08+RiKcgOB+qaZxUdZlvxs3mil
-         X8gTMkfuWioWEsMmiksKAJAfYSbRYtnzXivYQJeyZ0Nx6RLiEjb9+zPIIJEilwhD6eug
-         yq1w==
-X-Gm-Message-State: ACrzQf0xeMPTG4neMK6IyApyZQWp6bY2ezcDqELP0nMQOWVt8MbsDwet
-        SOgSZuk2COyM61OHHv19cd1+NTArrTw=
-X-Google-Smtp-Source: AMsMyM4N3OmTucquTH0TTlQ987WZdl/fFBQxUEsI+fB94S0Q1ty61pl6ZqfhBC5+ybR86iPoPhwgUQ==
-X-Received: by 2002:a9d:f63:0:b0:667:3aa9:cdca with SMTP id 90-20020a9d0f63000000b006673aa9cdcamr18415059ott.246.1667592074057;
-        Fri, 04 Nov 2022 13:01:14 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a44-20020a056870d62c00b00130e66a7644sm2183440oaq.25.2022.11.04.13.01.12
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SJDm6ZwA/4FnL4+xX4lXkBOljkX+IoHERBT/+QgPzuE=;
+        b=mAKqWnFfnp3qRr8cSZGj6j+DKZL1loJFe0zz70ot3mxYr9psYewn+akmhW2kSe4v8K
+         tq4XUNRGWGNj9mFgXuqQLGxJcwoZigCAfttxIJ2jHkw7a7+OKBDbn6lqgnrkMzdvfXWd
+         Vi84W4zQHWFXvtdovELe6Jg0oaKtuGuexK2DXzYT57T/jsGu49iFUy4Pl8ACmFzElmS4
+         hZwXjXr86rlc8xXduDOgodGhoQMPNXRhiYin1QYf68SVISXdwKVeTAS+PuT9B7nD4j5v
+         e7YUEX58wbBju30Rx6mVkmtamjxyyYd0g5XEuoinc4aMUM0NZToxbsb1qXoUC4VbfnzJ
+         SL3w==
+X-Gm-Message-State: ACrzQf3mMJWfv+UN1oQChByJL5TH4KhPHzbMyl1q2dniqdnEK/oZ8N4h
+        ta2bn6REeoGHSnh/xf/VMQ==
+X-Google-Smtp-Source: AMsMyM6Ipf6S0fbARxOeLpKUo6SzRbVO9jETbh+4MRfT+gXkGSDVrL16sjzp3xIW9/gcVs7RMXvOIg==
+X-Received: by 2002:a05:6808:8e2:b0:35a:2f3e:4210 with SMTP id d2-20020a05680808e200b0035a2f3e4210mr11136724oic.7.1667592131831;
+        Fri, 04 Nov 2022 13:02:11 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j36-20020a9d17a7000000b0066c55e23a16sm132454otj.2.2022.11.04.13.02.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 13:01:13 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 4 Nov 2022 13:01:11 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     nick.hawkins@hpe.com
-Cc:     jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com, corbet@lwn.net,
-        linux@armlinux.org.uk, linux-hwmon@vger.kernel.org,
+        Fri, 04 Nov 2022 13:02:11 -0700 (PDT)
+Received: (nullmailer pid 2405323 invoked by uid 1000);
+        Fri, 04 Nov 2022 20:02:12 -0000
+Date:   Fri, 4 Nov 2022 15:02:12 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/6] hwmon: (gxp-fan-ctrl) Add GXP fan controller
-Message-ID: <20221104200111.GA2562021@roeck-us.net>
-References: <20221104193657.105130-1-nick.hawkins@hpe.com>
- <20221104193657.105130-2-nick.hawkins@hpe.com>
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?iso-8859-1?Q?n=E7_=DCNAL?= <arinc.unal@arinc9.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 net-next 0/6] dt-binding preparation for ocelot
+ switches
+Message-ID: <20221104200212.GA2315642-robh@kernel.org>
+References: <20221104045204.746124-1-colin.foster@in-advantage.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221104193657.105130-2-nick.hawkins@hpe.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221104045204.746124-1-colin.foster@in-advantage.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 04, 2022 at 02:36:52PM -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On Thu, Nov 03, 2022 at 09:51:58PM -0700, Colin Foster wrote:
+> Ocelot switches have the abilitiy to be used internally via
+> memory-mapped IO or externally via SPI or PCIe. This brings up issues
+> for documentation, where the same chip might be accessed internally in a
+> switchdev manner, or externally in a DSA configuration. This patch set
+> is perparation to bring DSA functionality to the VSC7512, utilizing as
+> much as possible with an almost identical VSC7514 chip.
 > 
-> The GXP SoC can support up to 16 fans through the interface provided by
-> the CPLD. The fans speeds are controlled via a pwm value 0-255. The fans
-> are also capable of reporting if they have failed to the CPLD which in
-> turn reports the status to the GXP SoC. There are no tachometers so fan
-> speeds are reported as a percent of the pwm value.
+> During the most recent RFC for internal ethernet switch functionality to
+> the VSC7512, there were 10 steps laid out to adequately prepare
+> documentation:
+> 
+> https://lore.kernel.org/all/20221010174856.nd3n4soxk7zbmcm7@skbuf/
+> 
+> The full context is quoted below. This patch set represents steps 1-7 of
+> the 10 steps, with the remaining steps to likely be part of what was the
+> original RFC.
+> 
+> The first two patches are specifically rewording and fixing of the MFD
+> bindings. I kept them in this patch set since they might cause conflicts
+> with future documentation changes that will be part of the net-next
+> tree. I can separate them if desired.
+> 
+> 
+> 
+> Context:
+> 
+> ```
+> To end the discussion on a constructive note, I think if I were Colin,
+> I would do the following, in the following order, according to what was
+> expressed as a constraint:
+> 
+> 1. Reword the "driver" word out of mscc,vsc7514-switch.yaml and express
+>    the description in terms of what the switch can do, not what the
+>    driver can do.
+> 
+> 2. Make qca8k.yaml have "$ref: dsa.yaml#". Remove "$ref: dsa-port.yaml#"
+>    from the same schema.
 
-Drop the last sentence and the associated code. More on that below.
+No, you need dsa-port.yaml referenced because it has DSA port properties 
+plus custom qca8k properties.
 
 > 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->  Documentation/hwmon/gxp-fan-ctrl.rst |  36 +++
+> 3. Remove "- $ref: dsa-port.yaml#" from mediatek,mt7530.yaml. It doesn't
+>    seem to be needed, since dsa.yaml also has this. We need this because
+>    we want to make sure no one except dsa.yaml references dsa-port.yaml.
 
-Needs to be added to Documentation/hwmon/index.rst.
+You don't seem to need it in mediatek,mt7530.yaml, but only dsa.yaml 
+referencing dsa-port.yaml is not what we need. dsa-port.yaml wouldn't 
+(and didn't at one time) exist if only dsa.yaml needed it.
 
->  drivers/hwmon/Kconfig                |   8 +
->  drivers/hwmon/Makefile               |   1 +
->  drivers/hwmon/gxp-fan-ctrl.c         | 362 +++++++++++++++++++++++++++
->  4 files changed, 407 insertions(+)
->  create mode 100644 Documentation/hwmon/gxp-fan-ctrl.rst
->  create mode 100644 drivers/hwmon/gxp-fan-ctrl.c
-> 
-> diff --git a/Documentation/hwmon/gxp-fan-ctrl.rst b/Documentation/hwmon/gxp-fan-ctrl.rst
-> new file mode 100644
-> index 000000000000..fc1709fb113b
-> --- /dev/null
-> +++ b/Documentation/hwmon/gxp-fan-ctrl.rst
-> @@ -0,0 +1,36 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver gxp-fan-ctrl
-> +==========================
-> +
-> +Supported chips:
-> +
-> +  * HPE GXP SOC
-> +
-> +Author: Nick Hawkins <nick.hawkins@hpe.com>
-> +
-> +
-> +Description
-> +-----------
-> +
-> +gxp-fan-ctrl is a driver which provides fan control for the hpe gxp soc.
-> +The driver allows the gathering of fan status and the use of fan
-> +pwm control.
-> +
-> +
-> +Usage Notes
-> +-----------
-> +
-> +Traditionally fanY_input returns an RPM value, on HPE GXP systems it is
-> +the pwm value [0-255] due to the fan speeds being reported as
-> +percentages.
+Something like the below patch is on top of your changes is what's 
+needed. For DSA, there are 2 cases, custom properties in 'port' nodes 
+and no custom properties. '(ethernet-)?ports' never has custom 
+properties AFAICT (brcm,sf2 had brcm,use-bcm-hdr in the wrong place).
 
-It seems to me what is reported is the pwm value sent to the fan,
-and the code stringly suggests that this is the case. If the chip
-or controller doesn't report anything else, don't claim that this
-has any relation to the fan speed, and just report the pwm value.
+Bindings using only standard DSA properties need to reference 
+'dsa.yaml#'. Bindings with custom 'ethernet-port' node properties need 
+to use 'dsa.yaml#/$defs/base' and then under the ethernet-port node 
+reference dsa-port.yaml, define their custom properties, and set 
+'unevaluatedProperties: false'.
 
-> +
-> +
-> +Sysfs attributes
-> +----------------
-> +
-> +======================= =================================================
-> +pwm[0-15]		Fan 0 to 15 respective pwm value
-> +fan[0-15]_input		Fan 0 to 15 respective input value: pwm value
-> +fan[0-15]_fault		Fan 0 to 15 respective fault status: 1 fail, 0 ok
-> +======================= =================================================
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index e70d9614bec2..3d32cd77424c 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -2303,6 +2303,14 @@ config SENSORS_INTEL_M10_BMC_HWMON
->  	  sensors monitor various telemetry data of different components on the
->  	  card, e.g. board temperature, FPGA core temperature/voltage/current.
->  
-> +config SENSORS_GXP_FAN_CTRL
-> +	tristate "GXP Fan Control driver"
-> +	depends on ARCH_HPE_GXP || COMPILE_TEST
-> +	help
-> +	  If you say yes here you get support for GXP fan control functionality.
-> +	  The GXP controls fan function via the CPLD through the use of PWM
-> +	  registers. This driver reports status and pwm setting of the fans.
-> +
->  if ACPI
->  
->  comment "ACPI drivers"
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index 007e829d1d0d..b474dcc708c4 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -83,6 +83,7 @@ obj-$(CONFIG_SENSORS_GL518SM)	+= gl518sm.o
->  obj-$(CONFIG_SENSORS_GL520SM)	+= gl520sm.o
->  obj-$(CONFIG_SENSORS_GSC)	+= gsc-hwmon.o
->  obj-$(CONFIG_SENSORS_GPIO_FAN)	+= gpio-fan.o
-> +obj-$(CONFIG_SENSORS_GXP_FAN_CTRL) += gxp-fan-ctrl.o
->  obj-$(CONFIG_SENSORS_HIH6130)	+= hih6130.o
->  obj-$(CONFIG_SENSORS_ULTRA45)	+= ultra45_env.o
->  obj-$(CONFIG_SENSORS_I5500)	+= i5500_temp.o
-> diff --git a/drivers/hwmon/gxp-fan-ctrl.c b/drivers/hwmon/gxp-fan-ctrl.c
-> new file mode 100644
-> index 000000000000..a01530951d58
-> --- /dev/null
-> +++ b/drivers/hwmon/gxp-fan-ctrl.c
-> @@ -0,0 +1,362 @@
-> +// SPDX-License-Identifier: GPL-2.0=or-later
-> +/* Copyright (C) 2022 Hewlett-Packard Enterprise Development Company, L.P. */
-> +
-> +#include <linux/err.h>
-> +#include <linux/hwmon.h>
-> +#include <linux/hwmon-sysfs.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
-> +
-> +#define OFFSET_PWM0DUTY	0x10
-> +#define OFFSET_PWM1DUTY	0x11
-> +#define OFFSET_PWM2DUTY	0x12
-> +#define OFFSET_PWM3DUTY	0x13
-> +#define OFFSET_PWM4DUTY	0x14
-> +#define OFFSET_PWM5DUTY	0x15
-> +#define OFFSET_PWM6DUTY	0x16
-> +#define OFFSET_PWM7DUTY	0x17
+Obviously this needs to be refactored into proper patches and/or 
+squashed into yours. Probably a patch to fix brcm,sf2 and one to add 
+dsa.yaml#/$defs/base, then split out switch stuff.
 
-OFFSET_PWM[1-7]DUTY are not used anywhere. Please drop.
-
-> +
-> +struct fan_data {
-> +	u32 inst;
-> +	u32 fail;
-> +	u32 id;
-> +	u32 bit;
-> +};
-> +
-> +struct fan_ctrl_data {
-> +	struct fan_data fan[16];
-> +	u32 power_bit;
-> +};
-> +
-> +struct gxp_fan_ctrl_drvdata {
-> +	struct device	*dev;
-> +	struct device	*hwmon_dev;
-> +	struct regmap	*plreg_map; /* Programmable logic register regmap */
-> +	struct regmap	*fn2_map; /* Function 2 regmap */
-> +	void __iomem	*base;
-> +	const struct fan_ctrl_data *data;
-> +	struct mutex update_lock; /* To protect the setting of the fan PWM value */
-> +};
-> +
-> +static void address_translation(u32 desired_offset, u32 *offset, u32 *bit_shift)
-> +{
-> +	*offset = (desired_offset & 0xffc);
-> +	*bit_shift = (desired_offset - *offset) * 8;
-> +}
-> +
-> +static bool fan_installed(struct device *dev, int fan)
-> +{
-> +	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> +	u32 trans_offset;
-> +	u32 trans_shift;
-> +	u32 val;
-> +
-> +	address_translation(drvdata->data->fan[fan].inst,
-> +			    &trans_offset,
-> +			    &trans_shift);
-> +
-> +	regmap_read(drvdata->plreg_map, trans_offset, &val);
-> +	val = (val >> trans_shift) & drvdata->data->fan[fan].bit;
-> +	if (val == drvdata->data->fan[fan].bit)
-> +		return 1;
-> +	else
-> +		return 0;
-
-	return val == drvdata->data->fan[fan].bit;
-
-Those calculations look quite complex. Is there a public datasheet
-that would enable me to understand how registers are actually assigned ?
-
-> +}
-> +
-> +static bool fan_failed(struct device *dev, int fan)
-> +{
-> +	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> +	u32 trans_offset;
-> +	u32 trans_shift;
-> +	u32 val;
-> +
-> +	address_translation(drvdata->data->fan[fan].fail,
-> +			    &trans_offset,
-> +			    &trans_shift);
-> +
-> +	regmap_read(drvdata->plreg_map, trans_offset, &val);
-> +	val = (val >> trans_shift) & drvdata->data->fan[fan].fail;
-> +	if (val == drvdata->data->fan[fan].fail)
-> +		return 1;
-> +	else
-> +		return 0;
-
-	return val == drvdata->data->fan[fan].fail;
-> +}
-> +
-> +static ssize_t show_fault(struct device *dev, struct device_attribute *attr,
-> +			  char *buf)
-> +{
-> +	int nr = (to_sensor_dev_attr(attr))->index;
-> +	unsigned char val;
-> +
-> +	val = (fan_failed(dev, nr)) ? 1 : 0;
-
-This is really unnecessary. bool translates to 1/0. There is no need
-for another layer of translation.
-
-> +
-> +	return sprintf(buf, "%d\n", val);
-> +}
-> +
-> +static ssize_t show_in(struct device *dev, struct device_attribute *attr,
-> +		       char *buf)
-> +{
-> +	int nr = (to_sensor_dev_attr(attr))->index;
-> +	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> +	unsigned char val;
-> +	unsigned int reg;
-> +
-> +	/* Check Power Status */
-> +	regmap_read(drvdata->fn2_map, 0, &reg);
-> +	if (reg & BIT(drvdata->data->power_bit)) {
-> +		/* If Fan presents, then read it. */
-
-is present
-
-> +		val = (fan_installed(dev, nr)) ? readb(drvdata->base +
-> +						       OFFSET_PWM0DUTY +
-> +						       nr) : 0;
-
-Various unnecessary ( ) throughout the code.
-
-> +	} else {
-> +		/* Power Off */
-> +		val = 0;
-> +	}
-
-What determines power to a fan ? Should the power state be reported
-with fanX_enable ? Or possibly the installed state ?
-
-> +
-> +	return sprintf(buf, "%d\n", val);
-> +}
-> +
-> +static ssize_t show_pwm(struct device *dev, struct device_attribute *attr,
-> +			char *buf)
-> +{
-> +	int nr = (to_sensor_dev_attr(attr))->index;
-> +	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> +	unsigned char val;
-> +
-> +	val = readb(drvdata->base + OFFSET_PWM0DUTY + nr);
-> +
-> +	return sprintf(buf, "%d\n", val);
-> +}
-> +
-> +static ssize_t store_pwm(struct device *dev, struct device_attribute *attr,
-> +			 const char *buf, size_t count)
-> +{
-> +	int nr = (to_sensor_dev_attr(attr))->index;
-> +	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> +	unsigned long val;
-> +	int err;
-> +
-> +	err = kstrtoul(buf, 10, &val);
-> +	if (err)
-> +		return err;
-> +
-> +	if (val > 255)
-> +		return -1; /* out of range */
-
-Please always use standard error codes. This should be -EINVAL,
-not -EPERM (-1).
-
-> +
-> +	mutex_lock(&drvdata->update_lock);
-> +
-> +	writeb(val, drvdata->base + OFFSET_PWM0DUTY + nr);
-> +
-> +	mutex_unlock(&drvdata->update_lock);
-
-Mutex is pointless here.
-
-> +	return count;
-> +}
-> +
-> +static SENSOR_DEVICE_ATTR(pwm0, 0200 | 0444, show_pwm, store_pwm, 0);
-> +static SENSOR_DEVICE_ATTR(pwm1, 0200 | 0444, show_pwm, store_pwm, 1);
-> +static SENSOR_DEVICE_ATTR(pwm2, 0200 | 0444, show_pwm, store_pwm, 2);
-> +static SENSOR_DEVICE_ATTR(pwm3, 0200 | 0444, show_pwm, store_pwm, 3);
-> +static SENSOR_DEVICE_ATTR(pwm4, 0200 | 0444, show_pwm, store_pwm, 4);
-> +static SENSOR_DEVICE_ATTR(pwm5, 0200 | 0444, show_pwm, store_pwm, 5);
-> +static SENSOR_DEVICE_ATTR(pwm6, 0200 | 0444, show_pwm, store_pwm, 6);
-> +static SENSOR_DEVICE_ATTR(pwm7, 0200 | 0444, show_pwm, store_pwm, 7);
-> +static SENSOR_DEVICE_ATTR(pwm8, 0200 | 0444, show_pwm, store_pwm, 8);
-> +static SENSOR_DEVICE_ATTR(pwm9, 0200 | 0444, show_pwm, store_pwm, 9);
-> +static SENSOR_DEVICE_ATTR(pwm10, 0200 | 0444, show_pwm, store_pwm, 10);
-> +static SENSOR_DEVICE_ATTR(pwm11, 0200 | 0444, show_pwm, store_pwm, 11);
-> +static SENSOR_DEVICE_ATTR(pwm12, 0200 | 0444, show_pwm, store_pwm, 12);
-> +static SENSOR_DEVICE_ATTR(pwm13, 0200 | 0444, show_pwm, store_pwm, 13);
-> +static SENSOR_DEVICE_ATTR(pwm14, 0200 | 0444, show_pwm, store_pwm, 14);
-> +static SENSOR_DEVICE_ATTR(pwm15, 0200 | 0444, show_pwm, store_pwm, 15);
-> +
-> +static struct sensor_device_attribute sda_in_input[] = {
-> +	SENSOR_ATTR(fan0_input, 0444, show_in, NULL, 0),
-> +	SENSOR_ATTR(fan1_input, 0444, show_in, NULL, 1),
-> +	SENSOR_ATTR(fan2_input, 0444, show_in, NULL, 2),
-> +	SENSOR_ATTR(fan3_input, 0444, show_in, NULL, 3),
-> +	SENSOR_ATTR(fan4_input, 0444, show_in, NULL, 4),
-> +	SENSOR_ATTR(fan5_input, 0444, show_in, NULL, 5),
-> +	SENSOR_ATTR(fan6_input, 0444, show_in, NULL, 6),
-> +	SENSOR_ATTR(fan7_input, 0444, show_in, NULL, 7),
-> +	SENSOR_ATTR(fan8_input, 0444, show_in, NULL, 8),
-> +	SENSOR_ATTR(fan9_input, 0444, show_in, NULL, 9),
-> +	SENSOR_ATTR(fan10_input, 0444, show_in, NULL, 10),
-> +	SENSOR_ATTR(fan11_input, 0444, show_in, NULL, 11),
-> +	SENSOR_ATTR(fan12_input, 0444, show_in, NULL, 12),
-> +	SENSOR_ATTR(fan13_input, 0444, show_in, NULL, 13),
-> +	SENSOR_ATTR(fan14_input, 0444, show_in, NULL, 14),
-> +	SENSOR_ATTR(fan15_input, 0444, show_in, NULL, 15),
-> +};
-> +
-> +static SENSOR_DEVICE_ATTR(fan0_fault, 0444, show_fault, NULL, 0);
-> +static SENSOR_DEVICE_ATTR(fan1_fault, 0444, show_fault, NULL, 1);
-> +static SENSOR_DEVICE_ATTR(fan2_fault, 0444, show_fault, NULL, 2);
-> +static SENSOR_DEVICE_ATTR(fan3_fault, 0444, show_fault, NULL, 3);
-> +static SENSOR_DEVICE_ATTR(fan4_fault, 0444, show_fault, NULL, 4);
-> +static SENSOR_DEVICE_ATTR(fan5_fault, 0444, show_fault, NULL, 5);
-> +static SENSOR_DEVICE_ATTR(fan6_fault, 0444, show_fault, NULL, 6);
-> +static SENSOR_DEVICE_ATTR(fan7_fault, 0444, show_fault, NULL, 7);
-> +static SENSOR_DEVICE_ATTR(fan8_fault, 0444, show_fault, NULL, 8);
-> +static SENSOR_DEVICE_ATTR(fan9_fault, 0444, show_fault, NULL, 9);
-> +static SENSOR_DEVICE_ATTR(fan10_fault, 0444, show_fault, NULL, 10);
-> +static SENSOR_DEVICE_ATTR(fan11_fault, 0444, show_fault, NULL, 11);
-> +static SENSOR_DEVICE_ATTR(fan12_fault, 0444, show_fault, NULL, 12);
-> +static SENSOR_DEVICE_ATTR(fan13_fault, 0444, show_fault, NULL, 13);
-> +static SENSOR_DEVICE_ATTR(fan14_fault, 0444, show_fault, NULL, 14);
-> +static SENSOR_DEVICE_ATTR(fan15_fault, 0444, show_fault, NULL, 15);
-> +
-> +static struct attribute *gxp_fan_ctrl_attrs[] = {
-> +	&sensor_dev_attr_fan0_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan1_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan2_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan3_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan4_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan5_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan6_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan7_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan8_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan9_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan10_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan11_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan12_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan13_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan14_fault.dev_attr.attr,
-> +	&sensor_dev_attr_fan15_fault.dev_attr.attr,
-> +	&sda_in_input[0].dev_attr.attr,
-> +	&sda_in_input[1].dev_attr.attr,
-> +	&sda_in_input[2].dev_attr.attr,
-> +	&sda_in_input[3].dev_attr.attr,
-> +	&sda_in_input[4].dev_attr.attr,
-> +	&sda_in_input[5].dev_attr.attr,
-> +	&sda_in_input[6].dev_attr.attr,
-> +	&sda_in_input[7].dev_attr.attr,
-> +	&sda_in_input[8].dev_attr.attr,
-> +	&sda_in_input[9].dev_attr.attr,
-> +	&sda_in_input[10].dev_attr.attr,
-> +	&sda_in_input[11].dev_attr.attr,
-> +	&sda_in_input[12].dev_attr.attr,
-> +	&sda_in_input[13].dev_attr.attr,
-> +	&sda_in_input[14].dev_attr.attr,
-> +	&sda_in_input[15].dev_attr.attr,
-> +	&sensor_dev_attr_pwm0.dev_attr.attr,
-> +	&sensor_dev_attr_pwm1.dev_attr.attr,
-> +	&sensor_dev_attr_pwm2.dev_attr.attr,
-> +	&sensor_dev_attr_pwm3.dev_attr.attr,
-> +	&sensor_dev_attr_pwm4.dev_attr.attr,
-> +	&sensor_dev_attr_pwm5.dev_attr.attr,
-> +	&sensor_dev_attr_pwm6.dev_attr.attr,
-> +	&sensor_dev_attr_pwm7.dev_attr.attr,
-> +	&sensor_dev_attr_pwm8.dev_attr.attr,
-> +	&sensor_dev_attr_pwm9.dev_attr.attr,
-> +	&sensor_dev_attr_pwm10.dev_attr.attr,
-> +	&sensor_dev_attr_pwm11.dev_attr.attr,
-> +	&sensor_dev_attr_pwm12.dev_attr.attr,
-> +	&sensor_dev_attr_pwm13.dev_attr.attr,
-> +	&sensor_dev_attr_pwm14.dev_attr.attr,
-> +	&sensor_dev_attr_pwm15.dev_attr.attr,
-> +	NULL,
-> +};
-> +
-> +ATTRIBUTE_GROUPS(gxp_fan_ctrl);
-> +
-> +static struct regmap *gxp_fan_ctrl_init_regmap(struct platform_device *pdev, char *reg_name)
-> +{
-> +	struct regmap_config regmap_config = {
-> +		.reg_bits = 32,
-> +		.reg_stride = 4,
-> +		.val_bits = 32,
-> +	};
-> +	void __iomem *base;
-> +
-> +	base = devm_platform_ioremap_resource_byname(pdev, reg_name);
-> +	if (IS_ERR(base))
-> +		return ERR_CAST(base);
-> +
-> +	regmap_config.name = reg_name;
-> +
-> +	return devm_regmap_init_mmio(&pdev->dev, base, &regmap_config);
-> +}
-> +
-> +static int gxp_fan_ctrl_probe(struct platform_device *pdev)
-> +{
-> +	struct gxp_fan_ctrl_drvdata *drvdata;
-> +	struct resource *res;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	drvdata = devm_kzalloc(&pdev->dev, sizeof(struct gxp_fan_ctrl_drvdata),
-> +			       GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	drvdata->dev = &pdev->dev;
-> +
-> +	drvdata->data = of_device_get_match_data(&pdev->dev);
-> +
-> +	platform_set_drvdata(pdev, drvdata);
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	drvdata->base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(drvdata->base))
-> +		return dev_err_probe(dev, PTR_ERR(drvdata->base),
-> +				     "failed to map base\n");
-> +	drvdata->plreg_map = gxp_fan_ctrl_init_regmap(pdev, "plreg");
-> +	if (IS_ERR(drvdata->plreg_map))
-> +		return dev_err_probe(dev, PTR_ERR(drvdata->plreg_map),
-> +				     "failed to map plreg_handle\n");
-> +
-> +	drvdata->fn2_map = gxp_fan_ctrl_init_regmap(pdev, "fn2reg");
-> +	if (IS_ERR(drvdata->fn2_map))
-> +		return dev_err_probe(dev, PTR_ERR(drvdata->fn2_map),
-> +				     "failed to map fn2_handle\n");
-> +
-> +	mutex_init(&drvdata->update_lock);
-> +
-> +	drvdata->hwmon_dev = devm_hwmon_device_register_with_groups(&pdev->dev,
-> +								    "fan_ctrl",
-> +								    drvdata,
-> +								    gxp_fan_ctrl_groups);
-
-New drivers must register with devm_hwmon_device_register_with_info().
-
-> +
-> +	return PTR_ERR_OR_ZERO(drvdata->hwmon_dev);
-> +}
-> +
-> +static const struct fan_ctrl_data g10_data = {
-> +	.fan[0] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x01 },
-> +	.fan[1] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x02 },
-> +	.fan[2] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x04 },
-> +	.fan[3] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x08 },
-> +	.fan[4] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x10 },
-> +	.fan[5] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x20 },
-> +	.fan[6] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x40 },
-> +	.fan[7] = { .inst = 0x00, .fail = 0x02, .id = 0x04, .bit = 0x80 },
-> +	.fan[8] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x01 },
-> +	.fan[9] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x02 },
-> +	.fan[10] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x04 },
-> +	.fan[11] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x08 },
-> +	.fan[12] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x10 },
-> +	.fan[13] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x20 },
-> +	.fan[14] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x40 },
-> +	.fan[15] = { .inst = 0x01, .fail = 0x03, .id = 0x05, .bit = 0x80 },
-> +	.power_bit = 24,
-> +};
-> +
-> +static const struct of_device_id gxp_fan_ctrl_of_match[] = {
-> +	{ .compatible = "hpe,gxp-fan-ctrl", .data = &g10_data },
-
-I don't understand the point of attaching g10_data here.
-Why not just access it directly ? There is just one table.
-
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, gxp_fan_ctrl_of_match);
-> +
-> +static struct platform_driver gxp_fan_ctrl_driver = {
-> +	.probe		= gxp_fan_ctrl_probe,
-> +	.driver = {
-> +		.name	= "gxp-fan-ctrl",
-> +		.of_match_table = gxp_fan_ctrl_of_match,
-> +	},
-> +};
-> +module_platform_driver(gxp_fan_ctrl_driver);
-> +
-> +MODULE_AUTHOR("Nick Hawkins <nick.hawkins@hpe.com>");
-> +MODULE_DESCRIPTION("HPE GXP Fan Ctrl driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.17.1
-> 
+8<-------------------------------------------------------------------
+diff --git a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+index 259a0c6547f3..8d5abb05abdf 100644
+--- a/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Arrow SpeedChips XRS7000 Series Switch Device Tree Bindings
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+ 
+ maintainers:
+   - George McCollister <george.mccollister@gmail.com>
+diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+index 1219b830b1a4..f323fc01b224 100644
+--- a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+@@ -66,7 +66,7 @@ required:
+   - reg
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+   - if:
+       properties:
+         compatible:
+diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
+index d159ac78cec1..eed16e216fb6 100644
+--- a/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/brcm,sf2.yaml
+@@ -85,11 +85,16 @@ properties:
+   ports:
+     type: object
+ 
+-    properties:
+-      brcm,use-bcm-hdr:
+-        description: if present, indicates that the switch port has Broadcom
+-          tags enabled (per-packet metadata)
+-        type: boolean
++    patternProperties:
++      '^port@[0-9a-f]$':
++        $ref: dsa-port.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          brcm,use-bcm-hdr:
++            description: if present, indicates that the switch port has Broadcom
++              tags enabled (per-packet metadata)
++            type: boolean
+ 
+ required:
+   - reg
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+index d97fb87cccb0..0672443ea7a6 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+@@ -14,6 +14,8 @@ maintainers:
+ description:
+   Ethernet switch port Description
+ 
++$ref: /schemas/net/ethernet-switch-port.yaml#
++
+ properties:
+   label:
+     description:
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+index 2290a9d32b21..1b3593a36014 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+@@ -21,9 +21,6 @@ select: false
+ $ref: "/schemas/net/ethernet-switch.yaml#"
+ 
+ properties:
+-  $nodename:
+-    pattern: "^(ethernet-)?switch(@.*)?$"
+-
+   dsa,member:
+     minItems: 2
+     maxItems: 2
+@@ -36,4 +33,20 @@ properties:
+ 
+ additionalProperties: true
+ 
++$defs:
++  base:
++    description: A DSA without any extra port properties
++    $ref: '#/'
++
++    patternProperties:
++      "^(ethernet-)?ports$":
++        type: object
++
++        patternProperties:
++          "^(ethernet-)?port@[0-9]+$":
++            description: Ethernet switch ports
++            $ref: /schemas/net/dsa/dsa-port.yaml#
++            unevaluatedProperties: false
++
++
+ ...
+diff --git a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
+index 73b774eadd0b..e27b1619066f 100644
+--- a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Hirschmann Hellcreek TSN Switch Device Tree Bindings
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+ 
+ maintainers:
+   - Andrew Lunn <andrew@lunn.ch>
+diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+index 81f291105660..564783fcb685 100644
+--- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+@@ -156,21 +156,15 @@ patternProperties:
+ 
+     patternProperties:
+       "^(ethernet-)?port@[0-9]+$":
+-        type: object
+-        description: Ethernet switch ports
+-
+-        properties:
+-          reg:
+-            description:
+-              Port address described must be 5 or 6 for CPU port and from 0 to 5
+-              for user ports.
+-
+         allOf:
+           - if:
+               required: [ ethernet ]
+             then:
+               properties:
+                 reg:
++                  description:
++                    Port address described must be 5 or 6 for CPU port and from 0 to 5
++                    for user ports.
+                   enum:
+                     - 5
+                     - 6
+@@ -235,7 +229,7 @@ $defs:
+                       - sgmii
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+   - if:
+       required:
+         - mediatek,mcm
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+index 4da75b1f9533..bfa2b76659c9 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+@@ -11,7 +11,7 @@ maintainers:
+   - Woojung Huh <Woojung.Huh@microchip.com>
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+index 630bf0f8294b..f4f9798addae 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - UNGLinuxDriver@microchip.com
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml b/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
+index 8d93ed9c172c..a7041ae4d811 100644
+--- a/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/mscc,ocelot.yaml
+@@ -78,7 +78,7 @@ required:
+   - reg
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+   - if:
+       properties:
+         compatible:
+diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+index 1e26d876d146..13a835af9468 100644
+--- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+@@ -13,7 +13,7 @@ description:
+   depends on the SPI bus master driver.
+ 
+ allOf:
+-  - $ref: "dsa.yaml#"
++  - $ref: dsa.yaml#/$defs/base
+   - $ref: /schemas/spi/spi-peripheral-props.yaml#
+ 
+ maintainers:
+diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+index d831d5eee437..a33abdb9ead0 100644
+--- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+@@ -77,8 +77,7 @@ patternProperties:
+     type: object
+     patternProperties:
+       "^(ethernet-)?port@[0-6]$":
+-        type: object
+-        description: Ethernet switch ports
++        $ref: dsa-port.yaml#
+ 
+         properties:
+           qca,sgmii-rxclk-falling-edge:
+@@ -102,7 +101,7 @@ patternProperties:
+               SGMII on the QCA8337, it is advised to set this unless a communication
+               issue is observed.
+ 
+-        unevaluatedProperties: true
++        unevaluatedProperties: false
+ 
+ oneOf:
+   - required:
+diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+index 1a7d45a8ad66..ad1793eba31a 100644
+--- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Realtek switches for unmanaged switches
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+ 
+ maintainers:
+   - Linus Walleij <linus.walleij@linaro.org>
+diff --git a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+index 7ca9c19a157c..eb9ea25efcb7 100644
+--- a/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+@@ -14,7 +14,7 @@ description: |
+   handles 4 ports + 1 CPU management port.
+ 
+ allOf:
+-  - $ref: dsa.yaml#
++  - $ref: dsa.yaml#/$defs/base
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/net/ethernet-switch.yaml b/Documentation/devicetree/bindings/net/ethernet-switch.yaml
+index f698857619da..0d417997c163 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-switch.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-switch.yaml
+@@ -25,6 +25,8 @@ properties:
+ patternProperties:
+   "^(ethernet-)?ports$":
+     type: object
++    additionalProperties: false
++
+     properties:
+       '#address-cells':
+         const: 1
+@@ -36,10 +38,6 @@ patternProperties:
+         type: object
+         description: Ethernet switch ports
+ 
+-        allOf:
+-          - $ref: /schemas/net/dsa/dsa-port.yaml#
+-          - $ref: ethernet-switch-port.yaml#
+-
+ oneOf:
+   - required:
+       - ports
+@@ -48,4 +46,20 @@ oneOf:
+ 
+ additionalProperties: true
+ 
++$defs:
++  base:
++    description: An Ethernet switch without any extra port properties
++    $ref: '#/'
++
++    patternProperties:
++      "^(ethernet-)?ports$":
++        type: object
++
++        patternProperties:
++          "^(ethernet-)?port@[0-9]+$":
++            description: Ethernet switch ports
++            $ref: ethernet-switch-port.yaml#
++            unevaluatedProperties: false
++
++
+ ...
