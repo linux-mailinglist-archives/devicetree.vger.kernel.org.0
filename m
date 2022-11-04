@@ -2,356 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39699618F85
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 05:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0126618F8F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 05:52:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbiKDEmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 00:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        id S229964AbiKDEwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 00:52:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230460AbiKDEl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 00:41:59 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2059.outbound.protection.outlook.com [40.107.101.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4336C27B3F;
-        Thu,  3 Nov 2022 21:41:58 -0700 (PDT)
+        with ESMTP id S229539AbiKDEwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 00:52:20 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2090.outbound.protection.outlook.com [40.107.244.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDD0B20F69;
+        Thu,  3 Nov 2022 21:52:18 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WqlpDlNwxCAFIfPttwdDECu35/sXhWQas7SQfgqS/KOqNg5ndFsd4717Ujwe00cDNQDitSwagw+Gk7sb/AUuptU8xXRMDgxrcu9GMAvjuV3yR5I64co9wBB1H5ngPTPQV0KISiHh5gt90R56ZTnHfVyf29khmpcM0Wt3fwHgBHUWx5/mffF/F17Z+tJuk3Bgup/YQAVQkbeBtQXS1nKUkzHtU2J/kFpp8PX5QGG+VgHQdLW9lqQL9Te507nqDl+j+5lbi+bCGRT7ayb4J1b6Bgwo0HzEOuwqo/99DPdLsnQIb0NNLRFMfOHutPTJo8OLWPP+lyZmVklxsnWjMDZs2A==
+ b=VMgNW9zU9ZwMZVsBcP16T36QpytJzhE6ZsVqZx0xB3zVFFK6WtVY1hsWkoijIt2SE0wzRW+qCyyD/Q3ImYi4Rv1i1k4GOctTEAEkxRaqDU7BkpQHNuAQeC8qMcrGi1Xoiha+km7cYMqIRE9ZHwalfiEexWdb7UI8++ZGdDrLuFljFNq9I4AoqErQokZsAL7uIjACVpJaNTjAD7NqM9NN6jDrVryFX1Aqp5I2ocIlBUC2vCNQhfil6W1FOOC97Rsydh1CKy8NO5b6IhIYG6YRCyu1eufxDQ/QdkOi/5RhUZ72oUNWPPj9JkcBIZxFKJM9bJvBFLnVufO1ulroS/Ifng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WPf5slXD/0A/lzoCCQmUrBL/5eUL8LwhIv0isd3h2XY=;
- b=Gb9XvMoxo69WdqcQUSrME0jWCFEAyKmiUhUAlMNVIC5hz4t8QNS5o0wTe0I8hjwTdFRtiqwBpgJt5aIJjXFDRZYtqGdPYfiyUO97tM9fZi37Z8ezNX0RDqSRTBrv6armtkTMPv4aKIUa55MBOkgjjvsFRf3raaLxOb3tcDQt+5SrOkekkURJXH93Qlcz06yJTPYiQlRTZOPbp2BEEc4bed87x1N10v5cc4Hnwi6UuPNIVdlJKhYJ80RWEiu/2fFR6zPAodlVRQ5j8rOhPnKyPX+M3Awqfn8sMnc61HZmrAV0XWEHVnciU0+wHc9aKldZUwmdXUhah/dutEPESJaSzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=OFkstsAjF2HZsft3kh4I2WvApenJcnSOsmWoyY2jZVE=;
+ b=VIdpQeSn+ljLNIaSi3WdVvWEbj8WoV1SiyrcaIyjoD7t8bE3SoCTMe6+TDjTYgRj4GygLKeLLLz5HGZEDQUGgaDbOvF1giFzpOuu87nb9czh5acpBr533rO/HLKFG/UicQijFssqeF5ohGrB065kaw5wneciumSp2itwLs8KuKmMd5cAerRBlr33u+LK01SA8z7rk0htjcyXAr+vMO8pIeJkGyS5uOQCpngFfY5Vzp6qMjn5uitrxDmZ7HLNQrI9GQKUuz7I7Pc+NaM/2+oEI9+pWPdhVDJqFgm/E3RUCpxH4ZpTM89RYMgTb2YUAukIK/VWsKlKsABGgBsJHWz0NQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WPf5slXD/0A/lzoCCQmUrBL/5eUL8LwhIv0isd3h2XY=;
- b=RWuOI33P2wQXByK19xsWpoO9q7Vu4UTJoeLq21ZPI6d87udTcznAqIXqGS1OaVzbhOaOSZXxfCz6WoAI3DxD6MEwqhsU6YZ6l84q8k2VZGGQ43ZJVG0k0N+k/pxgijzAnYhgH3ul6J7Shpdxrsk8sL246rsmZoxwnQaW0/5XQCo=
-Received: from BN0PR04CA0006.namprd04.prod.outlook.com (2603:10b6:408:ee::11)
- by SA0PR12MB4431.namprd12.prod.outlook.com (2603:10b6:806:95::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Fri, 4 Nov
- 2022 04:41:51 +0000
-Received: from BN8NAM11FT023.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ee:cafe::cc) by BN0PR04CA0006.outlook.office365.com
- (2603:10b6:408:ee::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22 via Frontend
- Transport; Fri, 4 Nov 2022 04:41:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT023.mail.protection.outlook.com (10.13.177.103) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5791.20 via Frontend Transport; Fri, 4 Nov 2022 04:41:50 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 3 Nov
- 2022 23:41:49 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.31; Thu, 3 Nov
- 2022 21:41:48 -0700
-Received: from xhdarjunv40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.31 via Frontend
- Transport; Thu, 3 Nov 2022 23:41:45 -0500
-From:   Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-To:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski@linaro.org>
-CC:     <bhelgaas@google.com>, <michals@xilinx.com>, <robh+dt@kernel.org>,
-        <nagaradhesh.yeleswarapu@amd.com>, <bharat.kumar.gogada@amd.com>,
-        Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Subject: [PATCH v3 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML schemas of Xilinx NWL PCIe Root Port Bridge
-Date:   Fri, 4 Nov 2022 10:11:35 +0530
-Message-ID: <20221104044135.469797-2-thippeswamy.havalige@amd.com>
+ bh=OFkstsAjF2HZsft3kh4I2WvApenJcnSOsmWoyY2jZVE=;
+ b=PjQ8WeFmjV6J6ssCrbdHLfH0A2e/Ut3k9n9xeP1l4ixFmFlj+wnh7pVgrWguz11SNBEG/RoXkAuG01ExajuI2NSf2cC7RznZgsmXDo+Q/hFJm5BFnWfUguI0v2NelTKZ+zaM51gOz9xT/fg3FA/H5864vCrGriVw7yGRMr3hNAo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by CY5PR10MB5986.namprd10.prod.outlook.com
+ (2603:10b6:930:2a::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.22; Fri, 4 Nov
+ 2022 04:52:16 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::a8ed:4de9:679e:9d36]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::a8ed:4de9:679e:9d36%4]) with mapi id 15.20.5769.021; Fri, 4 Nov 2022
+ 04:52:15 +0000
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        =?UTF-8?q?n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 net-next 0/6] dt-binding preparation for ocelot switches
+Date:   Thu,  3 Nov 2022 21:51:58 -0700
+Message-Id: <20221104045204.746124-1-colin.foster@in-advantage.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
-References: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
-MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: BY3PR03CA0023.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::28) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT023:EE_|SA0PR12MB4431:EE_
-X-MS-Office365-Filtering-Correlation-Id: 19a5cf3b-fa8d-4553-6b32-08dabe1ee406
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|CY5PR10MB5986:EE_
+X-MS-Office365-Filtering-Correlation-Id: a24eda6b-5a37-49d4-4765-08dabe20581c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: aMPBqAF6rP/Xa0xh5vym4xyAVqsf+Y298kB7GQOEg/mDKQ7esQ9Kgxnj3+V16499pBaV5eyj0cWvaqxxCXIJADp75KeqGcOgzNb5S9HeXu/477O9IsBlZpm6QPpXJsWjhi9vFJfafqg0Ha5sNCOnYL/T+sVnlmomtyZUFqVxK2QxZiphfoixD1nVbZ9W0D1BNxHWL54z3YIZT43B+ibL9XvM/p8TeM8b8IqFNH5QzAKZGfdaSxocCJqVJQGpF8ZTtavvJYjGwxQZPqhPKtl7R0FznSgaupaFDscrRPB4e8JvMsMVqJwzEGNEwfp1Zzk3sQQVd6ElRmmXccMulHDyrjzmOMUzcobzHgOrTemq4tqLF9vkWncu1HbdizTePNEWOWO9Brovw+0MjUsAII/M+lU24FkzaJ7KIqIZxVCRrIN5IDRJKbAWyRzWadDmZIHRRLDhaN6YdE9Etckw33fmfEituSLJkOUrrbhCuFVX6vHpvvgEgQTtQ4/PnRKFA1rjmVd15qeG6eo3bOie8QMBLtPDsyVNzmjM2dCzOurz6SUiOMOEmUbs7BY0XWXyVNyI2bgLP5TTJmleWwxRIpnic1gZgCpao0xdIEEi3VBvJso7qwShy0vw82wedyIJeOXjUCxog3vX9+pnly3FUhGRceMpqX5EwRPzJ/vy0TbkZTET++yBnuNZkwTuA4Lj2SIL4APn1fBuVgc0yEGS6+YV7JcpzflNHRQga734ycw3WM8bTNqDtQpQANwvBVSxa+fplPBnwdG3rT+p0xxWZyjGDDh4MWqgeeUnNsNccFGSUvrdBizxHZu3bLhoRBRE/G5n9wSvkPhI4oMWKRaljuWR8kVMcfqd/58XAg9bpDNhlPEp8P8fUfFb52pozQnH8LaB
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(39860400002)(396003)(451199015)(36840700001)(40470700004)(46966006)(478600001)(966005)(86362001)(82310400005)(40480700001)(356005)(81166007)(54906003)(110136005)(6666004)(316002)(83380400001)(36756003)(70206006)(70586007)(1076003)(186003)(8676002)(4326008)(426003)(47076005)(2906002)(336012)(41300700001)(40460700003)(2616005)(36860700001)(5660300002)(82740400003)(44832011)(8936002)(26005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2022 04:41:50.9799
+X-Microsoft-Antispam-Message-Info: oYpn623zXY0C/gwFix5u+0XQ7cKuLyG04yeDO4FHr73aOVbgBCK8xAo3ifarK8rtV4gTzrJ+2CCJ040qHSk2H0ZwecduSqzAtoNeE7CxWjXUHHI596wP4bYOG2GQyaciX4NcVFGu2DW2rv/A7GGgxd8zLpsFOebORzc8yT1bIU8U8qnulRvUo3kUv4tNyumz40AAwFhiXnE3sj6flNDPOoDLqJ0aM/GGeU2MLnVpTvUmDRupee5AsZmn45tBMxO541RDcpzdcKWXsnTLAZovg1HXmzPKXI0KE0zTB0WIH8anAsNVFcKggbTRYuHp8j/1ghfL4DrkSzQCqEdCl+7WtgoqRv/Jn/NREc66XEAbsBTpBFucq/OQ6UcH3z+1so4Px7QLLhn6a+OVA6f77CULJSqZYufSvxRaFWSMXkDktBXXsUYBsh/jReHiPc0JfD39HcKDGN6/QAufpI3WkBoKuv0IQKuN5Pf0HwPOU01lH0j+udo0oiJuaq+FcGE8EwGCTdag0qS5tgMdIDngBErEkRmogH2OXJbjNjA105606NqXjVbU+bqZlQV/U2ZmU0Ec8OLXIIsw9i2XLCWhOvfsYhtOLTLHVFJB0njZkdj/FWprAo/IGkZSLI69wcDjIfq6w4RXb/9EbZpB2BetqX0B9NRODt8MzX5eJPzxUd038jz2yR9ptw2tevlq0WBJYirEXj3RUY6d0OkaBY/GXcCN2ed1WTL1e9XpmkMIt/hwK+IViMzRf0iuP1Cqh/4zLLVgo4EUITLJNsONNTjHNcmnHEnpdII7GxNzuw3BNvUd+VA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(346002)(396003)(136003)(39840400004)(366004)(451199015)(86362001)(36756003)(316002)(38350700002)(38100700002)(6666004)(8676002)(2616005)(6506007)(66946007)(478600001)(966005)(54906003)(52116002)(66476007)(44832011)(6486002)(2906002)(5660300002)(7416002)(186003)(8936002)(4326008)(6512007)(83380400001)(1076003)(66556008)(26005)(41300700001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWlJN0tVK1BQZG1TQVdQNkRFVTZ2OU9ZYWtBMG9Nd1pjZW13Yk1sK0hZcUJW?=
+ =?utf-8?B?MXh1ZVpsa1F3bXc4MWR3bDlOZGNBNWxHZU1HbGtmdTJ0dFY5TG1wcGl6ZDdD?=
+ =?utf-8?B?ZFUxSTFNTGtlMWZTMmUvOEhwK2tIVURLTmQ4Vk5IVnY3blhkVlk4N3NJNk8x?=
+ =?utf-8?B?MnBzSGJ1enlicWxLMTlpOHFYMEVmdXNNWUw4WmFnMkxxeW5HeW12ZDBJUmtE?=
+ =?utf-8?B?YkZkSnpObnFrVFhFRGxwNWVOK2VVNGpySitKNjRGdXhaWEZkYTB4YjU0RHJD?=
+ =?utf-8?B?V3NUOHVOcW9jcWVJdVlOd2UrRE52aFN1OUhjZHBuK1NyYjVENmZDVnNaOHVo?=
+ =?utf-8?B?RndYaUp2TVBJSzREdWw0b1U5aFIvRW0rbDVRYzNDb0VFTC9OTk5oZThQYm5I?=
+ =?utf-8?B?TTlmS1RwRTlTaWlJLzBIdG1LZ29rd0YybnVMWVZCcEpRQjQ3U1JkRHNOakFX?=
+ =?utf-8?B?Z1ZQV3YyU3RaaE9veDh4VHBNQzFyelllMmVycVp4YW1VZFZEc2dYQ2pycmpV?=
+ =?utf-8?B?dG45djdnMW01dzIzZ0xuSnErQUNMd3M0S0E0L3BtRzhEZDY3aGNUVEpRVElN?=
+ =?utf-8?B?MFYyYys4emJnYlFxRVpsYURPaHdYTDNiSWpocUZrZG93cGFHQlpEVFpyQ0My?=
+ =?utf-8?B?STFDUHZkbE9kLytRa2JDSG5aWlc4Nk9EdDlCbXV0bml3bE15MWdCVlR1Szlr?=
+ =?utf-8?B?anlmNisvUE5jZENVbnZqUEN1bFJZYllFWnRpaWY5d2syeXZmSWh3Qm0vWXdG?=
+ =?utf-8?B?VmRVYmFmTVhqQjUyb0c5NlU1dmdmMnVuZFoxdXhYcUMyeklVTHk4NlNMMTkz?=
+ =?utf-8?B?RmVqZXhxbVJYL3ZFb3JrZ0tJZXRJcWR3OUVDdHV0dVJiYVVWUjl2b3JlWjM3?=
+ =?utf-8?B?S0JNWmk0UU0wS3BYY3dEOGFKS2hmczJvL2VpNldXK1dRTHZCdVI1aW1pMDlZ?=
+ =?utf-8?B?ZTFJUEl4cHI0ZWtsTFNXdzFXTVFzTFNBNFpHbzh0NHA4alpSemtpNmI2WjFG?=
+ =?utf-8?B?eXJKWk5oek9QTXNUbUhwbjloak85ZG1NUkkzNFN6QmFwaUdRNUJ5aDF6WFVY?=
+ =?utf-8?B?Q3kzVEdPU1gwVTAxeUdqYlJTM1M4SFhvVlkxenNYK3FMaEdyY0ZXNHZXUTdl?=
+ =?utf-8?B?OVdwVjFXOXRGNmZtdEEvYXpIVFBxeXd4R0hpMkdiY2tubWhoMnluZ2ZLMHdI?=
+ =?utf-8?B?ZG1kMVJVVit6WGJGemR0U2pRRWJVRHlRMmRWem1SbTc3eTdURnNKTFMxVC9u?=
+ =?utf-8?B?SFQ1c1B3YXJnYjlEWXY2VS9OZFRtN2lUWDFVazQrdjNSMHdCY2FIbHVKdUoz?=
+ =?utf-8?B?R0NDNVZ5Q0VHY1dOVVo3cys1MFpERDdvWFVIcWgxdHBWQnNXdFBwYTI4NDNj?=
+ =?utf-8?B?Y294TVlxaFdNYmtXdkhTSm1XS2pJQTBKNEw5Nm91YUhWTkdBOG9OMEhQVm9w?=
+ =?utf-8?B?WEFjR2hSd2NBSEZaOGYwMml6V0ZHVE9rcXQ1UmhFdGpxRlVCQnZ3MzdHZlNY?=
+ =?utf-8?B?KytUTFRCMFYwcVc4Y2QzVFZUaUE0MEJDVkh0YXdaN0xDZzRjTStxaExpNmNr?=
+ =?utf-8?B?R0lGZElFQ3FwZGo1MGorZmpFM0tCa3ovcXJaN0YwV3d6dkY3dUNFRldpakxk?=
+ =?utf-8?B?MFUraEl2NDY5M25USFo1NXpvNi9VYmpxWUdadCszQTdoOFBSWjU0Nm1EYkd1?=
+ =?utf-8?B?amlkZDhLWldmbldhU3A4dkdBaTh5dytHMkZtcUlMczFQWWJqNkN4WUNIV2FP?=
+ =?utf-8?B?Y211RzA3VHpiODhrOXhGNDgvaWsrSkM2NE5qU1RBdFlJVVNUWGF1empuRGV3?=
+ =?utf-8?B?L0hHYmcxUWlUeCtENDdYRVpBZFA1enc5eHBHTE1QTTNjWGJ1LzVXWFduaVZv?=
+ =?utf-8?B?Uis3cnlKd0RDYXJEY25naEx0NHNFTmM2U2o5SjZ2QXZOYkRXWlhCb0Zod1hF?=
+ =?utf-8?B?RUtkMk9rNGZxMUdPUzIrMDRhZThuNHpKajBocjVMNkJicklyS3RnQkk4anpI?=
+ =?utf-8?B?OGNVcHRVZ2VYQnVma2RWVkJZSzNwQVZBcUxsSTY4TGRIL21Hd3VMUjEwc3Ur?=
+ =?utf-8?B?MW1wa01UdkI4WCtoVW5YYlRuM0Y4ZWFnZC9PcjVzc1FUSEdHcG9mK2EwY0N1?=
+ =?utf-8?B?ZW9NeHBkbzIwcVB5K3h1MnBBMERCblRZZ2s2YUdrV1FXSmFHb2VCTXFKa1dq?=
+ =?utf-8?B?eFE9PQ==?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a24eda6b-5a37-49d4-4765-08dabe20581c
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2022 04:52:15.6262
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19a5cf3b-fa8d-4553-6b32-08dabe1ee406
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT023.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4431
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BO4cLDkgnryZwp9FFdUoZjpXq29jTrabxd6pIw7fnfUrL+mgKkDlQfZseZCQAjheuW4AJbxX/X1vQsnJXVvbI7v+fOHEybYyIgPYDcMVOqQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB5986
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
-dt binding.
+Ocelot switches have the abilitiy to be used internally via
+memory-mapped IO or externally via SPI or PCIe. This brings up issues
+for documentation, where the same chip might be accessed internally in a
+switchdev manner, or externally in a DSA configuration. This patch set
+is perparation to bring DSA functionality to the VSC7512, utilizing as
+much as possible with an almost identical VSC7514 chip.
 
-Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+During the most recent RFC for internal ethernet switch functionality to
+the VSC7512, there were 10 steps laid out to adequately prepare
+documentation:
+
+https://lore.kernel.org/all/20221010174856.nd3n4soxk7zbmcm7@skbuf/
+
+The full context is quoted below. This patch set represents steps 1-7 of
+the 10 steps, with the remaining steps to likely be part of what was the
+original RFC.
+
+The first two patches are specifically rewording and fixing of the MFD
+bindings. I kept them in this patch set since they might cause conflicts
+with future documentation changes that will be part of the net-next
+tree. I can separate them if desired.
+
+
+
+Context:
+
+```
+To end the discussion on a constructive note, I think if I were Colin,
+I would do the following, in the following order, according to what was
+expressed as a constraint:
+
+1. Reword the "driver" word out of mscc,vsc7514-switch.yaml and express
+   the description in terms of what the switch can do, not what the
+   driver can do.
+
+2. Make qca8k.yaml have "$ref: dsa.yaml#". Remove "$ref: dsa-port.yaml#"
+   from the same schema.
+
+3. Remove "- $ref: dsa-port.yaml#" from mediatek,mt7530.yaml. It doesn't
+   seem to be needed, since dsa.yaml also has this. We need this because
+   we want to make sure no one except dsa.yaml references dsa-port.yaml.
+
+4. Move the DSA-unspecific portion from dsa.yaml into a new
+   ethernet-switch.yaml. What remains in dsa.yaml is "dsa,member".
+   The dsa.yaml schema will have "$ref: ethernet-switch.yaml#" for the
+   "(ethernet-)switch" node, plus its custom additions.
+
+5. Move the DSA-unspecific portion from dsa-port.yaml into a new
+   ethernet-switch-port.yaml. What remains in dsa-port.yaml is:
+   * ethernet phandle
+   * link phandle
+   * label property
+   * dsa-tag-protocol property
+   * the constraint that CPU and DSA ports must have phylink bindings
+
+6. The ethernet-switch.yaml will have "$ref: ethernet-switch-port.yaml#"
+   and "$ref: dsa-port.yaml". The dsa-port.yaml schema will *not* have
+   "$ref: ethernet-switch-port.yaml#", just its custom additions.
+   I'm not 100% on this, but I think there will be a problem if:
+   - dsa.yaml references ethernet-switch.yaml
+     - ethernet-switch.yaml references ethernet-switch-port.yaml
+   - dsa.yaml also references dsa-port.yaml
+     - dsa-port.yaml references ethernet-switch-port.yaml
+   because ethernet-switch-port.yaml will be referenced twice. Again,
+   not sure if this is a problem. If it isn't, things can be simpler,
+   just make dsa-port.yaml reference ethernet-switch-port.yaml, and skip
+   steps 2 and 3 since dsa-port.yaml containing just the DSA specifics
+   is no longer problematic.
+
+7. Make mscc,vsc7514-switch.yaml have "$ref: ethernet-switch.yaml#" for
+   the "mscc,vsc7514-switch.yaml" compatible string. This will eliminate
+   its own definitions for the generic properties: $nodename and
+   ethernet-ports (~45 lines of code if I'm not mistaken).
+
+8. Introduce the "mscc,vsc7512-switch" compatible string as part of
+   mscc,vsc7514-switch.yaml, but this will have "$ref: dsa.yaml#" (this
+   will have to be referenced by full path because they are in different
+   folders) instead of "ethernet-switch.yaml". Doing this will include
+   the common bindings for a switch, plus the DSA specifics.
+
+9. Optional: rework ti,cpsw-switch.yaml, microchip,lan966x-switch.yaml,
+   microchip,sparx5-switch.yaml to have "$ref: ethernet-switch.yaml#"
+   which should reduce some duplication in existing schemas.
+
+10. Question for future support of VSC7514 in DSA mode: how do we decide
+    whether to $ref: ethernet-switch.yaml or dsa.yaml? If the parent MFD
+    node has a compatible string similar to "mscc,vsc7512", then use DSA,
+    otherwise use generic ethernet-switch?
+```
+
 ---
- .../bindings/pci/xilinx-nwl-pcie.txt          |  73 ---------
- .../bindings/pci/xlnx,nwl-pcie.yaml           | 152 ++++++++++++++++++
- 2 files changed, 152 insertions(+), 73 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
- create mode 100644 Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
 
-diff --git a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
-deleted file mode 100644
-index f56f8c58c5d9..000000000000
---- a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--* Xilinx NWL PCIe Root Port Bridge DT description
--
--Required properties:
--- compatible: Should contain "xlnx,nwl-pcie-2.11"
--- #address-cells: Address representation for root ports, set to <3>
--- #size-cells: Size representation for root ports, set to <2>
--- #interrupt-cells: specifies the number of cells needed to encode an
--	interrupt source. The value must be 1.
--- reg: Should contain Bridge, PCIe Controller registers location,
--	configuration space, and length
--- reg-names: Must include the following entries:
--	"breg": bridge registers
--	"pcireg": PCIe controller registers
--	"cfg": configuration space region
--- device_type: must be "pci"
--- interrupts: Should contain NWL PCIe interrupt
--- interrupt-names: Must include the following entries:
--	"msi1, msi0": interrupt asserted when an MSI is received
--	"intx": interrupt asserted when a legacy interrupt is received
--	"misc": interrupt asserted when miscellaneous interrupt is received
--- interrupt-map-mask and interrupt-map: standard PCI properties to define the
--	mapping of the PCI interface to interrupt numbers.
--- ranges: ranges for the PCI memory regions (I/O space region is not
--	supported by hardware)
--	Please refer to the standard PCI bus binding document for a more
--	detailed explanation
--- msi-controller: indicates that this is MSI controller node
--- msi-parent:  MSI parent of the root complex itself
--- legacy-interrupt-controller: Interrupt controller device node for Legacy
--	interrupts
--	- interrupt-controller: identifies the node as an interrupt controller
--	- #interrupt-cells: should be set to 1
--	- #address-cells: specifies the number of cells needed to encode an
--		address. The value must be 0.
--
--Optional properties:
--- dma-coherent: present if DMA operations are coherent
--- clocks: Input clock specifier. Refer to common clock bindings
--
--Example:
--++++++++
--
--nwl_pcie: pcie@fd0e0000 {
--	#address-cells = <3>;
--	#size-cells = <2>;
--	compatible = "xlnx,nwl-pcie-2.11";
--	#interrupt-cells = <1>;
--	msi-controller;
--	device_type = "pci";
--	interrupt-parent = <&gic>;
--	interrupts = <0 114 4>, <0 115 4>, <0 116 4>, <0 117 4>, <0 118 4>;
--	interrupt-names = "msi0", "msi1", "intx", "dummy", "misc";
--	interrupt-map-mask = <0x0 0x0 0x0 0x7>;
--	interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
--			<0x0 0x0 0x0 0x2 &pcie_intc 0x2>,
--			<0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
--			<0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
--
--	msi-parent = <&nwl_pcie>;
--	reg = <0x0 0xfd0e0000 0x0 0x1000>,
--	      <0x0 0xfd480000 0x0 0x1000>,
--	      <0x80 0x00000000 0x0 0x1000000>;
--	reg-names = "breg", "pcireg", "cfg";
--	ranges = <0x02000000 0x00000000 0xe0000000 0x00000000 0xe0000000 0x00000000 0x10000000  /* non-prefetchable memory */
--		  0x43000000 0x00000006 0x00000000 0x00000006 0x00000000 0x00000002 0x00000000>;/* prefetchable memory */
--
--	pcie_intc: legacy-interrupt-controller {
--		interrupt-controller;
--		#address-cells = <0>;
--		#interrupt-cells = <1>;
--	};
--
--};
-diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-new file mode 100644
-index 000000000000..e3484cc704e5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
-@@ -0,0 +1,152 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/xlnx,nwl-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx NWL PCIe Root Port Bridge
-+
-+maintainers:
-+  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: xlnx,nwl-pcie-2.11
-+
-+  reg:
-+    items:
-+      - description: PCIe bridge registers location.
-+      - description: PCIe Controller registers location.
-+      - description: PCIe Configuration space region.
-+
-+  reg-names:
-+    items:
-+      - const: breg
-+      - const: pcireg
-+      - const: cfg
-+
-+  interrupts:
-+    items:
-+      - description: msi0 interrupt asserted when an MSI is received
-+      - description: msi1 interrupt asserted when an MSI is received
-+      - description: interrupt asserted when a legacy interrupt is received
-+      - description: unused interrupt(dummy)
-+      - description: interrupt asserted when miscellaneous interrupt is received
-+
-+  interrupt-names:
-+    minItems: 4
-+    items:
-+      - const: misc
-+      - const: dummy
-+      - const: intx
-+      - const: msi1
-+      - const: msi0
-+
-+  interrupt-map-mask:
-+    items:
-+      - const: 0
-+      - const: 0
-+      - const: 0
-+      - const: 7
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  msi-controller:
-+    description: Identifies the node as an MSI controller.
-+
-+  msi-parent:
-+    description: MSI controller the device is capable of using.
-+
-+  interrupt-map:
-+    maxItems: 4
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+  dma-coherent:
-+    description: Optional,present if DMA operations are coherent
-+
-+  clocks:
-+    description: Optional,Input clock specifier. Refer to common clock bindings
-+
-+  legacy-interrupt-controller:
-+    description: Interrupt controller node for handling legacy PCI interrupts.
-+    type: object
-+    properties:
-+      "#address-cells":
-+        const: 0
-+
-+      "#interrupt-cells":
-+        const: 1
-+
-+      "interrupt-controller": true
-+
-+    required:
-+      - '#address-cells'
-+      - '#interrupt-cells'
-+      - interrupt-controller
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - "#interrupt-cells"
-+  - interrupt-map
-+  - interrupt-map-mask
-+  - msi-controller
-+  - power-domains
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/power/xlnx-zynqmp-power.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        nwl_pcie: pcie@fd0e0000 {
-+            compatible = "xlnx,nwl-pcie-2.11";
-+            reg = <0x0 0xfd0e0000 0x0 0x1000>,
-+                  <0x0 0xfd480000 0x0 0x1000>,
-+                  <0x80 0x00000000 0x0 0x1000000>;
-+            reg-names = "breg", "pcireg", "cfg";
-+            ranges = <0x02000000 0x0 0xe0000000 0x0 0xe0000000 0x0 0x10000000>,
-+                     <0x43000000 0x00000006 0x0 0x00000006 0x0 0x00000002 0x0>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            #interrupt-cells = <1>;
-+            msi-controller;
-+            device_type = "pci";
-+            interrupt-parent = <&gic>;
-+            interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 116 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 115 IRQ_TYPE_EDGE_RISING>,
-+                         <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "misc", "dummy", "intx", "msi1", "msi0";
-+            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+            interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
-+                            <0x0 0x0 0x0 0x2 &pcie_intc 0x2>,
-+                            <0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
-+                            <0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
-+            msi-parent = <&nwl_pcie>;
-+            power-domains = <&zynqmp_firmware PD_PCIE>;
-+            iommus = <&smmu 0x4d0>;
-+            pcie_intc: legacy-interrupt-controller {
-+                interrupt-controller;
-+                #address-cells = <0>;
-+                #interrupt-cells = <1>;
-+            };
-+        };
-+    };
+v1 -> v2
+  * Two MFD patches were brought into the MFD tree, so are dropped
+  * Add first patch 1/6 to allow DSA devices to add ports and port
+    properties
+  * Test qca8k against new dt-bindings and fix warnings. (patch 2/6)
+  * Add tags (patch 3/6)
+  * Fix vsc7514 refs and properties
+
+---
+
+
+Colin Foster (6):
+  dt-bindings: net: dsa: allow additional ethernet-port properties
+  dt-bindings: net: dsa: qca8k: utilize shared dsa.yaml
+  dt-bindings: net: dsa: mediatek,mt7530: remove unnecessary dsa-port
+    reference
+  dt-bindings: net: add generic ethernet-switch
+  dt-bindings: net: add generic ethernet-switch-port binding
+  dt-bindings: net: mscc,vsc7514-switch: utilize generic
+    ethernet-switch.yaml
+
+ .../devicetree/bindings/net/dsa/dsa-port.yaml | 27 +---------
+ .../devicetree/bindings/net/dsa/dsa.yaml      | 26 +---------
+ .../bindings/net/dsa/mediatek,mt7530.yaml     |  3 --
+ .../devicetree/bindings/net/dsa/qca8k.yaml    | 18 +++----
+ .../bindings/net/ethernet-switch-port.yaml    | 44 ++++++++++++++++
+ .../bindings/net/ethernet-switch.yaml         | 51 +++++++++++++++++++
+ .../bindings/net/mscc,vsc7514-switch.yaml     | 40 ++-------------
+ MAINTAINERS                                   |  2 +
+ 8 files changed, 112 insertions(+), 99 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-switch-port.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-switch.yaml
+
 -- 
 2.25.1
 
