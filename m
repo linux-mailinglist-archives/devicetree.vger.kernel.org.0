@@ -2,178 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21B3B61957B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 12:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68BEC619594
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 12:46:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230491AbiKDLkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 07:40:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56416 "EHLO
+        id S231682AbiKDLqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 07:46:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229708AbiKDLkD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 07:40:03 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2043.outbound.protection.outlook.com [40.107.21.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8B7120A0;
-        Fri,  4 Nov 2022 04:40:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lndyS40M6h6AnHlr/xrDZju9tqPSRmi/Tu9l4OwWhDTyLWYuZgLN5Uud3SUkcX+H6N4ZBJ84uizCnBwMBgRWUTIJB3GPfcw4XzeXn91RtP6k7HijHeVUzRUr0axYrjj2Vbxe1l162z3kRPc7tp319Qn64Rj89wAknlRqDs2dumbqQu188ibe5T7MYJ33T/g2XBoiPN6vLIgXAhUm9ioopDDj3vuU/pzn5lVeqGB/Ensqn+QmodDNWcWwkoMOlAwds0CqHSdNgYlQEz/i+G6xyaaiJ8rwSM9QCV598RkaG6h10fwMCbpWyAQ6gNpU+rZkERpdkbfuF0mf1XXPB/i2TQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EoecqDn/DXcKTWwBYqVT29HoB+o+gdGMgt1fkPOQbiM=;
- b=ocKHONeRHqzxc9UrawGe8Pj1FixOUzh2dqYBoojYIXSnzXHetBgyLc2pNnz0ZXKfDpic0p1SCPXvj6WW8qQeXttwXnMvGrAdg9RAoBdoRNrTa0Re0hsylD/qRRDyr105TNSJuJ1b3VeNQ8m3KGGMEuM+9au5mAG8aZbIc4IsOMpQrNyCbx/KR0Xj9RUbb3by4k82+e9XLFraeJEjsHl6tbFb0CGCILI6bwE2Acz8icsQL9VsKo3y9fAMZiksg0HQeo3kWKUfUaoNSaY+w1FQPFkYske8mHJzH/E+AYAB8Pqkm4MEi1pkD3MBcntVGr6jY2FkOgSZLh2x+CkcOk+5sQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=suse.com; dmarc=pass action=none header.from=suse.com;
- dkim=pass header.d=suse.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EoecqDn/DXcKTWwBYqVT29HoB+o+gdGMgt1fkPOQbiM=;
- b=5gdgmyTu9jp6EnEZxJizpCFaTzsZxvFT8ne5Hl/pQ3YnSUy2NNEN4L64HBbRgM5C1QpLYoi30F+J6g52Nrvf03GpGrgVRo2DLU+EKztfwgAwarRzcFjhhuOsrCRwql/9kAqKsqUCxUBgDltNjJRHw7f5w9NC7aZEWuvn1HchpRwZlfzTw63oHDzISYMkavLh8Eu7uYQKzvH+mJA/3B4xh8jqxrwkHTWTJnRRCW0EMsa4E4Ruz2xdSNROWW2d0imsN/a9RWD4KuabiTYKu9H/oR7pCsjv0VQEeEMpDW0wlXxOFaJrwx7uKpMjqFAgcRqZmGOBIW3v/NRq4ynAwrSbNw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=suse.com;
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com (2603:10a6:803:4::13)
- by AS8PR04MB8643.eurprd04.prod.outlook.com (2603:10a6:20b:42a::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Fri, 4 Nov
- 2022 11:39:59 +0000
-Received: from VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::2120:d5b6:79db:16a5]) by VI1PR0402MB3439.eurprd04.prod.outlook.com
- ([fe80::2120:d5b6:79db:16a5%6]) with mapi id 15.20.5769.021; Fri, 4 Nov 2022
- 11:39:59 +0000
-Date:   Fri, 4 Nov 2022 19:39:43 +0800
-From:   Chester Lin <clin@suse.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jan Petrous <jan.petrous@nxp.com>, netdev@vger.kernel.org,
-        s32@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        Chester Lin <clin@suse.com>
-Subject: Re: [PATCH 2/5] dt-bindings: net: add schema for NXP S32CC dwmac
- glue driver
-Message-ID: <Y2T5/w8CvZH5ZlE2@linux-8mug>
-References: <20221031101052.14956-1-clin@suse.com>
- <20221031101052.14956-3-clin@suse.com>
- <20221102155515.GA3959603-robh@kernel.org>
- <2a7ebef4-77cc-1c26-ec6d-86db5ee5a94b@suse.de>
- <Y2Q7KtYkvpRz76tn@lunn.ch>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y2Q7KtYkvpRz76tn@lunn.ch>
-X-ClientProxiedBy: FR0P281CA0083.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1e::18) To VI1PR0402MB3439.eurprd04.prod.outlook.com
- (2603:10a6:803:4::13)
+        with ESMTP id S231683AbiKDLqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 07:46:17 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 795FB2CDE6;
+        Fri,  4 Nov 2022 04:46:15 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B91368508B;
+        Fri,  4 Nov 2022 12:46:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1667562373;
+        bh=pumMTjtf9WLT5Pdgy5NFVGx0xDoNEndclDGx6qBWuFs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mJt/MdeEg679KBL5LhTiQ7DJFhCVh+6XsWPbMo9d5/Be79DngcO1Q3K9WSoMiYaBz
+         EpeSIjFf7HX2qvwfvQWuSZKb1hksJFsF2Yry9uioeEuHuw47HuEBnDUXQf21bY1d3q
+         TbOjW9uCCLGIN+8RPqVzhkRmgtNq2VzzMYp93aWOe+F3kq0EJ8v7CP0t+cELJsg0e+
+         ORSyHIm0BJINUfiD5PljgMK4eXxwcp8KKcmF0kc6g3B8f0UZgThjS0v3lPCHdw35C7
+         6aRaLMg0cyxTPSKm6qsJCYgxo2jdGmmrQJfG/lw/U7BjwGKRNkjoYuH0fnDYWVusRp
+         HKJec2vnqG7Xw==
+Message-ID: <fe14e8ba-10e5-94e8-9ca6-04acee0b05e2@denx.de>
+Date:   Fri, 4 Nov 2022 12:41:01 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI1PR0402MB3439:EE_|AS8PR04MB8643:EE_
-X-MS-Office365-Filtering-Correlation-Id: c22322f3-b438-42b5-4a2c-08dabe594d73
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: m2D88KBL/+UZTKzHNXKZHPGI1kEt12F17sKvzl8QxoWKxanY+ah8pAr/vgke2cHAoZOuyNB8bgc/BWvBS+NbYaW1gpnTP1ciCQzpwkwRYD9CJJzxo1gYqlKw5phPfHtrK8b/LDFLrgk17ZSvmNKCAh6lntrwqlzkRGux+80qK6otrA2BTFQf6tN26O0lA1OxjyMzs6fko+GfTejunpH62PREiO0iGQRq3S7q2v3vFgbYCq5RM1BZpZ56vDweeksaQyYiJNAt8JF1ZMx6d67dWDjq07JGYL/5NPkEat0RhFRWgjnQmIPjSN3/AA0w8KF2sn5oY8avsHbvlEJ2g5hk3tyv3VFVYjZZnqLzA5fyCCEuJ1/TqwRa8LWFFrRoNx3jqwpHLNGxVsnpfaPIPuL9vuJomgK8KbAfeDt6KYoLW1SVwHoEML/GdojJy16HHmbZTg0bzl0sEAc8w57DS8MdF3R3q8fqeBe2g6K7/zdkrZYNucAYlPMCKnHIXA7ryXuLP1fVT+buUe4OmKC0KvRUbjVtuV/FNSRx1+AUE1Aw0j5kgPpXbVqkelMJuyjmnxnlHFQa17/7FsuQ+1DTAR5uHZJ/xRlpp14Hpzt5HzvjOkdvYXUNfr/iJQ1DA12IJo0BbIpND5G9HN3zNQrvh3e/7ZmvZoFmruBZ8CCkAMwUOyg2jRnO+/BK63PS0Ti2TybxwJoJVaUmXzLKi4o9xLasV9JM3LhUIl3yMgI+luh2mNQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3439.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(7916004)(136003)(366004)(396003)(346002)(39860400002)(376002)(451199015)(83380400001)(2906002)(7416002)(8676002)(4326008)(6512007)(66946007)(9686003)(66556008)(66476007)(26005)(41300700001)(33716001)(86362001)(6666004)(316002)(107886003)(38100700002)(5660300002)(186003)(8936002)(6506007)(6916009)(54906003)(6486002)(966005)(478600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Lhf5uA48vQ7iml1gm30RHA8IJhnyHLVQgqXZvxwXb5Cml0HpDB4GHWRVUv9J?=
- =?us-ascii?Q?8AntfRC4RNmh8s9rP/jTTbie/r+GvqfgeM4/Ov3DwHrSzOMu9/I49F9Zls0p?=
- =?us-ascii?Q?FR+ELM78qCQth0y/S7/6o+g9nXe6M2lSKOKmQwYRBgnOjk61uF4hBbQyP+65?=
- =?us-ascii?Q?M69XwOL/PMROZhLmbcbRz7IflGeaLKileoptDgFIon+YKfCrZdedkjp0+R5P?=
- =?us-ascii?Q?4ziwqO86F9yGv8R4nw6AFrYmDtL5PPXojHQW/BHVEIJMCXXJi8o/pys+89PS?=
- =?us-ascii?Q?i3YRChIBNUhQNq5XoBCkYeVaLe7vGYqk/KSDc6clYRRAcQECpxA6gnXx/m++?=
- =?us-ascii?Q?EaZZ1PE000tNZPh0rW22Rzf6Rqsb+N7a67B7DkwjuY784OGxSyd2shGeVKw2?=
- =?us-ascii?Q?29StC+3/z0TuSRnsFfyxzxXWf+Z+qOf0h1uB9fY/Mi8JzppCD1EBqI2WOvx2?=
- =?us-ascii?Q?/wZiFmHXC0F4Ne89A4kj3l0ORzoT0J2vfmFcOi4njdh1ackJfiJ1YR/IThSD?=
- =?us-ascii?Q?a8ZZRUQTf8pL28i1cxwHDT/8GGjZx5ws7zb+6Lu23POyMV7I1WZQPc4w6eHM?=
- =?us-ascii?Q?qs85aT6G1OjOoNL7UALaOlcumvEAs7WMQv5He6eHCziAjIHku/EnCzYOqw/D?=
- =?us-ascii?Q?4i96nbadG+PvW13I5+vKxHWfB7yltUtxn6srCl38txXtykiOt+12VyzD47C2?=
- =?us-ascii?Q?yTd0rTDBSD2KXF2ndA4tdrwBZS+AlpcD0QWcDn9qzi7vaSQmhjkvN0LpTGad?=
- =?us-ascii?Q?3Vt6ajQ8PNv3NDnd5KghNDLRIjGGWb8b6qjDuMZUETFSlIFvXvxmcfTIydFS?=
- =?us-ascii?Q?+S8WyDO+JxXn33zVTRj4Kaxn5bfi8TmzRVqgpJQlGtZpbJT82nXRr+flA5p/?=
- =?us-ascii?Q?tFXyHcvdVVbuubDLlMn92n7ACU05/r5paiD5iaKsDFONimLnbx+l28pa01DH?=
- =?us-ascii?Q?YZfkboAYypBVJ2d0zM5qwP2O7O2fOSx4G5krCXagdTXt2rCrBzzCeKsP+WoC?=
- =?us-ascii?Q?A6J5dsv7tsc7MlNKC5DaO81Vx5YSj6tOe6+qk2j453JV3fHyUUwKCrgG337d?=
- =?us-ascii?Q?kFQ7FXm7kHbeJ4G+xYppQor/Ok2q9T5CfyfTPEf9URC41VvvyB+304aWS8p2?=
- =?us-ascii?Q?9ChpdXdcp/Zj1bPRA6IOawhfT2WioOwY5xoC/lQEQ80VsdmcAHjUK4V1JS8L?=
- =?us-ascii?Q?n8BL4K5PP9wddjTOUmEnoGr748oLr2N1HQMESlh9RSRFoUtNOiAFraXaWUpw?=
- =?us-ascii?Q?a1mLXYgQsIVJ6VdaeehYGHCJaTMKGpfs6S0wQkt5ncxf37IWTn82mUGgaXS4?=
- =?us-ascii?Q?u/6Y9PkQfHC1AYhISr9A4E/ADOncApswyufa/c/7dApkmm9z3KsuAt1CV3cF?=
- =?us-ascii?Q?1lxQ+2ryDOh6EwF/DDx0/15aTzauYLz5r4TP/xaTEQw1B1MaNK+t9UkJO4ec?=
- =?us-ascii?Q?jsCPHQA5d8DYue8GuIZcOw+yW4BotgHPmewTztkxayRS2nWBpQog4GR5sbAJ?=
- =?us-ascii?Q?zwDkuGsYxg8OEXOeL2yA28KTyHfTKG67UwQdOJcvVL4C8ydVv9FVQlkGctKo?=
- =?us-ascii?Q?VfBAERKXybRpk4fMnLw=3D?=
-X-OriginatorOrg: suse.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c22322f3-b438-42b5-4a2c-08dabe594d73
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3439.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2022 11:39:59.0551
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0YVA0ShnyCsgPgYSQ4IO2+nFWz4wbry0IK3CYn/YpmaBmyN2QehjQLdlJlFjeJ8U
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8643
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH 2/3] dt-bindings: imx6q-pcie: Handle various PD
+ configurations
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+References: <20221102215729.147335-1-marex@denx.de>
+ <CAL_JsqLg893rWwEQhgf_9=78WNiA7bstqPVvP6SQe4SyAhhyUw@mail.gmail.com>
+ <2908d3ff-f476-4750-90cf-1554492c69c9@denx.de> <2911185.BEx9A2HvPv@steina-w>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <2911185.BEx9A2HvPv@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew and Andreas,
-
-On Thu, Nov 03, 2022 at 11:05:30PM +0100, Andrew Lunn wrote:
-> > > > +      - description: Main GMAC clock
-> > > > +      - description: Peripheral registers clock
-> > > > +      - description: Transmit SGMII clock
-> > > > +      - description: Transmit RGMII clock
-> > > > +      - description: Transmit RMII clock
-> > > > +      - description: Transmit MII clock
-> > > > +      - description: Receive SGMII clock
-> > > > +      - description: Receive RGMII clock
-> > > > +      - description: Receive RMII clock
-> > > > +      - description: Receive MII clock
-> > > > +      - description:
-> > > > +          PTP reference clock. This clock is used for programming the
-> > > > +          Timestamp Addend Register. If not passed then the system
-> > > > +          clock will be used.
+On 11/4/22 08:19, Alexander Stein wrote:
+> Hi Marek,
 > 
-> > Not clear to me has been whether the PHY mode can be switched at runtime
-> > (like DPAA2 on Layerscape allows for SFPs) or whether this is fixed by board
-> > design.
+> Am Donnerstag, 3. November 2022, 17:25:46 CET schrieb Marek Vasut:
+>> On 11/3/22 13:32, Rob Herring wrote:
+>>> On Thu, Nov 3, 2022 at 3:29 AM Alexander Stein
+>>>
+>>> <alexander.stein@ew.tq-group.com> wrote:
+>>>> Hi Marek,
+>>>>
+>>>> Am Mittwoch, 2. November 2022, 22:57:28 CET schrieb Marek Vasut:
+>>>>> The i.MX SoCs have various power domain configurations routed into
+>>>>> the PCIe IP. MX6SX is the only one which contains 2 domains and also
+>>>>> uses power-domain-names. MX6QDL do not use any domains. All the rest
+>>>>> uses one domain and does not use power-domain-names anymore.
+>>>>>
+>>>>> Document all those configurations in the DT binding document.
+>>>>>
+>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>>> ---
+>>>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>>>> Cc: Lucas Stach <l.stach@pengutronix.de>
+>>>>> Cc: Richard Zhu <hongxing.zhu@nxp.com>
+>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>>>> To: devicetree@vger.kernel.org
+>>>>> ---
+>>>>>
+>>>>>    .../bindings/pci/fsl,imx6q-pcie.yaml          | 47 ++++++++++++++-----
+>>>>>    1 file changed, 34 insertions(+), 13 deletions(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>>>>> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
+>>>>> 1cfea8ca72576..fc8d4d7b80b38 100644
+>>>>> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>>>>>
+>>>>> @@ -68,19 +68,6 @@ properties:
+>>>>>        description: A phandle to an fsl,imx7d-pcie-phy node. Additional
+>>>>>        
+>>>>>          required properties for imx7d-pcie and imx8mq-pcie.
+>>>>>
+>>>>> -  power-domains:
+>>>>> -    items:
+>>>>> -      - description: The phandle pointing to the DISPLAY domain for
+>>>>> -          imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
+>>>>> -          imx8mq-pcie.
+>>>>> -      - description: The phandle pointing to the PCIE_PHY power domains
+>>>>> -          for imx6sx-pcie.
+>>>>> -
+>>>>> -  power-domain-names:
+>>>>> -    items:
+>>>>> -      - const: pcie
+>>>>> -      - const: pcie_phy
+>>>>> -
+>>>>>
+>>>>>      resets:
+>>>>>        maxItems: 3
+>>>>>        description: Phandles to PCIe-related reset lines exposed by SRC
+>>>>>
+>>>>> @@ -241,6 +228,40 @@ allOf:
+>>>>>                    - const: pcie_bus
+>>>>>                    - const: pcie_phy
+>>>>>
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatible:
+>>>>> +          contains:
+>>>>> +            const: fsl,imx6sx-pcie
+>>>>> +    then:
+>>>>> +      properties:
+>>>>> +        power-domains:
+>>>>> +          items:
+>>>>> +            - description: The phandle pointing to the DISPLAY domain
+>>>>> for
+>>>>> +                imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie
+>>>>> and
+>>>>> +                imx8mq-pcie.
+>>>>> +            - description: The phandle pointing to the PCIE_PHY power
+>>>>> domains +                for imx6sx-pcie.
+>>>>> +        power-domain-names:
+>>>>> +          items:
+>>>>> +            - const: pcie
+>>>>> +            - const: pcie_phy
+>>>>> +    else:
+>>>>> +      if:
+>>>>> +        not:
+>>>>> +          properties:
+>>>>> +            compatible:
+>>>>> +              contains:
+>>>>> +                enum:
+>>>>> +                  - fsl,imx6q-pcie
+>>>>> +                  - fsl,imx6qp-pcie
+>>>>> +      then:
+>>>>> +        properties:
+>>>>> +          power-domains:
+>>>>> +            description: |
+>>>>> +               The phandle pointing to the DISPLAY domain for
+>>>>> imx6sx-pcie,
+>>>>> to +               PCIE_PHY power domain for imx7d-pcie and imx8mq-pcie.
+>>>>> +
+>>>>
+>>>> Doesn't it makes more sense to keep the power-domains descriptions in the
+>>>> common part on top, as before, but adjust minItems/maxItems for each
+>>>> compatible?
+>>>
+>>> Yes. Keep properties defined at the top level.
+>>
+>> The problem I keep running into here is that if I apply patch like below
+>> (basically what you and Alex are suggesting), I get this warning:
+>>
+>> arch/arm64/boot/dts/freescale/imx8mm-board.dtb: pcie@33800000:
+>> power-domains: [[86]] is too short
 > 
-> Does the hardware support 1000BaseX? Often the hardware implementing
-> SGMII can also do 1000BaseX, since SGMII is an extended/hacked up
-> 1000BaseX.
+> I guess you need this:
+>> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -65,6 +65,7 @@ properties:
+>         required properties for imx7d-pcie and imx8mq-pcie.
+>   
+>     power-domains:
+> +    minItems: 1
+>       items:
+>         - description: The phandle pointing to the DISPLAY domain for
+>             imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
 > 
-> If you have an SFP connected to the SERDES, a fibre module will want
-> 1000BaseX and a copper module will want SGMII. phylink will tell you
-> what phy-mode you need to use depending on what module is in the
-> socket. This however might be a mute point, since both of these are
-> probably using the SGMII clocks.
-> 
-> Of the other MII modes listed, it is very unlikely a runtime swap will
-> occur.
-> 
-> 	Andrew
+> I have a similar WIP change on my tree which add 'minItems: 1' to power-
+> domains and also sets 'maxItems: 1' to power-domains for everything being not
+> fsl,imx6sx-pcie.
 
-Here I just focus on GMAC since there are other LAN interfaces that S32 family
-uses [e.g. PFE]. According to the public GMACSUBSYS ref manual rev2[1] provided
-on NXP website, theoretically GMAC can run SGMII in 1000Mbps and 2500Mbps so I
-assume that supporting 1000BASE-X could be achievable. I'm not sure if any S32
-board variant might have SFP ports but RJ-45 [1000BASE-T] should be the major
-type used on S32G-EVB and S32G-RDB2.
-
-@NXP, please feel free to correct me if anything wrong.
-
-Thanks,
-Chester
-
-[1] https://www.nxp.com/webapp/Download?colCode=GMACSUBSYSRM -> Membership
-subscription is required although it's free IIRC.
+This is what I was missing, thanks.
