@@ -2,136 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF78A61A1E8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 21:09:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDB1C61A29A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 21:43:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbiKDUJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 16:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54920 "EHLO
+        id S229459AbiKDUnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 16:43:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbiKDUJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 16:09:53 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027B22C653
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 13:09:52 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id l9so3734163qkk.11
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 13:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s2w2x5qgfrs2UH4lH19Zuziwi2d3oMiqWOuY2i6wV+k=;
-        b=BbHsErvmIp1WxlY55kMFQeuoO0DjymG1Js+lbuRznbSV1gD6ahTMrtM9A+Eysndx5Y
-         zk0RM8yBptrLXnGGPvqDk1yw2x36Dr3mvuzBtMdVdSq9wS98XYaiNDc92rCqryoEw17K
-         H404WLabDMsRb54A2XyMj9KNNdU2Tkzn0Pv9w5eWXtxdv2i19k4fetRuDdLdBB4YPzDi
-         Wodvrq6HdF66Oa3Hv2oPGimscsBU4Y8oUTIXe28TIVDzRcNo1qPkVu/QhW3+NfRRBMqf
-         i8JO+je4Hh/ch7fo9SKpJD+7StAJigkt5/2uV7LjA1jLiCrcwA3eO8CA8JaISlqIdgrt
-         e0hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s2w2x5qgfrs2UH4lH19Zuziwi2d3oMiqWOuY2i6wV+k=;
-        b=w97Ug1q9iAVZyak/sWzGGVUqkughc69HYNEDqLOUlANRmTEXO3Dhvz49e9nH8rBwKN
-         DbWdm8w7xMLSwgskxH4e3k9hFbBfNZyGQHXAO6BL//UZsrri7xxGN/XqW8qzRGKTO5On
-         rUuLaIAhoU4u2i74sm2E9WfqiPAQOsp6pT3T7ik6W+z4ls1FwhBp3bfCmYtVjoZ62brJ
-         nJhS6jvjn7MIHMfl8zpforDXIgv6ZZauVJ6xqhOUmLllcqZT0VOtOvIeqKrLzSPFWhGi
-         jqgJ9UlveKCKN6kF2uO8QzRmLeuJ6rR5x9myQjtdwHa8cTpGhiXjeBge2i6EJmRCA5O8
-         ROww==
-X-Gm-Message-State: ACrzQf0tYiQ80zvRlVO9gwlR1i3PGllVdbSVFD9j2q1Mr9o5qz4k6q4j
-        kdZ7Ew+utYmQbCsqzEIi/hwfuw==
-X-Google-Smtp-Source: AMsMyM6yqTk+Qn0lS01FjE4TynKZffWANmYs4XwHwnWPriRKzRd1O4hk4tVEaywrwhFRlbJEi/gw2g==
-X-Received: by 2002:a05:620a:400e:b0:6da:dd3c:7ff4 with SMTP id h14-20020a05620a400e00b006dadd3c7ff4mr25651530qko.682.1667592591116;
-        Fri, 04 Nov 2022 13:09:51 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id bq33-20020a05620a46a100b006eeb3165554sm110636qkb.19.2022.11.04.13.09.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 13:09:50 -0700 (PDT)
-Message-ID: <03251423-b136-e4ff-2485-bbb16c0c7f5b@linaro.org>
-Date:   Fri, 4 Nov 2022 16:09:49 -0400
+        with ESMTP id S229545AbiKDUnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 16:43:22 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700CA43AF1;
+        Fri,  4 Nov 2022 13:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=nnGqb9LOqQYgLcPgmRXAVQSy5zzGJof5WhW0S99FOvg=; b=XDvDONCIZTbpMUmmXq+ko/UtI9
+        CmxdhjnntVJJVYTdWdeQiKISVZfOTdgb9CgozbuQgZPKCbKD3eAsPGSAu/wjNcevT42ZH35qLhi49
+        qZeSuy0w87x3wmtXmHGUa8/dhzOdhiXu+pUXx2r9euOynAT9PMoYHkJqlD/0viJpUOIHc4kNDWBri
+        jIW5+uoEaymYN0yo10KhF58x322AvomoVQE3gyQAcQTO1mFxlWX7kyWc10+1e3m2/5i/GPM/+eIaQ
+        4R6LCXrYOYY2VRcEjJj49SoCqUfccNJmNW0kTbT0ngPN2DKZEC4OqTo8qW2xgy1OysadXn+CgYU/w
+        Zdhfslew==;
+Received: from p200300ccff083a001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff08:3a00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1or3Wu-0004if-Vr; Fri, 04 Nov 2022 21:43:09 +0100
+Received: from andi by aktux with local (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1or3Wq-0067YQ-Qi; Fri, 04 Nov 2022 21:43:04 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        alistair@alistair23.me
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2] ARM: dts: imx: e60k02: Add touchscreen
+Date:   Fri,  4 Nov 2022 21:42:51 +0100
+Message-Id: <20221104204251.1458958-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v1 2/7] dt-bindings: usb: hpe,gxp-udc: Add binding for gxp
- gadget
-Content-Language: en-US
-To:     "Yu, Richard" <richard.yu@hpe.com>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "Chang, Clay" <clayc@hpe.com>
-References: <20221103160625.15574-1-richard.yu@hpe.com>
- <20221103160625.15574-3-richard.yu@hpe.com>
- <b85230d4-8fce-ba49-0d6b-8c4d20132cda@linaro.org>
- <SJ0PR84MB2085A64D47E00077EFF8BFE18D3B9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SJ0PR84MB2085A64D47E00077EFF8BFE18D3B9@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 16:03, Yu, Richard wrote:
-> Hi Mr. Kozlowski,
-> 
-> Thank you very much for your quick review and feedbacks.
-> 
-> I will modify the patches based on your feedback accordingly.
-> 
-> On this specific patch, you have questions on how we defined the device/gadget configurations: vdevnum and fepnum.
-> 
-> Please see my answers following the questions:
-> 
->> +  vdevnum:
->> +    description:
->> +      virtual device number.
-> 
-> That's unusual property... Why numbering devices is part of DT (hardware description)?
-> 
->>> Richard: In HPE GXP virtual EHCI controller chipset, it can support up to 8 virtual devices(gadgets). Each device/gadget will be represented by a bit in 8 bits register. For example, the interrupt register bit 0 indicates the interrupt from device 0, bit 1 for device 1 ... so on.  When an user defines a device/gadget, he/she can define the device number as between 0 and 7. Thus, the driver can up to the bit position. That is why we have numbering devices as port of DT.
-> 
->> +
->> +  fepnum:
->> +    description:
->> +      number of the flexible end-points this device is needed.
-> 
-> Similar question.
-> 
->>> Richard: In HPE GXP virtual EHCI Controller chipset, there is a flexible EP pool. Each flexible EP has its own mapping register. The mapping register bit 0 to 3 is for device number (vdevnum) and bit 4 to 7 is for EP number inside the device. The device driver configures the mapping register to assign a flexible EP to a specific device.  Here, "fepnum" is the input letting the driver know how many EP is needed for this device/gadget.
-> 
-> Hope I have answered your questions on "vdevnum" and "fepnum". 
+Add the touchscreen now, since the driver is available.
 
-Unfortunately I don't see your answers... Or actually I am not sure what
-is the answer and what is not. What is unusual, you did not quote my
-email but quoted something else. Please send it again, but following
-normal mailing list netiquette for replies.
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Changes in v2: fix pinmux naming
 
-Here is one:
+ arch/arm/boot/dts/e60k02.dtsi              | 11 ++++++++++-
+ arch/arm/boot/dts/imx6sl-tolino-shine3.dts |  7 +++++++
+ arch/arm/boot/dts/imx6sll-kobo-clarahd.dts |  7 +++++++
+ 3 files changed, 24 insertions(+), 1 deletion(-)
 
-https://en.opensuse.org/openSUSE:Mailing_list_netiquette
-
-Just don't use corporate style of emails on mailing list. We usually
-cannot handle them...
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/e60k02.dtsi b/arch/arm/boot/dts/e60k02.dtsi
+index 935e2359f8df..94944cc21931 100644
+--- a/arch/arm/boot/dts/e60k02.dtsi
++++ b/arch/arm/boot/dts/e60k02.dtsi
+@@ -104,7 +104,16 @@ &i2c2 {
+ 	clock-frequency = <100000>;
+ 	status = "okay";
+ 
+-	/* TODO: CYTTSP5 touch controller at 0x24 */
++	touchscreen@24 {
++		compatible = "cypress,tt21000";
++		reg = <0x24>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_cyttsp5_gpio>;
++		interrupt-parent = <&gpio5>;
++		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&ldo5_reg>;
++	};
+ 
+ 	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
+ 
+diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+index e3f1e8d79528..db5d8509935f 100644
+--- a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
++++ b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+@@ -52,6 +52,13 @@ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
++	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
++		fsl,pins = <
++			MX6SL_PAD_SD1_DAT3__GPIO5_IO06                0x17059 /* TP_INT */
++			MX6SL_PAD_SD1_DAT2__GPIO5_IO13                0x10059 /* TP_RST */
++		>;
++	};
++
+ 	pinctrl_gpio_keys: gpio-keysgrp {
+ 		fsl,pins = <
+ 			MX6SL_PAD_SD1_DAT1__GPIO5_IO08	0x17059	/* PWR_SW */
+diff --git a/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts b/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+index 90b32f5eb529..c7cfe0b70f04 100644
+--- a/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
++++ b/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+@@ -62,6 +62,13 @@ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
++	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
++		fsl,pins = <
++			MX6SLL_PAD_SD1_DATA3__GPIO5_IO06                0x17059 /* TP_INT */
++			MX6SLL_PAD_SD1_DATA2__GPIO5_IO13                0x10059 /* TP_RST */
++		>;
++	};
++
+ 	pinctrl_gpio_keys: gpio-keysgrp {
+ 		fsl,pins = <
+ 			MX6SLL_PAD_SD1_DATA1__GPIO5_IO08	0x17059	/* PWR_SW */
+-- 
+2.30.2
 
