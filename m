@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0090961967F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:47:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FBC1619687
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:48:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231935AbiKDMrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 08:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
+        id S231931AbiKDMse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 08:48:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbiKDMrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:47:13 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC36B252BE
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 05:47:12 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id x21so2974884qkj.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 05:47:12 -0700 (PDT)
+        with ESMTP id S231297AbiKDMsd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:48:33 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F9FB4B0
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 05:48:31 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id 8so2959111qka.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 05:48:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=37mgEruhzOSlqZ+AcYORFybB/gGWQo+VZHLBQmJiMoM=;
-        b=BVPbR9YsKWOme9ZskiqPQIIYzkD0tcEbm0Ea2nXnJVjjtKtLQKQVwbHTWyguqA8GeE
-         ZwozPyIy5A6dk/u/qj7ncM6caMoIYS+anC+qd8K4yYooPBO3lEU4UUCYi4FdTnJoDZ4p
-         fuGN0x0M3TmDKalqBjCWwUpo+uBDOYiRF2t0sXDbsHO2i2yFaVh3gQjOV9S4FW/BQNaK
-         2uUjMcAb8hs30Xwlsccpbiqja6C8yUEnkWLorpi4B7hVzwitqjZqV6N9HM2OkINh/lYN
-         FazpP+Md6bRPr3+V4fAdSp1r8YblbiO8T2MY0/nUhgNGJZJU1yxXv7CNdOIqYfK0XPoe
-         9KIA==
+        bh=wqi3a7cqHo4gFUwQ2K8FyfWJWVq426ywagQKpCR6FTQ=;
+        b=ceYrr4P00mg2C+4LXesfpJ2xHjDKHdtvHNKCey4w9AOIBHLXMjmQIsKUhWfypjJryJ
+         oWq1DVFTeKx2bb3TOHIy84crddZ+w0Uk4EISB6W0OYMDRcPpXoCxDFjKbsiJOzrbXxq0
+         szAr9OIV1X2DxT4VSzxs8m3mofyW6/xv/m+e8vru1aEUPV9xhDUE4FKM4u8MywqYr+Ob
+         n/5OwmJAyDQhUNsresN9GUFsYuJOhjBFrnmXpmkJTd4l4TWy9GikmG3M7JOB204EJQe/
+         yRrcrtAlZ0pPD1GbBMLa6bXszAGAopdxZfE2sywzAK+Jeq001QhFcTzUvtfS335heTsa
+         9Few==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=37mgEruhzOSlqZ+AcYORFybB/gGWQo+VZHLBQmJiMoM=;
-        b=Lj5WzG54n0za4TLcltalw99vLL8CrH5aMGhn427/V4le1VHryFrKTJFe//SSSrWSZ/
-         5KEkFhaW1h4YpcQGdJuGeMrIfQGfDnJevbtBfiDEtZU4iSng4hyAm3dPetXXW+8HAB07
-         OvE9sdhsjm0fxMrvvtj9PXfKCe7ijETitogiYSj0M8Yht6ycZxQAiAwnsnMSbIdSeSDm
-         c7w4K58L/8/Cydha9jISkz4v365d+YGwCC/Pq5El4b13l9hr2YuDeKBC7CINvXUqpPUH
-         Y6ZQ6BoMR0RNtv68SDQlqFpCTwmp+9i9jOclxYP41LqsXCQHF+BUncX45mvtwjNA/1W2
-         YnZQ==
-X-Gm-Message-State: ACrzQf3rB/jzW/2DA5em64pem6UHojnJArB2WeEBNkBGkSBkd9XAoe0h
-        LV+1XxcUaksr7FRB2y5o7xCYyw==
-X-Google-Smtp-Source: AMsMyM4Nvwfygk8PY62m55LKV09JKXF4xGrl6XXRn5kN1Ai92ahoM1HKa+1rJFx5/fpc8z08WJIEpg==
-X-Received: by 2002:a05:620a:138d:b0:6fa:2e05:6083 with SMTP id k13-20020a05620a138d00b006fa2e056083mr20187243qki.287.1667566031861;
-        Fri, 04 Nov 2022 05:47:11 -0700 (PDT)
+        bh=wqi3a7cqHo4gFUwQ2K8FyfWJWVq426ywagQKpCR6FTQ=;
+        b=HzpNaNGmorke11EIn0wnVR60ULt3al6knE7zeMJ+ZCtixUvpct2JoPpjYbwhyQunfW
+         KtCbcntsb5GJM7Vrfumd2SliBjxrQ2vhzfESJkz9LZlgH5T2hSbH27brpkybYbHnG/E5
+         5/SmHdlhN567zq0royMmUvDK/Yw51qKaw6ookHfwbtJRns8p6Czd/gqb2/SreAjzi8kx
+         +zXIQCp0xtAWzFwjiOSLYWlySwb/8iGB7LLtF0hRODppR2oce1O1npTKsBdToOI/AQ+4
+         eyzR7ZL1TM7eV2Dy9yLzpTo8MqpRy/4YfCGbBh9v1Ii512HaYg0iaQglgMyTztOYpV2e
+         Dwgw==
+X-Gm-Message-State: ACrzQf2p54wQVrU/7sTNN7WBdwaDhyrqsxhTrxFQiuv4ETxz8c8gAKjg
+        F1khMcVJUgPL22xXAAy0NpcuqQ==
+X-Google-Smtp-Source: AMsMyM7hFBnhwzxMdmYULTQCkhwuO6DS/PcegMqy/ry3a33q/5BTspu8Y7iX3IJ6fzly0f3yRTxyig==
+X-Received: by 2002:a05:620a:22cf:b0:6fa:1e61:9cda with SMTP id o15-20020a05620a22cf00b006fa1e619cdamr22976665qki.774.1667566110890;
+        Fri, 04 Nov 2022 05:48:30 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id bi11-20020a05620a318b00b006eeca296c00sm2770054qkb.104.2022.11.04.05.47.10
+        by smtp.gmail.com with ESMTPSA id x8-20020ac85388000000b0039cc82a319asm2311507qtp.76.2022.11.04.05.48.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 05:47:11 -0700 (PDT)
-Message-ID: <9fca87df-c879-828c-84c3-a870bbd87038@linaro.org>
-Date:   Fri, 4 Nov 2022 08:47:09 -0400
+        Fri, 04 Nov 2022 05:48:30 -0700 (PDT)
+Message-ID: <a764159c-e67e-1ee7-4b0f-1a08a06b3b3a@linaro.org>
+Date:   Fri, 4 Nov 2022 08:48:28 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 3/4] arm64: dts: fsd: Add Ethernet support for FSYS0 Block
- of FSD SoC
+Subject: Re: [PATCH 1/4] dt-bindings: net: Add EQoS compatible for FSD SoC
 Content-Language: en-US
 To:     Sriranjani P <sriranjani.p@samsung.com>, peppe.cavallaro@st.com,
         alexandre.torgue@foss.st.com, joabreu@synopsys.com,
@@ -70,10 +69,10 @@ Cc:     netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
         Pankaj Dubey <pankaj.dubey@samsung.com>,
         Jayati Sahu <jayati.sahu@samsung.com>
 References: <20221104120517.77980-1-sriranjani.p@samsung.com>
- <CGME20221104115902epcas5p209442971ba9f4cb001a933bda3c50b25@epcas5p2.samsung.com>
- <20221104120517.77980-4-sriranjani.p@samsung.com>
+ <CGME20221104115841epcas5p490b99811e257b8f3f965748df0a57be5@epcas5p4.samsung.com>
+ <20221104120517.77980-2-sriranjani.p@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104120517.77980-4-sriranjani.p@samsung.com>
+In-Reply-To: <20221104120517.77980-2-sriranjani.p@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,25 +85,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 04/11/2022 08:05, Sriranjani P wrote:
-> The FSD SoC contains two instances of Synopsys DWC QoS Ethernet IP, one
-> in FSYS0 block and other in PERIC block.
+> Add FSD Ethernet compatible in dt-bindings document
 > 
-> Adds device tree node for Ethernet in FSYS0 Block and enables the same for
-> FSD platform.
-> 
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Paolo Abeni <pabeni@redhat.com>
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> Cc: Jose Abreu <joabreu@synopsys.com>
 > Cc: devicetree@vger.kernel.org
 > Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
 > Signed-off-by: Jayati Sahu <jayati.sahu@samsung.com>
 > Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
-> ---
 
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
+I did not get cover letter and patch 2. Your CC list is incomplete.
+
+For the record - DTS will not go via net-net but Samsung SoC tree.
 
 Best regards,
 Krzysztof
