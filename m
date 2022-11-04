@@ -2,180 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 631C2618FE6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 06:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE29F619025
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 06:48:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiKDFQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 01:16:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43762 "EHLO
+        id S229950AbiKDFsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 01:48:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiKDFQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 01:16:13 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C55126;
-        Thu,  3 Nov 2022 22:16:12 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A45Fvlt020463;
-        Fri, 4 Nov 2022 00:15:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667538957;
-        bh=+nSpR4cZ7TNP/oEL8gp4/e6gC6YuAJKVkkKuGKpBXBk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=wuwbr8Iqy1KHuaIzASaP84bgiN+bPIncxdb7s3uhkE5wmLJmsNuLSHN0ly9SXJ86t
-         +Y/6DDuEAuq68aaj2g8BcIV/29G6ve4s1HooNMCfWMccn8ipY/aCjEN2oXeSfo+/Gk
-         6iXlqNhxIETGXevunP7tkt/MTrTAdruZ1jqvkCT4=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A45FvBs026144
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Nov 2022 00:15:57 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
- 2022 00:15:57 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 4 Nov 2022 00:15:57 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A45FtYb126855;
-        Fri, 4 Nov 2022 00:15:56 -0500
-Date:   Fri, 4 Nov 2022 10:45:55 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <jkridner@gmail.com>
-Subject: Re: [PATCH v7 2/2] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi
- Header
-Message-ID: <20221104051554.nqoehxtv7rdtmkyi@uda0490373>
-References: <20221103174743.16827-1-r-ravikumar@ti.com>
- <20221103174743.16827-3-r-ravikumar@ti.com>
- <20221103215440.7dmcvkmeni4xs2et@municipal>
+        with ESMTP id S229900AbiKDFsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 01:48:23 -0400
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2075.outbound.protection.outlook.com [40.107.249.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F17072DF7;
+        Thu,  3 Nov 2022 22:48:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lv3J1IBrzkGa0LxLWVsszVBzhfdRdNjR+4v7mqZNel9VgSI453Bw/IInykDVMaQWevDVd+g8eXzm0SGwdAsbUuufmWPJU+ADr8P1F6XaajYFSWx7+XfCH1Q0vDEUy1l0737tY4fpFprHCN4hQwMbhI8AZG/f/7HF4CgQr+lsUzzhdpcLpSwGrniLvnEsC29MIQXorRbM2Z5DeaLBTYgVx4p/jXgYchLpyvymJHhpwT+VoNQScq1Bv+VclI4LQ5QQxo5qqL96YMOmEU4rz+dTEL0hBLCCh5Df4wV6SJbDwwZmtIx08sHYNDNa7QvsTd7dpQvSn3j2lEgc5sN46n3yRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JKjFpr57UTEnOKRUSTyZTdCGbTtR+Mc7l/+DuU+VV78=;
+ b=g5GuyzumyRq/ErnfwVYsMiCcIo+O1JLl3scOSA/SUCv4L0eCpQdpQ9vdEf3iQWj3TCVttqz9N7AH7Gqix5Sxa8pn8T0sSmE07GBMRpnwDbc+fiYhoRWCmN75sglHfy7oe7FJ77pAtr78jN5O4YzFhqd4JGRYtUV8QXmGFfhAdjNjducI/VpjhUwkTGPanKPQWhKbyJ3PL53wOkFlsY6UjE+ux66z1Btt7BhdEShjHTXvcRgmkAOqnalRQD629AQ63LjQXmex0b5cPETLPcBPAGOB8pJ5RP4J0FI8BTn3Z2SyECb9V8LdsU6l1puwV2hqXY5oxDA/pIUNbcQWFo41Ew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JKjFpr57UTEnOKRUSTyZTdCGbTtR+Mc7l/+DuU+VV78=;
+ b=WrfjndVkLMiTSqhayBaZl3zxFhDHJNPW5QLb3gRnDoG7CjomvwNd67igO1E5T4LO+QPD1UagVhjgESex5M4kTWdgI4j/Z62a4T9EAs5h4P4U2aeLQ0Dq3XQNB2XOMn+nLUPppHDFsKcNKaGiq9jWBsMzi2TAE/cbXu2aUJhimi0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB8PR04MB7178.eurprd04.prod.outlook.com (2603:10a6:10:12e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Fri, 4 Nov
+ 2022 05:48:17 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::36a4:e1fc:67a2:c701]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::36a4:e1fc:67a2:c701%7]) with mapi id 15.20.5791.020; Fri, 4 Nov 2022
+ 05:48:17 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH] arm64: dts: imx93-pinfunc: drop execution permission
+Date:   Fri,  4 Nov 2022 13:49:42 +0800
+Message-Id: <20221104054942.1696344-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0015.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::18) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20221103215440.7dmcvkmeni4xs2et@municipal>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB8PR04MB7178:EE_
+X-MS-Office365-Filtering-Correlation-Id: 976d6559-591a-471c-904a-08dabe282bf8
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NikK8fAeh1ANswSgpsLLzYRtvxWGlE7HJXpEAuFf+Pm90eT6DmqRGHFnX1Sl3E2zR7+9bfbxyJGQ0zG58cxIwFxXbso9DIeKZQ2ZLdgUs/ALoezacMkQoeiBOH6cc1i79HpbNpaqHrTipqzg+t2jlikVrLGdVUriv2Bfc5FHvWc7HDXGEVgmpdXV753yrJo4q17IiTaBNRJhwGC+Sl9GULDIrtS7UC+zcMHGaSd4IqolypbdKYxcSxGhKRe+2FtPIssjHdLTJjgGh+TUAv6ecJSgaAnglCvJkt9g+CTRjJ2YMbK5/KjBE9buzKTwRLXMQIF49YLNY4W98P8Kp2GncFj2ib5TptXaPiIMawsBcDXjQi/iPnUX9x7F4/yc7GGrmXULd8zdWslq8yYDq/UgkXRvD33+3YGn1IaGroISL3aiRR052UNxhr9XMi99/GpmC3H0rujh7Aui7+u8xBPr0PKo/i/zdbP1qNjCwW1VtQAr5SgoaqnJ28Y8MKsMAiCvUlJFoVffsOs8FShxwda8sTA8nZ4ai5PyJQVlfrE2lFe5Bp7XdcjBG656cSYTRucBZbVLRQQQ9r4SNJexfFECGkbURr7krmfeGR5USWWJIwCFnS7lPPoUGgfAY+5GtSHRKORzzWPx0rtaXmfF9dJH8lyReTi3ua2SMBHwKk4DDW/ovEbodzMeninDXggOAHPV8Dd5y2UGC3q3Q2nRbl4DIjawDTY4f0zQzC9q7f/f3bl1S/t9/ZgtTTs3ZgQpDwj/O1eJtCcLI9JG9QN+OIHmzQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199015)(2906002)(4744005)(5660300002)(41300700001)(8936002)(86362001)(2616005)(66556008)(8676002)(66946007)(4326008)(316002)(66476007)(1076003)(186003)(38350700002)(6512007)(478600001)(6486002)(83380400001)(52116002)(26005)(38100700002)(6666004)(6506007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GwKNTKdF7izTZCpMxvNq/jHvfvai1aX/yAMw16wkpAp/cmmbRvzxuIUB3uUO?=
+ =?us-ascii?Q?9usGWW/fk+71ABbe5RQ6TCcK0fcfm+iaWO1VFLhkwO71yn2MCtUDPpktIXZp?=
+ =?us-ascii?Q?AmNNXskB4eZ5YtWZm6kGlGuisFn7z3ULkzUWnwCahcb4ThydfNfIgSzX6ajN?=
+ =?us-ascii?Q?XxaXUeajezbur/DM0+v2f7V9y23o/iFCK5hnIY0FBW+rKJlWL3aYjRuuMVdc?=
+ =?us-ascii?Q?YMeuhAdaqxWlP2u7ZBs/w3LU6CkGTX4lSXohETjS0i8s7e5p9Q4UC2ohBOTK?=
+ =?us-ascii?Q?jfoITEaClSQCkkPu+qsD/5aH0YQRBvM5G0555fRpqwhTu+zFu5Exsx4pmB0l?=
+ =?us-ascii?Q?llQmFhuEd0NPiijRYg3PbyLiGDAtYuiEaGDBHAND6KUZUI6AcTfrOLDszMfz?=
+ =?us-ascii?Q?rFgmelZ24g8META21hz1MY+EwvyQqPzE9ZN2D73rnqyWdNoUKfenG8P6GTMr?=
+ =?us-ascii?Q?jcKmnbY3SogJYU//JZVPowFIx/qXMQsPiiR4KFE4BbhMJ1sE6Fejn8tUSfRu?=
+ =?us-ascii?Q?kSn+gLh/sr7SBSIL0lQ2ijs1QB3Jd+w3q3IfC4rvqt+1xhdCN/ootBL9r1RM?=
+ =?us-ascii?Q?foz/W2pxUY+SHZfa8jBh52ubuzFvHhe0C8TzLNJKo/zckbtaSSNqFJASOeKu?=
+ =?us-ascii?Q?+zyhNIOJlTubncLUm/j05WkTTdww/b2TvbGUgAyeReaArLzJ60ae+M/4MFgV?=
+ =?us-ascii?Q?+emMSXCzx0c8HPXz929reRQXb7ds0ufD+PyPoAYT4o2rcVqNwJLF91gCvGt1?=
+ =?us-ascii?Q?mZolYg+cJV/zcmGi8Ehu9n0XiOGv75fjjU2sScctPIh5DLNZ6CfCWnqS1vBN?=
+ =?us-ascii?Q?r8roJq0yJhwZB4KFeQwVauUKyrvDwsNbMnm96uWht3zGF7C1FUd4FWW4tbms?=
+ =?us-ascii?Q?mRdE+Am1WlFd818jLqp07Wdx7CaGY027Gv/F6Tj40vjTCBKQVgIIrFgR3aPl?=
+ =?us-ascii?Q?lFu7ITmLTc22FJLYZI4RinYejhDly28TYZXeOCj9/s0J4T4rpKJVPXFNhhkt?=
+ =?us-ascii?Q?6AaRP7AyDGbdNyXNcn0g1nRzLnliicNorFMwF9hJcTTJRNz/LQHXDVMPyoEw?=
+ =?us-ascii?Q?HlVLhYUFghB3sIgh9ffHwOQT711k+xnFHISa522RhOT9XvyiqQnlFaz01FZX?=
+ =?us-ascii?Q?1MkkMPjC6mn8eM5oyZzSOPiV4Cpy0/zc4KdKy5Tfw6YKhARI8RJUj1r1lRmD?=
+ =?us-ascii?Q?iomJESsbdJm8rVTqcKn1PBG+A9SHtAAWKeJdRDZnvMh9jyD3O9SKlVgM7xYD?=
+ =?us-ascii?Q?lbCKOzGknXuyQDSzwGSxXEqTBjJ2oo1TNgcvcxUObWrhh1zot5XTF798ihyB?=
+ =?us-ascii?Q?Deq3i/9jtn767kjN22km6InwpVw16O9cqXAdUDX7Wc7nRsIZyxit3cO0Ft/C?=
+ =?us-ascii?Q?EtVylQzSd2ecyR+QjD7kYYAzAXSdu78vFSqgh9+AfEYP0gSeJxnFgGAw7Ul8?=
+ =?us-ascii?Q?No3irIRoG15LkF51vPJ4ixBmmoDWk/CwkYlR+N400umfPs094zyA0nXqz65w?=
+ =?us-ascii?Q?bu6AODt1ftiYm0Esv6X9RedvPRLfYyW9hP8I9uoK7/GmuBee2/25P89iAR5J?=
+ =?us-ascii?Q?IGNxo2cKgFKHcQ8Odewl5z2lBJe8JEYixn7adNmG?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 976d6559-591a-471c-904a-08dabe282bf8
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2022 05:48:17.5931
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I1C2Kw7v8OtBRhQY3YoWiNRbO3kKvhJN24aZqqAWgUzRZd8md2zdNteI5wmXd1sGjv7S40GbPRyLN0sPrQkc8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7178
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+From: Peng Fan <peng.fan@nxp.com>
 
-On 16:54-20221103, Nishanth Menon wrote:
-> On 23:17-20221103, Rahul T R wrote:
-> > Add pinmux required to bring out i2c5 and gpios on
-> > 40 pin RPi header on sk board
-> > 
-> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 59 ++++++++++++++++++++++++++
-> >  1 file changed, 59 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> > index 78aa4aa4de57..4640d280c85c 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-> > @@ -400,6 +400,47 @@ ekey_reset_pins_default: ekey-reset-pns-pins-default {
-> >  			J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
-> >  		>;
-> >  	};
-> > +
-> > +	main_i2c5_pins_default: main-i2c5-pins-default {
-> > +		pinctrl-single,pins = <
-> > +			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-> > +			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-> > +		>;
-> > +	};
-> > +
-> > +	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-> > +		pinctrl-single,pins = <
-> > +			J721E_IOPAD(0x01C, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
-> > +			J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
-> > +			J721E_IOPAD(0x14C, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
-> > +			J721E_IOPAD(0x02C, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
-> > +			J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-> > +			J721E_IOPAD(0x1B0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-> > +			J721E_IOPAD(0x1A0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-> > +			J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
-> > +			J721E_IOPAD(0x1D0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
-> > +			J721E_IOPAD(0x11C, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
-> > +			J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
-> > +			J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
-> > +			J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
-> > +			J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
-> > +			J721E_IOPAD(0x19C, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-> > +			J721E_IOPAD(0x1B4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
-> > +			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
-> > +			J721E_IOPAD(0x00C, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
-> > +			J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
-> > +			J721E_IOPAD(0x178, PIN_INPUT, 7) /* (U27) RGMII5_RD3.GPIO0_93 */
-> > +			J721E_IOPAD(0x17C, PIN_INPUT, 7) /* (U24) RGMII5_RD2.GPIO0_94 */
-> > +			J721E_IOPAD(0x190, PIN_INPUT, 7) /* (W23) RGMII6_TD3.GPIO0_99 */
-> > +			J721E_IOPAD(0x18C, PIN_INPUT, 7) /* (V23) RGMII6_RX_CTL.GPIO0_98 */
-> > +		>;
-> > +	};
-> > +
-> > +	rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
-> > +		pinctrl-single,pins = <
-> > +			J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
-> > +		>;
-> > +	};
-> >  };
-> >  
-> >  &wkup_pmx0 {
-> > @@ -600,6 +641,24 @@ i2c@1 {
-> >  	};
-> >  };
-> >  
-> > +&main_i2c5 {
-> > +	/* Brought out on RPi Header */
-> > +	status = "okay";
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&main_i2c5_pins_default>;
-> > +	clock-frequency = <400000>;
-> > +};
-> > +
-> > +&main_gpio0 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
-> > +};
-> > +
-> > +&main_gpio1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
-> > +};
-> > +
-> >  &main_gpio2 {
-> >  	status = "disabled";
-> >  };
-> > -- 
-> > 2.38.0
-> > 
-> 
-> OK I am confused now. What about the pwm nodes? don't they need to be
-> muxed?
+Drop the header file execution permission
 
-As per the discussions in the v4 of this series
-the suggestion was to enable only gpio and i2c by
-default
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx93-pinfunc.h | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ mode change 100755 => 100644 arch/arm64/boot/dts/freescale/imx93-pinfunc.h
 
-https://lore.kernel.org/all/20220620144322.x54zitvhjreiy3ey@uda0490373/
+diff --git a/arch/arm64/boot/dts/freescale/imx93-pinfunc.h b/arch/arm64/boot/dts/freescale/imx93-pinfunc.h
+old mode 100755
+new mode 100644
+-- 
+2.37.1
 
-Regards
-Rahul T R
-
-> 
-> -- 
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
