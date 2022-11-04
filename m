@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B010618E84
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 03:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29805618E88
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 03:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbiKDC5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 22:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
+        id S229567AbiKDC62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 22:58:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbiKDC5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 22:57:18 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E12025287;
-        Thu,  3 Nov 2022 19:57:17 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A42v9mi121141;
-        Thu, 3 Nov 2022 21:57:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667530629;
-        bh=KXmUTvXsRh+/y7JM6K9LWoCa2OVGE7mxrKt5mQgY1Ko=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=RsXAmx0nTPEEPoAJDoqki1vwi9lMEUZvIvjjpIqnieN1GUDzHj+41HP4D+LGEQ8Gc
-         mnkfpm0drtUvAPTZlxdAPa1ziiWgsWKevYEej0wxo09zaMZOK6zARJObjKGHtpNGjY
-         Vgz4RBZyWxLcFBqPSCI8qRikLPlO/2KCziLGaeVs=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A42v9os032416
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 3 Nov 2022 21:57:09 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 3 Nov
- 2022 21:57:09 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Thu, 3 Nov 2022 21:57:09 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A42v9r5115637;
-        Thu, 3 Nov 2022 21:57:09 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     <kristo@kernel.org>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <bb@ti.com>, <afd@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <le.jin@siemens.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <jan.kiszka@siemens.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 00/11] AM65x Disable Incomplete DT Nodes
-Date:   Thu, 3 Nov 2022 21:57:08 -0500
-Message-ID: <166753059764.28312.10505241921624248527.b4-ty@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20221028142417.10642-1-afd@ti.com>
-References: <20221028142417.10642-1-afd@ti.com>
+        with ESMTP id S229983AbiKDC61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 22:58:27 -0400
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F71D13EAE;
+        Thu,  3 Nov 2022 19:58:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1667530685; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=HGROk1IHBLD9eZNc2KHlMQ9xMeqpXQp4CaZSqIOqVI5NVzrxqchwSVgHzy7gY0ISKcVl8+cU9+PYPmW7JjRyw8DCSY+ltP6gp0zOg9RoCd31XReyLU9S9eMoE/i3jOr+8RfwLmT6DGkWgqQrtQju280CDxIeN2VYVJlyEkGi3sQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1667530685; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=sZWmAQKUNOAA0Xj4lFuSKt2VFrYPobVt0IOs4He/Z5U=; 
+        b=WGQVeswf7REhX8JCB1zHrWFDdufdEWCcYp/I7E3SqS/cDVD1+yTv/TxwfHqoUiCO5rax2dD7j6NDarsQT0gm0rEGAXVrVN/SWgt2TwQMi4MXxbffpWPgVbU4w0c9N+XMbBb38HmBisAiMhpMONn/tYf5xXbg4p8azrAuVbz3W3A=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1667530685;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=sZWmAQKUNOAA0Xj4lFuSKt2VFrYPobVt0IOs4He/Z5U=;
+        b=SPQ4krNDX74eE3+m2J0oq7vsUKs2aY+XKTnDYDrWuiSyWmgfDgcMTSaSPGCjAcs9
+        OttCBIdakfA9y4Ocz70eASiKY2MOPi913Ea5d9IrDmZVeGXcQU91hvAnOrOnub09CqC
+        k76Zo9UnQEg/6hpAqQ/H0vl+RJPbAww+HyCyxOo0=
+Received: from edelgard.fodlan.icenowy.me (112.94.102.138 [112.94.102.138]) by mx.zohomail.com
+        with SMTPS id 1667530683283476.95396203223686; Thu, 3 Nov 2022 19:58:03 -0700 (PDT)
+Message-ID: <76d9c4fb368dca87c64494b927706d0b18d712d2.camel@icenowy.me>
+Subject: Re: [PATCH 02/12] dt-bindings: riscv: Add T-HEAD C906 and C910
+ compatibles
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Date:   Fri, 04 Nov 2022 10:57:58 +0800
+In-Reply-To: <20220815050815.22340-3-samuel@sholland.org>
+References: <20220815050815.22340-1-samuel@sholland.org>
+         <20220815050815.22340-3-samuel@sholland.org>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,64 +66,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew Davis,
-
-On Fri, 28 Oct 2022 09:24:06 -0500, Andrew Davis wrote:
-> Same story as for AM64x[0], AM62x[1], and J7x[2].
-> 
-> Last round for AM65x, but there are some boards that I do not have
-> (Simatic IOT2050), so testing very welcome!
-> 
-> Thanks,
-> Andrew
-> 
-> [...]
-
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[01/11] arm64: dts: ti: k3-am65: Enable UART nodes at the board level
-        commit: 65e8781ac90e74242ebb1a98bf415809e8387aaf
-[02/11] arm64: dts: ti: k3-am65: Enable I2C nodes at the board level
-        commit: c0a5ba87af56f073145dd026280454aec4a44db0
-[03/11] arm64: dts: ti: k3-am65: Enable SPI nodes at the board level
-        commit: 1c49cbb19b1f2c61168741f987e65b50dd2f97de
-[04/11] arm64: dts: ti: k3-am65: Enable EPWM nodes at the board level
-        commit: 5780cf09409551c67112127b90786e553c8f9a25
-[05/11] arm64: dts: ti: k3-am65: Enable ECAP nodes at the board level
-        commit: c1d1189eafb27fa5c0cb0b92a4e81c155709068b
-[06/11] arm64: dts: ti: k3-am65: MDIO pinmux should belong to the MDIO node
-        commit: 0edd6d7ed646a53b41d09f7aa1d8c01d23bd7b73
-[07/11] arm64: dts: ti: k3-am65: Enable MDIO nodes at the board level
-        commit: c75c5c0bba500b1e454dc2591acdd6596fe64ce2
-[08/11] arm64: dts: ti: k3-am65: Enable MCAN nodes at the board level
-        commit: b08bf4a5c0ed0a6b8472ca78ccf416d73d2609aa
-[09/11] arm64: dts: ti: k3-am65: Enable PCIe nodes at the board level
-        commit: 7ff8432c272e3556461b7c9daad8156ae446e812
-[10/11] arm64: dts: ti: k3-am65: Enable Mailbox nodes at the board level
-        commit: 3f9089ea008c195b6cf449735c5a3a5fcac1a382
-[11/11] arm64: dts: ti: k3-am65: Enable McASP nodes at the board level
-        commit: fdb02688f22b397c811328bf826b5b110d5cdc41
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+5ZyoIDIwMjItMDgtMTXmmJ/mnJ/kuIDnmoQgMDA6MDggLTA1MDDvvIxTYW11ZWwgSG9sbGFuZOWG
+memBk++8mgo+IFRoZSBDOTA2IGFuZCBDOTEwIGFyZSBSSVNDLVYgQ1BVIGNvcmVzIGZyb20gVC1I
+RUFEIFNlbWljb25kdWN0b3IuCj4gTm90YWJseSwgdGhlIEM5MDYgY29yZSBpcyB1c2VkIGluIHRo
+ZSBBbGx3aW5uZXIgRDEgU29DLgoKQ291bGQgdGhpcyBnZXQgYXBwbGllZCBmaXJzdD8KCkM5MDYg
+YW5kIEM5MTAgbm93IGhhdmUgYSBmaXhlZC1jb25maWd1cmF0aW9uIG9wZW4tc291cmNlIHZlcnNp
+b24sIHdoaWNoCm1lYW5zIHRoZXNlIGNvcmVzIGNvdWxkIGJlIHBsYXllZCBieSBhbnlvbmUsIGFu
+ZCBoYXZpbmcgdGhlbSBpbiB0aGUgRFQKYmluZGluZyByZWFsbHkgaGVscHMgcGVvcGxlLiBJbiBh
+ZGRpdGlvbiBJIGFtIGF3YXJlIG9mIHNvbWUgQzkwNi0KZXF1aXBwZWQgU29DIG91dCBvZiBBbGx3
+aW5uZXIuCgo+IAo+IFNpZ25lZC1vZmYtYnk6IFNhbXVlbCBIb2xsYW5kIDxzYW11ZWxAc2hvbGxh
+bmQub3JnPgo+IC0tLQo+IAo+IMKgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Jp
+c2N2L2NwdXMueWFtbCB8IDIgKysKPiDCoDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykK
+PiAKPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Jpc2N2
+L2NwdXMueWFtbAo+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Jpc2N2L2Nw
+dXMueWFtbAo+IGluZGV4IDg3M2RkMTJmNmU4OS4uY2UyMTYxZDkxMTVhIDEwMDY0NAo+IC0tLSBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yaXNjdi9jcHVzLnlhbWwKPiArKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmlzY3YvY3B1cy55YW1sCj4gQEAg
+LTM4LDYgKzM4LDggQEAgcHJvcGVydGllczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IC0gc2lmaXZlLHU1Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIHNpZml2ZSx1Nwo+
+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjYW5hYW4sazIxMAo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoCAtIHRoZWFkLGM5MDYKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgLSB0aGVhZCxjOTEwCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqAgLSBjb25zdDogcmlzY3YKPiDC
+oMKgwqDCoMKgwqAgLSBpdGVtczoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoCAtIGVudW06Cgo=
 
