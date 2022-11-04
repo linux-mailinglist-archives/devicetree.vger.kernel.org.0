@@ -2,220 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC58618F99
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 05:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83285618FD2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 06:08:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbiKDEwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 00:52:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
+        id S230008AbiKDFId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 01:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231134AbiKDEwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 00:52:35 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2121.outbound.protection.outlook.com [40.107.244.121])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B000C27CF6;
-        Thu,  3 Nov 2022 21:52:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JfzDJTF9mQVQ+D7XFdZl2Zct0VIQlvubQ4mnYwFfDxv4HLvfrnCvGJD5mnpXogmJggRcle0E/gHvm9MnrnHxHmu3LVTTMDay9i4D7OlOqc5PpwEXRXAgKKQy+f2ZUBVPydzqP1rxaFuJEDG/DrwnHduRsyO9yYpqnQeZEMz1d3g9hMmxzYhxTVnDmwcmk5Vn8HtfXxiVSUfYfjlAhkUZ7iygNGG2ghZJTEximmTMeZIdv9RvMirDPinHX68kcpqVd1dpp2LGF/H1WJQpsn6qEXt7WrJdStzWQxDb30hkTdMA0XaUl/iYI/+1Q7MoFPz4WZcMugz4NBrKtAI5G60w3g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YficV6/27d5Ko/XmkrRhmfOs6plp6V0bvdu4M23diZ8=;
- b=WrVbnDqjLYsp9pcpAQv/RoYYTfJQAVSxrmgmBvOncewrdelxMhponuWPy4rxOzsJ2lQ1OnRng90fMzRjSv4NxnSWhk2XDEOqfMjidBmwZVtNhviQpbxYLpODmkmAvrpp8vJM7hfNDtCm9Y4+iuJ0OAHD/OgxgcyS8BNADLaia6WR/2LBrDfWHLl46pYALx+Okgejui2iKYsH6z1idwM7u/c3NzQUdVLGtpUhSfagMJ9URajSdVLOngE/ByvRpldtNOVP9LvJl0TwWiRrNnMBREv3gkQvRzDS9JD9VN76n/guM9nK6EsdNKwBN9XvARr2JXy7FaWeJqw1Dc9Qom8+yA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YficV6/27d5Ko/XmkrRhmfOs6plp6V0bvdu4M23diZ8=;
- b=HDJvP7y18AoUrnj9RIkV+M99vm4hlTLBO7aORUHFigm/dXEsmuDU91FLRfQavd4dWo/1qPN2ZjOodAp1wmYTPInr7E5209pyyhIx5GtBCZ3O89loWr5AJm1Oi+wyRSLlAQtOqSg7oMIFglIn+DynNpyflKSXbvxJEjsOnfwfKaE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by CY5PR10MB5986.namprd10.prod.outlook.com
- (2603:10b6:930:2a::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.22; Fri, 4 Nov
- 2022 04:52:26 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::a8ed:4de9:679e:9d36]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::a8ed:4de9:679e:9d36%4]) with mapi id 15.20.5769.021; Fri, 4 Nov 2022
- 04:52:25 +0000
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?UTF-8?q?n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 net-next 6/6] dt-bindings: net: mscc,vsc7514-switch: utilize generic ethernet-switch.yaml
-Date:   Thu,  3 Nov 2022 21:52:04 -0700
-Message-Id: <20221104045204.746124-7-colin.foster@in-advantage.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221104045204.746124-1-colin.foster@in-advantage.com>
-References: <20221104045204.746124-1-colin.foster@in-advantage.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR03CA0023.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::28) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+        with ESMTP id S229493AbiKDFIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 01:08:32 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29E827CF9;
+        Thu,  3 Nov 2022 22:08:28 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A458Dqi027092;
+        Fri, 4 Nov 2022 00:08:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667538493;
+        bh=UOVHiLZgXUUaQtyj8aeARydW6tgUJy1OOvmdj1dFjDI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=Px3tvfNCcMh9SQZrxm2ZWjvrLCI1UikB2O3BLvpR0UsEEJ/fL5pAIBpsrcDGjc+u6
+         rqXHe9OofsBztuJBb1ZRS90mO+ULdsVMRkMeFXBFQNv1AeTFl/fB9yra1HQqHSd0fY
+         On6i8ulT41cV3OQgL61AZ9d6lL7wTaHOxNKVb0TQ=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A458Dui107913
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Nov 2022 00:08:13 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
+ 2022 00:08:13 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 4 Nov 2022 00:08:13 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A458BEi120558;
+        Fri, 4 Nov 2022 00:08:12 -0500
+Date:   Fri, 4 Nov 2022 10:38:11 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jkridner@gmail.com>
+Subject: Re: [PATCH v7 1/2] arm64: dts: ti: k3-j721e-main: Add dts nodes for
+ EHRPWMs
+Message-ID: <20221104050810.tbgaq7ophenuza33@uda0490373>
+References: <20221103174743.16827-1-r-ravikumar@ti.com>
+ <20221103174743.16827-2-r-ravikumar@ti.com>
+ <20221103215301.xlq3zj775jv4zezb@stability>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2351:EE_|CY5PR10MB5986:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b34eb9f-ca8d-42a6-3229-08dabe205e38
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: whJjC17Ox+ik38k32m4wwHBJyVnZNchI2Th9HiF7//QOOKsfnDeOWc2cEeIUtGSEjTX+ShibvFnFHHQ3kvOU2NST+NFhxqFZMrsnzrE5obalDZi/Ldbtj9nFcN/RMbc1VkbSOlp8hvvZAT8Dj4jaL57rQzPwOIZYhiY+O8eSHzKpOSc82JjA0JQ/xUP8em3Tq+Tbl2/zA5GfG3nBE9hipq775ZrkkeA8wV0xAmgQ8jIGFnKnGxOvqRRMKf/V2r8LCS3qMNE0Sob9taxLvWCBdj6AlKbgGNvnXvX//8aShC0+s9CzXr2nt82yUytWsF+4cS2jXFQ9GNJ7rDo33N4s3rHYlCQcQaGhDr8XCfY8sf3lXgLE5teAdGOsxh44Qzvvyxr9suNIgz9qYULZ/JCvQum19ABhAwKbDlVrbEb5qoAQF1nYtawueP2QGu7SF9MwP5zro+dTivHsnm/v1xDwXM6rw0WbPbzjiLRArk/Xi5JTY8lKHt+gZqT3XW5GG5vNk2qmTLWjYCCU5SxOh4rm5QZr6u5HZBtqk8VMIGwgW3Ijl604tRQ58YWmnzYcg07FB8+Thkw9EjNdLImepG7p/79QzCoE1gnBlz84zzPTPvRoNpuZzqPw3Csge2ebM6IIX2YWXoY5/N2/btuPJiP4mu4CXcmK0UEMtEIg6MJ+CoIBe8IjFoiqDWD9N4VqkWcWpMUxoruRlAtx21/BMTSV7SR81IA1Kal+qz9SWfQkTyozn3q822RQIEa/Q55oRSGnCH8eQRNh19yw/D9crfUwqN80NfAKoJY4JGvnav1bVMk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(376002)(346002)(396003)(136003)(39840400004)(366004)(451199015)(86362001)(36756003)(316002)(38350700002)(38100700002)(6666004)(8676002)(2616005)(6506007)(66946007)(478600001)(54906003)(52116002)(66476007)(44832011)(6486002)(2906002)(5660300002)(7416002)(186003)(8936002)(4326008)(6512007)(83380400001)(1076003)(66556008)(26005)(41300700001)(41533002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T1p9KNxSGFjOkCKYz0LnIiO9oORwPtytYSGNFDjRQUFc3/Fz2X0apV0GYKiJ?=
- =?us-ascii?Q?ViqQvembxLwsW1t73kipYPrk6PjR3MTKD/fDksDT21ilSDwhj2YGOAVVDq3J?=
- =?us-ascii?Q?7QaFONG9RDn8hn4t7nKkMQV+6++YXeL6w8sAzcrhraXRDAxguLpYInHQTE0t?=
- =?us-ascii?Q?Kme+d4NcvwWwnKQc3ripFO9L2Nh+A3r+kQ2lb9pTqQ9WpAw5DzSVflAmXNmu?=
- =?us-ascii?Q?k46/qN1WsA9aK21H1BiEP0nTQcZWzkBnnk5Bo60Pqes7fNPiDIBkru4fUFcm?=
- =?us-ascii?Q?Q6ewDK5HeO/Y/ioBhc2hoqTeopQRu7P2bwkqAxIpP3RezSURjSKzt/ImB/n1?=
- =?us-ascii?Q?zKesYpHoZCl2wJozXpeisX1VMirRN4eN6igf49J8ueG65HtHZYA8rnWFzfjc?=
- =?us-ascii?Q?waXZhLRlrPz30AeIOrzx6dhI81qZaZl3Xx4LofnBiQJVQvA6qTnKdsZLZo1q?=
- =?us-ascii?Q?dCz3BD02xop5kIut6tOUcpiinRUSctKWIuUtAdSR6YH2DVfTFnVaorC8PNeT?=
- =?us-ascii?Q?PXgID2A37MHoPVGy0rTNwuQJrKXpPPl4lFxuRW4NupTHje7tUysuYF+pcXK4?=
- =?us-ascii?Q?sWu5xbiI/n2Hw9BuTxqUwtDZjlkyPtzyjmOEK/m80nZmU6O+56C7lyD5Rna4?=
- =?us-ascii?Q?sJFYaeGfXTPTf83vu2IQ9SIxe1ykCnyJacxU0nqA/MdJ/trbRpyHhykBAya6?=
- =?us-ascii?Q?2xe1Ce/ieyLo23f/rdG6PP84cQC92vrG3BgYPI9zAwmFZ9FbCUjRDXxfnG/Z?=
- =?us-ascii?Q?GhW9zAEmnFXAUBwcfUYme26U/cIgNhSHLmP5cr3wetIoXS1F3g5s1j0flTaD?=
- =?us-ascii?Q?oSGL2EayH+C81r2O/WQY5iXERtday/yx+tvhdMrLRZjxXhaIiHbeqJx9S5s3?=
- =?us-ascii?Q?8oMkT+Tc/J5OiwrOUKbFwidw7tN6mmmhjiFHF0fHaFY1gYlT7tHKUOu1yGpE?=
- =?us-ascii?Q?WVW1e73oqm4XulybBT0n7pWnnWhsR9KBIhJ2nyEu99fkYQ3mFKAZ/1nvsufx?=
- =?us-ascii?Q?nyGit6laWv/4oiG1wM8mU2odtgPAqMhb5YduTu03oR3HOWJZ/LGrUyMsW763?=
- =?us-ascii?Q?PrxNhUrdzjc/P/v+7pU/3TP29LIKzbO579wj+FVDgsIVTwjg9owhxmeGxgXm?=
- =?us-ascii?Q?aBqW1PBYumstR2wkzqFSrRD4zyMz5vx2r29tlMGLnNWdapJG0ZTX7nnH8oQF?=
- =?us-ascii?Q?a6fpkrH3wHNzsejTUCcYdOItQhQmRJTr9KCVEcQbs352gs+ElP6n/HF76aGu?=
- =?us-ascii?Q?4bgXysUwYXqphx68Dp0aN1/2ow3HxsRo/+qN2g3Y03z+EiUUZh4C3z40jG0A?=
- =?us-ascii?Q?UgUvB1icDPh3mzTjtR9bszFGHub8qtoD2aMnSjI0YeC0ZhHVmiFX3qHq5KIH?=
- =?us-ascii?Q?y3SA4zCKe37cC5s6UbrPH1LV9bZSON68CQLm1U/U1QnK23D3a59H/xLSZ7HX?=
- =?us-ascii?Q?jYefxQ0VaoNa2ECoLpy3diY89RdFReBK1ln2eRgST+HiSkgWPdc9vmRgGWui?=
- =?us-ascii?Q?c50O9sVgxG1xLpWMhOLMgMwPK2R8SmfdjnTBFXcZFGMCumpa3dP/dlHM7Qhr?=
- =?us-ascii?Q?JZmHLdqoTR2T7S9c7NLc82nTmsP0dadDmIOZyVHaZFmyfXBelM+PovKn67hu?=
- =?us-ascii?Q?qa5hL2a9tx1TWR2vSPN/SlY=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b34eb9f-ca8d-42a6-3229-08dabe205e38
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2022 04:52:25.8130
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ftm0SBB74TuBDYj+GgMYGfclBFvPOvdgE3CUC4eSfSKS/b1vykfBPGtQi0cqXAmN9DNAS9seXhXQcz3ncFLXP0P3B7kE8fiq0hzckMUs9vo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR10MB5986
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20221103215301.xlq3zj775jv4zezb@stability>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Several bindings for ethernet switches are available for non-dsa switches
-by way of ethernet-switch.yaml. Remove these duplicate entries and utilize
-the common bindings for the VSC7514.
+Hi Nishanth,
 
-Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-Suggested-by: Vladimir Oltean <olteanv@gmail.com>
----
+On 16:53-20221103, Nishanth Menon wrote:
+> On 23:17-20221103, Rahul T R wrote:
+> > From: Vijay Pothukuchi <vijayp@ti.com>
+> > 
+> > Add dts nodes for 6 EHRPWM instances on SoC
+> 
+> OK - I  am able to understand why you'd want this to be disabled because
+> I have the background, however, the intent of a commit message is to
+> provide information to folks who is not me.
+> 
+> To give you a guidance, please see how Andrew has done
+> in https://lore.kernel.org/linux-arm-kernel/20221028142417.10642-10-afd@ti.com/
+> 
+> You are permitted to disable, but you need to provide explanation why
+> you are choosing to do that by default.
+> 
 
-v1 -> v2:
-  * Fix "$ref: ethernet-switch.yaml" placement. Oops.
-  * Add "unevaluatedProperties: true" to ethernet-ports layer so it
-    can correctly read into ethernet-switch.yaml
-  * Add "unevaluatedProperties: true" to ethernet-port layer so it can
-    correctly read into ethernet-controller.yaml
+will add the explanation in the
+commit message and resend this
 
----
- .../bindings/net/mscc,vsc7514-switch.yaml     | 40 ++-----------------
- 1 file changed, 4 insertions(+), 36 deletions(-)
+Regards
+Rahul T R
 
-diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-index ee0a504bdb24..3f3f9fd548cf 100644
---- a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-@@ -18,10 +18,9 @@ description: |
-   packets using CPU. Additionally, PTP is supported as well as FDMA for faster
-   packet extraction/injection.
- 
--properties:
--  $nodename:
--    pattern: "^switch@[0-9a-f]+$"
-+$ref: ethernet-switch.yaml#
- 
-+properties:
-   compatible:
-     const: mscc,vsc7514-switch
- 
-@@ -88,46 +87,15 @@ properties:
-       - const: fdma
- 
-   ethernet-ports:
--    type: object
--
--    properties:
--      '#address-cells':
--        const: 1
--      '#size-cells':
--        const: 0
- 
--    additionalProperties: false
-+    unevaluatedProperties: true
- 
-     patternProperties:
-       "^port@[0-9a-f]+$":
--        type: object
--        description: Ethernet ports handled by the switch
- 
-         $ref: ethernet-controller.yaml#
- 
--        unevaluatedProperties: false
--
--        properties:
--          reg:
--            description: Switch port number
--
--          phy-handle: true
--
--          phy-mode: true
--
--          fixed-link: true
--
--          mac-address: true
--
--        required:
--          - reg
--          - phy-mode
--
--        oneOf:
--          - required:
--              - phy-handle
--          - required:
--              - fixed-link
-+        unevaluatedProperties: true
- 
- required:
-   - compatible
--- 
-2.25.1
-
+> > 
+> > Signed-off-by: Vijay Pothukuchi <vijayp@ti.com>
+> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 68 ++++++++++++++++++++++-
+> >  1 file changed, 67 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > index 5c4a0e28cde5..bc3146e24816 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > @@ -66,7 +66,73 @@ usb_serdes_mux: mux-controller@4000 {
+> >  			#mux-control-cells = <1>;
+> >  			mux-reg-masks = <0x4000 0x8000000>, /* USB0 to SERDES0/3 mux */
+> >  					<0x4010 0x8000000>; /* USB1 to SERDES1/2 mux */
+> > -	    };
+> > +		};
+> > +
+> > +		ehrpwm_tbclk: clock-controller@4140 {
+> > +			compatible = "ti,am654-ehrpwm-tbclk", "syscon";
+> > +			reg = <0x4140 0x18>;
+> > +			#clock-cells = <1>;
+> > +		};
+> > +	};
+> > +
+> > +	main_ehrpwm0: pwm@3000000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x00 0x3000000 0x00 0x100>;
+> > +		power-domains = <&k3_pds 83 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 0>, <&k3_clks 83 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	main_ehrpwm1: pwm@3010000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x00 0x3010000 0x00 0x100>;
+> > +		power-domains = <&k3_pds 84 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 1>, <&k3_clks 84 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	main_ehrpwm2: pwm@3020000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x00 0x3020000 0x00 0x100>;
+> > +		power-domains = <&k3_pds 85 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 2>, <&k3_clks 85 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	main_ehrpwm3: pwm@3030000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x00 0x3030000 0x00 0x100>;
+> > +		power-domains = <&k3_pds 86 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 3>, <&k3_clks 86 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	main_ehrpwm4: pwm@3040000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x00 0x3040000 0x00 0x100>;
+> > +		power-domains = <&k3_pds 87 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 4>, <&k3_clks 87 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +		status = "disabled";
+> > +	};
+> > +
+> > +	main_ehrpwm5: pwm@3050000 {
+> > +		compatible = "ti,am654-ehrpwm", "ti,am3352-ehrpwm";
+> > +		#pwm-cells = <3>;
+> > +		reg = <0x00 0x3050000 0x00 0x100>;
+> > +		power-domains = <&k3_pds 88 TI_SCI_PD_EXCLUSIVE>;
+> > +		clocks = <&ehrpwm_tbclk 5>, <&k3_clks 88 0>;
+> > +		clock-names = "tbclk", "fck";
+> > +		status = "disabled";
+> >  	};
+> >  
+> >  	gic500: interrupt-controller@1800000 {
+> > -- 
+> > 2.38.0
+> > 
+> 
+> -- 
+> Regards,
+> Nishanth Menon
+> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
