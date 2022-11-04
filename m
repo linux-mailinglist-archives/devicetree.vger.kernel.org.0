@@ -2,136 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D18618DD0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 02:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE97C618DDD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 03:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229674AbiKDByu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 21:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46010 "EHLO
+        id S231150AbiKDCDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 22:03:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiKDByt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 21:54:49 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD6E22BD4
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 18:54:48 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id s20so2336728qkg.5
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 18:54:48 -0700 (PDT)
+        with ESMTP id S229496AbiKDCDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 22:03:32 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7311AD99;
+        Thu,  3 Nov 2022 19:03:30 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id a67so5645481edf.12;
+        Thu, 03 Nov 2022 19:03:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CpQRyt8GRENl7jaeL0O4GGJhTNn+SQKLLiVgAveef7I=;
-        b=Gwqb90AaQPYreptA6yTj60W19Ra5ot0OVoD4ya55AZzhLKcKjA735OsZhNwjUTXkLD
-         fY/07k0mUNv88fCbe3S178vC7UfN72uy82jNxXTJJyds/Q3Iwjqs+I95nXOnFgVm/vOf
-         spQ7DfLWjs9YPJq/wdv5oCquy+1bEk7VQk3+7YYE1hTToeUFo1DVx5ziKszoB8XeZsYR
-         HaxBqgkSszsMM82gXZyBVZtv5lHzZoPP0WR9niQnOyUjMCsJLfTEnUrnLJXyfkWkhJmp
-         mN16eK2I2vdBK297IXM7qfXpG1b7AwvvuZXB3hOsAkmU4/nnRG7O/gSU/9KuK9zmjACx
-         Y6XA==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pLPCK9Uug0ilNvdlZMrezqOyWNOcVsx4Hwp/j3a6Hv8=;
+        b=d2bJwyvfrsIRK8UlUGWQma+1B3Kqzs/Pgf0maBdb7MUrdSpA/XA+zBwCy2Tmixq+Jj
+         sJoey6ghXpHD82G+7zMwqJE6UoDtmf5Vij92L8JW9LPnb5naseayxkezoZPCBMAE1xKB
+         j8hYf+mQU0fbLjkI0VO2kpXt3BpqsafJD/HA5+g6s4+l/Wikp85pz2GOaMqq46TlqGkw
+         FFs229BaXrojCKCQZh8WmVvtXRvVACwenHwRkF0P/yWYO0rKSSwgta9Cu0LHQq9k2hlZ
+         uanIG1zJd3oPUrnrIExAGfz4C2ahCDSubpY32SahIZbn7Ea8byCZ14WTo97AKoUg+CYY
+         RfMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CpQRyt8GRENl7jaeL0O4GGJhTNn+SQKLLiVgAveef7I=;
-        b=tSF4IW/zm9vwbjr/Pzcv7Dew8XdDtPaXSTxLQjijAgUuxP4JbGYcmW8JUQNPo1NvAN
-         UCnV04q7lZ1f4InD+gER3xqLtZ8GMFy1z4OlMlep5UUsYtjRNwPeKOb9oxXlj9Ii3Ffd
-         RMo8Qs+0Q6NcqdjrPm6dt0SxShnZm3EHtg+jjqkE9qL38Hif96/m+HAMdk3nad2wcAqe
-         OOEB6XJCt4XdkNnaGA79K+gAhxhtYJ6dcbZXWcK9vsqhFlzMAd/f/ON/sjZyPMXlowJO
-         Y8qqFnhSH7AzOAHPcaq6LWWB0wxBXkO1xv/UBJgp4nn9rworZWxl0jUnWkMeQbhgatXB
-         lQYQ==
-X-Gm-Message-State: ACrzQf0TuWFdWSdeYYJcAwIOw2I/l1vPGlQK9+w8HLgwngjN/K51MBLN
-        O8QJTZprC2bD73dq8WEH8U72/Q==
-X-Google-Smtp-Source: AMsMyM6V5SIrE7g6V+q7s37+2/77Q9qXgfIom8+gzk14wCaEDiQzqDI2OJ+5xVj34r4QCTPSOXX/wA==
-X-Received: by 2002:ae9:ebce:0:b0:6f9:ff07:7295 with SMTP id b197-20020ae9ebce000000b006f9ff077295mr24885670qkg.655.1667526887546;
-        Thu, 03 Nov 2022 18:54:47 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:da2a:9e7e:ddb5:dfa1? ([2601:586:5000:570:da2a:9e7e:ddb5:dfa1])
-        by smtp.gmail.com with ESMTPSA id s9-20020a05620a29c900b006f1187ca494sm2024602qkp.28.2022.11.03.18.54.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 18:54:47 -0700 (PDT)
-Message-ID: <8ba915b1-be77-f78e-87b0-9a00c8387084@linaro.org>
-Date:   Thu, 3 Nov 2022 21:54:46 -0400
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pLPCK9Uug0ilNvdlZMrezqOyWNOcVsx4Hwp/j3a6Hv8=;
+        b=uu0JLRvbZK7ytJcBXYJB6Xx9pdeg1kiSx1OUOFTMR7VxHyrDoASkwzjbaNdWyMoGHZ
+         3Q38W9fImmOHHHyM427VLvGNNBsfCUa2Pg/rnlo95U1fvPrl/ED9gMGMk6E9RoJ8SO56
+         Fv9wete7+bFyes1WGfYBsKB+GVS5KOlKudkqJr1qyGv0P9wt+8AEzcfL6lz5Ec8OemOX
+         layRsYycL3LD7cQHMERP0DkGg8kjYc1/X7fW/x7d48A8+X3kE889PWUpYLNrZMrK7O7w
+         gRlshcTEMyETcQGh49jlzBtBtu1snHLQczYl82U2YYxvSrvPcGQXzIW1AU9rkAqlnpXq
+         9XdQ==
+X-Gm-Message-State: ACrzQf2ESFyvF1GRIvaoGbuDdHI7EPIZJuYXfnhNtaf+z0kFWihXok5h
+        HizJ2c1xwchjBYnlbXi/4/4=
+X-Google-Smtp-Source: AMsMyM7Pw02m8msJ4P0TLH9cYFfz2LrxPUMowLkmarpEinPrYpjgd5BkNcWz7exI440Q++aZZGQ5Yw==
+X-Received: by 2002:a05:6402:5cb:b0:452:e416:2bc4 with SMTP id n11-20020a05640205cb00b00452e4162bc4mr32584677edx.114.1667527409188;
+        Thu, 03 Nov 2022 19:03:29 -0700 (PDT)
+Received: from skbuf ([188.27.184.197])
+        by smtp.gmail.com with ESMTPSA id u5-20020a17090626c500b00781dbdb292asm1151270ejc.155.2022.11.03.19.03.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Nov 2022 19:03:28 -0700 (PDT)
+Date:   Fri, 4 Nov 2022 04:03:26 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
+Message-ID: <20221104020326.4l63prl7vxgi3od7@skbuf>
+References: <20221102185232.131168-1-krzysztof.kozlowski@linaro.org>
+ <20221103233319.m2wq5o2w3ccvw5cu@skbuf>
+ <698c3a72-f694-01ac-80ba-13bd40bb6534@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v5 0/8] Add support for mp2733 battery charger
-Content-Language: en-US
-To:     Saravanan Sekar <sravanhome@gmail.com>, sre@kernel.org,
-        lee.jones@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jic23@kernel.org,
-        lars@metafoo.de, andy.shevchenko@gmail.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-References: <20221029093000.45451-1-sravanhome@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221029093000.45451-1-sravanhome@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <698c3a72-f694-01ac-80ba-13bd40bb6534@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/10/2022 05:29, Saravanan Sekar wrote:
-> changes in v5:
->   - fixed commit message on v5-0002 and v5-0004
+On Thu, Nov 03, 2022 at 09:44:36PM -0400, Krzysztof Kozlowski wrote:
+> > Don't these belong to spi-peripheral-props.yaml?
 > 
-> changes in v4:
->   - fixed attributes groups review comments in v3
->   - added new bug fix patches v4-0007 and v4-0008 
+> No, they are device specific, not controller specific. Every device
+> requiring them must explicitly include them.
 > 
-> changes in v3:
->   - fixed dt_binding_check error
->   - fixed spelling usb->USB
+> See:
+> https://lore.kernel.org/all/20220816124321.67817-1-krzysztof.kozlowski@linaro.org/
 > 
-> changes in v2:
->   - fixed spelling
->   - revert back probe to probe_new in mfd driver
-> 
-> I do not see a cover letter, but FWIW,
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-
-This does not belong to the cover letter. Please add respective tags to
-patches, where applicable. If Andy gave Rb tag for entire patchset, add
-it to the patches.
-
-> for all patches except DT binding
-> Note, some of the comments regarding spelling were given, I believe
-> you are going to address them in v3.
-
-...and this comment is from who? Andy?
-
-> 
-> 
-> add support for mp2733 Battery charger control driver for Monolithic
-> Power System's MP2733 chipset 
-> 
-> Saravanan Sekar (8):
->   iio: adc: mp2629: fix wrong comparison of channel
->   mfd: mp2629: fix failed to get iio channel by device name
->   iio: adc: mp2629: fix potential array out of bound access
->   power: supply: fix wrong interpretation of register value
->   mfd: mp2629: Add support for mps mp2733 battery charger
->   iio: adc: mp2629: restrict input voltage mask for mp2629
->   power: supply: Add support for mp2733 battery charger
->   power: supply: mp2629: Add USB fast charge settings
-> 
->  .../ABI/testing/sysfs-class-power-mp2629      |  16 ++
->  drivers/iio/adc/mp2629_adc.c                  |   8 +-
->  drivers/mfd/mp2629.c                          |   7 +-
->  drivers/power/supply/mp2629_charger.c         | 229 +++++++++++++++---
->  include/linux/mfd/mp2629.h                    |   6 +
-
-Why do you Cc DT maintainers?
-
->  5 files changed, 228 insertions(+), 38 deletions(-)
+> Best regards,
+> Krzysztof
 > 
 
-Best regards,
-Krzysztof
+I think you really mean to link to:
+https://lore.kernel.org/all/20220718220012.GA3625497-robh@kernel.org/
 
+oh and btw, doesn't that mean that the patch is missing
+Fixes: 233363aba72a ("spi/panel: dt-bindings: drop CPHA and CPOL from common properties")
+?
+
+but I'm not sure I understand the reasoning? I mean, from the
+perspective of the common schema, isn't it valid to put "spi-cpha" on a
+SPI peripheral OF node even if the hardware doesn't support it, in the
+same way that it's valid to put spi-max-frequency = 1 GHz even if the
+hardware doesn't support it? Or maybe I'm missing the point of
+spi-peripheral-props.yaml entirely? Since when is stacked-memories/
+parallel-memories something that should be accepted by all schemas of
+all SPI peripherals (for example here, an Ethernet switch)?
+I think that spi-cpha/spi-cpol belongs to spi-peripheral-props.yaml just
+as much as the others do.
+
+The distinction "device specific, not controller specific" is arbitrary
+to me. These are settings that the controller has to make in order to
+talk to that specific peripheral. Same as many others in that file.
