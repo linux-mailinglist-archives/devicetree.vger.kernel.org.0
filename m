@@ -2,141 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF28B619719
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:09:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A515619726
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:11:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231555AbiKDNJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:09:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
+        id S231978AbiKDNLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:11:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbiKDNJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:09:40 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0DAA286E6
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:09:39 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id h21so2974106qtu.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:09:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4MxzjYKOk4sy5XjCR20EQiICdAfVYjjgrKgPBg79CsE=;
-        b=jLQzpldCEcHA/FkI6E2pNXsFnBYFSpZpEi7EGtsN+UbHgHMGt8mblItb2S0sOavdll
-         jCcljPGzrU0UgJjpy1YZmGTSPaynqcblExMDGFb0IxZXZ0aGYS+2lgY/D4Wl05GhpFsU
-         W/n2UYzXuW8qV7VWdvCYoV5kzxUGQdBdz7c9j8drXSgmQjNL6DT8ydhoS2AiqxZm4XrH
-         UK4Ur55PACqY5zSKJxsWVPLYJuBiW7sQl1Tag9msZcuQy24zXWfmBiJLGdn4so83rbEp
-         6G1u49bDUYjiO3Av4uCxZyw32PMliCeFBFzU8bvCLokVrw8Qp0SmwF7yuNpSoKrj02/J
-         MVgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4MxzjYKOk4sy5XjCR20EQiICdAfVYjjgrKgPBg79CsE=;
-        b=XEZrPzpNdkq1Ddut9rxXS2SYfIHgMs1K7/H7tVhNeQSAQu8uifHwZRqRcQRpBdYOuK
-         Lr9fk2u6s11ubqFwZbIgVzxQUbjnkns9rAmlviZk1XyP7rTzwQkdRA3Iil+bzs5vcTAD
-         ePSd9usQWvmpNasSOHYHkdkYQZeR+vEHP2nG7Dr757VcU1yD8lEL5HZDYVasSSE+kSB+
-         KHcvJDdjxZ2daggX+OMnMuUQXNaNvsZFrukJP29+y3cdl3ZYiEx2z3pxZa4AMuESoU4z
-         bTiDCi30JdXquVdijbHaXJRkE11ajqanSk5ZzXVnawvlfFLHDzHK8xECYl1VP328exqm
-         LtwA==
-X-Gm-Message-State: ACrzQf0p8/xRyQpUYk3qNshj+eiDzVvguYBqPTTzOKm6A12W0tRtL0b0
-        kd0QK6N+75ZTuieZXzWLzSoKDw==
-X-Google-Smtp-Source: AMsMyM7zigYUVbBE2nPsp2ko6wVBLqpJ2LbhXuLIsukXJXFC98j3sXxmYJGHcIG5kwBfS9W5O41I7g==
-X-Received: by 2002:a05:622a:4ac6:b0:3a5:29d8:b683 with SMTP id fx6-20020a05622a4ac600b003a529d8b683mr20780593qtb.386.1667567378867;
-        Fri, 04 Nov 2022 06:09:38 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id w15-20020ac857cf000000b0038b684a1642sm2461299qta.32.2022.11.04.06.09.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 06:09:38 -0700 (PDT)
-Message-ID: <94b9c2c7-a1f8-26e7-0dcf-41b7ef46b23f@linaro.org>
-Date:   Fri, 4 Nov 2022 09:09:37 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 3/8] dt-bindings: display/msm: add support for the
- display on SM8450
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        with ESMTP id S231989AbiKDNK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:10:59 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544332ED72
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:10:56 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id C5F1285254;
+        Fri,  4 Nov 2022 14:10:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1667567454;
+        bh=tMg9K516CfccNf6cWrvZ6LFkekaMn5LxRoQ/KGHmSPM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=rYv5vTicuUWH/Mn/yelpuNn+aD3poXQuh/wBzRdb2M7yZCLR60YtfiLvIKmdd1ICM
+         AByBbUqAwHIIYAsfF9S9hoQCIq1AIAhbtm7Ek5nAP8/D5sdm2RZjBEBzBHJcIJIDwH
+         eUoM2QJxVQXyNIHP3GuaS+aAj4gaR7AygRWR41zbazQhOgf2wSgJ+/AZs3SsjtjBAy
+         SGuNaB06IirUk3IfhHA0avCKMzcAanr9B2PfXIGX2mMX/nA/maNN+E4u920Db0X0T6
+         4+vZMQKz8c619Q595ztkQEkAwg4Mvie88SR0f//6+gKNBQU3b6QZMAS7jcrwihjG39
+         leC2lv/UlKEgA==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221102231309.583587-1-dmitry.baryshkov@linaro.org>
- <20221102231309.583587-4-dmitry.baryshkov@linaro.org>
- <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
- <ec774d8b-b6b1-8dca-ec14-8e39e0a4f0f4@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ec774d8b-b6b1-8dca-ec14-8e39e0a4f0f4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: [PATCH v2 1/3] dt-bindings: imx6q-pcie: Handle various clock configurations
+Date:   Fri,  4 Nov 2022 14:10:42 +0100
+Message-Id: <20221104131044.103241-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 08:45, Dmitry Baryshkov wrote:
-> On 03/11/2022 17:03, Krzysztof Kozlowski wrote:
->> On 02/11/2022 19:13, Dmitry Baryshkov wrote:
->>> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
->>> SM8450 platform.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   .../bindings/display/msm/qcom,sm8450-dpu.yaml | 132 +++++++
->>>   .../display/msm/qcom,sm8450-mdss.yaml         | 349 ++++++++++++++++++
->>>   2 files changed, 481 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->>>
-> 
-> [skipped]
-> 
->>> +
->>> +$ref: /schemas/display/msm/mdss-common.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
-> 
-> [skipped]
-> 
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: iface
->>> +      - const: bus
->>> +      - const: nrt_bus
->>> +      - const: core
->>> +
->>> +  iommus:
->>> +    maxItems: 1
->>> +
->>> +  interconnects:
->>> +    maxItems: 2
->>> +
->>> +  interconnect-names:
->>> +    maxItems: 2
->>
->> You need specific names here.
->>
-> 
-> The names are described in mdss-common.yaml
+The i.MX SoCs have various clock configurations routed into the PCIe IP,
+the list of clock is below. Document all those configurations in the DT
+binding document.
 
-Ah, then it is ok. I could not check these :/
+All SoCs: pcie, pcie_bus
+6QDL, 7D: + pcie_phy
+6SX:      + pcie_phy          pcie_inbound_axi
+8MQ:      + pcie_phy pcie_aux
+8MM, 8MP: +          pcie_aux
 
-Best regards,
-Krzysztof
+Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: NXP Linux Team <linux-imx@nxp.com>
+To: devicetree@vger.kernel.org
+---
+V2: - Add AB from Alex
+---
+ .../bindings/pci/fsl,imx6q-pcie.yaml          | 74 +++++++++++++++++--
+ 1 file changed, 69 insertions(+), 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+index 376e739bcad40..1cfea8ca72576 100644
+--- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+@@ -14,9 +14,6 @@ description: |+
+   This PCIe host controller is based on the Synopsys DesignWare PCIe IP
+   and thus inherits all the common properties defined in snps,dw-pcie.yaml.
+ 
+-allOf:
+-  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+-
+ properties:
+   compatible:
+     enum:
+@@ -60,8 +57,8 @@ properties:
+     items:
+       - const: pcie
+       - const: pcie_bus
+-      - const: pcie_phy
+-      - const: pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie
++      - enum: [pcie_phy, pcie_aux]
++      - enum: [pcie_inbound_axi, pcie_aux]
+ 
+   num-lanes:
+     const: 1
+@@ -177,6 +174,73 @@ required:
+ 
+ unevaluatedProperties: false
+ 
++allOf:
++  - $ref: /schemas/pci/snps,dw-pcie.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - fsl,imx6sx-pcie
++              - fsl,imx8mq-pcie
++    then:
++      properties:
++        clocks:
++          maxItems: 4
++        clock-names:
++          maxItems: 4
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,imx6sx-pcie
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: pcie
++            - const: pcie_bus
++            - const: pcie_phy
++            - const: pcie_inbound_axi
++    else:
++      if:
++        properties:
++          compatible:
++            contains:
++              const: fsl,imx8mq-pcie
++      then:
++        properties:
++          clock-names:
++            items:
++              - const: pcie
++              - const: pcie_bus
++              - const: pcie_phy
++              - const: pcie_aux
++      else:
++        if:
++          properties:
++            compatible:
++              contains:
++                enum:
++                  - fsl,imx8mm-pcie
++                  - fsl,imx8mp-pcie
++        then:
++          properties:
++            clock-names:
++              items:
++                - const: pcie
++                - const: pcie_bus
++                - const: pcie_aux
++        else:
++          properties:
++            clock-names:
++              items:
++                - const: pcie
++                - const: pcie_bus
++                - const: pcie_phy
++
+ examples:
+   - |
+     #include <dt-bindings/clock/imx6qdl-clock.h>
+-- 
+2.35.1
 
