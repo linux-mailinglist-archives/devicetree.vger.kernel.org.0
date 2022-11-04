@@ -2,360 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67B2F619649
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:34:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A0561964C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:36:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231733AbiKDMer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 08:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
+        id S231623AbiKDMgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 08:36:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbiKDMeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:34:46 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B0882408C
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 05:34:45 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id z24so6155768ljn.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 05:34:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=96Qe0EgZnFzMToe21cig+Frohj+QHzH0enkDQVaaBhI=;
-        b=LhseJqBJRPVntuYrym1bTc9JixQrNmzt8OF+3PGS9TmO6XH5sR8DSHve9hHqKaMVOc
-         1tmWuGrOOU15Jre/gVjP0uIBcfvgPL1hYAy+D8/G1WX0gBDiccUxNRyPZVCRgSPYS8T8
-         TUhryAp0R+YiQg78uccqH92+npDlWQ9r740w/f4avVNVnsjYd8U+b/9fAjW0VyTPKSAP
-         tlMeDmV51pGdXXw4j7dAw8Co6knOpoOmb+ZAzr1j2rkcQ/6OihTdmVEPwV1KdnXW5BOp
-         lNcX8jAJq0Dph3zHHFlH4FkTUrTpYIfkiDgrzwSDC3t3AG4S/oZRU6PEnfYFIX2BWMLW
-         VOsg==
+        with ESMTP id S229600AbiKDMgJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:36:09 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323A028707;
+        Fri,  4 Nov 2022 05:36:05 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id v81so5010495oie.5;
+        Fri, 04 Nov 2022 05:36:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=96Qe0EgZnFzMToe21cig+Frohj+QHzH0enkDQVaaBhI=;
-        b=AHuUBxmhpyQKziFCMBgqfNEK82/IcEp8HV2JcWHqDszHdiLhPN/qDfj7uwj06Mq2AH
-         aCdhwjvZ/TfeCjjyYjby0M3djQQaAuphKRrYWWQZeMoLNSECeIJKvX2gaO0QnsNANjjP
-         e3NAUNpGWnM9HaJ2+didO2n8cBVftJzhusLKIqHJMIE56dY5qOEgO0ikld2P7RHplHMG
-         dssmHp/eBF/J/T5Xh8oM8RRysqw7yBRa6xbUHixelPA/JNaUkOCvD+P987djzIqn/vck
-         2yGpu0U9Gt7Q7MHottz/qqm06rgPD9qwgFqd0hfioVFQUXpnV2O0zjXOjzN8484QchJw
-         YPjw==
-X-Gm-Message-State: ACrzQf3yKqCWldVYcvd5HTbAskiHbtEa6UZzEqzQdZeF3U0e2J1ewu0H
-        oR0nsRD4MM43ecgKyO/ytzY9YQ==
-X-Google-Smtp-Source: AMsMyM6MOXvhfxrdstMXZvXUNNyG1mwUpWZeLi4PFzx4r1hzyrZkedQrNHKYkyTJcZ+2Fqv0jeg2wQ==
-X-Received: by 2002:a2e:a786:0:b0:277:5302:905 with SMTP id c6-20020a2ea786000000b0027753020905mr10401454ljf.499.1667565283251;
-        Fri, 04 Nov 2022 05:34:43 -0700 (PDT)
-Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id p21-20020a19f015000000b0049476667228sm455089lfc.65.2022.11.04.05.34.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 05:34:42 -0700 (PDT)
-Message-ID: <ee0880ad-0513-ffea-d80a-9eaac3a85c90@linaro.org>
-Date:   Fri, 4 Nov 2022 15:34:41 +0300
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rft72pT9aZJsB+kuvVBncDchApspaW8cVdrlnrgIWtE=;
+        b=gEU5rscBVPZMzWs+dK8fidpeRc6Pvq52yl4mGKkHVK2PVW4oE3jeu07p3mOKDNEjt2
+         mkFD/cK/fJs/vfeKsTPu2Mpvtv5Wjdy7jOtg8QJpWtztfOv2GjN262vIHGiwyT08wCQG
+         qNHfC1F3pQsZH/9kkvS+z9gt5XQDfRDozU4AaZhJSw0QgN9Vj9O2cwpJ3AnclZhawetW
+         cYYGn1ptRjFD8hWxYroqzkhWEQGPdXxTZ5OH5pXfkUX8H85LszZo5PYKsDvAE9gc4zIv
+         MIU0fmk6u4SV5llHuFAf99SlOO//yYGkSQQmFGpCe8rBtVOweNmVaaE0rwRj2HOid0Xl
+         XtxQ==
+X-Gm-Message-State: ACrzQf2ssfkHjR23ltEpt9sxWpVGmBG68wwmxlLxxKMwElmaa/PehWlG
+        XWSg0OB36qW9NP6AYFK5zXc8IzfzbA==
+X-Google-Smtp-Source: AMsMyM7jnbGnsomdmzhV6FLiWB6+w6HAXQuThhG5Wo5jKeP9dnKAZkDoVUF1DK9ZCxXkOhWaA9O7bw==
+X-Received: by 2002:a05:6808:2206:b0:35a:5b5f:c332 with SMTP id bd6-20020a056808220600b0035a5b5fc332mr1607213oib.241.1667565362983;
+        Fri, 04 Nov 2022 05:36:02 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id v23-20020a056830141700b00661946468c6sm1387234otp.31.2022.11.04.05.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Nov 2022 05:36:02 -0700 (PDT)
+Received: (nullmailer pid 1597769 invoked by uid 1000);
+        Fri, 04 Nov 2022 12:36:04 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v2 3/8] dt-bindings: display/msm: add support for the
- display on SM8450
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221102231309.583587-1-dmitry.baryshkov@linaro.org>
- <20221102231309.583587-4-dmitry.baryshkov@linaro.org>
- <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     lee <lee@arducam.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, linux-media@vger.kernel.org
+In-Reply-To: <20221104152601.000035fd@arducam.com>
+References: <20221104152601.000035fd@arducam.com>
+Message-Id: <166756425978.1581932.14876221768058327509.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor binding
+Date:   Fri, 04 Nov 2022 07:36:04 -0500
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 17:03, Krzysztof Kozlowski wrote:
-> On 02/11/2022 19:13, Dmitry Baryshkov wrote:
->> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
->> SM8450 platform.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   .../bindings/display/msm/qcom,sm8450-dpu.yaml | 132 +++++++
->>   .../display/msm/qcom,sm8450-mdss.yaml         | 349 ++++++++++++++++++
->>   2 files changed, 481 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->> new file mode 100644
->> index 000000000000..b8c508c50bc5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->> @@ -0,0 +1,132 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SM8450 Display DPU
->> +
->> +maintainers:
->> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> +
->> +$ref: /schemas/display/msm/dpu-common.yaml#
-> 
-> There is no such file and I could not fine any dependency mentioned in
-> cover letter. I guess you miss link to your refactor series?
 
-Excuse me, yes. However the refactoring should be already a part of 
-linux-next, so I didn't think that I should especially point to it.
-
-> This also means bot won't be able to test it...
-
-How does bot detects the base commit? Should i use --base? Or does it 
-work on top of linux-next?
-
+On Fri, 04 Nov 2022 15:26:01 +0800, lee wrote:
+> Add YAML device tree binding for IMX519 CMOS image sensor, and
+> the relevant MAINTAINERS entries.
 > 
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,sm8450-dpu
->> +
->> +  reg:
->> +    items:
->> +      - description: Address offset and size for mdp register set
->> +      - description: Address offset and size for vbif register set
->> +
->> +  reg-names:
->> +    items:
->> +      - const: mdp
->> +      - const: vbif
->> +
->> +  clocks:
->> +    items:
->> +      - description: Display hf axi clock
->> +      - description: Display sf axi clock
->> +      - description: Display ahb clock
->> +      - description: Display lut clock
->> +      - description: Display core clock
->> +      - description: Display vsync clock
-> 
-> Drop "clock", less typing.
-
-Ack
-
-> 
->> +
->> +  clock-names:
->> +    items:
->> +      - const: bus
->> +      - const: nrt_bus
->> +      - const: iface
->> +      - const: lut
->> +      - const: core
->> +      - const: vsync
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
->> +    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/interconnect/qcom,sm8450.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +    display-controller@ae01000 {
->> +        compatible = "qcom,sm8450-dpu";
->> +        reg = <0x0ae01000 0x8f000>,
->> +              <0x0aeb0000 0x2008>;
->> +        reg-names = "mdp", "vbif";
->> +
->> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
->> +                <&gcc GCC_DISP_SF_AXI_CLK>,
->> +                <&dispcc DISP_CC_MDSS_AHB_CLK>,
->> +                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
->> +                <&dispcc DISP_CC_MDSS_MDP_CLK>,
->> +                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->> +        clock-names = "bus",
->> +                      "nrt_bus",
->> +                      "iface",
->> +                      "lut",
->> +                      "core",
->> +                      "vsync";
->> +
->> +        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->> +        assigned-clock-rates = <19200000>;
->> +
->> +        operating-points-v2 = <&mdp_opp_table>;
->> +        power-domains = <&rpmhpd SM8450_MMCX>;
->> +
->> +        interrupt-parent = <&mdss>;
->> +        interrupts = <0>;
->> +
->> +        ports {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            port@0 {
->> +                reg = <0>;
->> +                dpu_intf1_out: endpoint {
->> +                    remote-endpoint = <&dsi0_in>;
->> +                };
->> +            };
->> +
->> +            port@1 {
->> +                reg = <1>;
->> +                dpu_intf2_out: endpoint {
->> +                    remote-endpoint = <&dsi1_in>;
->> +                };
->> +            };
->> +        };
->> +
->> +        mdp_opp_table: opp-table {
->> +            compatible = "operating-points-v2";
->> +
->> +            opp-172000000{
->> +                opp-hz = /bits/ 64 <172000000>;
->> +                required-opps = <&rpmhpd_opp_low_svs_d1>;
->> +            };
->> +
->> +            opp-200000000 {
->> +                opp-hz = /bits/ 64 <200000000>;
->> +                required-opps = <&rpmhpd_opp_low_svs>;
->> +            };
->> +
->> +            opp-325000000 {
->> +                opp-hz = /bits/ 64 <325000000>;
->> +                required-opps = <&rpmhpd_opp_svs>;
->> +            };
->> +
->> +            opp-375000000 {
->> +                opp-hz = /bits/ 64 <375000000>;
->> +                required-opps = <&rpmhpd_opp_svs_l1>;
->> +            };
->> +
->> +            opp-500000000 {
->> +                opp-hz = /bits/ 64 <500000000>;
->> +                required-opps = <&rpmhpd_opp_nom>;
->> +            };
->> +        };
->> +    };
->> +...
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->> new file mode 100644
->> index 000000000000..05c606e6ada3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->> @@ -0,0 +1,349 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm SM8450 Display MDSS
->> +
->> +maintainers:
->> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> +
->> +description:
->> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-> 
-> Drop "Device tree bindings for" and rewrite the sentence (e.g. drop "that").
-> 
->> +  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
->> +  bindings of MDSS are mentioned for SM8450 target.
-> 
-> Drop last sentence.
-> 
->> +
->> +$ref: /schemas/display/msm/mdss-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    items:
-> 
-> Drop items.
-> 
->> +      - const: qcom,sm8450-mdss
-> 
->> +
->> +  clocks:
->> +    items:
->> +      - description: Display AHB clock from gcc
->> +      - description: Display hf axi clock
->> +      - description: Display sf axi clock
->> +      - description: Display core clock
-> 
-> Drop trailing "clocks" (the first "AHB clock" is ok)
-
-Hmm, not sure that I understand the difference, but fine with me.
-
-> 
->> +
->> +  clock-names:
->> +    items:
->> +      - const: iface
->> +      - const: bus
->> +      - const: nrt_bus
->> +      - const: core
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  interconnects:
->> +    maxItems: 2
->> +
->> +  interconnect-names:
->> +    maxItems: 2
-> 
-> You need specific names here.
-
-Ack
-
-> 
->> +
->> +patternProperties:
->> +  "^display-controller@[0-9a-f]+$":
->> +    type: object
->> +    properties:
->> +      compatible:
->> +        const: qcom,sm8450-dpu
->> +
->> +  "^dsi@[0-9a-f]+$":
->> +    type: object
->> +    properties:
->> +      compatible:
->> +        const: qcom,mdss-dsi-ctrl
->> +
->> +  "^phy@[0-9a-f]+$":
->> +    type: object
->> +    properties:
->> +      compatible:
->> +        const: qcom,dsi-phy-5nm-8450
->> +
->> +unevaluatedProperties: false
-> 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Lee Jackson <lee@arducam.com>
+> ---
+>  .../bindings/media/i2c/sony,imx519.yaml       | 107 ++++++++++++++++++
+>  MAINTAINERS                                   |   9 ++
+>  2 files changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
 > 
 
--- 
-With best wishes
-Dmitry
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml:48:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml: 'port' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select', '$ref']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx519.example.dtb: sensor@1a: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
