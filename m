@@ -2,145 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EFD66194B6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 11:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E63DD6194E9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 11:57:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231328AbiKDKnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 06:43:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57212 "EHLO
+        id S231171AbiKDK5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 06:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiKDKnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 06:43:10 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CF02613;
-        Fri,  4 Nov 2022 03:43:09 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 21so7011809edv.3;
-        Fri, 04 Nov 2022 03:43:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=z4MqsTTxjFBbRHnSsM38PsVaxjzlsoSDIyHWz7wH4SY=;
-        b=Ix2doZSQpYfiHqjXG2va4uq+krp2oBXAUSiAFYjerHpknLcCyF6qPZ/HES8vjZprjm
-         LFQQGAs7Ft2o8OC4iwiZvtt3HJwOJGz3dSdxZXyMTfMIvD9db+SFdq6GqR+139Bx1t/4
-         VmUIfYNNELwNw67XEuwE2m59KeEGmC0KN1IbvdG3/5NBvqTLnDbGoeeaV+2N/jq7SmJa
-         RdB6N9qn9fEtYB3bTT5alyOIcmC587/TW3uyy3lmVLomq+XarYPHos2JeXgUf5WrvYFn
-         avo+Xvn/Znq9LfgTjQdK6ffqduIPbyJ3SESlrANF5vUjiT6ji5j7XjNrKaTcifArIpkp
-         ItyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z4MqsTTxjFBbRHnSsM38PsVaxjzlsoSDIyHWz7wH4SY=;
-        b=E8+XeqnE48lGxFEMJtLxzVE92DQZ14VEqxWV9Gf9rKC4IW9QQZxbWm77LmIAO9QoB9
-         JU/OYIsUHkg2enxjDwFtg8aiGjQ2t4FpvKxTaFB4lp4hpydqygBcoQvkXVgPHxZ6KgWg
-         +QJ6130D2I1YU4UXMLKN9GsDiON8ZrgdIdWQV6l1NmTsCwdSzfBjPdfNtBClDzbg+yin
-         Tc23bWFltFsYUfp3nz86vHq+bOGrFP4SQ6nEwAF72QpGDX3VbfBWtHj0HflcnW8YipAq
-         OMk6A5DyTwiFMDREsA7MSy/pXKzuhSapPQU5yEOuSpsWG3VXXAel4HAYwdKZYUsY/pm7
-         cj5g==
-X-Gm-Message-State: ACrzQf3mPEUArwxykhwikLoksZ1Gn1ZTcmJYi0acp5Vkl3unhbkQYMi0
-        FIdBJMQU2vvSI83veoCdAfWnnB8y0O8=
-X-Google-Smtp-Source: AMsMyM4qsaU38ybnG5FdKbbfimKaJJ0F8Iux7nZNNNT+xUlFehOC5o4AhxiFzBBWhiBI09veRFHTfQ==
-X-Received: by 2002:aa7:d65a:0:b0:462:7b99:d3b2 with SMTP id v26-20020aa7d65a000000b004627b99d3b2mr281577edr.248.1667558587944;
-        Fri, 04 Nov 2022 03:43:07 -0700 (PDT)
-Received: from localhost (p200300e41f201d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f20:1d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id j14-20020a1709062a0e00b007415f8ffcbbsm1638302eje.98.2022.11.04.03.43.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 03:43:07 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: arm,sbsa-uart: Convert to json-schema
-Date:   Fri,  4 Nov 2022 11:43:03 +0100
-Message-Id: <20221104104303.1534876-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.38.1
+        with ESMTP id S230487AbiKDK4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 06:56:54 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E9782BB2D
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 03:56:50 -0700 (PDT)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20221104105648epoutp028cfdd7205a9617cac46bd39cd23d8d99~kXHJU9wa82561225612epoutp02O
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 10:56:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20221104105648epoutp028cfdd7205a9617cac46bd39cd23d8d99~kXHJU9wa82561225612epoutp02O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1667559408;
+        bh=ByXREw6U9UT1fb8v/UjL6hHxBiGSezGiu+UpEJA3n18=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=NTWy6irBUsGDnFJwafP2dGF8aYAtgwvsqXxMxhGJKJwi1fJ8XY1x1MYVMle2wYeOf
+         MdpdEFHIyOFt9V6Xwf0OZ3R31bhpQ5ckkgdj5otBS/sd96bSNw1nslNjruaZoHQI6/
+         ayJQ0btUkhJqihhZlEn1MhN+WXvOqxw8j3MmNwds=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20221104105647epcas5p33945ca8e853b0a5d209c4f8b61370f1d~kXHIvOBXh1487914879epcas5p3Z;
+        Fri,  4 Nov 2022 10:56:47 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.174]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4N3cy43wFyz4x9Pw; Fri,  4 Nov
+        2022 10:56:44 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        0E.0E.56352.CEFE4636; Fri,  4 Nov 2022 19:56:44 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20221104104928epcas5p1ba76f35fd33e3a68ced972d0489c98af~kXAwPxlxh3116031160epcas5p1s;
+        Fri,  4 Nov 2022 10:49:28 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20221104104928epsmtrp1a42a0fb098eadb759fba8e4670993741~kXAwNrjXu2514725147epsmtrp14;
+        Fri,  4 Nov 2022 10:49:28 +0000 (GMT)
+X-AuditID: b6c32a4b-383ff7000001dc20-1c-6364efec4840
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2D.A9.14392.83EE4636; Fri,  4 Nov 2022 19:49:28 +0900 (KST)
+Received: from FDSFTE308 (unknown [107.122.81.79]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20221104104925epsmtip284347302a3441e4cd072520eda44e503~kXAtELaC42615726157epsmtip2W;
+        Fri,  4 Nov 2022 10:49:25 +0000 (GMT)
+From:   "Aakarsh Jain" <aakarsh.jain@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Cc:     <m.szyprowski@samsung.com>, <andrzej.hajda@intel.com>,
+        <mchehab@kernel.org>, <hverkuil-cisco@xs4all.nl>,
+        <ezequiel@vanguardiasur.com.ar>, <jernej.skrabec@gmail.com>,
+        <benjamin.gaignard@collabora.com>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <stanimir.varbanov@linaro.org>, <dillon.minfei@gmail.com>,
+        <david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <andi@etezian.org>,
+        <alim.akhtar@samsung.com>, <aswani.reddy@samsung.com>,
+        <pankaj.dubey@samsung.com>, <smitha.t@samsung.com>
+In-Reply-To: <352e31de-cb79-f08e-b817-2712d97b84f1@linaro.org>
+Subject: RE: [PATCH 3/3] arm64: dts: exynos: Rename compatible string
+ property from version to SOC specific
+Date:   Fri, 4 Nov 2022 16:19:24 +0530
+Message-ID: <000001d8f03b$1cd111f0$567335d0$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIVsoyS1LfNYjvTRsU3iIkRJvur6AJ2XG6BApeHKxICO7c5fa16oSiA
+Content-Language: en-in
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xbdRTH97v39gGuemFFfqvM1CpEikALFC/yckKWS9gcwTgNIZau3ADS
+        V9oiMpc4CZvIGLMqC3RYYGUYnpsMOthKBFbYaBiOjMeidLymUEocoUOZW5wtBeW/z/me7/md
+        3zm//Jio7zkGh5mn0FJqhUTGo3tjphvBwaErD7OlgsnyfcSswUQnjBuLCDFjdGLEwJUuBtE5
+        fh4lfrjZRyNqLaM04mr/PEb8uOTKjlXbMGKxth0Qdv19OlGxNIcSvQ5XRcfCJI24e62GTpRf
+        7qIRbRYbg7g4NYYQjR1PEeJC1yMGcbLXwiBsZhMgSk5ZkLch2WpoBWS3rQGQUw1rKNmjtzFI
+        o9mOkB3NX9HJ6UkznbzS8Dl5cvBvjKzobAZkmWWKTjo7Xiat605GGisjPy6XkmRTai6lkCqz
+        8xQ58bzU98RJYlG0QBgqjCHe5HEVEjkVz0s+mBZ6IE/mWgGP+4lEVuCS0iQaDS88IU6tLNBS
+        3FylRhvPo1TZMlWUKkwjkWsKFDlhCkr7llAgiBC5jFn5ubW3ZhDVWb9P7/UtME4Ah08Z8GJC
+        PAq2NRXT3OyLXwfw7mhRGfB28RqATT06hif4E8DBn/9ibFcMPW2iexK9AK6a2rfKFwFsK/dy
+        Mx0PhzPWcprbxMYHAZztnEPdAYrXYnCyeJXudnnhCbBuo8TlYjL34HJotr3hljH8Ndha8Tvm
+        ZhYeA68OlSAe9oHD1Q82dRQPgY31DtRzIy58/Fvj5jFs/ACsLQ7yWPzh4OPyzbYQt3rBZ3/c
+        3vInw/mWbd4Dl292bk3Ggfazp7ZYChcu2Lc8MnjJ/B3m4UTYN16DuXuheDC8dC3cI++DldZ2
+        xNP3eXjmyQPEo7Ngt2Gbg2DN9AbNwwHwRstF8DXg6XdMpt8xmX7HCPr/u9UBrBnspVQaeQ6l
+        EakiFVThf+8tVco7wOYH4ad2g/nZ1bABgDDBAIBMlMdmrZmkUl9WtqToGKVWitUFMkozAESu
+        detQjp9U6fphCq1YGBUjiIqOjo6KiYwW8vxZxiq+1BfPkWipfIpSUertOoTpxTmBNBStZNHl
+        CLm7wifReSz9Nj6exup+d+a0Rfdxj2A9dr0yJetIysEXU3JnAwIbHjm837nOiSvQix7eYYP0
+        Umdglc5sJxtfXda+1PKRMXbvkmQIcPqLIzITUvlziUlhxxvRI0f9A4yHL3+wHJfq9zo37d6w
+        wRw5PLZRmBkakPHsl5HytV8LV0y3+tvbFr7sEyZ02fdvGKyV91l1Od+GVMGajIUXztH+MXwR
+        PM86NOYQT1j5ERPUE35z6OGjPk3CTvZPVGacZVegbPdI9ffTVeuH6v2S75QG6XS29JDjPs+x
+        haNJi212EnGWfhiv1taPiCvPTJw+/5ljYlfsKzLR+4Oqb3iYJlci5KNqjeRfngN2vKkEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpgleLIzCtJLcpLzFFi42LZdlhJXtfiXUqywd8zOhYP5m1js1j84zmT
+        xf3Fn1ksDm3eym6x5cpsZovlxw+wWsw/co7VYvvBRywWG18AZS/OvMti8Xz+OkaLl7PusVn0
+        vXjIbLH3NVDHpsfXWC0u75rDZtGzYSurxdojd9ktll6/yGSxbNMfJotFW7+wW7TuPcJucXfP
+        NkaLlrYjTA4SHmvmrWH02HF3CaPH9SWfmD12zrrL7rF4z0smj02rOtk87lzbw+axeUm9R+vR
+        XywefVtWMXp0HbnO5vF5k5zHqa+f2QN4o7hsUlJzMstSi/TtErgy5q9+xFawSqTi8Pt/TA2M
+        HYJdjJwcEgImEsf+rGTrYuTiEBLYzSixa+MxNoiEjMT/tmPsELawxMp/z9khip4ySkzf9pUR
+        JMEmoC9x/1QPK0hCROAko0T/mRYwh1lgM4vE2tY9LBAtnxklVszfDtbCKWAnseAHSBUHh7BA
+        tsTO7gyQMIuAisSavmcsIDavgKXE9mMtTBC2oMTJmU/A4swC2hJPbz6Fs5ctfM0McZ6CxM+n
+        y8BGigi4ScxvUoMoEZc4+rOHeQKj8Cwkk2YhmTQLyaRZSFoWMLKsYpRMLSjOTc8tNiwwzEst
+        1ytOzC0uzUvXS87P3cQITiRamjsYt6/6oHeIkYmD8RCjBAezkgjvp23JyUK8KYmVValF+fFF
+        pTmpxYcYpTlYlMR5L3SdjBcSSE8sSc1OTS1ILYLJMnFwSjUw6dedFbPwnaPBofE5SMR5h32T
+        k/vdlSKbLj5w3uVwttvmFV/3vA5hta/uNxf9uZptu/vOGvt/93deu5n4o+Lde7++781VU2Nv
+        Sop9l22bXf+MIcv2VO/3faovMjcsKCmxO/BdeEPNGe6sK98X/BKu5nQriUxqVbkbl+5YNl1r
+        02XRA8flZNOvb3CtDBNlvDqPcaJ1Xry8meye3Ocv6v+eE9DcHH5zF2NT6KFI9oudSf/WqIo8
+        2/7p6FWHKY3PVrdatzw0Xn7stChffkcLz2FxiV6juEB5QcOGyfYviiMXb3b4Y+z/4PrVtlVp
+        cm6HkpfvtRM8Z+f2W+2+QmMY+9vsP2sX6TyXYU/0VrZfc/ahEktxRqKhFnNRcSIA1WgV4JMD
+        AAA=
+X-CMS-MailID: 20221104104928epcas5p1ba76f35fd33e3a68ced972d0489c98af
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20221102125816epcas5p23e16fefd6b820e7dd7d9a93f0d48f40d
+References: <20221102130602.48969-1-aakarsh.jain@samsung.com>
+        <CGME20221102125816epcas5p23e16fefd6b820e7dd7d9a93f0d48f40d@epcas5p2.samsung.com>
+        <20221102130602.48969-3-aakarsh.jain@samsung.com>
+        <352e31de-cb79-f08e-b817-2712d97b84f1@linaro.org>
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
 
-Convert the ARM SBSA UART device tree bindings from the free-form text
-format to json-schema.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../bindings/serial/arm,sbsa-uart.yaml        | 37 +++++++++++++++++++
- .../bindings/serial/arm_sbsa_uart.txt         | 10 -----
- 2 files changed, 37 insertions(+), 10 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
- delete mode 100644 Documentation/devicetree/bindings/serial/arm_sbsa_uart.txt
+> -----Original Message-----
+> From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40linaro.org=5D
+> Sent: 03 November 2022 18:04
+> To: Aakarsh Jain <aakarsh.jain=40samsung.com>; linux-arm-
+> kernel=40lists.infradead.org; linux-media=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; devicetree=40vger.kernel.org
+> Cc: m.szyprowski=40samsung.com; andrzej.hajda=40intel.com;
+> mchehab=40kernel.org; hverkuil-cisco=40xs4all.nl;
+> ezequiel=40vanguardiasur.com.ar; jernej.skrabec=40gmail.com;
+> benjamin.gaignard=40collabora.com; krzysztof.kozlowski+dt=40linaro.org;
+> stanimir.varbanov=40linaro.org; dillon.minfei=40gmail.com;
+> david.plowman=40raspberrypi.com; mark.rutland=40arm.com;
+> robh+dt=40kernel.org; krzk+dt=40kernel.org; andi=40etezian.org;
+> alim.akhtar=40samsung.com; aswani.reddy=40samsung.com;
+> pankaj.dubey=40samsung.com; smitha.t=40samsung.com
+> Subject: Re: =5BPATCH 3/3=5D arm64: dts: exynos: Rename compatible string
+> property from version to SOC specific
+>=20
+> On 02/11/2022 09:06, Aakarsh Jain wrote:
+> > commit =22752d3a23d1f68de87e3c=22 which adds MFC codec device node for
+> > exynos3250 SOC. Since exynos3250.dtsi and exynos5420.dtsi are using
+> > same compatible string as =22samsung,mfc-v7=22 but their node propertie=
+s
+> > are different.As both SoCs have MFC v7 hardware module but with
+> > different clock hierarchy and complexity.
+> > So renaming compatible string from version specific to SOC based.
+> >
+> > Suggested-by: Alim Akhtar <alim.akhtar=40samsung.com>
+> > Fixes: 752d3a23d1f6 (=22ARM: dts: add MFC codec device node for
+> > exynos3250=22)
+>=20
+> There is no bug to fix and backporting is forbidden as it breaks the usag=
+e of
+> DTS in older kernel.
+>=20
+Okay will remove this Fix tag in next series.
+> > Signed-off-by: Aakarsh Jain <aakarsh.jain=40samsung.com>
+> > ---
+> >  arch/arm/boot/dts/exynos3250.dtsi =7C 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm/boot/dts/exynos3250.dtsi
+> > b/arch/arm/boot/dts/exynos3250.dtsi
+> > index 326b9e0ed8d3..98105c64f7d9 100644
+> > --- a/arch/arm/boot/dts/exynos3250.dtsi
+> > +++ b/arch/arm/boot/dts/exynos3250.dtsi
+> > =40=40 -485,7 +485,7 =40=40
+> >  		=7D;
+> >
+> >  		mfc: codec=4013400000 =7B
+> > -			compatible =3D =22samsung,mfc-v7=22;
+> > +			compatible =3D =22samsung,exynos3250-mfc=22;
+>=20
+> The change is non-bisectable and breaks using DTS in older kernel.
+>=20
+Right, so what is your suggestion on this?
+I can see two ways here:
+1> To squash patch2 and patch3 in one?
+2> Have a warning about this breakage in the patch-3 commit message?
 
-diff --git a/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-new file mode 100644
-index 000000000000..afaa1ef7f2e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/arm,sbsa-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM SBSA defined generic UART
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-+
-+description:
-+  This UART uses a subset of the PL011 registers and consequently lives
-+  in the PL011 driver. It's baudrate and other communication parameters
-+  cannot be adjusted at runtime, so it lacks a clock specifier here.
-+
-+properties:
-+  compatible:
-+    const: arm,sbsa-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+allOf:
-+  - $ref: serial.yaml
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+...
-diff --git a/Documentation/devicetree/bindings/serial/arm_sbsa_uart.txt b/Documentation/devicetree/bindings/serial/arm_sbsa_uart.txt
-deleted file mode 100644
-index 4163e7eb7763..000000000000
---- a/Documentation/devicetree/bindings/serial/arm_sbsa_uart.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--* ARM SBSA defined generic UART
--This UART uses a subset of the PL011 registers and consequently lives
--in the PL011 driver. It's baudrate and other communication parameters
--cannot be adjusted at runtime, so it lacks a clock specifier here.
--
--Required properties:
--- compatible: must be "arm,sbsa-uart"
--- reg: exactly one register range
--- interrupts: exactly one interrupt specifier
--- current-speed: the (fixed) baud rate set by the firmware
--- 
-2.38.1
+> Best regards,
+> Krzysztof
+
+
+Thanks for the review.
+
 
