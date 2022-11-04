@@ -2,48 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B860B6197CF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A76986197E2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232038AbiKDNZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:25:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53446 "EHLO
+        id S229700AbiKDNbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231567AbiKDNYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:24:54 -0400
-Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE1412FC30;
-        Fri,  4 Nov 2022 06:24:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1667568260; bh=/VuTcksTYzQcmTVddTorAaSINvFG5kEAozPNxmP6P0k=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=X7k/7N+Vu71B3AuVpAKMN44ePg8unhWCDJK5VnPVpvEtC0fIxFbmCXrrC1rmUNouh
-         ovC7E1G7tWzOWew5cXzKcHJI+3D7tiTypW2Dp8H7zmxbbEeakXjzmGdyvp5ZttgaTR
-         kKGEKVKi2go630EvVCseM8Rq2wgxJ/RtP2ZJUzsE=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Fri,  4 Nov 2022 14:24:20 +0100 (CET)
-X-EA-Auth: MBXKOFvLNcjuDq1qBH+FDXkViUMQsA7Hp6gAIFNEdb1ykPMxL1HfK1DFo7RY5OsAe4h/EV1PvpkfwVbk083EliZqx1ANLoHEIK3S6UucV5A=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229539AbiKDNbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:31:23 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 569221C9;
+        Fri,  4 Nov 2022 06:31:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=7tLMpJgWljDAlxmwj9PUYVBNLxVIZhvlNdcukf0xZoM=; b=0nGRgygsAdOuKnuDCTsgZVCxf2
+        nbqDLEyiDDF8b8HmGZcc2IFGoZDmoGfL90yq+SalAmQrYjAKR38DEA2XLVC4sVXXdKGFExLO+1iSx
+        X1P1sYSm0dSJtBEpnGkpeJc99ne+G6oVmtxOQTNsPhVGhkWo1a51pXX0AjCHNRxNOvWU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oqwlv-001QWI-71; Fri, 04 Nov 2022 14:30:11 +0100
+Date:   Fri, 4 Nov 2022 14:30:11 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chester Lin <clin@suse.com>
+Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: msm8916-alcatel-idol347: add LED indicator
-Date:   Fri,  4 Nov 2022 14:24:00 +0100
-Message-Id: <20221104132400.1763218-4-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221104132400.1763218-1-vincent.knecht@mailoo.org>
-References: <20221104132400.1763218-1-vincent.knecht@mailoo.org>
+        Jan Petrous <jan.petrous@nxp.com>, netdev@vger.kernel.org,
+        s32@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <mbrugger@suse.com>
+Subject: Re: [PATCH 2/5] dt-bindings: net: add schema for NXP S32CC dwmac
+ glue driver
+Message-ID: <Y2UT4yIqk0pV6FHA@lunn.ch>
+References: <20221031101052.14956-1-clin@suse.com>
+ <20221031101052.14956-3-clin@suse.com>
+ <20221102155515.GA3959603-robh@kernel.org>
+ <2a7ebef4-77cc-1c26-ec6d-86db5ee5a94b@suse.de>
+ <Y2Q7KtYkvpRz76tn@lunn.ch>
+ <Y2T5/w8CvZH5ZlE2@linux-8mug>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Y2T5/w8CvZH5ZlE2@linux-8mug>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,81 +61,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add si-en,sn3190 LED controller to enable white LED indicator.
+> Here I just focus on GMAC since there are other LAN interfaces that S32 family
+> uses [e.g. PFE]. According to the public GMACSUBSYS ref manual rev2[1] provided
+> on NXP website, theoretically GMAC can run SGMII in 1000Mbps and 2500Mbps so I
+> assume that supporting 1000BASE-X could be achievable. I'm not sure if any S32
+> board variant might have SFP ports but RJ-45 [1000BASE-T] should be the major
+> type used on S32G-EVB and S32G-RDB2.
 
-This requires adding the additional "enable" gpio that the OEM
-choose to use, despite it not being mentioned in si-en,sn3190
-datasheet nor supported by the driver.
+SGMII at 2500Mbps does not exist. Lots of people get this wrong. It
+will be 2500Base-X.
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
- .../boot/dts/qcom/msm8916-alcatel-idol347.dts | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Does the clock need to change in order to support 2500Base-X? If i
+understand you correctly, Linux does not control the clocks, and so
+cannot change the clocks? So that probably means you cannot actually
+support 2500Base-X? Once you have Linux actually controlling the
+hardware, you can then make use of an SFP or a copper PHY which
+supports 2.5G. The PHY will swap its host side between SGMII and
+2500Base-X depending on what the line side negotiates, 1000Base-T or
+2500Base-T. The MAC driver then needs to change its configuration to
+suite.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-index eadeb1a445fd..701a5585d77e 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-@@ -130,6 +130,27 @@ gyroscope@68 {
- 	};
- };
- 
-+&blsp_i2c6 {
-+	status = "okay";
-+
-+	led-controller@68 {
-+		compatible = "si-en,sn3190";
-+		reg = <0x68>;
-+		shutdown-gpios = <&msmgpio 89 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_enable_default &led_shutdown_default>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			led-max-microamp = <5000>;
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_WHITE>;
-+		};
-+	};
-+};
-+
- &pm8916_resin {
- 	status = "okay";
- 	linux,code = <KEY_VOLUMEDOWN>;
-@@ -306,6 +327,29 @@ gyro_int_default: gyro-int-default-state {
- 		bias-disable;
- 	};
- 
-+	/*
-+	 * The OEM wired an additional GPIO to be asserted so that
-+	 * the si-en,sn3190 LED IC works. Since this GPIO is not
-+	 * part of the IC datasheet nor supported by the driver,
-+	 * force it asserted here.
-+	 */
-+	led_enable_default: led-enable-default-state {
-+		pins = "gpio102";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-high;
-+	};
-+
-+	led_shutdown_default: led-shutdown-default-state {
-+		pins = "gpio89";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	mag_reset_default: mag-reset-default-state {
- 		pins = "gpio8";
- 		function = "gpio";
--- 
-2.38.1
-
-
-
+	Andrew
