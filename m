@@ -2,152 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 267466191A1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 08:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A97856191AF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 08:17:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbiKDHOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 03:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48348 "EHLO
+        id S230035AbiKDHRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 03:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiKDHOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 03:14:01 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C039C28E;
-        Fri,  4 Nov 2022 00:14:00 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id i5-20020a1c3b05000000b003cf47dcd316so4811233wma.4;
-        Fri, 04 Nov 2022 00:14:00 -0700 (PDT)
+        with ESMTP id S229496AbiKDHRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 03:17:49 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBC6627B2A
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 00:17:47 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id a13so6415796edj.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 00:17:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=rasmusvillemoes.dk; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=71JDLSPDuOSbvW6+01TP0a2cLDg8k4YK3ZQF2CPNVmw=;
-        b=ECMGKlpSiSmSjUeCpDQL2qatv/Hg3mMkzAERCgFbCAh3HAekaZFIBticVVVsOUv0rR
-         8c/qwD8iir6CSLOSg7m8PF07nWsDEah6bvY36i6YFPKfv+Ji7SEK+wSBBlZALtkVNfsF
-         J5VA4jW+n/LKdMuUlWy3qC/5DWzyHKAMdlChjoNjJD8T8SHiaF/DVEDijz15xUbEHYPW
-         yHXjDC/0fZi1X+aB2bc5j8KJdQ9JTipdhmDVpLM8BhJWY/SU6/B/SmdzPwj+lvD3eGEe
-         TWNxrsY3DPVBiEZg6VwKcfK4Q422ovM+2+dSo7vp9zCBUdL8Pakntxhowo44pcGPXcq2
-         cfVw==
+        bh=ztKT9w6RIk8X4v+7zU6phgitJO+2+RvlgOkmKCtGqNE=;
+        b=RE04PQy/aZ994XSK2FZKlOeZgB5P7/6aqfcEhMKGLC0ugatlYunNnqkUbby2ryX7Kc
+         Oblg0VYidM97iTpQHEWozvS78pFGJHT8GCMiJNBVobIAgYMMW6EjQ95bznY0XppTfQwB
+         N5X9lSUY2hGOMucGCcIgWUQlem47U4M1kmxGg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=71JDLSPDuOSbvW6+01TP0a2cLDg8k4YK3ZQF2CPNVmw=;
-        b=gyWdi0RJ0eXiHf+WVq/ac4lttZVwb79d1i319SJ7mtZOknpe9Fn9U0q6+NiRRflvJQ
-         9+TlS9qOCRZs16s8EcXoTqJUL1vFRSwG5AOJEuZeQFYawyylUeNxuaEWqPLP7u91kdWs
-         0STJ+ltzawxxflZqw3UlBklRZtnD6tZBO5QwNaxvZa4QZSnvCgoM/wqAUaQAbp/FQ9jh
-         Q+7lT776YDQ/fmjZtAOgzYKPHf4yTEe2coaM3tKlVND9PTckWgV6LePTm9Pom+Hm7FnQ
-         QigW8IqReLbGIUNcZV50nmq2TyPCcsLbOt1/I7I3KN6d5jq137cSuTs0s5XGhiuXN219
-         OOCA==
-X-Gm-Message-State: ACrzQf0yGhsPQt99Y5jPBw5hpin7eTKyqo+WYjH4xINThOFZv3B3UGwf
-        krfMmsyr8u37v1/DQ3K0ffLtvNYexuI=
-X-Google-Smtp-Source: AMsMyM5552JHK7ePe0KMS/Ml1NhsaEsl83t1vO1WMqhdROt7orCJp32OTE5eReE/Dp7REC477+zJiQ==
-X-Received: by 2002:a7b:c30a:0:b0:3c1:bf95:e17b with SMTP id k10-20020a7bc30a000000b003c1bf95e17bmr23281588wmj.31.1667546039161;
-        Fri, 04 Nov 2022 00:13:59 -0700 (PDT)
-Received: from [192.168.0.104] (p5dcfe5c1.dip0.t-ipconnect.de. [93.207.229.193])
-        by smtp.gmail.com with ESMTPSA id l21-20020a05600c4f1500b003b4fdbb6319sm2122672wmq.21.2022.11.04.00.13.58
+        bh=ztKT9w6RIk8X4v+7zU6phgitJO+2+RvlgOkmKCtGqNE=;
+        b=hgqbsmYCzkCGx8QmV8FEZQKowtfAm1wOWHkrqXtwctmkEsL3qRZDFhFjtImBLOoJui
+         1IhbROSBJ3qUDsYWSQGHc2t//dZUykQxHsDseP4v88dHEwFksrVV2kJ3TaeP4mITse8S
+         ZEVfNKxR/zrX5AmTttu3G9BB2Vo6yN5jsjgH4NR71rD+VtJPcTdKDZrU0BgD+vfoMDZH
+         +p/pAUdd47VFsRTzbbTaUPbykaWNgOWXIhn3k76iEHCeNbyL9H8hviZm58DE//lXVuzK
+         lHvVfa5uksqX34MavuwrWwidfpcBQkBBVRRPC/eY4Ha57sh8jweFHcCT/AOkz7dPWMLC
+         BqIQ==
+X-Gm-Message-State: ACrzQf0oKIgcEEhSsrA3rQKTrSlh0Xp6Hq67mcbyjfwT4T7g3rql5Q/l
+        0/S6Bc6uQBzi5rzazVuizaZPUg==
+X-Google-Smtp-Source: AMsMyM5WrqJrUBZvoiyGl7X5vrqH2Gvxvuf/HFdM4HS1waH9xSJs0zJko5ghWa1hAJLAG7Vgf6Zz5w==
+X-Received: by 2002:aa7:c78e:0:b0:456:c524:90ec with SMTP id n14-20020aa7c78e000000b00456c52490ecmr34291821eds.192.1667546266383;
+        Fri, 04 Nov 2022 00:17:46 -0700 (PDT)
+Received: from [172.16.11.74] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id c17-20020a17090618b100b0077a8fa8ba55sm1384836ejf.210.2022.11.04.00.17.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 00:13:58 -0700 (PDT)
-Message-ID: <3e1b8549-0961-697b-63b8-db6b37d53c6b@gmail.com>
-Date:   Fri, 4 Nov 2022 08:13:57 +0100
+        Fri, 04 Nov 2022 00:17:45 -0700 (PDT)
+Message-ID: <893c83e7-8b11-0439-6f38-d522f4a1a368@rasmusvillemoes.dk>
+Date:   Fri, 4 Nov 2022 08:17:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
-Subject: Re: [PATCH v5 0/8] Add support for mp2733 battery charger
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        lee.jones@linaro.org, linux-iio@vger.kernel.org, jic23@kernel.org,
-        sre@kernel.org, andy.shevchenko@gmail.com, lars@metafoo.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-References: <20221029093000.45451-1-sravanhome@gmail.com>
- <8ba915b1-be77-f78e-87b0-9a00c8387084@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: dp83867: define ti,ledX-active-low
+ properties
 Content-Language: en-US
-From:   saravanan sekar <sravanhome@gmail.com>
-In-Reply-To: <8ba915b1-be77-f78e-87b0-9a00c8387084@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+References: <20221103143118.2199316-1-linux@rasmusvillemoes.dk>
+ <20221103143118.2199316-2-linux@rasmusvillemoes.dk>
+ <Y2Q9+qqwRqEu5btz@lunn.ch>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+In-Reply-To: <Y2Q9+qqwRqEu5btz@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/22 02:54, Krzysztof Kozlowski wrote:
-> On 29/10/2022 05:29, Saravanan Sekar wrote:
->> changes in v5:
->>    - fixed commit message on v5-0002 and v5-0004
->>
->> changes in v4:
->>    - fixed attributes groups review comments in v3
->>    - added new bug fix patches v4-0007 and v4-0008
->>
->> changes in v3:
->>    - fixed dt_binding_check error
->>    - fixed spelling usb->USB
->>
->> changes in v2:
->>    - fixed spelling
->>    - revert back probe to probe_new in mfd driver
->>
->> I do not see a cover letter, but FWIW,
->> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+On 03/11/2022 23.17, Andrew Lunn wrote:
+> On Thu, Nov 03, 2022 at 03:31:17PM +0100, Rasmus Villemoes wrote:
+>> The dp83867 has three LED_X pins that can be used to drive LEDs. They
+>> are by default driven active high, but on some boards the reverse is
+>> needed. Add bindings to allow a board to specify that they should be
+>> active low.
 > 
-> This does not belong to the cover letter. Please add respective tags to
-> patches, where applicable. If Andy gave Rb tag for entire patchset, add
-> it to the patches.
->
-
-Hello Krzysztof,
-
-These are v1 comments from Andy to me, all of them are addressed and I 
-kept in cover letter for history
-
->> for all patches except DT binding
->> Note, some of the comments regarding spelling were given, I believe
->> you are going to address them in v3.
+> Somebody really does need to finish the PHY LEDs via /sys/class/leds.
+> It looks like this would then be a reasonable standard property:
+> active-low, not a vendor property.
 > 
-> ...and this comment is from who? Andy?
-> 
->>
->>
->> add support for mp2733 Battery charger control driver for Monolithic
->> Power System's MP2733 chipset
->>
->> Saravanan Sekar (8):
->>    iio: adc: mp2629: fix wrong comparison of channel
->>    mfd: mp2629: fix failed to get iio channel by device name
->>    iio: adc: mp2629: fix potential array out of bound access
->>    power: supply: fix wrong interpretation of register value
->>    mfd: mp2629: Add support for mps mp2733 battery charger
->>    iio: adc: mp2629: restrict input voltage mask for mp2629
->>    power: supply: Add support for mp2733 battery charger
->>    power: supply: mp2629: Add USB fast charge settings
->>
->>   .../ABI/testing/sysfs-class-power-mp2629      |  16 ++
->>   drivers/iio/adc/mp2629_adc.c                  |   8 +-
->>   drivers/mfd/mp2629.c                          |   7 +-
->>   drivers/power/supply/mp2629_charger.c         | 229 +++++++++++++++---
->>   include/linux/mfd/mp2629.h                    |   6 +
-> 
-> Why do you Cc DT maintainers?
->
+> Please help out with the PHY LEDs patches.
 
-This patch series includes DT bindings documentation which has already 
-merged by 15Jun2022.
+So how do you imagine this to work in DT? Should the dp83867 phy node
+grow a subnode like this?
 
-https://lore.kernel.org/all/20220615145357.2370044-3-sravanhome@gmail.com/
+  leds {
+    #address-cells = <1>;
+    #size-cells = <0>;
 
->>   5 files changed, 228 insertions(+), 38 deletions(-)
->>
-> 
-> Best regards,
-> Krzysztof
-> 
+    led@0 {
+      reg = <0>;
+      active-low;
+    };
+    led@2 {
+      reg = <2>;
+      active-low;
+    };
+  };
 
-Thanks,
-Saravanan
+Since the phy drives the leds automatically based on (by default)
+link/activity, there's not really any need for a separate LED driver nor
+do I see what would be gained by somehow listing the LEDs in
+/sys/class/leds. Please expand.
+
+Rasmus
+
