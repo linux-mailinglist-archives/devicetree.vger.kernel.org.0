@@ -2,116 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE97C618DDD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 03:03:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E65F1618DE6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 03:07:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231150AbiKDCDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 22:03:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
+        id S231278AbiKDCHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 22:07:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiKDCDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 22:03:32 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7311AD99;
-        Thu,  3 Nov 2022 19:03:30 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id a67so5645481edf.12;
-        Thu, 03 Nov 2022 19:03:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pLPCK9Uug0ilNvdlZMrezqOyWNOcVsx4Hwp/j3a6Hv8=;
-        b=d2bJwyvfrsIRK8UlUGWQma+1B3Kqzs/Pgf0maBdb7MUrdSpA/XA+zBwCy2Tmixq+Jj
-         sJoey6ghXpHD82G+7zMwqJE6UoDtmf5Vij92L8JW9LPnb5naseayxkezoZPCBMAE1xKB
-         j8hYf+mQU0fbLjkI0VO2kpXt3BpqsafJD/HA5+g6s4+l/Wikp85pz2GOaMqq46TlqGkw
-         FFs229BaXrojCKCQZh8WmVvtXRvVACwenHwRkF0P/yWYO0rKSSwgta9Cu0LHQq9k2hlZ
-         uanIG1zJd3oPUrnrIExAGfz4C2ahCDSubpY32SahIZbn7Ea8byCZ14WTo97AKoUg+CYY
-         RfMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pLPCK9Uug0ilNvdlZMrezqOyWNOcVsx4Hwp/j3a6Hv8=;
-        b=uu0JLRvbZK7ytJcBXYJB6Xx9pdeg1kiSx1OUOFTMR7VxHyrDoASkwzjbaNdWyMoGHZ
-         3Q38W9fImmOHHHyM427VLvGNNBsfCUa2Pg/rnlo95U1fvPrl/ED9gMGMk6E9RoJ8SO56
-         Fv9wete7+bFyes1WGfYBsKB+GVS5KOlKudkqJr1qyGv0P9wt+8AEzcfL6lz5Ec8OemOX
-         layRsYycL3LD7cQHMERP0DkGg8kjYc1/X7fW/x7d48A8+X3kE889PWUpYLNrZMrK7O7w
-         gRlshcTEMyETcQGh49jlzBtBtu1snHLQczYl82U2YYxvSrvPcGQXzIW1AU9rkAqlnpXq
-         9XdQ==
-X-Gm-Message-State: ACrzQf2ESFyvF1GRIvaoGbuDdHI7EPIZJuYXfnhNtaf+z0kFWihXok5h
-        HizJ2c1xwchjBYnlbXi/4/4=
-X-Google-Smtp-Source: AMsMyM7Pw02m8msJ4P0TLH9cYFfz2LrxPUMowLkmarpEinPrYpjgd5BkNcWz7exI440Q++aZZGQ5Yw==
-X-Received: by 2002:a05:6402:5cb:b0:452:e416:2bc4 with SMTP id n11-20020a05640205cb00b00452e4162bc4mr32584677edx.114.1667527409188;
-        Thu, 03 Nov 2022 19:03:29 -0700 (PDT)
-Received: from skbuf ([188.27.184.197])
-        by smtp.gmail.com with ESMTPSA id u5-20020a17090626c500b00781dbdb292asm1151270ejc.155.2022.11.03.19.03.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Nov 2022 19:03:28 -0700 (PDT)
-Date:   Fri, 4 Nov 2022 04:03:26 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
-Message-ID: <20221104020326.4l63prl7vxgi3od7@skbuf>
-References: <20221102185232.131168-1-krzysztof.kozlowski@linaro.org>
- <20221103233319.m2wq5o2w3ccvw5cu@skbuf>
- <698c3a72-f694-01ac-80ba-13bd40bb6534@linaro.org>
+        with ESMTP id S229756AbiKDCHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 22:07:17 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1EF423160;
+        Thu,  3 Nov 2022 19:07:12 -0700 (PDT)
+X-UUID: 2991d29401934a77b65d15c940d4d9d6-20221104
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1iyRbI9cDNFQuWWPUWMFSz1W2azM7Rn34BeH08ii1no=;
+        b=SPw4/Z4GnU5Ni6BX0xZ+2jEnFTH7CbZndPwvyfL+Uzl+UQzeiIPj/pph7RB1z7FiXkBWrdv99TRgM2UXUhCkaUJf+O9LtPiXrI0IAXnMksmy9RRUNj/BDyklGSPQe3Vp85clb3MaYraLLrsojgIDOinwBuI2jsrPWYRRIEMIc3o=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:f5c680af-176b-4eeb-9437-501f4adc0d55,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+        ON:release,TS:70
+X-CID-INFO: VERSION:1.1.12,REQID:f5c680af-176b-4eeb-9437-501f4adc0d55,IP:0,URL
+        :0,TC:0,Content:-25,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTI
+        ON:quarantine,TS:70
+X-CID-META: VersionHash:62cd327,CLOUDID:88929ef3-a19e-4b45-8bfe-6a73c93611e9,B
+        ulkID:2211041007069NAQNMPB,BulkQuantity:0,Recheck:0,SF:38|28|17|19|48,TC:n
+        il,Content:0,EDM:-3,IP:nil,URL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 2991d29401934a77b65d15c940d4d9d6-20221104
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1613918992; Fri, 04 Nov 2022 10:07:03 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 4 Nov 2022 10:07:02 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Fri, 4 Nov 2022 10:07:02 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <nfraprado@collabora.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v4 0/7] MediaTek watchdog: Convert mtk-wdt.txt to dt-schema
+Date:   Fri, 4 Nov 2022 10:06:54 +0800
+Message-ID: <20221104020701.24134-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <698c3a72-f694-01ac-80ba-13bd40bb6534@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 03, 2022 at 09:44:36PM -0400, Krzysztof Kozlowski wrote:
-> > Don't these belong to spi-peripheral-props.yaml?
-> 
-> No, they are device specific, not controller specific. Every device
-> requiring them must explicitly include them.
-> 
-> See:
-> https://lore.kernel.org/all/20220816124321.67817-1-krzysztof.kozlowski@linaro.org/
-> 
-> Best regards,
-> Krzysztof
-> 
+Based on git/groeck/linux-staging.git, watchdog-next. 
+We use [1] and [2] as references to send a new series.
 
-I think you really mean to link to:
-https://lore.kernel.org/all/20220718220012.GA3625497-robh@kernel.org/
+This series converts mtk-wdt.txt to dt-schema and contains
+- Fix watchdog compatibles for MT7986, MT8186, MT8188 and MT8195,
+- Fix the watchdog name of mt8516
+- Add mt6795 and MT8173 watchdog compatible
 
-oh and btw, doesn't that mean that the patch is missing
-Fixes: 233363aba72a ("spi/panel: dt-bindings: drop CPHA and CPOL from common properties")
-?
+Changes since v3:
+ - Drop label for watchdog example in yaml
 
-but I'm not sure I understand the reasoning? I mean, from the
-perspective of the common schema, isn't it valid to put "spi-cpha" on a
-SPI peripheral OF node even if the hardware doesn't support it, in the
-same way that it's valid to put spi-max-frequency = 1 GHz even if the
-hardware doesn't support it? Or maybe I'm missing the point of
-spi-peripheral-props.yaml entirely? Since when is stacked-memories/
-parallel-memories something that should be accepted by all schemas of
-all SPI peripherals (for example here, an Ethernet switch)?
-I think that spi-cpha/spi-cpol belongs to spi-peripheral-props.yaml just
-as much as the others do.
+Changes since v2:
+ - Drop merged patch from series
+ - Rebase to watchdog-next (for mt8188)
 
-The distinction "device specific, not controller specific" is arbitrary
-to me. These are settings that the controller has to make in order to
-talk to that specific peripheral. Same as many others in that file.
+Changes since v1:
+ - Drop "items" for a single enum·
+
+Changes since [1]:
+  - Update the commit message with some details
+ - Drop "timeout-sec: true" and use unevaluatedProperties
+[1] https://lore.kernel.org/all/20221005113517.70628-1-angelogioacchino.delregno@collabora.com/
+[2] https://lore.kernel.org/all/20220422121017.23920-3-allen-kh.cheng@mediatek.com/
+
+Allen-KH Cheng (3):
+  arm64: dts: mediatek: mt7986: Fix watchdog compatible
+  arm64: dts: mediatek: mt8516: Fix the watchdog node name
+  dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT8173
+
+AngeloGioacchino Del Regno (4):
+  arm64: dts: mediatek: mt8186: Fix watchdog compatible
+  arm64: dts: mediatek: mt8195: Fix watchdog compatible
+  dt-bindings: watchdog: mediatek: Convert mtk-wdt to json-schema
+  dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT6795
+
+ .../bindings/watchdog/mediatek,mtk-wdt.yaml   | 80 +++++++++++++++++++
+ .../devicetree/bindings/watchdog/mtk-wdt.txt  | 43 ----------
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  3 +-
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi      |  2 +-
+ 6 files changed, 84 insertions(+), 50 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+
+-- 
+2.18.0
+
