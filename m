@@ -2,72 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBEB061A08D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 20:08:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B92061A092
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 20:11:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbiKDTIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 15:08:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46816 "EHLO
+        id S229501AbiKDTLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 15:11:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbiKDTIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 15:08:48 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AECB332048
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 12:08:46 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id a27so3587790qtw.10
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 12:08:46 -0700 (PDT)
+        with ESMTP id S229757AbiKDTL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 15:11:29 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 633F569DDD
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 12:11:28 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id h21so3616461qtu.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 12:11:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C1v+UD2x/ZGiBuFs1pqpwsc0Q+q/HiYmDrjtee4/iOo=;
-        b=U59WupiCImSr3i+3Lwom8Pzuy91rERyfxy7lMPPwObrCPlJDcdkOfhsmHy41B4Oni+
-         HyBr01TrWM5ppvE1fgXPwLaaRky3w28symvqhnjEjLuzvEavxxcNgGp6PlE61nCl2hah
-         7orGdv0SsxM651X19prphQZFQ7tRaFSx4A/DEXXfqmbe+dMCfJ6qcyVVzbJjqco8RfyT
-         MvDSKuOG7IbjKzUvHBFcBhKdhGSStUpLx9XjKQJTdq+eL80uvtJCmGSaiuN3nW5dwX58
-         MCNmxwCfFs+K9i+x7wXd4umMQBpmuo7if163pTutAJiD4kmV8Vs2i+v9oYvqWODB4gwW
-         MPFg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=arMRCILA/fIuamA+i5ucpM6bm3qs5bxen8Q+JsaLECQ=;
+        b=HAWF5B1mgqAHFNBENQJzhZlROomhbvU4tcjNQEpNh3x05uC4GIgjtmAv+7SV473nC+
+         eSWz9nfktwRwrShoZPdi7qmuQODgWb9xb+HIXiJF1siaQuw6P8mzPU6SoVh9/O25K/M/
+         KcjqjFXsHNB+Oi9Y2Y1SlStUxja86eZ0PDx4kDwTZBK+gLwI8VrEuKEeOcHoCaiMcA/Q
+         S4G7sktS9By1/YDQXB00/Nv+GpmLTV1kHaKwzTxT7Icbyndp71UVCQPYHnbwkXZe5ixX
+         0bk2GmPvOGYFxgWId4EdyiE7xUGOVITxlsWZKHIdPTVQfRk1aX1rrg6Ae8Ja/l0MSD0l
+         HqyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C1v+UD2x/ZGiBuFs1pqpwsc0Q+q/HiYmDrjtee4/iOo=;
-        b=VPF0SCMcQTKzsHMrMCCtIB4LWSDTeIke8ZRbjhexYyWdgY+O5wKk7DDgCVmItRmYTi
-         BL0v7puBA+ox0QM1ys3EBDrxF3RSBz4Yu+xCnUnsagjCdmQLRnayg3+Bhi+djB2AXtIA
-         Jf3s7qxzpOk4KlM5RwRULUepm2s+yZWQ5VHqgGGBNgG0KT2Pv1AbCUOqczVEY1ZNZjrd
-         jMhLO4pRl8AtbR9MDW0UnrnXQ2Qmy3JKlcjbS9bv9teZmS+sg2Ieulg1kVLbG//TAlJO
-         RPpky96GE6OjJQ1aQ1T9jYrnsvVDuCIycEEDy5ZX9Um7NECifFO1VsSR3rA3W43zPxKv
-         h+zg==
-X-Gm-Message-State: ACrzQf0ygzvQzPqvBlTyIX3Mh4apxlz0aiqfPqXQMTB+By3noNFdiXLn
-        8u2T13J5cOiTj9BGwqpC+bYLXQ==
-X-Google-Smtp-Source: AMsMyM7tcvfdp7t3JvIV3qkPiTFyCSZ/1YHNmRHq3CejPqxWZ8mJP9dvchKDyn412+xREKj9pL2ezQ==
-X-Received: by 2002:ac8:785:0:b0:3a5:46b0:ffd7 with SMTP id l5-20020ac80785000000b003a546b0ffd7mr12088044qth.632.1667588925880;
-        Fri, 04 Nov 2022 12:08:45 -0700 (PDT)
-Received: from krzk-bin.. ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id d14-20020ac851ce000000b0035d08c1da35sm63834qtn.45.2022.11.04.12.08.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 12:08:45 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: qcom: sdx65: add dedicated IMEM and syscon compatibles
-Date:   Fri,  4 Nov 2022 15:08:40 -0400
-Message-Id: <20221104190840.134733-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221104190840.134733-1-krzysztof.kozlowski@linaro.org>
-References: <20221104190840.134733-1-krzysztof.kozlowski@linaro.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=arMRCILA/fIuamA+i5ucpM6bm3qs5bxen8Q+JsaLECQ=;
+        b=O0CYyP5yJ14S8dAecHX9jnbjPJ2ph+T/5wPQUzAtb8Qn9WMInWPbYQD+yqsu43qbnO
+         CfCgRxwdZWo+d7qKaYm46so/5xGcZkcwU0HG3w1al2y3a4j2Mtf48X4WCJd/CTy0Yz+j
+         uHXWDHskbm2TkeoCcEeXz9gP/dQVBapvEhi4HfGZ0L87L9QB1QVtfoANJurjxW3J/szz
+         gtFOCoFMnjsN7vz+zMtV5pXjaCgWjVAYOEELAZYLdpm/wdj/nL4Vza+6k/k1Xkl2VRRd
+         2rZ41z91nTQtSgo5BGtMQojdKvsRJwV7HxKAuEv/IIDfZ2K4ZxIHjQxw7kra0vI5+xkB
+         PEOg==
+X-Gm-Message-State: ACrzQf1JyAW8JhBufYXmSS9XWN0wJ/dWvWn4Xqb4z+VU1cI4lEr394i7
+        KcElRDdJRKpSwU+XB/usPH4qvA==
+X-Google-Smtp-Source: AMsMyM7e+8kdsKkMsUNNtmBQLn4cmi/4NDnvE0DsL6/EpJktIGjc79JqMFqE6+odDdpBixA+iA57eQ==
+X-Received: by 2002:a05:622a:1110:b0:39c:d568:8b26 with SMTP id e16-20020a05622a111000b0039cd5688b26mr29320361qty.280.1667589087326;
+        Fri, 04 Nov 2022 12:11:27 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
+        by smtp.gmail.com with ESMTPSA id cm5-20020a05622a250500b003a4f22c6507sm66130qtb.48.2022.11.04.12.11.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 12:11:26 -0700 (PDT)
+Message-ID: <488b7796-e596-e15e-fe5f-18211516c0de@linaro.org>
+Date:   Fri, 4 Nov 2022 15:11:25 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH 9/9] arm64: dts: qcom: Add support for SONY Xperia X/X
+ Compact
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, ulf.hansson@linaro.org,
+        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        bhupesh.sharma@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-hardening@vger.kernel.org, marijn.suijten@somainline.org,
+        kernel@collabora.com, luca@z3ntu.xyz, a39.skl@gmail.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+References: <20221104172122.252761-1-angelogioacchino.delregno@collabora.com>
+ <20221104172122.252761-10-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221104172122.252761-10-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,33 +87,147 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add proper compatibles to the IMEM device node:
-1. syscon as required by the bindings, even though it is not currently
-   used,
-2. dedicated compatible as required for syscon and simple-mfd nodes.
+On 04/11/2022 13:21, AngeloGioacchino Del Regno wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> 
+> This adds support for the Sony Xperia Loire/SmartLoire platform
 
-Align the node name to match IMEM type of device - SRAM.
+Thank you for your patch. There is something to discuss/improve.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/qcom-sdx65.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> +
+> +&rpm_requests {
+> +	pm8950_regulators: regulators {
+> +		compatible = "qcom,rpm-pm8950-regulators";
+> +
+> +		vdd_s1-supply = <&vph_pwr>;
+> +		vdd_s2-supply = <&vph_pwr>;
+> +		vdd_s3-supply = <&vph_pwr>;
+> +		vdd_s4-supply = <&vph_pwr>;
+> +		vdd_s6-supply = <&vph_pwr>;
+> +		vdd_l1_l19-supply = <&pm8950_s3>;
+> +		vdd_l2_l23-supply = <&pm8950_s3>;
+> +		vdd_l3-supply = <&pm8950_s3>;
+> +		vdd_l5_l6_l7_l16-supply = <&pm8950_s4>;
+> +		vdd_l8_l11_l12_l17_l22-supply = <&vph_pwr>;
+> +
+> +		pm8950_s1: s1 {
+> +			regulator-min-microvolt = <1000000>;
+> +			regulator-max-microvolt = <1162500>;
+> +		};
+> +
+> +		pm8950_s3: s3 {
+> +			regulator-min-microvolt = <1325000>;
+> +			regulator-max-microvolt = <1325000>;
+> +			regulator-always-on;
+> +		};
+> +
+> +		pm8950_s4: s4 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-always-on;
+> +		};
+> +
+> +		pm8950_l1: l1 {
+> +			regulator-min-microvolt = <900000>;
+> +			regulator-max-microvolt = <1100000>;
+> +		};
+> +
+> +		pm8950_l2: l2 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pm8950_l3: l3 {
+> +			regulator-min-microvolt = <1000000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +
+> +		pm8950_l5: l5 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8950_l6: l6 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8950_l7: l7 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8950_l8: l8 {
+> +			regulator-min-microvolt = <2900000>;
+> +			regulator-max-microvolt = <2900000>;
+> +		};
+> +
+> +		pm8950_l9: l9 {
+> +			regulator-min-microvolt = <2000000>;
+> +			regulator-max-microvolt = <2400000>;
+> +		};
+> +
+> +		pm8950_l10: l10 {
+> +			regulator-min-microvolt = <2500000>;
+> +			regulator-max-microvolt = <2900000>;
+> +		};
+> +
+> +		pm8950_l11: l11 {
+> +			regulator-min-microvolt = <2950000>;
+> +			regulator-max-microvolt = <2950000>;
+> +		};
+> +
+> +		pm8950_l12: l12 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2950000>;
+> +		};
+> +
+> +		pm8950_l13: l13 {
+> +			regulator-min-microvolt = <3075000>;
+> +			regulator-max-microvolt = <3075000>;
+> +		};
+> +
+> +		pm8950_l14: l14 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3300000>;
+> +		};
+> +
+> +		pm8950_l15: l15 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3300000>;
+> +		};
+> +
+> +		pm8950_l16: l16 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		pm8950_l17: l17 {
+> +			regulator-min-microvolt = <2500000>;
+> +			regulator-max-microvolt = <2900000>;
+> +		};
+> +
+> +		pm8950_l22: l22 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3000000>;
+> +		};
+> +
+> +		pm8950_l23: l23 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +	};
+> +};
+> +
+> +&sdhc_1 {
+> +	status = "okay";
 
-diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-index 4cd405db5500..b073e0c63df4 100644
---- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-+++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-@@ -441,8 +441,8 @@ pdc: interrupt-controller@b210000 {
- 			interrupt-controller;
- 		};
- 
--		imem@1468f000 {
--			compatible = "simple-mfd";
-+		sram@1468f000 {
-+			compatible = "qcom,sdx65-imem", "syscon", "simple-mfd";
- 			reg = <0x1468f000 0x1000>;
- 			ranges = <0x0 0x1468f000 0x1000>;
- 			#address-cells = <1>;
--- 
-2.34.1
+Status as last (everywhere)
+
+https://lore.kernel.org/all/5158fe83-88b1-1081-df7f-4118ce6f5ec0@somainline.org/
+
+Rest LGTM.
+
+Best regards,
+Krzysztof
 
