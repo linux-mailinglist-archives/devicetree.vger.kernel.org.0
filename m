@@ -2,131 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE29F619025
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 06:48:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC87C619097
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 06:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbiKDFsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 01:48:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55102 "EHLO
+        id S230194AbiKDF54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 01:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229900AbiKDFsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 01:48:23 -0400
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2075.outbound.protection.outlook.com [40.107.249.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F17072DF7;
-        Thu,  3 Nov 2022 22:48:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lv3J1IBrzkGa0LxLWVsszVBzhfdRdNjR+4v7mqZNel9VgSI453Bw/IInykDVMaQWevDVd+g8eXzm0SGwdAsbUuufmWPJU+ADr8P1F6XaajYFSWx7+XfCH1Q0vDEUy1l0737tY4fpFprHCN4hQwMbhI8AZG/f/7HF4CgQr+lsUzzhdpcLpSwGrniLvnEsC29MIQXorRbM2Z5DeaLBTYgVx4p/jXgYchLpyvymJHhpwT+VoNQScq1Bv+VclI4LQ5QQxo5qqL96YMOmEU4rz+dTEL0hBLCCh5Df4wV6SJbDwwZmtIx08sHYNDNa7QvsTd7dpQvSn3j2lEgc5sN46n3yRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JKjFpr57UTEnOKRUSTyZTdCGbTtR+Mc7l/+DuU+VV78=;
- b=g5GuyzumyRq/ErnfwVYsMiCcIo+O1JLl3scOSA/SUCv4L0eCpQdpQ9vdEf3iQWj3TCVttqz9N7AH7Gqix5Sxa8pn8T0sSmE07GBMRpnwDbc+fiYhoRWCmN75sglHfy7oe7FJ77pAtr78jN5O4YzFhqd4JGRYtUV8QXmGFfhAdjNjducI/VpjhUwkTGPanKPQWhKbyJ3PL53wOkFlsY6UjE+ux66z1Btt7BhdEShjHTXvcRgmkAOqnalRQD629AQ63LjQXmex0b5cPETLPcBPAGOB8pJ5RP4J0FI8BTn3Z2SyECb9V8LdsU6l1puwV2hqXY5oxDA/pIUNbcQWFo41Ew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JKjFpr57UTEnOKRUSTyZTdCGbTtR+Mc7l/+DuU+VV78=;
- b=WrfjndVkLMiTSqhayBaZl3zxFhDHJNPW5QLb3gRnDoG7CjomvwNd67igO1E5T4LO+QPD1UagVhjgESex5M4kTWdgI4j/Z62a4T9EAs5h4P4U2aeLQ0Dq3XQNB2XOMn+nLUPppHDFsKcNKaGiq9jWBsMzi2TAE/cbXu2aUJhimi0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB8PR04MB7178.eurprd04.prod.outlook.com (2603:10a6:10:12e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Fri, 4 Nov
- 2022 05:48:17 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::36a4:e1fc:67a2:c701]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::36a4:e1fc:67a2:c701%7]) with mapi id 15.20.5791.020; Fri, 4 Nov 2022
- 05:48:17 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] arm64: dts: imx93-pinfunc: drop execution permission
-Date:   Fri,  4 Nov 2022 13:49:42 +0800
-Message-Id: <20221104054942.1696344-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0015.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::18) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+        with ESMTP id S231721AbiKDF5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 01:57:46 -0400
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1D70C5FA2;
+        Thu,  3 Nov 2022 22:57:42 -0700 (PDT)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 04 Nov 2022 14:57:41 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 4696E2059027;
+        Fri,  4 Nov 2022 14:57:41 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 4 Nov 2022 14:57:41 +0900
+Received: from [10.212.159.130] (unknown [10.212.159.130])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 75251B62A4;
+        Fri,  4 Nov 2022 14:57:40 +0900 (JST)
+Subject: Re: [PATCH 4/4] arm64: dts: uniphier: Add NX1 SoC and boards support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20221027045157.23325-1-hayashi.kunihiko@socionext.com>
+ <20221027045157.23325-5-hayashi.kunihiko@socionext.com>
+ <a05535bc-ba18-0296-b387-d2c9c759d6f2@linaro.org>
+ <54206dca-0583-88c0-9924-a80dfaf0ba94@socionext.com>
+ <f1b5e138-e708-8aeb-9b59-96403f996fbd@linaro.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <3e0a7894-677d-33fc-6b3c-a7561e18a93b@socionext.com>
+Date:   Fri, 4 Nov 2022 14:57:40 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DB8PR04MB7178:EE_
-X-MS-Office365-Filtering-Correlation-Id: 976d6559-591a-471c-904a-08dabe282bf8
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NikK8fAeh1ANswSgpsLLzYRtvxWGlE7HJXpEAuFf+Pm90eT6DmqRGHFnX1Sl3E2zR7+9bfbxyJGQ0zG58cxIwFxXbso9DIeKZQ2ZLdgUs/ALoezacMkQoeiBOH6cc1i79HpbNpaqHrTipqzg+t2jlikVrLGdVUriv2Bfc5FHvWc7HDXGEVgmpdXV753yrJo4q17IiTaBNRJhwGC+Sl9GULDIrtS7UC+zcMHGaSd4IqolypbdKYxcSxGhKRe+2FtPIssjHdLTJjgGh+TUAv6ecJSgaAnglCvJkt9g+CTRjJ2YMbK5/KjBE9buzKTwRLXMQIF49YLNY4W98P8Kp2GncFj2ib5TptXaPiIMawsBcDXjQi/iPnUX9x7F4/yc7GGrmXULd8zdWslq8yYDq/UgkXRvD33+3YGn1IaGroISL3aiRR052UNxhr9XMi99/GpmC3H0rujh7Aui7+u8xBPr0PKo/i/zdbP1qNjCwW1VtQAr5SgoaqnJ28Y8MKsMAiCvUlJFoVffsOs8FShxwda8sTA8nZ4ai5PyJQVlfrE2lFe5Bp7XdcjBG656cSYTRucBZbVLRQQQ9r4SNJexfFECGkbURr7krmfeGR5USWWJIwCFnS7lPPoUGgfAY+5GtSHRKORzzWPx0rtaXmfF9dJH8lyReTi3ua2SMBHwKk4DDW/ovEbodzMeninDXggOAHPV8Dd5y2UGC3q3Q2nRbl4DIjawDTY4f0zQzC9q7f/f3bl1S/t9/ZgtTTs3ZgQpDwj/O1eJtCcLI9JG9QN+OIHmzQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199015)(2906002)(4744005)(5660300002)(41300700001)(8936002)(86362001)(2616005)(66556008)(8676002)(66946007)(4326008)(316002)(66476007)(1076003)(186003)(38350700002)(6512007)(478600001)(6486002)(83380400001)(52116002)(26005)(38100700002)(6666004)(6506007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GwKNTKdF7izTZCpMxvNq/jHvfvai1aX/yAMw16wkpAp/cmmbRvzxuIUB3uUO?=
- =?us-ascii?Q?9usGWW/fk+71ABbe5RQ6TCcK0fcfm+iaWO1VFLhkwO71yn2MCtUDPpktIXZp?=
- =?us-ascii?Q?AmNNXskB4eZ5YtWZm6kGlGuisFn7z3ULkzUWnwCahcb4ThydfNfIgSzX6ajN?=
- =?us-ascii?Q?XxaXUeajezbur/DM0+v2f7V9y23o/iFCK5hnIY0FBW+rKJlWL3aYjRuuMVdc?=
- =?us-ascii?Q?YMeuhAdaqxWlP2u7ZBs/w3LU6CkGTX4lSXohETjS0i8s7e5p9Q4UC2ohBOTK?=
- =?us-ascii?Q?jfoITEaClSQCkkPu+qsD/5aH0YQRBvM5G0555fRpqwhTu+zFu5Exsx4pmB0l?=
- =?us-ascii?Q?llQmFhuEd0NPiijRYg3PbyLiGDAtYuiEaGDBHAND6KUZUI6AcTfrOLDszMfz?=
- =?us-ascii?Q?rFgmelZ24g8META21hz1MY+EwvyQqPzE9ZN2D73rnqyWdNoUKfenG8P6GTMr?=
- =?us-ascii?Q?jcKmnbY3SogJYU//JZVPowFIx/qXMQsPiiR4KFE4BbhMJ1sE6Fejn8tUSfRu?=
- =?us-ascii?Q?kSn+gLh/sr7SBSIL0lQ2ijs1QB3Jd+w3q3IfC4rvqt+1xhdCN/ootBL9r1RM?=
- =?us-ascii?Q?foz/W2pxUY+SHZfa8jBh52ubuzFvHhe0C8TzLNJKo/zckbtaSSNqFJASOeKu?=
- =?us-ascii?Q?+zyhNIOJlTubncLUm/j05WkTTdww/b2TvbGUgAyeReaArLzJ60ae+M/4MFgV?=
- =?us-ascii?Q?+emMSXCzx0c8HPXz929reRQXb7ds0ufD+PyPoAYT4o2rcVqNwJLF91gCvGt1?=
- =?us-ascii?Q?mZolYg+cJV/zcmGi8Ehu9n0XiOGv75fjjU2sScctPIh5DLNZ6CfCWnqS1vBN?=
- =?us-ascii?Q?r8roJq0yJhwZB4KFeQwVauUKyrvDwsNbMnm96uWht3zGF7C1FUd4FWW4tbms?=
- =?us-ascii?Q?mRdE+Am1WlFd818jLqp07Wdx7CaGY027Gv/F6Tj40vjTCBKQVgIIrFgR3aPl?=
- =?us-ascii?Q?lFu7ITmLTc22FJLYZI4RinYejhDly28TYZXeOCj9/s0J4T4rpKJVPXFNhhkt?=
- =?us-ascii?Q?6AaRP7AyDGbdNyXNcn0g1nRzLnliicNorFMwF9hJcTTJRNz/LQHXDVMPyoEw?=
- =?us-ascii?Q?HlVLhYUFghB3sIgh9ffHwOQT711k+xnFHISa522RhOT9XvyiqQnlFaz01FZX?=
- =?us-ascii?Q?1MkkMPjC6mn8eM5oyZzSOPiV4Cpy0/zc4KdKy5Tfw6YKhARI8RJUj1r1lRmD?=
- =?us-ascii?Q?iomJESsbdJm8rVTqcKn1PBG+A9SHtAAWKeJdRDZnvMh9jyD3O9SKlVgM7xYD?=
- =?us-ascii?Q?lbCKOzGknXuyQDSzwGSxXEqTBjJ2oo1TNgcvcxUObWrhh1zot5XTF798ihyB?=
- =?us-ascii?Q?Deq3i/9jtn767kjN22km6InwpVw16O9cqXAdUDX7Wc7nRsIZyxit3cO0Ft/C?=
- =?us-ascii?Q?EtVylQzSd2ecyR+QjD7kYYAzAXSdu78vFSqgh9+AfEYP0gSeJxnFgGAw7Ul8?=
- =?us-ascii?Q?No3irIRoG15LkF51vPJ4ixBmmoDWk/CwkYlR+N400umfPs094zyA0nXqz65w?=
- =?us-ascii?Q?bu6AODt1ftiYm0Esv6X9RedvPRLfYyW9hP8I9uoK7/GmuBee2/25P89iAR5J?=
- =?us-ascii?Q?IGNxo2cKgFKHcQ8Odewl5z2lBJe8JEYixn7adNmG?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 976d6559-591a-471c-904a-08dabe282bf8
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2022 05:48:17.5931
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I1C2Kw7v8OtBRhQY3YoWiNRbO3kKvhJN24aZqqAWgUzRZd8md2zdNteI5wmXd1sGjv7S40GbPRyLN0sPrQkc8A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7178
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <f1b5e138-e708-8aeb-9b59-96403f996fbd@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On 2022/11/03 1:48, Krzysztof Kozlowski wrote:
+> On 01/11/2022 05:02, Kunihiko Hayashi wrote:
+>> Hi Krzysztof,
+>>
+> 
+> 
+>>>> +				compatible = "socionext,uniphier-nx1-clock";
+>>>> +				#clock-cells = <1>;
+>>>> +			};
+>>>> +
+>>>> +			sys_rst: reset {
+>>>
+>>> reset-controller
+>>>
+>>>> +				compatible = "socionext,uniphier-nx1-reset";
+>>>> +				#reset-cells = <1>;
+>>>> +			};
+>>>> +
+>>>> +			watchdog {
+>>>> +				compatible = "socionext,uniphier-wdt";
+>>>> +			};
+>>>> +
+>>>> +			pvtctl: thermal-sensor {
+>>>> +				compatible = "socionext,uniphier-nx1-thermal";
+>>>> +				interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +				#thermal-sensor-cells = <0>;
+>>>> +				socionext,tmod-calibration = <0x0f22 0x68ee>;
+>>>> +			};
+>>>> +		};
+>>>> +
+>>>> +		spi0: spi@14006000 {
+>>>> +			compatible = "socionext,uniphier-scssi";
+>>>> +			status = "disabled";
+>>>> +			reg = <0x14006000 0x100>;
+>>>
+>>> Reg is second property. Status goes last. The same in other nodes.
+>>
+>> Hmm, I've put "status" here according to the existing (uniphier's) DT
+>> policy
+>> and this should rewrite the policy. Is there documentation somewhere that
+>> recommends the order? Or, should I refer to previous comments?
+> 
+> Hm, your decision (as arch maintainer) is then preferred, not mine.
+> Although it is quite unusual to find status, not reg, as the second
+> property.
 
-Drop the header file execution permission
+Okay, however, if there are no examples where the second is "status",
+I think it is better to follow the many descriptions for new additions.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> compatible followed by reg is not documented anywhere, it's just the
+> most used style. And actually most sensible as it answers to questions
+> from highest importance to lowest:
+> 1. What is this device? compatible
+> 2. Where is it? Does it match unit address? reg
+> 3. all other properties
+> 4. Is it off or on? status as optional property
+
+I think it is reasonable to arrange the properties in order of importance.
+I'll put "reg" second in this addition in the next.
+
+Thank you,
+
 ---
- arch/arm64/boot/dts/freescale/imx93-pinfunc.h | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- mode change 100755 => 100644 arch/arm64/boot/dts/freescale/imx93-pinfunc.h
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93-pinfunc.h b/arch/arm64/boot/dts/freescale/imx93-pinfunc.h
-old mode 100755
-new mode 100644
--- 
-2.37.1
-
+Best Regards
+Kunihiko Hayashi
