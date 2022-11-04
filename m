@@ -2,234 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F9D6198B2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59EAB6198B5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:05:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbiKDOEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 10:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
+        id S231309AbiKDOE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 10:04:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230003AbiKDOEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:04:22 -0400
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9352622BF1
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:04:21 -0700 (PDT)
-Received: by mail-qv1-xf2f.google.com with SMTP id x15so3257158qvp.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:04:21 -0700 (PDT)
+        with ESMTP id S230333AbiKDOE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:04:57 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2481248DB
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:04:55 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id bg9-20020a05600c3c8900b003bf249616b0so3237089wmb.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:04:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SGXI4uOFUmw6tZuPJPIsRTwiUyuymqNGhyu0fMFLngY=;
-        b=Y3Jh7krSivsqUXZ1y8aUKcbH0YggDsbbm62KuXJDGrLqEMYhAVhtbnLmVr4NRE4V7A
-         r4GHd7AzcBHpTxbI3xMOodbEGGBLsebbWXGDsgIxNX3xw0psYxuyvalVEURq+b9dtp42
-         Zec3/x5TyCr27R6LXpkQWobhyWF+K8Qch0XYMIrrEztR4F+p7R6n08Zf+/RrFIHG8x3i
-         BfjhEM2o+LSWjiNfmZGKk3WTS1D68nb+4SqS9xER9ekgkerDTSeuUJQyM2LsImLODkIk
-         wdEQrfGfAQrGRN8W+vXjgu7mPEazrTEhZPgSCLRKWQMiJraexXUZGW6aPgWjtnX3/fuu
-         mPEg==
+        bh=WrEOdMf1GMkeq1OQaiBOBbaVxySuKCCitXKqPe1eQto=;
+        b=KGXICG13fLDFm+7bgCOZWXNar1xBVbaxRtiz6EPXDpBfWd38sj2NDk1kIe0pVd5hIg
+         W9ursfTmfTA3AJO093ue/+AukqBaTCMKmURvA5eTz9XrNRPk34tu8mDZupfZY16b9Iwn
+         zBKLEtqNLOELjpUcA5xA3h46yGwp8Oo5soQyhyPGEHHYpOQzGHuAbEOlAu66We4zONog
+         53o7hruoSqu6fy6QWl+QCJCtVxn60sMc7BrEQd9djr6t/n0tNmgDZlC4Iq21iiLY95Yl
+         SK7131s+znheqj3IbPzeyHxZ979BDPZKx0cRLmLSRnRFJoajA4FPebofk21ha2ont9om
+         79vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SGXI4uOFUmw6tZuPJPIsRTwiUyuymqNGhyu0fMFLngY=;
-        b=r6L6tsgxpDNMylJNjFXf3R16m29O4j4i++F7F2bUe186yu4uK96eAfOlDlPEBBF0m5
-         7hZR4LFrGIDM/EEigKqScx0Pr2ZKrxbao3yBKh4muB5yrbQhXiDrm/C8lBFBvfCq3dc/
-         BDEN8SE/pQB4+A0PPnRMppATAleV71mbA9uI7VIo7B6vZM+6p2lBL6HY6SfSB8Rwq/zG
-         DWVjx9JA5aHsaUbQyPpHRWtGkTuztRSRAK3l5HKKw1jdhN3fPlMt2G5ksETDkE2/uhUQ
-         BOfUWmol+QRrpMWaLjEk+PH1YOXLeAH7b0fKkRuUCAZS+6l9IetyWOl1vko5hV699Czd
-         CcuQ==
-X-Gm-Message-State: ACrzQf2w26QuZYAh0Fyc5HHew+cbGK8CDejr5++19HIBQ9+cjWn2PA9x
-        2ElcbELKgtVadpNCPghD0gKAgQ==
-X-Google-Smtp-Source: AMsMyM7t1UWhJ3+vFZhZ5FsL+3dGPFrNeosAMKKArGnMGgQF1/R8eynBl4jHvCyW6+G61q2kQXzccg==
-X-Received: by 2002:a05:6214:c63:b0:4bb:d14c:ada4 with SMTP id t3-20020a0562140c6300b004bbd14cada4mr30219758qvj.77.1667570660739;
-        Fri, 04 Nov 2022 07:04:20 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id u12-20020a05620a430c00b006b640efe6dasm2984286qko.132.2022.11.04.07.04.19
+        bh=WrEOdMf1GMkeq1OQaiBOBbaVxySuKCCitXKqPe1eQto=;
+        b=Aruv+BLFDSYlQyTWyiGqQpzW0Y9XD0nvgnh7XVXsg0sgHec97k1lGDOXVaEnnciY9B
+         JwKWF3qxJqfvcxv8nSk86CR0AYTUuTDG4tRe5VGS+MlmyZCon6GFXclnXZF8fICVO45u
+         93KAoQIYAPuICm6MOulwSQP0L9EiE0GzwUnrqXtd+lvJzVh1OsNT2HBEl+c8h5R0C1s2
+         5QEqshsiwhnJEaf0RCAIcFdfvGZeLaDx3UO6krtMEWtgiFjbHjb4BHhMiOYRrlDphRyA
+         GY6RaQETW/tvR2tHCjqdMlBTFNDhvYoZH6MG/hAdxpeG3OyxXZtovlhb96mBti5L21Ji
+         fUCw==
+X-Gm-Message-State: ACrzQf3a7if1/dvEj+MlXO/N/HOUOVRw3o8QAMQ/5G4RmUQBM4z0jyIr
+        kybsKpUsQqpCb+M/iSvXorn3qg==
+X-Google-Smtp-Source: AMsMyM5/Tel7T8Pg26XJyrSPh1iMst0IIxFHJJStp9WKC67bo+jAc3KoL4hvw99NGNuI6el3zC3Y4Q==
+X-Received: by 2002:a05:600c:4587:b0:3c6:f645:dbc2 with SMTP id r7-20020a05600c458700b003c6f645dbc2mr34442198wmo.83.1667570694310;
+        Fri, 04 Nov 2022 07:04:54 -0700 (PDT)
+Received: from [10.101.1.4] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id z18-20020a5d44d2000000b002365254ea42sm3626048wrr.1.2022.11.04.07.04.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 07:04:20 -0700 (PDT)
-Message-ID: <cf1a15c5-a16b-2d23-8f6c-b3892c141c34@linaro.org>
-Date:   Fri, 4 Nov 2022 10:04:18 -0400
+        Fri, 04 Nov 2022 07:04:53 -0700 (PDT)
+Message-ID: <6af9d462-885a-df77-2c83-588363026e7f@baylibre.com>
+Date:   Fri, 4 Nov 2022 15:04:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 2/2] soc: qcom: Add Qualcomm Ramp Controller driver
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
-        kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-References: <20221104133506.131316-1-angelogioacchino.delregno@collabora.com>
- <20221104133506.131316-3-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104133506.131316-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Lee Jones <lee@kernel.org>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com,
+        afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20221011140549.16761-1-jneanne@baylibre.com>
+ <20221011140549.16761-5-jneanne@baylibre.com> <Y1+q2Usm9ecicXqp@google.com>
+ <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
+ <Y2UaCq+EL0f2mJ3p@google.com>
+From:   jerome Neanne <jneanne@baylibre.com>
+In-Reply-To: <Y2UaCq+EL0f2mJ3p@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 09:35, AngeloGioacchino Del Regno wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+
+
+On 04/11/2022 14:56, Lee Jones wrote:
+> On Fri, 04 Nov 2022, jerome Neanne wrote:
 > 
-> The Ramp Controller is used to program the sequence ID for pulse
-> swallowing, enable sequence and linking sequence IDs for the CPU
-> cores on some Qualcomm SoCs.
+>>
+>>
+>> On 31/10/2022 12:00, Lee Jones wrote:
+>>>> diff --git a/include/linux/mfd/tps65219.h b/include/linux/mfd/tps65219.h
+>>>> new file mode 100644
+>>>> index 000000000000..2c1cf92e92ac
+>>>> --- /dev/null
+>>>> +++ b/include/linux/mfd/tps65219.h
+>>
+>>>> +/**
+>>>> + * struct tps65219 - tps65219 sub-driver chip access routines
+>>>> + *
+>>>> + * Device data may be used to access the TPS65219 chip
+>>>> + *
+>>>> + * @dev MFD device
+>>>> + * @regmap Regmap for accessing the device registers
+>>>> + * @irq_data Regmap irq data used for the irq chip
+>>>> + * @nb notifier block for the restart handler
+>>>> + */
+>>>
+>>> This header needs work.
+>> I'm not sure to get your point here. Just something like below to match
+>> format or do you expect more:
+>>
+>> /**
+>>   * struct tps65219 - tps65219 sub-driver chip access routines
+>>   *
+>>   * Device data may be used to access the TPS65219 chip
+>>   *
+>>   * @dev: MFD device
+>>   * @regmap: Regmap for accessing the device registers
+>>   * @irq_data: Regmap irq data used for the irq chip
+>>   * @nb: notifier block for the restart handler
+>>   */
+>>
+>>>
+>>> Can you try an compile with W=1 please.
+>> This raise one warning on mfd:
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  drivers/soc/qcom/Kconfig           |   9 +
->  drivers/soc/qcom/Makefile          |   1 +
->  drivers/soc/qcom/ramp_controller.c | 330 +++++++++++++++++++++++++++++
->  3 files changed, 340 insertions(+)
->  create mode 100644 drivers/soc/qcom/ramp_controller.c
+> Is that before or after the header was fixed-up?
+After the header was fixed-up.
 > 
-> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-> index 024e420f1bb7..1e681f98bad4 100644
-> --- a/drivers/soc/qcom/Kconfig
-> +++ b/drivers/soc/qcom/Kconfig
-> @@ -95,6 +95,15 @@ config QCOM_QMI_HELPERS
->  	tristate
->  	depends on NET
->  
-> +config QCOM_RAMP_CTRL
-> +	tristate "Qualcomm Ramp Controller driver"
-> +	depends on ARCH_QCOM
+>> drivers/mfd/tps65219.c:28:12: warning: ‘tps65219_soft_shutdown’ defined but
+>> not used [-Wunused-function]
+>>     28 | static int tps65219_soft_shutdown(struct tps65219 *tps)
+>>        |            ^~~~~~~~~~~~~~~~~~~~~~
+>> soft_shutdown has been validated and is used in TI baseline even if not
+>> hooked in upstream version further to this review:
+>> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
+> 
+> Will tps65219_soft_shutdown() be used?
+> 
+> I think it should be removed until it's utilised in Mainline.
+> 
+I'll remove then
 
-I propose:
-depends on ARCH_QCOM && ARM || COMPILE_TEST
-
-I don't think it is used on ARM64 SoCs, so let's make life of distros
-easier.
-
-> +	help
-> +	  The Ramp Controller is used to program the sequence ID for pulse
-> +	  swallowing, enable sequence and linking sequence IDs for the
-> +	  CPU cores on some Qualcomm SoCs.
-> +	  Say y here to enable support for the ramp controller.
-> +
->  config QCOM_RMTFS_MEM
->  	tristate "Qualcomm Remote Filesystem memory driver"
->  	depends on ARCH_QCOM
-> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
-> index d66604aff2b0..6e02333c4080 100644
-> --- a/drivers/soc/qcom/Makefile
-> +++ b/drivers/soc/qcom/Makefile
-> @@ -10,6 +10,7 @@ obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
->  obj-$(CONFIG_QCOM_PDR_HELPERS)	+= pdr_interface.o
->  obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
->  qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
-> +obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
->  obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
->  obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
->  qcom_rpmh-y			+= rpmh-rsc.o
-> diff --git a/drivers/soc/qcom/ramp_controller.c b/drivers/soc/qcom/ramp_controller.c
-> new file mode 100644
-> index 000000000000..e28679b545d1
-> --- /dev/null
-> +++ b/drivers/soc/qcom/ramp_controller.c
-> @@ -0,0 +1,330 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Qualcomm Ramp Controller driver
-> + * Copyright (c) 2022, AngeloGioacchino Del Regno
-> + *                     <angelogioacchino.delregno@collabora.com>
-> + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/types.h>
-> +
-> +#define RC_UPDATE_EN		BIT(0)
-> +#define RC_ROOT_EN		BIT(1)
-> +
-> +#define RC_REG_CFG_UPDATE	0x60
-> + #define RC_CFG_UPDATE_EN	BIT(8)
-> + #define RC_CFG_ACK		GENMASK(31, 16)
-
-Drop spaces before #define
-
-> +
-> +#define RC_DCVS_CFG_SID		2
-> +#define RC_LINK_SID		3
-> +#define RC_LMH_SID		6
-> +#define RC_DFS_SID		14
-> +
-> +#define RC_UPDATE_TIMEOUT_US	500
-> +
-> +/**
-> + * struct qcom_ramp_controller_desc - SoC specific parameters
-> + * @cfg_dfs_sid:      Dynamic Frequency Scaling SID configuration
-> + * @cfg_link_sid:     Link SID configuration
-> + * @cfg_lmh_sid:      Limits Management hardware SID configuration
-> + * @cfg_ramp_pre_en:  Ramp Controller pre-enable sequence
-> + * @cfg_ramp_en:      Ramp Controller enable sequence
-> + * @cfg_ramp_post_en: Ramp Controller post-enable sequence
-> + * @cfg_ramp_dis:     Ramp Controller disable sequence
-> + * @cmd_reg:          Command register offset
-> + * @num_dfs_sids:     Number of DFS SIDs (max 8)
-> + * @num_link_sids:    Number of Link SIDs (max 3)
-> + * @num_lmh_sids:     Number of LMh SIDs (max 8)
-> + */
-> +struct qcom_ramp_controller_desc {
-> +	struct reg_sequence *cfg_dfs_sid;
-
-I didn't check much, but can these be pointers to const?
-
-> +	struct reg_sequence *cfg_link_sid;
-> +	struct reg_sequence *cfg_lmh_sid;
-> +	struct reg_sequence *cfg_ramp_pre_en;
-> +	struct reg_sequence *cfg_ramp_en;
-> +	struct reg_sequence *cfg_ramp_post_en;
-> +	struct reg_sequence *cfg_ramp_dis;
-> +	u8 cmd_reg;
-> +	u8 num_dfs_sids;
-> +	u8 num_link_sids;
-> +	u8 num_lmh_sids;
-> +};
-> +
-
-(...)
-
-> +
-> +static struct platform_driver qcom_ramp_controller_driver = {
-> +	.driver = {
-> +		.name = "qcom-ramp-controller",
-> +		.of_match_table = qcom_ramp_controller_match_table,
-> +		.suppress_bind_attrs = true,
-> +	},
-> +	.probe  = qcom_ramp_controller_probe,
-> +	.remove = qcom_ramp_controller_remove,
-> +};
-> +
-> +static int __init qcom_ramp_controller_init(void)
-> +{
-> +	return platform_driver_register(&qcom_ramp_controller_driver);
-> +}
-> +arch_initcall(qcom_ramp_controller_init);
-
-Does it really have to be arch initcall? Cannot be module platform driver?
-
-> +
-> +MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-> +MODULE_DESCRIPTION("Qualcomm Ramp Controller driver");
-> +MODULE_LICENSE("GPL");
-
-Best regards,
-Krzysztof
-
+Thanks for your feedback
