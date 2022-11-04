@@ -2,224 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7426198C9
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:07:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 331586198F6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231238AbiKDOHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 10:07:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52484 "EHLO
+        id S230070AbiKDOOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 10:14:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231761AbiKDOGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:06:40 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E434425EA9;
-        Fri,  4 Nov 2022 07:06:38 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id CCA356602986;
-        Fri,  4 Nov 2022 14:06:36 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667570797;
-        bh=Jd5DVDMb4CuL5PHhB23a0DAUDFJyHCwyYU9ukEUegvw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=d7ua+Sja4Z8UlwtSzWoN8VpIOJrXcl5AWZ3eXBGs8Q9B7PH7r4vDLlT2Cj79DXEbH
-         FoFk3wlWu4kk+LYqXOvfjebIFhQCv0ZRL34Y3SrmKTRvlbzpmhEMf8BoXhiwx0RCEl
-         5UOD2KAXapR7SAVcSaX4rFMjqafUo4MZ3bl9PIh+JisjdjjE1tRan+EcNPrDYWU5hC
-         cbnVxKvL6pha3mMesSs1VaYImweWeEg7aehgipdrM6Qogy67lI4TANoIizishcWL+D
-         iAdJCwV6Y1/0O1roBJccHjdhgyn5f/xM3wORk1dc1Nc0IWWngWfzgNgoCVUgxrPQ/e
-         tiLp0hWJLjzGQ==
-Message-ID: <818b7c09-842c-983a-3776-95dacbebc0de@collabora.com>
-Date:   Fri, 4 Nov 2022 15:06:34 +0100
+        with ESMTP id S229563AbiKDOOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:14:10 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4187663F4
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:14:08 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id cl5so7220994wrb.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:14:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=dkhsx/f1qVfNpQ2gRDXYIwTY68Bz97MiITex7YRzTDc=;
+        b=2wxt6g/M78F4d/hPa2+Kfql5eYMCMpkhtLTQgIowWZbk6VugLMYhUoHkZ/LSQhl7/t
+         9DR0AKN6J9FIhzbCFUBijhPrf7EmAr8tcWklcQ9BJ+FHxkUiNO2uZXGE4K+7q100IlT/
+         Bqj50J4yZyUz9ElyWH8tfh8+shAKb1xzCnj448DMiTL7CCODiIsu5obU0zTIhNxU13qb
+         S2/+/XgFgd07DE16E9iClL2HeuJaSbLa5Kq/a1GGYSC50gVdEM7gS2aJbddW+X5SmUo7
+         Hoj6a2H1LH588/jWdGPHVubluWKMq56gg7o9u3Ee8v/ub3u0brWcIHiHtKw67eTzWzWI
+         KBvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:message-id:date:from:content-transfer-encoding:mime-version
+         :subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dkhsx/f1qVfNpQ2gRDXYIwTY68Bz97MiITex7YRzTDc=;
+        b=TsEnWIfASW9C14e6Cbeptm2vR/9yAH1UvNA3HVxlnXVJt8GfK5xHPkE/zwWnHAdJ9i
+         Ny0k2BftRaD4KMXLSMSDb4WY5K8LI1Qt/K52+VBPnNHkHxBH2Y6caKABgCMKpFKr92e2
+         zPbOlgNLzR733w4SGNP3tapIk2ZydC/nElNo1qX6xKPp6+g4yl6B9tObcHCBSGOR48MW
+         sdWkdsbMG8B+ZcKjleDCbyO3ENhIMoH2F71alDMVV5t3aHl97rvwXyPn/Til6aoacObG
+         oH4bFVkfIra80I8Hk0KYtHk2W65k5iFOYV935wJtZZlq6HN9iqv7R3HTDrJ2hUj3Oqr5
+         X/Yw==
+X-Gm-Message-State: ACrzQf1Uz6Q/DwyOByEr8fSszHYr2lrknqqAq9omvHzTYfjlXtbi438K
+        YwW+RZoKfTVQyMtFRgwIN5M1uQ==
+X-Google-Smtp-Source: AMsMyM48zF9LQVcGi2NS+xsg9MQEat8n9V4ePGrQVLsNqsfhWhu/0S0WAkVM6laGPMKiYfM4ViunHg==
+X-Received: by 2002:a05:6000:381:b0:236:f075:d2a9 with SMTP id u1-20020a056000038100b00236f075d2a9mr9822118wrf.65.1667571246699;
+        Fri, 04 Nov 2022 07:14:06 -0700 (PDT)
+Received: from [127.0.0.1] (2a02-8440-6440-7fff-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6440:7fff:3074:96af:9642:3])
+        by smtp.gmail.com with ESMTPSA id bj9-20020a0560001e0900b002365cd93d05sm3594512wrb.102.2022.11.04.07.14.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Nov 2022 07:14:06 -0700 (PDT)
+Subject: [PATCH v3 00/12] Add MT8195 HDMI support
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 2/2] soc: qcom: Add Qualcomm Ramp Controller driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org
-Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
-        kernel@collabora.com,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-b4-tracking: H4sIACodZWMC/13MTQrCMBAF4KuUWRtJYpDElfcoIvmrGWxTSGqglN7dwY3Q1fAe75sNaiwYK9y6DU
+ psWHHOFC6nDnyy+RUZBsoguZTcCMNSmPA5LW+ghbM1Mlds9ok2+TOOVCasy1zW38cm6PR/3ATjTGml
+ tLh6o7m+O7uO6Eo8+3mCB/EmD0QS0UqY4Ac1cBMOZN/3L59Xi/bFAAAA
+From:   Guillaume Ranquet <granquet@baylibre.com>
+Date:   Fri, 04 Nov 2022 15:09:46 +0100
+Message-Id: <20220919-v3-0-a803f2660127@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-References: <20221104133506.131316-1-angelogioacchino.delregno@collabora.com>
- <20221104133506.131316-3-angelogioacchino.delregno@collabora.com>
- <cf1a15c5-a16b-2d23-8f6c-b3892c141c34@linaro.org>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <cf1a15c5-a16b-2d23-8f6c-b3892c141c34@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        <angelogioacchino.delregno@collabora.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        mac.shen@mediatek.com, linux-phy@lists.infradead.org
+X-Mailer: b4 0.11.0-dev
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/11/22 15:04, Krzysztof Kozlowski ha scritto:
-> On 04/11/2022 09:35, AngeloGioacchino Del Regno wrote:
->> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>
->> The Ramp Controller is used to program the sequence ID for pulse
->> swallowing, enable sequence and linking sequence IDs for the CPU
->> cores on some Qualcomm SoCs.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> ---
->>   drivers/soc/qcom/Kconfig           |   9 +
->>   drivers/soc/qcom/Makefile          |   1 +
->>   drivers/soc/qcom/ramp_controller.c | 330 +++++++++++++++++++++++++++++
->>   3 files changed, 340 insertions(+)
->>   create mode 100644 drivers/soc/qcom/ramp_controller.c
->>
->> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
->> index 024e420f1bb7..1e681f98bad4 100644
->> --- a/drivers/soc/qcom/Kconfig
->> +++ b/drivers/soc/qcom/Kconfig
->> @@ -95,6 +95,15 @@ config QCOM_QMI_HELPERS
->>   	tristate
->>   	depends on NET
->>   
->> +config QCOM_RAMP_CTRL
->> +	tristate "Qualcomm Ramp Controller driver"
->> +	depends on ARCH_QCOM
-> 
-> I propose:
-> depends on ARCH_QCOM && ARM || COMPILE_TEST
-> 
-> I don't think it is used on ARM64 SoCs, so let's make life of distros
-> easier.
-> 
+Add support for HDMI Tx on MT8195.
 
-Agreed.
+This includes a split of the current "legacy" hdmi driver into a common
+library of functions and a two dedicated compilation units with specific
+code for mt8167 and another for the "new" mt8195 SoC.
 
->> +	help
->> +	  The Ramp Controller is used to program the sequence ID for pulse
->> +	  swallowing, enable sequence and linking sequence IDs for the
->> +	  CPU cores on some Qualcomm SoCs.
->> +	  Say y here to enable support for the ramp controller.
->> +
->>   config QCOM_RMTFS_MEM
->>   	tristate "Qualcomm Remote Filesystem memory driver"
->>   	depends on ARCH_QCOM
->> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
->> index d66604aff2b0..6e02333c4080 100644
->> --- a/drivers/soc/qcom/Makefile
->> +++ b/drivers/soc/qcom/Makefile
->> @@ -10,6 +10,7 @@ obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
->>   obj-$(CONFIG_QCOM_PDR_HELPERS)	+= pdr_interface.o
->>   obj-$(CONFIG_QCOM_QMI_HELPERS)	+= qmi_helpers.o
->>   qmi_helpers-y	+= qmi_encdec.o qmi_interface.o
->> +obj-$(CONFIG_QCOM_RAMP_CTRL)	+= ramp_controller.o
->>   obj-$(CONFIG_QCOM_RMTFS_MEM)	+= rmtfs_mem.o
->>   obj-$(CONFIG_QCOM_RPMH)		+= qcom_rpmh.o
->>   qcom_rpmh-y			+= rpmh-rsc.o
->> diff --git a/drivers/soc/qcom/ramp_controller.c b/drivers/soc/qcom/ramp_controller.c
->> new file mode 100644
->> index 000000000000..e28679b545d1
->> --- /dev/null
->> +++ b/drivers/soc/qcom/ramp_controller.c
->> @@ -0,0 +1,330 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Qualcomm Ramp Controller driver
->> + * Copyright (c) 2022, AngeloGioacchino Del Regno
->> + *                     <angelogioacchino.delregno@collabora.com>
->> + */
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/types.h>
->> +
->> +#define RC_UPDATE_EN		BIT(0)
->> +#define RC_ROOT_EN		BIT(1)
->> +
->> +#define RC_REG_CFG_UPDATE	0x60
->> + #define RC_CFG_UPDATE_EN	BIT(8)
->> + #define RC_CFG_ACK		GENMASK(31, 16)
-> 
-> Drop spaces before #define
-> 
->> +
->> +#define RC_DCVS_CFG_SID		2
->> +#define RC_LINK_SID		3
->> +#define RC_LMH_SID		6
->> +#define RC_DFS_SID		14
->> +
->> +#define RC_UPDATE_TIMEOUT_US	500
->> +
->> +/**
->> + * struct qcom_ramp_controller_desc - SoC specific parameters
->> + * @cfg_dfs_sid:      Dynamic Frequency Scaling SID configuration
->> + * @cfg_link_sid:     Link SID configuration
->> + * @cfg_lmh_sid:      Limits Management hardware SID configuration
->> + * @cfg_ramp_pre_en:  Ramp Controller pre-enable sequence
->> + * @cfg_ramp_en:      Ramp Controller enable sequence
->> + * @cfg_ramp_post_en: Ramp Controller post-enable sequence
->> + * @cfg_ramp_dis:     Ramp Controller disable sequence
->> + * @cmd_reg:          Command register offset
->> + * @num_dfs_sids:     Number of DFS SIDs (max 8)
->> + * @num_link_sids:    Number of Link SIDs (max 3)
->> + * @num_lmh_sids:     Number of LMh SIDs (max 8)
->> + */
->> +struct qcom_ramp_controller_desc {
->> +	struct reg_sequence *cfg_dfs_sid;
-> 
-> I didn't check much, but can these be pointers to const?
-> 
+Support for the new mt8195 hdmi phy and the dpi/drm_drv adjustments to
+support hdmi.
 
-Yeah, const is the way. Will do.
+Based on next-20221104
 
->> +	struct reg_sequence *cfg_link_sid;
->> +	struct reg_sequence *cfg_lmh_sid;
->> +	struct reg_sequence *cfg_ramp_pre_en;
->> +	struct reg_sequence *cfg_ramp_en;
->> +	struct reg_sequence *cfg_ramp_post_en;
->> +	struct reg_sequence *cfg_ramp_dis;
->> +	u8 cmd_reg;
->> +	u8 num_dfs_sids;
->> +	u8 num_link_sids;
->> +	u8 num_lmh_sids;
->> +};
->> +
-> 
-> (...)
-> 
->> +
->> +static struct platform_driver qcom_ramp_controller_driver = {
->> +	.driver = {
->> +		.name = "qcom-ramp-controller",
->> +		.of_match_table = qcom_ramp_controller_match_table,
->> +		.suppress_bind_attrs = true,
->> +	},
->> +	.probe  = qcom_ramp_controller_probe,
->> +	.remove = qcom_ramp_controller_remove,
->> +};
->> +
->> +static int __init qcom_ramp_controller_init(void)
->> +{
->> +	return platform_driver_register(&qcom_ramp_controller_driver);
->> +}
->> +arch_initcall(qcom_ramp_controller_init);
-> 
-> Does it really have to be arch initcall? Cannot be module platform driver?
-> 
+test branch with dts and various "in flight" patches available here:
+https://gitlab.com/granquet/linux/-/tree/granquet/linux-next_HDMI
 
-Cannot be platform driver. This has to initialize as early as possible, or
-booting will be unstable in some cases (big cluster enabled).
+I haven't updated the vdosys/mmsys/ethdr and mutex patches in a while
+in that test branch, they might be outdated..
 
-Cheers!
-Angelo
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+To: Kishon Vijay Abraham I <kishon@ti.com>
+To: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: CK Hu <ck.hu@mediatek.com>
+To: Jitao shi <jitao.shi@mediatek.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-phy@lists.infradead.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: mac.shen@mediatek.com
+CC: stuart.lee@mediatek.com
+Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+---
+Changes in v3:
+- phy: Grouped register and bit definition together to add clarity
+- dt-bindings: Addressed comments
+- Link to v2: https://lore.kernel.org/r/20220919-v2-0-8419dcf4f09d@baylibre.com
 
+Changes in v2:
+- Removed syscon requirement from the hdmi node
+- Use as much as possible bit FIELD_PREP/FIELD_GET macros across all the
+  patches
+- Make cec optional dynamically instead of hardcoded with a flag
+- Renamed hdmi variants to v1 (legacy) and v2 (mt8195) while waiting for
+  a better name
+- Rework hdmi v2 code to use a connector (same as v1)
+- Remove "magic" 0x43 addr special handling in hdmi ddc code
+- Link to v1: https://lore.kernel.org/r/20220919-v1-0-4844816c9808@baylibre.com
+
+---
+Guillaume Ranquet (12):
+      dt-bindings: phy: mediatek: hdmi-phy: Add mt8195 compatible
+      dt-bindings: display: mediatek: add MT8195 hdmi bindings
+      drm/mediatek: hdmi: use a regmap instead of iomem
+      drm/mediatek: extract common functions from the mtk hdmi driver
+      drm/mediatek: hdmi: make the cec dev optional
+      drm/mediatek: hdmi: add frame_colorimetry flag
+      drm/mediatek: hdmi: add v2 support
+      drm/mediatek: hdmi: v2: add audio support
+      phy: phy-mtk-hdmi: Add generic phy configure callback
+      phy: mediatek: add support for phy-mtk-hdmi-mt8195
+      dt-bindings: display: mediatek: dpi: Add compatible for MediaTek MT8195
+      drm/mediatek: dpi: Add mt8195 hdmi to DPI driver
+
+ .../bindings/display/mediatek/mediatek,dpi.yaml    |    1 +
+ .../bindings/display/mediatek/mediatek,hdmi.yaml   |   61 +-
+ .../display/mediatek/mediatek,mt8195-hdmi-ddc.yaml |   51 +
+ .../devicetree/bindings/phy/mediatek,hdmi-phy.yaml |    1 +
+ drivers/gpu/drm/mediatek/Makefile                  |    5 +-
+ drivers/gpu/drm/mediatek/mtk_dpi.c                 |  143 +-
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h            |    5 +
+ drivers/gpu/drm/mediatek/mtk_hdmi.c                |  655 +-------
+ drivers/gpu/drm/mediatek/mtk_hdmi.h                |   16 +
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.c         |  477 ++++++
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.h         |  224 +++
+ drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c         |  367 +++++
+ drivers/gpu/drm/mediatek/mtk_hdmi_regs_v2.h        |  309 ++++
+ drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             | 1592 ++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_hdmi_v2.h             |   31 +
+ drivers/phy/mediatek/Makefile                      |    1 +
+ drivers/phy/mediatek/phy-mtk-hdmi-mt8195.c         |  543 +++++++
+ drivers/phy/mediatek/phy-mtk-hdmi-mt8195.h         |  109 ++
+ drivers/phy/mediatek/phy-mtk-hdmi.c                |   15 +
+ drivers/phy/mediatek/phy-mtk-hdmi.h                |    2 +
+ 20 files changed, 3976 insertions(+), 632 deletions(-)
+---
+base-commit: 8d9826217c539e9dbc3472823dc536cff1d517a2
+change-id: 20220919-hdmi_mtk
+
+Best regards,
+-- 
+Guillaume Ranquet <granquet@baylibre.com>
