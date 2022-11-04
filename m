@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA52D619E0E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5EC619E0F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231522AbiKDREn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 13:04:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52106 "EHLO
+        id S231559AbiKDREr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 13:04:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231642AbiKDREh (ORCPT
+        with ESMTP id S231691AbiKDREh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:04:37 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7B73E0A9
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD88B3E0AA
         for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 10:04:34 -0700 (PDT)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id DFE2C85104;
-        Fri,  4 Nov 2022 18:04:31 +0100 (CET)
+        by phobos.denx.de (Postfix) with ESMTPSA id 409378511D;
+        Fri,  4 Nov 2022 18:04:32 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
         s=phobos-20191101; t=1667581472;
-        bh=geN+wVjcBPzFeAfG5gw1RT6bEJ7JCjypfMmhfOAcuUY=;
+        bh=oRSfJ+CFmuIkU4hdVYo3jr2kK1Z2N8/mcWrd9UAcLAc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WoM7+BX89eMEn/o32idgpgXJcT3RqEPxHPuCQIwB6SsKtF8gko+z//M/3lloaEOac
-         69/+k6ErvbhTnk8kpW+MFaY1LQ6kmV07pdhYYjarPME5dQhsolOvhlgR47Fs55z0Yy
-         DVIQOrtUfrgkWXBuCMSMyyuSrQd/THDb7jXhKhceyOhh8i32EksYgoYIqImu//l1i5
-         GYbk5S7r86tLWmDMJS72EyeJ1DIYZ+59APEs3RQdTjYM7Sm0ERQtLDKzkf53qSmNa+
-         CH52Uo/CybvOGYzysxrdmIrfDYdl7u/1PwN8T0dzwhLb2cZL8bJPUc8lWDfbRSpgBZ
-         s6d+08xDPc9rg==
+        b=sTw3JIiBN3q+EXfQWkrZAe2NcaD5G3b+MpyRbbNAvW/lh87rnV7H/Quzbz5NuoVLF
+         WGuups0aYUhPpS4B3wQITOvBuPFpXZ8QZEeRCCKRn+zOM1tT9E/Bd28ItO6qmccBfd
+         EPWjRnecEQikhxzsNBsdMXKp95B8/+HZhUTZGN9+7ya8ix/Oddda7Xe1KGuOWxQYdy
+         FrFA8ir+Qfv9CES3QHAtVFKA9618LDIqy74UnEwwzGh54E2V6uweo0Iv5vEPahu/mR
+         blKO5sT+z63VJKDU9mS/IuESmFHRdT0HUDY9pZAKqKwFBlfMjYa6Qq43p1ledwFiLD
+         ChI1fO+bBSiOA==
 From:   Marek Vasut <marex@denx.de>
 To:     devicetree@vger.kernel.org
 Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
@@ -40,9 +40,9 @@ Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
         Shawn Guo <shawnguo@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         NXP Linux Team <linux-imx@nxp.com>
-Subject: [RFC][PATCH v3 2/3] dt-bindings: imx6q-pcie: Handle various PD configurations
-Date:   Fri,  4 Nov 2022 18:04:16 +0100
-Message-Id: <20221104170417.232132-2-marex@denx.de>
+Subject: [RFC][PATCH v3 3/3] dt-bindings: imx6q-pcie: Handle more resets on legacy platforms
+Date:   Fri,  4 Nov 2022 18:04:17 +0100
+Message-Id: <20221104170417.232132-3-marex@denx.de>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20221104170417.232132-1-marex@denx.de>
 References: <20221104170417.232132-1-marex@denx.de>
@@ -59,12 +59,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX SoCs have various power domain configurations routed into
-the PCIe IP. MX6SX is the only one which contains 2 domains and also
-uses power-domain-names. MX6QDL do not use any domains. All the rest
-uses one domain and does not use power-domain-names anymore.
-
-Document all those configurations in the DT binding document.
+The i.MX6 and i.MX7D does not use block controller to toggle PCIe
+reset, hence the PCIe DT description contains three reset entries
+on these older SoCs. Add this exception into the binding document.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
@@ -78,64 +75,60 @@ Cc: linux-arm-kernel@lists.infradead.org
 Cc: NXP Linux Team <linux-imx@nxp.com>
 To: devicetree@vger.kernel.org
 ---
-V2: - Keep the power-domains description in the main section
-V3: - Move power-domains back where they were originally (fixes V2)
-    - Do not use else: in allOf section
+V2: - Add mx8mq to 3-reset PCIe core variant
+    - Handle the resets in allOf section
+V3: - Reinstate reset: maxItems:3 and add minItems:2
+    - Move reset-names back to main section
+    - The validation no longer works and introduces errors like these:
+      arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dtb: pcie@33800000: reset-names:0: 'pciephy' was expected
 ---
- .../bindings/pci/fsl,imx6q-pcie.yaml          | 31 ++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+ .../bindings/pci/fsl,imx6q-pcie.yaml          | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-index 44c65d3ec07b9..5d731aca34b4d 100644
+index 5d731aca34b4d..44a1404cbc2c0 100644
 --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
 +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-@@ -67,13 +67,13 @@ properties:
-       required properties for imx7d-pcie and imx8mq-pcie.
+@@ -80,11 +80,13 @@ properties:
+       - const: pcie_phy
  
-   power-domains:
-+    minItems: 1
+   resets:
++    minItems: 2
+     maxItems: 3
+     description: Phandles to PCIe-related reset lines exposed by SRC
+       IP block. Additional required by imx7d-pcie and imx8mq-pcie.
+ 
+   reset-names:
++    minItems: 2
      items:
-       - description: The phandle pointing to the DISPLAY domain for
-           imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
-           imx8mq-pcie.
-       - description: The phandle pointing to the PCIE_PHY power domains
-           for imx6sx-pcie.
--
-   power-domain-names:
-     items:
-       - const: pcie
-@@ -222,6 +222,35 @@ allOf:
-             - const: pcie_bus
-             - const: pcie_aux
+       - const: pciephy
+       - const: apps
+@@ -251,6 +253,29 @@ allOf:
+           maxItems: 1
+         power-domain-names: false
  
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
-+            const: fsl,imx6sx-pcie
++            enum:
++              - fsl,imx6q-pcie
++              - fsl,imx6sx-pcie
++              - fsl,imx6qp-pcie
++              - fsl,imx7d-pcie
++              - fsl,imx8mq-pcie
 +    then:
 +      properties:
-+        power-domains:
-+          minItems: 2
-+          maxItems: 2
-+        power-domain-names:
-+          minItems: 2
-+          maxItems: 2
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - fsl,imx6q-pcie
-+                - fsl,imx6qp-pcie
-+    then:
++        reset-names:
++          maxItems: 3
++    else:
 +      properties:
-+        power-domains:
-+          minItems: 1
-+          maxItems: 1
-+        power-domain-names: false
++        resets:
++          maxItems: 2
++        reset-names:
++          items:
++            - const: apps
++            - const: turnoff
 +
  examples:
    - |
