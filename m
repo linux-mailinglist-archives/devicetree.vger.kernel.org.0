@@ -2,87 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB876619B1D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:12:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 396D2619B29
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:14:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232416AbiKDPME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 11:12:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54678 "EHLO
+        id S232433AbiKDPOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 11:14:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232432AbiKDPLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:11:51 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642E918B06
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 08:11:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=goF9wc5+Rtu27P
-        piBYCeFCpbgEpJxB9otcfihRuwblg=; b=bUxYA7yTSx4MUhzulIiQY89hE0Kppu
-        2hCXGkd3JFULswVkFllNvczfQKGCVJEUavdlgJKMPzph4SfMDCB63yAy0TRMcnxH
-        5QxMtdi7zIRSquHVvGYwnn9A21wzZiR3zflAVhbftrmaqysRjSHKy/wfakwPAG0d
-        eZRHYyx5OYwb4=
-Received: (qmail 3148319 invoked from network); 4 Nov 2022 16:11:47 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Nov 2022 16:11:47 +0100
-X-UD-Smtp-Session: l3s3148p1@fEwFfqbsoAhZD+8G
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] TEST: arm64: dts: renesas: white-hawk-cpu: Enable CMT
-Date:   Fri,  4 Nov 2022 16:11:35 +0100
-Message-Id: <20221104151135.4706-4-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221104151135.4706-1-wsa+renesas@sang-engineering.com>
-References: <20221104151135.4706-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S232460AbiKDPOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:14:23 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B623055B6
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 08:14:16 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id x21so3258481qkj.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 08:14:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZSAQ8HyevbU1SRu/HWCnDYZ7sesPwd2iwJjeHcOhri0=;
+        b=p9CminsN53qrFplpvggdvKqaLyOKNBrntrAp19vf9oPCrthGfFnypEKUwZg9xGCMK4
+         tlAkh8aPlPv6bgVXnI5olTf9u/Jk3rpBLNGmBUk91noqbdvwrZpf2j+aV2dTz+9PhwK4
+         +Ox755t9PDNDs+dx3ML4giDlVS5Mg55PCenbf87phpCV68riMhHT7ZLZcGZxvWVOstDC
+         P46DQiP2YhibJHquAwbiwmnurl22WpSdPMvsQuY28y/29wsdM9RlKYMyEzBTV1X2Coxj
+         nRQR27JtXxOwDZPkoCu95H2QrUb7E4jwsH7jm2Zhnz+qwD/bN7hNDaxtbe+eMo2s11wI
+         xEYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZSAQ8HyevbU1SRu/HWCnDYZ7sesPwd2iwJjeHcOhri0=;
+        b=tF9clHCRBbI4jAUFWP+ZPJzi06F+xgTA3b4MqJPU3frkIrKNl9MfFjt4fedHdiCvKU
+         0sR8y7IVa3R7oj2huJfoVwfgWYHzVY3rBT1RvXbDRT+Srw1PHVjL15soGNdztpmzsnuK
+         gK7kKVnFrxZwP+IoIXNUkk/on2e4+0rxkxbJRbx8g9rZuSbLxh6xNh7nSXHvCks8Jfmo
+         jdyvX9yHg5kLSu7Zj5RY77KU5tNMqo97214ZBpywjERVu7g56TTq07tNMAQLsWmXH7k9
+         kuvDzqmIBXUu0Pq18xyVhgzvmntTlfM9zT/kVbAtzEb7Q82Pq7/YI3hM/rOQYl8iyA18
+         jGbw==
+X-Gm-Message-State: ACrzQf3Kz4kQwcVaXk+GvogXBb34bq7teWVh+4CRHsTMlNvYL/Kwebjt
+        RXu0bh/8GFAxXRw0oa7cU05Uzw==
+X-Google-Smtp-Source: AMsMyM6iKfQ55uRl1/mtMB2lg88XM5Tn9yhOcXnHuhJnX4Ds+U0VSJAiSVrSxyVuJsRIDOFlmYrIxw==
+X-Received: by 2002:a37:a8d2:0:b0:6f9:75d0:fddb with SMTP id r201-20020a37a8d2000000b006f975d0fddbmr27055868qke.101.1667574855536;
+        Fri, 04 Nov 2022 08:14:15 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
+        by smtp.gmail.com with ESMTPSA id e22-20020a05622a111600b003996aa171b9sm2579338qty.97.2022.11.04.08.14.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 08:14:14 -0700 (PDT)
+Message-ID: <e17dbc8c-b2ba-6acf-7b56-85a246aaa765@linaro.org>
+Date:   Fri, 4 Nov 2022 11:14:12 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML
+ schemas of Xilinx AXI PCIe Root Port Bridge
+Content-Language: en-US
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bhelgaas@google.com, michals@xilinx.com, robh+dt@kernel.org,
+        nagaradhesh.yeleswarapu@amd.com, bharat.kumar.gogada@amd.com
+References: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables CMT{0|1|2|3} on the WhiteHawk board.
+On 04/11/2022 00:41, Thippeswamy Havalige wrote:
+> Convert to YAML dtschemas of Xilinx AXI PCIe Root Port Bridge
+> dt binding.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
 
-Only for testing, not for upstream!
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- .../dts/renesas/r8a779g0-white-hawk-cpu.dtsi     | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> +
+> +title: Xilinx AXI PCIe Root Port Bridge
+> +
+> +maintainers:
+> +  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,axi-pcie-host-1.00.a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ranges:
+> +    items:
+> +      - description: |
+> +          ranges for the PCI memory regions (I/O space region is not
+> +          supported by hardware)
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  interrupt-controller:
+> +    description: identifies the node as an interrupt controller
+> +    type: object
+> +    properties:
+> +      interrupt-controller: true
+> +
+> +      "#address-cells":
+> +        const: 0
+> +
+> +      "#interrupt-cells":
+> +        const: 1
+> +
+> +    required:
+> +      - 'interrupt-controller'
+> +      - '#address-cells'
+> +      - '#interrupt-cells'
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-index c10740aee9f6..7f565e161662 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dtsi
-@@ -279,3 +279,19 @@ &rwdt {
- &scif_clk {
- 	clock-frequency = <24000000>;
- };
-+
-+&cmt0 {
-+	status = "okay";
-+};
-+
-+&cmt1 {
-+	status = "okay";
-+};
-+
-+&cmt2 {
-+	status = "okay";
-+};
-+
-+&cmt3 {
-+	status = "okay";
-+};
--- 
-2.35.1
+Use same style of quotes as in other places, either ' or "
+
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ranges
+> +  - interrupts
+> +  - interrupt-map
+> +  - "#interrupt-cells"
+> +  - interrupt-controller
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    pcie@50000000 {
+> +        compatible = "xlnx,axi-pcie-host-1.00.a";
+> +        reg = < 0x50000000 0x1000000 >;
+
+Still wrong - no spaces around <>
+
+Best regards,
+Krzysztof
 
