@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85294619904
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B8F3619908
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:14:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbiKDOOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 10:14:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57682 "EHLO
+        id S231854AbiKDOOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 10:14:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbiKDOOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:14:20 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 015B92037F
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:14:18 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id y16so7205841wrt.12
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:14:17 -0700 (PDT)
+        with ESMTP id S231324AbiKDOO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:14:29 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B6327174
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:14:19 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id bg9-20020a05600c3c8900b003bf249616b0so3253454wmb.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:14:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DSYD3hSXr5dSGBwwFhgmPY+Jg1epD5ze6gJ/T99kUGE=;
-        b=040vNEhNW3OrbFTChPGank19okMbiLYYMgV42UBZ6I9C05bIk7WUaY8lFlzIm5HyCd
-         2NWiGDBCCZlmyXKnrhPUcoFG8uiFePXcj4AjGBOLmxJ1UsGq0PFVnDkDf6M+gbeDbHPj
-         xGH6RnLqnC7YUBFBtpFLbECenBuMnINhGMW13vOTKjVesrnohkpUWlMiFVfLbHQv0rhO
-         LAmwoDnNJeyXXy9a/JKoFpvjPdTBsB2kH6zKTkHo/v9QyKnronI+NEl7g4WeJdWLxayz
-         pGpzVJ2qqf33WjlVUWtGkQ8/GCVJThgDqgXVlAwar4qEVzxX7y0lzIhRABbvhcHfKLvX
-         cDEw==
+        bh=6zHUtmTd6RGvQvohicUDo1+C3cWxOXttYxoZ7C1AyNM=;
+        b=sZpvZ48ZfL7ZHUcpdBGfIoKduwmTvL5EhX1uFBCa2jEXcfr8mcna8xs2xPZJpfBmCq
+         mKRUawmP8LzwcDAHLdITjH8mTdt2rR/RHm1wZbUujLSRnEaBYxYpn8k2tVgkyGqcQHXZ
+         V3C4NsMONBKoa75jZtvRtV2C9MrRVBEZzGCdJ8s56Uwi3/Lddwv3enOncogOyPK1oHB6
+         rsOArGEyYJi+GvlMMLK73qYd9vDx/0+mDExpKhenqU3UezG2QL2qCgSZgsJLuUh4zEs4
+         zmr8dooJSIFg7feKCmSZNEit3n9En4LRHKD0xhcwlvot+bE9rHyuuqSiZ9Zm+n/EpSJE
+         qCyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=DSYD3hSXr5dSGBwwFhgmPY+Jg1epD5ze6gJ/T99kUGE=;
-        b=d7GEzTAds3FvTqK6Z40atfPspBkaawdikJPB1MA+n3Cxu3snYAwbMXakuRMdp1ZtEO
-         BY+PVDNKsXDHOX1L0nUvAtrNjNfL8QA02F0DxOd3rUL2h3aPDRQcowFHtx1lj+0oTFCf
-         ePvcu8zJh7rkA0rzFhueJ6ixI2beQLjaGzDM1qcPQjdbKDLBbkGSYqQf7HIpuBDPDPCP
-         dsfPEfX4JSn/2pR8Gxxl83lBvqmEQ8z5ay1V71GRiQe1hg9EHXtJM8IpDsrHgwzCqdHK
-         Q6YbNSW49ljRzxfrZj8SzIG7TuTaS2T2qn8c92PhflgsTLFypnOhh+dM3BRKTeJYnUBW
-         7xtQ==
-X-Gm-Message-State: ACrzQf3XJiNVqQ5IVg9FMd17ZP0FaJGExALHvF61QgHvN9ssmXa+vx96
-        61dhpSY6SUIE0bUWiDgCHDfcufkK9WFUqg==
-X-Google-Smtp-Source: AMsMyM48hQRDx10aJPyWfG1+Rq1m6EVtKN1fHWt2gGNDcBgAKa4J8D7tQMnC613BOZi/59U50eovfA==
-X-Received: by 2002:adf:e19e:0:b0:22e:64de:39fa with SMTP id az30-20020adfe19e000000b0022e64de39famr21896486wrb.369.1667571256470;
-        Fri, 04 Nov 2022 07:14:16 -0700 (PDT)
+        bh=6zHUtmTd6RGvQvohicUDo1+C3cWxOXttYxoZ7C1AyNM=;
+        b=rTz3VAh/bjmOWNbfJ+2P/beG5E5t/qF1CPgeSewQLrkjDskoH3/0qFyvOKW3zQbmyx
+         AAarlE4D99P4L8uL5Rr/4Gfng6h3L8V03Dphlar3v+3GdEOmZyhg0+YsfcQzw8ZgS0ER
+         oXgyeJBbIB2pr3iRy9s6Vx+b72YmGkseh9Xrb10oOrpPUR2CqxbAWkdeV8TQJ+KaXskz
+         WJPr9DhWUbyG8mKrgccBur45axCMSvyaTk7Q/peLfBH6p/S5Q6hqXRJNteYQyT+WoWTK
+         x0NewCqBpMYesCNMxX1SKctyY6lj3BMiLGko4Kg8vLMOdq03xty1eACWIpbGVS6Gv/W/
+         CbKQ==
+X-Gm-Message-State: ACrzQf3MlGUwbPsZ0CbltjiZfohvh3XJW6d4BAVgYB1p6ZIpTeL/jHVS
+        ca1XKTA7zwhkHOYmYGI7pWelBg==
+X-Google-Smtp-Source: AMsMyM5si9XfQzNepR9daWPGFME2Q9Ye8oPRfuLmG8pAZT/Jkr0RR5GB/3hFkZ2l/aquOD99c3P13A==
+X-Received: by 2002:a05:600c:4252:b0:3cf:678a:d189 with SMTP id r18-20020a05600c425200b003cf678ad189mr23153902wmm.51.1667571258161;
+        Fri, 04 Nov 2022 07:14:18 -0700 (PDT)
 Received: from [127.0.0.1] (2a02-8440-6440-7fff-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6440:7fff:3074:96af:9642:3])
-        by smtp.gmail.com with ESMTPSA id bj9-20020a0560001e0900b002365cd93d05sm3594512wrb.102.2022.11.04.07.14.14
+        by smtp.gmail.com with ESMTPSA id bj9-20020a0560001e0900b002365cd93d05sm3594512wrb.102.2022.11.04.07.14.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 07:14:15 -0700 (PDT)
+        Fri, 04 Nov 2022 07:14:17 -0700 (PDT)
 From:   Guillaume Ranquet <granquet@baylibre.com>
-Date:   Fri, 04 Nov 2022 15:09:51 +0100
-Subject: [PATCH v3 05/12] drm/mediatek: hdmi: make the cec dev optional
+Date:   Fri, 04 Nov 2022 15:09:52 +0100
+Subject: [PATCH v3 06/12] drm/mediatek: hdmi: add frame_colorimetry flag
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220919-v3-5-a803f2660127@baylibre.com>
+Message-Id: <20220919-v3-6-a803f2660127@baylibre.com>
 References: <20220919-v3-0-a803f2660127@baylibre.com>
 In-Reply-To: <20220919-v3-0-a803f2660127@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -87,143 +87,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make cec device optional in order to support newer versions of the
-hdmi IP which doesn't require it
+Add a flag to indicate support for frame colorimetry.
 
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 ---
- drivers/gpu/drm/mediatek/mtk_hdmi.c        |  8 +++--
- drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 54 ++++++++++++++++++++----------
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 11 +++++++++++
  drivers/gpu/drm/mediatek/mtk_hdmi_common.h |  1 +
- 3 files changed, 42 insertions(+), 21 deletions(-)
+ 2 files changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-index 73bda2849196..85c6ebca36dd 100644
---- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
-@@ -927,10 +927,11 @@ void mtk_hdmi_clk_disable_audio_mt8183(struct mtk_hdmi *hdmi)
- static enum drm_connector_status
- mtk_hdmi_update_plugged_status(struct mtk_hdmi *hdmi)
- {
--	bool connected;
-+	bool connected = true;
- 
- 	mutex_lock(&hdmi->update_plugged_status_lock);
--	connected = mtk_cec_hpd_high(hdmi->cec_dev);
-+	if (hdmi->cec_dev)
-+		connected = mtk_cec_hpd_high(hdmi->cec_dev);
- 	if (hdmi->plugged_cb && hdmi->codec_dev)
- 		hdmi->plugged_cb(hdmi->codec_dev, connected);
- 	mutex_unlock(&hdmi->update_plugged_status_lock);
-@@ -1025,7 +1026,8 @@ static int mtk_hdmi_bridge_attach(struct drm_bridge *bridge,
- 			return ret;
- 	}
- 
--	mtk_cec_set_hpd_event(hdmi->cec_dev, mtk_hdmi_hpd_event, hdmi->dev);
-+	if (hdmi->cec_dev)
-+		mtk_cec_set_hpd_event(hdmi->cec_dev, mtk_hdmi_hpd_event, hdmi->dev);
- 
- 	return 0;
- }
 diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-index 3f08d37b1af0..3635ca66817b 100644
+index 3635ca66817b..933c51b5f6d7 100644
 --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
 +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
-@@ -137,28 +137,18 @@ void mtk_hdmi_send_infoframe(struct mtk_hdmi *hdmi, u8 *buffer_spd, size_t bufsz
- 	mtk_hdmi_setup_spd_infoframe(hdmi, buffer_spd, bufsz_spd, "mediatek", "On-chip HDMI");
- }
- 
--int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device *pdev,
--			    const char *const *clk_names, size_t num_clocks)
-+static int mtk_hdmi_get_cec_dev(struct mtk_hdmi *hdmi, struct device *dev, struct device_node *np)
- {
--	struct device *dev = &pdev->dev;
--	struct device_node *np = dev->of_node;
--	struct device_node *cec_np, *remote, *i2c_np;
-+	int ret;
-+	struct device_node *cec_np;
- 	struct platform_device *cec_pdev;
- 	struct regmap *regmap;
--	struct resource *mem;
--	int ret;
--
--	ret = mtk_hdmi_get_all_clk(hdmi, np, clk_names, num_clocks);
--	if (ret) {
--		dev_err(dev, "Failed to get all clks\n");
--		return ret;
--	}
- 
- 	/* The CEC module handles HDMI hotplug detection */
- 	cec_np = of_get_compatible_child(np->parent, "mediatek,mt8173-cec");
- 	if (!cec_np) {
- 		dev_err(dev, "Failed to find CEC node\n");
--		return -EINVAL;
-+		return -ENOTSUPP;
+@@ -120,6 +120,17 @@ int mtk_hdmi_setup_avi_infoframe(struct mtk_hdmi *hdmi, u8 *buffer, size_t bufsz
+ 		return err;
  	}
  
- 	cec_pdev = of_find_device_by_node(cec_np);
-@@ -168,7 +158,6 @@ int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device *pdev,
- 		return -EPROBE_DEFER;
- 	}
- 	of_node_put(cec_np);
--	hdmi->cec_dev = &cec_pdev->dev;
- 	/*
- 	 * The mediatek,syscon-hdmi property contains a phandle link to the
- 	 * MMSYS_CONFIG device and the register offset of the HDMI_SYS_CFG
-@@ -177,12 +166,41 @@ int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device *pdev,
- 	regmap = syscon_regmap_lookup_by_phandle(np, "mediatek,syscon-hdmi");
- 	ret = of_property_read_u32_index(np, "mediatek,syscon-hdmi", 1, &hdmi->sys_offset);
- 	if (IS_ERR(regmap))
--		ret = PTR_ERR(regmap);
-+		return PTR_ERR(regmap);
- 	if (ret) {
--		dev_err(dev, "Failed to get system configuration registers: %d\n", ret);
--		goto put_device;
-+		dev_err(dev,
-+				"Failed to get system configuration registers: %d\n", ret);
-+		return ret;
- 	}
++	if (hdmi->conf->has_frame_colorimetry) {
++		frame.colorimetry = hdmi->colorimtery;
++		if (frame.colorimetry == HDMI_COLORIMETRY_EXTENDED)
++			frame.extended_colorimetry = hdmi->extended_colorimetry;
 +
- 	hdmi->sys_regmap = regmap;
-+	hdmi->cec_dev = &cec_pdev->dev;
-+
-+	return 0;
-+}
-+
-+int mtk_hdmi_dt_parse_pdata(struct mtk_hdmi *hdmi, struct platform_device *pdev,
-+			    const char *const *clk_names, size_t num_clocks)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct device_node *remote, *i2c_np;
-+	struct resource *mem;
-+	int ret;
-+
-+	ret = mtk_hdmi_get_all_clk(hdmi, np, clk_names, num_clocks);
-+	if (ret) {
-+		dev_err(dev, "Failed to get all clks\n");
-+		return ret;
-+	}
-+
-+	ret = mtk_hdmi_get_cec_dev(hdmi, dev, np);
-+	if (ret) {
-+		if (ret == -ENOTSUPP)
-+			dev_info(dev, "No CEC node found, continuing without");
++		/* quantiation range:limited or full */
++		if (frame.colorspace == HDMI_COLORSPACE_RGB)
++			frame.quantization_range = hdmi->quantization_range;
 +		else
-+			goto put_device;
++			frame.ycc_quantization_range = hdmi->ycc_quantization_range;
 +	}
+ 	err = hdmi_avi_infoframe_pack(&frame, buffer, bufsz);
  
- 	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	if (!mem) {
+ 	if (err < 0) {
 diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.h b/drivers/gpu/drm/mediatek/mtk_hdmi_common.h
-index 7452bea91f9e..921bde150e11 100644
+index 921bde150e11..2e8e5feec377 100644
 --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.h
 +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.h
-@@ -31,6 +31,7 @@
- struct mtk_hdmi_conf {
+@@ -32,6 +32,7 @@ struct mtk_hdmi_conf {
  	bool tz_disabled;
  	bool cea_modes_only;
-+	bool has_cec;
+ 	bool has_cec;
++	bool has_frame_colorimetry;
  	unsigned long max_mode_clock;
  	const struct drm_bridge_funcs *bridge_funcs;
  	void (*mtk_hdmi_output_init)(struct mtk_hdmi *hdmi);
