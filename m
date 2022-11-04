@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C555561A31B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C35861A331
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:20:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiKDVRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 17:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
+        id S229609AbiKDVUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 17:20:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbiKDVRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:17:07 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E54C62196
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:17:06 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id k13so3392919ybk.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:17:06 -0700 (PDT)
+        with ESMTP id S229756AbiKDVU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:20:28 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A80AA1B9
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:20:24 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id v27so9452444eda.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:20:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pyGds6Hg1ZCJpXSt9b953qf8BGwVMn84FDUpPupYsPA=;
-        b=DssSrfVlC3iSSNTKeeDHt8VNgTSi5VuuN0su+R3SWycgfn/MKXXDOSE3gj83VHj9cl
-         HrcoYCHYVAfb1wbgNsGa68z+V456TnMfPIT+EWX1A3hvJA/y97t/hSXShCZHpAd8xdqx
-         qTIh8O0CZ6+qBXguTqj2gcIVxJzVVFi8qg2OlMU5BHM3ZGOyhfU60YFUTTnbgQiDVrIp
-         Wz6zJ1INTZtvm0/sZ/ImQPWgnnMzAS1PkvA5/N8CuSHTNsKF0Ut11gL4z0iziR9dStwo
-         jvo60f0Su6wLkC44wUyx1gW8XdHwqtDcMrVuoVfluOlT7V7Ddh7BsQtyAPevahbOC6o6
-         uDKQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3QTwUc+0ABT8lOPURWsE/s9ly5zaIlAKdIt/YceCmhQ=;
+        b=sEnF3YX4EcoAUBMUyeDyVfLosYH3BYj7B6VqrIOMYXz8EDWozXHKPUwhMkPdBk7sS6
+         SOW41dYxcU89gzuun0Th6UTunJkmuKNMiqklptTO/0IPd1jX8WltBawz/ri4/mHtF9+/
+         YcA6DjPb0aMLnJCmwSnAcN9MXG81qbBlleSORP70HBCV7NVkmucWkPRO29REZpZqD7s5
+         BV0kWzq7zzHTXc8p/qnvwBnhuu+Zn/RQYJf0Kp5tYl2rYn62Lt57qK6R+vXYptvxQ7CF
+         jO7+bYD6dnqWBfQZ9zRqlGuoVgt0eWEyhbOTPzwHSNnw7QMD6j64lTwwabJW+FRNoIhY
+         A1lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pyGds6Hg1ZCJpXSt9b953qf8BGwVMn84FDUpPupYsPA=;
-        b=nNO79kWemXfwO4//HtN3s14lW5TSsh7gCmX3PtBtt44rYLCyOzJ+0F5I7uVZOXPtui
-         FQqH5g0E+0cDWuQBc8tIyLGQsQxwQeRYia1IYzM7hV9ly7MqLrw1EORDx8sCqeSwGq5Z
-         GHTkGV9A8naNLm0jcOmmOekEm+p8UI7gVFE6CGDhe+yccAdiRcIVefr0UxUvgfJekWe1
-         VlqDGVf4EJjd098/nL3p3vdWYsJ9O1BvbpEWnYpFlRsOekZhGnhclXH4JJW4hi/rlN8R
-         wzAZH5OtzGoAi3nT5Pzoy+7jr1/1POrb9M+gxHI9QHWhn/QKn5jXP+I1wApS3JvagBfU
-         auJg==
-X-Gm-Message-State: ANoB5pkCqVK1BdUvKw0owjWXUeRwHxQhJKGigqcaolHMewZh1aeuwcHz
-        9vEXYFD4Eo5lNHlVqHKgo5Gh+cRa4c0bx/dxO3eFKA==
-X-Google-Smtp-Source: AA0mqf5GaczFdCkzkNzAZDKj1QHfSwJuiNQKKfgZLEkbhvf/8ad5OCKF9RnkskhAcJNNr1lKt2Duwh8y0sswHirdtBY=
-X-Received: by 2002:a25:3b90:0:b0:6d3:5464:8338 with SMTP id
- i138-20020a253b90000000b006d354648338mr4703120yba.288.1667596626192; Fri, 04
- Nov 2022 14:17:06 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3QTwUc+0ABT8lOPURWsE/s9ly5zaIlAKdIt/YceCmhQ=;
+        b=bGScqOPyXQB82aR4xtqSPIevh31TXwqqANyqZV/jqdXSrqfJbtk7nzSDUF81Vy8g4k
+         74MURxuRaQZHIgoji4Q6zdClzML5sBjFtgEGxSeKUvmM4e1rGsxLcyde0z3mVzvaN5Zk
+         o0Bluo3VEuz6+aMv2F5ftX0gbat8t9jnz+JJeytpTjpWNwjcCiVSpbnQ7dg9mwOPXUzB
+         T6lWfflf4znIXrMdefH524q8Kqf51Z7s/WYHd+aL4O1Dtp2clugeet0mp0KChoQdWk0T
+         ZMy9jR9bP3xJvpULVT7h1mi3OKGVrudGsRuR1XmcuKL1AY5fhHNAQhnAICbroBrM80wg
+         zORQ==
+X-Gm-Message-State: ACrzQf0f3DTU0Lb4mTFQXVt6sI/dvznqnH+paZ4hhb2I7K23S/rAC9kD
+        RO/uPle20+odcJc10jbCVpX1tQ==
+X-Google-Smtp-Source: AMsMyM6knLELqNXPYiiLeFeRLblm3n6bNbMnYtHpkrvKA7sqvcELgfpIB6jE4Ca3nqc0lS90XIW87A==
+X-Received: by 2002:a05:6402:4505:b0:451:1551:7b14 with SMTP id ez5-20020a056402450500b0045115517b14mr16529382edb.300.1667596823030;
+        Fri, 04 Nov 2022 14:20:23 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id ca12-20020a170906a3cc00b0079800b81709sm11533ejb.219.2022.11.04.14.20.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Nov 2022 14:20:22 -0700 (PDT)
+Date:   Fri, 4 Nov 2022 23:20:21 +0200
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>
+Subject: Re: [PATCH 1/6] clk: imx93: unmap anatop base in error handling path
+Message-ID: <Y2WCFSGLNN1Rt9UZ@linaro.org>
+References: <20221028095211.2598312-1-peng.fan@oss.nxp.com>
+ <20221028095211.2598312-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20221104133452.131227-1-angelogioacchino.delregno@collabora.com>
- <20221104133452.131227-3-angelogioacchino.delregno@collabora.com> <20221104143202.nps2iwqjcwug6mij@SoMainline.org>
-In-Reply-To: <20221104143202.nps2iwqjcwug6mij@SoMainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 5 Nov 2022 00:16:55 +0300
-Message-ID: <CAA8EJprOUmFKHr91qAmmKjXn0Q6EX7pgpaMp4J53jsF+5E_M8Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] soc: qcom: spm: Implement support for SAWv2.3,
- MSM8976 L2 PM
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@somainline.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221028095211.2598312-2-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -74,88 +77,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Nov 2022 at 17:34, Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> On 2022-11-04 14:34:52, AngeloGioacchino Del Regno wrote:
-> > From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> >
-> > Implement the support for SAW v2.3, used in at least MSM8976, MSM8956
-> > and APQ variants and while at it also add the configuration for the
-> > MSM8976's little (a53) and big (a72) clusters cache power management.
-> >
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > [Marijn: reorder struct definitions to follow high-to-low order]
->
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+On 22-10-28 17:52:06, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> The anatop base is not unmapped during error handling path, fix it.
+> 
+> Fixes: 24defbe194b6 ("clk: imx: add i.MX93 clk")
+> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-With this sign-off in place,
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
->
-> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > ---
-> >  drivers/soc/qcom/spm.c | 33 +++++++++++++++++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> >
-> > diff --git a/drivers/soc/qcom/spm.c b/drivers/soc/qcom/spm.c
-> > index 484b42b7454e..bfcd321d7837 100644
-> > --- a/drivers/soc/qcom/spm.c
-> > +++ b/drivers/soc/qcom/spm.c
-> > @@ -98,6 +98,35 @@ static const struct spm_reg_data spm_reg_8916_cpu = {
-> >       .start_index[PM_SLEEP_MODE_SPC] = 5,
-> >  };
-> >
-> > +static const u16 spm_reg_offset_v2_3[SPM_REG_NR] = {
-> > +     [SPM_REG_CFG]           = 0x08,
-> > +     [SPM_REG_SPM_CTL]       = 0x30,
-> > +     [SPM_REG_DLY]           = 0x34,
-> > +     [SPM_REG_PMIC_DATA_0]   = 0x40,
-> > +     [SPM_REG_PMIC_DATA_1]   = 0x44,
-> > +};
-> > +
-> > +/* SPM register data for 8976 */
-> > +static const struct spm_reg_data spm_reg_8976_gold_l2 = {
-> > +     .reg_offset = spm_reg_offset_v2_3,
-> > +     .spm_cfg = 0x14,
-> > +     .spm_dly = 0x3c11840a,
-> > +     .pmic_data[0] = 0x03030080,
-> > +     .pmic_data[1] = 0x00030000,
-> > +     .start_index[PM_SLEEP_MODE_STBY] = 0,
-> > +     .start_index[PM_SLEEP_MODE_SPC] = 3,
-> > +};
-> > +
-> > +static const struct spm_reg_data spm_reg_8976_silver_l2 = {
-> > +     .reg_offset = spm_reg_offset_v2_3,
-> > +     .spm_cfg = 0x14,
-> > +     .spm_dly = 0x3c102800,
-> > +     .pmic_data[0] = 0x03030080,
-> > +     .pmic_data[1] = 0x00030000,
-> > +     .start_index[PM_SLEEP_MODE_STBY] = 0,
-> > +     .start_index[PM_SLEEP_MODE_SPC] = 2,
-> > +};
-> > +
-> >  static const u16 spm_reg_offset_v2_1[SPM_REG_NR] = {
-> >       [SPM_REG_CFG]           = 0x08,
-> >       [SPM_REG_SPM_CTL]       = 0x30,
-> > @@ -213,6 +242,10 @@ static const struct of_device_id spm_match_table[] = {
-> >         .data = &spm_reg_8916_cpu },
-> >       { .compatible = "qcom,msm8974-saw2-v2.1-cpu",
-> >         .data = &spm_reg_8974_8084_cpu },
-> > +     { .compatible = "qcom,msm8976-gold-saw2-v2.3-l2",
-> > +       .data = &spm_reg_8976_gold_l2 },
-> > +     { .compatible = "qcom,msm8976-silver-saw2-v2.3-l2",
-> > +       .data = &spm_reg_8976_silver_l2 },
-> >       { .compatible = "qcom,msm8998-gold-saw2-v4.1-l2",
-> >         .data = &spm_reg_8998_gold_l2 },
-> >       { .compatible = "qcom,msm8998-silver-saw2-v4.1-l2",
-> > --
-> > 2.37.2
-> >
-
-
-
--- 
-With best wishes
-Dmitry
+> ---
+>  drivers/clk/imx/clk-imx93.c | 15 +++++++++------
+>  1 file changed, 9 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
+> index 99cff1fd108b..9ef3fcbdd951 100644
+> --- a/drivers/clk/imx/clk-imx93.c
+> +++ b/drivers/clk/imx/clk-imx93.c
+> @@ -258,7 +258,7 @@ static int imx93_clocks_probe(struct platform_device *pdev)
+>  	struct device_node *np = dev->of_node;
+>  	const struct imx93_clk_root *root;
+>  	const struct imx93_clk_ccgr *ccgr;
+> -	void __iomem *base = NULL;
+> +	void __iomem *base, *anatop_base;
+>  	int i, ret;
+>  
+>  	clk_hw_data = kzalloc(struct_size(clk_hw_data, hws,
+> @@ -285,20 +285,22 @@ static int imx93_clocks_probe(struct platform_device *pdev)
+>  								    "sys_pll_pfd2", 1, 2);
+>  
+>  	np = of_find_compatible_node(NULL, NULL, "fsl,imx93-anatop");
+> -	base = of_iomap(np, 0);
+> +	anatop_base = of_iomap(np, 0);
+>  	of_node_put(np);
+> -	if (WARN_ON(!base))
+> +	if (WARN_ON(!anatop_base))
+>  		return -ENOMEM;
+>  
+> -	clks[IMX93_CLK_AUDIO_PLL] = imx_clk_fracn_gppll("audio_pll", "osc_24m", base + 0x1200,
+> +	clks[IMX93_CLK_AUDIO_PLL] = imx_clk_fracn_gppll("audio_pll", "osc_24m", anatop_base + 0x1200,
+>  							&imx_fracn_gppll);
+> -	clks[IMX93_CLK_VIDEO_PLL] = imx_clk_fracn_gppll("video_pll", "osc_24m", base + 0x1400,
+> +	clks[IMX93_CLK_VIDEO_PLL] = imx_clk_fracn_gppll("video_pll", "osc_24m", anatop_base + 0x1400,
+>  							&imx_fracn_gppll);
+>  
+>  	np = dev->of_node;
+>  	base = devm_platform_ioremap_resource(pdev, 0);
+> -	if (WARN_ON(IS_ERR(base)))
+> +	if (WARN_ON(IS_ERR(base))) {
+> +		iounmap(anatop_base);
+>  		return PTR_ERR(base);
+> +	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(root_array); i++) {
+>  		root = &root_array[i];
+> @@ -327,6 +329,7 @@ static int imx93_clocks_probe(struct platform_device *pdev)
+>  
+>  unregister_hws:
+>  	imx_unregister_hw_clocks(clks, IMX93_CLK_END);
+> +	iounmap(anatop_base);
+>  
+>  	return ret;
+>  }
+> -- 
+> 2.37.1
+> 
