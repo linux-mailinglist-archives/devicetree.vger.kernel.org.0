@@ -2,61 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4382C619592
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 12:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01D97619567
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 12:34:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231710AbiKDLqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 07:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59160 "EHLO
+        id S229748AbiKDLd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 07:33:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbiKDLqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 07:46:12 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242F92CE18
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 04:46:11 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S229728AbiKDLd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 07:33:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3BAFD3C;
+        Fri,  4 Nov 2022 04:33:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E0504850FD;
-        Fri,  4 Nov 2022 12:46:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667562369;
-        bh=serea9Dd61ADrxdfYjX6D7Pe24xNMWckuTa4T82u48k=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AhmK5JQy7N5kAS9PZuqi0fhLVd6rm98iwFX1Vpjg6hlSaad5jrc3+HwGyXcthHboP
-         9MetQRTD+4XXoJIglw/v8IYJEUVTrPD+nLGmKzTBLn8mLH5VQdbXop9sutt7nYzlYi
-         O5T1ox6lwnahnCQHF2p4qARo3oSnTGWuWX6o0Mz6+spL7tRNDu/iU8Ept8W5ZJ/rBO
-         gt5qnJilf97ljaBFm7JhHc0pBlA6nZLDMPrx1ER8ASzKmlhEOgtgInEDpwoOsVwjYN
-         hFoJPRl4wTOOvdzhlGWY02C6ghpZACaeei9oX6yyag3+tnpnZRdaAJ2fCR27KlXiX+
-         qTXvKt5IqKmCQ==
-Message-ID: <55c564c9-af7a-bc34-0340-d31bf7ffb0c8@denx.de>
-Date:   Fri, 4 Nov 2022 12:22:13 +0100
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E036962152;
+        Fri,  4 Nov 2022 11:33:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4550FC433D6;
+        Fri,  4 Nov 2022 11:33:53 +0000 (UTC)
+Message-ID: <71e8ea95-8c3a-cc85-1638-5ce421a60e99@xs4all.nl>
+Date:   Fri, 4 Nov 2022 12:33:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.0
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl-sai: Convert to YAML DT schema
+Subject: Re: [PATCH 0/3] media: sunxi: Add H6 deinterlace driver
 Content-Language: en-US
-To:     Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Takashi Iwai <tiwai@suse.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        alsa-devel@alsa-project.org
-References: <20221103182016.95808-1-marex@denx.de>
- <CAA+D8ANyXq7N+QfupnncTiJjEb8AN7hnb6T-1Cf8xs8yfYUFfg@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAA+D8ANyXq7N+QfupnncTiJjEb8AN7hnb6T-1Cf8xs8yfYUFfg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>, mchehab@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wens@csie.org, samuel@sholland.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20221101123201.3021129-1-jernej.skrabec@gmail.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20221101123201.3021129-1-jernej.skrabec@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,51 +47,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/4/22 09:11, Shengjiu Wang wrote:
-> On Fri, Nov 4, 2022 at 2:20 AM Marek Vasut <marex@denx.de> wrote:
-> 
->> Convert the SAI bindings to YAML DT schema to permit validation.
->> Add Shengjiu as maintainer, derived from sound/soc/fsl/fsl_sai.c
->> get_maintainer result.
->>
->> Describe existing used combinations of compatible strings, add the
->> missing imx7d-sai compatible string which is used on i.MX7 .
->>
->> Properties lsb-first, fsl,sai-synchronous-rx, fsl,sai-asynchronous,
->> fsl,dataline are no longer listed as required, since those are clearly
->> optional, even the description says so, so does their usage.
->>
->> Fix the undefined edma channel macro per arch/arm/boot/dts/vfxxx.dtsi ,
->> use the value itself just like in the vfxxx.dtsi .
->>
->> Document interrupts property, which was previously undocumented, but
->> it is required property of this IP.
->>
->> Document #sound-sai-cells, which should be zero for this IP.
->>
->> Document fsl,imx6ul-iomuxc-gpr and its dependency on MX6UL and
->> fsl,sai-mclk-direction-output .
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Jaroslav Kysela <perex@perex.cz>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Liam Girdwood <lgirdwood@gmail.com>
->> Cc: Mark Brown <broonie@kernel.org>
->> Cc: Nicolin Chen <nicoleotsuka@gmail.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Shengjiu Wang <shengjiu.wang@gmail.com>
->> Cc: Takashi Iwai <tiwai@suse.com>
->> Cc: Xiubo Li <Xiubo.Lee@gmail.com>
->> Cc: alsa-devel@alsa-project.org
->> To: devicetree@vger.kernel.org
->> ---
->>   .../devicetree/bindings/sound/fsl-sai.yaml    | 188 ++++++++++++++++++
->>
-> 
-> Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> I have done conversion. If there is any update/change, please send patch
-> base on it.
+Hi Jernej,
 
-I noticed that, thanks for that. I'll see if there is anything left to do.
+Can you add a patch updating the MAINTAINERS file? Just post a 4/3 patch :-)
+
+Regards,
+
+	Hans
+
+On 01/11/2022 13:31, Jernej Skrabec wrote:
+> This series implements driver for H6 deinterlace core, which is
+> newer version of core, covered by sun8i-di (v2.3). Contrary to
+> older one, it doesn't support scaling, but it supports iommu,
+> has additional motion compensated deinterlacing algorithm and
+> supports different pixel formats.
+> 
+> v4l2-compliance 1.23.0-4961, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: f86484524f32 2022-10-21 10:08:58
+> 
+> Compliance test for sun50i-di device /dev/video0:
+> 
+> Driver Info:
+>         Driver name      : sun50i-di
+>         Card type        : sun50i-di
+>         Bus info         : platform:sun50i-di
+>         Driver version   : 6.1.0
+>         Capabilities     : 0x84208000
+>                 Video Memory-to-Memory
+>                 Streaming
+>                 Extended Pix Format
+>                 Device Capabilities
+>         Device Caps      : 0x04208000
+>                 Video Memory-to-Memory
+>                 Streaming
+>                 Extended Pix Format
+> 
+> Required ioctls:
+>         test VIDIOC_QUERYCAP: OK
+>         test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+>         test second /dev/video0 open: OK
+>         test VIDIOC_QUERYCAP: OK
+>         test VIDIOC_G/S_PRIORITY: OK
+>         test for unlimited opens: OK
+> 
+> Debug ioctls:
+>         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>         test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+>         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>         test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>         test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>         test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>         Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+>         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>         Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+>         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>         test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+>         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+>         test VIDIOC_QUERYCTRL: OK (Not Supported)
+>         test VIDIOC_G/S_CTRL: OK (Not Supported)
+>         test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+>         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+>         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>         Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+>         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+>         test VIDIOC_G/S_PARM: OK (Not Supported)
+>         test VIDIOC_G_FBUF: OK (Not Supported)
+>         test VIDIOC_G_FMT: OK
+>         test VIDIOC_TRY_FMT: OK
+>         test VIDIOC_S_FMT: OK
+>         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>         test Cropping: OK (Not Supported)
+>         test Composing: OK (Not Supported)
+>         test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+>         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>         test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+>         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>         test VIDIOC_EXPBUF: OK
+>         test Requests: OK (Not Supported)
+> 
+> Total for sun50i-di device /dev/video0: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> 
+> Best regards,
+> Jernej
+> 
+> Jernej Skrabec (3):
+>   media: dt-bindings: media: Add Allwinner H6 Deinterlace binding
+>   media: sunxi: Add H6 deinterlace driver
+>   arm64: dts: allwinner: h6: Add deinterlace node
+> 
+>  .../allwinner,sun50i-h6-deinterlace.yaml      |   74 ++
+>  MAINTAINERS                                   |    4 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   12 +
+>  drivers/media/platform/sunxi/Kconfig          |    1 +
+>  drivers/media/platform/sunxi/Makefile         |    1 +
+>  .../media/platform/sunxi/sun50i-di/Kconfig    |   15 +
+>  .../media/platform/sunxi/sun50i-di/Makefile   |    2 +
+>  .../platform/sunxi/sun50i-di/sun50i-di.c      | 1142 +++++++++++++++++
+>  .../platform/sunxi/sun50i-di/sun50i-di.h      |  175 +++
+>  9 files changed, 1425 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun50i-h6-deinterlace.yaml
+>  create mode 100644 drivers/media/platform/sunxi/sun50i-di/Kconfig
+>  create mode 100644 drivers/media/platform/sunxi/sun50i-di/Makefile
+>  create mode 100644 drivers/media/platform/sunxi/sun50i-di/sun50i-di.c
+>  create mode 100644 drivers/media/platform/sunxi/sun50i-di/sun50i-di.h
+> 
+> --
+> 2.38.1
+> 
+
