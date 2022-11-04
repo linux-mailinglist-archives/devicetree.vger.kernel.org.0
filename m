@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FA8618DC2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 02:48:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A1C7618DCE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 02:50:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbiKDBsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 21:48:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42952 "EHLO
+        id S230132AbiKDBuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 21:50:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiKDBsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 21:48:13 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6AEA23E9B
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 18:48:12 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id z6so2356458qtv.5
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 18:48:12 -0700 (PDT)
+        with ESMTP id S229688AbiKDBue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 21:50:34 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F056C23BEA
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 18:50:33 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id k4so2322372qkj.8
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 18:50:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pEswnYQHpO+Tmr3+kD8Xe7eiAlA8KITu0hUw/9KESMM=;
-        b=U3oy+2Hvxdfe4VFd1klhGm9i63rhZGfklzBvM6XcVdk2Siv777zCUaioeiwO5EQuQq
-         /28bYQBpydYX+7jgZIkW+5RpNYmMOaJPOnrp26wgpdl8F4i4WQxJhv0cazG9OLTjHflX
-         sN7wDazIoxgHuIBRq8yKupOUnWm2IU6qRS4uHS+CqXwaphKZmTiJBSdVWFx+Bckjc8ES
-         ENHv9DLk+HaU9F9byIRHG2wlJ/1YqGg2TY/HIAWXbFVwpi+GqszejUyzn66AfpUh+JB6
-         Zsf+qLohii0xUZTxqfiyRGAKegMVtp6E+SD8poT2b8XR0ncvLLlh4eHo4ouSXIftfxcD
-         LzQw==
+        bh=25rCOFvi2xxOKeipqExuiHQTPJ5P+8zuFS9aAe9IGEI=;
+        b=zz7isIePorBFG9VXaGu/7sh/JdlVIjd+9F3gle48ECtbCk1gEgKBKYzrw6efs+gQF6
+         YkZ03VVKeKYltqLMHynsJ/t4RcSwGS2Xqb1yUaMZpNK/ddbH4s8qWItF//IDbJan4QHK
+         RzvQV3P2G9uqzM3MxAL5DcozLpYOqxVaYElM8bVRXbIb+rhYc7yMngtBUxxVEcmKak67
+         rkcMQK0dTcGDS4RVdOVLz1jpeR718l61tMmH/1BiWPILTmQ9N/p5kh6j9xqbUzgastJS
+         o8EBhFVoUSkFsUp48sekcw6E998llZgpB/rpc5wfRnvpTkbMho5YRMxAQ5nqC+gCIneF
+         aulg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pEswnYQHpO+Tmr3+kD8Xe7eiAlA8KITu0hUw/9KESMM=;
-        b=0rdb/2+Z/WWp4k9V8BNZUMXBUbwIPftHC3sW8ZHuvv5fM+tNr32N4z4vMFmbZcxQVo
-         IcB2l4KpYQuloZUsOcrmKDjOMl7gDHlzrPekTWsAY/j1ZpKUJauMKLcS+CV0uWCJFmuu
-         bRECLbubCPxZgsqDoS6TMDJ14CnDK22owLSGhYtzcaarcM6cruye5vwpOMxstv+lUyPB
-         mjblzfoWyaa+A3UjsvuaUuIYl+/bL1pqYlftE5L+AOiyw77our5OXOYG7RRpbxXM1vaz
-         kcBTmxXW6/eYnyl1Du+LBSGRIE4ENNZ8MPmxZMybMXyN8JOeenlH0g9dGk6sB6GP5Evf
-         69Zw==
-X-Gm-Message-State: ACrzQf0/YxtSRzb6bpOj43BFcrYq16VdqXpca7FbNN5RAZJaZe1mxIQN
-        xV0WOGCo5oAVHEyl33Djiee21GVgXg2wYg==
-X-Google-Smtp-Source: AMsMyM6CWaZw0pdfeUjIV3azV2uEBg+2ulJVuWvR4FNE9GqCv/dyZTm79/bCo+Hz+C8p9EsJJXLC3A==
-X-Received: by 2002:ac8:728b:0:b0:3a4:fb34:7dbc with SMTP id v11-20020ac8728b000000b003a4fb347dbcmr214797qto.544.1667526491897;
-        Thu, 03 Nov 2022 18:48:11 -0700 (PDT)
+        bh=25rCOFvi2xxOKeipqExuiHQTPJ5P+8zuFS9aAe9IGEI=;
+        b=4mPs8Z9bm4UbrPTJufojIJkZM0s3+uyWDM1gCrSVvE8bWaKHLSWobEFCHmvBTxU0Sw
+         m1E029s31iDVJmeglKXt3bW1lQdIQq12aN5DWAVx+jhMJ2H25IfuWzMOZI37oTLaVisP
+         c/Z0AJAzGF2KmpOJVPIHLjWVoipAqKjd0C178y55GHKhs+z8D86cKqI7eN8EQUYiDmoY
+         Tyc+fzd2ciivTS14jFNl7fmHnjBwOqTONbMGfCrKwHqlTSwnkTXM3Kt3jwT7y1wP+kJo
+         iGHcl0ww4EHADZrkeH9wiU0wF+K/sRVLu7qTBaVxny3jhrLf9NnwxTD1815H6KR025PC
+         ppCw==
+X-Gm-Message-State: ACrzQf22Dg857gD1NE1oIRH721XHnxFeQPVA9kuPIfrmRjl/cqUla20w
+        5Bn/0pKyJ+FKxIpF+fdTdkW5QA==
+X-Google-Smtp-Source: AMsMyM4ouTC6k78k0zJ5Sr/Ut50/Or91iMtjWYSsC14RJtpDGhNaaNlcN1i/7Hqm3Wolc+Naf3Bxug==
+X-Received: by 2002:a05:620a:6015:b0:6fa:3f1e:7220 with SMTP id dw21-20020a05620a601500b006fa3f1e7220mr15881541qkb.236.1667526633098;
+        Thu, 03 Nov 2022 18:50:33 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:da2a:9e7e:ddb5:dfa1? ([2601:586:5000:570:da2a:9e7e:ddb5:dfa1])
-        by smtp.gmail.com with ESMTPSA id x17-20020a05620a449100b006fa31bf2f3dsm1973043qkp.47.2022.11.03.18.48.10
+        by smtp.gmail.com with ESMTPSA id f10-20020a05620a408a00b006fa63cc7affsm1939677qko.34.2022.11.03.18.50.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 18:48:11 -0700 (PDT)
-Message-ID: <7fcd798a-9cce-9453-1657-7be1abf3b97e@linaro.org>
-Date:   Thu, 3 Nov 2022 21:48:10 -0400
+        Thu, 03 Nov 2022 18:50:32 -0700 (PDT)
+Message-ID: <7e7e966f-8d5e-8d86-60d5-b65ef0b2514a@linaro.org>
+Date:   Thu, 3 Nov 2022 21:50:31 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH 2/3] dt-bindings: i2c: renesas,rzv2m: Fix SoC specific
- string
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: ds1307: Add support for Epson
+ RX8111
 Content-Language: en-US
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        glazveze@delta.nl
+Cc:     linux-rtc@vger.kernel.org,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-References: <20221103230648.53748-1-fabrizio.castro.jz@renesas.com>
- <20221103230648.53748-3-fabrizio.castro.jz@renesas.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221101083123.11695-1-glazveze@delta.nl>
+ <Y2REHDAHFNJIUbL4@mail.local>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103230648.53748-3-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <Y2REHDAHFNJIUbL4@mail.local>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,42 +80,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 19:06, Fabrizio Castro wrote:
-> s/renesas,i2c-r9a09g011/renesas,r9a09g011-i2c/g for consistency.
+On 03/11/2022 18:43, Alexandre Belloni wrote:
+> On 01/11/2022 09:31:21+0100, glazveze@delta.nl wrote:
+>> From: Mike Looijmans <mike.looijmans@topic.nl>
+>>
+>> The rx_8111 is quite similar to the rx_8030. This adds support for this
+>> chip to the ds1307 driver.
+>>
+>> This adds the entry to the devicetree bindings.
+>>
+>> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 > 
-> renesas,i2c-r9a09g011 is not actually used by the driver, therefore
-> changing this doesn't cause any harm.
+> The SoB has to match the sender address, it took some time to me to
+> understand this was for the same person...
 
-And what about other users of DTS? One chosen driver implementation
-might not be enough...
-
-> 
-> Fixes: ba7a4d15e2c4 ("dt-bindings: i2c: Document RZ/V2M I2C controller")
-
-You need to explain the bug - where is the issue, how it affects users.
-Otherwise it is not a bug and there is nothing to fix.
-
-
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> ---
->  Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
-> index c46378efc123..92e899905ef8 100644
-> --- a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
-> @@ -16,7 +16,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> -          - renesas,i2c-r9a09g011  # RZ/V2M
-> +          - renesas,r9a09g011-i2c  # RZ/V2M
-
-No.
-
-Deprecate instead old compatible. There are already users of it, at
-least in kernel. Not sure about other OS/bootloaders/firmwares.
+Ugh, so who sent it?
 
 Best regards,
 Krzysztof
