@@ -2,190 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E224F619654
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:39:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 761D861966B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 13:45:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbiKDMjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 08:39:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55536 "EHLO
+        id S231378AbiKDMp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 08:45:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231932AbiKDMiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:38:52 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2080C25E1;
-        Fri,  4 Nov 2022 05:38:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1667565530; x=1699101530;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NHtoi7Gggy94oj28EJ6rXJUUNVzupmtF6MVG47LlqR4=;
-  b=Glv/0ncmt93ywfXRh2b6iPFxnjGr6RswHpFZj37MHhiKHIvimz+bv690
-   jRjdUT8bQ/1a/Okqm4xbkU1tcsTYRB+K3sG2BqBWlWQSeduJ1HOIWr6Hc
-   vhUD7vDd0B0GGbfkWWcGnZTW655YlRewiPMmO1MHkNB98cBINZIVeIlZU
-   BbH9LXrzCItAAFFL2FbFzJpaMGADywlk8mXpK26r01LDbObvYqdUdjk/e
-   CemPLwW2ihChHTd9NI6sq7dLYh3/9NJ3E41lrTRhXGG1IX0O4KKRqseLn
-   Dccs1tMNLMygeznQZE9I2BIlRHpDDuwVxxPqIIJGATisG/1R7o9sa/bJ1
-   A==;
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="311076771"
-X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; 
-   d="scan'208";a="311076771"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2022 05:38:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6500,9779,10520"; a="704068044"
-X-IronPort-AV: E=Sophos;i="5.96,137,1665471600"; 
-   d="scan'208";a="704068044"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 04 Nov 2022 05:38:44 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1oqvy6-007N6B-0W;
-        Fri, 04 Nov 2022 14:38:42 +0200
-Date:   Fri, 4 Nov 2022 14:38:41 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        satish.nagireddy@getcruise.com
-Subject: Re: [PATCH v4 2/8] i2c: add I2C Address Translator (ATR) support
-Message-ID: <Y2UH0Wqp6R52tObC@smile.fi.intel.com>
-References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
- <20221101132032.1542416-3-tomi.valkeinen@ideasonboard.com>
- <Y2EtnSNqBOfGRDMO@smile.fi.intel.com>
- <cc510516-c961-9efb-bcdf-2abea795433a@ideasonboard.com>
+        with ESMTP id S230139AbiKDMp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 08:45:28 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA04124950
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 05:45:26 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id o12so7255360lfq.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 05:45:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FvboXhj8KjyqdPoeiCN2lb+BeTNUFPqnKJjE5L7Rgjw=;
+        b=Ky42DZM27vCCbaHpCg7ZLJUC8lDtMRRqC/uSYDVINXUXFBVFEGtPQ4kqpXm7c2uhfv
+         iq1Ohcn/p2LToIti84k3NebbF2pvxD5eeso6ZsGMrKspA1D8O+ZxtN1N4dbuHU1Da6kL
+         pKRpfAtw8NoSYpyWENMzeUoHj6fI3SLGLj72W2YMIbdSeGcyZgF+ojDhlPj3UdkOHWSj
+         v+PD30SOyhTlE3yNzYngKbBZ1hysbIQWV9+iP0dwKick3lo26e1PGDybZZnGzLoMQz3Y
+         AEEYuSY9r+HZvJgrNRInHmeI652IBuQMtY0h7LbVAgeYRrmonY13x3d/Eq4ZNLDiZJoD
+         oIFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FvboXhj8KjyqdPoeiCN2lb+BeTNUFPqnKJjE5L7Rgjw=;
+        b=YHoJDA85UuYyVWenBa2VCVeRgTrogItu/KmnImFNTV11+XBQE15TQSbuXG5vIYGUQO
+         gMQ6dRezsXXNc31xnlC+k8R5oaxCiMrlP0WIF9MY3PLf36RWhhL1L2oQrnw+PpdMPK7X
+         QMoQzrmnMB9zp5PJgiyYpzfms/EUrBBoCiXMiXmuAPHzRYn3qB5OmsXFD5QlmlDbdZsS
+         qOZcWwY7SPEQFumsNvPM0Ugt3Qe9lSJhjv9Czu/lIsqmh4osJ9HRe/dFYr00Kxzq+3Gs
+         mC4G4/1JsOYn/LxErDshwZ3R5+9xSOSMvT84Fs/tkjWkoJlTtQGu9iRNQEfq/LYQCG6Y
+         T0jQ==
+X-Gm-Message-State: ACrzQf0Lzlu1byEVUeszMj1A6rQKAAO7kczzq7CgKSux87H72F+snGkT
+        xaRduy/ijUCV/qB1yf4r1RWvdA==
+X-Google-Smtp-Source: AMsMyM7hDTo71AcIhzG+IOWZbRcDh4kdE15oJZfFru4jRAk0CN+cc1oyqnCgMyTu8fcg5aLQv8kpgw==
+X-Received: by 2002:a19:6a05:0:b0:4b0:291b:9487 with SMTP id u5-20020a196a05000000b004b0291b9487mr12680096lfu.623.1667565924980;
+        Fri, 04 Nov 2022 05:45:24 -0700 (PDT)
+Received: from [10.27.10.248] ([195.165.23.90])
+        by smtp.gmail.com with ESMTPSA id x23-20020ac24897000000b0048aee825e2esm445984lfc.282.2022.11.04.05.45.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 05:45:24 -0700 (PDT)
+Message-ID: <ec774d8b-b6b1-8dca-ec14-8e39e0a4f0f4@linaro.org>
+Date:   Fri, 4 Nov 2022 15:45:23 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cc510516-c961-9efb-bcdf-2abea795433a@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.0
+Subject: Re: [PATCH v2 3/8] dt-bindings: display/msm: add support for the
+ display on SM8450
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221102231309.583587-1-dmitry.baryshkov@linaro.org>
+ <20221102231309.583587-4-dmitry.baryshkov@linaro.org>
+ <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 04, 2022 at 01:59:06PM +0200, Tomi Valkeinen wrote:
-> On 01/11/2022 16:30, Andy Shevchenko wrote:
-> > On Tue, Nov 01, 2022 at 03:20:26PM +0200, Tomi Valkeinen wrote:
+On 03/11/2022 17:03, Krzysztof Kozlowski wrote:
+> On 02/11/2022 19:13, Dmitry Baryshkov wrote:
+>> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
+>> SM8450 platform.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../bindings/display/msm/qcom,sm8450-dpu.yaml | 132 +++++++
+>>   .../display/msm/qcom,sm8450-mdss.yaml         | 349 ++++++++++++++++++
+>>   2 files changed, 481 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+>>
 
-...
+[skipped]
 
-> > > +	ret = atr->ops->attach_client(atr, chan->chan_id, info, client,
-> > > +				      &alias_id);
-> > 
-> > On one line looks better.
+>> +
+>> +$ref: /schemas/display/msm/mdss-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+
+[skipped]
+
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: iface
+>> +      - const: bus
+>> +      - const: nrt_bus
+>> +      - const: core
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  interconnects:
+>> +    maxItems: 2
+>> +
+>> +  interconnect-names:
+>> +    maxItems: 2
 > 
-> I agree, but it doesn't fit into 80 characters. I personally think that's a
-> too narrow a limit, but some maintainers absolutely require max 80 chars, so
-> I try to limit the lines to 80 unless it looks really ugly.
-
-OK.
-
-...
-
-> > > +	WARN(sysfs_create_link(&chan->adap.dev.kobj, &dev->kobj, "atr_device"),
-> > > +	     "can't create symlink to atr device\n");
-> > > +	WARN(sysfs_create_link(&dev->kobj, &chan->adap.dev.kobj, symlink_name),
-> > > +	     "can't create symlink for channel %u\n", chan_id);
-> > 
-> > Why WARNs? sysfs has already some in their implementation.
+> You need specific names here.
 > 
-> True, and I can drop these if required. But afaics, sysfs_create_link only
-> warns if there's a duplicate entry, not for other errors.
 
-The problem with WARN that it can be easily converted to real Oops. Do you
-consider other errors are so fatal that machine would need a reboot?
+The names are described in mdss-common.yaml
 
-...
-
-> > > +	atr_size = struct_size(atr, adapter, max_adapters);
-> > 
-> > > +	if (atr_size == SIZE_MAX)
-> > > +		return ERR_PTR(-EOVERFLOW);
-> > 
-> > Dunno if you really need this to be separated from devm_kzalloc(), either way
-> > you will get an error, but in embedded case it will be -ENOMEM.
-> 
-> Yep. Well... I kind of like it to be explicit. Calling alloc(SIZE_MAX)
-> doesn't feel nice.
-
-Yeah, but that is exactly the point of returning SIZE_MAX by the helpers from
-overflow.h. And many of them are called inside a few k*alloc*() APIs.
-
-So, I don't think it's ugly or not nice from that perspective.
-
-> > > +	atr = devm_kzalloc(dev, atr_size, GFP_KERNEL);
-> > > +	if (!atr)
-> > > +		return ERR_PTR(-ENOMEM);
-
-...
-
-> > > +EXPORT_SYMBOL_GPL(i2c_atr_delete);
-> > 
-> > I would put these to their own namespace from day 1.
-> 
-> What would be the namespace? Isn't this something that should be
-> subsystem-wide decision? I have to admit I have never used symbol
-> namespaces, and don't know much about them.
-
-Yes, subsystem is I2C, but you introducing a kinda subsubsystem. Wouldn't be
-better to provide all symbols in the I2C_ATR namespace from now on?
-
-It really helps not polluting global namespace and also helps to identify
-users in the source tree.
-
-...
-
-> > > +struct i2c_atr {
-> > > +	/* private: internal use only */
-> > > +
-> > > +	struct i2c_adapter *parent;
-> > > +	struct device *dev;
-> > > +	const struct i2c_atr_ops *ops;
-> > > +
-> > > +	void *priv;
-> > > +
-> > > +	struct i2c_algorithm algo;
-> > > +	struct mutex lock;
-> > > +	int max_adapters;
-> > > +
-> > > +	struct i2c_adapter *adapter[0];
-> > 
-> > No VLAs.
-> 
-> Ok.
-> 
-> I'm not arguing against any of the comments you've made, I think they are
-> all valid, but I want to point out that many of them are in a code copied
-> from i2c-mux.
-> 
-> Whether there's any value in keeping i2c-mux and i2c-atr similar in
-> design/style... Maybe not.
-
-You can address my comment by simply dropping 0 in the respective member.
-
-> > > +};
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+With best wishes
+Dmitry
 
