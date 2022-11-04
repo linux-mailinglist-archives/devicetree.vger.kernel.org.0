@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44C0861984D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C41D61985F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230342AbiKDNnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:43:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
+        id S229861AbiKDNpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbiKDNnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:43:12 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBCBE2EF49
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:43:11 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id k4so3034562qkj.8
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:43:11 -0700 (PDT)
+        with ESMTP id S231390AbiKDNpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:45:47 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F4E02F384
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:45:46 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id x15so3009732qtv.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7aFvSvKZV6J4j21H0wqTwTzV7dfZuRBIYj/wdHuln8A=;
-        b=GaMee9e2GzV8cLSut9QKldsYQBEDoZfjIgBJdR8+LfWuj4/JzhrzKVSfN1KAXap1O+
-         1KJpue8Xyhld3zHiktciY9r3VG3Lq0aCNDXL0/iYG8EDhQfHauzvuSOtRJzsIYfxkfNp
-         eeJUnw+S51V8Lnh2BVryNy6s2Mq2AB0O41Z1mPVBqgegcqjqMDLnHu0xHBHAZfhpUplD
-         MrEOloMQnAdHlZfQnu54tuPdjXNnsGavUEkBGNklZCS1Yxsj068ndfxvda/AeNUcv4Iq
-         CjTo0LhZxPFNG41mDhTD+v0sLuiaLTHwLzc/2sVydKfe11FDM4dtTpZHzW/JyoaVeFIm
-         FbZw==
+        bh=vavmHFdy2UqqtSaeoQXAprIbQNUxvGgL2a6sfjfX8bo=;
+        b=iAwllB/irUDcT6SbXQoW5KiHw7T62PcFpUyb6zPCWHLco9hXoKvpnr7HPeLKGHupX0
+         EFbxZluDtrNTuq0mMuGmqKbVVHtPW8mmg/BLLQaY8neKBSp+ivsalguEathuGmeiVmhv
+         MALOVfW1deKpH440RYNHLHhpzVaF8kpwV6+5bDFBFWGKSK6S258syC5PTfDGsfXulUIf
+         CaqoE2c2lP4fgCywLW3DKz2n8Vhff7/MejTJcm/PSeSwr8+0+s8dVHMTBKFiuKidhOze
+         I5SSKyj/zlAZNjs3lwrfRgKEJPfZ5CXMN2+UKq2D8OJRTx7wy/Y5nMezey8TZFmp3+e7
+         YiqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7aFvSvKZV6J4j21H0wqTwTzV7dfZuRBIYj/wdHuln8A=;
-        b=v4SGbLZLPVIn5OJ5p3vGO2IAQfyXnvalHIrZCOF5/LzTFv14olaw9iN1zEU0FflOnc
-         B7DB50El9+iuADPTEnW20kqtaBSO8287JUw1+r1kYn5SYbE6OhtFkoUnFfywwG1Ygm++
-         H96t0hEpx32TmBsyjAFyqWG26wGPnoC843jLd2+iZ/qlrOJCtAOMqZtd5amgWi6KEEFs
-         1P43C8WJVvohwIhO93LaEAs2i+Th1aZcKfAxF54lEZxSlTazdbQH0BYUmdnWqkWOnTUp
-         QD4ODWsVBO9LkRJu4daoHmgSZJovUJk8SzrIQmse777sp/8YMTb+uL6Mbs0X9DsKG3OU
-         lD3A==
-X-Gm-Message-State: ACrzQf3zr5unUlTfZLhnAIjTLUvtKLTJe2Z2yfgtyZhVC+rDojXjK4N5
-        zTXpBWL78NQN/logZotOZbQoBw==
-X-Google-Smtp-Source: AMsMyM5h2Jt7+jT0RAOVbn0CG1cTAgwDsfRgt0Uidh3TtbGhH9wXo6gIn09S9DeruASfBxpjxXvjuw==
-X-Received: by 2002:a05:620a:1256:b0:6fa:2370:a7e8 with SMTP id a22-20020a05620a125600b006fa2370a7e8mr21569937qkl.374.1667569390902;
-        Fri, 04 Nov 2022 06:43:10 -0700 (PDT)
+        bh=vavmHFdy2UqqtSaeoQXAprIbQNUxvGgL2a6sfjfX8bo=;
+        b=IILJ7UZ0WWTGUSRgGLD099is3QVvQ1WZlzVvVVqMPtNeyguIgs76utatmIQOa0WETC
+         tHOn8J4bOTwjg0IjwTknq4Qx0SP3HMJms1WRMaN6GbBXEkYQKj4Vnsf9zH+ZCcZsuf8S
+         78YgChvIJmk3vohp90oF+ToDig8g4cvt5hLi+iO5JPZKERpQ2yGYYaW67JxjfSh2HeQu
+         z30TFis7mknl5D+whFcqQR64OMRMyQU/tOvF6CAY2t45BlwWMnAOuC+eloqex3IBraqz
+         4pKRo/HDItfEtnE7ZJbKVzBSx45UNstKA8A9v+gET3XWgq0cvEBJ5j82ppeQDtf1XzwI
+         FlZw==
+X-Gm-Message-State: ACrzQf0+1HQGJd9ttkPEPv7RcbNaop3OsMCMZD9TU+m1wV8zcjRnQ4s9
+        gC4+NhJyoShC7UFi57CZ9gG4kw==
+X-Google-Smtp-Source: AMsMyM5zQlLo8OgUbaae5LuaNGlR9OiqXZ/GlpPgTSOHs/IrBoDuUR7UyTkOWYg4+o9aO140bphOxQ==
+X-Received: by 2002:a05:622a:1c15:b0:3a5:2602:7b99 with SMTP id bq21-20020a05622a1c1500b003a526027b99mr21380164qtb.127.1667569545298;
+        Fri, 04 Nov 2022 06:45:45 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id fa3-20020a05622a4cc300b003a4f14378d1sm2461421qtb.33.2022.11.04.06.43.08
+        by smtp.gmail.com with ESMTPSA id b1-20020ac87541000000b003a56d82fd8csm603940qtr.91.2022.11.04.06.45.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 06:43:10 -0700 (PDT)
-Message-ID: <6babddd0-13d8-0f55-1981-ac5cfed8e5ad@linaro.org>
-Date:   Fri, 4 Nov 2022 09:43:08 -0400
+        Fri, 04 Nov 2022 06:45:44 -0700 (PDT)
+Message-ID: <e2ea63b4-3be1-0a5a-9618-8495026ccead@linaro.org>
+Date:   Fri, 4 Nov 2022 09:45:42 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [v2 05/10] dts-bindings: display: bridge: Add MHDP DP bindings
- for i.MX8MQ
+Subject: Re: [v2 07/10] dts-bindings: phy: Add Cadence HDP-TX DP PHY bindings
 Content-Language: en-US
 To:     Sandor Yu <Sandor.yu@nxp.com>, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -72,9 +71,9 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         penguin-kernel@I-love.SAKURA.ne.jp, p.yadav@ti.com,
         oliver.brown@nxp.com
 References: <cover.1667463263.git.Sandor.yu@nxp.com>
- <aa8e5153d0ad12a2039ce44039f9ecf39e4a39d0.1667463263.git.Sandor.yu@nxp.com>
+ <bea6eb888717e1c0a3efc58761b0e75e4104f737.1667463263.git.Sandor.yu@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <aa8e5153d0ad12a2039ce44039f9ecf39e4a39d0.1667463263.git.Sandor.yu@nxp.com>
+In-Reply-To: <bea6eb888717e1c0a3efc58761b0e75e4104f737.1667463263.git.Sandor.yu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,92 +86,111 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 04/11/2022 02:44, Sandor Yu wrote:
-> Add bindings for i.MX8MQ MHDP DisplayPort.
+> Add bindings for Cadence HDP-TX DisplayPort PHY.
 > 
 > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-
-Same comments as for HDMI bindings patch. Everywhere.
-
 > ---
->  .../display/bridge/cdns,mhdp-imx8mq-dp.yaml   | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
+>  .../bindings/phy/phy-cadence-hdptx-dp.yaml    | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-hdptx-dp.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-hdptx-dp.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-hdptx-dp.yaml
 > new file mode 100644
-> index 000000000000..06ed881247ea
+> index 000000000000..ab6f4e25c425
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp-imx8mq-dp.yaml
-> @@ -0,0 +1,67 @@
+> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-hdptx-dp.yaml
+
+Use filename matching compatible, so cdns,hdptx-dp-phy.yaml
+
+> @@ -0,0 +1,70 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/display/bridge/cdns,mhdp-imx8mq-dp.yaml#"
+> +$id: "http://devicetree.org/schemas/phy/phy-cadence-hdptx-dp.yaml#"
 > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+
+Drop quotes from both lines.
+
 > +
-> +title: Cadence MHDP Displayport bridge
-> +
-> +maintainers:
-> +  - Sandor Yu <Sandor.yu@nxp.com>
+> +title: Cadence HDP(HDMI/DisplayPort) TX PHY for DisplayPort protocol binding
+
+Drop binding
+
 > +
 > +description:
-> +  The Cadence MHDP Displayport TX interface.
+> +  This binding describes the Cadence HDP-TX PHY for DispalyPort protocol.
+
+Drop "This binding describes"
+
+> +
+> +maintainers:
+> +  - Sandor Yu <sandor.yu@nxp.com>
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - cdns,mhdp-imx8mq-dp
+> +      - cdns,hdptx-dp-phy
 > +
 > +  reg:
-> +    items:
-> +      - description:
-> +          Memory mapped base address and length of mhdptx apb registers.
-> +
-> +  phys:
 > +    description:
-> +      phandle to the Displayport PHY.
+> +      Offset of Cadence HDPTX APB configuration registers.
+
+Same comments as usual.
+
 > +
-> +  phy-names:
+> +  clocks:
 > +    items:
-> +      - const: dpphy
+> +      description:
+> +        PHY reference clock. Must contain an entry in clock-names.
+
+Drop "Must contain an entry in clock-names."
+
 > +
-> +  interrupts:
+> +  clock-names:
 > +    items:
-> +      - description: Hotplug detect interrupter for cable plugin event.
-> +      - description: Hotplug detect interrupter for cable plugout event.
+> +      - const: refclk
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: plug_in
-> +      - const: plug_out
+> +  "#phy-cells":
+> +    const: 0
 > +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
+> +  cdns,num-lanes:
 > +    description:
-> +      A port node pointing to the output port of a display controller..
+> +      Number of lanes.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 3, 4]
+> +    default: 4
+> +
+> +  cdns,max-bit-rate:
+> +    description:
+> +      Maximum DisplayPort link bit rate to use, in Mbps
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [2160, 2430, 2700, 3240, 4320, 5400]
+> +    default: 5400
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#phy-cells"
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    mhdp: mhdp@32c00000 {
+> +    #include <dt-bindings/phy/phy.h>
+> +    dp_phy: dp_phy@32c00000 {
 
-dp@
+phy
+(and no underscores in node names)
 
-> +        compatible = "cdns,mhdp-imx8mq-dp";
+> +        compatible = "cdns,hdptx-dp-phy";
 > +        reg = <0x32c00000 0x100000>;
-> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +                <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "plug_in", "plug_out";
-> +        phys = <&dp_phy>;
-> +        phy-names = "dpphy";
-> +
-> +        port {
-> +            hdmi_in: endpoint {
-> +                remote-endpoint = <&dcss_out>;
-> +            };
-> +        };
+> +        #phy-cells = <0>;
+> +        clocks = <&hdmi_phy_27m>;
+> +        clock-names = "refclk";
+> +        cdns,num-lanes = <4>;
+> +        cdns,max-bit-rate = <5400>;
 > +    };
 
 Best regards,
