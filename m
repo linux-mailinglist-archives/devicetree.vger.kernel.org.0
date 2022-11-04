@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B8B61996F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C145861998D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:22:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbiKDOU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 10:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34188 "EHLO
+        id S230127AbiKDOWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 10:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232159AbiKDOUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:20:36 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56A5C3137C
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:20:10 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id k4so3108334qkj.8
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:20:10 -0700 (PDT)
+        with ESMTP id S232178AbiKDOU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:20:58 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C3D2FC12
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:20:56 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id h21so3103868qtu.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:20:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8Yr+w2romoen6cHR+oJnJLYpEgBXB/6iDDMSBNV5YpA=;
-        b=FBMI1bFNYVN3SPaTIg2r8QQE1ZsXDeM6XpAXYUZD1yB5VwWjQtHD3MsA+qk4yigzxe
-         d5tJO3LoGIBHSQ4r90d/jBXhfZD5LzUkP+3B2MVAHSv0LFAMb83w+aK/jL0QU604slfB
-         /pkHABPz7fW7o21ysVs/lLnxoiPG7HXopT8wokrgw2P/VWgjINRjh7bt/fXiLq0gsAwQ
-         aT0p66O5ZUwn5n3ookZ1vFFgkRsSYo9s4Jf1RI8gSho/KaJ5M0yQpajXYlSN8q3oTyQE
-         AMwX+YGzbwFK8ANY0RP3mDITa4l6K87GhozSZwEJiy7k3AF9TmDeG3F+vaEPZ3OecoZT
-         0nIQ==
+        bh=bfe4QYAii/msXqogDnhvJDFD5ejC6/JC1TdZ0YZAnVI=;
+        b=FyxE3aSUOkrzTK/QGnh5iwhxJxO5xXxYiHBPnlQynz1BLSctcEwCGCNrK6jxH+LRPN
+         wi1al9drpsMVRxUoR0smZMxu2j0mE5aDRe63spjQNFBvpSYaL4yGKIkul4xq2Rugb7fZ
+         V7qB0ImNu5yFaKKtsEJuh/eNL9JRTut59ys/uYhHfRd4dvXiMmVoa1rOn7plCP9oaH5d
+         jkbWivYhY3PKK28TERpxgGsz5NoijL80qEi5BHDFkAD7CvnA69T6mVIPrh/qdzeSLXr4
+         yAT+AOvd5JcuxdulYEJoJxCmT8saxJNVW8KLNMH1xnGGBzgKBtMyt5RaiOkaZuw/hqls
+         IrcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8Yr+w2romoen6cHR+oJnJLYpEgBXB/6iDDMSBNV5YpA=;
-        b=K4yyosG38oVFOkTGfvtQu9+ODTaDbahRww6SLQeAOeot/tajlWwYDLoVK3nIdPsi/w
-         ZacycxhbzRZyZb1YaPuc70Yizhj4tRB9hDEN44Zb3Fh6JoLoQcSKkHyjYCZhayhaKxC8
-         pqwneCyoWEZLcxymD3Mngudf0f/Tb7dTSB/yYxPpCyoJM7lu28VZERMb44XAa8jvNOWg
-         nie0wKrLZFeXiLIMF303P6y8/IT3X9HZPVoutF3VhuCt1JE1LQCinEhM0Vzl8fOMtx1W
-         NwBSslE5RhNsq/mF6CLZg0XLKsApUlIxXbjgGfUku2czMgVXlq5ztyv5kCfMRHy1SgCe
-         HI0Q==
-X-Gm-Message-State: ACrzQf0VKuBxuqsySGbfVkHLZ5KRX7Ctn9Fdh6TxOrg1TdrIMdWqcRNQ
-        b+/2lHgcyR28LAJeuk98JvaskA==
-X-Google-Smtp-Source: AMsMyM78hlDwF5KKUa+GROLx7DamFaAKhfWM7H1YQ9TRI56eiMvKyWTWsImMA/l+VBqbzZD9MaRDjg==
-X-Received: by 2002:a37:c4e:0:b0:6fa:c1c:6fc0 with SMTP id 75-20020a370c4e000000b006fa0c1c6fc0mr26469733qkm.501.1667571609360;
-        Fri, 04 Nov 2022 07:20:09 -0700 (PDT)
+        bh=bfe4QYAii/msXqogDnhvJDFD5ejC6/JC1TdZ0YZAnVI=;
+        b=VNjY8vxeWH3TRxPYeLb8RaFgLFI6KEdp0dSeqLqJPEIKZhyrALa9bJqv/CH9r5l+E7
+         qYGKZRPNZq+eU/MIsgjbzmwvWvoYynny30tbHIqDzbdQmBfM+7tX2q+80lwn49LSONeW
+         a6dYX1P5D33Zmdh3wM7cnbEwQ/+XUgRjzlap/LActmmDVl2qw5kKEfpRkLSAZQflcNTZ
+         uB4bowkGzE09mhST403+RGS1MKGDqtkWuOiKgCF8YihZ9PgCRpSn1omYG75NYvyo0s8j
+         U9uZ1x3zw/bfDqn3kQxkS4OfZeZfAwNHzIJFrY/RSMqiVa7LgADIns9YakRCpijlD9L5
+         vYSw==
+X-Gm-Message-State: ACrzQf2JU2GiKgs1LqW9RJlAQeVT/EmI3A/LMDr16OpMBt9MNbGlTm9e
+        i2vZ87cAvsEp2+zlNyGXxvP0QA==
+X-Google-Smtp-Source: AMsMyM7CV19Vj9XYnilruJJvftU1TZeOxpARoRc6S+ODrtdXMN3RA8hrkRGI8BdB7SK5VPuSclcvsg==
+X-Received: by 2002:a05:622a:1ba2:b0:39c:ed3c:6310 with SMTP id bp34-20020a05622a1ba200b0039ced3c6310mr28888623qtb.516.1667571655926;
+        Fri, 04 Nov 2022 07:20:55 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id y7-20020ac87087000000b0039bfe8acff6sm2482398qto.58.2022.11.04.07.20.08
+        by smtp.gmail.com with ESMTPSA id ey21-20020a05622a4c1500b003988b3d5280sm2518844qtb.70.2022.11.04.07.20.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 07:20:09 -0700 (PDT)
-Message-ID: <a2dfa9de-40b2-ed78-353b-9754d9e77fca@linaro.org>
-Date:   Fri, 4 Nov 2022 10:20:07 -0400
+        Fri, 04 Nov 2022 07:20:55 -0700 (PDT)
+Message-ID: <aa1c6223-e56c-b0b3-ed74-25cdeee36fb7@linaro.org>
+Date:   Fri, 4 Nov 2022 10:20:54 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v1 4/5] arm64: dts: qcom: sm8450-hdk: Add LT9611uxc HDMI
- bridge
+Subject: Re: [PATCH v1 5/5] arm64: dts: qcom: sm8450-hdk: Enable HDMI Display
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -71,14 +70,15 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
 References: <20221104131358.1025987-1-dmitry.baryshkov@linaro.org>
- <20221104131358.1025987-5-dmitry.baryshkov@linaro.org>
+ <20221104131358.1025987-6-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104131358.1025987-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20221104131358.1025987-6-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,96 +88,35 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 04/11/2022 09:13, Dmitry Baryshkov wrote:
 > From: Vinod Koul <vkoul@kernel.org>
 > 
-> Add the LT9611uxc DSI-HDMI bridge and supplies
+> Add the HDMI display nodes and link it to DSI. Also enable missing dispcc
+> nodes
 > 
 > Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 61 +++++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index e1a4cf1ee51d..9522dd29a38a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -20,6 +20,28 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	lt9611_1v2: lt9611-vdd12-regulator {
 
-Node name: drop lt9611
+Thank you for your patch. There is something to discuss/improve.
 
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LT9611_1V2";
-> +
-> +		vin-supply = <&vph_pwr>;
-> +		regulator-min-microvolt = <1200000>;
-> +		regulator-max-microvolt = <1200000>;
-> +		gpio = <&tlmm 9 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	lt9611_3v3: lt9611-3v3 {
-
-Node name: drop lt9611 and add "regulator suffix
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "LT9611_3V3";
-> +
-> +		vin-supply = <&vreg_bob>;
-> +		gpio = <&tlmm 109 GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		enable-active-high;
-> +	};
-> +
->  	vph_pwr: vph-pwr-regulator {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vph_pwr";
-> @@ -349,6 +371,27 @@ vreg_l7e_2p8: ldo7 {
->  	};
->  };
->  
-> +&i2c9 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	lt9611_codec: hdmi-bridge@2b {
-> +		compatible = "lontium,lt9611uxc";
-> +		reg = <0x2b>;
-> +
-> +		interrupts-extended = <&tlmm 44 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		reset-gpios = <&tlmm 107 GPIO_ACTIVE_HIGH>;
-> +
-> +		vdd-supply = <&lt9611_1v2>;
-> +		vcc-supply = <&lt9611_3v3>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&lt9611_irq_pin &lt9611_rst_pin>;
-> +
-> +	};
-> +};
-> +
->  &pcie0 {
->  	status = "okay";
->  	max-link-speed = <2>;
-> @@ -394,8 +437,26 @@ &qupv3_id_0 {
->  	status = "okay";
->  };
->  
-> +&qupv3_id_1 {
+> +&dispcc {
 > +	status = "okay";
 > +};
 > +
->  &tlmm {
->  	gpio-reserved-ranges = <28 4>, <36 4>;
+>  &dsi0 {
+>  	status = "okay";
+>  	vdda-supply = <&vreg_l6b_1p2>;
 > +
-> +	lt9611_irq_pin: lt9611-irq {
+> +	ports {
+> +		port@1 {
+> +			endpoint {
+> +				remote-endpoint = <&lt9611_a>;
+> +				data-lanes = <0 1 2 3>;
+> +			};
+> +		};
+> +	};
+> +
 
--state
+Drop blank line.
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
