@@ -2,167 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 640C661935C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 10:21:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA082619371
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 10:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231336AbiKDJVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 05:21:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44004 "EHLO
+        id S231440AbiKDJ2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 05:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbiKDJVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 05:21:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BC8025296;
-        Fri,  4 Nov 2022 02:21:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ECEA262110;
-        Fri,  4 Nov 2022 09:21:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5978DC433B5;
-        Fri,  4 Nov 2022 09:21:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667553675;
-        bh=l9ouLc59eP5YzEVZSBgkam6/h5cQtwOSfXADrCbIK80=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jntuttOuk6uYrgx4J2ZDUOqMSm27PLU+uyMsAAnihqCSZ3o8eKn7rGcd/qGLcmRDZ
-         +VMRTEG/YZGqQFnFH5/PR3vHI9AHK9jRkomXiJaUxmoDE/0AQL/v+yEwmrSDUx1WmH
-         RWOaFDX7MbWfE1q4HMnm4o4uuZbLXCikPWJ/sw2g8oJo/61r+7j7H1HGGK7jc3XzCz
-         xF+ffMzFvVpryhMV5ykfPNqSfY6NEXx4+/BcaqbENeawoTj6Kd+6UVb321NxxYk2O7
-         y8oDNiZ0JHgAKYLUoL3Emttto5FX8dp97qWxyzwPIl/+CZImtVqF9GegUL0DXzV1ab
-         PybQl/6G5vd5Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1oqssi-0004Xb-Lo; Fri, 04 Nov 2022 10:20:56 +0100
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Brian Masney <bmasney@redhat.com>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sc8280xp: update UFS PHY nodes
-Date:   Fri,  4 Nov 2022 10:20:45 +0100
-Message-Id: <20221104092045.17410-3-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221104092045.17410-1-johan+linaro@kernel.org>
-References: <20221104092045.17410-1-johan+linaro@kernel.org>
+        with ESMTP id S231426AbiKDJ2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 05:28:53 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E9A2657E;
+        Fri,  4 Nov 2022 02:28:52 -0700 (PDT)
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A48kWQG032153;
+        Fri, 4 Nov 2022 05:28:44 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3kmpqjbb53-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Nov 2022 05:28:44 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 2A49SgEP062022
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Nov 2022 05:28:42 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 4 Nov 2022 05:28:42 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 4 Nov 2022 05:28:42 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 4 Nov 2022 05:28:41 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com ([10.65.47.228])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2A49SOqY016780;
+        Fri, 4 Nov 2022 05:28:27 -0400
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/3] Add support for ADF4377
+Date:   Fri, 4 Nov 2022 11:27:58 +0200
+Message-ID: <20221104092802.90725-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: EPkIlgWO1v3QXhTN6t3HyCYVqv-0K5zE
+X-Proofpoint-ORIG-GUID: EPkIlgWO1v3QXhTN6t3HyCYVqv-0K5zE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
+ definitions=2022-11-04_06,2022-11-03_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 lowpriorityscore=0 mlxscore=0 clxscore=1015 malwarescore=0
+ spamscore=0 impostorscore=0 phishscore=0 bulkscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2210170000 definitions=main-2211040061
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the UFS PHY nodes to match the new binding.
+The ADF4377 is a high performance, ultralow jitter, dual output integer-N
+phased locked loop (PLL) with integrated voltage controlled oscillator
+(VCO) ideally suited for data converter and mixed signal front end (MxFE)
+clock applications.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 49 +++++++++-----------------
- 1 file changed, 17 insertions(+), 32 deletions(-)
+Antoniu Miclaus (3):
+  dt-bindings: iio: frequency: add adf4377 doc
+  iio: frequency: adf4377: add support for ADF4377
+  Documentation: ABI: testing: adf4377: add ABI docs
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index e0d0fb6994b5..1b309fa93484 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -896,7 +896,7 @@ ufs_mem_hc: ufs@1d84000 {
- 				     "jedec,ufs-2.0";
- 			reg = <0 0x01d84000 0 0x3000>;
- 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
--			phys = <&ufs_mem_phy_lanes>;
-+			phys = <&ufs_mem_phy>;
- 			phy-names = "ufsphy";
- 			lanes-per-direction = <2>;
- 			#reset-cells = <1>;
-@@ -937,27 +937,20 @@ ufs_mem_hc: ufs@1d84000 {
- 
- 		ufs_mem_phy: phy@1d87000 {
- 			compatible = "qcom,sc8280xp-qmp-ufs-phy";
--			reg = <0 0x01d87000 0 0x1c8>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
--			clock-names = "ref",
--				      "ref_aux";
-+			reg = <0 0x01d87000 0 0x1000>;
-+
- 			clocks = <&gcc GCC_UFS_CARD_CLKREF_CLK>,
- 				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
-+			clock-names = "ref", "ref_aux";
-+
-+			power-domains = <&gcc UFS_PHY_GDSC>;
- 
- 			resets = <&ufs_mem_hc 0>;
- 			reset-names = "ufsphy";
--			status = "disabled";
- 
--			ufs_mem_phy_lanes: phy@1d87400 {
--				reg = <0 0x01d87400 0 0x108>,
--				      <0 0x01d87600 0 0x1e0>,
--				      <0 0x01d87c00 0 0x1dc>,
--				      <0 0x01d87800 0 0x108>,
--				      <0 0x01d87a00 0 0x1e0>;
--				#phy-cells = <0>;
--			};
-+			#phy-cells = <0>;
-+
-+			status = "disabled";
- 		};
- 
- 		ufs_card_hc: ufs@1da4000 {
-@@ -965,7 +958,7 @@ ufs_card_hc: ufs@1da4000 {
- 				     "jedec,ufs-2.0";
- 			reg = <0 0x01da4000 0 0x3000>;
- 			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
--			phys = <&ufs_card_phy_lanes>;
-+			phys = <&ufs_card_phy>;
- 			phy-names = "ufsphy";
- 			lanes-per-direction = <2>;
- 			#reset-cells = <1>;
-@@ -1005,28 +998,20 @@ ufs_card_hc: ufs@1da4000 {
- 
- 		ufs_card_phy: phy@1da7000 {
- 			compatible = "qcom,sc8280xp-qmp-ufs-phy";
--			reg = <0 0x01da7000 0 0x1c8>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
--			clock-names = "ref",
--				      "ref_aux";
-+			reg = <0 0x01da7000 0 0x1000>;
-+
- 			clocks = <&gcc GCC_UFS_1_CARD_CLKREF_CLK>,
- 				 <&gcc GCC_UFS_CARD_PHY_AUX_CLK>;
-+			clock-names = "ref", "ref_aux";
-+
-+			power-domains = <&gcc UFS_CARD_GDSC>;
- 
- 			resets = <&ufs_card_hc 0>;
- 			reset-names = "ufsphy";
- 
--			status = "disabled";
-+			#phy-cells = <0>;
- 
--			ufs_card_phy_lanes: phy@1da7400 {
--				reg = <0 0x01da7400 0 0x108>,
--				      <0 0x01da7600 0 0x1e0>,
--				      <0 0x01da7c00 0 0x1dc>,
--				      <0 0x01da7800 0 0x108>,
--				      <0 0x01da7a00 0 0x1e0>;
--				#phy-cells = <0>;
--			};
-+			status = "disabled";
- 		};
- 
- 		tcsr_mutex: hwlock@1f40000 {
+ .../testing/sysfs-bus-iio-frequency-adf4377   |   32 +
+ .../bindings/iio/frequency/adi,adf4377.yaml   |   78 ++
+ drivers/iio/frequency/Kconfig                 |   10 +
+ drivers/iio/frequency/Makefile                |    1 +
+ drivers/iio/frequency/adf4377.c               | 1155 +++++++++++++++++
+ 5 files changed, 1276 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,adf4377.yaml
+ create mode 100644 drivers/iio/frequency/adf4377.c
+
 -- 
-2.37.3
+2.38.1
 
