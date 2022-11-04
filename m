@@ -2,161 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396D2619B29
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 782BA619B2D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:15:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232433AbiKDPOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 11:14:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
+        id S229964AbiKDPPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 11:15:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232460AbiKDPOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:14:23 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B623055B6
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 08:14:16 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id x21so3258481qkj.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 08:14:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSAQ8HyevbU1SRu/HWCnDYZ7sesPwd2iwJjeHcOhri0=;
-        b=p9CminsN53qrFplpvggdvKqaLyOKNBrntrAp19vf9oPCrthGfFnypEKUwZg9xGCMK4
-         tlAkh8aPlPv6bgVXnI5olTf9u/Jk3rpBLNGmBUk91noqbdvwrZpf2j+aV2dTz+9PhwK4
-         +Ox755t9PDNDs+dx3ML4giDlVS5Mg55PCenbf87phpCV68riMhHT7ZLZcGZxvWVOstDC
-         P46DQiP2YhibJHquAwbiwmnurl22WpSdPMvsQuY28y/29wsdM9RlKYMyEzBTV1X2Coxj
-         nRQR27JtXxOwDZPkoCu95H2QrUb7E4jwsH7jm2Zhnz+qwD/bN7hNDaxtbe+eMo2s11wI
-         xEYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSAQ8HyevbU1SRu/HWCnDYZ7sesPwd2iwJjeHcOhri0=;
-        b=tF9clHCRBbI4jAUFWP+ZPJzi06F+xgTA3b4MqJPU3frkIrKNl9MfFjt4fedHdiCvKU
-         0sR8y7IVa3R7oj2huJfoVwfgWYHzVY3rBT1RvXbDRT+Srw1PHVjL15soGNdztpmzsnuK
-         gK7kKVnFrxZwP+IoIXNUkk/on2e4+0rxkxbJRbx8g9rZuSbLxh6xNh7nSXHvCks8Jfmo
-         jdyvX9yHg5kLSu7Zj5RY77KU5tNMqo97214ZBpywjERVu7g56TTq07tNMAQLsWmXH7k9
-         kuvDzqmIBXUu0Pq18xyVhgzvmntTlfM9zT/kVbAtzEb7Q82Pq7/YI3hM/rOQYl8iyA18
-         jGbw==
-X-Gm-Message-State: ACrzQf3Kz4kQwcVaXk+GvogXBb34bq7teWVh+4CRHsTMlNvYL/Kwebjt
-        RXu0bh/8GFAxXRw0oa7cU05Uzw==
-X-Google-Smtp-Source: AMsMyM6iKfQ55uRl1/mtMB2lg88XM5Tn9yhOcXnHuhJnX4Ds+U0VSJAiSVrSxyVuJsRIDOFlmYrIxw==
-X-Received: by 2002:a37:a8d2:0:b0:6f9:75d0:fddb with SMTP id r201-20020a37a8d2000000b006f975d0fddbmr27055868qke.101.1667574855536;
-        Fri, 04 Nov 2022 08:14:15 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id e22-20020a05622a111600b003996aa171b9sm2579338qty.97.2022.11.04.08.14.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 08:14:14 -0700 (PDT)
-Message-ID: <e17dbc8c-b2ba-6acf-7b56-85a246aaa765@linaro.org>
-Date:   Fri, 4 Nov 2022 11:14:12 -0400
+        with ESMTP id S231913AbiKDPPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:15:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6282410D9;
+        Fri,  4 Nov 2022 08:15:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F12076224E;
+        Fri,  4 Nov 2022 15:15:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 884BEC433C1;
+        Fri,  4 Nov 2022 15:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667574918;
+        bh=qxe9QLnJVFO3g780VADLn9uwp3GHTLedQwLcrp06fI4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=boAdFwdrgL0yEL9x07dMDkx+KrTxVQ+VR4NJuHsjCQ2bkL9aE+Qx8XTJiVprqQc1f
+         FjUfgBPHrEPahhxIo2yNOvbRMsPJSEPBvHY1gE7JCQtkgZRvqADNzFmx2RmfZoXh6B
+         VOo86va/4vFb6AZYtXgDLeAQgValHH0bD6HvCeQcG641fe6lnWVB1hoMkfZgDxWuta
+         N00uf5hp3FhbKhweBZPT9Z9rKFiUAvZBU33SPD8Te4qTJgM1DDLyQd7dAJz7otu/Yz
+         8x8cEsq6z9BzS159ocTUETG1YgQR8CVBe5s2Jge+fwnzZgBSSs8u90KxTYy483J4Ip
+         gVzglRNh+6tKw==
+Date:   Fri, 4 Nov 2022 20:45:14 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v1 3/5] arm64: dts: qcom: sm8450-hdk: enable display
+ hardware
+Message-ID: <Y2Usgs8XHgS/KkxN@matsya>
+References: <20221104131358.1025987-1-dmitry.baryshkov@linaro.org>
+ <20221104131358.1025987-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: xilinx-pcie: Convert to YAML
- schemas of Xilinx AXI PCIe Root Port Bridge
-Content-Language: en-US
-To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bhelgaas@google.com, michals@xilinx.com, robh+dt@kernel.org,
-        nagaradhesh.yeleswarapu@amd.com, bharat.kumar.gogada@amd.com
-References: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221104131358.1025987-4-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 00:41, Thippeswamy Havalige wrote:
-> Convert to YAML dtschemas of Xilinx AXI PCIe Root Port Bridge
-> dt binding.
+On 04-11-22, 16:13, Dmitry Baryshkov wrote:
+> Enable MDSS/DPU/DSI0 on SM8450-HDK device. Note, there is no panel
+> configuration (yet).
 > 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> index 38ccd44620d0..e1a4cf1ee51d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> @@ -442,3 +442,21 @@ &usb_1_qmpphy {
+>  	vdda-phy-supply = <&vreg_l6b_1p2>;
+>  	vdda-pll-supply = <&vreg_l1b_0p91>;
+>  };
+> +
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_mdp {
+> +	status = "okay";
+> +};
+> +
+> +&dsi0 {
+> +	status = "okay";
+> +	vdda-supply = <&vreg_l6b_1p2>;
+> +};
+> +
+> +&dsi0_phy {
+> +	status = "okay";
+> +	vdds-supply = <&vreg_l5b_0p88>;
+> +};
 
+This is missing dispcc, please enable that node too.
 
-> +
-> +title: Xilinx AXI PCIe Root Port Bridge
-> +
-> +maintainers:
-> +  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,axi-pcie-host-1.00.a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ranges:
-> +    items:
-> +      - description: |
-> +          ranges for the PCI memory regions (I/O space region is not
-> +          supported by hardware)
-> +
-> +  "#interrupt-cells":
-> +    const: 1
-> +
-> +  interrupt-controller:
-> +    description: identifies the node as an interrupt controller
-> +    type: object
-> +    properties:
-> +      interrupt-controller: true
-> +
-> +      "#address-cells":
-> +        const: 0
-> +
-> +      "#interrupt-cells":
-> +        const: 1
-> +
-> +    required:
-> +      - 'interrupt-controller'
-> +      - '#address-cells'
-> +      - '#interrupt-cells'
+Also, sort this please
 
-Use same style of quotes as in other places, either ' or "
+> -- 
+> 2.35.1
 
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - interrupts
-> +  - interrupt-map
-> +  - "#interrupt-cells"
-> +  - interrupt-controller
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pcie@50000000 {
-> +        compatible = "xlnx,axi-pcie-host-1.00.a";
-> +        reg = < 0x50000000 0x1000000 >;
-
-Still wrong - no spaces around <>
-
-Best regards,
-Krzysztof
-
+-- 
+~Vinod
