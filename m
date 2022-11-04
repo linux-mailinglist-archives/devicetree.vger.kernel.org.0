@@ -2,347 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AAA5619A72
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAFCC619A91
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:52:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbiKDOrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 10:47:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33324 "EHLO
+        id S231761AbiKDOw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 10:52:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbiKDOrK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:47:10 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC14A2728
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:47:08 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id f27so13911867eje.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:47:08 -0700 (PDT)
+        with ESMTP id S231737AbiKDOw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:52:26 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5010C3B
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:52:24 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id h21so3163499qtu.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:52:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=d0XMZxLpKp6sM5ddBmHApVnUcrmXcDrT4/Dd2XyiDnI=;
-        b=ASWIaotkEY5BZkz9DRyfH4Oumf8URlC5euMiy2gao+zTN47+0MTBibXGTE3Yj5LONw
-         m4ysUoDpNNlOp/dqX+t8BHu4AL4gqhA7BVDxOk8pCVzNi4jWf37GQcWnzmq0kPxVtxAe
-         Nbpep3/lkscyzgI4i5WMBa1kwpVfX1vtu8vBg=
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QgjU+OEEvQPZ01qzgjb2MKqqHyMalDRUVvIv26QXzls=;
+        b=EEn0//VkZ+RccjlE/pD9lTHfQMk2wzl3pr5N8iZf+IhhfMGJ0ZrQE24okgkcanNyb4
+         i+FS7LZpo3vxhzn4guBMal5KihP9v276yMLOr/KaZmCa+swk6orhWJhPfIhOji3edgxk
+         OwYAbSCYeaF4IH8iqaBANSAgAQ5hdlVgdbPiTKMUmFSMo8ZnFCbplOk3PpfJO8e21SIq
+         bTXd6bTUTllJHlRaU0n3BHCDyTHblxDIw6oYd/Esv4RtvaK5dq+W93e/dLk7rF8yYFMg
+         62ZxAHiWZlBcs+EMikh1Cl0gDC9ul062+RvTpYLTj7cnKgXoAfcDZjxnUwwUP26xPlTk
+         UGfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d0XMZxLpKp6sM5ddBmHApVnUcrmXcDrT4/Dd2XyiDnI=;
-        b=AIhCgYmDpK8GSt8zX31l7oRGY56VgQ9kttpj1EtdVvEiiWdX7LwFHRD1Msx0I4UgtI
-         eftPINPILLOuGjNms3O+VX17W2BDUEX/eheRcOrjBOYAXdMnSZehlnOwcPAKYunxKeIX
-         h47AmFTYAUyK5u9yGBCOTTNEEkjMfCacCaueZjFdYEC4V+IMrRjWvVpwRK9ssRhZ6n7w
-         vlttFVyaMwxFpPrAxvdVScU4ibig3EPj640NFLerEfi+Sy4il0a2DLgIGcZbMGP41vSy
-         c54ovZPpZ4ErLmVZWKL1mdtz0N9imzITeqcB/8ZUZS7pRbBNN01hiLb/RVjKg35JSqGI
-         IWbg==
-X-Gm-Message-State: ACrzQf1tf2KwZVtVbvpJD5Tg06Ao60im0wXFZerZEBfPRmMm3n7Fo3/r
-        vFVh/e/BLDVj9rlxcB58Ae8/X7geR4U8MRUk
-X-Google-Smtp-Source: AMsMyM42DITeHfSIiS65sHeEB7dW3f7T7WzXEIcBWEHZiHvR2uIyghbZeWe61nDc9AQxd+iko4abJQ==
-X-Received: by 2002:a17:906:7949:b0:7ac:9917:c973 with SMTP id l9-20020a170906794900b007ac9917c973mr35186862ejo.620.1667573226799;
-        Fri, 04 Nov 2022 07:47:06 -0700 (PDT)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
-        by smtp.gmail.com with ESMTPSA id w26-20020aa7dcda000000b004618f2127d2sm2004519edu.57.2022.11.04.07.47.03
-        for <devicetree@vger.kernel.org>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QgjU+OEEvQPZ01qzgjb2MKqqHyMalDRUVvIv26QXzls=;
+        b=Edv0VX/BBQQRlOtOHp+IR2lds1cTKYgNBLxGep2n2ns73XH3Iq3REp7uMZj9FqChgP
+         mbrNqfJ2vEuaY+8C/V4VCGTytSqqhUmIeTp4rU4gMFVvz4u9SIJrvQDt1Scq6tJXNxSe
+         VWuHfSfxM3o5xM1JtlBlOk9GgPU38D6F3g2t1nyCTjImLpy+SJEbeZYLZJHvQbZq5fJc
+         QmN/SvqhMToxRPp2Ywyu2Y4WzUwA60Gim/v5hQ8dgdcFamgBt+rgp0NnCb3+QFWdZifQ
+         6uWsOxR4p2ULPN6+0bBRUnORwb988yDUrSqBK8yWs0UmTb0gD6M5RStP0s0DfuRXNzU4
+         F5EQ==
+X-Gm-Message-State: ACrzQf1IUqkBeQtlX1C3kDGp+IyMYqUFIX36EeJLbn1kVuluehkIzhA4
+        r3mizi60+R1zvc+qmmpBCcFO/A==
+X-Google-Smtp-Source: AMsMyM4YO7l4BmWs/QUGSvV1jS0dywSrAlj7aR/rV7nTudHC1ZtuLQY2KyT2tKW0cGiHGsyP4lLurQ==
+X-Received: by 2002:ac8:7fc7:0:b0:3a5:71f2:c89a with SMTP id b7-20020ac87fc7000000b003a571f2c89amr1179362qtk.636.1667573543826;
+        Fri, 04 Nov 2022 07:52:23 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
+        by smtp.gmail.com with ESMTPSA id u5-20020a05620a0c4500b006fa22f0494bsm3020401qki.117.2022.11.04.07.52.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 07:47:04 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id v7so3184418wmn.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:47:03 -0700 (PDT)
-X-Received: by 2002:a1c:4c16:0:b0:3cf:6f1a:9038 with SMTP id
- z22-20020a1c4c16000000b003cf6f1a9038mr20783641wmf.151.1667573223504; Fri, 04
- Nov 2022 07:47:03 -0700 (PDT)
+        Fri, 04 Nov 2022 07:52:23 -0700 (PDT)
+Message-ID: <34f40c1c-f933-cee6-f022-14c37650dc3a@linaro.org>
+Date:   Fri, 4 Nov 2022 10:52:22 -0400
 MIME-Version: 1.0
-References: <20221104061941.2739938-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20221104141515.v10.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
-In-Reply-To: <20221104141515.v10.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 4 Nov 2022 07:46:50 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V8DyZq4o9J-NOzt9QzG1EM+E3_nv2t5Wdt__ard3t7Yw@mail.gmail.com>
-Message-ID: <CAD=FV=V8DyZq4o9J-NOzt9QzG1EM+E3_nv2t5Wdt__ard3t7Yw@mail.gmail.com>
-Subject: Re: [PATCH v10 4/4] arm64: dts: qcom: sc7280: add sc7280-herobrine-audio-rt5682-3mic3.dtsi
- for evoker
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH] dt-bindings: examples: add a list of templates and
+ solutions
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20221028233701.572280-1-krzysztof.kozlowski@linaro.org>
+ <20221101130720.GA963805-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221101130720.GA963805-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 01/11/2022 09:07, Rob Herring wrote:
+> On Fri, Oct 28, 2022 at 07:37:01PM -0400, Krzysztof Kozlowski wrote:
+>> It is useful to start from existing bindings when writing new ones,
+>> especially when one does not know that much DT schema.  However we have
+>> several bindings which are not the best examples, so people tend to copy
+>> their issues into new bindings.
+>>
+>> Beginners also might not know how to achieve some more complex solutions
+>> in DT schema, e.g. how one of two properties should be required by the
+>> bindings.  Some of such solutions are already in example-schema.yaml,
+>> but several other are missing.  Add reference with such re-usable
+>> design-patterns.
+> 
+> My main concern here is what's a good example today is not tomorrow... 
 
-On Thu, Nov 3, 2022 at 11:29 PM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> add specific 3mic setting as sc7280-herobrine-audio-rt5682-3mic.dtsi,
-> so we can include sc7280-herobrine-audio-rt5682-3mic.dtsi for evoker
-> as it uses rt5682 with 3 mics.
->
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-> ---
->
-> Changes in v10:
-> - add evoker include specific sc7280-herobrine-audio-rt5682-3mic.dtsi setting
->
->  .../sc7280-herobrine-audio-rt5682-3mic.dtsi   | 194 ++++++++++++++++++
->  .../boot/dts/qcom/sc7280-herobrine-evoker.dts |   2 +
->  2 files changed, 196 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
-> new file mode 100644
-> index 0000000000000..01bc8ee93b19a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
-> @@ -0,0 +1,194 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + *
-> + * This file defines the common audio settings for the child boards
-> + * using rt5682 codec and having 3 dmics connected to sc7280.
-> + *
-> + * Copyright 2022 Google LLC.
-> + */
-> +
-> +/ {
-> +       /* BOARD-SPECIFIC TOP LEVEL NODES */
-> +       sound: sound {
-> +               compatible = "google,sc7280-herobrine";
-> +               model = "sc7280-rt5682-max98360a-3mic";
-> +
-> +               status = "okay";
+Yes, I agree. The problem I want to solve is some folks copy-paste some
+existing schema as starting point and then are surprised when receive
+basic style feedback.
 
-As others have mentioned, you don't need the status "okay" here. You
-only need that if you're overriding a parent dtsi file's "disabled"
-status.
+Of course the optimal solution would be to make all schemas in same
+(proper) style, but this is going take some time...
 
+How to solve this problem other way? I don't know.
 
-> +               audio-routing =
-> +                       "VA DMIC0", "vdd-micb",
-> +                       "VA DMIC1", "vdd-micb",
-> +                       "VA DMIC2", "vdd-micb",
-> +                       "VA DMIC3", "vdd-micb",
-> +
-> +                       "Headphone Jack", "HPOL",
-> +                       "Headphone Jack", "HPOR";
-> +
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               dai-link@0 {
-> +                       link-name = "MAX98360";
-> +                       reg = <0>;
-> +
-> +                       cpu {
-> +                               sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai = <&max98360a>;
-> +                       };
-> +               };
-> +
-> +               dai-link@1 {
-> +                       link-name = "DisplayPort";
-> +                       reg = <1>;
-> +
-> +                       cpu {
-> +                               sound-dai = <&lpass_cpu LPASS_DP_RX>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai = <&mdss_dp>;
-> +                       };
-> +               };
-> +
-> +               dai-link@2 {
-> +                       link-name = "ALC5682";
-> +                       reg = <2>;
-> +
-> +                       cpu {
-> +                               sound-dai = <&lpass_cpu MI2S_PRIMARY>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai = <&alc5682 0 /* aif1 */>;
-> +                       };
-> +               };
-> +
-> +               dai-link@4 {
-> +                       link-name = "DMIC";
-> +                       reg = <4>;
-> +
-> +                       cpu {
-> +                               sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-> +                       };
-> +
-> +                       codec {
-> +                               sound-dai = <&lpass_va_macro 0>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +hp_i2c: &i2c2 {
-> +       status = "okay";
+> 
+> 
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../devicetree/bindings/examples.rst          | 63 +++++++++++++++++++
+>>  Documentation/devicetree/bindings/index.rst   |  1 +
+>>  2 files changed, 64 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/examples.rst
+>>
+>> diff --git a/Documentation/devicetree/bindings/examples.rst b/Documentation/devicetree/bindings/examples.rst
+>> new file mode 100644
+>> index 000000000000..710eea81d8b7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/examples.rst
+>> @@ -0,0 +1,63 @@
+>> +.. SPDX-License-Identifier: GPL-2.0
+>> +
+>> +Examples of Devicetree Bindings to use a base
+>> +=============================================
+>> +
+>> +Following Devicetree Bindings in DT Schema are a known good starting point when
+>> +writing new bindings:
+>> +
+>> +1. Simple SPI device:
+>> +   Documentation/devicetree/bindings/iio/adc/maxim,max11205.yaml
+>> +
+>> +2. PMIC (MFD) with several sub-devices:
+>> +   Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+>> +
+>> +3. Battery charger (power supply):
+>> +   Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+>> +   (but use vendor prefix in filename)
+>> +
+>> +4. Clock controller for several devices with different clock inputs:
+>> +   Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+>> +
+>> +5. GPIO controller:
+>> +   Documentation/devicetree/bindings/gpio/qcom,wcd934x-gpio.yaml
+>> +
+>> +
+>> +Re-usable design patterns when writing your own bindings
+>> +========================================================
+>> +
+>> +Following bindings show how to use common pattern of writing bindings:
+>> +
+>> +1. Property required and present only for one variant.  Property cannot appear
+>> +   on other variants:
+>> +   Documentation/devicetree/bindings/example-schema.yaml
+>> +   Line: 212
+>> +
+>> +2. Excluding properties, but none are required:
+>> +   Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+>> +   Line: 155
+>> +
+>> +3. Excluding required properties, but one is required:
+>> +   Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+>> +   Line: 91
+>> +
+>> +4. Array with numbers (items) from given range - min/max:
+>> +   Documentation/devicetree/bindings/arm/l2c2x0.yaml
+>> +   Line: 74
+>> +
+>> +5. Array with numbers (items) from given range - enum:
+>> +   Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+>> +   Line: 101
+>> +
+>> +6. Uint32 matrix, variable length of two-items:
+>> +   Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+>> +   Line: 278
+>> +
+>> +7. Phandle to syscon with offset:
+>> +   Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>> +   Line: 42
+>> +
+>> +8. Variable length of array (e.g. clocks and clock-names) but narrowed to
+>> +   specific variant:
+>> +   Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+>> +   Lines: 33 and 71
+> 
+> It seems like some of these that are just a single property we could add 
+> to example-schema.yaml.
 
-As others have mentioned, the new convention is for status to be the
-last property so you should update this.
+I am afraid the example-schema will grow too big for folks to look into.
+It's already quite complicated, with explanations of the dtschema
+behavior itself.
 
-...ideally you could add a patch to your series that makes similar
-cleanups to the 1-mic version to keep diffs clean.
+How about then RST file with small code snippets?
 
+> Also, perhaps a reference to this from writing-schema.rst.
 
-> +       clock-frequency = <400000>;
-> +
-> +       alc5682: codec@1a {
-> +               compatible = "realtek,rt5682s";
-> +               reg = <0x1a>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&hp_irq>;
-> +
-> +               #sound-dai-cells = <1>;
-> +
-> +               interrupt-parent = <&tlmm>;
-> +               interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
-> +
-> +               AVDD-supply = <&pp1800_alc5682>;
-> +               MICVDD-supply = <&pp3300_codec>;
-> +
-> +               realtek,dmic1-data-pin = <1>;
-> +               realtek,dmic1-clk-pin = <2>;
-> +               realtek,jd-src = <1>;
-> +               realtek,dmic-clk-rate-hz = <2048000>;
-> +       };
-> +};
-> +
-> +&lpass_cpu {
-> +       status = "okay";
-> +
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&mi2s0_data0>, <&mi2s0_data1>, <&mi2s0_mclk>, <&mi2s0_sclk>, <&mi2s0_ws>,
-> +                       <&mi2s1_data0>, <&mi2s1_sclk>, <&mi2s1_ws>;
-> +
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       dai-link@0 {
-> +               reg = <MI2S_PRIMARY>;
-> +               qcom,playback-sd-lines = <1>;
-> +               qcom,capture-sd-lines = <0>;
-> +       };
-> +
-> +       dai-link@1 {
-> +               reg = <MI2S_SECONDARY>;
-> +               qcom,playback-sd-lines = <0>;
-> +       };
-> +
-> +       dai-link@5 {
-> +               reg = <LPASS_DP_RX>;
-> +       };
-> +
-> +       dai-link@25 {
-> +               reg = <LPASS_CDC_DMA_VA_TX0>;
-> +       };
-> +};
-> +
-> +&lpass_va_macro {
-> +       status = "okay";
-> +       vdd-micb-supply = <&pp1800_l2c>;
-> +       pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>, <&lpass_dmic23_clk>,
-> +                       <&lpass_dmic23_data>;
-> +};
+I can do this as well.
 
-Can you add here:
+The problem with my approach above (and adding these to writing-schema)
+is that examples above can change, lines can be inadequate.
 
-/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+Best regards,
+Krzysztof
 
-...which will make it obvious that the sort order resets. Our current
-convention is that pinctrl stuff is at the bottom of the file and
-sorted separately from the non-pinctrl stuff.
-
-
-> +&mi2s0_data0 {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&mi2s0_data1 {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&mi2s0_mclk {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&mi2s0_sclk {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&mi2s0_ws {
-> +       drive-strength = <6>;
-> +       bias-disable;
-> +};
-> +
-> +&lpass_dmic01_clk {
-> +       drive-strength = <8>;
-> +       bias-disable;
-> +};
-
-As others have mentioned, "&lpass" sorts before "&mi2s" so these
-should be listed above.
-
-
-> +&lpass_dmic01_clk_sleep {
-> +       drive-strength = <2>;
-> +};
-> +
-> +&lpass_dmic01_data {
-> +       bias-pull-down;
-> +};
-> +
-> +&lpass_dmic23_clk {
-> +       drive-strength = <8>;
-> +       bias-disable;
-> +};
-> +
-> +&lpass_dmic23_clk_sleep {
-> +       drive-strength = <2>;
-> +};
-> +
-> +&lpass_dmic23_data {
-> +       bias-pull-down;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-> index dcdd4eecfe670..d608682f9742b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
-> @@ -8,6 +8,8 @@
->  /dts-v1/;
->
->  #include "sc7280-herobrine-evoker.dtsi"
-> +#include "sc7280-herobrine-audio-rt5682-3mic.dtsi"
-> +
-
-Get rid of extra blank line you added here.
-
-
->  / {
->         model = "Google Evoker";
-> --
-> 2.34.1
->
