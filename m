@@ -2,179 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D4AD619FAB
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 19:22:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A92C619FC3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 19:25:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231822AbiKDSWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 14:22:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41556 "EHLO
+        id S230045AbiKDSY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 14:24:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231841AbiKDSWB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 14:22:01 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD3864B9B7
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 11:21:14 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id x21so3607670qkj.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 11:21:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8XdkAG3dilKY+4PvxfSDGA2DqcSYYOAUsGpHT8unyWA=;
-        b=XKZBXR1ccwvkDLK2gAyQD8jTlThhJkk4LMJExUVubdSVqbS0LFnHUZkxwnf7GzMm+3
-         HjMHtxjYqwI2RkLcJE0ZLs+DtBvEiU9mLWuMhDlRcFpGpotqrrwI2rd2MzPCX4nuwugU
-         6OrOWV8y4hq9EesGfA7221abT23g38UGmPTOGvaewQ8uw75BKUnCCtr/sucZaKon4LZN
-         3xDoRSgDp8gy0N0jGPkVfr5/nbCRJRIXCHW3wAdJ46LaKVVzEnz+RjfhUkVEklquEjq4
-         If+33bzUYgw3mHKHcrTdy3inhLfeZW8/pbGpEC+wy5vwnFPPbqjWbOH2WKrY3ReQxj0h
-         FdWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8XdkAG3dilKY+4PvxfSDGA2DqcSYYOAUsGpHT8unyWA=;
-        b=XI6gf41ck14G8Pl9tbGKiPQLX1RG487474HuPqO8fZ3NOaet+f8AuRwYPfJWWnIc1N
-         CjDiD7NsVtdVBzwrKw7jeYHR+NjLko22wPkTplZywUoy/ENDH1Jmz22ex45rzwa+6ZoB
-         XhiIl76s9jIknfCzgWeAPIMSXyPL5TKQbqC4Lwq/bzA9bOvN4k77v5xi0/0Fw5k2Uo5p
-         5tj2Gk77L3NMEyWBlXpFYMVbC/J0uLf2YQ+kNt91WgBiO5jJxoM6i6Uqd9kokuU9Cgp1
-         qNArrMMrQ84zSZwCHXiLOJ4CvqrRDppZ8GeD7x9eh9N+QlxN32aYuVc5oZL7+PBp74wL
-         So8A==
-X-Gm-Message-State: ACrzQf3L1Df6cb+IQa/rhMDjZg2S0Wm5tnJSBRWdLwN7SypyMvGbeCza
-        N7aXUDTZLtcMMHeWdRyi617ZGg==
-X-Google-Smtp-Source: AMsMyM44mo4Cb0xCcboeZdRBJmJH91asBNaSOAf6JiuRGZ+sBwVbiI5Z3iK8hvV+fNR6mz4ap7fPqg==
-X-Received: by 2002:a37:c446:0:b0:6fa:5df9:6fcc with SMTP id h6-20020a37c446000000b006fa5df96fccmr11937043qkm.560.1667586074009;
-        Fri, 04 Nov 2022 11:21:14 -0700 (PDT)
-Received: from krzk-bin.. ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05620a288800b006fa4cac54a4sm3389016qkp.133.2022.11.04.11.21.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 11:21:13 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: clock: qcom,sdm845-lpasscc: convert to dtschema
-Date:   Fri,  4 Nov 2022 14:21:08 -0400
-Message-Id: <20221104182108.126515-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232095AbiKDSYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 14:24:43 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E64DD15831;
+        Fri,  4 Nov 2022 11:24:24 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A4IO3LR060985;
+        Fri, 4 Nov 2022 13:24:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667586243;
+        bh=8ETERx3slYS0YvwAHPAt1tHEj7ePcY+jVnmLR69eRuE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=rlvAG86/GDDBZ5fxhUVaMVADwJxxY5DSIgPwh6iccIXPOknueMCmoc4clDXLqyMi0
+         m/4Z8ZA7epUbeawm2wNdddat7blaEi0X4M0tEHIdzVD3nG3LJb4fF/ROm52ozfGwP3
+         3dIcjcEH3LLPWj0iJOGz2y88X5SAKWE40wEcN8GM=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A4IO3Tt051765
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 4 Nov 2022 13:24:03 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
+ 2022 13:24:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 4 Nov 2022 13:24:02 -0500
+Received: from [10.250.232.76] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A4INw5L018692;
+        Fri, 4 Nov 2022 13:23:58 -0500
+Message-ID: <7c63a1b5-ee51-d395-d545-6d9046d63f69@ti.com>
+Date:   Fri, 4 Nov 2022 23:53:57 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am65-main: drop RNG clock
+Content-Language: en-US
+To:     Nishanth Menon <nm@ti.com>, Andrew Davis <afd@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <j-keerthy@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <s-anna@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20221031213237.52275-1-j-choudhary@ti.com>
+ <20221031213237.52275-2-j-choudhary@ti.com>
+ <20221102151706.krsi5lujydb4nswa@daybreak>
+ <4f954c08-6a2e-93b5-6806-7b27b247496e@ti.com>
+ <20221102194420.umwuyk374g2mgg45@unlucky>
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+In-Reply-To: <20221102194420.umwuyk374g2mgg45@unlucky>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm SDM845 LPASS clock controller bindings to DT schema.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
----
+On 03/11/22 01:14, Nishanth Menon wrote:
+> On 12:04-20221102, Andrew Davis wrote:
+>> On 11/2/22 10:17 AM, Nishanth Menon wrote:
+>>> On 03:02-20221101, Jayesh Choudhary wrote:
+>>>> Drop RNG clock property as it is not controlled by rng-driver.
+>>>
+>>> Does'nt tell me what is the alternative? why is the hardware description
+>>> not sufficient for control?
+>>>
+>>> https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am65x_sr2/clocks.html#clocks-for-sa2-ul0-device
+>>> Looks like a perfectly valid description - do we have a bug and firmware
+>>> does'nt allow control here?
+>>>
+>>
+>> We have three input clocks feeding the SA2UL module, x1, x2, pka. PKA goes
+>> to the PKA sub-module (isn't it nice when they make things simple). But x1 and
+>> x2 are miscellaneous and bus clocks respectively and route to several sub-modules.
+>>
+>> All we drop here is the clock handle in the RNG sub-module, as that sub-module is
+>> not the owner of that clock (the parent SA2UL is). The alternative we could implement
+>> is to move the clock node up to the parent SA2UL node.
+>>
+>>>>
+>>>> Fixes: b366b2409c97 ("arm64: dts: ti: k3-am6: Add crypto accelarator node")
+>>>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 1 -
+>>>>    1 file changed, 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>>> index 4005a73cfea9..e166d7b7e3a1 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>>> @@ -126,7 +126,6 @@ rng: rng@4e10000 {
+>>>>    			compatible = "inside-secure,safexcel-eip76";
+>>>>    			reg = <0x0 0x4e10000 0x0 0x7d>;
+>>>>    			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>>>> -			clocks = <&k3_clks 136 1>;
+>>>
+>>> Does this mean that the crypto module's power-domains property should be
+>>> dropped as well?
+>>>
+>>
+>> Why? the power-domains property is in the correct spot (up in the parent node).
+>>
+>> Now it is true we cant actually shut the SA2UL down since it is owned
+>> by the security processor, but since it is marked TI_SCI_PD_SHARED this
+>> should be fine.
+> 
+> The idea of the descriptions were to describe what is controllable by
+> firmware, if there is no control due to the specified reason, it is a
+> device tree bug, and should be documented when dropping it. If it serves
+> a purpose in the firmware by indicating usage for example - it has valid
+> reason to stick around as it is expected to be used by firmware for some
+> specific reason.
 
-Changes since v1:
-1. Correct Bjorn's email.
----
- .../bindings/clock/qcom,lpasscc.txt           | 26 ----------
- .../bindings/clock/qcom,sdm845-lpasscc.yaml   | 47 +++++++++++++++++++
- 2 files changed, 47 insertions(+), 26 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/qcom,lpasscc.txt
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml
+The x1-clk to sa2ul is always running and fixed. What we can do is gate
+off the clock specific to trng module (x1-clk) by using TRNG_EN MMR to
+disable TRNG.
+Hence, uncontrollable.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,lpasscc.txt b/Documentation/devicetree/bindings/clock/qcom,lpasscc.txt
-deleted file mode 100644
-index b9e9787045b9..000000000000
---- a/Documentation/devicetree/bindings/clock/qcom,lpasscc.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Qualcomm LPASS Clock Controller Binding
-------------------------------------------------
--
--Required properties :
--- compatible		: shall contain "qcom,sdm845-lpasscc"
--- #clock-cells		: from common clock binding, shall contain 1.
--- reg			: shall contain base register address and size,
--			  in the order
--			Index-0 maps to LPASS_CC register region
--			Index-1 maps to LPASS_QDSP6SS register region
--
--Optional properties :
--- reg-names	: register names of LPASS domain
--		 "cc", "qdsp6ss".
--
--Example:
--
--The below node has to be defined in the cases where the LPASS peripheral loader
--would bring the subsystem out of reset.
--
--	lpasscc: clock-controller@17014000 {
--		compatible = "qcom,sdm845-lpasscc";
--		reg = <0x17014000 0x1f004>, <0x17300000 0x200>;
--		reg-names = "cc", "qdsp6ss";
--		#clock-cells = <1>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml
-new file mode 100644
-index 000000000000..a96fd837c70a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sdm845-lpasscc.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sdm845-lpasscc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SDM845 LPASS Clock Controller
-+
-+maintainers:
-+  - Bjorn Andersson <andersson@kernel.org>
-+
-+description: |
-+  Qualcomm SDM845 LPASS (Low Power Audio SubSystem) Clock Controller.
-+
-+  See also:: include/dt-bindings/clock/qcom,lpass-sdm845.h
-+
-+properties:
-+  compatible:
-+    const: qcom,sdm845-lpasscc
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: cc
-+      - const: qdsp6ss
-+
-+required:
-+  - compatible
-+  - '#clock-cells'
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@17014000 {
-+        compatible = "qcom,sdm845-lpasscc";
-+        reg = <0x17014000 0x1f004>, <0x17300000 0x200>;
-+        reg-names = "cc", "qdsp6ss";
-+        #clock-cells = <1>;
-+    };
--- 
-2.34.1
+> 
+> The commit description does bring up the above mentioned questions and
+> must be explained appropriately.
+> 
 
+Okay, I will update the description properly in v2 for dropping this
+clock and for each patch (and not just in the cover-letter).
