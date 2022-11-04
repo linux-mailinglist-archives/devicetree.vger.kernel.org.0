@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3117261A2AE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 21:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D367961A2B5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 21:52:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbiKDUvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 16:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47072 "EHLO
+        id S229629AbiKDUwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 16:52:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiKDUvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 16:51:13 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3419A1A7
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 13:51:11 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id v27so9360010eda.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 13:51:11 -0700 (PDT)
+        with ESMTP id S229495AbiKDUwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 16:52:38 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2392949B40
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 13:52:37 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id kt23so16294785ejc.7
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 13:52:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=osyiUzHDpQ2b7ih/B+DgltcTg6y80KjFxz7EsgKKi4k=;
-        b=YHDfqHF4z+DLMhHV4CIqYlVbRtpF9Vs/WjejXbkhUiKi/IQcczSWnxwRNQX4LgT0di
-         M4ZFAikpqI/fsBcexazarbcUqV1JjnQWjf0CEbAgFfIzAuZkJ2HducuGb+kOHaOx43eI
-         /q++/gU/xAYb8SGp8zgqkw1p7EYf9/+thgO3lH3Ih4++TUOau92f9Hx9XewRnpN7cuAK
-         oXqdI/c/1DfXOS0roxj3aj7Gz/J8Op1YvBCiVjDuvF+h4FFH6gizUPvgzWCzki/aQk2Z
-         X+L8MCHqqKy5P5zVPCQuMsuZ85Y7pKzHY+PzLfL0A7POzyYJH56cABoe+NBOwbDAs9eh
-         Jlzg==
+        bh=r6oMO7pq4PUJ0DCAGwSe+XGvbvHl1TD87arJYlCOgpg=;
+        b=E1EdimKdqHIv7dRAutHb4qxXK4A1jGDzKMQ9SeWB+i2u429ntFZSdtXrkVDQz5DXJX
+         TFjdgMQTzvFiZUVwBidOq2RDfU38mC/w/VonzZXvrWI0cBdEBa6QRqaPyDxPMzvXatRs
+         K5OGhYsWBLApTEs2AlM/NdtwO5sGv2zYPzm/i1YmQ5wsHsyv9ctyJAgwiBNcFZYtIl9C
+         WT1lmh7wp7gMPd4ew+SxZ3sEs1ZzAmkGPFUB77e8k/Kyf5IbtEO0Wu7FBn0hdvPUu4xW
+         Ph3ehZRPWZx1JH2m7QFCYJQ8yl2xOXzcmzqJo/zwkS7tOglZtm6Qn55DhDWCdA0YkWut
+         e9ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=osyiUzHDpQ2b7ih/B+DgltcTg6y80KjFxz7EsgKKi4k=;
-        b=wCKB12Jk2n+lU1zFI2wNLRoW/rvF9NJqNeb4BSNgth1LMX2d4yVJ5741VvkBPbaQOJ
-         7rM1HdPKRbArOvrJ1ACGTrFTcUvUgqK/UaTj8UTQec0Y0r5nyQ8+WU7mZyRBgzsLAGaq
-         4I4HIhEhsQCQw0NE987Br7gTuJ2QnM8BN1EyuOVhn2DRjslXa1HM2fOCFJ1EKc0/dlMM
-         DZ06+pH2yjCIQLZ1VUiMP2XrQNyzQOykg1PheHdvrVwfFFCOxf/Yw+76G/c0f3IeDsJ8
-         UMHeYean2PRzj3jHfDqZ6fpdU5UWCN3YVa8KXvYc6Vbk54jFKjaDnlzwzSUw4XeYC7ON
-         hKlA==
-X-Gm-Message-State: ACrzQf2yRa/YKp2aQZWUtBcVgJE/rbTsSPJfLFLB+vqgaE4NYYtIR+l/
-        tTC1JxRtXOIAX7C/YXRt9kcpcw==
-X-Google-Smtp-Source: AMsMyM7oXSJ3C4Rzx58L+qgDsaXMmR+B8N6HJBu02Ly92IqAOEQ3JFm5GqTGo9NNMe35JCj5VsIuow==
-X-Received: by 2002:a05:6402:1004:b0:464:778:c516 with SMTP id c4-20020a056402100400b004640778c516mr15586249edu.348.1667595070485;
-        Fri, 04 Nov 2022 13:51:10 -0700 (PDT)
+        bh=r6oMO7pq4PUJ0DCAGwSe+XGvbvHl1TD87arJYlCOgpg=;
+        b=1sSlwCc70dEFsTdI42ynTA14EKq3Nrj88MCFJ7d1R/WHVremmQ8IBb9SN+T8nyJQvL
+         K/D5HJfEtqnydI/KljgMoKN5otg00ueU86O9dvj/1XGkcYgpol0VA4HhuljgRlwj8Km1
+         jwgBm60TOhnRTnjDx8eCrdQbc1oInt11tYDcgW0aQAZk4cVDHsvUXEkU7Zef/Njdf+7r
+         qcsJFr2YmvzHTcy1uv1P0VKVfdUn3EPz83F7U9oaQc8Zs0K2fHUpc8vvN3K1IHhUp+rq
+         iBdIJdUgR1OOnl9kGi3bkq00JSkBL9ZGXrOCUiiyvcF1Gly5o7p4uu407998u2+goaXm
+         09ag==
+X-Gm-Message-State: ACrzQf3/CRD2XwcWt/kZS9jEkJBX4QSEubOYw8f98EP9w7HXm5qIG4fp
+        lGUUPd1Z2Fk1lCeiiAETSb6q2A==
+X-Google-Smtp-Source: AMsMyM7rXraWMimKExlRNc9vxGFX6UxJa3+YBbsihMifk2wtFPEwgfz0XrXhZkvJMRSS1gYb+fteCw==
+X-Received: by 2002:a17:907:7da6:b0:791:997e:58fc with SMTP id oz38-20020a1709077da600b00791997e58fcmr37053761ejc.385.1667595155658;
+        Fri, 04 Nov 2022 13:52:35 -0700 (PDT)
 Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id v3-20020aa7d803000000b004585eba4baesm213243edq.80.2022.11.04.13.51.09
+        by smtp.gmail.com with ESMTPSA id p16-20020aa7d310000000b004618f2127d2sm230628edq.57.2022.11.04.13.52.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 13:51:09 -0700 (PDT)
-Date:   Fri, 4 Nov 2022 22:51:08 +0200
+        Fri, 04 Nov 2022 13:52:35 -0700 (PDT)
+Date:   Fri, 4 Nov 2022 22:52:33 +0200
 From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Peng Fan <peng.fan@oss.nxp.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
         shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
         festevam@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-imx@nxp.com,
         linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 0/6] clk: imx93: fix and update
-Message-ID: <Y2V7PPGtzFgTxI89@linaro.org>
+        Peng Fan <peng.fan@nxp.com>, Ye Li <ye.li@nxp.com>
+Subject: Re: [PATCH 2/6] clk: imx93: correct enet clock
+Message-ID: <Y2V7kdOOYZGQS0OS@linaro.org>
 References: <20221028095211.2598312-1-peng.fan@oss.nxp.com>
- <b7be4912-542e-8fdc-6948-ac4626a63418@oss.nxp.com>
+ <20221028095211.2598312-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b7be4912-542e-8fdc-6948-ac4626a63418@oss.nxp.com>
+In-Reply-To: <20221028095211.2598312-3-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -75,50 +75,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-11-02 10:13:45, Peng Fan wrote:
-> Hi Abel, Stephen
+On 22-10-28 17:52:07, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> On 10/28/2022 5:52 PM, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> > 
-> > V2:
-> >   Update commit log for patch 3
-> >   Add comment for critial clock for patch 5,6
+> Per update Reference Mannual, correct the enet clock parent to
+> wakeup_axi_root.
 > 
-> V2 was not added to patch subject when I send out this patchset.
-> If you need to repost with V2, please let me know.
+> Fixes: 24defbe194b6 ("clk: imx: add i.MX93 clk")
+> Reviewed-by: Ye Li <ye.li@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Sorry for the late reply.
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-No need to resend.
-
+> ---
+>  drivers/clk/imx/clk-imx93.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Thanks,
-> Peng.
+> diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
+> index 9ef3fcbdd951..7fdc30062a46 100644
+> --- a/drivers/clk/imx/clk-imx93.c
+> +++ b/drivers/clk/imx/clk-imx93.c
+> @@ -240,7 +240,7 @@ static const struct imx93_clk_ccgr {
+>  	{ IMX93_CLK_AUD_XCVR_GATE,	"aud_xcvr",	"audio_xcvr_root",	0x9b80, },
+>  	{ IMX93_CLK_SPDIF_GATE,		"spdif",	"spdif_root",		0x9c00, },
+>  	{ IMX93_CLK_HSIO_32K_GATE,	"hsio_32k",	"osc_32k",		0x9dc0, },
+> -	{ IMX93_CLK_ENET1_GATE,		"enet1",	"enet_root",		0x9e00, },
+> +	{ IMX93_CLK_ENET1_GATE,		"enet1",	"wakeup_axi_root",	0x9e00, },
+>  	{ IMX93_CLK_ENET_QOS_GATE,	"enet_qos",	"wakeup_axi_root",	0x9e40, },
+>  	{ IMX93_CLK_SYS_CNT_GATE,	"sys_cnt",	"osc_24m",		0x9e80, },
+>  	{ IMX93_CLK_TSTMR1_GATE,	"tstmr1",	"bus_aon_root",		0x9ec0, },
+> -- 
+> 2.37.1
 > 
-> > 
-> > patch 1 is reported by Dan and marked as fix
-> > 
-> > During our development, per updated reference mannual and design
-> > information, correct enet and drop tpm 1/3, lpit 1/2.
-> > 
-> > The TPM/LPIT patch 3,4 are not marked as fixes, there is no user,
-> > so update binding and driver both.
-> > 
-> > Patch 5 enable HSIO root always on
-> > Patch 6 enable sysctr always on for cpuidle
-> > 
-> > Jacky Bai (2):
-> >    clk: imx: keep hsio bus clock always on
-> >    clk: imx93: keep sys ctr clock always on
-> > 
-> > Peng Fan (4):
-> >    clk: imx93: unmap anatop base in error handling path
-> >    clk: imx93: correct enet clock
-> >    dt-bindings: clock: imx93: drop TPM1/3 LPIT1/2 entry
-> >    clk: imx93: drop tpm1/3, lpit1/2 clk
-> > 
-> >   drivers/clk/imx/clk-imx93.c             | 38 ++++++++++++++-----------
-> >   include/dt-bindings/clock/imx93-clock.h |  4 ---
-> >   2 files changed, 21 insertions(+), 21 deletions(-)
-> > 
