@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21EA3619714
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF28B619719
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:09:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbiKDNJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:09:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45248 "EHLO
+        id S231555AbiKDNJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:09:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbiKDNJF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:09:05 -0400
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744D827B0C
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:09:04 -0700 (PDT)
-Received: by mail-qt1-x829.google.com with SMTP id x15so2945491qtv.9
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:09:04 -0700 (PDT)
+        with ESMTP id S231549AbiKDNJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:09:40 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0DAA286E6
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:09:39 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id h21so2974106qtu.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:09:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vZ8hfa5U3lUaaForj2mH3Ulz54E7m/Sy69csnuU6d1I=;
-        b=jthoUqjMA2TjIz8CooFEFC1WQHTjAz/A4lZ+uBXFlARKTaTZm0FEj8AbAXdQKI/C5Q
-         s5rK/pzYhtrNhlJ5wBSI5+hhTg4UUXPAkUvsRr3XwWqJinBUi1Q4kzZXxDjsVAPh6Hl1
-         +9x+timhhVAL+4VreRxB0tjGF1qNPvFsYLMstc9yva/ZlxvtGeicL1/pjSJ2HfXU+9f9
-         ts6q52vkNK0dz3lVoZ6CKZqUtdW1lSDCGforMu9FuS8OkmcEXoO90fw2BpMGRDH5GzfL
-         MqYithP93WSyajXKzqz24RY9kZDWosc5lI0a7VDDklwwxRUtErdMU7nmUTW1VQeaFKZI
-         vgLQ==
+        bh=4MxzjYKOk4sy5XjCR20EQiICdAfVYjjgrKgPBg79CsE=;
+        b=jLQzpldCEcHA/FkI6E2pNXsFnBYFSpZpEi7EGtsN+UbHgHMGt8mblItb2S0sOavdll
+         jCcljPGzrU0UgJjpy1YZmGTSPaynqcblExMDGFb0IxZXZ0aGYS+2lgY/D4Wl05GhpFsU
+         W/n2UYzXuW8qV7VWdvCYoV5kzxUGQdBdz7c9j8drXSgmQjNL6DT8ydhoS2AiqxZm4XrH
+         UK4Ur55PACqY5zSKJxsWVPLYJuBiW7sQl1Tag9msZcuQy24zXWfmBiJLGdn4so83rbEp
+         6G1u49bDUYjiO3Av4uCxZyw32PMliCeFBFzU8bvCLokVrw8Qp0SmwF7yuNpSoKrj02/J
+         MVgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vZ8hfa5U3lUaaForj2mH3Ulz54E7m/Sy69csnuU6d1I=;
-        b=tbjsLYrP/yYNQMCEsx/v+ZGH/QFWO9LjWB9MwafkUpEO/po0QEccY5LyFfPMi7RzLE
-         JkkXDmJRZIi5R2M5vWd3GQnnEtQlUvw4UTg1N34JrXzyQ8wqsS3KaEvlwIs5v4/HWOga
-         LAcVRszLuTkGJY9EMRg00nXaX538AHqZZe3l2HPgwkQBv4SJf5D/NTPkRbIWEMCQT4ao
-         38tiF4rheu6l252QgRL3P5+ki2VQ5C+Cr7iANiNYbLtxZLAynK8PjvDHTv7YrNiK3bOi
-         v2ESJO1UGWuL9g6ASybfezO6CLrJcjPmD0eVC/NTsB4+uUGmCU7kJ8DiGRsuluGc2WtK
-         JsYQ==
-X-Gm-Message-State: ACrzQf2s+bVVlHuqEWHjh4FZADDZeHt/WtM5LTSpVhB2rvXLeuZVZg9n
-        DguAyeUbuW0nN5A7AJ/Q6WXDjQ==
-X-Google-Smtp-Source: AMsMyM6Mj8AWm3KMbV3ZCvDwJXJMgtC//MdJssJ2i8xP7YwpBQ+mizNHgB8VAwFkINWnPdaT9J8FPA==
-X-Received: by 2002:a05:622a:12:b0:3a5:6899:5add with SMTP id x18-20020a05622a001200b003a568995addmr1816091qtw.629.1667567343572;
-        Fri, 04 Nov 2022 06:09:03 -0700 (PDT)
+        bh=4MxzjYKOk4sy5XjCR20EQiICdAfVYjjgrKgPBg79CsE=;
+        b=XEZrPzpNdkq1Ddut9rxXS2SYfIHgMs1K7/H7tVhNeQSAQu8uifHwZRqRcQRpBdYOuK
+         Lr9fk2u6s11ubqFwZbIgVzxQUbjnkns9rAmlviZk1XyP7rTzwQkdRA3Iil+bzs5vcTAD
+         ePSd9usQWvmpNasSOHYHkdkYQZeR+vEHP2nG7Dr757VcU1yD8lEL5HZDYVasSSE+kSB+
+         KHcvJDdjxZ2daggX+OMnMuUQXNaNvsZFrukJP29+y3cdl3ZYiEx2z3pxZa4AMuESoU4z
+         bTiDCi30JdXquVdijbHaXJRkE11ajqanSk5ZzXVnawvlfFLHDzHK8xECYl1VP328exqm
+         LtwA==
+X-Gm-Message-State: ACrzQf0p8/xRyQpUYk3qNshj+eiDzVvguYBqPTTzOKm6A12W0tRtL0b0
+        kd0QK6N+75ZTuieZXzWLzSoKDw==
+X-Google-Smtp-Source: AMsMyM7zigYUVbBE2nPsp2ko6wVBLqpJ2LbhXuLIsukXJXFC98j3sXxmYJGHcIG5kwBfS9W5O41I7g==
+X-Received: by 2002:a05:622a:4ac6:b0:3a5:29d8:b683 with SMTP id fx6-20020a05622a4ac600b003a529d8b683mr20780593qtb.386.1667567378867;
+        Fri, 04 Nov 2022 06:09:38 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id b6-20020a05620a0cc600b006e6a7c2a269sm2861212qkj.22.2022.11.04.06.09.02
+        by smtp.gmail.com with ESMTPSA id w15-20020ac857cf000000b0038b684a1642sm2461299qta.32.2022.11.04.06.09.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 06:09:03 -0700 (PDT)
-Message-ID: <6056fe63-26f8-bbda-112a-5b7cf25570ad@linaro.org>
-Date:   Fri, 4 Nov 2022 09:09:02 -0400
+        Fri, 04 Nov 2022 06:09:38 -0700 (PDT)
+Message-ID: <94b9c2c7-a1f8-26e7-0dcf-41b7ef46b23f@linaro.org>
+Date:   Fri, 4 Nov 2022 09:09:37 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
+Subject: Re: [PATCH v2 3/8] dt-bindings: display/msm: add support for the
+ display on SM8450
 Content-Language: en-US
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221102185232.131168-1-krzysztof.kozlowski@linaro.org>
- <20221103233319.m2wq5o2w3ccvw5cu@skbuf>
- <698c3a72-f694-01ac-80ba-13bd40bb6534@linaro.org>
- <20221104020326.4l63prl7vxgi3od7@skbuf>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20221102231309.583587-1-dmitry.baryshkov@linaro.org>
+ <20221102231309.583587-4-dmitry.baryshkov@linaro.org>
+ <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
+ <ec774d8b-b6b1-8dca-ec14-8e39e0a4f0f4@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104020326.4l63prl7vxgi3od7@skbuf>
+In-Reply-To: <ec774d8b-b6b1-8dca-ec14-8e39e0a4f0f4@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,56 +87,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 22:03, Vladimir Oltean wrote:
-> On Thu, Nov 03, 2022 at 09:44:36PM -0400, Krzysztof Kozlowski wrote:
->>> Don't these belong to spi-peripheral-props.yaml?
+On 04/11/2022 08:45, Dmitry Baryshkov wrote:
+> On 03/11/2022 17:03, Krzysztof Kozlowski wrote:
+>> On 02/11/2022 19:13, Dmitry Baryshkov wrote:
+>>> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
+>>> SM8450 platform.
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   .../bindings/display/msm/qcom,sm8450-dpu.yaml | 132 +++++++
+>>>   .../display/msm/qcom,sm8450-mdss.yaml         | 349 ++++++++++++++++++
+>>>   2 files changed, 481 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+>>>   create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+>>>
+> 
+> [skipped]
+> 
+>>> +
+>>> +$ref: /schemas/display/msm/mdss-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+> 
+> [skipped]
+> 
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: iface
+>>> +      - const: bus
+>>> +      - const: nrt_bus
+>>> +      - const: core
+>>> +
+>>> +  iommus:
+>>> +    maxItems: 1
+>>> +
+>>> +  interconnects:
+>>> +    maxItems: 2
+>>> +
+>>> +  interconnect-names:
+>>> +    maxItems: 2
 >>
->> No, they are device specific, not controller specific. Every device
->> requiring them must explicitly include them.
->>
->> See:
->> https://lore.kernel.org/all/20220816124321.67817-1-krzysztof.kozlowski@linaro.org/
->>
->> Best regards,
->> Krzysztof
+>> You need specific names here.
 >>
 > 
-> I think you really mean to link to:
-> https://lore.kernel.org/all/20220718220012.GA3625497-robh@kernel.org/
-> 
-> oh and btw, doesn't that mean that the patch is missing
-> Fixes: 233363aba72a ("spi/panel: dt-bindings: drop CPHA and CPOL from common properties")
-> ?
-> 
-> but I'm not sure I understand the reasoning? I mean, from the
-> perspective of the common schema, isn't it valid to put "spi-cpha" on a
-> SPI peripheral OF node even if the hardware doesn't support it, in the
-> same way that it's valid to put spi-max-frequency = 1 GHz even if the
+> The names are described in mdss-common.yaml
 
-It is not valid to put spi-max-frequency = 1 GHz in
-spi-peripheral-props.yaml.
-
-> hardware doesn't support it? Or maybe I'm missing the point of
-> spi-peripheral-props.yaml entirely? Since when is stacked-memories/
-> parallel-memories something that should be accepted by all schemas of
-> all SPI peripherals (for example here, an Ethernet switch)?
-
-Since we discussed it last time.  What is not clear in Rob's response?
-He nicely explained the purpose of spi-peripheral-props.yaml.
-
-> I think that spi-cpha/spi-cpol belongs to spi-peripheral-props.yaml just
-> as much as the others do.
-> 
-> The distinction "device specific, not controller specific" is arbitrary
-> to me. These are settings that the controller has to make in order to
-> talk to that specific peripheral. Same as many others in that file.
-
-Not every fruit is an orange, but every orange is a fruit. You do not
-put "color: orange" to schema for fruits. You put it to the schema for
-oranges.
-
-IOW, CPHA/CPOL are not valid for most devices, so they cannot be in
-spi-peripheral-props.yaml.
+Ah, then it is ok. I could not check these :/
 
 Best regards,
 Krzysztof
