@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A7C618DBD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 02:45:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6FA8618DC2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 02:48:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229492AbiKDBpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Nov 2022 21:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42334 "EHLO
+        id S230072AbiKDBsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Nov 2022 21:48:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiKDBpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 21:45:41 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912A322BD4
-        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 18:45:40 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id mi9so2361635qvb.8
-        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 18:45:40 -0700 (PDT)
+        with ESMTP id S229481AbiKDBsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Nov 2022 21:48:13 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6AEA23E9B
+        for <devicetree@vger.kernel.org>; Thu,  3 Nov 2022 18:48:12 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id z6so2356458qtv.5
+        for <devicetree@vger.kernel.org>; Thu, 03 Nov 2022 18:48:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=idTS4SelBRvz9HEBMSJGvE/A1qHqs1yN4on3ybwNC48=;
-        b=OjBnP9x2dKU/TwQkPcpAefniTLnh89qNp0UZAZEcxTJgMM58mGfFQzaX621zsY5Nck
-         ojldyt/w1Mp/fw3IvEb4nFNkFczmPgS8rCXVvyEManOZPfKibqdAyj2TqJz12i+/0zvD
-         Ao31Q6GvcP3uoAid5T5ydbO4eiU3YR+OXDByETT64y49+Jvy5YZzWGpuJI1//a9LsfM+
-         Y/c3wGC2hOgBDqc7+4emqRJphavau+7wvhKwNODuxJgWfXXtCkyQqYuqY9Szt95If0o0
-         JPJBq8eU7RcxwIUCJ8nVEW8BPz7YatV+Lux05ccZzKHU/cYjSSlwmr/+LOb84VRXRfi+
-         LXWw==
+        bh=pEswnYQHpO+Tmr3+kD8Xe7eiAlA8KITu0hUw/9KESMM=;
+        b=U3oy+2Hvxdfe4VFd1klhGm9i63rhZGfklzBvM6XcVdk2Siv777zCUaioeiwO5EQuQq
+         /28bYQBpydYX+7jgZIkW+5RpNYmMOaJPOnrp26wgpdl8F4i4WQxJhv0cazG9OLTjHflX
+         sN7wDazIoxgHuIBRq8yKupOUnWm2IU6qRS4uHS+CqXwaphKZmTiJBSdVWFx+Bckjc8ES
+         ENHv9DLk+HaU9F9byIRHG2wlJ/1YqGg2TY/HIAWXbFVwpi+GqszejUyzn66AfpUh+JB6
+         Zsf+qLohii0xUZTxqfiyRGAKegMVtp6E+SD8poT2b8XR0ncvLLlh4eHo4ouSXIftfxcD
+         LzQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=idTS4SelBRvz9HEBMSJGvE/A1qHqs1yN4on3ybwNC48=;
-        b=VCvAt4MBtf8dI8J6Dh1JIoHg1ZMDmKxUK32YonLVob7f6cytZtpdHZIV3H1jhllNDi
-         v663YsC5soFvccSdAoAkVrDNxHYNGXwQlIfOagBgTTTg/0NBahaX9AsGlFWFGSAC0yhY
-         nH3mWnbqoeHlhXw1fYaT3Y5hZBQS+pYIb0EHP7BQOlpffljk9ecKI3uR7WzW1DMWxl9M
-         VExufvBDfudtcC2oEZZWnfHlgRhZwTNwNUYNsKDR/PdRGuVgCymUpZye/UF4Runs9Z81
-         hgUhndOyi53LRW+2VA3+QfDFYUG32ydUtOsNaLlE9J6ZHou3j06lFKsUXYHKY7r4RSzr
-         6dCw==
-X-Gm-Message-State: ACrzQf3jFlfC/QHl5j7ZbWPWpdJ043qHV3gI7dszCFJTQoAPt25cz8JK
-        JZaAVBEu+B7psK+pIFI4HKKdUQ==
-X-Google-Smtp-Source: AMsMyM5+T0lH6IliHmdWswvFwDwmXCa63u4RyjwkNBrqSnB0voVqyMdUppgaAB0i0IVqxZZcy9gF0w==
-X-Received: by 2002:a05:6214:268a:b0:4bb:62a8:990 with SMTP id gm10-20020a056214268a00b004bb62a80990mr29273628qvb.75.1667526339806;
-        Thu, 03 Nov 2022 18:45:39 -0700 (PDT)
+        bh=pEswnYQHpO+Tmr3+kD8Xe7eiAlA8KITu0hUw/9KESMM=;
+        b=0rdb/2+Z/WWp4k9V8BNZUMXBUbwIPftHC3sW8ZHuvv5fM+tNr32N4z4vMFmbZcxQVo
+         IcB2l4KpYQuloZUsOcrmKDjOMl7gDHlzrPekTWsAY/j1ZpKUJauMKLcS+CV0uWCJFmuu
+         bRECLbubCPxZgsqDoS6TMDJ14CnDK22owLSGhYtzcaarcM6cruye5vwpOMxstv+lUyPB
+         mjblzfoWyaa+A3UjsvuaUuIYl+/bL1pqYlftE5L+AOiyw77our5OXOYG7RRpbxXM1vaz
+         kcBTmxXW6/eYnyl1Du+LBSGRIE4ENNZ8MPmxZMybMXyN8JOeenlH0g9dGk6sB6GP5Evf
+         69Zw==
+X-Gm-Message-State: ACrzQf0/YxtSRzb6bpOj43BFcrYq16VdqXpca7FbNN5RAZJaZe1mxIQN
+        xV0WOGCo5oAVHEyl33Djiee21GVgXg2wYg==
+X-Google-Smtp-Source: AMsMyM6CWaZw0pdfeUjIV3azV2uEBg+2ulJVuWvR4FNE9GqCv/dyZTm79/bCo+Hz+C8p9EsJJXLC3A==
+X-Received: by 2002:ac8:728b:0:b0:3a4:fb34:7dbc with SMTP id v11-20020ac8728b000000b003a4fb347dbcmr214797qto.544.1667526491897;
+        Thu, 03 Nov 2022 18:48:11 -0700 (PDT)
 Received: from ?IPV6:2601:586:5000:570:da2a:9e7e:ddb5:dfa1? ([2601:586:5000:570:da2a:9e7e:ddb5:dfa1])
-        by smtp.gmail.com with ESMTPSA id g14-20020a05620a218e00b006ce580c2663sm1865195qka.35.2022.11.03.18.45.38
+        by smtp.gmail.com with ESMTPSA id x17-20020a05620a449100b006fa31bf2f3dsm1973043qkp.47.2022.11.03.18.48.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Nov 2022 18:45:39 -0700 (PDT)
-Message-ID: <bac94304-794f-79ee-5ad3-0363121e0305@linaro.org>
-Date:   Thu, 3 Nov 2022 21:45:38 -0400
+        Thu, 03 Nov 2022 18:48:11 -0700 (PDT)
+Message-ID: <7fcd798a-9cce-9453-1657-7be1abf3b97e@linaro.org>
+Date:   Thu, 3 Nov 2022 21:48:10 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: iommu: arm-smmu: add sdm670
- compatible
+Subject: Re: [PATCH 2/3] dt-bindings: i2c: renesas,rzv2m: Fix SoC specific
+ string
 Content-Language: en-US
-To:     Richard Acayan <mailingradian@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>, Emma Anholt <emma@anholt.net>,
-        Rob Clark <robdclark@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20221103232632.217324-1-mailingradian@gmail.com>
- <20221103232632.217324-2-mailingradian@gmail.com>
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>
+References: <20221103230648.53748-1-fabrizio.castro.jz@renesas.com>
+ <20221103230648.53748-3-fabrizio.castro.jz@renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221103232632.217324-2-mailingradian@gmail.com>
+In-Reply-To: <20221103230648.53748-3-fabrizio.castro.jz@renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,17 +84,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2022 19:26, Richard Acayan wrote:
-> The Snapdragon 670 needs the IOMMU for GENI I2C. Add a compatible string in
-> the documentation to represent its support.
+On 03/11/2022 19:06, Fabrizio Castro wrote:
+> s/renesas,i2c-r9a09g011/renesas,r9a09g011-i2c/g for consistency.
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> renesas,i2c-r9a09g011 is not actually used by the driver, therefore
+> changing this doesn't cause any harm.
 
-There is ongoing rework of these bindings, so something needs rebase,
-but FWIW:
+And what about other users of DTS? One chosen driver implementation
+might not be enough...
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Fixes: ba7a4d15e2c4 ("dt-bindings: i2c: Document RZ/V2M I2C controller")
 
+You need to explain the bug - where is the issue, how it affects users.
+Otherwise it is not a bug and there is nothing to fix.
+
+
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> index c46378efc123..92e899905ef8 100644
+> --- a/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/renesas,rzv2m.yaml
+> @@ -16,7 +16,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> -          - renesas,i2c-r9a09g011  # RZ/V2M
+> +          - renesas,r9a09g011-i2c  # RZ/V2M
+
+No.
+
+Deprecate instead old compatible. There are already users of it, at
+least in kernel. Not sure about other OS/bootloaders/firmwares.
 
 Best regards,
 Krzysztof
