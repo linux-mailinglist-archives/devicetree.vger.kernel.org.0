@@ -2,154 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44178619273
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 09:10:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D60619276
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 09:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230315AbiKDIKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 04:10:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44456 "EHLO
+        id S231383AbiKDILT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 04:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbiKDIKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 04:10:33 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F4C21266;
-        Fri,  4 Nov 2022 01:10:31 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id E780E5C00BE;
-        Fri,  4 Nov 2022 04:10:30 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute3.internal (MEProxy); Fri, 04 Nov 2022 04:10:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1667549430; x=1667635830; bh=4yw24n+H9s
-        ew5wjPIN5rwS9Ptmj6epn7kfJOfbtVSMk=; b=Og9ijk2hObYCaVvY79CGJF8wxq
-        2lgE7uxsPAZYpI7WuRRSliXmPYja/ts8fKNpSbuarP9zeSTumYtC+NsMD/HhZzou
-        xir+G9OdCZH8ETuQlm1LvJRBikMRh9hg7POeIvDhU1+z1GQoHjb43WdY3Qm5eTwD
-        M4OKKBe7EBlQ89T3NfKSRkXsLGI+bUAtz4h78b5orou5p2WXTkap3rEssRQBTOtv
-        IMfuRYBzhhN32qjJWUMsqLFkTUgdIKzcldnH1WcAcs1/7hyRYXZPY2q8VJ7LMo2F
-        sbyq92b+2dv4V7EkbheDFCO8JXoWNG05G20KhX0VYzCm+coX5IvNUDeFX99A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; t=1667549430; x=1667635830; bh=4yw24n+H9sew5wjPIN5rwS9Ptmj6
-        epn7kfJOfbtVSMk=; b=CS7UG3tY5ElDuWEDog5xPDIJyNxdYWNLQR4N3lowjwLu
-        XMol5Ym0sE084PHNE5tp+I/QXMQlS0qxHm/5O4f8lwcFz2yW1F9OmlaxXBJw/X3D
-        YCoQj/k9XJEJt05NfLSHL1QTue3zR3ne0O/46eP2m2uenYEHNEQZXXyE5apF67Xg
-        Qa0J7L0Jif4wg+DADocKPA9e6jz4h0RiMGNdt8B1E7wWw+vmRgwkLqjgfW6EOVeo
-        WmFjfLum5zoCAi4/UDO8mAIE6QBTfrVGYnHP/6haDLk13SheuG9Nk6rbubIvX685
-        mDflAvom14aFSse8+K48vwL9ZQE7Ih3J5tbxNze5WQ==
-X-ME-Sender: <xms:9shkY6r5nTEm0ai-OvcxDXsjTtzR-y3fA0phAHdWPior-ae0M02V0w>
-    <xme:9shkY4olQOufzpK54hZ2E3w0_yIixkAKQVUXeTHsU6G691k9UglAutaJPeaunYFB1
-    dtRB9uFRfsPilbNOzA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvddtgdduudejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:9shkY_NPogpgaWVhOBpxaCq98Am3O7kMgUZjGNnCh8_MMPSwFL3CYw>
-    <xmx:9shkY57I1w0ZfBpWbSjChg7zmukbrqIKGuJm9DxJAUalIwUZ8nqLpw>
-    <xmx:9shkY54jCvXUJE0T8rb23dIbMdseKqwpuI_569IbwzrmMeAfuU8fDw>
-    <xmx:9shkY4z1DWqNwc_l0qkEfbxt3YZ-DHzQw5d1FbF3Ym5IGQqbFn74ww>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 914A5B603ED; Fri,  4 Nov 2022 04:10:30 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.7.0-alpha0-1087-g968661d8e1-fm-20221021.001-g968661d8
-Mime-Version: 1.0
-Message-Id: <9dd597d9-a3f3-48f2-8416-b5b097a230d5@app.fastmail.com>
-In-Reply-To: <96238455-73b6-bead-0fdb-55ca68e5bf0b@quicinc.com>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-14-quic_eberman@quicinc.com>
- <Y2H8oh7AvYDiMqKs@kroah.com>
- <722b05a1-4bf5-0837-baea-b1d0a9cc1e43@quicinc.com>
- <Y2MKWOihjAPxfl6v@kroah.com>
- <96238455-73b6-bead-0fdb-55ca68e5bf0b@quicinc.com>
-Date:   Fri, 04 Nov 2022 09:10:12 +0100
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Elliot Berman" <quic_eberman@quicinc.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-Cc:     "Bjorn Andersson" <quic_bjorande@quicinc.com>,
-        "Murali Nalajala" <quic_mnalajal@quicinc.com>,
-        "Trilok Soni" <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        "Carl van Schaik" <quic_cvanscha@quicinc.com>,
-        "Prakruthi Deepak Heragu" <quic_pheragu@quicinc.com>,
-        "Andy Gross" <agross@kernel.org>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>,
-        "Jassi Brar" <jassisinghbrar@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Lorenzo Pieralisi" <lorenzo.pieralisi@arm.com>,
-        "Sudeep Holla" <sudeep.holla@arm.com>,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Jonathan Corbet" <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Amol Maheshwari" <amahesh@qti.qualcomm.com>,
-        "Kalle Valo" <kvalo@kernel.org>, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 13/21] gunyah: vm_mgr: Introduce basic VM Manager
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230348AbiKDILT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 04:11:19 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BA825C48;
+        Fri,  4 Nov 2022 01:11:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667549477; x=1699085477;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=+z9ag5LPL19G0M2uEjLwzIQrVzTvZHoq4i14ZrWWfOc=;
+  b=EVKJnwHXuay4bAvohwEMRIZkNdVjZuC3jVfnynW3dQbqqPGm8WyL3mw7
+   4ANKCjyrjjY0uU4KwuTKKXqFJogcXcVCGliM6R8pACrNVA4rxHVIeErb3
+   Fjz7NSt7RDKgbQ8iNCFYdmhFTQbbkK5H/7Hudb9/Fgs2IYKwqHRmf6HVC
+   BtCSyFGxHja7fRYbXi6ty8xxYDreSPG5Kbh/dBR98NMKia3h7lYomaP8M
+   s9TQ6VnqN2xuEG5mX6YyLMLi+fdd42Pe4MX+gL2DmHFxO+y2Bg2UFlhdG
+   h9L4Id2vHUVo9sGtnGlYPykIBvNM38COviAuHB5jlUyHXf3On/ZpdR78v
+   A==;
+X-IronPort-AV: E=Sophos;i="5.96,136,1665439200"; 
+   d="scan'208";a="27155345"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 04 Nov 2022 09:11:14 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 04 Nov 2022 09:11:14 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 04 Nov 2022 09:11:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1667549474; x=1699085474;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=+z9ag5LPL19G0M2uEjLwzIQrVzTvZHoq4i14ZrWWfOc=;
+  b=GzcKF6urnaZ3sYijd+TQh60n+kxTOVik1U7XXvIg1IV0LVsmsKtFcJL5
+   p+K7xEs5MxrzMWmDim8I4DmMzZxpmj87SiI0MDBGK6BqgLjfZSF5auePY
+   cew9ZW6wl2vnpYdnACBlldbAPRnetUcrwINIjqhkuvrpK4/w956mNDi2p
+   LtSaaCo2ClPMSOsRf5F46U6tjt2UPR4RzxfXUHwa1axF6zRqzAZePI+RC
+   Or8N5lQBe1dzZy8Xp2akAjba4f+cKVzT1tgT+uHKOCzr8zlhOBGW+cPU7
+   jGZ3gMcgLwYx7vphMM2Zrc5bNZK9zVsOKMXKhdykjKE73KDFRezQXOYlN
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.96,136,1665439200"; 
+   d="scan'208";a="27155337"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 04 Nov 2022 09:11:13 +0100
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 92D67280056;
+        Fri,  4 Nov 2022 09:11:12 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: dp83867: define ti, ledX-active-low properties
+Date:   Fri, 04 Nov 2022 09:11:11 +0100
+Message-ID: <23673049.ouqheUzb2q@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <893c83e7-8b11-0439-6f38-d522f4a1a368@rasmusvillemoes.dk>
+References: <20221103143118.2199316-1-linux@rasmusvillemoes.dk> <Y2Q9+qqwRqEu5btz@lunn.ch> <893c83e7-8b11-0439-6f38-d522f4a1a368@rasmusvillemoes.dk>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 4, 2022, at 01:11, Elliot Berman wrote:
-> On 11/2/2022 5:24 PM, Greg Kroah-Hartman wrote:
->> On Wed, Nov 02, 2022 at 11:45:12AM -0700, Elliot Berman wrote:
->>
->> Even if you don't support it 1:1, at least for the ones that are the
->> same thing, pick the same numbers as that's a nicer thing to do, right?
->> 
->
-> Does same thing == interpretation of arguments is the same? For
-> instance, GH_CREATE_VM and KVM_CREATE_VM interpret the arguments
-> differently. Same for KVM_SET_USERSPACE_MEMORY. The high level 
-> functionality should be similar for most all hypervisors since they will 
-> all support creating a VM and probably sharing memory with that VM. The 
-> arguments for that will necessarily look similar, but they will probably 
-> be subtly different because the hypervisors support different features.
+Am Freitag, 4. November 2022, 08:17:44 CET schrieb Rasmus Villemoes:
+> On 03/11/2022 23.17, Andrew Lunn wrote:
+> > On Thu, Nov 03, 2022 at 03:31:17PM +0100, Rasmus Villemoes wrote:
+> >> The dp83867 has three LED_X pins that can be used to drive LEDs. They
+> >> are by default driven active high, but on some boards the reverse is
+> >> needed. Add bindings to allow a board to specify that they should be
+> >> active low.
+> > 
+> > Somebody really does need to finish the PHY LEDs via /sys/class/leds.
+> > It looks like this would then be a reasonable standard property:
+> > active-low, not a vendor property.
+> > 
+> > Please help out with the PHY LEDs patches.
+> 
+> So how do you imagine this to work in DT? Should the dp83867 phy node
+> grow a subnode like this?
+> 
+>   leds {
+>     #address-cells = <1>;
+>     #size-cells = <0>;
+> 
+>     led@0 {
+>       reg = <0>;
+>       active-low;
+>     };
+>     led@2 {
+>       reg = <2>;
+>       active-low;
+>     };
+>   };
+> 
+> Since the phy drives the leds automatically based on (by default)
+> link/activity, there's not really any need for a separate LED driver nor
+> do I see what would be gained by somehow listing the LEDs in
+> /sys/class/leds. Please expand.
 
-I think in the ideal case, you should make the arguments and the
-command codes the same for any command where that is possible. If
-you come across a command that is shared with KVM but just needs
-another flag, that would involve coordinating with the KVM maintainers
-about sharing the definition so the same flag does not get reused
-in an incompatible way.
+There have been several tries to support LED support directly per DT, e.g. [1] 
+& [2]. I assume Andrew is referring to [3].
 
-For commands that cannot fit into the existing definition, there
-should be a different command code, using your own namespace and
-not the 0xAE block that KVM has. It still makes sense to follow
-the argument structure roughly here, unless there is a technical
-reason for making it different.
+Best regards,
+Alexander
 
-> I don't think userspace that supports both KVM and Gunyah will benefit 
-> much from re-using the same numbers since those re-used ioctl calls 
-> still need to sit within the context of a Gunyah VM.
+[1] https://lore.kernel.org/netdev/YFUVcLCzONhPmeh8@lunn.ch/T/
+[2] https://www.spinics.net/lists/netdev/msg677827.html
+[3] https://patches.linaro.org/project/linux-leds/cover/
+20220503151633.18760-1-ansuelsmth@gmail.com/
 
-One immediate benefit is for tools that work on running processes,
-such as strace, gdb or qemu-user. If they encounter a known command,
-they can correctly display the arguments etc.
 
-Another benefit is for sharing portions of the VMM that live in
-outside processes like vhost-user based device emulation that
-interacts with irqfd, memfd etc. The more similar the command
-interface is, the easier it gets to keep these tools portable.
 
-      Arnd
