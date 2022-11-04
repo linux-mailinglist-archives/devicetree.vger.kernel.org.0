@@ -2,151 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A2B619E3F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 751BE619E65
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:22:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230139AbiKDRQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 13:16:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57164 "EHLO
+        id S230127AbiKDRWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 13:22:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231294AbiKDRQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:16:04 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED0940472
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 10:16:01 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id w4so3455916qts.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 10:16:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nOs3glUYlVlOGkD+d61vafn3z8WhEZloC5kNYhM2+Ik=;
-        b=nZUFy5qS+kcKRgiQerq9t6LWsQUJdfZxNClFWjXBy7+MNVNqdh5yPYzabdmEppfDTD
-         abMT22yv+qtHAYFUPLVTem0XhAMmHq96kPDp2rTluaG3S4mgJrbs1DagGbCmTBNy2M/g
-         rPqvqrPDyEnXn56ct9+FxhqTdIihgUPUWQbi+W4e/xcguUuLnZH3+drBpnnGC7Uq2H0z
-         gO0qwKIRiHA5uw2FLLFHvR6Xxz0meJrJSzEXlM1MyAIOIfGao0KmHKXnq1Kr8f1UQ/pd
-         HVT8+aQpBh5+anU8cH28jop/Zy8vaZRpZ42HO2jBKMzAMcDahCaKyDC7ZfWPUlqhAyae
-         8XGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nOs3glUYlVlOGkD+d61vafn3z8WhEZloC5kNYhM2+Ik=;
-        b=rh8HSFNLfQK7w7/QPRoaINFRt20EW11Wf4z1QasyvTPPUyt8Dgt682eNcRsAQB5BSH
-         5na/S9tM8/tsySEiNvF6rfLAsWDMiFUMrzrvMbtZVSwJ2HdUBPft3MKRA5WRdCm6QlYq
-         +tldVrIa/oYmRloXxbI90X9hj4YtYHylaoJSmmJpwM9dbFF1aJLaVWEfv/jZuyKIIq9/
-         MqKPaMhXsR3AcHOHWL+pvzqavMQq3GbM0e3EK0/fb7durq3lufWX5lrap2mjYUXMOrk3
-         2zAmpWzXRdu/indPPZAcfktptYp5z6QpsHalC8YmaKvJCMadHSViovRtGAkuF6Sj+ECA
-         cUmA==
-X-Gm-Message-State: ACrzQf22Kyn7sLlfG0AsDsKYlkLO/+BYzniPZixJ1t+EvZ0m4ovkrl61
-        7oSD8HXfWbcxvt6/k61FTa0WZA==
-X-Google-Smtp-Source: AMsMyM7qnw0egP5wylRcXqYCLxbW8DXmsrk4aUPAOGiyXuh95E+RpEdQRtxMus7jOvms6Nx/Rfc0RA==
-X-Received: by 2002:ac8:5e50:0:b0:3a5:6a35:f440 with SMTP id i16-20020ac85e50000000b003a56a35f440mr2413122qtx.46.1667582160898;
-        Fri, 04 Nov 2022 10:16:00 -0700 (PDT)
-Received: from krzk-bin.. ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05620a288800b006fa4cac54a4sm3274901qkp.133.2022.11.04.10.15.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 10:16:00 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
-Date:   Fri,  4 Nov 2022 13:15:57 -0400
-Message-Id: <20221104171557.95871-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230035AbiKDRV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:21:59 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1CFAE5A;
+        Fri,  4 Nov 2022 10:21:58 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0C36B6602989;
+        Fri,  4 Nov 2022 17:21:55 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667582516;
+        bh=R/MBlJBNY8EYBt6oZqjxP8TEcbb7lnlRlY2DZ7434zU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ku0bwUVtf5oKlMLP0ahGkM/AFF1NVvTK4xSv08D6bDpoArwk7fNUVX4up8i7p+YS6
+         WYrOAkqaccZpd+oaLAiY6Ar/q++RvqReKQX4DoxIjAmVuVNG4GjKc1P9nsptV/qTry
+         fO/9xoBfP6Fe2KUuOnbg0KciaFngjlPyxceVz0aygW5fdg0kTOe207ImIimWwaj+8I
+         c/JLmjU7DXdI1qr+B8jWvJ7lVkPiq+U3fNvcRPvcf3wQ03oottMi2qAEsC+bClQ0EW
+         inX+4W/B9XPKzo6kWvJgQBTRMCKkOHDjQ557fzpi6e/7KlREFMyxoq6MVsZM7R5LBv
+         wiLqQNjOVMKAg==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@somainline.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, ulf.hansson@linaro.org,
+        srinivas.kandagatla@linaro.org, jic23@kernel.org, lars@metafoo.de,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        bhupesh.sharma@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-hardening@vger.kernel.org, marijn.suijten@somainline.org,
+        kernel@collabora.com, luca@z3ntu.xyz, a39.skl@gmail.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 0/9] MSM8956/76 and Sony Xperia X / X Compact support
+Date:   Fri,  4 Nov 2022 18:21:13 +0100
+Message-Id: <20221104172122.252761-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some boards use SJA1105 Ethernet Switch with SPI CPHA, while ones with
-SJA1110 use SPI CPOL, so document this to fix dtbs_check warnings:
+This series adds basic support for MSM8976 and its lower spec variant
+MSM8956, along with two devices: the Sony Xperia X and X Compact.
 
-  arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
+For now, even though I do have a tree in which these two devices are
+fully booting, only a basic console boot is provided as the rest is
+awaiting cleanup and some more dependencies.
+Especially every device requiring IOMMU support, like MDSS, MDP and
+Adreno GPU cannot work with the current qcom_iommu driver, as it
+needs some code to get the ASIDs right for MSM8956/76.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series depends on [1].
 
----
+Tested on both Xperia X and X Compact.
 
-Changes since v2:
-1. Add allOf:if:then, based on feedback from Vladimir.
+[1]: https://patchwork.kernel.org/project/linux-arm-msm/list/?series=690889
 
-Changes since v1:
-1. Add also cpha
----
- .../bindings/net/dsa/nxp,sja1105.yaml         | 27 ++++++++++++++++---
- 1 file changed, 23 insertions(+), 4 deletions(-)
+AngeloGioacchino Del Regno (7):
+  dt-bindings: iio: qcom-spmi-vadc: Add definitions for USB DP/DM VADCs
+  dt-bindings: soc: qcom: qcom,smd-rpm: Use qcom,smd-channels on MSM8976
+  dt-bindings: mmc: sdhci-msm: Document compatible for MSM8976
+  dt-bindings: mfd: qcom,tcsr: Add compatible for MSM8976
+  arm64: dts: qcom: Add configuration for PM8950 peripheral
+  arm64: dts: qcom: Add DTS for MSM8976 and MSM8956 SoCs
+  arm64: dts: qcom: Add support for SONY Xperia X/X Compact
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-index 1e26d876d146..ac66af3fdd82 100644
---- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-@@ -12,10 +12,6 @@ description:
-   cs_sck_delay of 500ns. Ensuring that this SPI timing requirement is observed
-   depends on the SPI bus master driver.
- 
--allOf:
--  - $ref: "dsa.yaml#"
--  - $ref: /schemas/spi/spi-peripheral-props.yaml#
--
- maintainers:
-   - Vladimir Oltean <vladimir.oltean@nxp.com>
- 
-@@ -36,6 +32,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  spi-cpha: true
-+  spi-cpol: true
-+
-   # Optional container node for the 2 internal MDIO buses of the SJA1110
-   # (one for the internal 100base-T1 PHYs and the other for the single
-   # 100base-TX PHY). The "reg" property does not have physical significance.
-@@ -109,6 +108,26 @@ $defs:
-        1860, 1880, 1900, 1920, 1940, 1960, 1980, 2000, 2020, 2040, 2060, 2080,
-        2100, 2120, 2140, 2160, 2180, 2200, 2220, 2240, 2260]
- 
-+allOf:
-+  - $ref: dsa.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - nxp,sja1105e
-+            - nxp,sja1105t
-+            - nxp,sja1105p
-+            - nxp,sja1105q
-+            - nxp,sja1105r
-+            - nxp,sja1105s
-+    then:
-+      properties:
-+        spi-cpol: false
-+    else:
-+      properties:
-+        spi-cpha: false
-+
- unevaluatedProperties: false
- 
- examples:
+Marijn Suijten (2):
+  dt-bindings: nvmem: Add compatible for MSM8976
+  dt-bindings: arm: qcom: Document msm8956 and msm8976 SoC and devices
+
+ .../devicetree/bindings/arm/qcom.yaml         |   10 +
+ .../devicetree/bindings/mfd/qcom,tcsr.yaml    |    1 +
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |    1 +
+ .../bindings/nvmem/qcom,qfprom.yaml           |    1 +
+ .../bindings/soc/qcom/qcom,smd-rpm.yaml       |    1 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ .../qcom/msm8956-sony-xperia-loire-kugo.dts   |   36 +
+ .../qcom/msm8956-sony-xperia-loire-suzu.dts   |   17 +
+ .../dts/qcom/msm8956-sony-xperia-loire.dtsi   |  269 ++++
+ arch/arm64/boot/dts/qcom/msm8956.dtsi         |   18 +
+ arch/arm64/boot/dts/qcom/msm8976.dtsi         | 1208 +++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8950.dtsi          |  165 +++
+ include/dt-bindings/iio/qcom,spmi-vadc.h      |    3 +
+ 13 files changed, 1732 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-kugo.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-suzu.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8956.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8976.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pm8950.dtsi
+
 -- 
-2.34.1
+2.37.2
 
