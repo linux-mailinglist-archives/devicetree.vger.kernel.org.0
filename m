@@ -2,97 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 171B7619889
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE07619890
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230205AbiKDNz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:55:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
+        id S231613AbiKDN47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:56:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231656AbiKDNz0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:55:26 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37D792604
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:55:24 -0700 (PDT)
-Received: from [192.168.31.208] (unknown [194.29.137.22])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S229700AbiKDN4k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:56:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2522F001;
+        Fri,  4 Nov 2022 06:56:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7406B3EE24;
-        Fri,  4 Nov 2022 14:55:22 +0100 (CET)
-Message-ID: <7a674e39-8c64-4cfb-5e0d-a50773b7460d@somainline.org>
-Date:   Fri, 4 Nov 2022 14:55:21 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9DA7EB82E28;
+        Fri,  4 Nov 2022 13:56:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24E0BC433D6;
+        Fri,  4 Nov 2022 13:56:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667570196;
+        bh=f+kfsg5vhO3DMtcWUBeGsDvS+k5oJCSMEawyOO9HqgI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Yy1N37+9MPg01JnN4z4Gd+ER/gLzZnHihM2HkralT5v4DhrIPs3Tfz/iDSlRINpB4
+         EXzEW3Irt7Rdu7JF+t9RDmde3T5cjVG5ywdo0ZFAGyBxqH26SX8AKbgK2BfksfTK9Z
+         rOHUUufNuVuj0PEXuG0fAuGg9cTe6ZQi1haVTBaTCaOrbs1i5oE1aEl8DQpRu2+LxY
+         /7J4OTf9D/owPMsMSE8q954RwatBjGNn3El1d3RiwRWH2xKY43hh6G991iryuJGSzi
+         NC+q/iU5C1KkCfRTAu8La5r4ztxehv5Rl4OS1SO/Z+YeE6BDJPEuQmvwkzL0wceGkW
+         ypqTTfQWglutg==
+Date:   Fri, 4 Nov 2022 13:56:26 +0000
+From:   Lee Jones <lee@kernel.org>
+To:     jerome Neanne <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, tony@atomide.com, vigneshr@ti.com,
+        bjorn.andersson@linaro.org, shawnguo@kernel.org,
+        geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, arnd@arndb.de, jeff@labundy.com,
+        afd@ti.com, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
+Message-ID: <Y2UaCq+EL0f2mJ3p@google.com>
+References: <20221011140549.16761-1-jneanne@baylibre.com>
+ <20221011140549.16761-5-jneanne@baylibre.com>
+ <Y1+q2Usm9ecicXqp@google.com>
+ <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [PATCH v3 5/8] drm/msm/dsi: add support for DSI 2.6.0
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
-References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
- <20221104130324.1024242-6-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20221104130324.1024242-6-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 04 Nov 2022, jerome Neanne wrote:
 
-On 04/11/2022 14:03, Dmitry Baryshkov wrote:
-> Add support for DSI 2.6.0 (block used on sm8450).
->
-> Tested-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+> 
+> 
+> On 31/10/2022 12:00, Lee Jones wrote:
+> > > diff --git a/include/linux/mfd/tps65219.h b/include/linux/mfd/tps65219.h
+> > > new file mode 100644
+> > > index 000000000000..2c1cf92e92ac
+> > > --- /dev/null
+> > > +++ b/include/linux/mfd/tps65219.h
+> 
+> > > +/**
+> > > + * struct tps65219 - tps65219 sub-driver chip access routines
+> > > + *
+> > > + * Device data may be used to access the TPS65219 chip
+> > > + *
+> > > + * @dev MFD device
+> > > + * @regmap Regmap for accessing the device registers
+> > > + * @irq_data Regmap irq data used for the irq chip
+> > > + * @nb notifier block for the restart handler
+> > > + */
+> > 
+> > This header needs work.
+> I'm not sure to get your point here. Just something like below to match
+> format or do you expect more:
+> 
+> /**
+>  * struct tps65219 - tps65219 sub-driver chip access routines
+>  *
+>  * Device data may be used to access the TPS65219 chip
+>  *
+>  * @dev: MFD device
+>  * @regmap: Regmap for accessing the device registers
+>  * @irq_data: Regmap irq data used for the irq chip
+>  * @nb: notifier block for the restart handler
+>  */
+> 
+> > 
+> > Can you try an compile with W=1 please.
+> This raise one warning on mfd:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Is that before or after the header was fixed-up?
 
+> drivers/mfd/tps65219.c:28:12: warning: ‘tps65219_soft_shutdown’ defined but
+> not used [-Wunused-function]
+>    28 | static int tps65219_soft_shutdown(struct tps65219 *tps)
+>       |            ^~~~~~~~~~~~~~~~~~~~~~
+> soft_shutdown has been validated and is used in TI baseline even if not
+> hooked in upstream version further to this review:
+> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
 
-Konrad
+Will tps65219_soft_shutdown() be used?
 
->   drivers/gpu/drm/msm/dsi/dsi_cfg.c | 2 ++
->   drivers/gpu/drm/msm/dsi/dsi_cfg.h | 1 +
->   2 files changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> index 7e97c239ed48..59a4cc95a251 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> @@ -300,6 +300,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
->   		&sc7180_dsi_cfg, &msm_dsi_6g_v2_host_ops},
->   	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_5_0,
->   		&sc7280_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-> +	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_6_0,
-> +		&sdm845_dsi_cfg, &msm_dsi_6g_v2_host_ops},
->   };
->   
->   const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> index 8f04e685a74e..95957fab499d 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> @@ -25,6 +25,7 @@
->   #define MSM_DSI_6G_VER_MINOR_V2_4_0	0x20040000
->   #define MSM_DSI_6G_VER_MINOR_V2_4_1	0x20040001
->   #define MSM_DSI_6G_VER_MINOR_V2_5_0	0x20050000
-> +#define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
->   
->   #define MSM_DSI_V2_VER_MINOR_8064	0x0
->   
+I think it should be removed until it's utilised in Mainline.
+
+> It was a TI requirement to implement it...
+> Let me know if you want me to remove this function or if we can keep it like
+> this.
+> 
+
+-- 
+Lee Jones [李琼斯]
