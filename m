@@ -2,110 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 782BA619B2D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:15:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D80B1619B40
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbiKDPPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 11:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57764 "EHLO
+        id S232488AbiKDPR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 11:17:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231913AbiKDPPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:15:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6282410D9;
-        Fri,  4 Nov 2022 08:15:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F12076224E;
-        Fri,  4 Nov 2022 15:15:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 884BEC433C1;
-        Fri,  4 Nov 2022 15:15:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667574918;
-        bh=qxe9QLnJVFO3g780VADLn9uwp3GHTLedQwLcrp06fI4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=boAdFwdrgL0yEL9x07dMDkx+KrTxVQ+VR4NJuHsjCQ2bkL9aE+Qx8XTJiVprqQc1f
-         FjUfgBPHrEPahhxIo2yNOvbRMsPJSEPBvHY1gE7JCQtkgZRvqADNzFmx2RmfZoXh6B
-         VOo86va/4vFb6AZYtXgDLeAQgValHH0bD6HvCeQcG641fe6lnWVB1hoMkfZgDxWuta
-         N00uf5hp3FhbKhweBZPT9Z9rKFiUAvZBU33SPD8Te4qTJgM1DDLyQd7dAJz7otu/Yz
-         8x8cEsq6z9BzS159ocTUETG1YgQR8CVBe5s2Jge+fwnzZgBSSs8u90KxTYy483J4Ip
-         gVzglRNh+6tKw==
-Date:   Fri, 4 Nov 2022 20:45:14 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v1 3/5] arm64: dts: qcom: sm8450-hdk: enable display
- hardware
-Message-ID: <Y2Usgs8XHgS/KkxN@matsya>
-References: <20221104131358.1025987-1-dmitry.baryshkov@linaro.org>
- <20221104131358.1025987-4-dmitry.baryshkov@linaro.org>
+        with ESMTP id S232471AbiKDPRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:17:53 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E0224BC1
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 08:17:51 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id cg5so3171586qtb.12
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 08:17:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9cLY+j2UehI3N1Cnjntk9RLs62Wz6cAV41R6pOzQSck=;
+        b=I9LTnBdQRy7hDe15H3LFzF2BYq1k8a8tSt86Sn11B3Y9NFgvZT4OOdBxF5dDzGRI3p
+         H/LONrkCf3D4ruSzJflrzIKrqlOfROEV8K8SjApgpDquuChKfQ7iEbEE/jZhUEyyrfA5
+         Uj4SKzW1YsokKpEh0jxL6dcgj4L2Sub930FjnN+HQMHOUR2weFcJr/wfgJQsbE96w7Z9
+         in79FkaExeNpopSRz5zJmndh9zVYCoqjBmYqQf5It2bdim13yC6J6tlZZw1ZGqg9POmd
+         oTbUCpuy2ss7E70ZTTrjQqVAsmoKoAMQMV8XWhHJYINuPCNr9mhRwULWTiqqGjUQGQRf
+         bTtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9cLY+j2UehI3N1Cnjntk9RLs62Wz6cAV41R6pOzQSck=;
+        b=kDi3EzB3dHvsd3SdXxJN2vAeSV9IT2dM8muVka0OGBS8pOQkutQP9Elxw1q+vHgDvS
+         dYLpknwXWm/4zHce493yifuGGebkZgtaIm21djQ7e4fTw2X+SF8MTKFQPCZilSBfnswO
+         VULXp/t5O7E3zBpGsBdbl31g5dqMZOey7lHwVz/xlpYW3GHj38y3Sb5UZ3ezse4BQnce
+         bHHTCLI+fPrfI18f1Ez7buxUPI+YPOl+9KMW4jWIqGh15+bofjhRwlF3sbxuYdsS03Yb
+         BzZX0r4B3DL1tHAjJ+BL1YIcXFBMrQ6AjXgaQxjDk3MKzzoTmQ2kOtuN6q1aqqWjwfob
+         sL1A==
+X-Gm-Message-State: ACrzQf0++0lZBK1BRZALOXDhS4U9Okwyg15moAXFZopWDn+3KEjUV08Z
+        86aynbYLakPVnetaXDoYkif1BQ==
+X-Google-Smtp-Source: AMsMyM4VZj8Y+i4dKeRfFDw1FcQbs/x9vXFa3xTrnmE/r+YFQff64I49ER/W/df1O1Lz7TyRv/AWqg==
+X-Received: by 2002:ac8:5b03:0:b0:3a5:a44:8dfd with SMTP id m3-20020ac85b03000000b003a50a448dfdmr29626236qtw.497.1667575070625;
+        Fri, 04 Nov 2022 08:17:50 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
+        by smtp.gmail.com with ESMTPSA id o6-20020a05620a2a0600b006ce3f1af120sm3256977qkp.44.2022.11.04.08.17.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Nov 2022 08:17:49 -0700 (PDT)
+Message-ID: <df373886-8bc6-1c4a-6c5d-ab6582175a72@linaro.org>
+Date:   Fri, 4 Nov 2022 11:17:48 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221104131358.1025987-4-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 2/2] dt-bindings: PCI: xilinx-nwl: Convert to YAML
+ schemas of Xilinx NWL PCIe Root Port Bridge
+Content-Language: en-US
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bhelgaas@google.com, michals@xilinx.com, robh+dt@kernel.org,
+        nagaradhesh.yeleswarapu@amd.com, bharat.kumar.gogada@amd.com
+References: <20221104044135.469797-1-thippeswamy.havalige@amd.com>
+ <20221104044135.469797-2-thippeswamy.havalige@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221104044135.469797-2-thippeswamy.havalige@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-11-22, 16:13, Dmitry Baryshkov wrote:
-> Enable MDSS/DPU/DSI0 on SM8450-HDK device. Note, there is no panel
-> configuration (yet).
+On 04/11/2022 00:41, Thippeswamy Havalige wrote:
+> Convert to YAML schemas for Xilinx NWL PCIe Root Port Bridge
+> dt binding.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  .../bindings/pci/xilinx-nwl-pcie.txt          |  73 ---------
+>  .../bindings/pci/xlnx,nwl-pcie.yaml           | 152 ++++++++++++++++++
+>  2 files changed, 152 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index 38ccd44620d0..e1a4cf1ee51d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -442,3 +442,21 @@ &usb_1_qmpphy {
->  	vdda-phy-supply = <&vreg_l6b_1p2>;
->  	vdda-pll-supply = <&vreg_l1b_0p91>;
->  };
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt b/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+> deleted file mode 100644
+> index f56f8c58c5d9..000000000000
+> --- a/Documentation/devicetree/bindings/pci/xilinx-nwl-pcie.txt
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -* Xilinx NWL PCIe Root Port Bridge DT description
+> -
+> -Required properties:
+> -- compatible: Should contain "xlnx,nwl-pcie-2.11"
+> -- #address-cells: Address representation for root ports, set to <3>
+> -- #size-cells: Size representation for root ports, set to <2>
+> -- #interrupt-cells: specifies the number of cells needed to encode an
+> -	interrupt source. The value must be 1.
+> -- reg: Should contain Bridge, PCIe Controller registers location,
+> -	configuration space, and length
+> -- reg-names: Must include the following entries:
+> -	"breg": bridge registers
+> -	"pcireg": PCIe controller registers
+> -	"cfg": configuration space region
+> -- device_type: must be "pci"
+> -- interrupts: Should contain NWL PCIe interrupt
+> -- interrupt-names: Must include the following entries:
+> -	"msi1, msi0": interrupt asserted when an MSI is received
+> -	"intx": interrupt asserted when a legacy interrupt is received
+> -	"misc": interrupt asserted when miscellaneous interrupt is received
+> -- interrupt-map-mask and interrupt-map: standard PCI properties to define the
+> -	mapping of the PCI interface to interrupt numbers.
+> -- ranges: ranges for the PCI memory regions (I/O space region is not
+> -	supported by hardware)
+> -	Please refer to the standard PCI bus binding document for a more
+> -	detailed explanation
+> -- msi-controller: indicates that this is MSI controller node
+> -- msi-parent:  MSI parent of the root complex itself
+> -- legacy-interrupt-controller: Interrupt controller device node for Legacy
+> -	interrupts
+> -	- interrupt-controller: identifies the node as an interrupt controller
+> -	- #interrupt-cells: should be set to 1
+> -	- #address-cells: specifies the number of cells needed to encode an
+> -		address. The value must be 0.
+> -
+> -Optional properties:
+> -- dma-coherent: present if DMA operations are coherent
+> -- clocks: Input clock specifier. Refer to common clock bindings
+> -
+> -Example:
+> -++++++++
+> -
+> -nwl_pcie: pcie@fd0e0000 {
+> -	#address-cells = <3>;
+> -	#size-cells = <2>;
+> -	compatible = "xlnx,nwl-pcie-2.11";
+> -	#interrupt-cells = <1>;
+> -	msi-controller;
+> -	device_type = "pci";
+> -	interrupt-parent = <&gic>;
+> -	interrupts = <0 114 4>, <0 115 4>, <0 116 4>, <0 117 4>, <0 118 4>;
+> -	interrupt-names = "msi0", "msi1", "intx", "dummy", "misc";
+> -	interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+> -	interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
+> -			<0x0 0x0 0x0 0x2 &pcie_intc 0x2>,
+> -			<0x0 0x0 0x0 0x3 &pcie_intc 0x3>,
+> -			<0x0 0x0 0x0 0x4 &pcie_intc 0x4>;
+> -
+> -	msi-parent = <&nwl_pcie>;
+> -	reg = <0x0 0xfd0e0000 0x0 0x1000>,
+> -	      <0x0 0xfd480000 0x0 0x1000>,
+> -	      <0x80 0x00000000 0x0 0x1000000>;
+> -	reg-names = "breg", "pcireg", "cfg";
+> -	ranges = <0x02000000 0x00000000 0xe0000000 0x00000000 0xe0000000 0x00000000 0x10000000  /* non-prefetchable memory */
+> -		  0x43000000 0x00000006 0x00000000 0x00000006 0x00000000 0x00000002 0x00000000>;/* prefetchable memory */
+> -
+> -	pcie_intc: legacy-interrupt-controller {
+> -		interrupt-controller;
+> -		#address-cells = <0>;
+> -		#interrupt-cells = <1>;
+> -	};
+> -
+> -};
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> new file mode 100644
+> index 000000000000..e3484cc704e5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/xlnx,nwl-pcie.yaml
+> @@ -0,0 +1,152 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/xlnx,nwl-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +&mdss {
-> +	status = "okay";
-> +};
+> +title: Xilinx NWL PCIe Root Port Bridge
 > +
-> +&mdss_mdp {
-> +	status = "okay";
-> +};
+> +maintainers:
+> +  - Thippeswamy Havalige <thippeswamy.havalige@amd.com>
 > +
-> +&dsi0 {
-> +	status = "okay";
-> +	vdda-supply = <&vreg_l6b_1p2>;
-> +};
+> +allOf:
+> +  - $ref: /schemas/pci/pci-bus.yaml#
+> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
 > +
-> +&dsi0_phy {
-> +	status = "okay";
-> +	vdds-supply = <&vreg_l5b_0p88>;
-> +};
+> +properties:
+> +  compatible:
+> +    const: xlnx,nwl-pcie-2.11
+> +
+> +  reg:
+> +    items:
+> +      - description: PCIe bridge registers location.
+> +      - description: PCIe Controller registers location.
+> +      - description: PCIe Configuration space region.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: breg
+> +      - const: pcireg
+> +      - const: cfg
+> +
+> +  interrupts:
+> +    items:
+> +      - description: msi0 interrupt asserted when an MSI is received
+> +      - description: msi1 interrupt asserted when an MSI is received
+> +      - description: interrupt asserted when a legacy interrupt is received
+> +      - description: unused interrupt(dummy)
+> +      - description: interrupt asserted when miscellaneous interrupt is received
+> +
+> +  interrupt-names:
+> +    minItems: 4
 
-This is missing dispcc, please enable that node too.
+This does not match interrupts.
 
-Also, sort this please
+> +    items:
+> +      - const: misc
+> +      - const: dummy
+> +      - const: intx
+> +      - const: msi1
+> +      - const: msi0
+> +
+> +  interrupt-map-mask:
+> +    items:
+> +      - const: 0
+> +      - const: 0
+> +      - const: 0
+> +      - const: 7
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  msi-controller:
+> +    description: Identifies the node as an MSI controller.
 
-> -- 
-> 2.35.1
+Drop, it comes from msi schema.
 
--- 
-~Vinod
+> +
+> +  msi-parent:
+> +    description: MSI controller the device is capable of using.
+> +
+> +  interrupt-map:
+> +    maxItems: 4
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  dma-coherent:
+> +    description: Optional,present if DMA operations are coherent
+
+Space after ", "
+
+> +
+> +  clocks:
+> +    description: Optional,Input clock specifier. Refer to common clock bindings
+
+maxItems: 1
+
+Drop "Refer to common clock bindings". Space after "," and no capital
+letter... Just make it an English sentence.
+
+> +
+> +  legacy-interrupt-controller:
+> +    description: Interrupt controller node for handling legacy PCI interrupts.
+> +    type: object
+> +    properties:
+> +      "#address-cells":
+> +        const: 0
+> +
+> +      "#interrupt-cells":
+> +        const: 1
+> +
+> +      "interrupt-controller": true
+> +
+> +    required:
+> +      - '#address-cells'
+> +      - '#interrupt-cells'
+
+Use same style of quotes - ' or "
+
+> +      - interrupt-controller
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - "#interrupt-cells"
+> +  - interrupt-map
+> +  - interrupt-map-mask
+> +  - msi-controller
+> +  - power-domains
+
+> +    };
+
+Best regards,
+Krzysztof
+
