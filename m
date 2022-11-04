@@ -2,120 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF35D61A383
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5AC61A38D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbiKDVmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 17:42:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47430 "EHLO
+        id S229927AbiKDVrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 17:47:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiKDVms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:42:48 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21CE27DD1
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:42:46 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 21so9529473edv.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jg1nxhSdhqb33g9FGYVmWNSbcGrJaakkVgN/anXR2c0=;
-        b=I4ZmiKvKu0bh4DTyzybENVVIYCZGuwq0+49NaEj/XSYsn+s3QCEWWrIqWbtHHXESQF
-         1x8xBzAiiwBdM6cR8+WElgHkEBBhfnZzHTfrEBWgwDdtrYl7kvxzPO8Rn8LFSzYlh2w3
-         CNYBmsXg5HLUFA1g0RGO2aAmA05j4+NvweGz2kcTriHY26+oHLlGhyi+w//UIYT9LNj8
-         GKyC6vtPeJ8r8kGP4dvlJEyBcMWqX+F3xCAKE3H3YaCLUs8vDqGyLXAhGy+nrclMUPxD
-         XAJmTp6wZ8uPlYXP3NirtPxDgyLhMOawKDzeaM5bG3B/C12WuJk6h7HrLdieBzL7u5Wt
-         oSAQ==
+        with ESMTP id S230048AbiKDVrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:47:45 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A8A545EE7;
+        Fri,  4 Nov 2022 14:47:44 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-13ba86b5ac0so6965694fac.1;
+        Fri, 04 Nov 2022 14:47:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Jg1nxhSdhqb33g9FGYVmWNSbcGrJaakkVgN/anXR2c0=;
-        b=Sm/6B4gcLmOqt+LzM/uK4KlD6coTVwC5TQG4/GaaeHi7RZNpWHy5ApFnu1W3BS93TK
-         O53DCrGNpcwsm7hvj7IHkVlJ95/U6jpoS9wbHLBRnOX+RYB4jHIrrhEN6MrAL3JQ8XJa
-         Hz/l52cQLeKt66ZF0ANt9A01yJvkmnezpSU9av5rN3Qb6Flj8JbB6pS16GJgx1zSR1EA
-         4G5O49c8zxi4DTFMPhSm8YeaB6/4Tr1J3VqAB5LHR73O7vs/M7RyYRSGwnrIY4+l/oyE
-         yPLKB8IR9vQAaDnaPxBC2hRFWN56VdAeYOmDvU/FTDCaKK0yzX1cJmW1tn8geA97xvqn
-         YJ7A==
-X-Gm-Message-State: ACrzQf2V87nCAHRJFZ3alZuVwLOWyxUbT/BAC9d+A/9o46jLn2KPT34g
-        ESzLtiiQ+eAo6vJdTKXFI/pBBg==
-X-Google-Smtp-Source: AMsMyM7NAVrlIA+aTC7iR7/ZUaiCNJPc93qZ04EZdIH1JhZ0afooHByDqqY6uqAlqM2FidFx0AkUew==
-X-Received: by 2002:a05:6402:440d:b0:450:de54:3fcf with SMTP id y13-20020a056402440d00b00450de543fcfmr36865871eda.312.1667598165334;
-        Fri, 04 Nov 2022 14:42:45 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id j2-20020a17090623e200b007adaccb9d83sm36789ejg.193.2022.11.04.14.42.43
+        bh=+4AWz3heTvW9/SjNGOnADQKijVdWZEZo5RmZcyg0wzU=;
+        b=mJQGUpXWC7qfgGqVpQ/nleXiy45mPrMe1tV07AOnoKawzW3FvzOYiSRjXhIqvDSDcL
+         XAV5du5dAEASbPk91y1VuO+5s2UNrVEDjrSlkCaGKPz9AvKjSPqCW0NJl6xIQlaQVQNt
+         31LMfmMJxCeBJbxRah76bhzvM5M8ExFP4pdN2AftyK9GMsfj21XPQT45qc2yjQVx/4Kx
+         8fMtJ5RGyyjjimplESaK/eGpNw1qv9x3Go1lHgK4EMFJg5G5R4HFGgHZgzVL/gdG7EJq
+         IDMwzWSFiTgTEQMI6JvPRqntRwBYe2cZq5epbZJXhrKfw7LuGfWrh7JAJ2j375JV0ktL
+         jzvA==
+X-Gm-Message-State: ACrzQf2LQMIGXNbqH5dSe+imVLYCks9w5pZl5P+Gz+t1TWWnjJYzD7kU
+        c4xMC030491V1jUvnfNXaQ==
+X-Google-Smtp-Source: AMsMyM75XqDPp8F1ac7KnwNd5teq4r4YMJDMqo39kggUwLf7Jw9pTQVKqM7XDouGLMc4cawPhnXH7Q==
+X-Received: by 2002:a05:6870:8911:b0:13b:69b2:86b2 with SMTP id i17-20020a056870891100b0013b69b286b2mr23730705oao.253.1667598463241;
+        Fri, 04 Nov 2022 14:47:43 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ek17-20020a056870f61100b0013c50b812a2sm72744oab.36.2022.11.04.14.47.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 14:42:44 -0700 (PDT)
-Date:   Fri, 4 Nov 2022 23:42:43 +0200
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     shengjiu.wang@gmail.com, abelvesa@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, marex@denx.de
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: imx8mp: Add ids for the audio
- shared gate
-Message-ID: <Y2WHU4pKDbDLT3Oz@linaro.org>
-References: <1666935144-7364-1-git-send-email-shengjiu.wang@nxp.com>
- <1666935144-7364-2-git-send-email-shengjiu.wang@nxp.com>
+        Fri, 04 Nov 2022 14:47:42 -0700 (PDT)
+Received: (nullmailer pid 2885635 invoked by uid 1000);
+        Fri, 04 Nov 2022 21:47:44 -0000
+Date:   Fri, 4 Nov 2022 16:47:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: examples: add a list of templates and
+ solutions
+Message-ID: <20221104214744.GA2878314-robh@kernel.org>
+References: <20221028233701.572280-1-krzysztof.kozlowski@linaro.org>
+ <20221101130720.GA963805-robh@kernel.org>
+ <34f40c1c-f933-cee6-f022-14c37650dc3a@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1666935144-7364-2-git-send-email-shengjiu.wang@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <34f40c1c-f933-cee6-f022-14c37650dc3a@linaro.org>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-28 13:32:23, Shengjiu Wang wrote:
-> From: Abel Vesa <abel.vesa@nxp.com>
+On Fri, Nov 04, 2022 at 10:52:22AM -0400, Krzysztof Kozlowski wrote:
+> On 01/11/2022 09:07, Rob Herring wrote:
+> > On Fri, Oct 28, 2022 at 07:37:01PM -0400, Krzysztof Kozlowski wrote:
+> >> It is useful to start from existing bindings when writing new ones,
+> >> especially when one does not know that much DT schema.  However we have
+> >> several bindings which are not the best examples, so people tend to copy
+> >> their issues into new bindings.
+> >>
+> >> Beginners also might not know how to achieve some more complex solutions
+> >> in DT schema, e.g. how one of two properties should be required by the
+> >> bindings.  Some of such solutions are already in example-schema.yaml,
+> >> but several other are missing.  Add reference with such re-usable
+> >> design-patterns.
+> > 
+> > My main concern here is what's a good example today is not tomorrow... 
 > 
-> All these IDs are for one single HW gate (CCGR101) that is shared
-> between these root clocks.
+> Yes, I agree. The problem I want to solve is some folks copy-paste some
+> existing schema as starting point and then are surprised when receive
+> basic style feedback.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Of course the optimal solution would be to make all schemas in same
+> (proper) style, but this is going take some time...
+> 
+> How to solve this problem other way? I don't know.
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+shrug
 
-> ---
->  include/dt-bindings/clock/imx8mp-clock.h | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
+
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >>  .../devicetree/bindings/examples.rst          | 63 +++++++++++++++++++
+> >>  Documentation/devicetree/bindings/index.rst   |  1 +
+> >>  2 files changed, 64 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/examples.rst
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/examples.rst b/Documentation/devicetree/bindings/examples.rst
+> >> new file mode 100644
+> >> index 000000000000..710eea81d8b7
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/examples.rst
+> >> @@ -0,0 +1,63 @@
+> >> +.. SPDX-License-Identifier: GPL-2.0
+> >> +
+> >> +Examples of Devicetree Bindings to use a base
+> >> +=============================================
+> >> +
+> >> +Following Devicetree Bindings in DT Schema are a known good starting point when
+> >> +writing new bindings:
+> >> +
+> >> +1. Simple SPI device:
+> >> +   Documentation/devicetree/bindings/iio/adc/maxim,max11205.yaml
+> >> +
+> >> +2. PMIC (MFD) with several sub-devices:
+> >> +   Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+> >> +
+> >> +3. Battery charger (power supply):
+> >> +   Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+> >> +   (but use vendor prefix in filename)
+> >> +
+> >> +4. Clock controller for several devices with different clock inputs:
+> >> +   Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+> >> +
+> >> +5. GPIO controller:
+> >> +   Documentation/devicetree/bindings/gpio/qcom,wcd934x-gpio.yaml
+> >> +
+> >> +
+> >> +Re-usable design patterns when writing your own bindings
+> >> +========================================================
+> >> +
+> >> +Following bindings show how to use common pattern of writing bindings:
+> >> +
+> >> +1. Property required and present only for one variant.  Property cannot appear
+> >> +   on other variants:
+> >> +   Documentation/devicetree/bindings/example-schema.yaml
+> >> +   Line: 212
+> >> +
+> >> +2. Excluding properties, but none are required:
+> >> +   Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+> >> +   Line: 155
+> >> +
+> >> +3. Excluding required properties, but one is required:
+> >> +   Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
+> >> +   Line: 91
+> >> +
+> >> +4. Array with numbers (items) from given range - min/max:
+> >> +   Documentation/devicetree/bindings/arm/l2c2x0.yaml
+> >> +   Line: 74
+> >> +
+> >> +5. Array with numbers (items) from given range - enum:
+> >> +   Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> >> +   Line: 101
+> >> +
+> >> +6. Uint32 matrix, variable length of two-items:
+> >> +   Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+> >> +   Line: 278
+> >> +
+> >> +7. Phandle to syscon with offset:
+> >> +   Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> >> +   Line: 42
+> >> +
+> >> +8. Variable length of array (e.g. clocks and clock-names) but narrowed to
+> >> +   specific variant:
+> >> +   Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+> >> +   Lines: 33 and 71
+> > 
+> > It seems like some of these that are just a single property we could add 
+> > to example-schema.yaml.
 > 
-> diff --git a/include/dt-bindings/clock/imx8mp-clock.h b/include/dt-bindings/clock/imx8mp-clock.h
-> index 9d5cc2ddde89..2f6fec299662 100644
-> --- a/include/dt-bindings/clock/imx8mp-clock.h
-> +++ b/include/dt-bindings/clock/imx8mp-clock.h
-> @@ -324,8 +324,17 @@
->  #define IMX8MP_CLK_CLKOUT2_SEL			317
->  #define IMX8MP_CLK_CLKOUT2_DIV			318
->  #define IMX8MP_CLK_CLKOUT2			319
-> +#define IMX8MP_CLK_AUDIO_AHB_ROOT		320
-> +#define IMX8MP_CLK_AUDIO_AXI_ROOT		321
-> +#define IMX8MP_CLK_SAI1_ROOT			322
-> +#define IMX8MP_CLK_SAI2_ROOT			323
-> +#define IMX8MP_CLK_SAI3_ROOT			324
-> +#define IMX8MP_CLK_SAI5_ROOT			325
-> +#define IMX8MP_CLK_SAI6_ROOT			326
-> +#define IMX8MP_CLK_SAI7_ROOT			327
-> +#define IMX8MP_CLK_PDM_ROOT			328
->  
-> -#define IMX8MP_CLK_END				320
-> +#define IMX8MP_CLK_END				329
->  
->  #define IMX8MP_CLK_AUDIOMIX_SAI1_IPG		0
->  #define IMX8MP_CLK_AUDIOMIX_SAI1_MCLK1		1
-> -- 
-> 2.34.1
+> I am afraid the example-schema will grow too big for folks to look into.
+> It's already quite complicated, with explanations of the dtschema
+> behavior itself.
+
+How about splitting up the top-level descriptions and property examples?
+
+> How about then RST file with small code snippets?
+
+Then they don't validate.
+
 > 
+> > Also, perhaps a reference to this from writing-schema.rst.
+> 
+> I can do this as well.
+> 
+> The problem with my approach above (and adding these to writing-schema)
+> is that examples above can change, lines can be inadequate.
+
+I just meant a link in writing-schema.rst to this doc. We already have 
+that for example-schema.yaml.
+
+Rob
