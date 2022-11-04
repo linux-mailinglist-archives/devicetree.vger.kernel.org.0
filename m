@@ -2,101 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B10619B49
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFDE619B4D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 16:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232392AbiKDPTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 11:19:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60806 "EHLO
+        id S232515AbiKDPTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 11:19:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbiKDPTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:19:24 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A399BCA5
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 08:19:24 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id o8so3391701qvw.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 08:19:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tRnjrNrKpUEdCWynwN46DRbvjj6rSysENOSI8RxBlNo=;
-        b=nG9oFgohsMgh0IKM6eaQaQ76xOTmewTADKqUnB3LIf8Pyh2WRzvGKl2UgeDuNsnYrO
-         ZhO0HKTxzc2OyZQ1bglKCjndW9q33wxeSysF3DgSu4S3CMtFgd9y90jyWtC5b5U5ifjO
-         aqfvBJVpBXXQWhAxEHawDdO9jwhdjT6SLOw45/Y16BFnutT5MoPm22ogdg0yZFT3U1vE
-         lQcM6vmJlDiOmFH6oWMlPc0e3QC6JZIXwFeREE7TJRUb2bs+LV3pQRpNjk9KasIeY7Iu
-         tWqHLNTjzLeGW+1hcJSDcC3DyWPpc0/FLatlRgpXn8OHXAzG96ee9jwrbMZJhiNmDvNv
-         BM7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tRnjrNrKpUEdCWynwN46DRbvjj6rSysENOSI8RxBlNo=;
-        b=IO33qhfVczVzZ7q9oAgAQTyFgdDqF/eVF1S/cI/byi4n8q7zka5BHP3WwwuhPnQwen
-         Hlf/8Kkhh/ey1UsojgpDNIEI4gIvcSv7l4gToiFBASjq2z2jtzE07hceIIUvlTnCGJQ/
-         QMla9JOMKQVVdf0urOnV3ctkucVivHEWG6f44b0KtLABc/bwa6x/yWNLa3svEXPnvz6g
-         YtjFKa/E5u4/HlYd4Oem5um48xSLlatVMEVG9fxXTv+5zY73uuobvf4uEsDQ9qjKoA5q
-         inHHmYsUJhN314mhUFxVDIUbfy6z8TYwXwMfRFurnpKPh+uxw6r2cAW/Qmi1oE9S73t6
-         fm/A==
-X-Gm-Message-State: ACrzQf2+se0HMVFLMc4vlswH//AabgVjWZtYhSPwwwHfM2dQGfu280td
-        VBKLtwd8Td5m1zXfRcQZ+okgtA==
-X-Google-Smtp-Source: AMsMyM6/bD7TwetAszdHR3EmYhj0XT1Ya2qXerlaVZb95uTZIfvp1C7Y6AQQUqEDn0G3VLRG4dxKxg==
-X-Received: by 2002:a05:6214:20c2:b0:4b1:316c:67a2 with SMTP id 2-20020a05621420c200b004b1316c67a2mr32412761qve.32.1667575163412;
-        Fri, 04 Nov 2022 08:19:23 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id bq37-20020a05620a46a500b006ee77f1ecc3sm3160269qkb.31.2022.11.04.08.19.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 08:19:22 -0700 (PDT)
-Message-ID: <8cdd0560-8a64-de1f-d1f2-a4dc729f8970@linaro.org>
-Date:   Fri, 4 Nov 2022 11:19:21 -0400
+        with ESMTP id S232517AbiKDPTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 11:19:45 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 448331EC69;
+        Fri,  4 Nov 2022 08:19:42 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.96,137,1665414000"; 
+   d="scan'208";a="139000228"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Nov 2022 00:19:41 +0900
+Received: from localhost.localdomain (unknown [10.226.93.164])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id D32504006A8E;
+        Sat,  5 Nov 2022 00:19:37 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/2] Add RZ/G2L POEG support
+Date:   Fri,  4 Nov 2022 15:19:33 +0000
+Message-Id: <20221104151935.1783791-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2 0/2] Mediatek eMMC Inline Crypto Engine support
-Content-Language: en-US
-To:     Mengqi Zhang <mengqi.zhang@mediatek.com>,
-        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, wenbin.mei@mediatek.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221104095848.27444-1-mengqi.zhang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104095848.27444-1-mengqi.zhang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.2 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 05:58, Mengqi Zhang wrote:
-> Change in v2
-> - change patch 1 commit title
-> - change patch 2 commit title, and correct commit message
-> - add crypto clock description base on new code base
-> 
-> Mediatek eMMC hardware IP has Inline Crypto Engine (ICE), we support inline encryption now.
-> 
-> This patchset supports Mediatek eMMC inline encryption which meets the upcoming version of the eMMC specification such as v5.1 or v5.2.
-> 
-> Patch 1, add crypto clock control flow in mtk-sd driver, patch 2, document the device tree description about crypto clock.
-> 
-> Mengqi Zhang (2):
->   mmc: mtk-sd: add Inline Crypto Engine clock control
->   dt-bindings: mmc: mtk-sd: add Inline Crypto Engine clock
-> 
+The output pins of the general PWM timer (GPT) can be disabled by using the port
+output enabling function for the GPT (POEG). Specifically, either of the
+following ways can be used.
 
-Your threading is broken. Resend with proper threads.
+  * Input level detection of the GTETRGA to GTETRGD pins.
+  * Output-disable request from the GPT.
+  * Register setting(ie, by setting POEGGn.SSF to 1)
 
-Best regards,
-Krzysztof
+This patch series add support for controlling output disable function using sysfs.
+
+For output disable operation, POEG group needs to be linked with GPT.
+Plan to send a follow up patch with renesas,poeg-group as numeric
+property in pwm bindings for linking both GPT and POEG devices.
+
+v2->v3:
+ * Removed Rb tag from Rob as there are some changes introduced.
+ * Added companion property, so that poeg can link with gpt device
+ * Documented renesas,id, as identifier for POEGG{A,B,C,D}.
+ * Updated the binding example.
+ * Added sysfs documentation for output_disable
+ * PWM_RZG2L_GPT implies ARCH_RZG2L. So removed ARCH_RZG2L dependency
+ * Used dev_get_drvdata to get device data
+ * Replaced sprintf->sysfs_emit in show().
+v1->v2:
+ * Updated binding description.
+ * Renamed the file poeg-rzg2l->rzg2l-poeg
+ * Removed the macro POEGG as there is only single register and
+   updated rzg2l_poeg_write() and rzg2l_poeg_read()
+ * Updated error handling in probe()
+REF->v1:
+ * Modelled as pincontrol as most of its configuration is intended to be
+   static and moved driver files from soc to pincontrol directory.
+ * Updated reg size in dt binding example.
+ * Updated Kconfig
+
+REF:
+https://lore.kernel.org/linux-renesas-soc/20220510151112.16249-1-biju.das.jz@bp.renesas.com/
+
+Biju Das (2):
+  dt-bindings: pinctrl: renesas: Add RZ/G2L POEG binding
+  drivers: pinctrl: renesas: Add RZ/G2L POEG driver support
+
+ .../ABI/testing/sysfs-platform-rzg2l-poeg     |  18 ++
+ .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  |  86 ++++++++++
+ drivers/pinctrl/renesas/Kconfig               |   2 +
+ drivers/pinctrl/renesas/Makefile              |   2 +
+ drivers/pinctrl/renesas/poeg/Kconfig          |  11 ++
+ drivers/pinctrl/renesas/poeg/Makefile         |   2 +
+ drivers/pinctrl/renesas/poeg/rzg2l-poeg.c     | 157 ++++++++++++++++++
+ 7 files changed, 278 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-platform-rzg2l-poeg
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+ create mode 100644 drivers/pinctrl/renesas/poeg/Kconfig
+ create mode 100644 drivers/pinctrl/renesas/poeg/Makefile
+ create mode 100644 drivers/pinctrl/renesas/poeg/rzg2l-poeg.c
+
+-- 
+2.25.1
 
