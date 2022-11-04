@@ -2,81 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7102E619D05
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 17:21:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE9A8619D1B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 17:24:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbiKDQVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 12:21:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49838 "EHLO
+        id S229900AbiKDQYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 12:24:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiKDQVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 12:21:54 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0444220F6C;
-        Fri,  4 Nov 2022 09:21:51 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7C33CFF804;
-        Fri,  4 Nov 2022 16:21:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1667578909;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=9HchoTCX6YVHNGcWcXAvQMr2LjZVh92FKk3oVYUFEoE=;
-        b=lebu3URtD5BNezq33EsxC2+z6KVIPWxxOIs/C1qOa68hmd9pGGfslmZdX1DTeetA7ZCrYq
-        TjEHbptgAtpUIFDItmvRdeSVeG7CJRlvXC2znfVUFWNPHiUx+dIUekntTwCEYx4Q4cBpjU
-        tPMDmJG8y4eoQ3q82a94kteyLX9xHVH8OT2+TcNfiJGUaAWCQ1bpvqSXFUu3TV8bjoBOXi
-        wpn2Ugh0G3H5G66nnv5P4R/XqOfNQQ+Bicf3r4OM4+TvzgHIgsGyCicCHF0io+ffg0FUJO
-        OfhBCh1arriKA55pkIxHdZHTi3OVeWlhyl3I8CJdYABnMEXTs8QzWadSkTphBQ==
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Gerhard Engleder <gerhard@engleder-embedded.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH net-next] dt-bindings: net: tsnep: Fix typo on generic nvmem property
-Date:   Fri,  4 Nov 2022 17:21:47 +0100
-Message-Id: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230297AbiKDQYr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 12:24:47 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AEB1FDA;
+        Fri,  4 Nov 2022 09:24:47 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-13b6c1c89bdso6023762fac.13;
+        Fri, 04 Nov 2022 09:24:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=236MtMSiYq8PfbAvUMwAbvkjZMfzu/0gyBql4UnRQZQ=;
+        b=Oq3H3AD2YLaTv3ZfGRNlOnU3Egp+qAU6PXayLEwKwDeTqGq+masS8fbvcDlg8AVMW6
+         bqrs4Xa/DW63ubTzt/gaw0Z2XAx+pskHWswL9iKflQSjZ+kFuoBbV2LdWv8X8OpBcft/
+         fznr1V+zKYIOJ6+PA2YiMpfL/tNLvR/WUegwp4Fpxn5Ul741WEgNLD3nmxePuFqvulNL
+         c0H3dgtffA4EEFD5qdQWuCdb+52z4+hBynbk1TiKX9C+sUMee+BdZgJBcXi3Q/UAXq8k
+         rTkkuhYjY7HQe0zfvIW3m0EPHPiObHg2KdQL7cXS/ysnUQXNnzcQwpENLdTueY0LRnmD
+         ug3g==
+X-Gm-Message-State: ACrzQf0qDoVJ1l56Fds59Are4iMAFBLoLCpRqC16Hcwm30Y1ocHy5IRd
+        MG8dRyIgEDc02RiUS6zoi5p72u9D4A==
+X-Google-Smtp-Source: AMsMyM63f5nI/3QWC4kluBY+6QxS5OfRPRvnf7sqUta3aTKn//+8mOCK+JCgL6rErbaXqdnVFReQ1Q==
+X-Received: by 2002:a05:6870:3413:b0:13d:3e44:4a9e with SMTP id g19-20020a056870341300b0013d3e444a9emr12757042oah.228.1667579086482;
+        Fri, 04 Nov 2022 09:24:46 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m35-20020a05687005a300b0011f400edb17sm1934261oap.4.2022.11.04.09.24.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Nov 2022 09:24:46 -0700 (PDT)
+Received: (nullmailer pid 1982077 invoked by uid 1000);
+        Fri, 04 Nov 2022 16:24:47 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: cpufreq: qcom: Add missing cache related properties
+Date:   Fri,  4 Nov 2022 11:24:29 -0500
+Message-Id: <20221104162429.1981729-1-robh@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While working on the nvmem description I figured out this file had the
-"nvmem-cell-names" property name misspelled. Fix the typo, as
-"nvmem-cells-names" has never existed.
+The examples' cache nodes are incomplete as 'cache-unified' and
+'cache-level' are required cache properties.
 
-Fixes: 603094b2cdb7 ("dt-bindings: net: Add tsnep Ethernet controller")
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/net/engleder,tsnep.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/cpufreq/cpufreq-qcom-hw.yaml      | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/engleder,tsnep.yaml b/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
-index 5bd964a46a9d..a6921e805e37 100644
---- a/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
-+++ b/Documentation/devicetree/bindings/net/engleder,tsnep.yaml
-@@ -47,7 +47,7 @@ properties:
- 
-   nvmem-cells: true
- 
--  nvmem-cells-names: true
-+  nvmem-cell-names: true
- 
-   phy-connection-type:
-     enum:
+diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+index 24fa3d87a40b..e58c55f78aaa 100644
+--- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
++++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+@@ -85,9 +85,13 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 0>;
+         L2_0: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+           L3_0: l3-cache {
+             compatible = "cache";
++            cache-unified;
++            cache-level = <3>;
+           };
+         };
+       };
+@@ -101,6 +105,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 0>;
+         L2_100: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
+@@ -114,6 +120,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 0>;
+         L2_200: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
+@@ -127,6 +135,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 0>;
+         L2_300: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
+@@ -140,6 +150,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 1>;
+         L2_400: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
+@@ -153,6 +165,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 1>;
+         L2_500: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
+@@ -166,6 +180,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 1>;
+         L2_600: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
+@@ -179,6 +195,8 @@ examples:
+         qcom,freq-domain = <&cpufreq_hw 1>;
+         L2_700: l2-cache {
+           compatible = "cache";
++          cache-unified;
++          cache-level = <2>;
+           next-level-cache = <&L3_0>;
+         };
+       };
 -- 
-2.34.1
+2.35.1
 
