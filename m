@@ -2,119 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F496619885
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:55:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 171B7619889
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:55:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbiKDNzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45948 "EHLO
+        id S230205AbiKDNz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:55:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231634AbiKDNzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:55:20 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ADFC2F011
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:55:19 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id e15so3054547qts.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:55:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ehxmhy4tAHWSbEh2sXnHAvnOr4w5ROlpTnej7pSY4Yo=;
-        b=lU0zC3tbM0FXmD8k7A44xszngijWaUONXo402a0cS3lUudSFyM2taMvV5UStaDpiDx
-         baEbDMjidPA7BWF9jE62WRyzPDk8uhmV9X+I4u0U2Z/UME8LVoF+b0wfs/4Nen1B0TLY
-         afqKR0dMHxU4QFlsuRvHWK1J7wZGzIy7TBL3aEQBaKlxU3iMWi5vf/fb9Qs9VhinoA/u
-         gjZcFrdAGXGSAk4tmGkhVSMPHlzS0YgX+FhYksbKAla2ghmXqCqWY1/ajEyXRVN8t6fu
-         pvTW3VKVFo79/+atGwDMki1z154MVHWvc2NmT81W8yxNBeumj7VAhWYuMCstjDyeSI8a
-         eTIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ehxmhy4tAHWSbEh2sXnHAvnOr4w5ROlpTnej7pSY4Yo=;
-        b=mbMQWqvGLK+Hgx4tUByxoO1mDVFQJNZ3yBdR9zouvhz1WgxTvetuONG/pWtW+MQVNB
-         zXHzd5Uhb5ny/YZv7PHteizhuKv2DLECHnbtywIJgCxlhiqPxcQsdZfg2Q9Nz1XnCniK
-         kQblTpDzGnFEGaiBSPLc7YFloFVZWHPwi/xc5W1FvtfQ6zQ3KDh2khgxOMsnr1Bcof28
-         nfcZdV5NkYpsiaQEVU6NdGwvsC/DXl2DilWHnrOc2Ic21DryyfWEPzNm0mKi00mG7/lD
-         ERGhPY8Eb8HsG26mn0E36AwVb6zrHa0sXF0iZ+4fOqUcnDoq09ncLtkzQ0pHLDE8Xx0a
-         aWPA==
-X-Gm-Message-State: ACrzQf12Q3/yIFhhzsXThZE1gZaqRcxEt6H96GuIZcUBCnrXKggi+UYg
-        qttizVLOof2Pjz+kAPNxGYeJkw==
-X-Google-Smtp-Source: AMsMyM5+1hK78x/ofuVGTwjjBFP8elpNO/eeZxBLGWTPbx72HYwMV4bQWa+zaKvjGkrEYrxR6C4yzw==
-X-Received: by 2002:ac8:58cf:0:b0:3a5:6887:148f with SMTP id u15-20020ac858cf000000b003a56887148fmr2023265qta.606.1667570118348;
-        Fri, 04 Nov 2022 06:55:18 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id 20-20020ac85954000000b003a4f435e381sm2560456qtz.18.2022.11.04.06.55.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 06:55:17 -0700 (PDT)
-Message-ID: <8f026f38-ef09-788e-7bd8-45683b074075@linaro.org>
-Date:   Fri, 4 Nov 2022 09:55:16 -0400
+        with ESMTP id S231656AbiKDNz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:55:26 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37D792604
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:55:24 -0700 (PDT)
+Received: from [192.168.31.208] (unknown [194.29.137.22])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7406B3EE24;
+        Fri,  4 Nov 2022 14:55:22 +0100 (CET)
+Message-ID: <7a674e39-8c64-4cfb-5e0d-a50773b7460d@somainline.org>
+Date:   Fri, 4 Nov 2022 14:55:21 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: clock: exynosautov9: fix reference to
- CMU_FSYS1 mmc card clock
-Content-Language: en-US
-To:     Inbaraj <inbaraj.e@samsung.com>, s.nawrocki@samsung.com,
-        tomasz.figa@gmail.com, cw00.choi@samsung.com,
-        alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, chanho61.park@samsung.com
-Cc:     linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, pankaj.dubey@samsung.com
-References: <CGME20221104085410epcas5p24d88f59001b739075e9e190e2c47841e@epcas5p2.samsung.com>
- <20221104090019.88387-1-inbaraj.e@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104090019.88387-1-inbaraj.e@samsung.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH v3 5/8] drm/msm/dsi: add support for DSI 2.6.0
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
+References: <20221104130324.1024242-1-dmitry.baryshkov@linaro.org>
+ <20221104130324.1024242-6-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20221104130324.1024242-6-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 05:00, Inbaraj wrote:
-> Fix reference to CMU_FSYS1 mmc card clock to gout clock instead of dout.
-> 
-> This fixes make dtbs_check warning as shown below:
-> 
-> arch/arm64/boot/dts/exynos/exynosautov9-sadk.dtb: clock-controller@17040000:
-> clock-names:2: 'dout_clkcmu_fsys1_mmc_card' was expected
-> From schema: /home/inbaraj/mainline/linux/Documentation/devicetree/
-> bindings/clock/samsung,exynosautov9-clock.yaml
 
-I don't understand:
-1. Why bindings are wrong not DTSI?
-2. What is "gout"? "dout" had a meaning as clock divider output.
-
-> 
-> Fixes: 4b6ec8d88623 ("dt-bindings: clock: exynosautov9: add schema for cmu_fsys0/1")
-> Signed-off-by: Inbaraj <inbaraj.e@samsung.com>
+On 04/11/2022 14:03, Dmitry Baryshkov wrote:
+> Add support for DSI 2.6.0 (block used on sm8450).
+>
+> Tested-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/clock/samsung,exynosautov9-clock.yaml   | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
-> index 2ab4642679c0..55c4f94a14d1 100644
-> --- a/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/samsung,exynosautov9-clock.yaml
-> @@ -148,7 +148,7 @@ allOf:
->            items:
->              - const: oscclk
->              - const: dout_clkcmu_fsys1_bus
-> -            - const: dout_clkcmu_fsys1_mmc_card
-> +            - const: gout_clkcmu_fsys1_mmc_card
->              - const: dout_clkcmu_fsys1_usbdrd
->  
->    - if:
 
-Best regards,
-Krzysztof
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
+
+Konrad
+
+>   drivers/gpu/drm/msm/dsi/dsi_cfg.c | 2 ++
+>   drivers/gpu/drm/msm/dsi/dsi_cfg.h | 1 +
+>   2 files changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> index 7e97c239ed48..59a4cc95a251 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> @@ -300,6 +300,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
+>   		&sc7180_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+>   	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_5_0,
+>   		&sc7280_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+> +	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_6_0,
+> +		&sdm845_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+>   };
+>   
+>   const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> index 8f04e685a74e..95957fab499d 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> @@ -25,6 +25,7 @@
+>   #define MSM_DSI_6G_VER_MINOR_V2_4_0	0x20040000
+>   #define MSM_DSI_6G_VER_MINOR_V2_4_1	0x20040001
+>   #define MSM_DSI_6G_VER_MINOR_V2_5_0	0x20050000
+> +#define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
+>   
+>   #define MSM_DSI_V2_VER_MINOR_8064	0x0
+>   
