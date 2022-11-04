@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3DC61A35A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D4561A35E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 22:34:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbiKDVcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 17:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41160 "EHLO
+        id S229651AbiKDVeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 17:34:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229700AbiKDVb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:31:59 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923942DA92
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:31:57 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sc25so16449724ejc.12
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:31:57 -0700 (PDT)
+        with ESMTP id S229495AbiKDVeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 17:34:14 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70A245EC9
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 14:34:12 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id 13so16595342ejn.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 14:34:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AXeLyBT66GcyNMkGNLXyVq2BhJDegmKs2IP6Dg3V8qs=;
-        b=s4ZFu+PCO6R25MJtYlf69zGk3gnbGDZkaUqyPYLtWvW6MIMnBIjnyTKebSWOx9jAnF
-         6LiEgJJ0FDwh04Zurj3z1tPIq9+Lr+nYILvIKiw1U1tJ3njQ9J3EooL7eICl+nZ1IEIX
-         nfDiUD5j8fbuAqAgnFbqHSQBGbciDdKaruJ8U26Syo6k/m5HNSw40sAl6gq7mCfwTopi
-         lt6wyHQ59TL/bHONQ9xyM2dZVQyVMnj7+UnZ4WwOhAdvzMtigS+X7RaUR1iC4NjsdImw
-         G6z9z01hWRlXxPGHwJEqMKVZ6uvExDq3RKgmJO61cryUMW630NioRgpW2cCA2OYcsvFj
-         l11w==
+        bh=TZlIX8cuZeOQRSQTQbQX9cRSlkV364TcFG+GGAYF/Z8=;
+        b=wD8sdK4C2h0XhONCEgetpPhAbLse9nzbZXp33TPCGfO4s/SBsMN8AFvXNRER6UQtTj
+         ZRIUKTxt7xJ5xzyyBPN0wgOH0s1histmEabT7cNK4lDSUg+BLBxh4O/4Q0RVH4vv+Uo/
+         USqg7nZR2Jm//8DmUS9h58/zmo2Rt+u6DVC0iSH/15acXG4JUA2e6k5ntDoCfmpj2WWH
+         jHgWRHW0cUQTcXIHCkfMGShWgRefu5eefqeHOxmrHcvVbrKXNc7vSqrsLjDUuZE6CIa/
+         vFndEY6r83SzbjTIKrnnCftZ7ArqtkC8DjJyYuifiajNcQpems9Pe0MBU8u9MAge9osc
+         WcQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AXeLyBT66GcyNMkGNLXyVq2BhJDegmKs2IP6Dg3V8qs=;
-        b=5dQKb/kgTnvSCMKXtmAvsbmLkqCS5V89K5ogEyOqS4tON35FdU0HWl2UitAxeO2xnL
-         yFtPZl4ea+r52UPF8d5brC6liiIxJURqoSKOzATxUZBNFw7+BpQ01aA6B1gBqyAy19qP
-         PnlvF6YJYlAbYRw+mv8O0KrrFUufEu8P+UmWzcpXuAqQEv5UyJOpLIxRk4Bg1FAnIaBE
-         BpPTl0F+wFDEDSSjWI1D07eS6OEKt25IXegW3TqppdRp/CfJKbppANd7mnH/Zity2g3K
-         iKEicAohgW3+uPCQSMUGIl54sJcKJKmB9nBRSozpNR4ZZtBsSIl8dlVE83crsSZHq0ue
-         60VA==
-X-Gm-Message-State: ACrzQf3Xba+nXM7KHuGlZN2aB5txJcES/eJ7qF4QoeIQxF+nsIXgLkY+
-        DqZ3tIww8s1DmKg+4/ckd1bs1g==
-X-Google-Smtp-Source: AMsMyM5b811dTOciUQ1WKFKeaNpDRnVgKPJ8hWO1y+EM8yeTBh4emwKaqkeDo/SAaFhkTuhBWRukyw==
-X-Received: by 2002:a17:907:746:b0:741:4a1b:cb1f with SMTP id xc6-20020a170907074600b007414a1bcb1fmr35116157ejb.370.1667597516128;
-        Fri, 04 Nov 2022 14:31:56 -0700 (PDT)
+        bh=TZlIX8cuZeOQRSQTQbQX9cRSlkV364TcFG+GGAYF/Z8=;
+        b=QkKDW6MJu3FCoMRx2t/wtraUUbugUipL/IMm0UHA5VSsfAvEz7Lgxsh7XIcMQe+mku
+         PU2GdlJhB3bKmy4oVNkp1LLMJ4Hb5JnYPc7sTilNJ14hO8DQI6QJwok9vkJ53kXqX5ib
+         GrwKpo6i3ltE7ajmcWcH2mYdL8cccNElUBp7/HoZmjTYyRPceaFWTj7mgibxd7o80gz+
+         iFhU+grKkCLSX2tY8Rb5ZkwSuK+StC75tG36MCOfUit0AAiGlLGMPI31Rn+kQeLM87kH
+         VUQQ1fTY/+Sg4X2j8lv7eLAOge+pdTTTvWtbm+AZXr4P2vuqaPABtjKcD8/Wj23UuREd
+         J0yg==
+X-Gm-Message-State: ACrzQf0/juW53hlFw1P+SxPO90vJOXG+A3TvjUJ+G5ePGYA3BzYSqi4N
+        BMs63ClC2f4p5mHX21G3ZfKgng==
+X-Google-Smtp-Source: AMsMyM52IVgyxrOzvYXBKOSHv/x6OVBfsWMnbzJEcL7xj0tR6Hp4938dpIhHCe6UutoQ06RqOST7Zg==
+X-Received: by 2002:a17:907:6d25:b0:7aa:f5a4:5f66 with SMTP id sa37-20020a1709076d2500b007aaf5a45f66mr35482545ejc.216.1667597651457;
+        Fri, 04 Nov 2022 14:34:11 -0700 (PDT)
 Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id m19-20020aa7c493000000b00458dc7e8ecasm263591edq.72.2022.11.04.14.31.54
+        by smtp.gmail.com with ESMTPSA id q19-20020a17090676d300b007030c97ae62sm29041ejn.191.2022.11.04.14.34.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 14:31:55 -0700 (PDT)
-Date:   Fri, 4 Nov 2022 23:31:54 +0200
+        Fri, 04 Nov 2022 14:34:10 -0700 (PDT)
+Date:   Fri, 4 Nov 2022 23:34:09 +0200
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
@@ -58,14 +58,14 @@ Cc:     abelvesa@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
         linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 6/6] clk: imx93: keep sys ctr clock always on
-Message-ID: <Y2WEyhj7L8nyoBuu@linaro.org>
+Subject: Re: [PATCH 5/6] clk: imx: keep hsio bus clock always on
+Message-ID: <Y2WFUVJVwA8s6Su4@linaro.org>
 References: <20221028095211.2598312-1-peng.fan@oss.nxp.com>
- <20221028095211.2598312-7-peng.fan@oss.nxp.com>
+ <20221028095211.2598312-6-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221028095211.2598312-7-peng.fan@oss.nxp.com>
+In-Reply-To: <20221028095211.2598312-6-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -75,36 +75,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-28 17:52:11, Peng Fan (OSS) wrote:
+On 22-10-28 17:52:10, Peng Fan (OSS) wrote:
 > From: Jacky Bai <ping.bai@nxp.com>
 > 
-> Keep sys ctr clock always on to make sure its register
-> can be accessed for cpuidle.
+> During Linux System suspend/resume stress test after System Sleep
+> enabled, system will stuck sometimes. It is because NICMIX is powered
+> down, which HSIOMIX(always on) is not powered down. When NICMIX
+> powering down, HSIOMIX will get a hardware handshake, without HSIO ROOT clk,
+> the handshake will lose. Then after NICMIX power on when system resume,
+> the access to HSIOMIX through NICMIX would be broken. So keep HSIO ROOT
+> always on.
 > 
 > Reviewed-by: Peng Fan <peng.fan@nxp.com>
 > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+>  [Peng Fan] rewrite commit message
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
 Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
 > ---
->  drivers/clk/imx/clk-imx93.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/clk/imx/clk-imx93.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/clk/imx/clk-imx93.c b/drivers/clk/imx/clk-imx93.c
-> index 7dace96f36df..b42a877ecca1 100644
+> index 422ad3c89845..7dace96f36df 100644
 > --- a/drivers/clk/imx/clk-imx93.c
 > +++ b/drivers/clk/imx/clk-imx93.c
-> @@ -242,7 +242,8 @@ static const struct imx93_clk_ccgr {
->  	{ IMX93_CLK_HSIO_32K_GATE,	"hsio_32k",	"osc_32k",		0x9dc0, },
->  	{ IMX93_CLK_ENET1_GATE,		"enet1",	"wakeup_axi_root",	0x9e00, },
->  	{ IMX93_CLK_ENET_QOS_GATE,	"enet_qos",	"wakeup_axi_root",	0x9e40, },
-> -	{ IMX93_CLK_SYS_CNT_GATE,	"sys_cnt",	"osc_24m",		0x9e80, },
-> +	/* Critical because clk accessed during CPU idle */
-> +	{ IMX93_CLK_SYS_CNT_GATE,	"sys_cnt",	"osc_24m",		0x9e80, CLK_IS_CRITICAL},
->  	{ IMX93_CLK_TSTMR1_GATE,	"tstmr1",	"bus_aon_root",		0x9ec0, },
->  	{ IMX93_CLK_TSTMR2_GATE,	"tstmr2",	"bus_wakeup_root",	0x9f00, },
->  	{ IMX93_CLK_TMC_GATE,		"tmc",		"osc_24m",		0x9f40, },
+> @@ -109,7 +109,11 @@ static const struct imx93_clk_root {
+>  	{ IMX93_CLK_CCM_CKO2,		"ccm_cko2_root",	0x1d00,	CKO2_SEL, },
+>  	{ IMX93_CLK_CCM_CKO3,		"ccm_cko3_root",	0x1d80,	CKO1_SEL, },
+>  	{ IMX93_CLK_CCM_CKO4,		"ccm_cko4_root",	0x1e00,	CKO2_SEL, },
+> -	{ IMX93_CLK_HSIO,		"hsio_root",		0x1e80,	LOW_SPEED_IO_SEL, },
+> +	/*
+> +	 * Critical because clk is used for handshake between HSIOMIX and NICMIX when
+> +	 * NICMIX power down/on during system suspend/resume
+> +	 */
+> +	{ IMX93_CLK_HSIO,		"hsio_root",		0x1e80,	LOW_SPEED_IO_SEL, CLK_IS_CRITICAL},
+>  	{ IMX93_CLK_HSIO_USB_TEST_60M,	"hsio_usb_test_60m_root", 0x1f00, LOW_SPEED_IO_SEL, },
+>  	{ IMX93_CLK_HSIO_ACSCAN_80M,	"hsio_acscan_80m_root",	0x1f80,	LOW_SPEED_IO_SEL, },
+>  	{ IMX93_CLK_HSIO_ACSCAN_480M,	"hsio_acscan_480m_root", 0x2000, MISC_SEL, },
 > -- 
 > 2.37.1
 > 
