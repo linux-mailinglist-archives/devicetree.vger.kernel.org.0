@@ -2,83 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CC4B6196C2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B71956196C6
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 14:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbiKDNBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 09:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39758 "EHLO
+        id S231243AbiKDNC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 09:02:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231583AbiKDNAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:00:55 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D63B2E9EC
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:00:54 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id r12so7342942lfp.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:00:54 -0700 (PDT)
+        with ESMTP id S230070AbiKDNC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 09:02:28 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A28E2E6BA
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 06:02:27 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id z6so2956057qtv.5
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 06:02:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w6rloIJwP71svjKZvMo3B6qaA3z3bKYNQ1mUUEYaGPc=;
-        b=jdpai8aOpLROxrsp/eAhkrkkk2RXU3Eywu/ledyWit2ZN3nDw75BxVFjGUgh2ehY/U
-         TNyTWyfjcR8bTPjVgcRy71KvUS1z1IwSlnqO1bkrP7gQ4ymu1XsDjm2b45zJ7V3u9LjZ
-         Su2qq1aMPmlntM1c0qULGb2qhAbE7LXn/x5WoNN5YEAjO0TDZLAj2EgH+7418XDFWF6b
-         H/bw+9UeFWqRRE1ZY9n2voHopDI7LGWP5nw5FbjczmqS0RCZnWmOVaZJDLf29Zcmdj7b
-         UIN6pS2oipeT5dblgkUaoTf9bd93QomV4aAuFs+LjJgv6/1PfZAEZTcE6cZywzvI1VO1
-         sRcQ==
+        bh=Q/++0ZayQKL3UffEUz5WYVbHFL3chrZbsRBzuyMtNns=;
+        b=FIOWp60zDFULn87/JG2Lu/+xxnMdksO+gpByn+IEGJmcCxff7gfexRBqr1S9cNfT0+
+         tfW9koljj39OpUDA9Oh/dF21a6gS6nvl2ary/uJ61q2bgYBCnERBs71yfnz8bK+EuI1d
+         Nrpxe0W8L4xBlVyuFjt2Vq6uT7MT4U9t2WfGqdmgqv4VkRVSPXglb4UVZJqmrNT3ptwy
+         4RXFUZZFQGHQkbo4j8cX9k8LG0xPLurC0OXF60PoCxj0eS5Pifl8sYBSJQ+WF9QMGQ3T
+         9vsdnei/Sdw0U/feWeEUxPk9gURBiXsuCxsYCC31DS12SML25LBS5p3Qw+6+PmhIRb6n
+         Krgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w6rloIJwP71svjKZvMo3B6qaA3z3bKYNQ1mUUEYaGPc=;
-        b=DQ6lSTPdDO98AGndgDd8dCJ+HlMywzSfw5uBsIVpIIMJHrdD1eFSer0vvnuDIqyCkK
-         Y5DDCZQRoDkR7rEG/MWlIGcXAF8ih1ThkAOpjW75g5WkNd9945ujqE/0NlFu1+MeDo+P
-         nHaxVVPZdK2xWlRJ/7z8R09UeOqsRZLw4hPZolBVApzAhzyTJHqbhBbK1T1CJT0eVCIY
-         Gjx1f0gnCjjGD4ku6Hy7s8Vk32dEKHyOU/Qft/hcJTnlkjPK5MlTbq+atypIACYpK2YV
-         0uV03MaApuPR3CtVmS8XkGFFd7cR9kHRkSHk8wpM6PfIV8yRQQcrSzX9Rlgt4dtl4chY
-         qBTw==
-X-Gm-Message-State: ACrzQf1BFFMQku1RF8GXe2Lsy9Opg1NwpS2fSYhUskI394qId8BZpupv
-        X/g/Sbahq9XLL4OKlaVF+vnm1Q==
-X-Google-Smtp-Source: AMsMyM40MTTkRiU+UNYsjtgMhWwijK9A8ehsl+GQhkUM0Pe5fvYKFB+qjKwIrC133wCBifatOiH1qw==
-X-Received: by 2002:ac2:5609:0:b0:4a2:734d:6cb0 with SMTP id v9-20020ac25609000000b004a2734d6cb0mr14333293lfd.611.1667566851832;
-        Fri, 04 Nov 2022 06:00:51 -0700 (PDT)
-Received: from [10.27.10.248] ([195.165.23.90])
-        by smtp.gmail.com with ESMTPSA id e9-20020a05651236c900b004947f8b6266sm454152lfs.203.2022.11.04.06.00.50
+        bh=Q/++0ZayQKL3UffEUz5WYVbHFL3chrZbsRBzuyMtNns=;
+        b=4QgwEYfvFLp0sHCKGsxSyPfmY3Kk8NCUe5ntWlmr05A7Ov0DnN0AyDom/tMiVqgGoQ
+         SjNRBXhR3RFVNBgtoFh4H963L/TSuNHgGd400k5oGQrwsOs/P2ey5iO8Q3h9MaEcbhup
+         7e2vc1b2gUC+fENX6ceTBSan6Scut5FUrx05pDO+r5FzM+8Tb+iJdZ6cd3Y4txbKNmip
+         +q+xjzE/hqRAet4styzOxbxS0c5162/wP1mg1lz4pNZVWCUCAq6SdV7C6Sg7yD+2LduC
+         qZ2NtkbL/H4Di5P2BGf7eeGzlW7rhDu7OXBrP6WXTviWM3vCYUSswF12cuodNR1WSCj+
+         m4dA==
+X-Gm-Message-State: ACrzQf0rYxTHhjPsEfOdYWDPytQcJk4kcyJRIOafE/lBk0FYXuZm2DvV
+        faxhXHY1xfjYKtdBSlc3wGY7bw==
+X-Google-Smtp-Source: AMsMyM6eZt4kTIoc7uzby1Mq1irJK0fUe5UXWvhwKMpqlGTmAjvjVlHq7ZGwotSylQNtq0Q7FfPlxQ==
+X-Received: by 2002:ac8:7651:0:b0:3a5:528c:f326 with SMTP id i17-20020ac87651000000b003a5528cf326mr6558034qtr.586.1667566946709;
+        Fri, 04 Nov 2022 06:02:26 -0700 (PDT)
+Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
+        by smtp.gmail.com with ESMTPSA id u16-20020a05620a455000b006fa313bf185sm2929193qkp.8.2022.11.04.06.02.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 06:00:51 -0700 (PDT)
-Message-ID: <07e82a2f-ba17-bbac-6809-2312bc7cd4ed@linaro.org>
-Date:   Fri, 4 Nov 2022 16:00:50 +0300
+        Fri, 04 Nov 2022 06:02:26 -0700 (PDT)
+Message-ID: <ff608343-be86-b722-b1f1-ed56c5e1cae0@linaro.org>
+Date:   Fri, 4 Nov 2022 09:02:24 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.0
-Subject: Re: [PATCH v2 3/8] dt-bindings: display/msm: add support for the
- display on SM8450
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-References: <20221102231309.583587-1-dmitry.baryshkov@linaro.org>
- <20221102231309.583587-4-dmitry.baryshkov@linaro.org>
- <bcc246a0-d682-33db-35d9-7738922756c0@linaro.org>
- <ee0880ad-0513-ffea-d80a-9eaac3a85c90@linaro.org>
- <9badb45b-5e90-6796-061d-4166bc80a564@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <9badb45b-5e90-6796-061d-4166bc80a564@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Thunderbird/102.4.2
+Subject: Re: [EXT] Re: [PATCH v9 1/2] dt-bindings: fsl-imx-sdma: Convert imx
+ sdma to DT schema
+Content-Language: en-US
+To:     Joy Zou <joy.zou@nxp.com>, "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>
+Cc:     "S.J. Wang" <shengjiu.wang@nxp.com>,
+        "martink@posteo.de" <martink@posteo.de>,
+        "dev@lynxeye.de" <dev@lynxeye.de>,
+        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
+        Peng Fan <peng.fan@nxp.com>, "david@ixit.cz" <david@ixit.cz>,
+        "aford173@gmail.com" <aford173@gmail.com>,
+        Hongxing Zhu <hongxing.zhu@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20221031105028.598502-1-joy.zou@nxp.com>
+ <20221031105028.598502-2-joy.zou@nxp.com>
+ <a73e76b9-f186-a818-713b-3c14033f27cb@linaro.org>
+ <AM6PR04MB5925DADA3EB1F118680698C5E13B9@AM6PR04MB5925.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AM6PR04MB5925DADA3EB1F118680698C5E13B9@AM6PR04MB5925.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -89,242 +96,166 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 15:52, Krzysztof Kozlowski wrote:
-> On 04/11/2022 08:34, Dmitry Baryshkov wrote:
->> On 03/11/2022 17:03, Krzysztof Kozlowski wrote:
->>> On 02/11/2022 19:13, Dmitry Baryshkov wrote:
->>>> Add DPU and MDSS schemas to describe MDSS and DPU blocks on the Qualcomm
->>>> SM8450 platform.
->>>>
->>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> ---
->>>>    .../bindings/display/msm/qcom,sm8450-dpu.yaml | 132 +++++++
->>>>    .../display/msm/qcom,sm8450-mdss.yaml         | 349 ++++++++++++++++++
->>>>    2 files changed, 481 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->>>>    create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->>>> new file mode 100644
->>>> index 000000000000..b8c508c50bc5
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
->>>> @@ -0,0 +1,132 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm SM8450 Display DPU
->>>> +
->>>> +maintainers:
->>>> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> +
->>>> +$ref: /schemas/display/msm/dpu-common.yaml#
->>>
->>> There is no such file and I could not fine any dependency mentioned in
->>> cover letter. I guess you miss link to your refactor series?
->>
->> Excuse me, yes. However the refactoring should be already a part of
->> linux-next, so I didn't think that I should especially point to it.
+On 04/11/2022 01:10, Joy Zou wrote:
 > 
-> Not in yesterday's next.
-> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2022年11月3日 21:54
+>> To: Joy Zou <joy.zou@nxp.com>; vkoul@kernel.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
+>> s.hauer@pengutronix.de; kernel@pengutronix.de; festevam@gmail.com
+>> Cc: S.J. Wang <shengjiu.wang@nxp.com>; martink@posteo.de;
+>> dev@lynxeye.de; alexander.stein@ew.tq-group.com; Peng Fan
+>> <peng.fan@nxp.com>; david@ixit.cz; aford173@gmail.com; Hongxing Zhu
+>> <hongxing.zhu@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
+>> dmaengine@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Subject: [EXT] Re: [PATCH v9 1/2] dt-bindings: fsl-imx-sdma: Convert imx sdma
+>> to DT schema
 >>
->>> This also means bot won't be able to test it...
+>> Caution: EXT Email
 >>
->> How does bot detects the base commit? Should i use --base? Or does it
->> work on top of linux-next?
-> 
-> I think bot tests on rc1, so even next would not help here. Anyway
-> that's just a remark that you won't get automated test email.
-> 
+>> On 31/10/2022 06:50, Joy Zou wrote:
+>>> Convert the i.MX SDMA binding to DT schema format using json-schema.
+>>>
+>>> The compatibles fsl,imx31-to1-sdma, fsl,imx31-to2-sdma,
+>>> fsl,imx35-to1-sdma and fsl,imx35-to2-sdma are not used. So need to
+>>> delete it. The compatibles fsl,imx50-sdma, fsl,imx6sll-sdma and
+>>> fsl,imx6sl-sdma are added. The original binding don't list all compatible used.
+>>>
+>>> In addition, add new peripheral types HDMI Audio.
+>>>
+>>> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+>>> ---
+>>> Changes in v9:
+>>> add the dma-common quotes.
+>>> delete the dma-controller quotes.
 >>
->>>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: qcom,sm8450-dpu
->>>> +
->>>> +  reg:
->>>> +    items:
->>>> +      - description: Address offset and size for mdp register set
->>>> +      - description: Address offset and size for vbif register set
->>>> +
->>>> +  reg-names:
->>>> +    items:
->>>> +      - const: mdp
->>>> +      - const: vbif
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: Display hf axi clock
->>>> +      - description: Display sf axi clock
->>>> +      - description: Display ahb clock
->>>> +      - description: Display lut clock
->>>> +      - description: Display core clock
->>>> +      - description: Display vsync clock
->>>
->>> Drop "clock", less typing.
->>
->> Ack
->>
->>>
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: bus
->>>> +      - const: nrt_bus
->>>> +      - const: iface
->>>> +      - const: lut
->>>> +      - const: core
->>>> +      - const: vsync
->>>> +
->>>> +unevaluatedProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
->>>> +    #include <dt-bindings/clock/qcom,gcc-sm8450.h>
->>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +    #include <dt-bindings/interconnect/qcom,sm8450.h>
->>>> +    #include <dt-bindings/power/qcom-rpmpd.h>
->>>> +
->>>> +    display-controller@ae01000 {
->>>> +        compatible = "qcom,sm8450-dpu";
->>>> +        reg = <0x0ae01000 0x8f000>,
->>>> +              <0x0aeb0000 0x2008>;
->>>> +        reg-names = "mdp", "vbif";
->>>> +
->>>> +        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
->>>> +                <&gcc GCC_DISP_SF_AXI_CLK>,
->>>> +                <&dispcc DISP_CC_MDSS_AHB_CLK>,
->>>> +                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
->>>> +                <&dispcc DISP_CC_MDSS_MDP_CLK>,
->>>> +                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->>>> +        clock-names = "bus",
->>>> +                      "nrt_bus",
->>>> +                      "iface",
->>>> +                      "lut",
->>>> +                      "core",
->>>> +                      "vsync";
->>>> +
->>>> +        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->>>> +        assigned-clock-rates = <19200000>;
->>>> +
->>>> +        operating-points-v2 = <&mdp_opp_table>;
->>>> +        power-domains = <&rpmhpd SM8450_MMCX>;
->>>> +
->>>> +        interrupt-parent = <&mdss>;
->>>> +        interrupts = <0>;
->>>> +
->>>> +        ports {
->>>> +            #address-cells = <1>;
->>>> +            #size-cells = <0>;
->>>> +
->>>> +            port@0 {
->>>> +                reg = <0>;
->>>> +                dpu_intf1_out: endpoint {
->>>> +                    remote-endpoint = <&dsi0_in>;
->>>> +                };
->>>> +            };
->>>> +
->>>> +            port@1 {
->>>> +                reg = <1>;
->>>> +                dpu_intf2_out: endpoint {
->>>> +                    remote-endpoint = <&dsi1_in>;
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +
->>>> +        mdp_opp_table: opp-table {
->>>> +            compatible = "operating-points-v2";
->>>> +
->>>> +            opp-172000000{
->>>> +                opp-hz = /bits/ 64 <172000000>;
->>>> +                required-opps = <&rpmhpd_opp_low_svs_d1>;
->>>> +            };
->>>> +
->>>> +            opp-200000000 {
->>>> +                opp-hz = /bits/ 64 <200000000>;
->>>> +                required-opps = <&rpmhpd_opp_low_svs>;
->>>> +            };
->>>> +
->>>> +            opp-325000000 {
->>>> +                opp-hz = /bits/ 64 <325000000>;
->>>> +                required-opps = <&rpmhpd_opp_svs>;
->>>> +            };
->>>> +
->>>> +            opp-375000000 {
->>>> +                opp-hz = /bits/ 64 <375000000>;
->>>> +                required-opps = <&rpmhpd_opp_svs_l1>;
->>>> +            };
->>>> +
->>>> +            opp-500000000 {
->>>> +                opp-hz = /bits/ 64 <500000000>;
->>>> +                required-opps = <&rpmhpd_opp_nom>;
->>>> +            };
->>>> +        };
->>>> +    };
->>>> +...
->>>> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->>>> new file mode 100644
->>>> index 000000000000..05c606e6ada3
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
->>>> @@ -0,0 +1,349 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm SM8450 Display MDSS
->>>> +
->>>> +maintainers:
->>>> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> +
->>>> +description:
->>>> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
->>>
->>> Drop "Device tree bindings for" and rewrite the sentence (e.g. drop "that").
->>>
->>>> +  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
->>>> +  bindings of MDSS are mentioned for SM8450 target.
->>>
->>> Drop last sentence.
->>>
->>>> +
->>>> +$ref: /schemas/display/msm/mdss-common.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>>
->>> Drop items.
->>>
->>>> +      - const: qcom,sm8450-mdss
->>>
->>>> +
->>>> +  clocks:
->>>> +    items:
->>>> +      - description: Display AHB clock from gcc
->>>> +      - description: Display hf axi clock
->>>> +      - description: Display sf axi clock
->>>> +      - description: Display core clock
->>>
->>> Drop trailing "clocks" (the first "AHB clock" is ok)
->>
->> Hmm, not sure that I understand the difference, but fine with me.
-> 
-> Not much different, but for me AHB is a bus, so "Display AHB from gcc"
-> suggests a bit gcc provides some bus, but you want bus clock. AXI is
-> also a bus... so maybe drop clock everywhere.
+>> I have no clue what you are doing here... Do you know what are "quotes"?
+>> I linked last time explanation of "quotes", so did you read it?
+> Thank you very much for your comments.
+> I confused quote and quotes. Could I confirm my understand？
+> The quote means $ref: ?
 
-Ack. Sounds logical. And the 'from gcc' too.
+No. Quote is:
 
--- 
-With best wishes
-Dmitry
+https://en.wikipedia.org/wiki/Quote
+
+> The quotes means a symbol "?
+
+Yes.
+
+>>
+>>
+>>>
+>>> Changes in v8:
+>>> add the dma-controller quotes.
+>>> delete #dma-cells in required.
+>>>
+>>> Changes in v6:
+>>> delete tag Acked-by from commit message.
+>>>
+>>> Changes in v5:
+>>> modify the commit message fromat.
+>>> add additionalProperties, because delete the quotes in patch v4.
+>>> delete unevaluatedProperties due to similar to additionalProperties.
+>>> modification fsl,sdma-event-remap items and description.
+>>>
+>>> Changes in v4:
+>>> modify the commit message.
+>>> delete the quotes in patch.
+>>> modify the compatible in patch.
+>>> delete maxitems and add items for clock-names property.
+>>> add iram property.
+>>>
+>>> Changes in v3:
+>>> modify the commit message.
+>>> modify the filename.
+>>> modify the maintainer.
+>>> delete the unnecessary comment.
+>>> modify the compatible and run dt_binding_check and dtbs_check.
+>>> add clocks and clock-names property.
+>>> delete the reg description and add maxItems.
+>>> delete the interrupts description and add maxItems.
+>>> add ref for gpr property.
+>>> modify the fsl,sdma-event-remap ref type and add items.
+>>> delete consumer example.
+>>>
+>>> Changes in v2:
+>>> convert imx sdma bindings to DT schema.
+>>> ---
+>>>  .../devicetree/bindings/dma/fsl,imx-sdma.yaml | 149
+>>> ++++++++++++++++++  .../devicetree/bindings/dma/fsl-imx-sdma.txt  |
+>>> 118 --------------
+>>>  2 files changed, 149 insertions(+), 118 deletions(-)  create mode
+>>> 100644 Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>>>  delete mode 100644
+>>> Documentation/devicetree/bindings/dma/fsl-imx-sdma.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>>> b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>>> new file mode 100644
+>>> index 000000000000..95d0391a1f39
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/dma/fsl,imx-sdma.yaml
+>>> @@ -0,0 +1,149 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
+>>> +---
+>>> +$id:
+>>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+>>>
+>> +cetree.org%2Fschemas%2Fdma%2Ffsl%2Cimx-sdma.yaml%23&amp;data=05
+>> %7C01%
+>>>
+>> +7Cjoy.zou%40nxp.com%7Cd8f785d11ac042ebd7d908dabda2d753%7C686ea
+>> 1d3bc2b
+>>>
+>> +4c6fa92cd99c5c301635%7C0%7C0%7C638030804342124191%7CUnknown
+>> %7CTWFpbGZ
+>>>
+>> +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6M
+>> n0%
+>>>
+>> +3D%7C3000%7C%7C%7C&amp;sdata=3XpKUGv751na%2BV4OYDQEvGQxeeT
+>> 4UbW0wizQkM
+>>> +yfx4k%3D&amp;reserved=0
+>>> +$schema:
+>>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+>>>
+>> +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Cjoy.z
+>> ou%4
+>>>
+>> +0nxp.com%7Cd8f785d11ac042ebd7d908dabda2d753%7C686ea1d3bc2b4c6
+>> fa92cd99
+>>>
+>> +c5c301635%7C0%7C0%7C638030804342124191%7CUnknown%7CTWFpbG
+>> Zsb3d8eyJWIj
+>>>
+>> +oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3
+>> 000%7
+>>>
+>> +C%7C%7C&amp;sdata=nnBXK4c%2FiA1ncohiak4CXEQGbp5uhDq835RK9%2B
+>> BYdJw%3D&
+>>> +amp;reserved=0
+>>> +
+>>> +title: Freescale Smart Direct Memory Access (SDMA) Controller for
+>>> +i.MX
+>>> +
+>>> +maintainers:
+>>> +  - Joy Zou <joy.zou@nxp.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: dma-common.yaml#
+>>
+>> That's wrong. This should be dma-controller. Why this was changed?
+> Thank you very much for your comments.
+> I remember your comments in patch v6.
+> "The device schemas do not need to enforce the name. The dma-controller schema enforces it, so what is missing here is to reference it."
+> So I change it.
+> Should I use dma-controller?
+
+Yes, like all other bindings.
+
+Best regards,
+Krzysztof
 
