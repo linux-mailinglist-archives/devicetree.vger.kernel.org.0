@@ -2,141 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4842D619A03
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFECD619A1D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 15:35:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232073AbiKDOdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 10:33:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46314 "EHLO
+        id S232041AbiKDOfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 10:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231880AbiKDOdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:33:00 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80DEA47318
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:31:09 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id o8so3292658qvw.5
-        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 07:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pBEKtj5T51f51CFIMJKfn028IX//LL9SvX54Zm0sOzQ=;
-        b=huln3VTRqH40TTYCIhJlLVIbHkAjYz7JTpT0SHEwv67xquAm1j5E97Q544rPicCSXJ
-         gQt3KdXOo1FiEAHNo28RgFRlBrGYzgNG2mCqikNvRqKADpwMj3Xg8G+iAujSzs/CDoZs
-         KZii5uPcl1dmmnDjBbPo3TDiU1QphkMy9QLKhHEn92B5OU7PcN+uf4b9Nz/dlJGS40ao
-         ubwiQzE5MnQ9vSkK6Q7IfxAIv8oH+1s8kJiBh3D2XrWzbfiDzwl4mYHyeKhciYXp4Ccj
-         cR11qCXMQJv3wqTT/romNLLI9MnAbonWvr+ErDWNzsPWSKURZRF9WG+ZYsrgnts77mxp
-         2yIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pBEKtj5T51f51CFIMJKfn028IX//LL9SvX54Zm0sOzQ=;
-        b=4eRr+/qVh/OL2oiICD0gLeMVImEObnowzr1BmfofPc7eFmYaoybzqhkolIRSlD168K
-         gh/CmYg/c3CmhXqnRCyLGoatFvnNN0mjpZcXwIR+JDxnm1nL8v/+fSXfuIpeod4X2wP3
-         XLGJUR+C8QHHsTYgEsVV2jRyuBTCIVicCMkiNoBOY462h5E9BlCqRQPWJEm3Ttv1kurU
-         g0tPHMN/zSKnoymMrHzcMVz6HAydCa+ExQS1Xv/ODS3qc5oRPuSBG89QrvKfaC2V4mpg
-         lNjQawJBGo8dvQpQ3ETyZY0h7nQBjAcKkEijvoqa0/3B74uvfDPajKFxB6Y3lAYmdnM9
-         ywHA==
-X-Gm-Message-State: ACrzQf1iSFHOSwG5mvmVXrx2rOTmzYqqeXWJyghRdAjtXXPautMaoR6d
-        0JOyUnBRX8Ub1qmVi8q6E4vK8A==
-X-Google-Smtp-Source: AMsMyM4wiC2zozB/6Px2gKa4h3gl5XX9R2SJ2Zc19cUdIM6gD1nDY6IPvfAwdLFijOz2B7PVsKsEYw==
-X-Received: by 2002:a0c:e2c8:0:b0:4b7:c1bf:784a with SMTP id t8-20020a0ce2c8000000b004b7c1bf784amr32688535qvl.17.1667572268294;
-        Fri, 04 Nov 2022 07:31:08 -0700 (PDT)
-Received: from ?IPV6:2601:586:5000:570:aad6:acd8:4ed9:299b? ([2601:586:5000:570:aad6:acd8:4ed9:299b])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac85748000000b0039ee562799csm2626891qtx.59.2022.11.04.07.31.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Nov 2022 07:31:08 -0700 (PDT)
-Message-ID: <50814a5b-03d3-95b4-ab14-bfd19adae52b@linaro.org>
-Date:   Fri, 4 Nov 2022 10:31:06 -0400
+        with ESMTP id S232053AbiKDOea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 10:34:30 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF093167F4
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 07:32:06 -0700 (PDT)
+Received: from SoMainline.org (94-209-172-39.cable.dynamic.v4.ziggo.nl [94.209.172.39])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6E01D1F8A5;
+        Fri,  4 Nov 2022 15:32:04 +0100 (CET)
+Date:   Fri, 4 Nov 2022 15:32:02 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@somainline.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH 2/2] soc: qcom: spm: Implement support for SAWv2.3,
+ MSM8976 L2 PM
+Message-ID: <20221104143202.nps2iwqjcwug6mij@SoMainline.org>
+References: <20221104133452.131227-1-angelogioacchino.delregno@collabora.com>
+ <20221104133452.131227-3-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH net-next v7 5/5] ARM: dts: qcom: ipq4019: Add description
- for the IPQESS Ethernet controller
-Content-Language: en-US
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20221104142746.350468-1-maxime.chevallier@bootlin.com>
- <20221104142746.350468-6-maxime.chevallier@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104142746.350468-6-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221104133452.131227-3-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 10:27, Maxime Chevallier wrote:
-> The Qualcomm IPQ4019 includes an internal 5 ports switch, which is
-> connected to the CPU through the internal IPQESS Ethernet controller.
+On 2022-11-04 14:34:52, AngeloGioacchino Del Regno wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > 
-> Add support for this internal interface, which is internally connected to a
-> modified version of the QCA8K Ethernet switch.
+> Implement the support for SAW v2.3, used in at least MSM8976, MSM8956
+> and APQ variants and while at it also add the configuration for the
+> MSM8976's little (a53) and big (a72) clusters cache power management.
 > 
-> This Ethernet controller only support a specific internal interface mode
-> for connection to the switch.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> [Marijn: reorder struct definitions to follow high-to-low order]
+
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> V6->V7:
->  - No Changes
-> V5->V6:
->  - Removed extra blank lines
->  - Put the status property last
-> V4->V5:
->  - Reword the commit log
-> V3->V4:
->  - No Changes
-> V2->V3:
->  - No Changes
-> V1->V2:
->  - Added clock and resets
+>  drivers/soc/qcom/spm.c | 33 +++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 > 
->  arch/arm/boot/dts/qcom-ipq4019.dtsi | 44 +++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
+> diff --git a/drivers/soc/qcom/spm.c b/drivers/soc/qcom/spm.c
+> index 484b42b7454e..bfcd321d7837 100644
+> --- a/drivers/soc/qcom/spm.c
+> +++ b/drivers/soc/qcom/spm.c
+> @@ -98,6 +98,35 @@ static const struct spm_reg_data spm_reg_8916_cpu = {
+>  	.start_index[PM_SLEEP_MODE_SPC] = 5,
+>  };
+>  
+> +static const u16 spm_reg_offset_v2_3[SPM_REG_NR] = {
+> +	[SPM_REG_CFG]		= 0x08,
+> +	[SPM_REG_SPM_CTL]	= 0x30,
+> +	[SPM_REG_DLY]		= 0x34,
+> +	[SPM_REG_PMIC_DATA_0]	= 0x40,
+> +	[SPM_REG_PMIC_DATA_1]	= 0x44,
+> +};
+> +
+> +/* SPM register data for 8976 */
+> +static const struct spm_reg_data spm_reg_8976_gold_l2 = {
+> +	.reg_offset = spm_reg_offset_v2_3,
+> +	.spm_cfg = 0x14,
+> +	.spm_dly = 0x3c11840a,
+> +	.pmic_data[0] = 0x03030080,
+> +	.pmic_data[1] = 0x00030000,
+> +	.start_index[PM_SLEEP_MODE_STBY] = 0,
+> +	.start_index[PM_SLEEP_MODE_SPC] = 3,
+> +};
+> +
+> +static const struct spm_reg_data spm_reg_8976_silver_l2 = {
+> +	.reg_offset = spm_reg_offset_v2_3,
+> +	.spm_cfg = 0x14,
+> +	.spm_dly = 0x3c102800,
+> +	.pmic_data[0] = 0x03030080,
+> +	.pmic_data[1] = 0x00030000,
+> +	.start_index[PM_SLEEP_MODE_STBY] = 0,
+> +	.start_index[PM_SLEEP_MODE_SPC] = 2,
+> +};
+> +
+>  static const u16 spm_reg_offset_v2_1[SPM_REG_NR] = {
+>  	[SPM_REG_CFG]		= 0x08,
+>  	[SPM_REG_SPM_CTL]	= 0x30,
+> @@ -213,6 +242,10 @@ static const struct of_device_id spm_match_table[] = {
+>  	  .data = &spm_reg_8916_cpu },
+>  	{ .compatible = "qcom,msm8974-saw2-v2.1-cpu",
+>  	  .data = &spm_reg_8974_8084_cpu },
+> +	{ .compatible = "qcom,msm8976-gold-saw2-v2.3-l2",
+> +	  .data = &spm_reg_8976_gold_l2 },
+> +	{ .compatible = "qcom,msm8976-silver-saw2-v2.3-l2",
+> +	  .data = &spm_reg_8976_silver_l2 },
+>  	{ .compatible = "qcom,msm8998-gold-saw2-v4.1-l2",
+>  	  .data = &spm_reg_8998_gold_l2 },
+>  	{ .compatible = "qcom,msm8998-silver-saw2-v4.1-l2",
+> -- 
+> 2.37.2
 > 
-> diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> index b23591110bd2..5fa1af147df9 100644
-> --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> @@ -38,6 +38,7 @@ aliases {
->  		spi1 = &blsp1_spi2;
->  		i2c0 = &blsp1_i2c3;
->  		i2c1 = &blsp1_i2c4;
-> +		ethernet0 = &gmac;
-
-Hm, I have doubts about this one. Why alias is needed and why it is a
-property of a SoC? Not every board has Ethernet enabled, so this looks
-like board property.
-
-I also wonder why do you need it at all?
-
-Best regards,
-Krzysztof
-
