@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA9C619EDF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:36:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D73B619EFA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 18:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbiKDRgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 13:36:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45252 "EHLO
+        id S231789AbiKDRmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 13:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiKDRge (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:36:34 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3D911A17;
-        Fri,  4 Nov 2022 10:36:31 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id z18so8644368edb.9;
-        Fri, 04 Nov 2022 10:36:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AN/gGtQTeZ/7kTZo5cIa72NMTTjOeEbVteteRCoz+cM=;
-        b=V1Pzi0jU2ax4MAjMptvIHNXO3GQ95l9hxpQH44/NEszUE8GLXB5GTO0BLBlD7bzFY7
-         BetGKzvUarvxGW+t5Xm5YeKSZ1on4z2JOJFGMnGwUFvWaI4taTuHRLq0EVr2AkzXgrTh
-         JVB3lTA/54A0hpxKXkKARqHJbw8GAyIR7SJjdJnd5QLZJ57yWe2KONsFqOUVJsGBnoLM
-         mk2aGOBdeCyzPVsFOFK7iy1eYGrrtoBeFZft4RWTox7XQrkB/ba0ILbNvQOmEiT2k/sF
-         I/SOrPpDasue0LgFQHqBVFpEWXcSNNM4U+Ipk2t0wUc7f91egqb7I+8iu0UsTHZhalmm
-         uKQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AN/gGtQTeZ/7kTZo5cIa72NMTTjOeEbVteteRCoz+cM=;
-        b=Z4Rqzf0KyFVcpz4YIjmSg8rzMSDwg3JKTk+c++nyoaJZw1J5wHOI43hcBrHJidzKL1
-         CLBDZf1OZeX5511hQVCqk/SX+J7NfVFDXH2YVUdgM3bE+f5d26b3P2H2etHZd8PYWOuK
-         tQ/yJz5e1jpgA79rjvGdISxWH7fLtW1W2Kpi57k9wCOX6rDQhEKBrAH8L60ms375PCzf
-         Efr5AcDLRLZqIigi1atuYe2xi3+KUY7Rzp+UuPV6Pa9Un8gArRhFXhvwxHelV8RO5CpH
-         ifhmJZt8KFND3un/iDqobLYrSDbWQIQRUMwlOzkt05OF5LqilvVcwkRYxvZQC3QYwpP8
-         jlqw==
-X-Gm-Message-State: ACrzQf3ozpt/rKeOxc5EApyqDJ5joyhpngzKTt2m7VFwcijZqM8LH19n
-        zeFi7qqdfnaTzOqzgP255+Pg8Tbc928=
-X-Google-Smtp-Source: AMsMyM65eK7YFk6AdQ5ckrN8NvW+dW110QgbSJmLUh82AZb1p4psMsdQ3DsJxeISZBGVruAXetIM8g==
-X-Received: by 2002:aa7:d3d3:0:b0:462:7435:8b14 with SMTP id o19-20020aa7d3d3000000b0046274358b14mr36125236edr.370.1667583389564;
-        Fri, 04 Nov 2022 10:36:29 -0700 (PDT)
-Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
-        by smtp.gmail.com with ESMTPSA id b7-20020a17090636c700b0078de26f66b9sm2058922ejc.114.2022.11.04.10.36.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Nov 2022 10:36:29 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     mchehab@kernel.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, samuel@sholland.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] media: sunxi: Add H6 deinterlace driver
-Date:   Fri, 04 Nov 2022 18:36:27 +0100
-Message-ID: <2652146.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <71e8ea95-8c3a-cc85-1638-5ce421a60e99@xs4all.nl>
-References: <20221101123201.3021129-1-jernej.skrabec@gmail.com> <71e8ea95-8c3a-cc85-1638-5ce421a60e99@xs4all.nl>
+        with ESMTP id S231171AbiKDRl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 13:41:59 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1391AB842;
+        Fri,  4 Nov 2022 10:41:56 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id BE086FF804;
+        Fri,  4 Nov 2022 17:41:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1667583715;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=hRN6TmZRqEG3ji2w4dBfaFdcgHUq8qs2x6FTGFXjvdU=;
+        b=LsPg9BvXp6A+afED5a5+DSQw2o+6gW5FbJIIR+Nh9jc68J5IYwq8agjnV330+84uRtIhGw
+        u/AjZ0S+EsH6BcOASDjvownFRu2iBydlJbYPtvg524UlqOqbXAGEDi2OnSgyNq6uvBW/Ls
+        9j9tQ7rHh/L4EFE+H4K8VBUW7NNHJsF1S8pnZwnCmDzz6nLRmNkWEN59UcekU0t5VNqdLL
+        JxX90haEq7UpiQOY6tPHhtlfOIkCbHU/L3RTrzAQNIY+6InDJyf43vZGIr935oi927yfNR
+        d7r5mZ2SXelxgsfJdMWKalb2GMti3LJSn17OfVECwbjHAqYYVMMBdNnGL9xdWA==
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH net-next v8 0/5] net: ipqess: introduce Qualcomm IPQESS driver
+Date:   Fri,  4 Nov 2022 18:41:46 +0100
+Message-Id: <20221104174151.439008-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.37.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,153 +63,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+Hello everyone,
 
-Dne petek, 04. november 2022 ob 12:33:50 CET je Hans Verkuil napisal(a):
-> Hi Jernej,
-> 
-> Can you add a patch updating the MAINTAINERS file? Just post a 4/3 patch :-)
+This is the 8th iteration on the IPQESS driver, that includes a new
+DSA tagger to let the MAC convey the tag to the switch through an
+out-of-band medium, here using DMA descriptors.
 
-It's already part of patch 2. I didn't see the reason to split it to separate 
-patch.
+Notables changes on v8 :
+ - Added fixed-link in the dtsi SoC file
+ - Removed the ethernet0 alias from the dtsi
+ - Added a missing blank line in tagger driver
+
+Notables changes on V7 :
+ - Fixed sparse warnings
+ - Fixed a typo in the bindings
+ - Added missing maintainers in CC
+
+Notables changes on V6 :
+ - Cleanup unused helpers and fields in the tagger
+ - Cleanup ordering in various files
+ - Added more documentation on the tagger
+ - Fixed the CHANGEUPPER caching
+ - Cleanups in the IPQESS driver
+
+Notables changes on V5 :
+ - Fix caching of CHANGEUPPER events
+ - Use a skb extension-based tagger
+ - Rename the binding file
+ - Some cleanups in the ipqess driver itself
+
+Notables changes on V4 :
+ - Cache the uses_dsa info from CHANGEUPPER events
+ - Use better string handling helpers for ethtool stats
+ - rename ethtool callbacks
+ - Fix a binding typo
+
+Notables changes on V3 :
+ - Took into account Russell's review on the ioctl handler and the mac
+   capabilities that were missing
+ - Took Andrew's reviews into account by reworking the napi rx loop,
+   some stray "inline" keywords, and useless warnings
+ - Took Vlad's reviews into account by reworking a few macros
+ - Took Christophe's review into account by removing extra GFP_ZERO
+ - Took Rob's review into account by simplifying the binding
+
+Notables changes on V2 :
+ - Put the DSA tag in the skb itself instead of using skb->shinfo
+ - Fixed the initialisation sequence based on Andrew's comments
+ - Reworked the error paths in the init sequence
+ - Add support for the clock and reset lines on that controller
+ - Fixed and updated the binding
+
+The driver itself is pretty straightforward, but has lived out-of-tree
+for a while. I've done my best to clean-up some outdated API calls, but
+some might remain.
+
+This controller is somewhat special, since it's part of the IPQ4019 SoC
+which also includes an QCA8K switch, and uses the IPQESS controller for
+the CPU port. The switch is so tightly intergrated with the MAC that it
+is connected to the MAC using an internal link (hence the fact that we
+only support PHY_INTERFACE_MODE_INTERNAL), and this has some
+consequences on the DSA side.
+
+The tagging for the switch isn't done inband as most switch do, but
+out-of-band, the DSA tag being included in the DMA descriptor.
+
+This series includes a new out-of-band tagger that uses skb extensions
+to convey the tag between the tagger and the MAC driver.
+
+Thanks to the Sartura folks who worked on a base version of this driver,
+and provided test hardware.
 
 Best regards,
-Jernej
 
-> 
-> Regards,
-> 
-> 	Hans
-> 
-> On 01/11/2022 13:31, Jernej Skrabec wrote:
-> > This series implements driver for H6 deinterlace core, which is
-> > newer version of core, covered by sun8i-di (v2.3). Contrary to
-> > older one, it doesn't support scaling, but it supports iommu,
-> > has additional motion compensated deinterlacing algorithm and
-> > supports different pixel formats.
-> > 
-> > v4l2-compliance 1.23.0-4961, 64 bits, 64-bit time_t
-> > v4l2-compliance SHA: f86484524f32 2022-10-21 10:08:58
-> > 
-> > Compliance test for sun50i-di device /dev/video0:
-> > 
-> > Driver Info:
-> >         Driver name      : sun50i-di
-> >         Card type        : sun50i-di
-> >         Bus info         : platform:sun50i-di
-> >         Driver version   : 6.1.0
-> >         Capabilities     : 0x84208000
-> >         
-> >                 Video Memory-to-Memory
-> >                 Streaming
-> >                 Extended Pix Format
-> >                 Device Capabilities
-> >         
-> >         Device Caps      : 0x04208000
-> >         
-> >                 Video Memory-to-Memory
-> >                 Streaming
-> >                 Extended Pix Format
-> > 
-> > Required ioctls:
-> >         test VIDIOC_QUERYCAP: OK
-> >         test invalid ioctls: OK
-> > 
-> > Allow for multiple opens:
-> >         test second /dev/video0 open: OK
-> >         test VIDIOC_QUERYCAP: OK
-> >         test VIDIOC_G/S_PRIORITY: OK
-> >         test for unlimited opens: OK
-> > 
-> > Debug ioctls:
-> >         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> >         test VIDIOC_LOG_STATUS: OK (Not Supported)
-> > 
-> > Input ioctls:
-> >         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> >         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> >         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> >         test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> >         test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> >         test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> >         Inputs: 0 Audio Inputs: 0 Tuners: 0
-> > 
-> > Output ioctls:
-> >         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> >         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> >         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> >         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> >         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> >         Outputs: 0 Audio Outputs: 0 Modulators: 0
-> > 
-> > Input/Output configuration ioctls:
-> >         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> >         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> >         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> >         test VIDIOC_G/S_EDID: OK (Not Supported)
-> > 
-> > Control ioctls:
-> >         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
-> >         test VIDIOC_QUERYCTRL: OK (Not Supported)
-> >         test VIDIOC_G/S_CTRL: OK (Not Supported)
-> >         test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
-> >         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
-> >         test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> >         Standard Controls: 0 Private Controls: 0
-> > 
-> > Format ioctls:
-> >         test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> >         test VIDIOC_G/S_PARM: OK (Not Supported)
-> >         test VIDIOC_G_FBUF: OK (Not Supported)
-> >         test VIDIOC_G_FMT: OK
-> >         test VIDIOC_TRY_FMT: OK
-> >         test VIDIOC_S_FMT: OK
-> >         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> >         test Cropping: OK (Not Supported)
-> >         test Composing: OK (Not Supported)
-> >         test Scaling: OK (Not Supported)
-> > 
-> > Codec ioctls:
-> >         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> >         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> >         test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> > 
-> > Buffer ioctls:
-> >         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> >         test VIDIOC_EXPBUF: OK
-> >         test Requests: OK (Not Supported)
-> > 
-> > Total for sun50i-di device /dev/video0: 45, Succeeded: 45, Failed: 0,
-> > Warnings: 0
-> > 
-> > Best regards,
-> > Jernej
-> > 
-> > Jernej Skrabec (3):
-> >   media: dt-bindings: media: Add Allwinner H6 Deinterlace binding
-> >   media: sunxi: Add H6 deinterlace driver
-> >   arm64: dts: allwinner: h6: Add deinterlace node
-> >  
-> >  .../allwinner,sun50i-h6-deinterlace.yaml      |   74 ++
-> >  MAINTAINERS                                   |    4 +-
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   12 +
-> >  drivers/media/platform/sunxi/Kconfig          |    1 +
-> >  drivers/media/platform/sunxi/Makefile         |    1 +
-> >  .../media/platform/sunxi/sun50i-di/Kconfig    |   15 +
-> >  .../media/platform/sunxi/sun50i-di/Makefile   |    2 +
-> >  .../platform/sunxi/sun50i-di/sun50i-di.c      | 1142 +++++++++++++++++
-> >  .../platform/sunxi/sun50i-di/sun50i-di.h      |  175 +++
-> >  9 files changed, 1425 insertions(+), 1 deletion(-)
-> >  create mode 100644
-> >  Documentation/devicetree/bindings/media/allwinner,sun50i-h6-deinterlace.
-> >  yaml create mode 100644 drivers/media/platform/sunxi/sun50i-di/Kconfig
-> >  create mode 100644 drivers/media/platform/sunxi/sun50i-di/Makefile
-> >  create mode 100644 drivers/media/platform/sunxi/sun50i-di/sun50i-di.c
-> >  create mode 100644 drivers/media/platform/sunxi/sun50i-di/sun50i-di.h
-> > 
-> > --
-> > 2.38.1
+Maxime
 
+Maxime Chevallier (5):
+  net: dt-bindings: Introduce the Qualcomm IPQESS Ethernet controller
+  net: ipqess: introduce the Qualcomm IPQESS driver
+  net: dsa: add out-of-band tagging protocol
+  net: ipqess: Add out-of-band DSA tagging support
+  ARM: dts: qcom: ipq4019: Add description for the IPQESS Ethernet
+    controller
 
+ .../bindings/net/qcom,ipq4019-ess-edma.yaml   |   94 ++
+ Documentation/networking/dsa/dsa.rst          |   13 +-
+ MAINTAINERS                                   |    8 +
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |   48 +
+ drivers/net/ethernet/qualcomm/Kconfig         |   12 +
+ drivers/net/ethernet/qualcomm/Makefile        |    2 +
+ drivers/net/ethernet/qualcomm/ipqess/Makefile |    8 +
+ drivers/net/ethernet/qualcomm/ipqess/ipqess.c | 1308 +++++++++++++++++
+ drivers/net/ethernet/qualcomm/ipqess/ipqess.h |  522 +++++++
+ .../ethernet/qualcomm/ipqess/ipqess_ethtool.c |  164 +++
+ include/linux/dsa/oob.h                       |   16 +
+ include/linux/skbuff.h                        |    3 +
+ include/net/dsa.h                             |    2 +
+ net/core/skbuff.c                             |   10 +
+ net/dsa/Kconfig                               |    9 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_oob.c                             |   49 +
+ 17 files changed, 2268 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,ipq4019-ess-edma.yaml
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/Makefile
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.c
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.h
+ create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c
+ create mode 100644 include/linux/dsa/oob.h
+ create mode 100644 net/dsa/tag_oob.c
 
+-- 
+2.37.3
 
