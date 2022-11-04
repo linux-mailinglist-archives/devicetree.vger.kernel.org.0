@@ -2,201 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A9E619C77
-	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 17:03:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC726619C7B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Nov 2022 17:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232230AbiKDQDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 12:03:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38718 "EHLO
+        id S232208AbiKDQEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 12:04:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232229AbiKDQDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 12:03:33 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BDD26E0
-        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 09:03:30 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id CD11B85240;
-        Fri,  4 Nov 2022 17:03:28 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667577809;
-        bh=kiR4euSdQwIl+MZxkiOMePFGV+vs3O4ipYS8iMd8u10=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mK/Qxp0xTisVdl9WhCqqXs3u2oCqMZ9gSDMzr0gpVgJg8FTMeqwAapL/I9wPce7Nb
-         TEGhlcoRZE2lkfYy/hA+VZaVGeWpFEZYMOLtLv6y5QOTB7QrfyS37G03YmPbVdAf0j
-         JEnTW79riqFYFWmEDpd762TRjQ03FcQKeZ0iMxK3b+35KIJCa2qFddcJii9WE7wIuI
-         RsYLlXAZxWkladW1VFNNZxmm6D/joROKi33JS5UoCybogSxlGOWXK2oWergiLhUMX5
-         jp9H3GuNN80AhtLSankfNEgcjgMhRTB5v1lfzgArK+R6LS0xQGF6JMyMmoialoFM0x
-         oyzm1L9VAZ0Pw==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        alsa-devel@alsa-project.org
-Subject: [PATCH 3/3] ASoC: dt-bindings: fsl-sai: Sort main section properties
-Date:   Fri,  4 Nov 2022 17:03:15 +0100
-Message-Id: <20221104160315.213836-3-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20221104160315.213836-1-marex@denx.de>
-References: <20221104160315.213836-1-marex@denx.de>
+        with ESMTP id S231565AbiKDQEl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 12:04:41 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E442710;
+        Fri,  4 Nov 2022 09:04:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+        s=s31663417; t=1667577856;
+        bh=HaDXsj5DAmUozxmuMTfo9ex+N6s+nv1T65q4Xi8hgFE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=ZM2nwxB2r33PzRiQCbOUAeIkRnw2n9KjRUooAhRZVI9FX5xWWX4UWs1MZdn2iJS+F
+         DWw5BS4v8Jnvr9XtlBMz3T9NOVl2wGVwoY6N3nwXNjBEhsV+Dv6NN6zqc4N8WCs8Cm
+         Wa7veXULp3mR9NTq7H0N6DHXJibfQDALqqGUKtdkqQ5M4JAtSPGCQHwoMP4adChuoL
+         0lKpbFDuN3NR8wlpvQwKrfO6ot4c0ThUdXII1H6Vk4auLgDsdN88eA3fFYftYDciUg
+         hDG0gzOSaS80ZkoAsjTsiizwU2afLqcd+Ru8+pr6JHMuGs7YqTALqohyx6/tazW/Po
+         bnsNJoZx5VbNw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [80.245.77.26] ([80.245.77.26]) by web-mail.gmx.net
+ (3c-app-gmx-bs24.server.lan [172.19.170.76]) (via HTTP); Fri, 4 Nov 2022
+ 17:04:16 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Message-ID: <trinity-889b4468-8a50-4eae-80a1-6bd9ffbeaaf2-1667577856206@3c-app-gmx-bs24>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Aw: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings
+ for MT7986 SoC
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 4 Nov 2022 17:04:16 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <e7192d9b-df86-a860-d5cb-8b4b9184e5bc@linaro.org>
+References: <20221025070255.14407-1-linux@fw-web.de>
+ <e7192d9b-df86-a860-d5cb-8b4b9184e5bc@linaro.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:2X1CafeoZLi1maobab4XpgEBgVUV/xQr84vHR6gjBAuOAY+JVVgANmAm4TcRb/l8nDxS2
+ TnKDSNrjO66TVkQ5Xv4tr22SQACFwC8dyQ5Ll1ovrg6NFnaVVla9fQWFTGVG3ydGBt4eY/4/7vU8
+ BOJEfNFxM3uM2fdID/4ZsxJovvlK1CDWDoVbs+QRvVF175YDPu+J5S564bNkOGoh11auRi/vnZss
+ jHYbLCQ7bKanEf80Q/YE26Kq+rO1TwJuNmmvMxFtfFWsv5EV0YohuUNEs5XDlMS5neXaVDZAYIYw
+ +g=
+UI-OutboundReport: notjunk:1;M01:P0:uc0fEXlhH1I=;v14gmGUwfv0+qhv+chsSKxKrs5P
+ pwVmYK1Z+eFI4681MyQNBz/llzYKerv1128HaHFkR43erPzjWWPnk/BxJfoUhH3LmmWPkGsWG
+ Sk8JuO1KSz5VdbakOSaL3Ql+Q7VPd4OGrLYhSBz8dfwaawb4C3pSOYpTnkgmMjCmqQgFXmrfq
+ b9kGjG+G5j8n2iuiXVsv/L6nFTFnolCkwcPKeFysjsSbGZ7M0lGV+kaRIrPmezJVEnMSFiL9D
+ pYy2VsMd7Dk17hgP81q7yhcsCA5vXFceeYISenxgZfBiXQSJV6mNKSFiGp0Ttql8Jyr1O/3ZV
+ VyfLpd7PRJMmzap8TtKeBdgp6R9xVMsX/IaaKtXXfij97OGpAGCOJqs5hCE4Oz3DMP+F7QY0f
+ WIN527EHyL47okLwszSdFNatf6uh9rc9oCMqHSMHq2l4P5g0//mfjV8G6O80rYd/RXfinSKGQ
+ 7PPQRA0vJckPPSWEr9IRQpH2he3G8/22AzEqEBjDvZ6xAkTTz+iiUCN5zYA4mTT+lBmT1IJtf
+ h09a8G8k4edta9sAq9qiMoGgS59X1Se7+ounLhHeWFFVZSVrgWNGdy4sBjD4vvgAb+/78C1gd
+ oKf9no7c1eIuJa6bFL0s8Rwwya4yeVFr6M0ihtwsNdwU00a2L+3SLcHVvkwzhJ48p1WF5kNKE
+ 4KXjT9FbecheJRm35FwNbIfhbmCrFR//HA7gt/o5x3FgnaeLupaIbf6BboNfWbDFrRcQ1aTLt
+ 5zPRw4LOtLFUnk4KjIWnSF/+GgkaQn834lSdZe5OsIaQRJWuCnkC7VL73hMGHATNrap6UOuzr
+ IDQZmto+wcE9Idj3Tx1bfR8NAo9OQlPqjlgFTRtTW3H7c=
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sort main section properties, no functional change.
+Hi
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Nicolin Chen <nicoleotsuka@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Takashi Iwai <tiwai@suse.com>
-Cc: Xiubo Li <Xiubo.Lee@gmail.com>
-Cc: alsa-devel@alsa-project.org
-To: devicetree@vger.kernel.org
----
- .../devicetree/bindings/sound/fsl,sai.yaml    | 72 +++++++++----------
- 1 file changed, 36 insertions(+), 36 deletions(-)
+> Gesendet: Dienstag, 25. Oktober 2022 um 20:35 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> Betreff: Re: [PATCH v2] dt-bindings: pinctrl: update uart/mmc bindings f=
+or MT7986 SoC
+>
+> On 25/10/2022 03:02, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
+> >
+> > Add new splitted uart pins and emmc_51
+> >
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-index 59a13cd0887e9..022da1f4583d6 100644
---- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-+++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-@@ -43,16 +43,6 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    items:
--      - description: receive and transmit interrupt
--
--  dmas:
--    maxItems: 2
--
--  dma-names:
--    maxItems: 2
--
-   clocks:
-     items:
-       - description: The ipg clock for register access
-@@ -84,19 +74,37 @@ properties:
-           - const: pll11k
-         minItems: 4
- 
--  lsb-first:
--    description: |
--      Configures whether the LSB or the MSB is transmitted
--      first for the fifo data. If this property is absent,
--      the MSB is transmitted first as default, or the LSB
--      is transmitted first.
--    type: boolean
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    maxItems: 2
-+
-+  interrupts:
-+    items:
-+      - description: receive and transmit interrupt
- 
-   big-endian:
-     description: |
-       required if all the SAI registers are big-endian rather than little-endian.
-     type: boolean
- 
-+  fsl,dataline:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    description: |
-+      Configure the dataline. It has 3 value for each configuration
-+    maxItems: 16
-+    items:
-+      items:
-+        - description: format Default(0), I2S(1) or PDM(2)
-+          enum: [0, 1, 2]
-+        - description: dataline mask for 'rx'
-+        - description: dataline mask for 'tx'
-+
-+  fsl,sai-mclk-direction-output:
-+    description: SAI will output the SAI MCLK clock.
-+    type: boolean
-+
-   fsl,sai-synchronous-rx:
-     description: |
-       SAI will work in the synchronous mode (sync Tx with Rx) which means
-@@ -115,26 +123,18 @@ properties:
-       of transmitter.
-     type: boolean
- 
--  fsl,dataline:
--    $ref: /schemas/types.yaml#/definitions/uint32-matrix
--    description: |
--      Configure the dataline. It has 3 value for each configuration
--    maxItems: 16
--    items:
--      items:
--        - description: format Default(0), I2S(1) or PDM(2)
--          enum: [0, 1, 2]
--        - description: dataline mask for 'rx'
--        - description: dataline mask for 'tx'
--
--  fsl,sai-mclk-direction-output:
--    description: SAI will output the SAI MCLK clock.
--    type: boolean
--
-   fsl,shared-interrupt:
-     description: Interrupt is shared with other modules.
-     type: boolean
- 
-+  lsb-first:
-+    description: |
-+      Configures whether the LSB or the MSB is transmitted
-+      first for the fifo data. If this property is absent,
-+      the MSB is transmitted first as default, or the LSB
-+      is transmitted first.
-+    type: boolean
-+
-   "#sound-dai-cells":
-     const: 0
-     description: optional, some dts node didn't add it.
-@@ -175,11 +175,11 @@ allOf:
- required:
-   - compatible
-   - reg
--  - interrupts
--  - dmas
--  - dma-names
-   - clocks
-   - clock-names
-+  - dmas
-+  - dma-names
-+  - interrupts
- 
- additionalProperties: false
- 
--- 
-2.35.1
+after talking with MTK for the emmc pinctrl settings (custom pull-up) they=
+ suggested me to change
+binding to fix other emmc-values and allow multiple (2) uart-items
 
+so on top of this patch
+
+             then:
+               properties:
+                 groups:
+-                  enum: [emmc, emmc_rst, emmc_51]
++                  enum: [emmc_45, emmc_51]
+           - if:
+               properties:
+                 function:
+@@ -231,10 +231,12 @@ patternProperties:
+             then:
+               properties:
+                 groups:
+-                  enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
+-                         uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
+-                         uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rts,
+-                         uart2_1, uart0, uart1, uart2]
++                  items:
++                    enum: [uart1_0, uart1_rx_tx, uart1_cts_rts, uart1_1,
++                           uart1_2_rx_tx, uart1_2_cts_rts, uart1_3_rx_tx,
++                           uart1_3_cts_rts, uart2_0_rx_tx, uart2_0_cts_rt=
+s,
++                           uart2_1, uart0, uart1, uart2]
++                  maxItems: 2
+
+i would squash these changes and send as v3 or should i send an extra-patc=
+h?
+
+regards Frank
