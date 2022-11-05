@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF4C61A639
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 01:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F6161A63D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 01:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbiKEABm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 20:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39960 "EHLO
+        id S229536AbiKEAC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 20:02:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiKEABh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 20:01:37 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7986742F44;
-        Fri,  4 Nov 2022 17:01:36 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A5015bb068560;
-        Fri, 4 Nov 2022 19:01:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667606465;
-        bh=70/J8OoLwMz2ZYUbC2R1pWuNjEn/hRSMKPEEuh66w90=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Gv3WplavkR0OhY3cyw5apGFxR8Pf4CI2qe6wRU3/3HFrBUeOEZpOLj8xzHzVACoLa
-         HfODwGrn/JtbF4xchec3d9/wau+CU2O5VbVnZTeCrc1mBQWK3TZP1Zm0vcp3FIEAy7
-         7bl9h7DVTgXC33YKFhXXlUaKA0MUNVwhVwtcB20I=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A5014iV084742
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Nov 2022 19:01:04 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
- 2022 19:01:04 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 4 Nov 2022 19:01:04 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A5014d5015472;
-        Fri, 4 Nov 2022 19:01:04 -0500
-Date:   Fri, 4 Nov 2022 19:01:04 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     jerome Neanne <jneanne@baylibre.com>
-CC:     Lee Jones <lee@kernel.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <robh+dt@kernel.org>, <kristo@kernel.org>,
-        <dmitry.torokhov@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>, <tony@atomide.com>,
-        <vigneshr@ti.com>, <bjorn.andersson@linaro.org>,
-        <shawnguo@kernel.org>, <geert+renesas@glider.be>,
-        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
-        <vkoul@kernel.org>, <biju.das.jz@bp.renesas.com>, <arnd@arndb.de>,
-        <jeff@labundy.com>, <afd@ti.com>, <khilman@baylibre.com>,
-        <narmstrong@baylibre.com>, <msp@baylibre.com>, <j-keerthy@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-input@vger.kernel.org>, <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
-Message-ID: <20221105000104.rtj3r6ufqwqmepon@keenly>
-References: <20221011140549.16761-1-jneanne@baylibre.com>
- <20221011140549.16761-5-jneanne@baylibre.com>
- <Y1+q2Usm9ecicXqp@google.com>
- <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
+        with ESMTP id S229492AbiKEAC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 20:02:28 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 156834299C
+        for <devicetree@vger.kernel.org>; Fri,  4 Nov 2022 17:02:27 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-367cd2807f2so57521197b3.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Nov 2022 17:02:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1MQ/MvgoaM+wuk0nP2WaO7/jeSNOQs6jynN/f4ocCQ0=;
+        b=uCT3v5zh5uawbjkGZjrXs2McNiTy2Rqhrb5BuXRgWWQ3haO3WKptSb8bw6bdNISc0w
+         QR/AeB0cr0BrpmdJFm7kSehiwr+DXXxaAEIxgz62SeEwFJa3YgPivysVmrK2c+MhRaNL
+         GplVFHS/MABcw4VntexMH3asNvfz0P0kWG/MM6p84ICuurNBYHgw/4saUx8TPt731IiI
+         rhlUS7izfD1FmuABNStKk/pcOw3SlIJuCsRBuy5ukCBHHxNatZ6rhEHsT43pOgjIt5VB
+         0HqCEhNfJyIf1RP9YoyUfHOB/DNIS8+UZMKtb9uVRe/syjvd7tC2XRYCUdi0FYGc+wza
+         8zvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1MQ/MvgoaM+wuk0nP2WaO7/jeSNOQs6jynN/f4ocCQ0=;
+        b=tmEw09N8CbDnLfJjgi3kMNVum/PnVFceLvvnQGVxCoMcUJTiCqXGaI+gIIH7h80Tky
+         2OdCY2ASvPexlGenaSPvQQbCZsjTCgozqAnDz8LEaUsIpiA+1tI3Rj8nlmzsnSu/wwgb
+         I76SQPdkX8rZzGwMui2SHjPnovbWkQ/dW9HTjsb1bJevuznE68i6yOP5tCTqeXbmKt+Y
+         s6AT7UFW1ql7nEvBatRSDkaIydNeeKtQMvH4kvNVi7G3jocXUZmms8CSySIgRHYnocze
+         nymmeTvi+LwP/9kgSSI1y93w2IR0zAuyz9aj3Xiwcfm3KQ5HBalm3XKN73bnmPUqenyY
+         3cSg==
+X-Gm-Message-State: ACrzQf2yhajziuaZFM5v6WcPNkcqwQ0otFNuH2VD2z4mWDHQXMIaPJMj
+        gBYhm9cpG54wsA49PxDy0oQhmyVzOBXrO43Y1MGSdA==
+X-Google-Smtp-Source: AMsMyM6GhYGELNu1XpnEwkyMOuaA+7Wu3xX/XDzXNHgAcq/VxoTSRKNQdulOGDD9Y5cLUlahvA8V0t9bIJCdojcP29Y=
+X-Received: by 2002:a81:5905:0:b0:370:853a:80e4 with SMTP id
+ n5-20020a815905000000b00370853a80e4mr25029225ywb.418.1667606546235; Fri, 04
+ Nov 2022 17:02:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+References: <20221102184420.534094-1-dmitry.baryshkov@linaro.org>
+ <20221102184420.534094-9-dmitry.baryshkov@linaro.org> <Y2WOwZdMLjByosel@mailingradian>
+In-Reply-To: <Y2WOwZdMLjByosel@mailingradian>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sat, 5 Nov 2022 03:02:15 +0300
+Message-ID: <CAA8EJpr6i9iG4EmzK+AzsqK6582LBScds2N5ZVv+=EyZwLs-Pg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 08/11] iommu/arm-smmu-qcom: provide separate
+ implementation for SDM845-smmu-500
+To:     Richard Acayan <mailingradian@gmail.com>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Clark <robdclark@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,41 +76,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:58-20221104, jerome Neanne wrote:
-> 
-[...]
+On Sat, 5 Nov 2022 at 01:16, Richard Acayan <mailingradian@gmail.com> wrote:
+>
+> On Wed, Nov 02, 2022 at 09:44:17PM +0300, Dmitry Baryshkov wrote:
+> > There is only one platform, which needs special care in the reset
+> > function, the SDM845. Add special handler for sdm845 and drop the
+> > qcom_smmu500_reset() function.
+> >
+> > Reviewed-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+> > Tested-by: Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 34 ++++++++++++----------
+> >  1 file changed, 19 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> > index c3bcd6eb2f42..75bc770ccf8c 100644
+> > --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> > +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> > @@ -361,6 +361,8 @@ static int qcom_sdm845_smmu500_reset(struct arm_smmu_device *smmu)
+> >  {
+> >       int ret;
+> >
+> > +     arm_mmu500_reset(smmu);
+> > +
+> >       /*
+> >        * To address performance degradation in non-real time clients,
+> >        * such as USB and UFS, turn off wait-for-safe on sdm845 based boards,
+> > @@ -374,23 +376,20 @@ static int qcom_sdm845_smmu500_reset(struct arm_smmu_device *smmu)
+> >       return ret;
+> >  }
+> >
+> > -static int qcom_smmu500_reset(struct arm_smmu_device *smmu)
+> > -{
+> > -     const struct device_node *np = smmu->dev->of_node;
+> > -
+> > -     arm_mmu500_reset(smmu);
+> > -
+> > -     if (of_device_is_compatible(np, "qcom,sdm845-smmu-500"))
+> > -             return qcom_sdm845_smmu500_reset(smmu);
+> > -
+> > -     return 0;
+> > -}
+> > -
+> >  static const struct arm_smmu_impl qcom_smmu_impl = {
+> >       .init_context = qcom_smmu_init_context,
+> >       .cfg_probe = qcom_smmu_cfg_probe,
+> >       .def_domain_type = qcom_smmu_def_domain_type,
+> > -     .reset = qcom_smmu500_reset,
+> > +     .reset = arm_mmu500_reset,
+> > +     .write_s2cr = qcom_smmu_write_s2cr,
+> > +     .tlb_sync = qcom_smmu_tlb_sync,
+> > +};
+> > +
+> > +static const struct arm_smmu_impl sdm845_smmu_500_impl = {
+> > +     .init_context = qcom_smmu_init_context,
+> > +     .cfg_probe = qcom_smmu_cfg_probe,
+> > +     .def_domain_type = qcom_smmu_def_domain_type,
+> > +     .reset = qcom_sdm845_smmu500_reset,
+> >       .write_s2cr = qcom_smmu_write_s2cr,
+> >       .tlb_sync = qcom_smmu_tlb_sync,
+> >  };
+> > @@ -398,7 +397,7 @@ static const struct arm_smmu_impl qcom_smmu_impl = {
+> >  static const struct arm_smmu_impl qcom_adreno_smmu_impl = {
+> >       .init_context = qcom_adreno_smmu_init_context,
+> >       .def_domain_type = qcom_smmu_def_domain_type,
+> > -     .reset = qcom_smmu500_reset,
+> > +     .reset = arm_mmu500_reset,
+> >       .alloc_context_bank = qcom_adreno_smmu_alloc_context_bank,
+> >       .write_sctlr = qcom_adreno_smmu_write_sctlr,
+> >       .tlb_sync = qcom_smmu_tlb_sync,
+> > @@ -450,6 +449,11 @@ static const struct qcom_smmu_match_data qcom_smmu_data = {
+> >       .adreno_impl = &qcom_adreno_smmu_impl,
+> >  };
+> >
+> > +static const struct qcom_smmu_match_data sdm845_smmu_500_data = {
+> > +     .impl = &sdm845_smmu_500_impl,
+> > +     /* No adreno impl, on sdm845 it is handled by separete sdm845-smmu-v2. */
+> separete -> separate
 
-> 
-> > 
-> > Can you try an compile with W=1 please.
-> This raise one warning on mfd:
-> drivers/mfd/tps65219.c:28:12: warning: ‘tps65219_soft_shutdown’ defined but
-> not used [-Wunused-function]
->    28 | static int tps65219_soft_shutdown(struct tps65219 *tps)
->       |            ^~~~~~~~~~~~~~~~~~~~~~
-> soft_shutdown has been validated and is used in TI baseline even if not
-> hooked in upstream version further to this review:
-> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
-> 
-> It was a TI requirement to implement it...
-> Let me know if you want me to remove this function or if we can keep it like
-> this.
+Ack.
 
-There are platforms without psci, correct? I think the comment was to
-drop the force override with system-power-controller property,
+> Also, while I'm here, does "No adreno impl" constitute adding a
+> compatible in the driver?
 
-if (!pm_power_off) {
-	tps65219_i2c_client = client;
-	pm_power_off = &tps65219_pm_power_off;
-}
+Not sure that I got your question, please excuse me. Could you please
+describe what you meant?
+We already have qcom,sdm845-smmu-v2 in the match table, if that's your
+question. And there is no need for Adreno impl here, on sdm845 the
+SMMU connected to Adreno is v2 rather than mmu-500.
+Probably I should change this to "No need for adreno impl....". Would
+that be better?
 
-Could still be valid for such platforms, no? I do see that the
-capability that the PMIC has - which is software shutdown is a valid
-feature that we support in many different PMIC drivers. Is'nt the job of
-the driver to introduce the functionality in a manner that is
-appropriate to the OS framework?
+> > +};
+> > +
+> >  static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+> >       { .compatible = "qcom,msm8996-smmu-v2", .data = &msm8996_smmu_data },
+> >       { .compatible = "qcom,msm8998-smmu-v2", .data = &qcom_smmu_data },
+> > @@ -460,7 +464,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
+> >       { .compatible = "qcom,sc8280xp-smmu-500", .data = &qcom_smmu_data },
+> >       { .compatible = "qcom,sdm630-smmu-v2", .data = &qcom_smmu_data },
+> >       { .compatible = "qcom,sdm845-smmu-v2", .data = &qcom_smmu_data },
+> > -     { .compatible = "qcom,sdm845-smmu-500", .data = &qcom_smmu_data },
+> > +     { .compatible = "qcom,sdm845-smmu-500", .data = &sdm845_smmu_500_data },
+> >       { .compatible = "qcom,sm6125-smmu-500", .data = &qcom_smmu_data },
+> >       { .compatible = "qcom,sm6350-smmu-500", .data = &qcom_smmu_data },
+> >       { .compatible = "qcom,sm6375-smmu-500", .data = &qcom_smmu_data },
+> > --
+> > 2.35.1
+> >
+
+
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+With best wishes
+Dmitry
