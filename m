@@ -2,105 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9424A61A724
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 04:02:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D6661A72D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 04:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbiKEDC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 23:02:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56186 "EHLO
+        id S229694AbiKEDFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 23:05:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbiKEDC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 23:02:27 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10CAC419B9;
-        Fri,  4 Nov 2022 20:02:27 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id D50213200495;
-        Fri,  4 Nov 2022 23:02:25 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 04 Nov 2022 23:02:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1667617345; x=
-        1667703745; bh=XdWUMaONz6fIzha2orHqw2vz8cwoxNUELokI/bAeGp4=; b=h
-        5SE6CyJwLH64nMQYli6nTF3VXbc+YlcIftp9+X2Hp5gdX4W7zpN5UVsHexkksV2r
-        oEzFxrvWzoO52ht0tN5zg9Oc8EQAcyj+LoKsSr+sAhqwMSuOOEru71A2FJHd5QsP
-        j6coAsbVSEdbWb5jZPMkvcSp3n/FAtd3mzLrAGtshJfxXfJqIBGiFNVR2blfu4V+
-        HNjqEiL1UTe0xCGjyXFfCwPu9kqnqC6QNR1j3zYz/OExnpNUCRDousZcIv248RQZ
-        De79/UdQ1LUx14QP4mWCKFkzj8Jec99FVZ6QF/Zo7bsLMbrwcG4Lwk4gTn3OnwPw
-        A5V6b2DBHBnzAb5mK1FQw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1667617345; x=
-        1667703745; bh=XdWUMaONz6fIzha2orHqw2vz8cwoxNUELokI/bAeGp4=; b=Y
-        viCET6w0r2vwfXun/tbF2F/Dn1j1LttmPaOmfjzCPPw50Ys26a7UFH13N+TFasxB
-        Do5jz6wtXt8vYM/wj0DE4P/5TUf4I8mY4Dpu3ZBRJCAYWYjCzuUmr8Hl34EfsXci
-        6w0jd5WbhItBdGSGUntRLW3LyojyE3OiRR21MOrz0VFGocp7nlARU+d2ZKu2kqFV
-        orpDEUwwUnSYlU8Hpz6If5lLx35MMwN91do8Nx2gm/X9rq6xQgLP+Yi0JIS+RO02
-        xBke2Ed6EBEnGCwmKpNpkdlxEtDBeKYOwno/DB54lhXUuCD4RONwuuQBE9ozgGtE
-        BO0NP73gon4aTLfyA/XKA==
-X-ME-Sender: <xms:QdJlYx9QHtaawehSuJdmlOB1L2Qu6XsB_5Pr_lTMqHxD6pYETQHKew>
-    <xme:QdJlY1sTbm1K6WsHmjuIWzsJ7RdP1BkLFnvq6a9vmBdzdur73zsDl0xMhpvZFpL-j
-    bI_JXVpQijr1IhBhg>
-X-ME-Received: <xmr:QdJlY_BXhjbVPAIRX76M9d1KkiVsn7209Pved9jZTZHQrPU9QEmdP8AZIg-NOwjDHnLiXhosyIrtqcHJB7_FBzEWIx51p7MPfi58xkq6BlDz8x3qdLv84DlO-w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvddvgdehgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepkeejleelfeeitdfhtdfgkeeghedufeduueegffdvhfdukeelleef
-    tdetjeehuddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:QdJlY1d9WGC-gT7QL-MAK_XVSSwFiIixUbv3CdnfMrnPmG0_az-sBw>
-    <xmx:QdJlY2NMwcA8JleC9mX4UBfbQQuD1U9-rgVdxt8xb5pK_4OzKW3Vhg>
-    <xmx:QdJlY3kUGYP9O6uptnC7IVDkWPK73d40sNLnXUWR-JzOmXFCb7SM9A>
-    <xmx:QdJlY9qh8693Yx8ZEOjepxnMb419xZSDlr5W1r9UqPcDXTI4PlckSw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 4 Nov 2022 23:02:24 -0400 (EDT)
-Message-ID: <91f6bf25-10a4-eb38-8d6d-14408b8e5e0d@sholland.org>
-Date:   Fri, 4 Nov 2022 22:02:23 -0500
+        with ESMTP id S229517AbiKEDFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 23:05:35 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 002C521E33;
+        Fri,  4 Nov 2022 20:05:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B28E0B82EFE;
+        Sat,  5 Nov 2022 03:05:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D3E8C433C1;
+        Sat,  5 Nov 2022 03:05:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667617532;
+        bh=Umqv5TifrdYvGAgkEbrHB+9F3i1kl8URY4lxJt5JgnU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RUSpKDoQsUpxmyw84iR9hk2MKXk7x5jXy6Xa0rtAwELAhA9ChEw0eDcSsMpAt0Rsg
+         OfQamM2RJW8LILzbI9mqVMpZfYbgHI+gYDBUp7ojOWiwyb87JXWxklp+4LVxXiUEoF
+         8+PW9kdzcEkptfjRWbC2D/h1LZBU25kJqE47QqUEUdk5sGBeXBJFToyIKl1LCiKsYx
+         R3M47E8D97phyiZzWBgG4LdHQLVwepDiPGLEzSS4zI7Wyx3Rhc6GRBRvAbbZR5vBI5
+         P/pAoGO3UqsmiqNYgpye5ZUAlphbI0esHmfAyRGBeqd+DDsryrAhfW2qB8jw1J9K7n
+         oAtvm8YGzN60g==
+Date:   Fri, 4 Nov 2022 20:05:30 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH net-next v8 3/5] net: dsa: add out-of-band tagging
+ protocol
+Message-ID: <20221104200530.3bbe18c6@kernel.org>
+In-Reply-To: <20221104174151.439008-4-maxime.chevallier@bootlin.com>
+References: <20221104174151.439008-1-maxime.chevallier@bootlin.com>
+        <20221104174151.439008-4-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH 1/3] media: dt-bindings: media: Add Allwinner H6
- Deinterlace binding
-Content-Language: en-US
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20221101123201.3021129-1-jernej.skrabec@gmail.com>
- <20221101123201.3021129-2-jernej.skrabec@gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-In-Reply-To: <20221101123201.3021129-2-jernej.skrabec@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/1/22 07:31, Jernej Skrabec wrote:
-> Allwinner H6 Deinterlace core is used for deinterlacing interlaced video
-> content.
+On Fri,  4 Nov 2022 18:41:49 +0100 Maxime Chevallier wrote:
+> This tagging protocol is designed for the situation where the link
+> between the MAC and the Switch is designed such that the Destination
+> Port, which is usually embedded in some part of the Ethernet Header, is
+> sent out-of-band, and isn't present at all in the Ethernet frame.
 > 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> ---
->  .../allwinner,sun50i-h6-deinterlace.yaml      | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun50i-h6-deinterlace.yaml
+> This can happen when the MAC and Switch are tightly integrated on an
+> SoC, as is the case with the Qualcomm IPQ4019 for example, where the DSA
+> tag is inserted directly into the DMA descriptors. In that case,
+> the MAC driver is responsible for sending the tag to the switch using
+> the out-of-band medium. To do so, the MAC driver needs to have the
+> information of the destination port for that skb.
+> 
+> Add a new tagging protocol based on SKB extensions to convey the
+> information about the destination port to the MAC driver
 
-Reviewed-by: Samuel Holland <samuel@sholland.org>
+This is what METADATA_HW_PORT_MUX is for, you shouldn't have 
+to allocate a piece of memory for every single packet.
 
+Also the series doesn't build.
