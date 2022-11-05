@@ -2,73 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAC361DA13
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 13:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A578C61DA80
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 13:55:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbiKEMjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Nov 2022 08:39:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39884 "EHLO
+        id S229555AbiKEMzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Nov 2022 08:55:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiKEMjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 08:39:09 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA711759B
-        for <devicetree@vger.kernel.org>; Sat,  5 Nov 2022 05:39:08 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id b62so6606937pgc.0
-        for <devicetree@vger.kernel.org>; Sat, 05 Nov 2022 05:39:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=c8XA1N0uaxkLO/wKHErNWHaSuu64k5Pjb5u9dmcZrOc=;
-        b=kq8TjKIfMuAddEcVf9rp0MAfAJKYgNJ2cBueguYMfNrrn5Y92RfhwFFtqQvsnJ25Za
-         h8SiEvPnMYeYwSArc6GY5SQq2zL79mDe+hlmdrq1jqhbH32Nym17IyGJ74jGudUVTyjZ
-         ZLa+VsNOq9rTzyLWrUxnZgdCFuXXszm94ql2h5uYD4teS2ObX7Ib8b3enSyx0rZvP7zG
-         5FbHMpk+xlNrX2y2GPhcopcKv7ZR4EpypqjNop73JfuR6545JlmmQxS6l+camVmBR4vB
-         Qcb7Ryy9wzPcpeWZUz6H6C51a26OjytDawXkXf5lh/Pu+41hWQfHFExixc8fiMddJWTE
-         Lgyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c8XA1N0uaxkLO/wKHErNWHaSuu64k5Pjb5u9dmcZrOc=;
-        b=ZgCtL4UVOfh5gHOLDlx3DuIoOZK2J1reUu1iWc1pHsUeMEKI4PSXnzKb7nY0dCu+Gv
-         LkbQEbsElWjEwoRtAMLgdj6FCc6Rv/LPn/kcv2TCvQwYbWVr/hbHoU5Z0iCm8RJbK+v/
-         siaCKw3PVQRLPhelt67qHssBLAOCTcNCkTpJlLL9iT5Lt9bYbs+USsTtoQufdV5u1JwF
-         U40zLjdbjDUjSljA2iN7chbux3X/oVd0jIL2GmX++gmKYAa7nmSDqGqX5lc1lqQd/vI6
-         ZPU6m8ehEalNAPB2GUM7g6w4F+YFVcZAg6Ln6+9g/TbCeoxYla7in/ckwjFra1u0O1/R
-         +E8w==
-X-Gm-Message-State: ACrzQf1WiPVQnv8BF+quLjfARrbgAAkrWuuZ92J4hDDIQu1cuWF5gl2m
-        9RKBuvNipkQmbTUZOc1CWrsKng8vADzSgA8E/JM=
-X-Google-Smtp-Source: AMsMyM5P7QJPc4xabig4w413XzwG+LvLR4ujBQF052MYyp4X4jLct43goqeG6nAke9/cOoRc7kMVFnOPm8Ba6LmlOPE=
-X-Received: by 2002:a05:6a00:1251:b0:56d:b039:1f8 with SMTP id
- u17-20020a056a00125100b0056db03901f8mr23491834pfi.72.1667651947721; Sat, 05
- Nov 2022 05:39:07 -0700 (PDT)
+        with ESMTP id S229493AbiKEMzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 08:55:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5E427CD2;
+        Sat,  5 Nov 2022 05:55:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9FC8B60B3F;
+        Sat,  5 Nov 2022 12:55:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04260C433C1;
+        Sat,  5 Nov 2022 12:55:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667652916;
+        bh=3vT+neZXkQLSyBK55o+F5Gw2VXJGt/NQfSDibrgT40g=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=jkhHZzXrJxBP20g7sx9Lqo+m9wm6Oted71cz4Mppw7DBk2iRwqrE0+qHmFLiODVHe
+         h8x/FK43yqo3gNoZqPM+Vc8P/K5xvtNAl2eyyJf7nDjtFLKTab9bxIQzHBx8DUK/u8
+         s63YCHysJBXYjO3pyWm3hmF3TxABJ51mBR/HooJ8rJZxDclbMCjk2gqN/dzBBhO3M6
+         LqV/gSMhpoLUJy2ms7xU16grNbL+TcnPkz2DaSHDsYjBL0tYi7FHCPIGuNmMtXEr2N
+         sVVNkhDhgbKRS4TWHSI2qqA/RD3Vtr7S18i6b69+GVDV2YGTvP8XncXvElEeIOcvf8
+         LmIN+0dzdQYgw==
+Date:   Sat, 5 Nov 2022 12:55:10 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Ciprian Regus <ciprian.regus@analog.com>
+Cc:     <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: dac: add adi,ad5754.yaml
+Message-ID: <20221105125510.313f2037@jic23-huawei>
+In-Reply-To: <20221104172343.617690-2-ciprian.regus@analog.com>
+References: <20221104172343.617690-1-ciprian.regus@analog.com>
+        <20221104172343.617690-2-ciprian.regus@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Received: by 2002:a05:7301:2e91:b0:83:922d:c616 with HTTP; Sat, 5 Nov 2022
- 05:39:07 -0700 (PDT)
-Reply-To: stefanopessia755@hotmail.com
-From:   Stefano Pessina <wamathaibenard@gmail.com>
-Date:   Sat, 5 Nov 2022 15:39:07 +0300
-Message-ID: <CAN7bvZ+AZ+N2xWXWK-6rTbyGw_5yApLbz-J5U42mOWMbcyp4aA@mail.gmail.com>
-Subject: Geldspende
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Die Summe von 500.000,00 =E2=82=AC wurde Ihnen von STEFANO PESSINA gespende=
-t.
-Bitte kontaktieren Sie uns f=C3=BCr weitere Informationen =C3=BCber
-stefanopessia755@hotmail.com
+On Fri, 4 Nov 2022 19:23:42 +0200
+Ciprian Regus <ciprian.regus@analog.com> wrote:
+
+> Add devicetree bindings documentation for the AD5754 DAC driver.
+> 
+> Signed-off-by: Ciprian Regus <ciprian.regus@analog.com>
+Hi Ciprian,
+
+To add to Krzysztof's detailed review, a request for a bit more
+variation in the example.
+
+> ---
+> changes in v2:
+>  - dropped "device driver" from the title.
+>  - added the vendor prefix to the 'output-range-microvolt' property.
+>  - fixed example indentation (4 spaces).
+>  .../bindings/iio/dac/adi,ad5754.yaml          | 182 ++++++++++++++++++
+>  1 file changed, 182 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad5754.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5754.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5754.yaml
+> new file mode 100644
+> index 000000000000..4c9c5ba90931
+...
+
+> +patternProperties:
+> +  "^channel@([0-3])$":
+> +    type: object
+> +    description: Configurations for the DAC channels
+> +
+> +    properties:
+> +      reg:
+> +        description: Channel number
+> +        maxItems: 1
+> +
+> +      adi,output-range-microvolt:
+> +        description: |
+> +          Voltage range of a channel as <minimum, maximum>.
+> +        oneOf:
+> +          - items:
+> +              - const: 0
+> +              - enum: [5000000, 10000000, 10800000]
+> +          - items:
+> +              - const: -5000000
+> +              - const: 5000000
+> +          - items:
+> +              - const: -10000000
+> +              - const: 10000000
+> +          - items:
+> +              - const: -10800000
+> +              - const: 10800000
+> +
+> +    required:
+> +      - reg
+> +      - adi,output-range-microvolt
+> +
+...
+
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +        status = "okay";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        dac@0 {
+> +            compatible = "adi,ad5754r";
+> +            reg = <0>;
+> +            spi-max-frequency = <1000000>;
+> +            spi-cpol;
+> +
+> +            clr-gpios = <&gpio 25 GPIO_ACTIVE_LOW>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            channel@0 {
+> +                reg = <0>;
+> +                adi,output-range-microvolt = <0 5000000>;
+> +            };
+> +            channel@1 {
+> +                reg = <1>;
+> +                adi,output-range-microvolt = <0 5000000>;
+
+Nice to have rather than necessary, but maybe the example could
+include a few different options from those available for this
+property?
+
+> +            };
+> +            channel@2 {
+> +                reg = <2>;
+> +                adi,output-range-microvolt = <0 5000000>;
+> +            };
+> +            channel@3 {
+> +                reg = <3>;
+> +                adi,output-range-microvolt = <0 5000000>;
+> +            };
+> +        };
+> +    };
+
