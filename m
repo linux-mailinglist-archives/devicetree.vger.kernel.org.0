@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C4A961D88F
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 08:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8825661D8D5
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 09:49:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbiKEHqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Nov 2022 03:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34924 "EHLO
+        id S229570AbiKEItT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Nov 2022 04:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229598AbiKEHqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 03:46:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018B510043;
-        Sat,  5 Nov 2022 00:46:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 90AFD60AB2;
-        Sat,  5 Nov 2022 07:46:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32FC6C433C1;
-        Sat,  5 Nov 2022 07:46:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667634376;
-        bh=wgFcLvc3zqe3w819SqLtTNrlQTT04YKIOY22045Euso=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uP9Ca6Mw3C8panymsWSY/f/60Ejzi/O5W0D7lwxIrSGD5hCODpG9sZ0D+WyBZY9f6
-         a1lBvoLFY9ezPA5GvinGrJduF4+JGbt5P2DP+I6ac0QGOX6Kx87lMdYwa90MCdpecv
-         WEHNjySWbW/vJjvBHv83v0tOdrXMvgz7d5MlF3Rq+0XZoE3H9fOBLoCOrlmZIuLgjA
-         PEKR+mvwVGooV+mByLo2MBpj/hi3Vaphxt3WhRPqhm00aACXDv0tqCwWZ5V6J9j9cg
-         pqx/5TD4rqX5OKAg6OMO1h0jH/e2gCni4dL/4ymqJFHBTYWQGpXJ+7/9hQtzZLToye
-         XbTnxsxxU8mTw==
-Date:   Sat, 5 Nov 2022 13:16:12 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        with ESMTP id S229477AbiKEItT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 04:49:19 -0400
+Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7056422516;
+        Sat,  5 Nov 2022 01:49:17 -0700 (PDT)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout1.routing.net (Postfix) with ESMTP id 797B940474;
+        Sat,  5 Nov 2022 08:49:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1667638155;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=LLyTjEajQKXrzLut9HyKnIBDU1ImS4d+E858cGyWvT4=;
+        b=fXzVRVhOEsem+/1MiKp6X6bosBSHDR6g4acMiVPeMafldXfTZGKdcf0Rjiso5oylBs43i8
+        50wnqnAWFfYOHuyp0+eJSiJR1I2VltPFfvWPEb64Yux2Ww8j/Aq4hp3K/kQXy6jHg3X9hf
+        8yrqDSUX//83jp/u0mje9/sDSI+Ufg4=
+Received: from frank-G5.. (fttx-pool-217.61.159.50.bambit.de [217.61.159.50])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 6240710068B;
+        Sat,  5 Nov 2022 08:49:14 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, Karl Kurbjun <karl.os@veroson.com>,
-        Icenowy Zheng <uwu@icenowy.me>
-Subject: Re: [PATCH v2 4/7] phy: sun4i-usb: Add support for the H616 USB PHY
-Message-ID: <Y2YUxIYa2QAGxX3K@matsya>
-References: <20221031111358.3387297-1-andre.przywara@arm.com>
- <20221031111358.3387297-5-andre.przywara@arm.com>
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/4] update mediatek MT7986 pinctrl driver
+Date:   Sat,  5 Nov 2022 09:49:01 +0100
+Message-Id: <20221105084905.9596-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221031111358.3387297-5-andre.przywara@arm.com>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: bfc0057b-9111-4c39-9cec-2accbbaa280c
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31-10-22, 11:13, Andre Przywara wrote:
-> The USB PHY used in the Allwinner H616 SoC inherits some traits from its
-> various predecessors: it has four full PHYs like the H3, needs some
-> extra bits to be set like the H6, and puts SIDDQ on a different bit like
-> the A100. Plus it needs this weird PHY2 quirk.
-> 
-> Name all those properties in a new config struct and assign a new
-> compatible name to it.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Applied, thanks
+This patch series introduces common bias-pull* pinconf support to MediaTek
+MT7986 pinctrl driver and fix some register offsets in the driver.
+
+Sam Shih (4):
+  dt-bindings: pinctrl: mt7986: add generic bias-pull* support
+  pinctrl: mediatek: fix the pinconf register offset of some pins
+  pinctrl: mediatek: extend pinctrl-moore to support new bias functions
+  pinctrl: mediatek: add pull_type attribute for mediatek MT7986 SoC
+
+ .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 50 +++++++++++-
+ drivers/pinctrl/mediatek/pinctrl-moore.c      | 49 ++++++++++--
+ drivers/pinctrl/mediatek/pinctrl-mt7986.c     | 80 ++++++++++++++++---
+ 3 files changed, 157 insertions(+), 22 deletions(-)
 
 -- 
-~Vinod
+2.34.1
+
