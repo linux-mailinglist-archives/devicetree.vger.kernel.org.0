@@ -2,71 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB15261DB01
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 15:36:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3FCE61DB36
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 15:52:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbiKEOgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Nov 2022 10:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42994 "EHLO
+        id S229531AbiKEOwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Nov 2022 10:52:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229517AbiKEOgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 10:36:40 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75C34DF88;
-        Sat,  5 Nov 2022 07:36:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1FDEAB8016A;
-        Sat,  5 Nov 2022 14:36:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D78FBC433D6;
-        Sat,  5 Nov 2022 14:36:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667658996;
-        bh=52TKqIbhnS62Q/72czcmLXuVPsKn8wYMZw9uC8i06Ks=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JlLT3q1RETlC0q1kSaJZlmL0yRjHKpzr4uMdnW3YBisdDg4apo+yn8oDhbFsjFnr+
-         8e+SZh/2UNV5qFXhfnLskoJ9IA/8R6h98bNPbWo7NiTOBTCx7UaBiBfAu4cdnBGyQE
-         zvRQVJBZDAD3Is6NOuc7jDJio1+Kxh4NWKzPXyYukgWy9neXi8Ou/np0MmVldmbG+j
-         uWwtOxkExRZP+vwrzFttDbBcNSy3BK1Zd+/chOA7TdHIa8aCWPflH9GfALI2Q5oDxf
-         VVy12aQwEun5liImB0oAHOiM+LheKziyXZsFZwd/lGrD7Mq3YooUJnrUk9A5lILVlG
-         tkcAwoFaoylRA==
-Date:   Sat, 5 Nov 2022 20:06:32 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     robh+dt@kernel.org, lee@kernel.org, krzysztof.kozlowski@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, kishon@kernel.org,
-        dan.carpenter@oracle.com, rogerq@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/3] Add support to PHY GMII SEL for J721e CPSW9G
- QSGMII
-Message-ID: <Y2Z08OqiY2aYmgbN@matsya>
-References: <20221026074532.109220-1-s-vadapalli@ti.com>
+        with ESMTP id S229453AbiKEOwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 10:52:18 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A60FAF8;
+        Sat,  5 Nov 2022 07:52:16 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-13bef14ea06so8454995fac.3;
+        Sat, 05 Nov 2022 07:52:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=PcwwgX98pioZqmpF7IpPJDYkENxYcijXYjHPqyIhZNk=;
+        b=nr64UzSq6N9gHeBgs0HzkwVtYzRdu53HgbULVNodQ7xJkKeS+yS/KlzNAxZSpEcavl
+         1oL26fkfI0ySRiJPs7tJAHcxfeQxoW7dwIsL55ijDwZsTTd1I0ekqDXfC+n+S3gFl/F1
+         HOKn7SHouALr72EVLKeMj7Eyuoim9P1ua96TGeN7JUyN2EZvZR9Qe1EvOvC6INpHLgYI
+         WJM6Gmc6Fhlw7LvRIpx2m4yugSKXJ8yuiywektZs2ScGM6QVWKZvauEY64atEhgUOP7n
+         lftmTr8VVI4kDNf7tWso1//vMx6VkT6lJhwrXn9yVWOa0W+oUt5QwBDckVtFBtPxWTbl
+         aIpQ==
+X-Gm-Message-State: ANoB5pk6kDDtZaNuYc6pjihbVb0wMlJ2PxC8YNaiZbXVUdHBRYuBLSeO
+        M0rXJ3MHQ+WOHi6yG5NUEg==
+X-Google-Smtp-Source: AMsMyM4kYNdfuRTk0occtw+rgiRZ+CP73DXZYUn56GnB9f+gvwg8Zo+icy0yvtW6pg+iyM+ep7Dv3Q==
+X-Received: by 2002:a05:6870:82a4:b0:140:78f6:c954 with SMTP id q36-20020a05687082a400b0014078f6c954mr4581995oae.16.1667659935742;
+        Sat, 05 Nov 2022 07:52:15 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d9-20020a4a3c09000000b0049bd96ec131sm677216ooa.8.2022.11.05.07.52.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Nov 2022 07:52:14 -0700 (PDT)
+Received: (nullmailer pid 27957 invoked by uid 1000);
+        Sat, 05 Nov 2022 14:52:16 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221026074532.109220-1-s-vadapalli@ti.com>
-X-Spam-Status: No, score=-8.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     Sam Shih <sam.shih@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sean Wang <sean.wang@kernel.org>
+In-Reply-To: <20221105084905.9596-2-linux@fw-web.de>
+References: <20221105084905.9596-1-linux@fw-web.de>
+ <20221105084905.9596-2-linux@fw-web.de>
+Message-Id: <166765939131.4158830.8416727494529058690.robh@kernel.org>
+Subject: Re: [PATCH v1 1/4] dt-bindings: pinctrl: mt7986: add generic
+ bias-pull* support
+Date:   Sat, 05 Nov 2022 09:52:16 -0500
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-10-22, 13:15, Siddharth Vadapalli wrote:
-> Add compatible for J721e CPSW9G, which contains 8 external ports and 1
-> internal host port.
+
+On Sat, 05 Nov 2022 09:49:02 +0100, Frank Wunderlich wrote:
+> From: Sam Shih <sam.shih@mediatek.com>
 > 
-> Update existing approach of using compatible to differentiate between
-> devices that support QSGMII mode and those that don't. The new
-> approach involves storing the number of qsgmii main ports for the device
-> in the num_qsgmii_main_ports member of the "struct phy_gmii_sel_soc_data".
-> This approach makes it scalable for newer devices.
+> Since the bias-pull-{up,down} attribute already defines in pinctrl driver
+> of mediatek MT7986 SoC, this patch updates bindings to support mediatek
+> common bias-pull* function.
+> 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  .../pinctrl/mediatek,mt7986-pinctrl.yaml      | 50 +++++++++++++++++--
+>  1 file changed, 47 insertions(+), 3 deletions(-)
+> 
 
-Applied, thanks
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-~Vinod
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.example.dtb: pinctrl@1001f000: mmc0-pins:mux:groups:0: 'emmc_51' is not one of ['emmc', 'emmc_rst']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/mediatek,mt7986-pinctrl.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
