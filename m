@@ -2,182 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1539661A77B
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 05:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0BC561D832
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 08:14:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbiKEETs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Nov 2022 00:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42378 "EHLO
+        id S229487AbiKEHOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Nov 2022 03:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiKEETr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 00:19:47 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F4F25C5F;
-        Fri,  4 Nov 2022 21:19:46 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A549KRm009176;
-        Sat, 5 Nov 2022 04:19:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=rVE969ogytLqBE1VG7Ut5W0MADRp4Pwg8YyYhTSqUIU=;
- b=UWfd7D3XfTDRQowpKnPwjyAnX7ExKR4UkxTJRaIk4Z60W1gYwvNX4qY2fASRc1cowmJu
- BwRHzslwrYfUQKb4rKBdkWXCTfSpMM2PMIH56mot5k/UkSe4iiNmsTZdUFg9eH9+SBM0
- 5/g3qY7ozdGlQP8AbZLzHVzjbbZ6r7SQoKe7N5RFeloBjF/2yhn2VtUcBi4kIcCql/ly
- 2U/FH2770cpQdoBkC8GPv/X8Pg71t7H0mledAm+U4yBke+16Pd4amyMf9gMTqu/viVej
- clhtyHRb+3/5Za4ztEgNMrZLY+TYdr7+iwTQVLgs3ZKXBJhaLyOumQXGUBCW3VFqZqzU dQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kneswr504-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 05 Nov 2022 04:19:27 +0000
-Received: from nasanex01a.na.qualcomm.com (corens_vlan604_snip.qualcomm.com [10.53.140.1])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A54JQLB027279
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 5 Nov 2022 04:19:26 GMT
-Received: from [10.110.19.49] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Fri, 4 Nov 2022
- 21:19:25 -0700
-Message-ID: <95a9f253-984a-14e0-7e01-f168452576c4@quicinc.com>
-Date:   Fri, 4 Nov 2022 21:19:24 -0700
+        with ESMTP id S229461AbiKEHOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Nov 2022 03:14:01 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B3F83054F;
+        Sat,  5 Nov 2022 00:13:59 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id h9so9754281wrt.0;
+        Sat, 05 Nov 2022 00:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dxvKh/anYGuSiGPrfs/LiTLvfyTDQwd9he7x1e6EBiU=;
+        b=HYCZ+ZsNDKtGQL7otOykXSDQnO1o6rzi8fW0cXmPAwFMFTWNhywZx3y97hKPR/w10N
+         y+cy7ipKrn9FJeZJIYoUvp9C4udhl8LNbtaomr9pnHW/XBRenZfpCfwgWlsxANGpLjDf
+         ENlsHGv18R+/cmhkLeMP0suZW9740s2UbizPyKCiuaSrwiOMhOp6uDmy7o/MlmOrn2Wo
+         TZfqfnQcDlUXqwGQbmLhSzCSRv9eDQHaIbC4NfNdyTLZoylO5zLjx3lVFBB7NbW/cwks
+         GoDRa02ppaY8899CWaDP1X9TLFbsRJz/jlNj7mnFhZdW2QjWj34ZOCmd3B7PfXzr1tFs
+         TcCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dxvKh/anYGuSiGPrfs/LiTLvfyTDQwd9he7x1e6EBiU=;
+        b=3N1Bq+BC04wHxAxzvv+5h8nk7lwr7QUDjBn4tu4mCgBjG9GfddIeRrfv4J6jhzpQHt
+         s9lQTAeQtV07AgwwJ2Ssb76+jjFITFcYE49ItYmNLBjz37ZBzFFSK/MWYePZpA7gmWDm
+         nO5HrNL02uF11E12GxK9VdgL48RaJpwy+SSySmvBRPhm2njrbsPbNhsEWNuDxiY+j21q
+         Q5pFYsL4rr9jxHt2QCw7MOI29gRSYdGt8E/CPMMUrCJbKxcAU73vgJyFvcjcx0tLhaqT
+         +tquNb0xafGtEm1mbMXaGnK4Oq+Y5do+q/noEDSUyGeMqNQGl4UMNxxbWu2Zml91cDP4
+         AH7Q==
+X-Gm-Message-State: ACrzQf38jtW23lOw6tgGigUTvrTSGduAw+e/G6VfnwUR1YxOBirUaVlV
+        ZQ6wESEaj18vIIJSslSvuLIJNjySW54OZDMcqBU=
+X-Google-Smtp-Source: AMsMyM76FEIAgi3v06UJ9fLDK+7INtqxxZu+G9UgLNenpG3DbcrankgqSi3GIoF7OZffPoIW5QmMDS0yOVzgLgTtfb0=
+X-Received: by 2002:a5d:5c0f:0:b0:236:c429:361a with SMTP id
+ cc15-20020a5d5c0f000000b00236c429361amr21314804wrb.475.1667632437864; Sat, 05
+ Nov 2022 00:13:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v6 13/21] gunyah: vm_mgr: Introduce basic VM Manager
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+References: <20220524212155.16944-1-bage@debian.org> <20220524212155.16944-2-bage@debian.org>
+ <78EC62F6-40D5-4E18-B2FA-DA2EB9D67986@holtmann.org>
+In-Reply-To: <78EC62F6-40D5-4E18-B2FA-DA2EB9D67986@holtmann.org>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Sat, 5 Nov 2022 00:13:30 -0700
+Message-ID: <CA+E=qVd6sRCnKZz2gizxqP=DVQPttW4JgmhE7SHYJhbnQADpwA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] Bluetooth: Add new quirk for broken local ext
+ features max_page
+To:     Marcel Holtmann <marcel@holtmann.org>
+Cc:     Bastian Germann <bage@debian.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "Will Deacon" <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        Amol Maheshwari <amahesh@qti.qualcomm.com>,
-        Kalle Valo <kvalo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20221026185846.3983888-1-quic_eberman@quicinc.com>
- <20221026185846.3983888-14-quic_eberman@quicinc.com>
- <Y2H8oh7AvYDiMqKs@kroah.com>
- <722b05a1-4bf5-0837-baea-b1d0a9cc1e43@quicinc.com>
- <Y2MKWOihjAPxfl6v@kroah.com>
- <96238455-73b6-bead-0fdb-55ca68e5bf0b@quicinc.com>
- <9dd597d9-a3f3-48f2-8416-b5b097a230d5@app.fastmail.com>
- <980db147-794e-ecd9-9626-64ff81109bab@quicinc.com>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <980db147-794e-ecd9-9626-64ff81109bab@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oMN8xX8RjMfaonXf2jb0_V1n3cX4SrZn
-X-Proofpoint-ORIG-GUID: oMN8xX8RjMfaonXf2jb0_V1n3cX4SrZn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-05_01,2022-11-03_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 clxscore=1011 suspectscore=0 adultscore=0 spamscore=0
- phishscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211050031
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kubakici@wp.pl>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/4/2022 3:38 PM, Elliot Berman wrote:
-> 
-> 
-> On 11/4/2022 1:10 AM, Arnd Bergmann wrote:
->> On Fri, Nov 4, 2022, at 01:11, Elliot Berman wrote:
->>> On 11/2/2022 5:24 PM, Greg Kroah-Hartman wrote:
->>>> On Wed, Nov 02, 2022 at 11:45:12AM -0700, Elliot Berman wrote:
->>>>
->>>> Even if you don't support it 1:1, at least for the ones that are the
->>>> same thing, pick the same numbers as that's a nicer thing to do, right?
->>>>
->>>
->>> Does same thing == interpretation of arguments is the same? For
->>> instance, GH_CREATE_VM and KVM_CREATE_VM interpret the arguments
->>> differently. Same for KVM_SET_USERSPACE_MEMORY. The high level
->>> functionality should be similar for most all hypervisors since they will
->>> all support creating a VM and probably sharing memory with that VM. The
->>> arguments for that will necessarily look similar, but they will probably
->>> be subtly different because the hypervisors support different features.
->>
->> I think in the ideal case, you should make the arguments and the
->> command codes the same for any command where that is possible. If
->> you come across a command that is shared with KVM but just needs
->> another flag, that would involve coordinating with the KVM maintainers
->> about sharing the definition so the same flag does not get reused
->> in an incompatible way.
->>
-> 
-> I think the converse also needs to be true; KVM would need to check that
-> new flags don't get used in some incompatible way with Gunyah, even if
-> one of us is just -EINVAL'ing. I don't think Gunyah and KVM should be
-> reliant on the other reviewing shared ioctls.
-> 
-> The problem is a bit worse because "machine type" is architecture-
-> dependent whereas the planned Gunyah flags are architecture-independent.
-> KVM within itself re-uses flags between architectures so Gunyah would
-> need to reserve some flags from all architectures that KVM supports.
+On Thu, Jun 2, 2022 at 9:10 AM Marcel Holtmann <marcel@holtmann.org> wrote:
+>
+> Hi Bastian,
 
-I agree w/ Elliot. We would like to keep Gunyah independent and not rely 
-on the existing KVM ioctls space. We should allow new hypervisor drivers 
-interfaces addition in Linux kernel without them relying on KVM.
+Hi Marcel,
 
-> 
->> For commands that cannot fit into the existing definition, there
->> should be a different command code, using your own namespace and
->> not the 0xAE block that KVM has. It still makes sense to follow
->> the argument structure roughly here, unless there is a technical
->> reason for making it different.
->>
->>> I don't think userspace that supports both KVM and Gunyah will benefit
->>> much from re-using the same numbers since those re-used ioctl calls
->>> still need to sit within the context of a Gunyah VM.
->>
->> One immediate benefit is for tools that work on running processes,
->> such as strace, gdb or qemu-user. If they encounter a known command,
->> they can correctly display the arguments etc.
->>
-> 
-> We can update these tools and anyway there will be different ioctls to
-> get started. There are important ioctls that wouldn't be correctly
-> displayed off the bat anyway; work would need to be done to support the
-> Gunyah ioctls either way. Whereas tooling update is temporary, the
-> coupling of KVM and Gunyah ioctls would be permanent.
+> > Some adapters (e.g. RTL8723CS) advertise that they have more than
+> > 2 pages for local ext features, but they don't support any features
+> > declared in these pages. RTL8723CS reports max_page = 2 and declares
+> > support for sync train and secure connection, but it responds with
+> > either garbage or with error in status on corresponding commands.
+>
+>
+> please include btmon output for the garbage and/or error.
 
-Agree, tools can be updated and that is the easy part as we grow the s/w 
-stack around Gunyah in userspace, like we already do w/ CrosVM (Virtual 
-Machine Manager) and QEMU will be next followed by rust-vmm. All of them 
-can be done without Gunyah ioctls relying anything on the KVM ioctls. 
-Elliot has also explained very well that we don't to go to KVM 
-maintainers for any of our additions and we also don't want them to come 
-to us, since there is no interoperability testing. It is best that both 
-Hypervisors and their Linux interfaces evolve independently.
+We had it in v1 thread, here is relevant part:
 
----Trilok Soni
+< HCI Command: Read Local Extend.. (0x04|0x0004) plen 1  #228 [hci0] 6.889869
+        Page: 2
+> HCI Event: Command Complete (0x0e) plen 14             #229 [hci0] 6.890487
+      Read Local Extended Features (0x04|0x0004) ncmd 2
+        Status: Success (0x00)
+        Page: 2/2
+        Features: 0x5f 0x03 0x00 0x00 0x00 0x00 0x00 0x00
+          Connectionless Slave Broadcast - Master
+          Connectionless Slave Broadcast - Slave
+          Synchronization Train
+          Synchronization Scan
+          Inquiry Response Notification Event
+          Coarse Clock Adjustment
+          Secure Connections (Controller Support)
+          Ping
+< HCI Command: Delete Stored Lin.. (0x03|0x0012) plen 7  #230 [hci0] 6.890559
+        Address: 00:00:00:00:00:00 (OUI 00-00-00)
+        Delete all: 0x01
+> HCI Event: Command Complete (0x0e) plen 6              #231 [hci0] 6.891170
+      Delete Stored Link Key (0x03|0x0012) ncmd 2
+        Status: Success (0x00)
+        Num keys: 0
+< HCI Command: Read Synchronizat.. (0x03|0x0077) plen 0  #232 [hci0] 6.891199
+> HCI Event: Command Complete (0x0e) plen 9              #233 [hci0] 6.891788
+      Read Synchronization Train Parameters (0x03|0x0077) ncmd 2
+        invalid packet size
+        01 ac bd 11 80 80                                ......
+= Close Index: 00:E0:4C:23:99:87                              [hci0] 6.891832
+
+> >
+> > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> > [rebase on current tree]
+> > Signed-off-by: Bastian Germann <bage@debian.org>
+> > ---
+> > include/net/bluetooth/hci.h | 7 +++++++
+> > net/bluetooth/hci_event.c   | 4 +++-
+> > 2 files changed, 10 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/include/net/bluetooth/hci.h b/include/net/bluetooth/hci.h
+> > index 69ef31cea582..af26e8051905 100644
+> > --- a/include/net/bluetooth/hci.h
+> > +++ b/include/net/bluetooth/hci.h
+> > @@ -265,6 +265,13 @@ enum {
+> >        * runtime suspend, because event filtering takes place there.
+> >        */
+> >       HCI_QUIRK_BROKEN_FILTER_CLEAR_ALL,
+> > +
+> > +     /* When this quirk is set, max_page for local extended features
+> > +      * is set to 1, even if controller reports higher number. Some
+> > +      * controllers (e.g. RTL8723CS) report more pages, but they
+> > +      * don't actually support features declared there.
+> > +      */
+> > +     HCI_QUIRK_BROKEN_LOCAL_EXT_FTR_MAX_PAGE,
+> > };
+>
+> Can we just call it _BROKEN_LOCAL_EXT_FEATURES_PAGE_2.
+>
+> Now with that said, is Secure Connections really broken? We need that bit to indicate support for this.
+
+I don't really see the point in testing any 4.1 features if the chip
+vendor claims that they are broken.
+
+I understand your intention to get the max out of the hardware, but it
+doesn't look like a good idea to me to use something that the vendor
+claims to be broken.
+
+Regards,
+Vasily
+
+> Regards
+>
+> Marcel
+>
