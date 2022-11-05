@@ -2,63 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A60261A626
-	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 00:56:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF4C61A639
+	for <lists+devicetree@lfdr.de>; Sat,  5 Nov 2022 01:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbiKDX4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Nov 2022 19:56:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
+        id S229472AbiKEABm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Nov 2022 20:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiKDX4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 19:56:40 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D33419AE;
-        Fri,  4 Nov 2022 16:56:38 -0700 (PDT)
+        with ESMTP id S229492AbiKEABh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Nov 2022 20:01:37 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7986742F44;
+        Fri,  4 Nov 2022 17:01:36 -0700 (PDT)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A4NuGqF128891;
-        Fri, 4 Nov 2022 18:56:16 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A5015bb068560;
+        Fri, 4 Nov 2022 19:01:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1667606176;
-        bh=UlbNzkDg0ggQlnGUGBncbnN9YSuiR3U5KDuKzBuB8/M=;
+        s=ti-com-17Q1; t=1667606465;
+        bh=70/J8OoLwMz2ZYUbC2R1pWuNjEn/hRSMKPEEuh66w90=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=AqDByRhPUpYeQ0LvtMslbAljya41OofpiIy20WttGKXReojlbappURd8mLzO2PsE/
-         Gt/hRmoU4to1cDW8JrX5Y0nVFy72VZnJ05K+8MPL9J2VhKKJxFJqQoGrELgBQmslxv
-         0hl1pYEj8QylreNCKGxBx95PNphIwLD2sZjBdDNE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A4NuGrH081722
+        b=Gv3WplavkR0OhY3cyw5apGFxR8Pf4CI2qe6wRU3/3HFrBUeOEZpOLj8xzHzVACoLa
+         HfODwGrn/JtbF4xchec3d9/wau+CU2O5VbVnZTeCrc1mBQWK3TZP1Zm0vcp3FIEAy7
+         7bl9h7DVTgXC33YKFhXXlUaKA0MUNVwhVwtcB20I=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A5014iV084742
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 4 Nov 2022 18:56:16 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 4 Nov 2022 19:01:04 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 4 Nov
- 2022 18:56:16 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ 2022 19:01:04 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 4 Nov 2022 18:56:16 -0500
+ Frontend Transport; Fri, 4 Nov 2022 19:01:04 -0500
 Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A4NuFMP010215;
-        Fri, 4 Nov 2022 18:56:15 -0500
-Date:   Fri, 4 Nov 2022 18:56:15 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A5014d5015472;
+        Fri, 4 Nov 2022 19:01:04 -0500
+Date:   Fri, 4 Nov 2022 19:01:04 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Rahul T R <r-ravikumar@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+To:     jerome Neanne <jneanne@baylibre.com>
+CC:     Lee Jones <lee@kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>, <kristo@kernel.org>,
+        <dmitry.torokhov@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <tony@atomide.com>,
+        <vigneshr@ti.com>, <bjorn.andersson@linaro.org>,
+        <shawnguo@kernel.org>, <geert+renesas@glider.be>,
+        <dmitry.baryshkov@linaro.org>, <marcel.ziswiler@toradex.com>,
+        <vkoul@kernel.org>, <biju.das.jz@bp.renesas.com>, <arnd@arndb.de>,
+        <jeff@labundy.com>, <afd@ti.com>, <khilman@baylibre.com>,
+        <narmstrong@baylibre.com>, <msp@baylibre.com>, <j-keerthy@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <jkridner@gmail.com>
-Subject: Re: [PATCH v7 2/2] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi
- Header
-Message-ID: <20221104235615.gfwjxpcs2ldmp5dk@reflux>
-References: <20221103174743.16827-1-r-ravikumar@ti.com>
- <20221103174743.16827-3-r-ravikumar@ti.com>
- <20221103215440.7dmcvkmeni4xs2et@municipal>
- <20221104051554.nqoehxtv7rdtmkyi@uda0490373>
+        <linux-input@vger.kernel.org>, <linux-omap@vger.kernel.org>
+Subject: Re: [PATCH v6 4/6] mfd: tps65219: Add driver for TI TPS65219 PMIC
+Message-ID: <20221105000104.rtj3r6ufqwqmepon@keenly>
+References: <20221011140549.16761-1-jneanne@baylibre.com>
+ <20221011140549.16761-5-jneanne@baylibre.com>
+ <Y1+q2Usm9ecicXqp@google.com>
+ <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20221104051554.nqoehxtv7rdtmkyi@uda0490373>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1383fd22-c720-811e-a2bb-be2151675089@baylibre.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -70,31 +77,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:45-20221104, Rahul T R wrote:
+On 13:58-20221104, jerome Neanne wrote:
+> 
 [...]
-> > OK I am confused now. What about the pwm nodes? don't they need to be
-> > muxed?
->=20
-> As per the discussions in the v4 of this series
-> the suggestion was to enable only gpio and i2c by
-> default
->=20
-> https://lore.kernel.org/all/20220620144322.x54zitvhjreiy3ey@uda0490373/
 
+> 
+> > 
+> > Can you try an compile with W=1 please.
+> This raise one warning on mfd:
+> drivers/mfd/tps65219.c:28:12: warning: ‘tps65219_soft_shutdown’ defined but
+> not used [-Wunused-function]
+>    28 | static int tps65219_soft_shutdown(struct tps65219 *tps)
+>       |            ^~~~~~~~~~~~~~~~~~~~~~
+> soft_shutdown has been validated and is used in TI baseline even if not
+> hooked in upstream version further to this review:
+> https://lore.kernel.org/lkml/20220825150224.826258-5-msp@baylibre.com/
+> 
+> It was a TI requirement to implement it...
+> Let me know if you want me to remove this function or if we can keep it like
+> this.
 
-Thanks for reminding me about this discussion - it is useful to add that
-information in the patch diffstat to avoid wondering about why.
+There are platforms without psci, correct? I think the comment was to
+drop the force override with system-power-controller property,
 
+if (!pm_power_off) {
+	tps65219_i2c_client = client;
+	pm_power_off = &tps65219_pm_power_off;
+}
 
-Also please fix what ever wraparound scheme you use to 70/75
-characters for commit message please - I dont think you want me to
-have to manually fix the same for your patches
+Could still be valid for such platforms, no? I do see that the
+capability that the PMIC has - which is software shutdown is a valid
+feature that we support in many different PMIC drivers. Is'nt the job of
+the driver to introduce the functionality in a manner that is
+appropriate to the OS framework?
 
-Here is an example from my vimrc:
-map <F9> =1B{!}par 70=0D
-
---=20
+-- 
 Regards,
 Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
- 849D 1736 249D
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
