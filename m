@@ -2,109 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BEFE61E134
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 10:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F95A61E146
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 10:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbiKFJNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 04:13:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45098 "EHLO
+        id S229682AbiKFJYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 04:24:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229608AbiKFJNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 04:13:15 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7648FFC6;
-        Sun,  6 Nov 2022 01:13:14 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id d26so23079298eje.10;
-        Sun, 06 Nov 2022 01:13:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kB5x5Lb8Br6d/Jeea8bVOt5eSs5IgdDtxZC3hRWWkBA=;
-        b=U8zWoIusLivflIrhe/QqeEUiTBHp0weDQtpu7a3iD1sc9QTKpwALpgF1vtgRfCzikb
-         37wK32SeseS2JESpp01aC/H0tP0qOFSyd2ZFLVWP+RvfWoyE1KbjxaH3rxX0jkxtrlgJ
-         D6USi7yXUC6kWqFuNsQzUPJaqoT9qZlwHyH2mQA4rILUJwQh3tpZaZbOgdAsquswiD1L
-         p2ZpctsvirMCFQ/3saaqaii0fPnzKCyGC/7aHR+enUeY8lG7bv/DW4W44BETId09iXoa
-         RX3yDYau3yE4BILllMhrojO6TJGi2PlX34S51wpMGtyy5OCxFuyQPOtqjporW0oe+YLD
-         5mpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kB5x5Lb8Br6d/Jeea8bVOt5eSs5IgdDtxZC3hRWWkBA=;
-        b=xbdMp6R1mhqS7JgA7QdnUEdh8hZVYfJ+gPUHNvDXRPD+1L1dxgQnBG8qA37KVjheJb
-         Ic+r+Rxtrqah1ZpHFuzSB8ju5mOAFp5PrsyqFJe0MooSIPc2AbzhcBxKTBexxgMk1R9n
-         emmpr610qDinWpVvu0wtXQJdrjb8JX+DuZZV12S2mKIeeS4kZlxQQSBVquuFK6uj53Id
-         Mu8BqkgIMfEoQ0v8+jJZmNsfDTrUKFlPKVl1YmcN65IaJnzVna1qd0GJOGTur6cTI1vG
-         P26KOTBvFI+hV5pB/t/mE+QBOJuNUOR17HV1JvLxU3despJlwssZddIoBPBp2zacu7Ml
-         ONJA==
-X-Gm-Message-State: ACrzQf0d1pKnM0bwxxLCI60FlDHPm0ilxmZ/m0qBv2E2FTUFqAom13a+
-        J/WoqSgJD1tRfeQjmHVa8Eg5wKlmtuAUfA==
-X-Google-Smtp-Source: AMsMyM7WcxErEBkvYvl5QcgwyJodv5qAgL63AB5uiIt8PX9pxynGvsrLzYqtMYJ/J3DxD2waFR33CQ==
-X-Received: by 2002:a17:907:a4e:b0:77d:94d:8148 with SMTP id be14-20020a1709070a4e00b0077d094d8148mr40810136ejc.607.1667725992932;
-        Sun, 06 Nov 2022 01:13:12 -0800 (PST)
-Received: from jernej-laptop.localnet (89-212-118-115.static.t-2.net. [89.212.118.115])
-        by smtp.gmail.com with ESMTPSA id r23-20020aa7d597000000b004638ba0ea96sm2301896edq.97.2022.11.06.01.13.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Nov 2022 01:13:12 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v8 6/6] media: sun6i-csi: Add support for hooking to the isp devices
-Date:   Sun, 06 Nov 2022 10:13:11 +0100
-Message-ID: <2085642.OBFZWjSADL@jernej-laptop>
-In-Reply-To: <20221103163717.246217-7-paul.kocialkowski@bootlin.com>
-References: <20221103163717.246217-1-paul.kocialkowski@bootlin.com> <20221103163717.246217-7-paul.kocialkowski@bootlin.com>
+        with ESMTP id S229619AbiKFJX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 04:23:59 -0500
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF6DBC754;
+        Sun,  6 Nov 2022 01:23:57 -0800 (PST)
+Received: from hatter.bewilderbeest.net (97-113-250-99.tukw.qwest.net [97.113.250.99])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 0E3C3216;
+        Sun,  6 Nov 2022 01:23:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1667726637;
+        bh=Q6rA6QGxk4YR7vZUSMP3iZf8lpV6fi2XiRCc0+f8lyk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q8sLcxslhia5fk7j7nWLtocYLbLxI7C+mepSmRLlSSBtFMII+h/gi7mrXc9E/2lYt
+         jkYkcyd3TNsi4kVGpRmgOz8HpsOrDlBmpaYrqrgYYKwrTgx4jf04u0w8a5GTJJrKDh
+         80JbCw2oCYBUp45IlW2aZxfLkQohm3M4V1WUJmds=
+Date:   Sun, 6 Nov 2022 01:23:55 -0800
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, soc@kernel.org
+Cc:     Andrew Jeffery <andrew@aj.id.au>, Arnd Bergmann <arnd@arndb.de>,
+        Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: Add Delta AHE-50DC BMC
+Message-ID: <Y2d9K1KGM8BcR6Rn@hatter.bewilderbeest.net>
+References: <20221105013321.2719-1-zev@bewilderbeest.net>
+ <20221105013321.2719-3-zev@bewilderbeest.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20221105013321.2719-3-zev@bewilderbeest.net>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 03. november 2022 ob 17:37:17 CET je Paul Kocialkowski=20
-napisal(a):
-> In order to use the isp and csi together, both devices need to be
-> parented to the same v4l2 and media devices. We use the isp as
-> top-level device and let the csi code hook to its v4l2 and media
-> devices when async subdev registration takes place.
->=20
-> As a result v4l2/media device setup is only called when the ISP
-> is missing and the capture device is registered after the devices
-> are hooked. The bridge subdev and its notifier are registered
-> without any device when the ISP is available. Top-level pointers
-> for the devices are introduced to either redirect to the hooked ones
-> (isp available) or the registered ones (isp missing).
->=20
-> Also keep track of whether the capture node was setup or not to
-> avoid cleaning up resources when it wasn't.
->=20
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+On Fri, Nov 04, 2022 at 06:33:21PM PDT, Zev Weiss wrote:
+>This is a 1U Open19 power shelf with six PSUs and 50 12VDC outputs via
+>LM25066 efuses.  It's managed by a pair of AST1250 BMCs in a redundant
+>active/active configuration using a PCA9541 on each I2C bus to
+>arbitrate access between the two.
+>
+>Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>---
+> arch/arm/boot/dts/Makefile                    |    1 +
+> .../arm/boot/dts/aspeed-bmc-delta-ahe50dc.dts | 1094 +++++++++++++++++
+> 2 files changed, 1095 insertions(+)
+> create mode 100644 arch/arm/boot/dts/aspeed-bmc-delta-ahe50dc.dts
+>
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Hmm -- actually, after posting this I realized that the repetitive efuse 
+nodes could be expressed in a much more concise and much less tedious, 
+error-prone manner using a preprocessor macro or two; I'll send a v2 
+with that approach instead.
 
-Best regards,
-Jernej
 
+Zev
 
