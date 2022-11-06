@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F4061E14C
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 10:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 742FA61E154
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 10:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbiKFJeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 04:34:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48570 "EHLO
+        id S229821AbiKFJiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 04:38:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbiKFJeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 04:34:07 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9F4A47B
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 01:34:02 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id d20so12081470ljc.12
-        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 01:34:01 -0800 (PST)
+        with ESMTP id S229783AbiKFJiv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 04:38:51 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66278B870
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 01:38:49 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id l12so1913202lfp.6
+        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 01:38:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BNDEakoGHFj6Pg7LARxrzAtLVJKPLYsbrd9x8xsjbAA=;
-        b=hp7+b3HnHzE2PsflMfrdCU3CHLZL8+5zJzKVYaxCMHKQjnKCPQxM0nogJWRCPIWCPP
-         WXzNNNwqDYMwF2Xgw6jxUHenPlMd2LYMJb+qeBpUIe5VFnQO5sGR4J+NQgweoYWkizko
-         hbBjVv6uE8e3HJB/mgqAtosAPdKdWpJv/k4txiC7unve1D+vjl5jNLWasORmZNdXNIIP
-         xqJgGyDXkwmxsI97f1Fg06vz5H5nCyqUouVjzfK6Gvkb/bJ4/I/ohA8dCzZnLAcMN6Nl
-         zFAJ26EISpZSyAD0+Rng1yyIIj7/GREIpjGtNfhd1KLb1M8wgpI7GJz2iUmRCB0zkz6v
-         fu5A==
+        bh=kNcPbiTtKpD6IeXGZRhKfWEIaqsnPCpZykUhNtEV+kw=;
+        b=a7rblEkvWgEaV3jJzr6jXbk88yee6wwiTxq57880FWvqNyS4evbW4uWNVV8Y8jETDQ
+         TIyIs9rWrESjVi3RMp7Ru5gQJle8041LBqjw6orQlbjXglYb5Z744TZN3aM2QBHlKkcn
+         vdSOPGWHZuOnPqQdkownF6E/D7N12W0ztU1FRAhcia85nsDoUKUkqXarFunFeOIoPOpJ
+         NEyTb8mGgRODA4dpgTBji0tnlxedxecHQor3o/rvC3boHUaXFh3iG3+I0SZZ1qGT4svI
+         k0uoF6tVmhBlYiyk8ILxYcaEW471p2r/Wp/9+10Uoa2vKbTX+PCvV9l4NMDy07cgdWQs
+         QOlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BNDEakoGHFj6Pg7LARxrzAtLVJKPLYsbrd9x8xsjbAA=;
-        b=PUxN4GdTqvheoUvlfWzi04jKmD7Qm+t1Ma4B8hyWSweYackAILvepInj03BsjhUztt
-         HQ11UF1etmlg2XV3abKPMJr5wswky/WKlEeHN2gZ4hVM4JUJJi/t+AVohoFOd26NgXrf
-         gPYmQGjR0IZe8KrkAsUNb4xolVITOirOS8iJ9/Ivut9o4DdINKCCBlET2DZ3sH86WINu
-         rrJUjTLJn65cqJxbe7DCPrXnVl/BVv8oE/2JLajb6Zgf+o6NWVdPUfvui2igtMiEmcjp
-         orDiufVNNrdEd1flMyqsrMLmyTqmmRgVCWKXrg42Irf4ocwfPJ/Xi12e4K07pLK8OzNY
-         r96g==
-X-Gm-Message-State: ACrzQf0gFhuC4bHTlCTuc8SObbItfJh417BrNM0a30pVHb2HW9NLphvN
-        gNhh3+6QPrmyF4jh6hhrLWWKPA==
-X-Google-Smtp-Source: AMsMyM7r9PfjSZb9vj2+uxOuEMDTNC74AdkTZbJ0CS5LtWjSrl+GlcGC+NcfdlbAo2yD1/Yb7pLBDA==
-X-Received: by 2002:a2e:bf16:0:b0:26d:8eb4:609b with SMTP id c22-20020a2ebf16000000b0026d8eb4609bmr15933515ljr.124.1667727240217;
-        Sun, 06 Nov 2022 01:34:00 -0800 (PST)
+        bh=kNcPbiTtKpD6IeXGZRhKfWEIaqsnPCpZykUhNtEV+kw=;
+        b=EJ3ThsQpf0FGv/6m0t4S4wuHPj9VYx1dHiP7cLPSBJTzn5tSHsp+iY5xati0Sx9mZV
+         1fe/Dr45whexjeUjQ/Op/MsyQfOP+5MUHHm0w0hVjzCGfDCvSZvfErX4bRP255wT1Pd2
+         bWyVjzNHK9NqcziUSDdkTp/GWOIX71vMgGiPoMEsAe/g8Hc7MN4f1BpHvPWvUaWW/wDU
+         wQaax4R7IIafXhCfuzbLhAgXPNgCFrsFskqdTtyBOyztWouokwcCyEKpqlMLJIwazytJ
+         drHfJgigeVTG8VQ4mdiWGSNEWIqoDr8BPcQDZdLmg4aqyCI3wLEtxB5VTioz5mOogGP/
+         jb2A==
+X-Gm-Message-State: ANoB5pkJxzRj25mq4B0JPbLGh/gXhJWAh43MXeR7as/HmgZqPwdZ3PP0
+        JvqDp7qBAj4z66A4uDj0Jml94Q==
+X-Google-Smtp-Source: AA0mqf4M4XA4jHXwLz76P2AsPepgvgge9/+uH+I9DqRHDvW3zhRaEVNNM/WAz1ZafRXNOtPRccmYMA==
+X-Received: by 2002:ac2:414a:0:b0:4b3:61f8:8f8a with SMTP id c10-20020ac2414a000000b004b361f88f8amr1912254lfi.482.1667727527671;
+        Sun, 06 Nov 2022 01:38:47 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id d14-20020a056512368e00b004b0a1e77cb2sm623256lfs.137.2022.11.06.01.33.58
+        by smtp.gmail.com with ESMTPSA id u8-20020a05651c130800b0026e02eb613csm615610lja.18.2022.11.06.01.38.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Nov 2022 01:33:59 -0800 (PST)
-Message-ID: <2e42faf9-a2c5-8a20-38cc-6aea00c4b993@linaro.org>
-Date:   Sun, 6 Nov 2022 10:33:58 +0100
+        Sun, 06 Nov 2022 01:38:47 -0800 (PST)
+Message-ID: <066919b1-c43d-f8ed-0191-cce8c575ee37@linaro.org>
+Date:   Sun, 6 Nov 2022 10:38:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [RESEND v2 2/2] dt-bindings: mmc: mtk-sd: add Inline Crypto
- Engine clock
-To:     Mengqi Zhang <mengqi.zhang@mediatek.com>,
-        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, wenbin.mei@mediatek.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20221106033924.9854-1-mengqi.zhang@mediatek.com>
- <20221106033924.9854-3-mengqi.zhang@mediatek.com>
+Subject: Re: [PATCH 3/8] dt-bindings: spi: Add Nuvoton WPCM450 Flash Interface
+ Unit (FIU)
 Content-Language: en-US
+To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+References: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
+ <20221105185911.1547847-4-j.neuschaefer@gmx.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221106033924.9854-3-mengqi.zhang@mediatek.com>
+In-Reply-To: <20221105185911.1547847-4-j.neuschaefer@gmx.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -81,13 +81,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/11/2022 04:39, Mengqi Zhang wrote:
-> Add optional crypto clock of the Inline Crypto Engine of Mediatek SoCs.
+On 05/11/2022 19:59, Jonathan Neuschäfer wrote:
+> The Flash Interface Unit (FIU) is the SPI flash controller in the
+> Nuvoton WPCM450 BMC SoC. It supports four chip selects, and direct
+> (memory-mapped) access to 16 MiB per chip. Larger flash chips can be
+> accessed by software-defined SPI transfers.
 > 
-> Signed-off-by: Mengqi Zhang <mengqi.zhang@mediatek.com>
+> The FIU in newer NPCM7xx SoCs is not compatible with the WPCM450 FIU.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 > ---
+>  .../bindings/spi/nuvoton,wpcm450-fiu.yaml     | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml b/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
+> new file mode 100644
+> index 0000000000000..dc0ea2184f8d0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/nuvoton,wpcm450-fiu.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/nuvoton,wpcm450-fiu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton WPCM450 Flash Interface Unit (FIU)
+> +
+> +maintainers:
+> +  - Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> +
+> +allOf:
+> +  - $ref: "/schemas/spi/spi-controller.yaml#"
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop the quotes.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: nuvoton,wpcm450-fiu
+> +
+> +  reg:
+> +    items:
+> +      - description: FIU registers
+> +      - description: Memory-mapped flash contents
+> +
+> +  reg-names:
+> +    items:
+> +      - const: control
+> +      - const: memory
+> +    minItems: 1
+
+This does not match your 'reg'. Two items are required there.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  nuvoton,shm:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: a phandle to the SHM block (see ../arm/nuvoton,shm.yaml)
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
+> +    spi@c8000000 {
+> +      compatible = "nuvoton,wpcm450-fiu";
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      reg = <0xc8000000 0x1000>, <0xc0000000 0x4000000>;
+
+reg is the second property.
+
+> +      reg-names = "control", "memory";
+> +      clocks = <&clk WPCM450_CLK_FIU>;
+> +      nuvoton,shm = <&shm>;
+> +
+> +      flash@0 {
+> +        compatible = "jedec,spi-nor";
+> +      };
+> +    };
+> +
+> +    shm: syscon@c8001000 {
+> +      compatible = "nuvoton,wpcm450-shm", "syscon";
+> +      reg = <0xc8001000 0x1000>;
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
+> +    spi@c8000000 {
+> +      compatible = "nuvoton,wpcm450-fiu";
+> +      // the "memory" resource may be omitted
+
+This is rather obvious, so what you should comment is WHY or WHEN second
+resource can be omitted.
+
+Not every instance on the hardware has it?
+
+Just to remind - this is the description of hardware, not Linux behavior.
+
+> +      reg = <0xc8000000 0x1000>;
+> +      reg-names = "control";
+> +    };
+> --
+> 2.35.1
+> 
 
 Best regards,
 Krzysztof
