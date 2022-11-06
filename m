@@ -2,233 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99B8961E31B
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 16:46:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BACD61E325
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 16:50:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbiKFPqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 10:46:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45000 "EHLO
+        id S230020AbiKFPuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 10:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbiKFPqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 10:46:46 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DADF6D2EE;
-        Sun,  6 Nov 2022 07:46:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 80BC260BFF;
-        Sun,  6 Nov 2022 15:46:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D3C0C433C1;
-        Sun,  6 Nov 2022 15:46:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667749604;
-        bh=uD5uha/gAGU0ejpz7W/EQnX5lrbypbUC7aV5rXsGakk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BHUoGGLXtsS59WT1qYEdWFIJ/U6vupy6vaxYYOruTa0Yq8SC75JoWpeHih077sdBh
-         LGGXY+J9Rvuc2SoLW7S/PM0nNWoxj6u9dRpr56sTbCX9Y7VjUZ0uTlQ7vpT8GyN9Ch
-         adGRSBUWI6d3uRg2hUKwqGQ2eCty0wMr7PDW+5MqVS/uGM5S6l2i7O5g+OgaBTiyRT
-         /NE8Y18TuHNcz0eNOIzqxVCfx0PYCrgB1xtw43EXQEWuk8ANfAdIxg4g2UdFqJmXOD
-         FaoMpLjXYl1JDIwu4vkxw70+VE9a5PMVaGvF87fHZI92mxBhrQ31Jm9cxnwJSJ8S8t
-         1VgZFEoRMsdLw==
-Date:   Sun, 6 Nov 2022 15:46:34 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
+        with ESMTP id S229841AbiKFPuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 10:50:01 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 85A1DE084;
+        Sun,  6 Nov 2022 07:50:00 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 35B9A1FB;
+        Sun,  6 Nov 2022 07:50:06 -0800 (PST)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 333783F534;
+        Sun,  6 Nov 2022 07:49:58 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: addac: add AD74115
-Message-ID: <20221106154634.2286faf3@jic23-huawei>
-In-Reply-To: <20221103094436.2136698-2-demonsingur@gmail.com>
-References: <20221103094436.2136698-1-demonsingur@gmail.com>
-        <20221103094436.2136698-2-demonsingur@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Icenowy Zheng <uwu@icenowy.me>
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: [PATCH v3 00/11] ARM: suniv: USB and PopStick board support
+Date:   Sun,  6 Nov 2022 15:48:15 +0000
+Message-Id: <20221106154826.6687-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.35.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  3 Nov 2022 11:44:35 +0200
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
+This is an update to Icenowy's v2 of the series, fixing the smaller
+issues mentioned during the review. Also it adds two patches that
+improve the quirk handling for the sunxi MUSB and USB PHY driver, as it
+was hinted in some replies. I put those patches at the end, to not
+jeopardy the actual USB functionality of the Allwinner F1C100s series.
+For a changelog see below.
+================
+This patchset introduces support for F1C100s' USB and SourceParts
+PopStick board.
 
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> 
-> The AD74115H is a single-channel, software-configurable, input and
-> output device for industrial control applications. The AD74115H
-> provides a wide range of use cases, integrated on a single chip.
-> 
-> These use cases include analog output, analog input, digital output,
-> digital input, resistance temperature detector (RTD), and thermocouple
-> measurement capability. The AD74115H also has an integrated HART modem.
-> 
-> A serial peripheral interface (SPI) is used to handle all communications
-> to the device, including communications with the HART modem. The digital
-> input and digital outputs can be accessed via the SPI or the
-> general-purpose input and output (GPIO) pins to support higher
-> speed data rates.
-> 
-> The device features a 16-bit, sigma-delta analog-to-digital converter
-> (ADC) and a 14-bit digital-to-analog converter (DAC).
-> The AD74115H contains a high accuracy 2.5 V on-chip reference that can
-> be used as the DAC and ADC reference.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+The DT binding and driver support for SUNIV USB PHY/MUSB are added, in
+addition to DT changes to the DTSI and Lichee Nano DT. A new DT is added
+for SourceParts PopStick v1.1 board.
 
-Hi Cosmin,
+Changelog v1 ... v2:
+- USB PHY binding: clarify the relation with other phy-sun4i-usb bindings
+- Add Popstick binding and .dts patches
 
-A few questions inline.  Complex device so I'll doubt we'll ever get this
-binding to be as tidy as for simpler devices.  Hence most of the below are
-suggestions rather than requirements from me.
-
-Jonathan
-
-> ---
->  .../bindings/iio/addac/adi,ad74115.yaml       | 370 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 377 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> new file mode 100644
-> index 000000000000..621f11d5c1f3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74115.yaml
-> @@ -0,0 +1,370 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/addac/adi,ad74115.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD74115H device
-> +
-> +maintainers:
-> +  - Cosmin Tanislav <cosmin.tanislav@analog.com>
-> +
-> +description: |
-> +  The AD74115H is a single-channel software configurable input/output
-> +  device for industrial control applications. It contains functionality for
-> +  analog output, analog input, digital output, digital input, resistance
-> +  temperature detector, and thermocouple measurements integrated into a single
-> +  chip solution with an SPI interface. The device features a 16-bit ADC and a
-> +  14-bit DAC.
-> +
-> +    https://www.analog.com/en/products/ad74115h.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad74115h
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-
-I'm not seeing any child nodes, so why do we need these two?
-
-> +
-> +  avdd-supply: true
-> +  avcc-supply: true
-> +  dvcc-supply: true
-> +  aldo1v8-supply: true
-
-aldo1v8 is an output pin. "1.8 V Analog LDO Output. Do not use ALDO1V8 externally."
-The associated input is avcc.  Given we shouldn't connect anything to the pin,
-we don't want it in the binding docs
-
-> +  dovdd-supply: true
-> +  refin-supply: true
-> +
-
-...
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Conversion range for ADC conversion 2.
-> +      0 - 0V to 12V
-> +      1 - -12V to +12V
-> +      2 - -2.5V to +2.5V
-> +      3 - -2.5V to 0V
-> +      4 - 0V to 2.5V
-> +      5 - 0V to 0.625V
-> +      6 - -104mV to +104mV
-> +      7 - 0V to 12V
-
-For a lot of similar cases we handle these numerically to give
-a human readable dts.  Is there a strong reason not to do so here (in mv)
+Changelog v2 ... v3:
+- remove redundant "Device Tree Bindings" suffix in DT binding doc title
+- add BSD license to binding doc file (as per checkpatch)
+- use existing PHY sun4i_a10_phy type instead of inventing new one
+- fix some commit message title prefixes
+- use proper plural spelling for usb0_id_det-gpios
+- popstick.dts: Reorder otg_sram node reference alphabetically
+- popstick.dts: Add regulator- prefix to 3.3V regulator node name
+- popstick.dts: Fix status, compatible and reg property order
+- popstick.dts: Drop unneeded mmc0 and spi0 aliases
+- add two patches to clean up sunxi MUSB and USB PHY driver
+- add Acks and Reviewed-by's
 
 
-> +    minimum: 0
-> +    maximum: 7
-> +    default: 0
-> +
-> +  adi,sense-agnd-buffer-lp:
-lp is a little ambiguous, given we have a habit of using it for low pass
-in filters etc. Perhaps worth spelling these out?
-     adi,sens-agnd-buffer-low-power etc?
+Andre Przywara (2):
+  phy: sun4i-usb: Replace types with explicit quirk flags
+  usb: musb: sunxi: Introduce config struct
 
-> +    type: boolean
-> +    description: |
-> +      Whether to enable low-power buffered mode for the AGND sense pin.
-> +
-> +  adi,lf-buffer-lp:
-> +    type: boolean
-> +    description: |
-> +      Whether to enable low-power buffered mode for the low-side filtered
-> +      sense pin.
-> +
-> +  adi,hf-buffer-lp:
-> +    type: boolean
-> +    description: |
-> +      Whether to enable low-power buffered mode for the high-side filtered
-> +      sense pin.
-> +
-> +  adi,ext2-buffer-lp:
-> +    type: boolean
-> +    description: Whether to enable low-power buffered mode for the EXT2 pin.
-> +
-> +  adi,ext1-buffer-lp:
-> +    type: boolean
-> +    description: Whether to enable low-power buffered mode for the EXT1 pin.
+Icenowy Zheng (9):
+  dt-bindings: phy: add binding document for Allwinner F1C100s USB PHY
+  dt-bindings: usb: sunxi-musb: add F1C100s MUSB compatible string
+  phy: sun4i-usb: add support for the USB PHY on F1C100s SoC
+  musb: sunxi: add support for the F1C100s MUSB controller
+  ARM: dts: suniv: add USB-related device nodes
+  ARM: dts: suniv: licheepi-nano: enable USB
+  dt-bindings: vendor-prefixes: add Source Parts
+  dt-binding: arm: sunxi: add compatible strings for PopStick v1.1
+  ARM: dts: suniv: add device tree for PopStick v1.1
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-cpol
-> +  - avdd-supply
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      properties:
-> +        adi,digital-input-sink-range-high: true
-> +    then:
-> +      properties:
-> +        adi,digital-input-sink-microamp:
-> +          maximum: 7400
-> +
-> +additionalProperties: false
+ .../devicetree/bindings/arm/sunxi.yaml        |  7 ++
+ .../phy/allwinner,suniv-f1c100s-usb-phy.yaml  | 83 ++++++++++++++++
+ .../usb/allwinner,sun4i-a10-musb.yaml         |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ arch/arm/boot/dts/Makefile                    |  3 +-
+ .../boot/dts/suniv-f1c100s-licheepi-nano.dts  | 16 +++
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          | 26 +++++
+ .../boot/dts/suniv-f1c200s-popstick-v1.1.dts  | 99 +++++++++++++++++++
+ drivers/phy/allwinner/phy-sun4i-usb.c         | 58 +++++------
+ drivers/usb/musb/sunxi.c                      | 97 +++++++++++++-----
+ 10 files changed, 335 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/allwinner,suniv-f1c100s-usb-phy.yaml
+ create mode 100644 arch/arm/boot/dts/suniv-f1c200s-popstick-v1.1.dts
 
-Does this need to be unevalutatedProperties to allow
-for the extra ones in spi-periphera-props.yaml?
+-- 
+2.35.5
 
-> +
