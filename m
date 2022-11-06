@@ -2,458 +2,511 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA69D61E6E2
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 23:34:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FE4B61E6E4
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 23:35:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229946AbiKFWe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 17:34:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55804 "EHLO
+        id S230005AbiKFWfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 17:35:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbiKFWe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 17:34:56 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1351A462;
-        Sun,  6 Nov 2022 14:34:53 -0800 (PST)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1F81384374;
-        Sun,  6 Nov 2022 23:34:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1667774092;
-        bh=gikAx0xZRgDVFGd3B6l+5+sLGZiR/eLB64FaSiUdKLk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=cUP8iWzIlIXH61q6eQIhIeqOGFBD+MnsC/ZyB62qbBR8aWVEV2Tud6/w502K0VOD5
-         2jmHgAV/9JU5QJ6YkZAP9LW78Gi5H6Z4MM8H9lv155BT6fGnjxrlPMPdFmD3UxbIpO
-         R3JC/seUEJ/tjttBrmGoquNHWjzlYVtSjH6mtxqlW+/0xUllJNJi/k/Vf4DV4bqM1Q
-         uu7JVK1zGa9qE/mfRrEG+7toFumvJKSuka5UctP4E7ZzIBPO4lZHP6QRBviIPSJADo
-         4R56QnitfkMdLDPechLJPm1AJLOy3D/lOd84m3gSmKnL5MHXJC/SVqLfxXXUQL6TiA
-         vPaOpvdDrHyFw==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        linux-usb@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: usb: usb251xb: Convert to YAML schema
-Date:   Sun,  6 Nov 2022 23:34:38 +0100
-Message-Id: <20221106223438.223592-1-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S229678AbiKFWfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 17:35:02 -0500
+Received: from mail.rnplus.nl (mail.rnplus.nl [178.251.25.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2151A462
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 14:35:00 -0800 (PST)
+Received: from localhost (unknown [127.0.0.1])
+        by mail.rnplus.nl (Postfix) with ESMTP id B50BF37850F
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 22:39:56 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at rnplus.nl
+Received: from mail.rnplus.nl ([127.0.0.1])
+        by localhost (mail.rnplus.nl [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id TSUv58fp6s17 for <devicetree@vger.kernel.org>;
+        Sun,  6 Nov 2022 23:39:56 +0100 (CET)
+Received: from mail.rnplus.nl (mail.rnplus.nl [178.251.25.70])
+        by mail.rnplus.nl (Postfix) with ESMTPSA id 61799377D7B;
+        Sun,  6 Nov 2022 23:39:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=rnplus.nl; s=dkim;
+        t=1667774396; bh=PGh4TeK6Tq1WKGcotdl2MGS+Gx9fUkonV1urhUlF+lo=;
+        h=Date:From:To:Cc:Subject;
+        b=Wma/hVliRzlfkzXviTrjigSePjeRBE2MthcmttOgqrBZdt+0iWQ1pfYavXgshYuHV
+         m38tZuuV6FzV2IkqiHzEsmg0BHZ0MlHhuEjgKEV/zw+DghDDpEL7uMevRh0mmNMWKj
+         DmrcfHdjB6LI6WLj48MfPNUKt0r+MJ+mhX965qKk=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Sun, 06 Nov 2022 23:39:55 +0100
+From:   Renze Nicolai <renze@rnplus.nl>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Subject: [PATCH] ARM: dts: aspeed: Add ASRock X570D4U BMC
+User-Agent: RN+ Webmail
+Message-ID: <7baebe77f0f8963e06d5ddeec6c737f5@rnplus.nl>
+X-Sender: renze@rnplus.nl
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the usb251xb hub DT bindings from text to yaml schema so it is
-possible to validate DTs against the schema.
+This is a relatively low-cost AST2500-based Amd Ryzen 5000 Series
+micro-ATX board that we hope can provide a decent platform for OpenBMC
+development.
 
-Adjust the example to describe two different hubs at different I2C bus
-addresses, to avoid I2C address collission in the example.
+This initial device-tree provides the necessary configuration for
+basic BMC functionality such as serial console, KVM support
+and POST code snooping.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Renze Nicolai <renze@rnplus.nl>
 ---
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Richard Leitner <richard.leitner@skidata.com>
-Cc: linux-usb@vger.kernel.org
-Cc: devicetree@vger.kernel.org
----
-V2: - Switch from uint16-item to uint16 for all of vendor-id,product-id,
-      device-id,language-id
-    - Use default: to specify the default values of properties
-V3: - Replace range descriptions with default:
-    - Use generic node names in example, i.e. usb-hub
----
- .../devicetree/bindings/usb/usb251xb.txt      |  89 ------
- .../devicetree/bindings/usb/usb251xb.yaml     | 271 ++++++++++++++++++
- 2 files changed, 271 insertions(+), 89 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/usb251xb.txt
- create mode 100644 Documentation/devicetree/bindings/usb/usb251xb.yaml
+  arch/arm/boot/dts/Makefile                    |   1 +
+  .../boot/dts/aspeed-bmc-asrock-x570d4u.dts    | 360 ++++++++++++++++++
+  2 files changed, 361 insertions(+)
+  create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts
 
-diff --git a/Documentation/devicetree/bindings/usb/usb251xb.txt b/Documentation/devicetree/bindings/usb/usb251xb.txt
-deleted file mode 100644
-index 1a934eab175ee..0000000000000
---- a/Documentation/devicetree/bindings/usb/usb251xb.txt
-+++ /dev/null
-@@ -1,89 +0,0 @@
--Microchip USB 2.0 Hi-Speed Hub Controller
--
--The device node for the configuration of a Microchip USB251x/xBi USB 2.0
--Hi-Speed Controller.
--
--Required properties :
-- - compatible : Should be "microchip,usb251xb" or one of the specific types:
--	"microchip,usb2512b", "microchip,usb2512bi", "microchip,usb2513b",
--	"microchip,usb2513bi", "microchip,usb2514b", "microchip,usb2514bi",
--	"microchip,usb2517", "microchip,usb2517i", "microchip,usb2422"
-- - reg : I2C address on the selected bus (default is <0x2C>)
--
--Optional properties :
-- - reset-gpios : Should specify the gpio for hub reset
-- - vdd-supply : Should specify the phandle to the regulator supplying vdd
-- - skip-config : Skip Hub configuration, but only send the USB-Attach command
-- - vendor-id : Set USB Vendor ID of the hub (16 bit, default is 0x0424)
-- - product-id : Set USB Product ID of the hub (16 bit, default depends on type)
-- - device-id : Set USB Device ID of the hub (16 bit, default is 0x0bb3)
-- - language-id : Set USB Language ID (16 bit, default is 0x0000)
-- - manufacturer : Set USB Manufacturer string (max 31 characters long)
-- - product : Set USB Product string (max 31 characters long)
-- - serial : Set USB Serial string (max 31 characters long)
-- - {bus,self}-powered : selects between self- and bus-powered operation
--	(boolean, default is self-powered)
-- - disable-hi-speed : disable USB Hi-Speed support (boolean)
-- - {multi,single}-tt : selects between multi- and single-transaction-translator
--	(boolean, default is multi-tt)
-- - disable-eop : disable End of Packet generation in full-speed mode (boolean)
-- - {ganged,individual}-sensing : select over-current sense type in self-powered
--	mode (boolean, default is individual)
-- - {ganged,individual}-port-switching : select port power switching mode
--	(boolean, default is individual)
-- - dynamic-power-switching : enable auto-switching from self- to bus-powered
--	operation if the local power source is removed or unavailable (boolean)
-- - oc-delay-us : Delay time (in microseconds) for filtering the over-current
--	sense inputs. Valid values are 100, 4000, 8000 (default) and 16000. If
--	an invalid value is given, the default is used instead.
-- - compound-device : indicate the hub is part of a compound device (boolean)
-- - port-mapping-mode : enable port mapping mode (boolean)
-- - led-{usb,speed}-mode : led usb/speed indication mode selection
--	(boolean, default is speed mode)
-- - string-support : enable string descriptor support (required for manufacturer,
--	product and serial string configuration)
-- - non-removable-ports : Should specify the ports which have a non-removable
--	device connected.
-- - sp-disabled-ports : Specifies the ports which will be self-power disabled
-- - bp-disabled-ports : Specifies the ports which will be bus-power disabled
-- - sp-max-total-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry including a permanently
--	attached peripheral (range: 0 - 100000 uA, default 1000 uA)
-- - bp-max-total-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry including a permanently
--	attached peripheral (range: 0 - 510000 uA, default 100000 uA)
-- - sp-max-removable-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry excluding a permanently
--	attached peripheral (range: 0 - 100000 uA, default 1000 uA)
-- - bp-max-removable-current-microamp: Specifies max current consumed by the hub
--	from VBUS when operating in self-powered hub. It includes the hub
--	silicon along with all associated circuitry excluding a permanently
--	attached peripheral (range: 0 - 510000 uA, default 100000 uA)
-- - power-on-time-ms : Specifies the time it takes from the time the host
--	initiates the power-on sequence to a port until the port has adequate
--	power. The value is given in ms in a 0 - 510 range (default is 100ms).
-- - swap-dx-lanes : Specifies the ports which will swap the differential-pair
--	(D+/D-), default is not-swapped.
--
--Examples:
--	usb2512b@2c {
--		compatible = "microchip,usb2512b";
--		reg = <0x2c>;
--		reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
--	};
--
--	usb2514b@2c {
--		compatible = "microchip,usb2514b";
--		reg = <0x2c>;
--		vendor-id = /bits/ 16 <0x0000>;
--		product-id = /bits/ 16 <0x0000>;
--		string-support;
--		manufacturer = "Foo";
--		product = "Foo-Bar";
--		serial = "1234567890A";
--		/* correct misplaced usb connectors on port 1,2 */
--		swap-dx-lanes = <1 2>;
--	};
-diff --git a/Documentation/devicetree/bindings/usb/usb251xb.yaml b/Documentation/devicetree/bindings/usb/usb251xb.yaml
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 6aa7dc4db2fc..adbbf27dfcee 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1587,6 +1587,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+  	aspeed-bmc-asrock-e3c246d4i.dtb \
+  	aspeed-bmc-asrock-romed8hm3.dtb \
++	aspeed-bmc-asrock-x570d4u.dtb \
+  	aspeed-bmc-bytedance-g220a.dtb \
+  	aspeed-bmc-facebook-bletchley.dtb \
+  	aspeed-bmc-facebook-cloudripper.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts 
+b/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts
 new file mode 100644
-index 0000000000000..8d9ad304491af
+index 000000000000..818c8879e0a0
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/usb251xb.yaml
-@@ -0,0 +1,271 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/usb251xb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/arm/boot/dts/aspeed-bmc-asrock-x570d4u.dts
+@@ -0,0 +1,360 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (c) 2022 Renze Nicolai <renze@rnplus.nl>
 +
-+title: Microchip USB 2.0 Hi-Speed Hub Controller
++/dts-v1/;
++#include "aspeed-g5.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
 +
-+maintainers:
-+  - Richard Leitner <richard.leitner@skidata.com>
++/ {
++	model = "Asrock Rack X570D4U BMC";
++	compatible = "asrock,x570d4u-bmc";
 +
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,usb2422
-+      - microchip,usb2512b
-+      - microchip,usb2512bi
-+      - microchip,usb2513b
-+      - microchip,usb2513bi
-+      - microchip,usb2514b
-+      - microchip,usb2514bi
-+      - microchip,usb2517
-+      - microchip,usb2517i
-+      - microchip,usb251xb
++	chosen {
++			stdout-path = &uart5;
++			bootargs = "console=ttyS4,115200 earlycon";
++	};
 +
-+  reg:
-+    maxItems: 1
++	memory@80000000 {
++			reg = <0x80000000 0x20000000>;
++	};
 +
-+  reset-gpios:
-+    description: |
-+      Should specify the gpio for hub reset
++	reserved-memory {
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
 +
-+  vdd-supply:
-+    description: |
-+      Should specify the phandle to the regulator supplying vdd
++			flash_memory: region@98000000 {
++					no-map;
++					reg = <0x98000000 0x04000000>; /* 64M */
++			};
 +
-+  skip-config:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      Skip Hub configuration, but only send the USB-Attach command
++			vga_memory: framebuffer@9f000000 {
++				no-map;
++				reg = <0x9f000000 0x01000000>; /* 16M */
++			};
 +
-+  vendor-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    default: 0x0424
-+    description: |
-+      Set USB Vendor ID of the hub
++			pci_memory: region@9A000000 {
++				no-map;
++				reg = <0x9A000000 0x00010000>; /* 64K */
++			};
 +
-+  product-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    description: |
-+      Set USB Product ID of the hub
++			video_engine_memory: jpegbuffer {
++				size = <0x02800000>;	/* 40M */
++				alignment = <0x01000000>;
++				compatible = "shared-dma-pool";
++				reusable;
++			};
 +
-+  device-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    default: 0x0bb3
-+    description: |
-+      Set USB Device ID of the hub
++			gfx_memory: framebuffer {
++				size = <0x01000000>;
++				alignment = <0x01000000>;
++				compatible = "shared-dma-pool";
++				reusable;
++			};
++	};
 +
-+  language-id:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    default: 0x0000
-+    description: |
-+      Set USB Language ID
++	leds {
++		compatible = "gpio-leds";
 +
-+  manufacturer:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Set USB Manufacturer string (max 31 characters long)
++		heartbeat {
++			/* BMC_HB_LED_N */
++			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "timer";
++		};
 +
-+  product:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Set USB Product string (max 31 characters long)
++		system-fault {
++			/* SYSTEM_FAULT_LED_N */
++			gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
++			panic-indicator;
++		};
++	};
 +
-+  serial:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Set USB Serial string (max 31 characters long)
++	iio-hwmon {
++		compatible = "iio-hwmon";
++		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
++			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
++			<&adc 10>, <&adc 11>, <&adc 12>;
++	};
++};
 +
-+  bus-powered:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between self- and bus-powered operation
-+      (boolean, default is self-powered)
++&gpio {
++	status = "okay";
++	gpio-line-names =
++	/*A0-A3*/       "LOCATORLED_STATUS_N",    "",                     
+"NMI_BTN_N",          "BMC_NMI",
++	/*A4-A7*/       "",                       "",                     "",  
+                  "",
++	/*B0-B3*/       "FM_BIOS_POST_CMPLT_N",   "",                     "",  
+                  "",
++	/*B4-B7*/       "",                       "IRQ_BMC_PCH_SMI_LPC_N","",  
+                  "",
++	/*C0-C3*/       "",                       "",                     "",  
+                  "",
++	/*C4-C7*/       "",                       "",                     
+"LOCATORBTN",         "",
++	/*D0-D3*/       "BMC_PSIN",               "BMC_PSOUT",            
+"BMC_RESETCON",       "RESETCON",
++	/*D4-D7*/       "",                       "",                     "",  
+                  "",
++	/*E0-E3*/       "",                       "",                     "",  
+                  "",
++	/*E4-E7*/       "",                       "",                     "",  
+                  "",
++	/*F0-F3*/       "",                       "",                     "",  
+                  "",
++	/*F4-F7*/       "",                       "",                     "",  
+                  "",
++	/*G0-G3*/       "HWM_BAT_EN",             "CHASSIS_ID0",          
+"CHASSIS_ID1",        "CHASSIS_ID2",
++	/*G4-G7*/       "BMC_ALERT1_N_R",         "BMC_ALERT2_N_R",       
+"BMC_ALERT3_N",       "SML0ALERT",
++	/*H0-H3*/       "",                       "O_PWROK",              "",  
+                  "",
++	/*H4-H7*/       "MFG_MODE_N",             "BMC_RTCRST",           
+"BMC_HB_LED_N",       "BMC_CASEOPEN",
++	/*I0-I3*/       "",                       "",                     "",  
+                  "",
++	/*I4-I7*/       "",                       "",                     "",  
+                  "",
++	/*J0-J3*/       "BMC_READY",              "",                     "",  
+                  "",
++	/*J4-J7*/       "VGAHS",                  "VGAVS",                
+"DDCCLK",             "DDCDAT",
++	/*K0-K3*/       "I2C_SCL4",               "I2C_SDA4",             
+"I2C_SCL5",           "I2C_SDA5",
++	/*K4-K7*/       "",                       "",                     
+"I2C_SCL7",           "I2C_SDA7",
++	/*L0-L3*/       "BMC_CTS1",               "BMC_DCD1",             
+"BMC_DSR1",           "BMC_RI1",
++	/*L4-L7*/       "BMC_DTR1",               "BMC_RTS1",             
+"BMC_TXD1",           "BMC_RXD1",
++	/*M0-M3*/       "BMC_LAN0_DIS_N",         "BMC_LAN1_DIS_N",       "",  
+                  "",
++	/*M4-M7*/       "",                       "",                     "",  
+                  "",
++	/*N0-N3*/       "PWM_FAN1",               "PWM_FAN2",             
+"PWM_FAN3",           "PWM_FAN4",
++	/*N4-N7*/       "PWM_FAN6",               "PWM_FAN5",             "",  
+                  "",
++	/*O0-O3*/       "TACHO_FAN1",             "TACHO_FAN2",           
+"TACHO_FAN3",         "TACHO_FAN4",
++	/*O4-O7*/       "TACHO_FAN5",             "TACHO_FAN6",           "",  
+                  "",
++	/*P0-P3*/       "",                       "",                     "",  
+                  "PS_PWROK",
++	/*P4-P7*/       "",                       "",                     "",  
+                  "",
++	/*Q0-Q3*/       "I2C_SCL2",               "I2C_SDA2",             
+"I2C_SCL3",           "I2C_SDA3",
++	/*Q4-Q7*/       "BMC_SBM_PRESENT_1_N",    "BMC_SBM_PRESENT_2_N",  
+"BMC_SBM_PRESENT_3_N","BMC_PCIE_WAKE_N",
++	/*R0-R3*/       "",                       "",                     "",  
+                  "",
++	/*R4-R7*/       "",                       "",                     "",  
+                  "",
++	/*S0-S3*/       "PCHHOT_BMC_N",           "",                     
+"RSMRST",             "",
++	/*S4-S7*/       "",                       "",                     "",  
+                  "",
++	/*T0-T3*/       "RGMII1TXCK",             "RGMII1TXCL",           
+"RGMII1TXD0",         "RGMII1TXD1",
++	/*T4-T7*/       "RGMII1TXD2",            "RGMII1TXD3",           
+"RMII2RCLKO",         "RMII2TXEN",
++	/*U0-U3*/       "RMII2TXD0",              "RMII2TXD1",            "",  
+                  "",
++	/*U4-U7*/       "RGMII1RXCK",             "RGMII1RXCTL",          
+"RGMII1RXD0",         "RGMII1RXD1",
++	/*V0-V3*/       "RGMII1RXD2",             "RGMII1RXD3",           
+"RMII2RCLKI",         "",
++	/*V4-V7*/       "RMII2RXD0",              "RMII2RXD1",            
+"RMII2CRSDV",         "RMII2RXER",
++	/*W0-W3*/       "",                       "",                     "",  
+                  "",
++	/*W4-W7*/       "",                       "",                     "",  
+                  "",
++	/*X0-X3*/       "",                       "",                     "",  
+                  "",
++	/*X4-X7*/       "",                       "",                     "",  
+                  "",
++	/*Y0-Y3*/       "SLP_S3",                 "SLP_S5",               "",  
+                  "",
++	/*Y4-Y7*/       "I2C_SCL0",               "I2C_SDA0",             
+"I2C_SCL1",           "I2C_SDA1",
++	/*Z0-Z3*/       "",                       "",                     
+"SYSTEM_FAULT_LED_N", "BMC_THROTTLE_N",
++	/*Z4-Z7*/       "",                       "",                     "",  
+                  "",
++	/*AA0-AA3*/     "CPU1_THERMTRIP_LATCH_N", "",                     
+"CPU1_PROCHOT_N",     "",
++	/*AA4-AC7*/     "",                       "",                     "",  
+                  "",
++	/*AB0-AB3*/     "",                       "",                     "",  
+                  "",
++	/*AB4-AC7*/     "",                       "",                     "",  
+                  "",
++	/*AC0-AC3*/     "LAD0",                   "LAD1",                 
+"LAD2",               "LAD3",
++	/*AC4-AC7*/     "CK_33M_BMC",             "LFRAME",               
+"SERIRQ",             "S_PLTRST";
 +
-+  self-powered:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between self- and bus-powered operation
-+      (boolean, default is self-powered)
 +
-+  disable-hi-speed:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      disable USB Hi-Speed support (boolean)
++	/* Assert BMC_READY so BIOS doesn't sit around waiting for it */
++	bmc-ready {
++		gpio-hog;
++		gpios = <ASPEED_GPIO(J, 0) GPIO_ACTIVE_LOW>;
++		output-high;
++	};
++};
 +
-+  multi-tt:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between multi- and single-transaction-translator
-+      (boolean, default is multi-tt)
++&fmc {
++	status = "okay";
++	flash@0 {
++			status = "okay";
++			label = "bmc";
++			m25p,fast-read;
++			spi-max-frequency = <10000000>;
++#include "openbmc-flash-layout-64.dtsi"
++	};
++};
 +
-+  single-tt:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      selects between multi- and single-transaction-translator
-+      (boolean, default is multi-tt)
++&uart5 {
++	status = "okay";
++};
 +
-+  disable-eop:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      disable End of Packet generation in full-speed mode (boolean)
++&vuart {
++	status = "okay";
++};
 +
-+  ganged-sensing:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select over-current sense type in self-powered mode
-+      (boolean, default is individual)
++&mac0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
++};
 +
-+  individual-sensing:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select over-current sense type in self-powered mode
-+      (boolean, default is individual)
++&mac1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rmii2_default &pinctrl_mdio2_default>;
++	use-ncsi;
++};
 +
-+  ganged-port-switching:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select port power switching mode (boolean, default is individual)
++&i2c0 {
++	status = "okay";
++};
 +
-+  individual-port-switching:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      select port power switching mode (boolean, default is individual)
++&i2c1 {
++	status = "okay";
 +
-+  dynamic-power-switching:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      enable auto-switching from self- to bus-powered operation if the
-+      local power source is removed or unavailable (boolean)
++	w83773g@4c {
++		compatible = "nuvoton,w83773g";
++		reg = <0x4c>;
++	};
++};
 +
-+  oc-delay-us:
-+    enum: [100, 4000, 8000, 16000]
-+    default: 8000
-+    description: |
-+      Delay time (in microseconds) for filtering the over-current sense
-+      inputs. If an invalid value is given, the default is used instead.
++&i2c2 {
++	status = "okay";
++};
 +
-+  compound-device:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      indicate the hub is part of a compound device (boolean)
++&i2c3 {
++	status = "okay";
++};
 +
-+  port-mapping-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      enable port mapping mode (boolean)
++&i2c4 {
++	status = "okay";
 +
-+  led-usb-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      led usb/speed indication mode selection (boolean, default is speed mode)
++	i2c-switch@70 {
++		compatible = "nxp,pca9545";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x70>;
 +
-+  led-speed-mode:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      led usb/speed indication mode selection (boolean, default is speed mode)
++		interrupt-parent = <&i2c_ic>;
++		interrupts = <4>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
 +
-+  string-support:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      enable string descriptor support (required for manufacturer, product
-+      and serial string configuration)
++		i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++		};
 +
-+  non-removable-ports:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Should specify the ports which have a non-removable device connected.
++		i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++		};
 +
-+  sp-disabled-ports:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Specifies the ports which will be self-power disabled
++		i2c@2 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <2>;
++		};
 +
-+  bp-disabled-ports:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Specifies the ports which will be bus-power disabled
++		i2c@3 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <3>;
++		};
++	};
++};
 +
-+  sp-max-total-current-microamp:
-+    maximum: 100000
-+    default: 1000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry including a permanently
-+      attached peripheral.
++&i2c5 {
++	status = "okay";
++};
 +
-+  bp-max-total-current-microamp:
-+    maximum: 510000
-+    default: 100000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry including a permanently
-+      attached peripheral.
++&i2c7 {
++	status = "okay";
 +
-+  sp-max-removable-current-microamp:
-+    maximum: 100000
-+    default: 1000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry excluding a permanently
-+      attached peripheral.
++	eeprom@57 {
++		compatible = "st,24c128", "atmel,24c128";
++		reg = <0x57>;
++		pagesize = <16>;
++	};
++};
 +
-+  bp-max-removable-current-microamp:
-+    maximum: 510000
-+    default: 100000
-+    description: |
-+      Specifies max current consumed by the hub from VBUS when
-+      operating in self-powered hub. It includes the hub silicon
-+      along with all associated circuitry excluding a permanently
-+      attached peripheral.
++&gfx {
++	status = "okay";
++};
 +
-+  power-on-time-ms:
-+    maximum: 510
-+    default: 100
-+    description: |
-+      Specifies the time it takes from the time the host initiates the
-+      power-on sequence to a port until the port has adequate power.
++&pinctrl {
++	aspeed,external-nodes = <&gfx &lhc>;
++};
 +
-+  swap-dx-lanes:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      Specifies the ports which will swap the differential-pair (D+/D-),
-+      default is not-swapped.
++&vhub {
++	status = "okay";
++};
 +
-+unevaluatedProperties: false
++&ehci1 {
++	status = "okay";
++};
++&uhci {
++	status = "okay";
++};
 +
-+required:
-+  - compatible
-+  - reg
++&kcs3 {
++	aspeed,lpc-io-reg = <0xca2>;
++	status = "okay";
++};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++&lpc_ctrl {
++	status = "okay";
++};
 +
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
++&lpc_snoop {
++	status = "okay";
++	snoop-ports = <0x80>;
++};
 +
-+      usb-hub@2c {
-+        compatible = "microchip,usb2512b";
-+        reg = <0x2c>;
-+        reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-+      };
++&p2a {
++	status = "okay";
++	memory-region = <&pci_memory>;
++};
 +
-+      usb-hub@2d {
-+        compatible = "microchip,usb2514b";
-+        reg = <0x2d>;
-+        vendor-id = /bits/ 16 <0x0000>;
-+        product-id = /bits/ 16 <0x0000>;
-+        string-support;
-+        manufacturer = "Foo";
-+        product = "Foo-Bar";
-+        serial = "1234567890A";
-+        /* correct misplaced usb connectors on port 1,2 */
-+        swap-dx-lanes = <1 2>;
-+      };
-+    };
++&video {
++	status = "okay";
++	memory-region = <&video_engine_memory>;
++};
++
++&gfx {
++	status = "okay";
++	memory-region = <&gfx_memory>;
++};
++
++&pwm_tacho {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pwm0_default
++				&pinctrl_pwm1_default
++				&pinctrl_pwm2_default
++				&pinctrl_pwm3_default
++				&pinctrl_pwm4_default
++				&pinctrl_pwm5_default>;
++	fan@0 {
++		reg = <0x00>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x00 0x01>;
++	};
++	fan@1 {
++		reg = <0x01>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x02 0x03>;
++	};
++	fan@2 {
++		reg = <0x02>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x04 0x05>;
++	};
++	fan@3 {
++		reg = <0x03>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x06 0x07>;
++	};
++	fan@4 {
++		reg = <0x04>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x08 0x09>;
++	};
++	fan@5 {
++		reg = <0x05>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x0a 0x0b>;
++	};
++};
++
++&adc {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc0_default
++				&pinctrl_adc1_default
++				&pinctrl_adc2_default
++				&pinctrl_adc3_default
++				&pinctrl_adc4_default
++				&pinctrl_adc5_default
++				&pinctrl_adc6_default
++				&pinctrl_adc7_default
++				&pinctrl_adc8_default
++				&pinctrl_adc9_default
++				&pinctrl_adc10_default
++				&pinctrl_adc11_default
++				&pinctrl_adc12_default
++				&pinctrl_adc13_default
++				&pinctrl_adc14_default
++				&pinctrl_adc15_default>;
++};
 -- 
-2.35.1
-
+2.38.1
