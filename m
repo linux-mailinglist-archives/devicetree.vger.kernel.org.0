@@ -2,177 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D93C861E277
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 14:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B139C61E279
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 14:58:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbiKFN4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 08:56:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49412 "EHLO
+        id S229899AbiKFN6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 08:58:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbiKFN4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 08:56:48 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844E362F4
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 05:56:47 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id d6so13482487lfs.10
-        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 05:56:47 -0800 (PST)
+        with ESMTP id S229883AbiKFN6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 08:58:04 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5837D630D;
+        Sun,  6 Nov 2022 05:58:03 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id a67so13838465edf.12;
+        Sun, 06 Nov 2022 05:58:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=XNs/lw1mDF/pnPH5RjszupTI1jT0SmuXCXvtWwU1GjI=;
-        b=ddNW9/UbnfxdoGSpies0Wcsv44GH0g4unfjXlXBLsNe9178AxmeCsM/P7RMTVLeFrT
-         0oYb5QQGoCl1DsUTbuQGdeu22YIEfhTgTGrg+GCa5FEh+CNsa7y78khdRLgUrXEh92DA
-         NAsTlPefmEn3GdB5SbRbelLZHH60iWKlqfZbJfG2MXMJ95bOsItT+QodyBXWx8/M7nMq
-         ST4fgxfEgr6O46IPzDnxdHxzZBQrV6GFd5n9t2V+i1P8ci8G1wTCUWMsfFj/IsEH3kCJ
-         eOSEYu8HHJpYYScL6tFTJqUxE4S9YLaVS1P1ioJYqjkUErgimaJzZChuQzBONED7iyT0
-         RMKQ==
+        bh=oTWv8Arpvhk+VLNvjiohfLLFMW1gdUFZvUNXxvts/P4=;
+        b=fLZWYaPs3BvKAMSnliZpz8SCMlAxLVAt0qRaQFn7Veqy637jbTTimpKW+oeC9HnBMk
+         4yk+vSLB3gRkM8Ap64ZiuHPfpAGwlMbRJRIQX9ve6HxlUJ9naOkJlemR39Zqco1Jy3DL
+         5M3SzSpVWtan25TtB6tdBzb58kQh++5b8aDqnzLE7rsEGaqmnybF2SPzucmaOvD/PfzE
+         qi4NarNKH64ebh6eDvaIvqcS7Wv4UmOsaZEOWiQhznE5HEqrSUnWIXWFRQZl+aM1pNDo
+         ImPWOO0vfyPuO9/EfYAPmLZaZZL1q2Q3maMEW4sCwchj3RH2HZP4F0NkdsROZnSLQDre
+         l7+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XNs/lw1mDF/pnPH5RjszupTI1jT0SmuXCXvtWwU1GjI=;
-        b=7bFQHTuXwhDmKFEC+I+KrDEPCcXSdBMglxNQw5mWk5BvZAm/EUVIdschHZIL+7MP5x
-         jX1505ZkeCEHS7CwK4Grw18xLP4C3TBwLMPHZI5UAeA+lWEZiwUBmBGU4GGGAeiPxuZu
-         xHBqTupGYzXU1794iRGbySZ1rKi6MK46URrowdFu2+lsycmyQc0wu0IbBxednUyBJsP2
-         HqG8UgeKjm4cZqGJ15praT3zUc9ck4CLqhgC9Zu5zZ638k0777N0tUgTps3ljWnybqOO
-         cdwbrOLDsMTreaR7vqOnF+yY40+52hVkNB7aDkge/ss1i61JFLD4536JmyigmGCp2P92
-         zoIQ==
-X-Gm-Message-State: ACrzQf0qj6kFod1WEYnjhKcbjqOZzp1Vxm9lHSTxLCc1NwI3uZyDiMol
-        ds1jeNSZwKF0w0esl80TpEPo7Ko74lTOSQ==
-X-Google-Smtp-Source: AMsMyM625DemGXgAR8NK5oYtryD50FZ4W/nEN1vOGGIVolYzOENYcq+ghs9jtGO+2FVFGA2giSu6rQ==
-X-Received: by 2002:a05:6512:1504:b0:4ab:1e2d:c8df with SMTP id bq4-20020a056512150400b004ab1e2dc8dfmr17332858lfb.480.1667743005893;
-        Sun, 06 Nov 2022 05:56:45 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id s29-20020a05651c201d00b0026e90b478c6sm693766ljo.114.2022.11.06.05.56.44
+        bh=oTWv8Arpvhk+VLNvjiohfLLFMW1gdUFZvUNXxvts/P4=;
+        b=wl7v1t4Bu1DSL2yytQKFPPQ47vFxtqgfFq/L9ahRyhLe8QBXkOiTYzMXsPsVHKNJDg
+         07nih1wP9ci8ePlR19DVyVQa5Lt0F/ZmkdEYFEOf1sGbAcUINah9NmzYXuJ2nR1BmOZ4
+         g5r3x0SM2Jwb+V7f8lg5wHYB7cuHE68GzXj0vJJCcMQ7OxVXpEQ6hRRr6AbdN38KHPV6
+         OkB+49XJoFoAfRVUZ264d8XHBaW5QeNB4+U9F7wZZ5eEvBkihIjPe/y6vsO5Kut5JiiS
+         DelFaqlM0TAHizyDz6duT1qjlCoSjNDwOHYbevpKlJAh1Qbi+thdnODUzXSetsoaAPId
+         A64g==
+X-Gm-Message-State: ACrzQf1ZwIb7YRksZoFwRmo4K6JIzVyCY8/P6ml3ATUHhbAnZIccnZnJ
+        tjuFU3uv3hod56e9VS/bExQ=
+X-Google-Smtp-Source: AMsMyM40H2rY3rMrCtAOedxUz5U7Vh/Tl/zMTEFk2kQG3BLvYaGYUyg4eNktKI/PH/bQRLkWkJ+Mkg==
+X-Received: by 2002:aa7:d44b:0:b0:464:2fa2:3359 with SMTP id q11-20020aa7d44b000000b004642fa23359mr18272772edr.409.1667743081807;
+        Sun, 06 Nov 2022 05:58:01 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id k8-20020a1709062a4800b007ad9c826d75sm2169089eje.61.2022.11.06.05.58.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Nov 2022 05:56:45 -0800 (PST)
-Message-ID: <ec1416cd-ab5d-9813-acce-62c47f6d4c57@linaro.org>
-Date:   Sun, 6 Nov 2022 14:56:44 +0100
+        Sun, 06 Nov 2022 05:58:00 -0800 (PST)
+Message-ID: <1ca5fc04-f16b-f98a-0373-c61c258aa8bd@gmail.com>
+Date:   Sun, 6 Nov 2022 14:57:59 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [RFC][PATCH v3 2/3] dt-bindings: imx6q-pcie: Handle various PD
- configurations
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH v5 6/6] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>
-References: <20221104170417.232132-1-marex@denx.de>
- <20221104170417.232132-2-marex@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104170417.232132-2-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        lee.jones@linaro.org, pavel@ucw.cz, robh+dt@kernel.org,
+        sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     johan+linaro@kernel.org, marijn.suijten@somainline.org,
+        bjorn.andersson@linaro.org, andy.shevchenko@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221028170308.2676734-1-jjhiblot@traphandler.com>
+ <20221028170308.2676734-7-jjhiblot@traphandler.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20221028170308.2676734-7-jjhiblot@traphandler.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 18:04, Marek Vasut wrote:
-> The i.MX SoCs have various power domain configurations routed into
-> the PCIe IP. MX6SX is the only one which contains 2 domains and also
-> uses power-domain-names. MX6QDL do not use any domains. All the rest
-> uses one domain and does not use power-domain-names anymore.
+Hi Jean,
+
+On 10/28/22 19:03, Jean-Jacques Hiblot wrote:
+> By allowing to group multiple monochrome LED into multicolor LEDs,
+> all involved LEDs can be controlled in-sync. This enables using effects
+> using triggers, etc.
 > 
-> Document all those configurations in the DT binding document.
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> ---
+>   drivers/leds/rgb/Kconfig                 |  10 ++
+>   drivers/leds/rgb/Makefile                |   1 +
+>   drivers/leds/rgb/leds-group-multicolor.c | 154 +++++++++++++++++++++++
+>   3 files changed, 165 insertions(+)
+>   create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Richard Zhu <hongxing.zhu@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> To: devicetree@vger.kernel.org
-> ---
-> V2: - Keep the power-domains description in the main section
-> V3: - Move power-domains back where they were originally (fixes V2)
->     - Do not use else: in allOf section
-> ---
->  .../bindings/pci/fsl,imx6q-pcie.yaml          | 31 ++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> index 44c65d3ec07b9..5d731aca34b4d 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -67,13 +67,13 @@ properties:
->        required properties for imx7d-pcie and imx8mq-pcie.
->  
->    power-domains:
-> +    minItems: 1
->      items:
->        - description: The phandle pointing to the DISPLAY domain for
->            imx6sx-pcie, to PCIE_PHY power domain for imx7d-pcie and
->            imx8mq-pcie.
->        - description: The phandle pointing to the PCIE_PHY power domains
->            for imx6sx-pcie.
-> -
->    power-domain-names:
->      items:
->        - const: pcie
-> @@ -222,6 +222,35 @@ allOf:
->              - const: pcie_bus
->              - const: pcie_aux
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: fsl,imx6sx-pcie
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          minItems: 2
-> +          maxItems: 2
-> +        power-domain-names:
-> +          minItems: 2
-> +          maxItems: 2
+> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> index 204cf470beae..1a87f53faa8a 100644
+> --- a/drivers/leds/rgb/Kconfig
+> +++ b/drivers/leds/rgb/Kconfig
+> @@ -2,6 +2,16 @@
+>   
+[...]
 > +
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - fsl,imx6q-pcie
-> +                - fsl,imx6qp-pcie
-
-This is confusing... your previous entry fsl,imx6sx-pcie falls into this
-one, because it is a if-not-then.
-
-This also does not really match your commit msg.
-
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          minItems: 1
-
-Drop minItems, it cannot be less than 1.
-
-> +          maxItems: 1
-> +        power-domain-names: false
+> +	for (i = 0; i < count; i++) {
+> +		struct led_classdev *led_cdev = priv->monochromatics[i];
 > +
->  examples:
->    - |
->      #include <dt-bindings/clock/imx6qdl-clock.h>
+> +		/* Make the sysfs of the monochromatic LED read-only */
+> +		led_cdev->flags |= LED_SYSFS_DISABLE;
 
+Clearing these on remove is needed as well.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id of_led_mcg_match[] = {
+> +	{ .compatible = "leds-group-multicolor" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, of_led_mcg_match);
+> +
+> +static struct platform_driver led_mcg_driver = {
+> +	.probe		= led_mcg_probe,
+> +	.driver		= {
+> +		.name	= "leds_group_multicolor",
+> +		.of_match_table = of_led_mcg_match,
+> +	}
+> +};
+> +module_platform_driver(led_mcg_driver);
+> +
+> +MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
+> +MODULE_DESCRIPTION("multi-color LED group driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:leds-group-multicolor");
+
+-- 
 Best regards,
-Krzysztof
-
+Jacek Anaszewski
