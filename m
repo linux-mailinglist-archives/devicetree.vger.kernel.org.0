@@ -2,49 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A55561E4D0
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 18:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CCDA61E4F2
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 18:39:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231256AbiKFRWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 12:22:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35966 "EHLO
+        id S230208AbiKFRjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 12:39:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231479AbiKFRWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 12:22:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D12339;
-        Sun,  6 Nov 2022 09:15:12 -0800 (PST)
+        with ESMTP id S229919AbiKFRjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 12:39:48 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F4D163D5;
+        Sun,  6 Nov 2022 09:39:47 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C8063B80C6A;
-        Sun,  6 Nov 2022 17:15:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4601C433C1;
-        Sun,  6 Nov 2022 17:15:06 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1D754B80C7E;
+        Sun,  6 Nov 2022 17:39:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB744C433C1;
+        Sun,  6 Nov 2022 17:39:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667754909;
-        bh=aRmkKiaGl0TJQ5HduQMLRpqvOFwi5+C07v6IJ/fcaAM=;
+        s=k20201202; t=1667756384;
+        bh=+Z+VFK9uwo8rXQGuAGrs3LDCWmJz79959MQPWjHFGEA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=IbK2OrUMj5IGt2U1b8PXi/DCK/IBXk6oB/TgASEF3SBi7obCNpSfNJYWHr0e2jBPs
-         rNLkdCddAr4fSOhEsSg2sFyKe0U8d7iP6yBI5lzu3xe9vzsJ4T7wQZPu2TQopAckSK
-         B8krlsdB5unIP1lz2yJmwyWxHVtvLzh8QjpEFw4hXxoxXexQJamgSsGxK7JbNFJbem
-         hJpzsXtWvc4FtB0JjV4t8SU3gA7Re9T9i1+xq4FDWaoM/G3o+vdvI26n6SDU9JlAgG
-         +TTsTAU53zY9oJibVRV+9TmzzHI4WOqImiURsd74vGfAjk3hKupPMaI3bTPZlOV+jU
-         HUKk6bfWmmKaw==
-Date:   Sun, 6 Nov 2022 17:14:58 +0000
+        b=S4kFCxfqKAiM1pOUXQwa3dPqGFz2Pdsqu/lY3B3WRZRxF2GLgWUGuoXGbLdxqFlBU
+         cEawzkYgteh7q9R3BaIx+dFabeehiqGutouUnDe112z0kzlxNnAzJDIWQ54WIzqHjc
+         Fg9oORtz9RRw612hu+KZWZEm6SU0KVSM90ELBw7uJg16o2Oea4KrB1PgnFp3hT7Weq
+         8IvlyYngiqi4pmekXRVb+PgfBcgWWlTBCxrk9V+kwPJiEcEcNVyk/9564bEzNn6IAY
+         X7VBz0di6tikurD8AbEhCfpt1r8V1j743PqDAGVfEwlIKtLM4nDuULBhODQO6BI2Ym
+         qqG9R8IlQngLQ==
+Date:   Sun, 6 Nov 2022 17:39:37 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 00/13] Support more parts in LTC2983
-Message-ID: <20221106171458.0715a602@jic23-huawei>
-In-Reply-To: <20221103130041.2153295-1-demonsingur@gmail.com>
-References: <20221103130041.2153295-1-demonsingur@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Antoniu Miclaus <antoniu.miclaus@analog.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: iio: frequency: add adf4377 doc
+Message-ID: <20221106173937.37c00e0a@jic23-huawei>
+In-Reply-To: <f551f177-8163-283d-cf1e-23b09ff35489@linaro.org>
+References: <20221104092802.90725-1-antoniu.miclaus@analog.com>
+        <20221104092802.90725-2-antoniu.miclaus@analog.com>
+        <f551f177-8163-283d-cf1e-23b09ff35489@linaro.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -58,89 +56,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  3 Nov 2022 15:00:28 +0200
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
-
-> Add support for the following parts:
->  * LTC2984
->  * LTC2986
->  * LTM2985
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  
 > 
-> The LTC2984 is a variant of the LTC2983 with EEPROM.
-> The LTC2986 is a variant of the LTC2983 with only 10 channels,
-> EEPROM and support for active analog temperature sensors.
-> The LTM2985 is software-compatible with the LTC2986.
+> allOf with reference to spi-peripheral-props.yaml
 > 
-> Also, make bulk write buffer DMA-safe.
-> Besides that, refine the binding.
-Replying at least partly so I can see I already looked at this...
+> > +additionalProperties: false
+switch to unevaluatedProperties: false
+as well when you do the spi-peripheral-props.yaml addition.
 
-Looks good to me.  Will pick up once DT bindings maintainers are
-happy.
-
-Thanks,
+Easy to forget.
 
 Jonathan
 
+> > +
+> > +examples:
+> > +  - |
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        frequency@0 {
+> > +            compatible = "adi,adf4377";
+> > +            reg = <0>;
+> > +            spi-max-frequency = <10000000>;
+> > +            clocks = <&adf4377_ref_in>;
+> > +            clock-names = "ref_in";
+> > +        };
+> > +    };
+> > +...  
 > 
-> V1 -> V2:
->  * add Fixes tag
->  * add patch that fixes the regmap_bulk_write() call with stack allocated
->    buffer
->  * add patch that refines the binding in preperation for adding new
->    parts support to it
->  * do not use stack allocated buffer for writing the EEPROM key
-> 
-> V2 -> V3:
->  * drop minItems if equal to maxItems
->  * drop adi,single-ended conditions because of recent dtschema
->    restrictions (even though they're valid in jsonschema and the last
->    dtschema tag)
->  * drop "allocate iio channels once" patch since it's been picked as a fix
-> 
-> V3 -> V4:
->   * add pipe for 'adi,mux-delay-config-us' description
->   * add pipe for 'adi,rtd-curve' description
->   * keep newlines after descriptions
->   * move 'adi,current-rotate' to conditional
->   * put 'adi,custom-steinhart' in the original place
->   * keep 'minItems' for 'adi,custom-steinhart'
->   * override 'enum' to forbid auto-range in 'adi,excitation-current-nanoamp'
->     when using custom thermistors
->   * split refine patch into multiple patches
->     - use generic node name in example
->     - describe broken mux delay property
->     - refine descriptions
->     - change default excitation for custom thermistors
->     - require 4 wire rtd for current rotate
->     - require custom sensor tables
->     - describe matrix items
->     - remove qutations from phandle ref
->     - use hex for sensor address
->     - add default values
-> 
-> Cosmin Tanislav (13):
->   iio: temperature: ltc2983: make bulk write buffer DMA-safe
->   dt-bindings: iio: temperature: ltc2983: add default values
->   dt-bindings: iio: temperature: ltc2983: use hex for sensor address
->   dt-bindings: iio: temperature: ltc2983: remove qutations from phandle
->     ref
->   dt-bindings: iio: temperature: ltc2983: describe matrix items
->   dt-bindings: iio: temperature: ltc2983: require custom sensor tables
->   dt-bindings: iio: temperature: ltc2983: require 4 wire rtd for current
->     rotate
->   dt-bindings: iio: temperature: ltc2983: change default excitation for
->     custom thermistors
->   dt-bindings: iio: temperature: ltc2983: refine descriptions
->   dt-bindings: iio: temperature: ltc2983: describe broken mux delay
->     property
->   dt-bindings: iio: temperature: ltc2983: use generic node name in
->     example
->   dt-bindings: iio: temperature: ltc2983: support more parts
->   iio: temperature: ltc2983: support more parts
-> 
->  .../bindings/iio/temperature/adi,ltc2983.yaml | 335 +++++++++++-------
->  drivers/iio/temperature/ltc2983.c             | 193 +++++++++-
->  2 files changed, 389 insertions(+), 139 deletions(-)
+> Best regards,
+> Krzysztof
 > 
 
