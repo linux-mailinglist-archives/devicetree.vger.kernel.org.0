@@ -2,512 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2B861E170
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 10:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F34B361E182
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 11:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229688AbiKFJzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 04:55:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54440 "EHLO
+        id S229692AbiKFKLM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 05:11:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbiKFJzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 04:55:16 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96FCBDF52
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 01:55:14 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id o12so13048512lfq.9
-        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 01:55:14 -0800 (PST)
+        with ESMTP id S229649AbiKFKLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 05:11:11 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3066F53;
+        Sun,  6 Nov 2022 02:11:08 -0800 (PST)
+X-UUID: a0078fba31434f17a11c4c3248f8cb58-20221106
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=pbwGahhgLsKaG3etED8r0hHZSV8ZqoAnmJQfyGTak80=;
+        b=hnZbJoojZ+zF1KQFFLXDMu7JS2TrtkVy+MPgbYiNT8pWEwDUaxdl6vxlyfNeKv9uA8aANU9Ukrd+7uY/gDczJosZG3ITfr1kqJflhGUPZR4aSB7S/PJSDcyz9mwTsN4JV2BVXH+iA7Ob75K2zgutrJWkQ/rhCNRDSm75mg9+WbE=;
+X-CID-CACHE: Type:Local,Time:202211061753+08,HitQuantity:1
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.12,REQID:ab148405-ee4a-4bc0-8b0e-9ee865f5638d,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:62cd327,CLOUDID:a4c48eeb-84ac-4628-a416-bc50d5503da6,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: a0078fba31434f17a11c4c3248f8cb58-20221106
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+        (envelope-from <mengqi.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 136428577; Sun, 06 Nov 2022 18:11:05 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Sun, 6 Nov 2022 18:11:04 +0800
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.239)
+ by mtkmbs10n1.mediatek.com (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Sun, 6 Nov 2022 18:11:04 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NYqYpyQk2yTU48uO09MMaeznKBOT1mmDY/wveuKpnav/2TqLZKm23RS3UNVsrzVXYDPLmtewgwfMY6/rb4D1IxZJiyHMGHCXQH/gY6tthr0W9sXSl2uhQmXw+e5Mo1rI5XOfyn098OROm+Qm5TFBjxxIvWwmpDj1ABkzb0wite7KIEv4SMMtwdQ8pUUQBWpzdgggXudd0CTxrrOmoRfiqJZb6Q0hETIcB2pUDzNIeKlqdjoEuAOI6YgMuG/KnUOhWFWmbrrnCKmqjpTmoYV0XhhKDQAa/l7vysm/dSLw2M7xAH1b3foBrfuFYwaxdvaHZGSZmf1iwVfBvjiAPqSyYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pbwGahhgLsKaG3etED8r0hHZSV8ZqoAnmJQfyGTak80=;
+ b=WaHJmRhMpZu/6ALCcPYLhZEq+dSAuzpDCImPVahO9/aPh/06WC0scfWniEgqT2GEepNKri54vuyVLp4/ddPAfHsJqFMai6yJynF12bTVgzvldhGDqe/UkQ8rajCkE9qKnYSkWOZ2YUyvok9jEWfizzqIQkuoqDQXCwKXG/swvACpUsOm47nzhPQyyNGhCIwNsGGy7YiVQxJKjddeqQlGr8FAXigXJWmYe7U9I1WqjPqppCHdaZn4LC1rDH7RYaSzGQqUOp6Q7JVKUPvZKhkbEGLQRbkJyVCn98sU2mUUoQ197c8pUimsx6sx5FtSSjJxWDvwEsZnc1vNHJoihufyZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A9sIxIGzU5bgnadsIgrhBoIgiTY/hqhQgTZw5mkHZJI=;
-        b=DNOD5yKVJhw1GynCN/4byM7C6Axn/+cf7SSbLN25uceX73SVMRXfaegFGN0uo7ahkx
-         KalDh9s3jTAEsD/ES7FRMEe1UWBF9VRgjilG17HVEv3dsNfXza5whCKrXuDkjeKuJ2Bb
-         tfrNrGiPAiPfH8EcC7QGzHJ42U+buC8b5lXRegnwXk9iH/GvBuxDcvGmeqNI4bKlad6u
-         rWEoN6Dy16RzpTEe8mxaORDaj8WcNezaNh7Wg+NkikafPbPzFjUOU5f2tDnx1v30gWi2
-         3/7VV1EQ5c09JIqkJaaPhCfJJ0MZhi09yjSvy/Z63UcHjnyG6bKtyHuFZQ0p+8ZWOsQz
-         YsTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A9sIxIGzU5bgnadsIgrhBoIgiTY/hqhQgTZw5mkHZJI=;
-        b=GDKiDXsLD6TAOpApDGMPY41Hpr8MnuFo3yM4c3nrqvxggbyms0/snwG5R8Yd+hFXu7
-         L6GwN0Bh6BxMPYvA92aJo4VO/mKsKzpE8tG0NR03FlJTx8akuOJmqmWN7dHa61Dr2aIg
-         r7Mnv3+8oGxBv48nd9RG/YFzGGJKXDR4BahFGam6hNPRMl+qLWdu43hlx4Tj+EG92wAd
-         4UjrXGFB8kuSxvTkAIWfdO3XLY6G6OGVXKv2uWawEH0dcN6k4Ah4Rd0cxjGO3/7zVrqp
-         +odGvV0JrnIKPxQgYwpJYuFMZc7MBUzJ6YWLu62GhsVXwLNA8B0lElp1qBgFbyBAA8By
-         ofBQ==
-X-Gm-Message-State: ACrzQf2fmpDwyLgkhpYTZCUM4FURxyfY9odyPb1tdPNJXbECpbeoKOc0
-        hjT8liwRzmrbcgXVrd7mA6/s7IIe/K6nkg==
-X-Google-Smtp-Source: AMsMyM5yi/EJLzBDmPs0Q3Gqa0smgTFukUbGe9Aes6+eMDpj4xEs3cyH2b9aYuyTNzb7r/TdAhfNCw==
-X-Received: by 2002:a05:6512:22d3:b0:4a2:3b96:e980 with SMTP id g19-20020a05651222d300b004a23b96e980mr18205540lfu.352.1667728512874;
-        Sun, 06 Nov 2022 01:55:12 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id i8-20020a2ea368000000b002770566d642sm615620ljn.17.2022.11.06.01.55.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Nov 2022 01:55:12 -0800 (PST)
-Message-ID: <02c45ae9-61a4-9fc5-4daf-8c4c9df9a4a0@linaro.org>
-Date:   Sun, 6 Nov 2022 10:55:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v2] dt-bindings: Convert active-semi PMIC docs to YAML
- schemas
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pbwGahhgLsKaG3etED8r0hHZSV8ZqoAnmJQfyGTak80=;
+ b=WcQqe13pd+11ABIBMJT+idhW2AyswJRnlFNh774svV4ne9Z4I0lbay5BfmglzgY3VXPQH4dtyWt4HQps2L+7iM0nzui648KAaTy6dxq9bgWSGBk6BbWSs9wU+yWIvxk5eWu1hhpe4qe01ya7NgyMQ0n6yZlJtUNiZPlvlew3nh0=
+Received: from SG2PR03MB6261.apcprd03.prod.outlook.com (2603:1096:4:175::12)
+ by SI2PR03MB5676.apcprd03.prod.outlook.com (2603:1096:4:15b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.25; Sun, 6 Nov
+ 2022 10:10:59 +0000
+Received: from SG2PR03MB6261.apcprd03.prod.outlook.com
+ ([fe80::b993:c60:a25e:5707]) by SG2PR03MB6261.apcprd03.prod.outlook.com
+ ([fe80::b993:c60:a25e:5707%2]) with mapi id 15.20.5791.025; Sun, 6 Nov 2022
+ 10:10:59 +0000
+From:   =?utf-8?B?TWVuZ3FpIFpoYW5nICjlvKDmoqbnkKYp?= 
+        <Mengqi.Zhang@mediatek.com>
+To:     "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>
+CC:     "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?utf-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= 
+        <Wenbin.Mei@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?utf-8?B?TWVuZ3FpIFpoYW5nICjlvKDmoqbnkKYp?= 
+        <Mengqi.Zhang@mediatek.com>,
+        =?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?= 
+        <Chaotian.Jing@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 2/2] dt-bingdings: mmc: Mediatek: add ICE clock
+Thread-Topic: [PATCH 2/2] dt-bingdings: mmc: Mediatek: add ICE clock
+Thread-Index: AQHY4jOUgyH6+5+WtkSOcn+enm8V6a4r1vsAgAX0vgA=
+Date:   Sun, 6 Nov 2022 10:10:59 +0000
+Message-ID: <0541996bc0d7e16b4eabfb4781aed21fd1d293bc.camel@mediatek.com>
+References: <20221017142007.5408-1-mengqi.zhang@mediatek.com>
+         <20221017142007.5408-3-mengqi.zhang@mediatek.com>
+         <CAPDyKFowa5mXVTU+ZcoSRp8daz=O=AJ1BdnH2roCG-hmB3Bz9Q@mail.gmail.com>
+In-Reply-To: <CAPDyKFowa5mXVTU+ZcoSRp8daz=O=AJ1BdnH2roCG-hmB3Bz9Q@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        list@opendingux.net
-References: <20221105225803.39197-1-paul@crapouillou.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221105225803.39197-1-paul@crapouillou.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SG2PR03MB6261:EE_|SI2PR03MB5676:EE_
+x-ms-office365-filtering-correlation-id: 7807b3f1-2953-42d7-1cd8-08dabfdf33be
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Bk3CjP79THqXwOteqGo+DNgPOtwESsHZGEQ4Z4Odl6DtJeXS6tafFkoV0G+CUTyfToLXCopUOXHS5szxKC9PU27H7o6CjthI/DjLIbyO6yxUheRUeqBuHubXeUreW6mVvtEeSTCwGVfkWmWLjm/rMTLH0Ql1MUZy1VNjEZI3UrLl8xwDnRIlmvOV9i1MtxKxLIM2sYoDi4f6Qy6B9A26AHXIAaJilp0a/G5YRzwN1OwS0H7ZdU+HESV95/rwFF6VNDQUbE3kbBMuErFLMt+lLKznfPkLMOJUsSaX9md8BWc5s8Mqc9nPfwsPiG0s8l+yRlX8vNB+I0tZTDqQkkH4HroT8OSqlnbKsDBAR16EwGmJ+1KFKgw2wdMjMMtBtswxp4DU8YXUQnqGWDf7s0V7O/4sqY5VjexXZwXOC5A/WVlUkeOyC0VXElJ4/ONz5nJTF+XW43t3wjW3m6stHtuMk0Rtp9m2cZ3RX8IEyvP1Q6HkDFTLPmrXejhKUsh3vT6mA9UHb/wMmnZnIVtHbHhXNfrOE92UMCL3BT8ogdKOgZ/KoThDGcLzv2+I+PVjY35NgUKCq+fsB599VtC8gPaVt1Euj4zAoS8OU9Z4UEOKI/TKbno/OYuoLSO4/OcgIY5e9LwoF5pzMJUIhMQwo83pFSpE2Q+Mf153XjFTRQ+sQWgVbPus7POeA5z55IxIuMblmQ1WmsZfID7kZJaSRNBggIE1tn2hRciOWddPsBEgRroGZjIs1cV/aBhPz/PaNWHy5TKtUkGu0MAsoMxpR+hNL7PVg6XG0HT3rd6U56vEB2E=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6261.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(376002)(346002)(136003)(396003)(366004)(39850400004)(451199015)(478600001)(2906002)(316002)(76116006)(41300700001)(66446008)(66476007)(64756008)(8676002)(66556008)(4326008)(66946007)(5660300002)(6486002)(71200400001)(966005)(54906003)(8936002)(83380400001)(38070700005)(38100700002)(122000001)(6916009)(6506007)(86362001)(186003)(6512007)(26005)(2616005)(85182001)(36756003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Vy9BY092MjNURWhDUHNsSmJ2NUNJT0RHUk1kZGVKMkY0T1RyUW0wbnUzTmph?=
+ =?utf-8?B?VEpaQUVmaXZVSVNyZVc1ek9GR2V2VFhvdWxJU3Q0NWtpbDEzcG1qNXd4UHA2?=
+ =?utf-8?B?QjlYR3poY01UdDVQU2hHa0pHV2dUSnFEWHZhNUowWVhUcmVSYzU3UENUTVZt?=
+ =?utf-8?B?bjlBUDk2Y3BuYlM3T3ZxQ0UyOHAzRHRHSy9iejRqUVhrTHpPMXNvL0kxeENL?=
+ =?utf-8?B?T2srdzJqdEdxaElyT3VGK05sb3pwc2FjUWZtekRDeDh4MmdTZ3NGeGtyUm00?=
+ =?utf-8?B?V2toM1hTakV6U3oyME9jeFJsN2NoSStIREhlamwvN3VhRzh5REI1eDdrY1Nk?=
+ =?utf-8?B?QXVqMklyZ2NaWG5PWGI0dE02NmNyTVFtajdRSGdELzhkcjYrbExOTTg5YzRk?=
+ =?utf-8?B?MGRCb0lHcDdaUFBLWkVhSXRmdm9wazNDWVFNR3BFV2pFallsaWhZNFRwYTVp?=
+ =?utf-8?B?TVpVV1B4ek00M2JlcXBFeDVaMTdRREdVU0tpS2YxQWtSUjhUUGUrQnd5WGh5?=
+ =?utf-8?B?ZUZ1c0FTbC9hTGtFQWxiRVhaZkcxL3NTY2lVTVZldlU1akdoSzd4QmRxeWJi?=
+ =?utf-8?B?RUxnK2dISndjTHUxUlBsTVIyMHhNbC8ybHQ3RVIyVTRpVExwbFZpOVB5VGZ2?=
+ =?utf-8?B?a1d1NEY4YlNPb1V4RkFkdFI4ZFhubVZXYkVwSTF4bXFqSzNPdWswSzlZb1Zr?=
+ =?utf-8?B?bnVEbWwrK2tMcUsxci9kM1FVV0xibmhaeTduTjliNFM3U3BjQXJIWE56aFRs?=
+ =?utf-8?B?NXVYNUdRWU1HTE0yU2FZbUtPdTNnZEZGZ0xrMVlBMEZLejh2RFgvcW1rbnA4?=
+ =?utf-8?B?Nkw3WjYwY0ZwUW9JRzUyN2RsUXFaU3Z0aGtSaEhsRnF1VzRnR2VxdUs0L0Qy?=
+ =?utf-8?B?amRCaXcxRGp6cThSWlQ2YW5DQ2JMV1RidUVLakxnU3BFalJpSzBnSnZnY1BJ?=
+ =?utf-8?B?dzAvMXEwS05FNHg0ajNER3FPRnBaWEJDL0lSMDN0eC9Rb2VVWi9OMmhhMnNV?=
+ =?utf-8?B?WjJNQW1rS0VBSkQ4d1Vjb0tPb0FCZjFMUHRPaVVsTmQxRWN1WDZCM1M1a2ps?=
+ =?utf-8?B?REYzc3RJeUdMZVZKbmYxNmNUbmgxVXd5UUF3bTMycnlkZUhTY2VJRi9jeXJU?=
+ =?utf-8?B?NTVHanpxV1B0cmxucXBVclNtU1dlTzVWMCtONVNaR3lGSDAweFpMV2QvMHdy?=
+ =?utf-8?B?ZHBaaWY1OU5FUG5oRXVUem5lUWhQd1haNDhHOVQ2RCtYSjhES1pMQjhhdHF3?=
+ =?utf-8?B?RTFGY2t0OVJTYXJMVUZnZ1M1UUc3eVBzUFBuZCszSTZtT21lbS9PZ2doSzFh?=
+ =?utf-8?B?NHpSRjlyZmtKQkxTNTdLUk5SYVNZNTBuS2J6WlFsTHRtT1ZIWWFscG9rSUF4?=
+ =?utf-8?B?eC9pOHpsZWV3QzVaRGVhN3RiS2pwSytvTm9oVDJJVmtjajduTFlFTlV0dDIx?=
+ =?utf-8?B?WXQ0Qm1WYmJnTDBxNmxOMmxZa1NrUXVyakVQeEdRVThqdDFXZkN1Zml0NDdz?=
+ =?utf-8?B?bnE2N09EUjdZNUc4dC9NK29hMU9mb2JsUTZ4NUhzNHdRcmlMaEE0WGFndUVo?=
+ =?utf-8?B?MDFCdUxBZ2tzSGV0OElVaTllYkpPV3dFMk9rYk5NQWF0d0RObGRYaEIzZ2Ri?=
+ =?utf-8?B?aHA1d2F5MGppREdUSW8vRXF3QzBURTFKSEZjRGJtblpJQ2d2R1VvZ3lqUzJR?=
+ =?utf-8?B?emRNZkJ6dXZyQWVNZGhKSW5WbzY2VjJBcTNIZG14RnMyZnhrUTVuZDhveFNM?=
+ =?utf-8?B?YW5mWEZLdmNaRVZIK050cEVVWFo2V09HeG54K1AvVGZSSXhJUEUyQWtCYVo2?=
+ =?utf-8?B?V2Y4QlJrZXFBQ0d2MzFXSVlwVEVJV1NwMUdzNVI0cjBLQ3BTaGNHS1VxY1I5?=
+ =?utf-8?B?ZmloY1d4RzdPd1Jldy9NWEVuTVVrbE9sb1hpSVFCVlBHbVdlMjVwMlVoU3dj?=
+ =?utf-8?B?S2ZBU2lEa29pZ2lnVDRWS0wrMWxVRUVaRC9YeEJZVUQ1T3Z4RDZiNit6ZWdi?=
+ =?utf-8?B?QXpEZEtUbndoaE8yZWdNVCtnZE5mZzBVeEtrZCtVdUpyY0ZnalBPVUszTFIv?=
+ =?utf-8?B?d1FvUkQ4eFVDM3pJZjJBdDV6RWpXSDh1TFBMTGt2VVpLQzJlOFdmN2FIUXpM?=
+ =?utf-8?B?UnVPMjIrTk9xNUZob1hYS1MyeFBOKzdKaVVCTlhYWVVBcjhwT3lmK0UrUXc0?=
+ =?utf-8?B?QXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AB4555F0D61B844F9B0F5518709E506E@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6261.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7807b3f1-2953-42d7-1cd8-08dabfdf33be
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2022 10:10:59.2586
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +7A8tU8xn4b7ZsFJBTnvU08ouyRj0jlAweDHjxKmlgWwrFk1ABiBKVV5Yu3W9Y9irnqSK4bz38IAzRndc29syvTZ1oyRiWPGRuC20O6K2/E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB5676
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/11/2022 23:58, Paul Cercueil wrote:
-> Create YAML bindings for the Active-semi PMICs and remove the old text
-> files.
-> 
-> The bindings aren't perfect, for instance I couldn't find good
-> descriptions for the vendor properties in the "charger" node of the
-> ACT8945A because I am not familiar with the hardware and these
-> properties were not documented anywhere.
-> 
-> The YAML schemas are a bit different than what is described in the old
-> text files, because these were sometimes wrong or had missing
-> information. This is the case for the ACT8600 documentation, which
-> specified the valid node names for the regulators, while the driver was
-> expecting different names. This led to the current situation where we
-> have two different boards using different names for the regulators:
-> - arch/mips/boot/dts/ingenic/ci20.dts uses the names documented in the
->   text file,
-> - arch/mips/boot/dts/ingenic/gcw0.dts uses the names that the driver
->   expects.
-> In theory, the driver should be fixed to follow the documentation, and
-> accept both naming schemes. In practice though, when the PMIC node was
-> added to the ci20.dts board file, the names were already wrong in
-> regards to what the driver expected, so it never really worked
-> correctly and wasn't tested properly. Furthermore, in that board the
-> consumers of the regulators aren't working for various other reasons
-> (invalid GPIOs, etc.).
-> 
-> For that reason, for the ACT8600 bindings I decided to only use the node
-> names that the driver expects (and that gcw0.dts uses), instead of
-> accepting both old and new names. A follow-up patch will update the CI20
-> board to use the new regulator names.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
-> 
-> Notes:
->     v2:
->     - Avoid | character in descriptions that can be single-line
->     - Remove unevaluatedProperties when additionalProperties is also present
->     - Remove useless inner parentheses in regular expressions
->     - Rename I2C nodes to just... i2c
->     - Remove node handles
->     
->     Note:
->     I set Liam Girdwood and Mark Brown as the maintainers by default, since
->     it doesn't appear that anybody is managing the Active-semi drivers, but
->     if anybody steps up I can update it.
-
-It should not be Liam and Mark, but someone having/knowing this
-particular hardware.
-
-> 
->  .../bindings/regulator/act8865-regulator.txt  | 117 --------
->  .../bindings/regulator/act8945a-regulator.txt | 113 --------
->  .../regulator/active-semi,act8600.yaml        | 141 ++++++++++
->  .../regulator/active-semi,act8846.yaml        | 207 ++++++++++++++
->  .../regulator/active-semi,act8865.yaml        | 162 +++++++++++
->  .../regulator/active-semi,act8945a.yaml       | 261 ++++++++++++++++++
->  6 files changed, 771 insertions(+), 230 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/regulator/act8865-regulator.txt
->  delete mode 100644 Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8846.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8865.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/active-semi,act8945a.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/act8865-regulator.txt b/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
-> deleted file mode 100644
-> index b9f58e480349..000000000000
-> --- a/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
-> +++ /dev/null
-> @@ -1,117 +0,0 @@
-> -ACT88xx regulators
-> --------------------
-> -
-> -Required properties:
-> -- compatible: "active-semi,act8846" or "active-semi,act8865" or "active-semi,act8600"
-> -- reg: I2C slave address
-> -
-> -Optional properties:
-> -- system-power-controller: Telling whether or not this pmic is controlling
-> -  the system power. See Documentation/devicetree/bindings/power/power-controller.txt .
-> -- active-semi,vsel-high: Indicates the VSEL pin is high.
-> -  If this property is missing, assume the VSEL pin is low(0).
-> -
-> -Optional input supply properties:
-> -- for act8600:
-> -  - vp1-supply: The input supply for DCDC_REG1
-> -  - vp2-supply: The input supply for DCDC_REG2
-> -  - vp3-supply: The input supply for DCDC_REG3
-> -  - inl-supply: The input supply for LDO_REG5, LDO_REG6, LDO_REG7 and LDO_REG8
-> -  SUDCDC_REG4, LDO_REG9 and LDO_REG10 do not have separate supplies.
-> -- for act8846:
-> -  - vp1-supply: The input supply for REG1
-> -  - vp2-supply: The input supply for REG2
-> -  - vp3-supply: The input supply for REG3
-> -  - vp4-supply: The input supply for REG4
-> -  - inl1-supply: The input supply for REG5, REG6 and REG7
-> -  - inl2-supply: The input supply for REG8 and LDO_REG9
-> -  - inl3-supply: The input supply for REG10, REG11 and REG12
-> -- for act8865:
-> -  - vp1-supply: The input supply for DCDC_REG1
-> -  - vp2-supply: The input supply for DCDC_REG2
-> -  - vp3-supply: The input supply for DCDC_REG3
-> -  - inl45-supply: The input supply for LDO_REG1 and LDO_REG2
-> -  - inl67-supply: The input supply for LDO_REG3 and LDO_REG4
-> -
-> -Any standard regulator properties can be used to configure the single regulator.
-> -regulator-initial-mode, regulator-allowed-modes and regulator-mode could be specified
-> -for act8865 using mode values from dt-bindings/regulator/active-semi,8865-regulator.h
-> -file.
-> -
-> -The valid names for regulators are:
-> -	- for act8846:
-> -	REG1, REG2, REG3, REG4, REG5, REG6, REG7, REG8, REG9, REG10, REG11, REG12
-> -	- for act8865:
-> -	DCDC_REG1, DCDC_REG2, DCDC_REG3, LDO_REG1, LDO_REG2, LDO_REG3, LDO_REG4.
-> -	- for act8600:
-> -	DCDC_REG1, DCDC_REG2, DCDC_REG3, SUDCDC_REG4, LDO_REG5, LDO_REG6, LDO_REG7,
-> -	LDO_REG8, LDO_REG9, LDO_REG10,
-> -
-> -Example:
-> ---------
-> -
-> -#include <dt-bindings/regulator/active-semi,8865-regulator.h>
-> -
-> -		i2c1: i2c@f0018000 {
-> -			pmic: act8865@5b {
-> -				compatible = "active-semi,act8865";
-> -				reg = <0x5b>;
-> -				active-semi,vsel-high;
-> -
-> -				regulators {
-> -					vcc_1v8_reg: DCDC_REG1 {
-> -						regulator-name = "VCC_1V8";
-> -						regulator-min-microvolt = <1800000>;
-> -						regulator-max-microvolt = <1800000>;
-> -						regulator-always-on;
-> -					};
-> -
-> -					vcc_1v2_reg: DCDC_REG2 {
-> -						regulator-name = "VCC_1V2";
-> -						regulator-min-microvolt = <1100000>;
-> -						regulator-max-microvolt = <1300000>;
-> -						regulator-always-on;
-> -
-> -						regulator-allowed-modes = <ACT8865_REGULATOR_MODE_FIXED>,
-> -									  <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> -						regulator-initial-mode = <ACT8865_REGULATOR_MODE_FIXED>;
-> -
-> -						regulator-state-mem {
-> -							regulator-on-in-suspend;
-> -							regulator-suspend-min-microvolt = <1150000>;
-> -							regulator-suspend-max-microvolt = <1150000>;
-> -							regulator-changeable-in-suspend;
-> -							regulator-mode = <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> -						};
-> -					};
-> -
-> -					vcc_3v3_reg: DCDC_REG3 {
-> -						regulator-name = "VCC_3V3";
-> -						regulator-min-microvolt = <3300000>;
-> -						regulator-max-microvolt = <3300000>;
-> -						regulator-always-on;
-> -					};
-> -
-> -					vddana_reg: LDO_REG1 {
-> -						regulator-name = "VDDANA";
-> -						regulator-min-microvolt = <3300000>;
-> -						regulator-max-microvolt = <3300000>;
-> -						regulator-always-on;
-> -
-> -						regulator-allowed-modes = <ACT8865_REGULATOR_MODE_NORMAL>,
-> -									  <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> -						regulator-initial-mode = <ACT8865_REGULATOR_MODE_NORMAL>;
-> -
-> -						regulator-state-mem {
-> -							regulator-off-in-suspend;
-> -						};
-> -					};
-> -
-> -					vddfuse_reg: LDO_REG2 {
-> -						regulator-name = "FUSE_2V5";
-> -						regulator-min-microvolt = <2500000>;
-> -						regulator-max-microvolt = <2500000>;
-> -					};
-> -				};
-> -			};
-> -		};
-> diff --git a/Documentation/devicetree/bindings/regulator/act8945a-regulator.txt b/Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
-> deleted file mode 100644
-> index 4017527619ab..000000000000
-> --- a/Documentation/devicetree/bindings/regulator/act8945a-regulator.txt
-> +++ /dev/null
-> @@ -1,113 +0,0 @@
-> -Device-Tree bindings for regulators of Active-semi ACT8945A Multi-Function Device
-> -
-> -Required properties:
-> - - compatible: "active-semi,act8945a", please refer to ../mfd/act8945a.txt.
-> -
-> -Optional properties:
-> -- active-semi,vsel-high: Indicates if the VSEL pin is set to logic-high.
-> -  If this property is missing, assume the VSEL pin is set to logic-low.
-> -
-> -Optional input supply properties:
-> -  - vp1-supply: The input supply for REG_DCDC1
-> -  - vp2-supply: The input supply for REG_DCDC2
-> -  - vp3-supply: The input supply for REG_DCDC3
-> -  - inl45-supply: The input supply for REG_LDO1 and REG_LDO2
-> -  - inl67-supply: The input supply for REG_LDO3 and REG_LDO4
-> -
-> -Any standard regulator properties can be used to configure the single regulator.
-> -regulator-initial-mode, regulator-allowed-modes and regulator-mode could be
-> -specified using mode values from dt-bindings/regulator/active-semi,8945a-regulator.h
-> -file.
-> -
-> -The valid names for regulators are:
-> -	REG_DCDC1, REG_DCDC2, REG_DCDC3, REG_LDO1, REG_LDO2, REG_LDO3, REG_LDO4.
-> -
-> -Example:
-> -
-> -#include <dt-bindings/regulator/active-semi,8945a-regulator.h>
-> -
-> -	pmic@5b {
-> -		compatible = "active-semi,act8945a";
-> -		reg = <0x5b>;
-> -
-> -		active-semi,vsel-high;
-> -
-> -		regulators {
-> -			vdd_1v35_reg: REG_DCDC1 {
-> -				regulator-name = "VDD_1V35";
-> -				regulator-min-microvolt = <1350000>;
-> -				regulator-max-microvolt = <1350000>;
-> -				regulator-always-on;
-> -
-> -				regulator-allowed-modes = <ACT8945A_REGULATOR_MODE_FIXED>,
-> -							  <ACT8945A_REGULATOR_MODE_LOWPOWER>;
-> -				regulator-initial-mode = <ACT8945A_REGULATOR_MODE_FIXED>;
-> -
-> -				regulator-state-mem {
-> -					regulator-on-in-suspend;
-> -					regulator-suspend-min-microvolt=<1400000>;
-> -					regulator-suspend-max-microvolt=<1400000>;
-> -					regulator-changeable-in-suspend;
-> -					regulator-mode=<ACT8945A_REGULATOR_MODE_LOWPOWER>;
-> -				};
-> -			};
-> -
-> -			vdd_1v2_reg: REG_DCDC2 {
-> -				regulator-name = "VDD_1V2";
-> -				regulator-min-microvolt = <1100000>;
-> -				regulator-max-microvolt = <1300000>;
-> -				regulator-always-on;
-> -
-> -				regulator-allowed-modes = <ACT8945A_REGULATOR_MODE_FIXED>,
-> -							  <ACT8945A_REGULATOR_MODE_LOWPOWER>;
-> -				regulator-initial-mode = <ACT8945A_REGULATOR_MODE_FIXED>;
-> -
-> -				regulator-state-mem {
-> -					regulator-off-in-suspend;
-> -				};
-> -			};
-> -
-> -			vdd_3v3_reg: REG_DCDC3 {
-> -				regulator-name = "VDD_3V3";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-always-on;
-> -			};
-> -
-> -			vdd_fuse_reg: REG_LDO1 {
-> -				regulator-name = "VDD_FUSE";
-> -				regulator-min-microvolt = <2500000>;
-> -				regulator-max-microvolt = <2500000>;
-> -				regulator-always-on;
-> -
-> -				regulator-allowed-modes = <ACT8945A_REGULATOR_MODE_NORMAL>,
-> -							  <ACT8945A_REGULATOR_MODE_LOWPOWER>;
-> -				regulator-initial-mode = <ACT8945A_REGULATOR_MODE_NORMAL>;
-> -
-> -				regulator-state-mem {
-> -					regulator-off-in-suspend;
-> -				};
-> -			};
-> -
-> -			vdd_3v3_lp_reg: REG_LDO2 {
-> -				regulator-name = "VDD_3V3_LP";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-always-on;
-> -			};
-> -
-> -			vdd_led_reg: REG_LDO3 {
-> -				regulator-name = "VDD_LED";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-always-on;
-> -			};
-> -
-> -			vdd_sdhc_1v8_reg: REG_LDO4 {
-> -				regulator-name = "VDD_SDHC_1V8";
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-always-on;
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
-> new file mode 100644
-> index 000000000000..ca0ac316dff2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/active-semi,act8600.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/active-semi,act8600.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Active-semi ACT8600 regulator
-> +
-> +maintainers:
-> +  - Liam Girdwood <lgirdwood@gmail.com>
-> +  - Mark Brown <broonie@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: active-semi,act8600
-> +
-> +  reg:
-> +    description: I2C address
-
-Drop description, it's obvious. The same in other files.
-
-> +    maxItems: 1
-> +
-> +  system-power-controller:
-> +    description:
-> +      Indicates that the ACT8600 is responsible for powering OFF
-> +      the system.
-> +    type: boolean
-> +
-
-(...)
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/regulator/active-semi,8865-regulator.h>
-> +
-> +    i2c1 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      pmic: act8865@5b {
-> +        compatible = "active-semi,act8865";
-> +        reg = <0x5b>;
-> +        active-semi,vsel-high;
-> +
-> +        regulators {
-> +          vcc_1v8_reg: DCDC_REG1 {
-> +            regulator-name = "VCC_1V8";
-> +            regulator-min-microvolt = <1800000>;
-> +            regulator-max-microvolt = <1800000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          vcc_1v2_reg: DCDC_REG2 {
-> +            regulator-name = "VCC_1V2";
-> +            regulator-min-microvolt = <1100000>;
-> +            regulator-max-microvolt = <1300000>;
-> +            regulator-always-on;
-> +
-> +            regulator-allowed-modes = <ACT8865_REGULATOR_MODE_FIXED>,
-> +                                      <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> +            regulator-initial-mode = <ACT8865_REGULATOR_MODE_FIXED>;
-> +
-> +            regulator-state-mem {
-> +              regulator-on-in-suspend;
-> +              regulator-suspend-min-microvolt = <1150000>;
-> +              regulator-suspend-max-microvolt = <1150000>;
-> +              regulator-changeable-in-suspend;
-> +              regulator-mode = <ACT8865_REGULATOR_MODE_LOWPOWER>;
-> +            };
-> +          };
-> +
-> +          vcc_3v3_reg: DCDC_REG3 {
-> +            regulator-name = "VCC_3V3";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +          };
-> +
-> +          vddana_reg: LDO_REG1 {
-> +            regulator-name = "VDDANA";
-> +            regulator-min-microvolt = <3300000>;
-> +            regulator-max-microvolt = <3300000>;
-> +            regulator-always-on;
-> +
-> +            regulator-allowed-modes = <ACT8865_REGULATOR_MODE_NORMAL>,
-> +            <ACT8865_REGULATOR_MODE_LOWPOWER>;
-
-Align it with previous <.
-
-> +            regulator-initial-mode = <ACT8865_REGULATOR_MODE_NORMAL>;
-
-
-(...)
-
-> +
-> +        charger {
-> +          compatible = "active-semi,act8945a-charger";
-> +          pinctrl-names = "default";
-> +          pinctrl-0 = <&pinctrl_charger_chglev &pinctrl_charger_lbo &pinctrl_charger_irq>;
-> +          interrupt-parent = <&pioA>;
-> +          interrupts = <45 IRQ_TYPE_EDGE_RISING>;
-> +
-> +          active-semi,chglev-gpios = <&pioA 12 GPIO_ACTIVE_HIGH>;
-> +          active-semi,lbo-gpios = <&pioA 72 GPIO_ACTIVE_LOW>;
-> +          active-semi,input-voltage-threshold-microvolt = <6600>;
-> +          active-semi,precondition-timeout = <40>;
-> +          active-semi,total-timeout = <3>;
-> +          status = "okay";
-
-Drop status
-
-> +        };
-> +      };
-> +    };
-
-Best regards,
-Krzysztof
-
+T24gV2VkLCAyMDIyLTExLTAyIGF0IDE2OjEzICswMTAwLCBVbGYgSGFuc3NvbiB3cm90ZToNCj4g
+T24gTW9uLCAxNyBPY3QgMjAyMiBhdCAxNjoyMCwgTWVuZ3FpIFpoYW5nIDxtZW5ncWkuemhhbmdA
+bWVkaWF0ZWsuY29tDQo+ID4gd3JvdGU6DQo+ID4gDQo+ID4gRG9jdW1lbnQgdGhlIGJpbmRpbmcg
+Zm9yIGNyeXB0byBjbG9jayBvZiB0aGUgSW5saW5lIENyeXB0byBFbmdpbmUNCj4gPiBvZiBNZWRp
+YXRlayBTb0NzLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1lbmdxaSBaaGFuZyA8bWVuZ3Fp
+LnpoYW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL21tYy9tdGstc2QueWFtbCB8IDIgKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQs
+IDIgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvbW1jL210ay1zZC55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvbW1jL210ay1zZC55YW1sDQo+ID4gaW5kZXggZDhlMWUyZTlhZGYy
+Li5mOTNkNjg2ZTI5MTEgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL21tYy9tdGstc2QueWFtbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9tbWMvbXRrLXNkLnlhbWwNCj4gPiBAQCAtNTcsNiArNTcsNyBAQCBwcm9w
+ZXJ0aWVzOg0KPiA+ICAgICAgICAtIGRlc2NyaXB0aW9uOiBwZXJpcGhlcmFsIGJ1cyBjbG9jayBn
+YXRlIChyZXF1aXJlZCBmb3INCj4gPiBNVDgxOTIpLg0KPiA+ICAgICAgICAtIGRlc2NyaXB0aW9u
+OiBBWEkgYnVzIGNsb2NrIGdhdGUgKHJlcXVpcmVkIGZvciBNVDgxOTIpLg0KPiA+ICAgICAgICAt
+IGRlc2NyaXB0aW9uOiBBSEIgYnVzIGNsb2NrIGdhdGUgKHJlcXVpcmVkIGZvciBNVDgxOTIpLg0K
+PiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBjcnlwdG8gY2xvY2sgdXNlZCBmb3IgZGF0YSBlbmNy
+eXB0L2RlY3J5cHQNCj4gPiAob3B0aW9uYWwpLg0KPiA+IA0KPiA+ICAgIGNsb2NrLW5hbWVzOg0K
+PiA+ICAgICAgbWluSXRlbXM6IDINCj4gPiBAQCAtNjksNiArNzAsNyBAQCBwcm9wZXJ0aWVzOg0K
+PiA+ICAgICAgICAtIGNvbnN0OiBwY2xrX2NnDQo+ID4gICAgICAgIC0gY29uc3Q6IGF4aV9jZw0K
+PiA+ICAgICAgICAtIGNvbnN0OiBhaGJfY2cNCj4gPiArICAgICAgLSBjb25zdDogY3J5cHRvDQo+
+IA0KPiBMb29rcyBsaWtlIG1pbkl0ZW1zL21heEl0ZW1zIGZvciBjbG9ja3MgbmVlZHMgdG8gYmUg
+dXBkYXRlZCB0b28uDQo+IA0KPiA+IA0KPiA+ICAgIGludGVycnVwdHM6DQo+ID4gICAgICBkZXNj
+cmlwdGlvbjoNCj4gPiAtLQ0KPiA+IDIuMjUuMQ0KPiA+IA0KPiANCj4gS2luZCByZWdhcmRzDQo+
+IFVmZmUNCg0KSGkgVWZmZSwNCg0KSSBqdXN0IGFkZCBjcnlwdG8gY2xvY2sgdG8gbXQ4MTg2L210
+ODE4OC9tdDgxOTUsIGRvZXMgbm90IGV4Y2VlZCB0aGUNCm1pbkl0ZW1zL21heEl0ZW1zLg0KDQpJ
+IGhhdmUgcmUtc2VudCBteSBwYXRjaCwNCg0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgt
+bW1jLzIwMjIxMTA2MDMzOTI0Ljk4NTQtMy1tZW5ncWkuemhhbmdAbWVkaWF0ZWsuY29tLw0KUGxl
+YXNlIGhlbHAgdG8gcmV2aWV3IGl0Lg0KVGhhbmtzIQ0KDQpSZWdhcmRzLA0KTWVuZ3FpDQo=
