@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F5AC61E15F
+	by mail.lfdr.de (Postfix) with ESMTP id BA78F61E160
 	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 10:43:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbiKFJnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229723AbiKFJnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 6 Nov 2022 04:43:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51302 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229718AbiKFJno (ORCPT
+        with ESMTP id S229730AbiKFJno (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 04:43:44 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B7B5D138
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B0EDF6F
         for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 01:43:43 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id f37so13026926lfv.8
+Received: by mail-lf1-x132.google.com with SMTP id g12so13049005lfh.3
         for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 01:43:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QDiDxLQ0rjb64xJziCsobO1Kr+/jbm6ut/9xmmhlli0=;
-        b=BzwTsf7kgiD5xSMiLwVu/jxPwHD7Gndi5kHryjTT2GmoBt0IA4tVVvRxDgPyIV7rL3
-         qM0Pk9ggBgD9GCw4a60aQXxCr9/RJ4gVqHcJ9vGFuKAglKI89FpK75RR7Cjvj2dO7oHK
-         uQbQyIRnWkBP8NXjZUcmWdjMBthHIEie7zVKr0OyH/kdNvm09rwkxivRGEhv+6vpwRDU
-         i+gMVszYcjMzdh3NYpZ58JFcOB9925VzonO6MG7+H4xl0FunZM2bR3WWinAGxGn0WRz4
-         WaWJJ0vPnzNyBSLJcu7037hB8bqbmZD9BmScefbAG9w6Edhn9seedlGoadn8kXdQcRa9
-         mScw==
+        bh=j3uoZ8eg/BvFs8rs7FPp0J3kaSE2I30G0Ccj5oJr1j0=;
+        b=JhCFu/aUzf0W6T5ML6C7E94GeMV8WaJYKN5uI7XxEQ1qKbP9iZx2yKA3gdoRXBUY2z
+         G/fWgv2s4UwsyGK+b+YcsLB+TAb3J1498wTMjElMK1w0V7u5IGc5N59aYO4LhWPBjbV/
+         ymHpL33lLG9uCKa53lE6Zh9bK1bWlQsaKoVrdL9ypsbPvHgqBAqRyetcyUHSO7pxTfzU
+         WIyxSazI18dj4uWtsregYMTY+05XvBnHJTNwAV39HzjU3XbY77N85RcCsLIinP5fcuPh
+         B7ovO/lRaOKsrPsTB9JqRK9QDYeFygiIRitdN8uZZGDxL3F6NoxTK6nnEbwdb7Wl8t97
+         bVSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QDiDxLQ0rjb64xJziCsobO1Kr+/jbm6ut/9xmmhlli0=;
-        b=Tog0wkxwbAxwpYDmlE1+Xq27Lmf+BsFHCIhjKa2wCyzmoHrxxx1vTLjmlux60JO8vD
-         Js6hMaLwK7CfGgA0/WdQr+I6jbiZCTj1k/8RrbyGrPibJMHVCcaTJqBQGxKRghv09Rvi
-         exUn4Ot5UhwTmPoRglf732zDJ3oTrio9tF5e5MTH6xLxjrUuyaAGBX0AQOlp4p9s0Bwp
-         bgeUKExLJ+LS4d35PtAa5yEUXuB4boCUJ5doDWcEACYMS1LJXbrHQGYLsm8UeVhWw4MW
-         oD3AViKQn9rsLAYmIa3hv38oxSWGfhyQYbxRsd7KiNiAQDrbKbNuAbKkZSEiu/JSZjKo
-         MfJQ==
-X-Gm-Message-State: ACrzQf2II1Uy8THeQnvJ1loLdQ+YJsQIBIDYeTtDpnxqL6vWd3C5Opyb
-        vKRM2YXMHSG1Bqdw6apudsBoiA==
-X-Google-Smtp-Source: AMsMyM6Ww2G0QMg/H+TjQIQGbrTzVi08fyHtBFt5F0Gxp4QlpNE83Y4mhpN1b2aduhsBx4VzyepJXw==
-X-Received: by 2002:a05:6512:3151:b0:4b0:efed:e3a8 with SMTP id s17-20020a056512315100b004b0efede3a8mr276203lfi.650.1667727756486;
-        Sun, 06 Nov 2022 01:42:36 -0800 (PST)
+        bh=j3uoZ8eg/BvFs8rs7FPp0J3kaSE2I30G0Ccj5oJr1j0=;
+        b=HRV741wBj0fzZLMRbkJqqPwDNIoFNRhJsvZlpFBxDXnmmur4ZvLgczYiX9rDjBbDuy
+         kacbDhABfCGQtdC+QAW+TP2XNZWfQwYuFr8NAQCSScnRcPuJLM1F4NCKPYR58+mD8Kwe
+         Tgou9Coro6PYyiMewJfmsu/fo6UpMGTD0ykTvq4F3G4Z2CNE+YxLVqfExEBK5NIibDxh
+         SztQcXOHFii3vY9gYaH9Wr9/ekh+kNVa4XWqDGIp+hf+Q5SJJ2/ZbepbOUSmZIff8GgU
+         babikWep57TN4RIeQctxDCDlWE65b/JDoXnZ83C8TaEV4OqpyKDM0o8cyVFkGdfwCN8w
+         Dwcw==
+X-Gm-Message-State: ACrzQf0QOqcHBpKc+sS2j7l2WI61PGkLCkTTvqEgtNv0fIWLEdbYOGI+
+        o/C8kzIFZc3ijw2HXJHRT0Zf28BJ9AxHyg==
+X-Google-Smtp-Source: AMsMyM6yFiVzkAiG6SuBOtUyuRrODZlYhfqyISkrKpHDvrih18jZcYBcgFsRYtxM2rvLqfCkOewXRg==
+X-Received: by 2002:ac2:4c47:0:b0:4a2:c07b:4b62 with SMTP id o7-20020ac24c47000000b004a2c07b4b62mr15311753lfk.426.1667727792787;
+        Sun, 06 Nov 2022 01:43:12 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id cf29-20020a056512281d00b0049496855494sm627354lfb.104.2022.11.06.01.42.35
+        by smtp.gmail.com with ESMTPSA id be13-20020a056512250d00b004a8b9c68735sm628148lfb.102.2022.11.06.01.43.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Nov 2022 01:42:35 -0800 (PST)
-Message-ID: <c2f891d6-97c5-1952-2591-609e2478aca6@linaro.org>
-Date:   Sun, 6 Nov 2022 10:42:35 +0100
+        Sun, 06 Nov 2022 01:43:12 -0800 (PST)
+Message-ID: <143bcd9f-b4af-2651-4f5f-752912b553e1@linaro.org>
+Date:   Sun, 6 Nov 2022 10:43:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v2 2/6] dt-bindings: pinctrl: update uart/mmc bindings for
- MT7986 SoC
+Subject: Re: [PATCH v2 3/6] dt-bindings: pinctrl: mt7986: add generic
+ bias-pull* support
 Content-Language: en-US
 To:     Frank Wunderlich <linux@fw-web.de>,
         linux-mediatek@lists.infradead.org
@@ -69,9 +69,9 @@ Cc:     Frank Wunderlich <frank-w@public-files.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 References: <20221106080114.7426-1-linux@fw-web.de>
- <20221106080114.7426-3-linux@fw-web.de>
+ <20221106080114.7426-4-linux@fw-web.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221106080114.7426-3-linux@fw-web.de>
+In-Reply-To: <20221106080114.7426-4-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,25 +85,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/11/2022 09:01, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+> From: Sam Shih <sam.shih@mediatek.com>
 > 
-> Fix mmc and uart pins after uart splitting.
+> Since the bias-pull-{up,down} attribute already defines in pinctrl driver
+> of mediatek MT7986 SoC, this patch updates bindings to support mediatek
+> common bias-pull* function.
 > 
-> Some pinmux pins of the mt7986 pinctrl driver is composed of multiple
-> pinctrl groups, the original binding only allows one pinctrl group
-> per dts node, this patch sets "maxItems" for these groups and add new
-> examples to the binding documentation.
-> 
-> Fixes: 65916a1ca90a ("dt-bindings: pinctrl: update bindings for MT7986 SoC")
 > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
-> v3:
-> - squashed version from sam
-> - v2 was ack'd by Krzysztof, but sams patch included updated emmc-names
->   and different structure for uart to allow 2 pingroups
-> v2:
-
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
