@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A34961E193
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 11:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC48461E19B
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 11:31:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbiKFK2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 05:28:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35366 "EHLO
+        id S229649AbiKFKb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 05:31:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbiKFK2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 05:28:03 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D428D64D4
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 02:28:01 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id g7so13128889lfv.5
-        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 02:28:01 -0800 (PST)
+        with ESMTP id S229872AbiKFKb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 05:31:56 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A1865C4
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 02:31:55 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id o12so13113991lfq.9
+        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 02:31:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DI2wXka1VPadT80guBcm7zD76/m9DkDi2ofoECszAB4=;
-        b=jhgcp1ofKi8CJNeepvC5AR0U4tw6fExjpPcT83RAe07y/NTity7qnNXs0wcWITUjfp
-         WP4uRJCrqecyhOzyjKyxCmhiElB98snuqxq0ApmCHpkR7/XYF85ZZbUge05N1z/yvsQ/
-         WwRgcfs1G5U4oQ/zPZqImVS8AmcEQI1GH/nF7MmZXaiS1hPEiZvgQ9Md/Omg/mJwhQ0q
-         Jw8Q8E9g9uJeCvr41nMbQwCIGNarqEAM2aPs5dLnq8lP+dpFK1cOnhUQ3Iuj+jjVzA+G
-         w4t/phl0rKWlFtjA2RksIPxr9MpharsOvhY71fJkkwpVyLEpSZbIwTPpljGgEqHydXsE
-         1JUQ==
+        bh=UftRfa3QhbhyOprZ4+CKBvpNeumWx+igfcF1C3LmJVY=;
+        b=Cvz8oLk4SsKXl5F+x9SW5YnyuwhaCtODAZY8kY84ih56i/IaZBTk+/TG4s5Fr1czXq
+         UTiyKE8+r3H8sHGKEQPEB8udLqyQxToLFdqc7tUwP8aepAWxcBb/dVjVwADphi/G4dfj
+         WgsDzyhOFtYHH3BcJDDs3rrIfbOQ3nFI7y3Dqoa6M8Zdi7jqvEqAWjy2d6KPOlgK8B7B
+         V4A23ysd4SUGk8NapRan7eMVe4Myk1gABP42bO7+mFEW6uEy86IRBkyGpLtAFThBlzLj
+         PGy85Q1jejG7rSbuoaIy6ICzizVgqwopAPj+LDxj/WJOvx+ap39mUfZPhs8B1J5P+hzV
+         SUeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DI2wXka1VPadT80guBcm7zD76/m9DkDi2ofoECszAB4=;
-        b=FTU6v00NQU3cL+G4hC0HFHBsJRVwd60REPDM2sv8G7m7TAURZvcIY4mXhjyqMOJMge
-         uUm47kKgYvsoc+w0LqH+FQF8wPPxAi1TStBTMRw97Amo9ykQew8zYJ2VLK/RTbrk7nwQ
-         02ZMakXcYloV5Qv1j3lDGmwqJZqiSVPWMifI2I+ySmoO1PUVlUmihH7VnjoETTF99U71
-         CpoH7s3tZpqIFAUMiW8tP+FMby1dJ9up9NGR9sFA6GqbKzd5lJwVjuLwWNsArI5l6Bzi
-         26/t2k3GOxsEHoRsLoq3D64Wmzt4jt/GVjDKatubkMV5B3xmi4VxRjwE/3Z/3lHeyeje
-         KruQ==
-X-Gm-Message-State: ACrzQf0FYLV9GdFDdcEN1rcQ+/AhHiusNeMlWIUGCIzj/s2bmVJpZ8Hk
-        O623S7pyGAOj4ltFGd24AENCqQ==
-X-Google-Smtp-Source: AMsMyM6iECEVS+TMPYiJoxK6Wgqo3Wojp65hLGJ1ilpUTfDe6RaCnWsjg7cygqvuDwjeN9z/l3JOiw==
-X-Received: by 2002:a05:6512:1156:b0:4a2:7e73:1f28 with SMTP id m22-20020a056512115600b004a27e731f28mr17946406lfg.38.1667730480138;
-        Sun, 06 Nov 2022 02:28:00 -0800 (PST)
+        bh=UftRfa3QhbhyOprZ4+CKBvpNeumWx+igfcF1C3LmJVY=;
+        b=6CMLIQ6mc91FfuiT0gg9yJku48smX4dhWujwxrarpu/46KDVt7aNmR5kfxqbPpSVvq
+         3BS+cXxPSloEUNSL9H9HHgDVd/AwJ38mUluBbR3u3R5bDAXclmmK9G2+0i5fvlv2gQl5
+         hViCd4W4OzbiCXRYiSPWGXeD5LLNw1XgMx4sWLxAtGdixm7whrnQY7EDW9glnZVsrF+4
+         5ctcgU83jNzaQOgO+8+7qxpRTEsSvFlGWeLKx8O8NwLdbzVsGrgwo2c6BFz3cuzR5Ufe
+         LmdFzJjzgHErva0YHlwV7rrTlRHIO5urGnhXlpXW00QXj6A+rpcS5zkCERQeVrUulDHZ
+         cdLg==
+X-Gm-Message-State: ACrzQf2jfjry4qiNm4XML6jWDTwYgDNdo/QzZB5bcYrdVyK/S8ePi1Ax
+        f39lNJZt3YkrD3Y48zRaCu5Vqw==
+X-Google-Smtp-Source: AMsMyM5Kk+BtTV9IVoS24c7DgzHU0Q1H9UcqS7YflJrIjKfsemJoIFMHy5TXVVNpn0CEwRONBMC+bQ==
+X-Received: by 2002:a05:6512:503:b0:4af:1cbe:1ac6 with SMTP id o3-20020a056512050300b004af1cbe1ac6mr15096844lfb.651.1667730713799;
+        Sun, 06 Nov 2022 02:31:53 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id x18-20020a0565123f9200b004972b0bb426sm632697lfa.257.2022.11.06.02.27.58
+        by smtp.gmail.com with ESMTPSA id x41-20020a056512132900b004ae394b6a6fsm633564lfu.246.2022.11.06.02.31.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Nov 2022 02:27:59 -0800 (PST)
-Message-ID: <bdb46b7c-6e08-26cf-491d-ca68d36f29af@linaro.org>
-Date:   Sun, 6 Nov 2022 11:27:58 +0100
+        Sun, 06 Nov 2022 02:31:53 -0800 (PST)
+Message-ID: <7f7f94a8-0547-032a-3fd5-4e0899813d6c@linaro.org>
+Date:   Sun, 6 Nov 2022 11:31:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v3 1/2] dt-bindings: gce: add gce header file for mt8188
+Subject: Re: [PATCH] dt-bindings: cpufreq: qcom: Add missing cache related
+ properties
 Content-Language: en-US
-To:     "Elvis.Wang" <Elvis.Wang@mediatek.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221104074443.26172-1-Elvis.Wang@mediatek.com>
- <20221104074443.26172-2-Elvis.Wang@mediatek.com>
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221104162429.1981729-1-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104074443.26172-2-Elvis.Wang@mediatek.com>
+In-Reply-To: <20221104162429.1981729-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,31 +78,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 08:44, Elvis.Wang wrote:
-> From: Elvis Wang <Elvis.Wang@mediatek.com>
+On 04/11/2022 17:24, Rob Herring wrote:
+> The examples' cache nodes are incomplete as 'cache-unified' and
+> 'cache-level' are required cache properties.
 > 
-> add gce header file to define the gce thread priority, gce subsys id,
-> event and constant for mt8188.
-> 
-> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
-> ---
-> Thanks for the reviews, I have removed the incorrect reviewed message.
-> ---
->  include/dt-bindings/gce/mediatek,mt8188-gce.h | 966 ++++++++++++++++++
->  1 file changed, 966 insertions(+)
->  create mode 100644 include/dt-bindings/gce/mediatek,mt8188-gce.h
-> 
-> diff --git a/include/dt-bindings/gce/mediatek,mt8188-gce.h b/include/dt-bindings/gce/mediatek,mt8188-gce.h
-> new file mode 100644
-> index 000000000000..e2e2c56016a1
-> --- /dev/null
-> +++ b/include/dt-bindings/gce/mediatek,mt8188-gce.h
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
 
-What is a "gce" subsystem or type of hardware? Why do you put headers in
-"gce"?
 
-Don't continue this pattern. Mediatek devices do not get specific folders...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
