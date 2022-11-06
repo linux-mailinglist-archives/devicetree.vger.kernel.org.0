@@ -2,51 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEE7F61E1F2
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 12:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA61261E204
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 13:13:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiKFL6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 06:58:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52638 "EHLO
+        id S229846AbiKFMNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 07:13:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbiKFL6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 06:58:34 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82104B7D2;
-        Sun,  6 Nov 2022 03:58:33 -0800 (PST)
+        with ESMTP id S229817AbiKFMNX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 07:13:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60A726E;
+        Sun,  6 Nov 2022 04:13:21 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4113AB80B56;
-        Sun,  6 Nov 2022 11:58:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F55CC433C1;
-        Sun,  6 Nov 2022 11:58:28 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E57760C54;
+        Sun,  6 Nov 2022 12:13:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC207C433C1;
+        Sun,  6 Nov 2022 12:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667735911;
-        bh=cTtPRH7ZyC8b8Z48VH1fn2uIiHq+Pe0IFFKV797KoCs=;
+        s=k20201202; t=1667736800;
+        bh=n7I0dfh4J22AKYzyGTJXvVtld9av1k13Mzj9MWHRvtw=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=qPBTwUdmzJziKrhm3/oHkKrrTljFoEDoo1SRRTu2yHkHd4xf5hmV0g/H0l5LC8ceW
-         goI7iCspHoqEplCH61kcJ7tDRK7hq7ruU2ER01/oAoyBEG/p06ZH0nsBLe0NZxLHeq
-         avvnz7PSrz/A7qE3JB3VJi3YhSfujtlKg1+VX5kryajs7/w56yK5w79sNj+s1lmCXS
-         dJMWqfJ1RImkixlE01EozrD+xAl8jq+oTY7/vEm5qTA+aXas3c2qKeOH/86t+vBHma
-         2hechTIzyHcclasHuyggjzjrUnkvsepg6ieDqpXlHjBS7rzYTyvF+hnkcEATVwHGH/
-         VjXnIVwgYrJog==
-Date:   Sun, 6 Nov 2022 11:58:21 +0000
+        b=HxeB+8akcnzj8crEMbCHkEU2HpNJkll3UynQkNIXLbk/dRWogZZOSjGrLDB9rYBwz
+         E1tsW1FkeuTrRYVUj18u4C1NZ7tvRjHXWZ9X8Cvyvzr/lOgh6xqSZShydv9jKRI8/F
+         K3fpUpCNpiY6QfzfwLFl+HS/wMpN09nmfW1t3EJsWieqy9dnKT46M7yShWJsXMogi5
+         uwfmt/fjdA4DVZFjuWmZmRd+5i/HXrl9RzQHYf/qr9vAsvoCVPpyRnKpgifP8JV2ES
+         TAfrZJdxkxVPYLU2uHeYWnwk3axWKpAEBUkSzwRHqz3gHUnIfs4CFqgY4YS/f6Ub35
+         aa3tr9aEEoXoQ==
+Date:   Sun, 6 Nov 2022 12:13:10 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Bjorn Andersson <andersson@kernel.org>,
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        afd@ti.com, Lars-Peter Clausen <lars@metafoo.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: qcom,spmi-vadc: simplify
- compatible enum
-Message-ID: <20221106115821.664fc3d5@jic23-huawei>
-In-Reply-To: <166723402653.2979037.13977255259751466976.robh@kernel.org>
-References: <20221027143411.277980-1-krzysztof.kozlowski@linaro.org>
-        <166723402653.2979037.13977255259751466976.robh@kernel.org>
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio/adc: qcom,spmi-iadc: use double
+ compatibles
+Message-ID: <20221106121310.3ad643be@jic23-huawei>
+In-Reply-To: <20221102163136.GA4004075-robh@kernel.org>
+References: <20221031182456.952648-1-luca@z3ntu.xyz>
+        <20221102163136.GA4004075-robh@kernel.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -60,24 +59,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 31 Oct 2022 11:33:47 -0500
+On Wed, 2 Nov 2022 11:31:36 -0500
 Rob Herring <robh@kernel.org> wrote:
 
-> On Thu, 27 Oct 2022 10:34:10 -0400, Krzysztof Kozlowski wrote:
-> > The second compatible item in oneOf is just an enum, not a list.
+> On Mon, Oct 31, 2022 at 07:24:54PM +0100, Luca Weiss wrote:
+> > As in other bindings, let's use specific compatibles together with the
+> > fallback compatible. Adjust the bindings for it.  
+> 
+> You should state users are already doing this.
+> 
+I can fix that up whilst applying.  However it raises the question:
+Should I treat this as a fix, or a tidy up (that can wait for next merge window)?
+
+I'm also fine with this going with the other patch in the series (that lore
+found for me as it didn't go to linux-iio) if that makes more sense.
+
+If that happens
+
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+
+Jonathan
+
 > > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > > ---
-> >  .../devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml  | 12 +++++-------
-> >  1 file changed, 5 insertions(+), 7 deletions(-)
-> >   
+> > Changes in v2:
+> > * New patch
+> > 
+> >  .../devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml        | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)  
 > 
 > Acked-by: Rob Herring <robh@kernel.org>
 
-Series applied to the togreg branch of iio.git.
-Initially pushed out as testing to let 0-day poke at the whole tree before
-I make a mess of linux-next.
-
-Thanks,
-
-Jonathan
