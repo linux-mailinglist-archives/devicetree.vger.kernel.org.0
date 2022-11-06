@@ -2,50 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA61261E204
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 13:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3153661E23B
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 13:56:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbiKFMNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 07:13:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55606 "EHLO
+        id S229958AbiKFM44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 07:56:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbiKFMNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 07:13:23 -0500
+        with ESMTP id S229786AbiKFM4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 07:56:52 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60A726E;
-        Sun,  6 Nov 2022 04:13:21 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051BF9FC9;
+        Sun,  6 Nov 2022 04:56:51 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E57760C54;
-        Sun,  6 Nov 2022 12:13:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC207C433C1;
-        Sun,  6 Nov 2022 12:13:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 94CDD60C56;
+        Sun,  6 Nov 2022 12:56:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DCE8C433D6;
+        Sun,  6 Nov 2022 12:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667736800;
-        bh=n7I0dfh4J22AKYzyGTJXvVtld9av1k13Mzj9MWHRvtw=;
+        s=k20201202; t=1667739410;
+        bh=uznMDa7uX4MgGTJpJSbjim1YWIO44mHclIyVTUt1EMA=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HxeB+8akcnzj8crEMbCHkEU2HpNJkll3UynQkNIXLbk/dRWogZZOSjGrLDB9rYBwz
-         E1tsW1FkeuTrRYVUj18u4C1NZ7tvRjHXWZ9X8Cvyvzr/lOgh6xqSZShydv9jKRI8/F
-         K3fpUpCNpiY6QfzfwLFl+HS/wMpN09nmfW1t3EJsWieqy9dnKT46M7yShWJsXMogi5
-         uwfmt/fjdA4DVZFjuWmZmRd+5i/HXrl9RzQHYf/qr9vAsvoCVPpyRnKpgifP8JV2ES
-         TAfrZJdxkxVPYLU2uHeYWnwk3axWKpAEBUkSzwRHqz3gHUnIfs4CFqgY4YS/f6Ub35
-         aa3tr9aEEoXoQ==
-Date:   Sun, 6 Nov 2022 12:13:10 +0000
+        b=LHbE6rDmMwD33iMCqeYv9w8cjPdoP+LSnHFmPpOgWPcrwL03qvv67TrMRksi1teTA
+         bwxXD6GwRaq4PN0GkteyYxpsn7UE0LW5XgSFkpJeXIJVferuIDaJ5uKwvG8kuYceKS
+         WjX1Y5Ll4iiuXOgTQwmSoIBRdqy7hKkecD9WC8Vhrv5wYUryy+K5OmkESfTF1h/MFk
+         YQ2Awbj/GB9Ngl84D0/Hz8pKAyARA74F94tcTh8KePruxQVCv0Ny1CYavp64K2u/te
+         p39ym4hOfMxwTgwqoplb0ed4AyDns8AKfH24Gs3gwGnzf7IkrWLggDdaWk7krEsus3
+         F/kYsa3EVkMYw==
+Date:   Sun, 6 Nov 2022 12:56:40 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        afd@ti.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio/adc: qcom,spmi-iadc: use double
- compatibles
-Message-ID: <20221106121310.3ad643be@jic23-huawei>
-In-Reply-To: <20221102163136.GA4004075-robh@kernel.org>
-References: <20221031182456.952648-1-luca@z3ntu.xyz>
-        <20221102163136.GA4004075-robh@kernel.org>
+To:     Ramona Bolboaca <ramona.bolboaca@analog.com>
+Cc:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] drivers: iio: accel: Add support for ADXL359
+ device
+Message-ID: <20221106125640.212471fd@jic23-huawei>
+In-Reply-To: <20221031105129.47740-4-ramona.bolboaca@analog.com>
+References: <20221031105129.47740-1-ramona.bolboaca@analog.com>
+        <20221031105129.47740-4-ramona.bolboaca@analog.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -59,35 +56,208 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Nov 2022 11:31:36 -0500
-Rob Herring <robh@kernel.org> wrote:
+On Mon, 31 Oct 2022 12:51:29 +0200
+Ramona Bolboaca <ramona.bolboaca@analog.com> wrote:
 
-> On Mon, Oct 31, 2022 at 07:24:54PM +0100, Luca Weiss wrote:
-> > As in other bindings, let's use specific compatibles together with the
-> > fallback compatible. Adjust the bindings for it.  
+> Add support for ADXL359 device in already existing ADXL355 driver.
 > 
-> You should state users are already doing this.
-> 
-I can fix that up whilst applying.  However it raises the question:
-Should I treat this as a fix, or a tidy up (that can wait for next merge window)?
+> Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/adxl359.pdf
+> Signed-off-by: Ramona Bolboaca <ramona.bolboaca@analog.com>
 
-I'm also fine with this going with the other patch in the series (that lore
-found for me as it didn't go to linux-iio) if that makes more sense.
+A few really small things I tweaked whilst applying.
 
-If that happens
+Series applied to the togreg branch of iio.git and initially pushed out as
+testing for 0-day to see if it can find anything we missed.
 
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Thanks,
 
 Jonathan
 
-> > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > ---
-> > Changes in v2:
-> > * New patch
-> > 
-> >  .../devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml        | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)  
+> ---
+> changes in v2:
+>  - Added missing spaces in subject
+>  - Added Datasheet tag in commit message
+>  - Removed type field from adxl355_chip_info
+>  - Added fields for acceleration scale and temperature offset in 
+>    adxl355_chip_info structure
+>  - Added constant data for acceleration scale and temperature offset specific
+>    to each device in adxl35x_chip_info
+>  - Moved scale and offset documentation to adxl35x_chip_info definition
+>  - Moved device_get_match_data inside if (!chip_data) {} block
+>  drivers/iio/accel/adxl355.h      | 21 +++++++-
+>  drivers/iio/accel/adxl355_core.c | 85 +++++++++++++++++++++++++-------
+>  drivers/iio/accel/adxl355_i2c.c  | 22 +++++++--
+>  drivers/iio/accel/adxl355_spi.c  | 19 +++++--
+>  4 files changed, 120 insertions(+), 27 deletions(-)
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> diff --git a/drivers/iio/accel/adxl355.h b/drivers/iio/accel/adxl355.h
+> index 6dd49b13e4fd..3a08a1808e86 100644
+> --- a/drivers/iio/accel/adxl355.h
+> +++ b/drivers/iio/accel/adxl355.h
+> @@ -10,12 +10,31 @@
+>  
+>  #include <linux/regmap.h>
+>  
+> +enum adxl355_device_type {
+> +	ADXL355,
+> +	ADXL359,
+> +};
+> +
+> +struct adxl355_fractional_type {
+> +	int integer;
+> +	int decimal;
+> +};
+> +
+>  struct device;
+>  
+> +struct adxl355_chip_info {
+> +	const char			*name;
+> +	u8				part_id;
+> +	struct adxl355_fractional_type	accel_scale;
+> +	struct adxl355_fractional_type	temp_offset;
+> +
+
+No blank line here.
+
+> +};
+> +
+>  extern const struct regmap_access_table adxl355_readable_regs_tbl;
+>  extern const struct regmap_access_table adxl355_writeable_regs_tbl;
+> +extern const struct adxl355_chip_info adxl35x_chip_info[];
+>  
+>  int adxl355_core_probe(struct device *dev, struct regmap *regmap,
+> -		       const char *name);
+> +		       const struct adxl355_chip_info *chip_info);
+>  
+>  #endif /* _ADXL355_H_ */
+> diff --git a/drivers/iio/accel/adxl355_core.c b/drivers/iio/accel/adxl355_core.c
+> index dd08253d66d0..c501ad9af631 100644
+> --- a/drivers/iio/accel/adxl355_core.c
+> +++ b/drivers/iio/accel/adxl355_core.c
+> @@ -60,6 +60,7 @@
+>  #define ADXL355_DEVID_AD_VAL		0xAD
+>  #define ADXL355_DEVID_MST_VAL		0x1D
+>  #define ADXL355_PARTID_VAL		0xED
+> +#define ADXL359_PARTID_VAL		0xE9
+>  #define ADXL355_RESET_CODE		0x52
+>  
+>  static const struct regmap_range adxl355_read_reg_range[] = {
+> @@ -83,6 +84,60 @@ const struct regmap_access_table adxl355_writeable_regs_tbl = {
+>  };
+>  EXPORT_SYMBOL_NS_GPL(adxl355_writeable_regs_tbl, IIO_ADXL355);
+>  
+> +const struct adxl355_chip_info adxl35x_chip_info[] = {
+> +	[ADXL355] = {
+> +		.name = "adxl355",
+> +		.part_id = ADXL355_PARTID_VAL,
+> +		/*
+> +		 * At +/- 2g with 20-bit resolution, scale is given in datasheet
+> +		 * as 3.9ug/LSB = 0.0000039 * 9.80665 = 0.00003824593 m/s^2.
+> +		 */
+> +		.accel_scale = {
+> +			.integer = 0,
+> +			.decimal = 38245,
+> +		},
+> +		/*
+> +		 * The datasheet defines an intercept of 1885 LSB at 25 degC
+> +		 * and a slope of -9.05 LSB/C. The following formula can be used
+> +		 * to find the temperature:
+> +		 * Temp = ((RAW - 1885)/(-9.05)) + 25 but this doesn't follow
+> +		 * the format of the IIO which is Temp = (RAW + OFFSET) * SCALE.
+> +		 * Hence using some rearranging we get the scale as -110.497238
+> +		 * and offset as -2111.25.
+> +		 */
+> +		.temp_offset = {
+> +			.integer =  -2111,
+> +			.decimal = 250000,
+> +		},
+> +	},
+> +	[ADXL359] = {
+> +		.name = "adxl359",
+> +		.part_id = ADXL359_PARTID_VAL,
+> +		/*
+> +		 * At +/- 10g with 20-bit resolution, scale is given in datasheet
+> +		 * as 19.5ug/LSB = 0.0000195 * 9.80665 = 0.0.00019122967 m/s^2.
+> +		 */
+> +		.accel_scale = {
+> +			.integer = 0,
+> +			.decimal = 191229,
+> +		},
+> +		/*
+> +		 * The datasheet defines an intercept of 1852 LSB at 25 degC
+> +		 * and a slope of -9.05 LSB/C. The following formula can be used
+> +		 * to find the temperature:
+> +		 * Temp = ((RAW - 1852)/(-9.05)) + 25 but this doesn't follow
+> +		 * the format of the IIO which is Temp = (RAW + OFFSET) * SCALE.
+> +		 * Hence using some rearranging we get the scale as -110.497238
+> +		 * and offset as -2079.25.
+> +		 */
+> +		.temp_offset = {
+> +			.integer = -2079,
+> +			.decimal = 250000,
+> +		},
+> +	},
+> +};
+> +EXPORT_SYMBOL_NS_GPL(adxl35x_chip_info, IIO_ADXL355);
+> +
+>  enum adxl355_op_mode {
+>  	ADXL355_MEASUREMENT,
+>  	ADXL355_STANDBY,
+> @@ -162,6 +217,7 @@ static const struct adxl355_chan_info adxl355_chans[] = {
+>  };
+>  
+>  struct adxl355_data {
+> +	const struct adxl355_chip_info *chip_info;
+>  	struct regmap *regmap;
+>  	struct device *dev;
+>  	struct mutex lock; /* lock to protect op_mode */
+> @@ -456,33 +512,23 @@ static int adxl355_read_raw(struct iio_dev *indio_dev,
+>  
+>  	case IIO_CHAN_INFO_SCALE:
+>  		switch (chan->type) {
+> -		/*
+> -		 * The datasheet defines an intercept of 1885 LSB at 25 degC
+> -		 * and a slope of -9.05 LSB/C. The following formula can be used
+> -		 * to find the temperature:
+> -		 * Temp = ((RAW - 1885)/(-9.05)) + 25 but this doesn't follow
+> -		 * the format of the IIO which is Temp = (RAW + OFFSET) * SCALE.
+> -		 * Hence using some rearranging we get the scale as -110.497238
+> -		 * and offset as -2111.25.
+> -		 */
+>  		case IIO_TEMP:
+> +			/* Temperature scale is -110.497238.
+
+Wrong comment syntax for IIO...
+
+> +			 * See the detailed explanation in adxl35x_chip_info definition above.
+> +			 */
+
+...
+
+> diff --git a/drivers/iio/accel/adxl355_i2c.c b/drivers/iio/accel/adxl355_i2c.c
+> index f67d57921c81..6cde5ccac06b 100644
+> --- a/drivers/iio/accel/adxl355_i2c.c
+> +++ b/drivers/iio/accel/adxl355_i2c.c
+> @@ -23,6 +23,20 @@ static const struct regmap_config adxl355_i2c_regmap_config = {
+>  static int adxl355_i2c_probe(struct i2c_client *client)
+>  {
+>  	struct regmap *regmap;
+> +	const struct adxl355_chip_info *chip_data;
+> +	const struct i2c_device_id *adxl355;
+> +
+> +	chip_data = device_get_match_data(&client->dev);
+> +	if (!chip_data) {
+> +		adxl355 = to_i2c_driver(client->dev.driver)->id_table;
+> +		if (!adxl355)
+> +			return -EINVAL;
+> +
+> +		chip_data = (void *)i2c_match_id(adxl355, client)->driver_data;
+
+Will will shortly have a nice function to wrap this up in a similar fashion to
+done for spi_get_device_id()
+
+> +
+> +		if (!chip_data)
+> +			return -EINVAL;
+> +	}
 
