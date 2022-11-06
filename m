@@ -2,91 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C11E61E1A1
-	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 11:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E18A61E1AA
+	for <lists+devicetree@lfdr.de>; Sun,  6 Nov 2022 11:38:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbiKFKcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 05:32:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
+        id S229861AbiKFKie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 05:38:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229896AbiKFKcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 05:32:10 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2FE35F98
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 02:32:09 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id b3so13142549lfv.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 02:32:09 -0800 (PST)
+        with ESMTP id S229842AbiKFKic (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 05:38:32 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8872A46B
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 02:38:30 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id be13so13139685lfb.4
+        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 02:38:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lKYJOkirmCecq9ezHzpl0WQVkwqT4CQCl37ykbl0Zzc=;
-        b=hsyMaz80e4MLIWes0KileGeBWI8raCMyY0pY0CIvH9kSmZV4hodx5vJaCCgICypc3Y
-         uDaDBJwyMmo6EJfePQTYDJXwazXVPlQNrMeM7QC96cXuZbpWLi+guNoNYQOkcIrV2ax4
-         Jn23oGy2g3Dxf+TY/6IG2lCe/ieBBUhL9gI97eDPBO+jx3Fd4JyDI/GMdZaf9fgXdO4U
-         JUvij1CaheKxShzQFBCq9wTWQQqfvf3rDx9HcJX1y5yHCUW1anM6E3MX71R79/c+tt6F
-         Pt3ZGRWaJNaSGYXYeAb2Em/Sq/J2ole9jXmhlIIt8SVBTezWCAbAARNAOm0GQOEE9EjF
-         2izA==
+        bh=3CTC+S72ReqNXTQYMAegPNOzjNTLFGMiaRDIQZ2VQPI=;
+        b=XkLVNCyGWSdG3QlVJE9vwgeevQ/pa4PlpBm+YzoLf2DPbPYdX790c0IJN2kZ0/kRQ9
+         lVabZrJSmf2eOopcl7poCfoIaepawG0YOwVhTix2+FcLQ8aUNsxHkppNgBgyVOqRrgca
+         AqcmVmC5VRoANTQfEjY67q+PlvYWiHaH8fKF6vxC3OHaoh18ARLVtvm2YyN/pO/r3FGk
+         YyuYG5uNxnrOOx+gQbynXTnxkWgbN5x49M1ePTYJhxOXi5qBgICbuhEMQrYKOVHI9BDD
+         4Zo7+97ql4OktBwoWnho756NYhB4fg+9NnZvQCg0YNykqw4Mq+9MzQSdXCYHtz8Yo6yN
+         eGhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lKYJOkirmCecq9ezHzpl0WQVkwqT4CQCl37ykbl0Zzc=;
-        b=6i0f/K1jfjEoZ1UWufX2XFVO9atylELHHY6bW4gJfJlwPMLjtPOcARCObh1v/bFYH5
-         LGsFEY6kKCwsVwxVBamXP0DB5QerBezN5ibQoO6reryGWNQcvQgLk0EGh88v55xVwYzg
-         g7XjwRmvEsQ78OWm0Y2DCYZHNWt4TBw+y48Cnst+6AmQV6aluNFrdtuH1yW1XzlrYfqA
-         3BXsRwDpM67OTDv3zqUR5rP0DwmGMAFQueo1lDIL0F78Ol4sGpbpPglLog2Jh/0LjLGd
-         oOSd/RxY03HMMxsziKPlCnduBob5V6pIGfxnrHUtIBltVgFsOtKNiEW7rK4V3X0wzgcN
-         H6Og==
-X-Gm-Message-State: ACrzQf3+miomclcre66aZ+2hV5Xl0Eo5p722sUhXycvKf96rza/3RJYd
-        k68sQD4EopeAfrB+WVP009+BrQ==
-X-Google-Smtp-Source: AMsMyM62YKz6Gaslh7qeGOV096YtXnoCOEfNwT2yIiYZoZ7xUHy+2qkLcd96zaeHQgQbQynT0YRbPQ==
-X-Received: by 2002:a05:6512:3d0b:b0:4a2:6d15:91ff with SMTP id d11-20020a0565123d0b00b004a26d1591ffmr16224777lfv.575.1667730728289;
-        Sun, 06 Nov 2022 02:32:08 -0800 (PST)
+        bh=3CTC+S72ReqNXTQYMAegPNOzjNTLFGMiaRDIQZ2VQPI=;
+        b=ZMkx26L9So58rpXO/Hc/ixqeO9XAN0FAy8s5rUw5yRu+Ups2uwtYWHLa1tUF2qxE4+
+         689Gu7DDDd85kO9fpDDUhIreAObKjTRJIhUEq89xGABeXSSkn3ivDUUX18bC2x0AGlsp
+         4+6WKaZ4Mad/GDXnNUYJ7epiBRn2o+3DSH8Th5o84A8JN2YMB+ZsUDcyLJceh/u+vBCh
+         727I9PeZpxR6LmUROkaw/neS3At0JESr3o5k0z5e1BvRpTEZfLfV7Bd2vcd85igN7REP
+         5Q2JIajfgYTPQ06D+OetLN0RodbkmwvlNT5QGZa0SqpXIIRpD6olSyhBJRRVFQFEGsk1
+         6d/Q==
+X-Gm-Message-State: ANoB5pkZdVxgJ9/4ZxxNPSPM91ZscT38maC2EChfMWKeF5rQEKkZWaWp
+        cz9lcnOeEGW66Wi5teQrDd9gHU6ia+haEg==
+X-Google-Smtp-Source: AA0mqf4slr0rnkvM60jAJJdLzKEh6OMKSW7h1AoeIaP8tswj+6hmnpERidN0jf9+iRWcW5DoeZmdaQ==
+X-Received: by 2002:a19:ad49:0:b0:4b3:b755:789b with SMTP id s9-20020a19ad49000000b004b3b755789bmr313874lfd.415.1667731109131;
+        Sun, 06 Nov 2022 02:38:29 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id x9-20020a056512078900b00498f23c249dsm644046lfr.74.2022.11.06.02.32.06
+        by smtp.gmail.com with ESMTPSA id c10-20020a056512324a00b004afc1607130sm644717lfr.8.2022.11.06.02.38.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Nov 2022 02:32:07 -0800 (PST)
-Message-ID: <ac684379-d3a1-be60-1b46-71561e668c23@linaro.org>
-Date:   Sun, 6 Nov 2022 11:32:06 +0100
+        Sun, 06 Nov 2022 02:38:28 -0800 (PST)
+Message-ID: <1b90f86c-9c0f-225b-38b5-6f37a4eded69@linaro.org>
+Date:   Sun, 6 Nov 2022 11:38:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: thermal: cooling-devices: Add missing cache
- related properties
+Subject: Re: [PATCH v1 3/6] dt-bindings: hwmon: Add hpe,gxp-fan-ctrl
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221104162450.1982114-1-robh@kernel.org>
+To:     nick.hawkins@hpe.com, jdelvare@suse.com, linux@roeck-us.net,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        verdun@hpe.com, corbet@lwn.net, linux@armlinux.org.uk,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20221104193657.105130-1-nick.hawkins@hpe.com>
+ <20221104193657.105130-4-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104162450.1982114-1-robh@kernel.org>
+In-Reply-To: <20221104193657.105130-4-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 17:24, Rob Herring wrote:
-> The examples' cache nodes are incomplete as 'cache-unified' and
-> 'cache-level' are required cache properties.
+On 04/11/2022 20:36, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> This provides the base registers address, programmable logic registers
+> address, and the function 2 registers to allow control access of the HPE
+> fans on the GXP SoC.
 
+What is "This"? If "This patch", then drop it.
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If "This hardware" then please instead describe the hardware, not it
+components. What are its features? If it controls the fan, then why
+there are no PWM-related cells? How do you set the speed?
+
+> 
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> ---
+>  .../bindings/hwmon/hpe,gxp-fan-ctrl.yaml      | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml b/Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
+> new file mode 100644
+> index 000000000000..40a5d9cd0a30
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/hpe,gxp-fan-ctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GXP Fan Controller
+> +
+> +maintainers:
+> +  - Nick Hawkins <nick.hawkins@hpe.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: hpe,gxp-fan-ctrl
+> +
+> +  reg:
+> +    items:
+> +      - description: Fan controller base register
+> +      - description: Programmable logic registers base
+> +      - description: Function 2 registers base
+
+Drop "register" and "base" from all descriptions
+
+> +
+> +  reg-names:
+> +    items:
+> +      - const: base
+> +      - const: plreg
+
+Drop reg suffix
+
+> +      - const: fn2reg
+
+Drop reg suffix
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    fanctrl@1000c00 {
+
+fan-controller
+
+> +      compatible = "hpe,gxp-fan-ctrl";
+> +      reg = <0x1000c00 0x200>, <0xd1000000 0xff>, <0x80200000 0x100000>;
+> +      reg-names = "base", "plreg", "fn2reg";
+> +    };
 
 Best regards,
 Krzysztof
