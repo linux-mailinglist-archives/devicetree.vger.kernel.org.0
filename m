@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2E3561EF6E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:45:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B39261EF71
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:45:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbiKGJpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:45:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39618 "EHLO
+        id S231487AbiKGJpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:45:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230507AbiKGJpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:45:41 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DFC713D65
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:45:40 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id 136so6114342pga.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:45:40 -0800 (PST)
+        with ESMTP id S231851AbiKGJpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:45:52 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EEE017062
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:45:50 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id d20so9499204plr.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:45:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vI8bag7CRDrcM5vY6bidsgJO6YZAPPNb6mhinAYmcpo=;
-        b=UTcvf666EPrKmS/7NEochTvJqLQejMzRbvhyzCswuhBMdAoDA7zaZXFPor8wd9chY4
-         qOukA+2qkfcqSBFAO9hy5Lzb3YXQuLhBHdXS/3b8Q/nLzTsb6xJ99wS9DM05TEQkaRgm
-         QeNQtqH2YduwsxVeWJeN8KgIC6nbSxH05QqFMEQB1FRWYf2yIlBqR3QpR93DxTq2j/37
-         ir13/9VQMC7IoMmtwVgcA4YYT/7zas8WElmWzVT6pVic8v+4eqAGIdnx7UT32Yqa7qWM
-         lj7Lci2y94pv9Lll3PYeRG4nJ0856kS83vF5uW2EL1ZdGGPszHk2HC584yXhnH7ORK/v
-         v4Og==
+        bh=49aUWgohg7elYN6AoCe1Cce7ryH+ByqM4waHSXDXpfM=;
+        b=lylI29n0B1HjCiFjLpUc2mG6M3ulW1IeVI0WuYFSQBYaIxSSTIYGqLqNJZIlonG7ZU
+         L430D/+9nmgeSI/BDOYoMDpIZClVklgG1JlronVwp5mn1xUTECWdVvZq5mi9HCni32u0
+         Eit36ZKgu1t3M5db8N9lkah0sdViZGlUSniMLMZyd7jDWqxLbyAEQjgIE6kbr29wMYA1
+         x4idOZ0X7CjypKm7kY7lHzsmI8fjusbhKq0xbR0QZZhpYhka+Diprcy33u9IZdPZF2fA
+         w67Ua1BHYB129r0AW0/j+rIUNJXWwPGdKIVLAY3BYvWK2doPC8wL7FmJSaulUHrKZamw
+         piRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vI8bag7CRDrcM5vY6bidsgJO6YZAPPNb6mhinAYmcpo=;
-        b=pGWIYunSbq4q60cm+H4Zt4BnPq5yARRjIqQmmEDkmHuYKq4DoOyg0DdrR+YUyLQEz0
-         GL28YN74FR0L54t2lyZA16LVUOsxT5phWAPbPLJhP0UtoFsWsTyEhPsrEyl8eLSd5A5h
-         +ZwleyW42jxdKl/TkmfD53Zyhcy3DQB9DmJlihIFTBJ3rdX9GCRtlhZ2/0kyyk3VNOcu
-         nZXR11h0hLIGj2wrywE1Huy4VpVeCh3eujWKdkJsIipYVsOdVd+EAFB5Jh930QYnSUsb
-         a79fq2GmBxoFpk6FoZuDFd0cSMDmHqYGhpCI6UzgVSs/hVSliF0WtJm6/8+Tsul/zQpF
-         yGzQ==
-X-Gm-Message-State: ACrzQf0PpXogylvHv94cV+dPfXu1wJqMPocpY2WXw9CMLCTwqG//9UVa
-        jI+1UsuZ7C7CvtjKrKpz3QxURg==
-X-Google-Smtp-Source: AMsMyM5hx3+QrIK4mCNnqm1+SQ190XiEOcQHxpJ/600nbzkHxGQLTDMmtaYFk06RJeST+AXZH3VjcA==
-X-Received: by 2002:a05:6a00:4c16:b0:56d:2634:c28e with SMTP id ea22-20020a056a004c1600b0056d2634c28emr46616714pfb.8.1667814340019;
-        Mon, 07 Nov 2022 01:45:40 -0800 (PST)
+        bh=49aUWgohg7elYN6AoCe1Cce7ryH+ByqM4waHSXDXpfM=;
+        b=Lh5qTjH7B5mKCbrFz5XD+wxbSzS0LsIDL9jX7+Ri4w7kaLhuCbbh/3+5bJhIiEpwZa
+         TXMkNXl1eW3Po14cbPJapZK7b3KxRBk7b6RmysK34rv8XBcd80JWwG6lsw3pjMN/Chuz
+         3ih7Epfwe8C/MmGdiUXRr+xfHKQHM1NPK/q3HuQy7b4wcMeQcvM0Qg4sKcNzi05a8mnM
+         VdZNtpovTTyjJdCFqATIkUWAG4h15cqP/fkupiJ6jSZwWWPgwMiwzlY6M5p/Qugt1Mic
+         dQXyJ+BZZxvOd9knjvdh0TKDJaqJC5rO++qz63bzHnfoIqhs6+U34sUkBBhpImUZX55w
+         d7LQ==
+X-Gm-Message-State: ACrzQf2XHxQWxWU/zkcdL+fcECFTkVFeQG4j/luzaiLpfUIBBoje49Hq
+        t0uREKmqRo03mJZT71545Kj5nQ==
+X-Google-Smtp-Source: AMsMyM4J4i/WOC1a9+YRm9o8z5D+8EewAZa3pnC7BgO/cwvGzzVPIDVK3c2z96/KAWWdNSB5hJZPJg==
+X-Received: by 2002:a17:90a:4b05:b0:213:ead5:92ee with SMTP id g5-20020a17090a4b0500b00213ead592eemr39488812pjh.117.1667814349661;
+        Mon, 07 Nov 2022 01:45:49 -0800 (PST)
 Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id i2-20020a170902c94200b00186dcc37e17sm4564936pla.210.2022.11.07.01.45.38
+        by smtp.gmail.com with ESMTPSA id i2-20020a170902c94200b00186dcc37e17sm4564936pla.210.2022.11.07.01.45.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 01:45:39 -0800 (PST)
+        Mon, 07 Nov 2022 01:45:49 -0800 (PST)
 From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 To:     LKML <linux-kernel@vger.kernel.org>
 Cc:     dianders@chromium.org,
         Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v11 3/5] arm64: dts: qcom: sc7280: Add touchscreen and touchpad support for evoker
-Date:   Mon,  7 Nov 2022 17:43:43 +0800
-Message-Id: <20221107173954.v11.3.I3ac715e729f6f9b5a3e3001b155df4f9d14e6186@changeid>
+Subject: [PATCH v11 4/5] arm64: dts: qcom: sc7280: add sc7280-herobrine-audio-rt5682-3mic3.dtsi for evoker
+Date:   Mon,  7 Nov 2022 17:43:44 +0800
+Message-Id: <20221107173954.v11.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
 References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
@@ -76,76 +76,237 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change touchpad and touchscreen node for evoker
-Touchpad: SA461D-1011
-Touchscreen: GT7986U
+add specific 3mic setting as sc7280-herobrine-audio-rt5682-3mic.dtsi,
+so we can include sc7280-herobrine-audio-rt5682-3mic.dtsi for evoker
+as it uses rt5682 with 3 mics.
 
 Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
 
-Changes in v8:
-- updated patch subjects
+Changes in v11:
+- sort out the "Status" property with sc7280-herobrine-audio-rt5682-3mic.dtsi
 
-Changes in v7:
-- add compiatable for gt7986
+Changes in v10:
+- add evoker include specific sc7280-herobrine-audio-rt5682-3mic.dtsi setting
 
-Changes in v6:
-- add removed pinctrl and align touchscreen label with herobrine board
+ .../sc7280-herobrine-audio-rt5682-3mic.dtsi   | 195 ++++++++++++++++++
+ .../boot/dts/qcom/sc7280-herobrine-evoker.dts |   1 +
+ 2 files changed, 196 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
 
-Changes in v5:
-- new patch for Touchscreen/trackpad in v5
-
- .../boot/dts/qcom/sc7280-herobrine-evoker.dtsi    | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-index a6015491c6082..706dd82a70138 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dtsi
-@@ -23,16 +23,15 @@ ap_tp_i2c: &i2c0 {
- 	status = "okay";
- 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+new file mode 100644
+index 0000000000000..cf34334451d6b
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682-3mic.dtsi
+@@ -0,0 +1,195 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ *
++ * This file defines the common audio settings for the child boards
++ * using rt5682 codec and having 3 dmics connected to sc7280.
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++/ {
++	/* BOARD-SPECIFIC TOP LEVEL NODES */
++	sound: sound {
++		compatible = "google,sc7280-herobrine";
++		model = "sc7280-rt5682-max98360a-3mic";
++
++		audio-routing =	"VA DMIC0", "vdd-micb",
++				"VA DMIC1", "vdd-micb",
++				"VA DMIC2", "vdd-micb",
++				"VA DMIC3", "vdd-micb",
++
++				"Headphone Jack", "HPOL",
++				"Headphone Jack", "HPOR";
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		dai-link@0 {
++			link-name = "MAX98360";
++			reg = <0>;
++
++			cpu {
++				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
++			};
++
++			codec {
++				sound-dai = <&max98360a>;
++			};
++		};
++
++		dai-link@1 {
++			link-name = "DisplayPort";
++			reg = <1>;
++
++			cpu {
++				sound-dai = <&lpass_cpu LPASS_DP_RX>;
++			};
++
++			codec {
++				sound-dai = <&mdss_dp>;
++			};
++		};
++
++		dai-link@2 {
++			link-name = "ALC5682";
++			reg = <2>;
++
++			cpu {
++				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
++			};
++
++			codec {
++				sound-dai = <&alc5682 0 /* aif1 */>;
++			};
++		};
++
++		dai-link@4 {
++			link-name = "DMIC";
++			reg = <4>;
++
++			cpu {
++				sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
++			};
++
++			codec {
++				sound-dai = <&lpass_va_macro 0>;
++			};
++		};
++	};
++};
++
++hp_i2c: &i2c2 {
++	clock-frequency = <400000>;
++	status = "okay";
++
++	alc5682: codec@1a {
++		compatible = "realtek,rt5682s";
++		reg = <0x1a>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&hp_irq>;
++
++		#sound-dai-cells = <1>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
++
++		AVDD-supply = <&pp1800_alc5682>;
++		MICVDD-supply = <&pp3300_codec>;
++
++		realtek,dmic1-data-pin = <1>;
++		realtek,dmic1-clk-pin = <2>;
++		realtek,jd-src = <1>;
++		realtek,dmic-clk-rate-hz = <2048000>;
++	};
++};
++
++&lpass_cpu {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mi2s0_data0>, <&mi2s0_data1>, <&mi2s0_mclk>, <&mi2s0_sclk>, <&mi2s0_ws>,
++			<&mi2s1_data0>, <&mi2s1_sclk>, <&mi2s1_ws>;
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	status = "okay";
++
++	dai-link@0 {
++		reg = <MI2S_PRIMARY>;
++		qcom,playback-sd-lines = <1>;
++		qcom,capture-sd-lines = <0>;
++	};
++
++	dai-link@1 {
++		reg = <MI2S_SECONDARY>;
++		qcom,playback-sd-lines = <0>;
++	};
++
++	dai-link@5 {
++		reg = <LPASS_DP_RX>;
++	};
++
++	dai-link@25 {
++		reg = <LPASS_CDC_DMA_VA_TX0>;
++	};
++};
++
++&lpass_va_macro {
++	vdd-micb-supply = <&pp1800_l2c>;
++	pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>, <&lpass_dmic23_clk>,
++			<&lpass_dmic23_data>;
++
++	status = "okay";
++};
++
++/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
++
++&lpass_dmic01_clk {
++	drive-strength = <8>;
++	bias-disable;
++};
++
++&lpass_dmic01_clk_sleep {
++	drive-strength = <2>;
++};
++
++&lpass_dmic01_data {
++	bias-pull-down;
++};
++
++&lpass_dmic23_clk {
++	drive-strength = <8>;
++	bias-disable;
++};
++
++&lpass_dmic23_clk_sleep {
++	drive-strength = <2>;
++};
++
++&lpass_dmic23_data {
++	bias-pull-down;
++};
++
++&mi2s0_data0 {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s0_data1 {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s0_mclk {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s0_sclk {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s0_ws {
++	drive-strength = <6>;
++	bias-disable;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
+index dcdd4eecfe670..51f0401b11ed7 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-evoker.dts
+@@ -8,6 +8,7 @@
+ /dts-v1/;
  
--	trackpad: trackpad@2c {
--		compatible = "hid-over-i2c";
--		reg = <0x2c>;
-+	trackpad: trackpad@15 {
-+		compatible = "elan,ekth3000";
-+		reg = <0x15>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&tp_int_odl>;
+ #include "sc7280-herobrine-evoker.dtsi"
++#include "sc7280-herobrine-audio-rt5682-3mic.dtsi"
  
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
- 
--		hid-descr-addr = <0x20>;
- 		vcc-supply = <&pp3300_z1>;
- 
- 		wakeup-source;
-@@ -43,9 +42,9 @@ ts_i2c: &i2c13 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- 
--	ap_ts: touchscreen@10 {
--		compatible = "elan,ekth6915";
--		reg = <0x10>;
-+	ap_ts: touchscreen@5d {
-+		compatible = "goodix,gt7986u", "goodix,gt7375p";
-+		reg = <0x5d>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
- 
-@@ -54,7 +53,7 @@ ap_ts: touchscreen@10 {
- 
- 		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
- 
--		vcc33-supply = <&ts_avdd>;
-+		vdd-supply = <&ts_avdd>;
- 	};
- };
- 
+ / {
+ 	model = "Google Evoker";
 -- 
 2.34.1
 
