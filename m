@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A15D361FD13
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:15:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE5A761FD28
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:17:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233160AbiKGSP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:15:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
+        id S232690AbiKGSRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:17:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232712AbiKGSPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:15:01 -0500
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59CEC55B7
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:14:02 -0800 (PST)
-Received: by mail-lj1-x229.google.com with SMTP id a15so17545764ljb.7
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:14:02 -0800 (PST)
+        with ESMTP id S233182AbiKGSQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:16:46 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD192102B
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:15:36 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id f5so32425323ejc.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:15:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pvuKD18nXs5C0f6du6Wvit7+4UGLgSc//n9KNZJnd2U=;
-        b=ZeE2g8FJuwjaUrwBzqjDJ7ffHwLQMyHb4BNDQ9bSphP0A3VS5xIvw496dMkbbYQbu3
-         /a+qEq5ToWhdsqapUhlEFgjaQLzySs41v9OJjptqER2dCQ+lpVdWPsqa+CPbZ6RJUeXN
-         MkTMjE8MUQyH3wRJTv7QBq8+H/OuKyQV9iKjJizM+9ohu/0Pl+juTsGat8dBUNhAPtnp
-         FI55nc6g8mwfAX4d9Dj6doGt+sx/V6RI+d7UdA/ruSehYZlkeLcYsbqRzLbGN6cvaYAO
-         0J1wyQv4slSP9p8RGcRwD8PJdrYn4sGjX8y9E2GFH4RTxjBqKeu4VmIF/0GQnZF+L1it
-         wyDw==
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7pmt2HngsIty5fjoD5/n01C+C3m5PcZ1nRjgP9AEiKY=;
+        b=H6Pt1iEIO9Je8Lj5yki7ij1JghQLmX72gIhqHI+1jUaHVV13J3SINQWIVw3YubeLVp
+         C+nZadw2za/hQ+csoF5oGR5WOqHGIUMFOx+YyEPuKWNjq0C9+DVkJEnyOUGereMCx0nO
+         F/S8mlzyMxtnsWh3TP8OuxFgLAOtKuNRf5lHc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pvuKD18nXs5C0f6du6Wvit7+4UGLgSc//n9KNZJnd2U=;
-        b=MGugbx8o1PRhKi9TMfI8D4qGnza2eWr8py9kL2NrF0HzoRWd7cNcoX81OPRSEQMeFK
-         vHm1WlfY7LK6+b+JEukE4nuEbe66ZXYZ3gczudgha+r4ypP6qQAf+JpvuHvG5ZyzZ5aM
-         KgyqMlgFqc9eilPG9HGliBy3vW9JTcC5p25VsZ33uVUHlTI/39zxfWU/F79ksSnHaETq
-         ucWS9Yr2i2RsPwKnlAoC+x0uocrQTM7vQ2Sncv92UulgsBOS4HJ6UFdkAKqOrEUG3cNA
-         V5WTbYuphOTqwihQ+eZtsYIt4h+2C/I14HjbNGyjotQIl30PKvA74Xky6kCTDdf5Ybrz
-         xe9A==
-X-Gm-Message-State: ACrzQf2VbhSISK4Ih+1+On1bnPkU3qSl9AHga6qFU6O38XG1ijvpHITa
-        gfZ+49+tQtceT6LpkxZaaAa/tQ==
-X-Google-Smtp-Source: AMsMyM4cUoHwZTyngzcx+bF4UO192jEYqwXF5DtB+xrdiGnSYEVJ1CIPPQHLl5OH6HQOikomQ8sJ5A==
-X-Received: by 2002:a2e:98d2:0:b0:26c:66c1:87f9 with SMTP id s18-20020a2e98d2000000b0026c66c187f9mr5900566ljj.47.1667844840764;
-        Mon, 07 Nov 2022 10:14:00 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id t12-20020a056512208c00b00492aefd73a5sm1360716lfr.132.2022.11.07.10.13.59
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7pmt2HngsIty5fjoD5/n01C+C3m5PcZ1nRjgP9AEiKY=;
+        b=CXsvJXu3WDUFuIjU7bSTgSCwavgtbhfLq7B3VV4740WNllx2uG7uffckIAK6wVMRVQ
+         hZPOg/BrUWV14aGnXONBj9xRbPfSgQVw2y+g7RD166MBxg4baKgdNiEwTG68g4SmzRKf
+         Q3g5mTO08EuMH9miyS068N+6o0C58O7Bt+rbWndw7KquQu5T6pTkriZfShrWtkBw3v0t
+         ooLVu8kOBzo7Ipg38ONM46rorA5/jbbo360mgbyvc3j05gvo0kitit0RZxGuWxZnV4oF
+         6++RxttGwUL8WnB/ntlJ3YYSDNYAFXnXnumQQtgrajPTjW6pLy/xHLbFTZcQ4uOlkiqj
+         hWaQ==
+X-Gm-Message-State: ACrzQf2AuHm+B1orJmPHVh5NRa6uGHyKC4y9s1qqbfY4gy8ZB2g65+zb
+        9oN18WYGoY6qOxtzM/dl+urbu9UTovLHsRDM
+X-Google-Smtp-Source: AMsMyM5UlUop9zYMoIvfcwzFUp93uQyAVV1Ha3uSdPOv/hCtLELBHMaXxipcPBQuH3FzeST37KTAmw==
+X-Received: by 2002:a17:906:899d:b0:7ad:cf09:96be with SMTP id gg29-20020a170906899d00b007adcf0996bemr42866882ejc.221.1667844935172;
+        Mon, 07 Nov 2022 10:15:35 -0800 (PST)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com. [209.85.128.52])
+        by smtp.gmail.com with ESMTPSA id 13-20020a170906318d00b00734bfab4d59sm3777525ejy.170.2022.11.07.10.15.33
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:14:00 -0800 (PST)
-Message-ID: <9e0d2b3e-d3a6-0249-8cb3-29e0344708d4@linaro.org>
-Date:   Mon, 7 Nov 2022 19:13:59 +0100
+        Mon, 07 Nov 2022 10:15:33 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id a11-20020a05600c2d4b00b003cf6f5fd9f1so7686190wmg.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:15:33 -0800 (PST)
+X-Received: by 2002:a05:600c:4486:b0:3cf:6e1d:f4a5 with SMTP id
+ e6-20020a05600c448600b003cf6e1df4a5mr31342979wmo.85.1667844932555; Mon, 07
+ Nov 2022 10:15:32 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: (subset) [PATCH 06/20] arm64: dts: Update cache properties for
- exynos
-Content-Language: en-US
-To:     Pierre Gondois <pierre.gondois@arm.com>,
-        linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
+References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20221107173954.v11.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
+In-Reply-To: <20221107173954.v11.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 7 Nov 2022 10:15:21 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Uc78wH9A1bev4L=-kje00RNu-AQu87zLK6Sx4AdxDe8A@mail.gmail.com>
+Message-ID: <CAD=FV=Uc78wH9A1bev4L=-kje00RNu-AQu87zLK6Sx4AdxDe8A@mail.gmail.com>
+Subject: Re: [PATCH v11 4/5] arm64: dts: qcom: sc7280: add sc7280-herobrine-audio-rt5682-3mic3.dtsi
+ for evoker
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob.Herring@arm.com, linux-samsung-soc@vger.kernel.org
-References: <20221031091945.531874-1-pierre.gondois@arm.com>
- <166742051292.139492.12539582422109367063.b4-ty@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <166742051292.139492.12539582422109367063.b4-ty@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,26 +81,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2022 21:21, Krzysztof Kozlowski wrote:
-> On Mon, 31 Oct 2022 10:19:45 +0100, Pierre Gondois wrote:
->> The DeviceTree Specification v0.3 specifies that the cache node
->> 'compatible' and 'cache-level' properties are 'required'. Cf.
->> s3.8 Multi-level and Shared Cache Nodes
->>
->> The recently added init_of_cache_level() function checks
->> these properties. Add them if missing.
->>
->> [...]
-> 
-> Applied, thanks!
-> 
-> [06/20] arm64: dts: Update cache properties for exynos
->         https://git.kernel.org/krzk/linux/c/58710ae94589a2b2baaab6b6986064b691124b0d
+Hi,
 
-Now dropped. I understand this is the intention/request of v2.
+On Mon, Nov 7, 2022 at 1:45 AM Sheng-Liang Pan
+<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
+>
+> +&lpass_va_macro {
+> +       vdd-micb-supply = <&pp1800_l2c>;
+> +       pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>, <&lpass_dmic23_clk>,
+> +                       <&lpass_dmic23_data>;
+> +
+> +       status = "okay";
+> +};
+> +
+> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+> +
+> +&lpass_dmic01_clk {
+> +       drive-strength = <8>;
+> +       bias-disable;
+> +};
+> +
+> +&lpass_dmic01_clk_sleep {
+> +       drive-strength = <2>;
+> +};
 
-When resending be sure to use proper subject prefixes.
+All of these "sleep" pinctrl states don't actually do anything useful
+because (currently) nobody refers to them. Off-list I've asked
+Srinivasa (now CCed here) to address this and I think it's fine for
+you to have them here for now and then we can use or remove them all
+at once.
 
-Best regards,
-Krzysztof
+In any case, this patch looks good to me now, thanks!
 
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
