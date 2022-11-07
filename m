@@ -2,180 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 977A461EC97
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 09:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97D3B61ECA9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 09:12:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231569AbiKGIJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 03:09:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58450 "EHLO
+        id S230209AbiKGIMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 03:12:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231573AbiKGIJV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 03:09:21 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8782613F55
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 00:09:19 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id u11so14986085ljk.6
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 00:09:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I/1C2eJ0mQS9HScu7or8tU8miNli5M+Crwcb5WX+lzs=;
-        b=vPtIjrGwdX18Hu7NEl5SK8N6LLWQ673WfxlhcQWAqu4lCg5QD+vCxVNVPzlkFNt6pv
-         FEWoPfVYA5Mh3+C5w8e4YH9E5471fXSWCTW5siWNZIp/1POWa9l+ow9kXdV89VoLAoN5
-         i920jkmHQfUYLrZRX8KXpbCs9AMO7cv+JGZlQpuh0JK+lgAqPCZlZaVdkc4KczZ0j0c+
-         2bOPOhjJA3JQS83k9HsmfzLUN0mDS8BBXpl7I6mr4DpCPQA0+ahEiMvYxTi5FHrS41Ab
-         EOCFJUcECyyj+naL37gVb8tlbyFpZij1Py0235de2Ft8lfWxkGhLFZE76p8oXNK/Krlv
-         tR2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I/1C2eJ0mQS9HScu7or8tU8miNli5M+Crwcb5WX+lzs=;
-        b=uOdeGujJTdviqNJ5p+zmQEjQb6DDQauvnNCZ0VgKMM0mXhyfDpUfJSPO3GyXz/4oDv
-         c9RqAp1gaqfEcoSSQRAzdRFFrf/sKIonP9do8r/q68iihjgOi6DFOVVZQK4wCq+KlHhU
-         9dTwC+PkIHA2K5wNIlMOEFZXSvOOmgHoOwlQs5U5WpmqpEZreeNVFNU8yx7iuYsBQKpU
-         g4ODhlCCOKcqge5QNe0nHiv7FzcIZwJYR7HRKeA/4M2mGADElXXAbH9B+NZwDDgYCUuh
-         P7TXDeZg8F26RPf4orfTXo9weReXEtjjbQc1uHrssKMTrBfjZN7FzphiSOcsbV5uQr4T
-         jPNQ==
-X-Gm-Message-State: ACrzQf1yNt2+TM+4I0YGG19PpkfqMHRFJrCM5Gzw8IEgG9DLrHRgMLc9
-        Uzsn0J/cBaIz1v8UBVjc2VazuQ==
-X-Google-Smtp-Source: AMsMyM4X9owA9AnNEuYVbK1IhD5sMvkwhQN4JUedQjJGTT1YOIZXpChyG96lkTdqFVER6gdVauAd/A==
-X-Received: by 2002:a2e:b6c6:0:b0:277:a45:5a38 with SMTP id m6-20020a2eb6c6000000b002770a455a38mr5404022ljo.377.1667808557798;
-        Mon, 07 Nov 2022 00:09:17 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id j29-20020a056512029d00b004a03fd4476esm1103200lfp.287.2022.11.07.00.09.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 00:09:16 -0800 (PST)
-Message-ID: <2400e167-073e-65fa-7fe6-b64a34bce256@linaro.org>
-Date:   Mon, 7 Nov 2022 09:09:15 +0100
+        with ESMTP id S229751AbiKGIMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 03:12:48 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6841913F6C
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 00:12:45 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1orxFF-0001A8-2j; Mon, 07 Nov 2022 09:12:37 +0100
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1orxFC-0001MF-5O; Mon, 07 Nov 2022 09:12:34 +0100
+Date:   Mon, 7 Nov 2022 09:12:34 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        alistair@alistair23.me
+Subject: Re: [PATCH v2] ARM: dts: imx: e60k02: Add touchscreen
+Message-ID: <20221107081234.wxup6lq3xph2obfv@pengutronix.de>
+References: <20221104204251.1458958-1-andreas@kemnade.info>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 3/8] dt-bindings: spi: Add Nuvoton WPCM450 Flash Interface
- Unit (FIU)
-Content-Language: en-US
-To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-spi@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-References: <20221105185911.1547847-1-j.neuschaefer@gmx.net>
- <20221105185911.1547847-4-j.neuschaefer@gmx.net>
- <066919b1-c43d-f8ed-0191-cce8c575ee37@linaro.org> <Y2fIjSKAGleEtjHe@probook>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Y2fIjSKAGleEtjHe@probook>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221104204251.1458958-1-andreas@kemnade.info>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/11/2022 15:45, Jonathan Neuschäfer wrote:
-> On Sun, Nov 06, 2022 at 10:38:45AM +0100, Krzysztof Kozlowski wrote:
->> On 05/11/2022 19:59, Jonathan Neuschäfer wrote:
->>> The Flash Interface Unit (FIU) is the SPI flash controller in the
->>> Nuvoton WPCM450 BMC SoC. It supports four chip selects, and direct
->>> (memory-mapped) access to 16 MiB per chip. Larger flash chips can be
->>> accessed by software-defined SPI transfers.
->>>
->>> The FIU in newer NPCM7xx SoCs is not compatible with the WPCM450 FIU.
->>>
->>> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
->>> ---
-> [...]
->>> +allOf:
->>> +  - $ref: "/schemas/spi/spi-controller.yaml#"
->>
->> Drop the quotes.
-> 
-> Will do.
-> 
-> 
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: nuvoton,wpcm450-fiu
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: FIU registers
->>> +      - description: Memory-mapped flash contents
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: control
->>> +      - const: memory
->>> +    minItems: 1
->>
->> This does not match your 'reg'. Two items are required there.
-> 
-> My intention was rather to make the second reg item actually optional,
-> i.e. add minItems: 1 for reg as well.  (But, further discussion below.)
-> 
-> 
->>> +    spi@c8000000 {
->>> +      compatible = "nuvoton,wpcm450-fiu";
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +      reg = <0xc8000000 0x1000>, <0xc0000000 0x4000000>;
->>
->> reg is the second property.
-> 
-> Ok, I'll move it up.
-> 
->>
->>> +      reg-names = "control", "memory";
->>> +      clocks = <&clk WPCM450_CLK_FIU>;
->>> +      nuvoton,shm = <&shm>;
->>> +
->>> +      flash@0 {
->>> +        compatible = "jedec,spi-nor";
->>> +      };
->>> +    };
->>> +
->>> +    shm: syscon@c8001000 {
->>> +      compatible = "nuvoton,wpcm450-shm", "syscon";
->>> +      reg = <0xc8001000 0x1000>;
->>> +    };
->>> +
->>> +  - |
->>> +    #include <dt-bindings/clock/nuvoton,wpcm450-clk.h>
->>> +    spi@c8000000 {
->>> +      compatible = "nuvoton,wpcm450-fiu";
->>> +      // the "memory" resource may be omitted
->>
->> This is rather obvious, so what you should comment is WHY or WHEN second
->> resource can be omitted.
-> 
-> Ok, I'll add more reasoning, which is basically: The "memory" mapping is
-> only an optimization for faster access, knowledge of it is not necessary
-> for full operation of the device.
-> 
->> Not every instance on the hardware has it?
-> 
-> AFAIK every instance has it, and there's unlikely to be any variation on
-> this fact anymore, because newer Nuvoton SoCs replaced the FIU with a
-> redesigned and incompatible version.
-> 
-> I admit that the value of making the "memory" mapping optional is rather
-> theoretical, and I'm open to making this reg item mandatory to simplify
-> the binding.
+Hi Andreas,
 
-If every instance has it, then regardless whether it is actually used or
-not, just require second address?
+On 22-11-04, Andreas Kemnade wrote:
+> Add the touchscreen now, since the driver is available.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+> Changes in v2: fix pinmux naming
+> 
+>  arch/arm/boot/dts/e60k02.dtsi              | 11 ++++++++++-
+>  arch/arm/boot/dts/imx6sl-tolino-shine3.dts |  7 +++++++
+>  arch/arm/boot/dts/imx6sll-kobo-clarahd.dts |  7 +++++++
+>  3 files changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/e60k02.dtsi b/arch/arm/boot/dts/e60k02.dtsi
+> index 935e2359f8df..94944cc21931 100644
+> --- a/arch/arm/boot/dts/e60k02.dtsi
+> +++ b/arch/arm/boot/dts/e60k02.dtsi
+> @@ -104,7 +104,16 @@ &i2c2 {
+>  	clock-frequency = <100000>;
+>  	status = "okay";
+>  
+> -	/* TODO: CYTTSP5 touch controller at 0x24 */
+> +	touchscreen@24 {
+> +		compatible = "cypress,tt21000";
+> +		reg = <0x24>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_cyttsp5_gpio>;
+> +		interrupt-parent = <&gpio5>;
+> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+> +		vdd-supply = <&ldo5_reg>;
+> +	};
+>  
+>  	/* TODO: TPS65185 PMIC for E Ink at 0x68 */
+>  
+> diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+> index e3f1e8d79528..db5d8509935f 100644
+> --- a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+> +++ b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
+> @@ -52,6 +52,13 @@ &iomuxc {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_hog>;
+>  
+> +	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
+> +		fsl,pins = <
+> +			MX6SL_PAD_SD1_DAT3__GPIO5_IO06                0x17059 /* TP_INT */
+> +			MX6SL_PAD_SD1_DAT2__GPIO5_IO13                0x10059 /* TP_RST */
+> +		>;
+> +	};
 
-Best regards,
-Krzysztof
+Hm.. I don't like that you enable it within the base dtsi and add the
+missing dependencies here. I would rather add the touchscreen within the
+base dtsi but with with status set to disabled and without specifying
+the interrupt and reset gpio. Within the dts and the below you can
+reference the touchscreen via phandle and add the missing properties.
 
+Regards,
+  Marco
+
+> +
+>  	pinctrl_gpio_keys: gpio-keysgrp {
+>  		fsl,pins = <
+>  			MX6SL_PAD_SD1_DAT1__GPIO5_IO08	0x17059	/* PWR_SW */
+> diff --git a/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts b/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+> index 90b32f5eb529..c7cfe0b70f04 100644
+> --- a/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+> +++ b/arch/arm/boot/dts/imx6sll-kobo-clarahd.dts
+> @@ -62,6 +62,13 @@ &iomuxc {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_hog>;
+>  
+> +	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
+> +		fsl,pins = <
+> +			MX6SLL_PAD_SD1_DATA3__GPIO5_IO06                0x17059 /* TP_INT */
+> +			MX6SLL_PAD_SD1_DATA2__GPIO5_IO13                0x10059 /* TP_RST */
+> +		>;
+> +	};
+> +
+>  	pinctrl_gpio_keys: gpio-keysgrp {
+>  		fsl,pins = <
+>  			MX6SLL_PAD_SD1_DATA1__GPIO5_IO08	0x17059	/* PWR_SW */
+> -- 
+> 2.30.2
+> 
+> 
+> 
