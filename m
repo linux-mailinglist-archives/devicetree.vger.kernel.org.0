@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B28161FDA7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F8161FDBC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:40:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232575AbiKGSfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:35:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S233197AbiKGSkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:40:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232471AbiKGSfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:35:42 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852A620F5D
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:35:41 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id r12so17991846lfp.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:35:41 -0800 (PST)
+        with ESMTP id S232357AbiKGSjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:39:51 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EAA0248E0
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:39:22 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id x21so17637005ljg.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:39:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RZto2aI8Bptli2OzTKbCF8aaAGorStB0N8MSB1xDDtE=;
-        b=vo5nLgHJwfnXEhjUBrU1bPOwdaFEjM909+M2qoa53AjbBjcM3hNZqMa4pZzsuCQRn0
-         lpPDAJnxdGAijHfUaO4MdbZe4RjB65J7KstdKxwI6d0f8BLN822lpu8f8Wc8TuJClkKN
-         ZM9eJuggIQbYxLVe77V7d3dGfkJih4Yo4HoeUA5JtntxU5R0KyJbIJnhQ5nOBYCh0Mnr
-         eQcH3mcm+IGiCba6xHn9au9243J9KLjzFhg9TBAUT76iv1KbLNYW+yMMrjdHST1AD7NQ
-         LSJFvlneJpLNT3t2mc0UA85cSd1YTHdFuOg2ZYtRlHQ/kkiQOWjtN+E6UePW9qbg/ZXZ
-         RCWg==
+        bh=LXLngX/j4wkIy1a9aDZYAsscBJK84bs835gvLoMQ2Zc=;
+        b=p8s+8y6nA/RKsg3W8UDwn8HNzn/gBM6qW6RG7gK8bdc292ji3GV+aDWGh5vApUo0uq
+         +Odi5dDni2uXQwbXnQ1jIOgzSLRQumhCDOWwO72eZCCynkcgpZX9mwRMX9eLyzdbdK+5
+         hn3IrZTJEKrKjKYbwEYrImjf2d/zSNtAkUYrm8LXJLV4mAC6rFk2dPQdDs78VgVPk0Dd
+         BWjVYJM1/g0O9/sdh8nCMw0TvzWFi/yvQ7HmnkECjdrclsUawmgUtpGr4Oc2nK+aTU9w
+         4N5DPRxM3qvwevZ8b67FeGbQ55tJlwrctmZCJlFsyfnFp4hgvXKd298LdVqGaQFPFJYE
+         mDEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RZto2aI8Bptli2OzTKbCF8aaAGorStB0N8MSB1xDDtE=;
-        b=WzXDexA4peR++GkbYJrTo+hIYNXpyGoxX/Kj96BES2rlpGhl43PuVryThruJ+Ife85
-         vwuTz1/YRx7q8g46z+QOVW+GN62yLFLI3TZejMnHA7CeJSARxZkF5BsoyBD87jFI86Fb
-         uHqzDoobwN+WT52Xv3VYlXVowTpXYKxVYfMMp3oun3RmXpyZGTQwPw99r00lyhiusqmZ
-         v8wnWlS9jyqVK2c/45GLvwazdMUEstwyg73Ws7Ebi85kzRn0L5X3F8S3wZpSvViTPKi0
-         rvRJj+8A3TQXMlKxvsDunRPL4wGeXPR/VYJyZ+RymTrrKTxznwLr1bfxv4EG2/uXg8Dr
-         cfLg==
-X-Gm-Message-State: ACrzQf1u4k+IjFUzDST+dc9VvPwNHo57RHQoa8hdk2PlQ53LbRoSDqJ/
-        mSJYLtl6ynOtjG7uEwqGgZ/PGQ==
-X-Google-Smtp-Source: AMsMyM6ioglBiZGtDLKRsAr68YwkWzhXxrEcAKOa49F6LtuCSk/ZFcxVyr3OS6Jtu4/aUqvZZJBsLQ==
-X-Received: by 2002:ac2:5221:0:b0:4a4:5af7:8ad5 with SMTP id i1-20020ac25221000000b004a45af78ad5mr17457353lfl.388.1667846139899;
-        Mon, 07 Nov 2022 10:35:39 -0800 (PST)
+        bh=LXLngX/j4wkIy1a9aDZYAsscBJK84bs835gvLoMQ2Zc=;
+        b=WvmhRalHWrO3JI0cFloD2hFZLMFwYwQDvp1mNElEX6+GVrb/pYs1zE4TGzamK4L7Ji
+         PscRZ4/+Sih+2B5rMOn+xOzJXA4JKGlMUlCniNsZqae5dVk3heb1DWG9AXemOtJBnEgj
+         YcHNv9qu5IWuLKkM0Dot2yjpOEDGhQuFiTb0d8xO+My1CQOzGCAjgI9ruDGw475tOTSr
+         oVGPPs0kTiLsGTSLCdAU025HtKr57Sigy6Y5xpzoXePZTQf45GTCCTJU+MaJOuHH9CmQ
+         0VuL0zRtfLiCqlP30zLYi+01vQW9xOAQ7wa7x7Ucp9TRLUHzagwYq7+VOgDlhbGFBf45
+         6MDA==
+X-Gm-Message-State: ACrzQf1Fmv8RtNTcImBPObxF2LfmnWD2QlK8OHi5VXwOtHv95xePXFa/
+        jIZtXY3nisRAd/sidPYEFrM+8w==
+X-Google-Smtp-Source: AMsMyM4YviYvRTH1ZcXzreVIUAoZYJF8ybIxlPozw8btQH80v3fQT2qIb27GiXzyEh97+9Cs7j19iQ==
+X-Received: by 2002:a05:651c:1047:b0:277:6939:e278 with SMTP id x7-20020a05651c104700b002776939e278mr11515026ljm.522.1667846360840;
+        Mon, 07 Nov 2022 10:39:20 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id j23-20020a056512345700b00492d064e8f8sm1371621lfr.263.2022.11.07.10.35.38
+        by smtp.gmail.com with ESMTPSA id o12-20020a2e730c000000b0027706d22878sm1360533ljc.94.2022.11.07.10.39.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:35:39 -0800 (PST)
-Message-ID: <c8ad788b-5934-8dee-e122-3450a19dd08f@linaro.org>
-Date:   Mon, 7 Nov 2022 19:35:38 +0100
+        Mon, 07 Nov 2022 10:39:20 -0800 (PST)
+Message-ID: <a6193f07-18b8-687a-7423-09ff9918e00a@linaro.org>
+Date:   Mon, 7 Nov 2022 19:39:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: examples: add a list of templates and
- solutions
+Subject: Re: [PATCH RFC 1/5] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/G2UL SoC
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+To:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20221028233701.572280-1-krzysztof.kozlowski@linaro.org>
- <20221101130720.GA963805-robh@kernel.org>
- <34f40c1c-f933-cee6-f022-14c37650dc3a@linaro.org>
- <20221104214744.GA2878314-robh@kernel.org>
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20221107175305.63975-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221104214744.GA2878314-robh@kernel.org>
+In-Reply-To: <20221107175305.63975-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,44 +85,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2022 22:47, Rob Herring wrote:
->>>> +7. Phandle to syscon with offset:
->>>> +   Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
->>>> +   Line: 42
->>>> +
->>>> +8. Variable length of array (e.g. clocks and clock-names) but narrowed to
->>>> +   specific variant:
->>>> +   Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
->>>> +   Lines: 33 and 71
->>>
->>> It seems like some of these that are just a single property we could add 
->>> to example-schema.yaml.
->>
->> I am afraid the example-schema will grow too big for folks to look into.
->> It's already quite complicated, with explanations of the dtschema
->> behavior itself.
+On 07/11/2022 18:53, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> How about splitting up the top-level descriptions and property examples?
+> Document RZ/G2UL (R9A07G043) IRQC bindings. The RZ/G2UL IRQC block is
+> identical to one found on the RZ/G2L SoC. No driver changes are
+> required as generic compatible string "renesas,rzg2l-irqc" will be
+> used as a fallback.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
 
-You mean splitting up to separate YAML files? I guess this could work
-and still be concise - few examples showing different concepts.
 
-> 
->> How about then RST file with small code snippets?
-> 
-> Then they don't validate.
-> 
->>
->>> Also, perhaps a reference to this from writing-schema.rst.
->>
->> I can do this as well.
->>
->> The problem with my approach above (and adding these to writing-schema)
->> is that examples above can change, lines can be inadequate.
-> 
-> I just meant a link in writing-schema.rst to this doc. We already have 
-> that for example-schema.yaml.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
