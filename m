@@ -2,116 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE6B6203A6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 00:20:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7DCE6203D4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 00:35:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbiKGXU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 18:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52328 "EHLO
+        id S232308AbiKGXfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 18:35:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232196AbiKGXU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 18:20:26 -0500
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2504B2716C;
-        Mon,  7 Nov 2022 15:20:26 -0800 (PST)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A7MfR8e007676;
-        Mon, 7 Nov 2022 23:20:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=F+JBdY5GCv5NYpZ5AGOqeyM6zH5lr5JUXnXKw9APh6o=;
- b=fOaeSEiW8QbGtTYTXl9X61E4sn9m2SyG+u/Vv+CTncIQrN3wKa1/5Q1a7aULvFR7Sbs3
- TOhVNB3Bvzftdq6oZWRqz93AanzE+laebYYgaRh6aWIEqPZF9ZG+nr4rws/0lFg9cjvZ
- eh4PoAybMxNjLba705PtoZ6bjJWGpQBAGE+pooTFo0i0NJn2VVDdIWYMdk2iosfbgxbt
- 5QlhmVZ/sHiTlDwSXitjQTT/w2yRLcj0ExKlleTzceP68t9m9DMCFN2YuQmFL1525e8m
- Z+xOCCWDIxr2W9M42/4m3+duAVkOI/sI/B8jAofp/FJ5X0G24/n54mzwIeW3p2RUpwmw kw== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3kq62y923j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 07 Nov 2022 23:20:18 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 2A7NKIck001363
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 7 Nov 2022 23:20:18 GMT
-Received: from [10.110.0.244] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.29; Mon, 7 Nov 2022
- 15:20:17 -0800
-Message-ID: <c5af2329-7cc5-9909-b630-70fb102229fd@quicinc.com>
-Date:   Mon, 7 Nov 2022 15:20:17 -0800
+        with ESMTP id S232085AbiKGXfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 18:35:50 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62C126471
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 15:35:47 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id i21so20022037edj.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 15:35:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9ayzj5KulTnhN7Zfw5EUqrO7UsW/gaWrga/K5/y9mIc=;
+        b=j5OP46R/9IJk3IMdJgZ6jek+61+cUqTqDgnyVKyPovCVpZjNF5pfXvdwhkflYn5G4S
+         KWEdi63OGfaMTbj55yhVUQFC/VkezUHR3KkbB7YWsdPZ0xjIwtsBX6Vx/f/0BeY+u/qN
+         k+33FHS1JgZKNVJB8aszok+DgyfFCoij22oZw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9ayzj5KulTnhN7Zfw5EUqrO7UsW/gaWrga/K5/y9mIc=;
+        b=UBmAJW5Cxa2NHcEmNqSCPt9GtQjvtVRG5X3s2bN5kZNbBlHfVz2sFeZ+BQgBzIluy/
+         COp7w0dd5mj4e67cvrfpe8zyjjq4WOKzZzJng+PQOwx9ClDk7iS57jMc0dFaA0cWpHNx
+         R5BPmpnpDjc++lGpA+CuTkhlyml7D7W546fwHUgobvjhR5jR/0DPPcWKAIQGER741APc
+         bTLqNGftkQ037Z7s6DoAVwNVa+HZMzpAtu29DpV51I5T4ujfCDAY6Kn8Pky3f0ayh3vE
+         Fx7pe8KHjSkQy7TzxSPJxzAP9bKiMG9jNwOM1iXeI3ZefZstXUCOnJMZLhAscS42RhiB
+         R3qA==
+X-Gm-Message-State: ACrzQf3sLS23yiMkfb9yzBZLA73n8hEkbkZmqK+VFTH81ztsP2qanCI9
+        T5NtgnbaIIiEQyfMIQdTe9cHfgND+IpE3iWoHLId7biCsEAelA==
+X-Google-Smtp-Source: AMsMyM47Fwbkfq66gj/sjgVnnRql1naDpYt9NZqfT+lyKW4gJHa68XYKyJKHFhadmRoItarKE7A68c0xPFHnrUrt6tI=
+X-Received: by 2002:a05:6402:1c88:b0:461:94a0:33df with SMTP id
+ cy8-20020a0564021c8800b0046194a033dfmr52601435edb.0.1667864145272; Mon, 07
+ Nov 2022 15:35:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [PATCH v3 5/5] dt-bindings: qcom,pdc: Introduce pdc bindings for
- QDU1000 and QRU1000
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-CC:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20221026190441.4002212-1-quic_molvera@quicinc.com>
- <20221026190441.4002212-6-quic_molvera@quicinc.com>
- <20221027182240.E9FA0C433D6@smtp.kernel.org>
- <eeb3e06d-316a-1ff8-b4b8-c257fa03a206@quicinc.com>
- <20221107171622.nh62m4bf635rl2ae@builder.lan>
-From:   Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <20221107171622.nh62m4bf635rl2ae@builder.lan>
+References: <20221102031312.216353-1-sjg@chromium.org>
+In-Reply-To: <20221102031312.216353-1-sjg@chromium.org>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Mon, 7 Nov 2022 16:35:32 -0700
+Message-ID: <CAPnjgZ1yxd4BtF-uOApi4EC6kzOPhoMapcaXKF4yvq2k7w_kXQ@mail.gmail.com>
+Subject: Re: [PATCH v4] schemas: Add schema for U-Boot driver model 'phase tags'
+To:     devicetree@vger.kernel.org
+Cc:     U-Boot Mailing List <u-boot@lists.denx.de>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: LThGWXAiHqvhHPpaSiBiLjy9k2WoaIH1
-X-Proofpoint-GUID: LThGWXAiHqvhHPpaSiBiLjy9k2WoaIH1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-07_11,2022-11-07_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 bulkscore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 spamscore=0 malwarescore=0 mlxlogscore=931 phishscore=0
- mlxscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2210170000 definitions=main-2211070174
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-
-On 11/7/2022 9:16 AM, Bjorn Andersson wrote:
-> On Thu, Oct 27, 2022 at 02:31:08PM -0700, Melody Olvera wrote:
->>
->> On 10/27/2022 11:22 AM, Stephen Boyd wrote:
->>> Quoting Melody Olvera (2022-10-26 12:04:41)
->>>> Add compatible fields for QDU1000 and QRU1000 pdcs.
->>>>
->>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>> ---
->>> Is there a reason why this patch continues to be included in what is
->>> otherwise a clk driver patch series? Can this patch be sent separately
->>> from the clk patches (and not Cced to clk maintainers/list) in the
->>> future?
->> Sure thing. On reflection, this belongs with the misc support patches.
->>
-> Even better, the "misc" series goes through my tree but this patch is
-> unrelated. So if you send it on it's own it could just be picked up by
-> the PDC maintainer (or Rob).
+On Tue, 1 Nov 2022 at 21:13, Simon Glass <sjg@chromium.org> wrote:
 >
+> U-Boot has some particular challenges with device tree and devices:
 >
-Sure thing. I'll just send each on their own.
+> - U-Boot has multiple build phases, such as a Secondary Program Loader
+>   (SPL) phase which typically runs in a pre-SDRAM environment where code
+>   and data space are limited. In particular, there may not be enough
+>   space for the full device tree blob. U-Boot uses various automated
+>   techniques to reduce the size from perhaps 40KB to 3KB. It is not
+>   always possible to handle these tags entirely at build time, since
+>   U-Boot proper must have the full device tree, even though we do not
+>   want it to process all nodes until after relocation.
+> - Some U-Boot phases needs to run before the clocks are properly set up,
+>   where the CPU may be running very slowly. Therefore it is important to
+>   bind only those devices which are actually needed in that phase
+> - U-Boot uses lazy initialisation for its devices, with 'bind' and
+>   'probe' being separate steps. Even if a device is bound, it is not
+>   actually probed until it is used. This is necessary to keep the boot
+>   time reasonable, e.g. to under a second
+>
+> The phases of U-Boot in order are: TPL, VPL, SPL, U-Boot (first
+> pre-relocation, then post-relocation). ALl but the last two are optional.
+>
+> For the above reasons, U-Boot only includes the full device tree in the
+> final 'U-Boot proper' build. Even then, before relocation U-Boot only
+> processes nodes which are marked as being needed.
+>
+> For this to work, U-Boot's driver model[1] provides a way to mark device
+> tree nodes as applicable for a particular phase. This works by adding a
+> tag to the node, e.g.:
+>
+>    cru: clock-controller@ff760000 {
+>       phase,all;
+>       compatible = "rockchip,rk3399-cru";
+>       reg = <0x0 0xff760000 0x0 0x1000>;
+>       rockchip,grf = <&grf>;
+>       #clock-cells = <1>;
+>       #reset-cells = <1>;
+>       ...
+>    };
+>
+> Here the "phase,all" tag indicates that the node must be present in all
+> phases, since the clock driver is required.
+>
+> There has been discussion over the years about whether this could be done
+> in a property instead, e.g.
+>
+>    options {
+>       phase,all = <&cru> <&gpio_a> ...;
+>       ...
+>    };
+>
+> Some problems with this:
+>
+> - we need to be able to merge several such tags from different .dtsi files
+>   since many boards have their own specific requirements
+> - it is hard to find and cross-reference the affected nodes
+> - it is more error-prone
+> - it requires significant tool rework in U-Boot, including fdtgrep and
+>   the build system
+> - is harder (slower, more code) to process since it involves scanning
+>   another node/property to find out what to do with a particular node
+> - we don't want to add phandle arguments to the above since we are
+>   referring, e.g., to the clock device as a whole, not a paricular clock
+> - the of-platdata feature[2], which converts device tree to C for even
+>   more constrained environments, would need to become aware of the
+>   /options node
+>
+> There is also the question about whether this needs to be U-Boot-specific,
+> or whether the tags could be generic. From what I can tell, U-Boot is the
+> only bootloader which seriously attempts to use a runtime device tree in
+> all cases. For this version, an attempt is made to name the phases in a
+> generic manner.
+>
+> It should also be noted that the approach provided here has stood the test
+> of time, used in U-Boot for 8 years so far.
+>
+> So add the schema for this. This will allow a major class of schema
+> exceptions to be dropped from the U-Boot source tree.
+>
+> This being sent to the mailing list since it might attract more review.
+> A PR will be sent when this has had some review. That is why the file
+> path is set up for https://github.com/devicetree-org/dt-schema rather
+> than the Linux kernel.
+>
+> [1] https://u-boot.readthedocs.io/en/latest/develop/driver-model/index.html
+> [2] https://u-boot.readthedocs.io/en/latest/develop/driver-model/of-plat.html
+>
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>
+> Changes in v4:
+> - Drop some unnecessary context from the commit message
+> - Explain why parent nodes do not automatically inherit their children's
+>   tags
+> - Rename the tags to use a phase,xxx format, explaining each one
+>
+> Changes in v3:
+> - Fix an incorrect schema path in $id
+>
+> Changes in v2:
+> - Expand docs to include a description of each tag
+> - Fix some typos and unclear wording
+>
+>  dtschema/lib.py             |  5 +++
+>  dtschema/schemas/phase.yaml | 73 +++++++++++++++++++++++++++++++++++++
+>  test/phases.dts             | 26 +++++++++++++
+>  3 files changed, 104 insertions(+)
+>  create mode 100644 dtschema/schemas/phase.yaml
+>  create mode 100644 test/phases.dts
 
-Thanks,
-Melody
+Any thoughts on this please?
+
+Regards,
+Simon
