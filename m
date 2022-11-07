@@ -2,49 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC54B61E969
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A30061E973
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:15:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231345AbiKGDPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 22:15:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35524 "EHLO
+        id S230469AbiKGDPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:15:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231346AbiKGDOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:14:33 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B3B12740;
-        Sun,  6 Nov 2022 19:13:18 -0800 (PST)
+        with ESMTP id S231371AbiKGDOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:14:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997F532E;
+        Sun,  6 Nov 2022 19:13:21 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4208DB80D9C;
+        by ams.source.kernel.org (Postfix) with ESMTPS id 49A6DB80D7C;
+        Mon,  7 Nov 2022 03:13:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49075C433D6;
         Mon,  7 Nov 2022 03:13:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD299C4347C;
-        Mon,  7 Nov 2022 03:13:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667790797;
-        bh=98zvi7moc2WiLI5Eo8TJ6PFp+Posb4WFHuUDE9xceUo=;
+        s=k20201202; t=1667790799;
+        bh=hZHFeoIu838eGY+iDJ24ig9xli01SVua4iDnoxfBBcA=;
         h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=MH8AoAjmQi4ySd2aJbgv4TRJm2+TCPP2CQiFg3bpBDIBNGefhaV2baD7LKlZUReJd
-         w5aybzpA78BrfKrEt0SJJNCe7U/VgngjQhoQb5hgXhzGfAecUgSdXW5wWHHl3iPtz2
-         +6jHWyVMYFhcb+/GFyWBfBCBb9B6aHPfwGTjFDMcG4LOrXI4YhyKsRYk9WvcObNDuJ
-         xjsB6Ei4u0f+jpxQ3PWxt24YRsHrrWOwReQVbHvuSbDbyGqWZf9v0Gpz+v3OpHEhcx
-         bayx9MJCiEeh0dBHaClYtklKTGepg1EZe99bRxL/13YuV2+XS1xQuXMNIuCk7Qe7Fi
-         hJ9QdcfKF1Vzg==
+        b=FfI31kx/D9lw23k+Tq9PXMnb4V/GFhKn7zz0pUdPUmO5GlJJ1Sot+ts9WlKo/JYcB
+         93XKZlNjmTyy7ecM9RpeSCPWdu1V++RCX6BVQrQ1WxY6zJa3zuPuIBV4mRdHkI9+Qx
+         RB0QYoi8sTUq3oSaDAKDg3mvfBZ35gpgidNPLANs9gEJHdUWTdryUf0HzdJRHdyFxr
+         UDEna0X3a/Dh2qQJnLmF4flhrAENr0GFTDVD4cBsAJZLTyww4IPwbTAMRowFdkRwm/
+         BptgNd1z6lsDpUFzDQwfDIEGunM99LY1o7yYKYO6a8OvzArDRRfZVBSa/v595vzDjN
+         d18sJoV1JH5iw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     mturquette@baylibre.com, dmitry.baryshkov@linaro.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, konrad.dybcio@somainline.org, jonathan@marek.ca,
-        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@kernel.org,
-        quic_bjorande@quicinc.com, robert.foss@linaro.org
-Subject: Re: [PATCH v2 0/5] dispcc-sm8250 misc fixes
-Date:   Sun,  6 Nov 2022 21:12:33 -0600
-Message-Id: <166779074273.500303.15465744246402461201.b4-ty@kernel.org>
+To:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        vincent.knecht@mailoo.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, konrad.dybcio@somainline.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>
+Subject: Re: (subset) [PATCH 1/2] dt-bindings: soc: qcom: spm: Add MSM8939 CPU compatible
+Date:   Sun,  6 Nov 2022 21:12:35 -0600
+Message-Id: <166779074259.500303.10278539803608543113.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221102090140.965450-1-robert.foss@linaro.org>
-References: <20221102090140.965450-1-robert.foss@linaro.org>
+In-Reply-To: <20221019171004.1080911-1-vincent.knecht@mailoo.org>
+References: <20221019171004.1080911-1-vincent.knecht@mailoo.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,33 +54,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Nov 2022 10:01:35 +0100, Robert Foss wrote:
-> Changes since v1:
->  - Added new a-b/r-b tags
->  - Improved commit message - Dmitry
->  - Configure dp/edp link parent_hw for sm8150/sc8180
+On Wed, 19 Oct 2022 19:10:02 +0200, Vincent Knecht wrote:
+> Document the "qcom,msm8939-saw2-v3.0-cpu" compatible for the CPU
+> Subsystem Power Manager (SPM) on the MSM8939 SoC.
 > 
-> Robert Foss (5):
->   clk: qcom: dispcc-sm8250: Disable EDP_GTC for sm8350
->   clk: qcom: dispcc-sm8250: Add RETAIN_FF_ENABLE flag for mdss_gdsc
->   dt-bindings: clock: dispcc-sm8250: Add EDP_LINK_DIV_CLK_SRC index
->   clk: qcom: dispcc-sm8250: Add missing EDP clocks for sm8350
->   clk: qcom: dispcc-sm8250: Disable link_div_clk_src for sm8150
 > 
-> [...]
 
 Applied, thanks!
 
-[1/5] clk: qcom: dispcc-sm8250: Disable EDP_GTC for sm8350
-      commit: b5f84650fb0d6ebaa48a5f99183de70d32d0b115
-[2/5] clk: qcom: dispcc-sm8250: Add RETAIN_FF_ENABLE flag for mdss_gdsc
-      commit: e1a297a681bc4ab2c5cfe31eb4b59bb6f202035a
-[3/5] dt-bindings: clock: dispcc-sm8250: Add EDP_LINK_DIV_CLK_SRC index
-      commit: c2b6ad72959771730806bbab76aa69e99444bf29
-[4/5] clk: qcom: dispcc-sm8250: Add missing EDP clocks for sm8350
-      commit: 8305ff41c7426b49090b236da659e2e9bb05fcb9
-[5/5] clk: qcom: dispcc-sm8250: Disable link_div_clk_src for sm8150
-      commit: f05dbd1a500661a9e3af59f0690301d031140da7
+[1/2] dt-bindings: soc: qcom: spm: Add MSM8939 CPU compatible
+      commit: 7334ac8b7a332c0f85545ac50e1822cd76029c96
+[2/2] soc: qcom: spm: Add MSM8939 SPM register data
+      commit: f98e12a7e0dab30b48a75554510634c06eecd3e5
 
 Best regards,
 -- 
