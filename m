@@ -2,121 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C22561F6F1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DCA61F70D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:03:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232693AbiKGO7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 09:59:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
+        id S232712AbiKGPC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 10:02:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232691AbiKGO7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:59:00 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9830F21256
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 06:57:21 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id p8so17064841lfu.11
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 06:57:21 -0800 (PST)
+        with ESMTP id S232686AbiKGPCb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:02:31 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D512DF4C
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 07:02:29 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id l8so16664849ljh.13
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 07:02:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AQlxwrQ9+SAIJlBHFz/WVtqfuSsX8479gf+InmNYkZs=;
-        b=1eTJqEXUCN6TpV6RPCjctxazLVjc44ZvzsBItOrs8d80EmK/RTm5KYkB5ehzSFcSap
-         0Ia4QJxum/15AedJZzgTedYWblULvJ2HWn6NIOVO0kLVUGzxxNuXTNkUbSKEiihYW5uY
-         eI9c/r5MpYt9th3ARFOLRYCWL8+OX7E7r5QjWjQT9gbVW+CjhHoH7P5pnYbE+s3Ht/BS
-         ZpQxbAlG3a2Q6BXdz03VLJbB2BAE4WHiC0ArV3yEpnSEla0c1RJ8q72c1z9KjXtBDvuA
-         r5eCbX117hzvliriCVcObFn6wp63MG/Om9IFx0pHFFyRetN5uD76XxvKlFE9BmmzVAs3
-         XGsA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fODzgR6f5QIFQoQpSBqUjOLDxlY3mnOv7TGRHuzFTmQ=;
+        b=Sa3GlGhKz9uFh2xqVF8cJoU3Rjyu+lW99l4UTK5vaJQyJGY6nBEgvS0sw04i2CTloO
+         bsEm3VpZONpb7/0esp7CVMuVMI0WhPcfnK4wfKSJBdQZWTliIllDagRJbTVMLjWVfMB/
+         y7nOTLmb+q8rBgXSIyLUO8Dy8CFYQ9ra93pHcCjU3iJFxmCcidG9C7lwTRq5WNBrT5zy
+         2BI50NMYSP2Jlv+QCsIIVgCnREo91KPRqexIfjimqLibHRiZ8yv3+lw6O6DeppQkqrzx
+         j5Jcqd+rbgT+8Izh6bAq+KIbx/7p7XBzgWKhQy8DCK64B7Hr5oesOQiXBYHUndvSskGE
+         fBcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AQlxwrQ9+SAIJlBHFz/WVtqfuSsX8479gf+InmNYkZs=;
-        b=Y0G955EsCsiyOSt1AJfXVl7ezKp7xgrztdgd17FDIaeemDS86NDr76yrwd+cC5PA/s
-         3kdsnzXn/Y/60ZpQrP7AcaRVM3nvI79fCEjvBVrIxE+QPoDE0XCCj/NyHXCclR3W6QId
-         wN5dGLG7Lu32mIZzIW5PjoNKmI94LCF1S9sUcHPyePdiibbZtVTueKhIYP477leT5sTF
-         YBFnjABZJCz+fG9FBgF+HtqsSq70KAWbXXDGNAzH8tZgicJaOI2X4OT+lOlbgJB+a3yC
-         eNUWg6W2PtWO8f6ERPfmfrQjAHIk40dRkONpn95zJ+rA00Bwzv51vxkZ3zFhU9bfVavA
-         Mr+Q==
-X-Gm-Message-State: ACrzQf0JCPkQSpEH2tWBkv9I1FkLEZ+m2O78I6BliFNY49j72YckcIpC
-        tf8l040xJCURilsIAqx50lNy3WhH2I8+AhP5tU50og==
-X-Google-Smtp-Source: AMsMyM5u67xgoVRbvAl2jo49umhno4Yx8nKrhd8saRcif/bR8rpMZwMhWdL1nVFsqasbfxpjnO2MfcuNIfWTUazhbyA=
-X-Received: by 2002:a05:6512:a93:b0:4a2:a5b3:fbb4 with SMTP id
- m19-20020a0565120a9300b004a2a5b3fbb4mr17313440lfu.346.1667833039925; Mon, 07
- Nov 2022 06:57:19 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 7 Nov 2022 14:57:19 +0000
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-6-a803f2660127@baylibre.com>
- <a3472c42-ccac-7c98-a0b6-57556a348ac1@collabora.com>
-In-Reply-To: <a3472c42-ccac-7c98-a0b6-57556a348ac1@collabora.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fODzgR6f5QIFQoQpSBqUjOLDxlY3mnOv7TGRHuzFTmQ=;
+        b=DuKupCWRjFCtrBYJ5PC6c6d7xZE77wP1g5cLxAiSqUPRN0lId2oVGwr5skNCLWUFdz
+         Gu8CKZnofeF84Yz/GBGa809B73a5UvsrbLnoR9OGVtS3ZuSJQWREZCr1SjR4SS4b21Az
+         wu8eU2RNS6MPI3ntN4nTXWz+mQHYiRq0tq0tpiaF8SnB9i88PZfXtMXTo2Fz6GVzqoMB
+         PmtQo8BU8FoYwi9KuqLAgrBIT6se+46e4qPpUsvybnDO5ypEtz8YZMSVIKm8v6/vxHPE
+         QgS0o3kzdwTAFWS8Rgzs7zyZsHGR3V1dzdhenFGx+KC78kkBI1nJa33OLx1qDYy/nJ4m
+         4dtw==
+X-Gm-Message-State: ACrzQf1dSZZSZt1wMZVU9bTRXeokF7X48TeN9abQsUJq44GaGvlwWUCI
+        cWm8+m7VoHH4TrTG9zydQFR4KA==
+X-Google-Smtp-Source: AMsMyM6B0W0l3KqZ9xRH+gtlHucDMeOI7PEKTYEscM5ZWSFSyC5tIOLxpnuRvNgZsHoxQ2HzMi+yNQ==
+X-Received: by 2002:a2e:bc11:0:b0:277:6018:6f07 with SMTP id b17-20020a2ebc11000000b0027760186f07mr12809516ljf.16.1667833347512;
+        Mon, 07 Nov 2022 07:02:27 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id x23-20020ac24897000000b0048aee825e2esm1272499lfc.282.2022.11.07.07.02.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 07:02:26 -0800 (PST)
+Message-ID: <88c55827-067c-e6b1-a841-be70c05b7fc4@linaro.org>
+Date:   Mon, 7 Nov 2022 16:02:24 +0100
 MIME-Version: 1.0
-Date:   Mon, 7 Nov 2022 14:57:19 +0000
-Message-ID: <CABnWg9uPL0qCat4Sw2uqj6-KN-OxPqGOjw+SR1bBVvGrmCBTZQ@mail.gmail.com>
-Subject: Re: [PATCH v3 06/12] drm/mediatek: hdmi: add frame_colorimetry flag
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        mac.shen@mediatek.com, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: Update soundwire slave node
+ names
+Content-Language: en-US
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, swboyd@chromium.org, judyhsiao@chromium.org,
+        alsa-devel@alsa-project.org, quic_rjendra@quicinc.com,
+        konrad.dybcio@somainline.org, mka@chromium.org
+Cc:     Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+References: <1667830844-31566-1-git-send-email-quic_srivasam@quicinc.com>
+ <1667830844-31566-2-git-send-email-quic_srivasam@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1667830844-31566-2-git-send-email-quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Nov 2022 12:09, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
->> Add a flag to indicate support for frame colorimetry.
->>
->> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 11 +++++++++++
->>   drivers/gpu/drm/mediatek/mtk_hdmi_common.h |  1 +
->>   2 files changed, 12 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> index 3635ca66817b..933c51b5f6d7 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> @@ -120,6 +120,17 @@ int mtk_hdmi_setup_avi_infoframe(struct mtk_hdmi *hdmi, u8 *buffer, size_t bufsz
->>   		return err;
->>   	}
->>
->> +	if (hdmi->conf->has_frame_colorimetry) {
->> +		frame.colorimetry = hdmi->colorimtery;
->
->Typo: s/colorimtery/colorimetry/g
->
->...also, I don't see this being really used? In hdmi-v2 you're setting this param
->to HDMI_COLORIMETRY_NONE and quantization ranges to always the same default value.
->
->I wonder if this is really needed at this point.
->
->Regards,
->Angelo
+On 07/11/2022 15:20, Srinivasa Rao Mandadapu wrote:
+> Update soundwire slave nodes of WSA speaker to match with
+> dt-bindings pattern properties regular expression.
+> 
+> This modifiction is required to avoid dtbs-check errors
+> occurred with qcom,soundwire.yaml.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+> Signed-off-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts             | 4 ++--
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 4 ++--
+>  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 4 ++--
+>  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts     | 4 ++--
+>  arch/arm64/boot/dts/qcom/sm8250-mtp.dts              | 4 ++--
+>  5 files changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 2c08500..983e8a9 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1007,7 +1007,7 @@
+>  };
+>  
+>  &swr0 {
+> -	left_spkr: wsa8810-left {
+> +	left_spkr: wsa8810@0,3 {
 
-I'll see if I can make something work without this boolean.
+While changing it, make the node names generic, so:
 
-Thx,
-Guillaume.
+speaker@0,3
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+>  		compatible = "sdw10217211000";
+>  		reg = <0 3>;
+>  		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
+> @@ -1016,7 +1016,7 @@
+>  		#sound-dai-cells = <0>;
+>  	};
+>  
+> -	right_spkr: wsa8810-right {
+> +	right_spkr: wsa8810@0,4 {
+
+speaker@0,4
+
+and so on...
+
+Best regards,
+Krzysztof
+
