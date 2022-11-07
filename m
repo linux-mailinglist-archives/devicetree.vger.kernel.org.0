@@ -2,85 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AD5261FD01
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:13:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97AE361FD07
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:14:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233098AbiKGSM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:12:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52300 "EHLO
+        id S232364AbiKGSOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:14:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233113AbiKGSMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:12:40 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34AD27CF3;
-        Mon,  7 Nov 2022 10:11:16 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id f4-20020a056830264400b0066c8e56828aso5296816otu.1;
-        Mon, 07 Nov 2022 10:11:16 -0800 (PST)
+        with ESMTP id S233002AbiKGSNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:13:43 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF8524973
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:12:31 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id a13so18961565edj.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:12:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=7vy3t5kbrzPjpdQusaDe/qP73aspKCTGfj7z6ORzdgY=;
+        b=cDv8auhtTvoqm4hxu39M9iJQmX6h3VmdR/dy12zJqgoxSKbPh/6ALAqQOyAY3DgWcN
+         vjul/joY1QIREYkeyGuOtZAHrIOnJTMuQgejXET/AF6vOB+ONqpiLclQTdGMh5KA+f92
+         1bRl4AO76MRNV5EXV6PhcVC/0xCgPIr0FuuQQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0D6OVZD+rAPMP/hoh0bQusyWB1khk2iGM0R5V/xmNp8=;
-        b=WEJh3EcLIqjrq0obrfMddmNRCLa2Lwcy8acRwE7lkDSboT3KOQpsK7obTKh91NmOHY
-         aY/9jzw780laCauMQFkSgPf5AEHbPt2pZnXPy/hp1lXVZ7RVfTxCjG3/UblN/WsDq/vJ
-         ypG2Rc+mfRy+gNDIL5um4TtEyom/IkWpbyBg0La+3O/n9NpZJMmWrFX6oJDn2h+FsXCa
-         AzmJqVnOU4tFeHTYpJlzO85adjdYZgK/hInK02kEWVMm8wwpvHzIXqourC0pN/IWIhjW
-         Uy7gqmv4wGwG40KO1WuTnvleXmvo4gc5zwELVfEP8CrpxWBbLvfn8lofBt24wNgRtkQl
-         JEsw==
-X-Gm-Message-State: ANoB5pmKd0xIfr4y3x0TijG6JFhjhuhFwSR7tdgBESIP1bBDmWf0+VVe
-        eroeeNZgZ9tcnCw/XRGe7A==
-X-Google-Smtp-Source: AA0mqf5nHAp98AhScX8C1mpbn4jbE9ZM7lRdvCtv3X/Tkj5j0eJpBHjPGhLgkjp4BgSK7Is8vFsCDA==
-X-Received: by 2002:a9d:62cb:0:b0:66c:e6c9:8704 with SMTP id z11-20020a9d62cb000000b0066ce6c98704mr3274349otk.61.1667844675752;
-        Mon, 07 Nov 2022 10:11:15 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x12-20020a05683000cc00b0065c2c46077dsm3163833oto.67.2022.11.07.10.11.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 10:11:15 -0800 (PST)
-Received: (nullmailer pid 1353624 invoked by uid 1000);
-        Mon, 07 Nov 2022 18:11:17 -0000
-Date:   Mon, 7 Nov 2022 12:11:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
-        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 10/13] dt-bindings: iio: temperature: ltc2983:
- describe broken mux delay property
-Message-ID: <166784467673.1353361.2438556555715268552.robh@kernel.org>
-References: <20221103130041.2153295-1-demonsingur@gmail.com>
- <20221103130041.2153295-11-demonsingur@gmail.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7vy3t5kbrzPjpdQusaDe/qP73aspKCTGfj7z6ORzdgY=;
+        b=iiSz8nzGgU3DBpni0K1CMD+63l/kUSHVjcY89CG3RAoMFlubLlbUBuO2pQHi3iWGk6
+         ML0oN/rznFAcTJg/qgJGuYiyJhdufeFur6Tr0yh14FcBpmI9Hk1UhtcZgdZjH8FxXazg
+         uKlJRDpb4+io2NFTaaPF9s43RO3qVnl8H21LMi9SmyPS7OCpVZKAtl6XdYQxEcExYxN0
+         4T0QNz2ZiS0mzWUK1ZizGRxnFfwFg4Z7sw35beKNQ7379rc0JmpLHWpUHRB4Zwk/oaKX
+         oEDP4Gt5hopG2rIwo3JLZEuvPVpPVSVDekDbj7MqUWNPRRWDHaoY35yHtp8CGuokD2z9
+         YFvA==
+X-Gm-Message-State: ACrzQf3hhRjAT9iDKGvN6EaMGAE93Zy/s3VN7Qx+PtfY0UTggOx9m4IP
+        avgpsTmTRroBIr5itRBL4uvF2yckdWlgEF7a
+X-Google-Smtp-Source: AMsMyM5x6r6+bx/U9tQParIOtvK4hIkNya5sCZO1NP2RxrR6VCYoLueNf9p8Pp3KETVyvPZaptZYWA==
+X-Received: by 2002:a05:6402:1619:b0:462:b059:9655 with SMTP id f25-20020a056402161900b00462b0599655mr50710194edv.316.1667844750169;
+        Mon, 07 Nov 2022 10:12:30 -0800 (PST)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
+        by smtp.gmail.com with ESMTPSA id b3-20020a17090630c300b007ae0fde7a9asm3630154ejb.201.2022.11.07.10.12.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 10:12:28 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id j15so17472598wrq.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:12:28 -0800 (PST)
+X-Received: by 2002:adf:d1ec:0:b0:236:880f:2adf with SMTP id
+ g12-20020adfd1ec000000b00236880f2adfmr32978773wrd.617.1667844748035; Mon, 07
+ Nov 2022 10:12:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221103130041.2153295-11-demonsingur@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20221107173954.v11.5.I4c6d97e6f3cf8cdc691d2d4519883c3018dd4372@changeid>
+In-Reply-To: <20221107173954.v11.5.I4c6d97e6f3cf8cdc691d2d4519883c3018dd4372@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 7 Nov 2022 10:12:16 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UQc1L3z2Z7sfV1RnQS3c6RStXmighAC1OBPgYEAsPF6g@mail.gmail.com>
+Message-ID: <CAD=FV=UQc1L3z2Z7sfV1RnQS3c6RStXmighAC1OBPgYEAsPF6g@mail.gmail.com>
+Subject: Re: [PATCH v11 5/5] arm64: dts: qcom: sc7280: sort out the "Status"
+ to last property with sc7280-herobrine-audio-rt5682.dtsi
+To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi
 
-On Thu, 03 Nov 2022 15:00:38 +0200, Cosmin Tanislav wrote:
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> 
-> The 'adi,mux-delay-config-us' property is broken. It was supposed to
-> be in us, but the value is actually written directly to the register.
-> Describe the fact that it is broken and how it actually works.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+On Mon, Nov 7, 2022 at 1:46 AM Sheng-Liang Pan
+<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
+>
+> To keep diffs clean, sort out "Status" to last property.
+>
+> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
 > ---
->  .../devicetree/bindings/iio/temperature/adi,ltc2983.yaml       | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+>
+> Changes in v11:
+> - sort out the "Status" property with sc7280-herobrine-audio-rt5682.dtsi
+>
+>  .../dts/qcom/sc7280-herobrine-audio-rt5682.dtsi    | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks!
+
+I probably would have also removed the 'status = "okay";' from the
+top-level sound node in this patch, but that can always be done later.
+Certainly your patch is a step forward. :-)
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
