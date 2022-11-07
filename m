@@ -2,115 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE5A761FD28
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:17:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECACA61FD35
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:18:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232690AbiKGSRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:17:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60626 "EHLO
+        id S233035AbiKGSSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:18:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233182AbiKGSQq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:16:46 -0500
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD192102B
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:15:36 -0800 (PST)
-Received: by mail-ej1-x636.google.com with SMTP id f5so32425323ejc.5
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:15:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7pmt2HngsIty5fjoD5/n01C+C3m5PcZ1nRjgP9AEiKY=;
-        b=H6Pt1iEIO9Je8Lj5yki7ij1JghQLmX72gIhqHI+1jUaHVV13J3SINQWIVw3YubeLVp
-         C+nZadw2za/hQ+csoF5oGR5WOqHGIUMFOx+YyEPuKWNjq0C9+DVkJEnyOUGereMCx0nO
-         F/S8mlzyMxtnsWh3TP8OuxFgLAOtKuNRf5lHc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7pmt2HngsIty5fjoD5/n01C+C3m5PcZ1nRjgP9AEiKY=;
-        b=CXsvJXu3WDUFuIjU7bSTgSCwavgtbhfLq7B3VV4740WNllx2uG7uffckIAK6wVMRVQ
-         hZPOg/BrUWV14aGnXONBj9xRbPfSgQVw2y+g7RD166MBxg4baKgdNiEwTG68g4SmzRKf
-         Q3g5mTO08EuMH9miyS068N+6o0C58O7Bt+rbWndw7KquQu5T6pTkriZfShrWtkBw3v0t
-         ooLVu8kOBzo7Ipg38ONM46rorA5/jbbo360mgbyvc3j05gvo0kitit0RZxGuWxZnV4oF
-         6++RxttGwUL8WnB/ntlJ3YYSDNYAFXnXnumQQtgrajPTjW6pLy/xHLbFTZcQ4uOlkiqj
-         hWaQ==
-X-Gm-Message-State: ACrzQf2AuHm+B1orJmPHVh5NRa6uGHyKC4y9s1qqbfY4gy8ZB2g65+zb
-        9oN18WYGoY6qOxtzM/dl+urbu9UTovLHsRDM
-X-Google-Smtp-Source: AMsMyM5UlUop9zYMoIvfcwzFUp93uQyAVV1Ha3uSdPOv/hCtLELBHMaXxipcPBQuH3FzeST37KTAmw==
-X-Received: by 2002:a17:906:899d:b0:7ad:cf09:96be with SMTP id gg29-20020a170906899d00b007adcf0996bemr42866882ejc.221.1667844935172;
-        Mon, 07 Nov 2022 10:15:35 -0800 (PST)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com. [209.85.128.52])
-        by smtp.gmail.com with ESMTPSA id 13-20020a170906318d00b00734bfab4d59sm3777525ejy.170.2022.11.07.10.15.33
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:15:33 -0800 (PST)
-Received: by mail-wm1-f52.google.com with SMTP id a11-20020a05600c2d4b00b003cf6f5fd9f1so7686190wmg.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:15:33 -0800 (PST)
-X-Received: by 2002:a05:600c:4486:b0:3cf:6e1d:f4a5 with SMTP id
- e6-20020a05600c448600b003cf6e1df4a5mr31342979wmo.85.1667844932555; Mon, 07
- Nov 2022 10:15:32 -0800 (PST)
+        with ESMTP id S233052AbiKGSSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:18:11 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A59E83;
+        Mon,  7 Nov 2022 10:17:03 -0800 (PST)
+Received: from mercury (dyndsl-091-096-035-235.ewe-ip-backbone.de [91.96.35.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8FEFF660036C;
+        Mon,  7 Nov 2022 18:17:01 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667845021;
+        bh=ZJRCSTiIUO7mMlaT9jpPOoTTmzS39xNBMQ8EmypLwBA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U33QTZRJX2uJPdMv3wmwQ9EChRh5z+v50X2F87vEKs8gUJ08WonXXRoHPp8bCB7rv
+         dLt6bYmy7Atc9+/CxkzwX0cojzhBM6g9LhIhIQJYUC2+ukjDmR3z5aQc4WuFNpt3IL
+         AWzTckFvOSE6Ha35P05mMLnTc3n+qiRDU8ysF6MtYccmo2XuGKiT0ii3++H+4BDfWD
+         pxVXnJc7bK7LZQojAUOTvU61+CtmhXkgBeBvn07KsRM6VnNl8ovTo7Dzh6GhnB5qoY
+         OF8YDWSgPsaL4nAczFXPzkcBvSe5jNYdXYv6V7aUGi6RZjFpewXohaqeUfSB70CsgO
+         +bhMbAuv5clfg==
+Received: by mercury (Postfix, from userid 1000)
+        id 6CBF51069DE3; Mon,  7 Nov 2022 19:16:58 +0100 (CET)
+Date:   Mon, 7 Nov 2022 19:16:58 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCHv3 0/9] RK3588 Clock and Reset Support
+Message-ID: <20221107181658.uz2om46wqzlj2m5f@mercury.elektranox.org>
+References: <20221018151407.63395-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20221107173954.v11.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
-In-Reply-To: <20221107173954.v11.4.I9718ac3622fa550e432209ae5c95c87b873a0f87@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 7 Nov 2022 10:15:21 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=Uc78wH9A1bev4L=-kje00RNu-AQu87zLK6Sx4AdxDe8A@mail.gmail.com>
-Message-ID: <CAD=FV=Uc78wH9A1bev4L=-kje00RNu-AQu87zLK6Sx4AdxDe8A@mail.gmail.com>
-Subject: Re: [PATCH v11 4/5] arm64: dts: qcom: sc7280: add sc7280-herobrine-audio-rt5682-3mic3.dtsi
- for evoker
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fjipx7j3dexdj2fi"
+Content-Disposition: inline
+In-Reply-To: <20221018151407.63395-1-sebastian.reichel@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+
+--fjipx7j3dexdj2fi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
 Hi,
 
-On Mon, Nov 7, 2022 at 1:45 AM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> +&lpass_va_macro {
-> +       vdd-micb-supply = <&pp1800_l2c>;
-> +       pinctrl-0 = <&lpass_dmic01_clk>, <&lpass_dmic01_data>, <&lpass_dmic23_clk>,
-> +                       <&lpass_dmic23_data>;
-> +
-> +       status = "okay";
-> +};
-> +
-> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
-> +
-> +&lpass_dmic01_clk {
-> +       drive-strength = <8>;
-> +       bias-disable;
-> +};
-> +
-> +&lpass_dmic01_clk_sleep {
-> +       drive-strength = <2>;
-> +};
+On Tue, Oct 18, 2022 at 05:13:58PM +0200, Sebastian Reichel wrote:
+> Hi,
+>=20
+> This has been part of a bigger patchset adding basic rk3588 support.
+> Since that gets more and more out of hand, I'm now sending patches
+> for each subsystem as individual patchset.
+>=20
+> Changes since PATCHv2:
+>  * https://lore.kernel.org/all/20220930153857.299396-1-sebastian.reichel@=
+collabora.com/
+>  * rebased to v6.1-rc1
+>  * define rk3588_rst_init() in clk.h to fix build warning
+>  * add input clocks to the binding
+>  * add some more rates from the rate table (merged downstream fix)
+>  * fix input of mux_700m_400m_200m_24m_p clock (merged downstream fix)
+>=20
+> Changes since PATCHv1:
+>  * https://lore.kernel.org/all/20220623160329.239501-1-sebastian.reichel@=
+collabora.com/
+>  * split dt-binding header addition into its own patch (requested by Heik=
+o)
+>  * split dt-binding header into clock and reset one (requested by Krzyszt=
+of)
+>  * use reset identifier instead of register offset (requested by Krzyszto=
+f)
+>   * (involves adding lookup table support to rockchip CRU reset code)
+>  * use linear, gapless clock identifier (requested by Krzysztof)
+>  * reword the DT binding description
+>=20
+> Changes since PATCHv0:
+>  * https://lore.kernel.org/all/20220504213251.264819-1-sebastian.reichel@=
+collabora.com/
+>  * Sync'd with latest downstream changes
+>  * Update bindings according to Rob's comments, except for license
+>    (no feedback from Rockchip)
+>=20
+> -- Sebastian
+>=20
+> Elaine Zhang (5):
+>   dt-bindings: clock: add rk3588 cru bindings
+>   clk: rockchip: add register offset of the cores select parent
+>   clk: rockchip: add pll type for RK3588
+>   clk: rockchip: clk-cpu: add mux setting for cpu change frequency
+>   clk: rockchip: add clock controller for the RK3588
+>=20
+> Sebastian Reichel (4):
+>   dt-bindings: clock: add rk3588 clock definitions
+>   dt-bindings: reset: add rk3588 reset definitions
+>   clk: rockchip: simplify rockchip_clk_add_lookup
+>   clk: rockchip: add lookup table support
+>=20
+>  .../bindings/clock/rockchip,rk3588-cru.yaml   |   71 +
+>  drivers/clk/rockchip/Kconfig                  |    8 +
+>  drivers/clk/rockchip/Makefile                 |    1 +
+>  drivers/clk/rockchip/clk-cpu.c                |   69 +-
+>  drivers/clk/rockchip/clk-pll.c                |  218 +-
+>  drivers/clk/rockchip/clk-rk3588.c             | 2538 +++++++++++++++++
+>  drivers/clk/rockchip/clk.c                    |   14 +-
+>  drivers/clk/rockchip/clk.h                    |   95 +-
+>  drivers/clk/rockchip/rst-rk3588.c             |  857 ++++++
+>  drivers/clk/rockchip/softrst.c                |   34 +-
+>  .../dt-bindings/clock/rockchip,rk3588-cru.h   |  766 +++++
+>  .../dt-bindings/reset/rockchip,rk3588-cru.h   |  754 +++++
+>  12 files changed, 5390 insertions(+), 35 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk35=
+88-cru.yaml
+>  create mode 100644 drivers/clk/rockchip/clk-rk3588.c
+>  create mode 100644 drivers/clk/rockchip/rst-rk3588.c
+>  create mode 100644 include/dt-bindings/clock/rockchip,rk3588-cru.h
+>  create mode 100644 include/dt-bindings/reset/rockchip,rk3588-cru.h
 
-All of these "sleep" pinctrl states don't actually do anything useful
-because (currently) nobody refers to them. Off-list I've asked
-Srinivasa (now CCed here) to address this and I think it's fine for
-you to have them here for now and then we can use or remove them all
-at once.
+Can this be merged? It's the last blocker for basic rk3588 support.
 
-In any case, this patch looks good to me now, thanks!
+-- Sebastian
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+--fjipx7j3dexdj2fi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmNpS4sACgkQ2O7X88g7
++pqRxg//X0Vm4/QXcHwCzRzyy8Ib81+HtP+k2uIIvaQDdsob8ctKxrBgIUQE8FG0
+/oP/Bu9CjTcXaC5A9CRhYwOCvJg63q5kEVomsYdJDXuAVxO14Yy4pA9W7x/j0K48
+CuECS467T2gxJcI9S6GscYweULNc+j1/gGPChiWRuDXvTwS44hMMUz1KknHWNXEd
+g0ivb023UGHGvBDmR6tU8faMC+l1S+68zk+at3Ia8dC/U/40ZhNY95/fx4WfdD+A
+BZP1S2ids55pZqZBsDC9gXkWohMxBt/PgJlFkaNlARG/8H7X029imh83hpdczSNg
+ecNsV6Q651Q/Vhy4qxyd2/Nw5D6I+gsYQE0e6V1PcdIUseoEAfLaCl3KfVVqqmbJ
+ehmpgt7ud3Xb/80TKpZxP6e4VWlvJ4wTn1zUjG2BMtFF1V6Yin/U9OXA7HHs3org
+FvrXAyFelnWI4GJA1zUrTJeYgbzX9FMl0hd/Gsfok1Ib6s8Ib/0LvDJDaANIm95y
+ZDI+Y5BdtiuA2sOvn782/5yInkwZjLGtBNqfpABFWiucB8rrnSWWfSvoHx2myvyn
+YQp0O2O+KBGQ1gH3bRnFx00dKhPD4F/4bOQV2noamzEyjlMEOAUoIsrfUybRWFq0
++Y7w7LVVPuhE7TpCsOSTcWhzu76zJe5Uw5/KXt/ObH0BaAQox3A=
+=cK7F
+-----END PGP SIGNATURE-----
+
+--fjipx7j3dexdj2fi--
