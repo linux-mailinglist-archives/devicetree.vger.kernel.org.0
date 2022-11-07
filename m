@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2854061F0A9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:31:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1795C61F0AC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:31:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231700AbiKGKbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 05:31:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39658 "EHLO
+        id S231808AbiKGKbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 05:31:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231631AbiKGKbU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:31:20 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEB8714D2E
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 02:31:18 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id u11so15513053ljk.6
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 02:31:18 -0800 (PST)
+        with ESMTP id S231835AbiKGKbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:31:44 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D72715FE1
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 02:31:43 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id b9so15523770ljr.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 02:31:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=phTgWro8ITa1pQy8f5x6b7yFdhBlhdxnWW0xZ/54IDc=;
-        b=mrJgIqkAtBUsHsv6nECf+GO2hcSlXo2Hf4IDo9JTAqThKKzgAS/v+qOj6nT4AbJFWy
-         EainCmCQCNiJ6aFJO+Q62hKYncSPEIynB5LggHOggma5ZvYSGC1MYWRcLjqCZU7dC/tB
-         LER1CHM8dHn8x/ErXrirz8679ljXdqth5cbjDpdW+sRXaLHoym+LNr0pZ4VfSap6Mlu5
-         Dbfb4GXQE1RvNmmzCboD9LFatoNXQ7ymo8GtvVx/VjdwaMXQ8sDH5r/rNaDN2ACs5Tuv
-         ArijT/4hlGreLZhn6Hf/Cyhp9cmPzmMZRmHDDudgoG+6H1piwr6Drh26bNlkyMThw4q8
-         BjVA==
+        bh=YcFOjmctkr6rYOa4TEefoY5zxAvgksDzbfZQgzrcKM4=;
+        b=B1DEMFyZ6+KWycueEAoyQnmlEVYFEzruBtSCQNl6W4STY/1tL3LXmLxrDL8HZY8eiK
+         C5BCPmX+DogIgWkkVy3hS9J4ugUEJldAwFkNFuBfzkID8RSHfcA4G/ps6p7lLkE3tZq/
+         iu/uDSmVsafbPzgWFNkIH+YMfM4iA8QYQiR7Y4feW2+sog4DYrWInQvlIyLsebByATeU
+         ri2Dkv+DGMjUEaeBwWy6ZvF6hTapi8C5uJLPVE+9Y0VGsYA0I/uhJkj7J4L1Bjd0O4gv
+         Cqj7aYQGdPpDYqnWPl3kUAXxGg5+K+4KQTbFqQyj5js3PrKRoCpwxa4T+LfoTbQszy3H
+         L8Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=phTgWro8ITa1pQy8f5x6b7yFdhBlhdxnWW0xZ/54IDc=;
-        b=zGi0ywKWrU1yKR7MGHuPZieh1ZFz1XjP8I9wQkcAssFrZonk5UVs7L4ri1cafOPwMy
-         oDISuukr1ZLLg7ptlGz60qlkk6kgo5DXgaUHSuoumA0OcySXEsH9yGkTUO7aG3lxZfKb
-         fSvzKsvW06HpvI2ZRAViVH7ADwcTQQJ+ugNqhspxPeBJWooVoqrHvYSTKgaXWdUUbUwI
-         JwgC7QAI9ebOX7Z6Y6l9rKJd1JoIgQtfwV2cLAqVKJ/rkO55YVQrMs+az/9pgkubS4Kq
-         q6FpQfI3s5YDUDWkeJIdUC7o9iKN7+WhPSZ+JNZC9qIIZwWdpWhyYxp0VsSuNf3z96yx
-         yfIw==
-X-Gm-Message-State: ACrzQf127OWyB0xn4flyVxCLFLYbTdpLdkMqw3uFkkBPrX4U0R4dr/0X
-        zKqU620DZxqTnzQcuP37LBzhUA==
-X-Google-Smtp-Source: AMsMyM6VXgpY256mT1s4LKd9dVye8Gc7XdH/fOoWTc1d0zgP4LtokebEjtxzL+i91dICVSFInE5dqQ==
-X-Received: by 2002:a05:651c:118a:b0:277:5ae6:4b67 with SMTP id w10-20020a05651c118a00b002775ae64b67mr13140015ljo.414.1667817077358;
-        Mon, 07 Nov 2022 02:31:17 -0800 (PST)
+        bh=YcFOjmctkr6rYOa4TEefoY5zxAvgksDzbfZQgzrcKM4=;
+        b=wysp2PG3Mp0oflivRyFVpsiN9+fFBdELDX5ivIa4YJmHasXh0eEWR6R+H6kWGfoany
+         qNmQ77UmFJm5t/FLw4wBWm5d+6K1ED9N/2T3XSA5asEEsY6ZapMhQ9Rz1Z4sterO50VD
+         36utwYUJ7O2FG0CCH2VGGgC8t8PVL53qWvYXf7NhNxNPRN+Kk6TqZGvUHwBHnTiVaDrS
+         6v2V/t8YyXrFCbMiCWDuRYmkb7zRtZMxQaJn+KHmQIBKtI1fCVQq4zcjVNsWvV5M4PJl
+         +Nw+kZncyp9Kw2ybiL+fHpOVy1MPj+GnGSl9xlyOVoBRNg79BB9bQMae2YBZ+i4GoZL4
+         ByZQ==
+X-Gm-Message-State: ACrzQf2KTDtuDl7nYPgB5JeeQcEcPvPw0bYIXaCJ9c/ZBUJE+TjBIQtr
+        A/Ov9TQzFb1lGkj+Oz1MJrFqJA==
+X-Google-Smtp-Source: AMsMyM7BunC27yK9z8WV5Y8viQSNCg32AdUaXlN4SAUNGlf45/Ul4zn7RWnRhDwTBinYqKnD26SZpQ==
+X-Received: by 2002:a05:651c:1786:b0:26d:aaec:1487 with SMTP id bn6-20020a05651c178600b0026daaec1487mr17428991ljb.287.1667817101769;
+        Mon, 07 Nov 2022 02:31:41 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id w3-20020a05651204c300b004ab4ebb5d92sm1169012lfq.5.2022.11.07.02.31.15
+        by smtp.gmail.com with ESMTPSA id a21-20020ac25e75000000b004991437990esm1172618lfr.11.2022.11.07.02.31.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 02:31:16 -0800 (PST)
-Message-ID: <85bdc42b-eb1e-916e-2869-62e145bc00e8@linaro.org>
-Date:   Mon, 7 Nov 2022 11:31:15 +0100
+        Mon, 07 Nov 2022 02:31:41 -0800 (PST)
+Message-ID: <e8e2db6a-33ed-89fd-ef1a-4cfee72cb3f7@linaro.org>
+Date:   Mon, 7 Nov 2022 11:31:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: hk10: use "okay" instead of "ok"
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: hk10: use GPIO flags for tlmm
 Content-Language: en-US
 To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@somainline.org,
@@ -62,13 +62,15 @@ To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20221107092930.33325-1-robimarko@gmail.com>
+ <20221107092930.33325-2-robimarko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107092930.33325-1-robimarko@gmail.com>
+In-Reply-To: <20221107092930.33325-2-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,12 +78,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/11/2022 10:29, Robert Marko wrote:
-> Use "okay" instead of "ok" in USB nodes as "ok" is deprecated.
+> Use respective GPIO_ACTIVE_LOW/HIGH flags for tlmm GPIOs instead of
+> harcoding the cell value.
 > 
 > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
