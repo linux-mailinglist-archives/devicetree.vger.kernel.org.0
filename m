@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE53C61F470
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 14:35:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37B4261F483
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 14:41:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231365AbiKGNfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 08:35:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36428 "EHLO
+        id S231365AbiKGNlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 08:41:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbiKGNfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 08:35:51 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793CF6242
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 05:35:50 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id u11so16276380ljk.6
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 05:35:50 -0800 (PST)
+        with ESMTP id S231194AbiKGNlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 08:41:11 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFB701B78D
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 05:41:10 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id r14so17613848edc.7
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 05:41:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2X11AN1SE9WqF7OA+kOwYlhtKODo1MfSxaBEdQklt34=;
-        b=NsfpxFs2pgdaHF4BIFWkwJPEWJ9Ade5lEW522ecITl/cn6xLvG0BDAsAQw4e8QTZ4F
-         dCpQc2ePGst74bNWHTGLRV+fE2LG+kjYmyPILoQcJYPPIUI4c5SLlOMlonYus2jPoqAl
-         mkf53PuA7MgDlMVjXGcNpx+aPKnxVYDEpkMd221dIpRYTSKSzGzEZ8fm+BGDz20L4Ujw
-         LcBkXxc5lfd0n+FhEtpeSvm+ISJMLKgaASEiCKta3/39kd/iJUjvFbnXwxmm/xU9M8Q3
-         wmVBuPy9zX+4e46dJCxGFnMv7qjcFqd/Y7aYBp3g34KnHLr///6DTTHjLxBZegmoGTgA
-         v+rA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WZVb2A33IMLfgWmBsOlcFLwdeqdo9EEDNJyz0MDN2cQ=;
+        b=cL92wTW57WsdB72r0hq7nHWwXz1tGXe/9W1CPZjfQBms4V5xnHq4k7xNsy0EaJydil
+         rTwDfZwjGrbDSKi0NQr9fThIcFoHyo8ckD1Qr40AYyuUj62GlTulowNT7pwrqyWgHMzJ
+         OZcD+j/ykNqdItvpNb7QBMlRgcxD6t7yZvL7mIddIZn6Zt0WzHJGOaW1KERoqAomWgWj
+         Z6f4v+bwRZobHhB0mcDFc9WHMthQczU4+N/rUdKdlY3LweVGiehIXB/ubeLS3lsIA5FD
+         nRVZeyJ10P+cBneFBTNER4XvLdY/HWf/11PgbIfq8iHY40M1IgJq4nkPMkRMWJ4iHaxV
+         LtAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2X11AN1SE9WqF7OA+kOwYlhtKODo1MfSxaBEdQklt34=;
-        b=mzBZkk4Iy88cK0oMAzgRuLJJjoE+easgDZ7VNpml9FzR/ZR5EmChxvTmxHSk8E1cH6
-         t1XsA7yhfZl9Iqgnm4Kc5JjqYl4H5DdABX0gBKcrydoIpqQAXpVy/sjGIb9Qi58/WNeY
-         iu5UcSLJJKS6EBqtheLCTVGsWfoshDqNdaC6czgpb49YD4g0q3xImhAleURRm6W8vVUd
-         zRZuivo8XOXjqAn8juhGN6NBNluSmCiq5cFAc3l0U4qfbHxUhkJ3ITrlU8zWS0SsW0A+
-         CR6vedpKQfJj5ag6FAsz2+Wlxvv4Vd8AnFqSNPp1Mcr+w7qvXlqDpBlrkMzENCJKRR6n
-         VtLQ==
-X-Gm-Message-State: ACrzQf3ZXQH5pceYIHxcGt6sLv+zP7jskL+K03umttxG0g8GoG/HEo5T
-        +U/x+mcJGZTbtGVa3gA3hxxnJA==
-X-Google-Smtp-Source: AMsMyM796nt46SusQqsu1uIL2Q58WRXC8mYoYB4qnqdI4aWn51zoQ6aA+xRQYMVxkMtTY13XG8aZaQ==
-X-Received: by 2002:a2e:a237:0:b0:277:746:62c2 with SMTP id i23-20020a2ea237000000b00277074662c2mr5921036ljm.236.1667828148799;
-        Mon, 07 Nov 2022 05:35:48 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id p19-20020a2eb113000000b0026dfbdfc1ddsm1244075ljl.11.2022.11.07.05.35.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 05:35:48 -0800 (PST)
-Message-ID: <8b56062f-946d-b28d-a050-99dbf4c856df@linaro.org>
-Date:   Mon, 7 Nov 2022 14:35:47 +0100
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WZVb2A33IMLfgWmBsOlcFLwdeqdo9EEDNJyz0MDN2cQ=;
+        b=zCuG7gzlonrKqSR4slCBHZNkDm22GaruOf6eIldxB8S/U7Tz9myWuogm4SYkWay74u
+         3wIHwyOUB4naCB6oDknXyMS0AUaqdTkpdreeGvmnnkrzBy51hqMynCF0c62qUkxLF5t0
+         tIENdFgp3ho1NaN9hAMLed8QyGMewCqAOddQBRp8q021FxZpOz3gSF9p/Z++IBaIin1K
+         vNxyMmbvrtlSHl20NetAkcfmvdvb426CWttwfgJVzpiwM9BKl8mo3Ga541x3iV5pQAqG
+         5y3fG5cf45wbA5tnTCXOxRg4kWDqT1n3FLLBaHd0xfU4xBzni26tOTEXQVDuYfrtTQ7B
+         UZEw==
+X-Gm-Message-State: ACrzQf3szPveAFuFlbCK8aKYAmm1zFpCvBxpgOIoASnMfjufpNxWHzye
+        QM8FSi2KLjBZMTtMft3WDvXrIsFOdpxXOQ==
+X-Google-Smtp-Source: AMsMyM6IStvVzHlDGLoACPHdCP9OigJLMiRCzdx5Ec1Qo5LfLh305jbpatP9y3tc7UCm50YShHwv5g==
+X-Received: by 2002:aa7:c58e:0:b0:461:77b:7bd with SMTP id g14-20020aa7c58e000000b00461077b07bdmr51017634edq.387.1667828469314;
+        Mon, 07 Nov 2022 05:41:09 -0800 (PST)
+Received: from fedora.. ([85.235.10.72])
+        by smtp.gmail.com with ESMTPSA id q8-20020aa7da88000000b004619f024864sm4212389eds.81.2022.11.07.05.41.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 05:41:09 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: ARM: add bindings for the D-Link DIR-890L
+Date:   Mon,  7 Nov 2022 14:41:03 +0100
+Message-Id: <20221107134104.1422169-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH V2 3/3] arm64: dts: ti: k3-am68-sk: Add support for AM68
- SK base board
-Content-Language: en-US
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
-References: <20221107123852.8063-1-sinthu.raja@ti.com>
- <20221107123852.8063-4-sinthu.raja@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107123852.8063-4-sinthu.raja@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,140 +71,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 13:38, Sinthu Raja wrote:
-> From: Sinthu Raja <sinthu.raja@ti.com>
-> 
-> The SK architecture comprises of baseboard and a SOM board. The
-> AM68 Starter Kit's baseboard contains most of the actual connectors,
-> power supply etc. The System on Module (SoM) is plugged on to the base
-> board. Therefore, add support for peripherals brought out in the base
-> board.
-> 
-> Schematics: https://www.ti.com/lit/zip/SPRR463
-> 
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> ---
-> 
-> Changes in V2:
-> *Addressed the review comments:
->  - Updated the commit description.
->  - Updated the regulator nodes: fixedregulator to "regulator-"
->  - Updated the commit $subject to align with rest of the commits.
->  - Dropped the blank lines
->  - Changed the node names that are added with underscore("_") with "-"
-> 
-> V1: https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-3-sinthu.raja@ti.com/
->  
->  arch/arm64/boot/dts/ti/Makefile               |   2 +
->  .../boot/dts/ti/k3-am68-sk-base-board.dts     | 447 ++++++++++++++++++
->  2 files changed, 449 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index 4555a5be2257..eeeebda30e3d 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6528-iot2050-basic-pg2.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced-pg2.dtb
->  
-> +dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
-> +
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
->  
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> new file mode 100644
-> index 000000000000..ad727495e99b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts
-> @@ -0,0 +1,447 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
-> + *
-> + * Base Board: https://www.ti.com/lit/zip/SPRR463
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "k3-am68-sk-som.dtsi"
-> +#include <dt-bindings/net/ti-dp83867.h>
-> +#include <dt-bindings/phy/phy-cadence.h>
-> +#include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/mux/ti-serdes.h>
-> +
-> +/ {
-> +	compatible = "ti,am68-sk", "ti,j721s2";
-> +	model = "Texas Instruments AM68 SK";
-> +
-> +	chosen {
-> +		stdout-path = "serial2:115200n8";
-> +	};
-> +
-> +	aliases {
-> +		serial2 = &main_uart8;
-> +		mmc1 = &main_sdhci1;
-> +		can0 = &mcu_mcan0;
-> +		can1 = &mcu_mcan1;
-> +		can2 = &main_mcan6;
-> +		can3 = &main_mcan7;
-> +	};
-> +
-> +	vusb_main: regulator-vusb-main5v0 {
-> +		/* USB MAIN INPUT 5V DC */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vusb-main5v0";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vsys_3v3: regulator-vsys3v3 {
-> +		/* Output of LM5141 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsys_3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vusb_main>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vdd_mmc1: regulator-sd {
-> +		/* Output of TPS22918 */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_mmc1";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		vin-supply = <&vsys_3v3>;
-> +		gpio = <&exp1 10 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	vdd_sd_dv: gpio-regulator-tlv71033 {
+The DIR-890L is a router similar to DIR-885L just a bit different.
 
-regulator-tlv... not gpio-regulator.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Node names should be generic.
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-> +		/* Output of TLV71033 */
-> +		compatible = "regulator-gpio";
-> +		regulator-name = "tlv71033";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vdd_sd_dv_pins_default>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		vin-supply = <&vsys_3v3>;
-> +		gpios = <&main_gpio0 49 GPIO_ACTIVE_HIGH>;
-> +		states = <1800000 0x0>,
-> +			 <3300000 0x1>;
-> +	};
-> +
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+index 2657f9b82ecd..52b575c40599 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+@@ -66,6 +66,7 @@ properties:
+           - enum:
+               - asus,rt-ac88u
+               - dlink,dir-885l
++              - dlink,dir-890l
+               - linksys,panamera
+               - luxul,abr-4500-v1
+               - luxul,xap-1610-v1
+-- 
+2.34.1
 
