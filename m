@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB1BB61FCE9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2990861FCED
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:10:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbiKGSKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:10:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51682 "EHLO
+        id S232799AbiKGSKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:10:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231810AbiKGSKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:10:22 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC18F60
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:07:53 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id b9so17544045ljr.5
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:07:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xGzbPcp3W+tJwRD4VsrTgzgj+M76xrWtKtvZNseJPN8=;
-        b=tMMQX/EhEI104xOjR7D40/vjZerzqkE7YOM/NNgNo/nOX8DL0BEnIfJl8zcECj+NkE
-         cadU64L/sgpu0wY5ZV96Yb+mkw7ywnJnDe3Ea1hbryuUD0cda2pSZH8DUBYpePhtNQLE
-         P/PBIPCicYFLHAk0r9K9gBwMbq33LLtmNqzH+u+GmHtL5q5Jz6+H2LzOHoXOT84j/Dex
-         CbPy1DuQn+BRFo8C2DK3QwzcsHrm5SG+IGF2PbYJLd8o3AZxPA5pLKoJosrvNh8WdTlo
-         d1IO2cs3FnKgjAT48ArkvYMDoL+gOMDIdeKt0izwaeQPvYut7JBuIwVk/cgorl99m4Qn
-         rfXg==
+        with ESMTP id S232862AbiKGSKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:10:30 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E459C2BC8;
+        Mon,  7 Nov 2022 10:08:08 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id n205so1914044oib.1;
+        Mon, 07 Nov 2022 10:08:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xGzbPcp3W+tJwRD4VsrTgzgj+M76xrWtKtvZNseJPN8=;
-        b=2EVFAWQeERck0DlbidsxjBDA3FH69i/HWNbzRiO4uycqIO32dc7YmfrV52HLxG6p2Z
-         aE0GoHayYrrhr1+r/17hg7D2BPK4w0Mf8UYxKaI8dJm0clmpASNC9GUZJtrIRRIkE/WC
-         1uwCR7sW8MK+PtPEbwt8M7WYWmyEHTXlO5cnHp0a4dKeEHcnwrdXG6lkvw6VhduQ17tg
-         ARsIGbDdDARTRueIiJN/KK6ynB01lL12P22YWOyp4N2n7kbo+weo4zbrXG2rGzkdMUj3
-         eHmkEo8Mw5AEB6Mif7qYJOA5ztm+lqfRp9oHWyhCcJ10PpPvGBMFQ1x9DanIiwM0Fxot
-         3akw==
-X-Gm-Message-State: ACrzQf2lWFLShmkUHNjv5u8voJ5qACjw3NiHQOoM/9/wIN53tAOz2Wr7
-        wI3r/dwbQbE9Deji/jVCXEjs7A==
-X-Google-Smtp-Source: AMsMyM4colD8URbCBCk00gHoMXuiVYuBgD10XMX2nAPdi4CJlhl6C+S4xQpxwkfOU66wmdNcOqemvw==
-X-Received: by 2002:a2e:7303:0:b0:277:c7c:9c61 with SMTP id o3-20020a2e7303000000b002770c7c9c61mr18768509ljc.274.1667844472153;
-        Mon, 07 Nov 2022 10:07:52 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id g13-20020a0565123b8d00b004afac783b5esm1354123lfv.238.2022.11.07.10.07.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:07:51 -0800 (PST)
-Message-ID: <ea5d34cd-61eb-b811-5bc1-9846a642a738@linaro.org>
-Date:   Mon, 7 Nov 2022 19:07:50 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCHv2 1/1] dt-bindings: mmc: sdhci-of-dwcmhsc: Add reset
- support
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x2fAwzmrkHSP0Y+WfKfQdu7RYOEhg49XbOCTpdKi2Co=;
+        b=5brPM52RkGut4K2jXQ01Bt6DmnvlLNnXdkCeyxRtHBOLccGiflQCllwiT3cb4QkGw8
+         sBrZHn985xTTxyQPzCrMUW1BATs3rg4aLG/FKGGNVylZlF4IAPMAnFs/SDQ3X56upRsW
+         DUYZWceOZfflX4T/TAfMBvNyn5BUQP/p+ADU8cir16d03YeB49H+FguawL9MhYzXJQ+o
+         XUqtoprOYa2mtYfyn6iXbemJOAzoz6bTKv4l50vW9V0oPQGiBKC41UeVgLlb0yLSBeIh
+         A8Glh25jvh2jrX5zgGDsHIAyjS42qIlB1Vg1/ArLS9JvuhvL2s94Rt5wsIhvU6lXdex3
+         LURw==
+X-Gm-Message-State: ACrzQf0mffcFKKdr/Lj+dcj/P4MLkiq8cETHjtZhv36yXdVty5W35e78
+        Cire+8JrzythInllmq/rvl7igvioNA==
+X-Google-Smtp-Source: AMsMyM5C0EVui3Rxf5LKhczxtVBOV+fkU6/wnetbywNsyVf6MG6toKebB33pQil+DrTuj8zDG1CzQQ==
+X-Received: by 2002:a05:6808:1248:b0:354:2c04:c35b with SMTP id o8-20020a056808124800b003542c04c35bmr34693365oiv.143.1667844488069;
+        Mon, 07 Nov 2022 10:08:08 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id cm5-20020a056870b60500b0010d7242b623sm3415585oab.21.2022.11.07.10.08.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 10:08:07 -0800 (PST)
+Received: (nullmailer pid 1316731 invoked by uid 1000);
+        Mon, 07 Nov 2022 18:08:09 -0000
+Date:   Mon, 7 Nov 2022 12:08:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jisheng Zhang <jszhang@kernel.org>, linux-mmc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@collabora.com
-References: <20221107173310.60503-1-sebastian.reichel@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107173310.60503-1-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree@vger.kernel.org,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v4 08/13] dt-bindings: iio: temperature: ltc2983: change
+ default excitation for custom thermistors
+Message-ID: <166784448804.1315737.13515754745039297465.robh@kernel.org>
+References: <20221103130041.2153295-1-demonsingur@gmail.com>
+ <20221103130041.2153295-9-demonsingur@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221103130041.2153295-9-demonsingur@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 18:33, Sebastian Reichel wrote:
-> Properly describe reset related properties in the binding.
+
+On Thu, 03 Nov 2022 15:00:36 +0200, Cosmin Tanislav wrote:
+> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Excitation cannot be set to auto-range when using a custom thermistor
+> or Steinhart sensor type. Default it to 1000nA to match the driver
+> and remove the auto-range value from the enum.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 > ---
+>  .../bindings/iio/temperature/adi,ltc2983.yaml          | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Rob Herring <robh@kernel.org>
