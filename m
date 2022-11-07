@@ -2,260 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A71D161FA10
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 17:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C05F861F834
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 17:03:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232108AbiKGQiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 11:38:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35530 "EHLO
+        id S231450AbiKGQDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 11:03:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231302AbiKGQiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 11:38:17 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 244B9CDA;
-        Mon,  7 Nov 2022 08:38:16 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F14141FB;
-        Mon,  7 Nov 2022 08:38:21 -0800 (PST)
-Received: from pierre123.arm.com (pierre123.nice.arm.com [10.34.100.128])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C69D73F534;
-        Mon,  7 Nov 2022 08:38:00 -0800 (PST)
-From:   Pierre Gondois <pierre.gondois@arm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Pierre Gondois <pierre.gondois@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230434AbiKGQDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 11:03:55 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565E0646A;
+        Mon,  7 Nov 2022 08:03:53 -0800 (PST)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id DF13E80705;
+        Mon,  7 Nov 2022 17:03:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1667837031;
+        bh=npYaDFsNI6WNDngxPTaMW7qxIj6XNWcAhE4z8/9Z3ns=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NoelKcAy/1BxHzRIlRmb3IzlavJyBdFLhfv3UnQ+X9fL2sIpPJ/AeuGrBmG6akLu1
+         Uo/Mf10Veby7mmr2mPBg8renR3LQ+HMzN0/nBkyZuyeWsC5afG6tWi4qaBPu2bAyA1
+         IEXuRR8jTUPeONfd9FmfHHD0l2h9WwTBn0OytW7M0Szn7L1igA5AF7Gt8Xyfr4bjMl
+         A3fPu+K0u+Sn9VrEAwMFOu90lYqbSUN5CLZFxzStiLBBMaBzVgQ7JfHJ/YQa8WbwU5
+         Fbi8mrt82roKMVorXRXqEFVRDyWNeu+5OTHrgSNy7ooyyOJeRQt5P1RxL6UOIuAU9l
+         G/1TpcFjaw55g==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Tsahee Zidenberg <tsahee@annapurnalabs.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Brijesh Singh <brijeshkumar.singh@amd.com>,
-        Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Chester Lin <clin@suse.com>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>,
-        NXP S32 Linux Team <s32@nxp.com>,
-        Wei Xu <xuwei5@hisilicon.com>, Chanho Min <chanho.min@lge.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Daniel Machon <daniel.machon@microchip.com>,
-        UNGLinuxDriver@microchip.com, Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Abel Vesa <abelvesa@kernel.org>,
-        Zhou Peng <eagle.zhou@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Ming Qian <ming.qian@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Adam Ford <aford173@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>, Li Jun <jun.li@nxp.com>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        David Heidelberg <david@ixit.cz>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Liu Ying <victor.liu@nxp.com>, Wei Fang <wei.fang@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
-        Sameer Pujar <spujar@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        Akhil R <akhilrajeev@nvidia.com>,
-        Sumit Gupta <sumitg@nvidia.com>,
-        Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
-        Vidya Sagar <vidyas@nvidia.com>,
-        Ashish Mhetre <amhetre@nvidia.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Aswani Reddy <aswani.reddy@samsung.com>,
-        Shashank Prashar <s.prashar@samsung.com>,
-        Arjun K V <arjun.kv@samsung.com>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
-        linux-tegra@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-realtek-soc@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 23/23] arm64: dts: Update cache properties for ti
-Date:   Mon,  7 Nov 2022 16:57:16 +0100
-Message-Id: <20221107155825.1644604-24-pierre.gondois@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20221107155825.1644604-1-pierre.gondois@arm.com>
-References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: watchdog: gpio: Convert bindings to YAML
+Date:   Mon,  7 Nov 2022 17:03:38 +0100
+Message-Id: <20221107160338.27910-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DeviceTree Specification v0.3 specifies that the cache node
-'compatible' and 'cache-level' properties are 'required'. Cf.
-s3.8 Multi-level and Shared Cache Nodes
-The 'cache-unified' property should be present if one of the
-properties for unified cache is present ('cache-size', ...).
+Convert the gpio-wdt bindings from text to YAML ones, to permit DT validation.
 
-Update the Device Trees accordingly.
-
-Signed-off-by: Pierre Gondois <pierre.gondois@arm.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- arch/arm64/boot/dts/ti/k3-am625.dtsi  | 1 +
- arch/arm64/boot/dts/ti/k3-am62a7.dtsi | 1 +
- arch/arm64/boot/dts/ti/k3-am642.dtsi  | 1 +
- arch/arm64/boot/dts/ti/k3-am654.dtsi  | 2 ++
- arch/arm64/boot/dts/ti/k3-j7200.dtsi  | 1 +
- arch/arm64/boot/dts/ti/k3-j721e.dtsi  | 1 +
- arch/arm64/boot/dts/ti/k3-j721s2.dtsi | 1 +
- 7 files changed, 8 insertions(+)
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: linux-watchdog@vger.kernel.org
+To: devicetree@vger.kernel.org
+---
+V2: - Add missing required: properties
+    - Drop quotes around ref: referenced schema file name
+V3: - Add Guenter as maintainer of the bindings
+    - Add RB from Rob
+---
+ .../devicetree/bindings/watchdog/gpio-wdt.txt | 28 -----------
+ .../bindings/watchdog/linux,wdt-gpio.yaml     | 47 +++++++++++++++++++
+ 2 files changed, 47 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-index 887f31c23fef..7d7e5a1673a2 100644
---- a/arch/arm64/boot/dts/ti/k3-am625.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
-@@ -95,6 +95,7 @@ cpu3: cpu@3 {
- 
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
-+		cache-unified;
- 		cache-level = <2>;
- 		cache-size = <0x40000>;
- 		cache-line-size = <64>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7.dtsi b/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
-index 331d89fda29d..9734549851c0 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7.dtsi
-@@ -95,6 +95,7 @@ cpu3: cpu@3 {
- 
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
-+		cache-unified;
- 		cache-level = <2>;
- 		cache-size = <0x40000>;
- 		cache-line-size = <64>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am642.dtsi b/arch/arm64/boot/dts/ti/k3-am642.dtsi
-index 8a76f4821b11..7a6eedea3aae 100644
---- a/arch/arm64/boot/dts/ti/k3-am642.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am642.dtsi
-@@ -58,6 +58,7 @@ cpu1: cpu@1 {
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
- 		cache-level = <2>;
-+		cache-unified;
- 		cache-size = <0x40000>;
- 		cache-line-size = <64>;
- 		cache-sets = <256>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/ti/k3-am654.dtsi
-index a89257900047..4cc329b271ac 100644
---- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
-@@ -93,6 +93,7 @@ cpu3: cpu@101 {
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
- 		cache-level = <2>;
-+		cache-unified;
- 		cache-size = <0x80000>;
- 		cache-line-size = <64>;
- 		cache-sets = <512>;
-@@ -102,6 +103,7 @@ L2_0: l2-cache0 {
- 	L2_1: l2-cache1 {
- 		compatible = "cache";
- 		cache-level = <2>;
-+		cache-unified;
- 		cache-size = <0x80000>;
- 		cache-line-size = <64>;
- 		cache-sets = <512>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-index b6da0454cc5b..d74f86b0f622 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-@@ -84,6 +84,7 @@ cpu1: cpu@1 {
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
- 		cache-level = <2>;
-+		cache-unified;
- 		cache-size = <0x100000>;
- 		cache-line-size = <64>;
- 		cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e.dtsi b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-index 0e23886c9fd1..6975cae644d9 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e.dtsi
-@@ -86,6 +86,7 @@ cpu1: cpu@1 {
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
- 		cache-level = <2>;
-+		cache-unified;
- 		cache-size = <0x100000>;
- 		cache-line-size = <64>;
- 		cache-sets = <1024>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2.dtsi
-index 7b930a85a29d..78295ee0fee5 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2.dtsi
-@@ -69,6 +69,7 @@ cpu1: cpu@1 {
- 
- 	L2_0: l2-cache0 {
- 		compatible = "cache";
-+		cache-unified;
- 		cache-level = <2>;
- 		cache-size = <0x100000>;
- 		cache-line-size = <64>;
+diff --git a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt b/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
+deleted file mode 100644
+index 198794963786b..0000000000000
+--- a/Documentation/devicetree/bindings/watchdog/gpio-wdt.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-* GPIO-controlled Watchdog
+-
+-Required Properties:
+-- compatible: Should contain "linux,wdt-gpio".
+-- gpios: From common gpio binding; gpio connection to WDT reset pin.
+-- hw_algo: The algorithm used by the driver. Should be one of the
+-  following values:
+-  - toggle: Either a high-to-low or a low-to-high transition clears
+-    the WDT counter. The watchdog timer is disabled when GPIO is
+-    left floating or connected to a three-state buffer.
+-  - level: Low or high level starts counting WDT timeout,
+-    the opposite level disables the WDT. Active level is determined
+-    by the GPIO flags.
+-- hw_margin_ms: Maximum time to reset watchdog circuit (milliseconds).
+-
+-Optional Properties:
+-- always-running: If the watchdog timer cannot be disabled, add this flag to
+-  have the driver keep toggling the signal without a client. It will only cease
+-  to toggle the signal when the device is open and the timeout elapsed.
+-
+-Example:
+-	watchdog: watchdog {
+-		/* ADM706 */
+-		compatible = "linux,wdt-gpio";
+-		gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
+-		hw_algo = "toggle";
+-		hw_margin_ms = <1600>;
+-	};
+diff --git a/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+new file mode 100644
+index 0000000000000..c729c96a5dc75
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/linux,wdt-gpio.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/linux,wdt-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: GPIO-controlled Watchdog
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++
++properties:
++  compatible:
++    const: linux,wdt-gpio
++
++  gpios:
++    description: gpio connection to WDT reset pin
++    maxItems: 1
++
++  hw_algo:
++    description: The algorithm used by the driver.
++    enum: [ level, toggle ]
++
++  hw_margin_ms:
++    description: Maximum time to reset watchdog circuit (milliseconds).
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - gpios
++  - hw_algo
++  - hw_margin_ms
++
++allOf:
++  - $ref: watchdog.yaml#
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    watchdog {
++        compatible = "linux,wdt-gpio";
++        gpios = <&gpio3 9 GPIO_ACTIVE_LOW>;
++        hw_algo = "toggle";
++        hw_margin_ms = <1600>;
++    };
 -- 
-2.25.1
+2.35.1
 
