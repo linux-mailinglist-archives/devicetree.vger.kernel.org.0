@@ -2,95 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EE9B61F2D2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 13:21:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B27461F262
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 13:06:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232111AbiKGMVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 07:21:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48304 "EHLO
+        id S230313AbiKGMGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 07:06:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbiKGMVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 07:21:19 -0500
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43971090;
-        Mon,  7 Nov 2022 04:21:18 -0800 (PST)
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 2A7A9or0019781;
-        Mon, 7 Nov 2022 07:21:09 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3kpmgu4d2v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 07 Nov 2022 07:21:09 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 2A7CL8Hd046758
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Nov 2022 07:21:08 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 7 Nov 2022
- 07:21:07 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 7 Nov 2022 07:21:07 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.106])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2A7CKrRL022057;
-        Mon, 7 Nov 2022 07:21:00 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v2 3/3] Documentation: ABI: testing: adf4377: add ABI docs
-Date:   Mon, 7 Nov 2022 14:02:43 +0200
-Message-ID: <20221107120243.57344-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20221107120243.57344-1-antoniu.miclaus@analog.com>
-References: <20221107120243.57344-1-antoniu.miclaus@analog.com>
+        with ESMTP id S229659AbiKGMGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 07:06:01 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C305DE3D
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 04:05:57 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id z24so15902908ljn.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 04:05:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sIQpUknokjs3QFKaGMUkV8vshn2qA+chP0pID9rWGu0=;
+        b=hUjzv4uq6McMIRbtnD927Xh4H4zD7dS3mU/clZiqOlMDQy73URdVadD2ucACl++UVp
+         +6JIDQGoN84wGy7oLBtjkHsNuAZvQ1Onbor2DLeF8DKHn62xtyfAIlbMJ/ryRA6+VmT/
+         Z/HAbqb3iloLuCHTr+16utOMjBvnUPhyrLsOf8iaeqweR2LV8GDN8V6IRykNKK3aAmAI
+         MRwmamZc6s9o6knDEzNuwSj7C+muM7DJcsnPxBmJZ1tIoA0jSXbttDbmw8qehE35Hmpl
+         gkgkLSQPUAA9GUluwp7bdeP7tWenzAFKnT6PCCWre0NoASrCYL0zdGYI5aCL0nvVBSKD
+         sMpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sIQpUknokjs3QFKaGMUkV8vshn2qA+chP0pID9rWGu0=;
+        b=nddvgKxWZpwfcJylXGQyqktxYr2g3M0naZyzvCljxiWbt06DhtzNVKnhB0o1+vX9RF
+         jNVXQOkBJITugdEdDBdvH2XXbJSusUc1VmHqzfbwQbnIfqa798Bjmjbs8i7rC9gwKuyy
+         gRVdNRFVHhp40KvgN3cCEUgEXTCQzfwz8x1KcA6GzO2mZ0KKvrf3MNqSboPiunp+t9bd
+         pMqETxwbAiPwU3P+HSGLaETXd4wXUZKwR+I1zXnVUob1X5toULeIMFhjvXwSu396AN1v
+         F/531c9hnd9PNFEms1N3/8HM7y6tcxi9gIbfODl3nNoHbxiOyAm+eXlpor6PL4uR2z90
+         XliA==
+X-Gm-Message-State: ACrzQf1RuZAK032tWP6to0aUN4tP29vdoR/vCbg89YmoMlVbFqw2E55D
+        D2v+u6nxQr8jPFYSGIm8PN061g==
+X-Google-Smtp-Source: AMsMyM7uVZOfkrfUV29LP23hpD30iklFEu0Lr9zkTjjTqUbzCG3iCT0qPYlZ0RAEcSDbQkDUDY+++A==
+X-Received: by 2002:a2e:bc26:0:b0:277:f49:b234 with SMTP id b38-20020a2ebc26000000b002770f49b234mr18054013ljf.1.1667822756088;
+        Mon, 07 Nov 2022 04:05:56 -0800 (PST)
+Received: from localhost.localdomain ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id p13-20020ac24ecd000000b0049936272173sm1200065lfr.204.2022.11.07.04.05.54
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 07 Nov 2022 04:05:55 -0800 (PST)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        agross@kernel.org
+Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/4] dt-bindings: arm: cpus: Add Kryo 660 CPUs
+Date:   Mon,  7 Nov 2022 13:05:34 +0100
+Message-Id: <20221107120539.12305-1-konrad.dybcio@linaro.org>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: jNfrmbqFreL_Hd80QSYpZ2v5Dfs_vgBw
-X-Proofpoint-ORIG-GUID: jNfrmbqFreL_Hd80QSYpZ2v5Dfs_vgBw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.895,Hydra:6.0.545,FMLib:17.11.122.1
- definitions=2022-11-07_04,2022-11-07_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=831 clxscore=1015
- malwarescore=0 impostorscore=0 phishscore=0 priorityscore=1501 bulkscore=0
- lowpriorityscore=0 mlxscore=0 suspectscore=0 spamscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2210170000
- definitions=main-2211070100
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the output frequency and muxout select.
+From: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Add a compatible for Kryo 660 CPUs found in at least Qualcomm SM6375.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-changes in v2:
- - remove muxout selectdocumentation, since it is done in the devicetree now
- Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377 | 6 ++++++
- 1 file changed, 6 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
+Changes since v1:
+- Pick up tags
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
-new file mode 100644
-index 000000000000..8888be49754c
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-adf4377
-@@ -0,0 +1,6 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_frequency
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Stores the PLL frequency in Hz for output channels.
-+		Reading returns the frequency in Hz.
+ Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 5c13b73e4d57..b2058345bb8e 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -183,6 +183,7 @@ properties:
+       - qcom,kryo485
+       - qcom,kryo560
+       - qcom,kryo570
++      - qcom,kryo660
+       - qcom,kryo685
+       - qcom,kryo780
+       - qcom,scorpion
 -- 
 2.38.1
 
