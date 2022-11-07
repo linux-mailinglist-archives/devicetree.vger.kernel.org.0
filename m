@@ -2,125 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A62061F20F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:41:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB88A61F21D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:46:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232043AbiKGLlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 06:41:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51880 "EHLO
+        id S230434AbiKGLqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 06:46:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231904AbiKGLlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:41:07 -0500
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [217.70.178.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7B01ADBB;
-        Mon,  7 Nov 2022 03:41:01 -0800 (PST)
-Received: from booty (unknown [77.244.183.192])
-        (Authenticated sender: luca.ceresoli@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id C0F6924000A;
-        Mon,  7 Nov 2022 11:40:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1667821260;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Qre1rLeivf2N8z9hTszuSOQhH5gotX01/ktN2uCkQ7k=;
-        b=Ek6wMmTMsc8B1iNQRjQoRFSgj04u32H8jPLnEkyWW/LzsBenyR6EZNCTQPM+Y4sjy+OppM
-        7t821vgQzQY0BbbCgGjdUiikw+Iv8n/VKmgxUcheg2DyR387r5tZNU09VPbuvlpif8wCKf
-        4eT/JTL61eUopreMw9f2kTxA5Nv+/fHt8lt2o4yC+mQMFtdvCSZglYimpQmsTQ5obwgMrN
-        peT0LVR1FlNhRHZzGeyYTby19zcu9ZrE/ta1/3u6geaq+DfleyxGUYTbUJMxnXcqciozMa
-        tMjQ/+KQFJQTA1GG04QbJ7RbSlKvvDuMy9YEPTpASKMv0RzB0lPqoofG6clGCA==
-Date:   Mon, 7 Nov 2022 12:40:55 +0100
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        satish.nagireddy@getcruise.com
-Subject: Re: [PATCH v4 2/8] i2c: add I2C Address Translator (ATR) support
-Message-ID: <20221107124055.0495031f@booty>
-In-Reply-To: <cc510516-c961-9efb-bcdf-2abea795433a@ideasonboard.com>
-References: <20221101132032.1542416-1-tomi.valkeinen@ideasonboard.com>
-        <20221101132032.1542416-3-tomi.valkeinen@ideasonboard.com>
-        <Y2EtnSNqBOfGRDMO@smile.fi.intel.com>
-        <cc510516-c961-9efb-bcdf-2abea795433a@ideasonboard.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231365AbiKGLqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:46:30 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A706E167F2
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 03:46:26 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id b9so15824052ljr.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 03:46:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+JKZi6enSst2kWBJr01vLjOt2FvneWEg8LFzz5LHGB0=;
+        b=jRVQIfmhXkPyQnD1t0mtaV1FdLeZIGj3gSbWh1rV/Z4ZOVlfY1/hK0O5VkF0xmCWOp
+         Oi/hUjXVsGyFoWijFXycIFRbt8rXdq6HltPG7+Q3sfTeKCnglMKmU/1dv0XliC+qLYp8
+         KnbVu3PoifP80c87ciD4PHRNArjB9XIUQ4GcFBcQgyf8q23ONyTdnrK0AjdFf9R47Z2X
+         hu+i+p1M+qlgmEluomPb91cwXF/CwqUx2bkHAkgs4/nKLFRT07XnQSsDc9DnlpKA7bF2
+         aQnHXZPKtkCh0nf51yYKDew4qY8SNHunHgCiK5BA6dPQSCPkZCn66qqo073FJNZxpcEo
+         UqPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+JKZi6enSst2kWBJr01vLjOt2FvneWEg8LFzz5LHGB0=;
+        b=I+MSqyR8YyERl98kceOTbi+398TSqxmnauRNE+Id/TrfE3kmun0mxsfMCDi2RlTp3r
+         56uq+OjHAL7B7zpuOZDjIssMsXxEQdNZRI2Ofzac8BimsPeb/XILFDYrT2eJlKJsHQ8f
+         ILZvsk7xF9/DiQUj2BCznf29mKxCp+ReLhgwg8507HLPm9Utaa/oZdKSkQwM/xdMcaT9
+         5RmfSztmsfHCZGzXgbiPAnBlvy2du2vi0pT9YkR/KaGO7PpkCNulZ2WdAypGJwTivmxe
+         yZwvyQxVYW0jCMHiUIKIa3Y8Ktys64rWLaw8ojUhPsQrBPDKS2PXWrMc9r9t+F8jTuHa
+         c54Q==
+X-Gm-Message-State: ACrzQf2NxHk1MS7C5r9uKCNW9eYpCvoMct5rKrsERTgpmly5TuYFrLXA
+        5vHq/VOKmkGdleDo+fmIP+7PSw==
+X-Google-Smtp-Source: AMsMyM5mKL7r8syre1BT4ctSIJFcHz6VTdD+N62rT1HzWdp50D84I5g9TtrE6H6vZRgIfavxv+ReSw==
+X-Received: by 2002:a2e:a367:0:b0:277:7daa:cec6 with SMTP id i7-20020a2ea367000000b002777daacec6mr7265039ljn.265.1667821585056;
+        Mon, 07 Nov 2022 03:46:25 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id c10-20020a056512324a00b004afc1607130sm1204444lfr.8.2022.11.07.03.46.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 03:46:24 -0800 (PST)
+Message-ID: <819dc2f9-c1f2-201d-d611-f8b2a323473d@linaro.org>
+Date:   Mon, 7 Nov 2022 12:46:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH v1 3/5] arm64: dts: qcom: sm8450-hdk: enable display
+ hardware
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
+References: <20221104131358.1025987-1-dmitry.baryshkov@linaro.org>
+ <20221104131358.1025987-4-dmitry.baryshkov@linaro.org>
+ <20221106043011.pw5fqeame7otzdcn@builder.lan>
+ <dc19c341-c653-c60e-dd45-5c87ed4c6811@linaro.org>
+ <163d117e-e519-e86d-b052-e4a2a53388d7@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <163d117e-e519-e86d-b052-e4a2a53388d7@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 4 Nov 2022 13:59:06 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
 
-> Hi Andy,
-> 
-> On 01/11/2022 16:30, Andy Shevchenko wrote:
-> > On Tue, Nov 01, 2022 at 03:20:26PM +0200, Tomi Valkeinen wrote:  
-> >> From: Luca Ceresoli <luca@lucaceresoli.net>
-> >>
-> >> An ATR is a device that looks similar to an i2c-mux: it has an I2C
-> >> slave "upstream" port and N master "downstream" ports, and forwards
-> >> transactions from upstream to the appropriate downstream port. But is
-> >> is different in that the forwarded transaction has a different slave
-> >> address. The address used on the upstream bus is called the "alias"
-> >> and is (potentially) different from the physical slave address of the
-> >> downstream chip.
-> >>
-> >> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
-> >> implementing ATR features in a device driver. The helper takes care or
-> >> adapter creation/destruction and translates addresses at each transaction.  
+On 07/11/2022 12:36, Krzysztof Kozlowski wrote:
+> On 07/11/2022 11:46, Konrad Dybcio wrote:
+>>
+>> On 06/11/2022 05:30, Bjorn Andersson wrote:
+>>> On Fri, Nov 04, 2022 at 04:13:56PM +0300, Dmitry Baryshkov wrote:
+>>>> Enable MDSS/DPU/DSI0 on SM8450-HDK device. Note, there is no panel
+>>>> configuration (yet).
+>>>>
+>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 18 ++++++++++++++++++
+>>>>    1 file changed, 18 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>>> index 38ccd44620d0..e1a4cf1ee51d 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>>> @@ -442,3 +442,21 @@ &usb_1_qmpphy {
+>>>>    	vdda-phy-supply = <&vreg_l6b_1p2>;
+>>>>    	vdda-pll-supply = <&vreg_l1b_0p91>;
+>>>>    };
+>>>> +
+>>>> +&mdss {
+>>>> +	status = "okay";
+>>>> +};
+>>>> +
+>>>> +&mdss_mdp {
+>>>> +	status = "okay";
+>>>> +};
+>>>> +
+>>>> +&dsi0 {
+>>> Please prefix the labels with "mdss_" so that you can keep them sorted
+>>> alphabetically.
+>> Why such a change all of a sudden? Only downstream (and sc7280 upstream)
+>> has mdss_ prefixes for dsi.
+> For keeping the nodes together - this makes review of code and patches
+> easier.
 
-First of all, thank you for bringing this work on!
+Ok, I can see the reasoning.
 
-> > ...
-> >   
-> >> +I2C ADDRESS TRANSLATOR (ATR)
-> >> +M:	Luca Ceresoli <luca@lucaceresoli.net>  
-> > 
-> > Hmm... Are you going to maintain this? Or Review? Why not?  
-> 
-> We haven't discussed with Luca if he wants to maintain this (this is 
-> mostly his code). But, indeed, I should add my name there.
 
-I think at this point you are probably in a better position to be the
-maintainer, but I'm OK with being listed here as reviewer (R:).
+>> Plain 'dsiN' is more generic.
+> And why the label should be generic? Label should be useful and
+> descriptive, although not too much, so mdss_dsi still fits in reasonable
+> choice.
 
-Ah, would you please use my bootlin dot com address here?
+I was under the impression that it should be. But you're right.
 
-> I'm not arguing against any of the comments you've made, I think they 
-> are all valid, but I want to point out that many of them are in a code 
-> copied from i2c-mux.
-> 
-> Whether there's any value in keeping i2c-mux and i2c-atr similar in 
-> design/style... Maybe not.
 
-Tomi is right, when I wrote this initially I tried to keep it as
-similar as possible to i2c-mux.c. No problem in deviating from that
-wherever it makes sense.
+Konrad
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+>
+> Best regards,
+> Krzysztof
+>
