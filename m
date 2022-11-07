@@ -2,317 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA6A61FE15
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4912D61FE41
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 20:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232032AbiKGS7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:59:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40356 "EHLO
+        id S232498AbiKGTJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 14:09:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232306AbiKGS7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:59:39 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3CDD24F00
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:59:36 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id c25so17726630ljr.8
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:59:36 -0800 (PST)
+        with ESMTP id S232906AbiKGTJ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 14:09:26 -0500
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E84248F1;
+        Mon,  7 Nov 2022 11:09:25 -0800 (PST)
+Received: by mail-ej1-x631.google.com with SMTP id 13so32838773ejn.3;
+        Mon, 07 Nov 2022 11:09:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=q6+tifRwm98rAaw+GHP74ruEoAmooOK+xQD6j6mXEfs=;
-        b=mBleVDhIojdtiptSbA/vSs3qVkg4VMpPsrlPMfPe2VtoRCCLCELsPQ4dqELBh2sfpN
-         DNhwKEoswbG5mI1fFV3MFttf8Cr/3dlD7LJj3pOAtd25oQcXXpEls/1M5GV2clWa09ve
-         DVGd+rHSS8MGAUFhGA4hw9kikrpDPQBhplG4QosIOBO3oB1AGYjzh11NJbN6uVWkLW4Z
-         Zm+HgTQ+deFRoVLAZCo8kRu2b/3R9VDIfmLJhBVKNXAf1yA2VHjrwAQ9ogdfMUM6zz+w
-         WuRbXKkOqcOoSEQjJl4cuZ66Flyp9X3iRMfHEYkmmMhBYI+dvMM0ybSndZm/rBl0Q8KP
-         lT0g==
+        bh=Wc34CxtEOLkSkiQr361kqOgarEc3e05LL4CC8n3q+Yg=;
+        b=MfJt6vqUvl9d2QwzN79EWkGlv9xQvsKg6qW/nuvZj3vutK07lQREteD9jvTdwD4mUs
+         cCe2VwZo3iEJF6ZVHT4lp+dSS5XgBxg9O/SdckevvjaiK92s6OPeQtPRbE26fiKGNr1s
+         Xm05WlDJc9s4nVcFIcISpz4vHrFkOpb87Kvx/AggAEjHwP97g78jEUq9nU3YIlVk+yvX
+         Vw2UGW6EOVcTEs8cesZj5GtkEndzTKKIBL8mZdR0Gs+x5RWLcU/oNIYPNcDmXvfkkAp+
+         31I9CxdidxbQ30o8A6EqGJ2W4STLOoG/uss/ng536xqR6ijghJbrTrnO++Jps53BaECt
+         lPNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=q6+tifRwm98rAaw+GHP74ruEoAmooOK+xQD6j6mXEfs=;
-        b=F2+/6EQAweyP//BjJSVAqNwDly36Oaz5vJCiWzrNpYjQwm/63gih9rplP8Xnwn8G38
-         tdXRrdFVNKOB0iHzfI8UB8w409OVMxtK+vhyjRICdNNh8NbXmzOeDuauQOcUxb63NN9v
-         ygjWgw1AMiM4B0kUChQ3lZs1eqN8kCGQjjgPotzJJ0BMIft5tfx8ac9dIKnb0FBPsmiA
-         x8Bxefuu23l8Xx4Z499yQY0EWCo5TisjaY/t2ayprBiy6MDdlUflrJaFcAmRTus+roLk
-         1TrSd+IO0sDHgQ9svRGPxqJZYrbY5pHCwicp8VDL/I73tiCP/Brgfc7UzRsMw/er+e94
-         t/Nw==
-X-Gm-Message-State: ACrzQf0iVINq1PLC0UW0S4r1LcdJ8uscDZ3RVpUwqZUrYakqtzssB5IV
-        7QGE6XpQ55oIZMJiEeBaujZ9+Q==
-X-Google-Smtp-Source: AMsMyM4bvRAD5pFcUnjckx8kRc0DjR32qWX+6xs08zUhVp9Yl6EplB/pie2qvUv/MMlfAvmm+qyEhg==
-X-Received: by 2002:a2e:b2d1:0:b0:277:c68:874b with SMTP id 17-20020a2eb2d1000000b002770c68874bmr5414236ljz.261.1667847575315;
-        Mon, 07 Nov 2022 10:59:35 -0800 (PST)
-Received: from krzk-bin.NAT.warszawa.vectranet.pl (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id y5-20020a05651c106500b002770a9ed61bsm1327875ljm.66.2022.11.07.10.59.34
+        bh=Wc34CxtEOLkSkiQr361kqOgarEc3e05LL4CC8n3q+Yg=;
+        b=xiAvGx+pbzhjiFZ75KtV5/2kbRzPmwjbpv2e3HehKLvPE6Hausa8CLGiWvZn8cyT8c
+         ge7zyncd3y4j0k4lIGYNDYRjdRXnqeXHjdOkFpXeno1De5hUhAPQcUlAvb6Gsp94sLz6
+         wKDWVos+/wQkEFY98OgyqQcWMw7gKOh6eImJPiDjtfhMSkF5TvevocfakENsNOgWxV0W
+         YEhZecwQAUjvQIVWR7v+pvY9/gKCQGFOUJ6TwFAw93sdnB9eNvKiEDGZOD6746N3MhIO
+         eu2KbGjEqfRZlgwaH1VADwDrIgtErBQzchsgESs0qwnHTrROVSmLkXnm1aPvxxl6t6xL
+         Pi3g==
+X-Gm-Message-State: ACrzQf2y5VfIW6+s1Qf3n2JGuYgpS9cdmVEePLEOLoqrP0A3CfdJgDUh
+        MLhdiwxzzUfop02DUD8PcPw=
+X-Google-Smtp-Source: AMsMyM7RT31J7AYXOqj7NXxs7sV37GSZBoUybdyBFoXG5ZdfIxCN8Q5j0SVVcDS70m8z7me697XQFA==
+X-Received: by 2002:a17:906:730d:b0:78e:9ca5:3269 with SMTP id di13-20020a170906730d00b0078e9ca53269mr49378907ejc.366.1667848164346;
+        Mon, 07 Nov 2022 11:09:24 -0800 (PST)
+Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
+        by smtp.gmail.com with ESMTPSA id k10-20020a17090632ca00b007adaca75bd0sm3783218ejk.179.2022.11.07.11.09.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 10:59:34 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 07 Nov 2022 11:09:23 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Andre Przywara <andre.przywara@arm.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: qcom-apq8060: align TLMM pin configuration with DT schema
-Date:   Mon,  7 Nov 2022 19:59:31 +0100
-Message-Id: <20221107185931.22075-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221107185931.22075-1-krzysztof.kozlowski@linaro.org>
-References: <20221107185931.22075-1-krzysztof.kozlowski@linaro.org>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, Karl Kurbjun <karl.os@veroson.com>,
+        Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v2 0/7] arm64: sunxi: h616: Add USB support
+Date:   Mon, 07 Nov 2022 20:09:22 +0100
+Message-ID: <111191160.nniJfEyVGO@kista>
+In-Reply-To: <20221031111358.3387297-1-andre.przywara@arm.com>
+References: <20221031111358.3387297-1-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema expects TLMM pin configuration nodes to be named with
-'-state' suffix and their optional children with '-pins' suffix.
+Dne ponedeljek, 31. oktober 2022 ob 12:13:51 CET je Andre Przywara napisal(a):
+> This is a fixed and rebased update of the previous version, with only
+> the DT binding and one DT seeing changes, triggered by Krzysztof's
+> comments. For a changelog see below.
+> Thanks to Karl for testing this on the OrangePi Zero 2!
+> 
+> ------------------------
+> The USB IP used in the Allwinner H616 SoC is very similar to the one
+> used in the H3 chip: it contains four USB 2.0 host controllers and four
+> PHYs, where the first PHY is shared with a separate USB-OTG controller.
+> 
+> But out of the four ports, only port 2 works out of the box, the other
+> ports require some resources and registers of port 2 to be enabled as
+> well.
+> 
+> Implement the required workaround in the Allwinner USB PHY driver, and
+> key this off the respective compatible string. This core code is
+> contained in patch 3/7. The first two patches add the respective DT
+> binding documentation, whereas patch 4/7 encodes all the configuration
+> options for the H616 USB PHY into the driver.
+> The last three patches add the respective devicetree nodes, to the H616
+> .dtsi, but also to the DTs of the two supported boards.
+> 
+> This allows USB to be used on any H616 based machine. This was tested on
+> the X96 Mate box.
+> 
+> The patches in this series were originally contained in the initial H616
+> support series, but where dropped there to speed up mainlining of the
+> basic support.
+> 
+> It is now based on v6.1-rc3 and is also available here:
+> https://github.com/apritzel/linux/commits/h616-usb-v2
+> 
+> Please have a look and test on your hardware, especically on all ports
+> exposed on header pins of the OrangePi Zero2 board.
+> 
+> Cheers,
+> Andre
+> 
+> Changelog v1 .. v2:
+> - Add Krzysztof's ACK
+> - wrap If: clause in allOf: (patch 2/7)
+> - limit old (H3) PHYs to 4 clocks (else clause, patch 2/7)
+> - change subsystem to phy: in subject (patch 2/7)
+> - use "regulator-" prefix for DT node name (patch 6/7)
+> - drop unneeded status property in regulator node (patch 6/7)
+> 
+> Andre Przywara (7):
+>   dt-bindings: usb: Add H616 compatible string
+>   dt-bindings: phy: Add special clock for Allwinner H616 PHY
+>   phy: sun4i-usb: Introduce port2 SIDDQ quirk
+>   phy: sun4i-usb: Add support for the H616 USB PHY
+>   arm64: dts: allwinner: h616: Add USB nodes
+>   arm64: dts: allwinner: h616: OrangePi Zero 2: Add USB nodes
+>   arm64: dts: allwinner: h616: X96 Mate: Add USB nodes
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../arm/boot/dts/qcom-apq8060-dragonboard.dts | 126 +++++++-----------
- 1 file changed, 51 insertions(+), 75 deletions(-)
+Applied patches 1, 5, 6, 7. Thanks!
 
-diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-index 0baf202a82ba..7a4c59e04af6 100644
---- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-@@ -789,28 +789,24 @@ &sdcc5 {
- 
- &tlmm {
- 	/* eMMC pins, all 8 data lines connected */
--	dragon_sdcc1_pins: sdcc1 {
--		mux {
--			pins = "gpio159", "gpio160", "gpio161",
--			     "gpio162", "gpio163", "gpio164",
--			     "gpio165", "gpio166", "gpio167",
--			     "gpio168";
--			     function = "sdc1";
--		};
--		clk {
-+	dragon_sdcc1_pins: sdcc1-state {
-+		clk-pins {
- 			pins = "gpio167"; /* SDC1 CLK */
-+			function = "sdc1";
- 			drive-strength = <16>;
- 			bias-disable;
- 		};
--		cmd {
-+		cmd-pins {
- 			pins = "gpio168"; /* SDC1 CMD */
-+			function = "sdc1";
- 			drive-strength = <10>;
- 			bias-pull-up;
- 		};
--		data {
-+		data-pins {
- 			/* SDC1 D0 to D7 */
- 			pins = "gpio159", "gpio160", "gpio161", "gpio162",
- 			     "gpio163", "gpio164", "gpio165", "gpio166";
-+			function = "sdc1";
- 			drive-strength = <10>;
- 			bias-pull-up;
- 		};
-@@ -820,18 +816,18 @@ data {
- 	 * The SDCC3 pins are hardcoded (non-muxable) but need some pin
- 	 * configuration.
- 	 */
--	dragon_sdcc3_pins: sdcc3 {
--		clk {
-+	dragon_sdcc3_pins: sdcc3-state {
-+		clk-pins {
- 			pins = "sdc3_clk";
- 			drive-strength = <8>;
- 			bias-disable;
- 		};
--		cmd {
-+		cmd-pins {
- 			pins = "sdc3_cmd";
- 			drive-strength = <8>;
- 			bias-pull-up;
- 		};
--		data {
-+		data-pins {
- 			pins = "sdc3_data";
- 			drive-strength = <8>;
- 			bias-pull-up;
-@@ -839,101 +835,82 @@ data {
- 	};
- 
- 	/* Second SD card slot pins */
--	dragon_sdcc5_pins: sdcc5 {
--		mux {
--			pins = "gpio95", "gpio96", "gpio97",
--			    "gpio98", "gpio99", "gpio100";
--			function = "sdc5";
--		};
--		clk {
-+	dragon_sdcc5_pins: sdcc5-state {
-+		clk-pins {
- 			pins = "gpio97"; /* SDC5 CLK */
-+			function = "sdc5";
- 			drive-strength = <16>;
- 			bias-disable;
- 		};
--		cmd {
-+		cmd-pins {
- 			pins = "gpio95"; /* SDC5 CMD */
-+			function = "sdc5";
- 			drive-strength = <10>;
- 			bias-pull-up;
- 		};
--		data {
-+		data-pins {
- 			/* SDC5 D0 to D3 */
- 			pins = "gpio96", "gpio98", "gpio99", "gpio100";
-+			function = "sdc5";
- 			drive-strength = <10>;
- 			bias-pull-up;
- 		};
- 	};
- 
--	dragon_gsbi3_i2c_pins: gsbi3_i2c {
--		mux {
--			pins = "gpio43", "gpio44";
--			function = "gsbi3";
--		};
--		pinconf {
--			pins = "gpio43", "gpio44";
--			drive-strength = <8>;
--			/* These have external pull-up 2.2kOhm to 1.8V */
--			bias-disable;
--		};
-+	dragon_gsbi3_i2c_pins: gsbi3-i2c-state {
-+		pins = "gpio43", "gpio44";
-+		function = "gsbi3";
-+		drive-strength = <8>;
-+		/* These have external pull-up 2.2kOhm to 1.8V */
-+		bias-disable;
- 	};
- 
--	dragon_gsbi8_i2c_pins: gsbi8_i2c {
--		mux {
--			pins = "gpio64", "gpio65";
--			function = "gsbi8";
--		};
--		pinconf {
--			pins = "gpio64", "gpio65";
--			drive-strength = <16>;
--			/* These have external pull-up 2.2kOhm to 1.8V */
--			bias-disable;
--		};
-+	dragon_gsbi8_i2c_pins: gsbi8-i2c-state {
-+		pins = "gpio64", "gpio65";
-+		function = "gsbi8";
-+		drive-strength = <16>;
-+		/* These have external pull-up 2.2kOhm to 1.8V */
-+		bias-disable;
- 	};
- 
--	dragon_gsbi12_i2c_pins: gsbi12_i2c {
--		mux {
--			pins = "gpio115", "gpio116";
--			function = "gsbi12";
--		};
--		pinconf {
--			pins = "gpio115", "gpio116";
--			drive-strength = <16>;
--			/* These have external pull-up 4.7kOhm to 1.8V */
--			bias-disable;
--		};
-+	dragon_gsbi12_i2c_pins: gsbi12-i2c-state {
-+		pins = "gpio115", "gpio116";
-+		function = "gsbi12";
-+		drive-strength = <16>;
-+		/* These have external pull-up 4.7kOhm to 1.8V */
-+		bias-disable;
- 	};
- 
- 	/* Primary serial port uart 0 pins */
--	dragon_gsbi12_serial_pins: gsbi12_serial {
--		mux {
--			pins = "gpio117", "gpio118";
--			function = "gsbi12";
--		};
--		tx {
-+	dragon_gsbi12_serial_pins: gsbi12-serial-state {
-+		tx-pins {
- 			pins = "gpio117";
-+			function = "gsbi12";
- 			drive-strength = <8>;
- 			bias-disable;
- 		};
--		rx {
-+		rx-pins {
- 			pins = "gpio118";
-+			function = "gsbi12";
- 			drive-strength = <2>;
- 			bias-pull-up;
- 		};
- 	};
- 
--	dragon_ebi2_pins: ebi2 {
-+	dragon_ebi2_pins: ebi2-state {
- 		/*
- 		 * Pins used by EBI2 on the Dragonboard, actually only
- 		 * CS2 is used by a real peripheral. CS0 is just
- 		 * routed to a test point.
- 		 */
--		mux0 {
-+		mux0-pins {
- 			pins =
- 			    /* "gpio39", CS1A_N this is not good to mux */
- 			    "gpio40", /* CS2A_N */
- 			    "gpio134"; /* CS0_N testpoint TP29 */
- 			function = "ebi2cs";
- 		};
--		mux1 {
-+		mux1-pins {
- 			pins =
- 			    /* EBI2_ADDR_7 downto EBI2_ADDR_0 address bus */
- 			    "gpio123", "gpio124", "gpio125", "gpio126",
-@@ -951,22 +928,21 @@ mux1 {
- 	};
- 
- 	/* Interrupt line for the KXSD9 accelerometer */
--	dragon_kxsd9_gpios: kxsd9 {
--		irq {
--			pins = "gpio57"; /* IRQ line */
--			bias-pull-up;
--		};
-+	dragon_kxsd9_gpios: kxsd9-state {
-+		pins = "gpio57"; /* IRQ line */
-+		function = "gpio";
-+		bias-pull-up;
- 	};
- 
--	dragon_tma340_gpios: tma340 {
--		reset {
-+	dragon_tma340_gpios: tma340-state {
-+		reset-pins {
- 			/* RESET line, TS_ATTN, WAKE_CTP */
- 			pins = "gpio58";
- 			function = "gpio";
- 			drive-strength = <6>;
- 			bias-disable;
- 		};
--		irq {
-+		irq-pins {
- 			pins = "gpio61"; /* IRQ line */
- 			function = "gpio";
- 			drive-strength = <2>;
--- 
-2.34.1
+Best regards,
+Jernej
+
 
