@@ -2,172 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB4F61F1CF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:27:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 183B861F1F0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:36:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231714AbiKGL1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 06:27:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44308 "EHLO
+        id S231844AbiKGLgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 06:36:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiKGL1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:27:42 -0500
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2083.outbound.protection.outlook.com [40.107.22.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06DB186CF;
-        Mon,  7 Nov 2022 03:27:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kmx73ek/n/X4gNLuAOCJE8N2KCXA1t3jPYfPYGbhYd0iLu66X30MeKbs7xFfD3iAsgUINVAeog22SqUFUCik/9zVTYDnrXtJuEYoU1WR5a42IA7yKTfKK8KDQJnMkhrM5ggG5vzy4xAqgEnasJPhOZxup7QAFU+f4UQfIJvojp2T2Ah/I359STAmddv1mt0Em5sk2UAEGhnn+ftzxoJjebYA/yLWpt3KD1wd9JFgZ5YZV434TSldG8bEKFP343NpRRfo2jfcfFTblgPu+YxP1rjGCtgh8/bDrmAff8WaS6PO6YITWxBoceJbtUGEltqbzk/4AUSFyIAS3CCHIRwF4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KvT3ukkDNAaUwpTtzUVC8HlFP+3P78SgZPtxxeWqn+o=;
- b=j8g+Qm47IwGd61rYBTrCKixtY3pygpYHYDQn4lzwCsyMqG8eALMRy488Li1p5x+e9zx2QUAJF7SF96vF6IgOcgwvgCSc4mmkTWRFUJHyY5KWrNITOo25U8C7ftHYknEZo5+vOYzj5Yk9Wg2EsWjveY4/LEphuytMBhz3HyLWmC4s0XuESkUMJb0uHhx0NJdgAN9L8Aqcx5z3NfZSOKSJXywx/7Ua+ni7FV1SSs7L1R4W4KnEbnDBb+6UbTRy+n3lCU7z7PJwQtIoRdGud9a5n+pUYAmYeQicXrh+Aw/aaKjHU9m8mhFfxn9+6yW9rnEX/XZdZiL/o7ngAkSmFGG5FQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KvT3ukkDNAaUwpTtzUVC8HlFP+3P78SgZPtxxeWqn+o=;
- b=Hc22qd2LPpHs99AzZDkVNuSpHSS/pM6NJ5izzsIJrW3QCiOwg4BCAvx8LVBGj2zKyeJRwc/S62aCaY/uCuVmjd+XPO4SB9cWbFoPw2TCBQ/6AzjvR4UzEByx0OJCJV31w41Ou6HhJQsCkXY/H/f11LrNp1wzL7t1lQCh/4Dm660=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by PAXPR04MB8270.eurprd04.prod.outlook.com (2603:10a6:102:1c7::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.20; Mon, 7 Nov
- 2022 11:27:38 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::4a73:29eb:28e3:f66d]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::4a73:29eb:28e3:f66d%7]) with mapi id 15.20.5791.024; Mon, 7 Nov 2022
- 11:27:37 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
+        with ESMTP id S231857AbiKGLga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:36:30 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C51919C38
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 03:36:27 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id j4so16412407lfk.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 03:36:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4RvAclY+neH49C1cBsdQNnQdmHNpl6bHWNQMQFTUziI=;
+        b=Y84q8IKqYWPLVgdrd9IB24CTZK4TkD31OXVWydpwXjb9dNftk4y9wVKt6z5pvCHydQ
+         LVRAlFjZTi+0O9RQea6JzJfVeQHQsGDuKVUMKIOFkDZCyvppXzjAGWK4Oc268BGfVix3
+         rVyF52l/ljmK7LIIrm57PJzQJ/nG07TzkC4T4ZjM2XQBk0OGUKdkYcxGhbZV3voddcKC
+         4gkV9YOltOD1ij38GSGEkOGnSjHp0qXB4k8ZUApKRlvRp7o3wJ6ZfY1xf0Xw/rhJcSmZ
+         79klGfdR4EPSScwgCOf7Sxh8B6ANutE/D7xkNng0aKm2ePOALPC15Y07AYDnEDGFYjp5
+         lkxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4RvAclY+neH49C1cBsdQNnQdmHNpl6bHWNQMQFTUziI=;
+        b=ZqFxbF1I3iHd2+NfkZpdlvNt97Z7WNsmeO6C7tl+lWnAjfho4KwK98k6bGkUOd0qNU
+         GuDdvrAGkGFi/bYj8UMTQX3JzaDyz3RAuvHmF+liLfq8528MbGu6nbpJzYYWp9ZikmjY
+         JjArD+NJVFZO0T8CKmwKXPZfySntZ3okGvHySdvnNhWITfcset1XrVkPovPQ24eAgGbk
+         kECuyw5yX0Qc1qtatxvZEE5qyTPwWWWs8P5Tnr4mItw8eQ5UKi+P0Vp9CUYPjYjRBh9o
+         E4ky70IdqEj+TM4wS6z07VIpezTQj55b9cIr+APGp3nkPsuYnbb0v4OQapltuDQgZ/DF
+         BWmQ==
+X-Gm-Message-State: ACrzQf2PwyZXW0e7ieCfGmmUDhmdL+Dn8JZFdTvUEvefudx9umlCc+fd
+        gQcVm8F+0+GpiI8/YroKR5iiSg==
+X-Google-Smtp-Source: AMsMyM6FupxNgodwKghj39xjwOBD/jd7eC3m/sYxk9JT9Cl6jC+t5ibvzXVL4AV6K2lERpbW2FUNJQ==
+X-Received: by 2002:ac2:4f0a:0:b0:4af:eacf:fb79 with SMTP id k10-20020ac24f0a000000b004afeacffb79mr16847457lfr.420.1667820985805;
+        Mon, 07 Nov 2022 03:36:25 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id o22-20020a05651205d600b004aa0870b5e5sm1199763lfo.147.2022.11.07.03.36.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 03:36:25 -0800 (PST)
+Message-ID: <163d117e-e519-e86d-b052-e4a2a53388d7@linaro.org>
+Date:   Mon, 7 Nov 2022 12:36:24 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v1 3/5] arm64: dts: qcom: sm8450-hdk: enable display
+ hardware
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH net-next v8 3/5] net: dsa: add out-of-band tagging
- protocol
-Thread-Topic: [PATCH net-next v8 3/5] net: dsa: add out-of-band tagging
- protocol
-Thread-Index: AQHY8HTAfetHoGxM5E6HcRPQNrr8s64vpgIAgAOw8wA=
-Date:   Mon, 7 Nov 2022 11:27:37 +0000
-Message-ID: <20221107112736.mbdfflh6z37sijwg@skbuf>
-References: <20221104174151.439008-1-maxime.chevallier@bootlin.com>
- <20221104174151.439008-4-maxime.chevallier@bootlin.com>
- <20221104200530.3bbe18c6@kernel.org>
-In-Reply-To: <20221104200530.3bbe18c6@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI1PR04MB5136:EE_|PAXPR04MB8270:EE_
-x-ms-office365-filtering-correlation-id: d7d7759f-cf23-4e64-ae03-08dac0b312ba
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mNrjuIj32Vc9J4igFQJThrgR+Id6lcHUo0FqFfZ5cuEoa1GQG/pTfDUhRv0lsr4tMcwuY3nx0xxbit7SBjreJ/m7gmWfVgM5EOExSlMzN5PteLn/wIasCHy5/FE99T0sl4ccRRg5zIqHa5hXT5Wa7jiO7rG5hkmE0MpLUQVw/HF510E5BtpAsVgF2cCwcHrGE1bqMcSyEMHgK9uZyjwH8HSBFF/t8NUvjmkKLVrGMu/aUw75C0ovOf04ZRnS+r6HGXZ6imEe3pF0XZHSS+j3iw6ua9w7lZib5uyp7i4ebO7rp4zVPwD8Lk4ueqHkNRUG18tmkDRx0mUJNMP5melCwzunuPdIdv9Em9ENmNCFEprrhcIpSyY6maw6ZLbmqZUHnrtLlJcRHpW4/pOPa+2r3lHlFc0i7T6FbzKclAeWMWq+U+V+9eZtybYK/NvBf+mA7l7BTTmgFz2AfHozm4nrtX3/qMPPbnYRcpAwMNz7eqy0m66U3ogURuVjYNYU8+wotJVvVFlKThgq4h3Zjo41uDcBTZiGbd+JoyyH0QN9LPFrr8hj1+uI2a4hRYfJhSbAjcKjuJc9m+gAO0F8JVaIHSdlhnkFqB6rBnxl//RqKVsVNZM+xFz5w0SHDHYiEGUoiuEYDeGEtCAOhVHaKNf8Nj1CvlHx3fWwi3XtRuCzymlhk5p1sFWKSWNxxm7KJTG2WF2r36P8bLPEqap9NariSzyAg5JvIa+nAjexy2Oh3gYa1KkHb8XfAadvsH07a7ilWSPq9F5b/52tHO+4DI9ozRpzDtflzN8jHY+cVXlaKJc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(7916004)(376002)(136003)(39860400002)(346002)(396003)(366004)(451199015)(86362001)(38070700005)(7416002)(5660300002)(44832011)(2906002)(6506007)(26005)(9686003)(1076003)(186003)(38100700002)(83380400001)(122000001)(6512007)(66899015)(66946007)(76116006)(54906003)(33716001)(4326008)(66446008)(66556008)(91956017)(64756008)(66476007)(6916009)(8676002)(8936002)(316002)(71200400001)(6486002)(478600001)(41300700001)(10944003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Zw8uqw0Y2RI3T5fYA7KYyF4BtS8ypcG/au66pPGGi3qb9dwjlpVC3slTJuIV?=
- =?us-ascii?Q?oUu4C9LNYetvy/PF8+mkn1mXEs7P1sQ1A+eRkgojLXpG96FQsn+d/NKd/Vvl?=
- =?us-ascii?Q?ulYilGLSmThzRuIM/gLQgn0vu5spVpbpQVVjppcM8wosJe7tb/K5YaHR6JdY?=
- =?us-ascii?Q?CEgLYP/bxvaaj7CSl5gsh/3JBZ5O0lgjGGLyDyUyjKe+VCfKtW2jfFpeEywI?=
- =?us-ascii?Q?FT2te7+HCOpMqB133SIHcQ/jEChuJVezQG9xvsPywxQOlyBIIW51mpkL0NOe?=
- =?us-ascii?Q?6MsWEyxFWDdpaq7SQgOtBjmtHdElrArlWipRVfyd+FgID19nwuKCRPO9SySq?=
- =?us-ascii?Q?hcBPSYRqUZ6ye+IwF/eu0qq8POniFKiYPeY/JSPl0JoTiVa3AOslwpLXpJ69?=
- =?us-ascii?Q?ghkX64E1XbhndyTfYYSmfsvPKJF/wFqGW/NmUvMkn9LpUdJL3/PJfr2SvzXB?=
- =?us-ascii?Q?EmxasBypqTaFFePzwTjpKGP65kjOp6mReFc0uiYpxRA6uVHlE18d2ivM+WiF?=
- =?us-ascii?Q?2uUMguvkCNJYk0zsGZuJB6Bb8D/W4c4oBu28y4NBtywUZ5vUbtO3ey8eyXjS?=
- =?us-ascii?Q?2RXJdWURR8ZG1YFHpkJo9rJmzrCZ3XAHsxg8nB8tYK6nBanPjR4uv5gHBhO1?=
- =?us-ascii?Q?W8oZmQRT2uM6IH9uIAssC0rn9RAyYdsyeCic10J7AfGuJKcUnkAegTK/6SE+?=
- =?us-ascii?Q?ailApkgktcHSZt84U+vNy9M/1PkvxGk/5aZY0Wv2nJltJnRu+/1tvus52Dk1?=
- =?us-ascii?Q?ZaihP9PbqN51z6NsD5z9UJrqBEjfm/Ms4PNzBsno7/U0oYSuyeYo2YMGtV7G?=
- =?us-ascii?Q?wpuwQ0HU+Gb88N0aZEm046JU+lkXRv7NEomaVKmMzryXqrdKxg9C2FPcnUW5?=
- =?us-ascii?Q?5ZID2+dJMOAceWL3Gdop8XMbgM374foFiCmA4pG40Fwfbefl3V7cigdzZxRv?=
- =?us-ascii?Q?Kkyw6O75y+O+ueTIJ36jY/MoPps3CT7ydRnEAli/TATya5MiE+NZhX4rVCYK?=
- =?us-ascii?Q?Z8g4YUXWbTKu5D7IM8pCzzbgaUletoeVDwNjkoVameUn/LuvoQ+Q7IMAuYFH?=
- =?us-ascii?Q?qi2fzsIRBtv+m2EyM+UkoIP8tPbsi92BQhkHMKeiRAxLqGoph67C+oFAWQk3?=
- =?us-ascii?Q?DpvtnYiQKWNBHI0l35bsnbLvNt63PLoH/Oql2jIdLkEUvJaH5tzoXl94uCN1?=
- =?us-ascii?Q?DqjcbPSQ32UBn/AthaxmMXX97hfSknbd/TEAnGVifxetnkEh2sk7qJotzzVp?=
- =?us-ascii?Q?bEPSrYSlZA2obL2jp+pRgRschJ1P9kuQUILwqx8lVK4KEGqlE/AY7caaA/LY?=
- =?us-ascii?Q?bTmgLayCDn3H55aRRvt32yA8kMaZz9K1Qa0GFLYHi2cxETS8PBK2i8q3ZMPD?=
- =?us-ascii?Q?5SzTn9n/eMcQalehWeMV+WSrpLxlNmKWmUoqT0szGuIs+TgtuFiwXzt0zQHh?=
- =?us-ascii?Q?9hcNkLIYZ9kSmUubfXHl4govccZ0YKeZgmJ8Gj7UkoVWlMxiayEt+HBbNXOA?=
- =?us-ascii?Q?EX4TYph6gnccIll2q6vumKhTZ7yD0wX9WXeu/liXkQUrKLK6X517ffG0HhM1?=
- =?us-ascii?Q?18vYFvMWmEx5aHObrQl+UmLBkBRYb4xsAb44c+MuyRqYrhJ3EjYUS5PNvHua?=
- =?us-ascii?Q?Fg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <DF655BDE7533F4438087FD5416E3243A@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7d7759f-cf23-4e64-ae03-08dac0b312ba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Nov 2022 11:27:37.2093
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RIMC/2yovuY6iIB187GPsYmZJr+9Tw8cbnJ4q+osUqTJruC23a3DZePbKhSrp+dqCWi9G3dUdnbhY2TiQe5DIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8270
+        Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Vinod Koul <vkoul@kernel.org>
+References: <20221104131358.1025987-1-dmitry.baryshkov@linaro.org>
+ <20221104131358.1025987-4-dmitry.baryshkov@linaro.org>
+ <20221106043011.pw5fqeame7otzdcn@builder.lan>
+ <dc19c341-c653-c60e-dd45-5c87ed4c6811@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <dc19c341-c653-c60e-dd45-5c87ed4c6811@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakub,
+On 07/11/2022 11:46, Konrad Dybcio wrote:
+> 
+> 
+> On 06/11/2022 05:30, Bjorn Andersson wrote:
+>> On Fri, Nov 04, 2022 at 04:13:56PM +0300, Dmitry Baryshkov wrote:
+>>> Enable MDSS/DPU/DSI0 on SM8450-HDK device. Note, there is no panel
+>>> configuration (yet).
+>>>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 18 ++++++++++++++++++
+>>>   1 file changed, 18 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>> index 38ccd44620d0..e1a4cf1ee51d 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>>> @@ -442,3 +442,21 @@ &usb_1_qmpphy {
+>>>   	vdda-phy-supply = <&vreg_l6b_1p2>;
+>>>   	vdda-pll-supply = <&vreg_l1b_0p91>;
+>>>   };
+>>> +
+>>> +&mdss {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&mdss_mdp {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&dsi0 {
+>>
+>> Please prefix the labels with "mdss_" so that you can keep them sorted
+>> alphabetically.
+> Why such a change all of a sudden? Only downstream (and sc7280 upstream) 
+> has mdss_ prefixes for dsi. 
 
-On Fri, Nov 04, 2022 at 08:05:30PM -0700, Jakub Kicinski wrote:
-> On Fri,  4 Nov 2022 18:41:49 +0100 Maxime Chevallier wrote:
-> > Add a new tagging protocol based on SKB extensions to convey the
-> > information about the destination port to the MAC driver
->
-> This is what METADATA_HW_PORT_MUX is for, you shouldn't have
-> to allocate a piece of memory for every single packet.
+For keeping the nodes together - this makes review of code and patches
+easier.
 
-Since this is the model that skb extensions propose and not something
-that Maxime invented for this series, I presume that's not such a big
-deal? What's more, couldn't this specific limitation of skb extensions
-be addressed in a punctual way, via one-time calls to __skb_ext_alloc()
-and fast path calls to __skb_ext_set()?
+> Plain 'dsiN' is more generic.
 
-I'm unfamiliar to the concept of destination cache entries and even more
-so to the concept of struct dst_entry * carrying metadata. I suppose the
-latter were introduced for lack of space in struct sk_buff, to carry
-metadata between layers that aren't L3/L4 (where normal dst_entry structs
-are used)? What makes metadata dst's preferable to skb extensions?
-The latter are more general; AFAIK they can be used between any layer
-and any other layer, like for example between RX and TX in the
-forwarding path. Side note, I am not exactly clear what are the lifetime
-guarantees of a metadata dst entry, and if DSA's use would be 100% safe
-(DSA is kind of L3, since it has an ETH_P_XDSA packet_type handler, not
-an rx_handler).
+And why the label should be generic? Label should be useful and
+descriptive, although not too much, so mdss_dsi still fits in reasonable
+choice.
 
-More importantly, what happens if a DSA switch is used together with a
-SRIOV-capable DSA master which already uses METADATA_HW_PORT_MUX for
-PF-VF communication? (if I understood the commit message of 3fcece12bc1b
-("net: store port/representator id in metadata_dst") correctly)=
+Best regards,
+Krzysztof
+
