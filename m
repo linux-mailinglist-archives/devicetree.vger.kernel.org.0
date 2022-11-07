@@ -2,151 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B5D61FF81
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 21:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF83861FFA1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 21:38:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232164AbiKGU1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 15:27:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57464 "EHLO
+        id S232504AbiKGUiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 15:38:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231906AbiKGU1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 15:27:35 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD18DD2;
-        Mon,  7 Nov 2022 12:27:32 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id q186so1017268oia.9;
-        Mon, 07 Nov 2022 12:27:32 -0800 (PST)
+        with ESMTP id S232085AbiKGUiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 15:38:06 -0500
+Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A9C927DD8
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 12:38:05 -0800 (PST)
+Received: by mail-vs1-xe2e.google.com with SMTP id p4so11740637vsa.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 12:38:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=IHQPm0wu+YpCSjSEGUCLAXG8G/dftjICDA1Cd0hRfeQ=;
+        b=v5sI0kcBdDoCOkZIGxqhb4rT9YpWXWkK5YNai2ZsI0LwkhX4FRfRZdOHhe+XFMtmO2
+         KWo5ymx5sn82nITWbEgRXOiY4GNydpVeDWlQWWwd1ft3/KcBqIsbeNFhjPEb7fW15ccT
+         nhAKNcu5c10qRwFFHodMHjfBi8eE2d/EyAEqiOO0T/m6niREitOTyB6hlrffalAotlXu
+         q7/p7Nwow85rgPMixcCaB1gp3SYzvYPLZwU12im9h+ff+caINUpx95pr7YCGyzqCvy9H
+         SPGt3JDP1X6pnExIK98tIRBCtVsF6n1gjBh3wAnukW3ER2VLyAassxHVe6FXyFgNFR0w
+         Zhfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3H8ClgcI0ymBxPx6cLH6CRePq5Du7IS4PnD3S+Hqfq4=;
-        b=FhM2r0moynYABUs30a6LIPdwZKa2qeNekrGqhJjg24gFmqZtuSTQ0Oc6La6LgZ4oGw
-         rz6vRCi3Lfwj898zbqoG4SHwDzW+fNvjZIQ+WlJAWKifS97tV8FstD4KbpYy0n5v0KDx
-         fWqFwWioxf4qnqoBX0D6VbknQJSEmjGtXOUQEqgvNYbiXzjkz40hKjNbzbT0I7Dn7QtE
-         plZH9zIqZWO/YiW1JDGAbS4J33HLe52+7ft9G5NsSV+VDr9PETiXE80jekJK4mQ8gkDO
-         VzLH8wiBVKp4olaCLMqorDdktBMjJ4iuxGl9cXf7gQwvnDQmDIR8WlKSoGYcq3Y+4WS6
-         HGqA==
-X-Gm-Message-State: ANoB5pmx30oSizdY/sgvZ5Q7WO0I6UCZkn/AHbldQBRsi1qX5a6fqKNZ
-        9smJkPe0943N8CfZ2omRjg==
-X-Google-Smtp-Source: AA0mqf5BdaFcCRbC0ePcKnRo+beRxTjUbIE7EHAOLUExpIWMwDMolbzjdYfVcU5qfnQy3dYRj5VFAQ==
-X-Received: by 2002:a05:6808:1787:b0:35a:7f71:c99c with SMTP id bg7-20020a056808178700b0035a7f71c99cmr5275091oib.18.1667852851754;
-        Mon, 07 Nov 2022 12:27:31 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id fp19-20020a056870659300b0013b8b3710bfsm3599492oab.13.2022.11.07.12.27.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 12:27:31 -0800 (PST)
-Received: (nullmailer pid 1585282 invoked by uid 1000);
-        Mon, 07 Nov 2022 20:27:33 -0000
-Date:   Mon, 7 Nov 2022 14:27:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: arm,sbsa-uart: Convert to
- json-schema
-Message-ID: <20221107202733.GA1574416-robh@kernel.org>
-References: <20221104104303.1534876-1-thierry.reding@gmail.com>
- <0f97ef6c-234e-d677-75ba-11b22586c95e@linaro.org>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IHQPm0wu+YpCSjSEGUCLAXG8G/dftjICDA1Cd0hRfeQ=;
+        b=6zvUXJUBkIYqnQoq2bpfMcoUFSKisltK5C+MA4bevAqQ7jO1/cuxqJIRhtYprShVRE
+         V31h5HH4q8J6HzTIPaQvJv8pfu87Al7GRgXd5piFihjDD6yICDkgLQLLq/6yAD/qeIov
+         i1T1HSlQw0MPOJ216wU+fQlrK6UKeuW0HCZe9jvxcx1X6OSgxY/ZTX5jtm774AhVbWDu
+         kgpgOT/6B6KBRevmRXoQ8fB3TCc9zQIIOXXiC0JRwhH804L90E2Uf9VuhPInBtxIxvzF
+         nmX/Tnl529mPuU++suVA93qqJ+K+8o1J5v2iaraJldlNJUJElNrYLQSzxegmyHhUokIA
+         J9Ag==
+X-Gm-Message-State: ACrzQf2NryCM56zzkFmhm3fcaizlJm0qfZ8pG642iaDSG0B/41DfQ/jB
+        ZTtKdaDQr7iXDOddjuRe4lF6zEM08DJmeQDz2TPL/Q==
+X-Google-Smtp-Source: AMsMyM7HKtwdW6lovqXQpX0baiK/2edNiHMRZe7qPwavV5oUB/CVeT9TRpDCXiaPRYKoPRZKiDdMY609XkAwj6FX7iE=
+X-Received: by 2002:a67:ac0e:0:b0:3aa:86c3:e6fc with SMTP id
+ v14-20020a67ac0e000000b003aa86c3e6fcmr26672223vse.9.1667853484301; Mon, 07
+ Nov 2022 12:38:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0f97ef6c-234e-d677-75ba-11b22586c95e@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20221101082442.263448-1-chenweilong@huawei.com> <9824fa76-89cc-6c17-9c4a-d37524a30a92@huawei.com>
+In-Reply-To: <9824fa76-89cc-6c17-9c4a-d37524a30a92@huawei.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 7 Nov 2022 21:37:53 +0100
+Message-ID: <CAMRc=Mdw=45_oEzO-4ix5Nhm2tnSJRrPmLjnzkp4GeYGbDPeVQ@mail.gmail.com>
+Subject: Re: [PATCH next v3 1/2] gpio: hisi: Add initial device tree support
+To:     chenweilong <chenweilong@huawei.com>
+Cc:     f.fangjian@huawei.com, linus.walleij@linaro.org,
+        yangyicong@hisilicon.com, xuwei5@huawei.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 04, 2022 at 10:25:42AM -0400, Krzysztof Kozlowski wrote:
-> On 04/11/2022 06:43, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> > 
-> > Convert the ARM SBSA UART device tree bindings from the free-form text
-> > format to json-schema.
-> > 
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+On Thu, Nov 3, 2022 at 9:51 AM chenweilong <chenweilong@huawei.com> wrote:
+>
+> On 2022/11/1 16:24, Weilong Chen wrote:
+>
+> This is the latest version for the patch, I used the v3 version number incorrectly.
+> Sorry for the mistake. I will pay attention next time.
+>
+> > Add support for HiSilicon GPIO controller in embedded platform, which
+> > boot from devicetree.
+> >
+> > Signed-off-by: Weilong Chen <chenweilong@huawei.com>
 > > ---
-> >  .../bindings/serial/arm,sbsa-uart.yaml        | 37 +++++++++++++++++++
-> >  .../bindings/serial/arm_sbsa_uart.txt         | 10 -----
-> >  2 files changed, 37 insertions(+), 10 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/serial/arm_sbsa_uart.txt
+> > Change since v2:
+> > - Drop wrong use ACPI_PTR/of_match_ptr
+> > Link: https://lore.kernel.org/lkml/20221028022453.163186-1-chenweilong@huawei.com/
+> >
+> >  drivers/gpio/Kconfig     | 2 +-
+> >  drivers/gpio/gpio-hisi.c | 7 +++++++
+> >  2 files changed, 8 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> > index e034f752e7ce..71a7880af59d 100644
+> > --- a/drivers/gpio/Kconfig
+> > +++ b/drivers/gpio/Kconfig
+> > @@ -310,7 +310,7 @@ config GPIO_GRGPIO
+> >
+> >  config GPIO_HISI
+> >       tristate "HiSilicon GPIO controller driver"
+> > -     depends on (ARM64 && ACPI) || COMPILE_TEST
+> > +     depends on ARM64 || COMPILE_TEST
+> >       select GPIO_GENERIC
+> >       select GPIOLIB_IRQCHIP
+> >       help
+> > diff --git a/drivers/gpio/gpio-hisi.c b/drivers/gpio/gpio-hisi.c
+> > index 3caabef5c7a2..55bd69043bf4 100644
+> > --- a/drivers/gpio/gpio-hisi.c
+> > +++ b/drivers/gpio/gpio-hisi.c
+> > @@ -221,6 +221,12 @@ static const struct acpi_device_id hisi_gpio_acpi_match[] = {
+> >  };
+> >  MODULE_DEVICE_TABLE(acpi, hisi_gpio_acpi_match);
+> >
+> > +static const struct of_device_id hisi_gpio_dts_match[] = {
+> > +     { .compatible = "hisilicon,ascend910-gpio", },
+> > +     { }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, hisi_gpio_dts_match);
+> > +
+> >  static void hisi_gpio_get_pdata(struct device *dev,
+> >                               struct hisi_gpio *hisi_gpio)
+> >  {
+> > @@ -311,6 +317,7 @@ static struct platform_driver hisi_gpio_driver = {
+> >       .driver         = {
+> >               .name   = HISI_GPIO_DRIVER_NAME,
+> >               .acpi_match_table = hisi_gpio_acpi_match,
+> > +             .of_match_table = hisi_gpio_dts_match,
+> >       },
+> >       .probe          = hisi_gpio_probe,
+> >  };
+>
+>
 
-Note that NXP LS2160a has a warning with this. The warning is correct 
-because both PL011 and SBSA UART is wrong IMO. The question is which one 
-is it really. I would assume someone went with SBSA for some reason. The 
-pl011 compatible should be ignored given 'arm,primecell' is missing.
+I applied both, but reversed the order as dt bindings should come first. Thanks!
 
-
-> > diff --git a/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-> > new file mode 100644
-> > index 000000000000..afaa1ef7f2e6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/serial/arm,sbsa-uart.yaml
-> > @@ -0,0 +1,37 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/serial/arm,sbsa-uart.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ARM SBSA defined generic UART
-> > +
-> > +maintainers:
-> > +  - Rob Herring <robh@kernel.org>
-> > +  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> 
-> This shouldn't be Greg but someone nothing the hardware. Rob might work,
-> but maybe also Russell who is mentioned in maintainers entry?
-
-I'm fine with it given I already have pl011 binding.
-
-
-> Please resend with him cced.
-> 
-> > +
-> > +description:
-> > +  This UART uses a subset of the PL011 registers and consequently lives
-> > +  in the PL011 driver. It's baudrate and other communication parameters
-> > +  cannot be adjusted at runtime, so it lacks a clock specifier here.
-
-Differences to PL011 are relavent, but location of the (Linux) driver is 
-not.
-
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: arm,sbsa-uart
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +allOf:
-> > +  - $ref: serial.yaml
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +...
-> 
-> Example would be nice, although it  is not a requirement.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+Bart
