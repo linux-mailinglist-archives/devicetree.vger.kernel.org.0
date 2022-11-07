@@ -2,47 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A3361E944
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A725461E948
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230516AbiKGDO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 22:14:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
+        id S231269AbiKGDOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:14:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231150AbiKGDNq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:13:46 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1542C1183D;
+        with ESMTP id S231166AbiKGDNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:13:50 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A2511C0A;
         Sun,  6 Nov 2022 19:13:07 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A9292B80D8F;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E7FB960EA2;
+        Mon,  7 Nov 2022 03:13:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C856C43144;
         Mon,  7 Nov 2022 03:13:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ED7FC43155;
-        Mon,  7 Nov 2022 03:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667790784;
-        bh=Bq8erqkFiD3Oil3Ip4jna8LKMJxYbU0vWaCzoO8q6q0=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=UElE+BH06y2L66zUoTVh/gMPHkSFXTq3Fwj2SKftfjjlW7uYe1awoDVLGP6ZYWiS5
-         dAT9DSgmAiIGro4v6IL5x/uicQnPxoDFotcXKXg21pVR4xx2NM7pAbmeHKSeR7s++1
-         MXzWKTayM0Vg5cAljpYORcPQlUt6ZDQj/qv4nzZ0vLOA2LFbg2r8ha2/8dbperXoWJ
-         8R6diLmmbAdyev083AaLWdoOIP/eWo5pF8N/3LOXpnpZtvzq6yX41jBIJZvml1QgWb
-         Zztb/wJj8JUTSrLHC1kcP7Tt9toUbLk646bp8e2TnRNXa/8IcCdLJdfBrB99q8Zr6B
-         gD4azp2q+3Nyw==
+        s=k20201202; t=1667790786;
+        bh=qQ2gGz+etukYdxWDGdJ4c/tlmPK4Bf5ST3iIjtsUHms=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=XwC96ur4kj4AHIbWly+cu0G5e7+aHme9n5hU5XPTtehBbX4Ux4frGIMf7jl/CXFEH
+         Y5yMUJJuqZUO0HACtSlTL0mSLFpUOjrr9PMNtVyNSnoW5ipg6+mzVyiCMAfkCQyHvF
+         2ys9PRqkz8vngcBJw6IcKdOTSolFiW8hGpVGVzPsl0jihA0c0xfDv74ZxUOlozWvd1
+         GgB/YjNFG5FxE+Y+UUEVCDbzb6w4KHY5NZAGVEHaWesGEIlrOPNtb02lKCa1Whdlf0
+         TYf7bPA6c3Yt8I12gDtqmDj9OEHa00AnMhZFiiM2teMjvBDNHGj4UNuYWZLSZLThX+
+         VHTeidigKLlrw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, konrad.dybcio@somainline.org,
+To:     luca@z3ntu.xyz, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, konrad.dybcio@somainline.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>
-Subject: Re: (subset) [PATCH v4 1/2] arm64: dts: qcom: msm8996-sony-xperia-tone: drop incorrect wlan pin input
-Date:   Sun,  6 Nov 2022 21:12:22 -0600
-Message-Id: <166779074260.500303.14851343217715817416.b4-ty@kernel.org>
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: arm: qcom: Document huawei,sturgeon device
+Date:   Sun,  6 Nov 2022 21:12:24 -0600
+Message-Id: <166779074252.500303.16646489409571758224.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20221020225309.32116-1-krzysztof.kozlowski@linaro.org>
-References: <20221020225309.32116-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220924152937.4076-1-luca@z3ntu.xyz>
+References: <20220924152937.4076-1-luca@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,18 +57,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Oct 2022 18:53:08 -0400, Krzysztof Kozlowski wrote:
-> Pin configuration has no "input-high" property, so drop it from node
-> described as Wifi host wake up pin.
+On Sat, 24 Sep 2022 17:29:36 +0200, Luca Weiss wrote:
+> Document the Huawei Watch ("sturgeon") which is a smartwatch based on
+> Snapdragon 400 SoC.
 > 
 > 
 
 Applied, thanks!
 
-[1/2] arm64: dts: qcom: msm8996-sony-xperia-tone: drop incorrect wlan pin input
-      commit: 5ecbf096e0565d4761e0294aaa2e79ce44a53e6d
-[2/2] arm64: dts: qcom: msm8996: align TLMM pin configuration with DT schema
-      commit: 169e1553accfd31386a7d364ab57293802027ab7
+[1/2] dt-bindings: arm: qcom: Document huawei,sturgeon device
+      commit: 773c7700a71bb3f7f4fa4f689ffd4d063ddd66a7
+[2/2] ARM: dts: qcom: Add support for Huawei Watch
+      commit: 65e0d1c4668506d511af9ab0ff0a1f4c940ef8e7
 
 Best regards,
 -- 
