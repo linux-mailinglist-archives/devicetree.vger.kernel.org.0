@@ -2,142 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BF0F61EF78
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A679261EFA5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231745AbiKGJqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:46:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40610 "EHLO
+        id S230475AbiKGJxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:53:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbiKGJqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:46:31 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56F321836D
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:46:28 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id b21so10560819plc.9
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:46:28 -0800 (PST)
+        with ESMTP id S231709AbiKGJxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:53:33 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103952627
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:53:31 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id v17so16633613edc.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:53:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=roGc4+qz6FYoa6IVuyPxJOvm0gSmGM4+cpEPDr2Izhk=;
-        b=QgiK9dLeRRmJfnLqrlHoI83I4QQexT5FQvf85mP8tTluXwWT3nllG8dMRpqN5OWnU8
-         b6sb9ZU+nPJOBO09F4beDhq2KRxgIKPh0LlCyXxzXr3dE/99y5cV26y/s6cstjdBqPL6
-         OigpcHHQDcAVpB0HtAtL9FhJ9ZF6GpPnBjynuXi9CX3JXPlpe8LlI8DP9IdupHoFrAhW
-         BZWnue4a7T7OVQDmUj7szd4fAts9pmfjJgHlgblr1Je8SPmBqoykjqxhJ3o8ACCOxT3v
-         M2aY6gwQowpHV0N0V2XBO2b7c2cbRwFbFBIUeJgcdF2KXZUG/S/SSSWdpnzne683H7ib
-         uQFQ==
+        bh=nrpOcBtn3HWMTxBFuFmQ7U6kciBf0Ub0H3iUH25EGv0=;
+        b=VThaQHoiK194f4T5eApDXnIMZaUnNfXYV3g88ghL15kjblzUOIfzKsbt6Evlll/n0r
+         L414tqkO0Qv8e5Di6OQXF8ihSNLEM7JvyPa1f1t710+/f6GgUU2E61mbZ9iakDE2Aq9A
+         ieMdgHz1nDcHH8PJFlihdag8fazTaa8XU3uiEiS3o05HjDrXdxEELo9uVwwrgUNyn2SD
+         Uc0xZNP+DVe4VVDvOdMQj+vwhT+JG6yY1FUj5Lf9tc0khCh/0VnYkXLrdBweG7DkSFhi
+         VmDqssrIiZ0KbJDJ2Hffo8YEqLxCKhS+3za+I31eglTW4qNDwGoYhUPRjYztOeqb0L1T
+         qujg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=roGc4+qz6FYoa6IVuyPxJOvm0gSmGM4+cpEPDr2Izhk=;
-        b=MEUowuad7QWLyZ5xti/6IQIZtEohle3YbO4Yk8GCE0Lw+BNs28VptgtJXwrOLKDAlG
-         fY1jJ+rV0ZTvjUyWpH4H1+aQJk67v7uRI/buyw1iUOGwOg1eioq/nvOjp03TiBHouke4
-         Lfmy6PzBjpsGNzYXzPajnikHP59yUdSe1cyN/o2aFPA2nq4LmxD1z23egrXf7T36hgbQ
-         XRFUviRTR3j6VR6tRB256ANWlVPlBycOXH2gx04+i7OQwdOE0CZ4+cg2ovysCeXfQbnt
-         IGzkUIQYswaYgSFMWAS3YIoCbr3C3josMS64GMjNljFqaIno8y6jgHmai+ailZoskP78
-         c/3Q==
-X-Gm-Message-State: ANoB5pmNzO9+QRza0mJpeBev29DYsGWZf8uL5I1Nz8sQxbU8a6tYNE2k
-        Lpsn0gI8WjaQ0ORn7Mg0Nk4seQ==
-X-Google-Smtp-Source: AA0mqf7D+7PfKldkBkiX1jwGwvnkkBhb0OkyzgetNWSKblW2yySKx/z7s+SMT6aF+IT0XEUou5OicA==
-X-Received: by 2002:a17:902:cf07:b0:188:7e83:c5f1 with SMTP id i7-20020a170902cf0700b001887e83c5f1mr5593993plg.58.1667814387820;
-        Mon, 07 Nov 2022 01:46:27 -0800 (PST)
-Received: from liang-Predator-PH517-52.. (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id i2-20020a170902c94200b00186dcc37e17sm4564936pla.210.2022.11.07.01.46.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 01:46:27 -0800 (PST)
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org,
-        Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v11 5/5] arm64: dts: qcom: sc7280: sort out the "Status" to last property with sc7280-herobrine-audio-rt5682.dtsi
-Date:   Mon,  7 Nov 2022 17:43:45 +0800
-Message-Id: <20221107173954.v11.5.I4c6d97e6f3cf8cdc691d2d4519883c3018dd4372@changeid>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
-References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
+        h=content-transfer-encoding:in-reply-to:from:references:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=nrpOcBtn3HWMTxBFuFmQ7U6kciBf0Ub0H3iUH25EGv0=;
+        b=Qw1MC0k06m/N5Irr2NUEM2juap88k1OR6LQPOWWt4mje8O5B7DTYe/PHeyxlpVcxbf
+         7ipVyHvomhVxzWI/QdcGmhbg9UuhDyPztpJexIHckSgIM0ZHKim2xpG/62EOmkAWEZK8
+         yLrDh5bJgGWBp4SF9MK5fq2byBPcOzYaT4lprNzsE8DMCFHHwcxwVn9x6+BmH/HEptUW
+         EpMinpvd/6uB/9q2KMNN0KDZQDdcX7h6yAXfyc7QVstZPyy8rc9uo1z8TBG4ybXndx+c
+         q8kFKzJf1rztGjprb4yirv8SmeKgEWshieVX5o/Ktu7OUu2osIz2aQkGIUc912g2OWPc
+         93Pw==
+X-Gm-Message-State: ACrzQf0wBYPCsQjXuHbkf4NCkj2PftIKVHP4uxSoy5MUcqbF7gds0vt9
+        mTiYpN90lcjQlSWForvAwxBORg==
+X-Google-Smtp-Source: AMsMyM5BEU/PscivvE+aOXq9l80dpRVKt+3pctwgItNKm7ObLcP+QwuaMiLbf+J1zUg/Y8ubzEWpOw==
+X-Received: by 2002:a05:6402:659:b0:463:a83c:e0af with SMTP id u25-20020a056402065900b00463a83ce0afmr697434edx.158.1667814810525;
+        Mon, 07 Nov 2022 01:53:30 -0800 (PST)
+Received: from [192.168.31.208] ([194.29.137.22])
+        by smtp.gmail.com with ESMTPSA id et19-20020a170907295300b0078df26efb7dsm3131175ejc.107.2022.11.07.01.53.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 01:53:30 -0800 (PST)
+Message-ID: <d18aea2b-3ae8-2754-585d-ef763588461d@linaro.org>
+Date:   Mon, 7 Nov 2022 10:53:24 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.4.1
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: hk10: use "okay" instead of "ok"
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221107092930.33325-1-robimarko@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20221107092930.33325-1-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To keep diffs clean, sort out "Status" to last property.
 
-Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
----
 
-Changes in v11:
-- sort out the "Status" property with sc7280-herobrine-audio-rt5682.dtsi
+On 07/11/2022 10:29, Robert Marko wrote:
+> Use "okay" instead of "ok" in USB nodes as "ok" is deprecated.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
- .../dts/qcom/sc7280-herobrine-audio-rt5682.dtsi    | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-index 2dbdeeb29ecec..fc7a659dfe4ae 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-@@ -13,14 +13,14 @@ sound: sound {
- 		compatible = "google,sc7280-herobrine";
- 		model = "sc7280-rt5682-max98360a-1mic";
- 
--		status = "okay";
--		audio-routing =
--			"Headphone Jack", "HPOL",
--			"Headphone Jack", "HPOR";
-+		audio-routing = "Headphone Jack", "HPOL",
-+				"Headphone Jack", "HPOR";
- 
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-+		status = "okay";
-+
- 		dai-link@0 {
- 			link-name = "MAX98360";
- 			reg = <0>;
-@@ -50,8 +50,8 @@ codec {
- };
- 
- hp_i2c: &i2c2 {
--	status = "okay";
- 	clock-frequency = <400000>;
-+	status = "okay";
- 
- 	alc5682: codec@1a {
- 		compatible = "realtek,rt5682s";
-@@ -75,8 +75,6 @@ alc5682: codec@1a {
- };
- 
- &lpass_cpu {
--	status = "okay";
--
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mi2s0_data0>, <&mi2s0_data1>, <&mi2s0_mclk>, <&mi2s0_sclk>, <&mi2s0_ws>,
- 			<&mi2s1_data0>, <&mi2s1_sclk>, <&mi2s1_ws>;
-@@ -84,6 +82,8 @@ &lpass_cpu {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
-+	status = "okay";
-+
- 	dai-link@0 {
- 		reg = <MI2S_PRIMARY>;
- 		qcom,playback-sd-lines = <1>;
--- 
-2.34.1
-
+Konrad
+>   arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+> index db4b87944cdf..262b937e0bc6 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
+> @@ -22,7 +22,7 @@ memory {
+>   };
+>   
+>   &blsp1_spi1 {
+> -	status = "ok";
+> +	status = "okay";
+>   
+>   	flash@0 {
+>   		#address-cells = <1>;
+> @@ -34,33 +34,33 @@ flash@0 {
+>   };
+>   
+>   &blsp1_uart5 {
+> -	status = "ok";
+> +	status = "okay";
+>   };
+>   
+>   &pcie0 {
+> -	status = "ok";
+> +	status = "okay";
+>   	perst-gpios = <&tlmm 58 0x1>;
+>   };
+>   
+>   &pcie1 {
+> -	status = "ok";
+> +	status = "okay";
+>   	perst-gpios = <&tlmm 61 0x1>;
+>   };
+>   
+>   &pcie_phy0 {
+> -	status = "ok";
+> +	status = "okay";
+>   };
+>   
+>   &pcie_phy1 {
+> -	status = "ok";
+> +	status = "okay";
+>   };
+>   
+>   &qpic_bam {
+> -	status = "ok";
+> +	status = "okay";
+>   };
+>   
+>   &qpic_nand {
+> -	status = "ok";
+> +	status = "okay";
+>   
+>   	nand@0 {
+>   		reg = <0>;
