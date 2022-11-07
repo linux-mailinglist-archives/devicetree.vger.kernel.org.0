@@ -2,104 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97AE361FD07
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AE461FD0B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:14:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232364AbiKGSOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:14:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58014 "EHLO
+        id S233119AbiKGSOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:14:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233002AbiKGSNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:13:43 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF8524973
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:12:31 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id a13so18961565edj.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:12:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=7vy3t5kbrzPjpdQusaDe/qP73aspKCTGfj7z6ORzdgY=;
-        b=cDv8auhtTvoqm4hxu39M9iJQmX6h3VmdR/dy12zJqgoxSKbPh/6ALAqQOyAY3DgWcN
-         vjul/joY1QIREYkeyGuOtZAHrIOnJTMuQgejXET/AF6vOB+ONqpiLclQTdGMh5KA+f92
-         1bRl4AO76MRNV5EXV6PhcVC/0xCgPIr0FuuQQ=
+        with ESMTP id S233130AbiKGSOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:14:31 -0500
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCB19FD7;
+        Mon,  7 Nov 2022 10:13:28 -0800 (PST)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-13b23e29e36so13574609fac.8;
+        Mon, 07 Nov 2022 10:13:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7vy3t5kbrzPjpdQusaDe/qP73aspKCTGfj7z6ORzdgY=;
-        b=iiSz8nzGgU3DBpni0K1CMD+63l/kUSHVjcY89CG3RAoMFlubLlbUBuO2pQHi3iWGk6
-         ML0oN/rznFAcTJg/qgJGuYiyJhdufeFur6Tr0yh14FcBpmI9Hk1UhtcZgdZjH8FxXazg
-         uKlJRDpb4+io2NFTaaPF9s43RO3qVnl8H21LMi9SmyPS7OCpVZKAtl6XdYQxEcExYxN0
-         4T0QNz2ZiS0mzWUK1ZizGRxnFfwFg4Z7sw35beKNQ7379rc0JmpLHWpUHRB4Zwk/oaKX
-         oEDP4Gt5hopG2rIwo3JLZEuvPVpPVSVDekDbj7MqUWNPRRWDHaoY35yHtp8CGuokD2z9
-         YFvA==
-X-Gm-Message-State: ACrzQf3hhRjAT9iDKGvN6EaMGAE93Zy/s3VN7Qx+PtfY0UTggOx9m4IP
-        avgpsTmTRroBIr5itRBL4uvF2yckdWlgEF7a
-X-Google-Smtp-Source: AMsMyM5x6r6+bx/U9tQParIOtvK4hIkNya5sCZO1NP2RxrR6VCYoLueNf9p8Pp3KETVyvPZaptZYWA==
-X-Received: by 2002:a05:6402:1619:b0:462:b059:9655 with SMTP id f25-20020a056402161900b00462b0599655mr50710194edv.316.1667844750169;
-        Mon, 07 Nov 2022 10:12:30 -0800 (PST)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
-        by smtp.gmail.com with ESMTPSA id b3-20020a17090630c300b007ae0fde7a9asm3630154ejb.201.2022.11.07.10.12.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:12:28 -0800 (PST)
-Received: by mail-wr1-f53.google.com with SMTP id j15so17472598wrq.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:12:28 -0800 (PST)
-X-Received: by 2002:adf:d1ec:0:b0:236:880f:2adf with SMTP id
- g12-20020adfd1ec000000b00236880f2adfmr32978773wrd.617.1667844748035; Mon, 07
- Nov 2022 10:12:28 -0800 (PST)
-MIME-Version: 1.0
-References: <20221107094345.2838931-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20221107173954.v11.5.I4c6d97e6f3cf8cdc691d2d4519883c3018dd4372@changeid>
-In-Reply-To: <20221107173954.v11.5.I4c6d97e6f3cf8cdc691d2d4519883c3018dd4372@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 7 Nov 2022 10:12:16 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UQc1L3z2Z7sfV1RnQS3c6RStXmighAC1OBPgYEAsPF6g@mail.gmail.com>
-Message-ID: <CAD=FV=UQc1L3z2Z7sfV1RnQS3c6RStXmighAC1OBPgYEAsPF6g@mail.gmail.com>
-Subject: Re: [PATCH v11 5/5] arm64: dts: qcom: sc7280: sort out the "Status"
- to last property with sc7280-herobrine-audio-rt5682.dtsi
-To:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=97ci6S/gLJDO/qKBMDkpSH+GCXePyoWEkk7z2wGZAQQ=;
+        b=in7XUFkjcGU4nBCXY+Q0fAEx7sdFp0QWQ8ZIEEqrT7Hq9Syp1OZ+xvMbqySjaH/Eag
+         2oYYKrNE7RU0QvLqGxZJ19eKdNrgc7we0FvDzWWqCx1Bv5Z4Yylow3gam80+HU97nK0y
+         Wu1dpfFakN1HruDosqHWHiqwGMqfRFNJeZ3NGHnZ/OEscQC4d1RfahQHj2/iQ6rg8HlR
+         U/wmFFyNF9wTPfl0R8LWa2cuOs4DcgDhbrglkxgBwejFkI3sTeX8Wo0FfzH2IInL+9p8
+         FXI2miswbGkw5X4QdnFBpT7ZoIfBG1O0c4gCZIgUJ/TpXDeI80xGLxr3Yr/yhyFnuGsL
+         gmsg==
+X-Gm-Message-State: ACrzQf0PLjJiHMeeQe979kakEYWMQMCE1A34TP5vvpDcNJE2XTyem5KK
+        mUB40ENOnnkZEAOum9JJOw==
+X-Google-Smtp-Source: AMsMyM5Yu7ne9W4o1AA/931DotPnhoT+0j0Ka4VYwMWNajj/OgySqx3COipraxfZu47Twpu2YJQtdQ==
+X-Received: by 2002:a05:6870:7886:b0:13c:12cf:17e8 with SMTP id hc6-20020a056870788600b0013c12cf17e8mr598398oab.21.1667844807157;
+        Mon, 07 Nov 2022 10:13:27 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id a33-20020a05687046a100b00136f3e4bc29sm3445900oap.9.2022.11.07.10.13.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 10:13:26 -0800 (PST)
+Received: (nullmailer pid 1378910 invoked by uid 1000);
+        Mon, 07 Nov 2022 18:13:28 -0000
+Date:   Mon, 7 Nov 2022 12:13:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Subject: Re: [PATCH v4 11/13] dt-bindings: iio: temperature: ltc2983: use
+ generic node name in example
+Message-ID: <20221107181328.GA1354289-robh@kernel.org>
+References: <20221103130041.2153295-1-demonsingur@gmail.com>
+ <20221103130041.2153295-12-demonsingur@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221103130041.2153295-12-demonsingur@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-
-On Mon, Nov 7, 2022 at 1:46 AM Sheng-Liang Pan
-<sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->
-> To keep diffs clean, sort out "Status" to last property.
->
-> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
+On Thu, Nov 03, 2022 at 03:00:39PM +0200, Cosmin Tanislav wrote:
+> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> 
+> Examples should use the generic IIO node name. Fix it.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 > ---
->
-> Changes in v11:
-> - sort out the "Status" property with sc7280-herobrine-audio-rt5682.dtsi
->
->  .../dts/qcom/sc7280-herobrine-audio-rt5682.dtsi    | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
+>  .../devicetree/bindings/iio/temperature/adi,ltc2983.yaml        | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> index 467e165e9b0b..bd357ff28e65 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+> @@ -420,7 +420,7 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        sensor_ltc2983: ltc2983@0 {
+> +        temp@0 {
 
-Thanks!
+The DT spec defines 'temperature-sensor'.
 
-I probably would have also removed the 'status = "okay";' from the
-top-level sound node in this patch, but that can always be done later.
-Certainly your patch is a step forward. :-)
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>                  compatible = "adi,ltc2983";
+>                  reg = <0>;
+>  
+> -- 
+> 2.38.1
+> 
+> 
