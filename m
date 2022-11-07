@@ -2,120 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9725661FD42
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 487FD61FD6F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:24:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232398AbiKGSTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:19:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35364 "EHLO
+        id S233082AbiKGSYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:24:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231693AbiKGSTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:19:25 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A5313FB7
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:18:47 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id d6so17901986lfs.10
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:18:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tWsXLh2L851r8RYCKJq+fTeiBfSiiVKT4hw/fDZo7zY=;
-        b=pnj0uLR9fJ4eXPPSx5vdtLny3B0AGgtcshzTfn3nv25iVQZT59hBKwyjlRsIC9sntp
-         jEuUijaHMRcGw3yti8oH31EW5tMd1hlxPQKFTHFsypbLaGIymVzeU1nXISqhRvdNzC9L
-         PSCbYJsCrzdyzrnrxrmVR6zDmuZ1nVNQaBd6UJ8jWrAsEaOZd9DBvwz+bb4pFuvF+EeR
-         oh9zSgdToRaeLlZiBTwgGWGwU/fyaCoLgF91yPovyLR0G6O3/4L2Du42WrLyqmHdtOwi
-         KxOHR6xJ7HV3MizjMJBJpEeFftaccz93wkl2HmazKT5fA50FNlbD4+LardUi4tu3lJ88
-         5z0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tWsXLh2L851r8RYCKJq+fTeiBfSiiVKT4hw/fDZo7zY=;
-        b=xhKl24sPmP6bTz5RpdBXj+Yqmsyx1OxCUM1fGB2oZ1zYRrsD/cnGBPr3m1R9j7wPTn
-         ZulhcvMWHcouAKQDlJE4xupixvVnRQFVZkDJA8vk6vQqTkV3zxSLvz5wizd7ndas0d6m
-         aKkGc7QIbVHLPTtMLMJPensFSUmSF1fo+WsC3FJ69GD4lxYtWoUCsynApC26BU/m999G
-         BnjcwCBo4O5i9AQwWl9frWUpZ8USJBr1SyIHkE821sv1FyaU4k6F7cWQsQ4L0LFoi0ez
-         s1wbIDr897yU9jQpQXAuvbE/7ussqDGBN78oxblLKUxsqmFVMHlF9rUDCUVpC3xaN+UR
-         e2lg==
-X-Gm-Message-State: ANoB5pk6zx/twK0neVaurn82MfC7oMxmHEShiI7tCJRYDpiOfsueqJJx
-        1XaMj43u1C6ZsdnvYBHIR5lbXg==
-X-Google-Smtp-Source: AA0mqf6uQrloA1xdpVDP17NsvKbFFDiNw5PsPA/9ZXq1MuCsgg9JsvymfHX6GczKvE6+iQskp7J4ig==
-X-Received: by 2002:a05:6512:38c9:b0:4b2:1a29:cc44 with SMTP id p9-20020a05651238c900b004b21a29cc44mr4679507lft.176.1667845125716;
-        Mon, 07 Nov 2022 10:18:45 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id m18-20020a197112000000b004a2550db9ddsm1350619lfc.245.2022.11.07.10.18.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 10:18:45 -0800 (PST)
-Message-ID: <7b848257-e3a4-3b6b-9986-57174e40319d@linaro.org>
-Date:   Mon, 7 Nov 2022 19:18:44 +0100
+        with ESMTP id S231754AbiKGSXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:23:54 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 97CDE2646;
+        Mon,  7 Nov 2022 10:23:29 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E2E61FB;
+        Mon,  7 Nov 2022 10:23:35 -0800 (PST)
+Received: from [10.34.100.128] (pierre123.nice.arm.com [10.34.100.128])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1AF563F534;
+        Mon,  7 Nov 2022 10:23:27 -0800 (PST)
+Message-ID: <580fd3fa-03e6-9ab8-b1f9-9342cd2fde38@arm.com>
+Date:   Mon, 7 Nov 2022 19:23:19 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH v3 2/5] dt-bindings: power: rpmpd: Add QDU1000/QRU1000 to
- rpmpd binding
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v2 22/23] arm64: dts: Update cache properties for tesla
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Melody Olvera <quic_molvera@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-kernel@vger.kernel.org
-References: <20221026190549.4005703-1-quic_molvera@quicinc.com>
- <20221026190549.4005703-3-quic_molvera@quicinc.com>
- <23e8a609-345f-a8ce-b0cb-2926fd86a315@linaro.org>
- <20221107174848.lwq4ma62bj5b2fkt@builder.lan>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107174848.lwq4ma62bj5b2fkt@builder.lan>
-Content-Type: text/plain; charset=UTF-8
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20221107155825.1644604-1-pierre.gondois@arm.com>
+ <20221107155825.1644604-23-pierre.gondois@arm.com>
+ <186574a8-d2ce-18b7-8e2e-401fc134105d@linaro.org>
+From:   Pierre Gondois <pierre.gondois@arm.com>
+In-Reply-To: <186574a8-d2ce-18b7-8e2e-401fc134105d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 18:48, Bjorn Andersson wrote:
-> On Thu, Oct 27, 2022 at 11:25:42AM -0400, Krzysztof Kozlowski wrote:
->> On 26/10/2022 15:05, Melody Olvera wrote:
->>> Add compatible and constants for the power domains exposed by the RPMH
->>> in the Qualcomm QDU1000 and QRU1000 platforms.
->>>
->>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>
->> Looks good, but you did not Cc maintainers and  they must see this patch.
->>
-> 
-> $ ./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/power/qcom,rpmpd.yaml include/dt-bindings/power/qcom-rpmpd.h
-> Andy Gross <agross@kernel.org> (maintainer:ARM/QUALCOMM SUPPORT)
-> Bjorn Andersson <andersson@kernel.org> (maintainer:ARM/QUALCOMM SUPPORT,in file)
-> Konrad Dybcio <konrad.dybcio@somainline.org> (reviewer:ARM/QUALCOMM SUPPORT)
-> Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-> linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT)
-> devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-> linux-kernel@vger.kernel.org (open list)
-> 
-> So you're right; Melody did miss Konrad in the recipients list. But he's
-> typically doing a very good job of keeping an eye on the list - and both
-> you and I got the patch.
-> 
-> 
-> Why didn't you add your R-b if you think it looks good?
 
-Because then you would pick it up and that I did not want. It shall be
-resent so all maintainers get it. I did not check though how many of
-people were missing.
 
-Best regards,
-Krzysztof
+On 11/7/22 18:56, Krzysztof Kozlowski wrote:
+> On 07/11/2022 16:57, Pierre Gondois wrote:
+>> The DeviceTree Specification v0.3 specifies that the cache node
+>> 'compatible' and 'cache-level' properties are 'required'. Cf.
+>> s3.8 Multi-level and Shared Cache Nodes
+>> The 'cache-unified' property should be present if one of the
+>> properties for unified cache is present ('cache-size', ...).
+> 
+> No. This was applied and subject has wrong prefix.
+> 
+> Trim your CC list because it's impossible to reply (without manually
+> removing people).
+> 
+> Best regards,
+> Krzysztof
+> 
 
+Yes, this patch must be dropped.
+I will do as you suggested in the cover letter,
+Sorry for the trouble,
+
+Regards,
+Pierre
