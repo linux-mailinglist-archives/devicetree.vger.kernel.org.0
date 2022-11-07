@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28DCA61F70D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:03:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F23561F715
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:04:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232712AbiKGPC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 10:02:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45314 "EHLO
+        id S232588AbiKGPEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 10:04:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232686AbiKGPCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:02:31 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D512DF4C
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 07:02:29 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id l8so16664849ljh.13
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 07:02:29 -0800 (PST)
+        with ESMTP id S232494AbiKGPEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:04:02 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E3FA45E
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 07:03:58 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id r12so17159397lfp.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 07:03:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fODzgR6f5QIFQoQpSBqUjOLDxlY3mnOv7TGRHuzFTmQ=;
-        b=Sa3GlGhKz9uFh2xqVF8cJoU3Rjyu+lW99l4UTK5vaJQyJGY6nBEgvS0sw04i2CTloO
-         bsEm3VpZONpb7/0esp7CVMuVMI0WhPcfnK4wfKSJBdQZWTliIllDagRJbTVMLjWVfMB/
-         y7nOTLmb+q8rBgXSIyLUO8Dy8CFYQ9ra93pHcCjU3iJFxmCcidG9C7lwTRq5WNBrT5zy
-         2BI50NMYSP2Jlv+QCsIIVgCnREo91KPRqexIfjimqLibHRiZ8yv3+lw6O6DeppQkqrzx
-         j5Jcqd+rbgT+8Izh6bAq+KIbx/7p7XBzgWKhQy8DCK64B7Hr5oesOQiXBYHUndvSskGE
-         fBcg==
+        bh=i5cqfO9vASlyV1UQ/Ymj1gXHUZKIE6uTQs8zVm2OS0g=;
+        b=ABMi7gpaZVTAukaw/B77ZaYTM4PQVevR8kKr1nU9K4X++l13EbJhVlgU7PHLsi2qM3
+         N/qL452zRKmaOU/WbFpspe3Zm3J2MQP9pxzBAFH2bkyXe+Ig08aw17weJ3kYpvD12aBk
+         uiK/nD15Bk0yhAwt4tF9FyPb0lEDvgf/yRApUJqDRzOD05r3+uhsqYvXQA2sGaKhAvwz
+         sbbZxXc61tY1HYsMOuwhX7e9BFOk6NofwvNR9apE/Nz2g52B8yQnVZDZagcv0+sD1dFj
+         F25Xcx38iJU9LwhzHq45KMbzXpAPYJ3ZEQU9InHvpZO8NsLhkURjIKtewRDXbiHlMIUe
+         AqFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fODzgR6f5QIFQoQpSBqUjOLDxlY3mnOv7TGRHuzFTmQ=;
-        b=DuKupCWRjFCtrBYJ5PC6c6d7xZE77wP1g5cLxAiSqUPRN0lId2oVGwr5skNCLWUFdz
-         Gu8CKZnofeF84Yz/GBGa809B73a5UvsrbLnoR9OGVtS3ZuSJQWREZCr1SjR4SS4b21Az
-         wu8eU2RNS6MPI3ntN4nTXWz+mQHYiRq0tq0tpiaF8SnB9i88PZfXtMXTo2Fz6GVzqoMB
-         PmtQo8BU8FoYwi9KuqLAgrBIT6se+46e4qPpUsvybnDO5ypEtz8YZMSVIKm8v6/vxHPE
-         QgS0o3kzdwTAFWS8Rgzs7zyZsHGR3V1dzdhenFGx+KC78kkBI1nJa33OLx1qDYy/nJ4m
-         4dtw==
-X-Gm-Message-State: ACrzQf1dSZZSZt1wMZVU9bTRXeokF7X48TeN9abQsUJq44GaGvlwWUCI
-        cWm8+m7VoHH4TrTG9zydQFR4KA==
-X-Google-Smtp-Source: AMsMyM6B0W0l3KqZ9xRH+gtlHucDMeOI7PEKTYEscM5ZWSFSyC5tIOLxpnuRvNgZsHoxQ2HzMi+yNQ==
-X-Received: by 2002:a2e:bc11:0:b0:277:6018:6f07 with SMTP id b17-20020a2ebc11000000b0027760186f07mr12809516ljf.16.1667833347512;
-        Mon, 07 Nov 2022 07:02:27 -0800 (PST)
+        bh=i5cqfO9vASlyV1UQ/Ymj1gXHUZKIE6uTQs8zVm2OS0g=;
+        b=JKKsY+Z3P4CJ5Sl1taPgQVAX7zsof8BqHyzyzLN5ecmPp41MEYlY9mKGREYCn06g5C
+         trG0dwYx0wfekQ9nIwpKI/gRSPHxxfQf5GJI9WCkQ69a2PJJtLZhLRoIOiNHd+s1M7bT
+         0qUsoqpV0Uz2rOfKWspFsse24XpX8p3KyvjhKIaePjM+0D4fDZzny9O8aNc/ENtJsAzQ
+         Pu+HYWNhsAzK4mTSz+s4Lem7kn2uiiKBGK5/DM4aY9Y/75OYMVjgswDpkj+nF8fFYtI9
+         P8iyXHuw1HFmOeAp9utljgYY6QCvb7tNb82dSW0+okJpj56MKhLoASYJztX/YZcSO/uj
+         iCsg==
+X-Gm-Message-State: ACrzQf3KpguzAxXCVxszpryTd+huTXTpiqfFbZ8RPCGECbmHyxG+aAmH
+        CJCLdmzR6wuV850LOmDjbKyqtA==
+X-Google-Smtp-Source: AMsMyM4wGYjZBicYju8APQdvIo86aRDOkUKW+W36UmLcDJ2UOsVG1nnMwIluDHwG4hCvF4MiB0U8Dg==
+X-Received: by 2002:a05:6512:298e:b0:4a2:9ffd:d084 with SMTP id du14-20020a056512298e00b004a29ffdd084mr17142217lfb.449.1667833435023;
+        Mon, 07 Nov 2022 07:03:55 -0800 (PST)
 Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id x23-20020ac24897000000b0048aee825e2esm1272499lfc.282.2022.11.07.07.02.25
+        by smtp.gmail.com with ESMTPSA id t7-20020a056512208700b004b18830af7asm1277912lfr.54.2022.11.07.07.03.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 07:02:26 -0800 (PST)
-Message-ID: <88c55827-067c-e6b1-a841-be70c05b7fc4@linaro.org>
-Date:   Mon, 7 Nov 2022 16:02:24 +0100
+        Mon, 07 Nov 2022 07:03:54 -0800 (PST)
+Message-ID: <03994d2e-261a-5ca1-36ca-b9380fe4085b@linaro.org>
+Date:   Mon, 7 Nov 2022 16:03:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.4.2
-Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: Update soundwire slave node
- names
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: Remove redundant soundwire
+ property
 Content-Language: en-US
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         vkoul@kernel.org, agross@kernel.org, andersson@kernel.org,
@@ -68,14 +68,15 @@ To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
         konrad.dybcio@somainline.org, mka@chromium.org
 Cc:     Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
 References: <1667830844-31566-1-git-send-email-quic_srivasam@quicinc.com>
- <1667830844-31566-2-git-send-email-quic_srivasam@quicinc.com>
+ <1667830844-31566-3-git-send-email-quic_srivasam@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1667830844-31566-2-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1667830844-31566-3-git-send-email-quic_srivasam@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,53 +84,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/11/2022 15:20, Srinivasa Rao Mandadapu wrote:
-> Update soundwire slave nodes of WSA speaker to match with
-> dt-bindings pattern properties regular expression.
+> Remove redundant property qcom,port-offset in soundwire
+
+redundant and undocumented property
+
+> controller nodes.
+> This patch is required to avoid dtbs_check errors with
+> qcom,soundwie.yaml
 > 
-> This modifiction is required to avoid dtbs-check errors
-> occurred with qcom,soundwire.yaml.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
-> Signed-off-by: Ratna Deepthi Kudaravalli <quic_rkudarav@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts             | 4 ++--
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 4 ++--
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 4 ++--
->  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts     | 4 ++--
->  arch/arm64/boot/dts/qcom/sm8250-mtp.dts              | 4 ++--
->  5 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 2c08500..983e8a9 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -1007,7 +1007,7 @@
->  };
->  
->  &swr0 {
-> -	left_spkr: wsa8810-left {
-> +	left_spkr: wsa8810@0,3 {
+> Fixes: 12ef689f09ab ("arm64: dts: qcom: sc7280: Add nodes for soundwire and va tx rx digital macro codecs")
+> Fixes: 24f52ef0c4bf ("arm64: dts: qcom: sm8250: Add nodes for tx and rx macros with soundwire masters")
 
-While changing it, make the node names generic, so:
+These should be two separate commits.
 
-speaker@0,3
-
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
->  		compatible = "sdw10217211000";
->  		reg = <0 3>;
->  		powerdown-gpios = <&tlmm 130 GPIO_ACTIVE_HIGH>;
-> @@ -1016,7 +1016,7 @@
->  		#sound-dai-cells = <0>;
->  	};
->  
-> -	right_spkr: wsa8810-right {
-> +	right_spkr: wsa8810@0,4 {
-
-speaker@0,4
-
-and so on...
 
 Best regards,
 Krzysztof
