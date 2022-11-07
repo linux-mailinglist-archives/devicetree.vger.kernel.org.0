@@ -2,99 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2DF361F2F5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 13:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D5C61F37F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 13:39:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232184AbiKGMYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 07:24:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50266 "EHLO
+        id S231193AbiKGMjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 07:39:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbiKGMYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 07:24:16 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CF2262D;
-        Mon,  7 Nov 2022 04:24:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 646D26101C;
-        Mon,  7 Nov 2022 12:24:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC3B1C433D7;
-        Mon,  7 Nov 2022 12:24:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667823853;
-        bh=iQ5ViS/Km14zaC7mgBP0y2BtAXFP1Zx2+Nc0cPz+2qA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cjo/qXHYDinqnN1BP/cR4oeVGmag98le5Rk5ncBzR62I69Fw268at7QCX1YlMexDs
-         cYsR6k3RHR3tfPbvEeOzkiaWT6N9rawd5MC1JTSWjOpi02oykFYTdnYSEEZrKRshkS
-         lZRGonQGVwvMXfHpmxqhifkluwQLYdW2ric5Ig0eODnqS3Vp/5oU7aFwKcyW7IFeNb
-         hjpmQDzp7CktfXP5ghOjSepmNfg2eTsoOo02ssHsmhDeojtrjRS900yNpfXGzJipJK
-         XNKzSCLix4khBHtq05cl/AVx0RXjO9Zy27GtkoYKeaG7vTHok6UmjqZcANYTz1Ytj1
-         OFPJ+xVgD9Hcw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1os1AL-0004DQ-56; Mon, 07 Nov 2022 13:23:49 +0100
-Date:   Mon, 7 Nov 2022 13:23:49 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Brian Masney <bmasney@redhat.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231476AbiKGMjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 07:39:16 -0500
+Received: from egress-ip4b.ess.de.barracuda.com (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F33018B0E
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 04:39:14 -0800 (PST)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199]) by mx-outbound22-4.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Nov 2022 12:39:10 +0000
+Received: by mail-pl1-f199.google.com with SMTP id o7-20020a170902d4c700b001868cdac9adso9042513plg.13
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 04:39:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=A4fuZdwonDphiFwrvDgt+7IrILXPVSlkCWT1e74/3Bg=;
+        b=ZmoCFKQiEF4cEtrrlS1gwsKAI75SiO3H/K+CbpY3eiV2rXTN32nwGIhNNLwOA4JPGM
+         BlTf0b2OzE1kQEWxoQooFea0ddb+8d7qmUiY62YtFRf81aNsf/AiyrrEgJDs40d6KCDx
+         dDDrTIydUtaQAlw6E9HNIMSijd0hpqq+Di+lA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=A4fuZdwonDphiFwrvDgt+7IrILXPVSlkCWT1e74/3Bg=;
+        b=8Q/iXdvxZ8rw3bxSOI4fHBv0hL1CDpLudQgR3oNpMSSWAVnSG3Do+tcAPimRXksS1q
+         vK/KPv3DFffwAPaPGtF+BNKelod5KxZDGD6s+C1CNjF+TYoRQnZRdHjTxfyc5j8dkRKl
+         RT86UXKrehjQqyqnqahnpp3f85ZTP3tuHCd6ci/I+OdvN3HRCyaRVMVN5jF1yyrT8loz
+         pkx0zBUgqYVfkV2WDi8yTOH0UKi89PIUeaN9yueA/m0HStoWGE4Dz0MkmON3l6r2joDx
+         SHc3baK9cu9nUG93sZKzd5apr0d/al7SxrPJaNbjVwn+JkJi1IRgSS5VyKBlkAXDJ8q+
+         Csdw==
+X-Gm-Message-State: ACrzQf0sif8VWOajJAYp7bklWAUY60MdqEolqRQnpsqNxVNB0Xzc5oF1
+        7B4HLGvTEEgFSLURxcbzzQgjsOb7umk2F8uZzizq/B0kEHeqyTrWa3uM+w0ETV0FsGxD+IIzxyu
+        JsvLIP9hSSDqM3zouHEJcnPMYnYWRGfq3dh8wkc2vDI8t+XCo7iq1Y10JsA==
+X-Received: by 2002:a17:90a:ab8e:b0:213:ef84:3bb9 with SMTP id n14-20020a17090aab8e00b00213ef843bb9mr40596377pjq.241.1667824749662;
+        Mon, 07 Nov 2022 04:39:09 -0800 (PST)
+X-Google-Smtp-Source: AMsMyM4YSrUFxf2aECpLMpC4Y5jWlCk5Om8R/Q4FRtgfc2uFnLWMJbVulgh/30LjvWFolX0jHF2OuA==
+X-Received: by 2002:a17:90a:ab8e:b0:213:ef84:3bb9 with SMTP id n14-20020a17090aab8e00b00213ef843bb9mr40596353pjq.241.1667824749373;
+        Mon, 07 Nov 2022 04:39:09 -0800 (PST)
+Received: from LAP568U.mistral.in ([106.51.69.35])
+        by smtp.gmail.com with ESMTPSA id x11-20020aa7956b000000b0056bbba4302dsm4400423pfq.119.2022.11.07.04.39.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 04:39:08 -0800 (PST)
+From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shazad Hussain <quic_shazhuss@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc8280xp: fix UFS reference clocks
-Message-ID: <Y2j41epn0FTT2Asb@hovoldconsulting.com>
-References: <20221104092045.17410-1-johan+linaro@kernel.org>
- <20221104092045.17410-2-johan+linaro@kernel.org>
- <Y2jnWJ0FI6Fmy8/O@x1>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sinthu Raja <sinthu.raja@ti.com>
+Subject: [PATCH V2 1/3] dt-bindings: arm: ti: Add binding for AM68 SK
+Date:   Mon,  7 Nov 2022 18:08:50 +0530
+Message-Id: <20221107123852.8063-2-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20221107123852.8063-1-sinthu.raja@ti.com>
+References: <20221107123852.8063-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Y2jnWJ0FI6Fmy8/O@x1>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1667824750-305636-5385-11381-1
+X-BESS-VER: 2019.1_20221024.2147
+X-BESS-Apparent-Source-IP: 209.85.214.199
+X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.243990 [from 
+        cloudscan8-242.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
+X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND, BSF_SC0_SA085b
+X-BESS-BRTS-Status: 1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 07, 2022 at 06:09:12AM -0500, Brian Masney wrote:
-> On Fri, Nov 04, 2022 at 10:20:44AM +0100, Johan Hovold wrote:
-> > There are three UFS reference clocks on SC8280XP which are used as
-> > follows:
-> > 
-> >  - The GCC_UFS_REF_CLKREF_CLK clock is fed to any UFS device connected
-> >    to either controller.
-> > 
-> >  - The GCC_UFS_1_CARD_CLKREF_CLK and GCC_UFS_CARD_CLKREF_CLK clocks
-> >    provide reference clocks to the two PHYs.
-> > 
-> > Note that this depends on first updating the clock driver to reflect
-> > that all three clocks are sourced from CXO. Specifically, the UFS
-> > controller driver expects the device reference clock to have a valid
-> > frequency:
-> > 
-> > 	ufshcd-qcom 1d84000.ufs: invalid ref_clk setting = 0
-> > 
-> > Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> > Fixes: 8d6b458ce6e9 ("arm64: dts: qcom: sc8280xp: fix ufs_card_phy ref clock")
-> > Fixes: f3aa975e230e ("arm64: dts: qcom: sc8280xp: correct ref clock for ufs_mem_phy")
-> > Link: https://lore.kernel.org/lkml/Y2OEjNAPXg5BfOxH@hovoldconsulting.com/
-> > Cc: stable@vger.kernel.org	# 5.20
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> 
-> Reviewed-by: Brian Masney <bmasney@redhat.com>
-> 
-> Note that there was no 5.20 kernel; that should be 6.0. Bjorn should be
-> able to fix this up during merge.
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-Good catch. I based this on a tag created before 6.0 was released and
-failed to notice.
+AM68 Starter Kit is a low cost, small form factor board designed for
+TI's AM68 SoC which is optimized to provide best in class performance
+for industrial applications and add binding for the same.
 
-Johan
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
+
+Changes in V2:
+*Addressed review comment
+ - added entry in alphabetical order.
+
+V1:https://lore.kernel.org/linux-arm-kernel/20221018123849.23695-2-sinthu.raja@ti.com/
+
+ Documentation/devicetree/bindings/arm/ti/k3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+index 28b8232e1c5b..072d1215a113 100644
+--- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
++++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+@@ -68,6 +68,7 @@ properties:
+       - description: K3 J721s2 SoC
+         items:
+           - enum:
++              - ti,am68-sk
+               - ti,j721s2-evm
+           - const: ti,j721s2
+ 
+-- 
+2.36.1
+
