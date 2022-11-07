@@ -2,138 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335FB61E7CC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 01:04:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0949C61E7FF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 01:52:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbiKGAEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 19:04:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50518 "EHLO
+        id S229909AbiKGAwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 19:52:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbiKGAEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 19:04:10 -0500
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2579BF48
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 16:04:06 -0800 (PST)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20221107000402epoutp03f13dff7f769ee19dc417337f40b046dd~lJJEuWtca2050220502epoutp03s
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 00:04:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20221107000402epoutp03f13dff7f769ee19dc417337f40b046dd~lJJEuWtca2050220502epoutp03s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1667779443;
-        bh=yiy9+tK/kn9g0w+SJYCkGz8hXLmunRnS/MAznVjLMC0=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=BCr9miUZJalpeBe7j8YEkG/5Rnz1lGnff6ciAU5BPlaihzzqt1qcbx4tQYe7KmI/q
-         jQU08IHXjAVmId8f/ruJjMPJ5icP/A8tnIPhK18SbldHgtwX3Ps8rDp9/n06TtCBR1
-         WnnFTncW2qMpp3glLbi4hjF29wjwI0ONOOaYaMI8=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20221107000402epcas2p46f7c6ac5789584e7c15f8c56594e67fc~lJJEImNDD0386203862epcas2p4v;
-        Mon,  7 Nov 2022 00:04:02 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.102]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4N5BKY5tRyz4x9Q2; Mon,  7 Nov
-        2022 00:04:01 +0000 (GMT)
-X-AuditID: b6c32a47-ac5b870000002127-7f-63684b711fce
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        EF.BB.08487.17B48636; Mon,  7 Nov 2022 09:04:01 +0900 (KST)
-Mime-Version: 1.0
-Subject: RE: Re: [PATCH] dt-bindings: clock: exynosautov9: fix reference to
- CMU_FSYS1 mmc card clock
-Reply-To: chanho61.park@samsung.com
-Sender: CHANHO PARK <chanho61.park@samsung.com>
-From:   CHANHO PARK <chanho61.park@samsung.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Inbaraj E <inbaraj.e@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        "tomasz.figa@gmail.com" <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        ALIM AKHTAR <alim.akhtar@samsung.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        CHANHO PARK <chanho61.park@samsung.com>
-CC:     "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PANKAJ KUMAR DUBEY <pankaj.dubey@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <8f026f38-ef09-788e-7bd8-45683b074075@linaro.org>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20221107000401epcms2p3eeeecbfb2b1cdfb30dcee99bbb48780c@epcms2p3>
-Date:   Mon, 07 Nov 2022 09:04:01 +0900
-X-CMS-MailID: 20221107000401epcms2p3eeeecbfb2b1cdfb30dcee99bbb48780c
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmuW6hd0aywYn3WhYP5m1js7i8X9vi
-        +pfnrBbzj5xjtbj7ZxKbxd7XW9ktNj2+xmrxseceq8XlXXPYLGac38dkcfGUq8WirV/YLVr3
-        HmG3OPymndXi37WNLBardv1hdBDweH+jld1j56y77B6bVnWyedy5tofNY/OSeo++LasYPT5v
-        kgtgj8q2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdSyEvMTbVVcvEJ0HXLzAE6
-        XUmhLDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yYW1yal66Xl1piZWhgYGQK
-        VJiQnXH2+DSWgqvsFfdadrI3MK5g62Lk5JAQMJHYvWQ3UxcjF4eQwA5Gibap54AcDg5eAUGJ
-        vzuEQWqEBdIknt79yA4SFhJQlti4LRYirC/xvb+JBcRmE9CVmP/hEyvIGBGBQ8wSLT2PwBxm
-        gQ5mie/X3jBDLOOVmNH+lAXClpbYvnwrI8hQTgE7iRdz4yHCGhI/lvVClYtK3Fz9lh3Gfn9s
-        PiOELSLReu8sVI2gxIOfu6HikhL/l+1lAxkpIVAt8e9qBUS4QmL3+01MELa5xPWPU8DKeQV8
-        JRZteAh2DYuAqkTv5aNQNS4SjyY8AbOZBeQltr+dwwwykllAU2L9Ln2I6coSR26xQFTwSXQc
-        /ssO89+OeU+gpqhLHNg+HepXWYnuOZ9ZIWwPiak9X9gmMCrOQgTzLCS7ZiHsWsDIvIpRLLWg
-        ODc9tdiowBges8n5uZsYwUlYy30H44y3H/QOMTJxMB5ilOBgVhLhveGWlizEm5JYWZValB9f
-        VJqTWnyI0RToy4nMUqLJ+cA8kFcSb2hiaWBiZmZobmRqYK4kzts1QytZSCA9sSQ1OzW1ILUI
-        po+Jg1Oqgcm35cecyH23X6/2/KtSsP6lzmnWgE0vH3w9t2eHbrzdBQ8JfT0dwSdPNfZtiVN7
-        2sl21/Sfd7PWFK+9Cr/Z8g6uULQtuMQvk9mceHVnbslBPb0NXjV3+JJ/PNpc+8jC2fLbR9lq
-        7TO7sj5tzxI6H77TgW32vDlN/7PnLPaakds1p3Z/dh3HEpET/kyqLpod6bNvvd97905Ocs89
-        i/OSGZHpYmfnvtxUk/dY5gZPCtN8LrM7kUvkfk5+wjqvSP/r4dBrOvXPZN+47DpZFvvVU6Ti
-        QOqkpZqbKvg3aEcGzqyUX9CT1+7J76apNcn1sOW/L20Cahc4H/b++1J/9m2YwpmpvCEHQq9+
-        EXnz6W7zpWYlluKMREMt5qLiRAAkDlTUSwQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20221104085410epcas5p24d88f59001b739075e9e190e2c47841e
-References: <8f026f38-ef09-788e-7bd8-45683b074075@linaro.org>
-        <20221104090019.88387-1-inbaraj.e@samsung.com>
-        <CGME20221104085410epcas5p24d88f59001b739075e9e190e2c47841e@epcms2p3>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229876AbiKGAww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 19:52:52 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F16BF7C;
+        Sun,  6 Nov 2022 16:52:49 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id h9so14130838wrt.0;
+        Sun, 06 Nov 2022 16:52:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1pgYi1QW20bjgeUikoI4BXtKNA0Vcvd3wP6F6jHeVrI=;
+        b=VIZxyyb2huPFhXBj6Ff8hqSONy0ejhL6YVxx9CUX8F8cCRHkvMe/ZULDe+GekW6emU
+         jDUQYbJJ0c/S9PQlfCSgL4mVtLaLaKzsJ2B19fDgOhloQtDgswGPLk4KKi+k9EXD25yh
+         rhHXFFfj30rzIoLnoLSSx2bKGVez5Parp8aibRfLGyRGRiplIa7cE2InL1rGi9EmPsIU
+         SQFQU/aLx5ZJ3v4pApENwlKkMWkCUJZ7C2pg3rj4prieE+OfsHM9qAig80HDS6HpfggW
+         LNbFAP4yVhGs6ekt9WK17j4GfXC2vp0CJFNKT1p2traIXj2LpulkprjDViC6JbK2FHba
+         sv0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1pgYi1QW20bjgeUikoI4BXtKNA0Vcvd3wP6F6jHeVrI=;
+        b=LDN8C+Jfro5v3PMVBgvZT5jdFPxrG2sonyJjd68xjULTGtAU35GWVKNHssJoLvoH5I
+         r1xJKrRYnAEMLDhzeZ17fucuimzcgNhKfPkMsYA4YxR0ZqeVKGWFNEKm3DJBFYJfGHjH
+         gUK/YkrjwC7c15ccyjjSyujRxBU5MHYYCFk+NY0TYSe01KrJGmKpfleteYRED5r7Pxrn
+         ED1QSj+RJxcny8y5XZJbi2M2uQQicTcaKIeyd7/P5cPSVdqUbcJkcdSNvvbpasGBejY0
+         kiBeEQoPxzVaF8jpVdRLO32JQbhyLGjk8r/uXNvSOEOAzKBQUj7qqxMu8yJvL1ajUtdz
+         y15w==
+X-Gm-Message-State: ACrzQf0K5ms3sM8Hg1QQGnq/BK9s+KYFsb+UGrzIS6U01MDOb8TLqAcr
+        saQuKzUjtjGLFr79gpdqNA4Y0jTds8lFVYrPT8e8BgRw
+X-Google-Smtp-Source: AMsMyM4KfNUysIYFDjpu/bJYRa8vPionmtkrY9MNWjh6DdFy8XZvlJoSX5bAkgc6WDaKsTTe2+xPrsK5y9VjJdUn6z4=
+X-Received: by 2002:a5d:618a:0:b0:228:d897:228 with SMTP id
+ j10-20020a5d618a000000b00228d8970228mr504099wru.539.1667782368115; Sun, 06
+ Nov 2022 16:52:48 -0800 (PST)
+MIME-Version: 1.0
+References: <20221106161443.4104-1-wens@kernel.org>
+In-Reply-To: <20221106161443.4104-1-wens@kernel.org>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Sun, 6 Nov 2022 19:52:35 -0500
+Message-ID: <CAMdYzYomgwo3RiUr4pptOD=AUgUS4f6Aqtio3agQP2F-bm2WZQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: rk356x: Add dma-names to UART
+ device nodes
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Fix reference to CMU_FSYS1 mmc card clock to gout clock instead of dout.
-> >
-> > This fixes make dtbs_check warning as shown below:
-> >
-> > arch/arm64/boot/dts/exynos/exynosautov9-sadk.dtb: clock-
-> controller@17040000:
-> > clock-names:2: 'dout_clkcmu_fsys1_mmc_card' was expected From schema:
-> > /home/inbaraj/mainline/linux/Documentation/devicetree/
-> > bindings/clock/samsung,exynosautov9-clock.yaml
-> 
-> I don't understand:
-> 1. Why bindings are wrong not DTSI?
-> 2. What is "gout"? "dout" had a meaning as clock divider output.
+On Sun, Nov 6, 2022 at 11:15 AM Chen-Yu Tsai <wens@kernel.org> wrote:
+>
+> From: Chen-Yu Tsai <wens@csie.org>
+>
+> At least one implementation, Linux, requires "dma-names" properties
+> be used together with "dmas" to describe DMA resources. These are
+> currently missing, causing DMA to not be used for UARTs.
+>
+> Add "dma-names" to the UART device nodes.
+>
+> Fixes: a3adc0b9071d ("arm64: dts: rockchip: add core dtsi for RK3568 SoC")
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-"gout" is output of a gate clock, AFAIK.
-Unlike any other clocks, the fsys1 mmc top clock does not have a divider. So, it should be "mout -> gout" instead of "mout -> gout -> dout".
+Enabling dma globally can cause some interesting issues, have you
+tested this fully?
 
-> 
-> >
-> > Fixes: 4b6ec8d88623 ("dt-bindings: clock: exynosautov9: add schema for
-> > cmu_fsys0/1")
-> > Signed-off-by: Inbaraj <inbaraj.e@samsung.com>
-
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
-
-Best Regards,
-Chanho Park
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 5706c3e24f0a..5cd55487c20e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -447,6 +447,7 @@ uart0: serial@fdd50000 {
+>                 clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 0>, <&dmac0 1>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1326,6 +1327,7 @@ uart1: serial@fe650000 {
+>                 clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 2>, <&dmac0 3>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart1m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1340,6 +1342,7 @@ uart2: serial@fe660000 {
+>                 clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 4>, <&dmac0 5>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart2m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1354,6 +1357,7 @@ uart3: serial@fe670000 {
+>                 clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 6>, <&dmac0 7>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart3m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1368,6 +1372,7 @@ uart4: serial@fe680000 {
+>                 clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 8>, <&dmac0 9>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart4m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1382,6 +1387,7 @@ uart5: serial@fe690000 {
+>                 clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 10>, <&dmac0 11>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart5m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1396,6 +1402,7 @@ uart6: serial@fe6a0000 {
+>                 clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 12>, <&dmac0 13>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart6m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1410,6 +1417,7 @@ uart7: serial@fe6b0000 {
+>                 clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 14>, <&dmac0 15>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart7m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1424,6 +1432,7 @@ uart8: serial@fe6c0000 {
+>                 clocks = <&cru SCLK_UART8>, <&cru PCLK_UART8>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 16>, <&dmac0 17>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart8m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> @@ -1438,6 +1447,7 @@ uart9: serial@fe6d0000 {
+>                 clocks = <&cru SCLK_UART9>, <&cru PCLK_UART9>;
+>                 clock-names = "baudclk", "apb_pclk";
+>                 dmas = <&dmac0 18>, <&dmac0 19>;
+> +               dma-names = "tx", "rx";
+>                 pinctrl-0 = <&uart9m0_xfer>;
+>                 pinctrl-names = "default";
+>                 reg-io-width = <4>;
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
