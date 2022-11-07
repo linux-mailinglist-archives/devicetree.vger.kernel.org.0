@@ -2,141 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95D1061F6DC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C22561F6F1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:59:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232507AbiKGO4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 09:56:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37002 "EHLO
+        id S232693AbiKGO7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 09:59:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232640AbiKGOz7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:55:59 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8211E717
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 06:55:49 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id y14so30785919ejd.9
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 06:55:49 -0800 (PST)
+        with ESMTP id S232691AbiKGO7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:59:00 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9830F21256
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 06:57:21 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id p8so17064841lfu.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 06:57:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=peqPpYnFW7+Rs7hp6IjDSHQLEWZVXzlWBaLlmgyChsw=;
-        b=ENl+0sMBWJDwghJlAvMwZ0dXyBV4ryg5WKWcBFWbCrqfVwppnlvTwjMVH6A6HZrRIn
-         +zVU7xw/XRHcUXqaDGAjneADIjlEIRIwWgBv173zAUU3IQjhRlBP6LkXQ3rtwv0gGbmS
-         +CCtzoe3mVeyTonbzKL0brob2ha75lGxGTAOX4CqdPizYG/mcjbv52uweVfsiTW/KfZ8
-         CJo0Vcto/t8IXphtqr+kUdzG2oxR2RqIbf/gei77bh1F7+f7RThd2mPQZPlIZsVvSMDC
-         6hxn+HXgC+vCDRFQxn2UpYgY23AHk7UN4K8qNufFGVvLruPSuXCuSMO4vsO4/oHY8OiR
-         q+uQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AQlxwrQ9+SAIJlBHFz/WVtqfuSsX8479gf+InmNYkZs=;
+        b=1eTJqEXUCN6TpV6RPCjctxazLVjc44ZvzsBItOrs8d80EmK/RTm5KYkB5ehzSFcSap
+         0Ia4QJxum/15AedJZzgTedYWblULvJ2HWn6NIOVO0kLVUGzxxNuXTNkUbSKEiihYW5uY
+         eI9c/r5MpYt9th3ARFOLRYCWL8+OX7E7r5QjWjQT9gbVW+CjhHoH7P5pnYbE+s3Ht/BS
+         ZpQxbAlG3a2Q6BXdz03VLJbB2BAE4WHiC0ArV3yEpnSEla0c1RJ8q72c1z9KjXtBDvuA
+         r5eCbX117hzvliriCVcObFn6wp63MG/Om9IFx0pHFFyRetN5uD76XxvKlFE9BmmzVAs3
+         XGsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=peqPpYnFW7+Rs7hp6IjDSHQLEWZVXzlWBaLlmgyChsw=;
-        b=X8526TdMsauAkeoQVqVIZtcrwXvp8lFOoRwMvozBFJ+oXG5EF5FhH2EM7g41kvlT61
-         27Se5P+7lT9CHlDl3iELUYH2CivSPwKGdqLoRxZvZm3iVuU1bTYuziN3dpzmkrDUwLjk
-         9DbXBYuRKI6HqkCjUhs9dqfWGPH1tBk4XnofVcaMtlhSmSxYjHxLii/e0QoY44hkcwBO
-         6uNFBHtEP/gvFrVW8PNeX8ZYT0vNV3679TBA/6Rxl3QZQmlWphvW3Q6+NLrdw8o3nRPY
-         4w99lDxcQnDEkRCf+u77xvdt9zF7EdtA3z12h8boS+ScNd/oTHcc4FNPT6VXbyL7k4oJ
-         Rr8Q==
-X-Gm-Message-State: ACrzQf1zOUEphigqgW9kPX0SUIi3dcPmOCE8RwV2KZGu+IIoYkTmXkDQ
-        bqn6EptbMsH1RAWFdPGgRP4JJA==
-X-Google-Smtp-Source: AMsMyM66C/1QFJJogExu4sjkMOFFjaOHk1fPGc/+kITliG600LvmvyGoz6erYps1uhRBOKPaJZ8j6w==
-X-Received: by 2002:a17:906:7c52:b0:7ad:c9e5:3ecc with SMTP id g18-20020a1709067c5200b007adc9e53eccmr42070771ejp.73.1667832948819;
-        Mon, 07 Nov 2022 06:55:48 -0800 (PST)
-Received: from localhost.localdomain ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id d1-20020a1709067f0100b0078907275a44sm3503049ejr.42.2022.11.07.06.55.47
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 07 Nov 2022 06:55:48 -0800 (PST)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org
-Cc:     patches@linaro.org, Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 11/11] arm64: dts: qcom: pm6150/l/pm7325/pms405: Fix up comments
-Date:   Mon,  7 Nov 2022 15:55:21 +0100
-Message-Id: <20221107145522.6706-12-konrad.dybcio@linaro.org>
-X-Mailer: git-send-email 2.32.0 (Apple Git-132)
-In-Reply-To: <20221107145522.6706-1-konrad.dybcio@linaro.org>
-References: <20221107145522.6706-1-konrad.dybcio@linaro.org>
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AQlxwrQ9+SAIJlBHFz/WVtqfuSsX8479gf+InmNYkZs=;
+        b=Y0G955EsCsiyOSt1AJfXVl7ezKp7xgrztdgd17FDIaeemDS86NDr76yrwd+cC5PA/s
+         3kdsnzXn/Y/60ZpQrP7AcaRVM3nvI79fCEjvBVrIxE+QPoDE0XCCj/NyHXCclR3W6QId
+         wN5dGLG7Lu32mIZzIW5PjoNKmI94LCF1S9sUcHPyePdiibbZtVTueKhIYP477leT5sTF
+         YBFnjABZJCz+fG9FBgF+HtqsSq70KAWbXXDGNAzH8tZgicJaOI2X4OT+lOlbgJB+a3yC
+         eNUWg6W2PtWO8f6ERPfmfrQjAHIk40dRkONpn95zJ+rA00Bwzv51vxkZ3zFhU9bfVavA
+         Mr+Q==
+X-Gm-Message-State: ACrzQf0JCPkQSpEH2tWBkv9I1FkLEZ+m2O78I6BliFNY49j72YckcIpC
+        tf8l040xJCURilsIAqx50lNy3WhH2I8+AhP5tU50og==
+X-Google-Smtp-Source: AMsMyM5u67xgoVRbvAl2jo49umhno4Yx8nKrhd8saRcif/bR8rpMZwMhWdL1nVFsqasbfxpjnO2MfcuNIfWTUazhbyA=
+X-Received: by 2002:a05:6512:a93:b0:4a2:a5b3:fbb4 with SMTP id
+ m19-20020a0565120a9300b004a2a5b3fbb4mr17313440lfu.346.1667833039925; Mon, 07
+ Nov 2022 06:57:19 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 7 Nov 2022 14:57:19 +0000
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-6-a803f2660127@baylibre.com>
+ <a3472c42-ccac-7c98-a0b6-57556a348ac1@collabora.com>
+In-Reply-To: <a3472c42-ccac-7c98-a0b6-57556a348ac1@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Date:   Mon, 7 Nov 2022 14:57:19 +0000
+Message-ID: <CABnWg9uPL0qCat4Sw2uqj6-KN-OxPqGOjw+SR1bBVvGrmCBTZQ@mail.gmail.com>
+Subject: Re: [PATCH v3 06/12] drm/mediatek: hdmi: add frame_colorimetry flag
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        mac.shen@mediatek.com, linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make sure all multiline C-style commends begin with just '/*' with
-the comment text starting on a new line.
+On Mon, 07 Nov 2022 12:09, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
+>> Add a flag to indicate support for frame colorimetry.
+>>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>> ---
+>>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 11 +++++++++++
+>>   drivers/gpu/drm/mediatek/mtk_hdmi_common.h |  1 +
+>>   2 files changed, 12 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> index 3635ca66817b..933c51b5f6d7 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> @@ -120,6 +120,17 @@ int mtk_hdmi_setup_avi_infoframe(struct mtk_hdmi *hdmi, u8 *buffer, size_t bufsz
+>>   		return err;
+>>   	}
+>>
+>> +	if (hdmi->conf->has_frame_colorimetry) {
+>> +		frame.colorimetry = hdmi->colorimtery;
+>
+>Typo: s/colorimtery/colorimetry/g
+>
+>...also, I don't see this being really used? In hdmi-v2 you're setting this param
+>to HDMI_COLORIMETRY_NONE and quantization ranges to always the same default value.
+>
+>I wonder if this is really needed at this point.
+>
+>Regards,
+>Angelo
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/pm6150.dtsi  | 4 +++-
- arch/arm64/boot/dts/qcom/pm6150l.dtsi | 4 +++-
- arch/arm64/boot/dts/qcom/pm7325.dtsi  | 4 +++-
- arch/arm64/boot/dts/qcom/pms405.dtsi  | 4 +++-
- 4 files changed, 12 insertions(+), 4 deletions(-)
+I'll see if I can make something work without this boolean.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm6150.dtsi b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-index 3cfd3eadccbf..3d91fb405ca2 100644
---- a/arch/arm64/boot/dts/qcom/pm6150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6150.dtsi
-@@ -1,5 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause
--// Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+/*
-+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ */
- 
- #include <dt-bindings/iio/qcom,spmi-vadc.h>
- #include <dt-bindings/input/linux-event-codes.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm6150l.dtsi b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
-index 8a7c18b134c7..bab2e22835df 100644
---- a/arch/arm64/boot/dts/qcom/pm6150l.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
-@@ -1,5 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause
--// Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+/*
-+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ */
- 
- #include <dt-bindings/iio/qcom,spmi-vadc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-diff --git a/arch/arm64/boot/dts/qcom/pm7325.dtsi b/arch/arm64/boot/dts/qcom/pm7325.dtsi
-index cfd4b80c6e35..d1c5476af5ee 100644
---- a/arch/arm64/boot/dts/qcom/pm7325.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm7325.dtsi
-@@ -1,5 +1,7 @@
- // SPDX-License-Identifier: BSD-3-Clause
--// Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ */
- 
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/spmi/spmi.h>
-diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
-index 634b0681d04c..ffe9e33808d0 100644
---- a/arch/arm64/boot/dts/qcom/pms405.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
-@@ -1,5 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
--// Copyright (c) 2018, Linaro Limited
-+/*
-+ * Copyright (c) 2018, Linaro Limited
-+ */
- 
- #include <dt-bindings/spmi/spmi.h>
- #include <dt-bindings/input/linux-event-codes.h>
--- 
-2.38.1
-
+Thx,
+Guillaume.
