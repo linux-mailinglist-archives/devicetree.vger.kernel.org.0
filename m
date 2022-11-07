@@ -2,182 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0626A61E814
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 01:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3555E61E816
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 01:58:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbiKGA43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 19:56:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59066 "EHLO
+        id S229876AbiKGA6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 19:58:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230191AbiKGA42 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 19:56:28 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BE930CE26
-        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 16:56:26 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 80E86139F;
-        Sun,  6 Nov 2022 16:56:32 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B5D2B3F703;
-        Sun,  6 Nov 2022 16:56:24 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH v2 10/10] ARM: dts: suniv: Add Lctech Pi F1C200s devicetree
-Date:   Mon,  7 Nov 2022 00:54:33 +0000
-Message-Id: <20221107005433.11079-11-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.35.5
-In-Reply-To: <20221107005433.11079-1-andre.przywara@arm.com>
-References: <20221107005433.11079-1-andre.przywara@arm.com>
+        with ESMTP id S229782AbiKGA6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 19:58:53 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B00B7CA;
+        Sun,  6 Nov 2022 16:58:52 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id cl5so14067633wrb.9;
+        Sun, 06 Nov 2022 16:58:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3SUjrVNjYpQ4FGX+sVZmnlqoqrxVRTW7jwTovMJReUo=;
+        b=lqbltCqrY+FRt+9AmsTb7o1R9vs/00guDt0qQbM8gWwdbdwavbxrUbxVvmjL1zkbNx
+         xKUHAEMJcs+nrDC033nDYlsxCE5bkJ8xmWeFWsouQpiuRy+ZPIdEgj7Y3b70IlYOaAbb
+         K4E7tnd68EJLj+RQGOKR+bsw/YRiFjzRFrpVxHq627eoIq9fHdTZcGvr+kk+eN0q6FvA
+         NPDvvR9wkM4dS5WaRidyiEoDqCrMd/ZQK7o8ODVnQsK2bAjT05ytuNyKTYBO+Gh4d57C
+         5nMDQK8Z/7D543qOrKlWfGBwy9cj5hhShQiyujPBHvfT+LjrtF4ds3W2gqkSbMsfdwst
+         cD2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3SUjrVNjYpQ4FGX+sVZmnlqoqrxVRTW7jwTovMJReUo=;
+        b=nYQC5S933ewvnR/MNSSqkYFYsqm0ajlCAHfEM314UDA3AfrYMJlmuwua8IXqAsbga5
+         tJp6Mz5LNHBn+jnhiPcRiZjSWGZtBxUalEttDuRG2/9nAwMlEV+rYD7c4nJ4CDkuqE6V
+         Q73YYcBeE1xKRGPJEyFAbXzfenspq0S8t2ryE51SyjMMw5JGvBHCFNStypc4hxTmvv7p
+         ncen19e4JdUoxP10JsQ1Y809C01t4q1Tfi+lLonHLdcs8MxDEhG+rG1Hu3FwtrGTuPoQ
+         LjnAFBrwHOEIekj1pBNu4Pr9TINBlAFm4AtP9Tc6DxJbDmeYeQ45ozk2Lcp4Gr+okETD
+         w2kQ==
+X-Gm-Message-State: ACrzQf2kAdmxPt8bWOryiz9tk/hl1ES8xAVfFIZGzIGrMMu2fAkj9X6s
+        2f0zvqk4UEprpWpPiKCoWODAoFFVLh6J5RsNI/0=
+X-Google-Smtp-Source: AMsMyM5oGZnKz4jdnVIz9fRd6FjjmcWKsJdz9cqrYMtzAtJH2bfQLsbI3jNtHgiCJHWVsISzHqMRM8QZuwvgVzNDOgE=
+X-Received: by 2002:a5d:604c:0:b0:236:6deb:6d31 with SMTP id
+ j12-20020a5d604c000000b002366deb6d31mr29321862wrt.282.1667782731107; Sun, 06
+ Nov 2022 16:58:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20221106161513.4140-1-wens@kernel.org>
+In-Reply-To: <20221106161513.4140-1-wens@kernel.org>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Sun, 6 Nov 2022 19:58:37 -0500
+Message-ID: <CAMdYzYqP+0B5Q_7bfNREx7MvxZxawMGD+jRTfSSb8X6N8LCL=w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix Pine64 Quartz4-B PMIC interrupt
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lctech Pi F1C200s (also previously known under the Cherry Pi brand)
-is a small development board with the Allwinner F1C200s SoC. This is the
-same as the F1C100s, but with 64MB instead of 32MB co-packaged DRAM.
+On Sun, Nov 6, 2022 at 11:15 AM Chen-Yu Tsai <wens@kernel.org> wrote:
+>
+> From: Chen-Yu Tsai <wens@csie.org>
+>
+> Ths PMIC's interrupt line is tied to GPIO0_A3. This is described
+> correctly for the pinmux setting, but incorrectly for the interrupt.
+>
+> Correct the interrupt setting so that interrupts from the PMIC get
+> delivered.
+>
+> Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B device tree")
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-Alongside the obligatory micro-SD card slot, the board features a
-SPI-NAND flash chip, LCD and touch connectors, and unpopulated
-expansion header pins.
-There are two USB Type-C ports on the board: One supplies the power, also
-connects to the USB MUSB OTG controller port. The other one is connected
-to an CH340 USB serial chip, which in turn is connected to UART1.
+Good catch, thanks!
+Reviewed-by: Peter Geis <pgwipeout@gmail.com>
 
-Add a devicetree file, so that the board can be used easily.
-
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/suniv-f1c100s.dtsi          |  6 ++
- arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts | 78 +++++++++++++++++++
- 3 files changed, 85 insertions(+)
- create mode 100644 arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0249c07bd8a6..52f8ab0eacb2 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1392,6 +1392,7 @@ dtb-$(CONFIG_MACH_SUN9I) += \
- 	sun9i-a80-cubieboard4.dtb
- dtb-$(CONFIG_MACH_SUNIV) += \
- 	suniv-f1c100s-licheepi-nano.dtb \
-+	suniv-f1c200s-lctech-pi.dtb \
- 	suniv-f1c200s-popstick-v1.1.dtb
- dtb-$(CONFIG_ARCH_TEGRA_2x_SOC) += \
- 	tegra20-acer-a500-picasso.dtb \
-diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-index 111f8bbc2a80..3c61d59ab5f8 100644
---- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-+++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-@@ -207,6 +207,12 @@ uart0_pe_pins: uart0-pe-pins {
- 				pins = "PE0", "PE1";
- 				function = "uart0";
- 			};
-+
-+			/omit-if-no-ref/
-+			uart1_pa_pins: uart1-pa-pins {
-+				pins = "PA2", "PA3";
-+				function = "uart1";
-+			};
- 		};
- 
- 		i2c0: i2c@1c27000 {
-diff --git a/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-new file mode 100644
-index 000000000000..14c26f2c19f6
---- /dev/null
-+++ b/arch/arm/boot/dts/suniv-f1c200s-lctech-pi.dts
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Arm Ltd,
-+ * based on work:
-+ *   Copyright 2022 Icenowy Zheng <uwu@icenowy.me>
-+ */
-+
-+/dts-v1/;
-+#include "suniv-f1c100s.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Lctech Pi F1C200s";
-+	compatible = "lctech,pi-f1c200s", "allwinner,suniv-f1c200s",
-+		     "allwinner,suniv-f1c100s";
-+
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reg_vcc3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&mmc0 {
-+	broken-cd;
-+	bus-width = <4>;
-+	disable-wp;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	status = "okay";
-+};
-+
-+&otg_sram {
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi0_pc_pins>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		spi-max-frequency = <40000000>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pa_pins>;
-+	status = "okay";
-+};
-+
-+/*
-+ * This is a Type-C socket, but CC1/2 are not connected, and VBUS is connected
-+ * to Vin, which supplies the board. Host mode works (if the board is powered
-+ * otherwise), but peripheral is probably the intention.
-+ */
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.35.5
-
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> index 77b179cd20e7..b276eb0810c7 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
+> @@ -246,7 +246,7 @@ rk809: pmic@20 {
+>                 compatible = "rockchip,rk809";
+>                 reg = <0x20>;
+>                 interrupt-parent = <&gpio0>;
+> -               interrupts = <RK_PA7 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
+>                 assigned-clocks = <&cru I2S1_MCLKOUT_TX>;
+>                 assigned-clock-parents = <&cru CLK_I2S1_8CH_TX>;
+>                 clock-names = "mclk";
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
