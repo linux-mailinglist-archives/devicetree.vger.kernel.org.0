@@ -2,101 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89BC61FA82
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 17:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D428861FA8D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 17:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232047AbiKGQvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 11:51:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43378 "EHLO
+        id S232778AbiKGQwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 11:52:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232862AbiKGQvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 11:51:08 -0500
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C4EF24089;
-        Mon,  7 Nov 2022 08:50:50 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.96,145,1665414000"; 
-   d="scan'208";a="141793956"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 08 Nov 2022 01:50:50 +0900
-Received: from mulinux.home (unknown [10.226.92.51])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id BA14640078CD;
-        Tue,  8 Nov 2022 01:50:45 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232790AbiKGQwL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 11:52:11 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB28220FD;
+        Mon,  7 Nov 2022 08:52:10 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id q83so1047638oib.10;
+        Mon, 07 Nov 2022 08:52:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qQ64GEaHNoYqaSyJPET6HqEloEtKzKHKFpQ8WjiqbOY=;
+        b=K1j3UaNAmK7TXgzFvQVd5yi4X10Q4DsMHao6D23ewVhcK1btH1hFTb4lZfeP2nmFyt
+         qXhb95tCo14rMP2EhpShmKk3Xo2gEJKTbhYpTtuJZ0DZMVBEhrf2vJsvxd+nWgGmLXub
+         WyjeF9GMTDkAlJaa1WHq/3Q5Y/HXfQLdIe+ovvA5J1BTddV0tLFlKNpMWn3571EVKPJ/
+         FfOo87qXLRIBAoEakslT55FCLhyuSYHPC/xmPIIvmzdGVv3MDB6p3xm42/y4Ij6Q2oXu
+         txSB8gYVUe3/O+vZ+xXvGf4xvjp40jpy3Ay5BakgZ+v6VJaT6idFQFJblViI9ICB5PuI
+         h95A==
+X-Gm-Message-State: ACrzQf353hKzy1jxpBE/bXjP8T+V1es0truFtU4+uThPHVnZsEw8RtJV
+        85oXDmcyicnmS38IRGfw5Q==
+X-Google-Smtp-Source: AMsMyM7ZHh3wfKMz5itrgmKht6rWjBQJpRWxKulZfspcnTiaTzZ/Z14rbOnaTEE8glR459/Ok4a7HQ==
+X-Received: by 2002:aca:d0b:0:b0:359:cb6e:809b with SMTP id 11-20020aca0d0b000000b00359cb6e809bmr30548387oin.137.1667839929799;
+        Mon, 07 Nov 2022 08:52:09 -0800 (PST)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h25-20020a056870171900b0013d9bd4ad2esm3307622oae.12.2022.11.07.08.52.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 08:52:09 -0800 (PST)
+Received: (nullmailer pid 1229987 invoked by uid 1000);
+        Mon, 07 Nov 2022 16:52:11 -0000
+Date:   Mon, 7 Nov 2022 10:52:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: r9a09g011: Fix I2C SoC specific strings
-Date:   Mon,  7 Nov 2022 16:50:27 +0000
-Message-Id: <20221107165027.54150-3-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20221107165027.54150-1-fabrizio.castro.jz@renesas.com>
-References: <20221107165027.54150-1-fabrizio.castro.jz@renesas.com>
+        Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v4 05/13] dt-bindings: iio: temperature: ltc2983:
+ describe matrix items
+Message-ID: <166783993054.1229931.10283754977945608290.robh@kernel.org>
+References: <20221103130041.2153295-1-demonsingur@gmail.com>
+ <20221103130041.2153295-6-demonsingur@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221103130041.2153295-6-demonsingur@gmail.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The preferred form for Renesas' compatible strings is:
-"<vendor>,<family>-<module>"
 
-Somehow the compatible string for the r9a09g011 I2C IP was upstreamed
-as renesas,i2c-r9a09g011 instead of renesas,r9a09g011-i2c, which
-is really confusing, especially considering the generic fallback
-is renesas,rzv2m-i2c.
+On Thu, 03 Nov 2022 15:00:33 +0200, Cosmin Tanislav wrote:
+> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> 
+> Give a little bit of information on what each item in the matrix is
+> supposed to be.
+> 
+> Also, some matrices put the 'minItems' and 'maxItems' keywords in the
+> wrong level. They should be on the same level as the 'items' keyword.
+> Fix it.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> ---
+>  .../bindings/iio/temperature/adi,ltc2983.yaml | 23 ++++++++++---------
+>  1 file changed, 12 insertions(+), 11 deletions(-)
+> 
 
-The first user of renesas,i2c-r9a09g011 in the kernel is not yet in
-a kernel release, it will be in v6.1, therefore it can still be
-fixed in v6.1.
-Even if we don't fix it before v6.2, I don't think there is any
-harm in making such a change.
-
-s/renesas,i2c-r9a09g011/renesas,r9a09g011-i2c/g for consistency.
-
-Fixes: 54ac6794df9d ("arm64: dts: renesas: r9a09g011: Add i2c nodes")
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
-
-v2 - Improved changelog, as suggested by Geert and Krzysztof
-
- arch/arm64/boot/dts/renesas/r9a09g011.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-index 1948d2e6bcae..2ccd48ee9880 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011.dtsi
-@@ -126,7 +126,7 @@ cpg: clock-controller@a3500000 {
- 		i2c0: i2c@a4030000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "renesas,i2c-r9a09g011", "renesas,rzv2m-i2c";
-+			compatible = "renesas,r9a09g011-i2c", "renesas,rzv2m-i2c";
- 			reg = <0 0xa4030000 0 0x80>;
- 			interrupts = <GIC_SPI 232 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 236 IRQ_TYPE_EDGE_RISING>;
-@@ -140,7 +140,7 @@ i2c0: i2c@a4030000 {
- 		i2c2: i2c@a4030100 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			compatible = "renesas,i2c-r9a09g011", "renesas,rzv2m-i2c";
-+			compatible = "renesas,r9a09g011-i2c", "renesas,rzv2m-i2c";
- 			reg = <0 0xa4030100 0 0x80>;
- 			interrupts = <GIC_SPI 234 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 238 IRQ_TYPE_EDGE_RISING>;
--- 
-2.34.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
