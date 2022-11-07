@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E2C61EFCB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:59:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A150961EFD4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231770AbiKGJ7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:59:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50178 "EHLO
+        id S231975AbiKGKCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 05:02:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231844AbiKGJ7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:59:05 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE78612D00
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:59:04 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id x2so16668642edd.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:59:04 -0800 (PST)
+        with ESMTP id S231439AbiKGKCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:02:08 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DBBC186D2
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 02:02:07 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id q1so9991372pgl.11
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 02:02:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K8of/oAJws/QSmCAC0YWn8g/hdNuzur7wOUoaPRB20w=;
-        b=UVhVoV7mKmkz8e0NlclJKabTSUP5kNNkY7uGxKCwBhSIoycEa6zV8x5E1jfjvU3oGe
-         8z1ctzbBtjhiW4Vni8KiTdyJxPWlBHbSCF3SP2H0kpt/Q3xLgRfasCZkcPTBMSMZgeZ7
-         Odn51ehQ3cm+/ozEkKQH8LL0/iV95ghZ4TswA6eCNhOVNICTQ+KrBwNQUSYnmaRnM1FA
-         0jZZa36OQKgu2A1Y5nW/MkqPNi1fMFkYiRWcnXJgbD8AF6bVhtrjJKFrWgN1RXWPib+W
-         rp5PSL/mUjURrOGGUmnXADj3DfNrOE1kU3lu6k4I6658yHYBYHY5QS3JvCRNM3hDykFE
-         ELqA==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=hLNYp+9EJxn0NrngK9OId1WhBrnceXYO/38qlXmZRJA=;
+        b=NBlpevsllqlINLnMCPOgfYg8KJl7XozYj0SwKtc2424//yAXEXFOEQtP40QxHqXcRU
+         sBYepgVI7YIHVr3AnMtQImMejx7sGXnIzfInL7h0fUeL6V1wfw8McKm24nwRopQ3XFIG
+         jsPQnVYOdF9RH+r9QdPTLbcNFep++pvuDwCEa0t816G/LEdVpxoyWPe7L6N+tnGeD8ED
+         dcuDjogvM8AtD4Alonqyl5CyJPdgTpuzYQDykIQ8zBvhOtmyTm0DITQI+4X6ZLPdZt87
+         /0JiTkM4SfP7wCeoMartm2Meba21ZL6OSAy4Kwqi6uMALIM6G5BDptsGEltQPnFOnnlh
+         dEDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=K8of/oAJws/QSmCAC0YWn8g/hdNuzur7wOUoaPRB20w=;
-        b=7q2wZgfI65c43A118z3gNyAsohU7V8JyI/e2LJpHuIa74Q9ldBxOeEAEGMnnK5K7As
-         pN0mIq6gLEJCH6glYo58IVm+AC3u/MEkHpGkogh1M66BHdVy/RsmHo1+hLyr//7jAlNv
-         Q7JiUNv2RE1nnm50NLlBloA73E+iOfkYqJtfxMPRqDKgsIqmns6D/UEIKpkroaETTKl5
-         tsgb6ZthkR6Y///X9zV2dxuT53OgnHfRfCZy05OQd+cQdDdXRcIeIMBZAvRhklhYvuuF
-         Z/1SX+48px6K+6bZw3IY/KFPWCS1XdesYMqen1XbQBF3eEufrYD7HYPXYnfnIlVp9PWf
-         GZeQ==
-X-Gm-Message-State: ACrzQf1sIHRTVu8eWtIU4zGuNPoG0E/AFqYnyvDQr1IqoufcLsS3NZng
-        sGYkgbTsdnW7r07HgiuJeYUv6g==
-X-Google-Smtp-Source: AMsMyM4ZTb8SnvvFaMldWp9JMNkf3rSQ7nxgOA+HkaqOtlKvbAhk3k+5d3Qg+q+Qi/p7gBCQgZ6O6Q==
-X-Received: by 2002:aa7:c0cf:0:b0:463:8ba0:522f with SMTP id j15-20020aa7c0cf000000b004638ba0522fmr38275764edp.176.1667815144446;
-        Mon, 07 Nov 2022 01:59:04 -0800 (PST)
-Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id vl2-20020a170907b60200b0078d0981516esm3153470ejc.38.2022.11.07.01.59.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 01:59:04 -0800 (PST)
-Message-ID: <f3239a2d-9aa0-8ed3-f0a7-af9243fa7168@linaro.org>
-Date:   Mon, 7 Nov 2022 10:58:59 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hLNYp+9EJxn0NrngK9OId1WhBrnceXYO/38qlXmZRJA=;
+        b=z/83fSXL31fga1KppD8nmOYhzgb6ra1/NUaOxd7O89OCYw5gHCa/AD/uT5aWT+k0dm
+         fSSRsVNwznR78dBkMub5jrtKD4V0KrSo+E4bZb6KHkpg/H7eHA4QJjPvPLliOEQYsuBD
+         sia9eYl4q+vofAll4+IPCYyiG3PsGkG3ZP790EChbPuktU6o8TBv6Qgwz3COkXq9WRtp
+         7O2e+XKqeE65nYzMeoJDGd+HDF7cgfuEORfW+DRlvy4VQSc6RNfMrPpmPtbSdzZubXJC
+         tlkZI6wNZgrx7mqRqKy0/ZV0il5zbPiMBSa1hs9BXj1PKQvCdAsLdsjCVz0zbSFd0ZdD
+         zQpQ==
+X-Gm-Message-State: ACrzQf0khw1nmCjsseSLYpDhZnv+jb83MPceZmyzJ0FtaFqDIv+PE+/O
+        5zI+Q4fTLg51i7uWyOHLQkoXuA==
+X-Google-Smtp-Source: AMsMyM40bpJpZbywPpKVL48y6aqSA6xQjDEJWlfn+atk7gJPoJkt/LO8evFJ5aoRwfxrLhTo2z7CJQ==
+X-Received: by 2002:a63:ce43:0:b0:45b:d6ed:6c2 with SMTP id r3-20020a63ce43000000b0045bd6ed06c2mr42229873pgi.406.1667815327009;
+        Mon, 07 Nov 2022 02:02:07 -0800 (PST)
+Received: from localhost ([122.172.84.80])
+        by smtp.gmail.com with ESMTPSA id y188-20020a6232c5000000b0056ded8d5918sm4071905pfy.134.2022.11.07.02.02.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 02:02:06 -0800 (PST)
+Date:   Mon, 7 Nov 2022 15:32:04 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Vibhore Vardhan <vibhore@ti.com>
+Cc:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rafael@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH RESEND 0/5] cpufreq: ti-cpufreq: Enable AM625 CPUFreq
+Message-ID: <20221107100204.7dm6shvaew6zmi34@vireshk-i7>
+References: <20221101180935.139268-1-vibhore@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: hk01: use GPIO flags for tlmm
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20221107092930.33325-1-robimarko@gmail.com>
- <20221107092930.33325-3-robimarko@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221107092930.33325-3-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221101180935.139268-1-vibhore@ti.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,44 +71,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 07/11/2022 10:29, Robert Marko wrote:
-> Use respective GPIO_ACTIVE_LOW/HIGH flags for tlmm GPIOs instead of
-> harcoding the cell value.
+On 01-11-22, 13:09, Vibhore Vardhan wrote:
+> Apologies, resending because I botched the label in previous series.
+> Please reply to this series rather than the one sent previously.
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->   arch/arm64/boot/dts/qcom/ipq8074-hk01.dts | 5 +++--
->   1 file changed, 3 insertions(+), 2 deletions(-)
+> Hi,
+> This series enables CPUFreq for AM625. This version is a fixup and
+> rebase of the patch series by Dave Gerlach on v6.1-rc3 [1].
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-> index b60b2d4c2ea5..c3f3f78271e9 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
-> @@ -4,6 +4,7 @@
->    */
->   #include "ipq8074.dtsi"
->   #include "pmp8074.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
->   
->   / {
->   	model = "Qualcomm Technologies, Inc. IPQ8074-HK01";
-> @@ -52,12 +53,12 @@ &blsp1_uart5 {
->   
->   &pcie0 {
->   	status = "okay";
-> -	perst-gpios = <&tlmm 61 0x1>;
-> +	perst-gpios = <&tlmm 61 GPIO_ACTIVE_LOW>;
->   };
->   
->   &pcie1 {
->   	status = "okay";
-> -	perst-gpios = <&tlmm 58 0x1>;
-> +	perst-gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
->   };
->   
->   &pcie_phy0 {
+> It updates the ti-cpufreq driver to support parsing of the speed grade
+> value out of the JTAG_USER_ID register and adds necessary support code
+> to use cpufreq-dt.
+> 
+> The operating-points table that gets added support 200,400,600,800 for
+> all variants and then 1GHz for the S Speed grade only and 1.25 for the T
+> Speed grade only. 1.4GHz has been added in board specific dts file as it
+> requires VDD_CORE to be at 0.85V.
+> 
+> The latency between pre and post frequency transition was measured in
+> CPUFreq driver for all combinations of OPP changes. The average value
+> was selected as overall clock-latency.
+> 
+> Tested on am62-sk board using manual frequency changes and then reading
+> back frequency with k3conf, and this shows matching frequency to what
+> was set.
+> 
+> This should not impact existing K3 platforms that do not have operating
+> points table defined.
+
+Applied. Thanks.
+
+-- 
+viresh
