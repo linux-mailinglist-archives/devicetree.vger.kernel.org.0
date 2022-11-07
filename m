@@ -2,147 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C020761F605
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:29:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A7E261F610
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:31:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbiKGO3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 09:29:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44714 "EHLO
+        id S232388AbiKGObG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Nov 2022 09:31:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232532AbiKGO3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:29:37 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF3A01FCDB;
-        Mon,  7 Nov 2022 06:24:55 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id r13-20020a056830418d00b0065601df69c0so6611356otu.7;
-        Mon, 07 Nov 2022 06:24:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IG4UQVZgFzf5wzCzoJA49RijDyqcF2v5Wg1wz+or46w=;
-        b=DuuD8pG5alSGOKfFryOtNi6kxRJuDHNQZhwdHObMWH6AinCIul5RLrmDXBV8fSaSbG
-         DDWqGSw5uJeTFgGLvBa4mSdEkcOPUDPsN64segrwzD0nhTCl3p0a1Ci4Uq+ZddRS644S
-         9GGCrufcXNzS0rBP4ARHU2voJ7N0/rjpccMgJDKAirZClEqT13BFVcI2mlaXVmOKVpUR
-         yEUcevMNEMAi0cPGp70O5b6WZAi5SLssW6CwD7+kEfMDE1gsmH9IVvnACDikAy5LVlBu
-         yUnPRF9w1LP/ww3LWO9Rd+9ert42PvZ1j9bfwjyPtWFeNY0H/BuIsOgML3qDRcnWqhqt
-         VUpw==
+        with ESMTP id S232385AbiKGOaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:30:52 -0500
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8261E3D9;
+        Mon,  7 Nov 2022 06:26:56 -0800 (PST)
+Received: by mail-qk1-f180.google.com with SMTP id g10so7205843qkl.6;
+        Mon, 07 Nov 2022 06:26:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IG4UQVZgFzf5wzCzoJA49RijDyqcF2v5Wg1wz+or46w=;
-        b=GLMOAYtHG2BYnBccYPiwJMCLUvvR5DkYjN5J5x/7YOlUGHQA9KWFtZiPRmXu963+V1
-         spcidoDLYolT+ThhvIsbmmj13sCP/V2vZgoFs9eb4mNjwdPfCOytHYW14l+7KK/p8hxz
-         zcpv3E+FlSaOFl3zO9c1PNnXbwzAKbd8pUyghvqAAl9AdMRdVWNQwprW3PpsmeLX8Va+
-         FLCWuGPlDRW6g14QSVgW57hDrwqKAO+s3UmyHevVjYds6+A0WbrJuthaur8zxW4wCFJW
-         WBQC38JMYDuNj7LI2uWr35MA/bvCNLMawUffDn7ZnCrj/zPj6zkqAlimniW0dO3dsgJQ
-         ZWcQ==
-X-Gm-Message-State: ACrzQf0Kh3CKg3H+mJlFBrVNkR/BKGXQXvQzGtVsduNr+oH60N6SFqoV
-        mPSn6J9UPyaRoq3sBVTOfbq+wda2q1fu/5EFpQw=
-X-Google-Smtp-Source: AMsMyM6s/NUbomfeK10UhYLZsIsefU9QwYjEfjYygF9tunUt3jy5PYwg8zkHinaXgQaqjcDvBGpx4Ay7pq1oyZUee4o=
-X-Received: by 2002:a9d:f44:0:b0:663:bfe6:2a6d with SMTP id
- 62-20020a9d0f44000000b00663bfe62a6dmr24418402ott.214.1667831095098; Mon, 07
- Nov 2022 06:24:55 -0800 (PST)
+        bh=Ft1r9aPFGJF0+nCT//rpLeqH0WDImyUG+eP+SvMdOUM=;
+        b=aQyZyVWsvpNpO/mxf/icp5EiRCg6lZ5KxIh3CaOEExqJiKWvJ0Uwsqza4zBgLK0zje
+         XEPuquZgemOHm8UoeuETaoYRyfvW202c8bDjNWSRGb3AcQZHh336vndZx1gcNOMndzmk
+         jDFIEwn4gikfQINXXX8Al0z8v57Z1mL/lnaYvVb4Xs2PgXvIMR+rDJAIwHjK0fw5unnw
+         7n81mGLlCSwl2m9vOOanZORGNEthVLBiqttuZPQ8z2vhGGPRB44GCntu+5SaLiugz2Nx
+         HqvGhdRyXEeoOYfbfacO4uBYz9xDgOxQw1vYLjwYJB7ignoSoG9uZn3GJXoQ8bt12LIn
+         x6sQ==
+X-Gm-Message-State: ACrzQf08b0yeD6gkp5YT2E7TinyczM9FZ+ao38B5FxcmXo2++8QEV3FI
+        Aq7HZNW1jHRGDjWoxUaeYPe8A8tBSHOocw==
+X-Google-Smtp-Source: AMsMyM6Jpv0EgHEXEmn+VZEsX8fU0eJLbwDLeD2piUtkylPTDhDBomQ0VQSOPxjzO4jkMEVQv5l5mg==
+X-Received: by 2002:a37:65c9:0:b0:6fa:1ef8:fa10 with SMTP id z192-20020a3765c9000000b006fa1ef8fa10mr32177855qkb.648.1667831215541;
+        Mon, 07 Nov 2022 06:26:55 -0800 (PST)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id u17-20020a05622a011100b003a598fcddefsm664637qtw.87.2022.11.07.06.26.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 06:26:54 -0800 (PST)
+Received: by mail-yb1-f169.google.com with SMTP id o70so13760513yba.7;
+        Mon, 07 Nov 2022 06:26:54 -0800 (PST)
+X-Received: by 2002:a05:6902:503:b0:6cf:c510:6a23 with SMTP id
+ x3-20020a056902050300b006cfc5106a23mr30733838ybs.380.1667831214389; Mon, 07
+ Nov 2022 06:26:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20221102155558.1895829-1-dsankouski@gmail.com>
- <20221102155558.1895829-3-dsankouski@gmail.com> <1a8bab07-46c4-1585-45ff-8780c02afd4e@linaro.org>
-In-Reply-To: <1a8bab07-46c4-1585-45ff-8780c02afd4e@linaro.org>
-From:   Dzmitry Sankouski <dsankouski@gmail.com>
-Date:   Mon, 7 Nov 2022 17:24:44 +0300
-Message-ID: <CABTCjFBth=jON-uuMU54cQi3zDcGYtGMbpaKitc1WHx+ciNiRQ@mail.gmail.com>
-Subject: Re: [PATCH v11 2/2] arm64: dts: qcom: sagit: add initial device tree
- for sagit
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20221107135825.583877-1-herve.codina@bootlin.com> <20221107135825.583877-5-herve.codina@bootlin.com>
+In-Reply-To: <20221107135825.583877-5-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 7 Nov 2022 15:26:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX9WBxkrQRV6yEXmJdj3qQ9Ne4W0xmiGDEC6j=R_ARgsQ@mail.gmail.com>
+Message-ID: <CAMuHMdX9WBxkrQRV6yEXmJdj3qQ9Ne4W0xmiGDEC6j=R_ARgsQ@mail.gmail.com>
+Subject: Re: [PATCH 4/7] dt-bindings: usb: add the Renesas USBF controller binding
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Is the master branch of
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-proper rebase?
-Or do I need to search and apply device tree doc patches somehow
-before running dtbs_check?
-I rebased on linux-next/master, and my dts is ok.
+Hi Hervé,
 
-A lot of warnings for msm8998.dtsi, though. I think it should be fixed
-in a separate patch series.
+On Mon, Nov 7, 2022 at 3:00 PM Herve Codina <herve.codina@bootlin.com> wrote:
+> The Renesas USBF controller is an USB2.0 device controller
+> (UDC) available in Renesas r9a06g032 SoC (RZ/N1 family).
+>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-=D1=81=D1=80, 2 =D0=BD=D0=BE=D1=8F=D0=B1. 2022 =D0=B3. =D0=B2 22:20, Krzysz=
-tof Kozlowski
-<krzysztof.kozlowski@linaro.org>:
->
-> On 02/11/2022 11:55, Dzmitry Sankouski wrote:
-> > New device support - Xiaomi Mi6 phone
-> >
-> > What works:
-> > - storage
-> > - usb
-> > - power regulators
-> >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> > ---
->
-> (...)
->
-> > +
-> > +&blsp1_i2c5_sleep {
-> > +     /delete-property/ bias-pull-up;
-> > +     bias-disable;
-> > +};
-> > +
-> > +&blsp1_uart3 {
-> > +     status =3D "okay";
-> > +
-> > +     bluetooth {
-> > +             compatible =3D "qcom,wcn3990-bt";
-> > +
-> > +             vddio-supply =3D <&vreg_s4a_1p8>;
-> > +             vddxo-supply =3D <&vreg_l7a_1p8>;
-> > +             vddrf-supply =3D <&vreg_l17a_1p3>;
-> > +             vddch0-supply =3D <&vreg_l25a_3p3>;
-> > +             max-speed =3D <3200000>;
-> > +     };
-> > +};
-> > +
-> > +&blsp1_uart3_on {
-> > +     rx {
->
-> This is a friendly reminder during the review process.
->
-> It seems my previous comments were not fully addressed. Maybe my
-> feedback got lost between the quotes, maybe you just forgot to apply it.
-> Please go back to the previous discussion and either implement all
-> requested changes or keep discussing them.
->
-> Thank you.
->
-> 6.1-rc3 is not a proper rebase... You *must* include maintainers'
-> entries. This *must* align with stuff has Bjorn. Also I expect it passes
-> dtbs_check on stuff in the next.
->
-> Best regards,
-> Krzysztof
->
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/renesas,usbf.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/renesas,usbf.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas USBF (USB Function) controller binding
+> +
+> +description: |
+> +   The Renesas USBF controller is an USB2.0 device
+> +   controller (UDC).
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+
+Hervé? ;-)
+
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a06g032-usbf
+> +          - const: renesas,rzn1-usbf
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Internal bus clock (AHB) for Function
+> +      - description: Internal bus clock (AHB) for Power Management
+> +  clock-names:
+> +    items:
+> +      - const: hclkf
+> +      - const: hclkpm
+
+power-domains?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
