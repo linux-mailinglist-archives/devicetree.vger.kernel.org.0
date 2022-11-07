@@ -2,159 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B8161FDCA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9725661FD42
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:19:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231589AbiKGSoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:44:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56342 "EHLO
+        id S232398AbiKGSTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:19:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232371AbiKGSoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:44:09 -0500
-X-Greylist: delayed 1567 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Nov 2022 10:44:08 PST
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F68619C29
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:44:08 -0800 (PST)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1os6h2-000VhV-EN; Mon, 07 Nov 2022 18:17:56 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: imx8m{m,n}-venice-gw7902: add gpio pins for new board revision
-Date:   Mon,  7 Nov 2022 10:17:54 -0800
-Message-Id: <20221107181754.218158-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231693AbiKGSTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:19:25 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A5313FB7
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:18:47 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id d6so17901986lfs.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 10:18:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tWsXLh2L851r8RYCKJq+fTeiBfSiiVKT4hw/fDZo7zY=;
+        b=pnj0uLR9fJ4eXPPSx5vdtLny3B0AGgtcshzTfn3nv25iVQZT59hBKwyjlRsIC9sntp
+         jEuUijaHMRcGw3yti8oH31EW5tMd1hlxPQKFTHFsypbLaGIymVzeU1nXISqhRvdNzC9L
+         PSCbYJsCrzdyzrnrxrmVR6zDmuZ1nVNQaBd6UJ8jWrAsEaOZd9DBvwz+bb4pFuvF+EeR
+         oh9zSgdToRaeLlZiBTwgGWGwU/fyaCoLgF91yPovyLR0G6O3/4L2Du42WrLyqmHdtOwi
+         KxOHR6xJ7HV3MizjMJBJpEeFftaccz93wkl2HmazKT5fA50FNlbD4+LardUi4tu3lJ88
+         5z0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tWsXLh2L851r8RYCKJq+fTeiBfSiiVKT4hw/fDZo7zY=;
+        b=xhKl24sPmP6bTz5RpdBXj+Yqmsyx1OxCUM1fGB2oZ1zYRrsD/cnGBPr3m1R9j7wPTn
+         ZulhcvMWHcouAKQDlJE4xupixvVnRQFVZkDJA8vk6vQqTkV3zxSLvz5wizd7ndas0d6m
+         aKkGc7QIbVHLPTtMLMJPensFSUmSF1fo+WsC3FJ69GD4lxYtWoUCsynApC26BU/m999G
+         BnjcwCBo4O5i9AQwWl9frWUpZ8USJBr1SyIHkE821sv1FyaU4k6F7cWQsQ4L0LFoi0ez
+         s1wbIDr897yU9jQpQXAuvbE/7ussqDGBN78oxblLKUxsqmFVMHlF9rUDCUVpC3xaN+UR
+         e2lg==
+X-Gm-Message-State: ANoB5pk6zx/twK0neVaurn82MfC7oMxmHEShiI7tCJRYDpiOfsueqJJx
+        1XaMj43u1C6ZsdnvYBHIR5lbXg==
+X-Google-Smtp-Source: AA0mqf6uQrloA1xdpVDP17NsvKbFFDiNw5PsPA/9ZXq1MuCsgg9JsvymfHX6GczKvE6+iQskp7J4ig==
+X-Received: by 2002:a05:6512:38c9:b0:4b2:1a29:cc44 with SMTP id p9-20020a05651238c900b004b21a29cc44mr4679507lft.176.1667845125716;
+        Mon, 07 Nov 2022 10:18:45 -0800 (PST)
+Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
+        by smtp.gmail.com with ESMTPSA id m18-20020a197112000000b004a2550db9ddsm1350619lfc.245.2022.11.07.10.18.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 10:18:45 -0800 (PST)
+Message-ID: <7b848257-e3a4-3b6b-9986-57174e40319d@linaro.org>
+Date:   Mon, 7 Nov 2022 19:18:44 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Subject: Re: [PATCH v3 2/5] dt-bindings: power: rpmpd: Add QDU1000/QRU1000 to
+ rpmpd binding
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Melody Olvera <quic_molvera@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221026190549.4005703-1-quic_molvera@quicinc.com>
+ <20221026190549.4005703-3-quic_molvera@quicinc.com>
+ <23e8a609-345f-a8ce-b0cb-2926fd86a315@linaro.org>
+ <20221107174848.lwq4ma62bj5b2fkt@builder.lan>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221107174848.lwq4ma62bj5b2fkt@builder.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio pins present on new board revision:
- * LTE modem support (imx8mm-gw7902 only)
-  - lte_pwr#
-  - lte_rst
-  - lte_int
- * M2 power enable
-  - m2_pwr_en
- * off-board 4.0V supply
-  - vdd_4p0_en
+On 07/11/2022 18:48, Bjorn Andersson wrote:
+> On Thu, Oct 27, 2022 at 11:25:42AM -0400, Krzysztof Kozlowski wrote:
+>> On 26/10/2022 15:05, Melody Olvera wrote:
+>>> Add compatible and constants for the power domains exposed by the RPMH
+>>> in the Qualcomm QDU1000 and QRU1000 platforms.
+>>>
+>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>>
+>> Looks good, but you did not Cc maintainers and  they must see this patch.
+>>
+> 
+> $ ./scripts/get_maintainer.pl -f Documentation/devicetree/bindings/power/qcom,rpmpd.yaml include/dt-bindings/power/qcom-rpmpd.h
+> Andy Gross <agross@kernel.org> (maintainer:ARM/QUALCOMM SUPPORT)
+> Bjorn Andersson <andersson@kernel.org> (maintainer:ARM/QUALCOMM SUPPORT,in file)
+> Konrad Dybcio <konrad.dybcio@somainline.org> (reviewer:ARM/QUALCOMM SUPPORT)
+> Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT)
+> devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+> linux-kernel@vger.kernel.org (open list)
+> 
+> So you're right; Melody did miss Konrad in the recipients list. But he's
+> typically doing a very good job of keeping an eye on the list - and both
+> you and I got the patch.
+> 
+> 
+> Why didn't you add your R-b if you think it looks good?
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- .../boot/dts/freescale/imx8mm-venice-gw7902.dts      | 12 ++++++++----
- .../boot/dts/freescale/imx8mn-venice-gw7902.dts      |  8 ++++----
- 2 files changed, 12 insertions(+), 8 deletions(-)
+Because then you would pick it up and that I did not want. It shall be
+resent so all maintainers get it. I did not check though how many of
+people were missing.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 0359dca031c8..11481e09c75b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -261,7 +261,7 @@ ethphy0: ethernet-phy@0 {
- 
- &gpio1 {
- 	gpio-line-names = "", "", "", "", "", "", "", "",
--		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
-+		"m2_pwr_en", "", "", "", "", "m2_reset", "", "m2_wdis#",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
-@@ -283,7 +283,8 @@ &gpio3 {
- &gpio4 {
- 	gpio-line-names = "", "", "", "", "", "", "", "",
- 		"", "", "", "amp_gpio3", "amp_gpio2", "", "amp_gpio1", "",
--		"", "", "", "", "amp_gpio4", "app_gpio1", "", "uart1_rs485",
-+		"lte_pwr#", "lte_rst", "lte_int", "",
-+		"amp_gpio4", "app_gpio1", "vdd_4p0_en", "uart1_rs485",
- 		"", "uart1_term", "uart1_half", "app_gpio2",
- 		"mipi_gpio1", "", "", "";
- };
-@@ -750,14 +751,19 @@ &iomuxc {
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
-+			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8	0x40000041 /* M2_PWR_EN */
- 			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
- 			MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
- 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
-+			MX8MM_IOMUXC_SAI1_TXD6_GPIO4_IO18       0x40000041 /* LTE_INT */
-+			MX8MM_IOMUXC_SAI1_TXD5_GPIO4_IO17       0x40000041 /* LTE_RST# */
-+			MX8MM_IOMUXC_SAI1_TXD4_GPIO4_IO16       0x40000041 /* LTE_PWR */
- 			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14	0x40000041 /* AMP GPIO1 */
- 			MX8MM_IOMUXC_SAI1_TXD0_GPIO4_IO12	0x40000041 /* AMP GPIO2 */
- 			MX8MM_IOMUXC_SAI1_TXC_GPIO4_IO11	0x40000041 /* AMP GPIO3 */
- 			MX8MM_IOMUXC_SAI1_MCLK_GPIO4_IO20	0x40000041 /* AMP_GPIO4 */
- 			MX8MM_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
-+			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22	0x40000041 /* VDD_4P0_EN */
- 			MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x40000041 /* APP GPIO2 */
- 			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x40000041 /* UART2_EN# */
- 			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x40000041 /* MIPI_GPIO1 */
-@@ -791,8 +797,6 @@ MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
- 			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
- 			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x19 /* RST# */
- 			MX8MM_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x19 /* IRQ# */
--			MX8MM_IOMUXC_GPIO1_IO08_ENET1_1588_EVENT0_IN	0x141
--			MX8MM_IOMUXC_GPIO1_IO09_ENET1_1588_EVENT0_OUT	0x141
- 		>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-index 187e0410b87d..97582db71ca8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-@@ -256,7 +256,7 @@ ethphy0: ethernet-phy@0 {
- 
- &gpio1 {
- 	gpio-line-names = "", "", "", "", "", "", "", "",
--		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
-+		"m2_pwr_en", "", "", "", "", "m2_reset", "", "m2_wdis#",
- 		"", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "";
- };
-@@ -278,7 +278,7 @@ &gpio3 {
- &gpio4 {
- 	gpio-line-names = "", "", "", "", "", "", "", "",
- 		"", "", "", "", "", "", "", "",
--		"", "", "", "", "", "app_gpio1", "", "uart1_rs485",
-+		"", "", "", "", "", "app_gpio1", "vdd_4p0_en", "uart1_rs485",
- 		"", "uart1_term", "uart1_half", "app_gpio2",
- 		"mipi_gpio1", "", "", "";
- };
-@@ -701,10 +701,12 @@ &iomuxc {
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
-+			MX8MN_IOMUXC_GPIO1_IO08_GPIO1_IO8	0x40000041 /* M2_PWR_EN */
- 			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
- 			MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
- 			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
- 			MX8MN_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
-+			MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22	0x40000041 /* VDD_4P0_EN */
- 			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x40000041 /* APP GPIO2 */
- 			MX8MN_IOMUXC_SD1_DATA6_GPIO2_IO8	0x40000041 /* UART2_EN# */
- 			MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x40000041 /* MIPI_GPIO1 */
-@@ -738,8 +740,6 @@ MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
- 			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
- 			MX8MN_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x19 /* RST# */
- 			MX8MN_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x19 /* IRQ# */
--			MX8MN_IOMUXC_GPIO1_IO08_ENET1_1588_EVENT0_IN	0x141
--			MX8MN_IOMUXC_GPIO1_IO09_ENET1_1588_EVENT0_OUT	0x141
- 		>;
- 	};
- 
--- 
-2.25.1
+Best regards,
+Krzysztof
 
