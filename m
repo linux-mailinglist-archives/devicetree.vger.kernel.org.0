@@ -2,210 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7050861E9CD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 831B761E9EA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:57:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbiKGDnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 22:43:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57052 "EHLO
+        id S230408AbiKGD5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:57:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbiKGDns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:43:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0C62670;
-        Sun,  6 Nov 2022 19:43:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 37BD660EAE;
-        Mon,  7 Nov 2022 03:43:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 858C2C433C1;
-        Mon,  7 Nov 2022 03:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667792626;
-        bh=vJMXMhjRRH2tAhkB+zZFrEC95x2s5+eyVMSNAanNWaA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=emduUXpgAlRw70W/ylbLGfsPUZACpE/fZpJCQKVSGFOxHeX3em1cArMbRvdeAtgth
-         pzV4fRYyox7qyAgMPxSpL0/EVjCxyzPDaQh6Tc96wstY3G35dqEDbuZvGpFdL5jfiZ
-         RsVqXu9KI8bN1msv/7HuGhvj12Ex+pbWOE9yleYmSyGqrX0WNTd4royflPPeGXxtQi
-         e0NNyB7eNUAoovOP3SDKGvRToRZlMRe2GoUzWw9xHfZ5btmpbQ/sFs/Z4BA18ZWkQG
-         Pka8yThO0dcQLUYK4A76Kz+SjT0u97r9gs97LEBjzqhHsfl7DEDLAnDMTjXp+zOY8t
-         Uuj6kijSL9oxw==
-Date:   Sun, 6 Nov 2022 21:43:43 -0600
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, herbert@gondor.apana.org.au,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, thara.gopinath@gmail.com,
-        robh@kernel.org, bhupesh.linux@gmail.com, davem@davemloft.net,
-        Jordan Crouse <jorcrous@amazon.com>
-Subject: Re: [PATCH v7 6/9] crypto: qce: core: Add new compatibles for qce
- crypto driver
-Message-ID: <20221107034343.iyknmiztjuxcuqqs@builder.lan>
-References: <20220920114051.1116441-1-bhupesh.sharma@linaro.org>
- <20220920114051.1116441-7-bhupesh.sharma@linaro.org>
- <b4016460-f43a-13f8-432e-47c27237e005@linaro.org>
- <9b111583-519b-95a6-15b5-243e88dc8d39@linaro.org>
- <37b509ff-4fc2-73f1-b135-c0930075ec29@linaro.org>
- <94ff2006-0051-19be-5eee-a5f71a07e26b@linaro.org>
+        with ESMTP id S230304AbiKGD5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:57:04 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61289B7F5;
+        Sun,  6 Nov 2022 19:57:03 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id l6so9428369pjj.0;
+        Sun, 06 Nov 2022 19:57:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jFMW3O4nMzzbsjps13fey55rZ3wr/PRwCQWHd1qcbcA=;
+        b=cBnySRhwG9RoqlHnyyNDFqhPlpjxDLCS4e5dnFc2lZK2UFHxFIIFJwEkPyJ3PHw3c/
+         Q0fP3TgkwQoRItRNssOvfgKeobkt2uXGkcn7kZxO3BbWQ0jBRvGCKb3hCfUJafKjqq8k
+         uR6Cd4x1u48Ox6DzxUTa19AeGAq6ZdpD+lBSwFXqmULfd/mXqsil114RRgw6TxpdTiLz
+         /tm9VL/RTqfc5Q53iwcCAK8WtnF653mfAd6XQv9kGUlvTiYZTKGW11cG5qDm8l8AeNYt
+         OobCKgopZrtYt6ugCFghPhU4FVwgvqbH5G50GBZuL6yk9XGYmNxH9lcDHRC4DXMu2TPI
+         1XZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jFMW3O4nMzzbsjps13fey55rZ3wr/PRwCQWHd1qcbcA=;
+        b=UNgni8SrPuwTh+sAQERrK00jugrI/t7H0J+THUw4n4bEWgtlYjpGP93TuC6tbpkY0I
+         B1CbTYliBSWshhzUqfr4g61ZgG63+1oip8cfWjypWzJJ0SUnp5JiBNeVw4ggMGKebgJG
+         KrgShBMn7kEjmC39zJ5/Zjn5MJBxgodUDMNxnTPwLzFGyUfFDieTvUCkCPqG+2zXlPU7
+         Q82+RWaJzLKWIDH/kMOlsvkwkO7E+/lL8j7NXvwjV0R88d95HrqJXf795YJ3C1gIXNJ4
+         h5rzWup7aKU9YpggV04IefKF8huECDtscB+ePxglTL5A+JqrYjCVyTluT+za2Oz3yzOW
+         kJuA==
+X-Gm-Message-State: ACrzQf10uspqETAk3axpsNxh0Pu/Ew/iECtV2100JvaNLkhiOKOJT1vK
+        31kVPU7Nu3PnA4aPQCSkquA=
+X-Google-Smtp-Source: AMsMyM4dGSaEfzbbZa2tW2MWyiEUxcwujp0EXKxIC/QK7xq2+L6A/rW/IJiML0aA97pqbqrq5krEUg==
+X-Received: by 2002:a17:902:ccc2:b0:178:29e1:899e with SMTP id z2-20020a170902ccc200b0017829e1899emr48045976ple.114.1667793422831;
+        Sun, 06 Nov 2022 19:57:02 -0800 (PST)
+Received: from debian.me (subs02-180-214-232-14.three.co.id. [180.214.232.14])
+        by smtp.gmail.com with ESMTPSA id 68-20020a621647000000b0056bd1bf4243sm3282388pfw.53.2022.11.06.19.57.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Nov 2022 19:57:02 -0800 (PST)
+Received: by debian.me (Postfix, from userid 1000)
+        id B260E103B90; Mon,  7 Nov 2022 10:56:58 +0700 (WIB)
+Date:   Mon, 7 Nov 2022 10:56:58 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     nick.hawkins@hpe.com
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com, corbet@lwn.net,
+        linux@armlinux.org.uk, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 1/6] hwmon: (gxp-fan-ctrl) Add GXP fan controller
+Message-ID: <Y2iCCpKYRm0c7gvZ@debian.me>
+References: <20221104193657.105130-1-nick.hawkins@hpe.com>
+ <20221104193657.105130-2-nick.hawkins@hpe.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Xo6UyqZ2b1CGVEcP"
 Content-Disposition: inline
-In-Reply-To: <94ff2006-0051-19be-5eee-a5f71a07e26b@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20221104193657.105130-2-nick.hawkins@hpe.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 21, 2022 at 12:22:03PM +0530, Bhupesh Sharma wrote:
-> On 9/21/22 11:57 AM, Krzysztof Kozlowski wrote:
-> > On 21/09/2022 08:16, Bhupesh Sharma wrote:
-> > > 
-> > > 
-> > > On 9/20/22 8:42 PM, Krzysztof Kozlowski wrote:
-> > > > On 20/09/2022 13:40, Bhupesh Sharma wrote:
-> > > > > Since we decided to use soc specific compatibles for describing
-> > > > > the qce crypto IP nodes in the device-trees, adapt the driver
-> > > > > now to handle the same.
-> > > > > 
-> > > > > Keep the old deprecated compatible strings still in the driver,
-> > > > > to ensure backward compatibility.
-> > > > > 
-> > > > > Cc: Bjorn Andersson <andersson@kernel.org>
-> > > > > Cc: Rob Herring <robh@kernel.org>
-> > > > > Cc: herbert@gondor.apana.org.au
-> > > > > Tested-by: Jordan Crouse <jorcrous@amazon.com>
-> > > > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > > > > ---
-> > > > >    drivers/crypto/qce/core.c | 9 +++++++++
-> > > > >    1 file changed, 9 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> > > > > index 63be06df5519..99ed540611ab 100644
-> > > > > --- a/drivers/crypto/qce/core.c
-> > > > > +++ b/drivers/crypto/qce/core.c
-> > > > > @@ -291,8 +291,17 @@ static int qce_crypto_remove(struct platform_device *pdev)
-> > > > >    }
-> > > > >    static const struct of_device_id qce_crypto_of_match[] = {
-> > > > > +	/* Following two entries are deprecated (kept only for backward compatibility) */
-> > > > >    	{ .compatible = "qcom,crypto-v5.1", },
-> > > > >    	{ .compatible = "qcom,crypto-v5.4", },
-> > > > 
-> > > > This is okay, so there is no ABI break.
-> > > 
-> > > Great. Thanks for the confirmation.
-> > > 
-> > > > > +	/* Add compatible strings as per updated dt-bindings, here: */
-> > > > > +	{ .compatible = "qcom,ipq4019-qce", },
-> > > > > +	{ .compatible = "qcom,ipq6018-qce", },
-> > > > > +	{ .compatible = "qcom,ipq8074-qce", },
-> > > > > +	{ .compatible = "qcom,msm8996-qce", },
-> > > > > +	{ .compatible = "qcom,sdm845-qce", },
-> > > > > +	{ .compatible = "qcom,sm8150-qce", },
-> > > > > +	{ .compatible = "qcom,sm8250-qce", },
-> > > > 
-> > > > This is a bit odd... you have 7 devices which are simply compatible or
-> > > > even the same. This should be instead one compatible.
-> > > > 
-> > > > I don't really get why do you want to deprecate "qcom,crypto-v5.1".
-> > > > Commit msg only says "we decided" but I do not know who is "we" and "why
-> > > > we decided like this". If you want to deprecate it, perfectly fine by
-> > > > me, but please say in commit msg why you are doing it.
-> > > 
-> > > I understand. This patchset has been in flight for some time and hence I
-> > > might have missed sharing some detailed information about the review
-> > > comments and rework done along the way (in the cover letter for this
-> > > series).
-> > > 
-> > > Coming back to your concern, here is the relevant background:
-> > > - Please see:
-> > > https://lore.kernel.org/linux-arm-msm/20210316222825.GA3792517@robh.at.kernel.org/
-> > > 
-> > > - Rob shared some comments on the v1 series regarding the soc-specific
-> > > compatibles. He mentioned in the above thread that 'you should stick
-> > > with SoC specific compatibles as *everyone* else does (including most
-> > > QCom bindings).'
-> > > 
-> > > - So, while I had proposed "qcom,crypto-v5.1" (for ipq6018) and
-> > > "qcom,crypto-v5.4" (for sdm845, sm8150) etc. as the compatible(s) in the
-> > > v1 series, I shifted to using the soc-specific compatibles from the v2
-> > > series, onwards.
-> > 
-> > Then the reason could be - Reviewers preferred SoC-based compatible
-> > instead of IP-block-version-based.
-> > 
-> > What is confusing is the difference between that link and here. That
-> > link wanted to introduce 4 different compatibles... and here you have
-> > even 7 compatibles being the same.
-> 
-> The link points to v1 version and we are on v7 currently. So there have been
-> other comments and reworks along the way :)
-> 
-> All of these have been referred to in the cover letter logs.
-> 
-> Again please refer to Vladimir's comments on v5 version here, where he
-> suggested adding soc compatibles for 'ipq8074' and 'msm8996' as well.
-> 
-> -
-> https://lore.kernel.org/lkml/7328ae17-1dc7-eaa1-5993-411b986e5e02@linaro.org/
-> -
-> https://lore.kernel.org/lkml/f5b7c89c-3bdd-1e1e-772e-721aa5e95bbf@linaro.org/
-> -
-> https://lore.kernel.org/lkml/7328ae17-1dc7-eaa1-5993-411b986e5e02@linaro.org/
-> 
-> Also the 7 SoC compatibles do not point to the same crypto IP version. We
-> have two IP versions currently supported upstream, "qcom,crypto-v5.1" and
-> "qcom,crypto-v5.4" (with patches for support for newer versions under work
-> and can be expected to land upstream in near future).
-> 
-> However, if you suggest, we can add some comments in the dt-binding doc
-> to reflect which SoC supports which version.
-> 
-> > > - Basically, since we are going to have newer qce IP versions available
-> > > in near future, e.g. "qcom,crypto-v5.5" etc, and we will have 2 or more
-> > > SoCs also sharing 1 version, these compatibles would grow and become
-> > > more confusing. IMO, having a soc-specific compatible in such cases is
-> > > probably a much cleaner approach.
-> > > 
-> > > Hope this helps answer some of your concerns and provides some relevant
-> > > background information.
-> > 
-> > Sure, but I still think you should have only one compatible in the
-> > driver in such case. You don't have differences between them from the
-> > driver point of view, so the devices seem to be compatible.
-> > 
-> > If not, what are the differences?
-> 
-> There can always be requirements for compatible specific handling done in
-> the driver. See Bjorn's comment here for example:
-> https://lore.kernel.org/lkml/YZKhqJuFlRVeQkCc@builder.lan/ , as an example
-> of 'clk_get' calls conditional based on the compatible instead.
-> 
 
-How about providing a generic compatible without the version number
-(i.e. qcom,crypto) and then in the DT binding require this and
-qcom,<platform>-crypto, and if we have such quirky integration behavior
-for a particular platform we can add the special handling in the driver
-for the platform compatible.
+--Xo6UyqZ2b1CGVEcP
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-(And we obviously keep the two existing version-based compatibles in the
-driver, for backwards compatibility)
+On Fri, Nov 04, 2022 at 02:36:52PM -0500, nick.hawkins@hpe.com wrote:
+> diff --git a/Documentation/hwmon/gxp-fan-ctrl.rst b/Documentation/hwmon/g=
+xp-fan-ctrl.rst
+> new file mode 100644
+> index 000000000000..fc1709fb113b
+> --- /dev/null
+> +++ b/Documentation/hwmon/gxp-fan-ctrl.rst
+> @@ -0,0 +1,36 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver gxp-fan-ctrl
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+> +
+> +Supported chips:
+> +
+> +  * HPE GXP SOC
+> +
+> +Author: Nick Hawkins <nick.hawkins@hpe.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +gxp-fan-ctrl is a driver which provides fan control for the hpe gxp soc.
+> +The driver allows the gathering of fan status and the use of fan
+> +pwm control.
+> +
+> +
+> +Usage Notes
+> +-----------
+> +
+> +Traditionally fanY_input returns an RPM value, on HPE GXP systems it is
+> +the pwm value [0-255] due to the fan speeds being reported as
+> +percentages.
+> +
+> +
+> +Sysfs attributes
+> +----------------
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +pwm[0-15]		Fan 0 to 15 respective pwm value
+> +fan[0-15]_input		Fan 0 to 15 respective input value: pwm value
+> +fan[0-15]_fault		Fan 0 to 15 respective fault status: 1 fail, 0 ok
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-Regards,
-Bjorn
+You need to add the documentation to toctree of hwmon documentation:
 
-> This series is to get some early comments and might need some further rework
-> / rearrangement.
-> 
-> However, I would request Rob to share his views as well on the soc specific
-> compatibles, since it was originally his suggestion. I can rework the
-> patchset accordingly.
-> 
-> Thanks,
-> Bhupesh
+---- >8 ----
+
+diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+index ddff3c5713d74e..29ecef3ba4870b 100644
+--- a/Documentation/hwmon/index.rst
++++ b/Documentation/hwmon/index.rst
+@@ -73,6 +73,7 @@ Hardware Monitoring Kernel Drivers
+    g762
+    gsc-hwmon
+    gl518sm
++   gxp-fan-ctrl
+    hih6130
+    ibmaem
+    ibm-cffps
+
+Thanks.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--Xo6UyqZ2b1CGVEcP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCY2iCBQAKCRD2uYlJVVFO
+o9iXAQC5dCdUaEBhlftegSoX9NMmwqr5otKpX0J4Hyg6r6BWxQEAwN3T6R2st6FD
+eQsWtMfkIixxZzJaGvqzv40MwM9tfAg=
+=Jvc3
+-----END PGP SIGNATURE-----
+
+--Xo6UyqZ2b1CGVEcP--
