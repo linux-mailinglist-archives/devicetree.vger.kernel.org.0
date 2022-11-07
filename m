@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC409620442
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 00:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34FB1620447
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 00:57:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233116AbiKGX5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 18:57:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36114 "EHLO
+        id S233152AbiKGX5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 18:57:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232992AbiKGX5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 18:57:23 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0860229370
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 15:57:11 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id v124-20020a1cac82000000b003cf7a4ea2caso10637489wme.5
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 15:57:11 -0800 (PST)
+        with ESMTP id S232888AbiKGX53 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 18:57:29 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A412A71B
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 15:57:13 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id j5-20020a05600c410500b003cfa9c0ea76so2687450wmi.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 15:57:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=950ZKmKhad8aMrZOtshFiSVQfwA+V/urByaO2QTWaYE=;
-        b=eKB49N6KK7qkJjTz9Ws5RGtm9BjGoX2rvhRcKDjagCF7DkY0EfS0MGcXAZOGkKpw6J
-         nS6+9eIneNq/YzMtyUgQiuwelivJm0D5ws6vu6wNSuHyhiYteQFi7Mv0/5A69ZROAQ4t
-         BH0bpsN3EU4IGB6rP0ufHfg/Pr1QxTXyvVV1q+Rt2UCJp/ONWRn1Kw6i70/QVbRiGPcL
-         T15A3ALxzyD7BSckicSBVtbD3Xrg6TbT3dJ2YLrgjN9pTpmcPPhY8jG61kd1d7Ca5m9X
-         AHng2juXuNOpzizo//N+3swh1e5DkI67FpR7JJ2rK8hvsKL6NeYp0aLuaBCJiSfy2ukn
-         7Agg==
+        bh=T1fdF8L0sW5KTb/YS4QVa8k0yiXyWoXhMbKOIwuHjto=;
+        b=CxaF9TLdAp8eXLashbK5nNP72P5DURASHhS9cPKPqghAdAr3UEXkoVu6skvY7Ep3fF
+         f90HBRjhF9WmoSUzkxFE+hiNTFVYWJC7mM11PBepOU3VoapaZe+27DkqJAAOKI1p6RJU
+         wFQhd5+nT+tjsOIRJhVVkEbKnkPua0erTVc8WxBBqedbVF7aBOQa50u0B1P6Erzy1SmU
+         btmdjgUh7QyABg5DUpTd4VAWnIZ6Uvvn/9Jg+X/OvlZpMWNsFRZ0EYzyRkE2nMlZGnSY
+         8u7bsIiYQKVDL7zZGg+3jWl3IlJi6PdKemVAmpvFpCtT28vV9jc39lgVV5hoDZEmrgEf
+         e3jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=950ZKmKhad8aMrZOtshFiSVQfwA+V/urByaO2QTWaYE=;
-        b=blBNTPvm0rtHMLuUNr3IfcyG4wVsEplddM/bkfSdfCoySj3J5nCe07KdbMr9ia6co4
-         2uptCUvuvLa/c9a8kRWzXsTzAaHDG/rKO4r7clmkNmTz+ZXFB0op4Nj/We/LMP66OhE6
-         1cQuWEYZ2xBopI/qnTN9aDSl6BBSFmGPPSajfzkEUjeDv8VsijfPb+JX4ZELpTNGkWCt
-         w0zZNNCi2vW2kVWWZgEklOFfn61SOjRQWSeYs01d69h3ua3gBLt7T1YgFr74vgb+6ajo
-         KxWSkZp//pFez1dHGNe4Xaqz1srG97UxY4I0HsIKxzYaPPnAC263wURFziK28mTLPfwn
-         DTQg==
-X-Gm-Message-State: ACrzQf0wpRZbrgiVVbxaKKa1zXhXgmUAT792swYfjNbf0qS7l3O7MPZz
-        bpznTsB7CqpqmPfFnOX9AYe8Ng==
-X-Google-Smtp-Source: AMsMyM6wRuGahgebs4+VP7pZUyTF9LppxABLhZ4io1IbcJqT+xRrSyOZ+xdVk4QaPzk4oXTnVxKRFQ==
-X-Received: by 2002:a1c:730e:0:b0:3b4:b0c0:d616 with SMTP id d14-20020a1c730e000000b003b4b0c0d616mr35222105wmb.72.1667865430588;
-        Mon, 07 Nov 2022 15:57:10 -0800 (PST)
+        bh=T1fdF8L0sW5KTb/YS4QVa8k0yiXyWoXhMbKOIwuHjto=;
+        b=cjAyO7yB4DJWBkJOD/NbtVfjYoVMAqDpVw3l8QjMkx1NLG+igS89SOz9zpI56j74RP
+         4XJRODYcYkP/F+Yrz+YZrfJ7b5ieXd2Y+8FL2IdMgpI6i3M2CaC4Fej9goEj2n4aywNP
+         TpyBVT/+95d00ZEqSdTlkb3ES4tkfle4a67+RfFEP+wuf8fNrRryz66RqmBBV6w7LKpN
+         03FUTH2+FQxoxkXJXSCLx+j1sXiT253LyIeMdZGAMx0BTSMUArt0Bo4UzmGY27x70eNm
+         Inj591QDqqchbGPxRAV8j4AaClzw7Bq9JGtY45BuVibpDbmT16CndKw2ksn+EfklxAhz
+         Xn3g==
+X-Gm-Message-State: ACrzQf3J+MBXEXO414Ww5sgSGiRQWwCXkII+kB4OXC7I+xZmEFDgbTHJ
+        D2j1Gd/8uDY3XDn7sphD1BogRQ==
+X-Google-Smtp-Source: AMsMyM7AAKhJzfP4Q3UOLJsHP1CRF63+aUq2y9rgXP7psRQw8WqejiO1qCVXOsFiP3u9Scf2BY9Cvg==
+X-Received: by 2002:a05:600c:896:b0:3cf:8e70:f341 with SMTP id l22-20020a05600c089600b003cf8e70f341mr16835095wmp.74.1667865431670;
+        Mon, 07 Nov 2022 15:57:11 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id b18-20020a056000055200b00236545edc91sm8386161wrf.76.2022.11.07.15.57.09
+        by smtp.gmail.com with ESMTPSA id b18-20020a056000055200b00236545edc91sm8386161wrf.76.2022.11.07.15.57.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 15:57:10 -0800 (PST)
+        Mon, 07 Nov 2022 15:57:11 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
         dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org,
@@ -60,11 +60,11 @@ Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
         Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: [PATCH v2 13/18] arm64: dts: qcom: sc7180: Add compat qcom,mdss-dsi-ctrl-sc7180
-Date:   Mon,  7 Nov 2022 23:56:49 +0000
-Message-Id: <20221107235654.1769462-14-bryan.odonoghue@linaro.org>
+Subject: [PATCH v2 14/18] arm64: dts: qcom: sc7280: Add compat qcom,mdss-dsi-ctrl-sc7280
+Date:   Mon,  7 Nov 2022 23:56:50 +0000
+Message-Id: <20221107235654.1769462-15-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
 References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
@@ -80,9 +80,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add silicon specific compatible qcom,mdss-dsi-ctrl-sc7180 to the
+Add silicon specific compatible qcom,mdss-dsi-ctrl-sc7280 to the
 mdss-dsi-ctrl block. This allows us to differentiate the specific bindings
-for sc7180 against the yaml documentation.
+for sc7280 against the yaml documentation.
 
 Cc: Andy Gross <agross@kernel.org>
 Cc: Bjorn Andersson <andersson@kernel.org>
@@ -93,23 +93,23 @@ Cc: linux-arm-msm@vger.kernel.org
 Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Rajendra Nayak <rnayak@codeaurora.org>
+Cc: Sibi Sankar <sibis@codeaurora.org>
 Cc: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index d2c374e9d8c03..07acb7f843d62 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2985,7 +2985,8 @@ opp-460000000 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index a4d6e866b5999..7d4df38348e4f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -3903,7 +3903,8 @@ opp-506666667 {
  			};
  
- 			dsi0: dsi@ae94000 {
+ 			mdss_dsi: dsi@ae94000 {
 -				compatible = "qcom,mdss-dsi-ctrl";
-+				compatible = "qcom,mdss-dsi-ctrl-sc7180",
++				compatible = "qcom,mdss-dsi-ctrl-sc7280",
 +					     "qcom,mdss-dsi-ctrl";
  				reg = <0 0x0ae94000 0 0x400>;
  				reg-names = "dsi_ctrl";
