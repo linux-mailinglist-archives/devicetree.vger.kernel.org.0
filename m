@@ -2,83 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70A162002A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 22:04:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A86F62006C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 22:09:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233196AbiKGVES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 16:04:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
+        id S233281AbiKGVJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 16:09:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233262AbiKGVEC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 16:04:02 -0500
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4EAAE4D;
-        Mon,  7 Nov 2022 13:04:02 -0800 (PST)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-13be3ef361dso14081856fac.12;
-        Mon, 07 Nov 2022 13:04:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L+c0H1nBQxf6B5rWZoqrhhXaMFx8nOWvIRgKOUuZgCQ=;
-        b=Os1C9OmFZxXyot1D4JI0JKO95+L4uHiINpcwIffGpv9ZWax0REKUGqyFnEc+1xPU6y
-         mQV8Xut+z9WngU3+gQyc7n8dOxilPc4quVQxJJke3mjakM9TkZFm5PXhY7mydW2scq74
-         WBCabHcpycZbwUvm9oCo35T2/i/sDdPAzAWYzOx4KWyd95SLumsRx97t1lZeOiVp/4qP
-         tJHmwVs3KTtmzgbdvSlgrKx7hOTBHkVe8dAHx8B4fEjwpaMeH6WXsdmG3V4NrzVcv83J
-         qofszBS+MV3PB/YSjjo8w+wRtpO8TIe5ZhcGOtzqk2XWjHLWJOIhm7LxTuDFcDV09rxc
-         +9Ew==
-X-Gm-Message-State: ACrzQf3ZNmpaRjf6sXoArGjFAgwpn/qZT3AnLjCFAndSHoWpkjWis8DM
-        Hgs4/AWBmGCiszuNsDbT+GdL0oMw8w==
-X-Google-Smtp-Source: AMsMyM7iV1H7kfmpYIoK0N/dnb0NSM4HcqlprZMaw+9WO09jmwomfbql9idJSNQqwHzQ/kIe67ecqw==
-X-Received: by 2002:a05:6870:2427:b0:13b:1f89:ab27 with SMTP id n39-20020a056870242700b0013b1f89ab27mr31504849oap.20.1667855041453;
-        Mon, 07 Nov 2022 13:04:01 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a7-20020a9d5c87000000b0066c495a651dsm3345441oti.38.2022.11.07.13.04.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 13:04:00 -0800 (PST)
-Received: (nullmailer pid 1625023 invoked by uid 1000);
-        Mon, 07 Nov 2022 21:04:02 -0000
-Date:   Mon, 7 Nov 2022 15:04:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-        Gerhard Engleder <gerhard@engleder-embedded.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Eric Dumazet <edumazet@google.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: tsnep: Fix typo on generic
- nvmem property
-Message-ID: <166785504045.1624928.9983956469114639512.robh@kernel.org>
-References: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
+        with ESMTP id S233289AbiKGVJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 16:09:03 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9352CE28;
+        Mon,  7 Nov 2022 13:06:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 52F0EB81699;
+        Mon,  7 Nov 2022 21:06:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3213C433B5;
+        Mon,  7 Nov 2022 21:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1667855160;
+        bh=pefoyR60rzhiUzFe5oioggk7k8lK8qb9L2ld/HDcRMw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=fQ2aOX8nSDqYl9NL4OWckKxCqwu3HAkOdLfXKF6hsZ5pakk6YrtrGhOmpnEHVRjqx
+         qfdWef6vd7kZpf0Q/2EwV+nPZTjIXMzOPSX4VAeCqAw0o+A8iqcKbXnP5Vy3lNM64G
+         7h3T6YLgN6wPiKlix2S81DT2H6wuN8FmYZPMhy+HJovfjM16qP/nhV8XWoP4TKBu5P
+         w/FJ3t0dkRo4T6T3YUAGdRAGuNuNiBulAaX/zU5ATLHia7/Z7suNuK5d14QJ4IXOjk
+         UxeIbAUy5JDW+s8SenQv9DAgoxnl28T0mGrYCouAHoy9a1W6KRRpELWOWImCcrxYML
+         ZCrYl25BiRVXw==
+Date:   Mon, 7 Nov 2022 15:05:59 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org,
+        frowand.list@gmail.com, clement.leger@bootlin.com,
+        max.zhen@amd.com, sonal.santan@amd.com, larry.liu@amd.com,
+        brian.xu@amd.com, stefano.stabellini@xilinx.com, trix@redhat.com
+Subject: Re: [PATCH RFC V3 2/2] PCI: Create device tree node for selected
+ devices
+Message-ID: <20221107210559.GA419452@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <1667575454-18706-3-git-send-email-lizhi.hou@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 04 Nov 2022 17:21:47 +0100, Miquel Raynal wrote:
-> While working on the nvmem description I figured out this file had the
-> "nvmem-cell-names" property name misspelled. Fix the typo, as
-> "nvmem-cells-names" has never existed.
+On Fri, Nov 04, 2022 at 08:24:14AM -0700, Lizhi Hou wrote:
+> The PCIe endpoint device such as Xilinx Alveo PCIe card maps the register
+> spaces from multiple hardware peripherals to its PCIe BAR. Normally,
+> the PCI core discovers devices and BARs using the PCI enumeration process.
+> There is no infrastructure to discover the hardware peripherals that are
+> present in a PCI device, and which can be accessed through the PCI BARs.
 > 
-> Fixes: 603094b2cdb7 ("dt-bindings: net: Add tsnep Ethernet controller")
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/net/engleder,tsnep.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> For Alveo PCIe card, the card firmware provides a flattened device tree to
+> describe the hardware peripherals on its BARs. The Alveo card driver can
+> load this flattened device tree and leverage device tree framework to
+> generate platform devices for the hardware peripherals eventually.
 > 
+> Apparently, the device tree framework requires a device tree node for the
+> PCIe device. Thus, it can generate the device tree nodes for hardware
+> peripherals underneath. Because PCIe is self discoverable bus, there might
+> not be a device tree node created for PCIe devices. This patch is to add
+> support to generate device tree node for PCIe devices. It introduces a
+> kernel option. When the option is turned on, the kernel will generate
 
-Acked-by: Rob Herring <robh@kernel.org>
+Specify the kernel option here.  These last two sentences should
+probably be a separate paragraph because they say specifically what
+this patch does.
+
+> device tree nodes for PCI bridges unconditionally.
+
+> It will also generate
+> a device tree node for Xilinx Alveo U50 by using PCI quirks.
+
+I think I would split the Xilinx Alveo U50 quirk to a separate patch
+from the infrastructure and make this patch more generic.
+
+> +config PCI_DYNAMIC_OF_NODES
+> +	bool "Device tree node for PCI devices"
+> +	depends on OF
+> +	select OF_DYNAMIC
+> +	help
+> +	  This option enables support for generating device tree nodes for some
+> +	  PCI devices. Thus, the driver of this kind can load and overlay
+> +	  flattened device tree for its downstream devices.
+> +
+> +	  Once this option is selected, the device tree nodes will be generated
+> +	  for all PCI/PCIE bridges.
+
+PCI/PCIe
+
+Actually, in this context (and in the commit log), you should just say
+"PCI" because there's nothing PCIe-specific here.
+
+> +void of_pci_make_dev_node(struct pci_dev *pdev)
+> +{
+> +	struct device_node *parent, *dt_node = NULL;
+> +	const char *pci_type = "dev";
+> +	struct of_changeset *cset;
+> +	const char *full_name;
+> +	int ret;
+> +
+> +	/*
+> +	 * if there is already a device tree node linked to this device,
+> +	 * return immediately.
+
+s/if there/If there/
+
+> +	 */
+> +	if (pci_device_to_OF_node(pdev))
+> +		return;
+> +
+> +	/* check if there is device tree node for parent device */
+
+s/check/Check/
+
+Follow the style of the file, which is "capitalize English sentences."
