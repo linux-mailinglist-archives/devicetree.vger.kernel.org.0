@@ -2,87 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3985161F1B5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:20:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3EA61F1BD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:22:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231492AbiKGLUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 06:20:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
+        id S229638AbiKGLWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 06:22:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbiKGLUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:20:30 -0500
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E277F183A4;
-        Mon,  7 Nov 2022 03:20:27 -0800 (PST)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8D343660283A;
-        Mon,  7 Nov 2022 11:20:25 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1667820026;
-        bh=4GLK87T5vBSOqiSGloJWJSHYEYZ8q1Ph3WTRsU8DmKk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=b48ldE8vEdmB4cELPLhlq6/zg5UPab9Qz4/Xfxs+Vv2fyJEFUzO4H4B+cLiHeTSv7
-         TRkgiPTGbxGoK4lOleFzzdyOq2O3guLGtKJlq2x3+VLRntrLNizVnYSOQbmWTZc0gB
-         E3BRzEDA0+SSlB9e3nlag9iOGwyQWomlpdmfqp8Z5DFSX8vIAwzNFt8sGFLfS7mwhr
-         JgEqp4K0BXNVqHzrI2BknmldG4vQ9yO1VSAwuoe6suqkozOBM5giMiGAnvNbqe9HwG
-         aWr945ZoVmPM57JozrbJzg1sUkmNcOvP9n7fbCWwfKfrzlI6XW4Sk8G7t0YFuVDg/m
-         k1nKr69ca5i1w==
-Message-ID: <96d0f2d2-24b9-0838-4538-7d70c01ddace@collabora.com>
-Date:   Mon, 7 Nov 2022 12:20:23 +0100
+        with ESMTP id S229778AbiKGLWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:22:53 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49D3192BE;
+        Mon,  7 Nov 2022 03:22:52 -0800 (PST)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2A7BMkFw020072;
+        Mon, 7 Nov 2022 05:22:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1667820166;
+        bh=YBd8AEWY8tSN4C006kwwfXguJrkOGDAiu3t3jsuQKf4=;
+        h=From:To:CC:Subject:Date;
+        b=RmFqbC6k6IEgTpg098QZJ2J15W2ycci310lvjLLhDlrp7L3/mP7c4w24rvoQXdE9W
+         g2hYAN0lsp9JzsrHQWIQ8DswFzj6v9E/X8k7dN6rmn7PmJBMuyBU8KjiGzZa1DuzlS
+         fZLsTf4+NLunDRgmCc+/IUaGQNlAIXbBkx3Ci99o=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2A7BMk7s103394
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Nov 2022 05:22:46 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 7 Nov
+ 2022 05:22:45 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Mon, 7 Nov 2022 05:22:45 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2A7BMiJU032407;
+        Mon, 7 Nov 2022 05:22:45 -0600
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+        <nm@ti.com>, <piyali_g@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721e-main: Remove ti,strobe-sel property
+Date:   Mon, 7 Nov 2022 16:52:46 +0530
+Message-ID: <20221107112246.69242-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v3 01/12] dt-bindings: phy: mediatek: hdmi-phy: Add mt8195
- compatible
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        mac.shen@mediatek.com, linux-phy@lists.infradead.org
-References: <20220919-v3-0-a803f2660127@baylibre.com>
- <20220919-v3-1-a803f2660127@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220919-v3-1-a803f2660127@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
-> Add a compatible for the HDMI PHY on MT8195
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+According to latest errata of J721e [1], HS400 mode is not supported
+in MMCSD0 subsystem (i2024) .  Speed modes supported has been already
+updated in PATCH eb8f6194e807. 'ti,strobe-sel' property is only
+required by HS400 speed mode and thus needs to be removed from kernel
+dtsi for J721e soc.
 
-Ack and R-b tags go after your S-o-b.
+'ti,strobe-sel' is read in sdhci_am654.c line 733 and gets stored in
+sdhci_am654->strb_sel. This sdhci_am654->strb_sel is used at only one
+place in sdhci_am654.c line 291 which will only get used if HS400
+is enabled.
 
-Apart from that:
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thus, drop 'ti,strobe-sel' property from kernel dtsi for J721e soc.
 
+[.] https://www.ti.com/lit/er/sprz455/sprz455.pdf
 
+Fixes: eb8f6194e807 ("arm64: dts: ti: k3-j721e-main: Update the speed modes supported and their itap delay values for MMCSD subsystems")
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 917c9dc99efa..e4748a838d83 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -1094,7 +1094,6 @@
+ 		ti,itap-del-sel-mmc-hs = <0xa>;
+ 		ti,itap-del-sel-ddr52 = <0x3>;
+ 		ti,trm-icp = <0x8>;
+-		ti,strobe-sel = <0x77>;
+ 		dma-coherent;
+ 	};
+ 
+-- 
+2.20.1
 
