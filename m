@@ -2,146 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 691D061FD37
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:18:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93B8161FDCA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 19:44:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbiKGSSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 13:18:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33220 "EHLO
+        id S231589AbiKGSoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 13:44:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233106AbiKGSSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:18:16 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AD73252AD;
-        Mon,  7 Nov 2022 10:17:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0ECCBB815E8;
-        Mon,  7 Nov 2022 18:17:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B856CC4347C;
-        Mon,  7 Nov 2022 18:17:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667845034;
-        bh=xe7fMo4Kua9n3JiLpB5ttddzY6yu64WGLoSwGcPiCaQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vLd3QwnadAoxekjEhecUkcubKyn+7O5Rt7XZQia/an8wm6y9aAtiYEQj0UyUFWl2e
-         fApn5rCpI1+Ha7mg3o8TJIyngLDhzU5/H4qZ32MkidfILXPZviAskPnndZvb+jnLvu
-         haXFY+DBmHkUi4/Jx1QoW+GXiTOz6NnGuUE9c3W7/SpDiThcV4dYNtp8nFSEmyLhFC
-         5C08PbeMoe0R4rxoKr2f1hsPyU4K2W3fjTQaph8ZDKadq8VuQuXUYGTjq91g8qSPxI
-         gQ4f0ip6B4ELkYf0GhcfGBTvebMvTSfVL96ITPTfFM9EDTPU7Yj/5NSuKzJK1ebHTO
-         LlvI8pC8M+Tbw==
-Date:   Mon, 7 Nov 2022 18:17:08 +0000
-From:   Conor Dooley <conor@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        geert+renesas@glider.be
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232371AbiKGSoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 13:44:09 -0500
+X-Greylist: delayed 1567 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 07 Nov 2022 10:44:08 PST
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F68619C29
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 10:44:08 -0800 (PST)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1os6h2-000VhV-EN; Mon, 07 Nov 2022 18:17:56 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>, Anup Patel <anup@brainfault.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 0/7] Add support for Renesas RZ/Five SoC
-Message-ID: <Y2lLpCRpTQL+0dsR@spud>
-References: <20221028165921.94487-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <Y17BWPuEcmY7Bba3@spud>
- <CA+V-a8uKQ8QvYi5qLC9O=QAQN5CxNB7cOTmw4vk+ndB2R8d3nQ@mail.gmail.com>
- <Y17+pHAg/SBJAEXq@spud>
- <CA+V-a8t-niCHSWo_CSRSkPS4ND12DAkiwxWxOM1vNn=oBKKd_w@mail.gmail.com>
- <CA+V-a8utoDSKcZFdtJ0BKwvPfcvf0WVH2Va-Fv_-pKC1FOOVsQ@mail.gmail.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8m{m,n}-venice-gw7902: add gpio pins for new board revision
+Date:   Mon,  7 Nov 2022 10:17:54 -0800
+Message-Id: <20221107181754.218158-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8utoDSKcZFdtJ0BKwvPfcvf0WVH2Va-Fv_-pKC1FOOVsQ@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 07, 2022 at 06:03:41PM +0000, Lad, Prabhakar wrote:
-> Hi Conor,
-> 
-> On Sun, Oct 30, 2022 at 11:01 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> >
-> > Hi Conor,
-> >
-> > On Sun, Oct 30, 2022 at 10:46 PM Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > > On Sun, Oct 30, 2022 at 10:37:01PM +0000, Lad, Prabhakar wrote:
-> > > > Hi Conor,
-> > > >
-> > > > On Sun, Oct 30, 2022 at 6:24 PM Conor Dooley <conor@kernel.org> wrote:
-> > > > >
-> > > > > On Fri, Oct 28, 2022 at 05:59:14PM +0100, Prabhakar wrote:
-> > > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > >
-> > > > > > Hi All,
-> > > > > >
-> > > > > > The RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP Single)
-> > > > > > 1.0 GHz, 16-bit DDR3L/DDR4 interface. And it also has many interfaces such
-> > > > > > as Gbit-Ether, CAN, and USB 2.0, making it ideal for applications such as
-> > > > > > entry-class social infrastructure gateway control and industrial gateway
-> > > > > > control.
-> > > > > >
-> > > > > > This patch series adds initial SoC DTSi support for Renesas RZ/Five
-> > > > > > (R9A07G043) SoC. Below is the list of IP blocks enabled in the initial
-> > > > > > board DTS which can be used to boot via initramfs on RZ/Five SMARC EVK:
-> > > > > > - AX45MP CPU
-> > > > > > - CPG
-> > > > > > - PINCTRL
-> > > > >
-> > > > > Hey,
-> > > > > Looks like you've got a pair of warnings here from dtbs_check. I tested
-> > > > > this on top of 20221028's next, with the three branches below merged in,
-> > > > > hopefully my merges aren't the source of them:
-> > > > >
-> > > > > linux/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: pinctrl@11030000: 'interrupt-controller' is a required property
-> > > > >         From schema: Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> > > > > linux/arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dtb: pinctrl@11030000: '#interrupt-cells' is a required property
-> > > > >         From schema: linux/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> > > > >
-> > > > Thanks for the review and test. The warnings above are coming from [0]
-> > > > as support for IRQC is missing, once that is added the warnings should
-> > > > go away.
-> > >
-> > > Right. I merged in the stuff in Geert's trees & I don't think I saw any
-> > > pending patches in the cover that I missed. Is there something else that
-> > > adds the support that's not going to make v6.2? I got rid of all the
-> > > dtbs_check warnings for v6.1 and I'd really like to keep things that
-> > > way!
-> > >
-> > Sorry that pacth wasn't posted yet so I hadn't mentioned it in the
-> > cover letter. I'll make sure I get it posted asap and merged for v6.2.
-> >
-> I have got the patches out [0] which will fix the warnings seen above.
+Add gpio pins present on new board revision:
+ * LTE modem support (imx8mm-gw7902 only)
+  - lte_pwr#
+  - lte_rst
+  - lte_int
+ * M2 power enable
+  - m2_pwr_en
+ * off-board 4.0V supply
+  - vdd_4p0_en
 
-Cool, thanks :)
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ .../boot/dts/freescale/imx8mm-venice-gw7902.dts      | 12 ++++++++----
+ .../boot/dts/freescale/imx8mn-venice-gw7902.dts      |  8 ++++----
+ 2 files changed, 12 insertions(+), 8 deletions(-)
 
-> 
-> BTW on the riscv patchwork I see status as fail "Patch does not apply
-> to for-next" does that mean I need to resend re-basing on your tree?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+index 0359dca031c8..11481e09c75b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+@@ -261,7 +261,7 @@ ethphy0: ethernet-phy@0 {
+ 
+ &gpio1 {
+ 	gpio-line-names = "", "", "", "", "", "", "", "",
+-		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
++		"m2_pwr_en", "", "", "", "", "m2_reset", "", "m2_wdis#",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+@@ -283,7 +283,8 @@ &gpio3 {
+ &gpio4 {
+ 	gpio-line-names = "", "", "", "", "", "", "", "",
+ 		"", "", "", "amp_gpio3", "amp_gpio2", "", "amp_gpio1", "",
+-		"", "", "", "", "amp_gpio4", "app_gpio1", "", "uart1_rs485",
++		"lte_pwr#", "lte_rst", "lte_int", "",
++		"amp_gpio4", "app_gpio1", "vdd_4p0_en", "uart1_rs485",
+ 		"", "uart1_term", "uart1_half", "app_gpio2",
+ 		"mipi_gpio1", "", "", "";
+ };
+@@ -750,14 +751,19 @@ &iomuxc {
+ 	pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
++			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8	0x40000041 /* M2_PWR_EN */
+ 			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
+ 			MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
+ 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
++			MX8MM_IOMUXC_SAI1_TXD6_GPIO4_IO18       0x40000041 /* LTE_INT */
++			MX8MM_IOMUXC_SAI1_TXD5_GPIO4_IO17       0x40000041 /* LTE_RST# */
++			MX8MM_IOMUXC_SAI1_TXD4_GPIO4_IO16       0x40000041 /* LTE_PWR */
+ 			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14	0x40000041 /* AMP GPIO1 */
+ 			MX8MM_IOMUXC_SAI1_TXD0_GPIO4_IO12	0x40000041 /* AMP GPIO2 */
+ 			MX8MM_IOMUXC_SAI1_TXC_GPIO4_IO11	0x40000041 /* AMP GPIO3 */
+ 			MX8MM_IOMUXC_SAI1_MCLK_GPIO4_IO20	0x40000041 /* AMP_GPIO4 */
+ 			MX8MM_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
++			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22	0x40000041 /* VDD_4P0_EN */
+ 			MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x40000041 /* APP GPIO2 */
+ 			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x40000041 /* UART2_EN# */
+ 			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x40000041 /* MIPI_GPIO1 */
+@@ -791,8 +797,6 @@ MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
+ 			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
+ 			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x19 /* RST# */
+ 			MX8MM_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x19 /* IRQ# */
+-			MX8MM_IOMUXC_GPIO1_IO08_ENET1_1588_EVENT0_IN	0x141
+-			MX8MM_IOMUXC_GPIO1_IO09_ENET1_1588_EVENT0_OUT	0x141
+ 		>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+index 187e0410b87d..97582db71ca8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+@@ -256,7 +256,7 @@ ethphy0: ethernet-phy@0 {
+ 
+ &gpio1 {
+ 	gpio-line-names = "", "", "", "", "", "", "", "",
+-		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
++		"m2_pwr_en", "", "", "", "", "m2_reset", "", "m2_wdis#",
+ 		"", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "";
+ };
+@@ -278,7 +278,7 @@ &gpio3 {
+ &gpio4 {
+ 	gpio-line-names = "", "", "", "", "", "", "", "",
+ 		"", "", "", "", "", "", "", "",
+-		"", "", "", "", "", "app_gpio1", "", "uart1_rs485",
++		"", "", "", "", "", "app_gpio1", "vdd_4p0_en", "uart1_rs485",
+ 		"", "uart1_term", "uart1_half", "app_gpio2",
+ 		"mipi_gpio1", "", "", "";
+ };
+@@ -701,10 +701,12 @@ &iomuxc {
+ 	pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
++			MX8MN_IOMUXC_GPIO1_IO08_GPIO1_IO8	0x40000041 /* M2_PWR_EN */
+ 			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
+ 			MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
+ 			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
+ 			MX8MN_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
++			MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22	0x40000041 /* VDD_4P0_EN */
+ 			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x40000041 /* APP GPIO2 */
+ 			MX8MN_IOMUXC_SD1_DATA6_GPIO2_IO8	0x40000041 /* UART2_EN# */
+ 			MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x40000041 /* MIPI_GPIO1 */
+@@ -738,8 +740,6 @@ MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
+ 			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
+ 			MX8MN_IOMUXC_GPIO1_IO10_GPIO1_IO10		0x19 /* RST# */
+ 			MX8MN_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x19 /* IRQ# */
+-			MX8MN_IOMUXC_GPIO1_IO08_ENET1_1588_EVENT0_IN	0x141
+-			MX8MN_IOMUXC_GPIO1_IO09_ENET1_1588_EVENT0_OUT	0x141
+ 		>;
+ 	};
+ 
+-- 
+2.25.1
 
-Nah, I though that Geert would be applying this patchset, no?
-If that's the case, it only needs to apply to his tree.
-
-Geert, are you waiting for an ack from Palmer?
-
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20221107175305.63975-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> 
-> Cheers,
-> Prabhakar
