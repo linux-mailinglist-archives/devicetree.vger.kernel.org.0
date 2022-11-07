@@ -2,124 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E2461F1AA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9DB461F1B0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 12:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbiKGLSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 06:18:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39702 "EHLO
+        id S231580AbiKGLUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 06:20:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbiKGLSd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:18:33 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F41712AF1;
-        Mon,  7 Nov 2022 03:18:31 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id o30so6656107wms.2;
-        Mon, 07 Nov 2022 03:18:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bE/B1hEKlsShE0rJtK/wqGe/9FUjw3TNSnOuMMxxx5c=;
-        b=kqG8f+Y6oT2x2fUWNz8vbbbNk4CncuhqoXWlJRRYGp7vCOyhe6FHCC+PhQ2spwH8kD
-         o7ke5mugzwO5NHVfQnSdBhb1xupi+/WPzyUtOCFrTFOJrwh7QHhFxqIck1o3/e8d6sEN
-         a+mXXGKpZV5oUQJntT+wxrjIt1jlD6VN01WMw2g1QXhdXMlzXoexB5vjwOSgwNOjtcTo
-         poo7Kia1UZQHQnurHlLyQfPS6qa1dwa/tyVBm3jrWx2ue1VtYuOlvcKuQhV3sExaMKGB
-         bisoLww9V2O0SuFlZjclSJ76xsL16/rA/g3DJWY7Z454d9Bpl2FQIgJPK+sqbNvHUvya
-         Jn2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bE/B1hEKlsShE0rJtK/wqGe/9FUjw3TNSnOuMMxxx5c=;
-        b=JBsd5WVrDzMSEZXIPG7qQuq8FtkBAgxujukVQWbOoEKpwA7sfis+FXDtbBkW1U/TwQ
-         cpJ2DYyztwJIvJCm46yJrRszkqFUqoHJBsOGBQ58vW8/TuU2ODEPQZF+tkdbTO1RgGmo
-         mg2FweGb0HLnffQHvdEou0V3SnaEGoWJR8boaXe5TbwieYVITplJUJRr6Lw60RdrDjc7
-         p3jTIJt77RCGV6+TtuxvBYYl2rIVxT/LVTJuWVhZXR1JCLfFK2eFO4rjZFj9fdMvk4dF
-         FpXcm2CEbc474z9Mf3jCJshULyG/SK3dPNUHiJ+aMAAcFkl7pL8G0rJAvP2cjFWn2+Jy
-         +QmQ==
-X-Gm-Message-State: ACrzQf02jrCnY7HWdWqZyrpMBH5RcGthh1JV4a8Cog7tPhWPwL1X9fZb
-        GO8It7oOykkxE5xY9ssOoLo=
-X-Google-Smtp-Source: AMsMyM602bjMyEAIMHb7PPY/WchKiT9g7wWxWDeiZVVF/3WBk72v331wPVEgqU98Sqgeey5mI0NOTA==
-X-Received: by 2002:a05:600c:5109:b0:3cf:5fd2:877f with SMTP id o9-20020a05600c510900b003cf5fd2877fmr32712091wms.156.1667819909730;
-        Mon, 07 Nov 2022 03:18:29 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id c5-20020a05600c0a4500b003b4a68645e9sm12514451wmq.34.2022.11.07.03.18.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 03:18:28 -0800 (PST)
-Message-ID: <fcec5536-6ba8-9cac-2001-710a7170df70@gmail.com>
-Date:   Mon, 7 Nov 2022 12:18:26 +0100
+        with ESMTP id S229659AbiKGLUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 06:20:22 -0500
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C24A115A1A;
+        Mon,  7 Nov 2022 03:20:21 -0800 (PST)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6863D660236A;
+        Mon,  7 Nov 2022 11:20:19 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1667820020;
+        bh=7z542Aj3CgGqKW5DeYxuUBU2RHuE8LKZ6Cy4e7BxEYA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Dl74wRMaSBKxFLE4SD7wiQV6g95KV0/pfW+wGLhCf8nqePUEfscyhBuTG1xcefTYr
+         jBFnBGZ05LssJGphJq2pOX1JYUMtpHbTQ0yJYPIYtbW3JMOjOwcSzCqAXulqkL2iEk
+         sjMBpX4EU9p7hwvpM4Fl1NZmIfs+g+/MkUUujWn42Hx73WL6JF2VxjD5+iOGqoZeka
+         UpZoIk0zv9Ru/BQHdVRf73NLxu+/uq2u3o9eeb2cqsXu/Dru14nRNsW5/MO3XRw7wM
+         0Kyc6rKQFZiEjvCMEB6rv/nlJrU4hUuHWuUHFiJ7BUSvenGKb9Eoa4QUJw+5P0XOtY
+         Ew95u+utNO9lw==
+Message-ID: <988b0a7a-69bb-34e4-e777-1d9516221077@collabora.com>
+Date:   Mon, 7 Nov 2022 12:20:16 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: gce: add gce header file for mt8188
+ Thunderbird/102.3.3
+Subject: Re: [PATCH v3 12/12] drm/mediatek: dpi: Add mt8195 hdmi to DPI driver
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Elvis.Wang" <Elvis.Wang@mediatek.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+To:     Guillaume Ranquet <granquet@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20221104074443.26172-1-Elvis.Wang@mediatek.com>
- <20221104074443.26172-2-Elvis.Wang@mediatek.com>
- <bdb46b7c-6e08-26cf-491d-ca68d36f29af@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <bdb46b7c-6e08-26cf-491d-ca68d36f29af@linaro.org>
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        mac.shen@mediatek.com, linux-phy@lists.infradead.org
+References: <20220919-v3-0-a803f2660127@baylibre.com>
+ <20220919-v3-12-a803f2660127@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220919-v3-12-a803f2660127@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 06/11/2022 11:27, Krzysztof Kozlowski wrote:
-> On 04/11/2022 08:44, Elvis.Wang wrote:
->> From: Elvis Wang <Elvis.Wang@mediatek.com>
->>
->> add gce header file to define the gce thread priority, gce subsys id,
->> event and constant for mt8188.
->>
->> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
->> ---
->> Thanks for the reviews, I have removed the incorrect reviewed message.
->> ---
->>   include/dt-bindings/gce/mediatek,mt8188-gce.h | 966 ++++++++++++++++++
->>   1 file changed, 966 insertions(+)
->>   create mode 100644 include/dt-bindings/gce/mediatek,mt8188-gce.h
->>
->> diff --git a/include/dt-bindings/gce/mediatek,mt8188-gce.h b/include/dt-bindings/gce/mediatek,mt8188-gce.h
->> new file mode 100644
->> index 000000000000..e2e2c56016a1
->> --- /dev/null
->> +++ b/include/dt-bindings/gce/mediatek,mt8188-gce.h
+Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
+> Add the DPI1 hdmi path support in mtk dpi driver
 > 
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_dpi.c      | 143 ++++++++++++++++++++++++++++++--
+>   drivers/gpu/drm/mediatek/mtk_dpi_regs.h |   5 ++
+>   2 files changed, 141 insertions(+), 7 deletions(-)
 > 
-> What is a "gce" subsystem or type of hardware? Why do you put headers in
-> "gce"?
-> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index 508a6d994e83..8052b47042b8 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -14,7 +14,10 @@
+>   #include <linux/of_graph.h>
+>   #include <linux/pinctrl/consumer.h>
+>   #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>   #include <linux/types.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
+>   
+>   #include <video/videomode.h>
+>   
+> @@ -65,10 +68,14 @@ struct mtk_dpi {
+>   	struct drm_bridge *next_bridge;
+>   	struct drm_connector *connector;
+>   	void __iomem *regs;
+> +	struct reset_control *reset_ctl;
+>   	struct device *dev;
+>   	struct clk *engine_clk;
+> +	struct clk *dpi_ck_cg;
+>   	struct clk *pixel_clk;
+> +	struct clk *dpi_sel_clk;
+>   	struct clk *tvd_clk;
+> +	struct clk *hdmi_cg;
 
-Yes, I think we should move all header files from the gce folder into the 
-mailbox folder.
+I admit that I didn't really check these clocks, but judging by the names,
+it is highly possible that one (or more) of them are supposed to be parents
+of some others.
+
+The first suspicious ones are dpi_ck_cg and dpi_sel_clk: please check.
+
+I'm also not sure about the hdmi_cg, shouldn't the DPI have a HDMI port in
+the graph that you'd declare in devicetree?
+
+Besides... you're doing a lot of work to check if (is_internal_hdmi) for
+power up/down paths, but seeing that you're introducing this change after
+adding the HDMI driver makes me mostly sure that the internal hdmi that we're
+talking about here is the one that is managed by the HDMIV2 driver... and
+this means that you should really, really, really rely on connecting inputs
+and outputs the right way in the devicetree, as that will most probably make
+you able to write practically 0 code to manage power for the DPI... and may
+also remove the need of adding the hdmi_cg clock here...
 
 Regards,
-Matthias
+Angelo
 
-> Don't continue this pattern. Mediatek devices do not get specific folders...
-> 
-> Best regards,
-> Krzysztof
-> 
+
