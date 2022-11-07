@@ -2,129 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AFD61F651
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:41:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 675C761F658
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 15:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232165AbiKGOlR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 7 Nov 2022 09:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
+        id S232209AbiKGOlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 09:41:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231552AbiKGOlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:41:08 -0500
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D9F314D3E;
-        Mon,  7 Nov 2022 06:41:06 -0800 (PST)
-Received: by mail-qt1-f181.google.com with SMTP id c15so6940569qtw.8;
-        Mon, 07 Nov 2022 06:41:06 -0800 (PST)
+        with ESMTP id S232402AbiKGOls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 09:41:48 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B39CD1D656
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 06:41:32 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id k19so16601832lji.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 06:41:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kmZJjcyK8nxBYdkGyjF9BBYtQhsKTKXX/XHgXHfVxFQ=;
+        b=U1adVyNOAbOtB7LzITQqX+3NVUCD7hjijSzI/YHO7Rr5osXA9MHZaq6HCqJm+6HOsd
+         fJ0ys8uvAM/DHnbHHSTIk7+IrHs0ykceAZnbCNalyMPTjX5V0QSFVrfDnqsHiyZXVh7v
+         xS76OH44LE4SOvIqhvtz4JcIew6uCLD+fjCy8iCwwo3tsgl5PIuVNZofJHC1aYnEYJXE
+         0XMka9P59kkmELC5diVPEBztOC7sT7XY8SbiwvhDewSyIpJ9Lj95VhVT+42KmMiEjuT6
+         Wgj/v227ic5IahOtxJlSZVfx5uKNgE3Pdar4ogOMdGAQtsAHGlHZnhJZLBYIO31EZPz5
+         3FpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=auAl3TG+WCd06b713vu/zKhrp7Pm1giyKjxfMJDpScA=;
-        b=6LdH5Bz3zyvdrARzQaBh2TH2VoqndfqauBYBfZMmnFyFx9XnXeQvE7ce2lEtoQ+3QD
-         rJusGU6EW/4w5rFLyuP3JnnWr2XsoaVyf2uBV2jZu2qrmnbblLPEaGFcsYyfe8HVvBwv
-         tVPnWCysRTgNjSDDCkYnngKWgph+KMKJ9YSwIqOsd6k+TmvuApTagrjTXsnGYrHmgRDI
-         GGwN+WmoMsRxdqZBqreypkTnXw10AG6QyPZdOur5Pyg3aOHag6NHbpCbeoiLeflKCU2z
-         hjclZBRqdbE3XM/T7m6/kmoCahh5b4VMpEhcVLkRmaFfJQBcDSmgSomjg6QCK1FjwSTb
-         CIpw==
-X-Gm-Message-State: ACrzQf2PIUr9yJd0WIqq9F/G2m0xqt0tduIpqgyBdnl2MAZ+U9+9bzdD
-        WHDY3Cbs4XCSoJCcsQiUTG4yXN1KgFOifc48
-X-Google-Smtp-Source: AMsMyM7U+myaKVvR4QyMTfQx7LX3oJpIGGCXIrDhFlQihir7IqggDZufrOJkOBU+k8R0JIzOhz32aQ==
-X-Received: by 2002:a05:622a:4010:b0:3a5:3131:34f4 with SMTP id cf16-20020a05622a401000b003a5313134f4mr28932164qtb.54.1667832065660;
-        Mon, 07 Nov 2022 06:41:05 -0800 (PST)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id t12-20020a37ea0c000000b006bb82221013sm7080121qkj.0.2022.11.07.06.41.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 06:41:05 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-367b8adf788so106311287b3.2;
-        Mon, 07 Nov 2022 06:41:05 -0800 (PST)
-X-Received: by 2002:a0d:e301:0:b0:374:a8ba:99b0 with SMTP id
- m1-20020a0de301000000b00374a8ba99b0mr2185019ywe.358.1667832064943; Mon, 07
- Nov 2022 06:41:04 -0800 (PST)
+        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
+         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kmZJjcyK8nxBYdkGyjF9BBYtQhsKTKXX/XHgXHfVxFQ=;
+        b=6p86F/iL6d1dbXl1nkwiVM2afO2XpAKGLC5EZHIS5tCpHq3RkbqqNKiL2uFPLuxCd7
+         G7hDv3ns8e+H/O0OSL9rUmwEpWHAw5q0s4mBk+JqbxnpEpNiWScpc7bUgqpgFf6omPCb
+         QJc0e4XkKE7Z6dGNPfP3lvfF4wb10uaFhpOgTPIKusMWdatil99bv1BV58XxQTmU6CNm
+         Vur0VGN0fWSfKL1/k91L+4blaNnJ3TPemQJLJBKMrD7TBHZ1zBAKKBVEUqVocZE2bAi/
+         VTwYUJJ3ATiLpv9Om6m0jmrT2LhGLHd8eQrKY5/npaV1OxSBWNaz5LGXk+SKaqhosxTB
+         cNSA==
+X-Gm-Message-State: ACrzQf3oNNfSLGG+U36RA1vSdNAucmBePQspbqEp9BkkJHkk3ahJsiGA
+        6tTWGjArPD4M3YeDYyJoICPEt+qncBmUubKtc5iVJA==
+X-Google-Smtp-Source: AMsMyM4ifBzOc5epJWnolpwJB7I8Uu7REkrSM32h9Wi0RNR6YarRrxj3LMKdHch3+Mq/MvaFZCjO8+SeHm/lb2cNC1M=
+X-Received: by 2002:a2e:a58e:0:b0:277:774a:92f5 with SMTP id
+ m14-20020a2ea58e000000b00277774a92f5mr9046538ljp.224.1667832090776; Mon, 07
+ Nov 2022 06:41:30 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 7 Nov 2022 14:41:30 +0000
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: meli 0.7.2
+References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-1-a803f2660127@baylibre.com>
+ <96d0f2d2-24b9-0838-4538-7d70c01ddace@collabora.com>
+In-Reply-To: <96d0f2d2-24b9-0838-4538-7d70c01ddace@collabora.com>
 MIME-Version: 1.0
-References: <20221107135825.583877-1-herve.codina@bootlin.com> <20221107135825.583877-2-herve.codina@bootlin.com>
-In-Reply-To: <20221107135825.583877-2-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 7 Nov 2022 15:40:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVbWGYPkspMx40S02cr6sX2LZkGwye3JQCtiPtLhuDCPw@mail.gmail.com>
-Message-ID: <CAMuHMdVbWGYPkspMx40S02cr6sX2LZkGwye3JQCtiPtLhuDCPw@mail.gmail.com>
-Subject: Re: [PATCH 1/7] soc: renesas: r9a06g032-sysctrl: Export function to
- get H2MODE from CFG_USB register
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+Date:   Mon, 7 Nov 2022 14:41:29 +0000
+Message-ID: <CABnWg9uwqyMpknrnR0nNuNLNtO81XQP=kJ8quLEaC2WzawFgzQ@mail.gmail.com>
+Subject: Re: [PATCH v3 01/12] dt-bindings: phy: mediatek: hdmi-phy: Add mt8195 compatible
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Jitao shi <jitao.shi@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        mac.shen@mediatek.com, linux-phy@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hervé,
-
-On Mon, Nov 7, 2022 at 2:59 PM Herve Codina <herve.codina@bootlin.com> wrote:
-> The CFG_USB register is located within the system controller.
+On Mon, 07 Nov 2022 12:20, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
+>> Add a compatible for the HDMI PHY on MT8195
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 >
-> We need a helper to get the H2MODE value from the CFG_USB register
-> without syscon.
+>Ack and R-b tags go after your S-o-b.
 >
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-
-> --- a/drivers/clk/renesas/r9a06g032-clocks.c
-> +++ b/drivers/clk/renesas/r9a06g032-clocks.c
-> @@ -25,6 +25,8 @@
->  #include <linux/spinlock.h>
->  #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+>Apart from that:
+>Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 >
-> +#define R9A06G032_SYSCTRL_USB    0x00
-> +#define R9A06G032_SYSCTRL_USB_H2MODE  (1<<1)
->  #define R9A06G032_SYSCTRL_DMAMUX 0xA0
 >
->  struct r9a06g032_gate {
-> @@ -341,6 +343,22 @@ int r9a06g032_sysctrl_set_dmamux(u32 mask, u32 val)
->  }
->  EXPORT_SYMBOL_GPL(r9a06g032_sysctrl_set_dmamux);
 >
-> +
-> +/* Exported helper to get the H2MODE bit from USB register */
-> +int r9a06g032_sysctrl_get_usb_h2mode(bool *h2mode)
-> +{
-> +       u32 usb;
-> +
-> +       if (!sysctrl_priv)
-> +               return -EPROBE_DEFER;
-> +
-> +       usb = readl(sysctrl_priv->reg + R9A06G032_SYSCTRL_USB);
-> +       *h2mode = (usb & R9A06G032_SYSCTRL_USB_H2MODE) ? true : false;
-> +
-> +       return 0;
+>
 
-Perhaps not pass *h2mode, but just return USB_ROLE_{HOST,DEVICE}
-(enum usb_role in <linux/usb/role.h>), or a negative error code?
+Hi Angelo,
 
-Gr{oetje,eeting}s,
+Thx for your review.
+I'm not exactly sure what to do here as I'm using b4 trailers to
+collect Acked-by and Reviewed-by
 
-                        Geert
+And there's an ongoing discussion about that topic on the tools
+mailing list [1], it seems there's
+no agreement on what to do with trailers ordering.
+I'll keep using b4 trailers for now as for me this is the sane thing to do.
+I'll update the ordering if I see concensus on that discussion.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thx,
+Guillaume.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+---
+
+[1] https://lore.kernel.org/tools/20221031165842.vxr4kp6h7qnkc53l@meerkat.local
