@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D3961EFC8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:58:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51E2C61EFCB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:59:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231800AbiKGJ6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:58:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49794 "EHLO
+        id S231770AbiKGJ7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:59:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231526AbiKGJ6i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:58:38 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C58312D34
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:58:37 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id i21so16631772edj.10
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:58:37 -0800 (PST)
+        with ESMTP id S231844AbiKGJ7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:59:05 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE78612D00
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:59:04 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id x2so16668642edd.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:59:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:to:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YSbyaSH9rlmVEUhLx8jjHu624J6OwA+8MCp7bQgR+dw=;
-        b=SKOLpX7bP5jtGQZ2Did/+xgW/K8y6/pStx4Ks8o61G0IQXe5b4zlrUNFhYDRVMJqN0
-         Iab630QCeMTgi2jbiq2K3mQXbZv5QH+zvzzaVdlgrz5Jo8o258b5v+knBDjsSwIp+jiL
-         kFU+MZc3eYh0QVcamZHbcWRzvXDBMguoCRDLha+uFPGF9iFwARS2j4PFJk7zBKlGPejo
-         lncEQgqJFvYX2c95vIuH9T5ZBAS9OzF7iApToFCp168oyooM2qj1LKdthk+0svKgzDv/
-         lASFu+TUa+MOvyIPGow//vra9sVTX9eg1AsIhtmcjDSfW2am1eneJbNtW9OGPIBqUzGd
-         RbnQ==
+        bh=K8of/oAJws/QSmCAC0YWn8g/hdNuzur7wOUoaPRB20w=;
+        b=UVhVoV7mKmkz8e0NlclJKabTSUP5kNNkY7uGxKCwBhSIoycEa6zV8x5E1jfjvU3oGe
+         8z1ctzbBtjhiW4Vni8KiTdyJxPWlBHbSCF3SP2H0kpt/Q3xLgRfasCZkcPTBMSMZgeZ7
+         Odn51ehQ3cm+/ozEkKQH8LL0/iV95ghZ4TswA6eCNhOVNICTQ+KrBwNQUSYnmaRnM1FA
+         0jZZa36OQKgu2A1Y5nW/MkqPNi1fMFkYiRWcnXJgbD8AF6bVhtrjJKFrWgN1RXWPib+W
+         rp5PSL/mUjURrOGGUmnXADj3DfNrOE1kU3lu6k4I6658yHYBYHY5QS3JvCRNM3hDykFE
+         ELqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:to:subject
          :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=YSbyaSH9rlmVEUhLx8jjHu624J6OwA+8MCp7bQgR+dw=;
-        b=OfhB/ngwxcZ/n6uXcZP5N3LuUnKhX1TgNvCefGWZX6kgTNux/64ygSGnhYcYrn7j/R
-         Nr5ueoQkGtbLCscuoB/0vWs5BWUD58SRAaO/pw3xPYdLCRSkRUneaWGoZYCfBIpwSfHr
-         9jxw//XbJc9HvTZSyjpeD7gAb7YfJg0h7Lc5IWzz6fN0n7p1/XsyJzVosfgcOLJomUNk
-         N69xWp6GKDRAb3PcF0R0atyJNGgcQwUugCmsNoPUN7dX4SavtSdkkPIGQThIBRIOUyfG
-         rwSDPArIs/Z1FJfOiU6tMQ0IFR40WwjqKnXP4Mt2Vtse0ZdGrhzNFQT8BzZID7KJQykL
-         b3qg==
-X-Gm-Message-State: ACrzQf3MGldk1ajX9pYlims74t45jNgumO+ETC1lc8T7syz0L/lq47k3
-        NoGSYGjjKg1L8B71DyeR9sncOlURl5CzY9ux
-X-Google-Smtp-Source: AMsMyM7VVyZh2L71ej6mSQYv8BfRo5Cn5yb+3cebZieVD4w+w1z1qj8OBxsgmHLkS/RrAv1PdTiTRA==
-X-Received: by 2002:a05:6402:7c4:b0:462:9bc2:d0d0 with SMTP id u4-20020a05640207c400b004629bc2d0d0mr50231226edy.122.1667815115950;
-        Mon, 07 Nov 2022 01:58:35 -0800 (PST)
+        bh=K8of/oAJws/QSmCAC0YWn8g/hdNuzur7wOUoaPRB20w=;
+        b=7q2wZgfI65c43A118z3gNyAsohU7V8JyI/e2LJpHuIa74Q9ldBxOeEAEGMnnK5K7As
+         pN0mIq6gLEJCH6glYo58IVm+AC3u/MEkHpGkogh1M66BHdVy/RsmHo1+hLyr//7jAlNv
+         Q7JiUNv2RE1nnm50NLlBloA73E+iOfkYqJtfxMPRqDKgsIqmns6D/UEIKpkroaETTKl5
+         tsgb6ZthkR6Y///X9zV2dxuT53OgnHfRfCZy05OQd+cQdDdXRcIeIMBZAvRhklhYvuuF
+         Z/1SX+48px6K+6bZw3IY/KFPWCS1XdesYMqen1XbQBF3eEufrYD7HYPXYnfnIlVp9PWf
+         GZeQ==
+X-Gm-Message-State: ACrzQf1sIHRTVu8eWtIU4zGuNPoG0E/AFqYnyvDQr1IqoufcLsS3NZng
+        sGYkgbTsdnW7r07HgiuJeYUv6g==
+X-Google-Smtp-Source: AMsMyM4ZTb8SnvvFaMldWp9JMNkf3rSQ7nxgOA+HkaqOtlKvbAhk3k+5d3Qg+q+Qi/p7gBCQgZ6O6Q==
+X-Received: by 2002:aa7:c0cf:0:b0:463:8ba0:522f with SMTP id j15-20020aa7c0cf000000b004638ba0522fmr38275764edp.176.1667815144446;
+        Mon, 07 Nov 2022 01:59:04 -0800 (PST)
 Received: from [192.168.31.208] ([194.29.137.22])
-        by smtp.gmail.com with ESMTPSA id 21-20020a170906329500b00782ee6b34f2sm3118457ejw.183.2022.11.07.01.58.34
+        by smtp.gmail.com with ESMTPSA id vl2-20020a170907b60200b0078d0981516esm3153470ejc.38.2022.11.07.01.59.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 01:58:35 -0800 (PST)
-Message-ID: <9995283f-d367-dbab-65eb-b4eedfae1dd4@linaro.org>
-Date:   Mon, 7 Nov 2022 10:58:31 +0100
+        Mon, 07 Nov 2022 01:59:04 -0800 (PST)
+Message-ID: <f3239a2d-9aa0-8ed3-f0a7-af9243fa7168@linaro.org>
+Date:   Mon, 7 Nov 2022 10:58:59 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
  Gecko/20100101 Thunderbird/102.4.1
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: hk10: use GPIO flags for tlmm
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: hk01: use GPIO flags for tlmm
 To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20221107092930.33325-1-robimarko@gmail.com>
- <20221107092930.33325-2-robimarko@gmail.com>
+ <20221107092930.33325-3-robimarko@gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221107092930.33325-2-robimarko@gmail.com>
+In-Reply-To: <20221107092930.33325-3-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,33 +85,33 @@ On 07/11/2022 10:29, Robert Marko wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->   arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi | 5 +++--
+>   arch/arm64/boot/dts/qcom/ipq8074-hk01.dts | 5 +++--
 >   1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-> index 262b937e0bc6..651a231554e0 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi
-> @@ -5,6 +5,7 @@
->   /dts-v1/;
->   
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+> index b60b2d4c2ea5..c3f3f78271e9 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074-hk01.dts
+> @@ -4,6 +4,7 @@
+>    */
 >   #include "ipq8074.dtsi"
+>   #include "pmp8074.dtsi"
 > +#include <dt-bindings/gpio/gpio.h>
 >   
 >   / {
->   	aliases {
-> @@ -39,12 +40,12 @@ &blsp1_uart5 {
+>   	model = "Qualcomm Technologies, Inc. IPQ8074-HK01";
+> @@ -52,12 +53,12 @@ &blsp1_uart5 {
 >   
 >   &pcie0 {
 >   	status = "okay";
-> -	perst-gpios = <&tlmm 58 0x1>;
-> +	perst-gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
+> -	perst-gpios = <&tlmm 61 0x1>;
+> +	perst-gpios = <&tlmm 61 GPIO_ACTIVE_LOW>;
 >   };
 >   
 >   &pcie1 {
 >   	status = "okay";
-> -	perst-gpios = <&tlmm 61 0x1>;
-> +	perst-gpios = <&tlmm 61 GPIO_ACTIVE_LOW>;
+> -	perst-gpios = <&tlmm 58 0x1>;
+> +	perst-gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
 >   };
 >   
 >   &pcie_phy0 {
