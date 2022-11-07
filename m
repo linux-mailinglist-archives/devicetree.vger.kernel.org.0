@@ -2,157 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3348F61F721
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:06:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B60761F730
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 16:10:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbiKGPGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 10:06:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49430 "EHLO
+        id S232734AbiKGPKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 10:10:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232569AbiKGPGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:06:14 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 114EE12D26
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 07:06:13 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id j16so17101419lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 07:06:12 -0800 (PST)
+        with ESMTP id S232726AbiKGPKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 10:10:00 -0500
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16EF11DDE0;
+        Mon,  7 Nov 2022 07:09:58 -0800 (PST)
+Received: by mail-qv1-xf31.google.com with SMTP id c8so8251102qvn.10;
+        Mon, 07 Nov 2022 07:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=msJlygCwztcKRCpl1OXcVZ463IWdf/JAulr8vPXr8uc=;
-        b=kw/1CVr1CvRVBN7ppDzHuBwXNvTpjmdU+210GrNG3Nc4b7E6jprzvZIHSr8pmgM/I3
-         Ooumonhq2AA5Z/bDkgOMmb2uuM0HYdIO4QfNzuv00lDToNyHDOw36qPCZqLGXo4Ny3Rv
-         8GkkhYRZVPrpYZIyCy0c/BpWEycFDPgrnqVXz0/oGqCFsBGaXEqVwjB2ectF8uoWJPDw
-         cqsZOPBXQ8MKkKJ4OYLi5exG/8EufN0ybQVFN2TtQD6A6dL7rQVdsIKxIZG1aTs5d6oI
-         3O2K+mIJ1o8KaZwC8/MgU6kRcp+hsoW+as5mFzAkuL6pYASSSpWkf57h2MlRn8yzVn5+
-         jiqg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xcR9lfWxQYYggutBYXX8jFDllzL5dvH/OMCsAac2+rw=;
+        b=AcAy4kj7xO7cxMUOheawQ40hciY65r2N0nwsNhsKmei8MAsBW05Y2mZXSzvF3iKLTL
+         RZPpjGzhVEJXVKYELaR499rXN4uWVp7jKPzuSgHdhLTKb4ZGgHZ38+K5TOe6DXywhqfB
+         kkagoojERWS6DOKPTyUYlBhXDi8wK3ZSStt6DnDL1n745Ky+gE64pzVvaNahmgECY+eM
+         sc8FRKWkwH1Yzfh33NBpVz4R3hMefG5ax+XM1wHJkydVlnpe/p26SnOXEGVt072V0Icf
+         ib3Egmk6Hhq9CYGt3+o7RFiN68F/upDfNYSxSPJp5wihuo9BRZSzLZAXWGySTIjuJ3Eo
+         xD6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:mime-version:in-reply-to:references
-         :user-agent:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=msJlygCwztcKRCpl1OXcVZ463IWdf/JAulr8vPXr8uc=;
-        b=WAhUFZW4Gnuzk5Uk6aR2ydQGYEgKNtRJFNMaM1vv39SDNwO8YvI4y/lTliEG7QmsEr
-         rr08YtvrV77cfFDIXKTJAGTzconniWb+glib42PJb9qtamU2DRay6ulUQXIiFxo+abgt
-         TFcVcgLnbXRMiHLQ3RUn2WtBO7VGiSXKCDSEYiqAka4IG9Xioo7leT5sKdtXWq0BTQp4
-         AEKanSZKQUuv2qHnEy5xcEMTZy57Z6dppUdtu9ARez20o+RUuKK3VJ9t7bWqR5Dwsj/Y
-         Wsrm8rloLlKUBaqdUN0mKN9KuCzsakpqriNOEiKGZhqzXYGw93KZI7XArAi31pIC3qtb
-         XBvw==
-X-Gm-Message-State: ACrzQf31oKaHvDXAwqBCsckP5oEntzxJlglTtX28FsR6ptSPX3IrciaO
-        ZuafwqEbue/5kDaH2AbD2I6iajip8gB8SpWhBqrpKA==
-X-Google-Smtp-Source: AMsMyM4/hRdV6PUceQjYTAr5VlJwQq0PJWF/plhX/TikjJfOvo1/P9XLmwGDedaShVJ1ltmLlfA5kP20+nvh1Rr9HWY=
-X-Received: by 2002:a05:6512:a93:b0:4a2:a5b3:fbb4 with SMTP id
- m19-20020a0565120a9300b004a2a5b3fbb4mr17334447lfu.346.1667833571328; Mon, 07
- Nov 2022 07:06:11 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 7 Nov 2022 15:06:10 +0000
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220919-v3-0-a803f2660127@baylibre.com> <20220919-v3-12-a803f2660127@baylibre.com>
- <988b0a7a-69bb-34e4-e777-1d9516221077@collabora.com>
-In-Reply-To: <988b0a7a-69bb-34e4-e777-1d9516221077@collabora.com>
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:user-agent:mime-version:date:message-id:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xcR9lfWxQYYggutBYXX8jFDllzL5dvH/OMCsAac2+rw=;
+        b=rIQFpb+7JyRhlSZ6t8M3NFOY+8XVbL9f2XDgD6fbT9Z3NShyJtjfTwnGSFnStf/vHO
+         WHoC11FRkqAUuFyLrZ5nUcfxVg7a4/tXnFOA+g2uT22o3bMhN5ISVoCr4xNb+qpzROa/
+         NNnXQIURoVek/hCPvbZ2oWLSIELOsW2GPbFJcCwj3GRTT28PxzylttP+l3IZ7bvwN7QU
+         +QhoSK7y1bQW2jSivEpc9t+5UkUgVhdEN6tUHerlTV0ZOcydhGADQvudHoGf0LR2OnGt
+         6xZHGCOT5N4LZ1tD287G9A8dYmZYqyUs4CWODWQ7+9CkFOd9GyvjWeC+fHG2q8iAR8X9
+         aeAQ==
+X-Gm-Message-State: ACrzQf3vBmpeyMS+0t5+gSvoXnFeBvIFxgcD12x4PmMrQb+I+Mbfu+Qm
+        gW23gdtYN3VVBiip3AWmmWQ=
+X-Google-Smtp-Source: AMsMyM6aAFJE1en6KQCXeSWQDoqCPBynXxktK9qfeKbN5Zs3+uBYUavcNlBG6peXGVBkshXgPkVDlg==
+X-Received: by 2002:a05:6214:19ea:b0:4bc:1388:8d7c with SMTP id q10-20020a05621419ea00b004bc13888d7cmr30781708qvc.84.1667833797183;
+        Mon, 07 Nov 2022 07:09:57 -0800 (PST)
+Received: from [10.248.12.149] ([129.63.248.1])
+        by smtp.gmail.com with ESMTPSA id v22-20020a05620a441600b006eeaf9160d6sm7169680qkp.24.2022.11.07.07.09.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Nov 2022 07:09:56 -0800 (PST)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+Message-ID: <ef5d4f48-71b9-2d5c-37f4-7a029a32a41b@gmail.com>
+Date:   Mon, 7 Nov 2022 10:09:55 -0500
 MIME-Version: 1.0
-Date:   Mon, 7 Nov 2022 15:06:10 +0000
-Message-ID: <CABnWg9t0KznQG1Mix=jSchk99Xj-h3Bf28WTaP9gc8AC6yLr7Q@mail.gmail.com>
-Subject: Re: [PATCH v3 12/12] drm/mediatek: dpi: Add mt8195 hdmi to DPI driver
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, CK Hu <ck.hu@mediatek.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, stuart.lee@mediatek.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        mac.shen@mediatek.com, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Subject: Re: [PATCH v1 7/7] ARM: dts: imx: Update i.MXRT1050.dtsi compatibles
+To:     Arnd Bergmann <arnd@arndb.de>, NXP Linux Team <linux-imx@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, aisheng.dong@nxp.com,
+        stefan@agner.ch, Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Russell King <linux@armlinux.org.uk>, abel.vesa@nxp.com,
+        dev@lynxeye.de, Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        tharvey@gateworks.com, leoyang.li@nxp.com, fugang.duan@nxp.com,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+References: <20221107071511.2764628-1-Mr.Bossman075@gmail.com>
+ <20221107071511.2764628-8-Mr.Bossman075@gmail.com>
+ <d293e410-223d-4baa-ba6d-65bc11ab1e55@app.fastmail.com>
+Content-Language: en-US
+In-Reply-To: <d293e410-223d-4baa-ba6d-65bc11ab1e55@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Nov 2022 12:20, AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->Il 04/11/22 15:09, Guillaume Ranquet ha scritto:
->> Add the DPI1 hdmi path support in mtk dpi driver
->>
->> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_dpi.c      | 143 ++++++++++++++++++++++++++++++--
->>   drivers/gpu/drm/mediatek/mtk_dpi_regs.h |   5 ++
->>   2 files changed, 141 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
->> index 508a6d994e83..8052b47042b8 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
->> @@ -14,7 +14,10 @@
->>   #include <linux/of_graph.h>
->>   #include <linux/pinctrl/consumer.h>
->>   #include <linux/platform_device.h>
->> +#include <linux/reset.h>
->>   #include <linux/types.h>
->> +#include <linux/regmap.h>
->> +#include <linux/mfd/syscon.h>
->>
->>   #include <video/videomode.h>
->>
->> @@ -65,10 +68,14 @@ struct mtk_dpi {
->>   	struct drm_bridge *next_bridge;
->>   	struct drm_connector *connector;
->>   	void __iomem *regs;
->> +	struct reset_control *reset_ctl;
->>   	struct device *dev;
->>   	struct clk *engine_clk;
->> +	struct clk *dpi_ck_cg;
->>   	struct clk *pixel_clk;
->> +	struct clk *dpi_sel_clk;
->>   	struct clk *tvd_clk;
->> +	struct clk *hdmi_cg;
->
->I admit that I didn't really check these clocks, but judging by the names,
->it is highly possible that one (or more) of them are supposed to be parents
->of some others.
->
->The first suspicious ones are dpi_ck_cg and dpi_sel_clk: please check.
->
->I'm also not sure about the hdmi_cg, shouldn't the DPI have a HDMI port in
->the graph that you'd declare in devicetree?
->
->Besides... you're doing a lot of work to check if (is_internal_hdmi) for
->power up/down paths, but seeing that you're introducing this change after
->adding the HDMI driver makes me mostly sure that the internal hdmi that we're
->talking about here is the one that is managed by the HDMIV2 driver... and
->this means that you should really, really, really rely on connecting inputs
->and outputs the right way in the devicetree, as that will most probably make
->you able to write practically 0 code to manage power for the DPI... and may
->also remove the need of adding the hdmi_cg clock here...
->
->Regards,
->Angelo
->
->
 
-I don't have access to a clock tree documentation or anything that permits
-me to answer those questions with confidence. I'll ask mediatek for some input
-and I'll also check how those clocks are declared in the clock framework.
 
-You are right in assuming that the "is_internal_hdmi" is in fact the V2 IP.
-I like the idea of removing code, I'll try to make sense of your suggestion
-and see if there's anything I can do better for v4.
+On 11/7/22 02:44, Arnd Bergmann wrote:
+> On Mon, Nov 7, 2022, at 08:15, Jesse Taube wrote:
+>> Remove unused compatibles from i.MXRT1050.dtsi.
+>> Change GPT clock-names to match documentation.
+>>
+>> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> 
+> Can you make sure your changelog texts explain why you do this?
+Yes, sorry I wasn't clear.
+> Are they fundamentally different from the devices you had
+> claimed to be compatible with that need a different driver,
+UART and SDHC had drivers added which are better fit.
+The GPT binds to imx6dl which is also the same as imx6sl.
+> or are there drivers in the field that bind to the wrong
+> string first?
+I don't understand?
 
-Thx,
-Guillaume.
+Thanks,
+Jesse Taube
+> 
+>        Arnd
