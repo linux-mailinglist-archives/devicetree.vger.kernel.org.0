@@ -2,118 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F4661EE69
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:12:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E450A61EE80
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 10:15:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231658AbiKGJMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 04:12:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39670 "EHLO
+        id S231724AbiKGJPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 04:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231788AbiKGJMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:12:08 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D10167D5
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 01:12:07 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id o12so15854249lfq.9
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 01:12:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lnsPOK5motup9T8XBniEK+peF/D2fTuyq/bCy58k14U=;
-        b=bvOlLbXhahamOjqO+zkLPF8mhi4RlovgUaredeyun24ljOLREs9ppJVlJDipQmET9F
-         10KOQMwRSPJjZGOSvfSm+AQ5/8x2yTkCwd56WPI0oFTGR/YDdJj1OHtJldSWYo5mnP6R
-         TtjJxmftemResRP6WaV+b/pga2IveLsputjMd78VuHC/RFKQv9EW+LSntd246g2gMK/h
-         WTzSLL4hmksJhkznSmwYLEeEObYEShDfxLRvKoWZ2JHFY5bxV7oNR4oYjAEhJrKlCMqG
-         GNqY42NPIBSaMgccF3sYiF7GTRMlidv+/1s2KiuFGPoDatfTKdFYB7jng7EtmADN4Tqo
-         ivHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lnsPOK5motup9T8XBniEK+peF/D2fTuyq/bCy58k14U=;
-        b=pIYZskZKFwqQm+6My8lJCD3U2sP1RchNBt7/U9099/emliWiQUkE9IuQktrFny4Yc+
-         W0kq8CFXGfhBURnNyDMlKtd8LQCUocOJqmO1Fz7TyKT5C65O5JcRaWjeN7qlTow0f4fM
-         tFYbbzDV/59mfxwEtU8DxRs/uctGkrocqhB2yBWZ1IKp+vCjxcIdSBdOW+EQeXfv3fSj
-         xB7fz28n1KGYYG60cLbX0lLOUVS3OH9JJnQuIpEx23pmRnWl+JPtvtSsKB9pmWf7vTdS
-         pKdWvZ/cy9iixw7MA405+TeaUwqUFSg6WuKfu/JVJxAZpiBOJI/3E1zzn82xbPG+yocE
-         gSFg==
-X-Gm-Message-State: ACrzQf0LLav0SEfC+nP8icGNYEmmd6Pkqqm7jr1Il+/N7KcsnGo2my2Z
-        91DvS64UA/DJxP42N1ZB73tV9A==
-X-Google-Smtp-Source: AMsMyM7bXG55cIesK9wxtNvqOTQV+Xf1GiFjjQy9uqOkUa9uGlR/Zjx94GQGqhw1F7vSxJkhQLmuQA==
-X-Received: by 2002:a19:654a:0:b0:4b0:831b:ef35 with SMTP id c10-20020a19654a000000b004b0831bef35mr15143654lfj.206.1667812325644;
-        Mon, 07 Nov 2022 01:12:05 -0800 (PST)
-Received: from [192.168.0.20] (088156142199.dynamic-2-waw-k-3-2-0.vectranet.pl. [88.156.142.199])
-        by smtp.gmail.com with ESMTPSA id r17-20020a194411000000b0048a9e899693sm1146236lfa.16.2022.11.07.01.12.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Nov 2022 01:12:05 -0800 (PST)
-Message-ID: <0e929d35-2a90-94fb-49d6-7f6a0f0a3ed0@linaro.org>
-Date:   Mon, 7 Nov 2022 10:12:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH] dt-bindings: clock: exynosautov9: fix reference to
- CMU_FSYS1 mmc card clock
-Content-Language: en-US
-To:     chanho61.park@samsung.com, Inbaraj E <inbaraj.e@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        "tomasz.figa@gmail.com" <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        ALIM AKHTAR <alim.akhtar@samsung.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S231703AbiKGJPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 04:15:38 -0500
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2154E15827;
+        Mon,  7 Nov 2022 01:15:37 -0800 (PST)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 2A78nWxo095132;
+        Mon, 7 Nov 2022 16:49:32 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 7 Nov
+ 2022 17:13:02 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <billy_tsai@aspeedtech.com>,
+        <linmq006@gmail.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        PANKAJ KUMAR DUBEY <pankaj.dubey@samsung.com>
-References: <8f026f38-ef09-788e-7bd8-45683b074075@linaro.org>
- <20221104090019.88387-1-inbaraj.e@samsung.com>
- <CGME20221104085410epcas5p24d88f59001b739075e9e190e2c47841e@epcms2p3>
- <20221107000401epcms2p3eeeecbfb2b1cdfb30dcee99bbb48780c@epcms2p3>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20221107000401epcms2p3eeeecbfb2b1cdfb30dcee99bbb48780c@epcms2p3>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+Subject: [v2 1/2] iio: adc: aspeed: Remove the trim valid dts property.
+Date:   Mon, 7 Nov 2022 17:15:05 +0800
+Message-ID: <20221107091506.28630-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 2A78nWxo095132
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2022 01:04, CHANHO PARK wrote:
->>> Fix reference to CMU_FSYS1 mmc card clock to gout clock instead of dout.
->>>
->>> This fixes make dtbs_check warning as shown below:
->>>
->>> arch/arm64/boot/dts/exynos/exynosautov9-sadk.dtb: clock-
->> controller@17040000:
->>> clock-names:2: 'dout_clkcmu_fsys1_mmc_card' was expected From schema:
->>> /home/inbaraj/mainline/linux/Documentation/devicetree/
->>> bindings/clock/samsung,exynosautov9-clock.yaml
->>
->> I don't understand:
->> 1. Why bindings are wrong not DTSI?
->> 2. What is "gout"? "dout" had a meaning as clock divider output.
-> 
-> "gout" is output of a gate clock, AFAIK.
-> Unlike any other clocks, the fsys1 mmc top clock does not have a divider. So, it should be "mout -> gout" instead of "mout -> gout -> dout".
+The dts property "aspeed,trim-data-valid" is currently used to determine
+whether to read trimming data from the OTP register. If this is set on
+a device without valid trimming data in the OTP the ADC will not function
+correctly. This patch drops the use of this property and instead uses the
+default (unprogrammed) OTP value of 0 to detect when a fallback value of
+0x8 should be used rather then the value read from the OTP.
 
-OK, then this should be in commit msg.
+Fixes: d0a4c17b4073 ("iio: adc: aspeed: Get and set trimming data.")
+Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+---
+ drivers/iio/adc/aspeed_adc.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
-My question about full legal name remains, as here in replies I see
-"Inbaraj E".
-
-Best regards,
-Krzysztof
+diff --git a/drivers/iio/adc/aspeed_adc.c b/drivers/iio/adc/aspeed_adc.c
+index 9341e0e0eb55..998e8bcc06e1 100644
+--- a/drivers/iio/adc/aspeed_adc.c
++++ b/drivers/iio/adc/aspeed_adc.c
+@@ -202,6 +202,8 @@ static int aspeed_adc_set_trim_data(struct iio_dev *indio_dev)
+ 				((scu_otp) &
+ 				 (data->model_data->trim_locate->field)) >>
+ 				__ffs(data->model_data->trim_locate->field);
++			if (!trimming_val)
++				trimming_val = 0x8;
+ 		}
+ 		dev_dbg(data->dev,
+ 			"trimming val = %d, offset = %08x, fields = %08x\n",
+@@ -563,12 +565,9 @@ static int aspeed_adc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-	if (of_find_property(data->dev->of_node, "aspeed,trim-data-valid",
+-			     NULL)) {
+-		ret = aspeed_adc_set_trim_data(indio_dev);
+-		if (ret)
+-			return ret;
+-	}
++	ret = aspeed_adc_set_trim_data(indio_dev);
++	if (ret)
++		return ret;
+ 
+ 	if (of_find_property(data->dev->of_node, "aspeed,battery-sensing",
+ 			     NULL)) {
+-- 
+2.25.1
 
