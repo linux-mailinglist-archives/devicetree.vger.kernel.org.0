@@ -2,52 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D18F61E965
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF5B61E95C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 04:15:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231426AbiKGDPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Nov 2022 22:15:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
+        id S231409AbiKGDPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Nov 2022 22:15:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231127AbiKGDOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:14:30 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47145120B3;
+        with ESMTP id S230509AbiKGDOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Nov 2022 22:14:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FB3FF001;
         Sun,  6 Nov 2022 19:13:14 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F1676B80D99;
-        Mon,  7 Nov 2022 03:13:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92324C43146;
-        Mon,  7 Nov 2022 03:13:09 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 88DA660E9C;
+        Mon,  7 Nov 2022 03:13:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C109C433C1;
+        Mon,  7 Nov 2022 03:13:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1667790790;
-        bh=cGAJjbZeuhUhO/pFsR5dnPtnKFHkFJOaQQC+3rpOCPE=;
+        s=k20201202; t=1667790793;
+        bh=gqBD7ZtZtS9cif+o5ssR48/e3KLMN7q7ACwTDHCVax0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aHfhy2McPNyp3V/6keDTcw6fRr9NUvfC5X/A3h7h4IzkFX6UaW8MAPPlpwEyujoY6
-         d0ha+OquMBl+EOPsqpxeGH5whOqIcPaa5ySRX1zHSg5/sSPORzAPgencZir5b3aojZ
-         /vnMy7Fo/twoxKDsz+TEVnb/4R8BKlfax9jpNLNRQJdVRFUmbbg0fEBrJAlBX3I9Z6
-         fwHwSUrlTT3iJ7xCBLcvG62YZVvt/z1dWt8xAwLwSvYdomrzCEujQ3FvPuPsAQEBO6
-         a83Mb2qjrX4MrTstc/V839dV8Yq1bbNAAtwMSS/1v6rhb8dbInlAtIyt4XWgnwIdyD
-         iLmv7x4VvF0Xg==
+        b=hLBYLpSqLIU7qXQoCSY92jc/SJ4MODBxnwk0xLY6fNLo4gnlUTJ7SD2K9wuUlLIPZ
+         TlDtqqNxh5fwmZ5hJD1/cRTLT1HBOkXJ+Wld9cVk9CBu4uFOgHuiI9fkCSRsNVG4UO
+         VEqLrx/CAk3n8Qnma7gUmIXBiOwLy5zseZK7Svti1hIXnrA9mvcOBb+y8c3gq7eX/y
+         vMnTmONt5vjDeOSvvBndYIVGOFnlOM3w8F1HPJwHE9lFrmriMolrpmd+ogDS/SwLXm
+         4LDplfQ6mk+hzGOaZ0zBFf7R0+oyxo96eXJ13QsUCCSrrrWRTcW9f6h+QkTXX4DCwm
+         raAPZO+x3lWbg==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     phone-devel@vger.kernel.org, marijn.suijten@somainline.org,
-        Andy Gross <agross@kernel.org>, konrad.dybcio@somainline.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        linux-kernel@vger.kernel.org, sboyd@kernel.org,
-        martin.botka@somainline.org, lee@kernel.org,
-        jami.kettunen@somainline.org
-Subject: Re: [PATCH v4 0/5] Add Qcom PM6125 PMIC and use in Sony Xperia Seine PDX201
-Date:   Sun,  6 Nov 2022 21:12:28 -0600
-Message-Id: <166779074253.500303.17337687098112948998.b4-ty@kernel.org>
+To:     linux-arm-msm@vger.kernel.org, matti.lehtimaki@gmail.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        loic.poulain@linaro.org, linux-i2c@vger.kernel.org,
+        konrad.dybcio@somainline.org, linux-kernel@vger.kernel.org,
+        robert.foss@linaro.org, phone-devel@vger.kernel.org
+Subject: Re: (subset) [PATCH v1 0/6] Qualcomm CCI for MSM8226 and fix CCI documentation for MSM8974
+Date:   Sun,  6 Nov 2022 21:12:30 -0600
+Message-Id: <166779074257.500303.6728193350503927388.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220926190148.283805-1-marijn.suijten@somainline.org>
-References: <20220926190148.283805-1-marijn.suijten@somainline.org>
+In-Reply-To: <20221002122859.75525-1-matti.lehtimaki@gmail.com>
+References: <20221002122859.75525-1-matti.lehtimaki@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -60,28 +55,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Sep 2022 21:01:43 +0200, Marijn Suijten wrote:
-> This series adds initial support for the PM6125 PMIC, and its power key
-> handling and thermal monitoring capabilities are configured for Sony's
-> PDX201 (Xperia 10II).
+On Sun, 2 Oct 2022 15:28:52 +0300, Matti Lehtimäki wrote:
+> This series adds support for Camera Control Interface found on MSM8226
+> and adds missing clock documentation for CCI found on MSM8974. In
+> addition the series adds CCI device tree nodes for both MSM8226 and
+> MSM8974.
 > 
-> One patch for pm660 is included to fix a node address mismatch with its
-> reg field.
+> Luca Weiss (1):
+>   ARM: dts: qcom: msm8974: Add CCI bus
 > 
 > [...]
 
 Applied, thanks!
 
-[1/5] dt-bindings: mfd: qcom-spmi-pmic: Add pm6125 compatible
-      commit: 3da503c26ec572628802b4ffbe738a5d373cd3f6
-[2/5] arm64: dts: qcom: pm660: Use unique ADC5_VCOIN address in node name
-      commit: 02549ba5de0a09a27616496c3512db5af4ad7862
-[3/5] arm64: dts: qcom: Add PM6125 PMIC
-      commit: 7c969c6e216654cab8b124383dd99a276049994d
-[4/5] arm64: dts: qcom: sm6125-seine: Include PM6125 and configure PON
-      commit: 7401035f2ef8841d0db9724507b45841d16894b6
-[5/5] arm64: dts: qcom: sm6125-seine: Configure additional trinket thermistors
-      commit: 4ba146dd8897353e4e18a12c7866127f85c251e7
+[5/6] ARM: dts: qcom: msm8226: Add CCI bus
+      commit: 4ab2f41b0850768716c446461653178372bcd35c
+[6/6] ARM: dts: qcom: msm8974: Add CCI bus
+      commit: 4dd3949d17b66144fe7c39cf68ff4bedb4154f61
 
 Best regards,
 -- 
