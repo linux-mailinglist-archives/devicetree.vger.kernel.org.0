@@ -2,77 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAAF86203D7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 00:36:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 518BA620412
+	for <lists+devicetree@lfdr.de>; Tue,  8 Nov 2022 00:57:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232408AbiKGXgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 18:36:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57286 "EHLO
+        id S232679AbiKGX5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 18:57:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232391AbiKGXgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 18:36:09 -0500
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE8B5FF6;
-        Mon,  7 Nov 2022 15:36:04 -0800 (PST)
-Received: by mail-pg1-x529.google.com with SMTP id s196so11913840pgs.3;
-        Mon, 07 Nov 2022 15:36:04 -0800 (PST)
+        with ESMTP id S232642AbiKGX5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 18:57:03 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2730C27162
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 15:56:59 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id y16so18460764wrt.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 15:56:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=H6+t9BRAAElMuyAd9jyg2LbJwD0gdcLK+WHij3+TgOQ=;
-        b=Y9dKowagG/XvHm+0TMIIOSnLsxlrWwlZsxSRqyNr9WaHIqQ15ZRys4gg3i3ZxbLAv/
-         P9qg5BVFP0liD+HoB/3rKLAN0ioiCaeqInm8/R4dfoEMErqroQ4KJsl/myXFepxOfDOh
-         h4tsaCDdoY6mzCVfTzQ9mv8uveer2lBcHLaYcIDE1DnykUjbn/ZJgH7H4gD9WZ/vWacI
-         Kr0K9q4v7a3ZfvihQfKbPrjYkyBpORSXXPcx4JFSbitBwaVaOdFMiTFwoxK55focdox/
-         Wp3pj3YyI5vtLjfFszntwNjp+pBe7jIGdCEprESurQGt+ti2zdAlKXdHXHV+4aj4QYTc
-         b3eA==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pgeozmPZqS6JXtBUtzz0XCzNbXeI8NLd/9teAZZ3ZoU=;
+        b=Kr118oU3tWMRM9OSMDTcbOgWvtcP8ZX+qbTofQqOopNwYkeh3XrjPqa6V6VvNQvFvT
+         buMppsTMAE9msYo92KDfPVh4w5Q5AkJkHxjoo21UDk4HoO7m0d+X3pqvW+c9s27zN6ji
+         eAigHkl7x8GNbTxMKA3UOLEG7iPFPB5grRdVTKEncCeZQ4X7dPzTrZgrBEm0vuImwSdf
+         GynTlyZRoiHPwRx0Z62w3A3uNl1VwtLVYX2fPCBpcT5fsD8hh1uopYrAGpCFro0X4IpW
+         qvF8BiG7AS+gO99UC3oUTN0mzWxrLTASTXcJ5NIw9J/z7pW88w5/W7GxGgtLNFgJgOGz
+         AwPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H6+t9BRAAElMuyAd9jyg2LbJwD0gdcLK+WHij3+TgOQ=;
-        b=yZJlOS593F1Xcb2m81sLvmjBGNn7PXyaT/XtAVY+Ivcxth/d3AUNGot2HjBESlqWet
-         LkuxlqhZEsgbSdXVBEkI869WhmBd0EShIIV6jqDTYUHv+8qrX4Qltq9LrxOaSV6LNv06
-         DSlWJJ2xucECKL1DXSD67W53GwbPzT04GKOYPx61f0sQBQlVEA3OTBl3/wjovwQ77Q7v
-         tK8lDXrDFZBKyjPgl7YWx0WaqjxeOvFBJU6Xy3YcrgzGpU3B44QoziloAxElH9SxK1Er
-         a3LbQ8Ix3zne4zQYdAwWcl6MFs4nN08SfPjU6OPGYGfI0b1y9IV8H2HmpSUqUJnVWBek
-         xVMA==
-X-Gm-Message-State: ACrzQf2M32KnHK3K0J/tVaxT7qDh4cLaM9Ay7Ppmg5wNx26pQsbcXNTH
-        OGXT/JT+Tw3q4+oW4Crg+uAZnt/5I+sFiDEXgxA=
-X-Google-Smtp-Source: AMsMyM4I7+RU/c1gxy+M/sT3xI/aGM5k9qiVJeKfAcM251JephW6u7ff0aPsPIxtFOTMF88/Qw8JhqGe8eSqGKUQsME=
-X-Received: by 2002:a62:1b11:0:b0:56d:568d:c293 with SMTP id
- b17-20020a621b11000000b0056d568dc293mr45767339pfb.41.1667864164431; Mon, 07
- Nov 2022 15:36:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20221107145522.6706-1-konrad.dybcio@linaro.org> <20221107145522.6706-9-konrad.dybcio@linaro.org>
-In-Reply-To: <20221107145522.6706-9-konrad.dybcio@linaro.org>
-From:   Petr Vorel <petr.vorel@gmail.com>
-Date:   Tue, 8 Nov 2022 00:35:53 +0100
-Message-ID: <CAB1t1CyNJqEeEkmd0vOgexkrjP=bB-KSMxuDgzswG7MMkDksgA@mail.gmail.com>
-Subject: Re: [PATCH 08/11] arm64: dts: qcom: msm8992-*: Fix up comments
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski@linaro.org,
-        patches@linaro.org, Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pgeozmPZqS6JXtBUtzz0XCzNbXeI8NLd/9teAZZ3ZoU=;
+        b=qdkMvwLEB0hJtVJ9aW7+M6mErZCQn+uZ7g3H79WGIsQ3UvRJEg8Vji1c0h4FzFRWy/
+         cnHc5aEdgMSU4SOipA6D8KtB8d9NSd32y/cuzLumiOLmoMC4vb1yCZrdcCIfyIIbpW5m
+         /Wqio/mj2NiHTl/Lu0vxoghNe2FxVGPZjsitL3Srl5UuUHK23JWIhgzOAd2bADHb0TqO
+         waZUE4zBGZCmiyfZ5BN1lB6i6+Ky6T5DF+KRx1Wh2WoHMPovMzT/GHbS3MqVV1E1etHG
+         XeAntlHA46ccYjrzUSTyHK26PhR8r7XBCUXy2AL6Wh7SbGcjG54wQWlqi8UpM2yotrI/
+         3fHQ==
+X-Gm-Message-State: ACrzQf0lpoBpcLiI4EhvtoTgH1MzlYQ2y0gfVi3RNUv5rH2wNKvYfN3A
+        zfPgdUn7FCIKLIvCL3XK85zBhklv73qQoA==
+X-Google-Smtp-Source: AMsMyM6a2iAeeRzZq19eqEqkJIwF+xt4p4o6N4GE+PRqYk+U2IE/mi3aZrpaVlpQnpPKNsKNm05xHQ==
+X-Received: by 2002:adf:e44f:0:b0:236:59a3:c5a8 with SMTP id t15-20020adfe44f000000b0023659a3c5a8mr34097585wrm.396.1667865417559;
+        Mon, 07 Nov 2022 15:56:57 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id b18-20020a056000055200b00236545edc91sm8386161wrf.76.2022.11.07.15.56.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Nov 2022 15:56:57 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robdclark@gmail.com, quic_abhinavk@quicinc.com,
+        dmitry.baryshkov@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, quic_mkrishn@quicinc.com,
+        linux-arm-msm@vger.kernel.org
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH v2 01/18] dt-bindings: msm: dsi-controller-main: Fix operating-points-v2 constraint
+Date:   Mon,  7 Nov 2022 23:56:37 +0000
+Message-Id: <20221107235654.1769462-2-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
+References: <20221107235654.1769462-1-bryan.odonoghue@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+The existing msm8916.dtsi does not depend on nor require operating points.
 
-Reviewed-by: Petr Vorel <petr.vorel@gmail.com>
+Fixes: 4dbe55c97741 ("dt-bindings: msm: dsi: add yaml schemas for DSI bindings")
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Sean Paul <sean@poorly.run>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../devicetree/bindings/display/msm/dsi-controller-main.yaml     | 1 -
+ 1 file changed, 1 deletion(-)
 
-Kind regards,
-Petr
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index 7782bff89afc7..27ebfd5ffb22f 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -135,7 +135,6 @@ required:
+   - assigned-clocks
+   - assigned-clock-parents
+   - power-domains
+-  - operating-points-v2
+   - ports
+ 
+ additionalProperties: false
+-- 
+2.38.1
+
