@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D9661F09F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:29:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C98661F0A4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:30:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231308AbiKGK3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 05:29:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38512 "EHLO
+        id S231577AbiKGKai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 05:30:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229638AbiKGK3s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:29:48 -0500
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5402C12773
-        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 02:29:47 -0800 (PST)
-Received: by mail-vk1-xa35.google.com with SMTP id s204so6308793vkb.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 02:29:47 -0800 (PST)
+        with ESMTP id S231700AbiKGKac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:30:32 -0500
+Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD01167DF
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 02:30:31 -0800 (PST)
+Received: by mail-vk1-xa2f.google.com with SMTP id m18so6303328vka.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 02:30:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zaNxkXQ1Y4JKbXCKNHnI42Q7eEAv3p2c5wJUZMq4jg0=;
-        b=LALeX+CQc6yEAIT60ZcvX38eVOtEox1MCHJCm/0G+Q1qAGru2yWXLRd6QBRUqHcjVw
-         +Icd2aOOOtpj6szG5Y5HbluYDK658QcJ1pC7e8Yd76bRz5goJZxaF4Dy6PNa2Svh5f8E
-         oOZBYeOzAX5bfxbgR0QGPyj0veg25b8GvR/kKsAZ0/q+ymIBotnrmLIPD3Orvvvz1Md1
-         DWjqcAKNoq39Rm810RCCfBBO0mq6UJR+p7uaer3mD+yBfN19cUYBACUqJoEmsbt5eOXf
-         pe/jtmGnlJL+BV8gkhtpMcJ8sESAPxYe7PhFW0/zCI2oNLv2E3p4C+6atNREHuuZuooP
-         lVaQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+8+uu9kKMEq8Y9OytB8gsVKut4lj3U0/a/S35uT3UQU=;
+        b=MDTYVKCNb0/qgY91nHj/Ep35Uoawu+BRg898hqS8zg/Je5DSaYTXknBqq7645UiEGb
+         mKIf5IfDCiYNikSC5gV+YsfKpkEZBFDrtQW+E7SGZl53VB1+CSORJ1wKHVVWBIbWfGa5
+         nepqOj5o1L74FadAoIMIuvYubN3MPSHk3Jf3HhhZgTjPMVdKvTe9dY1+/2BEsJRRY9/3
+         qdvNqs+AN6uFaVshhSTH9LgLvI0Z13z/iiSBHmbbIMo2sRKh8O3SYIRl6BFN8D299Yms
+         9F2l99bQgu4KlGxqwV0y8DKInddibkNB2OmXb7QBjn+76h7KtF/Rhn33LSn6Kq2kmUJy
+         Vzew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zaNxkXQ1Y4JKbXCKNHnI42Q7eEAv3p2c5wJUZMq4jg0=;
-        b=CQqx8/xeHNki+AjDgi1p4x5zRCJF97pifmTGbvMefiw4qIQjM2uKn3GMkTBjx74yTB
-         G8yXvr3cKLhCab4he+9jpJCPbEnhqoNDAGUI3iQLtdrVlPkY2mPfMZJ+uRbyW1UJYrNx
-         MaB8i5avO7Aj6hu2/BYVIhSYl+krxetIqKJlpM0VqcjpxOHFlM083V3nXTbvGr9u62So
-         Xw+CHDM8aHT8vOPAHzxdwXwzgrkxjxtkgzIPcI8qMe5LKvq6Az7u7TxOWpjTucPsGg0O
-         OimoZ9rP2eE9GqQJNZjAb/enfMQhb/5XEMUoSh8zS+9/1x8Xu5xJMepFi5ggCkW2z49x
-         JYBA==
-X-Gm-Message-State: ACrzQf1JVmzwpIzqnabgM62vXJZWA9cBgi9p/wVs+omCVgYKylwQ5Bj0
-        a03/oC2BdNr0BpDAkFKB05jL4BguB0HZw/suq/GpQg==
-X-Google-Smtp-Source: AMsMyM54Yr6hXkptY8k/m5E89W3bthkgvtDvkRDLzEyVct04WyInaLWAUG81rqK49HcbcfuEwdadpXGnAPKFDHFttEc=
-X-Received: by 2002:a05:6122:2219:b0:3b8:7fbd:9554 with SMTP id
- bb25-20020a056122221900b003b87fbd9554mr5383200vkb.27.1667816986458; Mon, 07
- Nov 2022 02:29:46 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+8+uu9kKMEq8Y9OytB8gsVKut4lj3U0/a/S35uT3UQU=;
+        b=zsCK5wTFihGPY0/nWq8OmyFQg5yY1V+USP+QnguE2QOhRfIo59E+kAe6DadQG8CL9D
+         INVaH+59otZoVtuGxwpp8Klk5nqI97TLuAZI5VnNO2Br2O6tkUBLbjVhUOrpEoP2F3Zx
+         sqP2XPqep+pjk2WvrgAYVXuWKOqlGAtATMtFrV35AsJ8FzDF7gB2fR21txC4ZucKjdOP
+         nGtkR1WReI0XaaLO/kvxJaMxop7EUCY3+oKzjaQfNt+0mvssMh1/jDb0SSWuwljnYJvO
+         z649lEO4r4RC0gHoTJcRsBxtDTNa/TZJA6PbAHimT5wlAb1xMmSuPa8k+IyXBfBw/v1T
+         OziA==
+X-Gm-Message-State: ACrzQf1SrYcmFDXr5IpqspXt6/BSQ6R7ZksUsHsfbH7viuQDKW1HZl5y
+        41j0JGbpZ+ZuXmZS5QJ2s8Vgu3rJWq8xSPkzELk8MA==
+X-Google-Smtp-Source: AMsMyM40dfLheNyJpxRKrlruFqXHZd3uAgc7HrLOqZvbFfPbKtA0whtMMMLzf5d7lWMkSxfcWdRjVful/T9eocL8Dsk=
+X-Received: by 2002:a1f:e5c2:0:b0:3b7:3aca:9868 with SMTP id
+ c185-20020a1fe5c2000000b003b73aca9868mr7842964vkh.33.1667817030498; Mon, 07
+ Nov 2022 02:30:30 -0800 (PST)
 MIME-Version: 1.0
-References: <20221027130859.1444412-1-shenwei.wang@nxp.com> <PAXPR04MB9185E538798F83B3C03C70EA89389@PAXPR04MB9185.eurprd04.prod.outlook.com>
-In-Reply-To: <PAXPR04MB9185E538798F83B3C03C70EA89389@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20221027130859.1444412-1-shenwei.wang@nxp.com> <20221027130859.1444412-6-shenwei.wang@nxp.com>
+In-Reply-To: <20221027130859.1444412-6-shenwei.wang@nxp.com>
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 7 Nov 2022 11:29:35 +0100
-Message-ID: <CAMRc=McPXjixgSJNDfFLRzR=OM2Q9SuAuCumqEpjb_s2fdYa-w@mail.gmail.com>
-Subject: Re: [PATCH v4 0/5] gpio: add suspend/resume support for i.mx8x SoCs
+Date:   Mon, 7 Nov 2022 11:30:19 +0100
+Message-ID: <CAMRc=Mf+ByrcBt64gMdiWTgBRETuNHoJZNud1ZkW1T77rR6+QQ@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] gpio: mxc: enable pad wakeup on i.MX8x platforms
 To:     Shenwei Wang <shenwei.wang@nxp.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
         Jacky Bai <ping.bai@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        imx@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
@@ -80,59 +76,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 3, 2022 at 11:01 PM Shenwei Wang <shenwei.wang@nxp.com> wrote:
+On Thu, Oct 27, 2022 at 3:10 PM Shenwei Wang <shenwei.wang@nxp.com> wrote:
 >
+> On i.MX8QM/QXP/DXL SoCs, even a GPIO is selected as the wakeup source,
+> the GPIO block will be powered off when system enters into suspend
+> state. This can greatly reduce the power consumption of suspend state
+> because the whole partition can be shutdown. This is called PAD wakeup
+> feature on i.MX8x platform.
 >
+> This patch adds the noirq suspend/resume hooks and uses the pad wakeup
+> feature as the default wakeup method for GPIO modules on
+> i.MX8QM/QXP/DXL platforms.
 >
-> > -----Original Message-----
-> > Subject: [PATCH v4 0/5] gpio: add suspend/resume support for i.mx8x SoC=
-s
-> >
-> > On i.MX8QM/QXP/DXL SoCs, even a GPIO is selected as the wakeup source, =
-the
-> > GPIO block will be powered off when system enters into suspend state. T=
-his can
-> > greatly reduce the power consumption of suspend state because the whole
-> > partition can be shutdown. This is called PAD wakeup feature on i.MX8x
-> > platform.
-> >
-> > This series of patches enable this wakeup feature on i.MX8QM/QXP/DXL
-> > platforms.
-> >
-> > Changes in v4:
-> >  - fixed the format issues reported by Peng Fan.
-> >  - change the return type of mxc_gpio_generic_config, and limit the
-> >    suspend/resume behavior changes only on i.MX8QM/QXP/DXL platform.
-> >
->
-> A soft ping. =F0=9F=98=8A
->
-> Regards,
-> Shenwei
->
-> > Changes in v3:
-> >  - According to the feedback from Linus Walleij, the wakeup feature is
-> >    moved to pinctrl driver, and the array of gpio-pin mapping is moved
-> >    to gpio device node and initialized via gpio-ranges property.
-> >
-> > Shenwei Wang (5):
-> >   arm64: dts: imx8dxl-ss-lsio: add gpio-ranges property
-> >   arm64: dts: imx8qm-ss-lsio: add gpio-ranges property
-> >   arm64: dts: imx8qxp-ss-lsio: add gpio-ranges property
-> >   pinctrl: freescale: add pad wakeup config
-> >   gpio: mxc: enable pad wakeup on i.MX8x platforms
-> >
-> >  .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   | 41 +++++++++
-> >  .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    | 38 ++++++++
-> >  .../boot/dts/freescale/imx8qxp-ss-lsio.dtsi   | 25 +++++
-> >  drivers/gpio/gpio-mxc.c                       | 92 ++++++++++++++++++-
-> >  drivers/pinctrl/freescale/pinctrl-scu.c       | 30 ++++++
-> >  5 files changed, 225 insertions(+), 1 deletion(-)
-> >
-> > --
-> > 2.34.1
->
-
-GPIO part looks good to me.
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> Reviewed-by: Peng Fan <peng.fan@nxp.com>
+> ---
 
 Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
