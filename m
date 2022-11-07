@@ -2,105 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9BE1620028
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 22:03:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C70A162002A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 22:04:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233213AbiKGVDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 16:03:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50618 "EHLO
+        id S233196AbiKGVES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 16:04:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233192AbiKGVDp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 16:03:45 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0363820186;
-        Mon,  7 Nov 2022 13:03:39 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id n205so2441281oib.1;
-        Mon, 07 Nov 2022 13:03:39 -0800 (PST)
+        with ESMTP id S233262AbiKGVEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 16:04:02 -0500
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C4EAAE4D;
+        Mon,  7 Nov 2022 13:04:02 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-13be3ef361dso14081856fac.12;
+        Mon, 07 Nov 2022 13:04:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=u4c8dBP5xaSdrw9MUp90c5F2l4qFLSsfK0HtqDfUuO0=;
-        b=Q03Cg34g0ZJk0yLdmsYDWaV0/2jPu3Z5+oX5ObKqqHv5aMJ6Cg2cLXbWdoq+QMQQH0
-         oHabOagPOpAWtp72fjwDSIie3iccL2MnHlVdtotDy26PYE1u+W1vPFV2rOtpvmIVcow7
-         +wPYU+dpfSF56T3Zf+z+299Y08GdQh+xtmXTJU5CNZXmYiPe6sLpELiTSMpW8Wv2ZmoI
-         ZdcpotcY8Gk0Q4ohLGBBJtivD4tggx430vN0aklYdUIiX+LnyUwezECMhWgr4jARg0hC
-         xSkPbrQtabJVeCSGQHAETKiZbxr1000gYzYOlTCcGux48nXPe1Lvc5XmeSxcy0unIfrl
-         KXgQ==
-X-Gm-Message-State: ACrzQf0BF+xlybfNQB/bwXfdsshyZCbCQi/qZxJgZ3gPs514GwiWwj7a
-        77dmORyn1YMHxRXPF787Tw==
-X-Google-Smtp-Source: AMsMyM5raPFgmBTtqQVWp4dbwGeTcXxlrBl7Q6X/fuddnH+OzqVKY47O2ut4bqfjD88AKrdLS3go6g==
-X-Received: by 2002:a05:6808:200c:b0:35a:3220:f25f with SMTP id q12-20020a056808200c00b0035a3220f25fmr18610607oiw.266.1667855018548;
-        Mon, 07 Nov 2022 13:03:38 -0800 (PST)
+        bh=L+c0H1nBQxf6B5rWZoqrhhXaMFx8nOWvIRgKOUuZgCQ=;
+        b=Os1C9OmFZxXyot1D4JI0JKO95+L4uHiINpcwIffGpv9ZWax0REKUGqyFnEc+1xPU6y
+         mQV8Xut+z9WngU3+gQyc7n8dOxilPc4quVQxJJke3mjakM9TkZFm5PXhY7mydW2scq74
+         WBCabHcpycZbwUvm9oCo35T2/i/sDdPAzAWYzOx4KWyd95SLumsRx97t1lZeOiVp/4qP
+         tJHmwVs3KTtmzgbdvSlgrKx7hOTBHkVe8dAHx8B4fEjwpaMeH6WXsdmG3V4NrzVcv83J
+         qofszBS+MV3PB/YSjjo8w+wRtpO8TIe5ZhcGOtzqk2XWjHLWJOIhm7LxTuDFcDV09rxc
+         +9Ew==
+X-Gm-Message-State: ACrzQf3ZNmpaRjf6sXoArGjFAgwpn/qZT3AnLjCFAndSHoWpkjWis8DM
+        Hgs4/AWBmGCiszuNsDbT+GdL0oMw8w==
+X-Google-Smtp-Source: AMsMyM7iV1H7kfmpYIoK0N/dnb0NSM4HcqlprZMaw+9WO09jmwomfbql9idJSNQqwHzQ/kIe67ecqw==
+X-Received: by 2002:a05:6870:2427:b0:13b:1f89:ab27 with SMTP id n39-20020a056870242700b0013b1f89ab27mr31504849oap.20.1667855041453;
+        Mon, 07 Nov 2022 13:04:01 -0800 (PST)
 Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id l12-20020aca190c000000b0035a2f3e423esm2240749oii.32.2022.11.07.13.03.37
+        by smtp.gmail.com with ESMTPSA id a7-20020a9d5c87000000b0066c495a651dsm3345441oti.38.2022.11.07.13.04.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 13:03:38 -0800 (PST)
-Received: (nullmailer pid 1624482 invoked by uid 1000);
-        Mon, 07 Nov 2022 21:03:40 -0000
-Date:   Mon, 7 Nov 2022 15:03:39 -0600
+        Mon, 07 Nov 2022 13:04:00 -0800 (PST)
+Received: (nullmailer pid 1625023 invoked by uid 1000);
+        Mon, 07 Nov 2022 21:04:02 -0000
+Date:   Mon, 7 Nov 2022 15:04:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: qcom,qcs404: convert to
- dtschema
-Message-ID: <20221107210339.GA1621758-robh@kernel.org>
-References: <20221104161131.57719-1-krzysztof.kozlowski@linaro.org>
- <20221104161131.57719-2-krzysztof.kozlowski@linaro.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Gerhard Engleder <gerhard@engleder-embedded.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Eric Dumazet <edumazet@google.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: tsnep: Fix typo on generic
+ nvmem property
+Message-ID: <166785504045.1624928.9983956469114639512.robh@kernel.org>
+References: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20221104161131.57719-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20221104162147.1288230-1-miquel.raynal@bootlin.com>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 04, 2022 at 12:11:31PM -0400, Krzysztof Kozlowski wrote:
-> Convert Qualcomm QCS404 pin controller bindings to DT schema.  Keep the
-> parsing of pin configuration subnodes consistent with other Qualcomm
-> schemas (children named with '-state' suffix, their children with
-> '-pins').
+
+On Fri, 04 Nov 2022 17:21:47 +0100, Miquel Raynal wrote:
+> While working on the nvmem description I figured out this file had the
+> "nvmem-cell-names" property name misspelled. Fix the typo, as
+> "nvmem-cells-names" has never existed.
 > 
-> Changes during conversion: add sdc1_rclk pins (used in qcs404-evb.dtsi).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Fixes: 603094b2cdb7 ("dt-bindings: net: Add tsnep Ethernet controller")
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  .../bindings/pinctrl/qcom,qcs404-pinctrl.txt  | 199 ------------------
->  .../bindings/pinctrl/qcom,qcs404-pinctrl.yaml | 176 ++++++++++++++++
->  2 files changed, 176 insertions(+), 199 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qcs404-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,qcs404-pinctrl.yaml
+>  Documentation/devicetree/bindings/net/engleder,tsnep.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,qcs404-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,qcs404-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..3d314458bf84
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,qcs404-pinctrl.yaml
-> @@ -0,0 +1,176 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,qcs404-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SCS404 TLMM pin controller
-
-SCS?
-
-With that fixed,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
