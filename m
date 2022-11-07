@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9071B61FE60
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 20:12:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F10061FEA5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 20:29:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232313AbiKGTMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 14:12:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48570 "EHLO
+        id S231172AbiKGT3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 14:29:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232654AbiKGTM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 14:12:28 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECF5228E08;
-        Mon,  7 Nov 2022 11:12:24 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id a5so19122210edb.11;
-        Mon, 07 Nov 2022 11:12:24 -0800 (PST)
+        with ESMTP id S231586AbiKGT3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 14:29:22 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D199C6273;
+        Mon,  7 Nov 2022 11:29:21 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id u8-20020a17090a5e4800b002106dcdd4a0so15655098pji.1;
+        Mon, 07 Nov 2022 11:29:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NvL/1cFUsL3p3X3LC8k460k8YFidRmeQtOlvn66hT5c=;
-        b=L9KbpQy8GmRLe8WezLbdNadTVnX1iELu6qPXRgi3FtSkeS0cHYjxUbwxxhZUjAXf2r
-         YRUfcgA7jrgfDAt5yq7E5hqv/euUeQLaatyYF8+YCPrSvwCDp9VhLFc28vUZpPhJkFM/
-         U3SDwV32EgkskScgs/pchyFeDu87L77tn1oCQ79pJ6hw8TcbTTQh84B1jVXetPfvKQa9
-         YMai1q8Vf8taf9Ktlj9UYdMX7RncfGQA0Y/w6N/ro8+pqGhMdMfPLFkmrAil3kRsqKuK
-         /MJOKF6KPvb/ygCKsZcJ5H9CBY9FkLBEbK94pPqKhK9BoJJfnsY7vKjawhV6zTtAqsAJ
-         LvBQ==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ROsSP2zJLMpqkNAkCkejAhjTOebhsc8Ura1yv3/lEHk=;
+        b=P4B9TBMmaUKzX1GYrwQo7DZAJge385WbTniJ5hPd5TGarQl25gy+JuH6EEPIl+QSeq
+         WeNlcpvUE3IXQ/vtcSDqGx1I0q+LJFdSkRSPbcddpVl2GfcRBhklXYI1y/dvb/3rk/M/
+         VVH5+EhekIMiJ5zchjea+5WYH4fnUF47afGpgYQcxVG5G0hPoAcfHhalyU2DDWgLdsrg
+         UGKOHpl/sh7ga5svx/RjbyOObf1XFSq8Iek91LRoluT9rFSVIhzMhbHAXxN4RIXXcbZh
+         00k2/pCmbXw/4D30kjQNoLxLwgk6Dz9e1UIHKxZOoEYLp8oL3WwKaOLJfFdYTQFV13e2
+         f1mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NvL/1cFUsL3p3X3LC8k460k8YFidRmeQtOlvn66hT5c=;
-        b=oyiWLgStL8fZ6b2MoXfhXC+g/RioEH5tgOENwvy43LfjVcJsFe5/D9jT0wk/e74GE+
-         5ZbjqahsHXertxo6p4lUOPt0skpFRoVau3TW8V5ozRsKPF6Yz5z2grJ1HUlgGnDlMmU9
-         m1X3hHxbeUogYALn+pGOSrM3x2XYDeHzeNI1GRAJfirw9hhpGoT3o08jTYu2IWQn9JWa
-         WU1zdUEYJpQ7ZBjUwa9v0YSDqJ9nL5cCSrmXw5CTQdDia2Njz+hHXODQe/oCVC4aPHvl
-         1TAwCEM2xLSJnOVk4SOs6H52Z9FMaX4hyMijAI/HgmIfsYYW/DKoMQxqeGPjCzgRkvw4
-         +jmg==
-X-Gm-Message-State: ACrzQf3z6nRNfjOzgswOB5vkItqo3bth3qi/ln8NxICKg17EdDI45PgH
-        NshFx5dCroq7jN0hyiBRACcaX9ogPTSQAg==
-X-Google-Smtp-Source: AMsMyM45BewjPXyzYPbE2qLoXyx+2V33Q8EG3+MjSy4qWA1xQl9O/BIF27MyIvjPTTeXeOK2sXCBLA==
-X-Received: by 2002:a05:6402:1052:b0:459:2c49:1aed with SMTP id e18-20020a056402105200b004592c491aedmr51731588edu.212.1667848343564;
-        Mon, 07 Nov 2022 11:12:23 -0800 (PST)
-Received: from kista.localnet (82-149-19-102.dynamic.telemach.net. [82.149.19.102])
-        by smtp.gmail.com with ESMTPSA id o17-20020a170906601100b0073d83f80b05sm3790021ejj.94.2022.11.07.11.12.22
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ROsSP2zJLMpqkNAkCkejAhjTOebhsc8Ura1yv3/lEHk=;
+        b=SELwtL2FrkQtoFKYokAsK/xVS3wk0TkEzfw3ylRueMWk1gd9hpYD99MzP+9k6kSZy2
+         jsZjaPeAxO+1unBvAdWQz75jmxBov6EmEiODWoTCP9gqR+wW/O6jHZ1641EV3sxQM1J/
+         VP88VG13yKlNRKPFiqbvXxTX1pGAhtl7Wvjqo+Rq06kQ55bGAjmzcy6g+YCATvvxGBHD
+         lRABCGs7/sLfy1F0pDUZWHKgk+LCIx7bovmCTDQ1M8ATGX4aW1H3oWZlJ9oHegMAGwpV
+         8ngR+l0hYfDfQm0NUZhu7kr8HhEtXsWXdRRC5Fq4ZmfrDO0XE9F6wGa0J5R6RVDsUwwc
+         o9dw==
+X-Gm-Message-State: ACrzQf1RENm778VVEv3GIckLFhK7xCy4csTwjeu4LjtUYyPeNKZqUXVz
+        robLwrTqkeRuZEVZ1aelz/M=
+X-Google-Smtp-Source: AMsMyM495vmD7fimlGChX5ECDkEgbUrq4CJpt+iqe6EQh4zATNbCGMe0QLoX6Js34e5qejLL1T3sOA==
+X-Received: by 2002:a17:90a:13c4:b0:213:9c67:1b09 with SMTP id s4-20020a17090a13c400b002139c671b09mr833259pjf.221.1667849361156;
+        Mon, 07 Nov 2022 11:29:21 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:626:eb80:9eb9:1fd7])
+        by smtp.gmail.com with ESMTPSA id g12-20020a17090a714c00b0020a7d076bfesm4653752pjs.2.2022.11.07.11.29.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 11:12:23 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Samuel Holland <samuel@sholland.org>,
-        Bastian Germann <bage@debian.org>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 07 Nov 2022 11:29:20 -0800 (PST)
+Date:   Mon, 7 Nov 2022 11:29:17 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Job Noorman <job@noorman.info>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, Bastian Germann <bage@debian.org>
-Subject: Re: [PATCH v2 1/1] arm64: dts: allwinner: a64: enable Bluetooth on Pinebook
-Date:   Mon, 07 Nov 2022 20:12:22 +0100
-Message-ID: <2320960.NG923GbCHz@kista>
-In-Reply-To: <20221105153319.19345-2-bage@debian.org>
-References: <20221105153319.19345-1-bage@debian.org> <20221105153319.19345-2-bage@debian.org>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Rob Herring <robh@kernel.org>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Luca Weiss <luca@z3ntu.xyz>
+Subject: Re: [PATCH RESEND v6 1/3] dt-bindings: touchscreen: add Himax
+ hx83112b bindings
+Message-ID: <Y2lcjWJYkeHljbJQ@google.com>
+References: <20221107105604.26541-1-job@noorman.info>
+ <20221107105604.26541-2-job@noorman.info>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221107105604.26541-2-job@noorman.info>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -76,20 +80,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 05. november 2022 ob 16:33:19 CET je Bastian Germann napisal(a):
-> From: Vasily Khoruzhick <anarsoul@gmail.com>
+On Mon, Nov 07, 2022 at 11:56:02AM +0100, Job Noorman wrote:
+> This patch adds device tree bindings for Himax 83112b touchscreen
+> devices.
 > 
-> Pinebook has an RTL8723CS WiFi + BT chip. BT is connected to UART1
-> and uses PL5 as device wake GPIO and PL6 as host wake GPIO.
-> 
-> Enable it in the device tree.
-> 
-> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> Signed-off-by: Bastian Germann <bage@debian.org>
+> Signed-off-by: Job Noorman <job@noorman.info>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied, thanks!
+Applied, thank you.
 
-Best regards,
-Jernej
-
-
+-- 
+Dmitry
