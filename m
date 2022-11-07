@@ -2,134 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C453161EA83
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 06:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9052661EA87
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 06:38:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbiKGFgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 00:36:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54160 "EHLO
+        id S230332AbiKGFie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 00:38:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230480AbiKGFgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 00:36:01 -0500
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A8FA6461;
-        Sun,  6 Nov 2022 21:36:00 -0800 (PST)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id C40E25C010F;
-        Mon,  7 Nov 2022 00:35:59 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 07 Nov 2022 00:35:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1667799359; x=1667885759; bh=CT
-        F3MeYBdYDb9QkjYMGL6Erp3oYYPDieKsIYfX3UM/o=; b=oztyJd2DwVU66oSlO4
-        hU2Ylwpd5r1sGPpUVIZgDeVlN1YDysjnKxtHaa5Eog5QGNexxDJUxh7iPO4WBL++
-        XqHRfDNfAzaXQxVPKm3KUjKI6+6/KZrzopx/A6efEm/VPPqotGYXxk7fOkpnz21o
-        DJffO8LVzKGG26HyVWUGDtulT85+blUv8sbvW5i4AxZ4H8eA6u3Y3pJbDeEZh4FL
-        2MorhqWRAWmzYckreZAHD1I9x2P0aw/OWMM5GrXXcZC8iD4eNNDUFshOHDzJ1qoz
-        6JIdDlbRFkVRc6Z+sMAU85kJ2/wBNQYH+5vLeWqhRgVnUo9xbuOWCnPq0oGGvv8d
-        +8UQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; t=1667799359; x=1667885759; bh=CTF3MeYBdYDb9
-        QkjYMGL6Erp3oYYPDieKsIYfX3UM/o=; b=hxhSlOjhW0zlCMgveB+jr7nbj6mHp
-        ziNeGtdMV4fuZHTiLUT2y7+ZOy4/61VkkNcvW3yR8+JV1nihEsL083adPxSosn/j
-        4MjY6vOxJ4vFEiUfnENhtsW0WDEa9M1PQUZ4iuF+JODFtDb6BxHCVrM1AHEEHiRh
-        cZpNuxlL8pllUnjBAnu+1ioeKJJOkfKcxPjxXtLcXMmlXYsIG5iBENAK3AePEJ7b
-        HeZo6N7bRMfqxii0x+3KL2x2xG97kT/dUa5Fhgdx42bFJZGzSvVHvugyv0vnk6oC
-        XGwg1Eo0w7VuMRrnc+ltGbazO46gLhWDz0ZvmpgxayWgTD9Yn3VlNag4Q==
-X-ME-Sender: <xms:P5loY0mLaQDs_5T0oflYK9ATlt1_ZpWCW_jK1p__glbPK3GjBi9Mfg>
-    <xme:P5loYz0AVv11fcTRMMC58DzOVEMq92ufIFrcYn53VjKWUFYW48VabekIUoehyhu0-
-    GzfYNqp-kMV89IqJw>
-X-ME-Received: <xmr:P5loYypAcTeL3g_tCkRTbTTM1YOcD-GtqnOu-wrlPMfTec5peHfB4jIX0rHFBVMSWmEXgh4HAOViBpvJscwlUE5VrI_vRbOZpcuW_Fw1MOh8MgnvQyp3mpkBdwEjisa8DAiqkg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvgedrvdejgdekgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeehgfdu
-    feeitdevteenucevlhhushhtvghrufhiiigvpeefnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:P5loYwl6eTLBfzDzx7tfxAyJ0UW35UhvSVv5TpxpEzr61gPjSmTtYQ>
-    <xmx:P5loYy3Q7Cu81eRcaPX6QU3e5nb9IwWAp-VlJN_SAvlVSk9jcDW1uw>
-    <xmx:P5loY3utP-fKV6JfylFmk0ygsAMWnoq2oc_nZ0z49Oq_9q_LPTWQ1A>
-    <xmx:P5loY4P0CNm9-iFcoo_1tKLvSMx2-jk4mzarSiDtV6nqgPTLDY3vpA>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 7 Nov 2022 00:35:58 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: [PATCH v2 4/4] drm/sun4i: dsi: Add the A100 variant
-Date:   Sun,  6 Nov 2022 23:35:52 -0600
-Message-Id: <20221107053552.2330-5-samuel@sholland.org>
-X-Mailer: git-send-email 2.37.3
-In-Reply-To: <20221107053552.2330-1-samuel@sholland.org>
-References: <20221107053552.2330-1-samuel@sholland.org>
+        with ESMTP id S230371AbiKGFic (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 00:38:32 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E80222BFA
+        for <devicetree@vger.kernel.org>; Sun,  6 Nov 2022 21:38:30 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id bk15so14506456wrb.13
+        for <devicetree@vger.kernel.org>; Sun, 06 Nov 2022 21:38:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/fuJxEvQ8hWJBVA+YQn5WV9w4flp3A4j0tI4rSSd1Ck=;
+        b=CPJknGh76GKBqj/JyzrYpfhZTA4iLOZ7pJx8SQi6I9UWC5yUQMpW16eNZKtSj1pHns
+         MxabvoZfAispcp4LT9u7H76KkohJEq+W1LOk7tp+rdt2UeJNaaqabgllcnG7+0wV3DKS
+         E3CI+4Fo1UvFZt+OetXKS1zqc9h4aEFJfQ2JibgX550/Ah9y/5o7KaTEeZUW6BGYcOmK
+         l7UISNPT8V+NkmCarotVjJVsCuoc5ydJ8yZOodm5O6FLxOY+86cPGmRQ9l3HA0PDBUCj
+         8C7yOfSdUCec7RqHH9C0uuHHlHW3tqR//xHBnzOyD5zwbn98F4B1IWNcLFIt+Qlybh26
+         6apQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/fuJxEvQ8hWJBVA+YQn5WV9w4flp3A4j0tI4rSSd1Ck=;
+        b=WUdVxwevv8yeO/52I3T7OKDGqyp+HZG6BoPR1v5KQHsfh4iAOq6Z+x2TGmzpvaNDIS
+         Fm7ZZSAjazlDr/GdRCr11Dam/DyRoYDrH6yXECXyooCgQx1ai1GfojQx9VHr8KI64fsk
+         zD80+4yHK5SS0qalVDUy6J2sQ3gLRdnwg3VMoXfTLjmBmtFt+KF3cvOdJYMI1f/QinZ1
+         +alaU6IaeFj4vTVKLnNbqmMgD5EElxHhUqxdD+Xn6vXeY36viLdiTFXbGRrX73OFLh8Z
+         Yo4pIEtANFvDFa0hPdgOUcGJR2vmn1je1dkUSl8foC/0HhqWZSXf6lCp1Pg1o8QUgeNq
+         ob+Q==
+X-Gm-Message-State: ACrzQf2+MsZct5xYhuZ70sL9rNMIEP43spor6//4EqxWIAFhRhEHsQuD
+        RdFSY+/B17/3eO2KNHwVGJmSQATuZK9QYSj9V4s=
+X-Google-Smtp-Source: AMsMyM6+M2K/rpCN/oYhU/3GtXRvPMP688eLkiH5jTpblIC8wN5UdW0f/9qta3jzxbRjKwe06xPLl3fydUe2rzMVCKw=
+X-Received: by 2002:a5d:47aa:0:b0:236:7a97:7dde with SMTP id
+ 10-20020a5d47aa000000b002367a977ddemr30073051wrb.625.1667799509089; Sun, 06
+ Nov 2022 21:38:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:6000:15ca:0:0:0:0 with HTTP; Sun, 6 Nov 2022 21:38:28
+ -0800 (PST)
+Reply-To: seyba_daniel@yahoo.com
+From:   Seyba Daniel <latifatonde4@gmail.com>
+Date:   Mon, 7 Nov 2022 06:38:28 +0100
+Message-ID: <CAFBpD=O_oWBM3Jd24LGPjrfN1QvDPqX2NMXcnXOiPQmgLR5VZw@mail.gmail.com>
+Subject: HELLO,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The A100 variant of the MIPI DSI controller now gets its module clock
-from the TCON via the TCON TOP, so the clock rate cannot be set to a
-fixed value. Otherwise, it appears to be the same as the A31 variant.
+I urgently seek your service to represent me in investing in
+your region / country and you will be rewarded for your service without
+affecting your present job with very little time invested in it, which you will
+be communicated in details upon response.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+My dearest regards
 
-(no changes since v1)
-
- drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-index f22c96cc8408..760ff05eabf4 100644
---- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-+++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
-@@ -1223,6 +1223,10 @@ static const struct sun6i_dsi_variant sun6i_a31_mipi_dsi_variant = {
- static const struct sun6i_dsi_variant sun50i_a64_mipi_dsi_variant = {
- };
- 
-+static const struct sun6i_dsi_variant sun50i_a100_mipi_dsi_variant = {
-+	.has_mod_clk	= true,
-+};
-+
- static const struct of_device_id sun6i_dsi_of_table[] = {
- 	{
- 		.compatible	= "allwinner,sun6i-a31-mipi-dsi",
-@@ -1232,6 +1236,10 @@ static const struct of_device_id sun6i_dsi_of_table[] = {
- 		.compatible	= "allwinner,sun50i-a64-mipi-dsi",
- 		.data		= &sun50i_a64_mipi_dsi_variant,
- 	},
-+	{
-+		.compatible	= "allwinner,sun50i-a100-mipi-dsi",
-+		.data		= &sun50i_a100_mipi_dsi_variant,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, sun6i_dsi_of_table);
--- 
-2.37.3
-
+Seyba Daniel
