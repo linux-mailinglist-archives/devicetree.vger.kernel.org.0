@@ -2,42 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E4661F091
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D9661F09F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:29:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232009AbiKGKZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 05:25:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35920 "EHLO
+        id S231308AbiKGK3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 05:29:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbiKGKZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:25:22 -0500
-Received: from out28-124.mail.aliyun.com (out28-124.mail.aliyun.com [115.124.28.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 007EC193CF;
-        Mon,  7 Nov 2022 02:24:47 -0800 (PST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.0846245|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_news_journal|0.0678466-0.00920196-0.922951;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=lee@arducam.com;NM=1;PH=DS;RN=7;RT=7;SR=0;TI=SMTPD_---.Q1PAhQl_1667816684;
-Received: from localhost(mailfrom:lee@arducam.com fp:SMTPD_---.Q1PAhQl_1667816684)
-          by smtp.aliyun-inc.com;
-          Mon, 07 Nov 2022 18:24:45 +0800
-Date:   Mon, 7 Nov 2022 18:24:45 +0800
-From:   lee <lee@arducam.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add IMX519 CMOS sensor
- binding
-Message-ID: <20221107182445.00003b43@arducam.com>
-In-Reply-To: <250e8acd-cf5d-f6f2-2d89-e0fd58a14424@linaro.org>
-References: <20221103110424.00007a48@arducam.com>
-        <4556aebd-1296-bb08-2cd7-3d92571ed71b@linaro.org>
-        <20221107104202.00002f0f@arducam.com>
-        <250e8acd-cf5d-f6f2-2d89-e0fd58a14424@linaro.org>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S229638AbiKGK3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:29:48 -0500
+Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5402C12773
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 02:29:47 -0800 (PST)
+Received: by mail-vk1-xa35.google.com with SMTP id s204so6308793vkb.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Nov 2022 02:29:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zaNxkXQ1Y4JKbXCKNHnI42Q7eEAv3p2c5wJUZMq4jg0=;
+        b=LALeX+CQc6yEAIT60ZcvX38eVOtEox1MCHJCm/0G+Q1qAGru2yWXLRd6QBRUqHcjVw
+         +Icd2aOOOtpj6szG5Y5HbluYDK658QcJ1pC7e8Yd76bRz5goJZxaF4Dy6PNa2Svh5f8E
+         oOZBYeOzAX5bfxbgR0QGPyj0veg25b8GvR/kKsAZ0/q+ymIBotnrmLIPD3Orvvvz1Md1
+         DWjqcAKNoq39Rm810RCCfBBO0mq6UJR+p7uaer3mD+yBfN19cUYBACUqJoEmsbt5eOXf
+         pe/jtmGnlJL+BV8gkhtpMcJ8sESAPxYe7PhFW0/zCI2oNLv2E3p4C+6atNREHuuZuooP
+         lVaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zaNxkXQ1Y4JKbXCKNHnI42Q7eEAv3p2c5wJUZMq4jg0=;
+        b=CQqx8/xeHNki+AjDgi1p4x5zRCJF97pifmTGbvMefiw4qIQjM2uKn3GMkTBjx74yTB
+         G8yXvr3cKLhCab4he+9jpJCPbEnhqoNDAGUI3iQLtdrVlPkY2mPfMZJ+uRbyW1UJYrNx
+         MaB8i5avO7Aj6hu2/BYVIhSYl+krxetIqKJlpM0VqcjpxOHFlM083V3nXTbvGr9u62So
+         Xw+CHDM8aHT8vOPAHzxdwXwzgrkxjxtkgzIPcI8qMe5LKvq6Az7u7TxOWpjTucPsGg0O
+         OimoZ9rP2eE9GqQJNZjAb/enfMQhb/5XEMUoSh8zS+9/1x8Xu5xJMepFi5ggCkW2z49x
+         JYBA==
+X-Gm-Message-State: ACrzQf1JVmzwpIzqnabgM62vXJZWA9cBgi9p/wVs+omCVgYKylwQ5Bj0
+        a03/oC2BdNr0BpDAkFKB05jL4BguB0HZw/suq/GpQg==
+X-Google-Smtp-Source: AMsMyM54Yr6hXkptY8k/m5E89W3bthkgvtDvkRDLzEyVct04WyInaLWAUG81rqK49HcbcfuEwdadpXGnAPKFDHFttEc=
+X-Received: by 2002:a05:6122:2219:b0:3b8:7fbd:9554 with SMTP id
+ bb25-20020a056122221900b003b87fbd9554mr5383200vkb.27.1667816986458; Mon, 07
+ Nov 2022 02:29:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+References: <20221027130859.1444412-1-shenwei.wang@nxp.com> <PAXPR04MB9185E538798F83B3C03C70EA89389@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB9185E538798F83B3C03C70EA89389@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 7 Nov 2022 11:29:35 +0100
+Message-ID: <CAMRc=McPXjixgSJNDfFLRzR=OM2Q9SuAuCumqEpjb_s2fdYa-w@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] gpio: add suspend/resume support for i.mx8x SoCs
+To:     Shenwei Wang <shenwei.wang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -45,90 +80,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Nov 2022 09:24:53 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Thu, Nov 3, 2022 at 11:01 PM Shenwei Wang <shenwei.wang@nxp.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > Subject: [PATCH v4 0/5] gpio: add suspend/resume support for i.mx8x SoC=
+s
+> >
+> > On i.MX8QM/QXP/DXL SoCs, even a GPIO is selected as the wakeup source, =
+the
+> > GPIO block will be powered off when system enters into suspend state. T=
+his can
+> > greatly reduce the power consumption of suspend state because the whole
+> > partition can be shutdown. This is called PAD wakeup feature on i.MX8x
+> > platform.
+> >
+> > This series of patches enable this wakeup feature on i.MX8QM/QXP/DXL
+> > platforms.
+> >
+> > Changes in v4:
+> >  - fixed the format issues reported by Peng Fan.
+> >  - change the return type of mxc_gpio_generic_config, and limit the
+> >    suspend/resume behavior changes only on i.MX8QM/QXP/DXL platform.
+> >
+>
+> A soft ping. =F0=9F=98=8A
+>
+> Regards,
+> Shenwei
+>
+> > Changes in v3:
+> >  - According to the feedback from Linus Walleij, the wakeup feature is
+> >    moved to pinctrl driver, and the array of gpio-pin mapping is moved
+> >    to gpio device node and initialized via gpio-ranges property.
+> >
+> > Shenwei Wang (5):
+> >   arm64: dts: imx8dxl-ss-lsio: add gpio-ranges property
+> >   arm64: dts: imx8qm-ss-lsio: add gpio-ranges property
+> >   arm64: dts: imx8qxp-ss-lsio: add gpio-ranges property
+> >   pinctrl: freescale: add pad wakeup config
+> >   gpio: mxc: enable pad wakeup on i.MX8x platforms
+> >
+> >  .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   | 41 +++++++++
+> >  .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    | 38 ++++++++
+> >  .../boot/dts/freescale/imx8qxp-ss-lsio.dtsi   | 25 +++++
+> >  drivers/gpio/gpio-mxc.c                       | 92 ++++++++++++++++++-
+> >  drivers/pinctrl/freescale/pinctrl-scu.c       | 30 ++++++
+> >  5 files changed, 225 insertions(+), 1 deletion(-)
+> >
+> > --
+> > 2.34.1
+>
 
-> On 07/11/2022 03:42, lee wrote:
-> > On Thu, 3 Nov 2022 09:05:05 -0400
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > 
-> > Hi,
-> > Thanks a lot for detailed comments and suggestions for
-> > revisions,there is one place where I have some doubts.  
-> >> On 02/11/2022 23:04, lee wrote:  
-> >>> Add YAML device tree binding for IMX519 CMOS image sensor, and
-> >>> the relevant MAINTAINERS entries.
-> >>>
-> >>> Signed-off-by: Lee Jackson <lee@arducam.com>    
-> >>
-> >> Your From does not match fully SoB.
-> >>  
-> >>> ---
-> >>>  .../bindings/media/i2c/sony,imx519.yaml       | 107
-> >>> ++++++++++++++++++ MAINTAINERS                                   |
-> >>>  9 ++ 2 files changed, 116 insertions(+)
-> >>>  create mode 100644
-> >>> Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> >>>
-> >>> diff --git
-> >>> a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> >>> b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml new
-> >>> file mode 100644 index 000000000000..9b6cda96f613 --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
-> >>> @@ -0,0 +1,107 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/media/i2c/sony,imx519.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
-> >>> +
-> >>> +maintainers:
-> >>> +  - Lee Jackson <lee@arducam.com>
-> >>> +
-> >>> +description: |-
-> >>> +  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image
-> >>> sensor
-> >>> +  with an active array size of 4656H x 3496V. It is programmable
-> >>> through
-> >>> +  I2C interface. The I2C address is fixed to 0x1A as per sensor
-> >>> data sheet.
-> >>> +  Image data is sent through MIPI CSI-2, which is configured as
-> >>> either 2 or
-> >>> +  4 data lanes.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    const: sony,imx519
-> >>> +
-> >>> +  reg:
-> >>> +    description: I2C device address    
-> >>
-> >> Skip description.
-> >>  
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  clocks:
-> >>> +    maxItems: 1
-> >>> +
-> >>> +  VDIG-supply:    
-> >>
-> >> Use lower case names.  
-> > 
-> > Here we refer to other drivers (imx219), they are all uppercase, is
-> > lowercase mandatory?  
-> 
-> Lowercase is the convention. Just because some other driver used
-> uppercase is not really correct argument. If other driver has bug, you
-> also copy it?
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+GPIO part looks good to me.
 
-Hi,
-Thanks for your quick reply. 
-I just want to refer to the driver that has passed the review, as a template, is there anything I can refer to?
-Do you have any good suggestions?
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
