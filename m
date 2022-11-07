@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F11761F116
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BE3061F13B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 11:56:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbiKGKri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 05:47:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50914 "EHLO
+        id S231518AbiKGK4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 05:56:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231807AbiKGKre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:47:34 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C1B19026;
-        Mon,  7 Nov 2022 02:47:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Ry5ssv5//fxqYn0d4RpHPFusuSQKCJRtdUdP1XYz37I=; b=QiH+V/xCgT+T16QBOvPMwL6vaY
-        gyVrUU+p0rHMd/9gcKatOmeVC82N9y2S5wob6/Zo6mivAN/Dk4qn1R6sgCiUa43uG9uTGcVOUbxK9
-        1T010zQFV5iqFqf3vVNvvUEpogdVGELyVpzPNHceye5GM2hLRAvOIcgf5x8obCpMgkh5ugBWN5Td6
-        Zzw3V6KuFfYOShULfVvD8nda2zxn8qm/5/7j2+sWe3sXrbNC0H0oCAyryj8oUzOMvmvkHVvUpyWdW
-        iHC96EfZinpfYD0eaMVdgVhqjLo6NPAXmKwZ//MARFVgV21b21vnjh0HeUlIIGgjlBqc0IlrzEBJh
-        zq7wfEAg==;
-Received: from p200300ccff0572001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff05:7200:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1orzf4-0002fk-BC; Mon, 07 Nov 2022 11:47:26 +0100
-Date:   Mon, 7 Nov 2022 11:47:23 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alistair@alistair23.me
-Subject: Re: [PATCH v2] ARM: dts: imx: e60k02: Add touchscreen
-Message-ID: <20221107114723.37e86b0e@aktux>
-In-Reply-To: <20221107081234.wxup6lq3xph2obfv@pengutronix.de>
-References: <20221104204251.1458958-1-andreas@kemnade.info>
-        <20221107081234.wxup6lq3xph2obfv@pengutronix.de>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231237AbiKGK4T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 05:56:19 -0500
+Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [91.198.250.236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E62C0F9;
+        Mon,  7 Nov 2022 02:56:17 -0800 (PST)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4N5Sp60VxGz9spb;
+        Mon,  7 Nov 2022 11:56:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=noorman.info;
+        s=MBO0001; t=1667818574;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=zR6Mhv/vRVdGbEmRy19xWFBS8xMO4Kg6VmBSaKKrkYA=;
+        b=D4i5c2f/FPiucTd8gLwUgzy7BdbilM406LibcE3v+l0kIaPoYMCxkwh+c0izQ0w9Mve3Kd
+        dB2PZN3DTdaRbhGva09h9nAelS95ode61ws4EzenCodoVD+Mk069cGqTFSISyrcL35xUq3
+        1dkXq+d0C3R5ZPQmXW6NQ+UtEXydx2ujVM5AEHcET59ZJG/RRvgNyyKQZpIpdX5Lqr2Fm6
+        skyDUfWLRcfK0rttIJTRbegZ454O9xTXyd2VLvnFSfSf4dK4o/cA5MOWV8PWxBkrdEZ3ZJ
+        2XV7KYSGdHZ/7dnkPPK5j8sWaX1jtgigCioAxLjTFYOxdREj1OhzPzaZYM8dFw==
+From:   Job Noorman <job@noorman.info>
+To:     Job Noorman <job@noorman.info>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH RESEND v6 0/3] Add Himax hx83112b touchscreen driver
+Date:   Mon,  7 Nov 2022 11:56:01 +0100
+Message-Id: <20221107105604.26541-1-job@noorman.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4N5Sp60VxGz9spb
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -58,58 +58,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi all,
 
-On Mon, 7 Nov 2022 09:12:34 +0100
-Marco Felsch <m.felsch@pengutronix.de> wrote:
+This series adds support for the Himax hx83112b. The hx83112b supports 10
+point multitouch with hardware tracking of touch points. It is the
+touchschreen used by the Fairphone 3.
 
-> Hi Andreas,
-> 
-[...]
-> > diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
-> > index e3f1e8d79528..db5d8509935f 100644
-> > --- a/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
-> > +++ b/arch/arm/boot/dts/imx6sl-tolino-shine3.dts
-> > @@ -52,6 +52,13 @@ &iomuxc {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&pinctrl_hog>;
-> >  
-> > +	pinctrl_cyttsp5_gpio: cyttsp5-gpiogrp {
-> > +		fsl,pins = <
-> > +			MX6SL_PAD_SD1_DAT3__GPIO5_IO06                0x17059 /* TP_INT */
-> > +			MX6SL_PAD_SD1_DAT2__GPIO5_IO13                0x10059 /* TP_RST */
-> > +		>;
-> > +	};  
-> 
-> Hm.. I don't like that you enable it within the base dtsi and add the
-> missing dependencies here. I would rather add the touchscreen within the
-> base dtsi but with with status set to disabled and without specifying
-> the interrupt and reset gpio. Within the dts and the below you can
-> reference the touchscreen via phandle and add the missing properties.
-> 
-hmm, that makes things more complex and unreadable. Remember, we have two boards
-differ in a pin-compatible soc here. Why I should set something present
-in all cases to disabled?
-And why I should add hardware just to set to disabled?
+Note that a datasheet was unavailable for this device, so it was built
+based on the Android driver that was tagged as GPLv2. This series is a
+complete rewrite, though, and the code bears no resemblence to the original
+implementation.
 
-I notice that I have not followed the agreed pattern for this things like in
-the lm3630 setting, there we have
+It is expected that this driver can be made to work on other hx83xxx
+devices, especially the hx83112a used in the Fairphone 4. However, since we
+have been unable to verify this, this driver only declares compatibility
+with the hx83112b and uses very specific file names.
+
+Changes since v5 (based on Jeff LaBundy's 3rd round of comments):
+- Consistently reuse local variable dev in himax_probe()
+
+Changes since v4 (based on Jeff LaBundy's 2nd round of comments):
+- Kconfig: depend on I2C and select REGMAP_I2C
+- Don't suppress dev_err() on EPROBE_DEFER
+- Some minor coding style updates
+
+Changes since v3 (based on Dmitry Torokhov's comments):
+- Use gpiod_set_value_cansleep (instead of gpiod_set_value) during probe
+- Inline some small helper functions
+- Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()
+- Use PTR_ERR_OR_ZERO instead of IS_ERR+PTR_ERR
+- Some minor coding style updates (e.g., use C-style comments)
+
+Changes since v2 (based on Jeff LaBundy's comments):
+- Kconfig: depend on REGMAP_I2C instead of I2C
+- Don't use dev_err_probe()
+- Return IRQ_NONE on failed register reads to prevent possible interrupt
+  storm
+- Add small delay after de-asserting reset pin
+- Some minor coding style updates
+- dt-bindings: make touchscreen-size-{x,y} required
+
+Changes since v1:
+- Fix sparse warnings. Reported-by: kernel test robot <lkp@intel.com>.
+- Fix dt_binding_check.
+
+Best regards,
+Job
+
+Previous versions:
+- v5: https://lore.kernel.org/lkml/20221023163032.144150-1-job@noorman.info/
+- v4: https://lore.kernel.org/lkml/20221017100409.189293-1-job@noorman.info/
+- v3: https://lore.kernel.org/lkml/20221016102756.40345-1-job@noorman.info/
+- v2: https://lore.kernel.org/lkml/20221012202341.295351-1-job@noorman.info/
+- v1: https://lore.kernel.org/lkml/20221011190729.14747-1-job@noorman.info/
+
+Job Noorman (3):
+  dt-bindings: touchscreen: add Himax hx83112b bindings
+  Input: add driver for Himax hx83112b touchscreen devices
+  arm64: dts: qcom: sdm632: fairphone-fp3: add touchscreen
+
+ .../input/touchscreen/himax,hx83112b.yaml     |  63 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sdm632-fairphone-fp3.dts    |  14 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/himax_hx83112b.c    | 361 ++++++++++++++++++
+ 6 files changed, 458 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+ create mode 100644 drivers/input/touchscreen/himax_hx83112b.c
 
 
-       pinctrl_lm3630a_bl_gpio: lm3630a-bl-gpiogrp {
-                fsl,pins = <
-                        MX6SLL_PAD_EPDC_PWR_CTRL3__GPIO2_IO10   0x10059 /* HWEN */
-                >;
-        };
-[...]
-&lm3630a {
-        pinctrl-names = "default";
-        pinctrl-0 = <&pinctrl_lm3630a_bl_gpio>;
-};
-
-in the dts file, so there is no phandle pointing from dtsi to dts.
-I will send an updated version following this widely adopted style.
-
-Regards,
-Andreas
+base-commit: 153a197077d33861744be5a2d4bd17cec2c2dca3
+-- 
+2.38.1
 
