@@ -2,71 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2C561FF29
-	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 21:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFF9961FF30
+	for <lists+devicetree@lfdr.de>; Mon,  7 Nov 2022 21:09:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232696AbiKGUIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Nov 2022 15:08:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46954 "EHLO
+        id S232141AbiKGUJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Nov 2022 15:09:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232538AbiKGUID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 15:08:03 -0500
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5157C2AC6E;
-        Mon,  7 Nov 2022 12:08:01 -0800 (PST)
-Received: by mail-ot1-f52.google.com with SMTP id cn2-20020a056830658200b0066c74617e3dso7208329otb.2;
-        Mon, 07 Nov 2022 12:08:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2e+1CQkY31rHRU0NgYRi9WpKBJmDl6YDaaKalJuxGYI=;
-        b=DSuWORcZm2esk4UkhYLC7luaIFUQmegaEHE92/O76wlaZ4B6JB0nxwXsuvCgLZh9Na
-         QZ90hbXj/+zWN05OkPOe9a5HDulWJnaS+FbTsmkD6Mb4qrsPm14PoXXc1NzhcwzxxxPf
-         dVfBExGjkHkDRGP2A5CIETRxeWuyPp7mFS4hcboVsFhXeJZOf+Wns9UWt0wgGzymdDAg
-         86xd4gdf0+WSC1S4aZO/Tw6FL2mySOmm8c4WQ7qha2BKdKuhildrtELFs4vOO3dGVmpJ
-         cu9fhCcYTQbk3mfLsh7bxnn6i31X6Bf2Lx0B+Vql5nmy1mdQdh3hH5V7CZsBsqYZM9JH
-         T2OA==
-X-Gm-Message-State: ACrzQf29ptMys5AqApX6sYj88UN2uF1bltF2spXYJXYsx0SmfRZPAIXo
-        fQD51LUcKKg4f0DWz3bmsQ==
-X-Google-Smtp-Source: AMsMyM42ecXI4jCMeu1Vcv60kCpnrjWz5XTXNFhmZZ/yXrVn/q9+wmUt8QoVVIhjw/+1BIFiuvTv+w==
-X-Received: by 2002:a05:6830:2aa3:b0:66c:9a3a:539 with SMTP id s35-20020a0568302aa300b0066c9a3a0539mr8688491otu.317.1667851680547;
-        Mon, 07 Nov 2022 12:08:00 -0800 (PST)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u8-20020a9d4d88000000b0066871c3adb3sm3330746otk.28.2022.11.07.12.07.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Nov 2022 12:07:59 -0800 (PST)
-Received: (nullmailer pid 1525000 invoked by uid 1000);
-        Mon, 07 Nov 2022 20:08:01 -0000
-Date:   Mon, 7 Nov 2022 14:08:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org, Banajit Goswami <bgoswami@quicinc.com>,
+        with ESMTP id S231598AbiKGUJu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Nov 2022 15:09:50 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7143C76A
+        for <devicetree@vger.kernel.org>; Mon,  7 Nov 2022 12:09:47 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1os8R1-0004nx-VZ; Mon, 07 Nov 2022 21:09:32 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1os8Qx-002uxN-3v; Mon, 07 Nov 2022 21:09:28 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1os8Qx-00F2UB-90; Mon, 07 Nov 2022 21:09:27 +0100
+Date:   Mon, 7 Nov 2022 21:09:25 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,lpass: do not hard-code
- clock-output-names
-Message-ID: <166785167860.1524281.4239012568327496150.robh@kernel.org>
-References: <20221103195341.174972-1-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Icenowy Zheng <uwu@icenowy.me>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-pwm@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 01/10] dt-bindings: pwm: allwinner,sun4i-a10: Add
+ F1C100s compatible
+Message-ID: <20221107200925.ybrxyvlgn4bmth6g@pengutronix.de>
+References: <20221107005433.11079-1-andre.przywara@arm.com>
+ <20221107005433.11079-2-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ctwhlbxxw6thwo6y"
 Content-Disposition: inline
-In-Reply-To: <20221103195341.174972-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20221107005433.11079-2-andre.przywara@arm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,17 +61,61 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 03 Nov 2022 15:53:39 -0400, Krzysztof Kozlowski wrote:
-> The purpose of clock-output-names is to customize desired clock name,
-> not use one, same name.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/sound/qcom,lpass-rx-macro.yaml         | 3 +--
->  .../devicetree/bindings/sound/qcom,lpass-tx-macro.yaml         | 3 +--
->  .../devicetree/bindings/sound/qcom,lpass-va-macro.yaml         | 3 +--
->  .../devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml        | 3 +--
->  4 files changed, 4 insertions(+), 8 deletions(-)
-> 
+--ctwhlbxxw6thwo6y
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Nov 07, 2022 at 12:54:24AM +0000, Andre Przywara wrote:
+> The PWM controller in the Allwinner F1C100s series of SoCs is the same
+> as in the A20 SoCs, so allow using that as the fallback name.
+>=20
+> Join the V3s compatible string in an enum on the way.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml      | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pw=
+m.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> index 4cc3cc7c50be..66e400f2a3a4 100644
+> --- a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> @@ -25,7 +25,9 @@ properties:
+>            - const: allwinner,sun8i-a83t-pwm
+>            - const: allwinner,sun8i-h3-pwm
+>        - items:
+> -          - const: allwinner,sun8i-v3s-pwm
+> +          - enum:
+> +              - allwinner,suniv-f1c100s-pwm
+> +              - allwinner,sun8i-v3s-pwm
+
+LGTM
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--ctwhlbxxw6thwo6y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmNpZfMACgkQwfwUeK3K
+7AkanQf/TOE+zguKbxcD3MlFfApcbGDqejLVCz9lJedUELLCCUtJ8xiKVT8pcVSa
+GaUKAuV5OSFYtM9tNxOQBmLnYdilKqxKqBuLGrl0GkgWfMrFRzEpcPy+E1EZz2CQ
+YHDvR/AsjWPPDKfnL9chCO7lRTKqlv1lWuIukbYwvSeY0VM12MYsu6YpFKdMz1VO
+YiMFhqw3l7mDgShb5VecAW7nGMsO5KGfGuteHvb3SkpK8yQmO5k+Ts+Se/7YKfzS
+7nrCM0Ucuvba5iFv9a3V23fu4lTTP7MfkOGnjSthE2tRWkRTnWhwGMOh0N5vEnnT
+IMxafQhBqpKVeCP8bm9ExGaXX3f88Q==
+=mPTD
+-----END PGP SIGNATURE-----
+
+--ctwhlbxxw6thwo6y--
